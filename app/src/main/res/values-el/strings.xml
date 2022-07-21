@@ -3907,6 +3907,7 @@
     <item quantity="other">%1$d απαντήσεις</item>
   </plurals>
   <!--Used when view receipts are disabled-->
+  <string name="StoryViewerPageFragment__views_off">Αναφορές προβολής ανενεργές</string>
   <!--Used to join views and replies when both exist on a story item-->
   <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
   <!--Displayed when viewing a post you sent-->
@@ -3920,7 +3921,9 @@
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">Καμία προβολή ακόμα</string>
   <!--Displayed when user has disabled receipts-->
+  <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Ενεργοποίησε το αποδεικτικό ανάγνωσης για να βλέπεις ποια άτομα βλέπουν τις ιστορίες σου.</string>
   <!--Button label displayed when user has disabled receipts-->
+  <string name="StoryViewsFragment__go_to_settings">Πήγαινε στις ρυθμίσεις</string>
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Καμία απάντηση ακόμα</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
@@ -4198,6 +4201,7 @@
     <item quantity="other">Ιστορία ομάδας · %1$d θεατές</item>
   </plurals>
   <!--Label under name for My Story when first sending to my story-->
+  <string name="ContactSearchItems__tap_to_choose_your_viewers">Πάτα για να επιλέξεις τα άτομα που βλέπουν τις ιστορίες σου</string>
   <!--Label for context menu item to open story settings-->
   <string name="ContactSearchItems__story_settings">Ρυθμίσεις ιστορίας</string>
   <!--Label for context menu item to remove a group story from contact results-->
@@ -4242,33 +4246,49 @@
   <!--Button label to confirm understanding of story navigation-->
   <string name="StoryFirstTimeNagivationView__got_it">Εντάξει</string>
   <!--Content description for vertical context menu button in safety number sheet rows-->
+  <string name="SafetyNumberRecipientRowItem__open_context_menu">Άνοιγμα μενού περιβάλλοντος</string>
   <!--Sub-line when a user is verified.-->
+  <string name="SafetyNumberRecipientRowItem__s_dot_verified">%1$s · Επαληθεύτηκε</string>
   <!--Sub-line when a user is verified.-->
   <string name="SafetyNumberRecipientRowItem__verified">Επιβεβαιωμένος</string>
   <!--Title of safety number changes bottom sheet when showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_changes">Αλλαγές αριθμού ασφαλείας</string>
   <!--Message of safety number changes bottom sheet when showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__the_following_people">Τα παρακάτω άτομα μπορεί να έχουν εγκαταστήσει εκ νέου το Signal ή να έχουν αλλάξει συσκευή. Πάτα έναν παραλήπτη για να επιβεβαιώσεις τον νέο αριθμό ασφάλειας. Αυτό είναι προαιρετικό.</string>
   <!--Title of safety number changes bottom sheet when not showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup">Έλεγχος αριθμού ασφαλείας</string>
   <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">Ο έλεγχος του αριθμού ασφαλείας ολοκληρώθηκε</string>
   <!--Message of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Όλες οι επαφές έχουν ελεγχτεί. Πάτα Αποστολή για να συνεχίσεις.</string>
   <!--Message of safety number changes bottom sheet when not showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">Έχεις %1$d επαφές που μπορεί να έχουν εγκαταστήσει εκ νέου το Signal ή να έχουν αλλάξει συσκευές. Προτού μοιραστείς την ιστορία σου μαζί τους, έλεγξε τους αριθμούς ασφαλείας τους. Διαφορετικά, μπορείς να τους αφαιρέσεις από την ιστορία σου.</string>
   <!--Menu action to launch safety number verification screen-->
   <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Επαλήθευση αριθμού ασφαλείας</string>
   <!--Menu action to remove user from story-->
+  <string name="SafetyNumberBottomSheetFragment__remove_from_story">Αφαίρεση από την ιστορία</string>
   <!--Action button at bottom of SafetyNumberBottomSheetFragment to send anyway-->
   <string name="SafetyNumberBottomSheetFragment__send_anyway">Αποστόλη παρ\' όλα αυτά</string>
   <!--Action button at bottom of SafetyNumberBottomSheetFragment to review connections-->
+  <string name="SafetyNumberBottomSheetFragment__review_connections">Έλεγχος επαφών</string>
   <!--Empty state copy for SafetyNumberBottomSheetFragment-->
+  <string name="SafetyNumberBottomSheetFragment__no_more_recipients_to_show">Δεν υπάρχουν άλλοι παραλήπτες</string>
   <!--Done button on safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__done">Τέλος</string>
   <!--Title of safety number review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Αλλαγές αριθμού ασφαλείας</string>
   <!--Message of safety number review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">%1$d παραλήπτες μπορεί να έχουν εγκαταστήσει εκ νέου το Signal ή να έχουν αλλάξει συσκευή. Πάτα έναν παραλήπτη για να επιβεβαιώσεις τον νέο αριθμό ασφαλείας. Αυτό είναι προαιρετικό.</string>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">Επαφές</string>
   <!--Context menu label for distribution list headers in review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__remove_all">Αφαίρεση όλων</string>
   <!--Context menu label for 1:1 contacts to remove from send-->
   <string name="SafetyNumberReviewConnectionsFragment__remove">Αφαίρεση</string>
   <!--Title of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">Ιδιωτικότητα της ιστορίας σου</string>
   <!--Subtitle of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">Επίλεξε ποια άτομα μπορούν να δουν δημοσιεύσεις στην ιστορία σου. Μπορείς πάντα να κάνεις αλλαγές στις ρυθμίσεις.</string>
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Όλες οι επαφές Signal</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->

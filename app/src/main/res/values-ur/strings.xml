@@ -4258,7 +4258,7 @@
   <!--Message of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
   <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">تمام کنکشنز کا جائزہ لیا گیا ہے، جاری رکھنے کے لیے بھیجیں پر ٹیپ کریں۔</string>
   <!--Message of safety number changes bottom sheet when not showing individual records-->
-  <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">آپ کے %1$d کنکشنز ہیں جنہوں نے Signal کو دوبارہ انسٹال اور ڈیوائسز کو تبدیل کیا ہو گا۔ ان کے ساتھ اپنی اسٹوری شیئر کرنے سے پہلے ان کے حفاظتی نمبرز کا جائزہ لیں یا انہیں اپنی اسٹوری سے ہٹانے پر غور کریں۔</string>
+  <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">آپ کے %1$d کنکشنز  نے Signal کو دوبارہ انسٹال اور ڈیوائسز کو تبدیل کیا ہو گا۔ ان کے ساتھ اپنی اسٹوری شیئر کرنے سے پہلے ان کے حفاظتی نمبرز کا جائزہ لیں یا انہیں اپنی اسٹوری سے ہٹانے پر غور کریں۔</string>
   <!--Menu action to launch safety number verification screen-->
   <string name="SafetyNumberBottomSheetFragment__verify_safety_number">حفاظتی نمبر کی تصدیق کریں</string>
   <!--Menu action to remove user from story-->

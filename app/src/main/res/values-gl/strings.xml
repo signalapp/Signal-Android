@@ -13,19 +13,19 @@
   <string name="ApplicationMigrationActivity__signal_is_updating">Signal está actualizándose…</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Actualmente: %s</string>
-  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Aínda non tes establecida unha frase de acceso!</string>
+  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Aínda non estableceches unha frase de acceso!</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Desactivar frase de acceso?</string>
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Isto desbloqueará de xeito permanente Signal e as notificacións de mensaxes.</string>
   <string name="ApplicationPreferencesActivity_disable">Desactivar</string>
   <string name="ApplicationPreferencesActivity_unregistering">Anulando o rexistro</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Anulando o rexistro de mensaxes e chamadas de Signal…</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Desactivar as mensaxes e chamadas en Signal?</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Desactiva as mensaxes e chamadas vía Signal anulando o rexistro no servidor. Necesitarás volver rexistrar o teu número en caso de querer volver usalo.</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Desactiva as mensaxes e chamadas en Signal anulando o rexistro no servidor. Necesitarás volver rexistrar o teu número en caso de querer usalo de novo.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Erro ao se conectar ao servidor!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS activadas</string>
-  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Toca para cambiar a túa app predefinida de SMS</string>
+  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Toca para cambiar a túa aplicación predefinida de SMS</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS desactivadas</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Toca para facer de Signal a túa app predefinida de MMS</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Toca para facer de Signal a túa aplicación predefinida de MMS</string>
   <string name="ApplicationPreferencesActivity_on">activada</string>
   <string name="ApplicationPreferencesActivity_On">On</string>
   <string name="ApplicationPreferencesActivity_off">desactivada</string>
@@ -37,7 +37,7 @@
   <string name="ApplicationPreferencesActivity_pin_created">PIN establecido.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN desactivado.</string>
   <string name="ApplicationPreferencesActivity_hide">Agochar</string>
-  <string name="ApplicationPreferencesActivity_hide_reminder">¿Agochar o recordatorio?</string>
+  <string name="ApplicationPreferencesActivity_hide_reminder">Agochar o recordatorio?</string>
   <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Gardar frase de recuperación de pagamento.</string>
   <string name="ApplicationPreferencesActivity_record_phrase">Gardar frase.</string>
   <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Antes de poder desactivar o PIN, tes que gardar a túa frase de recuperación de pagamentos para asegurarte de que podes recuperar a conta de pagamentos.</string>
@@ -48,7 +48,7 @@
   </plurals>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(imaxe)</string>
-  <string name="DraftDatabase_Draft_audio_snippet">(audio)</string>
+  <string name="DraftDatabase_Draft_audio_snippet">(son)</string>
   <string name="DraftDatabase_Draft_video_snippet">(vídeo)</string>
   <string name="DraftDatabase_Draft_location_snippet">(localización)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(resposta)</string>
@@ -62,10 +62,10 @@
   <string name="AttachmentKeyboard_give_access">Permitir</string>
   <string name="AttachmentKeyboard_payment">Pagamento</string>
   <!--AttachmentManager-->
-  <string name="AttachmentManager_cant_open_media_selection">Non se atopa unha app para seleccionar contido multimedia.</string>
+  <string name="AttachmentManager_cant_open_media_selection">Non se atopa unha aplicación para seleccionar contido multimedia.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal require permiso de almacenamento para poder anexar fotografías, vídeos ou ficheiros de audio, pero este denegouse de forma permanente. Vai aos axustes da aplicación, selecciona «Permisos» e activa «Almacenamento».</string>
-  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal require permiso para poder anexar información dos contactos, pero este foi denegado de forma permanente. Vai aos axustes da aplicación, selecciona \"Permisos\" e activa \"Contactos\".</string>
-  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal require permiso para poder anexar a localización, pero este foi denegado de forma permanente. Vai aos axustes da aplicación, selecciona \"Permisos\" e activa \"Localización\".</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal require permiso para poder anexar información dos contactos, pero este denegouse de forma permanente. Vai a configuración da aplicación, selecciona «Permisos» e activa «Contactos».</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal require permiso para poder anexar a localización, pero este denegouse de forma permanente. Vai a configuración da aplicación, selecciona «Permisos» e activa «Localización».</string>
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">Subindo contido multimedia…</string>
   <string name="AttachmentUploadJob_compressing_video_start">Comprimindo video…</string>
@@ -77,17 +77,17 @@
   <string name="BlockedUsersActivity__blocked_users_will">Os usuarios bloqueados non poderán chamarte nin enviarche mensaxes.</string>
   <string name="BlockedUsersActivity__no_blocked_users">Sen usuarios bloqueados</string>
   <string name="BlockedUsersActivity__block_user">Bloquear usuario?</string>
-  <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" non te poderá chamar nin enviar mensaxes.</string>
+  <string name="BlockedUserActivity__s_will_not_be_able_to">«%1$s» non te poderá chamar nin enviar mensaxes.</string>
   <string name="BlockedUsersActivity__block">Bloquear</string>
   <string name="BlockedUsersActivity__unblock_user">Desbloquear usuario?</string>
-  <string name="BlockedUsersActivity__do_you_want_to_unblock_s">Queres desbloquear a \"%1$s\"?</string>
+  <string name="BlockedUsersActivity__do_you_want_to_unblock_s">Queres desbloquear a «%1$s»?</string>
   <string name="BlockedUsersActivity__unblock">Desbloquear</string>
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Bloquear e abandonar %1$s?</string>
   <string name="BlockUnblockDialog_block_s">Bloquear a %1$s?</string>
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Non recibirás máis mensaxes ou actualizacións deste grupo, e os membros non poderán engadirte novamente ao grupo.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Os membros do grupo non poderán engadirte novamente ao grupo.</string>
-  <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Os membros do grupo poderán engadirte de volta.</string>
+  <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Os membros do grupo poderán engadirte de novo.</string>
   <!--Text that is shown when unblocking a Signal contact-->
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Poderás enviar mensaxes e facer chamadas e o teu nome e foto compartirase con eles.</string>
   <!--Text that is shown when unblocking an SMS contact-->
@@ -101,7 +101,7 @@
   <string name="BlockUnblockDialog_unblock_s">Desbloquear a %1$s?</string>
   <string name="BlockUnblockDialog_block">Bloquear</string>
   <string name="BlockUnblockDialog_block_and_leave">Bloquear e saír</string>
-  <string name="BlockUnblockDialog_report_spam_and_block">Denunciar spam e bloquear</string>
+  <string name="BlockUnblockDialog_report_spam_and_block">Denunciar correo lixo e bloquear</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Hoxe</string>
   <string name="BucketedThreadMedia_Yesterday">Onte</string>
@@ -141,22 +141,22 @@
   <string name="ClearProfileActivity_remove_group_photo">Eliminar foto do grupo?</string>
   <!--ClientDeprecatedActivity-->
   <string name="ClientDeprecatedActivity_update_signal">Actualizar Signal</string>
-  <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">Esta versión da app non é compatíbel. Para continuares a enviar e recibir mensaxes, actualiza á última versión.</string>
+  <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">Esta versión da aplicación non é compatíble. Para continuares a enviar e recibir mensaxes, actualiza á última versión.</string>
   <string name="ClientDeprecatedActivity_update">Actualizar</string>
   <string name="ClientDeprecatedActivity_dont_update">Non actualizar</string>
   <string name="ClientDeprecatedActivity_warning">Aviso</string>
   <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">A túa versión de Signal caducou. Podes ver o historial de mensaxes mais non poderás enviar ou recibir mensaxes ata que a actualices.</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Non se atopou ningún navegador web.</string>
-  <string name="CommunicationActions_send_email">Enviar email</string>
+  <string name="CommunicationActions_send_email">Enviar correo electrónico</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Xa está en curso unha chamada.</string>
   <string name="CommunicationActions_start_voice_call">Iniciar chamada de voz?</string>
   <string name="CommunicationActions_cancel">Cancelar</string>
   <string name="CommunicationActions_call">Chamar</string>
   <string name="CommunicationActions_insecure_call">Chamada insegura</string>
-  <string name="CommunicationActions_carrier_charges_may_apply">Posibles custos da operadora. O número ao que chamas non está rexistrado en Signal. Esta chamada farase a través da rede móbil, non por internet.</string>
+  <string name="CommunicationActions_carrier_charges_may_apply">Posibles custos da operadora. O número ao que chamas non está rexistrado en Signal. Esta chamada farase a través da rede móbil, non por Internet.</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">O teu número de seguranza con %1$s foi modificado. Isto pode significar que alguén está a tentar interceptar a vosa comunicación ou simplemente que %2$s reinstalou Signal.</string>
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">O teu número de seguranza con %1$s modificouse. Isto pode significar que alguén está a tentar interceptar a vosa comunicación ou simplemente que %2$s reinstalou Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Convén verificar o teu número de seguranza con este contacto.</string>
   <string name="ConfirmIdentityDialog_accept">Aceptar</string>
   <!--ContactsCursorLoader-->
@@ -173,8 +173,8 @@
   <string name="ContactsDatabase_message_s">Mensaxe %s</string>
   <string name="ContactsDatabase_signal_call_s">Chamada Signal %s</string>
   <!--ContactNameEditActivity-->
-  <string name="ContactNameEditActivity_given_name">Nome facilitado</string>
-  <string name="ContactNameEditActivity_family_name">Nome familiar</string>
+  <string name="ContactNameEditActivity_given_name">Nome propio</string>
+  <string name="ContactNameEditActivity_family_name">Apelido</string>
   <string name="ContactNameEditActivity_prefix">Prefixo</string>
   <string name="ContactNameEditActivity_suffix">Sufixo</string>
   <string name="ContactNameEditActivity_middle_name">Segundo nome</string>
@@ -185,9 +185,9 @@
   <string name="ContactShareEditActivity_type_missing">Outra</string>
   <string name="ContactShareEditActivity_invalid_contact">O contacto seleccionado non foi válido</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_sent_tap_for_details">Non enviado, toca para detalles</string>
-  <string name="ConversationItem_error_partially_not_delivered">Enviado parcialmente, toca para detalles</string>
-  <string name="ConversationItem_error_network_not_delivered">Fallou o envío</string>
+  <string name="ConversationItem_error_not_sent_tap_for_details">Non enviado, toca para máis detalles</string>
+  <string name="ConversationItem_error_partially_not_delivered">Enviado parcialmente, toca para máis detalles</string>
+  <string name="ConversationItem_error_network_not_delivered">Erro ao enviar</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Recibida a mensaxe de intercambio de chaves; toca para continuar.</string>
   <string name="ConversationItem_group_action_left">%1$s abandonou o grupo.</string>
   <string name="ConversationItem_send_paused">Envío en pausa</string>
@@ -195,7 +195,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Volver a SMS sen cifrar?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Volver a MMS sen cifrar?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Esta mensaxe <b>non</b> será cifrada porque o seu destinatario xa non é usuario de Signal.\n\nEnviar mensaxe insegura?</string>
-  <string name="ConversationItem_unable_to_open_media">Non se atopa unha aplicación con que abrir este contido multimedia.</string>
+  <string name="ConversationItem_unable_to_open_media">Non se atopa unha aplicación para abrir este contido multimedia.</string>
   <string name="ConversationItem_copied_text">Copiouse %s</string>
   <string name="ConversationItem_from_s">de %s</string>
   <string name="ConversationItem_to_s">a %s</string>
@@ -228,24 +228,24 @@
   <string name="ConversationActivity_specify_recipient">Por favor, elixe un contacto</string>
   <string name="ConversationActivity_unblock">Desbloquear</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">O anexo excede o límite para o tipo de mensaxe que estás a enviar.</string>
-  <string name="ConversationActivity_unable_to_record_audio">Non é posible gravar audio!</string>
-  <string name="ConversationActivity_you_cant_send_messages_to_this_group">Non lle podes enviar mensaxes ao grupo porque xa non formas parte del.</string>
+  <string name="ConversationActivity_unable_to_record_audio">Non é posible gravar son!</string>
+  <string name="ConversationActivity_you_cant_send_messages_to_this_group">Non podes enviar mensaxes ao grupo porque xa non formas parte del.</string>
   <string name="ConversationActivity_only_s_can_send_messages">Só %1$s pode enviar mensaxes.</string>
   <string name="ConversationActivity_admins">administradores</string>
   <string name="ConversationActivity_message_an_admin">Enviar mensaxe a un administrador</string>
   <string name="ConversationActivity_cant_start_group_call">Erro ao iniciar a chamada grupal</string>
   <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Só os administradores deste grupo poden iniciar a chamada.</string>
-  <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Non hai ningunha app dispoñible para tratar esta ligazón no teu dispositivo.</string>
+  <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Non hai ningunha aplicación dispoñible para tratar esta ligazón no teu dispositivo.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Enviouse a solicitude á administración do grupo. Recibirás unha notificación cando a resolvan.</string>
-  <string name="ConversationActivity_cancel_request">Cancelar Solicitude</string>
-  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Para enviar mensaxes de audio, Signal necesita acceder ao teu micrófono.</string>
-  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal require permiso para poder enviar mensaxes de audio, pero este foi denegado de forma permanente. Vai aos axustes da aplicación, selecciona \"Permisos\" e activa \"Micrófono\".</string>
-  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal necesita permisos para acceder ao micrófono e á cámara para poder chamar a %s, pero foron denegados de forma permanente. Vai aos axustes da aplicación, selecciona \"Permisos\" e activa \"Micrófono\" e \"Cámara\".</string>
+  <string name="ConversationActivity_cancel_request">Cancelar solicitude</string>
+  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Para enviar mensaxes de son, Signal necesita acceder ao teu micrófono.</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal require permiso para poder enviar mensaxes de son, pero este denegouse de forma permanente. Vai a configuración da aplicación, selecciona «Permisos» e activa «Micrófono».</string>
+  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal necesita permisos para acceder ao micrófono e á cámara para poder chamar a %s, pero denegáronse de forma permanente. Vai a configuración da aplicación, selecciona «Permisos» e activa «Micrófono» e «Cámara».</string>
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Para tirar fotografías e facer vídeos, Signal necesita acceder á cámara.</string>
-  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal necesita permiso para acceder á cámara e poder tirar fotografías, pero foi denegado de forma permanente. Vai aos axustes da aplicación, selecciona \"Permisos\" e activa \"Cámara\".</string>
+  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal necesita permiso para acceder á cámara e poder tirar fotografías, pero denegouse de forma permanente. Vai a configuración da aplicación, selecciona «Permisos» e activa «Cámara».</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal necesita permiso para acceder á cámara e tirar fotografías ou facer vídeos.</string>
   <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Habilitar o permiso ao micrófono para gravar vídeos con son.</string>
-  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Signal necesita permiso para acceder ao micrófono e poder gravar vídeos, pero foi denegado. Vai aos axustes da aplicación, selecciona \"Permisos\" e activa \"Micrófono\" e \"Cámara\".</string>
+  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Signal necesita permiso para acceder ao micrófono e poder gravar vídeos, pero denegouse. Vai a configuración da aplicación, selecciona «Permisos» e activa «Micrófono» e «Cámara».</string>
   <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signal necesita acceder ao micrófono para gravar vídeos.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal non pode enviar SMS nin MMS porque non é a túa aplicación predefinida de SMS. Gustaríache cambiar isto nos axustes de Android?</string>
@@ -253,21 +253,21 @@
   <string name="ConversationActivity_no">Non</string>
   <string name="ConversationActivity_search_position">%1$d de %2$d</string>
   <string name="ConversationActivity_no_results">Sen resultados</string>
-  <string name="ConversationActivity_sticker_pack_installed">Paquete de adhesivos instalado</string>
-  <string name="ConversationActivity_new_say_it_with_stickers">Novo! Dille ola aos adhesivos ou stickers</string>
+  <string name="ConversationActivity_sticker_pack_installed">Paquete de stickers instalado</string>
+  <string name="ConversationActivity_new_say_it_with_stickers">Novo! Dille ola con stickers</string>
   <string name="ConversationActivity_cancel">Cancelar</string>
   <string name="ConversationActivity_delete_conversation">Borrar conversa?</string>
   <string name="ConversationActivity_delete_and_leave_group">Eliminar e deixar o grupo?</string>
   <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Esta conversa eliminarase de todos os teus dispositivos.</string>
-  <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Abandonarás este grupo e será eliminado de todos os teus dispositivos.</string>
+  <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Abandonarás este grupo e eliminarase de todos os teus dispositivos.</string>
   <string name="ConversationActivity_delete">Eliminar</string>
   <string name="ConversationActivity_delete_and_leave">Eliminar e saír</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Para chamar a %1$s, Signal necesita acceder ao teu micrófono.</string>
   <string name="ConversationActivity__more_options_now_in_group_settings">Máis opcións nos \"Axustes do Grupo\"</string>
-  <string name="ConversationActivity_join">Únete</string>
+  <string name="ConversationActivity_join">Unirse</string>
   <string name="ConversationActivity_full">Completo</string>
   <string name="ConversationActivity_error_sending_media">Erro ao enviar o multimedia</string>
-  <string name="ConversationActivity__reported_as_spam_and_blocked">Denunciado como spam e bloqueado.</string>
+  <string name="ConversationActivity__reported_as_spam_and_blocked">Denunciado como correo lixo e bloqueado.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d mensaxe sen ler</item>
@@ -283,7 +283,7 @@
   <string name="ConversationFragment_save_to_sd_card">Gardar no almacenamento?</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
     <item quantity="one">Ao gardar este contido multimedia no almacenamento permitirás o acceso a el doutras aplicacións do teu dispositivo. \n\nDesexas continuar?</item>
-    <item quantity="other">Ao gardar todos os %1$d elementos multimedia no almacenamento permitirás o acceso a eles doutras aplicacións do teu dispositivo. \n\nDesexas continuar?</item>
+    <item quantity="other">Ao gardar todos os %1$d elementos multimedia no almacenamento permitirás que outras aplicacións do teu dispositivo accedan a eles. \n\nDesexas continuar?</item>
   </plurals>
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
     <item quantity="one">Erro ao gardar o anexo no almacenamento!</item>
@@ -306,13 +306,13 @@
   <string name="ConversationFragment_deleting_messages">Borrando mensaxes…</string>
   <string name="ConversationFragment_delete_for_me">Eliminar para min</string>
   <string name="ConversationFragment_delete_for_everyone">Eliminar para todos</string>
-  <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Esta mensaxe será eliminada para todos na conversa se están nunha versión recente de Signal. Poderán ver que eliminaches a mensaxe.</string>
+  <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Esta mensaxe eliminarase para todos na conversa se están nunha versión recente de Signal. Poderán ver que eliminaches a mensaxe.</string>
   <string name="ConversationFragment_quoted_message_not_found">Non se atopou a mensaxe orixinal</string>
-  <string name="ConversationFragment_quoted_message_no_longer_available">A mensaxe orixinal xa non está máis dispoñible</string>
+  <string name="ConversationFragment_quoted_message_no_longer_available">A mensaxe orixinal xa non está dispoñible</string>
   <string name="ConversationFragment_failed_to_open_message">Erro ao abrir a mensaxe</string>
-  <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Podes pasar o dedo cara á dereita sobre calquera mensaxe para responder rapidamente</string>
-  <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Podes pasar o dedo cara á esquerda sobre calquera mensaxe para responder rapidamente</string>
-  <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Os ficheiros multimedia de un só visionado elimínanse automáticamente tras o envío</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Arrastra cara á dereita sobre calquera mensaxe para responder rapidamente</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Arrastra cara á esquerda sobre calquera mensaxe para responder rapidamente</string>
+  <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Os ficheiros multimedia dunha soa visualización elimínanse automaticamente despois de envialos</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Xa viches esta mensaxe</string>
   <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Podes engadir notas para ti mesmo nesta conversa.\nAs notas estarán sincronizadas se a conta ten dispositivos conectados.</string>
   <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d membros do grupo teñen o mesmo nome.</string>
@@ -322,7 +322,7 @@
   <string name="ConversationFragment_contact_us">Contacto</string>
   <string name="ConversationFragment_verify">Comprobar</string>
   <string name="ConversationFragment_not_now">Agora non</string>
-  <string name="ConversationFragment_your_safety_number_with_s_changed">O teu número de seguridade con %s cambiou</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed">O teu número de seguranza con %s cambiou</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">O teu número de seguranza con %s cambiou probablemente porque reinstalou Signal ou mudou de dispositivo. Toca Verificar para confirmar o novo número. Isto é opcional.</string>
   <!--Message shown to indicate which notification profile is on/active-->
   <string name="ConversationFragment__s_on">%1$sactivo</string>
@@ -419,18 +419,18 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">Erro ao establecer a fotografía do perfil</string>
   <string name="CreateProfileActivity_problem_setting_profile">Problemas ao establecer o perfil</string>
   <string name="CreateProfileActivity_set_up_your_profile">Establece o teu perfil</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">O teu perfil está cifrado de extremo-a-extremo. O teu perfil e os seus cambios serán visibles para os teus contactos cando inicias ou aceptas unha nova conversa e tamén cando te unas a un grupo.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">O teu perfil está cifrado de extremo a extremo. Os teus contactos poderán ver o teu perfil e os cambios que fagas nel cando inicies ou aceptes unha nova conversa e tamén cando te unas a un grupo.</string>
   <string name="CreateProfileActivity_set_avatar_description">Establecer avatar</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">Restaurar desde a copia de seguranza?</string>
   <string name="ChooseBackupFragment__restore_your_messages_and_media">Restaura as túas mensaxes e contido multimedia desde unha copia local. Se non o fas agora, non poderás facelo máis tarde.</string>
-  <string name="ChooseBackupFragment__icon_content_description">Restablece desde a icona da copia</string>
-  <string name="ChooseBackupFragment__choose_backup">Escolle copia de apoio</string>
+  <string name="ChooseBackupFragment__icon_content_description">Restablece desde a icona da copia de seguranza</string>
+  <string name="ChooseBackupFragment__choose_backup">Escolle copia de seguranza</string>
   <string name="ChooseBackupFragment__learn_more">Saber máis</string>
-  <string name="ChooseBackupFragment__no_file_browser_available">Non hai un navegador de ficheiros</string>
+  <string name="ChooseBackupFragment__no_file_browser_available">Non hai un navegador dispoñible</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">Restablecemento completo</string>
-  <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Elixe un cartafol para seguir usando copias de apoio. As novas copias gardaranse nese cartafol.</string>
+  <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Elixe un cartafol para seguir usando copias de seguranza. As novas copias gardaranse nese cartafol.</string>
   <string name="RestoreBackupFragment__choose_folder">Elixe un cartafol</string>
   <string name="RestoreBackupFragment__not_now">Agora non</string>
   <!--Couldn\'t find the selected backup-->
@@ -441,21 +441,21 @@
   <string name="RestoreBackupFragment__backup_has_a_bad_extension">A copia de seguranza ten unha extensión incorrecta.</string>
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">Copias de seguranza das conversas</string>
-  <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">As copias de apoio están cifradas cunha frase de paso e gárdanse no teu dispositivo.</string>
+  <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">As copias de seguranza están cifradas cunha frase de seguridade e gárdanse no teu dispositivo.</string>
   <string name="BackupsPreferenceFragment__create_backup">Crear copia de seguranza</string>
   <string name="BackupsPreferenceFragment__last_backup">Última copia: %1$s</string>
   <string name="BackupsPreferenceFragment__backup_folder">Cartafol da copia</string>
-  <string name="BackupsPreferenceFragment__verify_backup_passphrase">Verificar frase de paso da copia</string>
-  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Comproba a frase da paso da copia e verifica que concorda</string>
+  <string name="BackupsPreferenceFragment__verify_backup_passphrase">Verificar frase de seguridade</string>
+  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Comproba a frase de seguridade da copia e verifica que concorda</string>
   <string name="BackupsPreferenceFragment__turn_on">Acender</string>
   <string name="BackupsPreferenceFragment__turn_off">Apagar</string>
-  <string name="BackupsPreferenceFragment__to_restore_a_backup">Para restablecer a copia, instala novamente Signal. Abre a app e toca en \"Restablecer copia de apoio\" e após busca o ficheiro da copia. %1$s</string>
+  <string name="BackupsPreferenceFragment__to_restore_a_backup">Para restablecer a copia, instala de novo Signal. Abre a aplicación e toca en «Restablecer copia de seguranza» e despois busca o ficheiro da copia. %1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">Saber máis</string>
   <string name="BackupsPreferenceFragment__in_progress">En progreso…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d por agora…</string>
   <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment__s_so_far">%1$s%% por agora…</string>
-  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal require permiso de almacenamento para poder crear copias de seguranza, pero este foi denegado de forma permanente. Vai aos axustes da aplicación, selecciona \"Permisos\" e activa \"Almacenamento\".</string>
+  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal require permiso de almacenamento para poder crear copias de seguranza, pero este denegouseo de forma permanente. Vai a configuración da aplicación, selecciona «Permisos» e activa «Almacenamento».</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Uso personalizado: %s</string>
   <string name="CustomDefaultPreference_using_default">Uso predefinido: %s</string>
@@ -465,8 +465,8 @@
   <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">Fai unha foto</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Escolle na galería</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Eliminar fotografía</string>
-  <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">Facer unha foto precisa do permiso de acceso á cámara.</string>
-  <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">Para ver a galería precisas permiso de almacenaxe.</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">Para facer unha foto precisas permiso para acceder á cámara.</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">Para ver a galería precisas permiso de almacenamento.</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Agora</string>
   <string name="DateUtils_minutes_ago">%dm</string>
@@ -474,7 +474,7 @@
   <string name="DateUtils_yesterday">Onte</string>
   <!--DecryptionFailedDialog-->
   <string name="DecryptionFailedDialog_chat_session_refreshed">Sesión de conversa actualizada</string>
-  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal utiliza cifrado de extremo-a-extremo e podería precisar actualizar a sesión de conversa ocasionalmente. Esto non afecta á seguridade da conversa, pero poderías ter perdido algunha mensaxe deste contacto, polo que igual ten que volver a enviarcho.</string>
+  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal utiliza cifrado de extremo a extremo e podería ter que actualizar a sesión de conversa ocasionalmente. Isto non afecta á seguridade da conversa, pero poderías perder algunha mensaxe deste contacto, polo que igual ten que volver a enviarcho.</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Desvincular \'%s\'?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Ao desvincular este dispositivo, non volverá estar dispoñible para enviar nin recibir mensaxes.</string>
@@ -1382,7 +1382,7 @@
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Non se pode recibir o audio e vídeo de %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Esto podería ser debido a que non verificaron o cambio no teu número de seguridade, hai un problema co seu dispositivo ou a que te bloquearon.</string>
   <!--CallToastPopupWindow-->
-  <string name="CallToastPopupWindow__swipe_to_view_screen_share">Despraza para ver a pantalla compartida</string>
+  <string name="CallToastPopupWindow__swipe_to_view_screen_share">Arrastra para ver a pantalla compartida</string>
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">Servidor proxy</string>
   <string name="ProxyBottomSheetFragment_proxy_address">Enderezo do proxy</string>
@@ -1537,8 +1537,8 @@
   <string name="ThreadRecord_missed_video_call">Chamada de voz perdida</string>
   <string name="ThreadRecord_media_message">Mensaxe multimedia</string>
   <string name="ThreadRecord_sticker">Adhesivo</string>
-  <string name="ThreadRecord_view_once_photo">Foto para ver só unha vez</string>
-  <string name="ThreadRecord_view_once_video">Vídeo para ver só unha vez</string>
+  <string name="ThreadRecord_view_once_photo">Foto dunha soa visualización</string>
+  <string name="ThreadRecord_view_once_video">Vídeo dunha soa visualización</string>
   <string name="ThreadRecord_view_once_media">Multimedia dunha soa visualización</string>
   <string name="ThreadRecord_this_message_was_deleted">Eliminouse a mensaxe.</string>
   <string name="ThreadRecord_you_deleted_this_message">Eliminaches esta mensaxe.</string>
@@ -1646,8 +1646,8 @@
   <string name="MessageNotifier_mark_all_as_read">Marcar todas como lidas</string>
   <string name="MessageNotifier_mark_read">Marcar como lida</string>
   <string name="MessageNotifier_turn_off_these_notifications">Desactivar estas notificacións</string>
-  <string name="MessageNotifier_view_once_photo">Foto para ver só unha vez</string>
-  <string name="MessageNotifier_view_once_video">Vídeo para ver só unha vez</string>
+  <string name="MessageNotifier_view_once_photo">Foto dunha soa visualización</string>
+  <string name="MessageNotifier_view_once_video">Vídeo dunha soa visualización</string>
   <string name="MessageNotifier_reply">Responder</string>
   <string name="MessageNotifier_signal_message">Mensaxe de Signal</string>
   <string name="MessageNotifier_unsecured_sms">SMS insegura</string>
@@ -1661,7 +1661,7 @@
   <string name="MessageNotifier_reacted_s_to_your_gif">%1$s reaccionou ao teu GIF.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Reaccionou con %1$s ao teu ficheiro.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Reaccionou con %1$s ao teu audio.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reaccionou con %1$s ao teu multimedia efémero.  </string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reaccionou con %1$s ao teu multimedia dunha soa visualización</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">Reaccionou con %1$s ao teu adhesivo.</string>
   <string name="MessageNotifier_this_message_was_deleted">Eliminouse a mensaxe.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Desactivar as notificacións de quen se une a Signal? Poderás volver activalas en Signal&gt; Axustes &gt; Notificacións.</string>
@@ -1724,7 +1724,7 @@
   <string name="WebRtcCallActivity__busy_on_a_linked_device">Ocupado desde un dispositivo ligado.</string>
   <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">Alguén xuntouse nesta chamada cun número de seguridade que cambiou.</string>
   <!--WebRtcCallScreen-->
-  <string name="WebRtcCallScreen_swipe_up_to_change_views">Despraza hacia arriba para cambiar a vista</string>
+  <string name="WebRtcCallScreen_swipe_up_to_change_views">Arrastra cara a arriba para cambiar a vista</string>
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__decline">Rexeitar</string>
   <string name="WebRtcCallScreen__answer">Responder</string>
@@ -2014,8 +2014,8 @@
   <!--verity_scan_fragment-->
   <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Escanear o código QR no dispositivo do teu contacto.</string>
   <!--webrtc_answer_decline_button-->
-  <string name="webrtc_answer_decline_button__swipe_up_to_answer">Pasa o dedo cara a arriba para responder</string>
-  <string name="webrtc_answer_decline_button__swipe_down_to_reject">Pasa o dedo cara a abaixo para rexeitar</string>
+  <string name="webrtc_answer_decline_button__swipe_up_to_answer">Arrastra cara a arriba para responder</string>
+  <string name="webrtc_answer_decline_button__swipe_down_to_reject">Arrastra cara a abaixo para rexeitar</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Algúns problemas requiren a túa atención.</string>
   <string name="message_details_header_sent">Enviada</string>
@@ -3045,7 +3045,7 @@
   <!--ChatWallpaperPreviewActivity-->
   <string name="ChatWallpaperPreviewActivity__preview">Visualización</string>
   <string name="ChatWallpaperPreviewActivity__set_wallpaper">Estabelecer o fondo de pantalla</string>
-  <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Mover para visualizar máis fondos de pantalla</string>
+  <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Arrastrar para visualizar máis fondos de pantalla</string>
   <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Estabelecer fondo de pantalla para todos os chats</string>
   <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Estabelecer fondo de pantalla para %1$s</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Para ver a galería precisas permiso de almacenaxe.</string>
@@ -4259,7 +4259,7 @@
   <!--Title of safety number changes bottom sheet when showing individual records-->
   <string name="SafetyNumberBottomSheetFragment__safety_number_changes">Cambios do número de seguranza</string>
   <!--Message of safety number changes bottom sheet when showing individual records-->
-  <string name="SafetyNumberBottomSheetFragment__the_following_people">As persoas que aparecen a continuación poida que reinstalaran Signal ou cambiasen de dispositivos. Preme nun destinatario para confirmar o número de seguranza novo. Isto é opcional.</string>
+  <string name="SafetyNumberBottomSheetFragment__the_following_people">As persoas que aparecen a continuación pode que volvesen instalar Signal ou que cambiasen de dispositivos. Preme nun destinatario para confirmar o número de seguranza novo. Isto é opcional.</string>
   <!--Title of safety number changes bottom sheet when not showing individual records-->
   <string name="SafetyNumberBottomSheetFragment__safety_number_checkup">Revisión do número de seguranza</string>
   <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
@@ -4267,7 +4267,7 @@
   <!--Message of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
   <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Revisáronse todas as conexións, preme «Enviar» para continuar.</string>
   <!--Message of safety number changes bottom sheet when not showing individual records-->
-  <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">Tes %1$d conexións que poida que reinstalaran Signal ou cambiasen de dispositivos. Antes de compartir nada con estas persoas, revisa o número de seguranza e considera eliminalos da túa historia.</string>
+  <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">Tes %1$d conexións que pode que volvesen instalar Signal ou que cambiasen de dispositivos. Antes de compartir nada con estas persoas, revisa o número de seguranza e considera eliminalos da túa historia.</string>
   <!--Menu action to launch safety number verification screen-->
   <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Comprobar número de seguranza</string>
   <!--Menu action to remove user from story-->
@@ -4283,7 +4283,7 @@
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Cambios do número de seguranza</string>
   <!--Message of safety number review fragment-->
-  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">%1$d destinatarios poida que reinstalaran Signal ou cambiasen de dispositivos. Preme nun deles para confirmar o número de seguranza novo. Isto é opcional.</string>
+  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">%1$d destinatarios pode que volvesen instalar Signal ou que cambiasen de dispositivos. Preme nun deles para confirmar o número de seguranza novo. Isto é opcional.</string>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">Contactos</string>
   <!--Context menu label for distribution list headers in review fragment-->

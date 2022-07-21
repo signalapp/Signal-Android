@@ -316,7 +316,7 @@
   <string name="ConversationFragment_verify">驗證</string>
   <string name="ConversationFragment_not_now">遲啲先啦</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed">您同 %s 之間嘅安全碼已經郁動過</string>
-  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">您同 %s 之間嘅安全碼已經郁動過，好可能係佢重新裝過 Signal 或者換咗部機。可以撳一下 [驗證] 去確認新嘅安全碼，如果您想嘅話。</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">你同 %s 之間嘅安全碼已經改咗，可能係因為佢重新裝過 Signal 或者換咗部機。你可以㩒一下「驗證」嚟確認新嘅安全碼。呢個操作係選擇性嘅。</string>
   <!--Message shown to indicate which notification profile is on/active-->
   <string name="ConversationFragment__s_on">%1$s 揀揀單單</string>
   <!--Dialog title for block group link join requests-->
@@ -1768,7 +1768,7 @@
   <!--Label for quoted gift-->
   <string name="QuoteView__gift">禮物</string>
   <!--conversation_fragment-->
-  <string name="conversation_fragment__scroll_to_the_bottom_content_description">拉到落最底</string>
+  <string name="conversation_fragment__scroll_to_the_bottom_content_description">碌到落最底</string>
   <!--BubbleOptOutTooltip-->
   <!--Message to inform the user of what Android chat bubbles are-->
   <string name="BubbleOptOutTooltip__description">氣泡係一項 Android 功能，Signal 傾偈用唔用氣泡就由得您揀。</string>
@@ -3805,7 +3805,7 @@
     <item quantity="other">%1$d 個回覆</item>
   </plurals>
   <!--Used when view receipts are disabled-->
-  <string name="StoryViewerPageFragment__views_off">關閉檢視標記</string>
+  <string name="StoryViewerPageFragment__views_off">已讀標記閂咗</string>
   <!--Used to join views and replies when both exist on a story item-->
   <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
   <!--Displayed when viewing a post you sent-->
@@ -4093,7 +4093,7 @@
     <item quantity="other">成谷放送是日花生 · %1$d 位花生友</item>
   </plurals>
   <!--Label under name for My Story when first sending to my story-->
-  <string name="ContactSearchItems__tap_to_choose_your_viewers">㩒一吓就可以揀選你嘅觀看者</string>
+  <string name="ContactSearchItems__tap_to_choose_your_viewers">㩒一吓就可以揀選你嘅觀看對象</string>
   <!--Label for context menu item to open story settings-->
   <string name="ContactSearchItems__story_settings">是日花生設定</string>
   <!--Label for context menu item to remove a group story from contact results-->
@@ -4143,15 +4143,15 @@
   <!--Title of safety number changes bottom sheet when showing individual records-->
   <string name="SafetyNumberBottomSheetFragment__safety_number_changes">安全碼變更</string>
   <!--Message of safety number changes bottom sheet when showing individual records-->
-  <string name="SafetyNumberBottomSheetFragment__the_following_people">以下嘅聯絡人可能已經重新安裝 Signal 或者更換裝置。你可以㩒一吓接收者嚟確認新安全碼。呢個操作係選擇性嘅。</string>
+  <string name="SafetyNumberBottomSheetFragment__the_following_people">以下嘅聯絡人可能重新安裝咗 Signal 或者更換咗裝置。你可以㩒一吓接收者嚟確認新安全碼。呢個操作係選擇性嘅。</string>
   <!--Title of safety number changes bottom sheet when not showing individual records-->
   <string name="SafetyNumberBottomSheetFragment__safety_number_checkup">檢查安全碼</string>
   <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
   <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">完成檢查新安全碼</string>
   <!--Message of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
-  <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">已經檢閱過所有人脈，請你㩒一吓傳送嚟繼續操作。</string>
+  <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">已經檢查晒所有人脈，㩒一吓傳送就可以繼續。</string>
   <!--Message of safety number changes bottom sheet when not showing individual records-->
-  <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">你有 %1$d 個人脈可能已經重新安裝 Signal 或者更換裝置。同佢哋分享你嘅限時動態之前，請你先檢閱佢哋嘅安全碼，或者考慮喺你嘅限時動態入面將佢哋移除。</string>
+  <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">你有 %1$d 個人脈可能重新安裝咗 Signal 或者更換咗裝置。同佢哋分享你嘅限時動態之前，請先檢查佢哋嘅安全碼，或者可以考慮喺你嘅限時動態入面將佢哋移除。</string>
   <!--Menu action to launch safety number verification screen-->
   <string name="SafetyNumberBottomSheetFragment__verify_safety_number">驗證安全碼</string>
   <!--Menu action to remove user from story-->
@@ -4159,15 +4159,15 @@
   <!--Action button at bottom of SafetyNumberBottomSheetFragment to send anyway-->
   <string name="SafetyNumberBottomSheetFragment__send_anyway">照樣傳送</string>
   <!--Action button at bottom of SafetyNumberBottomSheetFragment to review connections-->
-  <string name="SafetyNumberBottomSheetFragment__review_connections">檢閱人脈</string>
+  <string name="SafetyNumberBottomSheetFragment__review_connections">檢查人脈</string>
   <!--Empty state copy for SafetyNumberBottomSheetFragment-->
-  <string name="SafetyNumberBottomSheetFragment__no_more_recipients_to_show">冇任何接收者要顯示喇</string>
+  <string name="SafetyNumberBottomSheetFragment__no_more_recipients_to_show">冇其他接收者喇</string>
   <!--Done button on safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__done">完成</string>
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">安全碼變更</string>
   <!--Message of safety number review fragment-->
-  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">有 %1$d 個接收者可能已經重新安裝 Signal 或者更換裝置。你可以㩒一吓接收者嚟確認新安全碼。呢個操作係選擇性嘅。</string>
+  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">有 %1$d 個接收者可能重新安裝咗 Signal 或者更換咗裝置。你可以㩒一吓接收者嚟確認新安全碼。呢個操作係選擇性嘅。</string>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">聯絡人</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -4177,7 +4177,7 @@
   <!--Title of initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">「我嘅限時動態」私隱設定</string>
   <!--Subtitle of initial My Story settings configuration shown when sending to My Story for the first time-->
-  <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">揀選邊個可以睇到「我嘅限時動態」嘅貼文。你隨時可以喺設定入面更改。</string>
+  <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">選擇邊個可以睇到「我嘅限時動態」貼文。你隨時可以喺設定入面更改。</string>
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">所有 Signal 嘅人脈</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->

@@ -3,11 +3,11 @@
   <string name="yes">Oo</string>
   <string name="no">Hindi</string>
   <string name="delete">Delete</string>
-  <string name="please_wait">Maghintay lang…</string>
+  <string name="please_wait">Please wait…</string>
   <string name="save">I-save</string>
-  <string name="note_to_self">Sulat para sa sarili</string>
+  <string name="note_to_self">Note to Self</string>
   <!--AbstractNotificationBuilder-->
-  <string name="AbstractNotificationBuilder_new_message">Bagong mensahe</string>
+  <string name="AbstractNotificationBuilder_new_message">New message</string>
   <!--AlbumThumbnailView-->
   <!--ApplicationMigrationActivity-->
   <string name="ApplicationMigrationActivity__signal_is_updating">Nag-u-update ang Signal…</string>
@@ -725,15 +725,15 @@
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Walang parehong grupo</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
-    <item quantity="one">%d na parehong grupo</item>
-    <item quantity="other">%d na parehong grupo</item>
+    <item quantity="one">%d group in common</item>
+    <item quantity="other">%d groups in common</item>
   </plurals>
   <plurals name="GroupMemberList_invited">
-    <item quantity="one">Nag-invite si %1$s ng isang user</item>
-    <item quantity="other">Nag-invite si %1$s ng %2$d na users</item>
+    <item quantity="one">Nag-invite si %1$s ng 1 person</item>
+    <item quantity="other">Nag-invite si %1$s ng %2$d people</item>
   </plurals>
   <!--CustomNotificationsDialogFragment-->
-  <string name="CustomNotificationsDialogFragment__custom_notifications">Custom na mga notipikasyon</string>
+  <string name="CustomNotificationsDialogFragment__custom_notifications">Custom notifications</string>
   <string name="CustomNotificationsDialogFragment__messages">Mga Mensahe</string>
   <string name="CustomNotificationsDialogFragment__use_custom_notifications">Gumamit ng custom notifications</string>
   <string name="CustomNotificationsDialogFragment__notification_sound">Tunog ng notipikasyon</string>
@@ -905,6 +905,7 @@
   <string name="Megaphones_appearance">Hitsura</string>
   <string name="Megaphones_add_photo">Mag-add ng photo</string>
   <!--Title of a bottom sheet to render messages that all quote a specific message-->
+  <string name="MessageQuotesBottomSheet_replies">Replies</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Kasalukung may tawag sa Signal</string>
   <string name="NotificationBarManager__establishing_signal_call">Nagsisimula ng tawag sa Signal</string>
@@ -2912,148 +2913,397 @@
   <string name="GroupsLearnMore_paragraph_1">Ang Legacy Groups ay mga grupo na hindi compatible sa New Group features like admins at mas descriptive na group updates.</string>
   <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">Pwede ba akong mag-upgrade ng Legacy Group?</string>
   <string name="GroupsLearnMore_paragraph_2">Ang Legacy Groups ay hindi pa pwedeng i-upgrade sa New Groups sa ngayon, pero pwede kang mag-create ng New Group with the same members kung nasa latest version sila ng Signal.</string>
+  <string name="GroupsLearnMore_paragraph_3">Signal will offer a way para i-upgrade ang Legacy Groups in the future.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_share_hint_requiring_approval">Anyone with this link can view the group\'s name, photo, and request to join. I-share ito sa mga taong pinagkakatiwalaan mo.</string>
+  <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">Anyone with this link can view the group\'s name, photo, and request to join. I-share ito sa mga taong pinagkakatiwalaan mo.</string>
+  <string name="GroupLinkBottomSheet_share_via_signal">Share via Signal</string>
   <string name="GroupLinkBottomSheet_copy">Kopyahin</string>
+  <string name="GroupLinkBottomSheet_qr_code">QR Code</string>
   <string name="GroupLinkBottomSheet_share">Ibahagi</string>
   <string name="GroupLinkBottomSheet_copied_to_clipboard">Nakopya na sa clipboard</string>
+  <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">Hindi active ang link na ito</string>
   <!--VoiceNotePlaybackPreparer-->
+  <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Failed to play voice message</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
+  <string name="VoiceNoteMediaItemFactory__voice_message">Voice message · %1$s</string>
   <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s hanggang %2$s</string>
   <!--StorageUtil-->
+  <string name="StorageUtil__s_s">%1$s/%2$s</string>
+  <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" has been blocked.</string>
+  <string name="BlockedUsersActivity__failed_to_block_s">Failed to block \"%1$s\"</string>
+  <string name="BlockedUsersActivity__s_has_been_unblocked">\"%1$s\" has been unblocked.</string>
   <!--ReviewCardDialogFragment-->
+  <string name="ReviewCardDialogFragment__review_members">I-review ang Members</string>
+  <string name="ReviewCardDialogFragment__review_request">I-review ang Request</string>
+  <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d group members ang may parehong pangalan, i-review ang members sa baba at i-tap to take action.</string>
+  <string name="ReviewCardDialogFragment__if_youre_not_sure">Kung hindi ka sigurado kung kanino galing ang request na ito, i-review ang contacts sa baba and take action.</string>
+  <string name="ReviewCardDialogFragment__no_other_groups_in_common">Walang other groups in common.</string>
+  <string name="ReviewCardDialogFragment__no_groups_in_common">Walang groups in common.</string>
+  <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
+    <item quantity="one">%d group in common</item>
+    <item quantity="other">%d groups in common</item>
+  </plurals>
+  <plurals name="ReviewCardDialogFragment__d_groups_in_common">
+    <item quantity="one">%d group in common</item>
+    <item quantity="other">%d groups in common</item>
+  </plurals>
   <string name="ReviewCardDialogFragment__remove_s_from_group">Gusto mo bang i-remove si %1$s mula sa group?</string>
   <string name="ReviewCardDialogFragment__remove">Tanggalin</string>
+  <string name="ReviewCardDialogFragment__failed_to_remove_group_member">Failed to remove group member.</string>
   <!--ReviewCard-->
   <string name="ReviewCard__member">Kasapi</string>
   <string name="ReviewCard__request">Request</string>
+  <string name="ReviewCard__your_contact">Your contact</string>
   <string name="ReviewCard__remove_from_group">I-remove mula sa group</string>
   <string name="ReviewCard__update_contact">I-update ang contact</string>
   <string name="ReviewCard__block">I-block</string>
   <string name="ReviewCard__delete">Burahin</string>
+  <string name="ReviewCard__recently_changed">Recently changed their profile name from %1$s to %2$s</string>
   <!--CallParticipantsListUpdatePopupWindow-->
+  <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s joined</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s and %2$s joined</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s, %2$s, and %3$s joined</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">%1$s, %2$s, and %3$d others joined</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_left">%1$s left</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s and %2$s left</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s, and %3$s left</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s, and %3$d others left</string>
   <string name="CallParticipant__you">Ikaw</string>
+  <string name="CallParticipant__you_on_another_device">You (sa ibang device)</string>
+  <string name="CallParticipant__s_on_another_device">%1$s (sa ibang device)</string>
   <!--DeleteAccountFragment-->
+  <string name="DeleteAccountFragment__deleting_your_account_will">Ang pag-delete ng iyong account ay magreresulta sa:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Ilagay ang numero ng iyong telepono</string>
   <string name="DeleteAccountFragment__delete_account">I-delete ang account</string>
+  <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Pag-delete ng iyong contact info at profile photo</string>
+  <string name="DeleteAccountFragment__delete_all_your_messages">Pag-delete ng lahat ng messages mo</string>
+  <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Pag-delete ng %1$s sa iyong payments account</string>
+  <string name="DeleteAccountFragment__no_country_code">Walang specified na country code</string>
+  <string name="DeleteAccountFragment__no_number">Walang specified na number</string>
+  <string name="DeleteAccountFragment__the_phone_number">Ang nilagay mong phone number ay hindi match sa number ng iyong account.</string>
   <string name="DeleteAccountFragment__are_you_sure">Sigurado ka bang nais mong burahin ang iyong account?</string>
+  <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Ide-delete nito ang iyong Signal account at mare-reset ang app. The app will close after the process is complete.</string>
+  <string name="DeleteAccountFragment__failed_to_delete_account">Failed to delete account. May network connection ka ba?</string>
+  <string name="DeleteAccountFragment__failed_to_delete_local_data">Failed to delete local data. Pwede mo itong i-clear manually sa system application settings.</string>
+  <string name="DeleteAccountFragment__launch_app_settings">I-launch ang App Settings</string>
   <!--Title of progress dialog shown when a user deletes their account and the process is leaving all groups-->
+  <string name="DeleteAccountFragment__leaving_groups">Leaving groups…</string>
   <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_account">Deleting account…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is canceling their subscription-->
+  <string name="DeleteAccountFragment__canceling_your_subscription">Canceling your subscription…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
+  <string name="DeleteAccountFragment__depending_on_the_number_of_groups">This might take a few minutes, depende sa number of groups na kasama ka</string>
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">Deleting user data and resetting the app</string>
   <!--Title of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__account_not_deleted">Hindi Na-delete ang Account</string>
   <!--Message of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__there_was_a_problem">Nagkaroon ng problem sa pag-complete ng deletion process. I-check ang iyong network connection at subukan ulit.</string>
   <!--DeleteAccountCountryPickerFragment-->
+  <string name="DeleteAccountCountryPickerFragment__search_countries">Search Countries</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity__skip">Laktawan</string>
+  <plurals name="CreateGroupActivity__d_members">
+    <item quantity="one">%1$d member</item>
+    <item quantity="other">%1$d members</item>
+  </plurals>
   <!--ShareActivity-->
   <string name="ShareActivity__share">Ibahagi</string>
   <string name="ShareActivity__send">Ipadala</string>
+  <string name="ShareActivity__comma_s">, %1$s</string>
+  <string name="ShareActivity__sharing_to_multiple_chats_is">Ang pag-share sa multiple chats ay supported para sa Signal messages lamang</string>
   <!--MultiShareDialogs-->
+  <string name="MultiShareDialogs__failed_to_send_to_some_users">Failed to send to some users</string>
+  <string name="MultiShareDialogs__you_can_only_share_with_up_to">Pwede kang mag-share with up to %1$d chats</string>
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Chat wallpaper</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__chat_color">Chat color</string>
+  <string name="ChatWallpaperFragment__reset_chat_colors">I-reset ang chat colors</string>
+  <string name="ChatWallpaperFragment__reset_chat_color">I-reset ang chat color</string>
+  <string name="ChatWallpaperFragment__reset_chat_color_question">Gusto mo bang i-reset ang chat color?</string>
+  <string name="ChatWallpaperFragment__set_wallpaper">Set wallpaper</string>
+  <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Lumalabo ang wallpaper sa dark mode</string>
+  <string name="ChatWallpaperFragment__contact_name">Contact name</string>
   <string name="ChatWallpaperFragment__reset">I-reset</string>
   <string name="ChatWallpaperFragment__clear">Clear</string>
+  <string name="ChatWallpaperFragment__wallpaper_preview_description">Wallpaper preview</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Gusto mo bang i-undo ang lahat ng chat colors?</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Gusto mo bang i-undo ang lahat ng chat colors?</string>
+  <string name="ChatWallpaperFragment__reset_default_colors">I-reset sa default colors</string>
+  <string name="ChatWallpaperFragment__reset_all_colors">I-reset ang lahat ng colors</string>
+  <string name="ChatWallpaperFragment__reset_default_wallpaper">I-reset sa default wallpaper</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">I-reset ang lahat ng wallpapers</string>
+  <string name="ChatWallpaperFragment__reset_wallpapers">I-reset ang wallpapers</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper">I-reset ang wallpaper</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper_question">Gusto mo bang i-reset ang wallpaper?</string>
   <!--ChatWallpaperSelectionFragment-->
+  <string name="ChatWallpaperSelectionFragment__choose_from_photos">Pumili mula sa photos</string>
+  <string name="ChatWallpaperSelectionFragment__presets">Presets</string>
   <!--ChatWallpaperPreviewActivity-->
+  <string name="ChatWallpaperPreviewActivity__preview">Preview</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper">Set wallpaper</string>
+  <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">I-swipe para mag-preview ng iba pang wallpapers</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">I-set ang wallpaper for all chats</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">I-set ang wallpaper for %1$s</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Ang pag-view ng iyong gallery ay nangangailangan ng storage permission.</string>
   <!--WallpaperImageSelectionActivity-->
+  <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">Pumili ng wallpaper image</string>
   <!--WallpaperCropActivity-->
+  <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Pinch to zoom, drag to adjust.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">I-set ang wallpaper for all chats.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_s">I-set ang wallpaper for %s.</string>
+  <string name="WallpaperCropActivity__error_setting_wallpaper">Error setting wallpaper.</string>
+  <string name="WallpaperCropActivity__blur_photo">Blur photo</string>
   <!--InfoCard-->
+  <string name="payment_info_card_about_mobilecoin">About MobileCoin</string>
+  <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">Ang MobileCoin ay isang bagong privacy-focused digital currency.</string>
+  <string name="payment_info_card_adding_funds">Adding funds</string>
+  <string name="payment_info_card_you_can_add_funds_for_use_in">Pwede kang mag-add ng funds na magagamit mo sa Signal sa pamamagitan ng pag-send ng MobileCoin sa wallet address mo.</string>
+  <string name="payment_info_card_cashing_out">Cashing out</string>
+  <string name="payment_info_card_you_can_cash_out_mobilecoin">Pwede kang mag-cash out ng MobileCoin anytime on an exchange that supports MobileCoin. Just make a transfer at that exchange sa account mo.</string>
+  <string name="payment_info_card_hide_this_card">Gusto mo bang i-hide ang card na ito?</string>
   <string name="payment_info_card_hide">I-hide</string>
+  <string name="payment_info_card_record_recovery_phrase">I-record ang recovery phrase</string>
+  <string name="payment_info_card_your_recovery_phrase_gives_you">Ang iyong recovery phrase ay isang paraan para ma-restore ang payments account mo.</string>
+  <string name="payment_info_card_record_your_phrase">Record your phrase</string>
+  <string name="payment_info_card_update_your_pin">I-update ang iyong PIN</string>
+  <string name="payment_info_card_with_a_high_balance">With a high balance, pwede kang mag-update ng alphanumeric PIN to add more protection to your account.</string>
   <string name="payment_info_card_update_pin">I-update ang PIN</string>
   <!--DeactivateWalletFragment-->
+  <string name="DeactivateWalletFragment__deactivate_wallet">I-deactivate ang Wallet</string>
+  <string name="DeactivateWalletFragment__your_balance">Your balance</string>
+  <string name="DeactivateWalletFragment__its_recommended_that_you">It\'s recommended that you transfer your funds to another wallet address bago mo i-deactivate ang payments. If you choose not to transfer your funds now, mananatili ito sa iyong wallet linked to Signal kapag nag-reactivate ka ng payments.</string>
+  <string name="DeactivateWalletFragment__transfer_remaining_balance">I-transfer ang remaining balance</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring">Deactivate without transferring</string>
   <string name="DeactivateWalletFragment__deactivate">I-deactivate</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Gusto mo bang mag-deactivate without transferring?</string>
+  <string name="DeactivateWalletFragment__your_balance_will_remain">Ang balance mo ay mananatili sa iyong wallet linked to Signal kapag nag-reactivate ka ng payments.</string>
+  <string name="DeactivateWalletFragment__error_deactivating_wallet">Error deactivating wallet.</string>
   <!--PaymentsRecoveryStartFragment-->
   <string name="PaymentsRecoveryStartFragment__recovery_phrase">Recovery phrase</string>
+  <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">View recovery phrase</string>
+  <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Enter recovery phrase</string>
+  <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Your balance will automatically restore kapag nag-reinstall ka ng Signal app at na-confirm ang Signal PIN mo. Pwede mo ring i-restore ang iyong balance gamit ang recovery phrase, isang %1$d-word phrase na unique sa\'yo. Isulat ito at itago sa isang safe na lugar.</string>
+  <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Ang iyong recovery phrase ay isang %1$d-word phrase na unique sa\'yo. Gamitin ang phrase na ito para ma-restore ang balance mo.</string>
+  <string name="PaymentsRecoveryStartFragment__start">Start</string>
+  <string name="PaymentsRecoveryStartFragment__enter_manually">Enter manually</string>
+  <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Paste from clipboard</string>
   <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__paste_recovery_phrase">Paste recovery phrase</string>
   <string name="PaymentsRecoveryPasteFragment__recovery_phrase">Recovery phrase</string>
   <string name="PaymentsRecoveryPasteFragment__next">Susunod</string>
+  <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">Invalid recovery phrase</string>
+  <string name="PaymentsRecoveryPasteFragment__make_sure">Siguraduhing i-enter ang %1$d words at subukan ulit.</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">Susunod</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">I-edit</string>
+  <string name="PaymentsRecoveryPhraseFragment__previous">Previous</string>
+  <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">Your recovery phrase</string>
+  <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">Isulat ang sumusunod na %1$d words in order. Ilagay ang iyong list sa isang secure na lugar.</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">Siguraduhing na-enter mo ang iyong phrase nang tama.</string>
+  <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">\'Wag i-screenshot o i-send by email.</string>
+  <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">Payments account restored.</string>
+  <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">Invalid recovery phrase</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">Siguraduhing na-enter mo ang iyong phrase nang tama at subukan ulit.</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">Gusto mo ba itong i-copy to clipboard?</string>
+  <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">Kung gusto mong i-store ang recovery phrase mo digitally, siguraduhing securely stored ito sa isang trusted platform.</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">Kopyahin</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__confirm_recovery_phrase">I-confirm ang recovery phrase</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__enter_the_following_words">Enter the following words mula sa iyong recovery phrase.</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__word_d">Word %1$d</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__see_phrase_again">See phrase again</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__done">Tapos na</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__recovery_phrase_confirmed">Recovery phrase confirmed</string>
   <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__enter_recovery_phrase">Enter recovery phrase</string>
+  <string name="PaymentsRecoveryEntryFragment__enter_word_d">Enter word %1$d</string>
+  <string name="PaymentsRecoveryEntryFragment__word_d">Word %1$d</string>
   <string name="PaymentsRecoveryEntryFragment__next">Susunod</string>
+  <string name="PaymentsRecoveryEntryFragment__invalid_word">Invalid word</string>
   <!--ClearClipboardAlarmReceiver-->
+  <string name="ClearClipboardAlarmReceiver__clipboard_cleared">Clipboard cleared.</string>
   <!--PaymentNotificationsView-->
   <string name="PaymentNotificationsView__view">Tingnan</string>
   <!--UnreadPayments-->
+  <string name="UnreadPayments__s_sent_you_s">%1$s sent you %2$s</string>
+  <string name="UnreadPayments__d_new_payment_notifications">%1$d new payment notifications</string>
   <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__cant_send_payment">Hindi ma-send ang payment</string>
+  <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Para makapag-send ng payment sa user na ito, kailangan niyang i-accept ang message request mula sa\'yo. Send them a message para makapag-create ng message request.</string>
   <string name="CanNotSendPaymentDialog__send_a_message">Send a message</string>
   <!--GroupsInCommonMessageRequest-->
+  <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">You have no groups in common with this person. I-review ang requests carefully bago mag-accept para makaiwas sa unwanted messages.</string>
+  <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">None of your contacts or people you chat with are in this group. I-review ang requests carefully bago mag-accept para makaiwas sa unwanted messages.</string>
+  <string name="GroupsInCommonMessageRequest__about_message_requests">About message requests</string>
   <string name="GroupsInCommonMessageRequest__okay">Okay</string>
+  <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">ito ang preview ng chat color.</string>
+  <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">Ang color na ito\'y visible lang sa\'yo.</string>
   <!--GroupDescriptionDialog-->
   <string name="GroupDescriptionDialog__group_description">Group description</string>
   <!--QualitySelectorBottomSheetDialog-->
+  <string name="QualitySelectorBottomSheetDialog__standard">Standard</string>
+  <string name="QualitySelectorBottomSheetDialog__faster_less_data">Faster, less data</string>
   <string name="QualitySelectorBottomSheetDialog__high">Mataas</string>
+  <string name="QualitySelectorBottomSheetDialog__slower_more_data">Slower, more data</string>
+  <string name="QualitySelectorBottomSheetDialog__photo_quality">Photo quality</string>
   <!--AppSettingsFragment-->
+  <string name="AppSettingsFragment__invite_your_friends">Invite your friends</string>
+  <string name="AppSettingsFragment__copied_subscriber_id_to_clipboard">Copied subscriber ID to clipboard</string>
   <!--AccountSettingsFragment-->
+  <string name="AccountSettingsFragment__account">Account</string>
+  <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Hindi ka na masyadong tatanungin over time</string>
+  <string name="AccountSettingsFragment__require_your_signal_pin">Require your Signal PIN para ma-register ulit ang iyong phone number with Signal</string>
+  <string name="AccountSettingsFragment__change_phone_number">Change phone number</string>
   <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Gamitin ito para mabago ang iyong current phone number sa isang new phone number. You can\'t undo this change.\n\nBago magpatuloy, siguraduhing nakaka-receive ng SMS at calls ang new number mo.</string>
   <string name="ChangeNumberFragment__continue">Magpatuloy</string>
   <!--Message shown on dialog after your number has been changed successfully.-->
+  <string name="ChangeNumber__your_phone_number_has_changed_to_s">Your phone number has been changed to %1$s</string>
   <!--Confirmation button to dismiss number changed dialog-->
   <string name="ChangeNumber__okay">Okay</string>
   <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Change Number</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Your old number</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Old phone number</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Your new number</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">New phone number</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Ang nilagay mong phone number ay hindi match sa number ng iyong account.</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Kailangan mong i-specify ang country code ng iyong old number</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Kailangan mong i-specify ang iyong old phone number</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Kailangan mong i-specify ang country code ng iyong new number</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Kailangan mong i-specify ang iyong new phone number</string>
   <!--ChangeNumberVerifyFragment-->
+  <string name="ChangeNumberVerifyFragment__change_number">Change Number</string>
+  <string name="ChangeNumberVerifyFragment__verifying_s">Verifying %1$s</string>
+  <string name="ChangeNumberVerifyFragment__captcha_required">Captcha required</string>
   <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__change_number">Change number</string>
+  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">You are about to change your phone number from %1$s to %2$s.\n\nBago mag-proceed, i-verify kung tama ang number na nasa baba.</string>
   <string name="ChangeNumberConfirmFragment__edit_number">I-edit ang numero</string>
   <!--ChangeNumberRegistrationLockFragment-->
+  <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Signal Change Number - Need Help with PIN for Android (v2 PIN)</string>
   <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">Hindi match ang PINs</string>
+  <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">Ang PIN na associated sa new number mo ay magkaiba sa PIN na associated sa old number mo. Gusto mo bang panatilin ang iyong old PIN o i-update ito?</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Keep old PIN</string>
   <string name="ChangeNumberPinDiffersFragment__update_pin">I-update ang PIN</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Gusto mo bang panatilihin ang old PIN mo?</string>
   <!--ChangeNumberLockActivity-->
   <!--Info message shown to user if something crashed the app during the change number attempt and we were unable to confirm the change so we force them into this screen to check before letting them use the app-->
+  <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">It looks like you tried to change your number pero hindi namin ma-determine kung ito\'y naging successful.\n\nRechecking now…</string>
   <!--Dialog title shown if we were able to confirm your change number status (meaning we now know what the server thinks our number is) after a crash during the regular flow-->
+  <string name="ChangeNumberLockActivity__change_status_confirmed">Change status confirmed</string>
   <!--Dialog message shown if we were able to confirm your change number status (meaning we now know what the server thinks our number is) after a crash during the regular flow-->
+  <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">Your number has been confirmed as %1$s. Kung hindi ito ang new number mo, i-restart ang change number process.</string>
   <!--Dialog title shown if we were not able to confirm your phone number with the server and thus cannot let leave the change flow yet after a crash during the regular flow-->
+  <string name="ChangeNumberLockActivity__change_status_unconfirmed">Change status unconfirmed</string>
   <!--Dialog message shown when we can\'t verify the phone number on the server, only shown if there was a network error communicating with the server after a crash during the regular flow-->
+  <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">Hindi namin ma-determine ang status ng iyong change number request.\n\n(Error: %1$s)</string>
   <!--Dialog button to retry confirming the number on the server-->
   <string name="ChangeNumberLockActivity__retry">Subukang muli</string>
   <!--Dialog button shown to leave the app when in the unconfirmed change status after a crash in the regular flow-->
   <string name="ChangeNumberLockActivity__leave">Umalis</string>
   <string name="ChangeNumberLockActivity__submit_debug_log">Isumite ang debug log</string>
   <!--ChatsSettingsFragment-->
+  <string name="ChatsSettingsFragment__keyboard">Keyboard</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Nagpapadala ang Enter key</string>
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">Gamitin bilang default na app na pang-SMS</string>
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">Mga Mensahe</string>
   <string name="NotificationsSettingsFragment__calls">Mga Tawag</string>
+  <string name="NotificationsSettingsFragment__notify_when">Mag-notify kapag…</string>
+  <string name="NotificationsSettingsFragment__contact_joins_signal">Nag-join sa Signal ang contact</string>
   <!--Notification preference header-->
+  <string name="NotificationsSettingsFragment__notification_profiles">Notification profiles</string>
   <!--Notification preference option header-->
+  <string name="NotificationsSettingsFragment__profiles">Profiles</string>
   <!--Notification preference summary text-->
+  <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Mag-create ng profile para maka-receive ng notifications mula sa people at groups na napili mo.</string>
   <!--NotificationProfilesFragment-->
   <!--Title for notification profiles screen that shows all existing profiles-->
+  <string name="NotificationProfilesFragment__notification_profiles">Notification profiles</string>
   <!--Button text to create a notification profile-->
+  <string name="NotificationProfilesFragment__create_profile">Mag-create ng profile</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">Naka-block</string>
+  <string name="PrivacySettingsFragment__d_contacts">%1$d contacts</string>
+  <string name="PrivacySettingsFragment__messaging">Messaging</string>
   <string name="PrivacySettingsFragment__disappearing_messages">Mga naglalahong mensahe</string>
+  <string name="PrivacySettingsFragment__app_security">App security</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">I-block ang mga screenshot sa listahan ng mga bago at sa loob ng app</string>
+  <string name="PrivacySettingsFragment__signal_message_and_calls">Signal messages and calls, always relay calls, and sealed sender</string>
+  <string name="PrivacySettingsFragment__default_timer_for_new_changes">Default timer para sa new chats</string>
+  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Mag-set ng default disappearing message timer para sa lahat ng new chats na sinimulan mo.</string>
   <!--AdvancedPrivacySettingsFragment-->
+  <string name="AdvancedPrivacySettingsFragment__show_status_icon">Show status icon</string>
+  <string name="AdvancedPrivacySettingsFragment__show_an_icon">Magpakita ng icon sa message details when they were delivered gamit ang sealed sender.</string>
   <!--ExpireTimerSettingsFragment-->
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">When enabled, magdi-disappear ang new messages sent and received sa new chats na sinimulan mo kapag na-seen na ito.</string>
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">When enabled, magdi-disappear ang new messages sent and received kapag na-seen na ito.</string>
   <string name="ExpireTimerSettingsFragment__off">Off</string>
+  <string name="ExpireTimerSettingsFragment__4_weeks">4 weeks</string>
   <string name="ExpireTimerSettingsFragment__1_week">1 week</string>
   <string name="ExpireTimerSettingsFragment__1_day">1 day</string>
+  <string name="ExpireTimerSettingsFragment__8_hours">8 hours</string>
   <string name="ExpireTimerSettingsFragment__1_hour">1 hour</string>
+  <string name="ExpireTimerSettingsFragment__5_minutes">5 minutes</string>
   <string name="ExpireTimerSettingsFragment__30_seconds">30 seconds</string>
+  <string name="ExpireTimerSettingsFragment__custom_time">Custom time</string>
+  <string name="ExpireTimerSettingsFragment__set">Set</string>
   <string name="ExpireTimerSettingsFragment__save">I-save</string>
+  <string name="CustomExpireTimerSelectorView__seconds">seconds</string>
+  <string name="CustomExpireTimerSelectorView__minutes">minutes</string>
+  <string name="CustomExpireTimerSelectorView__hours">hours</string>
+  <string name="CustomExpireTimerSelectorView__days">days</string>
+  <string name="CustomExpireTimerSelectorView__weeks">weeks</string>
   <!--HelpSettingsFragment-->
+  <string name="HelpSettingsFragment__support_center">Support center</string>
   <string name="HelpSettingsFragment__contact_us">Kontakin kami</string>
   <string name="HelpSettingsFragment__version">Bersyon</string>
+  <string name="HelpSettingsFragment__debug_log">Debug log</string>
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">Mga Tuntunin at Patakaran sa Privacy</string>
+  <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
+  <string name="HelpFragment__licenced_under_the_gplv3">Licensed under the GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__media_quality">Media quality</string>
+  <string name="DataAndStorageSettingsFragment__sent_media_quality">Sent media quality</string>
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Ang pag-send ng high quality media will use more data.</string>
   <string name="DataAndStorageSettingsFragment__high">Mataas</string>
+  <string name="DataAndStorageSettingsFragment__standard">Standard</string>
   <string name="DataAndStorageSettingsFragment__calls">Mga Tawag</string>
   <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__auto">Auto</string>
+  <string name="ChatColorSelectionFragment__use_custom_colors">Use custom colors</string>
+  <string name="ChatColorSelectionFragment__chat_color">Chat color</string>
   <string name="ChatColorSelectionFragment__edit">I-edit</string>
+  <string name="ChatColorSelectionFragment__duplicate">Duplicate</string>
   <string name="ChatColorSelectionFragment__delete">Burahin</string>
+  <string name="ChatColorSelectionFragment__delete_color">Delete color</string>
+  <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
+    <item quantity="one">Ginamit ang custom color na ito sa %1$d chat. Gusto mo bang i-delete ito sa lahat ng chats?</item>
+    <item quantity="other">Ginamit ang custom color na ito sa %1$d chats. Gusto mo bang i-delete ito sa lahat ng chats?</item>
+  </plurals>
+  <string name="ChatColorSelectionFragment__delete_chat_color">Gusto mo bang i-delete ang chat color?</string>
   <!--CustomChatColorCreatorFragment-->
+  <string name="CustomChatColorCreatorFragment__solid">Solid</string>
+  <string name="CustomChatColorCreatorFragment__gradient">Gradient</string>
+  <string name="CustomChatColorCreatorFragment__hue">Hue</string>
+  <string name="CustomChatColorCreatorFragment__saturation">Saturation</string>
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">I-save</string>
+  <string name="CustomChatColorCreatorFragmentPage__edit_color">Edit color</string>
+  <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
+    <item quantity="one">Ginamit ang custom color na ito sa %1$d chat. Gusto mo bang i-save ang changes sa lahat ng chats?</item>
+    <item quantity="other">Ginamit ang custom color na ito sa %1$d chats. Gusto mo bang i-save ang changes sa lahat ng chats?</item>
+  </plurals>
   <!--ChatColorGradientTool-->
+  <string name="ChatColorGradientTool_top_edge_selector">Top edge selector</string>
+  <string name="ChatColorGradientTool_bottom_edge_selector">Bottom edge selector</string>
   <!--Title text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
   <string name="Donate2022Q2Megaphone_donate_to_signal">Mag-donate sa Signal</string>
   <!--Body text for prompt to donate. Shown in a popup at the bottom of the chat list.-->
@@ -3063,29 +3313,54 @@
   <!--Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list.-->
   <string name="Donate2022Q2Megaphone_not_now">Hindi sa Ngayon</string>
   <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__customize_reactions">I-customize ang reactions</string>
+  <string name="EditReactionsFragment__tap_to_replace_an_emoji">I-tap para palitan ang emoji</string>
   <string name="EditReactionsFragment__reset">I-reset</string>
   <string name="EditReactionsFragment_save">I-save</string>
+  <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Auto matches the color to the wallpaper</string>
+  <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">I-drag para mabago ang direction ng gradient</string>
   <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">Mag-add ng profile photo</string>
+  <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Pumili ng look at color o i-customize ang iyong initials.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Hindi ngayon</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Mag-add ng photo</string>
   <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__become_a_sustainer">Become a Sustainer</string>
   <!--Displayed in the Become a Sustainer megaphone-->
+  <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal is powered by people like you. Mag-donate para maka-receive ng badge.</string>
   <string name="BecomeASustainerMegaphone__not_now">Hindi ngayon</string>
   <string name="BecomeASustainerMegaphone__donate">Mag-donate</string>
   <!--KeyboardPagerFragment-->
+  <string name="KeyboardPagerFragment_emoji">Emoji</string>
+  <string name="KeyboardPagerFragment_open_emoji_search">Open emoji search</string>
+  <string name="KeyboardPagerFragment_open_sticker_search">Open sticker search</string>
+  <string name="KeyboardPagerFragment_open_gif_search">Open GIF search</string>
   <string name="KeyboardPagerFragment_stickers">Mga Sticker</string>
   <string name="KeyboardPagerFragment_backspace">Backspace</string>
+  <string name="KeyboardPagerFragment_gifs">GIFs</string>
+  <string name="KeyboardPagerFragment_search_emoji">Mag-search ng emoji</string>
+  <string name="KeyboardPagerfragment_back_to_emoji">Back to emoji</string>
+  <string name="KeyboardPagerfragment_clear_search_entry">I-clear ang search entry</string>
+  <string name="KeyboardPagerFragment_search_giphy">Mag-search ng GIPHY</string>
   <!--StickerSearchDialogFragment-->
+  <string name="StickerSearchDialogFragment_search_stickers">Mag-search ng stickers</string>
   <string name="StickerSearchDialogFragment_no_results_found">No results found</string>
   <string name="EmojiSearchFragment__no_results_found">No results found</string>
+  <string name="NotificationsSettingsFragment__unknown_ringtone">Unknown ringtone</string>
   <!--ConversationSettingsFragment-->
+  <string name="ConversationSettingsFragment__send_message">Mag-send ng message</string>
+  <string name="ConversationSettingsFragment__start_video_call">Start video call</string>
+  <string name="ConversationSettingsFragment__start_audio_call">Start audio call</string>
   <string name="ConversationSettingsFragment__message">Mensahe</string>
   <string name="ConversationSettingsFragment__video">Video</string>
   <string name="ConversationSettingsFragment__audio">Audio</string>
   <string name="ConversationSettingsFragment__call">Tawag</string>
   <string name="ConversationSettingsFragment__mute">I-Mute</string>
+  <string name="ConversationSettingsFragment__muted">Muted</string>
   <string name="ConversationSettingsFragment__search">Maghanap</string>
   <string name="ConversationSettingsFragment__disappearing_messages">Mga naglalahong mensahe</string>
+  <string name="ConversationSettingsFragment__sounds_and_notifications">Sounds at notifications</string>
+  <string name="ConversationSettingsFragment__contact_details">Contact details</string>
   <string name="ConversationSettingsFragment__view_safety_number">Tingnan ang numerong pangkaligtasan</string>
   <string name="ConversationSettingsFragment__block">I-block</string>
   <string name="ConversationSettingsFragment__block_group">I-block ang group</string>
@@ -3094,117 +3369,300 @@
   <string name="ConversationSettingsFragment__add_to_a_group">I-add sa isang group</string>
   <string name="ConversationSettingsFragment__see_all">See all</string>
   <string name="ConversationSettingsFragment__add_members">Magdagdag ng mga kasapi</string>
+  <string name="ConversationSettingsFragment__permissions">Permissions</string>
+  <string name="ConversationSettingsFragment__requests_and_invites">Requests at invites</string>
   <string name="ConversationSettingsFragment__group_link">Link ng group</string>
+  <string name="ConversationSettingsFragment__add_as_a_contact">I-add as a contact</string>
   <string name="ConversationSettingsFragment__unmute">I-unmute</string>
+  <string name="ConversationSettingsFragment__conversation_muted_until_s">Conversation muted until %1$s</string>
+  <string name="ConversationSettingsFragment__conversation_muted_forever">Conversation muted forever</string>
+  <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Copied phone number to clipboard.</string>
   <string name="ConversationSettingsFragment__phone_number">Numero ng telepono</string>
+  <string name="ConversationSettingsFragment__get_badges">Get badges for your profile sa pamamagitan ng pagsuporta sa Signal. I-tap ang badge to learn more.</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Magdagdag ng mga kasapi</string>
   <string name="PermissionsSettingsFragment__edit_group_info">I-edit ang group info</string>
+  <string name="PermissionsSettingsFragment__send_messages">Mag-send ng messages</string>
   <string name="PermissionsSettingsFragment__all_members">All members</string>
   <string name="PermissionsSettingsFragment__only_admins">Only admins</string>
   <string name="PermissionsSettingsFragment__who_can_add_new_members">Sinong pwedeng mag-add ng bagong members?</string>
   <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Sinong pwedeng mag-edit ng info ng group na ito?</string>
+  <string name="PermissionsSettingsFragment__who_can_send_messages">Sinong pwedeng mag-send ng messages?</string>
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Patahimikin ang mga notipikasyon</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">Hindi naka-mute</string>
+  <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">Muted until %1$s</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">Mentions</string>
+  <string name="SoundsAndNotificationsSettingsFragment__always_notify">Always notify</string>
+  <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">\'Wag i-notify</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Custom na mga notipikasyon</string>
   <!--StickerKeyboard-->
+  <string name="StickerKeyboard__recently_used">Recently used</string>
   <!--PlaybackSpeedToggleTextView-->
   <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
   <string name="PlaybackSpeedToggleTextView__1x">1x</string>
   <string name="PlaybackSpeedToggleTextView__1p5x">1.5x</string>
   <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
+  <string name="PaymentRecipientSelectionFragment__new_payment">New payment</string>
   <!--NewConversationActivity-->
   <string name="NewConversationActivity__new_message">Bagong mensahe</string>
   <!--ContactFilterView-->
+  <string name="ContactFilterView__search_name_or_number">I-search ang name o number</string>
   <!--VoiceNotePlayerView-->
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
+  <string name="VoiceNotePlayerView__stop_voice_message">Stop voice message</string>
+  <string name="VoiceNotePlayerView__change_voice_message_speed">Baguhin ang speed ng voice message</string>
+  <string name="VoiceNotePlayerView__pause_voice_message">Pause voice message</string>
+  <string name="VoiceNotePlayerView__play_voice_message">Play voice message</string>
+  <string name="VoiceNotePlayerView__navigate_to_voice_message">Navigate to voice message</string>
   <!--AvatarPickerFragment-->
+  <string name="AvatarPickerFragment__avatar_preview">Avatar preview</string>
   <string name="AvatarPickerFragment__camera">Camera</string>
+  <string name="AvatarPickerFragment__take_a_picture">Take a picture</string>
+  <string name="AvatarPickerFragment__choose_a_photo">Pumili ng photo</string>
   <string name="AvatarPickerFragment__photo">Larawan</string>
+  <string name="AvatarPickerFragment__text">Text</string>
   <string name="AvatarPickerFragment__save">I-save</string>
+  <string name="AvatarPickerFragment__select_an_avatar">Pumili ng avatar</string>
+  <string name="AvatarPickerFragment__clear_avatar">I-clear ang avatar</string>
   <string name="AvatarPickerFragment__edit">I-edit</string>
+  <string name="AvatarPickerRepository__failed_to_save_avatar">Failed to save avatar</string>
   <!--TextAvatarCreationFragment-->
+  <string name="TextAvatarCreationFragment__preview">Preview</string>
   <string name="TextAvatarCreationFragment__done">Tapos na</string>
+  <string name="TextAvatarCreationFragment__text">Text</string>
   <string name="TextAvatarCreationFragment__color">Kulay</string>
   <!--VectorAvatarCreationFragment-->
+  <string name="VectorAvatarCreationFragment__select_a_color">Select a color</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
+  <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--Displayed in the toolbar when externally sharing text to multiple recipients-->
   <string name="ShareInterstitialActivity__share">Ibahagi</string>
   <!--DSLSettingsToolbar-->
+  <string name="DSLSettingsToolbar__navigate_up">Navigate up</string>
+  <string name="MultiselectForwardFragment__forward_to">I-forward kay</string>
   <!--Displayed when sharing content via the fragment-->
   <string name="MultiselectForwardFragment__share_with">Ibahagi kay</string>
   <string name="MultiselectForwardFragment__add_a_message">Mag-add ng message</string>
+  <string name="MultiselectForwardFragment__faster_forwards">Faster towards</string>
   <!--Displayed when user selects a video that will be clipped before sharing to a story-->
   <string name="MultiselectForwardFragment__videos_will_be_trimmed">Ang videos ay naka-trim sa 30s clips at ise-send as multiple Stories.</string>
   <!--Displayed when user selects a video that cannot be sent as a story-->
   <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">Ang videos na ise-send sa Stories ay hindi pwedeng lumagpas ng 30s.</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">Forwarded messages are now sent immediately.</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="one">I-send ang %1$d message</item>
+    <item quantity="other">I-send ang %1$d messages</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="one">Message sent</item>
+    <item quantity="other">Messages sent</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="one">Message failed to send</item>
+    <item quantity="other">Messages failed to send</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="one">Hindi ma-forward ang messages dahil hindi na ito available</item>
+    <item quantity="other">Hindi ma-forward ang messages dahil hindi na available ang mga ito.</item>
+  </plurals>
+  <string name="MultiselectForwardFragment__limit_reached">Limit reached</string>
   <!--Media V2-->
   <string name="MediaReviewFragment__add_a_message">Mag-add ng message</string>
+  <string name="MediaReviewFragment__add_a_reply">Mag-add ng reply</string>
   <string name="MediaReviewFragment__send_to">I-send kay</string>
+  <string name="MediaReviewFragment__view_once_message">View message once</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_too_large">Ang isa o higit pang files were too large</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_invalid">Ang isa o higit pang files were invalid</string>
+  <string name="MediaReviewFragment__too_many_items_selected">Too many items selected</string>
   <string name="ImageEditorHud__cancel">Kanselahin</string>
+  <string name="ImageEditorHud__draw">Draw</string>
+  <string name="ImageEditorHud__write_text">Write text</string>
+  <string name="ImageEditorHud__add_a_sticker">Mag-add ng sticker</string>
+  <string name="ImageEditorHud__blur">Blur</string>
+  <string name="ImageEditorHud__done_editing">Done editing</string>
+  <string name="ImageEditorHud__clear_all">Clear all</string>
   <string name="ImageEditorHud__undo">Undo</string>
+  <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Toggle between marker and highlighter</string>
   <string name="ImageEditorHud__delete">Burahin</string>
+  <string name="ImageEditorHud__toggle_between_text_styles">Toggle between text styles</string>
   <string name="MediaCountIndicatorButton__send">Ipadala</string>
+  <string name="MediaReviewSelectedItem__tap_to_remove">Tap to remove</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Pindutin upang piliin</string>
   <string name="MediaReviewImagePageFragment__discard">I-discard</string>
+  <string name="MediaReviewImagePageFragment__discard_changes">Gusto mo bang i-discard ang changes?</string>
+  <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Mawawala ang changes na nagawa mo dito sa photo.</string>
+  <string name="CameraFragment__failed_to_open_camera">Failed to open camera</string>
+  <string name="BadgesOverviewFragment__my_badges">My badges</string>
+  <string name="BadgesOverviewFragment__featured_badge">Featured badge</string>
+  <string name="BadgesOverviewFragment__display_badges_on_profile">I-display ang badges sa profile</string>
+  <string name="BadgesOverviewFragment__failed_to_update_profile">Failed to update profile</string>
+  <string name="BadgeSelectionFragment__select_badges">Pumili ng badges</string>
+  <string name="SelectFeaturedBadgeFragment__preview">Preview</string>
+  <string name="SelectFeaturedBadgeFragment__select_a_badge">Pumili ng badge</string>
+  <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Kailangan mong pumili ng badge</string>
+  <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Failed to update profile</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Become a sustainer</string>
+  <string name="ImageView__badge">Badge</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal is powered by people like you.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you">Support technology that is built for you—hindi para sa data mo—sa pamamagitan ng pag-join sa community of people that sustain it.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Support technology that is built for you, hindi para sa data mo, sa pamamagitan ng pag-join sa community that sustains Signal.</string>
+  <string name="SubscribeFragment__make_a_recurring_monthly_donation">Magbigay ng recurring monthly donation sa Signal to support technology built for you, not your data.</string>
+  <string name="SubscribeFragment__currency">Currency</string>
+  <string name="SubscribeFragment__more_payment_options">More Payment Options</string>
+  <string name="SubscribeFragment__cancel_subscription">I-cancel ang Subscription</string>
+  <string name="SubscribeFragment__confirm_cancellation">Gusto mo bang i-confirm ang Cancellation?</string>
+  <string name="SubscribeFragment__you_wont_be_charged_again">You won\'t be charged again. Matatanggal ang iyong badge mula sa profile mo pagkatapos ng iyong billing period.</string>
   <string name="SubscribeFragment__not_now">Hindi ngayon</string>
   <string name="SubscribeFragment__confirm">Kumpirmahin</string>
+  <string name="SubscribeFragment__update_subscription">I-update ang Subscription</string>
+  <string name="SubscribeFragment__your_subscription_has_been_cancelled">Your subscription has been canceled.</string>
+  <string name="SubscribeFragment__update_subscription_question">Gusto mo bang i-update ang subscription?</string>
   <string name="SubscribeFragment__update">I-update</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">You will be charged the full amount (%1$s) ng new subscription price today. Magre-renew monthly ang iyong subscription.</string>
+  <string name="Subscription__s_per_month">%s/month</string>
+  <string name="Subscription__s_per_month_dot_renews_s">%1$s/month · Renews %2$s</string>
+  <string name="Subscription__s_per_month_dot_expires_s">%1$s/month · Expires %2$s</string>
   <!--First small text blurb on learn more sheet-->
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Ang Signal ay isang nonprofit na walang advertisers o investors, sustained only by the use and value it. Magbigay ng recurring monthly donation at makatanggap ng profile badge para i-share ang iyong suporta.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">Why Donate?</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Ang Signal ay committed sa pag-develop ng isang open source privacy technology na nagpoprotekta sa free expression at nage-enable ng isang secure na global communication.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Your donation helps this cause, as well as the development and operations of an app that is being used by millions for private communication. Walang ads. Walang trackers. Walang halong biro.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Maraming salamat sa iyong Support!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Maraming salamat sa Pag-boost!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">You\'ve earned %s badge! I-display ang badge na ito sa profile mo para ma-share sa iba ang pag-donate mo sa Signal.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">You\'ve earned a Boost badge! I-display ang badge na ito sa profile mo para ma-share sa iba ang pag-donate mo sa Signal.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Pwede ka ring</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">maging isang monthly Sustainer.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">I-display sa Profile</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Make featured badge</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Tapos na</string>
+  <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Kapag ang badge mo ay more than one, pwede kang pumili ng isang badge to feature na makikita nila sa profile mo.</string>
+  <string name="BecomeASustainerFragment__get_badges">Kumuha ng badges para sa profile mo by supporting Signal.</string>
+  <string name="BecomeASustainerFragment__signal_is_a_non_profit">Ang Signal ay isang nonprofit na walang advertisers o investors, supported only by people like you.</string>
   <!--Button label for creating a monthly donation-->
   <string name="ManageDonationsFragment__make_a_monthly_donation">Magbigay ng monthly donation</string>
   <!--Heading for more area of manage subscriptions page-->
   <string name="ManageDonationsFragment__more">More</string>
   <!--Heading for receipts area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__receipts">Receipts</string>
   <!--Heading for my subscription area of manage subscriptions page-->
+  <string name="ManageDonationsFragment__my_subscription">My subscription</string>
+  <string name="ManageDonationsFragment__manage_subscription">I-manage ang subscription</string>
   <!--Label for Donation Receipts button-->
+  <string name="ManageDonationsFragment__donation_receipts">Donation Receipts</string>
   <string name="ManageDonationsFragment__badges">Badges</string>
+  <string name="ManageDonationsFragment__subscription_faq">Subscription FAQ</string>
+  <string name="ManageDonationsFragment__error_getting_subscription">Error getting subscription.</string>
   <!--Preference heading for other ways to donate-->
+  <string name="ManageDonationsFragment__other_ways_to_give">Other ways to give</string>
   <!--Preference label to launch badge gifting-->
+  <string name="ManageDonationsFragment__gift_a_badge">Mag-gift ng badge</string>
+  <string name="BoostFragment__give_signal_a_boost">Give Signal a Boost</string>
   <!--Description text in boost sheet-->
+  <string name="BoostFragment__make_a_one_time">Magbigay ng one-time donation at mag-earn ng Boost badge for %1$d days.</string>
+  <string name="Boost__enter_custom_amount">Enter Custom Amount</string>
+  <string name="Boost__one_time_contribution">One-time contribution</string>
+  <string name="MySupportPreference__add_a_signal_boost">Mag-add ng Signal Boost</string>
+  <string name="MySupportPreference__s_per_month">%1$s/month</string>
+  <string name="MySupportPreference__renews_s">Renews %1$s</string>
+  <string name="MySupportPreference__processing_transaction">Processing transaction…</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
+  <string name="MySupportPreference__couldnt_add_badge_s">Hindi ma-add ang badge. %1$s</string>
+  <string name="MySupportPreference__please_contact_support">I-contact ang support.</string>
   <!--Title of expiry sheet when boost badge falls off profile unexpectedly.-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Boost Badge Expired</string>
   <!--Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Monthly Donation Canceled</string>
   <!--Displayed in the bottom sheet when a boost badge expires-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Expired na ang iyong Boost badge at hindi na ito visible sa profile mo.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Pwede mong i-reactivate ang iyong Boost badge for another 30 days sa pamamagitan ng one-time contribution.</string>
   <!--Displayed when we do not think the user is a subscriber when their boost expires-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Pwede mo pa ring gamitin ang Signal app pero para masuportahan ang technology that is built for you, consider becoming a sustainer sa pamamagitan ng pagbibigay ng monthly donation.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Become a Sustainer</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Mag-add ng Boost</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Hindi ngayon</string>
   <!--Copy displayed when badge expires after user inactivity-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Ang iyong recurring monthly donation ay automatically canceled dahil matagal kang inactive. Ang iyong %1$s badge ay hindi na visible sa profile mo.</string>
   <!--Copy displayed when badge expires after payment failure-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Ang iyong recurring monthly donation ay canceled dahil hindi namin ma-process ang payment mo. Ang iyong badge ay hindi na visible sa profile mo.</string>
   <!--Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Ang iyong recurring monthly donation ay canceled. %1$s Ang iyong %2$s badge ay hindi na visible sa profile mo.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Pwede mo pa ring gamitin ang Signal pero para masuportahan ang app at ma-reactivate ang iyong badge, mag-renew now.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Renew subscription</string>
   <!--Button label to send user to Google Pay website-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Go to Google Pay</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Hindi ma-process ang subscription payment</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">We\'re having trouble collecting your Signal Sustainer payment. Siguraduhin na ang payment method mo ay up to date. Kung hindi pa, i-update ito sa Google Pay. Susubukan ulit ng Signal na i-process ang payment in a few days.</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">\'Wag nang ipakita ito</string>
+  <string name="Subscription__please_contact_support_for_more_information">I-contact ang support para sa iba pang impormasyon.</string>
   <string name="Subscription__contact_support">Makipag-ugnayan sa Suporta</string>
+  <string name="Subscription__earn_a_s_badge">Earn a %1$s badge</string>
   <string name="SubscribeFragment__processing_payment">Processing payment…</string>
   <!--Displayed in notification when user payment fails to process on Stripe-->
+  <string name="DonationsErrors__error_processing_payment">Error processing payment</string>
   <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="DonationsErrors__error_processing_payment_s">Error processing payment. %1$s</string>
+  <string name="DonationsErrors__your_badge_could_not_be_added">Hindi ma-add ang badge sa iyong account, pero baka na-charge ito sa\'yo. Please contact support.</string>
+  <string name="DonationsErrors__your_payment">Hindi ma-process ang iyong payment at hindi ito na-charge sa account mo. Please try again.</string>
+  <string name="DonationsErrors__still_processing">Still processing</string>
+  <string name="DonationsErrors__couldnt_add_badge">Hindi ma-add ang badge</string>
   <!--Displayed when badge credential couldn\'t be verified-->
+  <string name="DonationsErrors__failed_to_validate_badge">Failed to validate badge</string>
   <!--Displayed when badge credential couldn\'t be verified-->
+  <string name="DonationsErrors__could_not_validate">Hindi ma-validate ang server response. Please contact support.</string>
   <!--Displayed as title when some generic error happens during gift badge sending-->
+  <string name="DonationsErrors__failed_to_send_gift_badge">Failed to send gift badge</string>
   <!--Displayed as message when some generic error happens during gift badge sending-->
+  <string name="DonationsErrors__could_not_send_gift_badge">Hindi ma-send ang gift badge. Please contact support.</string>
+  <string name="DonationsErrors__your_badge_could_not">Hindi ma-add ang badge sa iyong account, pero baka na-charge ito sa account mo. Please contact support.</string>
+  <string name="DonationsErrors__your_payment_is_still">Your payment is still being processed. This can take a few minutes depende sa internet connection mo.</string>
+  <string name="DonationsErrors__google_pay_unavailable">Google Pay Unavailable</string>
+  <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Kailangan mong i-set up ang Google Pay to donate in-app.</string>
+  <string name="DonationsErrors__failed_to_cancel_subscription">Failed to cancel subscription</string>
+  <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Ang subscription cancellation ay nangangailangan ng internet connection.</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Your device doesn\'t support Google Pay, kaya hindi ka makapag-subscribe to earn a badge. Pwede mo pa ring suportahan ang Signal by making a donation sa aming website.</string>
+  <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Network error. I-check ang iyong internet connection at subukan ulit.</string>
   <string name="NetworkFailure__retry">Subukang muli</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__recipient_verification_failed">Recipient verification failed.</string>
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__target_does_not_support_gifting">A selected recipient does not support gifting.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__could_not_verify_recipient">Hindi ma-verify ang recipient.</string>
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__please_check_your_network_connection">I-check ang iyong network connection at subukan ulit.</string>
   <!--Gift message view title-->
+  <string name="GiftMessageView__gift_badge">Gift badge</string>
   <!--Gift message view expiry information-->
+  <plurals name="GiftMessageView__lasts_for_d_months">
+    <item quantity="one">Lasts for %1$d month</item>
+    <item quantity="other">Lasts for %1$d months</item>
+  </plurals>
   <!--Gift badge redeem action label-->
   <string name="GiftMessageView__redeem">I-redeem</string>
   <!--Gift badge view action label-->
   <string name="GiftMessageView__view">Tingnan</string>
   <!--Gift badge redeeming action label-->
+  <string name="GiftMessageView__redeeming">Redeeming…</string>
   <!--Gift badge redeemed label-->
+  <string name="GiftMessageView__redeemed">Redeemed</string>
   <!--Stripe decline code generic_failure-->
+  <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Subukan ang iba pang payment method or contact your bank for more information.</string>
   <!--Stripe decline code verify on Google Pay and try again-->
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again">I-verify kung ang payment method mo sa Google Pay ay up to date at subukan ulit.</string>
   <!--Stripe decline code learn more action label-->
   <string name="DeclineCode__learn_more">Matuto pa</string>
   <!--Stripe decline code contact issuer-->
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again_if_the_problem">I-verify kung ang payment method mo sa Google Pay ay up to date at subukan ulit. If the problem continues, contact your bank.</string>
   <!--Stripe decline code purchase not supported-->
+  <string name="DeclineCode__your_card_does_not_support_this_type_of_purchase">Your card does not support this kind of purchase. Subukan ang iba pang payment method.</string>
   <!--Stripe decline code your card has expired-->
+  <string name="DeclineCode__your_card_has_expired">Expired na ang iyong card. I-update ang iyong payment method sa Google Pay at subukan ulit.</string>
   <!--Stripe decline code go to google pay action label-->
+  <string name="DeclineCode__go_to_google_pay">Go to Google Pay</string>
   <!--Stripe decline code incorrect card number-->
   <!--Stripe decline code incorrect cvc-->
   <!--Stripe decline code insufficient funds-->
@@ -3213,6 +3671,7 @@
   <!--Stripe decline code issuer not available-->
   <!--Stripe decline code processing error-->
   <!--Title of create notification profile screen-->
+  <string name="EditNotificationProfileFragment__name_your_profile">Name your profile</string>
   <!--Hint text for create/edit notification profile name-->
   <string name="EditNotificationProfileFragment__profile_name">Profile na pangalan</string>
   <!--Name has a max length, this shows how many characters are used out of the max-->
@@ -3224,33 +3683,49 @@
   <!--Call to action button once the profile name is edited-->
   <string name="EditNotificationProfileFragment__save">I-save</string>
   <!--Title of edit notification profile screen-->
+  <string name="EditNotificationProfileFragment__edit_this_profile">I-edit ang profile</string>
   <!--Error message shown when attempting to create or edit a profile name to an existing profile name-->
+  <string name="EditNotificationProfileFragment__a_profile_with_this_name_already_exists">A profile with this name already exists</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
   <string name="EditNotificationProfileFragment__work">Work</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__sleep">Sleep</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__driving">Driving</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__downtime">Downtime</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__focus">Focus</string>
   <!--Error message shown when attempting to next/save without a profile name-->
+  <string name="EditNotificationProfileFragment__profile_must_have_a_name">Kailangang maglagay ng name</string>
   <!--Title for add recipients to notification profile screen in create flow-->
+  <string name="AddAllowedMembers__allowed_notifications">Allowed notifications</string>
   <!--Description of what the user should be doing with this screen-->
   <!--Button text that launches the contact picker to select from-->
+  <string name="AddAllowedMembers__add_people_or_groups">Mag-add ng people o groups</string>
   <!--Call to action button on contact picker for adding to profile-->
   <string name="SelectRecipientsFragment__add">Mag-add</string>
   <!--Notification profiles home fragment, shown when no profiles have been created yet-->
   <!--Header shown above list of all notification profiles-->
+  <string name="NotificationProfilesFragment__profiles">Profiles</string>
   <!--Button that starts the create new notification profile flow-->
+  <string name="NotificationProfilesFragment__new_profile">New profile</string>
   <!--Profile active status, indicating the current profile is on for an unknown amount of time-->
   <string name="NotificationProfilesFragment__on">On</string>
   <!--Button use to permanently delete a notification profile-->
+  <string name="NotificationProfileDetails__delete_profile">I-delete ang profile</string>
   <!--Snakbar message shown when removing a recipient from a profile-->
+  <string name="NotificationProfileDetails__s_removed">\"%1$s\" removed.</string>
   <!--Snackbar button text that will undo the recipient remove-->
   <string name="NotificationProfileDetails__undo">Undo</string>
   <!--Dialog message shown to confirm deleting a profile-->
+  <string name="NotificationProfileDetails__permanently_delete_profile">Gusto mo bang i-delete ang profile na ito permanently?</string>
   <!--Dialog button to delete profile-->
   <string name="NotificationProfileDetails__delete">Burahin</string>
   <!--Title/accessibility text for edit icon to edit profile emoji/name-->
+  <string name="NotificationProfileDetails__edit_notification_profile">I-edit ang notification profile</string>
   <!--Schedule description if all days are selected-->
+  <string name="NotificationProfileDetails__everyday">Everyday</string>
   <!--Profile status on if it is the active profile-->
   <string name="NotificationProfileDetails__on">On</string>
   <!--Profile status on if it is not the active profile-->
@@ -3258,26 +3733,42 @@
   <!--Description of hours for schedule (start to end) times-->
   <string name="NotificationProfileDetails__s_to_s">%1$s hanggang %2$s</string>
   <!--Section header for exceptions to the notification profile-->
+  <string name="NotificationProfileDetails__exceptions">Exceptions</string>
   <!--Profile exception to allow all calls through the profile restrictions-->
+  <string name="NotificationProfileDetails__allow_all_calls">Allow all calls</string>
   <!--Profile exception to allow all @mentions through the profile restrictions-->
+  <string name="NotificationProfileDetails__notify_for_all_mentions">Mag-notify for all mentions</string>
   <!--Section header for showing schedule information-->
+  <string name="NotificationProfileDetails__schedule">Schedule</string>
   <!--If member list is long, will truncate the list and show an option to then see all when tapped-->
   <string name="NotificationProfileDetails__see_all">Ipakita lahat</string>
   <!--Title for add schedule to profile in create flow-->
+  <string name="EditNotificationProfileSchedule__add_a_schedule">Mag-add ng schedule</string>
   <!--Descriptor text indicating what the user can do with this screen-->
   <!--Text shown next to toggle switch to enable/disable schedule-->
+  <string name="EditNotificationProfileSchedule__schedule">Schedule</string>
   <!--Label for showing the start time for the schedule-->
+  <string name="EditNotificationProfileSchedule__start">Start</string>
   <!--Label for showing the end time for the schedule-->
   <string name="EditNotificationProfileSchedule__end">Tapusin</string>
   <!--First letter of Sunday-->
+  <string name="EditNotificationProfileSchedule__sunday_first_letter">Ss</string>
   <!--First letter of Monday-->
+  <string name="EditNotificationProfileSchedule__monday_first_letter">M</string>
   <!--First letter of Tuesday-->
+  <string name="EditNotificationProfileSchedule__tuesday_first_letter">T</string>
   <!--First letter of Wednesday-->
+  <string name="EditNotificationProfileSchedule__wednesday_first_letter">W</string>
   <!--First letter of Thursday-->
+  <string name="EditNotificationProfileSchedule__thursday_first_letter">T</string>
   <!--First letter of Friday-->
+  <string name="EditNotificationProfileSchedule__friday_first_letter">F</string>
   <!--First letter of Saturday-->
+  <string name="EditNotificationProfileSchedule__saturday_first_letter">S</string>
   <!--Title of select time dialog shown when setting start time for schedule-->
+  <string name="EditNotificationProfileSchedule__set_start_time">Mag-set ng start time</string>
   <!--Title of select time dialog shown when setting end time for schedule-->
+  <string name="EditNotificationProfileSchedule__set_end_time">Mag-set ng end time</string>
   <!--If in edit mode, call to action button text show to save schedule to profile-->
   <string name="EditNotificationProfileSchedule__save">I-save</string>
   <!--If in create mode, call to action button text to show to skip enabling a schedule-->
@@ -3286,79 +3777,122 @@
   <string name="EditNotificationProfileSchedule__next">Susunod</string>
   <!--Error message shown if trying to save/use a schedule with no days selected-->
   <!--Title for final screen shown after completing a profile creation-->
+  <string name="NotificationProfileCreated__profile_created">Profile created</string>
   <!--Call to action button to press to close the created screen and move to the profile details screen-->
   <string name="NotificationProfileCreated__done">Tapos na</string>
   <!--Descriptor text shown to indicate how to manually turn a profile on/off-->
   <!--Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow-->
   <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->
   <!--Button text shown in profile selection bottom sheet to create a new profile-->
+  <string name="NotificationProfileSelection__new_profile">New profile</string>
   <!--Manual enable option to manually enable a profile for 1 hour-->
+  <string name="NotificationProfileSelection__for_1_hour">For 1 hour</string>
   <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->
   <string name="NotificationProfileSelection__until_s">Hanggang %1$s</string>
   <!--Option to view profile details-->
+  <string name="NotificationProfileSelection__view_settings">View settings</string>
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
+  <string name="NotificationProfileSelection__on_until_s">On until %1$s</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
+  <string name="NotificationSettingsFragment__failed_to_open_picker">Failed to open picker.</string>
   <!--Description shown for the Signal Release Notes channel-->
+  <string name="ReleaseNotes__signal_release_notes_and_news">Signal Release Notes &amp; News</string>
   <!--Donation receipts activity title-->
   <string name="DonationReceiptListFragment__all_activity">All activity</string>
   <!--Donation receipts all tab label-->
   <string name="DonationReceiptListFragment__all">Lahat</string>
   <!--Donation receipts recurring tab label-->
+  <string name="DonationReceiptListFragment__recurring">Recurring</string>
   <!--Donation receipts one-time tab label-->
+  <string name="DonationReceiptListFragment__one_time">One-time</string>
   <!--Donation receipts gift tab label-->
   <string name="DonationReceiptListFragment__gift">Gift</string>
   <!--Donation receipts boost row label-->
+  <string name="DonationReceiptListFragment__boost">Boost</string>
   <!--Donation receipts details title-->
   <string name="DonationReceiptDetailsFragment__details">Detalye</string>
   <!--Donation receipts donation type heading-->
+  <string name="DonationReceiptDetailsFragment__donation_type">Donation type</string>
   <!--Donation receipts date paid heading-->
+  <string name="DonationReceiptDetailsFragment__date_paid">Date paid</string>
   <!--Donation receipts share PNG-->
+  <string name="DonationReceiptDetailsFragment__share_receipt">Share receipt</string>
   <!--Donation receipts list end note-->
   <!--Donation receipts document title-->
+  <string name="DonationReceiptDetailsFragment__donation_receipt">Donation receipt</string>
   <!--Donation receipts amount title-->
+  <string name="DonationReceiptDetailsFragment__amount">Amount</string>
   <!--Donation receipts thanks-->
   <!--Donation receipt type-->
+  <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
   <!--Donation reciepts screen empty state title-->
+  <string name="DonationReceiptListFragment__no_receipts">Walang receipts</string>
   <!--region "Stories Tab"-->
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">Mga chat</string>
   <!--Label for Stories tab in home app screen-->
   <string name="ConversationListTabs__stories">Stories</string>
   <!--String for counts above 99 in conversation list tabs-->
+  <string name="ConversationListTabs__99p">99+</string>
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">Stories Ko</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
+  <string name="StoriesLandingFragment__add_a_story">Mag-add ng story</string>
   <!--Displayed when there are no stories to display-->
   <!--Context menu option to hide a story-->
+  <string name="StoriesLandingItem__hide_story">I-hide ang story</string>
   <!--Context menu option to unhide a story-->
+  <string name="StoriesLandingItem__unhide_story">Unhide story</string>
   <!--Context menu option to forward a story-->
   <string name="StoriesLandingItem__forward">Ipasa</string>
   <!--Context menu option to share a story-->
+  <string name="StoriesLandingItem__share">Share…</string>
   <!--Context menu option to go to story chat-->
+  <string name="StoriesLandingItem__go_to_chat">Go to chat</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">Ipinapadala…</string>
   <!--Label when multiple stories are pending sending-->
+  <string name="StoriesLandingItem__sending_d">Sending %1$d…</string>
   <!--Label when a story fails to send due to networking-->
   <string name="StoriesLandingItem__send_failed">Failed ang pag-send</string>
   <!--Label when a story fails to send due to identity mismatch-->
+  <string name="StoriesLandingItem__partially_sent">Partially sent</string>
   <!--Status label when a story fails to send indicating user action to retry-->
+  <string name="StoriesLandingItem__tap_to_retry">Tap to retry</string>
   <!--Title of dialog confirming decision to hide a story-->
+  <string name="StoriesLandingFragment__hide_story">Gusto mo bang i-hide ang story na ito?</string>
   <!--Message of dialog confirming decision to hide a story-->
   <!--Positive action of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide">I-hide</string>
   <!--Displayed in Snackbar after story is hidden-->
+  <string name="StoriesLandingFragment__story_hidden">Story hidden</string>
   <!--Section header for hidden stories-->
+  <string name="StoriesLandingFragment__hidden_stories">Hidden stories</string>
   <!--Displayed on each sent story under My Stories-->
+  <plurals name="MyStories__d_views">
+    <item quantity="one">%1$d view</item>
+    <item quantity="other">%1$d views</item>
+  </plurals>
   <!--Forward story label, displayed in My Stories context menu-->
   <string name="MyStories_forward">Ipasa</string>
   <!--Label for stories for a single user. Format is {given name}\'s Story-->
+  <string name="MyStories__ss_story">%1$s\'s Story</string>
   <!--Title of dialog to confirm deletion of story-->
+  <string name="MyStories__delete_story">Gusto mo bang i-delete ang story na ito?</string>
   <!--Message of dialog to confirm deletion of story-->
   <!--Toast shown when story media cannot be saved-->
   <!--Displayed at bottom of story viewer when current item has views-->
+  <plurals name="StoryViewerFragment__d_views">
+    <item quantity="one">%1$d view</item>
+    <item quantity="other">%1$d views</item>
+  </plurals>
   <!--Displayed at bottom of story viewer when current item has replies-->
+  <plurals name="StoryViewerFragment__d_replies">
+    <item quantity="one">%1$d reply</item>
+    <item quantity="other">%1$d replies</item>
+  </plurals>
   <!--Used when view receipts are disabled-->
-  <string name="StoryViewerPageFragment__views_off">Views disabled</string>
+  <string name="StoryViewerPageFragment__views_off">Naka-disable ang views</string>
   <!--Used to join views and replies when both exist on a story item-->
   <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
   <!--Displayed when viewing a post you sent-->
@@ -3368,24 +3902,35 @@
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">Tugon</string>
   <!--Label for the reply button in story viewer, which will launch the group story replies bottom sheet.-->
+  <string name="StoryViewerPageFragment__reply_to_group">Mag-reply sa group</string>
   <!--Displayed when a story has no views-->
+  <string name="StoryViewsFragment__no_views_yet">Wala pang views</string>
   <!--Displayed when user has disabled receipts-->
   <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">I-enable ang read receipts para makita kung sinong nag-view ng stories mo.</string>
   <!--Button label displayed when user has disabled receipts-->
-  <string name="StoryViewsFragment__go_to_settings">Go to settings</string>
+  <string name="StoryViewsFragment__go_to_settings">Pumunta sa settings</string>
   <!--Displayed when a story has no replies yet-->
+  <string name="StoryGroupReplyFragment__no_replies_yet">Wala pang replies</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
+  <string name="StoryGroupReactionReplyItem__reacted_to_the_story">Reacted to the story</string>
   <!--Label for story views tab-->
+  <string name="StoryViewsAndRepliesDialogFragment__views">Views</string>
   <!--Label for story replies tab-->
+  <string name="StoryViewsAndRepliesDialogFragment__replies">Replies</string>
   <!--Description of action for reaction button-->
+  <string name="StoryReplyComposer__react_to_this_story">React to this story</string>
   <!--Displayed when the user is replying privately to someone who replied to one of their stories-->
+  <string name="StoryReplyComposer__replying_privately_to_s">Replying privately to %1$s</string>
   <!--Context menu item to privately reply to a story response-->
+  <string name="StoryGroupReplyItem__private_reply">Private Reply</string>
   <!--Context menu item to copy a story response-->
   <string name="StoryGroupReplyItem__copy">Kopyahin</string>
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Burahin</string>
   <!--Story settings page title-->
+  <string name="StorySettingsFragment__story_settings">Story settings</string>
   <!--Story settings private stories heading-->
+  <string name="StorySettingsFragment__private_stories">Private stories</string>
   <!--Note at bottom of story settings regarding who can see private stories.-->
   <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Ang mga private story ay makikita lang ng mga taong in-add mo dito. Ikaw lang ang makakakita ng pangalan ng story.</string>
   <!--Option label for creating a new private story-->
@@ -3393,7 +3938,9 @@
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Story Ko</string>
   <!--Section heading for story visibility-->
+  <string name="MyStorySettingsFragment__who_can_see_this_story">Who can see this story</string>
   <!--Clickable option for selecting people to hide your story from-->
+  <string name="MyStorySettingsFragment__hide_story_from">I-hide ang story kay</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
   <string name="MyStorySettingsFragment__all_signal_connections">All Signal connections</string>
   <!--Privacy setting description for sending stories to all your signal connections-->
@@ -3412,10 +3959,16 @@
   <!--Privacy setting description for only sharing your story with specified connections-->
   <string name="MyStorySettingsFragment__only_share_with_selected_people">I-share lamang sa selected people</string>
   <!--Summary of clickable option displaying how many people you have included to send to in your story-->
+  <plurals name="MyStorySettingsFragment__d_people">
+    <item quantity="one">%1$d person</item>
+    <item quantity="other">%1$d people</item>
+  </plurals>
   <!--My story privacy fine print about what the privacy settings are for-->
   <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Piliin kung sinong makakapag-view ng story mo. Ang changes dito ay hindi makakaapekto sa stories na na-send mo na.</string>
   <!--Section header for options related to replies and reactions-->
+  <string name="MyStorySettingsFragment__replies_amp_reactions">Replies &amp; reactions</string>
   <!--Switchable option for allowing replies and reactions on your stories-->
+  <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Allow replies &amp; reactions</string>
   <!--Summary for switchable option allowing replies and reactions on your story-->
   <!--Note about default sharing-->
   <!--Signal connections bolded text in the Signal Connections sheet-->
@@ -3423,33 +3976,51 @@
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
   <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Ang Signal Connections ay ang mga taong pinagkakatiwalaan mo, sa pamamagitan ng:</string>
   <!--Signal connections sheet bullet point 1-->
+  <string name="SignalConnectionsBottomSheet__starting_a_conversation">Starting a conversation</string>
   <!--Signal connections sheet bullet point 2-->
+  <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Accepting a message request</string>
   <!--Signal connections sheet bullet point 3-->
   <!--Note at the bottom of the Signal connections sheet-->
   <!--Clickable option to add a viewer to a private story-->
+  <string name="PrivateStorySettingsFragment__add_viewer">Mag-add ng viewer</string>
   <!--Clickable option to delete a custom story-->
+  <string name="PrivateStorySettingsFragment__delete_private_story">I-delete ang private story</string>
   <!--Dialog title when attempting to remove someone from a private story-->
+  <string name="PrivateStorySettingsFragment__remove_s">Remove %1$s?</string>
   <!--Dialog message when attempting to remove someone from a private story-->
+  <string name="PrivateStorySettingsFragment__this_person_will_no_longer">Hindi na niya makikita ang story mo.</string>
   <!--Positive action label when attempting to remove someone from a private story-->
   <string name="PrivateStorySettingsFragment__remove">Tanggalin</string>
   <!--Dialog title when deleting a private story-->
+  <string name="PrivateStorySettingsFragment__are_you_sure">Sigurado ka na ba?</string>
   <!--Dialog message when deleting a private story-->
+  <string name="PrivateStorySettingsFragment__this_action_cannot">This action cannot be undone.</string>
   <!--Page title for editing a private story name-->
+  <string name="EditPrivateStoryNameFragment__edit_story_name">Edit story name</string>
   <!--Input field hint when editing a private story name-->
+  <string name="EditPrivateStoryNameFragment__story_name">Story name</string>
   <!--Save button label when editing a private story name-->
   <string name="EditPrivateStoryNameFragment__save">I-save</string>
   <!--Displayed in text post creator before user enters text-->
+  <string name="TextStoryPostCreationFragment__tap_to_add_text">Tap to add text</string>
   <!--Button label for changing font when creating a text post-->
+  <string name="TextStoryPostTextEntryFragment__aa">Aa</string>
   <!--Displayed in text post creator when prompting user to enter text-->
+  <string name="TextStoryPostTextEntryFragment__add_text">Mag-add ng text</string>
   <!--Content description for \'done\' button when adding text to a story post-->
+  <string name="TextStoryPostTextEntryFragment__done_adding_text">Done adding text</string>
   <!--Text label for media selection toggle-->
+  <string name="MediaSelectionActivity__text">Text</string>
   <!--Camera label for media selection toggle-->
   <string name="MediaSelectionActivity__camera">Camera</string>
   <!--Hint for entering a URL for a text post-->
+  <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">Type or paste a URL</string>
   <!--Displayed prior to the user entering a URL for a text post-->
+  <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">Mag-share ng link ng iyong story with viewers</string>
   <!--Hint text for searching for a story text post recipient.-->
   <string name="TextStoryPostSendFragment__search">Maghanap</string>
   <!--Toast shown when an unexpected error occurs while sending a text story-->
+  <string name="TextStoryPostSendFragment__an_unexpected_error_occurred_try_again">An unexpected error occurred</string>
   <!--Title for screen allowing user to exclude "My Story" entries from specific people-->
   <string name="ChangeMyStoryMembershipFragment__all_except">All except…</string>
   <!--Title for screen allowing user to only share "My Story" entries with specific people-->
@@ -3506,7 +4077,7 @@
   <!--Choose story type bottom sheet group story summary-->
   <string name="ChooseStoryTypeBottomSheet__share_to_an_existing_group">I-share sa isang existing group</string>
   <!--Choose groups bottom sheet title-->
-  <string name="ChooseGroupStoryBottomSheet__choose_groups">Pumili ng mga group</string>
+  <string name="ChooseGroupStoryBottomSheet__choose_groups">Pumili ng groups</string>
   <!--Displayed when copying group story reply text to clipboard-->
   <string name="StoryGroupReplyFragment__copied_to_clipboard">Nakopya na sa clipboard</string>
   <!--Displayed in story caption when content is longer than 5 lines-->
@@ -3611,8 +4182,9 @@
     <item quantity="other">Group Story · %1$d viewers</item>
   </plurals>
   <!--Label under name for My Story when first sending to my story-->
-  <string name="ContactSearchItems__tap_to_choose_your_viewers">I-tap para makapili ng viewers mo</string>
+  <string name="ContactSearchItems__tap_to_choose_your_viewers">I-tap para piliin ang viewers mo</string>
   <!--Label for context menu item to open story settings-->
+  <string name="ContactSearchItems__story_settings">Story settings</string>
   <!--Label for context menu item to remove a group story from contact results-->
   <string name="ContactSearchItems__remove_story">I-remove ang story</string>
   <!--Label for context menu item to delete a private story-->
@@ -3624,6 +4196,7 @@
   <!--Dialog action item for removing a group story-->
   <string name="ContactSearchMediator__remove">Tanggalin</string>
   <!--Dialog title for deleting a private story-->
+  <string name="ContactSearchMediator__delete_story">Gusto mo bang i-delete ang story na ito?</string>
   <!--Dialog message for deleting a private story-->
   <string name="ContactSearchMediator__delete_the_private">Gusto mo bang i-delete ang private story \"%1$s\"?</string>
   <!--Dialog action item for deleting a private story-->
@@ -3654,49 +4227,49 @@
   <!--Button label to confirm understanding of story navigation-->
   <string name="StoryFirstTimeNagivationView__got_it">Got it</string>
   <!--Content description for vertical context menu button in safety number sheet rows-->
-  <string name="SafetyNumberRecipientRowItem__open_context_menu">Open context menu</string>
+  <string name="SafetyNumberRecipientRowItem__open_context_menu">Buksan ang context menu</string>
   <!--Sub-line when a user is verified.-->
   <string name="SafetyNumberRecipientRowItem__s_dot_verified">%1$s· Verified</string>
   <!--Sub-line when a user is verified.-->
   <string name="SafetyNumberRecipientRowItem__verified">Beripikado</string>
   <!--Title of safety number changes bottom sheet when showing individual records-->
-  <string name="SafetyNumberBottomSheetFragment__safety_number_changes">Safety number changes</string>
+  <string name="SafetyNumberBottomSheetFragment__safety_number_changes">Mga pagbabago sa safety number</string>
   <!--Message of safety number changes bottom sheet when showing individual records-->
   <string name="SafetyNumberBottomSheetFragment__the_following_people">Maaaring nag-reinstall ng Signal o nagpalit ng devices ang nabanggit na users sa baba. Mag-tap ng isang recipient para i-confirm ang bagong safety number. Ito ay optional.</string>
   <!--Title of safety number changes bottom sheet when not showing individual records-->
-  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup">Safety number checkup</string>
+  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup">Pag-check ng safety number</string>
   <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
-  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">Safety number checkup complete</string>
+  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">Tapos na ang pag-check ng safety number</string>
   <!--Message of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
-  <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">All connections have been reviewed, i-tap ang send para magpatuloy.</string>
+  <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Na-review na ang lahat ng connections, i-tap ang send para magpatuloy.</string>
   <!--Message of safety number changes bottom sheet when not showing individual records-->
-  <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">Mayroon kang %1$d connections na maaaring nag-reinstall ng Signal o nagpalit ng devices. I-review muna ang kanilang safety numbers bago i-share sa kanila ang story mo, o i-consider din na tanggalin sila sa viewers ng story mo.</string>
+  <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">Mayroon kang %1$d connections na maaaring nag-reinstall ng Signal o nagpalit ng devices. Reviewhin muna ang kanilang safety numbers bago mo i-share sa kanila ang story mo. Maaari mo rin silang tanggalin sa story mo.</string>
   <!--Menu action to launch safety number verification screen-->
   <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Beripikahin ang numerong pangkaligtasan</string>
   <!--Menu action to remove user from story-->
-  <string name="SafetyNumberBottomSheetFragment__remove_from_story">I-remove mula sa story</string>
+  <string name="SafetyNumberBottomSheetFragment__remove_from_story">Alisin mula sa story</string>
   <!--Action button at bottom of SafetyNumberBottomSheetFragment to send anyway-->
   <string name="SafetyNumberBottomSheetFragment__send_anyway">I-send pa rin</string>
   <!--Action button at bottom of SafetyNumberBottomSheetFragment to review connections-->
-  <string name="SafetyNumberBottomSheetFragment__review_connections">I-review ang connections</string>
+  <string name="SafetyNumberBottomSheetFragment__review_connections">Reviewhin ang connections</string>
   <!--Empty state copy for SafetyNumberBottomSheetFragment-->
-  <string name="SafetyNumberBottomSheetFragment__no_more_recipients_to_show">Walang recipients na ipakikita.</string>
+  <string name="SafetyNumberBottomSheetFragment__no_more_recipients_to_show">Wala nang recipients na maipakita.</string>
   <!--Done button on safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__done">Tapos na</string>
   <!--Title of safety number review fragment-->
-  <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Safety number changes</string>
+  <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Mga pagbabago sa safety number</string>
   <!--Message of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">Maaaring nag-reinstall ng Signal o nagpalit ng devices ang %1$d recipients. Mag-tap ng isang recipient para i-confirm ang bagong safety number. Ito ay optional.</string>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">Mga Contacts</string>
   <!--Context menu label for distribution list headers in review fragment-->
-  <string name="SafetyNumberReviewConnectionsFragment__remove_all">Remove all</string>
+  <string name="SafetyNumberReviewConnectionsFragment__remove_all">Alisin lahat</string>
   <!--Context menu label for 1:1 contacts to remove from send-->
   <string name="SafetyNumberReviewConnectionsFragment__remove">Tanggalin</string>
   <!--Title of initial My Story settings configuration shown when sending to My Story for the first time-->
-  <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">My Story Privacy</string>
+  <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">Pagkapribado ng Story Ko</string>
   <!--Subtitle of initial My Story settings configuration shown when sending to My Story for the first time-->
-  <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">Piliin kung sinong makakakita ng posts sa My Story. Pwede mo itong baguhin anytime sa settings.</string>
+  <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">Piliin kung sinong makakakita ng posts sa Story Ko. Pwede mo itong baguhin anumang oras sa settings.</string>
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">All Signal connections</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->

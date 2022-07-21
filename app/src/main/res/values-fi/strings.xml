@@ -3906,6 +3906,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
     <item quantity="other">%1$d vastausta</item>
   </plurals>
   <!--Used when view receipts are disabled-->
+  <string name="StoryViewerPageFragment__views_off">Lukukuittaukset pois käytöstä</string>
   <!--Used to join views and replies when both exist on a story item-->
   <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
   <!--Displayed when viewing a post you sent-->
@@ -4250,13 +4251,13 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--Sub-line when a user is verified.-->
   <string name="SafetyNumberRecipientRowItem__verified">Vahvistettu</string>
   <!--Title of safety number changes bottom sheet when showing individual records-->
-  <string name="SafetyNumberBottomSheetFragment__safety_number_changes">Turvanumeron muutokset</string>
+  <string name="SafetyNumberBottomSheetFragment__safety_number_changes">Turvanumeromuutokset</string>
   <!--Message of safety number changes bottom sheet when showing individual records-->
   <string name="SafetyNumberBottomSheetFragment__the_following_people">Seuraavat henkilöt ovat ehkä asentaneet Signalin uudelleen tai vaihtaneet käyttämäänsä laitetta. Vahvista uusi turvanumero napauttamalla vastaanottajaa. Toiminto on valinnainen.</string>
   <!--Title of safety number changes bottom sheet when not showing individual records-->
-  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup">Turvanumeron tarkistus</string>
+  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup">Turvanumerotarkistus</string>
   <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
-  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">Turvanumeron tarkistus valmis</string>
+  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">Turvanumerotarkistus valmis</string>
   <!--Message of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
   <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Kaikki yhteystiedot on tarkistettu. Jatka napauttamalla.</string>
   <!--Message of safety number changes bottom sheet when not showing individual records-->
@@ -4274,7 +4275,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--Done button on safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__done">Valmis</string>
   <!--Title of safety number review fragment-->
-  <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Turvanumeron muutokset</string>
+  <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Turvanumeromuutokset</string>
   <!--Message of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">%1$d vastaanottajaa on ehkä asentanut Signalin uudelleen tai vaihtanut käyttämäänsä laitetta. Vahvista uusi turvanumero napauttamalla vastaanottajaa. Toiminto on valinnainen.</string>
   <!--Section header for 1:1 contacts in review fragment-->

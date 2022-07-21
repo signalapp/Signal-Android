@@ -4144,7 +4144,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--Title of safety number changes bottom sheet when showing individual records-->
   <string name="SafetyNumberBottomSheetFragment__safety_number_changes">Perubahan nomor keamanan</string>
   <!--Message of safety number changes bottom sheet when showing individual records-->
-  <string name="SafetyNumberBottomSheetFragment__the_following_people">Pengguna berikut mungkin menginstal ulang Signal atau berganti perangkat. Ketuk penerima untuk mengonfirmasi nomor keamanan baru. Ini sifatnya opsional.</string>
+  <string name="SafetyNumberBottomSheetFragment__the_following_people">Pengguna berikut mungkin telah menginstal ulang Signal atau berganti perangkat. Ketuk penerima untuk mengonfirmasi nomor keamanan baru. Ini bersifat opsional.</string>
   <!--Title of safety number changes bottom sheet when not showing individual records-->
   <string name="SafetyNumberBottomSheetFragment__safety_number_checkup">Pemeriksaan nomor keamanan</string>
   <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
@@ -4152,11 +4152,11 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--Message of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
   <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Semua koneksi telah ditinjau, ketuk kirim untuk melanjutkan.</string>
   <!--Message of safety number changes bottom sheet when not showing individual records-->
-  <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">Anda memiliki %1$d koneksi yang mungkin menginstal ulang Signal atau berganti perangkat. Sebelum membagikan cerita dengan mereka, tinjau nomor keamanan mereka atau pertimbangkan untuk mengeluarkan mereka dari cerita Anda.</string>
+  <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">Anda punya %1$d koneksi yang mungkin telah menginstal ulang Signal atau berganti perangkat. Sebelum membagikan cerita dengan mereka, tinjau nomor keamanan mereka atau pertimbangkan untuk menghapus mereka dari cerita Anda.</string>
   <!--Menu action to launch safety number verification screen-->
   <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Verifikasi nomor keamanan</string>
   <!--Menu action to remove user from story-->
-  <string name="SafetyNumberBottomSheetFragment__remove_from_story">Keluarkan dari cerita</string>
+  <string name="SafetyNumberBottomSheetFragment__remove_from_story">Hapus dari cerita</string>
   <!--Action button at bottom of SafetyNumberBottomSheetFragment to send anyway-->
   <string name="SafetyNumberBottomSheetFragment__send_anyway">Tetap kirim</string>
   <!--Action button at bottom of SafetyNumberBottomSheetFragment to review connections-->
@@ -4168,7 +4168,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Perubahan nomor keamanan</string>
   <!--Message of safety number review fragment-->
-  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">%1$d penerima mungkin menginstal ulang Signal atau berganti perangkat. Ketuk penerima untuk mengonfirmasi nomor keamanan baru. Ini sifatnya opsional.</string>
+  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">%1$d penerima mungkin telah menginstal ulang Signal atau berganti perangkat. Ketuk penerima untuk mengonfirmasi nomor keamanan baru. Ini bersifat opsional.</string>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">Kontak</string>
   <!--Context menu label for distribution list headers in review fragment-->

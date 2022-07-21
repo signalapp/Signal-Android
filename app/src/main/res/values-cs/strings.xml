@@ -4125,6 +4125,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
     <item quantity="other">%1$d odpovědí</item>
   </plurals>
   <!--Used when view receipts are disabled-->
+  <string name="StoryViewerPageFragment__views_off">Zobrazení vypnuta</string>
   <!--Used to join views and replies when both exist on a story item-->
   <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
   <!--Displayed when viewing a post you sent-->
@@ -4138,7 +4139,9 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">Zatím žádná zobrazení</string>
   <!--Displayed when user has disabled receipts-->
+  <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Povolte potvrzení o přečtení, abyste viděli, kdo si prohlížel vaše příběhy.</string>
   <!--Button label displayed when user has disabled receipts-->
+  <string name="StoryViewsFragment__go_to_settings">Přejít do nastavení</string>
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Zatím žádné odpovědi</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
@@ -4428,6 +4431,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
     <item quantity="other">Skupinový příběh · %1$d zobrazení</item>
   </plurals>
   <!--Label under name for My Story when first sending to my story-->
+  <string name="ContactSearchItems__tap_to_choose_your_viewers">Klepnutím vyberte své sledující</string>
   <!--Label for context menu item to open story settings-->
   <string name="ContactSearchItems__story_settings">Nastavení příběhu</string>
   <!--Label for context menu item to remove a group story from contact results-->
@@ -4478,33 +4482,49 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--Button label to confirm understanding of story navigation-->
   <string name="StoryFirstTimeNagivationView__got_it">Rozumím</string>
   <!--Content description for vertical context menu button in safety number sheet rows-->
+  <string name="SafetyNumberRecipientRowItem__open_context_menu">Otevření kontextové nabídky</string>
   <!--Sub-line when a user is verified.-->
+  <string name="SafetyNumberRecipientRowItem__s_dot_verified">%1$s ověřený</string>
   <!--Sub-line when a user is verified.-->
   <string name="SafetyNumberRecipientRowItem__verified">Ověřeno</string>
   <!--Title of safety number changes bottom sheet when showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_changes">Změny bezpečnostního čísla</string>
   <!--Message of safety number changes bottom sheet when showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__the_following_people">Následující osoby pravděpodobně přeinstalovaly aplikaci Signal nebo změnily zařízení. Klepnutím na příjemce potvrďte nové bezpečnostní číslo. Tato možnost je volitelná.</string>
   <!--Title of safety number changes bottom sheet when not showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup">Kontrola bezpečnostního čísla</string>
   <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">Kontrola bezpečnostního čísla dokončena</string>
   <!--Message of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Všechna spojení byla zkontrolována, pokračujte klepnutím na tlačítko odeslat.</string>
   <!--Message of safety number changes bottom sheet when not showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">Máte %1$d spojení, která si pravděpodobně přeinstalovala aplikaci Signal nebo změnila zařízení. Předtím, než s nimi budete sdílet svůj příběh, zkontrolujte jejich bezpečnostní čísla nebo zvažte jejich odebrání z příběhu.</string>
   <!--Menu action to launch safety number verification screen-->
   <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Ověření bezpečnostního čísla</string>
   <!--Menu action to remove user from story-->
+  <string name="SafetyNumberBottomSheetFragment__remove_from_story">Odebrat z příběhu</string>
   <!--Action button at bottom of SafetyNumberBottomSheetFragment to send anyway-->
   <string name="SafetyNumberBottomSheetFragment__send_anyway">Přesto poslat</string>
   <!--Action button at bottom of SafetyNumberBottomSheetFragment to review connections-->
+  <string name="SafetyNumberBottomSheetFragment__review_connections">Zkontrolovat spojení</string>
   <!--Empty state copy for SafetyNumberBottomSheetFragment-->
+  <string name="SafetyNumberBottomSheetFragment__no_more_recipients_to_show">Žádní další příjemci k zobrazení</string>
   <!--Done button on safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__done">Hotovo</string>
   <!--Title of safety number review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Změny bezpečnostního čísla</string>
   <!--Message of safety number review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">%1$dpříjemci si pravděpodobně přeinstalovali aplikaci Signal nebo změnili zařízení. Klepnutím na příjemce potvrďte nové bezpečnostní číslo. Tato možnost je volitelná.</string>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">Kontakty</string>
   <!--Context menu label for distribution list headers in review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__remove_all">Odebrat všechny</string>
   <!--Context menu label for 1:1 contacts to remove from send-->
   <string name="SafetyNumberReviewConnectionsFragment__remove">Odebrat</string>
   <!--Title of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">Soukromí mého příběhu</string>
   <!--Subtitle of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">Vyberte, kdo může vidět příspěvky k „Mému příběhu“</string>
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Všechna spojení Signal</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->

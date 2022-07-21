@@ -4199,7 +4199,7 @@
     <item quantity="other">ഗ്രൂപ്പ് സ്റ്റോറി · %1$d കാഴ്‌ചക്കാർ</item>
   </plurals>
   <!--Label under name for My Story when first sending to my story-->
-  <string name="ContactSearchItems__tap_to_choose_your_viewers">കാഴ്ച്ചക്കാരെ തിരഞ്ഞെടുക്കാൻ ടാപ്പ് ചെയ്യുക</string>
+  <string name="ContactSearchItems__tap_to_choose_your_viewers">നിങ്ങളുടെ കാഴ്‌ച്ചക്കാരെ തിരഞ്ഞെടുക്കാൻ ടാപ്പ് ചെയ്യുക</string>
   <!--Label for context menu item to open story settings-->
   <string name="ContactSearchItems__story_settings">സ്റ്റോറി ക്രമീകരണങ്ങൾ</string>
   <!--Label for context menu item to remove a group story from contact results-->
@@ -4250,17 +4250,17 @@
   <!--Sub-line when a user is verified.-->
   <string name="SafetyNumberRecipientRowItem__verified">പരിശോധിച്ചു </string>
   <!--Title of safety number changes bottom sheet when showing individual records-->
-  <string name="SafetyNumberBottomSheetFragment__safety_number_changes">സേഫ്റ്റി നമ്പറിൽ മാറ്റമുണ്ടായി</string>
+  <string name="SafetyNumberBottomSheetFragment__safety_number_changes">സുരക്ഷാ നമ്പറിൽ മാറ്റമുണ്ടായി</string>
   <!--Message of safety number changes bottom sheet when showing individual records-->
-  <string name="SafetyNumberBottomSheetFragment__the_following_people">ഇനിപ്പറയുന്ന ആളുകൾ Signal റീഇൻസ്റ്റാൾ ചെയ്യുകയോ ഉപകരണങ്ങൾ മാറുകയോ ചെയ്‌തിട്ടുണ്ട്. പുതിയ സേഫ്റ്റി നമ്പർ സ്ഥിരീകരിക്കാൻ ഒരു സ്വീകർത്താവിനെ ടാപ്പ് ചെയ്യുക. ഇത് ഓപ്ഷണലാണ്.</string>
+  <string name="SafetyNumberBottomSheetFragment__the_following_people">ഇനിപ്പറയുന്ന ആളുകൾ Signal വീണ്ടും ഇൻസ്റ്റാൾ ചെയ്യുകയോ ഉപകരണങ്ങൾ മാറുകയോ ചെയ്‌തിട്ടുണ്ടാകാം. പുതിയ സുരക്ഷാ നമ്പർ സ്ഥിരീകരിക്കുന്നതിന്, ഒരു സ്വീകർത്താവിനെ ടാപ്പ് ചെയ്യുക. ഇത് നിർബന്ധമല്ല.</string>
   <!--Title of safety number changes bottom sheet when not showing individual records-->
-  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup">സേഫ്റ്റി നമ്പർ പരിശോധന</string>
+  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup">സുരക്ഷാ നമ്പർ പരിശോധന</string>
   <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
-  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">സേഫ്റ്റി നമ്പർ പരിശോധന പൂർത്തിയായി</string>
+  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">സുരക്ഷാ നമ്പർ പരിശോധന പൂർത്തിയായി</string>
   <!--Message of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
-  <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">എല്ലാ കണക്ഷനുകളും റിവ്യൂ ചെയ്തു, തുടരാൻ അയയ്ക്കുക ടാപ്പ് ചെയ്യുക.</string>
+  <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">എല്ലാ കണക്ഷനുകളും അവലോകനം ചെയ്‌തു, തുടരുന്നതിന് അയയ്ക്കുക എന്നതിൽ ടാപ്പ് ചെയ്യുക.</string>
   <!--Message of safety number changes bottom sheet when not showing individual records-->
-  <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">Signal റീഇൻസ്റ്റാൾ ചെയ്യുകയോ ഉപകരണങ്ങൾ മാറുകയോ ചെയ്‌ത %1$d കണക്ഷനുകൾ നിങ്ങൾക്കുണ്ട്. നിങ്ങളുടെ സ്റ്റോറി അവരുമായി പങ്കിടുന്നതിന് മുമ്പ് അവരുടെ സേഫ്റ്റി നമ്പറുകൾ റിവ്യൂ ചെയ്യുകയോ അവരെ നിങ്ങളുടെ സ്റ്റോറിയിൽ നിന്ന് നീക്കുന്നത് പരിഗണിക്കുകയോ ചെയ്യുക.</string>
+  <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">Signal വീണ്ടും ഇൻസ്റ്റാൾ ചെയ്യുകയോ ഉപകരണങ്ങൾ മാറുകയോ ചെയ്‌തിട്ടുണ്ടാകാവുന്ന %1$d കണക്ഷനുകൾ നിങ്ങൾക്കുണ്ട്. നിങ്ങളുടെ സ്റ്റോറി അവരുമായി പങ്കിടുന്നതിന് മുമ്പ് അവരുടെ സുരക്ഷാ നമ്പറുകൾ അവലോകനം ചെയ്യുകയോ അവരെ നിങ്ങളുടെ സ്റ്റോറിയിൽ നിന്ന് നീക്കം ചെയ്യുന്നത് പരിഗണിക്കുകയോ ചെയ്യുക.</string>
   <!--Menu action to launch safety number verification screen-->
   <string name="SafetyNumberBottomSheetFragment__verify_safety_number">സുരക്ഷാ നമ്പർ ഉറപ്പാക്കു</string>
   <!--Menu action to remove user from story-->
@@ -4268,15 +4268,15 @@
   <!--Action button at bottom of SafetyNumberBottomSheetFragment to send anyway-->
   <string name="SafetyNumberBottomSheetFragment__send_anyway">എന്തായാലും അയയ്ക്കുക</string>
   <!--Action button at bottom of SafetyNumberBottomSheetFragment to review connections-->
-  <string name="SafetyNumberBottomSheetFragment__review_connections">കണക്ഷനുകൾ റിവ്യൂ ചെയ്യുക</string>
+  <string name="SafetyNumberBottomSheetFragment__review_connections">കണക്ഷനുകൾ അവലോകനം ചെയ്യുക</string>
   <!--Empty state copy for SafetyNumberBottomSheetFragment-->
-  <string name="SafetyNumberBottomSheetFragment__no_more_recipients_to_show">കാണിക്കാനായി ഇനിയും സ്വീകർത്താക്കളൊന്നുമില്ല</string>
+  <string name="SafetyNumberBottomSheetFragment__no_more_recipients_to_show">കാണിക്കാൻ കൂടുതൽ സ്വീകർത്താക്കൾ ഇല്ല</string>
   <!--Done button on safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__done">ചെയ്‌തു</string>
   <!--Title of safety number review fragment-->
-  <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">സേഫ്റ്റി നമ്പറിൽ മാറ്റമുണ്ടായി</string>
+  <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">സുരക്ഷാ നമ്പറിൽ മാറ്റമുണ്ടായി</string>
   <!--Message of safety number review fragment-->
-  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">%1$d സ്വീകർത്താക്കൾ Signal റീഇൻസ്റ്റാൾ ചെയ്യുകയോ ഉപകരണങ്ങൾ മാറുകയോ ചെയ്തു. പുതിയ സേഫ്റ്റി നമ്പർ സ്ഥിരീകരിക്കാൻ ഒരു സ്വീകർത്താവിനെ ടാപ്പ് ചെയ്യുക. ഇത് ഓപ്ഷണലാണ്.</string>
+  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">%1$d സ്വീകർത്താക്കൾ Signal വീണ്ടും ഇൻസ്റ്റാൾ ചെയ്യുകയോ ഉപകരണങ്ങൾ മാറുകയോ ചെയ്‌തിട്ടുണ്ടാകാം. പുതിയ സുരക്ഷാ നമ്പർ സ്ഥിരീകരിക്കുന്നതിന്, ഒരു സ്വീകർത്താവിനെ ടാപ്പ് ചെയ്യുക. ഇത് നിർബന്ധമല്ല.</string>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">കോൺടാക്ടുകൾ</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -4286,7 +4286,7 @@
   <!--Title of initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">എന്‍റെ സ്റ്റോറിയുടെ സ്വകാര്യത</string>
   <!--Subtitle of initial My Story settings configuration shown when sending to My Story for the first time-->
-  <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">എന്‍റെ സ്റ്റോറിയിലേക്കുള്ള പോസ്റ്റുകൾ ആർക്കൊക്കെ കാണാനാകും എന്ന് കാണാൻ തിരഞ്ഞെടുക്കുക. നിങ്ങൾക്ക് എപ്പോഴും ക്രമീകരണത്തിൽ മാറ്റങ്ങൾ വരുത്താനാകും.</string>
+  <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">എന്‍റെ സ്റ്റോറിയിലേക്കുള്ള പോസ്റ്റുകൾ ആർക്കൊക്കെ കാണാനാകും എന്ന് തിരഞ്ഞെടുക്കുക. നിങ്ങൾക്ക് എപ്പോൾ വേണമെങ്കിലും ക്രമീകരണങ്ങളിൽ മാറ്റം വരുത്താവുന്നതാണ്.</string>
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">എല്ലാ Signal കണക്ഷനുകളും</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->

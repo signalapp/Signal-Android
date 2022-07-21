@@ -4128,7 +4128,7 @@
   <!--Content description for vertical context menu button in safety number sheet rows-->
   <string name="SafetyNumberRecipientRowItem__open_context_menu">コンテキストメニューを開く</string>
   <!--Sub-line when a user is verified.-->
-  <string name="SafetyNumberRecipientRowItem__s_dot_verified">%1$s・検証済み</string>
+  <string name="SafetyNumberRecipientRowItem__s_dot_verified">%1$s・検証済</string>
   <!--Sub-line when a user is verified.-->
   <string name="SafetyNumberRecipientRowItem__verified">確認済み</string>
   <!--Title of safety number changes bottom sheet when showing individual records-->
@@ -4158,7 +4158,7 @@
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">安全番号の変更</string>
   <!--Message of safety number review fragment-->
-  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">%1$dの受信者が、Signalを再インストールしたか、端末を変更した可能性があります。 受信者をタップして、新しい安全番号を確認してください。 これは任意です。</string>
+  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">%1$d人の受信者が、Signalを再インストールしたか、端末を変更した可能性があります。 受信者をタップして、新しい安全番号を確認してください。 これは任意です。</string>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">連絡先</string>
   <!--Context menu label for distribution list headers in review fragment-->

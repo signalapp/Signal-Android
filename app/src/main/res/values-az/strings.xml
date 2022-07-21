@@ -4265,7 +4265,7 @@
   <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
   <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">Təhlükəsizlik nömrəsinin yoxlanılması başa çatdı</string>
   <!--Message of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
-  <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Bütün əlaqələr nəzərdən keçirilib, davam etmək üçün \"Göndər\" düyməsinə basın.</string>
+  <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Bütün əlaqələr nəzərdən keçirilib, davam etmək üçün \"Göndər\" düyməsinə toxunun.</string>
   <!--Message of safety number changes bottom sheet when not showing individual records-->
   <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">%1$d əlaqəniz Signal-ı yenidən quraşdırmış və ya cihazlarını dəyişmiş ola bilər. Hekayənizi onlarla paylaşmazdan əvvəl, onların təhlükəsizlik nömrələrini nəzərdən keçirin və ya onları hekayə izləyiciləri siyahınızdan çıxarın.</string>
   <!--Menu action to launch safety number verification screen-->

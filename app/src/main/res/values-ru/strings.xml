@@ -3639,7 +3639,7 @@
   <string name="MultiselectForwardFragment__add_a_message">Добавьте сообщение</string>
   <string name="MultiselectForwardFragment__faster_forwards">Более быстрая пересылка</string>
   <!--Displayed when user selects a video that will be clipped before sharing to a story-->
-  <string name="MultiselectForwardFragment__videos_will_be_trimmed">Видео будут обрезаны до 30-секундных клипов и отправлены в виде нескольких историй.</string>
+  <string name="MultiselectForwardFragment__videos_will_be_trimmed">Видео будут сокращены до 30-секундных клипов и отправлены в виде нескольких историй.</string>
   <!--Displayed when user selects a video that cannot be sent as a story-->
   <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">Видео, отправленные в истории, не могут быть длиннее 30 секунд.</string>
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">Пересылаемые сообщения теперь отправляются сразу.</string>
@@ -4490,6 +4490,7 @@
   <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
   <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">Проверка кода безопасности завершена</string>
   <!--Message of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Все контакты были проверены, нажмите «отправить», чтобы продолжить.</string>
   <!--Message of safety number changes bottom sheet when not showing individual records-->
   <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">У вас есть контакты (%1$d), которые, возможно, переустановили Signal или сменили устройства. Прежде чем поделиться с ними своей историей, просмотрите их коды безопасности или подумайте о том, чтобы удалить их из своей истории.</string>
   <!--Menu action to launch safety number verification screen-->

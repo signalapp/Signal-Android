@@ -3906,6 +3906,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
     <item quantity="other">%1$d respostes</item>
   </plurals>
   <!--Used when view receipts are disabled-->
+  <string name="StoryViewerPageFragment__views_off">Visualitzacions desactivades</string>
   <!--Used to join views and replies when both exist on a story item-->
   <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
   <!--Displayed when viewing a post you sent-->
@@ -3919,7 +3920,9 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">Encara no té visualitzacions</string>
   <!--Displayed when user has disabled receipts-->
+  <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Activa les confirmacions de lectura per veure qui ha visualitzat les teves històries.</string>
   <!--Button label displayed when user has disabled receipts-->
+  <string name="StoryViewsFragment__go_to_settings">Anar a ajustos</string>
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Encara no té respostes</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
@@ -3953,11 +3956,11 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">Amaga la història de</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
-  <string name="MyStorySettingsFragment__all_signal_connections">Totes les connexions de Signal</string>
+  <string name="MyStorySettingsFragment__all_signal_connections">Tots els contactes de Signal</string>
   <!--Privacy setting description for sending stories to all your signal connections-->
-  <string name="MyStorySettingsFragment__share_with_all_connections">Compartir amb totes les connexions</string>
+  <string name="MyStorySettingsFragment__share_with_all_connections">Compartir amb tots els contactes</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
-  <string name="MyStorySettingsFragment__all_signal_connections_except">Totes les connexions de Signal menys…</string>
+  <string name="MyStorySettingsFragment__all_signal_connections_except">Tots els contactes de Signal menys…</string>
   <!--Privacy setting description for sending stories to all except the specified connections-->
   <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Oculta la teva història a persones en concret</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
@@ -3985,9 +3988,9 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--Note about default sharing-->
   <string name="MyStorySettingsFragment__hide_your_story_from">Amagueu la història a persones específiques. De manera predeterminada, la vostra història es comparteix amb %1$s</string>
   <!--Signal connections bolded text in the Signal Connections sheet-->
-  <string name="SignalConnectionsBottomSheet___signal_connections">Connexions de Signal</string>
+  <string name="SignalConnectionsBottomSheet___signal_connections">Contactes de Signal</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
-  <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Les connexions de Signal són aquelles persones en les quals has indicat que confies, ja sigui:</string>
+  <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Els contactes de Signal són aquelles persones en les quals has indicat que confies, ja sigui:</string>
   <!--Signal connections sheet bullet point 1-->
   <string name="SignalConnectionsBottomSheet__starting_a_conversation">començar una conversa</string>
   <!--Signal connections sheet bullet point 2-->
@@ -3995,7 +3998,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--Signal connections sheet bullet point 3-->
   <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">tenir-les als contactes del sistema</string>
   <!--Note at the bottom of the Signal connections sheet-->
-  <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">Les vostres connexions poden veure el vostre nom i la fotografia, i poden veure les publicacions a \"La meva història\" tret que els les amagueu.</string>
+  <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">Els teus contactes poden veure el vostre nom i la fotografia, i poden veure les publicacions a \"La meva història\" tret que decideixis ocultar-les-hi.</string>
   <!--Clickable option to add a viewer to a private story-->
   <string name="PrivateStorySettingsFragment__add_viewer">Afegiu-hi un espectador</string>
   <!--Clickable option to delete a custom story-->
@@ -4045,7 +4048,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--Dialog title for first time adding something to a story-->
   <string name="StoryDialogs__add_to_story_q">Ho voleu afegir a la història?</string>
   <!--Dialog message for first time adding something to a story-->
-  <string name="StoryDialogs__adding_content">Afegir contingut a la història permet que les vostres connexions del Signal el vegin durant 24 hores. Podeu canviar qui pot veure la història a Configuració.</string>
+  <string name="StoryDialogs__adding_content">Afegir contingut a la història permet que els teus contactes del Signal el vegin durant 24 hores. Pots canviar qui pot veure la història a Configuració.</string>
   <!--First time share to story dialog: Positive action to go ahead and add to story-->
   <string name="StoryDialogs__add_to_story">Afegeix-ho a la història</string>
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
@@ -4197,6 +4200,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
     <item quantity="other">Història de grup · %1$d espectadors</item>
   </plurals>
   <!--Label under name for My Story when first sending to my story-->
+  <string name="ContactSearchItems__tap_to_choose_your_viewers">Toca per triar els teus espectadors</string>
   <!--Label for context menu item to open story settings-->
   <string name="ContactSearchItems__story_settings">Configuració de la història</string>
   <!--Label for context menu item to remove a group story from contact results-->
@@ -4241,33 +4245,49 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--Button label to confirm understanding of story navigation-->
   <string name="StoryFirstTimeNagivationView__got_it">Entesos</string>
   <!--Content description for vertical context menu button in safety number sheet rows-->
+  <string name="SafetyNumberRecipientRowItem__open_context_menu">Obrir el menú de context</string>
   <!--Sub-line when a user is verified.-->
+  <string name="SafetyNumberRecipientRowItem__s_dot_verified">%1$s · Verificat</string>
   <!--Sub-line when a user is verified.-->
   <string name="SafetyNumberRecipientRowItem__verified">Verificat</string>
   <!--Title of safety number changes bottom sheet when showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_changes">Canvis al número de seguretat</string>
   <!--Message of safety number changes bottom sheet when showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__the_following_people">Les següents persones pot ser que hagin reinstal·lat Signal o canviat de dispositiu. Toca sobre un contacte per a confirmar el seu nou número de seguretat. És opcional.</string>
   <!--Title of safety number changes bottom sheet when not showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup">Revisió del número de seguretat</string>
   <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">Revisió del número de seguretat completada</string>
   <!--Message of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">S\'han revisat tots els contactes, toca enviar per a continuar.</string>
   <!--Message of safety number changes bottom sheet when not showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">Tens %1$d contactes que pot ser que hagin reinstal·lat Signal o canviat de dispositiu. Abans de compartir la teva història amb ells, revisa els seus números de seguretat o pensa si vols eliminar-los de la teva història.</string>
   <!--Menu action to launch safety number verification screen-->
   <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Verifica el número de seguretat</string>
   <!--Menu action to remove user from story-->
+  <string name="SafetyNumberBottomSheetFragment__remove_from_story">Eliminar de la història</string>
   <!--Action button at bottom of SafetyNumberBottomSheetFragment to send anyway-->
   <string name="SafetyNumberBottomSheetFragment__send_anyway">Envia\'l tanmateix</string>
   <!--Action button at bottom of SafetyNumberBottomSheetFragment to review connections-->
+  <string name="SafetyNumberBottomSheetFragment__review_connections">Revisar contactes</string>
   <!--Empty state copy for SafetyNumberBottomSheetFragment-->
+  <string name="SafetyNumberBottomSheetFragment__no_more_recipients_to_show">No hi ha més contactes per mostrar</string>
   <!--Done button on safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__done">Fet</string>
   <!--Title of safety number review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Canvis al número de seguretat</string>
   <!--Message of safety number review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">%1$d contactes pot ser que hagin reinstal·lat Signal o canviat de dispositiu. Toca sobre un contacte per confirmar el seu nou número de seguretat. Això és opcional.</string>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">Contactes</string>
   <!--Context menu label for distribution list headers in review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__remove_all">Eliminar tot</string>
   <!--Context menu label for 1:1 contacts to remove from send-->
   <string name="SafetyNumberReviewConnectionsFragment__remove">Suprimeix</string>
   <!--Title of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">Privacitat de la meva història</string>
   <!--Subtitle of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">Tria qui pot veure el que puges a La meva història. Sempre pots canviar les teves preferències a ajustos.</string>
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Totes les connexions de Signal</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->

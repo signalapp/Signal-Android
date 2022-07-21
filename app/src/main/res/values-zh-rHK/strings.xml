@@ -3804,7 +3804,7 @@
     <item quantity="other">%1$d 則回覆</item>
   </plurals>
   <!--Used when view receipts are disabled-->
-  <string name="StoryViewerPageFragment__views_off">關閉檢視標記</string>
+  <string name="StoryViewerPageFragment__views_off">已讀標記已關閉</string>
   <!--Used to join views and replies when both exist on a story item-->
   <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
   <!--Displayed when viewing a post you sent-->
@@ -3818,7 +3818,7 @@
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">未有觀看</string>
   <!--Displayed when user has disabled receipts-->
-  <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">啟用已讀標記，以查看誰檢視了你的限時動態。</string>
+  <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">啟用已讀標記，以查看誰瀏覽了你的限時動態。</string>
   <!--Button label displayed when user has disabled receipts-->
   <string name="StoryViewsFragment__go_to_settings">前往設定</string>
   <!--Displayed when a story has no replies yet-->
@@ -4092,7 +4092,7 @@
     <item quantity="other">群組限時動態 · %1$d 個觀看者</item>
   </plurals>
   <!--Label under name for My Story when first sending to my story-->
-  <string name="ContactSearchItems__tap_to_choose_your_viewers">點按以選擇你的觀看者</string>
+  <string name="ContactSearchItems__tap_to_choose_your_viewers">點按以選擇你的觀看對象</string>
   <!--Label for context menu item to open story settings-->
   <string name="ContactSearchItems__story_settings">限時動態設定</string>
   <!--Label for context menu item to remove a group story from contact results-->
@@ -4148,9 +4148,9 @@
   <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
   <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">完成檢查新安全碼</string>
   <!--Message of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
-  <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">已檢閱所有人脈，請點按傳送以繼續操作。</string>
+  <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">已檢查所有人脈，請點按傳送以繼續操作。</string>
   <!--Message of safety number changes bottom sheet when not showing individual records-->
-  <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">你有 %1$d 個人脈可能已重新安裝 Signal 或更換裝置。與他們分享你的限時動態之前，請先檢閱他們的安全碼，或考慮將他們從你的限時動態中移除。</string>
+  <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">你有 %1$d 個人脈可能已重新安裝 Signal 或更換裝置。與他們分享你的限時動態之前，請先檢查他們的安全碼，或考慮將他們從你的限時動態中移除。</string>
   <!--Menu action to launch safety number verification screen-->
   <string name="SafetyNumberBottomSheetFragment__verify_safety_number">驗證安全碼</string>
   <!--Menu action to remove user from story-->
@@ -4158,9 +4158,9 @@
   <!--Action button at bottom of SafetyNumberBottomSheetFragment to send anyway-->
   <string name="SafetyNumberBottomSheetFragment__send_anyway">仍要傳送</string>
   <!--Action button at bottom of SafetyNumberBottomSheetFragment to review connections-->
-  <string name="SafetyNumberBottomSheetFragment__review_connections">檢閱人脈</string>
+  <string name="SafetyNumberBottomSheetFragment__review_connections">檢查人脈</string>
   <!--Empty state copy for SafetyNumberBottomSheetFragment-->
-  <string name="SafetyNumberBottomSheetFragment__no_more_recipients_to_show">沒有任何接收者要顯示了</string>
+  <string name="SafetyNumberBottomSheetFragment__no_more_recipients_to_show">沒有其他可顯示的接收者</string>
   <!--Done button on safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__done">完成</string>
   <!--Title of safety number review fragment-->
@@ -4176,7 +4176,7 @@
   <!--Title of initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">「我的限時動態」私隱設定</string>
   <!--Subtitle of initial My Story settings configuration shown when sending to My Story for the first time-->
-  <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">選擇誰可以看到「我的限時動態」的貼文。你隨時可以在設定中作出更改。</string>
+  <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">選擇誰可以看到「我的限時動態」的貼文。你可以隨時在設定中作出變更。</string>
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">所有 Signal 的人脈</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->

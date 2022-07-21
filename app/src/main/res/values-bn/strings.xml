@@ -1128,7 +1128,7 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">%s এর থেকে একটি বার্তা সরবরাহ করা যায়নি</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s তাদের ফোন নাম্বার পৰিবৰ্তন করেছেন।</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
-  <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">এই নতুন ফিচারটি পছন্দ হয়েছে? একটি এককালীন ডোনেশন দিয়ে Signal-কে সাহায্য করুন।</string>
+  <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">এই নতুন ফিচারটি পছন্দ হয়েছে? একটি এককালীন অনুদান দিয়ে Signal-কে সাহায্য করুন।</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s একটি গ্রুপ কল শুরু করেছে । %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s গ্রুপ কল এ আছেন। %2$s</string>
@@ -2059,14 +2059,14 @@
   <string name="HelpFragment__could_not_upload_logs">লগসমূহ আপলোড করা যায়নি</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">আমরা যাতে সমস্যাটি বুঝতে পারি সেজন্য যতটা সম্ভব বিস্তারিত বলুন।</string>
   <string-array name="HelpFragment__categories_4">
-    <item>-\- অনুগ্রহ করে একটি অপশন বেছে নিন\-\-</item>
+    <item>\-\- অনুগ্রহ করে একটি অপশন বেছে নিন\-\-</item>
     <item>কিছু একটা কাজ করছে না</item>
     <item>ফিচারের জন্য অনুরোধ</item>
     <item>প্রশ্ন</item>
     <item>প্রতিক্রিয়া</item>
     <item>অন্যান্য</item>
     <item>পেমেন্ট (MobileCoin)</item>
-    <item>ডোনেশন &amp; ব্যাজ</item>
+    <item>অনুদান &amp; ব্যাজ</item>
   </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">এই মেসেজ</string>
@@ -3970,16 +3970,16 @@
     <item quantity="other">%1$d জন ব্যক্তিকে বাদ দেয়া হয়েছে</item>
   </plurals>
   <!--Privacy setting title for only sharing your story with specified connections-->
-  <string name="MyStorySettingsFragment__only_share_with">শেয়ার করুন শুধু…</string>
+  <string name="MyStorySettingsFragment__only_share_with">শুধু এর/এদের সাথে শেয়ার করুন…</string>
   <!--Privacy setting description for only sharing your story with specified connections-->
-  <string name="MyStorySettingsFragment__only_share_with_selected_people">শুধু কিছু নির্দিষ্ট ব্যক্তির সাথে শেয়ার করুন</string>
+  <string name="MyStorySettingsFragment__only_share_with_selected_people">শুধু নির্বাচিত ব্যক্তির সাথে শেয়ার করুন</string>
   <!--Summary of clickable option displaying how many people you have included to send to in your story-->
   <plurals name="MyStorySettingsFragment__d_people">
     <item quantity="one">%1$d মানুষ</item>
     <item quantity="other">%1$d মানুষ</item>
   </plurals>
   <!--My story privacy fine print about what the privacy settings are for-->
-  <string name="MyStorySettingsFragment__choose_who_can_view_your_story">আপনার স্টোরি কে দেখতে পাবে তা নির্ধারণ করুন৷ পরিবর্তনগুলো আপনার ইতিমধ্যে পাঠানো স্টোরি-কে প্রভাবিত করবে না৷</string>
+  <string name="MyStorySettingsFragment__choose_who_can_view_your_story">আপনার স্টোরি কে দেখতে পাবে তা নির্ধারণ করুন৷ পরিবর্তনগুলো আপনার ইতোমধ্যে পাঠানো স্টোরিগুলোকে প্রভাবিত করবে না৷</string>
   <!--Section header for options related to replies and reactions-->
   <string name="MyStorySettingsFragment__replies_amp_reactions">উত্তর &amp; রিঅ্যাকশন</string>
   <!--Switchable option for allowing replies and reactions on your stories-->
@@ -4043,7 +4043,7 @@
   <!--Title for screen allowing user to exclude "My Story" entries from specific people-->
   <string name="ChangeMyStoryMembershipFragment__all_except">…ছাড়া সব</string>
   <!--Title for screen allowing user to only share "My Story" entries with specific people-->
-  <string name="ChangeMyStoryMembershipFragment__only_share_with">শেয়ার করুন শুধু…</string>
+  <string name="ChangeMyStoryMembershipFragment__only_share_with">শুধু এর/এদের সাথে শেয়ার করুন…</string>
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">শেষ</string>
   <!--Dialog title for first time adding something to a story-->
@@ -4211,7 +4211,7 @@
   <!--Dialog title for removing a group story-->
   <string name="ContactSearchMediator__remove_group_story">গ্রুপ স্টোরি সরাবেন?</string>
   <!--Dialog message for removing a group story-->
-  <string name="ContactSearchMediator__this_will_remove">এটি এই লিস্ট থেকে স্টোরি সরাবে। আপনি এখনও এই গ্রুপ থেকে স্টোরি দেখতে সক্ষম হবেন।</string>
+  <string name="ContactSearchMediator__this_will_remove">এটি এই তালিকা থেকে স্টোরি সরাবে। আপনি এখনও এই গ্রুপের স্টোরি দেখতে সক্ষম হবেন।</string>
   <!--Dialog action item for removing a group story-->
   <string name="ContactSearchMediator__remove">সরান</string>
   <!--Dialog title for deleting a private story-->
@@ -4242,7 +4242,7 @@
   <!--Label indicating swipe direction to skip current story-->
   <string name="StoryFirstTimeNavigationView__swipe_up_to_skip">এড়িয়ে যেতে উপরে সোয়াইপ করুন</string>
   <!--Label indicating swipe direction to exit story viewer-->
-  <string name="StoryFirstTimeNavigationView__swipe_right_to_exit">বন্ধ করতে ডানে সোয়াইপ করুন</string>
+  <string name="StoryFirstTimeNavigationView__swipe_right_to_exit">বের হতে ডানে সোয়াইপ করুন</string>
   <!--Button label to confirm understanding of story navigation-->
   <string name="StoryFirstTimeNagivationView__got_it">বুঝতে পেরেছি</string>
   <!--Content description for vertical context menu button in safety number sheet rows-->

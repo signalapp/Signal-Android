@@ -279,6 +279,7 @@
   </plurals>
   <!--ConversationFragment-->
   <!--Toast text when contacts activity is not found-->
+  <string name="ConversationFragment__contacts_app_not_found">אפליקציית אנשי קשר לא נמצאה.</string>
   <plurals name="ConversationFragment_delete_selected_messages">
     <item quantity="one">למחוק הודעה נבחרת?</item>
     <item quantity="two">למחוק הודעות נבחרות?</item>
@@ -2233,6 +2234,16 @@
   <string name="HelpFragment__debug_log">יומן ניפוי תקלים:</string>
   <string name="HelpFragment__could_not_upload_logs">לא היה ניתן להעלות יומן</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">אנא הייה מפורט ככל האפשר כדי לעזור לנו להבין את הסוגייה.</string>
+  <string-array name="HelpFragment__categories_4">
+    <item>\-\- יש לבחור אפשרות \-\-</item>
+    <item>משהו לא עובד</item>
+    <item>בקשת פיצ׳ר</item>
+    <item>שאלה</item>
+    <item>פידבק</item>
+    <item>אחר</item>
+    <item>תשלומים (MobileCoin)</item>
+    <item>תרומות ותגים</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">הודעה זו</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">בשימוש לאחרונה</string>
@@ -4508,13 +4519,13 @@
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">אנשי קשר</string>
   <!--Context menu label for distribution list headers in review fragment-->
-  <string name="SafetyNumberReviewConnectionsFragment__remove_all">הסרת הכל</string>
+  <string name="SafetyNumberReviewConnectionsFragment__remove_all">להסיר את כולם</string>
   <!--Context menu label for 1:1 contacts to remove from send-->
   <string name="SafetyNumberReviewConnectionsFragment__remove">הסר</string>
   <!--Title of initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">פרטיות הסטורי שלי</string>
   <!--Subtitle of initial My Story settings configuration shown when sending to My Story for the first time-->
-  <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">כדאי לבחור מי יראה את הפוסטים ב״סטורי שלי״. גם אחרי שבוחרים. תמיד אפשר לעשות שינויים בהגדרות.</string>
+  <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">ניתן לבחור מי יראה את הפוסטים ב״סטורי שלי״. גם אחרי שבוחרים, תמיד אפשר לשנות את ההגדרות.</string>
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">כל חברי ה-Signal</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->

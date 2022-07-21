@@ -4251,7 +4251,7 @@
   <!--Content description for vertical context menu button in safety number sheet rows-->
   <string name="SafetyNumberRecipientRowItem__open_context_menu">باز کردن منوی زمینه</string>
   <!--Sub-line when a user is verified.-->
-  <string name="SafetyNumberRecipientRowItem__s_dot_verified">%1$s · تایید شده</string>
+  <string name="SafetyNumberRecipientRowItem__s_dot_verified">%1$s · تاییدشده</string>
   <!--Sub-line when a user is verified.-->
   <string name="SafetyNumberRecipientRowItem__verified">تأیید شده</string>
   <!--Title of safety number changes bottom sheet when showing individual records-->
@@ -4263,6 +4263,7 @@
   <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
   <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">بررسی شمارهٔ ایمنی کامل شد</string>
   <!--Message of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">تمام آشنایان بررسی شده‌اند، برای ادامه روی ارسال ضربه بزنید.</string>
   <!--Message of safety number changes bottom sheet when not showing individual records-->
   <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">شما %1$d آشنا دارید که ممکن است سیگنال را دوباره نصب کرده باشند یا دستگاه خود را تغییر داده باشند. قبل از به اشتراک گذاشتن استوری خود با آنها، شماره ایمنی آنها را بررسی کنید یا آنها را از استوری خود حذف کنید.</string>
   <!--Menu action to launch safety number verification screen-->
@@ -4272,7 +4273,7 @@
   <!--Action button at bottom of SafetyNumberBottomSheetFragment to send anyway-->
   <string name="SafetyNumberBottomSheetFragment__send_anyway">در هر صورت ارسال کن</string>
   <!--Action button at bottom of SafetyNumberBottomSheetFragment to review connections-->
-  <string name="SafetyNumberBottomSheetFragment__review_connections">حذف آشنایان</string>
+  <string name="SafetyNumberBottomSheetFragment__review_connections">بررسی آشنایان</string>
   <!--Empty state copy for SafetyNumberBottomSheetFragment-->
   <string name="SafetyNumberBottomSheetFragment__no_more_recipients_to_show">گیرندۀ دیگری برای نمایش وجود ندارد</string>
   <!--Done button on safety number review fragment-->
@@ -4280,7 +4281,7 @@
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">تغییرات شمارهٔ ایمنی</string>
   <!--Message of safety number review fragment-->
-  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">ممکن است %1$d گیرنده سیگنال را دوباره نصب کرده باشند یا دستگاه‌شان را تغییر داده باشند. برای تایید شمارهٔ ایمنی جدید روی یکی از گیرنده‌ها ضربه بزنید. انجام این کار انتخابی است.</string>
+  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">ممکن است %1$d گیرنده، سیگنال را دوباره نصب کرده باشند یا دستگاه‌شان را تغییر داده باشند. برای تایید شمارهٔ ایمنی جدید روی یکی از گیرنده‌ها ضربه بزنید. انجام این کار انتخابی است.</string>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">مخاطبین</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -4290,7 +4291,7 @@
   <!--Title of initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">حریم خصوصی استوری من</string>
   <!--Subtitle of initial My Story settings configuration shown when sending to My Story for the first time-->
-  <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">انتخاب کنید چه کسی می‌تواند پست‌های استوری من را ببیند. همیشه می‌توانید تغییراتی در تنظیمات ایجاد کنید.</string>
+  <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">انتخاب کنید چه کسی می‌تواند پست‌های استوری من را ببیند. همیشه می‌توانید تنظیمات مربوطه را تغییر دهید.</string>
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">تمام آشنایان در سیگنال</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->

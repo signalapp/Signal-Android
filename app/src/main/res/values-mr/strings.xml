@@ -3923,9 +3923,9 @@
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">अद्याप कोणतीही दृश्ये नाहीत</string>
   <!--Displayed when user has disabled receipts-->
-  <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">आपल्या स्टोरीज कोणी पाहल्या आहेत ते पाहण्यासाठी रिसिप्टस् वाचा सक्षम करा.</string>
+  <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">आपल्या स्टोरीज कोणी पाहिल्या आहेत ते पाहण्यासाठी पोच वाचा ला सक्षम करा.</string>
   <!--Button label displayed when user has disabled receipts-->
-  <string name="StoryViewsFragment__go_to_settings">सेटिंग वर जा</string>
+  <string name="StoryViewsFragment__go_to_settings">सेटिंग्ज वर जा</string>
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">अद्याप कोणतीही प्रत्युत्तरे नाहीत</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
@@ -4254,33 +4254,33 @@
   <!--Sub-line when a user is verified.-->
   <string name="SafetyNumberRecipientRowItem__verified">सत्यापित</string>
   <!--Title of safety number changes bottom sheet when showing individual records-->
-  <string name="SafetyNumberBottomSheetFragment__safety_number_changes">सुरक्षितता नंबर बदल</string>
+  <string name="SafetyNumberBottomSheetFragment__safety_number_changes">सुरक्षितता क्रमांक बदल</string>
   <!--Message of safety number changes bottom sheet when showing individual records-->
-  <string name="SafetyNumberBottomSheetFragment__the_following_people">खालील लोकांनी Signal ला पुन्हा इन्स्टॉल केले किंवा उपकरणे बदलेली असू शकतात . नवीन सुरक्षितता नंबर ची पुष्टी करण्यास प्राप्तकर्ता वर टॅप करा.</string>
+  <string name="SafetyNumberBottomSheetFragment__the_following_people">खालील लोकांनी Signal ला पुन्हा इन्स्टॉल केलेले किंवा उपकरणे बदलेली असू शकतात. नवीन सुरक्षितता क्रमांकाची पुष्टी करण्यास प्राप्तकर्त्यावर टॅप करा.</string>
   <!--Title of safety number changes bottom sheet when not showing individual records-->
-  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup">सुरक्षितता नंबर तपासणी</string>
+  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup">सुरक्षितता क्रमांक तपासणी</string>
   <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
-  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">सुरक्षितता नंबर तपासणी पूर्ण</string>
+  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">सुरक्षितता क्रमांक तपासणी पूर्ण</string>
   <!--Message of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
-  <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">सर्व कनेक्शनचे पुनरावलोकन करण्यात आले आहे, पुढे सुरू ठेवण्यासाठी टॅप करा</string>
+  <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">सर्व कनेक्शन्सचे पुनरावलोकन करण्यात आले आहे, पुढे सुरू ठेवण्यासाठी टॅप करा.</string>
   <!--Message of safety number changes bottom sheet when not showing individual records-->
-  <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">ज्यांनी Signal ला पुन्हा इन्स्टॉल केले आहे किंवा उपकरणे बदललेली आहेत अशी आपणाकडे %1$d कनेक्शन्स आहेत. आपली स्टोरी त्याच्या सोबत शेअर करण्यापूर्वी त्यांचे सुरक्षितता नंबर यांचे पुनरावलोकन करा किंवा त्यांना आपल्या स्टोरी मधून हटवण्याचा विचार करा..</string>
+  <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">ज्यांनी कदाचित Signal पुन्हा इन्स्टॉल केले आहे किंवा उपकरणे बदलली आहेत अशी आपणाकडे %1$d कनेक्शन्स आहेत. आपली स्टोरी त्याच्या सोबत शेअर करण्यापूर्वी त्यांच्या सुरक्षितता क्रमांकांचे पुनरावलोकन करा किंवा त्यांना आपल्या स्टोरीमधून हटवण्याचा विचार करा.</string>
   <!--Menu action to launch safety number verification screen-->
   <string name="SafetyNumberBottomSheetFragment__verify_safety_number">सुरक्षितता नंबर सत्यापित करा</string>
   <!--Menu action to remove user from story-->
-  <string name="SafetyNumberBottomSheetFragment__remove_from_story">स्टोरी मधून काढा</string>
+  <string name="SafetyNumberBottomSheetFragment__remove_from_story">स्टोरीमधून काढून टाका</string>
   <!--Action button at bottom of SafetyNumberBottomSheetFragment to send anyway-->
   <string name="SafetyNumberBottomSheetFragment__send_anyway">तरीही पाठवा</string>
   <!--Action button at bottom of SafetyNumberBottomSheetFragment to review connections-->
-  <string name="SafetyNumberBottomSheetFragment__review_connections">कनेक्शन्स चे पुनरावलोकन करा</string>
+  <string name="SafetyNumberBottomSheetFragment__review_connections">कनेक्शन्सचे पुनरावलोकन करा</string>
   <!--Empty state copy for SafetyNumberBottomSheetFragment-->
-  <string name="SafetyNumberBottomSheetFragment__no_more_recipients_to_show">दाखवण्यासाठी आणखी प्राप्तकर्ता नाहीत</string>
+  <string name="SafetyNumberBottomSheetFragment__no_more_recipients_to_show">दाखवण्यासाठी आणखी प्राप्तकर्ते नाहीत</string>
   <!--Done button on safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__done">ठीक</string>
   <!--Title of safety number review fragment-->
-  <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">सुरक्षितता नंबर बदल</string>
+  <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">सुरक्षितता क्रमांक बदल</string>
   <!--Message of safety number review fragment-->
-  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">%1$d प्राप्तकर्त्यांनी Signal ला पुन्हा इन्स्टॉल केलेले किंवा उपकरणे बदलले असू शकते. नवीन सुरक्षितता नंबर ची पुष्टी करण्यासाठी एक प्राप्तकर्ता टॅप करा. हे पर्यायी आहे.</string>
+  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">%1$d प्राप्तकर्त्यांनी Signal पुन्हा इन्स्टॉल केलेले किंवा उपकरणे बदलले असू शकते. नवीन सुरक्षितता क्रमांकाची पुष्टी करण्यासाठी एका प्राप्तकर्त्यावर टॅप करा. हे पर्यायी आहे.</string>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">संपर्क</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -4288,9 +4288,9 @@
   <!--Context menu label for 1:1 contacts to remove from send-->
   <string name="SafetyNumberReviewConnectionsFragment__remove">काढा</string>
   <!--Title of initial My Story settings configuration shown when sending to My Story for the first time-->
-  <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">माझी स्टोरी गोपनीयता</string>
+  <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">माझ्या स्टोरीची गोपनीयता</string>
   <!--Subtitle of initial My Story settings configuration shown when sending to My Story for the first time-->
-  <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">माझी स्टोरी वरील पोस्टस् कोण पाहू शकते ते निवडा. आपण सेटिंग मध्ये बदल करू शकता.</string>
+  <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">माझ्या स्टोरीवरील पोस्ट्स कोण पाहू शकतात ते निवडा. आपण सेटिंग्जमध्ये बदल करू शकता.</string>
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">सर्व Signal कनेक्शन्स</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->

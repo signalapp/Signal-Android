@@ -4287,7 +4287,7 @@
   <!--Title of initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">મારી સ્ટોરીની પ્રાઇવસી</string>
   <!--Subtitle of initial My Story settings configuration shown when sending to My Story for the first time-->
-  <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">મારી સ્ટોરી પરની પોસ્ટ કોણ જોઈ શકે તે પસંદ કરો. તમે સેટિંગ્સમાંથી ગમે ત્યારે ફેરફારો કરી શકો છો.</string>
+  <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">મારી સ્ટોરી પરની પોસ્ટ કોણ જોઈ શકે તે પસંદ કરો. તમે સેટિંગ્સમાંથી ગમે ત્યારે ફેરફાર કરી શકો છો.</string>
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">બધા Signal સંપર્કો</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->

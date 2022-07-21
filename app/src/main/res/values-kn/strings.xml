@@ -275,7 +275,7 @@
   </plurals>
   <!--ConversationFragment-->
   <!--Toast text when contacts activity is not found-->
-  <string name="ConversationFragment__contacts_app_not_found">ಸಂಪರ್ಕಗಳು ಆ್ಯಪ್ ಕಂಡುಬಂದಿಲ್ಲ</string>
+  <string name="ConversationFragment__contacts_app_not_found">ಸಂಪರ್ಕಗಳ‌ ಆ್ಯಪ್ ಕಂಡುಬಂದಿಲ್ಲ</string>
   <plurals name="ConversationFragment_delete_selected_messages">
     <item quantity="one">ಆಯ್ಕೆ ಮಾಡಲಾದ ಸಂದೇಶಗಳನ್ನು ಅಳಿಸಬಹುದೇ?</item>
     <item quantity="other">ಆಯ್ಕೆ ಮಾಡಲಾದ ಸಂದೇಶಗಳನ್ನು ಅಳಿಸಬಹುದೇ?</item>
@@ -1126,7 +1126,7 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">%s ಅವರ ಮೆಸೇಜ್ ಅನ್ನು ಡೆಲಿವರಿ ಮಾಡಲಾಗದು</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s ಅವರು ತಮ್ಮ ಫೋನ್ ನಂಬರ್ ಬದಲಾಯಿಸಿದ್ದಾರೆ.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
-  <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">ಹೊಸ ಫೀಚರ್ ಇಷ್ಟವಾಯಿತೇ? ಒಂದು ಬಾರಿಯ ದೇಣಿಗೆಯೊಂದಿಗೆ Signal ಬೆಂಬಲಿಸಲು ನೆರವಾಗಿ.</string>
+  <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">ಹೊಸ ಫೀಚರ್ ಇಷ್ಟವಾಯಿತೇ? ಒಂದು ಬಾರಿಯ ದೇಣಿಗೆಯೊಂದಿಗೆ Signal ಬೆಂಬಲಿಸಿ ನೆರವಾಗಿ.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s ಅವರು ಗ್ರೂಪ್ ಕಾಲ್ ಆರಂಭಿಸಿದ್ದಾರೆ · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s ಗ್ರೂಪ್‌ ಕಾಲ್‌ನಲ್ಲಿದ್ದಾರೆ · %2$s</string>
@@ -2027,7 +2027,7 @@
   <string name="HelpFragment__could_not_upload_logs">ಲಾಗ್‌ಗಳನ್ನು ಅಪ್‌ಲೋಡ್ ಮಾಡಲಾಗದು</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">ಸಮಸ್ಯೆಯನ್ನು ಅರ್ಥ ಮಾಡಿಕೊಳ್ಳಲು ನಮಗೆ ಸಹಾಯ ಮಾಡುವುದಕ್ಕಾಗಿ ಸಾಧ್ಯವಾದಷ್ಟೂ ವಿವರಣೆ ನೀಡಿ</string>
   <string-array name="HelpFragment__categories_4">
-    <item>\-\- ದಯವಿಟ್ಟು ಒಂದು ಆಯ್ಕೆ ಆರಿಸಿ \-\-</item>
+    <item>\-\- ಒಂದು ಆಯ್ಕೆಯನ್ನು ಮಾಡಿ \-\-</item>
     <item>ಏನೋ ಕೆಲಸ ಮಾಡುತ್ತಿಲ್ಲ</item>
     <item>ಫೀಚರ್ ವಿನಂತಿ</item>
     <item>ಪ್ರಶ್ನೆ</item>
@@ -3577,7 +3577,7 @@
   <!--Label for the reply button in story viewer, which will launch the group story replies bottom sheet.-->
   <!--Displayed when a story has no views-->
   <!--Displayed when user has disabled receipts-->
-  <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">ನಿಮ್ಮ ಸ್ಟೋರೀಸ್ ಯಾರು ವೀಕ್ಷಿಸಿದ್ದಾರೆಂದು ನೋಡಲು ಓದಿದ ರಸೀದಿಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ</string>
+  <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">ನಿಮ್ಮ ಸ್ಟೋರೀಸ್ ಯಾರು ವೀಕ್ಷಿಸಿದ್ದಾರೆಂದು ನೋಡಲು ರೀಡ್ ರೆಸಿಪ್ಟ್ಸ್ ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
   <!--Button label displayed when user has disabled receipts-->
   <string name="StoryViewsFragment__go_to_settings">ಸೆಟ್ಟಿಂಗ್‌ಗಳಿಗೆ ಹೋಗಿ</string>
   <!--Displayed when a story has no replies yet-->
@@ -3620,7 +3620,7 @@
   <string name="MyStorySettingsFragment__only_share_with_selected_people">ಆಯ್ದ ಜನರೊಂದಿಗೆ ಮಾತ್ರ ಹಂಚಿಕೊಳ್ಳಿ</string>
   <!--Summary of clickable option displaying how many people you have included to send to in your story-->
   <!--My story privacy fine print about what the privacy settings are for-->
-  <string name="MyStorySettingsFragment__choose_who_can_view_your_story">ನಿಮ್ಮ ಸ್ಟೋರಿಯನ್ನು ಯಾರು ನೋಡಬಹುದು ಎಂದು ಆಯ್ಕೆ ಮಾಡಿ. ನೀವು ಈಗಾಗಲೇ ಕಳುಹಿಸಿದ ಸ್ಟೋರೀಸ್ ಮೇಲೆ ಬದಲಾವಣೆಗಳು ಪರಿಣಾಮವಾಗುವುದಿಲ್ಲ.</string>
+  <string name="MyStorySettingsFragment__choose_who_can_view_your_story">ನಿಮ್ಮ ಸ್ಟೋರಿಯನ್ನು ಯಾರು ನೋಡಬಹುದು ಎಂದು ಆಯ್ಕೆ ಮಾಡಿ. ನೀವು ಈಗಾಗಲೇ ಕಳುಹಿಸಿದ ಸ್ಟೋರೀಸ್ ಮೇಲೆ ಬದಲಾವಣೆಗಳು ಪರಿಣಾಮ ಬೀರುವುದಿಲ್ಲ.</string>
   <!--Section header for options related to replies and reactions-->
   <!--Switchable option for allowing replies and reactions on your stories-->
   <!--Summary for switchable option allowing replies and reactions on your story-->
@@ -3628,7 +3628,7 @@
   <!--Signal connections bolded text in the Signal Connections sheet-->
   <string name="SignalConnectionsBottomSheet___signal_connections">Signal ಸಂಪರ್ಕಗಳು</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
-  <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Signal ಸಂಪರ್ಕಗಳು ಒಂದೋ ಈ ಮೂಲಕ ನೀವು ವಿಶ್ವಾಸಾರ್ಹವೆಂದು ಆರಿಸಿದ ಜನರಾಗಿದ್ದಾರೆ:</string>
+  <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Signal ಸಂಪರ್ಕಗಳು ವಿಶ್ವಾಸಾರ್ಹರೆಂದು ನೀವು ಆಯ್ಕೆ ಮಾಡಿದ ಜನ. ಅದು ಈ ಮೂಲಕ:</string>
   <!--Signal connections sheet bullet point 1-->
   <!--Signal connections sheet bullet point 2-->
   <!--Signal connections sheet bullet point 3-->
@@ -3756,9 +3756,9 @@
   <!--Label for context menu item to delete a private story-->
   <string name="ContactSearchItems__delete_story">ಸ್ಟೋರಿ ಅಳಿಸಿ</string>
   <!--Dialog title for removing a group story-->
-  <string name="ContactSearchMediator__remove_group_story">ಗ್ರೂಪ್ ಸ್ಟೋರಿ ತೆಗೆಯುವುದೇ?</string>
+  <string name="ContactSearchMediator__remove_group_story">ಗ್ರೂಪ್ ಸ್ಟೋರಿ ತೆಗೆದುಹಾಕೋಣವೇ?</string>
   <!--Dialog message for removing a group story-->
-  <string name="ContactSearchMediator__this_will_remove">ಇದು ಈ ಪಟ್ಟಿಯಿಂದ ಸ್ಟೋರಿಯನ್ನು ತೆಗೆದುಹಾಕಲಿದೆ. ನಿಮಗೆ ಈಗಲೂ ಈ ಗ್ರೂಪ್‌ನಿಂದ ಸ್ಟೋರೀಸ್ ಅನ್ನು ನೋಡಲು ಸಾಧ್ಯವಾಗಲಿದೆ.</string>
+  <string name="ContactSearchMediator__this_will_remove">ಇದು ಈ ಪಟ್ಟಿಯಿಂದ ಸ್ಟೋರಿಯನ್ನು ತೆಗೆದುಹಾಕಲಿದೆ. ಈಗಲೂ ನೀವು ಈ ಗ್ರೂಪ್‍ನಿಂದ ಸ್ಟೋರೀಸ್ ಅನ್ನು ನೋಡಬಹುದು.</string>
   <!--Dialog action item for removing a group story-->
   <string name="ContactSearchMediator__remove">ತೆಗೆದುಹಾಕಿ</string>
   <!--Dialog title for deleting a private story-->
@@ -3821,7 +3821,7 @@
   <!--Title of initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">ನನ್ನ ಸ್ಟೋರಿ ಗೌಪ್ಯತೆ</string>
   <!--Subtitle of initial My Story settings configuration shown when sending to My Story for the first time-->
-  <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">ನನ್ನ ಸ್ಟೋರಿಯ ಪೋಸ್ಟ್‌ಗಳನ್ನು ಯಾರು ನೋಡಬಹುದು ಎಂಬುದನ್ನು ಆರಿಸಿ. ಸೆಟ್ಟಿಂಗ್‌‍ಗಳು ನಲ್ಲಿ ನೀವು ಯಾವಾಗಲೂ ಬದಲಾಯಿಸಬಹುದು.</string>
+  <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">ಮೈ ಸ್ಟೋರಿ ಪೋಸ್ಟ್‌ಗಳನ್ನು ಯಾರು ನೋಡಬಹುದು ಎಂದು ಆಯ್ಕೆ ಮಾಡಿರಿ. ನೀವು ಸೆಟ್ಟಿಂಗ್‌‍ ಗಳಲ್ಲಿ ಯಾವಾಗ ಬೇಕಾದರೂ ಬದಲಾವಣೆ ಮಾಡಬಹುದು.</string>
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">ಎಲ್ಲಾ Signal ಸಂಪರ್ಕಗಳು</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->

@@ -4028,9 +4028,9 @@ Nouvelle tentative…</string>
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">Aucune vue pour le moment</string>
   <!--Displayed when user has disabled receipts-->
-  <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Activer les accusés de réception pour savoir qui a consulté vos stories.</string>
+  <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Activer les accusés de lecture pour savoir qui a consulté vos Stories.</string>
   <!--Button label displayed when user has disabled receipts-->
-  <string name="StoryViewsFragment__go_to_settings">Aller dans Réglages</string>
+  <string name="StoryViewsFragment__go_to_settings">Rendez-vous dans les Paramètres</string>
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Aucune réponse pour le moment</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
@@ -4370,14 +4370,15 @@ Nouvelle tentative…</string>
   <!--Title of safety number changes bottom sheet when showing individual records-->
   <string name="SafetyNumberBottomSheetFragment__safety_number_changes">Modification du numéro de sécurité</string>
   <!--Message of safety number changes bottom sheet when showing individual records-->
-  <string name="SafetyNumberBottomSheetFragment__the_following_people">Les contacts suivants ont peut-être réinstallé Signal ou changé de périphérique. Appuyez sur le contact pour confirmer le nouveau numéro de sécurité. Facultatif.</string>
+  <string name="SafetyNumberBottomSheetFragment__the_following_people">Les contacts suivants ont peut-être réinstallé Signal ou changé d\'appareils. Appuyez sur le contact pour confirmer le nouveau numéro de sécurité. Cette étape est facultative.</string>
   <!--Title of safety number changes bottom sheet when not showing individual records-->
   <string name="SafetyNumberBottomSheetFragment__safety_number_checkup">Vérification du numéro de sécurité</string>
   <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
   <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">Vérification du numéro de sécurité terminée</string>
   <!--Message of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Toutes les connexions ont été revues, appuyez sur envoyer pour continuer.</string>
   <!--Message of safety number changes bottom sheet when not showing individual records-->
-  <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">%1$dde vos contacts a sûrement réinstallé Signal ou changé de périphérique. Avant de partager votre Story avec ces personnes, vérifiez leurs numéros de sécurité ou excluez-le de votre partage.</string>
+  <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">%1$dde vos contacts ont sûrement réinstallé Signal ou changé d\'appareils. Avant de partager votre Story avec ces personnes, vérifiez leurs numéros de sécurité ou excluez-les de votre partage.</string>
   <!--Menu action to launch safety number verification screen-->
   <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Confirmer le numéro de sécurité</string>
   <!--Menu action to remove user from story-->
@@ -4393,7 +4394,7 @@ Nouvelle tentative…</string>
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Modification du numéro de sécurité</string>
   <!--Message of safety number review fragment-->
-  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">%1$d de vos contacts ont sûrement réinstallé Signal ou changé de périphérique. Appuyez sur le contact pour confirmer le nouveau numéro de sécurité. Facultatif.</string>
+  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">%1$d de vos contacts ont sûrement réinstallé Signal ou changé d\'appareils. Appuyez sur le contact pour confirmer le nouveau numéro de sécurité. Cette étape est facultative.</string>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">Contacts</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -4403,7 +4404,7 @@ Nouvelle tentative…</string>
   <!--Title of initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">Confidentialité de ma Story</string>
   <!--Subtitle of initial My Story settings configuration shown when sending to My Story for the first time-->
-  <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">Choisissez les contacts autorisés à voir votre Story. Vous pouvez modifier ces préférences à tout moment dans Réglages.</string>
+  <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">Choisissez les contacts autorisés à voir votre Story. Vous pouvez modifier ces préférences à tout moment dans les Paramètres.</string>
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Toutes les relations Signal</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->

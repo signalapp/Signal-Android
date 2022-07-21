@@ -273,7 +273,7 @@
   </plurals>
   <!--ConversationFragment-->
   <!--Toast text when contacts activity is not found-->
-  <string name="ConversationFragment__contacts_app_not_found">ไม่พบแอปของผู้ติดต่อ</string>
+  <string name="ConversationFragment__contacts_app_not_found">ไม่พบแอปรายชื่อติดต่อ</string>
   <plurals name="ConversationFragment_delete_selected_messages">
     <item quantity="other">ลบข้อความที่เลือกหรือไม่?</item>
   </plurals>
@@ -1070,7 +1070,7 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">ไม่สามารถส่งข้อความจาก %s ได้</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s เปลี่ยนเบอร์โทรศัพท์</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
-  <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">ชอบฟีเจอร์ใหม่นี้ใช่ไหม ช่วยสนับสนุน Signal ด้วยการบริจาคแบบหนึ่งครั้ง</string>
+  <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">ชอบฟีเจอร์ใหม่นี้ใช่ไหม ช่วยสนับสนุน Signal ด้วยการบริจาคแบบครั้งเดียว</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s ได้เริ่มการโทรแบบกลุ่ม %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s อยู่ในการโทรแบบกลุ่ม %2$s</string>
@@ -1987,7 +1987,7 @@
     <item>ข้อเสนอแนะ</item>
     <item>อื่นๆ</item>
     <item>การชำระเงิน (MobileCoin)</item>
-    <item>การบริจาค &amp; โล่</item>
+    <item>การบริจาคและโล่</item>
   </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">ข้อความนี้</string>
@@ -3350,7 +3350,7 @@
   <string name="MultiselectForwardFragment__add_a_message">เพิ่มข้อความ</string>
   <string name="MultiselectForwardFragment__faster_forwards">ส่งต่อเร็วขึ้น</string>
   <!--Displayed when user selects a video that will be clipped before sharing to a story-->
-  <string name="MultiselectForwardFragment__videos_will_be_trimmed">วิดีโอจะถูกตัดเป็นคลิปสั้น 30 วินาที และส่งเป็นสตอรี่หลายสตอรี่</string>
+  <string name="MultiselectForwardFragment__videos_will_be_trimmed">วิดีโอจะถูกตัดเป็นคลิปยาว 30 วินาที และส่งเป็นสตอรี่หลายสตอรี่</string>
   <!--Displayed when user selects a video that cannot be sent as a story-->
   <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">วิดีโอที่ส่งเป็นสตอรี่ต้องมีความยาวไม่เกิน 30 วินาที</string>
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">ข้อความที่ถูกส่งต่อจะถูกส่งทันที</string>
@@ -3822,7 +3822,7 @@
   <!--Displayed when user has disabled receipts-->
   <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">เปิดใช้ตัวเลือกการแจ้งว่าอ่านแล้ว เพื่อแสดงว่าใครดูสตอรี่ของคุณ</string>
   <!--Button label displayed when user has disabled receipts-->
-  <string name="StoryViewsFragment__go_to_settings">ไปที่ การตั้งค่า</string>
+  <string name="StoryViewsFragment__go_to_settings">ไปที่การตั้งค่า</string>
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">ยังไม่มีการตอบกลับ</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
@@ -3856,11 +3856,11 @@
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">ซ่อนสตอรี่จาก</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
-  <string name="MyStorySettingsFragment__all_signal_connections">สายสัมพันธ์ Signal ทั้งหมด</string>
+  <string name="MyStorySettingsFragment__all_signal_connections">ผู้ติดต่อ Signal ทั้งหมด</string>
   <!--Privacy setting description for sending stories to all your signal connections-->
-  <string name="MyStorySettingsFragment__share_with_all_connections">แบ่งปันกับสายสัมพันธ์ทั้งหมด</string>
+  <string name="MyStorySettingsFragment__share_with_all_connections">แชร์กับผู้ติดต่อทั้งหมด</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
-  <string name="MyStorySettingsFragment__all_signal_connections_except">สายสัมพันธ์ Signal ทั้งหมด ยกเว้น…</string>
+  <string name="MyStorySettingsFragment__all_signal_connections_except">ผู้ติดต่อ Signal ทั้งหมด ยกเว้น…</string>
   <!--Privacy setting description for sending stories to all except the specified connections-->
   <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">ซ่อนสตอรี่ของคุณจากบางคน</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
@@ -3868,15 +3868,15 @@
     <item quantity="other">ซ่อนจาก %1$d คน</item>
   </plurals>
   <!--Privacy setting title for only sharing your story with specified connections-->
-  <string name="MyStorySettingsFragment__only_share_with">แบ่งปันให้เฉพาะ…</string>
+  <string name="MyStorySettingsFragment__only_share_with">แชร์ให้เฉพาะ…</string>
   <!--Privacy setting description for only sharing your story with specified connections-->
-  <string name="MyStorySettingsFragment__only_share_with_selected_people">แบ่งปันให้เฉพาะคนที่เลือกเท่านั้น</string>
+  <string name="MyStorySettingsFragment__only_share_with_selected_people">แชร์ให้เฉพาะคนที่เลือกเท่านั้น</string>
   <!--Summary of clickable option displaying how many people you have included to send to in your story-->
   <plurals name="MyStorySettingsFragment__d_people">
     <item quantity="other">%1$d คน</item>
   </plurals>
   <!--My story privacy fine print about what the privacy settings are for-->
-  <string name="MyStorySettingsFragment__choose_who_can_view_your_story">เลือกว่าจะให้ใครเห็นสตอรี่ของคุณบ้าง การเปลี่ยนแปลงจะไม่ส่งผลต่อสตอรี่ที่คุณส่งไปแล้ว</string>
+  <string name="MyStorySettingsFragment__choose_who_can_view_your_story">เลือกว่าจะให้ใครเห็นสตอรี่ของคุณบ้าง การเปลี่ยนแปลงจะไม่ส่งผลต่อสตอรี่ที่ส่งไปแล้ว</string>
   <!--Section header for options related to replies and reactions-->
   <string name="MyStorySettingsFragment__replies_amp_reactions">การตอบกลับ &amp; การตอบสนอง</string>
   <!--Switchable option for allowing replies and reactions on your stories-->
@@ -3886,9 +3886,9 @@
   <!--Note about default sharing-->
   <string name="MyStorySettingsFragment__hide_your_story_from">ซ่อนสตอรี่จากคนบางคน ในค่าเริ่มต้น สตอรี่ของคุณจะถูกแชร์กับ %1$s ของคุณ</string>
   <!--Signal connections bolded text in the Signal Connections sheet-->
-  <string name="SignalConnectionsBottomSheet___signal_connections">สายสัมพันธ์ Signal</string>
+  <string name="SignalConnectionsBottomSheet___signal_connections">ผู้ติดต่อ Signal</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
-  <string name="SignalConnectionsBottomSheet__signal_connections_are_people">สายสัมพันธ์ Signal คือคนที่คุณได้เลือกที่จะไว้ใจ โดย:</string>
+  <string name="SignalConnectionsBottomSheet__signal_connections_are_people">ผู้ติดต่อ Signal คือคนที่คุณได้เลือกที่จะไว้ใจ โดย:</string>
   <!--Signal connections sheet bullet point 1-->
   <string name="SignalConnectionsBottomSheet__starting_a_conversation">กำลังเริ่มต้นการสนทนา</string>
   <!--Signal connections sheet bullet point 2-->
@@ -3940,7 +3940,7 @@
   <!--Title for screen allowing user to exclude "My Story" entries from specific people-->
   <string name="ChangeMyStoryMembershipFragment__all_except">ทุกคน ยกเว้น…</string>
   <!--Title for screen allowing user to only share "My Story" entries with specific people-->
-  <string name="ChangeMyStoryMembershipFragment__only_share_with">แบ่งปันให้เฉพาะ…</string>
+  <string name="ChangeMyStoryMembershipFragment__only_share_with">แชร์ให้เฉพาะ…</string>
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">เสร็จสิ้น</string>
   <!--Dialog title for first time adding something to a story-->
@@ -4102,7 +4102,7 @@
   <!--Label for context menu item to delete a private story-->
   <string name="ContactSearchItems__delete_story">ลบสตอรี่</string>
   <!--Dialog title for removing a group story-->
-  <string name="ContactSearchMediator__remove_group_story">ลบสตอรี่กลุ่มหรือไม่?</string>
+  <string name="ContactSearchMediator__remove_group_story">ลบสตอรี่กลุ่มใช่หรือไม่</string>
   <!--Dialog message for removing a group story-->
   <string name="ContactSearchMediator__this_will_remove">สตอรี่จะถูกลบออกจากรายการนี้ คุณจะยังสามารถรับชมสตอรี่จากกลุ่มนี้ได้</string>
   <!--Dialog action item for removing a group story-->
@@ -4110,7 +4110,7 @@
   <!--Dialog title for deleting a private story-->
   <string name="ContactSearchMediator__delete_story">ลบสตอรี่</string>
   <!--Dialog message for deleting a private story-->
-  <string name="ContactSearchMediator__delete_the_private">ลบสตอรี่ส่วนตัว \"%1$s\" หรือไม่?</string>
+  <string name="ContactSearchMediator__delete_the_private">ลบสตอรี่ส่วนตัว \"%1$s\" ใช่หรือไม่</string>
   <!--Dialog action item for deleting a private story-->
   <string name="ContactSearchMediator__delete">ลบ</string>
   <!--Gift expiry days remaining-->
@@ -4142,15 +4142,15 @@
   <!--Sub-line when a user is verified.-->
   <string name="SafetyNumberRecipientRowItem__verified">ตรวจยืนยันแล้ว</string>
   <!--Title of safety number changes bottom sheet when showing individual records-->
-  <string name="SafetyNumberBottomSheetFragment__safety_number_changes">หมายเลขความปลอดภัยมีการเปลี่ยนแปลง</string>
+  <string name="SafetyNumberBottomSheetFragment__safety_number_changes">การเปลี่ยนแปลงหมายเลขความปลอดภัย</string>
   <!--Message of safety number changes bottom sheet when showing individual records-->
-  <string name="SafetyNumberBottomSheetFragment__the_following_people">ผู้ติดต่อต่อไปนี้อาจติดตั้ง Signal ใหม่หรือเปลี่ยนอุปกรณ์ แตะที่ผู้ติดต่อเพื่อยืนยันหมายเลขความปลอดภัยใหม่ สิ่งนี้จะทำหรือไม่ก็ได้</string>
+  <string name="SafetyNumberBottomSheetFragment__the_following_people">ผู้ติดต่อต่อไปนี้อาจติดตั้ง Signal ใหม่หรือเปลี่ยนอุปกรณ์ แตะที่ผู้ติดต่อเพื่อยืนยันหมายเลขความปลอดภัยใหม่ ขั้นตอนนี้จะทำหรือไม่ก็ได้</string>
   <!--Title of safety number changes bottom sheet when not showing individual records-->
   <string name="SafetyNumberBottomSheetFragment__safety_number_checkup">ตรวจสอบหมายเลขความปลอดภัย</string>
   <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
   <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">ตรวจสอบหมายเลขความปลอดภัยเรียบร้อย</string>
   <!--Message of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
-  <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">ตรวจสอบผู้ติดต่อทั้งหมดแล้ว แตะที่ ส่ง เพื่อดำเนินการต่อ</string>
+  <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">ตรวจสอบผู้ติดต่อทั้งหมดแล้ว แตะส่งเพื่อดำเนินการต่อ</string>
   <!--Message of safety number changes bottom sheet when not showing individual records-->
   <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">คุณมีผู้ติดต่อ %1$d คน ที่อาจติดตั้ง Signal ใหม่หรือเปลี่ยนอุปกรณ์ ก่อนที่คุณจะแบ่งปันสตอรี่กับผู้ติดต่อดังกล่าว ลองตรวจสอบหมายเลขความปลอดภัยหรือลบผู้ติดต่อออกจากสตอรี่ของคุณ</string>
   <!--Menu action to launch safety number verification screen-->
@@ -4166,9 +4166,9 @@
   <!--Done button on safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__done">เสร็จสิ้น</string>
   <!--Title of safety number review fragment-->
-  <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">หมายเลขความปลอดภัยมีการเปลี่ยนแปลง</string>
+  <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">การเปลี่ยนแปลงหมายเลขความปลอดภัย</string>
   <!--Message of safety number review fragment-->
-  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">ผู้ติดต่อ %1$d คน อาจติดตั้ง Signal ใหม่หรือเปลี่ยนอุปกรณ์ แตะที่ผู้ติดต่อเพื่อยืนยันหมายเลขความปลอดภัยใหม่ สิ่งนี้จะทำหรือไม่ก็ได้</string>
+  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">ผู้ติดต่อ %1$d คน อาจติดตั้ง Signal ใหม่หรือเปลี่ยนอุปกรณ์ แตะที่ผู้ติดต่อเพื่อยืนยันหมายเลขความปลอดภัยใหม่ ขั้นตอนนี้จะทำหรือไม่ก็ได้</string>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">ผู้ติดต่อ</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -4178,7 +4178,7 @@
   <!--Title of initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">ความเป็นส่วนตัวของสตอรี่</string>
   <!--Subtitle of initial My Story settings configuration shown when sending to My Story for the first time-->
-  <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">เลือกว่าจะให้ใครเห็นโพสต์ในสตอรี่ของฉัน คุณสามารถเปลี่ยนแปลงการตั้งค่าได้ทุกเมื่อ</string>
+  <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">เลือกว่าจะให้ใครเห็นโพสต์ในสตอรี่ของฉัน คุณสามารถเปลี่ยนแปลงได้ทุกเมื่อในการตั้งค่า</string>
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">สายสัมพันธ์ Signal ทั้งหมด</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->

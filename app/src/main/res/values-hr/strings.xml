@@ -3721,40 +3721,65 @@ broj telefona</string>
   <string name="DonationsErrors__your_payment_is_still">Vaša se uplata još uvijek obrađuje. To može potrajati nekoliko minuta ovisno o vašoj vezi.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay nije dostupan</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Morate postaviti Google Pay za donacije unutar aplikacije.</string>
+  <string name="DonationsErrors__failed_to_cancel_subscription">Otkazivanje pretplate nije uspjelo</string>
+  <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Za otkazivanje pretplate potrebna je internetska veza.</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Vaš uređaj ne podržava Google Pay, stoga se ne možete pretplatiti i osvojiti značku. I dalje možete podržati Signal donacijom na našoj web stranici.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Pogreška mreže. Provjerite vezu i pokušajte ponovno.</string>
   <string name="NetworkFailure__retry">Pokušajte ponovno</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__recipient_verification_failed">Provjera primatelja nije uspjela.</string>
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__target_does_not_support_gifting">Primatelj ne podržava darivanje.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__could_not_verify_recipient">Nije moguće provjeriti primatelja.</string>
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__please_check_your_network_connection">Provjerite mrežnu vezu i pokušajte ponovo.</string>
   <!--Gift message view title-->
+  <string name="GiftMessageView__gift_badge">Značka na poklon</string>
   <!--Gift message view expiry information-->
+  <plurals name="GiftMessageView__lasts_for_d_months">
+    <item quantity="one">Traje %1$d mjesec</item>
+    <item quantity="few">Traje %1$d mjeseca</item>
+    <item quantity="other">Traje %1$d mjeseci</item>
+  </plurals>
   <!--Gift badge redeem action label-->
   <string name="GiftMessageView__redeem">Preuzmi</string>
   <!--Gift badge view action label-->
   <string name="GiftMessageView__view">Prikaz</string>
   <!--Gift badge redeeming action label-->
+  <string name="GiftMessageView__redeeming">Preuzimanje…</string>
   <!--Gift badge redeemed label-->
   <string name="GiftMessageView__redeemed">Preuzeto</string>
   <!--Stripe decline code generic_failure-->
   <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Promijenite način plaćanja ili se obratite svojoj banci za više informacija.</string>
   <!--Stripe decline code verify on Google Pay and try again-->
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again">Provjerite je li vaš način plaćanja u Google Payu ažuriran i pokušajte ponovno.</string>
   <!--Stripe decline code learn more action label-->
   <string name="DeclineCode__learn_more">Saznajte više</string>
   <!--Stripe decline code contact issuer-->
+  <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again_if_the_problem">Provjerite je li vaš način plaćanja u Google Payu ažuriran. U slučaju da nije, ažurirajte ga i pokušajte ponovno. Ako i dalje imate poteškoće, obratite se svojoj banci. </string>
   <!--Stripe decline code purchase not supported-->
+  <string name="DeclineCode__your_card_does_not_support_this_type_of_purchase">Vaša kartica ne podržava ovu vrstu kupnje. Molimo promijenite način plaćanja.</string>
   <!--Stripe decline code your card has expired-->
+  <string name="DeclineCode__your_card_has_expired">Vaša kartica je istekla. Ažurirajte svoj način plaćanja u Google Payu i pokušajte ponovo.</string>
   <!--Stripe decline code go to google pay action label-->
   <string name="DeclineCode__go_to_google_pay">Otvori Google Pay</string>
   <!--Stripe decline code incorrect card number-->
+  <string name="DeclineCode__your_card_number_is_incorrect">Netočan broj kartice. Ažurirajte ga u Google Payu i pokušajte ponovno.</string>
   <!--Stripe decline code incorrect cvc-->
+  <string name="DeclineCode__your_cards_cvc_number_is_incorrect">Neispravan CVC kôd. Ažurirajte ga u Google Payu i pokušajte ponovno.</string>
   <!--Stripe decline code insufficient funds-->
+  <string name="DeclineCode__your_card_does_not_have_sufficient_funds">Na vašem računu nema dovoljno sredstava za ovu kupnju. Izaberite drugi način plaćanja.</string>
   <!--Stripe decline code incorrect expiration month-->
+  <string name="DeclineCode__the_expiration_month">Mjesec isteka vaše kartice je netočan. Ažurirajte ga u Google Payu i pokušajte ponovno.</string>
   <!--Stripe decline code incorrect expiration year-->
+  <string name="DeclineCode__the_expiration_year">Godina isteka vaše kartice je netočna. Ažurirajte ju u Google Payu i pokušajte ponovno.</string>
   <!--Stripe decline code issuer not available-->
   <string name="DeclineCode__try_completing_the_payment_again">Ponovno pokušajte dovršiti plaćanje ili se obratite svojoj banci za više informacija.</string>
   <!--Stripe decline code processing error-->
+  <string name="DeclineCode__try_again">Pokušajte ponovno ili se obratite svojoj banci za više informacija.</string>
   <!--Title of create notification profile screen-->
+  <string name="EditNotificationProfileFragment__name_your_profile">Dodijelite naziv profilu</string>
   <!--Hint text for create/edit notification profile name-->
   <string name="EditNotificationProfileFragment__profile_name">Ime profila</string>
   <!--Name has a max length, this shows how many characters are used out of the max-->
@@ -3766,34 +3791,51 @@ broj telefona</string>
   <!--Call to action button once the profile name is edited-->
   <string name="EditNotificationProfileFragment__save">Spremi</string>
   <!--Title of edit notification profile screen-->
+  <string name="EditNotificationProfileFragment__edit_this_profile">Uredite profil</string>
   <!--Error message shown when attempting to create or edit a profile name to an existing profile name-->
+  <string name="EditNotificationProfileFragment__a_profile_with_this_name_already_exists">Profil s tim nazivom već postoji</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
   <string name="EditNotificationProfileFragment__work">Posao</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__sleep">Spavam</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__driving">Vozim</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__downtime">Nema me</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__focus">Koncentracija</string>
   <!--Error message shown when attempting to next/save without a profile name-->
+  <string name="EditNotificationProfileFragment__profile_must_have_a_name">Profil mora imati naziv</string>
   <!--Title for add recipients to notification profile screen in create flow-->
+  <string name="AddAllowedMembers__allowed_notifications">Dopusti obavijesti</string>
   <!--Description of what the user should be doing with this screen-->
+  <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">Dodajte osobe i grupe od kojih želite primati obavijesti i pozive kada je ovaj profil uključen</string>
   <!--Button text that launches the contact picker to select from-->
+  <string name="AddAllowedMembers__add_people_or_groups">Dodaj ljude ili grupe</string>
   <!--Call to action button on contact picker for adding to profile-->
   <string name="SelectRecipientsFragment__add">Dodaj</string>
   <!--Notification profiles home fragment, shown when no profiles have been created yet-->
+  <string name="NotificationProfilesFragment__create_a_profile_to_receive_notifications_and_calls_only_from_the_people_and_groups_you_want_to_hear_from">Izradite profil da biste primali obavijesti i pozive samo od osoba i grupa koje odaberete.</string>
   <!--Header shown above list of all notification profiles-->
   <string name="NotificationProfilesFragment__profiles">Profil</string>
   <!--Button that starts the create new notification profile flow-->
+  <string name="NotificationProfilesFragment__new_profile">Novi profil</string>
   <!--Profile active status, indicating the current profile is on for an unknown amount of time-->
   <string name="NotificationProfilesFragment__on">Uključeno</string>
   <!--Button use to permanently delete a notification profile-->
+  <string name="NotificationProfileDetails__delete_profile">Izbriši profil</string>
   <!--Snakbar message shown when removing a recipient from a profile-->
+  <string name="NotificationProfileDetails__s_removed">Profil \"%1$s\"2 je izbrisan.</string>
   <!--Snackbar button text that will undo the recipient remove-->
   <string name="NotificationProfileDetails__undo">Poništi</string>
   <!--Dialog message shown to confirm deleting a profile-->
+  <string name="NotificationProfileDetails__permanently_delete_profile">Želite li trajno izbrisati profil?</string>
   <!--Dialog button to delete profile-->
   <string name="NotificationProfileDetails__delete">Izbriši</string>
   <!--Title/accessibility text for edit icon to edit profile emoji/name-->
+  <string name="NotificationProfileDetails__edit_notification_profile">Uredi profil za obavijesti</string>
   <!--Schedule description if all days are selected-->
+  <string name="NotificationProfileDetails__everyday">Svaki dan</string>
   <!--Profile status on if it is the active profile-->
   <string name="NotificationProfileDetails__on">Uključeno</string>
   <!--Profile status on if it is not the active profile-->
@@ -3801,27 +3843,43 @@ broj telefona</string>
   <!--Description of hours for schedule (start to end) times-->
   <string name="NotificationProfileDetails__s_to_s">%1$s za %2$s</string>
   <!--Section header for exceptions to the notification profile-->
+  <string name="NotificationProfileDetails__exceptions">Iznimke</string>
   <!--Profile exception to allow all calls through the profile restrictions-->
+  <string name="NotificationProfileDetails__allow_all_calls">Dopusti sve pozive</string>
   <!--Profile exception to allow all @mentions through the profile restrictions-->
+  <string name="NotificationProfileDetails__notify_for_all_mentions">Obavijesti za sva spominjanja</string>
   <!--Section header for showing schedule information-->
+  <string name="NotificationProfileDetails__schedule">Raspored</string>
   <!--If member list is long, will truncate the list and show an option to then see all when tapped-->
   <string name="NotificationProfileDetails__see_all">Prikaži sve</string>
   <!--Title for add schedule to profile in create flow-->
+  <string name="EditNotificationProfileSchedule__add_a_schedule">Dodaj raspored</string>
   <!--Descriptor text indicating what the user can do with this screen-->
+  <string name="EditNotificationProfileSchedule__set_up_a_schedule_to_enable_this_notification_profile_automatically">Postavite raspored da biste automatski omogućili ovaj profil obavijesti.</string>
   <!--Text shown next to toggle switch to enable/disable schedule-->
+  <string name="EditNotificationProfileSchedule__schedule">Raspored</string>
   <!--Label for showing the start time for the schedule-->
   <string name="EditNotificationProfileSchedule__start">Započni</string>
   <!--Label for showing the end time for the schedule-->
   <string name="EditNotificationProfileSchedule__end">Kraj</string>
   <!--First letter of Sunday-->
+  <string name="EditNotificationProfileSchedule__sunday_first_letter">N</string>
   <!--First letter of Monday-->
+  <string name="EditNotificationProfileSchedule__monday_first_letter">P</string>
   <!--First letter of Tuesday-->
+  <string name="EditNotificationProfileSchedule__tuesday_first_letter">U</string>
   <!--First letter of Wednesday-->
+  <string name="EditNotificationProfileSchedule__wednesday_first_letter">S</string>
   <!--First letter of Thursday-->
+  <string name="EditNotificationProfileSchedule__thursday_first_letter">Č</string>
   <!--First letter of Friday-->
+  <string name="EditNotificationProfileSchedule__friday_first_letter">P</string>
   <!--First letter of Saturday-->
+  <string name="EditNotificationProfileSchedule__saturday_first_letter">S</string>
   <!--Title of select time dialog shown when setting start time for schedule-->
+  <string name="EditNotificationProfileSchedule__set_start_time">Postavite vrijeme početka</string>
   <!--Title of select time dialog shown when setting end time for schedule-->
+  <string name="EditNotificationProfileSchedule__set_end_time">Postavite vrijeme završetka</string>
   <!--If in edit mode, call to action button text show to save schedule to profile-->
   <string name="EditNotificationProfileSchedule__save">Spremi</string>
   <!--If in create mode, call to action button text to show to skip enabling a schedule-->
@@ -3829,20 +3887,31 @@ broj telefona</string>
   <!--If in create mode, call to action button text to show to use the enabled schedule and move to the next screen-->
   <string name="EditNotificationProfileSchedule__next">Sljedeće</string>
   <!--Error message shown if trying to save/use a schedule with no days selected-->
+  <string name="EditNotificationProfileSchedule__schedule_must_have_at_least_one_day">Raspored mora imati najmanje jedan dan</string>
   <!--Title for final screen shown after completing a profile creation-->
+  <string name="NotificationProfileCreated__profile_created">Profil izrađen</string>
   <!--Call to action button to press to close the created screen and move to the profile details screen-->
   <string name="NotificationProfileCreated__done">Gotovo</string>
   <!--Descriptor text shown to indicate how to manually turn a profile on/off-->
+  <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">Svoj profil možete ručno uključiti ili isključiti putem izbornika na popisu razgovora.</string>
   <!--Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow-->
+  <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">Dodajte raspored u postavkama kako biste automatizirali svoj profil.</string>
   <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->
+  <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Vaš profil će se automatski uključiti i isključiti prema vašem rasporedu.</string>
   <!--Button text shown in profile selection bottom sheet to create a new profile-->
+  <string name="NotificationProfileSelection__new_profile">Novi profil</string>
   <!--Manual enable option to manually enable a profile for 1 hour-->
+  <string name="NotificationProfileSelection__for_1_hour">Na 1 sat</string>
   <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->
   <string name="NotificationProfileSelection__until_s">Do %1$s</string>
   <!--Option to view profile details-->
+  <string name="NotificationProfileSelection__view_settings">Vidi postavke</string>
   <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
+  <string name="NotificationProfileSelection__on_until_s">Uključen do %1$s</string>
   <!--Displayed in a toast when we fail to open the ringtone picker-->
+  <string name="NotificationSettingsFragment__failed_to_open_picker">Otvaranje alata za odabir nije uspjelo.</string>
   <!--Description shown for the Signal Release Notes channel-->
+  <string name="ReleaseNotes__signal_release_notes_and_news">Bilješke i vijesti o najnovijoj verziji Signala</string>
   <!--Donation receipts activity title-->
   <string name="DonationReceiptListFragment__all_activity">Sve aktivnosti</string>
   <!--Donation receipts all tab label-->
@@ -3854,12 +3923,15 @@ broj telefona</string>
   <!--Donation receipts gift tab label-->
   <string name="DonationReceiptListFragment__gift">Poklon </string>
   <!--Donation receipts boost row label-->
+  <string name="DonationReceiptListFragment__boost">Pojačanje</string>
   <!--Donation receipts details title-->
   <string name="DonationReceiptDetailsFragment__details">Detalji</string>
   <!--Donation receipts donation type heading-->
+  <string name="DonationReceiptDetailsFragment__donation_type">Vrsta donacije</string>
   <!--Donation receipts date paid heading-->
   <string name="DonationReceiptDetailsFragment__date_paid">Datum plaćanja</string>
   <!--Donation receipts share PNG-->
+  <string name="DonationReceiptDetailsFragment__share_receipt">Podijeli račun</string>
   <!--Donation receipts list end note-->
   <string name="DonationReceiptListFragment__if_you_have">Ako ste ponovno instalirali Signal, potvrde o prijašnjim donacijama neće biti dostupne.</string>
   <!--Donation receipts document title-->
@@ -3867,51 +3939,84 @@ broj telefona</string>
   <!--Donation receipts amount title-->
   <string name="DonationReceiptDetailsFragment__amount">Količina</string>
   <!--Donation receipts thanks-->
+  <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Hvala što podržavate Signal. Vaš doprinos pomaže u poticanju misije razvoja tehnologije privatnosti otvorenog koda koja štiti slobodu izražavanja i omogućuje sigurnu globalnu komunikaciju za milijune diljem svijeta. Ako ste stanovnik Sjedinjenih Američkih Država, molimo sačuvajte ovu potvrdu za poreznu evidenciju. Signal Technology Foundation je neprofitna organizacija oslobođena poreza u Sjedinjenim Američkim Državama prema odjeljku 501c3 Poreznog zakona. Naš federalni porezni broj je 82–4506840.</string>
   <!--Donation receipt type-->
+  <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
   <!--Donation reciepts screen empty state title-->
+  <string name="DonationReceiptListFragment__no_receipts">Nema računa</string>
   <!--region "Stories Tab"-->
   <!--Label for Chats tab in home app screen-->
   <string name="ConversationListTabs__chats">Razgovori</string>
   <!--Label for Stories tab in home app screen-->
   <string name="ConversationListTabs__stories">Priče</string>
   <!--String for counts above 99 in conversation list tabs-->
+  <string name="ConversationListTabs__99p">99+</string>
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">Moje priče</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
   <string name="StoriesLandingFragment__add_a_story">Dodajte priču</string>
   <!--Displayed when there are no stories to display-->
+  <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">Trenutno nema novosti za prikaz. Pritisnite + za dodavanje nove priče.</string>
   <!--Context menu option to hide a story-->
   <string name="StoriesLandingItem__hide_story">Sakrij priču</string>
   <!--Context menu option to unhide a story-->
+  <string name="StoriesLandingItem__unhide_story">Ponovno prikaži priču</string>
   <!--Context menu option to forward a story-->
   <string name="StoriesLandingItem__forward">Proslijedi</string>
   <!--Context menu option to share a story-->
+  <string name="StoriesLandingItem__share">Podijeli…</string>
   <!--Context menu option to go to story chat-->
   <string name="StoriesLandingItem__go_to_chat">Idi na razgovor</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">Slanje…</string>
   <!--Label when multiple stories are pending sending-->
+  <string name="StoriesLandingItem__sending_d">Slanje %1$d…</string>
   <!--Label when a story fails to send due to networking-->
   <string name="StoriesLandingItem__send_failed">Slanje nije uspjelo</string>
   <!--Label when a story fails to send due to identity mismatch-->
+  <string name="StoriesLandingItem__partially_sent">Djelomično poslano</string>
   <!--Status label when a story fails to send indicating user action to retry-->
+  <string name="StoriesLandingItem__tap_to_retry">Dodirni za za ponovni pokušaj</string>
   <!--Title of dialog confirming decision to hide a story-->
+  <string name="StoriesLandingFragment__hide_story">Sakriti priču?</string>
   <!--Message of dialog confirming decision to hide a story-->
+  <string name="StoriesLandingFragment__new_story_updates">Nove priče korisnika %1$s više se neće pojavljivati na vrhu popisa priča.</string>
   <!--Positive action of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide">Sakrij</string>
   <!--Displayed in Snackbar after story is hidden-->
+  <string name="StoriesLandingFragment__story_hidden">Priča je skrivena</string>
   <!--Section header for hidden stories-->
   <string name="StoriesLandingFragment__hidden_stories">Sakrivene priče</string>
   <!--Displayed on each sent story under My Stories-->
+  <plurals name="MyStories__d_views">
+    <item quantity="one">%1$d pregled</item>
+    <item quantity="few">%1$d pregleda</item>
+    <item quantity="other">%1$d pregleda</item>
+  </plurals>
   <!--Forward story label, displayed in My Stories context menu-->
   <string name="MyStories_forward">Proslijedi</string>
   <!--Label for stories for a single user. Format is {given name}\'s Story-->
+  <string name="MyStories__ss_story">Priča korisnika %1$s</string>
   <!--Title of dialog to confirm deletion of story-->
+  <string name="MyStories__delete_story">Izbrisati priču?</string>
   <!--Message of dialog to confirm deletion of story-->
+  <string name="MyStories__this_story_will_be_deleted">Priča će se izbrisati i za sve korisnike kojima je poslana.</string>
   <!--Toast shown when story media cannot be saved-->
+  <string name="MyStories__unable_to_save">Spremanje nije uspjelo</string>
   <!--Displayed at bottom of story viewer when current item has views-->
+  <plurals name="StoryViewerFragment__d_views">
+    <item quantity="one">%1$d pregled</item>
+    <item quantity="few">%1$d pregleda</item>
+    <item quantity="other">%1$d pregleda</item>
+  </plurals>
   <!--Displayed at bottom of story viewer when current item has replies-->
+  <plurals name="StoryViewerFragment__d_replies">
+    <item quantity="one">%1$d odgovor</item>
+    <item quantity="few">%1$d odgovora</item>
+    <item quantity="other">%1$d odgovora</item>
+  </plurals>
   <!--Used when view receipts are disabled-->
+  <string name="StoryViewerPageFragment__views_off">Isključi preglede</string>
   <!--Used to join views and replies when both exist on a story item-->
   <string name="StoryViewerFragment__s_s">%1$s%2$s</string>
   <!--Displayed when viewing a post you sent-->
@@ -3921,9 +4026,13 @@ broj telefona</string>
   <!--Displayed when viewing a post from another user with no replies-->
   <string name="StoryViewerPageFragment__reply">Odgovori</string>
   <!--Label for the reply button in story viewer, which will launch the group story replies bottom sheet.-->
+  <string name="StoryViewerPageFragment__reply_to_group">Odgovorite grupi</string>
   <!--Displayed when a story has no views-->
+  <string name="StoryViewsFragment__no_views_yet">Još nema pregleda</string>
   <!--Displayed when user has disabled receipts-->
+  <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Omogućite potvrde čitanja da biste vidjeli tko je pogledao vaše priče.</string>
   <!--Button label displayed when user has disabled receipts-->
+  <string name="StoryViewsFragment__go_to_settings">Otvori postavke</string>
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Još nema odgovora</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
@@ -3933,21 +4042,29 @@ broj telefona</string>
   <!--Label for story replies tab-->
   <string name="StoryViewsAndRepliesDialogFragment__replies">Odgovori</string>
   <!--Description of action for reaction button-->
+  <string name="StoryReplyComposer__react_to_this_story">Reagiraj na ovu priču</string>
   <!--Displayed when the user is replying privately to someone who replied to one of their stories-->
+  <string name="StoryReplyComposer__replying_privately_to_s">Odgovori privatno korisniku %1$s</string>
   <!--Context menu item to privately reply to a story response-->
+  <string name="StoryGroupReplyItem__private_reply">Odgovori privatno</string>
   <!--Context menu item to copy a story response-->
   <string name="StoryGroupReplyItem__copy">Kopiraj</string>
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Izbriši</string>
   <!--Story settings page title-->
+  <string name="StorySettingsFragment__story_settings">Postavke priče</string>
   <!--Story settings private stories heading-->
+  <string name="StorySettingsFragment__private_stories">Privatne priče</string>
   <!--Note at bottom of story settings regarding who can see private stories.-->
   <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Samo osobe koje dodate u privatne priče ih mogu pregledati, a samo vi možete vidjeti naziv priče.</string>
   <!--Option label for creating a new private story-->
+  <string name="StorySettingsFragment__new_private_story">Nova privatna priča</string>
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Moja priča</string>
   <!--Section heading for story visibility-->
+  <string name="MyStorySettingsFragment__who_can_see_this_story">Tko može pogledati ovu priču</string>
   <!--Clickable option for selecting people to hide your story from-->
+  <string name="MyStorySettingsFragment__hide_story_from">Sakrij priču od</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
   <string name="MyStorySettingsFragment__all_signal_connections">Svi Signal kontakti</string>
   <!--Privacy setting description for sending stories to all your signal connections-->
@@ -3967,12 +4084,21 @@ broj telefona</string>
   <!--Privacy setting description for only sharing your story with specified connections-->
   <string name="MyStorySettingsFragment__only_share_with_selected_people">Podijeli samo s odabranim ljudima</string>
   <!--Summary of clickable option displaying how many people you have included to send to in your story-->
+  <plurals name="MyStorySettingsFragment__d_people">
+    <item quantity="one">%1$d osoba</item>
+    <item quantity="few">%1$d osobe</item>
+    <item quantity="other">%1$d osoba</item>
+  </plurals>
   <!--My story privacy fine print about what the privacy settings are for-->
   <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Odaberite tko može pogledati vašu priču. Promjene neće utjecati na priče koje ste već poslali.</string>
   <!--Section header for options related to replies and reactions-->
+  <string name="MyStorySettingsFragment__replies_amp_reactions">Odgovori i reakcije</string>
   <!--Switchable option for allowing replies and reactions on your stories-->
+  <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Dopustite odgovore i reakcije</string>
   <!--Summary for switchable option allowing replies and reactions on your story-->
+  <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Dopustite osobama koje mogu vidjeti vašu priču da reagiraju i odgovaraju</string>
   <!--Note about default sharing-->
+  <string name="MyStorySettingsFragment__hide_your_story_from">Sakrij svoju priču od određenih osoba. Prema zadanim postavkama vaša se priča dijeli s vašim %1$s</string>
   <!--Signal connections bolded text in the Signal Connections sheet-->
   <string name="SignalConnectionsBottomSheet___signal_connections">Signal kontakti</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
@@ -4032,45 +4158,77 @@ broj telefona</string>
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">Gotovo</string>
   <!--Dialog title for first time adding something to a story-->
+  <string name="StoryDialogs__add_to_story_q">Dodati u priču?</string>
   <!--Dialog message for first time adding something to a story-->
+  <string name="StoryDialogs__adding_content">Dodavanje sadržaja vašoj priči omogućuje vašim Signal kontaktima da je vide 24 sata. U postavkama možete promijeniti vidljivost vaše priče.</string>
   <!--First time share to story dialog: Positive action to go ahead and add to story-->
+  <string name="StoryDialogs__add_to_story">Dodaj u priču</string>
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
+  <string name="StoryDialogs__edit_viewers">Uredite gledatelje</string>
   <!--Error message shown when a failure occurs during story send-->
+  <string name="StoryDialogs__story_could_not_be_sent">Nije moguće poslati priču. Provjerite internetsku vezu i pokušajte ponovo.</string>
   <!--Error message dialog button to resend a previously failed story send-->
   <string name="StoryDialogs__send">Pošalji</string>
   <!--Privacy Settings toggle title for stories-->
+  <string name="PrivacySettingsFragment__share_and_view_stories">Dijelite i gledajte priče</string>
   <!--Privacy Settings toggle summary for stories-->
+  <string name="PrivacySettingsFragment__you_will_no_longer_be_able">Ako je ova opcija isključena, nećete moći dijeliti niti pregledavati priče.</string>
   <!--New story viewer selection screen title-->
+  <string name="CreateStoryViewerSelectionFragment__choose_viewers">Odaberite gledatelje</string>
   <!--New story viewer selection action button label-->
   <string name="CreateStoryViewerSelectionFragment__next">Sljedeće</string>
   <!--New story viewer selection screen title as recipients are selected-->
+  <plurals name="SelectViewersFragment__d_viewers">
+    <item quantity="one">%1$d gledatelj</item>
+    <item quantity="few">%1$d gledatelja</item>
+    <item quantity="other">%1$d gledatelja</item>
+  </plurals>
   <!--Name story screen title-->
+  <string name="CreateStoryWithViewersFragment__name_story">Dodijelite naziv priči</string>
   <!--Name story screen label hint-->
+  <string name="CreateStoryWithViewersFragment__story_name_required">Naziv priče (obavezno)</string>
   <!--Name story screen viewers subheading-->
+  <string name="CreateStoryWithViewersFragment__viewers">Gledatelji</string>
   <!--Name story screen create button label-->
   <string name="CreateStoryWithViewersFragment__create">Stvori</string>
   <!--Name story screen error when save attempted with no label-->
   <string name="CreateStoryWithViewersFragment__this_field_is_required">Ovo polje je obavezno.</string>
   <!--Name story screen error when save attempted but label is duplicate-->
+  <string name="CreateStoryWithViewersFragment__there_is_already_a_story_with_this_name">Već postoji priča s tim nazivom.</string>
   <!--Text for select all action when editing recipients for a story-->
   <string name="BaseStoryRecipientSelectionFragment__select_all">Odaberi sve</string>
   <!--Choose story type bottom sheet title-->
+  <string name="ChooseStoryTypeBottomSheet__choose_your_story_type">Odaberite vrstu priče</string>
   <!--Choose story type bottom sheet new story row title-->
+  <string name="ChooseStoryTypeBottomSheet__new_private_story">Nova privatna priča</string>
   <!--Choose story type bottom sheet new story row summary-->
+  <string name="ChooseStoryTypeBottomSheet__visible_only_to">Vidljiva samo određenim osobama</string>
   <!--Choose story type bottom sheet group story title-->
+  <string name="ChooseStoryTypeBottomSheet__group_story">Grupna priča</string>
   <!--Choose story type bottom sheet group story summary-->
+  <string name="ChooseStoryTypeBottomSheet__share_to_an_existing_group">Podijelite s postojećom grupom</string>
   <!--Choose groups bottom sheet title-->
+  <string name="ChooseGroupStoryBottomSheet__choose_groups">Odaberite grupe</string>
   <!--Displayed when copying group story reply text to clipboard-->
   <string name="StoryGroupReplyFragment__copied_to_clipboard">Kopirano u međuspremnik</string>
   <!--Displayed in story caption when content is longer than 5 lines-->
+  <string name="StoryViewerPageFragment__see_more">… Vidi više</string>
   <!--Displayed in toast after sending a direct reply-->
+  <string name="StoryDirectReplyDialogFragment__sending_reply">Slanje odgovora…</string>
   <!--Displayed in the viewer when a story is no longer available-->
+  <string name="StorySlateView__this_story_is_no_longer_available">Priča nije više dostupna.</string>
   <!--Displayed in the viewer when the network is not available-->
+  <string name="StorySlateView__no_internet_connection">Nema internetske veze</string>
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
+  <string name="StorySlateView__couldnt_load_content">Nije moguće učitati sadržaj</string>
   <!--Toasted when the user externally shares to a text story successfully-->
+  <string name="TextStoryPostCreationFragment__sent_story">Priča je poslana</string>
   <!--Toasted when the user external share to a text story fails-->
+  <string name="TextStoryPostCreationFragment__failed_to_send_story">Slanje priče nije uspjelo</string>
   <!--Displayed in a dialog to let the user select a given users story-->
+  <string name="StoryDialogs__view_story">Prikaži priču</string>
   <!--Displayed in a dialog to let the user select a given users profile photo-->
+  <string name="StoryDialogs__view_profile_photo">Prikaži sliku profila</string>
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">Isključiti zaobilaženje cenzure?</string>
   <!--Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
@@ -4080,22 +4238,33 @@ broj telefona</string>
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">Isključi</string>
   <!--Conversation Item label for when you react to someone else\'s story-->
+  <string name="ConversationItem__you_reacted_to_s_story">Reagirali ste na priču korisnika %1$s</string>
   <!--Conversation Item label for reactions to your story-->
   <string name="ConversationItem__reacted_to_your_story">Reagirala je na vašu priču</string>
   <!--Conversation Item label for reactions to an unavailable story-->
   <string name="ConversationItem__reacted_to_a_story">Reakcija na priču</string>
   <!--endregion-->
   <!--Content description for expand contacts chevron-->
+  <string name="ExpandModel__view_more">Vidi više</string>
   <string name="StoriesLinkPopup__visit_link">Posjetite link</string>
   <!--Duration and price information-->
+  <plurals name="GiftRowItem_s_dot_d_day_duration">
+    <item quantity="one">%1$s · Trajanje: %2$d dan</item>
+    <item quantity="few">%1$s · Trajanje: %2$d dana</item>
+    <item quantity="other">%1$s · Trajanje: %2$d dana</item>
+  </plurals>
   <!--Tagline for gift row items-->
+  <string name="GiftRowItem__send_a_gift_badge">Pošaljite značku na poklon</string>
   <!--Headline text on start fragment for gifting a badge-->
   <string name="GiftFlowStartFragment__gift_a_badge">Pokloni značku</string>
   <!--Description text on start fragment for gifting a badge-->
+  <string name="GiftFlowStartFragment__gift_someone_a_badge">Poklonite nekome značku donacijom Signalu u njihovo ime. Značka će biti prikazana na njihovoj slici profila.</string>
   <!--Action button label for start fragment for gifting a badge-->
   <string name="GiftFlowStartFragment__next">Sljedeće</string>
   <!--Title text on choose recipient page for badge gifting-->
+  <string name="GiftFlowRecipientSelectionFragment__choose_recipient">Odaberite primatelja</string>
   <!--Title text on confirm gift page-->
+  <string name="GiftFlowConfirmationFragment__confirm_gift">Potvrdite poklon</string>
   <!--Heading text specifying who the gift will be sent to-->
   <string name="GiftFlowConfirmationFragment__send_to">Poslati</string>
   <!--Text explaining that gift will be sent to the chosen recipient-->
@@ -4105,29 +4274,51 @@ broj telefona</string>
   <!--Hint for add message input-->
   <string name="GiftFlowConfirmationFragment__add_a_message">Dodaj poruku</string>
   <!--Displayed in the dialog while verifying the chosen recipient-->
+  <string name="GiftFlowConfirmationFragment__verifying_recipient">Provjera primatelja…</string>
   <!--Title for sheet shown when opening a redeemed gift-->
+  <string name="ViewReceivedGiftBottomSheet__s_sent_you_a_gift">Dobili ste poklon od korisnika %1$s</string>
   <!--Title for sheet shown when opening a sent gift-->
   <string name="ViewSentGiftBottomSheet__thanks_for_your_support">Hvala vam na podršci!</string>
   <!--Description for sheet shown when opening a redeemed gift-->
+  <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">Dobili ste značku na poklon od korisnika %1$s! Pomozite Signalu da podigne svijest prikazivanjem ove značke na vašem profilu.</string>
   <!--Description for sheet shown when opening a sent gift-->
+  <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">Poklonili ste značku korisniku %1$s. Kad ju prihvati, moći će izabrati hoće li ju prikazati ili sakriti.</string>
   <!--Primary action for pending gift sheet to redeem badge now-->
   <string name="ViewReceivedGiftSheet__redeem">Preuzmi</string>
   <!--Primary action for pending gift sheet to redeem badge later-->
   <string name="ViewReceivedGiftSheet__not_now">Ne sada</string>
   <!--Dialog text while redeeming a gift-->
+  <string name="ViewReceivedGiftSheet__redeeming_gift">Preuzimanje poklona…</string>
   <!--Snackbar text when user presses "not now" on redemption sheet-->
+  <string name="ConversationFragment__you_can_redeem_your_badge_later">Značku možete preuzeti kasnije.</string>
   <!--Description text in gift thanks sheet-->
+  <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">Poklonili ste značku korisniku %1$s. Kad ju prihvati, moći će izabrati hoće li ju prikazati ili sakriti.</string>
   <!--Expired gift sheet title-->
+  <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">Značka koju ste dobili na poklon je istekla</string>
   <!--Expired gift sheet top description text-->
+  <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">Značka koju ste dobili na poklon je istekla i ne prikazuje se više na vašem profilu.</string>
   <!--Expired gift sheet bottom description text-->
+  <string name="ExpiredGiftSheetConfiguration__to_continue">Kako biste nastavili podržavati tehnologiju koja je stvorena za vas, razmislite o tome da postanete mjesečni pretplatnik.</string>
   <!--Expired gift sheet make a monthly donation button-->
   <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Mjesečna donacija</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Ne sada</string>
   <!--Label under name for private stories-->
+  <plurals name="ContactSearchItems__private_story_d_viewers">
+    <item quantity="one">Privatna priča · %1$d gledatelj</item>
+    <item quantity="few">Privatna priča · %1$d gledatelja</item>
+    <item quantity="other">Privatna priča · %1$d gledatelja</item>
+  </plurals>
   <!--Label under name for group stories-->
+  <plurals name="ContactSearchItems__group_story_d_viewers">
+    <item quantity="one">Grupna priča · %1$d gledatelj</item>
+    <item quantity="few">Grupna priča · %1$d gledatelja</item>
+    <item quantity="other">Grupna priča · %1$d gledatelja</item>
+  </plurals>
   <!--Label under name for My Story when first sending to my story-->
+  <string name="ContactSearchItems__tap_to_choose_your_viewers">Dodirni za odabir gledatelja</string>
   <!--Label for context menu item to open story settings-->
+  <string name="ContactSearchItems__story_settings">Postavke priče</string>
   <!--Label for context menu item to remove a group story from contact results-->
   <string name="ContactSearchItems__remove_story">Ukloni priču</string>
   <!--Label for context menu item to delete a private story-->
@@ -4139,13 +4330,29 @@ broj telefona</string>
   <!--Dialog action item for removing a group story-->
   <string name="ContactSearchMediator__remove">Ukloni</string>
   <!--Dialog title for deleting a private story-->
+  <string name="ContactSearchMediator__delete_story">Izbrisati priču?</string>
   <!--Dialog message for deleting a private story-->
   <string name="ContactSearchMediator__delete_the_private">Izbrisati privatnu priču \"%1$s\"?</string>
   <!--Dialog action item for deleting a private story-->
   <string name="ContactSearchMediator__delete">Izbriši</string>
   <!--Gift expiry days remaining-->
+  <plurals name="Gifts__d_days_remaining">
+    <item quantity="one">Preostaje %1$d dan</item>
+    <item quantity="few">Preostaju %1$d dana</item>
+    <item quantity="other">Preostaje %1$d dana</item>
+  </plurals>
   <!--Gift expiry hours remaining-->
+  <plurals name="Gifts__d_hours_remaining">
+    <item quantity="one">Preostaje %1$d sat</item>
+    <item quantity="few">Preostaju %1$d sata</item>
+    <item quantity="other">Preostaje %1$d sati</item>
+  </plurals>
   <!--Gift expiry minutes remaining-->
+  <plurals name="Gifts__d_minutes_remaining">
+    <item quantity="one">Preostaje %1$d minuta</item>
+    <item quantity="few">Preostaju %1$d minute</item>
+    <item quantity="other">Preostaje %1$d minuta</item>
+  </plurals>
   <!--Gift expiry expired-->
   <string name="Gifts__expired">Isteklo</string>
   <!--Label indicating that a user can tap to advance to the next post in a story-->
@@ -4157,33 +4364,49 @@ broj telefona</string>
   <!--Button label to confirm understanding of story navigation-->
   <string name="StoryFirstTimeNagivationView__got_it">Shvaćam</string>
   <!--Content description for vertical context menu button in safety number sheet rows-->
+  <string name="SafetyNumberRecipientRowItem__open_context_menu">Otvori kontekstni izbornik</string>
   <!--Sub-line when a user is verified.-->
+  <string name="SafetyNumberRecipientRowItem__s_dot_verified">%1$s · Provjeren(a)</string>
   <!--Sub-line when a user is verified.-->
   <string name="SafetyNumberRecipientRowItem__verified">Provjeren/a</string>
   <!--Title of safety number changes bottom sheet when showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_changes">Promjene sigurnosnog broja</string>
   <!--Message of safety number changes bottom sheet when showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__the_following_people">Sljedeće osobe su možda ponovno instalirale Signal ili promijenile uređaje. Dodirnite primatelja kako biste potvrdili novi sigurnosni broj. Ovo nije obavezno.</string>
   <!--Title of safety number changes bottom sheet when not showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup">Provjera sigurnosnog broja</string>
   <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">Provjera sigurnosnog broja je dovršena</string>
   <!--Message of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Svi kontakti su pregledani, dodirnite Pošalji za nastavak.</string>
   <!--Message of safety number changes bottom sheet when not showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">Među vašim kontaktima, %1$d je možda ponovno instaliralo Signal ili promijenilo uređaje. Prije nego što s njima podijelite svoju priču, pregledajte njihove sigurnosne brojeve ili razmislite o tome da ih uklonite iz svoje priče.</string>
   <!--Menu action to launch safety number verification screen-->
   <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Potvrdi sigurnosni broj</string>
   <!--Menu action to remove user from story-->
+  <string name="SafetyNumberBottomSheetFragment__remove_from_story">Ukloni iz priče</string>
   <!--Action button at bottom of SafetyNumberBottomSheetFragment to send anyway-->
   <string name="SafetyNumberBottomSheetFragment__send_anyway">Svejedno pošalji</string>
   <!--Action button at bottom of SafetyNumberBottomSheetFragment to review connections-->
+  <string name="SafetyNumberBottomSheetFragment__review_connections">Pregledaj kontakte</string>
   <!--Empty state copy for SafetyNumberBottomSheetFragment-->
+  <string name="SafetyNumberBottomSheetFragment__no_more_recipients_to_show">Nema više primatelja za prikaz</string>
   <!--Done button on safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__done">Gotovo</string>
   <!--Title of safety number review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Promjene sigurnosnog broja</string>
   <!--Message of safety number review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">%1$d primatelja je možda ponovno instaliralo Signal ili promijenilo uređaje. Dodirnite primatelja kako biste potvrdili novi sigurnosni broj. Ovo nije obavezno.</string>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">Kontakti</string>
   <!--Context menu label for distribution list headers in review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__remove_all">Ukloni sve</string>
   <!--Context menu label for 1:1 contacts to remove from send-->
   <string name="SafetyNumberReviewConnectionsFragment__remove">Ukloni</string>
   <!--Title of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">Privatnost moje priče</string>
   <!--Subtitle of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">Odaberite tko može vidjeti vaše priče. To uvijek možete promijeniti u postavkama.</string>
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Svi Signal kontakti</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->

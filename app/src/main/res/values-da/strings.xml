@@ -273,6 +273,7 @@
   </plurals>
   <!--ConversationFragment-->
   <!--Toast text when contacts activity is not found-->
+  <string name="ConversationFragment__contacts_app_not_found">Appen Kontakter blev ikke fundet.</string>
   <plurals name="ConversationFragment_delete_selected_messages">
     <item quantity="one">Slet valgte besked?</item>
     <item quantity="other">Slet valgte beskeder?</item>
@@ -1123,6 +1124,7 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">En besked fra %s kunne ikke leveres</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s ændrede sit telefonnummer.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
+  <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Kan du lide denne nye funktion? Hjælp med at støtte Signal med en engangsdonation.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s startede et gruppeopkald · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s er med i gruppeopkaldet · %2$s</string>
@@ -2057,6 +2059,16 @@ nummer (%s) er ugyldigt</string>
   <string name="HelpFragment__debug_log">Fejlsøgningslog:</string>
   <string name="HelpFragment__could_not_upload_logs">Kunne ikke uploade logger</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Beskriv venligst problemet så præcist som muligt, for at sikre vi bedst forstår det</string>
+  <string-array name="HelpFragment__categories_4">
+    <item>\-\- Vælg en valgmulighed \-\-</item>
+    <item>Der er noget galt</item>
+    <item>Funktionsanmodning</item>
+    <item>Spørgsmål</item>
+    <item>Feedback</item>
+    <item>Andet</item>
+    <item>Betalinger (MobileCoin)</item>
+    <item>Donationer og badges</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Denne besked</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Senest brugte</string>
@@ -3431,7 +3443,9 @@ nummer (%s) er ugyldigt</string>
   <string name="MultiselectForwardFragment__add_a_message">Tilføj en besked</string>
   <string name="MultiselectForwardFragment__faster_forwards">Hurtigere videresendelser</string>
   <!--Displayed when user selects a video that will be clipped before sharing to a story-->
+  <string name="MultiselectForwardFragment__videos_will_be_trimmed">Videoer vil blive beskåret til klip på 30 sek. og sendt som flere historier.</string>
   <!--Displayed when user selects a video that cannot be sent as a story-->
+  <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">Videoer, som er sendt til Historier, kan ikke være længere end 30 sek.</string>
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">Videresendte beskeder sendes nu øjeblikkeligt.</string>
   <plurals name="MultiselectForwardFragment_send_d_messages">
     <item quantity="one">Send %1$d besked</item>
@@ -3937,18 +3951,29 @@ nummer (%s) er ugyldigt</string>
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">Skjul historie for</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
+  <string name="MyStorySettingsFragment__all_signal_connections">Alle Signal-forbindelser</string>
   <!--Privacy setting description for sending stories to all your signal connections-->
+  <string name="MyStorySettingsFragment__share_with_all_connections">Del med alle forbindelser</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
+  <string name="MyStorySettingsFragment__all_signal_connections_except">Alle Signal-forbindelser med undtagelse af …</string>
   <!--Privacy setting description for sending stories to all except the specified connections-->
+  <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Gem din historie for bestemte personer</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
+  <plurals name="MyStorySettingsFragment__d_people_excluded">
+    <item quantity="one">%1$d person er ekskluderet</item>
+    <item quantity="other">%1$d personer er ekskluderet</item>
+  </plurals>
   <!--Privacy setting title for only sharing your story with specified connections-->
+  <string name="MyStorySettingsFragment__only_share_with">Del kun med …</string>
   <!--Privacy setting description for only sharing your story with specified connections-->
+  <string name="MyStorySettingsFragment__only_share_with_selected_people">Del kun med udvalgte personer</string>
   <!--Summary of clickable option displaying how many people you have included to send to in your story-->
   <plurals name="MyStorySettingsFragment__d_people">
     <item quantity="one">%1$d person</item>
     <item quantity="other">%1$d personer</item>
   </plurals>
   <!--My story privacy fine print about what the privacy settings are for-->
+  <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Vælg, hvem der kan se din historie. Ændringer vil ikke påvirke historier, som du allerede har sendt.</string>
   <!--Section header for options related to replies and reactions-->
   <string name="MyStorySettingsFragment__replies_amp_reactions">Svar &amp; reaktioner</string>
   <!--Switchable option for allowing replies and reactions on your stories-->
@@ -3958,7 +3983,9 @@ nummer (%s) er ugyldigt</string>
   <!--Note about default sharing-->
   <string name="MyStorySettingsFragment__hide_your_story_from">Skjul din historie for bestemte personer. Som standard deles din historie med dine %1$s</string>
   <!--Signal connections bolded text in the Signal Connections sheet-->
+  <string name="SignalConnectionsBottomSheet___signal_connections">Signal-forbindelser</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
+  <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Signal-forbindelser er personer, som du har valgt at have tillid til, enten ved:</string>
   <!--Signal connections sheet bullet point 1-->
   <string name="SignalConnectionsBottomSheet__starting_a_conversation">Starte en samtale</string>
   <!--Signal connections sheet bullet point 2-->
@@ -4007,7 +4034,9 @@ nummer (%s) er ugyldigt</string>
   <string name="TextStoryPostSendFragment__search">Søg</string>
   <!--Toast shown when an unexpected error occurs while sending a text story-->
   <!--Title for screen allowing user to exclude "My Story" entries from specific people-->
+  <string name="ChangeMyStoryMembershipFragment__all_except">Alle med undtagelse af …</string>
   <!--Title for screen allowing user to only share "My Story" entries with specific people-->
+  <string name="ChangeMyStoryMembershipFragment__only_share_with">Del kun med …</string>
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">Udført</string>
   <!--Dialog title for first time adding something to a story-->
@@ -4164,14 +4193,19 @@ nummer (%s) er ugyldigt</string>
   <!--Label for context menu item to open story settings-->
   <string name="ContactSearchItems__story_settings">Indstillinger for historie</string>
   <!--Label for context menu item to remove a group story from contact results-->
+  <string name="ContactSearchItems__remove_story">Fjern historie</string>
   <!--Label for context menu item to delete a private story-->
+  <string name="ContactSearchItems__delete_story">Slet historie</string>
   <!--Dialog title for removing a group story-->
+  <string name="ContactSearchMediator__remove_group_story">Fjern gruppehistorie?</string>
   <!--Dialog message for removing a group story-->
+  <string name="ContactSearchMediator__this_will_remove">Dette vil fjerne historien fra denne liste. Du vil stadig kunne se historier fra denne gruppe.</string>
   <!--Dialog action item for removing a group story-->
   <string name="ContactSearchMediator__remove">Fjern</string>
   <!--Dialog title for deleting a private story-->
   <string name="ContactSearchMediator__delete_story">Slet historie?</string>
   <!--Dialog message for deleting a private story-->
+  <string name="ContactSearchMediator__delete_the_private">Slet denne private historie \"%1$s\"?</string>
   <!--Dialog action item for deleting a private story-->
   <string name="ContactSearchMediator__delete">Slet</string>
   <!--Gift expiry days remaining-->
@@ -4192,8 +4226,11 @@ nummer (%s) er ugyldigt</string>
   <!--Gift expiry expired-->
   <string name="Gifts__expired">Udløbet</string>
   <!--Label indicating that a user can tap to advance to the next post in a story-->
+  <string name="StoryFirstTimeNavigationView__tap_to_advance">Tryk for at gå videre</string>
   <!--Label indicating swipe direction to skip current story-->
+  <string name="StoryFirstTimeNavigationView__swipe_up_to_skip">Stryg opad for at springe over</string>
   <!--Label indicating swipe direction to exit story viewer-->
+  <string name="StoryFirstTimeNavigationView__swipe_right_to_exit">Stryg til højre for at afslutte</string>
   <!--Button label to confirm understanding of story navigation-->
   <string name="StoryFirstTimeNagivationView__got_it">Forstået</string>
   <!--Content description for vertical context menu button in safety number sheet rows-->
@@ -4225,7 +4262,10 @@ nummer (%s) er ugyldigt</string>
   <!--Title of initial My Story settings configuration shown when sending to My Story for the first time-->
   <!--Subtitle of initial My Story settings configuration shown when sending to My Story for the first time-->
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Alle Signal-forbindelser</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Alle Signal-forbindelser med undtagelse af …</string>
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Del kun med …</string>
   <!--EOF-->
 </resources>
