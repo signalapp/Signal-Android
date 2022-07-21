@@ -1186,7 +1186,7 @@
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Não pode ser entregue uma mensagem de %s</string>
   <string name="MessageRecord_s_changed_their_phone_number">%1$s alterou o seu número de telefone.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
-  <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Gostas desta nova funcionalidade? Ajuda a apoiar o Signal fazendo uma doação única.</string>
+  <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Gosta desta nova funcionalidade? Ajude a apoiar o Signal fazendo uma doação única.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s iniciou uma chamada em grupo · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s está na chamada de grupo · %2$s</string>
@@ -2149,7 +2149,7 @@
   <string name="HelpFragment__could_not_upload_logs">Não é possível fazer o upload de relatórios</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Por favor, seja tão descritivo quanto possível para nos ajudar a perceber o problema.</string>
   <string-array name="HelpFragment__categories_4">
-    <item>\-\- Seleciona uma opção \-\-</item>
+    <item>\-\- Selecione uma opção \-\-</item>
     <item>Algo não está a funcionar</item>
     <item>Pedido de funcoinalidade</item>
     <item>Pergunta</item>
@@ -4074,7 +4074,7 @@
   <!--Privacy setting title for sending stories to all except the specified connections-->
   <string name="MyStorySettingsFragment__all_signal_connections_except">Todos os contactos do Signal exceto…</string>
   <!--Privacy setting description for sending stories to all except the specified connections-->
-  <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Esconde a tua história de pessoas específicas</string>
+  <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Esconda a sua história de pessoas específicas</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
   <plurals name="MyStorySettingsFragment__d_people_excluded">
     <item quantity="one">%1$d pessoa excluída</item>
@@ -4092,7 +4092,7 @@
     <item quantity="other">%1$d pessoas</item>
   </plurals>
   <!--My story privacy fine print about what the privacy settings are for-->
-  <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Escolhe quem pode ver a tua história. As alterações não afetarão as histórias que já enviaste.</string>
+  <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Escolha quem pode ver a sua história. As alterações não afetarão as histórias que já enviou.</string>
   <!--Section header for options related to replies and reactions-->
   <string name="MyStorySettingsFragment__replies_amp_reactions">Respostas e reações</string>
   <!--Switchable option for allowing replies and reactions on your stories-->
@@ -4104,7 +4104,7 @@
   <!--Signal connections bolded text in the Signal Connections sheet-->
   <string name="SignalConnectionsBottomSheet___signal_connections">Contactos do Signal</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
-  <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Os contactos do Signal são as pessoas em quem decidiste confiar, seja por:</string>
+  <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Os contactos do Signal são as pessoas em quem decidiu confiar, seja por:</string>
   <!--Signal connections sheet bullet point 1-->
   <string name="SignalConnectionsBottomSheet__starting_a_conversation">Iniciar uma conversa</string>
   <!--Signal connections sheet bullet point 2-->
@@ -4154,7 +4154,7 @@
   <!--Toast shown when an unexpected error occurs while sending a text story-->
   <string name="TextStoryPostSendFragment__an_unexpected_error_occurred_try_again">Ocorreu um erro inesperado</string>
   <!--Title for screen allowing user to exclude "My Story" entries from specific people-->
-  <string name="ChangeMyStoryMembershipFragment__all_except">Todos excepto…</string>
+  <string name="ChangeMyStoryMembershipFragment__all_except">Todos exceto…</string>
   <!--Title for screen allowing user to only share "My Story" entries with specific people-->
   <string name="ChangeMyStoryMembershipFragment__only_share_with">Partilhar apenas com…</string>
   <!--Done button label for hide story from screen-->
@@ -4328,7 +4328,7 @@
   <!--Dialog title for removing a group story-->
   <string name="ContactSearchMediator__remove_group_story">Remover história de grupo?</string>
   <!--Dialog message for removing a group story-->
-  <string name="ContactSearchMediator__this_will_remove">Esta ação removerá a história desta lista. Ainda poderás ver histórias deste grupo.</string>
+  <string name="ContactSearchMediator__this_will_remove">Esta ação removerá a história desta lista. Ainda poderá ver histórias deste grupo.</string>
   <!--Dialog action item for removing a group story-->
   <string name="ContactSearchMediator__remove">Remover</string>
   <!--Dialog title for deleting a private story-->
@@ -4358,11 +4358,11 @@
   <!--Gift expiry expired-->
   <string name="Gifts__expired">Expirado(a)</string>
   <!--Label indicating that a user can tap to advance to the next post in a story-->
-  <string name="StoryFirstTimeNavigationView__tap_to_advance">Toca para avançares</string>
+  <string name="StoryFirstTimeNavigationView__tap_to_advance">Toque para avançar</string>
   <!--Label indicating swipe direction to skip current story-->
-  <string name="StoryFirstTimeNavigationView__swipe_up_to_skip">Desliza para cima para passares</string>
+  <string name="StoryFirstTimeNavigationView__swipe_up_to_skip">Deslize para cima para passar</string>
   <!--Label indicating swipe direction to exit story viewer-->
-  <string name="StoryFirstTimeNavigationView__swipe_right_to_exit">Desliza para cima para saíres</string>
+  <string name="StoryFirstTimeNavigationView__swipe_right_to_exit">Deslize para cima para sair</string>
   <!--Button label to confirm understanding of story navigation-->
   <string name="StoryFirstTimeNagivationView__got_it">Entendido</string>
   <!--Content description for vertical context menu button in safety number sheet rows-->

@@ -2486,7 +2486,7 @@
   <string name="conversation_list_batch__menu_unpin_selected">Освободете избраното</string>
   <string name="conversation_list_batch__menu_select_all">Избери всичко</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Архивът е избран</string>
-  <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Деархивирай изрбания</string>
+  <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Деархивирай избраното</string>
   <string name="conversation_list_batch__menu_mark_as_read">Маркирай като прочетено</string>
   <string name="conversation_list_batch__menu_mark_as_unread">Маркирай като непрочетени</string>
   <!--conversation_list-->
@@ -2538,7 +2538,7 @@
   <string name="reminder_header_sms_import_text">Натиснете, за да копирате SMS съобщенията от Вашия телефон в криптираната база данни на Signal.</string>
   <string name="reminder_header_push_title">Активирай Signal съобщения и обаждания</string>
   <string name="reminder_header_push_text">Обнови комуникацията си.</string>
-  <string name="reminder_header_service_outage_text">Signal изпитва технически проблеми. Работиме здраво, за да възстановим нормална операция възможно най-бързо.</string>
+  <string name="reminder_header_service_outage_text">Signal изпитва технически проблеми. Работим здраво, за да възстановим нормална операция възможно най-бързо.</string>
   <string name="reminder_header_progress">%1$d%%</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Запази</string>
@@ -2560,7 +2560,7 @@
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Процентът ви за статистика се изчислява въз основа на изходящи съобщения през последните %1$d дни, които не са изчезнали или изтрити.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Започнете разговор</string>
   <string name="InsightsDashboardFragment__invite_your_contacts">Започнете да комуникирате сигурно и активирайте нови функции, които надхвърлят ограниченията на некриптирани SMS съобщения, като поканите още контакти да се присъединят към Signal.</string>
-  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Тези статистически данни са генерирани локално на вашето устройство и можете да бъдат видяни само от вас. Те никога не се предават никъде.</string>
+  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Тези статистически данни са генерирани локално на вашето устройство и може да бъдат видяни само от вас. Те никога не се предават никъде.</string>
   <string name="InsightsDashboardFragment__encrypted_messages">Криптирани съобщения</string>
   <string name="InsightsDashboardFragment__cancel">Отказ</string>
   <string name="InsightsDashboardFragment__send">Изпращане</string>
