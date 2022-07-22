@@ -172,17 +172,22 @@
   <string name="ContactsDatabase_message_s">%s에 메시지 보내기</string>
   <string name="ContactsDatabase_signal_call_s">%s에 Signal 전화</string>
   <!--ContactNameEditActivity-->
+  <!--Toolbar title for contact name edit activity-->
   <string name="ContactNameEditActivity_given_name">이름</string>
   <string name="ContactNameEditActivity_family_name">성</string>
   <string name="ContactNameEditActivity_prefix">접두사</string>
   <string name="ContactNameEditActivity_suffix">접미사</string>
   <string name="ContactNameEditActivity_middle_name">중간 이름</string>
   <!--ContactShareEditActivity-->
+  <!--ContactShareEditActivity toolbar title-->
   <string name="ContactShareEditActivity_type_home">집</string>
   <string name="ContactShareEditActivity_type_mobile">휴대 전화</string>
   <string name="ContactShareEditActivity_type_work">직장</string>
   <string name="ContactShareEditActivity_type_missing">기타</string>
   <string name="ContactShareEditActivity_invalid_contact">선택한 연락처가 잘못됨</string>
+  <!--Content descrption for name edit button on contact share edit activity-->
+  <!--Content description for user avatar in edit activity-->
+  <string name="ContactShareEditActivity__avatar">아바타</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_sent_tap_for_details">메시지가 보내지지 않았습니다. 탭하여 세부정보를 확인하세요.</string>
   <string name="ConversationItem_error_partially_not_delivered">일부만 전송됨, 탭하여 확인</string>
@@ -2876,6 +2881,8 @@
   <string name="CallParticipant__you">나</string>
   <string name="CallParticipant__you_on_another_device">나(다른 기기에서)</string>
   <string name="CallParticipant__s_on_another_device">%1$s(다른 기기에서)</string>
+  <!--WifiToCellularPopupWindow-->
+  <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">계정을 삭제하면:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">전화번호를 입력하세요.</string>
@@ -3762,6 +3769,8 @@
   <string name="StoriesLandingItem__share">공유…</string>
   <!--Context menu option to go to story chat-->
   <string name="StoriesLandingItem__go_to_chat">채팅으로 이동</string>
+  <!--Context menu option to go to story info-->
+  <string name="StoriesLandingItem__info">정보</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">보내는 중…</string>
   <!--Label when multiple stories are pending sending-->
@@ -4030,7 +4039,7 @@
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">더 보기</string>
   <string name="StoriesLinkPopup__visit_link">링크 방문</string>
-  <!--Duration and price information-->
+  <!--Gift price and duration, formatted as: {price} dot {n} day duration-->
   <plurals name="GiftRowItem_s_dot_d_day_duration">
     <item quantity="other">%1$s · %2$d일</item>
   </plurals>
@@ -4166,7 +4175,6 @@
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">안전 번호 변경 내용</string>
   <!--Message of safety number review fragment-->
-  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">받는 사람 %1$d명이 Signal을 다시 설치했거나 기기를 변경했을 수 있습니다. 받는 사람을 탭하여 새 안전 번호를 확인하세요. 이 작업은 선택 사항입니다.</string>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">연락처</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -4183,5 +4191,16 @@
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">다음을 제외한 모든 Signal 커넥션…</string>
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">다음 사용자와만 공유…</string>
+  <!--Story info header sent heading-->
+  <string name="StoryInfoHeader__sent">보낸 시간</string>
+  <!--Story info header received heading-->
+  <string name="StoryInfoHeader__received">받은 시간</string>
+  <!--Story info header file size heading-->
+  <!--Story info "Sent to" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_to">보냄</string>
+  <!--Story info "Sent from" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_from">받음</string>
+  <!--Story Info context menu label-->
+  <string name="StoryInfoBottomSheetDialogFragment__info">정보</string>
   <!--EOF-->
 </resources>

@@ -174,17 +174,22 @@
   <string name="ContactsDatabase_message_s">Messaggio %s</string>
   <string name="ContactsDatabase_signal_call_s">Chiamata Signal %s</string>
   <!--ContactNameEditActivity-->
+  <!--Toolbar title for contact name edit activity-->
   <string name="ContactNameEditActivity_given_name">Nome</string>
   <string name="ContactNameEditActivity_family_name">Cognome</string>
   <string name="ContactNameEditActivity_prefix">Prefisso</string>
   <string name="ContactNameEditActivity_suffix">Suffisso</string>
   <string name="ContactNameEditActivity_middle_name">Secondo nome</string>
   <!--ContactShareEditActivity-->
+  <!--ContactShareEditActivity toolbar title-->
   <string name="ContactShareEditActivity_type_home">Casa</string>
   <string name="ContactShareEditActivity_type_mobile">Cellulare</string>
   <string name="ContactShareEditActivity_type_work">Lavoro</string>
   <string name="ContactShareEditActivity_type_missing">Altro</string>
   <string name="ContactShareEditActivity_invalid_contact">Il contatto selezionato non è valido</string>
+  <!--Content descrption for name edit button on contact share edit activity-->
+  <!--Content description for user avatar in edit activity-->
+  <string name="ContactShareEditActivity__avatar">Avatar</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_sent_tap_for_details">Non inviato, tocca per i dettagli</string>
   <string name="ConversationItem_error_partially_not_delivered">Parzialmente inviato, tocca per i dettagli</string>
@@ -3068,6 +3073,8 @@
   <string name="CallParticipant__you">Tu</string>
   <string name="CallParticipant__you_on_another_device">Tu (su un altro dispositivo)</string>
   <string name="CallParticipant__s_on_another_device">%1$s (su un altro dispositivo)</string>
+  <!--WifiToCellularPopupWindow-->
+  <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Eliminando il tuo account verranno:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Inserisci il tuo numero di telefono</string>
@@ -3970,6 +3977,8 @@
   <string name="StoriesLandingItem__share">Condividi…</string>
   <!--Context menu option to go to story chat-->
   <string name="StoriesLandingItem__go_to_chat">Vai alla chat</string>
+  <!--Context menu option to go to story info-->
+  <string name="StoriesLandingItem__info">Informazioni</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">Invio in corso…</string>
   <!--Label when multiple stories are pending sending-->
@@ -4250,7 +4259,7 @@
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">Visualizza altro</string>
   <string name="StoriesLinkPopup__visit_link">Visita link</string>
-  <!--Duration and price information-->
+  <!--Gift price and duration, formatted as: {price} dot {n} day duration-->
   <plurals name="GiftRowItem_s_dot_d_day_duration">
     <item quantity="one">%1$s · durata di %2$d giorno</item>
     <item quantity="many">%1$s · durata di %2$d giorni</item>
@@ -4399,7 +4408,6 @@
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Cambiamenti nei codici di sicurezza</string>
   <!--Message of safety number review fragment-->
-  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">%1$d destinatari potrebbero aver reinstallato Signal oppure cambiato dispositivo. Tocca su una delle persone per confermare il nuovo codice di sicurezza. Questo passaggio è opzionale.</string>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">Contatti</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -4416,5 +4424,16 @@
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Tutte le Amicizie di Signal eccetto…</string>
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Condividi solo con…</string>
+  <!--Story info header sent heading-->
+  <string name="StoryInfoHeader__sent">Inviati</string>
+  <!--Story info header received heading-->
+  <string name="StoryInfoHeader__received">Ricevuti</string>
+  <!--Story info header file size heading-->
+  <!--Story info "Sent to" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_to">Inviato a</string>
+  <!--Story info "Sent from" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_from">Inviato da</string>
+  <!--Story Info context menu label-->
+  <string name="StoryInfoBottomSheetDialogFragment__info">Informazioni</string>
   <!--EOF-->
 </resources>

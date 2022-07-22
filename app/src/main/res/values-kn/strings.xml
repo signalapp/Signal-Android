@@ -173,17 +173,22 @@
   <string name="ContactsDatabase_message_s">ಸಂದೇಶ %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal ಕರೆ %s</string>
   <!--ContactNameEditActivity-->
+  <!--Toolbar title for contact name edit activity-->
   <string name="ContactNameEditActivity_given_name">ನೀಡಿರುವ ಹೆಸರು</string>
   <string name="ContactNameEditActivity_family_name">ಕುಟುಂಬದ ಹೆಸರು</string>
   <string name="ContactNameEditActivity_prefix">ಪೂರ್ವಪ್ರತ್ಯಯ</string>
   <string name="ContactNameEditActivity_suffix">ಅಂತ್ಯಪ್ರತ್ಯಯ</string>
   <string name="ContactNameEditActivity_middle_name">ಮಧ್ಯದ ಹೆಸರು</string>
   <!--ContactShareEditActivity-->
+  <!--ContactShareEditActivity toolbar title-->
   <string name="ContactShareEditActivity_type_home">ಹೋಮ್</string>
   <string name="ContactShareEditActivity_type_mobile">ಮೊಬೈಲ್</string>
   <string name="ContactShareEditActivity_type_work">ಕೆಲಸ</string>
   <string name="ContactShareEditActivity_type_missing">ಇತರ</string>
   <string name="ContactShareEditActivity_invalid_contact">ಆಯ್ಕೆಮಾಡಿದ ಸಂಪರ್ಕವು ಅಮಾನ್ಯವಾಗಿದೆ</string>
+  <!--Content descrption for name edit button on contact share edit activity-->
+  <!--Content description for user avatar in edit activity-->
+  <string name="ContactShareEditActivity__avatar">ಅವತಾರ್</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_sent_tap_for_details">ಕಳಿಸಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ, ಹೆಚ್ಚಿನ ಮಾಹಿತಿಗೆ ಇಲ್ಲಿ ಕ್ಲಿಕ್ಕಿಸಿ</string>
   <string name="ConversationItem_error_partially_not_delivered">ಭಾಗಶಃ ಕಳಿಸಿದೆ, ಹೆಚ್ಚಿನ ಮಾಹಿತಿಗೆ ಇಲ್ಲಿ ಕ್ಲಿಕ್ಕಿಸಿ</string>
@@ -2920,6 +2925,8 @@
   <string name="CallParticipant__you">ನೀವು</string>
   <string name="CallParticipant__you_on_another_device">ನೀವು (ಮತ್ತೊಂದು  ಸಾಧನದಲ್ಲಿ)</string>
   <string name="CallParticipant__s_on_another_device">%1$s (ಮತ್ತೊಂದು  ಸಾಧನದಲ್ಲಿ)</string>
+  <!--WifiToCellularPopupWindow-->
+  <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಅಳಿಸಿದರೆ:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">ನಿಮ್ಮ ಫೋನ್‌ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ</string>
@@ -3542,6 +3549,7 @@
   <string name="StoriesLandingItem__forward">ಫಾರ್ವರ್ಡ್</string>
   <!--Context menu option to share a story-->
   <!--Context menu option to go to story chat-->
+  <!--Context menu option to go to story info-->
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">ಕಳುಹಿಸಲಾಗುತ್ತಿದೆ…</string>
   <!--Label when multiple stories are pending sending-->
@@ -3717,7 +3725,7 @@
   <!--Conversation Item label for reactions to an unavailable story-->
   <!--endregion-->
   <!--Content description for expand contacts chevron-->
-  <!--Duration and price information-->
+  <!--Gift price and duration, formatted as: {price} dot {n} day duration-->
   <!--Tagline for gift row items-->
   <!--Headline text on start fragment for gifting a badge-->
   <!--Description text on start fragment for gifting a badge-->
@@ -3749,7 +3757,7 @@
   <!--Label under name for private stories-->
   <!--Label under name for group stories-->
   <!--Label under name for My Story when first sending to my story-->
-  <string name="ContactSearchItems__tap_to_choose_your_viewers">ನಿಮ್ಮ ವೀಕ್ಷಕರನ್ನು ಆರಿಸಲು ಟ್ಯಾಪ್ ಮಾಡಿ</string>
+  <string name="ContactSearchItems__tap_to_choose_your_viewers">ನಿಮ್ಮ ವೀಕ್ಷಕರನ್ನು ಆಯ್ಕೆ ಮಾಡಲು ಟ್ಯಾಪ್ ಮಾಡಿ</string>
   <!--Label for context menu item to open story settings-->
   <!--Label for context menu item to remove a group story from contact results-->
   <string name="ContactSearchItems__remove_story">ಸ್ಟೋರಿ ತೆಗೆದುಹಾಕಿ</string>
@@ -3787,15 +3795,15 @@
   <!--Title of safety number changes bottom sheet when showing individual records-->
   <string name="SafetyNumberBottomSheetFragment__safety_number_changes">ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆ ಬದಲಾಗುತ್ತದೆ</string>
   <!--Message of safety number changes bottom sheet when showing individual records-->
-  <string name="SafetyNumberBottomSheetFragment__the_following_people">ಈ ಕೆಳಗಿನ ಜನರು ಮರುಸ್ಥಾಪಿಸಿದ Signal ಅಥವಾ ಬದಲಾದ ಸಾಧನಗಳನ್ನು ಹೊಂದಿರಬಹುದು. ಹೊಸ ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆಯನ್ನು ದೃಢೀಕರಿಸಲು ಒಬ್ಬ ಸ್ವೀಕೃತಿದಾರರನ್ನು ಟ್ಯಾಪ್ ಮಾಡಿ. ಇದು ಐಚ್ಛಿಕವಾಗಿದೆ.</string>
+  <string name="SafetyNumberBottomSheetFragment__the_following_people">ಈ ಕೆಳಗಿನ ಜನರು Signal ಅನ್ನು ಮರುಸ್ಥಾಪಿಸಿರಬಹುದು ಅಥವಾ ಸಾಧನಗಳನ್ನು ಬದಲಿಸಿರಬಹುದು. ಒಬ್ಬ ಸ್ವೀಕೃತಿದಾರರನ್ನು ಟ್ಯಾಪ್ ಮಾಡಿ ಹೊಸ ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆಯನ್ನು ದೃಢೀಕರಿಸಿ. ಇದು ಐಚ್ಛಿಕವಾಗಿದೆ.</string>
   <!--Title of safety number changes bottom sheet when not showing individual records-->
   <string name="SafetyNumberBottomSheetFragment__safety_number_checkup">ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆಯ ಪರೀಕ್ಷೆ</string>
   <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
   <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆಯ ಪರೀಕ್ಷೆ ಪೂರ್ಣಗೊಂಡಿದೆ</string>
   <!--Message of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
-  <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">ಎಲ್ಲಾ ಸಂಪರ್ಕಗಳನ್ನು ಪರಿಶೀಲಿಸಲಾಗಿದೆ, ಮುಂದುವರಿಸಲು ಕಳುಹಿಸಿ ಟ್ಯಾಪ್ ಮಾಡಿ.</string>
+  <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">ಎಲ್ಲಾ ಸಂಪರ್ಕಗಳನ್ನು ಪರಿಶೀಲಿಸಲಾಗಿದೆ, ಮುಂದುವರಿಸಲು ಸೆಂಡ್ ಅನ್ನು ಟ್ಯಾಪ್ ಮಾಡಿ.</string>
   <!--Message of safety number changes bottom sheet when not showing individual records-->
-  <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">ನೀವು %1$d ಸಂಪರ್ಕಗಳನ್ನು ಹೊಂದಿದ್ದು, ಅವರು Signal ಅನ್ನು ಮರುಸ್ಥಾಪಿಸಿರಬಹುದು ಅಥವಾ ಸಾಧನಗಳನ್ನು ಬದಲಾಯಿಸಿರಬಹುದು. ನಿಮ್ಮ ಸ್ಟೋರಿಯನ್ನು ಅವರೊಂದಿಗೆ ಹಂಚಿಕೊಳ್ಳುವ ಮುನ್ನ ಅವರ ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆಗಳನ್ನು ಪರಿಶೀಲಿಸಿ ಅಥವಾ ಅವರನ್ನು ನಿಮ್ಮ ಸ್ಟೋರಿಯಿಂದ ತೆಗೆದುಹಾಕುವುದನ್ನು ಪರಿಗಣಿಸಿ.</string>
+  <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">ನೀವು %1$d ಸಂಪರ್ಕಗಳನ್ನು ಹೊಂದಿದ್ದು, ಅವರು Signal ಅನ್ನು ಮರುಸ್ಥಾಪಿಸಿರಬಹುದು ಅಥವಾ ಸಾಧನಗಳನ್ನು ಬದಲಿಸಿರಬಹುದು. ನಿಮ್ಮ ಸ್ಟೋರಿಯನ್ನು ಅವರೊಂದಿಗೆ ಹಂಚಿಕೊಳ್ಳುವ ಮುನ್ನ ಅವರ ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆಗಳನ್ನು ಪರಿಶೀಲಿಸಿ ಅಥವಾ ಅವರನ್ನು ನಿಮ್ಮ ಸ್ಟೋರಿಯಿಂದ ತೆಗೆದುಹಾಕುವುದನ್ನು ಪರಿಗಣಿಸಿ.</string>
   <!--Menu action to launch safety number verification screen-->
   <string name="SafetyNumberBottomSheetFragment__verify_safety_number">ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆ ದೃಢೀಕರಿಸಿ</string>
   <!--Menu action to remove user from story-->
@@ -3811,7 +3819,6 @@
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆ ಬದಲಾಗುತ್ತದೆ</string>
   <!--Message of safety number review fragment-->
-  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">%1$d ಸ್ವೀಕೃತಿದಾರರು Signal ಅನ್ನು ಮರುಸ್ಥಾಪಿಸಿರಬಹುದು ಅಥವಾ ಸಾಧನಗಳನ್ನು ಬದಲಾಯಿಸಿರಬಹುದು. ಹೊಸ ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆಯನ್ನು ದೃಢೀಕರಿಲು ಸ್ವೀಕೃತಿದರಾರನ್ನು ಟ್ಯಾಪ್ ಮಾಡಿ. ಇದು ಐಚ್ಛಿಕವಾಗಿದೆ.</string>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">ಸಂಪರ್ಕಗಳು</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -3828,5 +3835,15 @@
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">ಇದರ ಹೊರತಾದ ಎಲ್ಲಾ Signal ಸಂರ್ಕಗಳು…</string>
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">ಇವರೊಂದಿಗೆ ಮಾತ್ರ ಹಂಚಿಕೊಳ್ಳಿ…</string>
+  <!--Story info header sent heading-->
+  <string name="StoryInfoHeader__sent">ಕಳುಹಿಸಲಾಗಿದೆ</string>
+  <!--Story info header received heading-->
+  <string name="StoryInfoHeader__received">ಸ್ವೀಕರಿಸಲಾಗಿದೆ</string>
+  <!--Story info header file size heading-->
+  <!--Story info "Sent to" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_to">ಅವರಿಗೆ ಕಳುಹಿಸಲಾಗಿದೆ</string>
+  <!--Story info "Sent from" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_from">ಇದರಿಂದ ಕಳುಹಿಸಲಾಗಿದೆ</string>
+  <!--Story Info context menu label-->
   <!--EOF-->
 </resources>

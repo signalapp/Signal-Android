@@ -173,17 +173,22 @@
   <string name="ContactsDatabase_message_s">Viesti: %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal-puhelu: %s</string>
   <!--ContactNameEditActivity-->
+  <!--Toolbar title for contact name edit activity-->
   <string name="ContactNameEditActivity_given_name">Etunimi</string>
   <string name="ContactNameEditActivity_family_name">Sukunimi</string>
   <string name="ContactNameEditActivity_prefix">Etuliite</string>
   <string name="ContactNameEditActivity_suffix">Jälkiliite</string>
   <string name="ContactNameEditActivity_middle_name">Muut nimet</string>
   <!--ContactShareEditActivity-->
+  <!--ContactShareEditActivity toolbar title-->
   <string name="ContactShareEditActivity_type_home">Koti</string>
   <string name="ContactShareEditActivity_type_mobile">Matkapuhelin</string>
   <string name="ContactShareEditActivity_type_work">Työ</string>
   <string name="ContactShareEditActivity_type_missing">Muu</string>
   <string name="ContactShareEditActivity_invalid_contact">Valittu yhteystieto ei ole kelvollinen</string>
+  <!--Content descrption for name edit button on contact share edit activity-->
+  <!--Content description for user avatar in edit activity-->
+  <string name="ContactShareEditActivity__avatar">Kuvake</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_sent_tap_for_details">Ei lähetetty, napauta nähdäksesi lisätietoja</string>
   <string name="ConversationItem_error_partially_not_delivered">Osittain lähetetty, napauta nähdäksesi lisätietoja</string>
@@ -2966,6 +2971,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="CallParticipant__you">Sinä</string>
   <string name="CallParticipant__you_on_another_device">Sinä (toisella laitteella)</string>
   <string name="CallParticipant__s_on_another_device">%1$s (toisella laitteella)</string>
+  <!--WifiToCellularPopupWindow-->
+  <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Tilin poistamisesta seuraa:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Syötä puhelinnumerosi</string>
@@ -3860,6 +3867,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="StoriesLandingItem__share">Jaa…</string>
   <!--Context menu option to go to story chat-->
   <string name="StoriesLandingItem__go_to_chat">Siirry keskusteluun</string>
+  <!--Context menu option to go to story info-->
+  <string name="StoriesLandingItem__info">Tietoja</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">Lähetetään…</string>
   <!--Label when multiple stories are pending sending-->
@@ -4134,7 +4143,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">Näytä lisää</string>
   <string name="StoriesLinkPopup__visit_link">Avaa linkki</string>
-  <!--Duration and price information-->
+  <!--Gift price and duration, formatted as: {price} dot {n} day duration-->
   <plurals name="GiftRowItem_s_dot_d_day_duration">
     <item quantity="one">%1$s · %2$d päivän voimassaolo</item>
     <item quantity="other">%1$s · %2$d päivän voimassaolo</item>
@@ -4277,7 +4286,6 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Turvanumeromuutokset</string>
   <!--Message of safety number review fragment-->
-  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">%1$d vastaanottajaa on ehkä asentanut Signalin uudelleen tai vaihtanut käyttämäänsä laitetta. Vahvista uusi turvanumero napauttamalla vastaanottajaa. Toiminto on valinnainen.</string>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">Yhteystiedot</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -4294,5 +4302,16 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Kaikki Signalin yhteystiedot paitsi…</string>
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Jaa vain seuraaville…</string>
+  <!--Story info header sent heading-->
+  <string name="StoryInfoHeader__sent">Lähetetyt</string>
+  <!--Story info header received heading-->
+  <string name="StoryInfoHeader__received">Vastaanotettu</string>
+  <!--Story info header file size heading-->
+  <!--Story info "Sent to" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_to">Lähetetty käyttäjälle</string>
+  <!--Story info "Sent from" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_from">Lähettäjä</string>
+  <!--Story Info context menu label-->
+  <string name="StoryInfoBottomSheetDialogFragment__info">Tietoja</string>
   <!--EOF-->
 </resources>

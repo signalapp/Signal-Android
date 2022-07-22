@@ -173,17 +173,22 @@
   <string name="ContactsDatabase_message_s">Ujumbe %s</string>
   <string name="ContactsDatabase_signal_call_s">Simu ya Signal %s</string>
   <!--ContactNameEditActivity-->
+  <!--Toolbar title for contact name edit activity-->
   <string name="ContactNameEditActivity_given_name">Jina ulilopewa</string>
   <string name="ContactNameEditActivity_family_name">Jina la ukoo</string>
   <string name="ContactNameEditActivity_prefix">Kiambishi awali</string>
   <string name="ContactNameEditActivity_suffix">Kiambishi tamati</string>
   <string name="ContactNameEditActivity_middle_name">Jina la katikati</string>
   <!--ContactShareEditActivity-->
+  <!--ContactShareEditActivity toolbar title-->
   <string name="ContactShareEditActivity_type_home">Nyumbani</string>
   <string name="ContactShareEditActivity_type_mobile">Simu</string>
   <string name="ContactShareEditActivity_type_work">Kazi</string>
   <string name="ContactShareEditActivity_type_missing">ingine</string>
   <string name="ContactShareEditActivity_invalid_contact">Mawasilianao yaliyochaguliwa sio sahihi</string>
+  <!--Content descrption for name edit button on contact share edit activity-->
+  <!--Content description for user avatar in edit activity-->
+  <string name="ContactShareEditActivity__avatar">Umbo</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_sent_tap_for_details">Haikutumwa, gusa upate maelezo</string>
   <string name="ConversationItem_error_partially_not_delivered">Ujumbe wote haujatumwa, gusa upate maelezo</string>
@@ -2967,6 +2972,8 @@ Funga ufikiaji wa Signal na ufungaji wa Android au alama za vidole</string>
   <string name="CallParticipant__you">Wewe</string>
   <string name="CallParticipant__you_on_another_device">Wewe (kwenye kifaa kingine)</string>
   <string name="CallParticipant__s_on_another_device">%1$s (kwenye kifaa kingine)</string>
+  <!--WifiToCellularPopupWindow-->
+  <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Kufuta akaunti yako kutasababisha:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Weka nambari yako ya simu</string>
@@ -3861,6 +3868,8 @@ Funga ufikiaji wa Signal na ufungaji wa Android au alama za vidole</string>
   <string name="StoriesLandingItem__share">Shirikisha..</string>
   <!--Context menu option to go to story chat-->
   <string name="StoriesLandingItem__go_to_chat">Enda kwa gumzo</string>
+  <!--Context menu option to go to story info-->
+  <string name="StoriesLandingItem__info">Maelezo</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">Inatuma…</string>
   <!--Label when multiple stories are pending sending-->
@@ -4135,7 +4144,7 @@ Funga ufikiaji wa Signal na ufungaji wa Android au alama za vidole</string>
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">Tazama zaidi</string>
   <string name="StoriesLinkPopup__visit_link">Tembelea kiungo</string>
-  <!--Duration and price information-->
+  <!--Gift price and duration, formatted as: {price} dot {n} day duration-->
   <plurals name="GiftRowItem_s_dot_d_day_duration">
     <item quantity="one">%1$s . kwa siku %2$d</item>
     <item quantity="other">%1$s . kwa muda wa siku %2$d</item>
@@ -4278,7 +4287,6 @@ Funga ufikiaji wa Signal na ufungaji wa Android au alama za vidole</string>
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Mabadiliko ya Nambari ya usalama</string>
   <!--Message of safety number review fragment-->
-  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">Wapokeaji %1$d huenda wakawa wamesakinisha upya Signal au kubadili vifaa. Bonyeza mpokeaji kuhakikisha nambari ya usalama mpya. Hii ni kwa hiari.</string>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">Wawasiliani</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -4295,5 +4303,16 @@ Funga ufikiaji wa Signal na ufungaji wa Android au alama za vidole</string>
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Signal connections wote isipokuwa…</string>
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Shirikisha pekee na…</string>
+  <!--Story info header sent heading-->
+  <string name="StoryInfoHeader__sent">Imetumwa</string>
+  <!--Story info header received heading-->
+  <string name="StoryInfoHeader__received">Imepokelewa</string>
+  <!--Story info header file size heading-->
+  <!--Story info "Sent to" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_to">Umetumwa kwa</string>
+  <!--Story info "Sent from" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_from">Umetumwa kutoka kwa</string>
+  <!--Story Info context menu label-->
+  <string name="StoryInfoBottomSheetDialogFragment__info">Maelezo</string>
   <!--EOF-->
 </resources>

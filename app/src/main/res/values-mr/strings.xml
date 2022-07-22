@@ -173,17 +173,22 @@
   <string name="ContactsDatabase_message_s">संदेश %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal कॉल %s</string>
   <!--ContactNameEditActivity-->
+  <!--Toolbar title for contact name edit activity-->
   <string name="ContactNameEditActivity_given_name">दिलेले नाव</string>
   <string name="ContactNameEditActivity_family_name">कुटूंब नाव</string>
   <string name="ContactNameEditActivity_prefix">प्रीफिक्स</string>
   <string name="ContactNameEditActivity_suffix">सफ्फिक्स</string>
   <string name="ContactNameEditActivity_middle_name">मधले नाव</string>
   <!--ContactShareEditActivity-->
+  <!--ContactShareEditActivity toolbar title-->
   <string name="ContactShareEditActivity_type_home">मुख्यस्क्रीन</string>
   <string name="ContactShareEditActivity_type_mobile">मोबाईल</string>
   <string name="ContactShareEditActivity_type_work">कार्य</string>
   <string name="ContactShareEditActivity_type_missing">इतर</string>
   <string name="ContactShareEditActivity_invalid_contact">निवडलेला संपर्क अवैध होता</string>
+  <!--Content descrption for name edit button on contact share edit activity-->
+  <!--Content description for user avatar in edit activity-->
+  <string name="ContactShareEditActivity__avatar">अवतार</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_sent_tap_for_details">पाठविले नाही, तपशीलांसाठी टॅप करा</string>
   <string name="ConversationItem_error_partially_not_delivered">अर्धवट पाठविले, तपशीलांसाठी टॅप करा</string>
@@ -2969,6 +2974,8 @@
   <string name="CallParticipant__you">आपण</string>
   <string name="CallParticipant__you_on_another_device">आपण (दुसऱ्या डिव्हाईसवर)</string>
   <string name="CallParticipant__s_on_another_device">%1$s (दुसऱ्या डिव्हाईसवर)</string>
+  <!--WifiToCellularPopupWindow-->
+  <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">आपले खाते हटवल्याने खालील गोष्टी होतील:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">आपला फोन नंबर प्रविष्ट करा</string>
@@ -3863,6 +3870,8 @@
   <string name="StoriesLandingItem__share">शेअर करा…</string>
   <!--Context menu option to go to story chat-->
   <string name="StoriesLandingItem__go_to_chat">चॅटवर जा</string>
+  <!--Context menu option to go to story info-->
+  <string name="StoriesLandingItem__info">माहिती</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">पाठवत आहे…</string>
   <!--Label when multiple stories are pending sending-->
@@ -4137,7 +4146,7 @@
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">अधिक पहा</string>
   <string name="StoriesLinkPopup__visit_link">लिंकला भेट द्या</string>
-  <!--Duration and price information-->
+  <!--Gift price and duration, formatted as: {price} dot {n} day duration-->
   <plurals name="GiftRowItem_s_dot_d_day_duration">
     <item quantity="one">%1$s · %2$d दिवसांचा कालावधी</item>
     <item quantity="other">%1$s · %2$d दिवसांचा कालावधी</item>
@@ -4280,7 +4289,6 @@
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">सुरक्षितता क्रमांक बदल</string>
   <!--Message of safety number review fragment-->
-  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">%1$d प्राप्तकर्त्यांनी Signal पुन्हा इन्स्टॉल केलेले किंवा उपकरणे बदलले असू शकते. नवीन सुरक्षितता क्रमांकाची पुष्टी करण्यासाठी एका प्राप्तकर्त्यावर टॅप करा. हे पर्यायी आहे.</string>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">संपर्क</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -4297,5 +4305,16 @@
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">…सोडून सर्व Signal कनेक्शन्स</string>
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">…सह फक्त शेअर करा</string>
+  <!--Story info header sent heading-->
+  <string name="StoryInfoHeader__sent">पाठविले</string>
+  <!--Story info header received heading-->
+  <string name="StoryInfoHeader__received">प्राप्त झाले</string>
+  <!--Story info header file size heading-->
+  <!--Story info "Sent to" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_to">यांना पाठवले</string>
+  <!--Story info "Sent from" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_from">यांनी पाठवले</string>
+  <!--Story Info context menu label-->
+  <string name="StoryInfoBottomSheetDialogFragment__info">माहिती</string>
   <!--EOF-->
 </resources>

@@ -56,7 +56,7 @@
   <string name="DraftDatabase_Draft_voice_note">(Гласовна порука)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Галерија</string>
-  <string name="AttachmentKeyboard_file">Датотека</string>
+  <string name="AttachmentKeyboard_file">Fajl</string>
   <string name="AttachmentKeyboard_contact">Контакт</string>
   <string name="AttachmentKeyboard_location">Локација</string>
   <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Сигналу су потребне дозволе да прикаже ваше слике и видео.</string>
@@ -174,17 +174,25 @@
   <string name="ContactsDatabase_message_s">Порука за %s</string>
   <string name="ContactsDatabase_signal_call_s">Позови %s преко Signal-a</string>
   <!--ContactNameEditActivity-->
+  <!--Toolbar title for contact name edit activity-->
+  <string name="ContactNameEditActivity__edit_name">Izmenite ime</string>
   <string name="ContactNameEditActivity_given_name">Име</string>
   <string name="ContactNameEditActivity_family_name">Презиме</string>
   <string name="ContactNameEditActivity_prefix">Префикс</string>
   <string name="ContactNameEditActivity_suffix">Суфикс</string>
   <string name="ContactNameEditActivity_middle_name">Средње име</string>
   <!--ContactShareEditActivity-->
+  <!--ContactShareEditActivity toolbar title-->
+  <string name="ContactShareEditActivity__send_contact">Pošaljite kontakt</string>
   <string name="ContactShareEditActivity_type_home">Кућни</string>
   <string name="ContactShareEditActivity_type_mobile">Мобилни</string>
   <string name="ContactShareEditActivity_type_work">Посао</string>
   <string name="ContactShareEditActivity_type_missing">Остало</string>
   <string name="ContactShareEditActivity_invalid_contact">Изабрани контакт је неисправан</string>
+  <!--Content descrption for name edit button on contact share edit activity-->
+  <string name="ContactShareEditActivity__edit_name">Izmeni ime</string>
+  <!--Content description for user avatar in edit activity-->
+  <string name="ContactShareEditActivity__avatar">Аватар</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_sent_tap_for_details">Није послато, додирните за детаље</string>
   <string name="ConversationItem_error_partially_not_delivered">Делимично послато, кликните за детаље</string>
@@ -236,7 +244,7 @@
   <string name="ConversationActivity_message_an_admin">Послати поруку админу</string>
   <string name="ConversationActivity_cant_start_group_call">Не може да се покрене групни позив</string>
   <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Само админи ове групе могу започети позив.</string>
-  <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Нема апликације за руковање овом везом на вашем уређају.</string>
+  <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Nije dostupna aplikacija koja može da otvori ovaj link na vašem uređaju.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Ваш захтев за придруживање је послат администратору групе. Бићете обавештени када администратори предузму мере.</string>
   <string name="ConversationActivity_cancel_request">Откажи захтев</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Да бисте послали аудио поруку, одобрите Signal-у дозволе за коришћење микрофона.</string>
@@ -319,7 +327,7 @@
   <string name="ConversationFragment_failed_to_open_message">Порука није успешно учитана</string>
   <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Повуците поруку ка десно за брз одговор</string>
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Повуците поруку ка лево за брз одговор</string>
-  <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Одлазне једнократне медијске датотеке аутоматски се уклањају након слања</string>
+  <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Odlazni jednokratni medijski sadržaj se automatski uklanja nakon slanja.</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Већ сте видели ову поруку</string>
   <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Можете да додајете личне белешке у ову конверзацију.\nАко Ваш налог има повезане уређаје, нове белешке ће бити синхронизоване.</string>
   <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d чланова групе имају исти назив.</string>
@@ -336,7 +344,7 @@
   <!--Dialog title for block group link join requests-->
   <string name="ConversationFragment__block_request">Блокирати захтев?</string>
   <!--Dialog message for block group link join requests-->
-  <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s неће моћи да се придружи или захтева да се придружи овој групи преко линка групе. И даље може се ручно додати у групу.</string>
+  <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s neće moći da se pridruži grupi ili zatraži da se pridruži grupi preko linka. I dalje će moći ručno da se doda u grupu.</string>
   <!--Dialog confirm block request button-->
   <string name="ConversationFragment__block_request_button">Блокирати захтев</string>
   <!--Dialog cancel block request button-->
@@ -448,7 +456,7 @@
   <string name="ChooseBackupFragment__icon_content_description">Икона за враћање из резервне копије</string>
   <string name="ChooseBackupFragment__choose_backup">Одабери резервну копију</string>
   <string name="ChooseBackupFragment__learn_more">Сазнај више</string>
-  <string name="ChooseBackupFragment__no_file_browser_available">Није доступан претраживач датотека.</string>
+  <string name="ChooseBackupFragment__no_file_browser_available">Nije dostupan pregledač fajlova</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">Враћање је завршено</string>
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Да бисте наставили да користите резервне копије, одаберите фасциклу. Нове резервне копије ће се чувати на овој локацији.</string>
@@ -510,7 +518,7 @@
   <string name="DeviceListItem_last_active_s">Последња активност %s</string>
   <string name="DeviceListItem_today">Данас</string>
   <!--DocumentView-->
-  <string name="DocumentView_unnamed_file">Датотека без имена</string>
+  <string name="DocumentView_unnamed_file">Fajl bez naziva</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Оптимизуј за недостајуће Плеј сервисе</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Овај уређај не подржава Плеј сервисе. Тапните да искључите системску оптимизацију потрошње батерије која спречава добављање порука док је Signal неактиван.</string>
@@ -638,8 +646,8 @@
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Пре него што напустите, морате да изаберете барем једног администратора за ову групу.</string>
   <string name="LeaveGroupDialog_choose_admin">Изаберите администратора</string>
   <!--LinkPreviewView-->
-  <string name="LinkPreviewView_no_link_preview_available">Преглед веза није доступан</string>
-  <string name="LinkPreviewView_this_group_link_is_not_active">Веза до групе није активна</string>
+  <string name="LinkPreviewView_no_link_preview_available">Prikaz linka nije dostupan</string>
+  <string name="LinkPreviewView_this_group_link_is_not_active">Link za grupu nije aktivan</string>
   <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
   <!--LinkPreviewRepository-->
   <plurals name="LinkPreviewRepository_d_members">
@@ -671,7 +679,7 @@
   <!--RequestingMembersFragment-->
   <string name="RequestingMembersFragment_pending_member_requests">Захтеви за чланство на чекању</string>
   <string name="RequestingMembersFragment_no_member_requests_to_show">Нема захтева за чланство.</string>
-  <string name="RequestingMembersFragment_explanation">Особе са ове листе покушавају да се придруже овој групи путем везе до групе.</string>
+  <string name="RequestingMembersFragment_explanation">Osobe sa ove liste pokušavaju da se pridruže ovoj grupi preko linka za grupu.</string>
   <string name="RequestingMembersFragment_added_s">Додат је контакт „%1$s“</string>
   <string name="RequestingMembersFragment_denied_s">Одбијен је контакт „%1$s“</string>
   <!--AddMembersActivity-->
@@ -707,7 +715,7 @@
   <string name="ManageGroupActivity_edit_group_info">Уреди информације о групи</string>
   <string name="ManageGroupActivity_who_can_add_new_members">Ко може додати нове чланове?</string>
   <string name="ManageGroupActivity_who_can_edit_this_groups_info">Ко може мењати информације о групи?</string>
-  <string name="ManageGroupActivity_group_link">Веза до групе</string>
+  <string name="ManageGroupActivity_group_link">Link za grupu</string>
   <string name="ManageGroupActivity_block_group">Блокирај групу</string>
   <string name="ManageGroupActivity_unblock_group">Одблокирај групу</string>
   <string name="ManageGroupActivity_leave_group">Напусти групу</string>
@@ -726,9 +734,9 @@
     <item quantity="few">%d члана је додато</item>
     <item quantity="other">%d чланова је додато</item>
   </plurals>
-  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">Само администратори могу да омогуће или онемогуће везу за дељење групе.</string>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">Samo administratori mogu da aktiviraju ili deaktiviraju link za grupu koji može da se deli.</string>
   <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Само администратори могу да омогуће или онемогуће опцију одобравања нових захтева за чланство.</string>
-  <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Само администратори могу да онемогуће везу за дељење групе.</string>
+  <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Samo administratori mogu da resetuju link za grupu koji može da se deli.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Немате дозволу да урадите ово.</string>
   <string name="ManageGroupActivity_not_capable">Неко кога сте додали не подржава нове групе и мора да ажурира Signal</string>
   <string name="ManageGroupActivity_not_announcement_capable">Неко кога сте додали не подржава огласне групе и треба да ажурира Signal</string>
@@ -789,15 +797,15 @@
   <string name="CustomNotificationsDialogFragment__default">Подразумеван</string>
   <string name="CustomNotificationsDialogFragment__unknown">Непознато</string>
   <!--ShareableGroupLinkDialogFragment-->
-  <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Линк за дељење групе</string>
+  <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Link za grupu koji može da se deli</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Управи &amp; дели</string>
-  <string name="ShareableGroupLinkDialogFragment__group_link">Веза до групе</string>
+  <string name="ShareableGroupLinkDialogFragment__group_link">Link za grupu</string>
   <string name="ShareableGroupLinkDialogFragment__share">Поделите</string>
-  <string name="ShareableGroupLinkDialogFragment__reset_link">Ресетуј линк</string>
+  <string name="ShareableGroupLinkDialogFragment__reset_link">Resetuj link</string>
   <string name="ShareableGroupLinkDialogFragment__member_requests">Захтеви за чланство</string>
   <string name="ShareableGroupLinkDialogFragment__approve_new_members">Одобри нове чланове</string>
-  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Захтева да администратор одобри придруживање нових чланова путем везе до групе.</string>
-  <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Да ли сте сигурни да желите да укинете везу према групи? Особе више неће моћи да се придруже групи помоћу тренутне везе.</string>
+  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Obavezno je da administrator odobri nove članove koji se pridružuju preko linka za grupu.</string>
+  <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Da li ste sigurni da želite da resetujete link za grupu? Ljudi više neće moći da se pridruže grupi preko trenutnog linka.</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">QR кôд</string>
   <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Особе који скенирају овај код моћи ће да се придруже Вашој групи. Администратори ће и даље морати да одобравају нове захтеве за чланство ако је та поставка укључена.</string>
@@ -815,17 +823,17 @@
   <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Захтев за придруживање</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Није могуће придружити се групи. Пробајте поново касније.</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Дошло је до грешке мреже.</string>
-  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Веза до групе није активна</string>
+  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Link za grupu nije aktivan</string>
   <!--Title shown when there was an known issue getting group information from a group link-->
   <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">Не може да се придружи групи</string>
   <!--Message shown when you try to get information for a group via link but an admin has removed you-->
-  <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Не можете да се придружите овој групи преко везе групе јер вас је администратор уклонио.</string>
+  <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Ne možete da se pridružite ovoj grupi preko linka za grupu jer vas je administrator uklonio.</string>
   <!--Message shown when you try to get information for a group via link but the link is no longer valid-->
-  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">Веза до групе није више активна.</string>
+  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">Link za grupu više nije ispravan.</string>
   <!--Title shown when there was an unknown issue getting group information from a group link-->
-  <string name="GroupJoinBottomSheetDialogFragment_link_error">Грешка везе</string>
+  <string name="GroupJoinBottomSheetDialogFragment_link_error">Greška sa linkom</string>
   <!--Message shown when you try to get information for a group via link but an unknown issue occurred-->
-  <string name="GroupJoinBottomSheetDialogFragment_joining_via_this_link_failed_try_joining_again_later">Придруживање преко ове везе није успело. Покушајте поново касније.</string>
+  <string name="GroupJoinBottomSheetDialogFragment_joining_via_this_link_failed_try_joining_again_later">Pridruživanje preko ovog linka nije uspelo. Probajte da se ponovo pridružite kasnije.</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Да ли желите да се придружите овој групи и да са њеним члановима поделите ваше име и слику?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Администратор ове групе мора одобрити ваш захтев пре него што се придружите овој групи. Када затражите придруживање, ваше име и фотографија ће се делити са члановима.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
@@ -834,25 +842,25 @@
     <item quantity="other">Група · %1$d чланова</item>
   </plurals>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Ажурирај Signal за коришћење везе до групе</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Ваша верзија Signal.а не подржава ову везу до групе. Ажурирајте на најновију верзију да бисте се придружили овој групи путем везе.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Ažurirajte Signal da biste mogli da koristite linkove za grupe.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Verzija Signala koju koristite ne podržava ovaj link za grupu. Ažurirajte aplikaciju na najnoviju verziju da biste se pridružili ovoj grupi preko linka.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Ажурирајте Signal</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">На једном или више повезаних уређаја ради верзија Signal-а која не подржава везе до групе. Ажурирајте Signal на повезаним уређајима да бисте се придружили овој групи.</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Веза до групе није исправна</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Na jednom ili više povezanih uređaja nalazi se verzija Signala koja ne podržava linkove za grupe. Ažurirajte Signal na povezanim uređajima da biste se pridružili grupi.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Link za grupu nije ispravan</string>
   <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">Позивница пријатељима</string>
-  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">Поделите везу са пријатељима како би се брзо придружили овој групи.</string>
-  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">Омогући и дели везу</string>
-  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">Веза дељења</string>
-  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">Није могуће омогућити везу до групе. Пробајте поново касније</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">Podelite ovaj link sa prijateljima da bi se brže pridružili grupi.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">Aktiviraj i podeli link</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">Podeli link</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">Nije moguće aktivirati link za grupu. Probajte ponovo kasnije.</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">Дошло је до грешке мреже.</string>
-  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">Немате право да омогућите везу до групе. Питајте администратора.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">Nemate pravo da aktivirate link za grupu. Obratite se administratoru.</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">Тренутно нисте члан групе.</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">Додај “%1$s„ у ову групу?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">Одбити захтев од „%1$s“?</string>
   <!--Confirm dialog message shown when deny a group link join request and group link is enabled.-->
-  <string name="RequestConfirmationDialog_deny_request_from_s_they_will_not_be_able_to_request">Одбих захтев од “%1$s”? Неће моћи поново да затраже да се придруже преко линка групе.</string>
+  <string name="RequestConfirmationDialog_deny_request_from_s_they_will_not_be_able_to_request">Želite li da odbijete zahtev koji šalje %1$s? Neće više moći da zatraži da se pridruži grupi preko linka.</string>
   <string name="RequestConfirmationDialog_add">Додај</string>
   <string name="RequestConfirmationDialog_deny">Одбиј</string>
   <!--ImageEditorHud-->
@@ -892,18 +900,18 @@
   <string name="MmsDownloader_error_reading_mms_settings">Грешка читања поставки ММС послужиоца</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Медији</string>
-  <string name="MediaOverviewActivity_Files">Датотеке</string>
+  <string name="MediaOverviewActivity_Files">Fajlovi</string>
   <string name="MediaOverviewActivity_Audio">Звук</string>
   <string name="MediaOverviewActivity_All">Сви</string>
   <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
     <item quantity="one">Обриши изабрану датотеку?</item>
     <item quantity="few">Обриши изабране датотеке?</item>
-    <item quantity="other">Обриши изабране датотеке?</item>
+    <item quantity="other">Želite li da izbrišete izabrane stavke?</item>
   </plurals>
   <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-    <item quantity="one">Овиме ћете заувек обрисати означену датотеку. Текст поруке повезане са овој ставком такође ће бити избрисане.</item>
-    <item quantity="few">Овиме ћете заувек обрисати %1$d означене датотеке. Текст поруке повезане са овим ставкама такође ће бити избрисане.</item>
-    <item quantity="other">Овиме ћете заувек обрисати %1$d означене датотеке. Текст поруке повезане са овим ставкама такође ће бити избрисане.</item>
+    <item quantity="one">Ovim ćete trajno izbrisati označeni fajl. Tekst poruke povezan sa ovom stavkom takođe će biti izbrisan.</item>
+    <item quantity="few">Ovim ćete trajno izbrisati sve označene fajlove (%1$d). Tekst poruke povezan sa ovim stavkama takođe će biti izbrisan.</item>
+    <item quantity="other">Ovim ćete trajno izbrisati sve označene fajlove (%1$d). Tekst poruke povezan sa ovim stavkama takođe će biti izbrisan.</item>
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Брисање</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Брисање порука…</string>
@@ -933,7 +941,7 @@
     <item quantity="few">Одабрано: %1$d (%2$s)</item>
     <item quantity="other">Одабрано: %1$d (%2$s)</item>
   </plurals>
-  <string name="MediaOverviewActivity_file">Фајл</string>
+  <string name="MediaOverviewActivity_file">Fajl</string>
   <string name="MediaOverviewActivity_audio">Звук</string>
   <string name="MediaOverviewActivity_video">Видео</string>
   <string name="MediaOverviewActivity_image">Слика</string>
@@ -982,9 +990,9 @@
   <string name="MediaPickerActivity__menu_open_camera">Отвори камеру</string>
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Додај натпис</string>
-  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Датотека је уклоњена јер је прекорачила дозвољену величину</string>
-  <string name="MediaSendActivity_an_item_was_removed_because_it_had_an_unknown_type">Датотека је уклоњена јер је имала непознати тип</string>
-  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit_or_had_an_unknown_type">Датотека је уклоњена јер је прекорачила дозвољену величину или има непознати тип</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Jedna stavka je uklonjena jer premašuje dozvoljenu veličinu</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_had_an_unknown_type">Jedna stavka je uklonjena jer je nepoznatog tipa</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit_or_had_an_unknown_type">Jedna stavka je uklonjena jer premašuje dozvoljenu veličinu ili je nepoznatog tipa</string>
   <string name="MediaSendActivity_camera_unavailable">Камера није доступна.</string>
   <string name="MediaSendActivity_message_to_s">Порука за %s</string>
   <string name="MediaSendActivity_message">Порука</string>
@@ -992,9 +1000,9 @@
   <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Сигналу је потребан приступ вашим контактима како би их приказао.</string>
   <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal захтева приступ вашим контактима да би их показао, али му је дозвола трајно забрањена. Молимо вас да у апликацији за подешавање телефона Signal-у дозволите пруиступ контактима.</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
-    <item quantity="one">Не можете поделити више од %d ставке.</item>
-    <item quantity="few">Не можете поделити више од %d ставке.</item>
-    <item quantity="other">Не можете поделити више од %d ставки.</item>
+    <item quantity="one">Maksimalan broj stavki koje možete podeliti je %d.</item>
+    <item quantity="few">Maksimalan broj stavki koje možete podeliti je %d.</item>
+    <item quantity="other">Maksimalan broj stavki koje možete podeliti je %d.</item>
   </plurals>
   <string name="MediaSendActivity_select_recipients_description">Изаберите примаоце</string>
   <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">Кликните овде да порука нестане када буде погледана.</string>
@@ -1041,7 +1049,7 @@
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Направили сте групу.</string>
   <string name="MessageRecord_group_updated">Група ажурирана.</string>
-  <string name="MessageRecord_invite_friends_to_this_group">Позовите пријатеље у ову групу преко везе до групе</string>
+  <string name="MessageRecord_invite_friends_to_this_group">Pozovite prijatelje u ovu grupu preko linka za grupu</string>
   <!--GV2 member additions-->
   <string name="MessageRecord_you_added_s">Додали сте %1$s.</string>
   <string name="MessageRecord_s_added_s">%1$s је додао/ла %2$s.</string>
@@ -1134,36 +1142,36 @@
   <string name="MessageRecord_allow_all_members_to_send">Подешавања групе су измењена како би се омогућили свим члановима да шаљу поруке.</string>
   <string name="MessageRecord_allow_only_admins_to_send">Подешавања групе су измењена како би се омогућили да само админи шаљу поруке.</string>
   <!--GV2 group link invite access level change-->
-  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Укључили сте везу до групе без одобрења администратора.</string>
-  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Укључили сте везу до групе са одобрењем администратора.</string>
-  <string name="MessageRecord_you_turned_off_the_group_link">Искључили сте везу до групе.</string>
-  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s је укључио/ла везу до групе без одобрења администратора.</string>
-  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s је укључио/ла везу до групе са одобрењем администратора.</string>
-  <string name="MessageRecord_s_turned_off_the_group_link">%1$s је искључио/ла везу до групе.</string>
-  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">Веза до групе је укључена без одобрења админитратора.</string>
-  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">Веза до групе је укључена са одобрењем админитратора.</string>
-  <string name="MessageRecord_the_group_link_has_been_turned_off">Веза до групе је искључена.</string>
-  <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">Искључили сте одобрење администратора за везу до групе.</string>
-  <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s је искључио/ла одобрење администратора за везу до групе.</string>
-  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">Одобрење администратора за везу до групе је искључено.</string>
-  <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">Укључили сте одобрење администратора за везу до групе.</string>
-  <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s је укључио/ла одобрење администратора за везу до групе.</string>
-  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">Одобрење администратора за везу до групе је укључено.</string>
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Uključili ste link za grupu bez obaveznog odobrenja administratora.</string>
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Uključili ste link za grupu sa obaveznim odobrenjem administratora.</string>
+  <string name="MessageRecord_you_turned_off_the_group_link">Isključili ste link za grupu.</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s je uključio/la link za grupu bez obaveznog odobrenja administratora.</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s je uključio/la link za grupu sa obaveznim odobrenjem administratora.</string>
+  <string name="MessageRecord_s_turned_off_the_group_link">%1$s je isključio/la link za grupu.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">Uključen je link za grupu bez obaveznog odobrenja administratora.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">Uključen je link za grupu sa obaveznim odobrenjem administratora.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_off">Link za grupu je isključen.</string>
+  <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">Isključili ste obavezno odobrenje administratora za link za grupu.</string>
+  <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s je isključio/la obavezno odobrenje administratora za link za grupu.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">Isključeno je obavezno odobrenje administratora za link za grupu.</string>
+  <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">Uključili ste obavezno odobrenje administratora za link za grupu.</string>
+  <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s je uključio/la obavezno odobrenje administratora za link za grupu.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">Uključeno je obavezno odobrenje administratora za link za grupu.</string>
   <!--GV2 group link reset-->
-  <string name="MessageRecord_you_reset_the_group_link">Ресетовали сте везу до групе.</string>
-  <string name="MessageRecord_s_reset_the_group_link">%1$s је ресетовао/ла везу до групе.</string>
-  <string name="MessageRecord_the_group_link_has_been_reset">Веза до групе је ресетована.</string>
+  <string name="MessageRecord_you_reset_the_group_link">Resetovali ste link za grupu.</string>
+  <string name="MessageRecord_s_reset_the_group_link">%1$s je resetovao/la link za grupu.</string>
+  <string name="MessageRecord_the_group_link_has_been_reset">Link za grupu je resetovan.</string>
   <!--GV2 group link joins-->
-  <string name="MessageRecord_you_joined_the_group_via_the_group_link">Придружили сте се групи преко везе до групе.</string>
-  <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s се придружио/ла групи преко везе до групе.</string>
+  <string name="MessageRecord_you_joined_the_group_via_the_group_link">Pridružili ste se grupi preko linka za grupu.</string>
+  <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s se pridružio/la grupi preko linka za grupu.</string>
   <!--GV2 group link requests-->
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">Послали сте захтев за придруживање групи.</string>
-  <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s је затражио/ла да се придружи преко везе до групе.</string>
+  <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s je zatražio/la da se pridruži grupi preko linka za grupu.</string>
   <!--Update message shown when someone requests to join via group link and cancels the request back to back-->
   <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
     <item quantity="one">%1$s затражио и отказао захтев за придруживање групи преко везе.</item>
     <item quantity="few">%1$s затражили и отказали %2$d захтева за придруживање групи преко везе.</item>
-    <item quantity="other">%1$s затражили и отказали %2$d захтева за придруживање групи преко везе.</item>
+    <item quantity="other">%1$s je zatražio/la da se pridruži grupi preko linka za grupu i zatim otkazao/la zahteve (%2$d) da se pridruži.</item>
   </plurals>
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s је прихватио/ла Ваш захтев за придруживање групи.</string>
@@ -1260,7 +1268,7 @@
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Нетачна стара лозинка!</string>
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Унесите нову лозинку!</string>
   <!--DeviceProvisioningActivity-->
-  <string name="DeviceProvisioningActivity_link_this_device">Да повежем овај уређај?</string>
+  <string name="DeviceProvisioningActivity_link_this_device">Želite li da povežete ovaj uređaj?</string>
   <string name="DeviceProvisioningActivity_continue">НАСТАВИ</string>
   <string name="DeviceProvisioningActivity_content_intro">Моћи ће да</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -1626,7 +1634,7 @@
   <string name="ThreadRecord_photo">Фотографија</string>
   <string name="ThreadRecord_gif">GIF</string>
   <string name="ThreadRecord_voice_message">Гласовна порука</string>
-  <string name="ThreadRecord_file">Датотека</string>
+  <string name="ThreadRecord_file">Fajl</string>
   <string name="ThreadRecord_video">Видео запис</string>
   <string name="ThreadRecord_chat_session_refreshed">Чет сесија је освежена</string>
   <!--Displayed in the notification when the user is sent a gift-->
@@ -1731,7 +1739,7 @@
   <string name="MessageNotifier_reacted_s_to_your_video">Реакција %1$s на ваш видео.</string>
   <string name="MessageNotifier_reacted_s_to_your_image">Реакција %1$s на вашу слику.</string>
   <string name="MessageNotifier_reacted_s_to_your_gif">Реакција %1$s на ваш GIF.</string>
-  <string name="MessageNotifier_reacted_s_to_your_file">Реакција %1$s на вашу датотеку.</string>
+  <string name="MessageNotifier_reacted_s_to_your_file">Dobili ste reakciju %1$s na vaš fajl.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Реакција %1$s на ваш звучни запис.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">Реакција %1$s на ваш једнократни медиј.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">Реакција %1$s на вашу налепницу.</string>
@@ -1781,9 +1789,9 @@
   <string name="ThumbnailView_Has_a_caption_description">Има натпис</string>
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">
-    <item quantity="one">%d ставка</item>
-    <item quantity="few">%d ставке</item>
-    <item quantity="other">%d ставки</item>
+    <item quantity="one">Stavki: %d</item>
+    <item quantity="few">Stavki: %d</item>
+    <item quantity="other">Stavki: %d</item>
   </plurals>
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">Уређај више није регистрован</string>
@@ -1852,9 +1860,9 @@
   </plurals>
   <!--Displays number of viewers for a story-->
   <plurals name="contact_selection_list_item__number_of_viewers">
-    <item quantity="one">%1$d преглед</item>
-    <item quantity="few">%1$d прегледа</item>
-    <item quantity="other">%1$d прегледа</item>
+    <item quantity="one">Gledalaca: %1$d</item>
+    <item quantity="few">Gledalaca: %1$d</item>
+    <item quantity="other">Gledalaca: %1$d </item>
   </plurals>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal порука</string>
@@ -2213,8 +2221,8 @@
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Притисак на Ентер тастер ће послати текстуалне поруке</string>
   <string name="preferences__pref_use_address_book_photos">Користите фотографије из адресара</string>
   <string name="preferences__display_contact_photos_from_your_address_book_if_available">Користите фотографије контакта из Вашег адресара ако је доступна</string>
-  <string name="preferences__generate_link_previews">Креирати приказ линка</string>
-  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Видите преглед линка са сваког веб сајта у порукама које шаљете.</string>
+  <string name="preferences__generate_link_previews">Generisanje prikaza linka</string>
+  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Direktno sa veb-sajtova preuzimajte prikaze linkova za poruke koje šaljete.</string>
   <string name="preferences__choose_identity">Изаберите идентитет</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Изаберите унос вашег контакта са списка контаката.</string>
   <string name="preferences__change_passphrase">Измени лозинку</string>
@@ -2312,7 +2320,7 @@
   <string name="preferences_storage__storage_usage">Употреба складиште</string>
   <string name="preferences_storage__photos">Слике</string>
   <string name="preferences_storage__videos">Видео</string>
-  <string name="preferences_storage__files">Датотеке</string>
+  <string name="preferences_storage__files">Fajlovi</string>
   <string name="preferences_storage__audio">Звук</string>
   <string name="preferences_storage__review_storage">Прегледајте складиште</string>
   <string name="preferences_storage__delete_older_messages">Брисати старе поруке?</string>
@@ -2800,7 +2808,7 @@
   <string name="BackupDialog_to_enable_backups_choose_a_folder">Да бисте омогућили резервне копије, изаберите фасциклу. Резервне копије ће бити сачуване на изабраној локацији.</string>
   <string name="BackupDialog_choose_folder">Одаберите фолдер</string>
   <string name="BackupDialog_copied_to_clipboard">Копирано у остави</string>
-  <string name="BackupDialog_no_file_picker_available">Није доступан бирач датотека.</string>
+  <string name="BackupDialog_no_file_picker_available">Nije dostupan birač fajlova.</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Верификујте фразу за резервну копију</string>
   <string name="BackupDialog_verify">Овери</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Успешно сте унели фразу за резервну копију</string>
@@ -2808,7 +2816,7 @@
   <string name="LocalBackupJob_creating_signal_backup">Креација бекапа Signal-а…</string>
   <string name="LocalBackupJobApi29_backup_failed">Резервна копија није успела</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Ваша фасцикла за резервне копије је избрисана или премештена.</string>
-  <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Датотека ваше резервне копије је превелика за чување на овом волумену.</string>
+  <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Fajl rezervne kopije je preveliki da bi se čuvao na ovoj jedinici.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">Нема довољно простора за чување Ваше резервне копије.</string>
   <string name="LocalBackupJobApi29_tap_to_manage_backups">Додирните за управљање резервним копијама.</string>
   <string name="ProgressPreference_d_messages_so_far">%d порука до сад</string>
@@ -2995,7 +3003,7 @@
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">„%1$s“ моћи ће да уређује ову групу и њене чланове.</string>
   <string name="RecipientBottomSheet_remove_s_from_the_group">Уклонити %1$s из групе?</string>
   <!--Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin-->
-  <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">Уклони %1$s из групе? Неће моћи поново да се придруже преко везе групе.</string>
+  <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">Želite li da uklonite korisnika (%1$s) iz grupe? Neće moći ponovo da se pridruži grupi preko linka.</string>
   <string name="RecipientBottomSheet_remove">Уклони</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Копирано у остави</string>
   <string name="GroupRecipientListItem_admin">Администратор</string>
@@ -3009,14 +3017,14 @@
   <string name="GroupsLearnMore_paragraph_2">Старе групе још увек не могу да се надограде на Нове групе, али можете да направите нову групу са истим члановима ако су на најновијој верзији Signal-а.</string>
   <string name="GroupsLearnMore_paragraph_3">Signal ће убудуће понудити начин за надоградњу старих група.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
-  <string name="GroupLinkBottomSheet_share_hint_requiring_approval">Свако са овом везом може да види име и слику ове групе и да затражи да се придружи. Поделите везу са људима у које имате поверења.</string>
-  <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">Свако са овом везом може да види име и слику ове групе и да се придружи. Поделите везу са људима у које имате поверења.</string>
+  <string name="GroupLinkBottomSheet_share_hint_requiring_approval">Svako ko ima ovaj link može da vidi naziv i fotografiju ove grupe, kao i da zatraži da se pridruži grupi. Podelite link sa ljudima u koje imate poverenja.</string>
+  <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">Svako ko ima ovaj link može da vidi naziv i fotografiju grupe, kao i da se pridruži grupi. Podelite link sa ljudima u koje imate poverenja.</string>
   <string name="GroupLinkBottomSheet_share_via_signal">Поделите Signal-ом</string>
   <string name="GroupLinkBottomSheet_copy">Копирај</string>
   <string name="GroupLinkBottomSheet_qr_code">QR кôд</string>
   <string name="GroupLinkBottomSheet_share">Поделите</string>
   <string name="GroupLinkBottomSheet_copied_to_clipboard">Копирано у остави</string>
-  <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">Веза није тренутно активна</string>
+  <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">Link trenutno nije aktivan</string>
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Гласовна порука није успешно учитана</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
@@ -3068,6 +3076,9 @@
   <string name="CallParticipant__you">Ви</string>
   <string name="CallParticipant__you_on_another_device">Ви (на другом уређају)</string>
   <string name="CallParticipant__s_on_another_device">%1$s (на другом уређају)</string>
+  <!--WifiToCellularPopupWindow-->
+  <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
+  <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Slab Wi-Fi – prebačeno na korišćenje mobilnog interneta.</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Брисање налога ће:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Унесите ваш број телефона</string>
@@ -3470,7 +3481,7 @@
   <string name="ConversationSettingsFragment__add_members">Додај чланове</string>
   <string name="ConversationSettingsFragment__permissions">Дозволе</string>
   <string name="ConversationSettingsFragment__requests_and_invites">Захтеви и позивнице</string>
-  <string name="ConversationSettingsFragment__group_link">Веза до групе</string>
+  <string name="ConversationSettingsFragment__group_link">Link za grupu</string>
   <string name="ConversationSettingsFragment__add_as_a_contact">Додај у контакте</string>
   <string name="ConversationSettingsFragment__unmute">Укључи обавештења</string>
   <string name="ConversationSettingsFragment__conversation_muted_until_s">Преписка је утишана до %1$s</string>
@@ -3577,9 +3588,9 @@
   <string name="MediaReviewFragment__add_a_reply">Додај одговор</string>
   <string name="MediaReviewFragment__send_to">Пошаљи у</string>
   <string name="MediaReviewFragment__view_once_message">Порука виђена једном</string>
-  <string name="MediaReviewFragment__one_or_more_items_were_too_large">Макар један елеменат је превелики</string>
-  <string name="MediaReviewFragment__one_or_more_items_were_invalid">Макар један елеменат је неважећи</string>
-  <string name="MediaReviewFragment__too_many_items_selected">Превише одабраних елемената</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_too_large">Jedna ili više stavki su prevelike</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_invalid">Jedna ili više stavki su nevažeće</string>
+  <string name="MediaReviewFragment__too_many_items_selected">Previše stavki je izabrano</string>
   <string name="ImageEditorHud__cancel">Поништи</string>
   <string name="ImageEditorHud__draw">Нацртај</string>
   <string name="ImageEditorHud__write_text">Пиши текст</string>
@@ -3970,6 +3981,8 @@
   <string name="StoriesLandingItem__share">Дели…</string>
   <!--Context menu option to go to story chat-->
   <string name="StoriesLandingItem__go_to_chat">Ићи на ћаскање</string>
+  <!--Context menu option to go to story info-->
+  <string name="StoriesLandingItem__info">Инфо</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">Шаље се…</string>
   <!--Label when multiple stories are pending sending-->
@@ -4115,7 +4128,7 @@
   <!--Note at the bottom of the Signal connections sheet-->
   <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">Ваше везе могу да виде ваше име и фотографију и могу да виде постове у „Мојој причи“ осим ако то не сакријете од њих.</string>
   <!--Clickable option to add a viewer to a private story-->
-  <string name="PrivateStorySettingsFragment__add_viewer">Додај преглед</string>
+  <string name="PrivateStorySettingsFragment__add_viewer">Dodajte gledaoca</string>
   <!--Clickable option to delete a custom story-->
   <string name="PrivateStorySettingsFragment__delete_private_story">Обрисати приватну причу</string>
   <!--Dialog title when attempting to remove someone from a private story-->
@@ -4149,7 +4162,7 @@
   <!--Hint for entering a URL for a text post-->
   <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">Унети или прилепити УРЛ</string>
   <!--Displayed prior to the user entering a URL for a text post-->
-  <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">Поделите везу са гледаоцима ваше приче</string>
+  <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">Podelite link sa gledaocima vaše priče</string>
   <!--Hint text for searching for a story text post recipient.-->
   <string name="TextStoryPostSendFragment__search">Претрага</string>
   <!--Toast shown when an unexpected error occurs while sending a text story-->
@@ -4167,7 +4180,7 @@
   <!--First time share to story dialog: Positive action to go ahead and add to story-->
   <string name="StoryDialogs__add_to_story">Додати причу</string>
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
-  <string name="StoryDialogs__edit_viewers">Уредите гледаоце</string>
+  <string name="StoryDialogs__edit_viewers">Izmenite gledaoce</string>
   <!--Error message shown when a failure occurs during story send-->
   <string name="StoryDialogs__story_could_not_be_sent">Није могуће послати причу. Проверите своју везу и покушајте поново.</string>
   <!--Error message dialog button to resend a previously failed story send-->
@@ -4177,21 +4190,21 @@
   <!--Privacy Settings toggle summary for stories-->
   <string name="PrivacySettingsFragment__you_will_no_longer_be_able">Више нећете моћи да делите или гледате Приче када је ова опција искључена.</string>
   <!--New story viewer selection screen title-->
-  <string name="CreateStoryViewerSelectionFragment__choose_viewers">Одабрати гледаоце</string>
+  <string name="CreateStoryViewerSelectionFragment__choose_viewers">Izaberite gledaoce</string>
   <!--New story viewer selection action button label-->
   <string name="CreateStoryViewerSelectionFragment__next">Даље</string>
   <!--New story viewer selection screen title as recipients are selected-->
   <plurals name="SelectViewersFragment__d_viewers">
-    <item quantity="one">%1$d гледалац</item>
-    <item quantity="few">%1$d гледаоца</item>
-    <item quantity="other">%1$d гледаоца</item>
+    <item quantity="one">Gledalaca: %1$d</item>
+    <item quantity="few">Gledalaca: %1$d</item>
+    <item quantity="other">Gledalaca: %1$d</item>
   </plurals>
   <!--Name story screen title-->
   <string name="CreateStoryWithViewersFragment__name_story">Име приче</string>
   <!--Name story screen label hint-->
   <string name="CreateStoryWithViewersFragment__story_name_required">Име приче (потребно)</string>
   <!--Name story screen viewers subheading-->
-  <string name="CreateStoryWithViewersFragment__viewers">Гледаоци</string>
+  <string name="CreateStoryWithViewersFragment__viewers">Gledaoci</string>
   <!--Name story screen create button label-->
   <string name="CreateStoryWithViewersFragment__create">Направи</string>
   <!--Name story screen error when save attempted with no label-->
@@ -4249,8 +4262,8 @@
   <!--endregion-->
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">Види још</string>
-  <string name="StoriesLinkPopup__visit_link">Посетите везу</string>
-  <!--Duration and price information-->
+  <string name="StoriesLinkPopup__visit_link">Posetite link</string>
+  <!--Gift price and duration, formatted as: {price} dot {n} day duration-->
   <plurals name="GiftRowItem_s_dot_d_day_duration">
     <item quantity="one">%1$s · trajanje: %2$d dan</item>
     <item quantity="few">%1$s · trajanje: %2$d dan(a)</item>
@@ -4308,18 +4321,18 @@
   <string name="ExpiredGiftSheetConfiguration__not_now">Не сада</string>
   <!--Label under name for private stories-->
   <plurals name="ContactSearchItems__private_story_d_viewers">
-    <item quantity="one">Приватна прича · %1$d гледалац</item>
-    <item quantity="few">Приватна прича · %1$d гледалаца</item>
-    <item quantity="other">Приватна прича · %1$d гледалаца</item>
+    <item quantity="one">Privatna priča · Gledalaca: %1$d</item>
+    <item quantity="few">Privatna priča · Gledalaca: %1$d</item>
+    <item quantity="other">Privatna priča · Gledalaca: %1$d</item>
   </plurals>
   <!--Label under name for group stories-->
   <plurals name="ContactSearchItems__group_story_d_viewers">
-    <item quantity="one">Групна прича · %1$d гледалац</item>
-    <item quantity="few">Групна прича · %1$d гледалаца</item>
-    <item quantity="other">Групна прича · %1$d гледалаца</item>
+    <item quantity="one">Grupna priča · Gledalaca: %1$d</item>
+    <item quantity="few">Grupna priča · Gledalaca: %1$d</item>
+    <item quantity="other">Grupna priča · Gledalaca: %1$d</item>
   </plurals>
   <!--Label under name for My Story when first sending to my story-->
-  <string name="ContactSearchItems__tap_to_choose_your_viewers">Dodirnite da izaberete ko može da vidi vašu priču</string>
+  <string name="ContactSearchItems__tap_to_choose_your_viewers">Dodirnite da izaberete gledaoce</string>
   <!--Label for context menu item to open story settings-->
   <string name="ContactSearchItems__story_settings">Подешавања приче</string>
   <!--Label for context menu item to remove a group story from contact results-->
@@ -4399,7 +4412,11 @@
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Promene sigurnosnog broja</string>
   <!--Message of safety number review fragment-->
-  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">Njih %1$d je možda ponovo instaliralo Signal ili promenilo uređaj. Dodirnite primaoca da potvrdite novi sigurnosni broj. Ovaj korak nije obavezan.</string>
+  <plurals name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">
+    <item quantity="one">%1$d Primalac je možda ponovo instalirao Signal ili promenio uređaj. Dodirnite primaoca da potvrdite novi sigurnosni broj. Ovaj korak nije obavezan.</item>
+    <item quantity="few">Njih %1$d je možda ponovo instaliralo Signal ili promenilo uređaj. Dodirnite primaoca da potvrdite novi sigurnosni broj. Ovaj korak nije obavezan.</item>
+    <item quantity="other">Njih %1$d je možda ponovo instaliralo Signal ili promenilo uređaj. Dodirnite primaoca da potvrdite novi sigurnosni broj. Ovaj korak nije obavezan.</item>
+  </plurals>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">Именик</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -4416,5 +4433,17 @@
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Sve Signal veze osim…</string>
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Samo podelite sa…</string>
+  <!--Story info header sent heading-->
+  <string name="StoryInfoHeader__sent">Послато</string>
+  <!--Story info header received heading-->
+  <string name="StoryInfoHeader__received">Примљено</string>
+  <!--Story info header file size heading-->
+  <string name="StoryInfoHeader__file_size">Veličina fajla</string>
+  <!--Story info "Sent to" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_to">Послато</string>
+  <!--Story info "Sent from" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_from">Послао</string>
+  <!--Story Info context menu label-->
+  <string name="StoryInfoBottomSheetDialogFragment__info">Инфо</string>
   <!--EOF-->
 </resources>

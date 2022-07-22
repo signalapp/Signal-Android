@@ -173,17 +173,25 @@
   <string name="ContactsDatabase_message_s">Mensahe %s</string>
   <string name="ContactsDatabase_signal_call_s">Tawag sa Signal %s</string>
   <!--ContactNameEditActivity-->
+  <!--Toolbar title for contact name edit activity-->
+  <string name="ContactNameEditActivity__edit_name">Edit name</string>
   <string name="ContactNameEditActivity_given_name">Pangalan</string>
   <string name="ContactNameEditActivity_family_name">Apelyido</string>
   <string name="ContactNameEditActivity_prefix">Prefix</string>
   <string name="ContactNameEditActivity_suffix">Suffix</string>
   <string name="ContactNameEditActivity_middle_name">Panggitnang Pangalan</string>
   <!--ContactShareEditActivity-->
+  <!--ContactShareEditActivity toolbar title-->
+  <string name="ContactShareEditActivity__send_contact">Send contact</string>
   <string name="ContactShareEditActivity_type_home">Bahay</string>
   <string name="ContactShareEditActivity_type_mobile">Mobile</string>
   <string name="ContactShareEditActivity_type_work">Trabaho</string>
   <string name="ContactShareEditActivity_type_missing">Iba pa</string>
   <string name="ContactShareEditActivity_invalid_contact">Ang napiling kontak ay invalid</string>
+  <!--Content descrption for name edit button on contact share edit activity-->
+  <string name="ContactShareEditActivity__edit_name">Edit name</string>
+  <!--Content description for user avatar in edit activity-->
+  <string name="ContactShareEditActivity__avatar">Avatar</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_sent_tap_for_details">Not sent, i-tap para sa karagdagang detalye</string>
   <string name="ConversationItem_error_partially_not_delivered">Partially sent, i-tap para sa karagdagang detalye</string>
@@ -2972,6 +2980,9 @@
   <string name="CallParticipant__you">Ikaw</string>
   <string name="CallParticipant__you_on_another_device">You (sa ibang device)</string>
   <string name="CallParticipant__s_on_another_device">%1$s (sa ibang device)</string>
+  <!--WifiToCellularPopupWindow-->
+  <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
+  <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Switched to cellular dahil unstable ang Wi-Fi connection.</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Ang pag-delete ng iyong account ay magreresulta sa:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Ilagay ang numero ng iyong telepono</string>
@@ -3664,12 +3675,19 @@
   <!--Stripe decline code go to google pay action label-->
   <string name="DeclineCode__go_to_google_pay">Go to Google Pay</string>
   <!--Stripe decline code incorrect card number-->
+  <string name="DeclineCode__your_card_number_is_incorrect">Ang iyong card number ay incorrect. I-update ito sa Google Pay at subukan ulit.</string>
   <!--Stripe decline code incorrect cvc-->
+  <string name="DeclineCode__your_cards_cvc_number_is_incorrect">Ang CVC number ng iyong card ay incorrect. I-update ito sa Google Pay at subukan ulit.</string>
   <!--Stripe decline code insufficient funds-->
+  <string name="DeclineCode__your_card_does_not_have_sufficient_funds">Walang sufficient funds ang iyong account to complete this purchase. Subukan ang ibang payment method.</string>
   <!--Stripe decline code incorrect expiration month-->
+  <string name="DeclineCode__the_expiration_month">Ang expiration month na nakalagay sa payment method mo ay incorrect. I-update ito sa Google Pay at subukan ulit.</string>
   <!--Stripe decline code incorrect expiration year-->
+  <string name="DeclineCode__the_expiration_year">Ang expiration year na nakalagay sa payment method mo ay incorrect. I-update ito sa Google Pay at subukan ulit.</string>
   <!--Stripe decline code issuer not available-->
+  <string name="DeclineCode__try_completing_the_payment_again">Subukang kumpletuhin ulit ang payment o i-contact ang iyong local bank for more information.</string>
   <!--Stripe decline code processing error-->
+  <string name="DeclineCode__try_again">Subukan ulit o i-contact ang iyong local bank for more information.</string>
   <!--Title of create notification profile screen-->
   <string name="EditNotificationProfileFragment__name_your_profile">Name your profile</string>
   <!--Hint text for create/edit notification profile name-->
@@ -3701,11 +3719,13 @@
   <!--Title for add recipients to notification profile screen in create flow-->
   <string name="AddAllowedMembers__allowed_notifications">Allowed notifications</string>
   <!--Description of what the user should be doing with this screen-->
+  <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">I-add ang people at groups kung saan mo gustong maka-receive ng notifications at calls kapag naka-turn on ang profile na ito</string>
   <!--Button text that launches the contact picker to select from-->
   <string name="AddAllowedMembers__add_people_or_groups">Mag-add ng people o groups</string>
   <!--Call to action button on contact picker for adding to profile-->
   <string name="SelectRecipientsFragment__add">Mag-add</string>
   <!--Notification profiles home fragment, shown when no profiles have been created yet-->
+  <string name="NotificationProfilesFragment__create_a_profile_to_receive_notifications_and_calls_only_from_the_people_and_groups_you_want_to_hear_from">Mag-create ng profile para maka-receive ng notifications at calls only from people and groups you want to hear from.</string>
   <!--Header shown above list of all notification profiles-->
   <string name="NotificationProfilesFragment__profiles">Profiles</string>
   <!--Button that starts the create new notification profile flow-->
@@ -3745,6 +3765,7 @@
   <!--Title for add schedule to profile in create flow-->
   <string name="EditNotificationProfileSchedule__add_a_schedule">Mag-add ng schedule</string>
   <!--Descriptor text indicating what the user can do with this screen-->
+  <string name="EditNotificationProfileSchedule__set_up_a_schedule_to_enable_this_notification_profile_automatically">Mag-set up ng schedule to enable this notification profile automatically.</string>
   <!--Text shown next to toggle switch to enable/disable schedule-->
   <string name="EditNotificationProfileSchedule__schedule">Schedule</string>
   <!--Label for showing the start time for the schedule-->
@@ -3776,13 +3797,17 @@
   <!--If in create mode, call to action button text to show to use the enabled schedule and move to the next screen-->
   <string name="EditNotificationProfileSchedule__next">Susunod</string>
   <!--Error message shown if trying to save/use a schedule with no days selected-->
+  <string name="EditNotificationProfileSchedule__schedule_must_have_at_least_one_day">Schedule must have at least one day</string>
   <!--Title for final screen shown after completing a profile creation-->
   <string name="NotificationProfileCreated__profile_created">Profile created</string>
   <!--Call to action button to press to close the created screen and move to the profile details screen-->
   <string name="NotificationProfileCreated__done">Tapos na</string>
   <!--Descriptor text shown to indicate how to manually turn a profile on/off-->
+  <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">Pwede mong i-turn on or off ang profile manually via menu na nasa chat list.</string>
   <!--Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow-->
+  <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">Mag-add ng schedule sa settings para ma-automate ang iyong profile.</string>
   <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->
+  <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Your profile will turn on and off automatically ayon sa schedule na nilagay mo.</string>
   <!--Button text shown in profile selection bottom sheet to create a new profile-->
   <string name="NotificationProfileSelection__new_profile">New profile</string>
   <!--Manual enable option to manually enable a profile for 1 hour-->
@@ -3818,11 +3843,13 @@
   <!--Donation receipts share PNG-->
   <string name="DonationReceiptDetailsFragment__share_receipt">Share receipt</string>
   <!--Donation receipts list end note-->
+  <string name="DonationReceiptListFragment__if_you_have">Kung ni-reinstall mo ang Signal app, ang receipts mula sa previous donations ay hindi na available.</string>
   <!--Donation receipts document title-->
   <string name="DonationReceiptDetailsFragment__donation_receipt">Donation receipt</string>
   <!--Donation receipts amount title-->
   <string name="DonationReceiptDetailsFragment__amount">Amount</string>
   <!--Donation receipts thanks-->
+  <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Maraming salamat sa iyong suporta sa Signal. Ang iyong contribution ay nakatutulong para maipagpatuloy ang aming mission sa pag-develop ng open source privacy technology that protexts free expression and enables secure global communication for millions of people around the world. Kung ikaw ay isang resident ng United States, ingatan ang receipt na ito para sa tax records mo. Ang Signal Technology Foundation ay isang tax-exempt nonprofit organization sa United States under section 501c3 ng Internal Revenue Code. Ang aming Federal Tax ID ay 82-4506840.</string>
   <!--Donation receipt type-->
   <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
   <!--Donation reciepts screen empty state title-->
@@ -3839,6 +3866,7 @@
   <!--Subtitle for "My Stories" row item when user has not added stories-->
   <string name="StoriesLandingFragment__add_a_story">Mag-add ng story</string>
   <!--Displayed when there are no stories to display-->
+  <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">Walang recent updates na maipapakita ngayon. I-tap ang + para mag-add ng iyong story.</string>
   <!--Context menu option to hide a story-->
   <string name="StoriesLandingItem__hide_story">I-hide ang story</string>
   <!--Context menu option to unhide a story-->
@@ -3849,6 +3877,8 @@
   <string name="StoriesLandingItem__share">Share…</string>
   <!--Context menu option to go to story chat-->
   <string name="StoriesLandingItem__go_to_chat">Go to chat</string>
+  <!--Context menu option to go to story info-->
+  <string name="StoriesLandingItem__info">Info</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">Ipinapadala…</string>
   <!--Label when multiple stories are pending sending-->
@@ -3862,6 +3892,7 @@
   <!--Title of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide_story">Gusto mo bang i-hide ang story na ito?</string>
   <!--Message of dialog confirming decision to hide a story-->
+  <string name="StoriesLandingFragment__new_story_updates">Ang new story updates mula kay %1$s ay hindi na lalabas sa top part ng stories list.</string>
   <!--Positive action of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide">I-hide</string>
   <!--Displayed in Snackbar after story is hidden-->
@@ -3880,7 +3911,9 @@
   <!--Title of dialog to confirm deletion of story-->
   <string name="MyStories__delete_story">Gusto mo bang i-delete ang story na ito?</string>
   <!--Message of dialog to confirm deletion of story-->
+  <string name="MyStories__this_story_will_be_deleted">Ang story na ito\'y made-delete sa\'yo at sa lahat ng naka-receive nito.</string>
   <!--Toast shown when story media cannot be saved-->
+  <string name="MyStories__unable_to_save">Unable to save</string>
   <!--Displayed at bottom of story viewer when current item has views-->
   <plurals name="StoryViewerFragment__d_views">
     <item quantity="one">%1$d view</item>
@@ -3970,7 +4003,9 @@
   <!--Switchable option for allowing replies and reactions on your stories-->
   <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Allow replies &amp; reactions</string>
   <!--Summary for switchable option allowing replies and reactions on your story-->
+  <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Let people who can view your story react and reply</string>
   <!--Note about default sharing-->
+  <string name="MyStorySettingsFragment__hide_your_story_from">I-hide ang iyong story mula sa specific people. By default, ang story mo ay naka-share sa iyong %1$s</string>
   <!--Signal connections bolded text in the Signal Connections sheet-->
   <string name="SignalConnectionsBottomSheet___signal_connections">Signal Connections</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
@@ -3980,7 +4015,9 @@
   <!--Signal connections sheet bullet point 2-->
   <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Accepting a message request</string>
   <!--Signal connections sheet bullet point 3-->
+  <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Having them in your system contacts</string>
   <!--Note at the bottom of the Signal connections sheet-->
+  <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">Makikita ng iyong connections ang name at photo mo, pati na rin ang iyong posts sa \"My Story\" maliban na lang kung i-hide mo ito sa kanila.</string>
   <!--Clickable option to add a viewer to a private story-->
   <string name="PrivateStorySettingsFragment__add_viewer">Mag-add ng viewer</string>
   <!--Clickable option to delete a custom story-->
@@ -4116,7 +4153,7 @@
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">Tignan ang iba pa</string>
   <string name="StoriesLinkPopup__visit_link">I-visit ang link</string>
-  <!--Duration and price information-->
+  <!--Gift price and duration, formatted as: {price} dot {n} day duration-->
   <plurals name="GiftRowItem_s_dot_d_day_duration">
     <item quantity="one">%1$s · %2$d day duration</item>
     <item quantity="other">%1$s · %2$d day duration</item>
@@ -4259,7 +4296,10 @@
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Mga pagbabago sa safety number</string>
   <!--Message of safety number review fragment-->
-  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">Maaaring nag-reinstall ng Signal o nagpalit ng devices ang %1$d recipients. Mag-tap ng isang recipient para i-confirm ang bagong safety number. Ito ay optional.</string>
+  <plurals name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">
+    <item quantity="one">Maaaring nag-reinstall ng Signal o nagpalit ng devices ang %1$d recipient. I-tap ang recipient para ma-confirm ang bagong safety number. Ito ay optional.</item>
+    <item quantity="other">Maaaring nag-reinstall ng Signal o nagpalit ng devices ang %1$d recipients. Mag-tap ng isang recipient para i-confirm ang bagong safety number. Ito ay optional.</item>
+  </plurals>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">Mga Contacts</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -4276,5 +4316,17 @@
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">All Signal connections except…</string>
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Only share with…</string>
+  <!--Story info header sent heading-->
+  <string name="StoryInfoHeader__sent">Sent</string>
+  <!--Story info header received heading-->
+  <string name="StoryInfoHeader__received">Received</string>
+  <!--Story info header file size heading-->
+  <string name="StoryInfoHeader__file_size">File size</string>
+  <!--Story info "Sent to" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_to">Sent to</string>
+  <!--Story info "Sent from" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_from">Sent from</string>
+  <!--Story Info context menu label-->
+  <string name="StoryInfoBottomSheetDialogFragment__info">Info</string>
   <!--EOF-->
 </resources>

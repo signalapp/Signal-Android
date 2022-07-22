@@ -173,17 +173,22 @@
   <string name="ContactsDatabase_message_s">%sটি বার্তা</string>
   <string name="ContactsDatabase_signal_call_s">%sটি Signal কল</string>
   <!--ContactNameEditActivity-->
+  <!--Toolbar title for contact name edit activity-->
   <string name="ContactNameEditActivity_given_name">প্রদত্ত নাম</string>
   <string name="ContactNameEditActivity_family_name">পারিবারিক নাম</string>
   <string name="ContactNameEditActivity_prefix">পূর্বপদ</string>
   <string name="ContactNameEditActivity_suffix">পরপদ</string>
   <string name="ContactNameEditActivity_middle_name">মধ্যবর্তী নাম</string>
   <!--ContactShareEditActivity-->
+  <!--ContactShareEditActivity toolbar title-->
   <string name="ContactShareEditActivity_type_home">বাড়ি</string>
   <string name="ContactShareEditActivity_type_mobile">মোবাইল</string>
   <string name="ContactShareEditActivity_type_work">কর্মক্ষেত্র</string>
   <string name="ContactShareEditActivity_type_missing">অন্যান্য</string>
   <string name="ContactShareEditActivity_invalid_contact">নির্বাচিত পরিচিতিটি সঠিক নয়</string>
+  <!--Content descrption for name edit button on contact share edit activity-->
+  <!--Content description for user avatar in edit activity-->
+  <string name="ContactShareEditActivity__avatar">প্রোফাইলের ছবি</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_sent_tap_for_details">পাঠানো হয়নি, বিস্তারিত জানার জন্য টিপ দিন</string>
   <string name="ConversationItem_error_partially_not_delivered">আংশিক পাঠানো হয়েছে, বিস্তারিত জানতে টিপ দিন</string>
@@ -2966,6 +2971,8 @@
   <string name="CallParticipant__you">আপনি</string>
   <string name="CallParticipant__you_on_another_device">আপনি (অন্য ডিভাইসে আছেন)</string>
   <string name="CallParticipant__s_on_another_device">%1$s (অন্য ডিভাইসে)</string>
+  <!--WifiToCellularPopupWindow-->
+  <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">আপনার অ্যাকাউন্ট মুছে ফেলা হলে:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">আপনার ফোন নম্বর লিখুন</string>
@@ -3861,6 +3868,8 @@
   <string name="StoriesLandingItem__share">শেয়ার করুন…</string>
   <!--Context menu option to go to story chat-->
   <string name="StoriesLandingItem__go_to_chat">চ্যাট-এ যান</string>
+  <!--Context menu option to go to story info-->
+  <string name="StoriesLandingItem__info">তথ্য</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">পাঠানো হচ্ছে…</string>
   <!--Label when multiple stories are pending sending-->
@@ -4135,7 +4144,7 @@
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">আরো দেখুন</string>
   <string name="StoriesLinkPopup__visit_link">লিংক ভিজিট করুন</string>
-  <!--Duration and price information-->
+  <!--Gift price and duration, formatted as: {price} dot {n} day duration-->
   <plurals name="GiftRowItem_s_dot_d_day_duration">
     <item quantity="one">%1$s · %2$d দিন সময়কাল</item>
     <item quantity="other">%1$s · %2$d দিন সময়কাল</item>
@@ -4278,7 +4287,6 @@
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">নিরাপত্তা নাম্বার পরিবর্তিত হয়</string>
   <!--Message of safety number review fragment-->
-  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">%1$d প্রাপক সম্ভবত Signal পুনরায় ইনস্টল করেছেন বা ডিভাইস পরিবর্তন করেছেন। নতুন নিরাপত্তা নাম্বার নিশ্চিত করতে প্রাপককে ট্যাপ করুন। এটি অপশনাল।</string>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">পরিচিতিসমূহ</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -4295,5 +4303,16 @@
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">…ছাড়া সকল Signal কানেকশন</string>
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">শেয়ার করুন শুধু…</string>
+  <!--Story info header sent heading-->
+  <string name="StoryInfoHeader__sent">পাঠানো হয়েছে</string>
+  <!--Story info header received heading-->
+  <string name="StoryInfoHeader__received">গ্রহণ করা হয়েছে</string>
+  <!--Story info header file size heading-->
+  <!--Story info "Sent to" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_to">একে পাঠানো হয়েছে</string>
+  <!--Story info "Sent from" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_from">এর থেকে পাঠানো হয়েছে</string>
+  <!--Story Info context menu label-->
+  <string name="StoryInfoBottomSheetDialogFragment__info">তথ্য</string>
   <!--EOF-->
 </resources>

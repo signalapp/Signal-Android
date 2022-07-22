@@ -165,17 +165,21 @@
   <string name="ContactsDatabase_message_s">پیغام %s</string>
   <string name="ContactsDatabase_signal_call_s">د Signal اړیکه%s</string>
   <!--ContactNameEditActivity-->
+  <!--Toolbar title for contact name edit activity-->
   <string name="ContactNameEditActivity_given_name">نوم</string>
   <string name="ContactNameEditActivity_family_name">کورنی نوم</string>
   <string name="ContactNameEditActivity_prefix">مختاړی</string>
   <string name="ContactNameEditActivity_suffix">وروستاړی</string>
   <string name="ContactNameEditActivity_middle_name">منځنی نوم</string>
   <!--ContactShareEditActivity-->
+  <!--ContactShareEditActivity toolbar title-->
   <string name="ContactShareEditActivity_type_home">کور </string>
   <string name="ContactShareEditActivity_type_mobile">موبایل</string>
   <string name="ContactShareEditActivity_type_work">کار</string>
   <string name="ContactShareEditActivity_type_missing">نور</string>
   <string name="ContactShareEditActivity_invalid_contact">ټاکل شوی مخاطب ناسم دی</string>
+  <!--Content descrption for name edit button on contact share edit activity-->
+  <!--Content description for user avatar in edit activity-->
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_sent_tap_for_details">و نه لیږل شو، د جزئیاتو لپاره کلیک وکړئ</string>
   <string name="ConversationItem_error_partially_not_delivered">یوه برخه یې ولیږل شوه، د جزئیاتو لپاره کلیک وکړئ</string>
@@ -2805,6 +2809,8 @@
   <string name="CallParticipant__you">تاسې</string>
   <string name="CallParticipant__you_on_another_device">تاسې (په بله وسیله کې)</string>
   <string name="CallParticipant__s_on_another_device">%1$s (په بله وسیله کې)</string>
+  <!--WifiToCellularPopupWindow-->
+  <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">د خپل اکاونټ په له منځه وړلو سره به تاسې:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">خپله د ټلیفون شمېره دننه کړئ</string>
@@ -3524,6 +3530,8 @@
   <string name="StoriesLandingItem__forward">فاروارډ</string>
   <!--Context menu option to share a story-->
   <!--Context menu option to go to story chat-->
+  <!--Context menu option to go to story info-->
+  <string name="StoriesLandingItem__info">معلومات</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">د لیږلو په حال کې ده…</string>
   <!--Label when multiple stories are pending sending-->
@@ -3676,7 +3684,7 @@
   <!--Conversation Item label for reactions to an unavailable story-->
   <!--endregion-->
   <!--Content description for expand contacts chevron-->
-  <!--Duration and price information-->
+  <!--Gift price and duration, formatted as: {price} dot {n} day duration-->
   <!--Tagline for gift row items-->
   <!--Headline text on start fragment for gifting a badge-->
   <!--Description text on start fragment for gifting a badge-->
@@ -3761,5 +3769,16 @@
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
+  <!--Story info header sent heading-->
+  <string name="StoryInfoHeader__sent">لیږل شوی</string>
+  <!--Story info header received heading-->
+  <string name="StoryInfoHeader__received">تر لاسه شو</string>
+  <!--Story info header file size heading-->
+  <!--Story info "Sent to" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_to">ته لیږل شوی</string>
+  <!--Story info "Sent from" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_from">له خوا لیږل شوی</string>
+  <!--Story Info context menu label-->
+  <string name="StoryInfoBottomSheetDialogFragment__info">معلومات</string>
   <!--EOF-->
 </resources>

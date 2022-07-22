@@ -173,17 +173,22 @@
   <string name="ContactsDatabase_message_s">Съобщение %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal обаждане %s</string>
   <!--ContactNameEditActivity-->
+  <!--Toolbar title for contact name edit activity-->
   <string name="ContactNameEditActivity_given_name">Име</string>
   <string name="ContactNameEditActivity_family_name">Фамилия</string>
   <string name="ContactNameEditActivity_prefix">Титла</string>
   <string name="ContactNameEditActivity_suffix">Окончание</string>
   <string name="ContactNameEditActivity_middle_name">Презиме</string>
   <!--ContactShareEditActivity-->
+  <!--ContactShareEditActivity toolbar title-->
   <string name="ContactShareEditActivity_type_home">Домашен</string>
   <string name="ContactShareEditActivity_type_mobile">Мобилен</string>
   <string name="ContactShareEditActivity_type_work">Работен</string>
   <string name="ContactShareEditActivity_type_missing">Друг</string>
   <string name="ContactShareEditActivity_invalid_contact">Избраният контакт е невалиден</string>
+  <!--Content descrption for name edit button on contact share edit activity-->
+  <!--Content description for user avatar in edit activity-->
+  <string name="ContactShareEditActivity__avatar">Снимка</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_sent_tap_for_details">Не е изпратено, натиснете за повече информация</string>
   <string name="ConversationItem_error_partially_not_delivered">Частично изпратено, натиснете за повече информация</string>
@@ -2590,10 +2595,10 @@
   <string name="CreateKbsPinFragment__create_a_new_pin">Създай нов PIN</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Можете да смените ПИН кода си, докато това устройство е регистрирано.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Създаване на ПИН</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">ПИН кодовете съхраняват информацията, съхранявана със Signal, криптирана, така че само вие да имате достъп до нея. Вашият профил, настройки и контакти ще се възстановят, когато преинсталирате. Няма да ви е необходим вашият ПИН, за да отворите приложението.</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">ПИН кодовете съхраняват информацията, съхранявана със Signal, криптирана, така че само вие да имате достъп до нея. Вашите профил, настройки и контакти ще се възстановят, когато преинсталирате. Няма да ви е необходим вашият ПИН, за да отворите приложението.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">Изберете по-силен ПИН</string>
   <!--ConfirmKbsPinFragment-->
-  <string name="ConfirmKbsPinFragment__pins_dont_match">ПИН кода не съвпада. Опитайте пак.</string>
+  <string name="ConfirmKbsPinFragment__pins_dont_match">ПИН кодът не съвпада. Опитайте пак.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Потвърдете своя ПИН.</string>
   <string name="ConfirmKbsPinFragment__pin_creation_failed">Създаването на ПИН код не бе успешно</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Вашият ПИН не е запазен. По-късно ще ви подканим да създадете ПИН.</string>
@@ -2602,7 +2607,7 @@
   <string name="ConfirmKbsPinFragment__creating_pin">Създаване на ПИН…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Представяме ПИН кодове</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">ПИН кодовете съхраняват информацията, съхранявана със Signal, криптирана, така че само вие да имате достъп до нея. Вашият профил, настройки и контакти ще се възстановят, когато преинсталирате. Няма да ви е необходим вашият ПИН, за да отворите приложението.</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">ПИН кодовете съхраняват информацията, съхранявана със Signal, криптирана, така че само вие да имате достъп до нея. Вашите профил, настройки и контакти ще се възстановят, когато преинсталирате. Няма да ви е необходим вашият ПИН, за да отворите приложението.</string>
   <string name="KbsSplashFragment__learn_more">Научи Още</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Регистрационно заключване = ПИН</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Вашето регистрационно заключване вече се нарича ПИН и върши повече неща. Актуализирайте го сега.</string>
@@ -2687,10 +2692,10 @@
   <string name="preferences_chats__transfer_account_to_a_new_android_device">Прехвърляне на акаунта на ново устройство с Android</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Въведете парола за архивното копие</string>
   <string name="RegistrationActivity_restore">Възстановяване</string>
-  <string name="RegistrationActivity_backup_failure_downgrade">Не е възможно импортиране на архивни копия от по-нови версии на Signal</string>
+  <string name="RegistrationActivity_backup_failure_downgrade">Не е възможно внасянето на архивни копия от по-нови версии на Signal</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">Невалидна парола за архивно копие</string>
   <string name="RegistrationActivity_checking">Проверка…</string>
-  <string name="RegistrationActivity_d_messages_so_far">%dсъобщения до тук…</string>
+  <string name="RegistrationActivity_d_messages_so_far">%d съобщения до тук…</string>
   <string name="RegistrationActivity_restore_from_backup">Възстановяване от архивно копие?</string>
   <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Възстановяване на съобщения и мултимедия от локално архивно копие. Ако не възстановите сега, няма да можете да възстановите по-късно.</string>
   <string name="RegistrationActivity_backup_size_s">Размер на архивното копие: %s</string>
@@ -2724,15 +2729,15 @@
   <string name="BackupUtil_never">Никога</string>
   <string name="BackupUtil_unknown">Непознат</string>
   <string name="preferences_app_protection__see_my_phone_number">Виж телефонния номер</string>
-  <string name="preferences_app_protection__find_me_by_phone_number">Намери ме по Телефонен Номер</string>
+  <string name="preferences_app_protection__find_me_by_phone_number">Намери ме по Телефонен номер</string>
   <string name="PhoneNumberPrivacy_everyone">Всички</string>
   <string name="PhoneNumberPrivacy_my_contacts">Моите контакти</string>
   <string name="PhoneNumberPrivacy_nobody">Никой</string>
-  <string name="PhoneNumberPrivacy_everyone_see_description">Вашият телефонен номер ще бъде видим за всички хора и групи, които изпращате съобщения.</string>
+  <string name="PhoneNumberPrivacy_everyone_see_description">Вашият телефонен номер ще бъде видим за всички хора и групи, на които изпращате съобщения.</string>
   <string name="PhoneNumberPrivacy_everyone_find_description">Всеки, който има вашия телефонен номер в контактите си, ще ви види като контакт в Signal. Другите ще могат да ви намерят в търсенето.</string>
   <string name="preferences_app_protection__screen_lock">Заключен екран</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Заключване на достъпа до Signal с вградените в Андроид заключен екран или отпечатък</string>
-  <string name="preferences_app_protection__screen_lock_inactivity_timeout">Време за активирнае при неактивност</string>
+  <string name="preferences_app_protection__screen_lock_inactivity_timeout">Време за активиране при неактивност</string>
   <string name="preferences_app_protection__signal_pin">PIN код за Signal</string>
   <string name="preferences_app_protection__create_a_pin">Създайте си ПИН</string>
   <string name="preferences_app_protection__change_your_pin">Смяна на ПИН кода ви</string>
@@ -2768,7 +2773,7 @@
   <string name="TransferOrRestoreFragment__restore_from_backup">Възстанови от резервно копие</string>
   <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Възстановете съобщенията си от локално резервно копие. Ако не възстановите сега, няма да можете да го направите по-късно.</string>
   <!--NewDeviceTransferInstructionsFragment-->
-  <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Отворете Signal на старият ви Android телефон</string>
+  <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Отворете Signal на стария ви Android телефон</string>
   <string name="NewDeviceTransferInstructions__continue">Продължи</string>
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Натиснете профилната си снимка в горния ляв ъгъл и отворете Настройки</string>
@@ -2804,11 +2809,11 @@
   <string name="DeviceTransferSetup__retry">Опитай Отново</string>
   <string name="DeviceTransferSetup__submit_debug_logs">Изпращане на регистрационни логове за дебъгинг</string>
   <string name="DeviceTransferSetup__verify_code">Потвърди код</string>
-  <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">Потвърди, че кодът по-долу съвпада на двете ви устройства. След това натиснете продължи.</string>
+  <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">Потвърди, че кодът по-долу съвпада на двете ви устройства. След това натисни \"продължи\".</string>
   <string name="DeviceTransferSetup__the_numbers_do_not_match">Числата не съвпадат</string>
   <string name="DeviceTransferSetup__continue">Продължи</string>
   <string name="DeviceTransferSetup__number_is_not_the_same">Числото не е същото</string>
-  <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">Ако числата на устройствата не съвпадат е възможно да сте се свързали с грешното устройство. За да поправим това, прекратете прехвърлянето и опитайте пак, като държите двете си устройства близо.</string>
+  <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">Ако числата на устройствата не съвпадат, е възможно да сте се свързали с грешното устройство. За да поправим това, прекратете прехвърлянето и опитайте пак, като държите двете си устройства близо.</string>
   <string name="DeviceTransferSetup__stop_transfer">Прекрати прехвърляне</string>
   <string name="DeviceTransferSetup__unable_to_discover_old_device">Не успяхме да открием старото устройство</string>
   <string name="DeviceTransferSetup__unable_to_discover_new_device">Не успяхме да открием новото устройство</string>
@@ -2818,7 +2823,7 @@
   <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
   <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">На екрана на WiFi Direct, премахнете всички запаметени групи и прекъснете връзката с всички поканени или свързани устройства.</string>
   <string name="DeviceTransferSetup__wifi_direct_screen">Екран на WiFi Direct</string>
-  <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Опитайте на двете устройства да изключите Wi-Fi и след това отново да го включите.</string>
+  <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Опитайте да изключите Wi-Fi на двете устройства и след това отново да го включите.</string>
   <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Уверете се, че и двете устройства са в режим на прехвърляне.</string>
   <string name="DeviceTransferSetup__go_to_support_page">Към страницата за помощ</string>
   <string name="DeviceTransferSetup__try_again">Опитай отново</string>
@@ -2842,7 +2847,7 @@
   <string name="DeviceTransfer__unable_to_transfer">Не можахме да прехвърлим</string>
   <!--OldDeviceTransferInstructionsFragment-->
   <string name="OldDeviceTransferInstructions__transfer_account">Прехвърляне на акаунт</string>
-  <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">Можете да прехвърлите вашият Signal акаунт при първоначална настройка на Signal на ново Android устройство. Преди да продължите:</string>
+  <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">Можете да прехвърлите вашия Signal акаунт при първоначална настройка на Signal на ново Android устройство. Преди да продължите:</string>
   <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
   <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">Изтеглете Signal на новото си Android устройство</string>
   <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
@@ -2884,7 +2889,7 @@
   <string name="RecipientBottomSheet_add_to_contacts">Добавяне в контакти</string>
   <!--Error message that displays when a user tries to tap to view system contact details but has no app that supports it-->
   <string name="RecipientBottomSheet_unable_to_open_contacts">Не може да се намери приложение, което може да отваря контакти.</string>
-  <string name="RecipientBottomSheet_add_to_a_group">Добави до група</string>
+  <string name="RecipientBottomSheet_add_to_a_group">Добави към група</string>
   <string name="RecipientBottomSheet_add_to_another_group">Добави в друга група</string>
   <string name="RecipientBottomSheet_view_safety_number">Преглеждане на числото за сигурност</string>
   <string name="RecipientBottomSheet_make_admin">Направи администратор</string>
@@ -2892,11 +2897,11 @@
   <string name="RecipientBottomSheet_remove_from_group">Отстраняване от групата</string>
   <string name="RecipientBottomSheet_message_description">Съобщение</string>
   <string name="RecipientBottomSheet_voice_call_description">Гласово обаждане</string>
-  <string name="RecipientBottomSheet_insecure_voice_call_description">Некриптиран гласен разговор</string>
+  <string name="RecipientBottomSheet_insecure_voice_call_description">Некриптиран разговор</string>
   <string name="RecipientBottomSheet_video_call_description">Видео обаждане</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">Премахване %1$s като групов администратор?</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">\"%1$s\" ще може да редактира тази група и нейните членове.</string>
-  <string name="RecipientBottomSheet_remove_s_from_the_group">Премахване %1$s от тази група?</string>
+  <string name="RecipientBottomSheet_remove_s_from_the_group">Премахване на %1$s от тази група?</string>
   <!--Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin-->
   <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">Премахване на %1$s от групата? Потребителят няма да може да се присъедини отново чрез линка на групата.</string>
   <string name="RecipientBottomSheet_remove">Премахни</string>
@@ -2905,12 +2910,12 @@
   <string name="GroupRecipientListItem_approve_description">Одобряване</string>
   <string name="GroupRecipientListItem_deny_description">Охтвърляне</string>
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
-  <string name="GroupsLearnMore_legacy_vs_new_groups">Стари срещу Нови Групи</string>
-  <string name="GroupsLearnMore_what_are_legacy_groups">Какво са Стари Групи?</string>
-  <string name="GroupsLearnMore_paragraph_1">Стари Групи са групи, които не са съвместими с функциите на Нова Група като администратори и по-описателни актуализации на групи.</string>
-  <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">Мога ли да обновя Стара Група?</string>
-  <string name="GroupsLearnMore_paragraph_2">Стари Групи все още не могат да бъдат надстроени до Нови Групи, но можете да създадете нова група със същите членове, ако те са в най-новата версия на Signal.</string>
-  <string name="GroupsLearnMore_paragraph_3">Signal ще предложи начин за надграждане на Стари Групи в бъдеще.</string>
+  <string name="GroupsLearnMore_legacy_vs_new_groups">Стари срещу Нови групи</string>
+  <string name="GroupsLearnMore_what_are_legacy_groups">Какво са Стари групи?</string>
+  <string name="GroupsLearnMore_paragraph_1">Стари групи са групи, които не са съвместими с функциите на Нова група като администратори и по-описателни актуализации на групи.</string>
+  <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">Мога ли да обновя Стара група?</string>
+  <string name="GroupsLearnMore_paragraph_2">Стари групи все още не могат да бъдат надстроени до Нови групи, но можете да създадете нова група със същите членове, ако те са в най-новата версия на Signal.</string>
+  <string name="GroupsLearnMore_paragraph_3">Signal ще предложи начин за надграждане на Стари групи в бъдеще.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
   <string name="GroupLinkBottomSheet_share_hint_requiring_approval">Всеки с този линк може да види името и снимката на групата и да заяви да се присъедини към нея. Споделете го с хора, на които имате доверие. </string>
   <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">Всеки с този линк може да види името и снимката на групата и да се присъедини към нея. Споделете го с хора, на които имате доверие. </string>
@@ -2947,7 +2952,7 @@
   </plurals>
   <string name="ReviewCardDialogFragment__remove_s_from_group">Махни %1$s от група?</string>
   <string name="ReviewCardDialogFragment__remove">Премахни</string>
-  <string name="ReviewCardDialogFragment__failed_to_remove_group_member">Фалира да се махне член от група.</string>
+  <string name="ReviewCardDialogFragment__failed_to_remove_group_member">Неуспешно премахване на член от група.</string>
   <!--ReviewCard-->
   <string name="ReviewCard__member">Член</string>
   <string name="ReviewCard__request">Искай</string>
@@ -2969,6 +2974,8 @@
   <string name="CallParticipant__you">Вие</string>
   <string name="CallParticipant__you_on_another_device">Тебе (на друго устройство)</string>
   <string name="CallParticipant__s_on_another_device">%1$s (на друго устройство)</string>
+  <!--WifiToCellularPopupWindow-->
+  <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Изтриването на профила Ви ще:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Въведете телефонния си номер</string>
@@ -2979,7 +2986,7 @@
   <string name="DeleteAccountFragment__no_country_code">Не е избран код на държава</string>
   <string name="DeleteAccountFragment__no_number">Не е посочен номер</string>
   <string name="DeleteAccountFragment__the_phone_number">Въведеният от вас телефонен номер не съответства на вашия акаунт.</string>
-  <string name="DeleteAccountFragment__are_you_sure">Сигурни ли сте че искате да изтриете профила си?</string>
+  <string name="DeleteAccountFragment__are_you_sure">Сигурни ли сте, че искате да изтриете профила си?</string>
   <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Това ще изтрие вашия акаунт в Signal и ще нулира приложението. Приложението ще се затвори след завършване на процеса.</string>
   <string name="DeleteAccountFragment__failed_to_delete_account">Изтриването на акаунт не бе успешно. Имате ли мрежова връзка?</string>
   <string name="DeleteAccountFragment__failed_to_delete_local_data">Неуспешно изтриване на локални данни. Можете да го изчистите ръчно в настройките на системното приложение.</string>
@@ -3004,13 +3011,13 @@
   <string name="CreateGroupActivity__skip">Пропусни</string>
   <plurals name="CreateGroupActivity__d_members">
     <item quantity="one">%1$d член</item>
-    <item quantity="other">%1$d члена</item>
+    <item quantity="other">%1$d членове</item>
   </plurals>
   <!--ShareActivity-->
   <string name="ShareActivity__share">Споделяне</string>
   <string name="ShareActivity__send">Изпращане</string>
   <string name="ShareActivity__comma_s">, %1$s</string>
-  <string name="ShareActivity__sharing_to_multiple_chats_is">Споделяне с множество чатове се подържа само за Signal съобщения</string>
+  <string name="ShareActivity__sharing_to_multiple_chats_is">Споделяне с множество чатове се поддържа само за Signal съобщения</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Неуспешно изпращане до някои потребители</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Може да споделяте с максимум %1$d чата.</string>
@@ -3045,7 +3052,7 @@
   <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Приплъзни за повече тапети</string>
   <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Задаване на тапети за всички чатове</string>
   <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Задаване на тапет за %1$s</string>
-  <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Гледане на галерията трябва пазрешение на паметта.</string>
+  <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">За гледане на галерията трябва разрешение на паметта.</string>
   <!--WallpaperImageSelectionActivity-->
   <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">Избери снимка за тапет</string>
   <!--WallpaperCropActivity-->
@@ -3153,7 +3160,7 @@
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">Акаунт</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Питанията ще станат по-редки с времето</string>
-  <string name="AccountSettingsFragment__require_your_signal_pin">Изисквайте вашият Signal ПИН при регистриране на вашия телефонен номер със Signal отново</string>
+  <string name="AccountSettingsFragment__require_your_signal_pin">Изисквайте вашия Signal ПИН при регистриране на вашия телефонен номер със Signal отново</string>
   <string name="AccountSettingsFragment__change_phone_number">Смяна на телефонен номер</string>
   <!--ChangeNumberFragment-->
   <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Използвайте тази опция, за да промените текущия си телефонен номер на нов телефонен номер. Тази промяна не може да бъде върната.\n\nПреди да продължите, уверете се, че новият ви номер може да получава SMS-и или повиквания.</string>
@@ -3232,7 +3239,7 @@
   <string name="PrivacySettingsFragment__messaging">Съобщения</string>
   <string name="PrivacySettingsFragment__disappearing_messages">Изчезващи съобщения</string>
   <string name="PrivacySettingsFragment__app_security">Сигурност</string>
-  <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Забраняване на автоматично копиране на екрана в списка с често използвани програми и в самата програма.</string>
+  <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Забраняване на автоматично копиране на екрана в списъка с често използвани програми и в самата програма.</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Съобщения и повиквания в Signal, повикванията винаги да се предават и запечатан подател</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">Таймер по подразбиране за нови чатове</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Настроете таймер за изчезващи съобщения по подразбиране за нови чатове, започнати от вас.</string>
@@ -3478,7 +3485,7 @@
   <string name="ImageEditorHud__draw">Рисуване</string>
   <string name="ImageEditorHud__write_text">Писане на текст</string>
   <string name="ImageEditorHud__add_a_sticker">Добавяне на стикер</string>
-  <string name="ImageEditorHud__blur">Мъгли</string>
+  <string name="ImageEditorHud__blur">Замъгли</string>
   <string name="ImageEditorHud__done_editing">Край на редактирането</string>
   <string name="ImageEditorHud__clear_all">Изчистване на всички</string>
   <string name="ImageEditorHud__undo">Върни</string>
@@ -3622,7 +3629,7 @@
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Анулирането на абонамент изисква връзка с интернет.</string>
   <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Вашето устройство не поддържа Google Pay, така че не можете да се абонирате и да получите значка. Все още можете да подкрепите Signal, като направите дарение на нашия уебсайт.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Грешка в мрежата. Проверете връзката си и опитайте отново.</string>
-  <string name="NetworkFailure__retry">Опитай Отново</string>
+  <string name="NetworkFailure__retry">Опитай отново</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
   <string name="DonationsErrors__recipient_verification_failed">Неуспешна проверка на получателя.</string>
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
@@ -3735,7 +3742,7 @@
   <!--Profile status on if it is the active profile-->
   <string name="NotificationProfileDetails__on">Активирано</string>
   <!--Profile status on if it is not the active profile-->
-  <string name="NotificationProfileDetails__off">Деактивирани</string>
+  <string name="NotificationProfileDetails__off">Деактивирано</string>
   <!--Description of hours for schedule (start to end) times-->
   <string name="NotificationProfileDetails__s_to_s">%1$s до %2$s</string>
   <!--Section header for exceptions to the notification profile-->
@@ -3863,6 +3870,8 @@
   <string name="StoriesLandingItem__share">Споделяне…</string>
   <!--Context menu option to go to story chat-->
   <string name="StoriesLandingItem__go_to_chat">Към чата</string>
+  <!--Context menu option to go to story info-->
+  <string name="StoriesLandingItem__info">Информация</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">Изпращане…</string>
   <!--Label when multiple stories are pending sending-->
@@ -4137,7 +4146,7 @@
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">Вижте още</string>
   <string name="StoriesLinkPopup__visit_link">Посетете линка</string>
-  <!--Duration and price information-->
+  <!--Gift price and duration, formatted as: {price} dot {n} day duration-->
   <plurals name="GiftRowItem_s_dot_d_day_duration">
     <item quantity="one">%1$s · %2$d ден времетраене</item>
     <item quantity="other">%1$s · %2$d дни времетраене</item>
@@ -4280,7 +4289,10 @@
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Промени на номера за безопасност</string>
   <!--Message of safety number review fragment-->
-  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">%1$d получатели е възможно да са преинсталирали Signal или да са сменили устройството си. Докоснете получател, за да потвърдите новия номер за безопасност. Това не е задължително.</string>
+  <plurals name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">
+    <item quantity="one">%1$d получател може да е преинсталирал Signal или да е сменил устройството си. Докоснете получател, за да потвърдите новия номер за безопасност. Това не е задължително.</item>
+    <item quantity="other">%1$d получатели е възможно да са преинсталирали Signal или да са сменили устройството си. Докоснете получател, за да потвърдите новия номер за безопасност. Това не е задължително.</item>
+  </plurals>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">Контакти</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -4297,5 +4309,16 @@
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Всички връзки в Signal освен…</string>
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Споделяне само с…</string>
+  <!--Story info header sent heading-->
+  <string name="StoryInfoHeader__sent">Изпратен</string>
+  <!--Story info header received heading-->
+  <string name="StoryInfoHeader__received">Получен</string>
+  <!--Story info header file size heading-->
+  <!--Story info "Sent to" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_to">Изпратено на</string>
+  <!--Story info "Sent from" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_from">Изпратено от</string>
+  <!--Story Info context menu label-->
+  <string name="StoryInfoBottomSheetDialogFragment__info">Информация</string>
   <!--EOF-->
 </resources>

@@ -173,17 +173,25 @@
   <string name="ContactsDatabase_message_s">મેસેજ %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal કૉલ %s</string>
   <!--ContactNameEditActivity-->
+  <!--Toolbar title for contact name edit activity-->
+  <string name="ContactNameEditActivity__edit_name">નામમાં ફેરફાર કરો</string>
   <string name="ContactNameEditActivity_given_name">આપેલા નામ</string>
   <string name="ContactNameEditActivity_family_name">અટક</string>
   <string name="ContactNameEditActivity_prefix">પ્રિફિક્સ</string>
   <string name="ContactNameEditActivity_suffix">સફિક્સ</string>
   <string name="ContactNameEditActivity_middle_name">પિતાનું નામ</string>
   <!--ContactShareEditActivity-->
+  <!--ContactShareEditActivity toolbar title-->
+  <string name="ContactShareEditActivity__send_contact">સંપર્ક મોકલો</string>
   <string name="ContactShareEditActivity_type_home">ઘર</string>
   <string name="ContactShareEditActivity_type_mobile">મોબાઇલ</string>
   <string name="ContactShareEditActivity_type_work">કામ</string>
   <string name="ContactShareEditActivity_type_missing">અન્ય</string>
   <string name="ContactShareEditActivity_invalid_contact">પસંદ કરેલો સંપર્ક અમાન્ય હતો</string>
+  <!--Content descrption for name edit button on contact share edit activity-->
+  <string name="ContactShareEditActivity__edit_name">નામમાં ફેરફાર કરો</string>
+  <!--Content description for user avatar in edit activity-->
+  <string name="ContactShareEditActivity__avatar">અવતાર</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_sent_tap_for_details">મોકલ્યો નથી, વિગતો માટે ટેપ કરો</string>
   <string name="ConversationItem_error_partially_not_delivered">આંશિક રીતે મોકલેલ, વિગતો માટે ટેપ કરો</string>
@@ -2303,6 +2311,7 @@
   <string name="preferences_enter_proxy_address">પ્રોક્સી એડ્રેસ ઉમેરો</string>
   <string name="configurable_single_select__customize_option">કસ્ટમાઇઝ વિકલ્પ </string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">ઓનબોર્ડિંગ ફ્લેગ દૂર કરે છે અને ઓનબોર્ડિંગ સ્ટોરીનું ડાઉનલોડ શરૂ કરે છે.</string>
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">બધી પ્રવૃત્તિ </string>
   <string name="PaymentsAllActivityFragment__all">બધા</string>
@@ -2966,6 +2975,9 @@
   <string name="CallParticipant__you">તમે</string>
   <string name="CallParticipant__you_on_another_device">તમે (બીજા ડિવાઇસ પર)</string>
   <string name="CallParticipant__s_on_another_device">%1$s (બીજા ડિવાઇસ પર)</string>
+  <!--WifiToCellularPopupWindow-->
+  <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
+  <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">નબળું વાઇ-ફાઇ. સેલ્યુલર પર સ્વિચ કર્યું.</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">તમારું એકાઉન્ટ કાઢી નાખવાથી:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">તમારો ફોન નંબર દાખલ કરો</string>
@@ -3860,6 +3872,8 @@
   <string name="StoriesLandingItem__share">શેર કરો…</string>
   <!--Context menu option to go to story chat-->
   <string name="StoriesLandingItem__go_to_chat">ચેટ પર જાઓ</string>
+  <!--Context menu option to go to story info-->
+  <string name="StoriesLandingItem__info">માહિતી</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">મોકલી રહ્યો છે…</string>
   <!--Label when multiple stories are pending sending-->
@@ -4134,7 +4148,7 @@
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">વધુ જુઓ</string>
   <string name="StoriesLinkPopup__visit_link">લિંકની મુલાકાત લો</string>
-  <!--Duration and price information-->
+  <!--Gift price and duration, formatted as: {price} dot {n} day duration-->
   <plurals name="GiftRowItem_s_dot_d_day_duration">
     <item quantity="one">%1$s · %2$d દિવસોની અવધિ</item>
     <item quantity="other">%1$s · %2$d દિવસની અવધિ</item>
@@ -4277,7 +4291,10 @@
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">સલામતી નંબરના ફેરફારો</string>
   <!--Message of safety number review fragment-->
-  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">%1$d પ્રાપ્તકર્તાઓએ Signal ફરીથી ઇન્સ્ટોલ કરેલ અથવા ડિવાઇસ બદલેલ હોઈ શકે છે. નવા સલામતી નંબરની પુષ્ટિ કરવા પ્રાપ્તકર્તા પર ટૅપ કરો. આ વૈકલ્પિક છે.</string>
+  <plurals name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">
+    <item quantity="one">%1$d પ્રાપ્તકર્તાએ Signal ફરીથી ઇન્સ્ટોલ કરેલ અથવા ડિવાઇસ બદલેલ હોઈ શકે છે. નવા સલામતી નંબરની પુષ્ટિ કરવા પ્રાપ્તકર્તા પર ટૅપ કરો. આ વૈકલ્પિક છે.</item>
+    <item quantity="other">%1$d પ્રાપ્તકર્તાઓએ Signal ફરીથી ઇન્સ્ટોલ કરેલ અથવા ડિવાઇસ બદલેલ હોઈ શકે છે. નવા સલામતી નંબરની પુષ્ટિ કરવા પ્રાપ્તકર્તા પર ટૅપ કરો. આ વૈકલ્પિક છે.</item>
+  </plurals>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">સંપર્કો</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -4294,5 +4311,17 @@
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">બધા Signal કનેક્શન, સિવાય કે…</string>
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">ફક્ત આમની સાથે શેર કરો…</string>
+  <!--Story info header sent heading-->
+  <string name="StoryInfoHeader__sent">મોકલ્યો</string>
+  <!--Story info header received heading-->
+  <string name="StoryInfoHeader__received">મળી ગયા</string>
+  <!--Story info header file size heading-->
+  <string name="StoryInfoHeader__file_size">ફાઇલ સાઇઝ</string>
+  <!--Story info "Sent to" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_to">આને મોકલવામાં આવેલ છે</string>
+  <!--Story info "Sent from" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_from">તરફથી મોકલવામાં આવેલ છે</string>
+  <!--Story Info context menu label-->
+  <string name="StoryInfoBottomSheetDialogFragment__info">માહિતી</string>
   <!--EOF-->
 </resources>

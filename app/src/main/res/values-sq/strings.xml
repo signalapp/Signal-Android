@@ -173,17 +173,22 @@
   <string name="ContactsDatabase_message_s">%s mesazhi</string>
   <string name="ContactsDatabase_signal_call_s">Telefonatë Signal me %s</string>
   <!--ContactNameEditActivity-->
+  <!--Toolbar title for contact name edit activity-->
   <string name="ContactNameEditActivity_given_name">Emër</string>
   <string name="ContactNameEditActivity_family_name">Mbiemër</string>
   <string name="ContactNameEditActivity_prefix">Prefiks</string>
   <string name="ContactNameEditActivity_suffix">Prapashtesë</string>
   <string name="ContactNameEditActivity_middle_name">Emri i mesëm</string>
   <!--ContactShareEditActivity-->
+  <!--ContactShareEditActivity toolbar title-->
   <string name="ContactShareEditActivity_type_home">Kryefaqja</string>
   <string name="ContactShareEditActivity_type_mobile">Celular</string>
   <string name="ContactShareEditActivity_type_work">Pune</string>
   <string name="ContactShareEditActivity_type_missing">Tjetër</string>
   <string name="ContactShareEditActivity_invalid_contact">Kontakti i zgjedhur ishte i pavlefshëm</string>
+  <!--Content descrption for name edit button on contact share edit activity-->
+  <!--Content description for user avatar in edit activity-->
+  <string name="ContactShareEditActivity__avatar">Avatar</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_sent_tap_for_details">Nuk u dërgua, klikoni për detajet</string>
   <string name="ConversationItem_error_partially_not_delivered">Dërguar pjesërisht, klikoni për detajet</string>
@@ -2977,6 +2982,8 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="CallParticipant__you">Ju</string>
   <string name="CallParticipant__you_on_another_device">Ju (në një tjetër pajisje)</string>
   <string name="CallParticipant__s_on_another_device">%1$s (në tjetër pajisje)</string>
+  <!--WifiToCellularPopupWindow-->
+  <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Fshirja e llogarisë tuaj do të:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Jepni numrin e telefonit tuaj</string>
@@ -3871,6 +3878,8 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="StoriesLandingItem__share">Ndajeni me të tjerët…</string>
   <!--Context menu option to go to story chat-->
   <string name="StoriesLandingItem__go_to_chat">Kalo te fjalosja</string>
+  <!--Context menu option to go to story info-->
+  <string name="StoriesLandingItem__info">Info</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">Po dërgohet…</string>
   <!--Label when multiple stories are pending sending-->
@@ -4145,7 +4154,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">Shihni më tepër</string>
   <string name="StoriesLinkPopup__visit_link">Vizitoni linkun</string>
-  <!--Duration and price information-->
+  <!--Gift price and duration, formatted as: {price} dot {n} day duration-->
   <plurals name="GiftRowItem_s_dot_d_day_duration">
     <item quantity="one">%1$s · %2$dkohëzgjatja e ditës</item>
     <item quantity="other">%1$s · %2$d kohëzgjatja e ditës</item>
@@ -4288,7 +4297,6 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Ndryshimet e numrit të sigurisë</string>
   <!--Message of safety number review fragment-->
-  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">%1$dmarrës mund të kenë riinstaluar Signal ose të kenë ndryshuar pajisje. Kliko një marrës për të konfirmuar numrin e ri të sigurisë. Kjo është opsionale.</string>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">Kontaktet</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -4305,5 +4313,16 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Të gjitha lidhjet e Signal përveç…</string>
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Shpërndajeni vetëm me…</string>
+  <!--Story info header sent heading-->
+  <string name="StoryInfoHeader__sent">Dërguar më</string>
+  <!--Story info header received heading-->
+  <string name="StoryInfoHeader__received">Marrë më</string>
+  <!--Story info header file size heading-->
+  <!--Story info "Sent to" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_to">Dërguar te</string>
+  <!--Story info "Sent from" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_from">Dërguar nga</string>
+  <!--Story Info context menu label-->
+  <string name="StoryInfoBottomSheetDialogFragment__info">Info</string>
   <!--EOF-->
 </resources>

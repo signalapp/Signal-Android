@@ -175,17 +175,22 @@
   <string name="ContactsDatabase_message_s">%s של הודעה</string>
   <string name="ContactsDatabase_signal_call_s">שיחת Signal אל %s</string>
   <!--ContactNameEditActivity-->
+  <!--Toolbar title for contact name edit activity-->
   <string name="ContactNameEditActivity_given_name">שם פרטי</string>
   <string name="ContactNameEditActivity_family_name">שם משפחה</string>
   <string name="ContactNameEditActivity_prefix">קידומת</string>
   <string name="ContactNameEditActivity_suffix">סיומת</string>
   <string name="ContactNameEditActivity_middle_name">שם אמצעי</string>
   <!--ContactShareEditActivity-->
+  <!--ContactShareEditActivity toolbar title-->
   <string name="ContactShareEditActivity_type_home">בית</string>
   <string name="ContactShareEditActivity_type_mobile">נייד</string>
   <string name="ContactShareEditActivity_type_work">עבודה</string>
   <string name="ContactShareEditActivity_type_missing">אחר</string>
   <string name="ContactShareEditActivity_invalid_contact">איש קשר נבחר היה בלתי תקף</string>
+  <!--Content descrption for name edit button on contact share edit activity-->
+  <!--Content description for user avatar in edit activity-->
+  <string name="ContactShareEditActivity__avatar">יצגן</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_sent_tap_for_details">לא נשלח, הקש לפרטים</string>
   <string name="ConversationItem_error_partially_not_delivered">נשלח חלקית, הקש לפרטים</string>
@@ -3164,6 +3169,8 @@
   <string name="CallParticipant__you">את/ה</string>
   <string name="CallParticipant__you_on_another_device">את/ה (במכשיר אחר)</string>
   <string name="CallParticipant__s_on_another_device">%1$s (במכשיר אחר)</string>
+  <!--WifiToCellularPopupWindow-->
+  <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">מחיקת החשבון שלך:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">הכנס את מספר הטלפון שלך</string>
@@ -4074,6 +4081,8 @@
   <string name="StoriesLandingItem__share">שתף…</string>
   <!--Context menu option to go to story chat-->
   <string name="StoriesLandingItem__go_to_chat">לך אל התכתבות</string>
+  <!--Context menu option to go to story info-->
+  <string name="StoriesLandingItem__info">מידע</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">שולח…</string>
   <!--Label when multiple stories are pending sending-->
@@ -4360,7 +4369,7 @@
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">הצג עוד</string>
   <string name="StoriesLinkPopup__visit_link">בקר בקישור</string>
-  <!--Duration and price information-->
+  <!--Gift price and duration, formatted as: {price} dot {n} day duration-->
   <plurals name="GiftRowItem_s_dot_d_day_duration">
     <item quantity="one">%1$s · למשך יום %2$d</item>
     <item quantity="two">%1$s · למשך יומיים %2$d</item>
@@ -4515,7 +4524,6 @@
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">שינויים במספרי בטיחות</string>
   <!--Message of safety number review fragment-->
-  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">יתכן ש-%1$d נמענים התקינו מחדש את Signal או החליפו מכשירים. יש ללחוץ על נמען או נמענת כדי לאשר את מספר הבטיחות החדש. זו פעולה אופציונלית — לא חייבים.</string>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">אנשי קשר</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -4532,5 +4540,16 @@
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">כל חברי ה-Signal שלך חוץ מ…</string>
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">שיתוף רק עם…</string>
+  <!--Story info header sent heading-->
+  <string name="StoryInfoHeader__sent">נשלח</string>
+  <!--Story info header received heading-->
+  <string name="StoryInfoHeader__received">התקבל</string>
+  <!--Story info header file size heading-->
+  <!--Story info "Sent to" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_to">נשלחה אל</string>
+  <!--Story info "Sent from" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_from">נשלחה מאת</string>
+  <!--Story Info context menu label-->
+  <string name="StoryInfoBottomSheetDialogFragment__info">מידע</string>
   <!--EOF-->
 </resources>

@@ -177,17 +177,22 @@
   <string name="ContactsDatabase_message_s">رسالة %s</string>
   <string name="ContactsDatabase_signal_call_s">مكالمة Signal %s</string>
   <!--ContactNameEditActivity-->
+  <!--Toolbar title for contact name edit activity-->
   <string name="ContactNameEditActivity_given_name">الاسم الشخصي</string>
   <string name="ContactNameEditActivity_family_name">الاسم العائلي</string>
   <string name="ContactNameEditActivity_prefix">اللّقب</string>
   <string name="ContactNameEditActivity_suffix">لاحقة الاسم</string>
   <string name="ContactNameEditActivity_middle_name">الاسم الثاني</string>
   <!--ContactShareEditActivity-->
+  <!--ContactShareEditActivity toolbar title-->
   <string name="ContactShareEditActivity_type_home">المنزل</string>
   <string name="ContactShareEditActivity_type_mobile">الهاتف</string>
   <string name="ContactShareEditActivity_type_work">العمل</string>
   <string name="ContactShareEditActivity_type_missing">غير ذلك</string>
   <string name="ContactShareEditActivity_invalid_contact">جهة الاتصال التي تم اختيارها غير صالحة.</string>
+  <!--Content descrption for name edit button on contact share edit activity-->
+  <!--Content description for user avatar in edit activity-->
+  <string name="ContactShareEditActivity__avatar">الصورة الرمزية</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_sent_tap_for_details">لم تُرسَل، يرجى اللمس للمزيد من التفاصيل</string>
   <string name="ConversationItem_error_partially_not_delivered">أُرسلَت جزئيا فقط، يرجى اللمس لمعرفة المزيد</string>
@@ -3343,6 +3348,8 @@
   <string name="CallParticipant__you">أنت</string>
   <string name="CallParticipant__you_on_another_device">أنت (في جهاز آخر)</string>
   <string name="CallParticipant__s_on_another_device">%1$s (في جهاز آخر)</string>
+  <!--WifiToCellularPopupWindow-->
+  <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">سيؤدي حذف حسابك إلى :</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">يُرجى إدخال رقم هاتفك</string>
@@ -4269,6 +4276,8 @@
   <string name="StoriesLandingItem__share">المشاركة…</string>
   <!--Context menu option to go to story chat-->
   <string name="StoriesLandingItem__go_to_chat">الذهاب للمحادثة</string>
+  <!--Context menu option to go to story info-->
+  <string name="StoriesLandingItem__info">معلومات</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">يَجري الإرسال…</string>
   <!--Label when multiple stories are pending sending-->
@@ -4567,7 +4576,7 @@
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">رؤية المزيد</string>
   <string name="StoriesLinkPopup__visit_link">زيارة الرابط</string>
-  <!--Duration and price information-->
+  <!--Gift price and duration, formatted as: {price} dot {n} day duration-->
   <plurals name="GiftRowItem_s_dot_d_day_duration">
     <item quantity="zero">%1$s · لمدة %2$d أيام</item>
     <item quantity="one">%1$s · لمدة %2$d أيام</item>
@@ -4734,7 +4743,6 @@
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">تغييرات رقم الأمان</string>
   <!--Message of safety number review fragment-->
-  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">%1$d مُستلمين قد يكونوا أعادوا تثبيت Signal أو غيّروا أجهزتهم. انقر على مُستلم ما للتأكد من رقم الأمان الجديد. هذا الإجراء اختياري.</string>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">جهات الاتصال</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -4751,5 +4759,16 @@
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">كل ‫معارف Signal‬ إلا…</string>
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">مشاركة فقط مع…</string>
+  <!--Story info header sent heading-->
+  <string name="StoryInfoHeader__sent">أرسِلَت</string>
+  <!--Story info header received heading-->
+  <string name="StoryInfoHeader__received">تمَّ الاستلام</string>
+  <!--Story info header file size heading-->
+  <!--Story info "Sent to" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_to">أُرسِلَت إلى</string>
+  <!--Story info "Sent from" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_from">أُرسِلَت مِن قِبَل</string>
+  <!--Story Info context menu label-->
+  <string name="StoryInfoBottomSheetDialogFragment__info">معلومات</string>
   <!--EOF-->
 </resources>

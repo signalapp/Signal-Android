@@ -172,17 +172,22 @@
   <string name="ContactsDatabase_message_s">傳送訊息給 %s</string>
   <string name="ContactsDatabase_signal_call_s">與 %s 進行 Signal 通話</string>
   <!--ContactNameEditActivity-->
+  <!--Toolbar title for contact name edit activity-->
   <string name="ContactNameEditActivity_given_name">名字</string>
   <string name="ContactNameEditActivity_family_name">姓</string>
   <string name="ContactNameEditActivity_prefix">前綴名</string>
   <string name="ContactNameEditActivity_suffix">後綴名</string>
   <string name="ContactNameEditActivity_middle_name">中間名</string>
   <!--ContactShareEditActivity-->
+  <!--ContactShareEditActivity toolbar title-->
   <string name="ContactShareEditActivity_type_home">住家</string>
   <string name="ContactShareEditActivity_type_mobile">行動電話</string>
   <string name="ContactShareEditActivity_type_work">工作電話</string>
   <string name="ContactShareEditActivity_type_missing">其他</string>
   <string name="ContactShareEditActivity_invalid_contact">選擇的聯絡人無效</string>
+  <!--Content descrption for name edit button on contact share edit activity-->
+  <!--Content description for user avatar in edit activity-->
+  <string name="ContactShareEditActivity__avatar">頭像</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_sent_tap_for_details">未傳送，請點擊以獲得詳細資訊</string>
   <string name="ConversationItem_error_partially_not_delivered">部分發送，請點擊以了解細節。</string>
@@ -2872,6 +2877,8 @@
   <string name="CallParticipant__you">你</string>
   <string name="CallParticipant__you_on_another_device">你 (在其他的裝置上)</string>
   <string name="CallParticipant__s_on_another_device">%1$s (在另一台裝置上)</string>
+  <!--WifiToCellularPopupWindow-->
+  <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">刪除你的帳戶將：</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">輸入你的電話號碼</string>
@@ -3758,6 +3765,8 @@
   <string name="StoriesLandingItem__share">分享…</string>
   <!--Context menu option to go to story chat-->
   <string name="StoriesLandingItem__go_to_chat">到聊天</string>
+  <!--Context menu option to go to story info-->
+  <string name="StoriesLandingItem__info">資訊</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">傳送中…</string>
   <!--Label when multiple stories are pending sending-->
@@ -4026,7 +4035,7 @@
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">檢視更多</string>
   <string name="StoriesLinkPopup__visit_link">訪問連結</string>
-  <!--Duration and price information-->
+  <!--Gift price and duration, formatted as: {price} dot {n} day duration-->
   <plurals name="GiftRowItem_s_dot_d_day_duration">
     <item quantity="other">%1$s · 持續 %2$d 天</item>
   </plurals>
@@ -4163,7 +4172,6 @@
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">安全碼變更詳情</string>
   <!--Message of safety number review fragment-->
-  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">%1$d 位收件人可能已重新安裝 Signal 或更換裝置。點選任一位收件人即可確認安全碼；這道程序並非強制要求。</string>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">聯絡人</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -4180,5 +4188,16 @@
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">所有 Signal 聯絡人，除了…</string>
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">僅分享給…</string>
+  <!--Story info header sent heading-->
+  <string name="StoryInfoHeader__sent">傳送時間</string>
+  <!--Story info header received heading-->
+  <string name="StoryInfoHeader__received">接收時間</string>
+  <!--Story info header file size heading-->
+  <!--Story info "Sent to" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_to">傳送給</string>
+  <!--Story info "Sent from" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_from">傳送自</string>
+  <!--Story Info context menu label-->
+  <string name="StoryInfoBottomSheetDialogFragment__info">資訊</string>
   <!--EOF-->
 </resources>

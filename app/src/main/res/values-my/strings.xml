@@ -172,17 +172,22 @@
   <string name="ContactsDatabase_message_s">စာတို %s </string>
   <string name="ContactsDatabase_signal_call_s">Signal ခေါ်ဆိုမှု %s </string>
   <!--ContactNameEditActivity-->
+  <!--Toolbar title for contact name edit activity-->
   <string name="ContactNameEditActivity_given_name">ပေးထားပြီးသော နာမည်</string>
   <string name="ContactNameEditActivity_family_name">မိသားစုအမည်</string>
   <string name="ContactNameEditActivity_prefix">ရှေ့ဆက်</string>
   <string name="ContactNameEditActivity_suffix">နောက်ဆက်</string>
   <string name="ContactNameEditActivity_middle_name">Middle Name</string>
   <!--ContactShareEditActivity-->
+  <!--ContactShareEditActivity toolbar title-->
   <string name="ContactShareEditActivity_type_home">ပင်မစာမျက်နှာ</string>
   <string name="ContactShareEditActivity_type_mobile">မိုဘိုင်းဖုန်း</string>
   <string name="ContactShareEditActivity_type_work">အလုပ်</string>
   <string name="ContactShareEditActivity_type_missing">အခြား</string>
   <string name="ContactShareEditActivity_invalid_contact">ရွေးချယ်ထားသောအဆက်အသွယ် မှားယွင်းနေပါသည်</string>
+  <!--Content descrption for name edit button on contact share edit activity-->
+  <!--Content description for user avatar in edit activity-->
+  <string name="ContactShareEditActivity__avatar">ရုပ်ပုံ</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_sent_tap_for_details">မပို့ပါ၊ အသေးစိတ်သိရှိရန် နှိပ်ပါ</string>
   <string name="ConversationItem_error_partially_not_delivered">တစ်စိတ်တစ်ပိုင်းပို့ပြီး၊ အသေးစိတ်သိရှိရန် နှိပ်ပါ</string>
@@ -2871,6 +2876,8 @@
   <string name="CallParticipant__you">သင်</string>
   <string name="CallParticipant__you_on_another_device">သင် (အခြားစက်ကိရိယာပေါ်တွင်)</string>
   <string name="CallParticipant__s_on_another_device">%1$s (အခြားစက်ကိရိယာပေါ်တွင်)</string>
+  <!--WifiToCellularPopupWindow-->
+  <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">သင်၏အကောင့်ကိုဖျက်ခြင်းသည် -</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">သင့်ဖုန်းနံပါတ်ကိုထည့်ပါ</string>
@@ -3757,6 +3764,8 @@
   <string name="StoriesLandingItem__share">မျှဝေရန်…</string>
   <!--Context menu option to go to story chat-->
   <string name="StoriesLandingItem__go_to_chat">ချက်(တ်)သို့ သွားရန်</string>
+  <!--Context menu option to go to story info-->
+  <string name="StoriesLandingItem__info">အချက်အလက် </string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">ပို့နေသည်…</string>
   <!--Label when multiple stories are pending sending-->
@@ -4025,7 +4034,7 @@
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">ပိုမို ကြည့်ရှုရန်</string>
   <string name="StoriesLinkPopup__visit_link">လင့်ခ်အတိုင်း သွားကြည့်ရန်</string>
-  <!--Duration and price information-->
+  <!--Gift price and duration, formatted as: {price} dot {n} day duration-->
   <plurals name="GiftRowItem_s_dot_d_day_duration">
     <item quantity="other">%1$s · %2$d ရက်တာကာလ</item>
   </plurals>
@@ -4162,7 +4171,6 @@
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">လုံခြုံရေးနံပါတ် ပြောင်းလဲမှုများ</string>
   <!--Message of safety number review fragment-->
-  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">လက်ခံသူ %1$d ဦးသည် Signal ကို ပြန်လည်ထည့်သွင်းခဲ့ပါသည် သို့မဟုတ် စက်များ ပြောင်းခဲ့ပါသည်။ လုံခြုံရေးနံပါတ်အသစ်ကို အတည်ပြုရန် လက်ခံသူကို နှိပ်ပါ။ ဤသည်ကို မလုပ်လည်း ဖြစ်ပါသည်။</string>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">အဆက်အသွယ်များ</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -4179,5 +4187,16 @@
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">ဖော်ပြထားသူများမှလွဲ၍ Signal အဆက်အသွယ်များအားလုံး…</string>
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">ဖော်ပြထားသူများထံသာ ဝေမျှရန်…</string>
+  <!--Story info header sent heading-->
+  <string name="StoryInfoHeader__sent">ပို့ပြီးပြီ</string>
+  <!--Story info header received heading-->
+  <string name="StoryInfoHeader__received">လက်ခံရရှိပြီး</string>
+  <!--Story info header file size heading-->
+  <!--Story info "Sent to" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_to">သို့ပို့ပြီး</string>
+  <!--Story info "Sent from" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_from">မှပေးပို့သည်</string>
+  <!--Story Info context menu label-->
+  <string name="StoryInfoBottomSheetDialogFragment__info">အချက်အလက် </string>
   <!--EOF-->
 </resources>

@@ -175,17 +175,22 @@
   <string name="ContactsDatabase_message_s">Zpráva %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal volání %s</string>
   <!--ContactNameEditActivity-->
+  <!--Toolbar title for contact name edit activity-->
   <string name="ContactNameEditActivity_given_name">Křestní jméno</string>
   <string name="ContactNameEditActivity_family_name">Příjmení</string>
   <string name="ContactNameEditActivity_prefix">Titul před</string>
   <string name="ContactNameEditActivity_suffix">Titul za</string>
   <string name="ContactNameEditActivity_middle_name">Druhé jméno</string>
   <!--ContactShareEditActivity-->
+  <!--ContactShareEditActivity toolbar title-->
   <string name="ContactShareEditActivity_type_home">Domů</string>
   <string name="ContactShareEditActivity_type_mobile">Mobil</string>
   <string name="ContactShareEditActivity_type_work">Práce</string>
   <string name="ContactShareEditActivity_type_missing">Ostatní</string>
   <string name="ContactShareEditActivity_invalid_contact">Vybraný kontakt je neplatný</string>
+  <!--Content descrption for name edit button on contact share edit activity-->
+  <!--Content description for user avatar in edit activity-->
+  <string name="ContactShareEditActivity__avatar">Avatar</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_sent_tap_for_details">Neodesláno, klepněte pro zobrazení detailů</string>
   <string name="ConversationItem_error_partially_not_delivered">Odesláno částečně, klepněte pro zobrazení detailů</string>
@@ -3163,6 +3168,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="CallParticipant__you">Vy</string>
   <string name="CallParticipant__you_on_another_device">Vy (na jiném zařízení)</string>
   <string name="CallParticipant__s_on_another_device">%1$s (na jiném zařízení)</string>
+  <!--WifiToCellularPopupWindow-->
+  <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Vymazání vašeho účtu způsobí:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Zadejte vaše tel. číslo</string>
@@ -4073,6 +4080,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="StoriesLandingItem__share">Sdílet…</string>
   <!--Context menu option to go to story chat-->
   <string name="StoriesLandingItem__go_to_chat">Jít do konverzace</string>
+  <!--Context menu option to go to story info-->
+  <string name="StoriesLandingItem__info">Info</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">Odesílání…</string>
   <!--Label when multiple stories are pending sending-->
@@ -4359,7 +4368,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">Zobrazit více</string>
   <string name="StoriesLinkPopup__visit_link">Navštívit odkaz</string>
-  <!--Duration and price information-->
+  <!--Gift price and duration, formatted as: {price} dot {n} day duration-->
   <plurals name="GiftRowItem_s_dot_d_day_duration">
     <item quantity="one">%1$s · %2$dden trvání</item>
     <item quantity="few">%1$s · %2$ddny trvání</item>
@@ -4514,7 +4523,6 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Změny bezpečnostního čísla</string>
   <!--Message of safety number review fragment-->
-  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">%1$dpříjemci si pravděpodobně přeinstalovali aplikaci Signal nebo změnili zařízení. Klepnutím na příjemce potvrďte nové bezpečnostní číslo. Tato možnost je volitelná.</string>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">Kontakty</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -4531,5 +4539,16 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Všechna spojení Signal kromě…</string>
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Sdílet jen s…</string>
+  <!--Story info header sent heading-->
+  <string name="StoryInfoHeader__sent">Odesláno</string>
+  <!--Story info header received heading-->
+  <string name="StoryInfoHeader__received">Přijato</string>
+  <!--Story info header file size heading-->
+  <!--Story info "Sent to" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_to">Odesláno pro</string>
+  <!--Story info "Sent from" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_from">Odesláno od</string>
+  <!--Story Info context menu label-->
+  <string name="StoryInfoBottomSheetDialogFragment__info">Info</string>
   <!--EOF-->
 </resources>

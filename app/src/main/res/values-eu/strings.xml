@@ -173,17 +173,22 @@
   <string name="ContactsDatabase_message_s">Mezu %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal Dei %s</string>
   <!--ContactNameEditActivity-->
+  <!--Toolbar title for contact name edit activity-->
   <string name="ContactNameEditActivity_given_name">Izen tipia</string>
   <string name="ContactNameEditActivity_family_name">Abizena</string>
   <string name="ContactNameEditActivity_prefix">Aurrizkia</string>
   <string name="ContactNameEditActivity_suffix">Atzizkia</string>
   <string name="ContactNameEditActivity_middle_name">Bigarren izena</string>
   <!--ContactShareEditActivity-->
+  <!--ContactShareEditActivity toolbar title-->
   <string name="ContactShareEditActivity_type_home">Sorlekua</string>
   <string name="ContactShareEditActivity_type_mobile">Telefono mugikorra</string>
   <string name="ContactShareEditActivity_type_work">Lana</string>
   <string name="ContactShareEditActivity_type_missing">Besteak</string>
   <string name="ContactShareEditActivity_invalid_contact">Aukeratutako kontaktua baliogabea da</string>
+  <!--Content descrption for name edit button on contact share edit activity-->
+  <!--Content description for user avatar in edit activity-->
+  <string name="ContactShareEditActivity__avatar">Abatarra</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_sent_tap_for_details">Ez da bidali; sakatu xehetasunak ikusteko.</string>
   <string name="ConversationItem_error_partially_not_delivered">Partzialki bidalia; sakatu xehetasunak ikusteko</string>
@@ -2973,6 +2978,8 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="CallParticipant__you">Zu</string>
   <string name="CallParticipant__you_on_another_device">Zu (beste gailu batean)</string>
   <string name="CallParticipant__s_on_another_device">%1$s (beste gailu baten)</string>
+  <!--WifiToCellularPopupWindow-->
+  <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Zure kontua ezabatzean zera gertatuko da:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Idatzi zure telefono zenbakia</string>
@@ -3867,6 +3874,8 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="StoriesLandingItem__share">Partekatu…</string>
   <!--Context menu option to go to story chat-->
   <string name="StoriesLandingItem__go_to_chat">Joan txatera</string>
+  <!--Context menu option to go to story info-->
+  <string name="StoriesLandingItem__info">Info</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">Bidaltzen…</string>
   <!--Label when multiple stories are pending sending-->
@@ -4141,7 +4150,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">Ikusi gehiago</string>
   <string name="StoriesLinkPopup__visit_link">Ikusi linka</string>
-  <!--Duration and price information-->
+  <!--Gift price and duration, formatted as: {price} dot {n} day duration-->
   <plurals name="GiftRowItem_s_dot_d_day_duration">
     <item quantity="one">%1$s · %2$deguneko iraupena</item>
     <item quantity="other">%1$s · %2$deguneko iraupena</item>
@@ -4284,7 +4293,6 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Segurtasun-zenbakiaren aldaketak</string>
   <!--Message of safety number review fragment-->
-  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">Baliteke %1$d hartzailek Signal berriro instalatu edo gailuak aldatu izatea. Sakatu hartzaile bat segurtasun-zenbaki berria berresteko. Hau hautazkoa da.</string>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">Kontaktuak</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -4301,5 +4309,16 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Signal konexio guztiak… ezik</string>
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">…rekin bakarrik partekatu</string>
+  <!--Story info header sent heading-->
+  <string name="StoryInfoHeader__sent">Bidalita</string>
+  <!--Story info header received heading-->
+  <string name="StoryInfoHeader__received">Jasota</string>
+  <!--Story info header file size heading-->
+  <!--Story info "Sent to" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_to">Honi bidalia</string>
+  <!--Story info "Sent from" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_from">Honengandik bidalia</string>
+  <!--Story Info context menu label-->
+  <string name="StoryInfoBottomSheetDialogFragment__info">Info</string>
   <!--EOF-->
 </resources>

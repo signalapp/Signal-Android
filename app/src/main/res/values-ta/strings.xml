@@ -173,17 +173,22 @@
   <string name="ContactsDatabase_message_s">செய்தி %s</string>
   <string name="ContactsDatabase_signal_call_s"> Signal அழைப்பு %s</string>
   <!--ContactNameEditActivity-->
+  <!--Toolbar title for contact name edit activity-->
   <string name="ContactNameEditActivity_given_name">கொடுக்கப்பட்ட பெயர்</string>
   <string name="ContactNameEditActivity_family_name">குடும்ப பெயர்</string>
   <string name="ContactNameEditActivity_prefix">முன்னொட்டு</string>
   <string name="ContactNameEditActivity_suffix">பின்னொட்டு</string>
   <string name="ContactNameEditActivity_middle_name">நடுப்பெயர்</string>
   <!--ContactShareEditActivity-->
+  <!--ContactShareEditActivity toolbar title-->
   <string name="ContactShareEditActivity_type_home">வீடு</string>
   <string name="ContactShareEditActivity_type_mobile">கைபேசி</string>
   <string name="ContactShareEditActivity_type_work">அலுவலகம்</string>
   <string name="ContactShareEditActivity_type_missing">மற்றவை</string>
   <string name="ContactShareEditActivity_invalid_contact">தேர்ந்தெடுத்த தொடர்பு தவறானது</string>
+  <!--Content descrption for name edit button on contact share edit activity-->
+  <!--Content description for user avatar in edit activity-->
+  <string name="ContactShareEditActivity__avatar">சின்னம்</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_sent_tap_for_details">அனுப்பப்படவில்லை, மேலும் விவரங்களுக்கு இங்கே தட்டவும்</string>
   <string name="ConversationItem_error_partially_not_delivered">சிலருக்கு இது அனுப்பப்படுகிறது, விவரங்களுக்கு இங்கே தட்டவும்</string>
@@ -2963,6 +2968,8 @@
   <string name="CallParticipant__you">நீங்கள்</string>
   <string name="CallParticipant__you_on_another_device">நீங்கள் (மற்றொரு சாதனத்தில்)</string>
   <string name="CallParticipant__s_on_another_device">%1$s  (மற்றொரு சாதனத்தில்)</string>
+  <!--WifiToCellularPopupWindow-->
+  <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">உங்கள் நீக்குகிறது கணக்கு விருப்பம்:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">உள்ளிடவும் உங்கள் தொலைபேசி எண்</string>
@@ -3860,6 +3867,8 @@
   <string name="StoriesLandingItem__share">பகிரவும்…</string>
   <!--Context menu option to go to story chat-->
   <string name="StoriesLandingItem__go_to_chat">சாட்டிற்குச் செல் </string>
+  <!--Context menu option to go to story info-->
+  <string name="StoriesLandingItem__info">தகவல்</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">அனுப்புகிறது …</string>
   <!--Label when multiple stories are pending sending-->
@@ -4134,7 +4143,7 @@
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">மேலும் பார்க்கவும்</string>
   <string name="StoriesLinkPopup__visit_link">இணைப்பை பார்வையிடவும்</string>
-  <!--Duration and price information-->
+  <!--Gift price and duration, formatted as: {price} dot {n} day duration-->
   <plurals name="GiftRowItem_s_dot_d_day_duration">
     <item quantity="one">%1$s · %2$d நாள் காலம்</item>
     <item quantity="other">%1$s · %2$d நாள் காலம்</item>
@@ -4277,7 +4286,6 @@
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">பாதுகாப்பு எண் மாற்றங்கள்</string>
   <!--Message of safety number review fragment-->
-  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">%1$d பெறுநர்கள் சிக்னலை மீண்டும் நிறுவியிருக்கலாம் அல்லது சாதனங்களை மாற்றியிருக்கலாம். புதிய பாதுகாப்பு எண்ணை உறுதிப்படுத்த ஒரு பெறுநரைத் தட்டவும். இது கட்டாயமில்லை.</string>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">தொடர்புகள்</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -4294,5 +4302,16 @@
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">அனைத்து சிக்னல் இணைப்புகளும், இதை தவிர…</string>
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">இவர்களுடன் மட்டும் பகிரவும்…</string>
+  <!--Story info header sent heading-->
+  <string name="StoryInfoHeader__sent">அனுப்பியது </string>
+  <!--Story info header received heading-->
+  <string name="StoryInfoHeader__received">பெறப்பட்டது</string>
+  <!--Story info header file size heading-->
+  <!--Story info "Sent to" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_to">அனுப்பப்பட்டது</string>
+  <!--Story info "Sent from" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_from">அனுப்புனர்</string>
+  <!--Story Info context menu label-->
+  <string name="StoryInfoBottomSheetDialogFragment__info">தகவல்</string>
   <!--EOF-->
 </resources>

@@ -175,17 +175,22 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="ContactsDatabase_message_s">Bericht sturen naar %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal-oproep %s</string>
   <!--ContactNameEditActivity-->
+  <!--Toolbar title for contact name edit activity-->
   <string name="ContactNameEditActivity_given_name">Voornaam</string>
   <string name="ContactNameEditActivity_family_name">Achternaam</string>
   <string name="ContactNameEditActivity_prefix">Voorvoegsel</string>
   <string name="ContactNameEditActivity_suffix">Achtervoegsel</string>
   <string name="ContactNameEditActivity_middle_name">Tweede voornaam</string>
   <!--ContactShareEditActivity-->
+  <!--ContactShareEditActivity toolbar title-->
   <string name="ContactShareEditActivity_type_home">Thuis</string>
   <string name="ContactShareEditActivity_type_mobile">Mobiel</string>
   <string name="ContactShareEditActivity_type_work">Werk</string>
   <string name="ContactShareEditActivity_type_missing">Anders</string>
   <string name="ContactShareEditActivity_invalid_contact">De geselecteerde contactpersoon was ongeldig</string>
+  <!--Content descrption for name edit button on contact share edit activity-->
+  <!--Content description for user avatar in edit activity-->
+  <string name="ContactShareEditActivity__avatar">Profielfoto</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_sent_tap_for_details">Niet verzonden, tik hier voor details</string>
   <string name="ConversationItem_error_partially_not_delivered">Deels verzonden, tik voor details</string>
@@ -2977,6 +2982,8 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="CallParticipant__you">Jij</string>
   <string name="CallParticipant__you_on_another_device">Jij (vanaf een ander apparaat)</string>
   <string name="CallParticipant__s_on_another_device">%1$s (vanaf een ander apparaat)</string>
+  <!--WifiToCellularPopupWindow-->
+  <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Als je al je gegevens wist:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Voer je telefoonnummer in</string>
@@ -3871,6 +3878,8 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="StoriesLandingItem__share">Doorsturen …</string>
   <!--Context menu option to go to story chat-->
   <string name="StoriesLandingItem__go_to_chat">Gesprek openen</string>
+  <!--Context menu option to go to story info-->
+  <string name="StoriesLandingItem__info">Bericht­details</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">Bezig met verzenden …</string>
   <!--Label when multiple stories are pending sending-->
@@ -4145,7 +4154,7 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">Meer weergeven</string>
   <string name="StoriesLinkPopup__visit_link">Verwijzing volgen</string>
-  <!--Duration and price information-->
+  <!--Gift price and duration, formatted as: {price} dot {n} day duration-->
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">Een cadeau-badge verzenden</string>
   <!--Headline text on start fragment for gifting a badge-->
@@ -4284,7 +4293,6 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Veranderingen in het veiligheidsnummer</string>
   <!--Message of safety number review fragment-->
-  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">%1$d ontvangers kunnen Signal opnieuw geïnstalleerd hebben of van toestel veranderd zijn. Tik op een ontvanger om het nieuwe veiligheidsnummer te bevestigen. Dit is optioneel.</string>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">Contactpersonen</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -4301,5 +4309,16 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Alle contacten op Signal behalve…</string>
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Deel alleen met…</string>
+  <!--Story info header sent heading-->
+  <string name="StoryInfoHeader__sent">Verzonden</string>
+  <!--Story info header received heading-->
+  <string name="StoryInfoHeader__received">Ontvangen</string>
+  <!--Story info header file size heading-->
+  <!--Story info "Sent to" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_to">Verzonden aan</string>
+  <!--Story info "Sent from" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_from">Verzonden door</string>
+  <!--Story Info context menu label-->
+  <string name="StoryInfoBottomSheetDialogFragment__info">Bericht­details</string>
   <!--EOF-->
 </resources>

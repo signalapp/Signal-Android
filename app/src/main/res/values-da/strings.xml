@@ -173,17 +173,22 @@
   <string name="ContactsDatabase_message_s">Besked %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal-opkald %s</string>
   <!--ContactNameEditActivity-->
+  <!--Toolbar title for contact name edit activity-->
   <string name="ContactNameEditActivity_given_name">Fornavn</string>
   <string name="ContactNameEditActivity_family_name">Efternavn</string>
   <string name="ContactNameEditActivity_prefix">Navnepræfiks</string>
   <string name="ContactNameEditActivity_suffix">Navnesuffiks</string>
   <string name="ContactNameEditActivity_middle_name">Mellemnavn</string>
   <!--ContactShareEditActivity-->
+  <!--ContactShareEditActivity toolbar title-->
   <string name="ContactShareEditActivity_type_home">Hjemme</string>
   <string name="ContactShareEditActivity_type_mobile">Mobil</string>
   <string name="ContactShareEditActivity_type_work">Arbejde</string>
   <string name="ContactShareEditActivity_type_missing">Andet</string>
   <string name="ContactShareEditActivity_invalid_contact">Valgte kontakt findes ikke</string>
+  <!--Content descrption for name edit button on contact share edit activity-->
+  <!--Content description for user avatar in edit activity-->
+  <string name="ContactShareEditActivity__avatar">Avatar</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_sent_tap_for_details">Ikke sendt, tryk for detaljer</string>
   <string name="ConversationItem_error_partially_not_delivered">Delvist sendt, tryk for detaljer</string>
@@ -2067,7 +2072,7 @@ nummer (%s) er ugyldigt</string>
     <item>Feedback</item>
     <item>Andet</item>
     <item>Betalinger (MobileCoin)</item>
-    <item>Donationer og badges</item>
+    <item>Donationer &amp; badges</item>
   </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Denne besked</string>
@@ -2967,6 +2972,8 @@ nummer (%s) er ugyldigt</string>
   <string name="CallParticipant__you">Dig</string>
   <string name="CallParticipant__you_on_another_device">Dig (på en anden enhed)</string>
   <string name="CallParticipant__s_on_another_device">%1$s (på en anden enhed)</string>
+  <!--WifiToCellularPopupWindow-->
+  <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Sletning af din konto vil:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Indtast dit telefonnummer</string>
@@ -3860,6 +3867,8 @@ nummer (%s) er ugyldigt</string>
   <string name="StoriesLandingItem__share">Del…</string>
   <!--Context menu option to go to story chat-->
   <string name="StoriesLandingItem__go_to_chat">Gå til samtale</string>
+  <!--Context menu option to go to story info-->
+  <string name="StoriesLandingItem__info">Information</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">Sender …</string>
   <!--Label when multiple stories are pending sending-->
@@ -3917,7 +3926,9 @@ nummer (%s) er ugyldigt</string>
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">Ingen visninger endnu</string>
   <!--Displayed when user has disabled receipts-->
+  <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Slå læs kvitteringer til, for at se hvem der har set dine historier.</string>
   <!--Button label displayed when user has disabled receipts-->
+  <string name="StoryViewsFragment__go_to_settings">Gå til Indstillinger</string>
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Ingen svar endnu</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
@@ -3955,7 +3966,7 @@ nummer (%s) er ugyldigt</string>
   <!--Privacy setting description for sending stories to all your signal connections-->
   <string name="MyStorySettingsFragment__share_with_all_connections">Del med alle forbindelser</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
-  <string name="MyStorySettingsFragment__all_signal_connections_except">Alle Signal-forbindelser med undtagelse af …</string>
+  <string name="MyStorySettingsFragment__all_signal_connections_except">Alle Signal-forbindelser med undtagelse af…</string>
   <!--Privacy setting description for sending stories to all except the specified connections-->
   <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Gem din historie for bestemte personer</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
@@ -3964,7 +3975,7 @@ nummer (%s) er ugyldigt</string>
     <item quantity="other">%1$d personer er ekskluderet</item>
   </plurals>
   <!--Privacy setting title for only sharing your story with specified connections-->
-  <string name="MyStorySettingsFragment__only_share_with">Del kun med …</string>
+  <string name="MyStorySettingsFragment__only_share_with">Del kun med…</string>
   <!--Privacy setting description for only sharing your story with specified connections-->
   <string name="MyStorySettingsFragment__only_share_with_selected_people">Del kun med udvalgte personer</string>
   <!--Summary of clickable option displaying how many people you have included to send to in your story-->
@@ -4034,9 +4045,9 @@ nummer (%s) er ugyldigt</string>
   <string name="TextStoryPostSendFragment__search">Søg</string>
   <!--Toast shown when an unexpected error occurs while sending a text story-->
   <!--Title for screen allowing user to exclude "My Story" entries from specific people-->
-  <string name="ChangeMyStoryMembershipFragment__all_except">Alle med undtagelse af …</string>
+  <string name="ChangeMyStoryMembershipFragment__all_except">Alle med undtagelse af…</string>
   <!--Title for screen allowing user to only share "My Story" entries with specific people-->
-  <string name="ChangeMyStoryMembershipFragment__only_share_with">Del kun med …</string>
+  <string name="ChangeMyStoryMembershipFragment__only_share_with">Del kun med…</string>
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">Udført</string>
   <!--Dialog title for first time adding something to a story-->
@@ -4128,7 +4139,7 @@ nummer (%s) er ugyldigt</string>
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">Vis mere</string>
   <string name="StoriesLinkPopup__visit_link">Besøg link</string>
-  <!--Duration and price information-->
+  <!--Gift price and duration, formatted as: {price} dot {n} day duration-->
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">Send et gaveemblem</string>
   <!--Headline text on start fragment for gifting a badge-->
@@ -4190,6 +4201,7 @@ nummer (%s) er ugyldigt</string>
     <item quantity="other">Gruppehistorie · %1$d seere</item>
   </plurals>
   <!--Label under name for My Story when first sending to my story-->
+  <string name="ContactSearchItems__tap_to_choose_your_viewers">Tryk for at vælge dine seere</string>
   <!--Label for context menu item to open story settings-->
   <string name="ContactSearchItems__story_settings">Indstillinger for historie</string>
   <!--Label for context menu item to remove a group story from contact results-->
@@ -4234,38 +4246,68 @@ nummer (%s) er ugyldigt</string>
   <!--Button label to confirm understanding of story navigation-->
   <string name="StoryFirstTimeNagivationView__got_it">Forstået</string>
   <!--Content description for vertical context menu button in safety number sheet rows-->
+  <string name="SafetyNumberRecipientRowItem__open_context_menu">Åben genvejsmenu</string>
   <!--Sub-line when a user is verified.-->
+  <string name="SafetyNumberRecipientRowItem__s_dot_verified">%1$s · Bekræftet</string>
   <!--Sub-line when a user is verified.-->
   <string name="SafetyNumberRecipientRowItem__verified">Bekræftet</string>
   <!--Title of safety number changes bottom sheet when showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_changes">Ændringer til sikkerhedsnummer</string>
   <!--Message of safety number changes bottom sheet when showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__the_following_people">Følgende personer har muligvis geninstalleret Signal eller skiftet enhed. Tryk på en modtager for at bekræfte sikkerhedsnummeret. Dette er valgfrit.</string>
   <!--Title of safety number changes bottom sheet when not showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup">Kontrol af sikkerhedsnummer</string>
   <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">Kontrol af sikkerhedsnummer gennemført</string>
   <!--Message of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
+  <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Alle forbindelser er gennemgået. Tryk send for at fortsætte.</string>
   <!--Message of safety number changes bottom sheet when not showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">Du har %1$d forbindelser, der muligvis har geninstalleret Signal eller skiftet enhed. Gennemgå deres sikkerhedsnummer eller overvej at fjerne dem fra din historie inden du deler din historie med dem.</string>
   <!--Menu action to launch safety number verification screen-->
   <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Verificer sikkerhedsnummer</string>
   <!--Menu action to remove user from story-->
+  <string name="SafetyNumberBottomSheetFragment__remove_from_story">Fjern fra historie</string>
   <!--Action button at bottom of SafetyNumberBottomSheetFragment to send anyway-->
   <string name="SafetyNumberBottomSheetFragment__send_anyway">Send alligevel</string>
   <!--Action button at bottom of SafetyNumberBottomSheetFragment to review connections-->
+  <string name="SafetyNumberBottomSheetFragment__review_connections">Gennemgå forbindelser</string>
   <!--Empty state copy for SafetyNumberBottomSheetFragment-->
+  <string name="SafetyNumberBottomSheetFragment__no_more_recipients_to_show">Ikke flere modtagere at vise</string>
   <!--Done button on safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__done">Udført</string>
   <!--Title of safety number review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Ændringer til sikkerhedsnummer</string>
   <!--Message of safety number review fragment-->
+  <plurals name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">
+    <item quantity="one">%1$d har muligvis geninstalleret Signal eller skiftet enhed. Tryk på modtageren for at bekræfte sikkerhedsnummeret. Dette er valgfrit.</item>
+    <item quantity="other">%1$d modtagere har muligvis geninstalleret Signal eller skiftet enhed. Tryk på en modtager for at bekræfte sikkerhedsnummeret. Dette er valgfrit.</item>
+  </plurals>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">Kontakter</string>
   <!--Context menu label for distribution list headers in review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__remove_all">Fjern alle</string>
   <!--Context menu label for 1:1 contacts to remove from send-->
   <string name="SafetyNumberReviewConnectionsFragment__remove">Fjern</string>
   <!--Title of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">Mit historieprivatliv</string>
   <!--Subtitle of initial My Story settings configuration shown when sending to My Story for the first time-->
+  <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">Vælg, hvem der kan se posteringer i Min Historie. Du kan altid lave ændringer i indstillinger.</string>
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Alle Signal-forbindelser</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Alle Signal-forbindelser med undtagelse af …</string>
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Del kun med …</string>
+  <!--Story info header sent heading-->
+  <string name="StoryInfoHeader__sent">Sendt</string>
+  <!--Story info header received heading-->
+  <string name="StoryInfoHeader__received">Modtaget</string>
+  <!--Story info header file size heading-->
+  <!--Story info "Sent to" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_to">Sendt til</string>
+  <!--Story info "Sent from" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_from">Sendt fra</string>
+  <!--Story Info context menu label-->
+  <string name="StoryInfoBottomSheetDialogFragment__info">Information</string>
   <!--EOF-->
 </resources>

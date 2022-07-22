@@ -175,17 +175,22 @@
   <string name="ContactsDatabase_message_s">Žinutė %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal skambutis %s</string>
   <!--ContactNameEditActivity-->
+  <!--Toolbar title for contact name edit activity-->
   <string name="ContactNameEditActivity_given_name">Vardas</string>
   <string name="ContactNameEditActivity_family_name">Pavardė</string>
   <string name="ContactNameEditActivity_prefix">Priešvardis</string>
   <string name="ContactNameEditActivity_suffix">Povardis</string>
   <string name="ContactNameEditActivity_middle_name">Antras vardas</string>
   <!--ContactShareEditActivity-->
+  <!--ContactShareEditActivity toolbar title-->
   <string name="ContactShareEditActivity_type_home">Namų</string>
   <string name="ContactShareEditActivity_type_mobile">Mobilusis</string>
   <string name="ContactShareEditActivity_type_work">Darbo</string>
   <string name="ContactShareEditActivity_type_missing">Kitas</string>
   <string name="ContactShareEditActivity_invalid_contact">Pasirinktas adresatas buvo neteisingas</string>
+  <!--Content descrption for name edit button on contact share edit activity-->
+  <!--Content description for user avatar in edit activity-->
+  <string name="ContactShareEditActivity__avatar">Avataras</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_sent_tap_for_details">Neišsiųsta, bakstelėkite išsamesnei informacijai</string>
   <string name="ConversationItem_error_partially_not_delivered">Dalinai išsiųsta, bakstelėkite išsamesnei informacijai</string>
@@ -3160,6 +3165,8 @@
   <string name="CallParticipant__you">Jūs</string>
   <string name="CallParticipant__you_on_another_device">Jūs (kitame įrenginyje)</string>
   <string name="CallParticipant__s_on_another_device">%1$s (kitame įrenginyje)</string>
+  <!--WifiToCellularPopupWindow-->
+  <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Ištrinant jūsų paskyrą bus:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Įveskite savo telefono numerį</string>
@@ -4069,6 +4076,8 @@
   <string name="StoriesLandingItem__share">Bendrinti…</string>
   <!--Context menu option to go to story chat-->
   <string name="StoriesLandingItem__go_to_chat">Pereiti į pokalbį</string>
+  <!--Context menu option to go to story info-->
+  <string name="StoriesLandingItem__info">Informacija</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">Siunčiama…</string>
   <!--Label when multiple stories are pending sending-->
@@ -4352,7 +4361,7 @@
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">Rodyti daugiau</string>
   <string name="StoriesLinkPopup__visit_link">Aplankyti tinklalapį</string>
-  <!--Duration and price information-->
+  <!--Gift price and duration, formatted as: {price} dot {n} day duration-->
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">Siųsti dovanos ženkliuką</string>
   <!--Headline text on start fragment for gifting a badge-->
@@ -4501,7 +4510,6 @@
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Saugumo numerių pokyčiai</string>
   <!--Message of safety number review fragment-->
-  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">Yra gavėjų (iš viso %1$d), kurie iš naujo įdiegė „SIgnal“ arba pakeitė įrenginius. Bakstelėkite gavėją ir patvirtinkite naują saugumo numerį. Tai neprivaloma.</string>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">Adresatai</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -4518,5 +4526,16 @@
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Visi „Signal“ kontaktai, išskyrus…</string>
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Dalintis tik su…</string>
+  <!--Story info header sent heading-->
+  <string name="StoryInfoHeader__sent">Išsiųsta</string>
+  <!--Story info header received heading-->
+  <string name="StoryInfoHeader__received">Gauta</string>
+  <!--Story info header file size heading-->
+  <!--Story info "Sent to" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_to">Kam išsiųsta</string>
+  <!--Story info "Sent from" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_from">Išsiuntė</string>
+  <!--Story Info context menu label-->
+  <string name="StoryInfoBottomSheetDialogFragment__info">Informacija</string>
   <!--EOF-->
 </resources>

@@ -173,17 +173,22 @@
   <string name="ContactsDatabase_message_s">സന്ദേശ൦ %s</string>
   <string name="ContactsDatabase_signal_call_s">%s നെ Signal കോള്‍ ചെയ്യുക</string>
   <!--ContactNameEditActivity-->
+  <!--Toolbar title for contact name edit activity-->
   <string name="ContactNameEditActivity_given_name">നല്‍കിയ നാമം</string>
   <string name="ContactNameEditActivity_family_name">കുടുംബ നാമം</string>
   <string name="ContactNameEditActivity_prefix">പ്രിഫിക്‌സ്</string>
   <string name="ContactNameEditActivity_suffix">സഫിക്സ്</string>
   <string name="ContactNameEditActivity_middle_name">മധ്യനാമം</string>
   <!--ContactShareEditActivity-->
+  <!--ContactShareEditActivity toolbar title-->
   <string name="ContactShareEditActivity_type_home">വീട്</string>
   <string name="ContactShareEditActivity_type_mobile">മൊബൈൽ</string>
   <string name="ContactShareEditActivity_type_work">ജോലി</string>
   <string name="ContactShareEditActivity_type_missing">മറ്റുള്ളവ</string>
   <string name="ContactShareEditActivity_invalid_contact">തിരഞ്ഞെടുത്ത കോൺടാക്റ്റ് അസാധുവായിരുന്നു</string>
+  <!--Content descrption for name edit button on contact share edit activity-->
+  <!--Content description for user avatar in edit activity-->
+  <string name="ContactShareEditActivity__avatar">അവതാർ</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_sent_tap_for_details">അയച്ചില്ല, വിശദാംശങ്ങൾക്ക് തൊടുക</string>
   <string name="ConversationItem_error_partially_not_delivered">ഭാഗികമായി അയച്ചു, വിശദാംശങ്ങൾക്ക് തൊടുക</string>
@@ -2965,6 +2970,8 @@
   <string name="CallParticipant__you">നിങ്ങൾ</string>
   <string name="CallParticipant__you_on_another_device">നിങ്ങൾ (മറ്റൊരു ഉപകരണത്തിൽ)</string>
   <string name="CallParticipant__s_on_another_device">%1$s (മറ്റൊരു ഉപകരണത്തിൽ)</string>
+  <!--WifiToCellularPopupWindow-->
+  <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">നിങ്ങളുടെ അക്കൗണ്ട് ഇല്ലാതാക്കുന്നത്:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">നിങ്ങളുടെ ഫോൺ നമ്പർ നൽകുക</string>
@@ -3859,6 +3866,8 @@
   <string name="StoriesLandingItem__share">പങ്കിടുക…</string>
   <!--Context menu option to go to story chat-->
   <string name="StoriesLandingItem__go_to_chat">ചാറ്റിലേക്ക് പോകുക</string>
+  <!--Context menu option to go to story info-->
+  <string name="StoriesLandingItem__info">വിവരം</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">അയയ്ക്കുന്നു…</string>
   <!--Label when multiple stories are pending sending-->
@@ -4133,7 +4142,7 @@
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">കൂടുതൽ കാണു</string>
   <string name="StoriesLinkPopup__visit_link">ലിങ്ക് സന്ദർശിക്കുക</string>
-  <!--Duration and price information-->
+  <!--Gift price and duration, formatted as: {price} dot {n} day duration-->
   <plurals name="GiftRowItem_s_dot_d_day_duration">
     <item quantity="one">%1$s · %2$d ദിവസ ദൈർഘ്യം</item>
     <item quantity="other">%1$s · %2$d ദിവസം ദൈർഘ്യം</item>
@@ -4276,7 +4285,6 @@
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">സുരക്ഷാ നമ്പറിൽ മാറ്റമുണ്ടായി</string>
   <!--Message of safety number review fragment-->
-  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">%1$d സ്വീകർത്താക്കൾ Signal വീണ്ടും ഇൻസ്റ്റാൾ ചെയ്യുകയോ ഉപകരണങ്ങൾ മാറുകയോ ചെയ്‌തിട്ടുണ്ടാകാം. പുതിയ സുരക്ഷാ നമ്പർ സ്ഥിരീകരിക്കുന്നതിന്, ഒരു സ്വീകർത്താവിനെ ടാപ്പ് ചെയ്യുക. ഇത് നിർബന്ധമല്ല.</string>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">കോൺടാക്ടുകൾ</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -4293,5 +4301,16 @@
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">ഇനിപ്പറയുന്നവ ഒഴികെ എല്ലാ Signal കണക്ഷനുകളും…</string>
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">ഇനിപ്പറയുന്നവരുമായി മാത്രം പങ്കിടുക…</string>
+  <!--Story info header sent heading-->
+  <string name="StoryInfoHeader__sent">അയച്ചത്</string>
+  <!--Story info header received heading-->
+  <string name="StoryInfoHeader__received">ലഭിച്ചു</string>
+  <!--Story info header file size heading-->
+  <!--Story info "Sent to" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_to">അയച്ചത്</string>
+  <!--Story info "Sent from" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_from">അയച്ചത്</string>
+  <!--Story Info context menu label-->
+  <string name="StoryInfoBottomSheetDialogFragment__info">വിവരം</string>
   <!--EOF-->
 </resources>

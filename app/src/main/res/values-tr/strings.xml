@@ -173,17 +173,22 @@
   <string name="ContactsDatabase_message_s">İleti %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal Araması %s</string>
   <!--ContactNameEditActivity-->
+  <!--Toolbar title for contact name edit activity-->
   <string name="ContactNameEditActivity_given_name">Ad</string>
   <string name="ContactNameEditActivity_family_name">Soyad</string>
   <string name="ContactNameEditActivity_prefix">Önek</string>
   <string name="ContactNameEditActivity_suffix">Sonek</string>
   <string name="ContactNameEditActivity_middle_name">İkinci ad</string>
   <!--ContactShareEditActivity-->
+  <!--ContactShareEditActivity toolbar title-->
   <string name="ContactShareEditActivity_type_home">Ev</string>
   <string name="ContactShareEditActivity_type_mobile">Telefon</string>
   <string name="ContactShareEditActivity_type_work">İş</string>
   <string name="ContactShareEditActivity_type_missing">Diğer</string>
   <string name="ContactShareEditActivity_invalid_contact">Seçilen kişi geçersiz</string>
+  <!--Content descrption for name edit button on contact share edit activity-->
+  <!--Content description for user avatar in edit activity-->
+  <string name="ContactShareEditActivity__avatar">Resim</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_sent_tap_for_details">Gönderilemedi, ayrıntılar için dokunun</string>
   <string name="ConversationItem_error_partially_not_delivered">Kısmen gönderildi, ayrıntılar için dokunun</string>
@@ -2970,6 +2975,8 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="CallParticipant__you">Siz</string>
   <string name="CallParticipant__you_on_another_device">Siz (başka bir cihazda)</string>
   <string name="CallParticipant__s_on_another_device">%1$s (diğer cihazda)</string>
+  <!--WifiToCellularPopupWindow-->
+  <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Hesabınızı silmek:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Telefon numaranızı girin</string>
@@ -3864,6 +3871,8 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="StoriesLandingItem__share">Paylaş…</string>
   <!--Context menu option to go to story chat-->
   <string name="StoriesLandingItem__go_to_chat">Sohbete git</string>
+  <!--Context menu option to go to story info-->
+  <string name="StoriesLandingItem__info">Bilgi</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">Gönderiliyor…</string>
   <!--Label when multiple stories are pending sending-->
@@ -4138,7 +4147,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">Daha fazlasını gör</string>
   <string name="StoriesLinkPopup__visit_link">Bağlantıyı ziyaret et</string>
-  <!--Duration and price information-->
+  <!--Gift price and duration, formatted as: {price} dot {n} day duration-->
   <plurals name="GiftRowItem_s_dot_d_day_duration">
     <item quantity="one">%1$s · %2$d gün süreli</item>
     <item quantity="other">%1$s · %2$d gün süreli</item>
@@ -4281,7 +4290,6 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Güvenlik numarası değişiklikleri</string>
   <!--Message of safety number review fragment-->
-  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">%1$d kişi Signal\'i yeniden yüklemiş veya cihazlarını değiştirmiş olabilir. Yeni güvenlik numarasını onaylamak için kişilerden birine dokun. Bu işlem isteğe bağlıdır.</string>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">Kişiler</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -4298,5 +4306,16 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">dışındaki tüm Signal bağlantıları</string>
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Sadece ….. ile paylaş</string>
+  <!--Story info header sent heading-->
+  <string name="StoryInfoHeader__sent">Gönderildi</string>
+  <!--Story info header received heading-->
+  <string name="StoryInfoHeader__received">Alındı</string>
+  <!--Story info header file size heading-->
+  <!--Story info "Sent to" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_to">Gönderilen</string>
+  <!--Story info "Sent from" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_from">Gönderen</string>
+  <!--Story Info context menu label-->
+  <string name="StoryInfoBottomSheetDialogFragment__info">Bilgi</string>
   <!--EOF-->
 </resources>

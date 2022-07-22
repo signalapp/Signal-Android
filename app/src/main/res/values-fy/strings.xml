@@ -175,17 +175,21 @@
   <string name="ContactsDatabase_message_s">Berjocht stjoere nei %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal-oprop %s</string>
   <!--ContactNameEditActivity-->
+  <!--Toolbar title for contact name edit activity-->
   <string name="ContactNameEditActivity_given_name">Foarnamme</string>
   <string name="ContactNameEditActivity_family_name">Efternamme</string>
   <string name="ContactNameEditActivity_prefix">Foarheaksel</string>
   <string name="ContactNameEditActivity_suffix">Efterheaksel</string>
   <string name="ContactNameEditActivity_middle_name">Twadde foarnamme</string>
   <!--ContactShareEditActivity-->
+  <!--ContactShareEditActivity toolbar title-->
   <string name="ContactShareEditActivity_type_home">Thús</string>
   <string name="ContactShareEditActivity_type_mobile">Mobyl</string>
   <string name="ContactShareEditActivity_type_work">Wurk</string>
   <string name="ContactShareEditActivity_type_missing">Oars</string>
   <string name="ContactShareEditActivity_invalid_contact">De selektearre kontaktpersoan wie net jildich</string>
+  <!--Content descrption for name edit button on contact share edit activity-->
+  <!--Content description for user avatar in edit activity-->
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_sent_tap_for_details">Net ferstjoerd, tik hjir foar details</string>
   <string name="ConversationItem_error_partially_not_delivered">Foar in part ferstjoerd, tik hjir foar details</string>
@@ -2959,6 +2963,8 @@
   <string name="CallParticipant__you">Do</string>
   <string name="CallParticipant__you_on_another_device">Do (fan in oar apparaat ôf)</string>
   <string name="CallParticipant__s_on_another_device">%1$s (fan in oar apparaat ôf)</string>
+  <!--WifiToCellularPopupWindow-->
+  <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Asto al dyn gegevens wiskest:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Fier dyn telefoannûmer yn</string>
@@ -3848,6 +3854,8 @@
   <string name="StoriesLandingItem__share">Trochstjoere…</string>
   <!--Context menu option to go to story chat-->
   <string name="StoriesLandingItem__go_to_chat">Petear iepenje</string>
+  <!--Context menu option to go to story info-->
+  <string name="StoriesLandingItem__info">Berjochtdetails</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">Dwaande mei ferstjoeren…</string>
   <!--Label when multiple stories are pending sending-->
@@ -4050,7 +4058,7 @@
   <!--Conversation Item label for reactions to an unavailable story-->
   <!--endregion-->
   <!--Content description for expand contacts chevron-->
-  <!--Duration and price information-->
+  <!--Gift price and duration, formatted as: {price} dot {n} day duration-->
   <!--Tagline for gift row items-->
   <!--Headline text on start fragment for gifting a badge-->
   <!--Description text on start fragment for gifting a badge-->
@@ -4141,5 +4149,16 @@
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
+  <!--Story info header sent heading-->
+  <string name="StoryInfoHeader__sent">Ferstjoerd</string>
+  <!--Story info header received heading-->
+  <string name="StoryInfoHeader__received">Untfongen</string>
+  <!--Story info header file size heading-->
+  <!--Story info "Sent to" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_to">Ferstjoerd oan</string>
+  <!--Story info "Sent from" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_from">Ferstjoerd troch</string>
+  <!--Story Info context menu label-->
+  <string name="StoryInfoBottomSheetDialogFragment__info">Berjochtdetails</string>
   <!--EOF-->
 </resources>

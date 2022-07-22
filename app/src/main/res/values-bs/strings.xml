@@ -174,17 +174,25 @@
   <string name="ContactsDatabase_message_s">Poruka %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal poziv %s</string>
   <!--ContactNameEditActivity-->
+  <!--Toolbar title for contact name edit activity-->
+  <string name="ContactNameEditActivity__edit_name">Uredi naziv</string>
   <string name="ContactNameEditActivity_given_name">Ime</string>
   <string name="ContactNameEditActivity_family_name">Prezime</string>
   <string name="ContactNameEditActivity_prefix">Prefiks</string>
   <string name="ContactNameEditActivity_suffix">Sufiks</string>
   <string name="ContactNameEditActivity_middle_name">Drugo ime</string>
   <!--ContactShareEditActivity-->
+  <!--ContactShareEditActivity toolbar title-->
+  <string name="ContactShareEditActivity__send_contact">Pošalji kontakt</string>
   <string name="ContactShareEditActivity_type_home">Kućni</string>
   <string name="ContactShareEditActivity_type_mobile">Mobilni</string>
   <string name="ContactShareEditActivity_type_work">Poslovni</string>
   <string name="ContactShareEditActivity_type_missing">Ostalo</string>
   <string name="ContactShareEditActivity_invalid_contact">Označeni kontakt nije valjan</string>
+  <!--Content descrption for name edit button on contact share edit activity-->
+  <string name="ContactShareEditActivity__edit_name">Uredi naziv</string>
+  <!--Content description for user avatar in edit activity-->
+  <string name="ContactShareEditActivity__avatar">Slika profila</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_sent_tap_for_details">Nije poslano, dodirnite za detalje</string>
   <string name="ConversationItem_error_partially_not_delivered">Djelimično poslano, dodirnite za detalje</string>
@@ -2395,6 +2403,7 @@
   <string name="preferences_enter_proxy_address">Unesite proxy adresu</string>
   <string name="configurable_single_select__customize_option">Prilagodi</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Briše oznaku za pristupanje i aktivira preuzimanje priča za pristupanje.</string>
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Aktivnosti</string>
   <string name="PaymentsAllActivityFragment__all">Sve</string>
@@ -3073,6 +3082,9 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="CallParticipant__you">Vi</string>
   <string name="CallParticipant__you_on_another_device">Vi (na drugom uređaju)</string>
   <string name="CallParticipant__s_on_another_device">%1$s (na drugom uređaju)</string>
+  <!--WifiToCellularPopupWindow-->
+  <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
+  <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Slab Wi-Fi. Prebačeno na mobilnu mrežu.</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Brisanjem računa Vi ćete:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Unesite svoj broj telefona</string>
@@ -3975,6 +3987,8 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="StoriesLandingItem__share">Podijeli…</string>
   <!--Context menu option to go to story chat-->
   <string name="StoriesLandingItem__go_to_chat">Pređi na konverzaciju</string>
+  <!--Context menu option to go to story info-->
+  <string name="StoriesLandingItem__info">Informacije</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">Šaljem…</string>
   <!--Label when multiple stories are pending sending-->
@@ -4255,7 +4269,7 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">Više</string>
   <string name="StoriesLinkPopup__visit_link">Posjeti link</string>
-  <!--Duration and price information-->
+  <!--Gift price and duration, formatted as: {price} dot {n} day duration-->
   <plurals name="GiftRowItem_s_dot_d_day_duration">
     <item quantity="one">%1$s · trajanje od %2$d dan</item>
     <item quantity="few">%1$s · trajanje od %2$d dana</item>
@@ -4404,7 +4418,11 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Promjene sigurnosnog broja</string>
   <!--Message of safety number review fragment-->
-  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">Primaoci (njih %1$d) su možda ponovo instalirali Signal ili su promijenili uređaje. Dodirnite primaoca da potvrdite novi sigurnosni broj. Ova radnja nije obavezna.</string>
+  <plurals name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">
+    <item quantity="one">%1$d primaoc je ponovo instalirao Signal ili je promijenio uređaj. Dodirnite primaoca da potvrdite novi sigurnosni broj. To nije obavezno.</item>
+    <item quantity="few">%1$d primaoca su ponovo instalirala Signal ili su promijenili uređaje. Dodirnite primaoca da potvrdite novi sigurnosni broj. To nije obavezno.</item>
+    <item quantity="other"> %1$d primaoca je ponovo instaliralo Signal ili su promijenili uređaje. Dodirnite primaoca da potvrdite novi sigurnosni broj. To nije obavezno.</item>
+  </plurals>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">Kontakti</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -4421,5 +4439,17 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Sve Signal veze izuzev…</string>
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Dijeli samo sa…</string>
+  <!--Story info header sent heading-->
+  <string name="StoryInfoHeader__sent">Poslano</string>
+  <!--Story info header received heading-->
+  <string name="StoryInfoHeader__received">Primljeno</string>
+  <!--Story info header file size heading-->
+  <string name="StoryInfoHeader__file_size">Veličina fajla</string>
+  <!--Story info "Sent to" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_to">Poslano za</string>
+  <!--Story info "Sent from" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_from">Poslano od</string>
+  <!--Story Info context menu label-->
+  <string name="StoryInfoBottomSheetDialogFragment__info">Informacije</string>
   <!--EOF-->
 </resources>

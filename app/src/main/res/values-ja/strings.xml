@@ -172,17 +172,22 @@
   <string name="ContactsDatabase_message_s">%s にメッセージを送る</string>
   <string name="ContactsDatabase_signal_call_s">Signal通話 %s</string>
   <!--ContactNameEditActivity-->
+  <!--Toolbar title for contact name edit activity-->
   <string name="ContactNameEditActivity_given_name">名</string>
   <string name="ContactNameEditActivity_family_name">姓</string>
   <string name="ContactNameEditActivity_prefix">プレフィックス</string>
   <string name="ContactNameEditActivity_suffix">サフィックス</string>
   <string name="ContactNameEditActivity_middle_name">ミドルネーム</string>
   <!--ContactShareEditActivity-->
+  <!--ContactShareEditActivity toolbar title-->
   <string name="ContactShareEditActivity_type_home">自宅</string>
   <string name="ContactShareEditActivity_type_mobile">携帯</string>
   <string name="ContactShareEditActivity_type_work">職場</string>
   <string name="ContactShareEditActivity_type_missing">その他</string>
   <string name="ContactShareEditActivity_invalid_contact">選択された連絡先は無効です</string>
+  <!--Content descrption for name edit button on contact share edit activity-->
+  <!--Content description for user avatar in edit activity-->
+  <string name="ContactShareEditActivity__avatar">アバター</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_sent_tap_for_details">送信されませんでした。タップして詳細を表示</string>
   <string name="ConversationItem_error_partially_not_delivered">一部だけ送信しました。タップして詳細を表示</string>
@@ -2866,6 +2871,8 @@
   <string name="CallParticipant__you">あなた</string>
   <string name="CallParticipant__you_on_another_device">あなた (別端末)</string>
   <string name="CallParticipant__s_on_another_device">%1$s (別端末)</string>
+  <!--WifiToCellularPopupWindow-->
+  <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">アカウントを削除すると:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">あなたの電話番号を入力してください</string>
@@ -3753,6 +3760,8 @@
   <string name="StoriesLandingItem__share">共有…</string>
   <!--Context menu option to go to story chat-->
   <string name="StoriesLandingItem__go_to_chat">チャットする</string>
+  <!--Context menu option to go to story info-->
+  <string name="StoriesLandingItem__info">詳細</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">送信しています…</string>
   <!--Label when multiple stories are pending sending-->
@@ -4021,7 +4030,7 @@
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">続き</string>
   <string name="StoriesLinkPopup__visit_link">表示</string>
-  <!--Duration and price information-->
+  <!--Gift price and duration, formatted as: {price} dot {n} day duration-->
   <plurals name="GiftRowItem_s_dot_d_day_duration">
     <item quantity="other">%1$s・%2$d日間</item>
   </plurals>
@@ -4158,7 +4167,6 @@
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">安全番号の変更</string>
   <!--Message of safety number review fragment-->
-  <string name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">%1$d人の受信者が、Signalを再インストールしたか、端末を変更した可能性があります。 受信者をタップして、新しい安全番号を確認してください。 これは任意です。</string>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">連絡先</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -4175,5 +4183,16 @@
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">…を除くすべてのSignalコネクション</string>
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">共有するのは…</string>
+  <!--Story info header sent heading-->
+  <string name="StoryInfoHeader__sent">送金済み</string>
+  <!--Story info header received heading-->
+  <string name="StoryInfoHeader__received">着金</string>
+  <!--Story info header file size heading-->
+  <!--Story info "Sent to" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_to">送信済み</string>
+  <!--Story info "Sent from" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_from">送信元</string>
+  <!--Story Info context menu label-->
+  <string name="StoryInfoBottomSheetDialogFragment__info">詳細</string>
   <!--EOF-->
 </resources>

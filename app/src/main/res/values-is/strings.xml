@@ -173,17 +173,21 @@
   <string name="ContactsDatabase_message_s">Skilaboð til %s</string>
   <string name="ContactsDatabase_signal_call_s">Hringja með Signal í %s </string>
   <!--ContactNameEditActivity-->
+  <!--Toolbar title for contact name edit activity-->
   <string name="ContactNameEditActivity_given_name">Eiginnafn</string>
   <string name="ContactNameEditActivity_family_name">Fjölskyldunafn</string>
   <string name="ContactNameEditActivity_prefix">Forskeyti</string>
   <string name="ContactNameEditActivity_suffix">Ending</string>
   <string name="ContactNameEditActivity_middle_name">Millinafn</string>
   <!--ContactShareEditActivity-->
+  <!--ContactShareEditActivity toolbar title-->
   <string name="ContactShareEditActivity_type_home">Heima</string>
   <string name="ContactShareEditActivity_type_mobile">Farsími</string>
   <string name="ContactShareEditActivity_type_work">Vinna</string>
   <string name="ContactShareEditActivity_type_missing">Annað</string>
   <string name="ContactShareEditActivity_invalid_contact">Valinn tengiliður var ógildur</string>
+  <!--Content descrption for name edit button on contact share edit activity-->
+  <!--Content description for user avatar in edit activity-->
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_sent_tap_for_details">Ekki sent, ýttu fyrir nánari upplýsingar</string>
   <string name="ConversationItem_error_partially_not_delivered">Sent að hluta, ýttu fyrir nánari upplýsingar</string>
@@ -2955,6 +2959,8 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="CallParticipant__you">Þú</string>
   <string name="CallParticipant__you_on_another_device">Þú (á öðru tæki)</string>
   <string name="CallParticipant__s_on_another_device">%1$s (á öðru tæki)</string>
+  <!--WifiToCellularPopupWindow-->
+  <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Eyðing aðgangsins þíns mun:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Settu inn símanúmerið þitt</string>
@@ -3845,6 +3851,8 @@ hegðun þína.</string>
   <string name="StoriesLandingItem__share">Deila…</string>
   <!--Context menu option to go to story chat-->
   <string name="StoriesLandingItem__go_to_chat">Fara í spjall</string>
+  <!--Context menu option to go to story info-->
+  <string name="StoriesLandingItem__info">Upplýsingar</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">Sendi…</string>
   <!--Label when multiple stories are pending sending-->
@@ -4098,7 +4106,7 @@ hegðun þína.</string>
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">Sjá meira</string>
   <string name="StoriesLinkPopup__visit_link">Skoða tengil</string>
-  <!--Duration and price information-->
+  <!--Gift price and duration, formatted as: {price} dot {n} day duration-->
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">Senda gjafamerki</string>
   <!--Headline text on start fragment for gifting a badge-->
@@ -4217,5 +4225,16 @@ hegðun þína.</string>
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
+  <!--Story info header sent heading-->
+  <string name="StoryInfoHeader__sent">Sent</string>
+  <!--Story info header received heading-->
+  <string name="StoryInfoHeader__received">Móttekið</string>
+  <!--Story info header file size heading-->
+  <!--Story info "Sent to" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_to">Sent til</string>
+  <!--Story info "Sent from" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_from">Sent frá</string>
+  <!--Story Info context menu label-->
+  <string name="StoryInfoBottomSheetDialogFragment__info">Upplýsingar</string>
   <!--EOF-->
 </resources>

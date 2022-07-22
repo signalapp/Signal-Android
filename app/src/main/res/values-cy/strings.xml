@@ -175,17 +175,22 @@
   <string name="ContactsDatabase_message_s">Neges %s</string>
   <string name="ContactsDatabase_signal_call_s">Galwad Signal %s</string>
   <!--ContactNameEditActivity-->
+  <!--Toolbar title for contact name edit activity-->
   <string name="ContactNameEditActivity_given_name">Enw</string>
   <string name="ContactNameEditActivity_family_name">Enw teuluol</string>
   <string name="ContactNameEditActivity_prefix">Rhagddodiad</string>
   <string name="ContactNameEditActivity_suffix">Ôl-ddodiad</string>
   <string name="ContactNameEditActivity_middle_name">Enw canol</string>
   <!--ContactShareEditActivity-->
+  <!--ContactShareEditActivity toolbar title-->
   <string name="ContactShareEditActivity_type_home">Cartref</string>
   <string name="ContactShareEditActivity_type_mobile">Symudol</string>
   <string name="ContactShareEditActivity_type_work">Gwaith</string>
   <string name="ContactShareEditActivity_type_missing">Arall</string>
   <string name="ContactShareEditActivity_invalid_contact">Roedd y cyswllt hwn yn annilys</string>
+  <!--Content descrption for name edit button on contact share edit activity-->
+  <!--Content description for user avatar in edit activity-->
+  <string name="ContactShareEditActivity__avatar">Rhithffurf</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_sent_tap_for_details">Heb ei hanfon, tapiwch am fanylion</string>
   <string name="ConversationItem_error_partially_not_delivered">Wedi\'i hanfon yn rhannol, tapiwch am fanylion</string>
@@ -3150,6 +3155,8 @@ Anfon neges heb ei diogelu?</string>
   <string name="CallParticipant__you">Chi</string>
   <string name="CallParticipant__you_on_another_device">Chi (ar ddyfais arall)</string>
   <string name="CallParticipant__s_on_another_device">%1$s (ar ddyfais arall)</string>
+  <!--WifiToCellularPopupWindow-->
+  <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Bydd dileu eich cyfrif yn:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Rhowch eich rhif ffôn</string>
@@ -4057,6 +4064,8 @@ Anfon neges heb ei diogelu?</string>
   <string name="StoriesLandingItem__share">Rhannu…</string>
   <!--Context menu option to go to story chat-->
   <string name="StoriesLandingItem__go_to_chat">Ewch i\'r sgwrs</string>
+  <!--Context menu option to go to story info-->
+  <string name="StoriesLandingItem__info">Gwyb</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">Yn anfon…</string>
   <!--Label when multiple stories are pending sending-->
@@ -4320,7 +4329,7 @@ Anfon neges heb ei diogelu?</string>
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">Gweld rhagor</string>
   <string name="StoriesLinkPopup__visit_link">Ymweld â\'r ddolen</string>
-  <!--Duration and price information-->
+  <!--Gift price and duration, formatted as: {price} dot {n} day duration-->
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">Anfon bathodyn rhodd</string>
   <!--Headline text on start fragment for gifting a badge-->
@@ -4458,5 +4467,16 @@ Anfon neges heb ei diogelu?</string>
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
+  <!--Story info header sent heading-->
+  <string name="StoryInfoHeader__sent">Anfonwyd</string>
+  <!--Story info header received heading-->
+  <string name="StoryInfoHeader__received">Derbyniwyd</string>
+  <!--Story info header file size heading-->
+  <!--Story info "Sent to" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_to">Anfonwyd at</string>
+  <!--Story info "Sent from" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_from">Anfonwyd gan</string>
+  <!--Story Info context menu label-->
+  <string name="StoryInfoBottomSheetDialogFragment__info">Gwyb</string>
   <!--EOF-->
 </resources>

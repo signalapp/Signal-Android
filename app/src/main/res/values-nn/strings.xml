@@ -173,17 +173,22 @@
   <string name="ContactsDatabase_message_s">Melding %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal-anrop %s</string>
   <!--ContactNameEditActivity-->
+  <!--Toolbar title for contact name edit activity-->
   <string name="ContactNameEditActivity_given_name">Fornamn</string>
   <string name="ContactNameEditActivity_family_name">Etternamn</string>
   <string name="ContactNameEditActivity_prefix">Prefiks</string>
   <string name="ContactNameEditActivity_suffix">Suffiks</string>
   <string name="ContactNameEditActivity_middle_name">Mellomnamn</string>
   <!--ContactShareEditActivity-->
+  <!--ContactShareEditActivity toolbar title-->
   <string name="ContactShareEditActivity_type_home">Heim</string>
   <string name="ContactShareEditActivity_type_mobile">Mobil</string>
   <string name="ContactShareEditActivity_type_work">Arbeid</string>
   <string name="ContactShareEditActivity_type_missing">Anna</string>
   <string name="ContactShareEditActivity_invalid_contact">Den valde kontakten er ugyldig</string>
+  <!--Content descrption for name edit button on contact share edit activity-->
+  <!--Content description for user avatar in edit activity-->
+  <string name="ContactShareEditActivity__avatar">Avatar</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_sent_tap_for_details">Ikkje sendt, trykk for detaljar</string>
   <string name="ConversationItem_error_partially_not_delivered">Delvis sendt, trykk for detaljar</string>
@@ -2964,6 +2969,8 @@ Kom i gang ved å senda ei melding til ein venn.</string>
   <string name="CallParticipant__you">Du</string>
   <string name="CallParticipant__you_on_another_device">Du (på ei anna eining)</string>
   <string name="CallParticipant__s_on_another_device">%1$s (på ei anna eining)</string>
+  <!--WifiToCellularPopupWindow-->
+  <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Om du slettar kontoen din vil du:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Skriv inn telefonnummeret ditt</string>
@@ -3863,6 +3870,8 @@ Sjekkar igjen no …</string>
   <string name="StoriesLandingItem__share">Del …</string>
   <!--Context menu option to go to story chat-->
   <string name="StoriesLandingItem__go_to_chat">Gå til samtale</string>
+  <!--Context menu option to go to story info-->
+  <string name="StoriesLandingItem__info">Info</string>
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">Sendar …</string>
   <!--Label when multiple stories are pending sending-->
@@ -4116,7 +4125,7 @@ Sjekkar igjen no …</string>
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">Vis meir</string>
   <string name="StoriesLinkPopup__visit_link">Følgj lenka</string>
-  <!--Duration and price information-->
+  <!--Gift price and duration, formatted as: {price} dot {n} day duration-->
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">Send eit gåvemerke</string>
   <!--Headline text on start fragment for gifting a badge-->
@@ -4244,5 +4253,16 @@ Sjekkar igjen no …</string>
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
+  <!--Story info header sent heading-->
+  <string name="StoryInfoHeader__sent">Sendt</string>
+  <!--Story info header received heading-->
+  <string name="StoryInfoHeader__received">Motteken</string>
+  <!--Story info header file size heading-->
+  <!--Story info "Sent to" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_to">Sendt</string>
+  <!--Story info "Sent from" header-->
+  <string name="StoryInfoBottomSheetDialogFragment__sent_from">Sendt frå</string>
+  <!--Story Info context menu label-->
+  <string name="StoryInfoBottomSheetDialogFragment__info">Info</string>
   <!--EOF-->
 </resources>
