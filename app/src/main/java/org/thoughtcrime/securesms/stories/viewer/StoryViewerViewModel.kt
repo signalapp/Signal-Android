@@ -51,6 +51,8 @@ class StoryViewerViewModel(
   var hasConsumedInitialState = false
     private set
 
+  val isChildScrolling: Observable<Boolean> = childScrollStatePublisher.distinctUntilChanged()
+
   init {
     refresh()
   }

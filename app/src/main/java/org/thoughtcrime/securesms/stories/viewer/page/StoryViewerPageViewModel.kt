@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.livedata.Store
 import org.thoughtcrime.securesms.util.rx.RxStore
 import java.util.Optional
+import java.util.concurrent.TimeUnit
 import kotlin.math.max
 import kotlin.math.min
 
@@ -32,6 +33,7 @@ class StoryViewerPageViewModel(
   private val store = RxStore(StoryViewerPageState(isReceiptsEnabled = repository.isReadReceiptsEnabled()))
   private val disposables = CompositeDisposable()
   private val storyViewerDialogSubject: Subject<Optional<StoryViewerDialog>> = PublishSubject.create()
+  private val storyLongPressSubject: Subject<Boolean> = PublishSubject.create()
 
   private val storyViewerPlaybackStore = Store(StoryViewerPlaybackState())
 
@@ -87,6 +89,10 @@ class StoryViewerPageViewModel(
           .filterIsInstance<StoryPost.Content.AttachmentContent>()
           .map { it.attachment }
       )
+    }
+
+    disposables += storyLongPressSubject.debounce(150, TimeUnit.MILLISECONDS).subscribe { isLongPress ->
+      storyViewerPlaybackStore.update { it.copy(isUserLongTouching = isLongPress) }
     }
   }
 
@@ -183,6 +189,10 @@ class StoryViewerPageViewModel(
     storyViewerPlaybackStore.update { it.copy(isUserScrollingParent = isUserScrollingParent) }
   }
 
+  fun setIsUserScrollingChild(isUserScrollingChild: Boolean) {
+    storyViewerPlaybackStore.update { it.copy(isUserScrollingChild = isUserScrollingChild) }
+  }
+
   fun setIsDisplayingSlate(isDisplayingSlate: Boolean) {
     storyViewerPlaybackStore.update { it.copy(isDisplayingSlate = isDisplayingSlate) }
   }
@@ -225,6 +235,7 @@ class StoryViewerPageViewModel(
 
   fun setIsUserTouching(isUserTouching: Boolean) {
     storyViewerPlaybackStore.update { it.copy(isUserTouching = isUserTouching) }
+    storyLongPressSubject.onNext(isUserTouching)
   }
 
   fun setAreSegmentsInitialized(areSegmentsInitialized: Boolean) {

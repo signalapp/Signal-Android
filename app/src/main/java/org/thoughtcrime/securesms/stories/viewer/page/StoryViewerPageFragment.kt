@@ -235,6 +235,7 @@ class StoryViewerPageFragment :
         if ((canCloseFromHorizontalSlide || canCloseFromVerticalSlide) && event.actionMasked == MotionEvent.ACTION_UP) {
           requireActivity().onBackPressed()
         } else {
+          sharedViewModel.setIsChildScrolling(false)
           requireView().animate()
             .setInterpolator(StoryGestureListener.INTERPOLATOR)
             .setDuration(100)
@@ -292,6 +293,10 @@ class StoryViewerPageFragment :
 
     sharedViewModel.isScrolling.observe(viewLifecycleOwner) { isScrolling ->
       viewModel.setIsUserScrollingParent(isScrolling)
+    }
+
+    lifecycleDisposable += sharedViewModel.isChildScrolling.subscribe {
+      viewModel.setIsUserScrollingChild(it)
     }
 
     lifecycleDisposable += storyVolumeViewModel.state.distinctUntilChanged().observeOn(AndroidSchedulers.mainThread()).subscribe { volumeState ->
