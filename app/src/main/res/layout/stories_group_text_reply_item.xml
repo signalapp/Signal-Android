@@ -63,7 +63,7 @@
         android:id="@+id/bubble"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/rounded_rectangle_secondary_18"
+        android:background="@drawable/rounded_rectangle_surface_variant_18"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/bubble_end_barrier"
         app:layout_constraintStart_toStartOf="@+id/bubble_start_barrier"
