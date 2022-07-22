@@ -329,6 +329,14 @@ public class ConversationViewModel extends ViewModel {
     conversationStateTick.onNext(Unit.INSTANCE);
   }
 
+  boolean isDefaultSmsApplication() {
+    return conversationStateStore.getState().getSecurityInfo().isDefaultSmsApplication();
+  }
+
+  boolean isPushAvailable() {
+    return conversationStateStore.getState().getSecurityInfo().isPushAvailable();
+  }
+
   @NonNull ConversationState getConversationStateSnapshot() {
     return conversationStateStore.getState();
   }
