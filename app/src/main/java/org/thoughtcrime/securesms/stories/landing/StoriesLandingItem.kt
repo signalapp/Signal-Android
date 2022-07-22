@@ -242,11 +242,7 @@ object StoriesLandingItem {
     }
 
     private fun getGroupPresentation(model: Model): String {
-      return context.getString(
-        R.string.StoryViewerPageFragment__s_to_s,
-        getIndividualPresentation(model),
-        model.data.storyRecipient.getDisplayName(context)
-      )
+      return model.data.storyRecipient.getDisplayName(context)
     }
 
     private fun getReleaseNotesPresentation(model: Model): CharSequence {
@@ -256,14 +252,6 @@ object StoriesLandingItem {
       SpanUtil.appendCenteredImageSpan(name, official, 20, 20)
 
       return name
-    }
-
-    private fun getIndividualPresentation(model: Model): String {
-      return if (model.data.primaryStory.messageRecord.isOutgoing) {
-        context.getString(R.string.Recipient_you)
-      } else {
-        model.data.individualRecipient.getDisplayName(context)
-      }
     }
 
     private fun displayContext(model: Model) {
