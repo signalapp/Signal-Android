@@ -34,16 +34,23 @@ class StoriesLandingRepository(context: Context) {
         val myStoriesId = SignalDatabase.recipients.getOrInsertFromDistributionListId(DistributionListId.MY_STORY)
         val myStories = Recipient.resolved(myStoriesId)
 
-        emitter.onNext(
-          SignalDatabase.mms.orderedStoryRecipientsAndIds.groupBy {
-            val recipient = Recipient.resolved(it.recipientId)
-            if (recipient.isDistributionList) {
-              myStories
-            } else {
-              recipient
-            }
+        val stories = SignalDatabase.mms.orderedStoryRecipientsAndIds
+        val mapping: MutableMap<Recipient, List<StoryResult>> = mutableMapOf()
+
+        stories.forEach {
+          val recipient = Recipient.resolved(it.recipientId)
+          if (recipient.isDistributionList || it.isOutgoing) {
+            val list = mapping[myStories] ?: emptyList()
+            mapping[myStories] = list + it
           }
-        )
+
+          if (!recipient.isDistributionList) {
+            val list = mapping[recipient] ?: emptyList()
+            mapping[recipient] = list + it
+          }
+        }
+
+        emitter.onNext(mapping)
       }
 
       val observer = DatabaseObserver.Observer {

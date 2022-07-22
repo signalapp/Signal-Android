@@ -829,7 +829,8 @@ public class MmsDatabase extends MessageDatabase {
         while (cursor.moveToNext()) {
           results.add(new StoryResult(RecipientId.from(CursorUtil.requireLong(cursor, ThreadDatabase.RECIPIENT_ID)),
                                            CursorUtil.requireLong(cursor, "mms_id"),
-                                           CursorUtil.requireLong(cursor, "sent_timestamp")));
+                                           CursorUtil.requireLong(cursor, "sent_timestamp"),
+                                           CursorUtil.requireBoolean(cursor, "is_outgoing")));
         }
 
         return results;
