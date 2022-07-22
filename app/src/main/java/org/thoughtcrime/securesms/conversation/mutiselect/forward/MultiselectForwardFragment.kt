@@ -26,6 +26,7 @@ import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import org.signal.core.util.DimensionUnit
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ContactFilterView
 import org.thoughtcrime.securesms.components.TooltipPopup
@@ -374,6 +375,7 @@ class MultiselectForwardFragment :
   private fun displayTooltip(anchor: View, @StringRes text: Int) {
     TooltipPopup
       .forTarget(anchor)
+      .setStartMargin(DimensionUnit.DP.toPixels(16f).toInt())
       .setText(text)
       .setTextColor(ContextCompat.getColor(requireContext(), R.color.signal_colorOnPrimaryContainer))
       .setBackgroundTint(ContextCompat.getColor(requireContext(), R.color.signal_colorPrimaryContainer))

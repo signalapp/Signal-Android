@@ -1,58 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
     android:clipChildren="false"
-    android:clipToPadding="false">
+    android:clipToPadding="false"
+    android:maxWidth="320dp"
+    android:orientation="horizontal">
 
     <ImageView
         android:id="@+id/tooltip_arrow_start"
         android:layout_width="8dp"
         android:layout_height="16dp"
-        android:visibility="gone"
-        android:scaleType="fitXY"
         android:elevation="6dp"
+        android:scaleType="fitXY"
+        android:visibility="gone"
         app:srcCompat="@drawable/ic_triangle_left"
-        tools:visibility="visible"
-        tools:tint="@color/core_blue"/>
+        tools:tint="@color/core_blue"
+        tools:visibility="visible" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:clipChildren="false"
-        android:clipToPadding="false">
+        android:clipToPadding="false"
+        android:orientation="vertical">
 
         <ImageView
             android:id="@+id/tooltip_arrow_top"
             android:layout_width="16dp"
             android:layout_height="8dp"
-            android:visibility="gone"
-            android:scaleType="fitXY"
             android:elevation="6dp"
+            android:scaleType="fitXY"
+            android:visibility="gone"
             app:srcCompat="@drawable/ic_triangle_up"
-            tools:visibility="visible"
-            tools:tint="@color/core_blue"/>
+            tools:tint="@color/core_blue"
+            tools:visibility="visible" />
 
         <LinearLayout
             android:id="@+id/tooltip_bubble"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingTop="6dp"
-            android:paddingBottom="6dp"
-            android:paddingStart="12dp"
-            android:paddingEnd="12dp"
             android:background="@drawable/tooltip_background"
-            android:gravity="center_vertical"
-            android:elevation="6dp"
             android:clipChildren="false"
-            android:clipToPadding="false">
+            android:clipToPadding="false"
+            android:elevation="6dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="16dp">
 
             <ImageView
                 android:id="@+id/tooltip_icon"
@@ -62,13 +59,13 @@
                 android:visibility="gone"
                 tools:src="@drawable/ic_person_white_24dp"
                 tools:tint="@color/core_blue"
-                tools:visibility="visible"/>
+                tools:visibility="visible" />
 
             <TextView
                 android:id="@+id/tooltip_text"
+                style="@style/Signal.Text.BodyMedium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/Signal.Text.Body"
                 tools:text="It is my gift. It is my curse." />
 
         </LinearLayout>
@@ -77,12 +74,12 @@
             android:id="@+id/tooltip_arrow_bottom"
             android:layout_width="16dp"
             android:layout_height="8dp"
-            android:visibility="gone"
-            android:scaleType="fitXY"
             android:elevation="6dp"
+            android:scaleType="fitXY"
+            android:visibility="gone"
             app:srcCompat="@drawable/ic_triangle_down"
-            tools:visibility="visible"
-            tools:tint="@color/core_blue"/>
+            tools:tint="@color/core_blue"
+            tools:visibility="visible" />
 
     </LinearLayout>
 
@@ -90,11 +87,11 @@
         android:id="@+id/tooltip_arrow_end"
         android:layout_width="8dp"
         android:layout_height="16dp"
-        android:visibility="gone"
-        android:scaleType="fitXY"
         android:elevation="6dp"
+        android:scaleType="fitXY"
+        android:visibility="gone"
         app:srcCompat="@drawable/ic_triangle_right"
-        tools:visibility="visible"
-        tools:tint="@color/core_blue"/>
+        tools:tint="@color/core_blue"
+        tools:visibility="visible" />
 
 </LinearLayout>

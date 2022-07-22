@@ -14,11 +14,13 @@ import android.widget.TextView;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.Px;
 import androidx.annotation.StringRes;
 import androidx.core.content.ContextCompat;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.mms.GlideApp;
+import org.thoughtcrime.securesms.util.ViewUtil;
 
 /**
  * Class for creating simple tooltips to show throughout the app. Utilizes a popup window so you
@@ -36,7 +38,8 @@ public class TooltipPopup extends PopupWindow {
 
   private final View      anchor;
   private final ImageView arrow;
-  private final int       position;
+  private final int position;
+  private final int startMargin;
 
   public static Builder forTarget(@NonNull View anchor) {
     return new Builder(anchor);
@@ -44,6 +47,7 @@ public class TooltipPopup extends PopupWindow {
 
   private TooltipPopup(@NonNull View anchor,
                        int rawPosition,
+                       @Px int startMargin,
                        @NonNull String text,
                        @ColorInt int backgroundTint,
                        @ColorInt int textColor,
@@ -54,8 +58,9 @@ public class TooltipPopup extends PopupWindow {
           ViewGroup.LayoutParams.WRAP_CONTENT,
           ViewGroup.LayoutParams.WRAP_CONTENT);
 
-    this.anchor   = anchor;
-    this.position = getRtlPosition(anchor.getContext(), rawPosition);
+    this.anchor          = anchor;
+    this.position    = getRtlPosition(anchor.getContext(), rawPosition);
+    this.startMargin = startMargin;
 
     switch (rawPosition) {
       case POSITION_ABOVE: arrow = getContentView().findViewById(R.id.tooltip_arrow_bottom); break;
@@ -140,6 +145,19 @@ public class TooltipPopup extends PopupWindow {
         throw new AssertionError("Invalid tooltip position!");
     }
 
+    switch (position) {
+      case POSITION_ABOVE:
+        xoffset += startMargin;
+      case POSITION_BELOW:
+        xoffset += startMargin;
+        break;
+      case POSITION_LEFT:
+        xoffset += startMargin;
+        break;
+      case POSITION_RIGHT:
+        xoffset -= startMargin;
+    }
+
     showAsDropDown(anchor, xoffset, yoffset);
   }
 
@@ -192,6 +210,7 @@ public class TooltipPopup extends PopupWindow {
     private int               textResId;
     private Object            iconGlideModel;
     private OnDismissListener dismissListener;
+    private int               setStartMargin;
 
     private Builder(@NonNull View anchor) {
       this.anchor = anchor;
@@ -222,9 +241,14 @@ public class TooltipPopup extends PopupWindow {
       return this;
     }
 
+    public Builder setStartMargin(@Px int startMargin) {
+      this.setStartMargin = startMargin;
+      return this;
+    }
+
     public TooltipPopup show(int position) {
       String       text    = anchor.getContext().getString(textResId);
-      TooltipPopup tooltip = new TooltipPopup(anchor, position, text, backgroundTint, textColor, iconGlideModel, dismissListener);
+      TooltipPopup tooltip = new TooltipPopup(anchor, position, setStartMargin, text, backgroundTint, textColor, iconGlideModel, dismissListener);
 
       tooltip.show();
 
