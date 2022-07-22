@@ -133,8 +133,22 @@ class ConversationRepository {
     return Single.fromCallable(() -> Util.isMmsCapable(context)).subscribeOn(Schedulers.io());
   }
 
-  @NonNull Observable<ConversationSecurityInfo> getSecurityInfo(RecipientId recipientId) {
-    return Recipient.observable(recipientId).map(recipient -> {
+  /**
+   * Watchest the given recipient id for changes, and gets the security info for the recipient
+   * whenever a change occurs.
+   *
+   * @param recipientId The recipient id we are interested in
+   *
+   * @return The recipient's security info.
+   */
+  @NonNull Observable<ConversationSecurityInfo> getSecurityInfo(@NonNull RecipientId recipientId) {
+    return Recipient.observable(recipientId)
+                    .switchMapSingle(this::getSecurityInfo)
+                    .subscribeOn(Schedulers.io());
+  }
+
+  private @NonNull Single<ConversationSecurityInfo> getSecurityInfo(@NonNull Recipient recipient) {
+    return Single.fromCallable(() -> {
       Log.i(TAG, "Resolving registered state...");
       RecipientDatabase.RegisteredState registeredState;
 
@@ -159,22 +173,22 @@ class ConversationRepository {
       }
 
       Log.i(TAG, "Returning registered state...");
-      return new ConversationSecurityInfo(recipientId,
+      return new ConversationSecurityInfo(recipient.getId(),
                                           registeredState == RecipientDatabase.RegisteredState.REGISTERED && signalEnabled,
                                           Util.isDefaultSmsProvider(context),
                                           true);
-    }).subscribeOn(Schedulers.io());
+    });
   }
 
-  Observable<ThreadRecord> getThreadRecord(long threadId) {
+  Observable<Optional<ThreadRecord>> getThreadRecord(long threadId) {
     if (threadId == -1L) {
-      return Observable.empty();
+      return Observable.just(Optional.empty());
     }
 
-    return Observable.<ThreadRecord>create(emitter -> {
+    return Observable.<Optional<ThreadRecord>> create(emitter -> {
 
       DatabaseObserver.Observer listener = () -> {
-        emitter.onNext(SignalDatabase.threads().getThreadRecord(threadId));
+        emitter.onNext(Optional.ofNullable(SignalDatabase.threads().getThreadRecord(threadId)));
       };
 
       ApplicationDependencies.getDatabaseObserver().registerConversationObserver(threadId, listener);

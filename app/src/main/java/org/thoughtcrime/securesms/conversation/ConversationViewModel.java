@@ -139,7 +139,7 @@ public class ConversationViewModel extends ViewModel {
 
     disposables.add(threadCountStore.update(
         threadId.switchMap(conversationRepository::getThreadRecord).toFlowable(BackpressureStrategy.BUFFER),
-        (record, count) -> count.updateWith(record)
+        (record, count) -> record.map(count::updateWith).orElse(count)
     ));
 
     conversationStateStore.update(Observable.combineLatest(recipientId, conversationStateTick, (id, tick) -> id)

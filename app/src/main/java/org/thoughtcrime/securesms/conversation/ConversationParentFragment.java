@@ -815,8 +815,9 @@ public class ConversationParentFragment extends Fragment
 
   private void onInitialSecurityConfigurationLoaded() {
     Log.d(TAG, "Initial security configuration loaded.");
-    if (isDetached()) {
-      Log.w(TAG, "Fragment has become detached. Ignoring configuration call.");
+    if (getContext() == null) {
+      Log.w(TAG, "Fragment has become detached from context. Ignoring configuration call.");
+      return;
     }
 
     initializeProfiles();
@@ -826,6 +827,12 @@ public class ConversationParentFragment extends Fragment
     initializeDraft(viewModel.getArgs()).addListener(new AssertedSuccessListener<Boolean>() {
       @Override
       public void onSuccess(Boolean loadedDraft) {
+        Log.d(TAG, "Initial security configuration loaded.");
+        if (getContext() == null) {
+          Log.w(TAG, "Fragment has become detached from context. Ignoring draft load.");
+          return;
+        }
+
         if (loadedDraft != null && loadedDraft) {
           Log.i(TAG, "Finished loading draft");
           ThreadUtil.runOnMain(() -> {
@@ -837,7 +844,7 @@ public class ConversationParentFragment extends Fragment
           });
         }
 
-        if (TextSecurePreferences.isTypingIndicatorsEnabled(requireContext())) {
+        if (TextSecurePreferences.isTypingIndicatorsEnabled(ApplicationDependencies.getApplication())) {
           composeText.addTextChangedListener(typingTextWatcher);
         }
         composeText.setSelection(composeText.length(), composeText.length());

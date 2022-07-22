@@ -688,7 +688,10 @@ public class ConversationListFragment extends MainFragment implements ActionMode
           AppStartup.getInstance().onCriticalRenderEventEnd();
           startupStopwatch.split("first-render");
           startupStopwatch.stop(TAG);
-          ConversationFragment.prepare(requireContext());
+
+          if (getContext() != null) {
+            ConversationFragment.prepare(getContext());
+          }
         });
       }
     });
