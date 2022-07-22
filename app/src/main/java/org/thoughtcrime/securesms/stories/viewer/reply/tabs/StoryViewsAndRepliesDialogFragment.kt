@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import androidx.core.view.ViewCompat
 import androidx.core.view.updateLayoutParams
 import androidx.fragment.app.DialogFragment
@@ -17,11 +18,13 @@ import com.google.android.material.tabs.TabLayoutMediator
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.FixedRoundedCornerBottomSheetDialogFragment
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.stories.viewer.page.StoryViewerPageFragment
 import org.thoughtcrime.securesms.stories.viewer.page.StoryViewerPageViewModel
 import org.thoughtcrime.securesms.stories.viewer.reply.BottomSheetBehaviorDelegate
 import org.thoughtcrime.securesms.stories.viewer.reply.StoryViewsAndRepliesPagerChild
 import org.thoughtcrime.securesms.stories.viewer.reply.StoryViewsAndRepliesPagerParent
 import org.thoughtcrime.securesms.stories.viewer.reply.group.StoryGroupReplyFragment
+import org.thoughtcrime.securesms.stories.viewer.reply.reaction.OnReactionSentView
 import org.thoughtcrime.securesms.util.BottomSheetUtil.requireCoordinatorLayout
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import kotlin.math.min
@@ -67,12 +70,18 @@ class StoryViewsAndRepliesDialogFragment : FixedRoundedCornerBottomSheetDialogFr
   private val onPageChangeCallback = PageChangeCallback()
   private val lifecycleDisposable = LifecycleDisposable()
 
+  private lateinit var reactionView: OnReactionSentView
+
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
     return inflater.inflate(R.layout.stories_views_and_replies_fragment, container, false)
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     pager = view.findViewById(R.id.pager)
+
+    reactionView = OnReactionSentView(requireContext())
+    val container = pager.rootView.findViewById<FrameLayout>(R.id.container)
+    container.addView(reactionView)
 
     val bottomSheetBehavior = (requireDialog() as BottomSheetDialog).behavior
     bottomSheetBehavior.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
@@ -147,6 +156,10 @@ class StoryViewsAndRepliesDialogFragment : FixedRoundedCornerBottomSheetDialogFr
   override fun requestFullScreen(fullscreen: Boolean) {
     shouldShowFullScreen = fullscreen
     requireView().invalidate()
+  }
+
+  override fun onReactionEmojiSelected(emoji: String) {
+    reactionView.playForEmoji(emoji)
   }
 
   private inner class PageChangeCallback : ViewPager2.OnPageChangeCallback() {

@@ -348,6 +348,7 @@ class StoryGroupReplyFragment :
 
           override fun onReactionSelected(emoji: String) {
             dialog.dismiss()
+            findListener<Callback>()?.onReactionEmojiSelected(emoji)
             sendReaction(emoji)
           }
 
@@ -541,5 +542,6 @@ class StoryGroupReplyFragment :
   interface Callback {
     fun onStartDirectReply(recipientId: RecipientId)
     fun requestFullScreen(fullscreen: Boolean)
+    fun onReactionEmojiSelected(emoji: String)
   }
 }
