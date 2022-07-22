@@ -74,7 +74,10 @@ public class ConversationIntents {
   static @NonNull Bundle createParentFragmentArguments(@NonNull Intent intent) {
     Bundle bundle = new Bundle();
 
-    bundle.putAll(intent.getExtras());
+    if (intent.getExtras() != null) {
+      bundle.putAll(intent.getExtras());
+    }
+
     bundle.putParcelable(INTENT_DATA, intent.getData());
     bundle.putString(INTENT_TYPE, intent.getType());
 
