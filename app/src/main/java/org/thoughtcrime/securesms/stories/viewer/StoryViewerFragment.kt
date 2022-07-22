@@ -68,6 +68,7 @@ class StoryViewerFragment :
       adapter.setPages(state.pages)
       if (state.pages.isNotEmpty() && storyPager.currentItem != state.page) {
         pagerOnPageSelectedLock = true
+        storyPager.isUserInputEnabled = false
         storyPager.setCurrentItem(state.page, state.previousPage > -1)
         pagerOnPageSelectedLock = false
 
@@ -140,6 +141,9 @@ class StoryViewerFragment :
 
     override fun onPageScrollStateChanged(state: Int) {
       viewModel.setIsScrolling(state == ViewPager2.SCROLL_STATE_DRAGGING)
+      if (state == ViewPager2.SCROLL_STATE_IDLE) {
+        storyPager.isUserInputEnabled = true
+      }
     }
   }
 
