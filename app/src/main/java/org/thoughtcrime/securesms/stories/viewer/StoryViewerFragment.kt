@@ -86,6 +86,10 @@ class StoryViewerFragment :
         requireActivity().supportStartPostponedEnterTransition()
       }
 
+      if (state.skipCrossfade) {
+        viewModel.setCrossfaderIsReady(true)
+      }
+
       if (state.loadState.isReady()) {
         storyCrossfader.alpha = 0f
       }

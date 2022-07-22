@@ -1731,6 +1731,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
             requireContext(),
             new StoryViewerArgs.Builder(messageRecord.getQuote().getAuthor(), Recipient.resolved(messageRecord.getQuote().getAuthor()).shouldHideStory())
                                .withStoryId(messageRecord.getParentStoryId().asMessageId().getId())
+                               .isFromQuote(true)
                                .build()));
         return;
       }

@@ -21,7 +21,8 @@ data class StoryViewerArgs(
   val isFromNotification: Boolean = false,
   val groupReplyStartPosition: Int = -1,
   val isUnviewedOnly: Boolean = false,
-  val isFromInfoContextMenuAction: Boolean = false
+  val isFromInfoContextMenuAction: Boolean = false,
+  val isFromQuote: Boolean = false
 ) : Parcelable {
 
   class Builder(private val recipientId: RecipientId, private val isInHiddenStoryMode: Boolean) {
@@ -35,6 +36,7 @@ data class StoryViewerArgs(
     private var groupReplyStartPosition: Int = -1
     private var isUnviewedOnly: Boolean = false
     private var isFromInfoContextMenuAction: Boolean = false
+    private var isFromQuote: Boolean = false
 
     fun withStoryId(storyId: Long): Builder {
       this.storyId = storyId
@@ -76,6 +78,11 @@ data class StoryViewerArgs(
       return this
     }
 
+    fun isFromQuote(isFromQuote: Boolean): Builder {
+      this.isFromQuote = isFromQuote
+      return this
+    }
+
     fun build(): StoryViewerArgs {
       return StoryViewerArgs(
         recipientId = recipientId,
@@ -88,7 +95,8 @@ data class StoryViewerArgs(
         isFromNotification = isFromNotification,
         groupReplyStartPosition = groupReplyStartPosition,
         isUnviewedOnly = isUnviewedOnly,
-        isFromInfoContextMenuAction = isFromInfoContextMenuAction
+        isFromInfoContextMenuAction = isFromInfoContextMenuAction,
+        isFromQuote = isFromQuote
       )
     }
   }

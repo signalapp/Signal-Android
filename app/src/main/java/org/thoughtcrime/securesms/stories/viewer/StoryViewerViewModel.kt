@@ -29,7 +29,8 @@ class StoryViewerViewModel(
         storyViewerArgs.storyThumbTextModel != null -> StoryViewerState.CrossfadeSource.TextModel(storyViewerArgs.storyThumbTextModel)
         storyViewerArgs.storyThumbUri != null -> StoryViewerState.CrossfadeSource.ImageUri(storyViewerArgs.storyThumbUri, storyViewerArgs.storyThumbBlur)
         else -> StoryViewerState.CrossfadeSource.None
-      }
+      },
+      skipCrossfade = storyViewerArgs.isFromNotification || storyViewerArgs.isFromQuote
     )
   )
 
