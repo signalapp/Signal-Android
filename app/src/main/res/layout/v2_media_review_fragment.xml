@@ -278,23 +278,25 @@
             app:tint="@color/signal_dark_colorOnSurface"
             tools:translationY="0dp" />
 
-        <androidx.appcompat.widget.AppCompatImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/send"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:layout_marginStart="12dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginBottom="22dp"
-            android:background="@drawable/circle_tintable"
-            android:padding="8dp"
+            android:layout_marginBottom="16dp"
+            android:background="@color/signal_colorSecondaryContainer"
+            android:padding="4dp"
+            android:scaleType="centerInside"
             android:translationY="48dp"
-            app:backgroundTint="@color/core_ultramarine"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1"
             app:layout_constraintStart_toEndOf="@id/save_to_media"
             app:layout_goneMarginStart="10dp"
-            app:srcCompat="@drawable/ic_send_24"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Signal.Circle"
+            app:srcCompat="@drawable/ic_arrow_end_24"
+            app:tint="@color/signal_colorOnSecondaryContainer"
             tools:translationY="0dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

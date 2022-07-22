@@ -82,8 +82,9 @@
             android:background="@drawable/circle_tintable"
             android:contentDescription="@string/ShareActivity__share"
             android:scaleType="centerInside"
-            app:backgroundTint="@color/signal_accent_primary"
-            app:srcCompat="@drawable/ic_send_24" />
+            app:backgroundTint="@color/signal_colorSecondaryContainer"
+            app:srcCompat="@drawable/ic_send_24"
+            app:tint="@color/signal_colorOnSecondaryContainer" />
 
     </FrameLayout>
 

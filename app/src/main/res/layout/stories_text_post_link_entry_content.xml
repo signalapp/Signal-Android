@@ -70,14 +70,14 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginEnd="12dp"
-        android:background="@color/core_ultramarine"
-        android:padding="2dp"
+        android:background="@color/signal_colorSecondaryContainer"
+        android:padding="4dp"
         android:scaleType="centerInside"
         app:layout_constraintBottom_toBottomOf="@id/input"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/input"
         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Signal.Circle"
         app:srcCompat="@drawable/ic_check_24"
-        app:tint="@color/core_white" />
+        app:tint="@color/signal_colorOnSecondaryContainer" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

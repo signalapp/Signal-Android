@@ -64,18 +64,21 @@
         app:tint="@color/core_white"
         tools:srcCompat="@drawable/ic_text_effect" />
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/confirm"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginEnd="16dp"
+        android:background="@color/signal_colorSecondaryContainer"
         android:contentDescription="@string/TextStoryPostTextEntryFragment__done_adding_text"
-        android:padding="6dp"
+        android:padding="4dp"
         android:scaleType="centerInside"
         app:layout_constraintBottom_toBottomOf="@id/color_bar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/color_bar"
-        app:srcCompat="@drawable/ic_done_button" />
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Signal.Circle"
+        app:srcCompat="@drawable/ic_check_24"
+        app:tint="@color/signal_colorOnSecondaryContainer" />
 
     <org.thoughtcrime.securesms.mediasend.v2.text.TextFontButton
         android:id="@+id/font_button"

@@ -75,19 +75,20 @@
         app:srcCompat="@drawable/ic_link_24"
         app:tint="@color/core_white" />
 
-    <androidx.appcompat.widget.AppCompatImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/send"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginEnd="10dp"
-        android:background="@drawable/story_text_circle_button_background_inset_5"
+        android:background="@color/signal_colorSecondaryContainer"
+        android:padding="4dp"
         android:scaleType="centerInside"
-        app:backgroundTint="@color/core_ultramarine"
         app:layout_constraintBottom_toBottomOf="@id/toggle_spacer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/toggle_spacer"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Signal.Circle"
         app:srcCompat="@drawable/ic_arrow_end_24"
-        app:tint="@color/core_white" />
+        app:tint="@color/signal_colorOnSecondaryContainer" />
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/button_bar_barrier"
