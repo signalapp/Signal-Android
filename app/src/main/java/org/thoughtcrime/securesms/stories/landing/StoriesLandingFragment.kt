@@ -235,6 +235,9 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
       },
       onInfo = { model, preview ->
         openStoryViewer(model, preview, true)
+      },
+      onAvatarClick = {
+        cameraFab.performClick()
       }
     )
   }

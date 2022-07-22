@@ -41,8 +41,7 @@
         app:layout_constraintEnd_toStartOf="@id/text"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="@id/bubble"
-        app:layout_constraintTop_toTopOf="@id/bubble"
-        app:srcCompat="@drawable/ic_union" />
+        app:layout_constraintTop_toTopOf="@id/bubble" />
 
     <TextView
         android:id="@+id/text"

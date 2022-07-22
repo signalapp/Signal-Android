@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.stories.landing
 import android.view.View
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.view.AvatarView
-import org.thoughtcrime.securesms.badges.BadgeImageView
 import org.thoughtcrime.securesms.components.settings.PreferenceModel
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
@@ -30,14 +29,13 @@ object MyStoriesItem {
 
     private val thumbnail: View = itemView.findViewById(R.id.story)
     private val avatarView: AvatarView = itemView.findViewById(R.id.avatar)
-    private val badgeView: BadgeImageView = itemView.findViewById(R.id.badge)
 
     override fun bind(model: Model) {
       itemView.setOnClickListener { model.onClick() }
       thumbnail.setOnClickListener { model.onClickThumbnail() }
+      avatarView.setOnClickListener { model.onClickThumbnail() }
 
       avatarView.displayProfileAvatar(Recipient.self())
-      badgeView.setBadgeFromRecipient(Recipient.self())
     }
   }
 }
