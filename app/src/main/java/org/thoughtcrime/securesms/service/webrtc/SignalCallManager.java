@@ -316,8 +316,8 @@ private void processStateless(@NonNull Function1<WebRtcEphemeralState, WebRtcEph
     process((s, p) -> p.handleSetUserAudioDevice(s, desiredDevice));
   }
 
-  public void setTelecomApproved(long callId) {
-    process((s, p) -> p.handleSetTelecomApproved(s, callId));
+  public void setTelecomApproved(long callId, @NonNull RecipientId recipientId) {
+    process((s, p) -> p.handleSetTelecomApproved(s, callId, recipientId));
   }
 
   public void dropCall(long callId) {

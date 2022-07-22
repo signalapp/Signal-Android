@@ -47,7 +47,7 @@ class AndroidCallConnectionService : ConnectionService() {
       setRinging()
     }
     AndroidTelecomUtil.connections[recipientId] = connection
-    ApplicationDependencies.getSignalCallManager().setTelecomApproved(callId)
+    ApplicationDependencies.getSignalCallManager().setTelecomApproved(callId, recipientId)
 
     return connection
   }
@@ -80,7 +80,7 @@ class AndroidCallConnectionService : ConnectionService() {
       setDialing()
     }
     AndroidTelecomUtil.connections[recipientId] = connection
-    ApplicationDependencies.getSignalCallManager().setTelecomApproved(callId)
+    ApplicationDependencies.getSignalCallManager().setTelecomApproved(callId, recipientId)
 
     return connection
   }

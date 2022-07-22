@@ -141,7 +141,7 @@ object AndroidTelecomUtil {
     if (telecomSupported) {
       val telecomBundle = bundleOf(
         TelecomManager.EXTRA_PHONE_ACCOUNT_HANDLE to getPhoneAccountHandle(),
-        TelecomManager.EXTRA_START_CALL_WITH_VIDEO_STATE to VideoProfile.STATE_BIDIRECTIONAL,
+        TelecomManager.EXTRA_START_CALL_WITH_VIDEO_STATE to if (isVideoCall) VideoProfile.STATE_BIDIRECTIONAL else VideoProfile.STATE_AUDIO_ONLY,
         TelecomManager.EXTRA_OUTGOING_CALL_EXTRAS to bundleOf(
           AndroidCallConnectionService.KEY_RECIPIENT_ID to recipientId.serialize(),
           AndroidCallConnectionService.KEY_CALL_ID to callId,

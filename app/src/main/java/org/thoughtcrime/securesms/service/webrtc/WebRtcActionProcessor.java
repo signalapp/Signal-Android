@@ -256,8 +256,15 @@ public abstract class WebRtcActionProcessor {
     return currentState;
   }
 
-  protected @NonNull WebRtcServiceState handleSetTelecomApproved(@NonNull WebRtcServiceState currentState, long callId) {
+  protected @NonNull WebRtcServiceState handleSetTelecomApproved(@NonNull WebRtcServiceState currentState, long callId, RecipientId recipientId) {
     Log.i(tag, "handleSetTelecomApproved(): call_id: " + callId);
+
+    RemotePeer peer = currentState.getCallInfoState().getPeerByCallId(new CallId(callId));
+    if (peer == null || !peer.callIdEquals(currentState.getCallInfoState().getActivePeer())) {
+      Log.w(tag, "Received telecom approval after call terminated. callId: " + callId + " recipient: " + recipientId);
+      webRtcInteractor.terminateCall(recipientId);
+      return currentState;
+    }
 
     currentState = currentState.builder()
                                .changeCallSetupState(new CallId(callId))
