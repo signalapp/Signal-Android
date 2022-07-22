@@ -106,10 +106,9 @@ object Stories {
     }
 
     Log.d(TAG, "Enqueuing downloads for up to $limit stories for $recipientId (force: $force)")
-    SignalDatabase.mms.getUnreadStories(recipientId, limit).use {
-      while (it.next != null) {
-        val record = it.current as MmsMessageRecord
-        enqueueAttachmentsFromStoryForDownloadSync(record, force)
+    SignalDatabase.mms.getUnreadStories(recipientId, limit).use { reader ->
+      reader.forEach {
+        enqueueAttachmentsFromStoryForDownloadSync(it as MmsMessageRecord, false)
       }
     }
   }
