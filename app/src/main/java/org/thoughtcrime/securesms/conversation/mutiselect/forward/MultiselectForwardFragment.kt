@@ -360,18 +360,10 @@ class MultiselectForwardFragment :
       @Suppress("NON_EXHAUSTIVE_WHEN_STATEMENT")
       when (storySendRequirements) {
         Stories.MediaTransform.SendRequirements.REQUIRES_CLIP -> {
-          if (!SignalStore.storyValues().videoTooltipSeen) {
-            displayTooltip(view, R.string.MultiselectForwardFragment__videos_will_be_trimmed) {
-              SignalStore.storyValues().videoTooltipSeen = true
-            }
-          }
+          displayTooltip(view, R.string.MultiselectForwardFragment__videos_will_be_trimmed)
         }
         Stories.MediaTransform.SendRequirements.CAN_NOT_SEND -> {
-          if (!SignalStore.storyValues().cannotSendTooltipSeen) {
-            displayTooltip(view, R.string.MultiselectForwardFragment__videos_sent_to_stories_cant) {
-              SignalStore.storyValues().cannotSendTooltipSeen = true
-            }
-          }
+          displayTooltip(view, R.string.MultiselectForwardFragment__videos_sent_to_stories_cant)
         }
       }
     }
@@ -379,15 +371,12 @@ class MultiselectForwardFragment :
     return resultsSet.toSet()
   }
 
-  private fun displayTooltip(anchor: View, @StringRes text: Int, onDismiss: () -> Unit) {
+  private fun displayTooltip(anchor: View, @StringRes text: Int) {
     TooltipPopup
       .forTarget(anchor)
       .setText(text)
-      .setTextColor(ContextCompat.getColor(requireContext(), R.color.signal_colorOnPrimary))
-      .setBackgroundTint(ContextCompat.getColor(requireContext(), R.color.signal_colorPrimary))
-      .setOnDismissListener {
-        onDismiss()
-      }
+      .setTextColor(ContextCompat.getColor(requireContext(), R.color.signal_colorOnPrimaryContainer))
+      .setBackgroundTint(ContextCompat.getColor(requireContext(), R.color.signal_colorPrimaryContainer))
       .show(TooltipPopup.POSITION_BELOW)
   }
 
