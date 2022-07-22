@@ -50,6 +50,8 @@ public final class ThreadBodyUtil {
       return format(context, record, emoji, R.string.ThreadRecord_sticker);
     } else if (MessageRecordUtil.hasGiftBadge(record)) {
       return String.format("%s %s", EmojiStrings.GIFT, getGiftSummary(context, record));
+    } else if (MessageRecordUtil.isStoryReaction(record)) {
+      return getStoryReactionSummary(context, record);
     }
 
     boolean hasImage = false;
@@ -82,6 +84,14 @@ public final class ThreadBodyUtil {
       return context.getString(R.string.ThreadRecord__you_redeemed_a_gift_badge);
     } else {
       return context.getString(R.string.ThreadRecord__you_received_a_gift);
+    }
+  }
+
+  private static @NonNull String getStoryReactionSummary(@NonNull Context context, @NonNull MessageRecord messageRecord) {
+    if (messageRecord.isOutgoing()) {
+      return context.getString(R.string.ThreadRecord__reacted_s_to_their_story, messageRecord.getDisplayBody(context));
+    } else {
+      return context.getString(R.string.ThreadRecord__reacted_s_to_your_story, messageRecord.getDisplayBody(context));
     }
   }
   
