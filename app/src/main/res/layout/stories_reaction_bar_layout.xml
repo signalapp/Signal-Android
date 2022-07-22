@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="?actionBarSize"
-    android:maxHeight="?actionBarSize">
+    android:layout_height="56dp"
+    android:maxHeight="56dp">
 
     <org.thoughtcrime.securesms.stories.viewer.reply.composer.StoryReactionBar
         android:id="@+id/reaction_bar"

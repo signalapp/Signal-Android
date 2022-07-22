@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="@dimen/reaction_scrubber_width"
-    android:layout_height="?actionBarSize"
+    android:layout_height="56dp"
     tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
 
     <org.thoughtcrime.securesms.components.emoji.EmojiImageView
