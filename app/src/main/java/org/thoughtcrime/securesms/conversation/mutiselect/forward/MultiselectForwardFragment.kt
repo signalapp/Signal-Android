@@ -15,6 +15,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.PluralsRes
 import androidx.annotation.StringRes
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.core.view.ViewCompat
@@ -137,10 +138,11 @@ class MultiselectForwardFragment :
     val shareSelectionRecycler: RecyclerView = bottomBar.findViewById(R.id.selected_list)
     val shareSelectionAdapter = ShareSelectionAdapter()
     val sendButtonFrame: View = bottomBar.findViewById(R.id.share_confirm_frame)
-    val sendButton: View = bottomBar.findViewById(R.id.share_confirm)
+    val sendButton: AppCompatImageView = bottomBar.findViewById(R.id.share_confirm)
     val backgroundHelper: View = bottomBar.findViewById(R.id.background_helper)
 
     if (args.sendButtonTint != -1) {
+      sendButton.setColorFilter(ContextCompat.getColor(requireContext(), R.color.signal_colorOnCustom))
       ViewCompat.setBackgroundTintList(sendButton, ColorStateList.valueOf(args.sendButtonTint))
     }
 
