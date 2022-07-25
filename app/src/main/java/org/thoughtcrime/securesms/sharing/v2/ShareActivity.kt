@@ -11,6 +11,7 @@ import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.core.content.pm.ShortcutManagerCompat
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
@@ -31,6 +32,10 @@ import org.thoughtcrime.securesms.util.LifecycleDisposable
 import java.util.Optional
 
 class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.Callback {
+
+  companion object {
+    private val TAG = Log.tag(ShareActivity::class.java)
+  }
 
   private val dynamicTheme = DynamicNoActionBarTheme()
   private val lifecycleDisposable = LifecycleDisposable()
@@ -74,6 +79,7 @@ class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.C
         is ShareState.ShareDataLoadState.Loaded -> {
           val directShareTarget = this.directShareTarget
           if (directShareTarget != null) {
+            Log.d(TAG, "Encountered a direct share target. Opening conversation with resolved share data.")
             openConversation(
               ShareEvent.OpenConversation(
                 shareState.loadState.resolvedShareData,
@@ -162,6 +168,8 @@ class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.C
       error("Can't open a conversation for a story!")
     }
 
+    Log.d(TAG, "Opening conversation...")
+
     val multiShareArgs = shareEvent.getMultiShareArgs()
     val conversationIntentBuilder = ConversationIntents.createBuilder(this, shareEvent.contact.recipientId, -1L)
       .withDataUri(multiShareArgs.dataUri)
@@ -176,6 +184,8 @@ class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.C
   }
 
   private fun openMediaInterstitial(shareEvent: ShareEvent.OpenMediaInterstitial) {
+    Log.d(TAG, "Opening media share interstitial...")
+
     val multiShareArgs = shareEvent.getMultiShareArgs()
     val media: MutableList<Media> = ArrayList(multiShareArgs.media)
     if (media.isEmpty() && multiShareArgs.dataUri != null) {
@@ -212,10 +222,14 @@ class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.C
   }
 
   private fun openTextInterstitial(shareEvent: ShareEvent.OpenTextInterstitial) {
+    Log.d(TAG, "Opening text share interstitial...")
+
     finishOnOkResultLauncher.launch(ShareInterstitialActivity.createIntent(this, shareEvent.getMultiShareArgs()))
   }
 
   private fun sendWithoutInterstitial(shareEvent: ShareEvent.SendWithoutInterstitial) {
+    Log.d(TAG, "Sending without an interstitial...")
+
     MultiShareSender.send(shareEvent.getMultiShareArgs()) { results: MultiShareSendResultCollection? ->
       MultiShareDialogs.displayResultDialog(this, results!!) {
         finish()
