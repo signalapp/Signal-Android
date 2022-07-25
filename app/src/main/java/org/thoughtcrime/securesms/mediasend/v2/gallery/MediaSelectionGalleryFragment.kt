@@ -64,8 +64,6 @@ class MediaSelectionGalleryFragment : Fragment(R.layout.fragment_container), Med
       is MediaValidator.FilterError.NoItems -> {
         if (error.cause != null) {
           handleError(error.cause)
-        } else {
-          Toast.makeText(requireContext(), R.string.MediaReviewFragment__one_or_more_items_were_invalid, Toast.LENGTH_SHORT).show()
         }
       }
     }
