@@ -22,7 +22,8 @@ data class StoryViewerArgs(
   val groupReplyStartPosition: Int = -1,
   val isUnviewedOnly: Boolean = false,
   val isFromInfoContextMenuAction: Boolean = false,
-  val isFromQuote: Boolean = false
+  val isFromQuote: Boolean = false,
+  val isFromMyStories: Boolean = false
 ) : Parcelable {
 
   class Builder(private val recipientId: RecipientId, private val isInHiddenStoryMode: Boolean) {

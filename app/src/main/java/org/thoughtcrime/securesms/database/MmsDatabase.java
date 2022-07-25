@@ -613,7 +613,7 @@ public class MmsDatabase extends MessageDatabase {
       whereArgs = SqlUtil.buildArgs(recipientId);
     } else {
       where += " AND " + THREAD_ID_WHERE;
-      whereArgs = SqlUtil.buildArgs(1, 0, threadId);
+      whereArgs = SqlUtil.buildArgs(threadId);
     }
 
     return new Reader(rawQuery(where, whereArgs));
@@ -798,7 +798,8 @@ public class MmsDatabase extends MessageDatabase {
   }
 
   @Override
-  public @NonNull List<StoryResult> getOrderedStoryRecipientsAndIds() {
+  public @NonNull List<StoryResult> getOrderedStoryRecipientsAndIds(boolean isOutgoingOnly) {
+    String         where = "WHERE is_story > 0 AND remote_deleted = 0" + (isOutgoingOnly ? " AND is_outgoing != 0" : "") + "\n";
     SQLiteDatabase db    = getReadableDatabase();
     String         query = "SELECT\n"
                            + " mms.date AS sent_timestamp,\n"
@@ -812,7 +813,7 @@ public class MmsDatabase extends MessageDatabase {
                            + "FROM mms\n"
                            + "JOIN thread\n"
                            + "ON mms.thread_id = thread._id\n"
-                           + "WHERE is_story > 0 AND remote_deleted = 0\n"
+                           + where
                            + "ORDER BY\n"
                            + "is_unread DESC,\n"
                            + "CASE\n"

@@ -39,7 +39,7 @@ open class StoryViewerPageRepository(context: Context) {
 
   fun isReadReceiptsEnabled(): Boolean = TextSecurePreferences.isReadReceiptsEnabled(context)
 
-  private fun getStoryRecords(recipientId: RecipientId, isUnviewedOnly: Boolean): Observable<List<MessageRecord>> {
+  private fun getStoryRecords(recipientId: RecipientId, isUnviewedOnly: Boolean, isOutgoingOnly: Boolean): Observable<List<MessageRecord>> {
     return Observable.create { emitter ->
       val recipient = Recipient.resolved(recipientId)
 
@@ -48,16 +48,14 @@ open class StoryViewerPageRepository(context: Context) {
           SignalDatabase.mms.getAllOutgoingStories(false, 100)
         } else if (isUnviewedOnly) {
           SignalDatabase.mms.getUnreadStories(recipientId, 100)
+        } else if (isOutgoingOnly) {
+          SignalDatabase.mms.getOutgoingStoriesTo(recipientId)
         } else {
           SignalDatabase.mms.getAllStoriesFor(recipientId, 100)
         }
 
-        val results = mutableListOf<MessageRecord>()
-
-        while (stories.next != null) {
-          if (!(recipient.isMyStory && stories.current.recipient.isGroup)) {
-            results.add(stories.current)
-          }
+        val results = stories.filterNot {
+          recipient.isMyStory && it.recipient.isGroup
         }
 
         emitter.onNext(results)
@@ -150,8 +148,8 @@ open class StoryViewerPageRepository(context: Context) {
     return Stories.enqueueAttachmentsFromStoryForDownload(post.conversationMessage.messageRecord as MmsMessageRecord, true)
   }
 
-  fun getStoryPostsFor(recipientId: RecipientId, isUnviewedOnly: Boolean): Observable<List<StoryPost>> {
-    return getStoryRecords(recipientId, isUnviewedOnly)
+  fun getStoryPostsFor(recipientId: RecipientId, isUnviewedOnly: Boolean, isOutgoingOnly: Boolean): Observable<List<StoryPost>> {
+    return getStoryRecords(recipientId, isUnviewedOnly, isOutgoingOnly)
       .switchMap { records ->
         val posts = records.map { getStoryPostFromRecord(recipientId, it) }
         if (posts.isEmpty()) {

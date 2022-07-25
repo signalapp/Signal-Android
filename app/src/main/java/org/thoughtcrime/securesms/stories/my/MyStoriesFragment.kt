@@ -151,7 +151,8 @@ class MyStoriesFragment : DSLSettingsFragment(
             storyThumbTextModel = text,
             storyThumbUri = image,
             storyThumbBlur = blur,
-            isFromInfoContextMenuAction = isFromInfoContextMenuAction
+            isFromInfoContextMenuAction = isFromInfoContextMenuAction,
+            isFromMyStories = true
           )
         ),
         options.toBundle()

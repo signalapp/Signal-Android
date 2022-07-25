@@ -89,7 +89,8 @@ class StoryViewerViewModel(
     } else {
       repository.getStories(
         hiddenStories = storyViewerArgs.isInHiddenStoryMode,
-        unviewedOnly = storyViewerArgs.isUnviewedOnly
+        unviewedOnly = storyViewerArgs.isUnviewedOnly,
+        isOutgoingOnly = storyViewerArgs.isFromMyStories
       )
     }
   }

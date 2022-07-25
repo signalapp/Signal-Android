@@ -51,6 +51,7 @@ class StoryViewerFragment :
       storyViewerArgs.isFromNotification,
       storyViewerArgs.groupReplyStartPosition,
       storyViewerArgs.isUnviewedOnly,
+      storyViewerArgs.isFromMyStories,
       storyViewerArgs.isFromInfoContextMenuAction
     )
 

@@ -42,7 +42,7 @@ class StoryViewerPageViewModelTest {
   fun `Given first page and first post, when I goToPreviousPost, then I expect storyIndex to be 0`() {
     // GIVEN
     val storyPosts = createStoryPosts(3) { true }
-    whenever(repository.getStoryPostsFor(any(), any())).thenReturn(Observable.just(storyPosts))
+    whenever(repository.getStoryPostsFor(any(), any(), any())).thenReturn(Observable.just(storyPosts))
     val testSubject = createTestSubject()
     testSubject.setIsFirstPage(true)
     testScheduler.triggerActions()
@@ -61,7 +61,7 @@ class StoryViewerPageViewModelTest {
   fun `Given first page and second post, when I goToPreviousPost, then I expect storyIndex to be 0`() {
     // GIVEN
     val storyPosts = createStoryPosts(3) { true }
-    whenever(repository.getStoryPostsFor(any(), any())).thenReturn(Observable.just(storyPosts))
+    whenever(repository.getStoryPostsFor(any(), any(), any())).thenReturn(Observable.just(storyPosts))
     val testSubject = createTestSubject()
     testSubject.setIsFirstPage(true)
     testScheduler.triggerActions()
@@ -82,7 +82,7 @@ class StoryViewerPageViewModelTest {
   fun `Given no initial story and 3 records all viewed, when I initialize, then I expect storyIndex to be 0`() {
     // GIVEN
     val storyPosts = createStoryPosts(3) { true }
-    whenever(repository.getStoryPostsFor(any(), any())).thenReturn(Observable.just(storyPosts))
+    whenever(repository.getStoryPostsFor(any(), any(), any())).thenReturn(Observable.just(storyPosts))
 
     // WHEN
     val testSubject = createTestSubject()
@@ -98,7 +98,7 @@ class StoryViewerPageViewModelTest {
   fun `Given no initial story and 3 records all not viewed, when I initialize, then I expect storyIndex to be 0`() {
     // GIVEN
     val storyPosts = createStoryPosts(3) { false }
-    whenever(repository.getStoryPostsFor(any(), any())).thenReturn(Observable.just(storyPosts))
+    whenever(repository.getStoryPostsFor(any(), any(), any())).thenReturn(Observable.just(storyPosts))
 
     // WHEN
     val testSubject = createTestSubject()
@@ -114,7 +114,7 @@ class StoryViewerPageViewModelTest {
   fun `Given no initial story and 3 records with 2nd is not viewed, when I initialize, then I expect storyIndex to be 1`() {
     // GIVEN
     val storyPosts = createStoryPosts(3) { it % 2 != 0 }
-    whenever(repository.getStoryPostsFor(any(), any())).thenReturn(Observable.just(storyPosts))
+    whenever(repository.getStoryPostsFor(any(), any(), any())).thenReturn(Observable.just(storyPosts))
 
     // WHEN
     val testSubject = createTestSubject()
@@ -130,7 +130,7 @@ class StoryViewerPageViewModelTest {
   fun `Given no initial story and 3 records with 1st and 3rd not viewed, when I goToNext, then I expect storyIndex to be 2`() {
     // GIVEN
     val storyPosts = createStoryPosts(3) { it % 2 == 0 }
-    whenever(repository.getStoryPostsFor(any(), any())).thenReturn(Observable.just(storyPosts))
+    whenever(repository.getStoryPostsFor(any(), any(), any())).thenReturn(Observable.just(storyPosts))
 
     // WHEN
     val testSubject = createTestSubject()
@@ -148,7 +148,7 @@ class StoryViewerPageViewModelTest {
   fun `Given a single story, when I goToPrevious, then I expect storyIndex to be -1`() {
     // GIVEN
     val storyPosts = createStoryPosts(1)
-    whenever(repository.getStoryPostsFor(any(), any())).thenReturn(Observable.just(storyPosts))
+    whenever(repository.getStoryPostsFor(any(), any(), any())).thenReturn(Observable.just(storyPosts))
 
     // WHEN
     val testSubject = createTestSubject()
@@ -166,6 +166,7 @@ class StoryViewerPageViewModelTest {
     return StoryViewerPageViewModel(
       RecipientId.from(1),
       -1L,
+      false,
       false,
       repository,
       mock()

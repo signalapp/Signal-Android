@@ -34,7 +34,7 @@ class StoriesLandingRepository(context: Context) {
         val myStoriesId = SignalDatabase.recipients.getOrInsertFromDistributionListId(DistributionListId.MY_STORY)
         val myStories = Recipient.resolved(myStoriesId)
 
-        val stories = SignalDatabase.mms.orderedStoryRecipientsAndIds
+        val stories = SignalDatabase.mms.getOrderedStoryRecipientsAndIds(false)
         val mapping: MutableMap<Recipient, List<StoryResult>> = mutableMapOf()
 
         stories.forEach {
