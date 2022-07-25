@@ -13,10 +13,11 @@ import org.thoughtcrime.securesms.util.DynamicTheme
 abstract class FragmentWrapperActivity : PassphraseRequiredActivity() {
 
   protected open val dynamicTheme: DynamicTheme = DynamicNoActionBarTheme()
+  protected open val contentViewId: Int = R.layout.fragment_container
 
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
     super.onCreate(savedInstanceState, ready)
-    setContentView(R.layout.fragment_container)
+    setContentView(contentViewId)
     dynamicTheme.onCreate(this)
 
     if (savedInstanceState == null) {

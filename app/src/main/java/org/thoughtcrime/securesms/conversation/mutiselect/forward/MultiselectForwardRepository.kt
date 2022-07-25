@@ -10,6 +10,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.sharing.MultiShareArgs
 import org.thoughtcrime.securesms.sharing.MultiShareSender
 import org.thoughtcrime.securesms.stories.Stories
+import org.whispersystems.signalservice.api.util.Preconditions
 import java.util.Optional
 
 class MultiselectForwardRepository {
@@ -21,7 +22,9 @@ class MultiselectForwardRepository {
   )
 
   fun checkAllSelectedMediaCanBeSentToStories(records: List<MultiShareArgs>): Single<Stories.MediaTransform.SendRequirements> {
-    if (!Stories.isFeatureEnabled() || records.isEmpty()) {
+    Preconditions.checkArgument(records.isNotEmpty())
+
+    if (!Stories.isFeatureEnabled()) {
       return Single.just(Stories.MediaTransform.SendRequirements.CAN_NOT_SEND)
     }
 

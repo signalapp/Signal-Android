@@ -17,7 +17,6 @@ import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -28,7 +27,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.conversation.MessageSendType
-import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragment
+import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardActivity
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs
 import org.thoughtcrime.securesms.mediasend.MediaSendActivityResult
 import org.thoughtcrime.securesms.mediasend.v2.HudCommand
@@ -138,16 +137,20 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
       sharedViewModel.sendCommand(HudCommand.SaveMedia)
     }
 
-    setFragmentResultListener(MultiselectForwardFragment.RESULT_KEY) { _, bundle ->
-      val parcelizedKeys: List<ContactSearchKey.ParcelableRecipientSearchKey> = bundle.getParcelableArrayList(MultiselectForwardFragment.RESULT_SELECTION)!!
-      val contactSearchKeys = parcelizedKeys.map { it.asRecipientSearchKey() }
-      performSend(contactSearchKeys)
+    val recipientSelectionLauncher = registerForActivityResult(MultiselectForwardActivity.SelectionContract()) { keys ->
+      if (keys.isNotEmpty()) {
+        performSend(keys)
+      }
     }
 
     sendButton.setOnClickListener {
       if (sharedViewModel.isContactSelectionRequired) {
-        val args = MultiselectForwardFragmentArgs(false, title = R.string.MediaReviewFragment__send_to)
-        MultiselectForwardFragment.showFullScreen(parentFragmentManager, args)
+        val args = MultiselectForwardFragmentArgs(
+          false,
+          title = R.string.MediaReviewFragment__send_to,
+          storySendRequirements = sharedViewModel.getStorySendRequirements()
+        )
+        recipientSelectionLauncher.launch(args)
       } else {
         performSend()
       }

@@ -7,11 +7,12 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.setFragmentResult
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.FullScreenDialogFragment
+import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragment.Companion.DIALOG_TITLE
 import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.fragments.findListener
 
 class MultiselectForwardFullScreenDialogFragment : FullScreenDialogFragment(), MultiselectForwardFragment.Callback {
-  override fun getTitle(): Int = requireArguments().getInt(MultiselectForwardFragment.ARG_TITLE)
+  override fun getTitle(): Int = requireArguments().getParcelable<MultiselectForwardFragmentArgs>(DIALOG_TITLE)!!.title
 
   override fun getDialogLayoutResource(): Int = R.layout.fragment_container
 

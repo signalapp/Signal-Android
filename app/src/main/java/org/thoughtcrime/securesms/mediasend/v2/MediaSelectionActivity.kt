@@ -29,7 +29,6 @@ import org.thoughtcrime.securesms.contacts.paged.ContactSearchConfiguration
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchState
 import org.thoughtcrime.securesms.conversation.MessageSendType
-import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFullScreenDialogFragment
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.SearchConfigurationProvider
 import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardPageFragment
 import org.thoughtcrime.securesms.keyboard.emoji.search.EmojiSearchFragment
@@ -52,8 +51,7 @@ class MediaSelectionActivity :
   EmojiKeyboardPageFragment.Callback,
   EmojiEventListener,
   EmojiSearchFragment.Callback,
-  SearchConfigurationProvider,
-  MultiselectForwardFullScreenDialogFragment.Callback {
+  SearchConfigurationProvider {
 
   private var animateInShadowLayerValueAnimator: ValueAnimator? = null
   private var animateInTextColorValueAnimator: ValueAnimator? = null
@@ -332,10 +330,6 @@ class MediaSelectionActivity :
     } else {
       null
     }
-  }
-
-  override fun getStorySendRequirements(): Stories.MediaTransform.SendRequirements {
-    return viewModel.getStorySendRequirements()
   }
 
   private inner class OnBackPressed : OnBackPressedCallback(true) {

@@ -2,9 +2,11 @@ package org.thoughtcrime.securesms.conversation.mutiselect.forward
 
 import android.content.Context
 import android.net.Uri
+import android.os.Parcelable
 import androidx.annotation.ColorInt
 import androidx.annotation.StringRes
 import androidx.annotation.WorkerThread
+import kotlinx.parcelize.Parcelize
 import org.signal.core.util.StreamUtil
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.concurrent.SignalExecutors
@@ -17,6 +19,7 @@ import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.sharing.MultiShareArgs
+import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.MediaUtil
 import java.util.Optional
 import java.util.function.Consumer
@@ -31,6 +34,7 @@ import java.util.function.Consumer
  * @param forceSelectionOnly     Force the fragment to only select recipients, never actually performing the send.
  * @param selectSingleRecipient  Only allow the selection of a single recipient.
  */
+@Parcelize
 data class MultiselectForwardFragmentArgs @JvmOverloads constructor(
   val canSendToNonPush: Boolean,
   val multiShareArgs: List<MultiShareArgs> = listOf(),
@@ -38,8 +42,9 @@ data class MultiselectForwardFragmentArgs @JvmOverloads constructor(
   val forceDisableAddMessage: Boolean = false,
   val forceSelectionOnly: Boolean = false,
   val selectSingleRecipient: Boolean = false,
-  @ColorInt val sendButtonTint: Int = -1
-) {
+  @ColorInt val sendButtonTint: Int = -1,
+  val storySendRequirements: Stories.MediaTransform.SendRequirements = Stories.MediaTransform.SendRequirements.CAN_NOT_SEND
+) : Parcelable {
 
   fun withSendButtonTint(@ColorInt sendButtonTint: Int) = copy(sendButtonTint = sendButtonTint)
 
@@ -58,7 +63,8 @@ data class MultiselectForwardFragmentArgs @JvmOverloads constructor(
           consumer.accept(
             MultiselectForwardFragmentArgs(
               isMmsSupported,
-              listOf(multiShareArgs)
+              listOf(multiShareArgs),
+              storySendRequirements = Stories.MediaTransform.SendRequirements.CAN_NOT_SEND
             )
           )
         }
@@ -79,7 +85,15 @@ data class MultiselectForwardFragmentArgs @JvmOverloads constructor(
         val canSendToNonPush: Boolean = selectedParts.all { Multiselect.canSendToNonPush(context, it) }
         val multiShareArgs: List<MultiShareArgs> = conversationMessages.map { buildMultiShareArgs(context, it, selectedParts) }
 
-        ThreadUtil.runOnMain { consumer.accept(MultiselectForwardFragmentArgs(canSendToNonPush, multiShareArgs)) }
+        ThreadUtil.runOnMain {
+          consumer.accept(
+            MultiselectForwardFragmentArgs(
+              canSendToNonPush,
+              multiShareArgs,
+              storySendRequirements = Stories.MediaTransform.SendRequirements.CAN_NOT_SEND
+            )
+          )
+        }
       }
     }
 

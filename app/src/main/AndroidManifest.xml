@@ -371,6 +371,11 @@
             android:launchMode="singleTop"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
+        <activity android:name=".conversation.mutiselect.forward.MultiselectForwardActivity"
+            android:theme="@style/Signal.DayNight.NoActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustNothing"
+            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize" />
+
     <activity android:name=".PassphraseChangeActivity"
               android:label="@string/AndroidManifest__change_passphrase"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
