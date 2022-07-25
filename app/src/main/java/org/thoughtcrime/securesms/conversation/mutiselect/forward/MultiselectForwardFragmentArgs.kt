@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.conversation.mutiselect.Multiselect
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart
+import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mms.PartAuthority
@@ -50,7 +51,7 @@ data class MultiselectForwardFragmentArgs @JvmOverloads constructor(
 
   companion object {
     @JvmStatic
-    fun create(context: Context, mediaUri: Uri, mediaType: String, consumer: Consumer<MultiselectForwardFragmentArgs>) {
+    fun create(context: Context, threadId: Long, mediaUri: Uri, mediaType: String, consumer: Consumer<MultiselectForwardFragmentArgs>) {
       SignalExecutors.BOUNDED.execute {
         val mediaSize = MediaUtil.getMediaSize(context, mediaUri)
         val isMmsSupported = Multiselect.isMmsSupported(context, mediaUri, mediaType, mediaSize)
@@ -59,12 +60,17 @@ data class MultiselectForwardFragmentArgs @JvmOverloads constructor(
           .withDataType(mediaType)
           .build()
 
+        val sendButtonTint: Int = threadId.takeIf { it > 0 }
+          ?.let { SignalDatabase.threads.getRecipientForThreadId(it) }?.chatColors?.asSingleColor()
+          ?: -1
+
         ThreadUtil.runOnMain {
           consumer.accept(
             MultiselectForwardFragmentArgs(
               isMmsSupported,
               listOf(multiShareArgs),
-              storySendRequirements = Stories.MediaTransform.SendRequirements.CAN_NOT_SEND
+              storySendRequirements = Stories.MediaTransform.SendRequirements.CAN_NOT_SEND,
+              sendButtonTint = sendButtonTint
             )
           )
         }

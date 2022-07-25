@@ -84,6 +84,8 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 
+import io.reactivex.rxjava3.subjects.BehaviorSubject;
+
 /**
  * Activity for displaying media attachments in-app
  */
@@ -397,6 +399,7 @@ public final class MediaPreviewActivity extends PassphraseRequiredActivity
     if (mediaItem != null) {
       MultiselectForwardFragmentArgs.create(
           this,
+          threadId,
           mediaItem.uri,
           mediaItem.type,
           args -> MultiselectForwardFragment.showBottomSheet(getSupportFragmentManager(), args)
