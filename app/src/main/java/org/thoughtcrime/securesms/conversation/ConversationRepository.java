@@ -177,7 +177,7 @@ class ConversationRepository {
                                           registeredState == RecipientDatabase.RegisteredState.REGISTERED && signalEnabled,
                                           Util.isDefaultSmsProvider(context),
                                           true);
-    });
+    }).subscribeOn(Schedulers.io());
   }
 
   Observable<Optional<ThreadRecord>> getThreadRecord(long threadId) {
