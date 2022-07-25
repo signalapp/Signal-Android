@@ -529,8 +529,10 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
   @Override
   public void onShowArchiveClick() {
-    NavHostFragment.findNavController(this)
-                   .navigate(ConversationListFragmentDirections.actionConversationListFragmentToConversationListArchiveFragment());
+    if (viewModel.currentSelectedConversations().isEmpty()) {
+      NavHostFragment.findNavController(this)
+                     .navigate(ConversationListFragmentDirections.actionConversationListFragmentToConversationListArchiveFragment());
+    }
   }
 
   @Override
