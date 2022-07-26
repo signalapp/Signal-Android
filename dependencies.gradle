@@ -25,7 +25,7 @@ dependencyResolutionManagement {
             alias('androidx-appcompat').to('androidx.appcompat:appcompat:1.2.0')
             alias('androidx-constraintlayout').to('androidx.constraintlayout:constraintlayout:2.0.4')
             alias('androidx-window').to('androidx.window:window:1.0.0-alpha09')
-            alias('androidx-recyclerview').to('androidx.recyclerview:recyclerview:1.1.0')
+            alias('androidx-recyclerview').to('androidx.recyclerview:recyclerview:1.2.1')
             alias('androidx-legacy-support').to('androidx.legacy:legacy-support-v13:1.0.0')
             alias('androidx-legacy-preference').to('androidx.legacy:legacy-preference-v14:1.0.0')
             alias('androidx-cardview').to('androidx.cardview:cardview:1.0.0')
