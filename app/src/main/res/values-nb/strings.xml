@@ -174,6 +174,7 @@
   <string name="ContactsDatabase_signal_call_s">Signal-anrop %s</string>
   <!--ContactNameEditActivity-->
   <!--Toolbar title for contact name edit activity-->
+  <string name="ContactNameEditActivity__edit_name">Endre navn</string>
   <string name="ContactNameEditActivity_given_name">Fornavn</string>
   <string name="ContactNameEditActivity_family_name">Etternavn</string>
   <string name="ContactNameEditActivity_prefix">Prefiks</string>
@@ -181,12 +182,14 @@
   <string name="ContactNameEditActivity_middle_name">Mellomnavn</string>
   <!--ContactShareEditActivity-->
   <!--ContactShareEditActivity toolbar title-->
+  <string name="ContactShareEditActivity__send_contact">Send kontakten</string>
   <string name="ContactShareEditActivity_type_home">Hjem</string>
   <string name="ContactShareEditActivity_type_mobile">Mobil</string>
   <string name="ContactShareEditActivity_type_work">Jobb</string>
   <string name="ContactShareEditActivity_type_missing">Annet</string>
   <string name="ContactShareEditActivity_invalid_contact">Den valgte kontakten var ugyldig</string>
   <!--Content descrption for name edit button on contact share edit activity-->
+  <string name="ContactShareEditActivity__edit_name">Endre navn</string>
   <!--Content description for user avatar in edit activity-->
   <string name="ContactShareEditActivity__avatar">Profilbilde</string>
   <!--ConversationItem-->
@@ -2262,6 +2265,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences_enter_proxy_address">Skriv inn proxy-adressen</string>
   <string name="configurable_single_select__customize_option">Tilpass opsjon</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">All aktivitet</string>
   <string name="PaymentsAllActivityFragment__all">Alle</string>
@@ -2893,6 +2897,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="CallParticipant__s_on_another_device">%1$s (på en annen enhet)</string>
   <!--WifiToCellularPopupWindow-->
   <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
+  <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Svak nettilkobling. Gikk over til mobilnettverk.</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Sletting av kontoen din vil:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Skriv inn ditt telefonnummer</string>
@@ -4029,6 +4034,10 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Endringer av sikkerhetsnummer</string>
   <!--Message of safety number review fragment-->
+  <plurals name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">
+    <item quantity="one">%1$d mottaker kan ha installert Signal på nytt eller byttet enhet. Trykk på en mottaker for å bekrefte det nye sikkerhetsnummeret. Dette er helt frivillig.</item>
+    <item quantity="other">%1$d mottakere kan ha installert Signal på nytt eller byttet enhet. Trykk på en mottaker for å bekrefte det nye sikkerhetsnummeret. Dette er helt frivillig.</item>
+  </plurals>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">Kontakter</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -4050,6 +4059,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--Story info header received heading-->
   <string name="StoryInfoHeader__received">Mottatt</string>
   <!--Story info header file size heading-->
+  <string name="StoryInfoHeader__file_size">Filstørrelse</string>
   <!--Story info "Sent to" header-->
   <string name="StoryInfoBottomSheetDialogFragment__sent_to">Sendt til</string>
   <!--Story info "Sent from" header-->

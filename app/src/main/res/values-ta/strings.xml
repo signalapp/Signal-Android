@@ -174,6 +174,7 @@
   <string name="ContactsDatabase_signal_call_s"> Signal அழைப்பு %s</string>
   <!--ContactNameEditActivity-->
   <!--Toolbar title for contact name edit activity-->
+  <string name="ContactNameEditActivity__edit_name">பெயரைத் திருத்தவும்</string>
   <string name="ContactNameEditActivity_given_name">கொடுக்கப்பட்ட பெயர்</string>
   <string name="ContactNameEditActivity_family_name">குடும்ப பெயர்</string>
   <string name="ContactNameEditActivity_prefix">முன்னொட்டு</string>
@@ -181,12 +182,14 @@
   <string name="ContactNameEditActivity_middle_name">நடுப்பெயர்</string>
   <!--ContactShareEditActivity-->
   <!--ContactShareEditActivity toolbar title-->
+  <string name="ContactShareEditActivity__send_contact">தொடர்பை அனுப்பவும்</string>
   <string name="ContactShareEditActivity_type_home">வீடு</string>
   <string name="ContactShareEditActivity_type_mobile">கைபேசி</string>
   <string name="ContactShareEditActivity_type_work">அலுவலகம்</string>
   <string name="ContactShareEditActivity_type_missing">மற்றவை</string>
   <string name="ContactShareEditActivity_invalid_contact">தேர்ந்தெடுத்த தொடர்பு தவறானது</string>
   <!--Content descrption for name edit button on contact share edit activity-->
+  <string name="ContactShareEditActivity__edit_name">பெயரைத் திருத்தவும்</string>
   <!--Content description for user avatar in edit activity-->
   <string name="ContactShareEditActivity__avatar">சின்னம்</string>
   <!--ConversationItem-->
@@ -2303,6 +2306,7 @@
   <string name="preferences_enter_proxy_address">பதிலி முகவரியைப் பதியவும்</string>
   <string name="configurable_single_select__customize_option">விருப்ப அமைப்பைத் தனிப்பயனாக்கவும்</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">அனைத்து செயல்பாடுகளும்</string>
   <string name="PaymentsAllActivityFragment__all">அனைத்து</string>
@@ -2970,6 +2974,7 @@
   <string name="CallParticipant__s_on_another_device">%1$s  (மற்றொரு சாதனத்தில்)</string>
   <!--WifiToCellularPopupWindow-->
   <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
+  <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">பலவீனமான வை-ஃபை. செல்லுலார்க்கு மாறியது.</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">உங்கள் நீக்குகிறது கணக்கு விருப்பம்:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">உள்ளிடவும் உங்கள் தொலைபேசி எண்</string>
@@ -4286,6 +4291,10 @@
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">பாதுகாப்பு எண் மாற்றங்கள்</string>
   <!--Message of safety number review fragment-->
+  <plurals name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">
+    <item quantity="one">%1$d பெறுநர் சிக்னலை மீண்டும் நிறுவியிருக்கலாம் அல்லது சாதனங்களை மாற்றியிருக்கலாம். புதிய பாதுகாப்பு எண்ணை உறுதிப்படுத்த ஒரு பெறுநரைத் தட்டவும். இது கட்டாயமில்லை.</item>
+    <item quantity="other">%1$d பெறுநர்கள் சிக்னலை மீண்டும் நிறுவியிருக்கலாம் அல்லது சாதனங்களை மாற்றியிருக்கலாம். புதிய பாதுகாப்பு எண்ணை உறுதிப்படுத்த ஒரு பெறுநரைத் தட்டவும். இது கட்டாயமில்லை.</item>
+  </plurals>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">தொடர்புகள்</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -4307,6 +4316,7 @@
   <!--Story info header received heading-->
   <string name="StoryInfoHeader__received">பெறப்பட்டது</string>
   <!--Story info header file size heading-->
+  <string name="StoryInfoHeader__file_size">கோப்பு அளவு</string>
   <!--Story info "Sent to" header-->
   <string name="StoryInfoBottomSheetDialogFragment__sent_to">அனுப்பப்பட்டது</string>
   <!--Story info "Sent from" header-->

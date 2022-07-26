@@ -176,6 +176,7 @@
   <string name="ContactsDatabase_signal_call_s">שיחת Signal אל %s</string>
   <!--ContactNameEditActivity-->
   <!--Toolbar title for contact name edit activity-->
+  <string name="ContactNameEditActivity__edit_name">עריכת שם</string>
   <string name="ContactNameEditActivity_given_name">שם פרטי</string>
   <string name="ContactNameEditActivity_family_name">שם משפחה</string>
   <string name="ContactNameEditActivity_prefix">קידומת</string>
@@ -183,12 +184,14 @@
   <string name="ContactNameEditActivity_middle_name">שם אמצעי</string>
   <!--ContactShareEditActivity-->
   <!--ContactShareEditActivity toolbar title-->
+  <string name="ContactShareEditActivity__send_contact">שליחת איש קשר</string>
   <string name="ContactShareEditActivity_type_home">בית</string>
   <string name="ContactShareEditActivity_type_mobile">נייד</string>
   <string name="ContactShareEditActivity_type_work">עבודה</string>
   <string name="ContactShareEditActivity_type_missing">אחר</string>
   <string name="ContactShareEditActivity_invalid_contact">איש קשר נבחר היה בלתי תקף</string>
   <!--Content descrption for name edit button on contact share edit activity-->
+  <string name="ContactShareEditActivity__edit_name">עריכת שם</string>
   <!--Content description for user avatar in edit activity-->
   <string name="ContactShareEditActivity__avatar">יצגן</string>
   <!--ConversationItem-->
@@ -2486,6 +2489,7 @@
   <string name="preferences_enter_proxy_address">הכנס כתובת יפוי כוח</string>
   <string name="configurable_single_select__customize_option">התאם אישית אפשרות</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">כל הפעילות</string>
   <string name="PaymentsAllActivityFragment__all">הכול</string>
@@ -3171,6 +3175,7 @@
   <string name="CallParticipant__s_on_another_device">%1$s (במכשיר אחר)</string>
   <!--WifiToCellularPopupWindow-->
   <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
+  <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">חיבור Wi-Fi חלש. החלפנו בשבילך לנתונים סלולריים.</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">מחיקת החשבון שלך:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">הכנס את מספר הטלפון שלך</string>
@@ -4524,6 +4529,12 @@
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">שינויים במספרי בטיחות</string>
   <!--Message of safety number review fragment-->
+  <plurals name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">
+    <item quantity="one">יתכן שנמען או נמענת %1$d התקינו מחדש את Signal או החליפו מכשירים. יש ללחוץ על נמען או נמענת כדי לאשר את מספר הבטיחות החדש. זו פעולה אופציונלית — לא חייבים.</item>
+    <item quantity="two">יתכן ש-%1$d נמענים התקינו מחדש את Signal או החליפו מכשירים. יש ללחוץ על נמען או נמענת כדי לאשר את מספר הבטיחות החדש. זו פעולה אופציונלית — לא חייבים.</item>
+    <item quantity="many">יתכן ש-%1$d נמענים התקינו מחדש את Signal או החליפו מכשירים. יש ללחוץ על נמען או נמענת כדי לאשר את מספר הבטיחות החדש. זו פעולה אופציונלית — לא חייבים.</item>
+    <item quantity="other">יתכן ש-%1$d נמענים התקינו מחדש את Signal או החליפו מכשירים. יש ללחוץ על נמען או נמענת כדי לאשר את מספר הבטיחות החדש. זו פעולה אופציונלית — לא חייבים.</item>
+  </plurals>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">אנשי קשר</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -4545,6 +4556,7 @@
   <!--Story info header received heading-->
   <string name="StoryInfoHeader__received">התקבל</string>
   <!--Story info header file size heading-->
+  <string name="StoryInfoHeader__file_size">גודל קובץ</string>
   <!--Story info "Sent to" header-->
   <string name="StoryInfoBottomSheetDialogFragment__sent_to">נשלחה אל</string>
   <!--Story info "Sent from" header-->

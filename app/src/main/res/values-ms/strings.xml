@@ -173,6 +173,7 @@
   <string name="ContactsDatabase_signal_call_s">Panggilan Signal %s</string>
   <!--ContactNameEditActivity-->
   <!--Toolbar title for contact name edit activity-->
+  <string name="ContactNameEditActivity__edit_name">Edit nama</string>
   <string name="ContactNameEditActivity_given_name">Nama sebenar</string>
   <string name="ContactNameEditActivity_family_name">Nama keluarga</string>
   <string name="ContactNameEditActivity_prefix">Awalan</string>
@@ -180,12 +181,14 @@
   <string name="ContactNameEditActivity_middle_name">Nama tengah</string>
   <!--ContactShareEditActivity-->
   <!--ContactShareEditActivity toolbar title-->
+  <string name="ContactShareEditActivity__send_contact">Hantar kenalan</string>
   <string name="ContactShareEditActivity_type_home">Rumah</string>
   <string name="ContactShareEditActivity_type_mobile">Mudah alih</string>
   <string name="ContactShareEditActivity_type_work">Kerja</string>
   <string name="ContactShareEditActivity_type_missing">Lain-lain</string>
   <string name="ContactShareEditActivity_invalid_contact">Kenalan dipilih tidak sah</string>
   <!--Content descrption for name edit button on contact share edit activity-->
+  <string name="ContactShareEditActivity__edit_name">Edit nama</string>
   <!--Content description for user avatar in edit activity-->
   <string name="ContactShareEditActivity__avatar">Avatar</string>
   <!--ConversationItem-->
@@ -2219,6 +2222,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="preferences_enter_proxy_address">Masukkan alamat proksi</string>
   <string name="configurable_single_select__customize_option">Sesuaikan pilihan</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Semua aktiviti</string>
   <string name="PaymentsAllActivityFragment__all">Semua</string>
@@ -2874,6 +2878,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="CallParticipant__s_on_another_device">%1$s (pada peranti lain)</string>
   <!--WifiToCellularPopupWindow-->
   <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
+  <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Wi-Fi lemah. Bertukar kepada selular.</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Memadamkan akaun anda akan:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Masukkan nombor telefon anda</string>
@@ -4167,6 +4172,9 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Nombor keselamatan ditukar</string>
   <!--Message of safety number review fragment-->
+  <plurals name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">
+    <item quantity="other">%1$d penerima mungkin telah memasang semula Signal atau menukar peranti. Ketik penerima untuk mengesahkan nombor keselamatan baru. Ini adalah pilihan.</item>
+  </plurals>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">Kenalan</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -4188,6 +4196,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <!--Story info header received heading-->
   <string name="StoryInfoHeader__received">Diterima</string>
   <!--Story info header file size heading-->
+  <string name="StoryInfoHeader__file_size">Saiz Fail</string>
   <!--Story info "Sent to" header-->
   <string name="StoryInfoBottomSheetDialogFragment__sent_to">Dihantar kepada</string>
   <!--Story info "Sent from" header-->

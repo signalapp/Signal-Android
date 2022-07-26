@@ -176,6 +176,7 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="ContactsDatabase_signal_call_s">Signal-oproep %s</string>
   <!--ContactNameEditActivity-->
   <!--Toolbar title for contact name edit activity-->
+  <string name="ContactNameEditActivity__edit_name">Naam bewerken</string>
   <string name="ContactNameEditActivity_given_name">Voornaam</string>
   <string name="ContactNameEditActivity_family_name">Achternaam</string>
   <string name="ContactNameEditActivity_prefix">Voorvoegsel</string>
@@ -183,12 +184,14 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="ContactNameEditActivity_middle_name">Tweede voornaam</string>
   <!--ContactShareEditActivity-->
   <!--ContactShareEditActivity toolbar title-->
+  <string name="ContactShareEditActivity__send_contact">Contact sturen</string>
   <string name="ContactShareEditActivity_type_home">Thuis</string>
   <string name="ContactShareEditActivity_type_mobile">Mobiel</string>
   <string name="ContactShareEditActivity_type_work">Werk</string>
   <string name="ContactShareEditActivity_type_missing">Anders</string>
   <string name="ContactShareEditActivity_invalid_contact">De geselecteerde contactpersoon was ongeldig</string>
   <!--Content descrption for name edit button on contact share edit activity-->
+  <string name="ContactShareEditActivity__edit_name">Naam bewerken</string>
   <!--Content description for user avatar in edit activity-->
   <string name="ContactShareEditActivity__avatar">Profielfoto</string>
   <!--ConversationItem-->
@@ -2319,6 +2322,7 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="preferences_enter_proxy_address">Voer een proxyadres in</string>
   <string name="configurable_single_select__customize_option">Instelling personaliseren</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Alle gebeurtenissen</string>
   <string name="PaymentsAllActivityFragment__all">Alles</string>
@@ -2984,6 +2988,7 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="CallParticipant__s_on_another_device">%1$s (vanaf een ander apparaat)</string>
   <!--WifiToCellularPopupWindow-->
   <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
+  <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Wifi niet optimaal. Overgeschakeld naar mobiele data.</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Als je al je gegevens wist:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Voer je telefoonnummer in</string>
@@ -4293,6 +4298,10 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Veranderingen in het veiligheidsnummer</string>
   <!--Message of safety number review fragment-->
+  <plurals name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">
+    <item quantity="one">%1$dontvanger kan Signal opnieuw geïnstalleerd hebben of van toestel veranderd zijn. Tik op een ontvanger om het nieuwe veiligheidsnummer te bevestigen. Dit is optioneel. </item>
+    <item quantity="other">%1$d ontvangers kunnen Signal opnieuw geïnstalleerd hebben of van toestel veranderd zijn. Tik op een ontvanger om het nieuwe veiligheidsnummer te bevestigen. Dit is optioneel.</item>
+  </plurals>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">Contactpersonen</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -4314,6 +4323,7 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <!--Story info header received heading-->
   <string name="StoryInfoHeader__received">Ontvangen</string>
   <!--Story info header file size heading-->
+  <string name="StoryInfoHeader__file_size">Bestandsgrootte</string>
   <!--Story info "Sent to" header-->
   <string name="StoryInfoBottomSheetDialogFragment__sent_to">Verzonden aan</string>
   <!--Story info "Sent from" header-->

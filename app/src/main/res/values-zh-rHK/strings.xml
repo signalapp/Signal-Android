@@ -2230,6 +2230,7 @@
   <string name="preferences_enter_proxy_address">輸入代理伺服器位址</string>
   <string name="configurable_single_select__customize_option">自訂選項</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">所有活動</string>
   <string name="PaymentsAllActivityFragment__all">全部</string>
@@ -2885,7 +2886,7 @@
   <string name="CallParticipant__s_on_another_device">%1$s (在另一台裝置上)</string>
   <!--WifiToCellularPopupWindow-->
   <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
-  <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Wi-Fi 訊號微弱。請轉用流動數據。</string>
+  <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Wi-Fi 訊號微弱。已切換至流動網絡。</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">刪除您的帳戶將會：</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">輸入您的電話號碼</string>

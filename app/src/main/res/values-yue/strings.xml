@@ -2231,6 +2231,7 @@
   <string name="preferences_enter_proxy_address">輸入代理伺服器位址</string>
   <string name="configurable_single_select__customize_option">自訂選項</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">所有活動</string>
   <string name="PaymentsAllActivityFragment__all">全部</string>
@@ -2886,7 +2887,7 @@
   <string name="CallParticipant__s_on_another_device">%1$s (用另一部機)</string>
   <!--WifiToCellularPopupWindow-->
   <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
-  <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Wi-Fi 訊號微弱。請轉用流動數據。</string>
+  <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Wi-Fi 訊號微弱。已經轉咗用流動數據。</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">刪除您嘅帳戶嘅話，即會：</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">輸入您嘅電話冧把</string>
@@ -4204,7 +4205,7 @@
   <!--Story info header received heading-->
   <string name="StoryInfoHeader__received">收到</string>
   <!--Story info header file size heading-->
-  <string name="StoryInfoHeader__file_size">檔案大細</string>
+  <string name="StoryInfoHeader__file_size">檔案大小</string>
   <!--Story info "Sent to" header-->
   <string name="StoryInfoBottomSheetDialogFragment__sent_to">傳送咗俾</string>
   <!--Story info "Sent from" header-->

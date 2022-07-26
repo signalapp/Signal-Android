@@ -2311,7 +2311,7 @@
   <string name="preferences_enter_proxy_address">પ્રોક્સી એડ્રેસ ઉમેરો</string>
   <string name="configurable_single_select__customize_option">કસ્ટમાઇઝ વિકલ્પ </string>
   <!--Internal only preferences-->
-  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">ઓનબોર્ડિંગ ફ્લેગ દૂર કરે છે અને ઓનબોર્ડિંગ સ્ટોરીનું ડાઉનલોડ શરૂ કરે છે.</string>
+  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">બધી પ્રવૃત્તિ </string>
   <string name="PaymentsAllActivityFragment__all">બધા</string>

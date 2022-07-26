@@ -174,6 +174,7 @@
   <string name="ContactsDatabase_signal_call_s">Signal Dei %s</string>
   <!--ContactNameEditActivity-->
   <!--Toolbar title for contact name edit activity-->
+  <string name="ContactNameEditActivity__edit_name">Editatu izena</string>
   <string name="ContactNameEditActivity_given_name">Izen tipia</string>
   <string name="ContactNameEditActivity_family_name">Abizena</string>
   <string name="ContactNameEditActivity_prefix">Aurrizkia</string>
@@ -181,12 +182,14 @@
   <string name="ContactNameEditActivity_middle_name">Bigarren izena</string>
   <!--ContactShareEditActivity-->
   <!--ContactShareEditActivity toolbar title-->
+  <string name="ContactShareEditActivity__send_contact">Bidali kontaktua</string>
   <string name="ContactShareEditActivity_type_home">Sorlekua</string>
   <string name="ContactShareEditActivity_type_mobile">Telefono mugikorra</string>
   <string name="ContactShareEditActivity_type_work">Lana</string>
   <string name="ContactShareEditActivity_type_missing">Besteak</string>
   <string name="ContactShareEditActivity_invalid_contact">Aukeratutako kontaktua baliogabea da</string>
   <!--Content descrption for name edit button on contact share edit activity-->
+  <string name="ContactShareEditActivity__edit_name">Editatu izena</string>
   <!--Content description for user avatar in edit activity-->
   <string name="ContactShareEditActivity__avatar">Abatarra</string>
   <!--ConversationItem-->
@@ -2315,6 +2318,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="preferences_enter_proxy_address">Idatzi proxyaren helbidea</string>
   <string name="configurable_single_select__customize_option">Pertsonalizatu aukera</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Jarduera guztiak</string>
   <string name="PaymentsAllActivityFragment__all">Denak</string>
@@ -2980,6 +2984,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="CallParticipant__s_on_another_device">%1$s (beste gailu baten)</string>
   <!--WifiToCellularPopupWindow-->
   <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
+  <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Wi-Fi ahula. Telefonora aldatuta.</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Zure kontua ezabatzean zera gertatuko da:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Idatzi zure telefono zenbakia</string>
@@ -4293,6 +4298,10 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Segurtasun-zenbakiaren aldaketak</string>
   <!--Message of safety number review fragment-->
+  <plurals name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">
+    <item quantity="one">Baliteke %1$d hartzaileak Signal berriro instalatu edo gailuak aldatu izatea. Sakatu hartzaile bat segurtasun-zenbaki berria berresteko. Hau hautazkoa da.</item>
+    <item quantity="other">Baliteke %1$d hartzailek Signal berriro instalatu edo gailuak aldatu izatea. Sakatu hartzaile bat segurtasun-zenbaki berria berresteko. Hau hautazkoa da.</item>
+  </plurals>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">Kontaktuak</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -4314,6 +4323,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--Story info header received heading-->
   <string name="StoryInfoHeader__received">Jasota</string>
   <!--Story info header file size heading-->
+  <string name="StoryInfoHeader__file_size">Fitxategiaren tamaina</string>
   <!--Story info "Sent to" header-->
   <string name="StoryInfoBottomSheetDialogFragment__sent_to">Honi bidalia</string>
   <!--Story info "Sent from" header-->

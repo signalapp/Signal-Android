@@ -174,6 +174,7 @@
   <string name="ContactsDatabase_signal_call_s">Simu ya Signal %s</string>
   <!--ContactNameEditActivity-->
   <!--Toolbar title for contact name edit activity-->
+  <string name="ContactNameEditActivity__edit_name">Hariri jina</string>
   <string name="ContactNameEditActivity_given_name">Jina ulilopewa</string>
   <string name="ContactNameEditActivity_family_name">Jina la ukoo</string>
   <string name="ContactNameEditActivity_prefix">Kiambishi awali</string>
@@ -181,14 +182,16 @@
   <string name="ContactNameEditActivity_middle_name">Jina la katikati</string>
   <!--ContactShareEditActivity-->
   <!--ContactShareEditActivity toolbar title-->
+  <string name="ContactShareEditActivity__send_contact">Tuma muwasiliani</string>
   <string name="ContactShareEditActivity_type_home">Nyumbani</string>
   <string name="ContactShareEditActivity_type_mobile">Simu</string>
   <string name="ContactShareEditActivity_type_work">Kazi</string>
   <string name="ContactShareEditActivity_type_missing">ingine</string>
   <string name="ContactShareEditActivity_invalid_contact">Mawasilianao yaliyochaguliwa sio sahihi</string>
   <!--Content descrption for name edit button on contact share edit activity-->
+  <string name="ContactShareEditActivity__edit_name">Hariri jina</string>
   <!--Content description for user avatar in edit activity-->
-  <string name="ContactShareEditActivity__avatar">Umbo</string>
+  <string name="ContactShareEditActivity__avatar">Avatar</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_sent_tap_for_details">Haikutumwa, gusa upate maelezo</string>
   <string name="ConversationItem_error_partially_not_delivered">Ujumbe wote haujatumwa, gusa upate maelezo</string>
@@ -2308,6 +2311,7 @@ nambari yako ya simu</string>
   <string name="preferences_enter_proxy_address">Weka anwani mbadala</string>
   <string name="configurable_single_select__customize_option">Badilisha chaguo likufae</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Shughuli zote</string>
   <string name="PaymentsAllActivityFragment__all">Zote</string>
@@ -2974,6 +2978,7 @@ Funga ufikiaji wa Signal na ufungaji wa Android au alama za vidole</string>
   <string name="CallParticipant__s_on_another_device">%1$s (kwenye kifaa kingine)</string>
   <!--WifiToCellularPopupWindow-->
   <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
+  <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Wi-Fi dhaifu. Imehamia data ya simu.</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Kufuta akaunti yako kutasababisha:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Weka nambari yako ya simu</string>
@@ -4287,6 +4292,10 @@ Funga ufikiaji wa Signal na ufungaji wa Android au alama za vidole</string>
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Mabadiliko ya Nambari ya usalama</string>
   <!--Message of safety number review fragment-->
+  <plurals name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">
+    <item quantity="one">Wanufaika %1$dwanaweza wakawa wamesakinisha upya Signal au kubadili vifaa. Gusa mnufaika mmoja kuthibitisha nambari ya usalama. Hii ni hiari.</item>
+    <item quantity="other">Wawasiliani %1$d inawezekana wamesakinisha upya Signal au kubadili vifaa. Bonyeza muwasiliani kuthibitisha nambari yao mpya ya usalama. Hili ni la hiari.</item>
+  </plurals>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">Wawasiliani</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -4308,10 +4317,11 @@ Funga ufikiaji wa Signal na ufungaji wa Android au alama za vidole</string>
   <!--Story info header received heading-->
   <string name="StoryInfoHeader__received">Imepokelewa</string>
   <!--Story info header file size heading-->
+  <string name="StoryInfoHeader__file_size">Ukubwa wa faili</string>
   <!--Story info "Sent to" header-->
-  <string name="StoryInfoBottomSheetDialogFragment__sent_to">Umetumwa kwa</string>
+  <string name="StoryInfoBottomSheetDialogFragment__sent_to">Imetumwa kwa</string>
   <!--Story info "Sent from" header-->
-  <string name="StoryInfoBottomSheetDialogFragment__sent_from">Umetumwa kutoka kwa</string>
+  <string name="StoryInfoBottomSheetDialogFragment__sent_from">Imetumwa kutoka kwa</string>
   <!--Story Info context menu label-->
   <string name="StoryInfoBottomSheetDialogFragment__info">Maelezo</string>
   <!--EOF-->

@@ -174,6 +174,7 @@
   <string name="ContactsDatabase_signal_call_s">Signal-opkald %s</string>
   <!--ContactNameEditActivity-->
   <!--Toolbar title for contact name edit activity-->
+  <string name="ContactNameEditActivity__edit_name">Redigér navn</string>
   <string name="ContactNameEditActivity_given_name">Fornavn</string>
   <string name="ContactNameEditActivity_family_name">Efternavn</string>
   <string name="ContactNameEditActivity_prefix">Navnepræfiks</string>
@@ -181,12 +182,14 @@
   <string name="ContactNameEditActivity_middle_name">Mellemnavn</string>
   <!--ContactShareEditActivity-->
   <!--ContactShareEditActivity toolbar title-->
+  <string name="ContactShareEditActivity__send_contact">Send kontakt</string>
   <string name="ContactShareEditActivity_type_home">Hjemme</string>
   <string name="ContactShareEditActivity_type_mobile">Mobil</string>
   <string name="ContactShareEditActivity_type_work">Arbejde</string>
   <string name="ContactShareEditActivity_type_missing">Andet</string>
   <string name="ContactShareEditActivity_invalid_contact">Valgte kontakt findes ikke</string>
   <!--Content descrption for name edit button on contact share edit activity-->
+  <string name="ContactShareEditActivity__edit_name">Redigér navn</string>
   <!--Content description for user avatar in edit activity-->
   <string name="ContactShareEditActivity__avatar">Avatar</string>
   <!--ConversationItem-->
@@ -2309,6 +2312,7 @@ nummer (%s) er ugyldigt</string>
   <string name="preferences_enter_proxy_address">Indtast proxy-adresse</string>
   <string name="configurable_single_select__customize_option">Tilpas mulighed</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Fjerner onboarding flag, og igangsætter download af onboarding historier.</string>
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Alle aktiviteter</string>
   <string name="PaymentsAllActivityFragment__all">Alle</string>
@@ -2974,6 +2978,7 @@ nummer (%s) er ugyldigt</string>
   <string name="CallParticipant__s_on_another_device">%1$s (på en anden enhed)</string>
   <!--WifiToCellularPopupWindow-->
   <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
+  <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Svag wi-fi-forbindelse. Skiftede til data.</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Sletning af din konto vil:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Indtast dit telefonnummer</string>
@@ -3926,9 +3931,9 @@ nummer (%s) er ugyldigt</string>
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">Ingen visninger endnu</string>
   <!--Displayed when user has disabled receipts-->
-  <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Slå læs kvitteringer til, for at se hvem der har set dine historier.</string>
+  <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Slå kvittering for læsning til for at se, hvem der har set dine historier.</string>
   <!--Button label displayed when user has disabled receipts-->
-  <string name="StoryViewsFragment__go_to_settings">Gå til Indstillinger</string>
+  <string name="StoryViewsFragment__go_to_settings">Gå til indstillinger</string>
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Ingen svar endnu</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
@@ -4246,13 +4251,13 @@ nummer (%s) er ugyldigt</string>
   <!--Button label to confirm understanding of story navigation-->
   <string name="StoryFirstTimeNagivationView__got_it">Forstået</string>
   <!--Content description for vertical context menu button in safety number sheet rows-->
-  <string name="SafetyNumberRecipientRowItem__open_context_menu">Åben genvejsmenu</string>
+  <string name="SafetyNumberRecipientRowItem__open_context_menu">Åbn genvejsmenu</string>
   <!--Sub-line when a user is verified.-->
   <string name="SafetyNumberRecipientRowItem__s_dot_verified">%1$s · Bekræftet</string>
   <!--Sub-line when a user is verified.-->
   <string name="SafetyNumberRecipientRowItem__verified">Bekræftet</string>
   <!--Title of safety number changes bottom sheet when showing individual records-->
-  <string name="SafetyNumberBottomSheetFragment__safety_number_changes">Ændringer til sikkerhedsnummer</string>
+  <string name="SafetyNumberBottomSheetFragment__safety_number_changes">Ændringer af sikkerhedsnummer</string>
   <!--Message of safety number changes bottom sheet when showing individual records-->
   <string name="SafetyNumberBottomSheetFragment__the_following_people">Følgende personer har muligvis geninstalleret Signal eller skiftet enhed. Tryk på en modtager for at bekræfte sikkerhedsnummeret. Dette er valgfrit.</string>
   <!--Title of safety number changes bottom sheet when not showing individual records-->
@@ -4262,7 +4267,7 @@ nummer (%s) er ugyldigt</string>
   <!--Message of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
   <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Alle forbindelser er gennemgået. Tryk send for at fortsætte.</string>
   <!--Message of safety number changes bottom sheet when not showing individual records-->
-  <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">Du har %1$d forbindelser, der muligvis har geninstalleret Signal eller skiftet enhed. Gennemgå deres sikkerhedsnummer eller overvej at fjerne dem fra din historie inden du deler din historie med dem.</string>
+  <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">Du har %1$d forbindelser, der muligvis har geninstalleret Signal eller skiftet enhed. Gennemgå deres sikkerhedsnummer, eller overvej at fjerne dem fra din historie, inden du deler din historie med dem.</string>
   <!--Menu action to launch safety number verification screen-->
   <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Verificer sikkerhedsnummer</string>
   <!--Menu action to remove user from story-->
@@ -4276,7 +4281,7 @@ nummer (%s) er ugyldigt</string>
   <!--Done button on safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__done">Udført</string>
   <!--Title of safety number review fragment-->
-  <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Ændringer til sikkerhedsnummer</string>
+  <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Ændringer af sikkerhedsnummer</string>
   <!--Message of safety number review fragment-->
   <plurals name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">
     <item quantity="one">%1$d har muligvis geninstalleret Signal eller skiftet enhed. Tryk på modtageren for at bekræfte sikkerhedsnummeret. Dette er valgfrit.</item>
@@ -4289,9 +4294,9 @@ nummer (%s) er ugyldigt</string>
   <!--Context menu label for 1:1 contacts to remove from send-->
   <string name="SafetyNumberReviewConnectionsFragment__remove">Fjern</string>
   <!--Title of initial My Story settings configuration shown when sending to My Story for the first time-->
-  <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">Mit historieprivatliv</string>
+  <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">Privatlivsindstillinger for Min historie</string>
   <!--Subtitle of initial My Story settings configuration shown when sending to My Story for the first time-->
-  <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">Vælg, hvem der kan se posteringer i Min Historie. Du kan altid lave ændringer i indstillinger.</string>
+  <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">Vælg, hvem der kan se opslag i Min Historie. Du kan altid ændre dette i indstillinger.</string>
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Alle Signal-forbindelser</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
@@ -4303,6 +4308,7 @@ nummer (%s) er ugyldigt</string>
   <!--Story info header received heading-->
   <string name="StoryInfoHeader__received">Modtaget</string>
   <!--Story info header file size heading-->
+  <string name="StoryInfoHeader__file_size">Filstørrelse</string>
   <!--Story info "Sent to" header-->
   <string name="StoryInfoBottomSheetDialogFragment__sent_to">Sendt til</string>
   <!--Story info "Sent from" header-->

@@ -175,6 +175,7 @@
   <string name="ContactsDatabase_signal_call_s">Signal zvans %s</string>
   <!--ContactNameEditActivity-->
   <!--Toolbar title for contact name edit activity-->
+  <string name="ContactNameEditActivity__edit_name">Rediģēt vārdu</string>
   <string name="ContactNameEditActivity_given_name">Vārds</string>
   <string name="ContactNameEditActivity_family_name">Uzvārds</string>
   <string name="ContactNameEditActivity_prefix">Tituls</string>
@@ -182,12 +183,14 @@
   <string name="ContactNameEditActivity_middle_name">Otrais vārds</string>
   <!--ContactShareEditActivity-->
   <!--ContactShareEditActivity toolbar title-->
+  <string name="ContactShareEditActivity__send_contact">Nosūtīt kontaktu</string>
   <string name="ContactShareEditActivity_type_home">Mājas</string>
   <string name="ContactShareEditActivity_type_mobile">Mobilais</string>
   <string name="ContactShareEditActivity_type_work">Darba</string>
   <string name="ContactShareEditActivity_type_missing">Cits</string>
   <string name="ContactShareEditActivity_invalid_contact">Izvēlētais kontakts nav derīgs</string>
   <!--Content descrption for name edit button on contact share edit activity-->
+  <string name="ContactShareEditActivity__edit_name">Rediģēt vārdu</string>
   <!--Content description for user avatar in edit activity-->
   <string name="ContactShareEditActivity__avatar">ikona</string>
   <!--ConversationItem-->
@@ -2394,6 +2397,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="preferences_enter_proxy_address">Ievadīt starpniekservera adresi</string>
   <string name="configurable_single_select__customize_option">Pielāgot opciju</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Visas darbības</string>
   <string name="PaymentsAllActivityFragment__all">Visas</string>
@@ -3069,6 +3073,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="CallParticipant__s_on_another_device">%1$s (citā ierīcē)</string>
   <!--WifiToCellularPopupWindow-->
   <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
+  <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Vājš Wi-Fi signāls. Ieslēgti mobilie dati.</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Dzēšot kontu, tiks veiktas šādas darbības:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Ievadiet savu tālruņa numuru</string>
@@ -4402,6 +4407,11 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Drošības numura izmaiņas</string>
   <!--Message of safety number review fragment-->
+  <plurals name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">
+    <item quantity="zero">%1$d adresāti, iespējams ir pārinstalējuši Signal vai nomainījuši ierīces. Pieskarieties adresātam, lai apstiprinātu jauno drošības numuru. Šī darbība nav obligāta.</item>
+    <item quantity="one">%1$d adresāts, iespējams ir pārinstalējis Signal vai nomainījis ierīces. Pieskarieties adresātam, lai apstiprinātu jauno drošības numuru. Šī darbība nav obligāta.</item>
+    <item quantity="other">%1$d adresāti, iespējams ir pārinstalējuši Signal vai nomainījuši ierīces. Pieskarieties adresātam, lai apstiprinātu jauno drošības numuru. Šī darbība nav obligāta.</item>
+  </plurals>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">Kontaktpersonas</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -4423,6 +4433,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <!--Story info header received heading-->
   <string name="StoryInfoHeader__received">Saņemtās</string>
   <!--Story info header file size heading-->
+  <string name="StoryInfoHeader__file_size">Faila izmērs</string>
   <!--Story info "Sent to" header-->
   <string name="StoryInfoBottomSheetDialogFragment__sent_to">Noūtīts</string>
   <!--Story info "Sent from" header-->

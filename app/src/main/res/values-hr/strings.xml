@@ -175,6 +175,7 @@
   <string name="ContactsDatabase_signal_call_s">Signal poziv %s</string>
   <!--ContactNameEditActivity-->
   <!--Toolbar title for contact name edit activity-->
+  <string name="ContactNameEditActivity__edit_name">Uredite ime</string>
   <string name="ContactNameEditActivity_given_name">Ime</string>
   <string name="ContactNameEditActivity_family_name">Prezime</string>
   <string name="ContactNameEditActivity_prefix">Prefiks</string>
@@ -182,12 +183,14 @@
   <string name="ContactNameEditActivity_middle_name">Srednje ime</string>
   <!--ContactShareEditActivity-->
   <!--ContactShareEditActivity toolbar title-->
+  <string name="ContactShareEditActivity__send_contact">Pošaljite kontakt</string>
   <string name="ContactShareEditActivity_type_home">Kućni telefon</string>
   <string name="ContactShareEditActivity_type_mobile">Mobilni telefon</string>
   <string name="ContactShareEditActivity_type_work">Posao</string>
   <string name="ContactShareEditActivity_type_missing">Ostalo</string>
   <string name="ContactShareEditActivity_invalid_contact">Odabrani kontakt je nevažeći</string>
   <!--Content descrption for name edit button on contact share edit activity-->
+  <string name="ContactShareEditActivity__edit_name">Uredite ime</string>
   <!--Content description for user avatar in edit activity-->
   <string name="ContactShareEditActivity__avatar">Slika profila</string>
   <!--ConversationItem-->
@@ -2397,6 +2400,7 @@ broj telefona</string>
   <string name="preferences_enter_proxy_address">Unesite proxy adresu</string>
   <string name="configurable_single_select__customize_option">Opcija prilagođavanja</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Sve aktivnosti</string>
   <string name="PaymentsAllActivityFragment__all">Sve</string>
@@ -3072,6 +3076,7 @@ broj telefona</string>
   <string name="CallParticipant__s_on_another_device">%1$s (na drugom uređaju)</string>
   <!--WifiToCellularPopupWindow-->
   <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
+  <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Slab Wi-Fi signal. Prebačeni ste na mobilnu mrežu.</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Brisanje vašeg računa će:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Unesite vaš broj telefona</string>
@@ -4405,6 +4410,11 @@ broj telefona</string>
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Promjene sigurnosnog broja</string>
   <!--Message of safety number review fragment-->
+  <plurals name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">
+    <item quantity="one">%1$d primatelj je možda ponovno instalirao Signal ili promijenio uređaje. Dodirnite primatelja kako biste potvrdili novi sigurnosni broj. Ovo nije obavezno.</item>
+    <item quantity="few">%1$d primatelja je možda ponovno instaliralo Signal ili promijenilo uređaje. Dodirnite primatelja kako biste potvrdili novi sigurnosni broj. Ovo nije obavezno.</item>
+    <item quantity="other">%1$d primatelja je možda ponovno instaliralo Signal ili promijenilo uređaje. Dodirnite primatelja kako biste potvrdili novi sigurnosni broj. Ovo nije obavezno.</item>
+  </plurals>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">Kontakti</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -4426,6 +4436,7 @@ broj telefona</string>
   <!--Story info header received heading-->
   <string name="StoryInfoHeader__received">Primljeno</string>
   <!--Story info header file size heading-->
+  <string name="StoryInfoHeader__file_size">Veličina datoteke</string>
   <!--Story info "Sent to" header-->
   <string name="StoryInfoBottomSheetDialogFragment__sent_to">Poslano za</string>
   <!--Story info "Sent from" header-->

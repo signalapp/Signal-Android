@@ -175,7 +175,7 @@
   <string name="ContactsDatabase_signal_call_s">Signal poziv %s</string>
   <!--ContactNameEditActivity-->
   <!--Toolbar title for contact name edit activity-->
-  <string name="ContactNameEditActivity__edit_name">Uredi naziv</string>
+  <string name="ContactNameEditActivity__edit_name">Uredi ime</string>
   <string name="ContactNameEditActivity_given_name">Ime</string>
   <string name="ContactNameEditActivity_family_name">Prezime</string>
   <string name="ContactNameEditActivity_prefix">Prefiks</string>
@@ -190,7 +190,7 @@
   <string name="ContactShareEditActivity_type_missing">Ostalo</string>
   <string name="ContactShareEditActivity_invalid_contact">Označeni kontakt nije valjan</string>
   <!--Content descrption for name edit button on contact share edit activity-->
-  <string name="ContactShareEditActivity__edit_name">Uredi naziv</string>
+  <string name="ContactShareEditActivity__edit_name">Uredi ime</string>
   <!--Content description for user avatar in edit activity-->
   <string name="ContactShareEditActivity__avatar">Slika profila</string>
   <!--ConversationItem-->
@@ -2403,7 +2403,7 @@
   <string name="preferences_enter_proxy_address">Unesite proxy adresu</string>
   <string name="configurable_single_select__customize_option">Prilagodi</string>
   <!--Internal only preferences-->
-  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Briše oznaku za pristupanje i aktivira preuzimanje priča za pristupanje.</string>
+  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Aktivnosti</string>
   <string name="PaymentsAllActivityFragment__all">Sve</string>
@@ -3084,7 +3084,7 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="CallParticipant__s_on_another_device">%1$s (na drugom uređaju)</string>
   <!--WifiToCellularPopupWindow-->
   <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
-  <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Slab Wi-Fi. Prebačeno na mobilnu mrežu.</string>
+  <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Slaba Wi-Fi mreža. Prebačeno na mobilnu mrežu.</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Brisanjem računa Vi ćete:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Unesite svoj broj telefona</string>
@@ -4419,9 +4419,9 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Promjene sigurnosnog broja</string>
   <!--Message of safety number review fragment-->
   <plurals name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">
-    <item quantity="one">%1$d primaoc je ponovo instalirao Signal ili je promijenio uređaj. Dodirnite primaoca da potvrdite novi sigurnosni broj. To nije obavezno.</item>
-    <item quantity="few">%1$d primaoca su ponovo instalirala Signal ili su promijenili uređaje. Dodirnite primaoca da potvrdite novi sigurnosni broj. To nije obavezno.</item>
-    <item quantity="other"> %1$d primaoca je ponovo instaliralo Signal ili su promijenili uređaje. Dodirnite primaoca da potvrdite novi sigurnosni broj. To nije obavezno.</item>
+    <item quantity="one">%1$d primaoc je ponovo instalirao Signal ili je promijenio uređaj. Dodirnite primaoca da potvrdite novi sigurnosni broj. Ova radnja nije obavezna.</item>
+    <item quantity="few">%1$d primaoca su ponovo instalirala Signal ili su promijenili uređaje. Dodirnite primaoca da potvrdite novi sigurnosni broj. Ova radnja nije obavezna.</item>
+    <item quantity="other"> %1$d primaoca je ponovo instaliralo Signal ili su promijenili uređaje. Dodirnite primaoca primaoca da potvrdite novi sigurnosni broj. Ova radnja nije obavezna.</item>
   </plurals>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">Kontakti</string>
@@ -4444,7 +4444,7 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <!--Story info header received heading-->
   <string name="StoryInfoHeader__received">Primljeno</string>
   <!--Story info header file size heading-->
-  <string name="StoryInfoHeader__file_size">Veličina fajla</string>
+  <string name="StoryInfoHeader__file_size">Veličina datoteke</string>
   <!--Story info "Sent to" header-->
   <string name="StoryInfoBottomSheetDialogFragment__sent_to">Poslano za</string>
   <!--Story info "Sent from" header-->

@@ -2317,6 +2317,7 @@
   <string name="preferences_enter_proxy_address">Escribe o enderezo do proxy</string>
   <string name="configurable_single_select__customize_option">Personalizar opción</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Toda a actividade</string>
   <string name="PaymentsAllActivityFragment__all">Todo</string>
@@ -2982,7 +2983,7 @@
   <string name="CallParticipant__s_on_another_device">%1$s (noutro dispositivo)</string>
   <!--WifiToCellularPopupWindow-->
   <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
-  <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Mala sinal de wifi, cambiouse a datos móviles.</string>
+  <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Mala conexión de wifi, cambiouse a datos móbiles.</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Ao eliminar a conta:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Escribe o teu número de teléfono</string>

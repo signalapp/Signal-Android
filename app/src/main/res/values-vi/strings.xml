@@ -173,6 +173,7 @@
   <string name="ContactsDatabase_signal_call_s">Cuộc gọi Signal %s</string>
   <!--ContactNameEditActivity-->
   <!--Toolbar title for contact name edit activity-->
+  <string name="ContactNameEditActivity__edit_name">Sửa tên</string>
   <string name="ContactNameEditActivity_given_name">Tên</string>
   <string name="ContactNameEditActivity_family_name">Họ</string>
   <string name="ContactNameEditActivity_prefix">Danh xưng</string>
@@ -180,12 +181,14 @@
   <string name="ContactNameEditActivity_middle_name">Tên đệm</string>
   <!--ContactShareEditActivity-->
   <!--ContactShareEditActivity toolbar title-->
+  <string name="ContactShareEditActivity__send_contact">Gửi liên hệ</string>
   <string name="ContactShareEditActivity_type_home">Nhà</string>
   <string name="ContactShareEditActivity_type_mobile">Di động</string>
   <string name="ContactShareEditActivity_type_work">Công việc</string>
   <string name="ContactShareEditActivity_type_missing">Khác</string>
   <string name="ContactShareEditActivity_invalid_contact">Liên lạc đã chọn không hợp lệ</string>
   <!--Content descrption for name edit button on contact share edit activity-->
+  <string name="ContactShareEditActivity__edit_name">Sửa tên</string>
   <!--Content description for user avatar in edit activity-->
   <string name="ContactShareEditActivity__avatar">Ảnh đại diện</string>
   <!--ConversationItem-->
@@ -2212,6 +2215,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="preferences_enter_proxy_address">Nhập địa chỉ proxy</string>
   <string name="configurable_single_select__customize_option">Sửa cài đặt</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Tất cả hoạt động</string>
   <string name="PaymentsAllActivityFragment__all">Tất cả</string>
@@ -2867,6 +2871,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="CallParticipant__s_on_another_device">%1$s (trên một thiết bị khác)</string>
   <!--WifiToCellularPopupWindow-->
   <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
+  <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Wi-Fi yếu. Đã chuyển qua mạng di động.</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Xoá tài khoản của bạn sẽ:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Nhập số điện thoại của bạn</string>
@@ -4160,6 +4165,9 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Các thay đổi của Mã số an toàn</string>
   <!--Message of safety number review fragment-->
+  <plurals name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">
+    <item quantity="other">%1$d người nhận có thể đã cài đặt lại Signal hoặc đổi thiết bị. Nhấn vào một người nhận để xác nhận mã số an toàn mới. Thao tác này không bắt buộc.</item>
+  </plurals>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">Danh bạ</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -4181,6 +4189,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--Story info header received heading-->
   <string name="StoryInfoHeader__received">Đã nhận</string>
   <!--Story info header file size heading-->
+  <string name="StoryInfoHeader__file_size">Kích thước tập tin</string>
   <!--Story info "Sent to" header-->
   <string name="StoryInfoBottomSheetDialogFragment__sent_to">Gửi từ</string>
   <!--Story info "Sent from" header-->

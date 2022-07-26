@@ -178,6 +178,7 @@
   <string name="ContactsDatabase_signal_call_s">مكالمة Signal %s</string>
   <!--ContactNameEditActivity-->
   <!--Toolbar title for contact name edit activity-->
+  <string name="ContactNameEditActivity__edit_name">تعديل الاسم</string>
   <string name="ContactNameEditActivity_given_name">الاسم الشخصي</string>
   <string name="ContactNameEditActivity_family_name">الاسم العائلي</string>
   <string name="ContactNameEditActivity_prefix">اللّقب</string>
@@ -185,12 +186,14 @@
   <string name="ContactNameEditActivity_middle_name">الاسم الثاني</string>
   <!--ContactShareEditActivity-->
   <!--ContactShareEditActivity toolbar title-->
+  <string name="ContactShareEditActivity__send_contact">إرسال جهة الاتصال</string>
   <string name="ContactShareEditActivity_type_home">المنزل</string>
   <string name="ContactShareEditActivity_type_mobile">الهاتف</string>
   <string name="ContactShareEditActivity_type_work">العمل</string>
   <string name="ContactShareEditActivity_type_missing">غير ذلك</string>
   <string name="ContactShareEditActivity_invalid_contact">جهة الاتصال التي تم اختيارها غير صالحة.</string>
   <!--Content descrption for name edit button on contact share edit activity-->
+  <string name="ContactShareEditActivity__edit_name">تعديل الاسم</string>
   <!--Content description for user avatar in edit activity-->
   <string name="ContactShareEditActivity__avatar">الصورة الرمزية</string>
   <!--ConversationItem-->
@@ -2645,6 +2648,7 @@
   <string name="preferences_enter_proxy_address">عليك بإدخال عنوان الوكيل</string>
   <string name="configurable_single_select__customize_option">تخصيص الخيارات</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">كل النشاطات</string>
   <string name="PaymentsAllActivityFragment__all">الجميع</string>
@@ -3350,6 +3354,7 @@
   <string name="CallParticipant__s_on_another_device">%1$s (في جهاز آخر)</string>
   <!--WifiToCellularPopupWindow-->
   <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
+  <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">شبكة Wi-Fi ضعيفة. تم التبديل إلى شبكة خلوية.</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">سيؤدي حذف حسابك إلى :</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">يُرجى إدخال رقم هاتفك</string>
@@ -4743,6 +4748,14 @@
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">تغييرات رقم الأمان</string>
   <!--Message of safety number review fragment-->
+  <plurals name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">
+    <item quantity="zero">%1$d مُستلمين قد يكونوا أعادوا تثبيت Signal أو غيّروا أجهزتهم. انقر على مُستلم ما للتأكد من رقم الأمان الجديد. هذا الإجراء اختياري.</item>
+    <item quantity="one">%1$d مُستلم قد يمكن أن يكون أعاد تثبيت Signal أو غيّر جهازه. انقر على مُستلم ما للتأكد من رقم الأمان الجديد. هذا الإجراء اختياري.</item>
+    <item quantity="two">%1$d مُستلمين قد يكونوا أعادوا تثبيت Signal أو غيّروا أجهزتهم. انقر على مُستلم ما للتأكد من رقم الأمان الجديد. هذا الإجراء اختياري. </item>
+    <item quantity="few">%1$d مُستلمين قد يكونوا أعادوا تثبيت Signal أو غيّروا أجهزتهم. انقر على مُستلم ما للتأكد من رقم الأمان الجديد. هذا الإجراء اختياري.</item>
+    <item quantity="many">%1$d مُستلمين قد يكونوا أعادوا تثبيت Signal أو غيّروا أجهزتهم. انقر على مُستلم ما للتأكد من رقم الأمان الجديد. هذا الإجراء اختياري.</item>
+    <item quantity="other">%1$d مُستلمين قد يكونوا أعادوا تثبيت Signal أو غيّروا أجهزتهم. انقر على مُستلم ما للتأكد من رقم الأمان الجديد. هذا الإجراء اختياري.</item>
+  </plurals>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">جهات الاتصال</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -4764,6 +4777,7 @@
   <!--Story info header received heading-->
   <string name="StoryInfoHeader__received">تمَّ الاستلام</string>
   <!--Story info header file size heading-->
+  <string name="StoryInfoHeader__file_size">حجم الملف</string>
   <!--Story info "Sent to" header-->
   <string name="StoryInfoBottomSheetDialogFragment__sent_to">أُرسِلَت إلى</string>
   <!--Story info "Sent from" header-->

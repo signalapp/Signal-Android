@@ -176,6 +176,7 @@
   <string name="ContactsDatabase_signal_call_s">Połączenie Signal %s</string>
   <!--ContactNameEditActivity-->
   <!--Toolbar title for contact name edit activity-->
+  <string name="ContactNameEditActivity__edit_name">Edytuj nazwę</string>
   <string name="ContactNameEditActivity_given_name">Imię</string>
   <string name="ContactNameEditActivity_family_name">Nazwisko</string>
   <string name="ContactNameEditActivity_prefix">Tytuł</string>
@@ -183,12 +184,14 @@
   <string name="ContactNameEditActivity_middle_name">Drugie imię</string>
   <!--ContactShareEditActivity-->
   <!--ContactShareEditActivity toolbar title-->
+  <string name="ContactShareEditActivity__send_contact">Wyślij kontakt</string>
   <string name="ContactShareEditActivity_type_home">Dom</string>
   <string name="ContactShareEditActivity_type_mobile">Komórka</string>
   <string name="ContactShareEditActivity_type_work">Praca</string>
   <string name="ContactShareEditActivity_type_missing">Inne</string>
   <string name="ContactShareEditActivity_invalid_contact">Wybrany kontakt był nieprawidłowy</string>
   <!--Content descrption for name edit button on contact share edit activity-->
+  <string name="ContactShareEditActivity__edit_name">Edytuj nazwę</string>
   <!--Content description for user avatar in edit activity-->
   <string name="ContactShareEditActivity__avatar">Awatar</string>
   <!--ConversationItem-->
@@ -2478,6 +2481,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences_enter_proxy_address">Podaj adres proxy</string>
   <string name="configurable_single_select__customize_option">Dostosuj opcję</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Wszystkie aktywności</string>
   <string name="PaymentsAllActivityFragment__all">Wszyscy</string>
@@ -3163,6 +3167,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="CallParticipant__s_on_another_device">%1$s (na innym urządzeniu)</string>
   <!--WifiToCellularPopupWindow-->
   <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
+  <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Niestabilne WiFi. Przełączono na dane komórkowe.</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Usunięcie Twojego konta spowoduje:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Podaj swój numer telefonu</string>
@@ -4516,6 +4521,12 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Zmiany w numerze bezpieczeństwa</string>
   <!--Message of safety number review fragment-->
+  <plurals name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">
+    <item quantity="one">Wśród kontaktów masz %1$d osobę, która mogła ponownie zainstalować aplikację Signal albo zmienić urządzenie. Stuknij w odbiorcę, aby potwierdzić nowy number bezpieczeństwa. Ta czynność jest opcjonalna.</item>
+    <item quantity="few">Wśród kontaktów masz osoby (%1$d), które mogły ponownie zainstalować aplikację Signal albo zmienić urządzenie. Stuknij w odbiorcę, aby potwierdzić nowy number bezpieczeństwa. Ta czynność jest opcjonalna.</item>
+    <item quantity="many">Wśród kontaktów masz osoby (%1$d), które mogły ponownie zainstalować aplikację Signal albo zmienić urządzenie. Stuknij w odbiorcę, aby potwierdzić nowy number bezpieczeństwa. Ta czynność jest opcjonalna.</item>
+    <item quantity="other">Wśród kontaktów masz osoby (%1$d), które mogły ponownie zainstalować aplikację Signal albo zmienić urządzenie. Stuknij w odbiorcę, aby potwierdzić nowy number bezpieczeństwa. Ta czynność jest opcjonalna.</item>
+  </plurals>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">Kontakty</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -4537,6 +4548,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--Story info header received heading-->
   <string name="StoryInfoHeader__received">Odebrano</string>
   <!--Story info header file size heading-->
+  <string name="StoryInfoHeader__file_size">Rozmiar pliku</string>
   <!--Story info "Sent to" header-->
   <string name="StoryInfoBottomSheetDialogFragment__sent_to">Wysłano do:</string>
   <!--Story info "Sent from" header-->

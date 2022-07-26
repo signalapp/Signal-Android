@@ -2399,6 +2399,7 @@
   <string name="preferences_enter_proxy_address">Introduza o endereço proxy</string>
   <string name="configurable_single_select__customize_option">Personalizar opção</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Toda a atividade</string>
   <string name="PaymentsAllActivityFragment__all">Tudo</string>
@@ -4407,6 +4408,11 @@
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Alterações no número de segurança</string>
   <!--Message of safety number review fragment-->
+  <plurals name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">
+    <item quantity="one">%1$d destinatário pode ter reinstalado o Signal ou mudado de dispositivo. Toque num destinatário para confirmar o novo número de segurança. Isto é opcional.</item>
+    <item quantity="many">%1$d destinatários podem ter reinstalado o Signal ou mudado de dispositivo. Toque num destinatário para confirmar o novo número de segurança. Isto é opcional.</item>
+    <item quantity="other">%1$d destinatários podem ter reinstalado o Signal ou mudado de dispositivo. Toque num destinatário para confirmar o novo número de segurança. Isto é opcional.</item>
+  </plurals>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">Contactos</string>
   <!--Context menu label for distribution list headers in review fragment-->

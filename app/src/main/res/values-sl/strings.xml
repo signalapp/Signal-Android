@@ -176,6 +176,7 @@
   <string name="ContactsDatabase_signal_call_s">Klic Signal: %s</string>
   <!--ContactNameEditActivity-->
   <!--Toolbar title for contact name edit activity-->
+  <string name="ContactNameEditActivity__edit_name">Uredi ime</string>
   <string name="ContactNameEditActivity_given_name">Ime</string>
   <string name="ContactNameEditActivity_family_name">Priimek</string>
   <string name="ContactNameEditActivity_prefix">Predpona</string>
@@ -183,12 +184,14 @@
   <string name="ContactNameEditActivity_middle_name">Srednje ime</string>
   <!--ContactShareEditActivity-->
   <!--ContactShareEditActivity toolbar title-->
+  <string name="ContactShareEditActivity__send_contact">Pošlji stik</string>
   <string name="ContactShareEditActivity_type_home">Doma</string>
   <string name="ContactShareEditActivity_type_mobile">Mobilno</string>
   <string name="ContactShareEditActivity_type_work">Služba</string>
   <string name="ContactShareEditActivity_type_missing">Drugo</string>
   <string name="ContactShareEditActivity_invalid_contact">Izbrani kontakt ni veljaven</string>
   <!--Content descrption for name edit button on contact share edit activity-->
+  <string name="ContactShareEditActivity__edit_name">Uredi ime</string>
   <!--Content description for user avatar in edit activity-->
   <string name="ContactShareEditActivity__avatar">Avatar</string>
   <!--ConversationItem-->
@@ -2477,6 +2480,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences_enter_proxy_address">Vnesite naslov proksi</string>
   <string name="configurable_single_select__customize_option">Nastavitve po meri</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Vse dejavnosti</string>
   <string name="PaymentsAllActivityFragment__all">Vse</string>
@@ -3162,6 +3166,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="CallParticipant__s_on_another_device">%1$s (na drugi napravi)</string>
   <!--WifiToCellularPopupWindow-->
   <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
+  <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Šibka Wi-Fi povezava. Preklopljeno na mobilno omrežje.</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Z izbrisom vašega računa boste:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Vnesite svojo telefonsko številko</string>
@@ -4515,6 +4520,12 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Spremembe varnostne številke</string>
   <!--Message of safety number review fragment-->
+  <plurals name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">
+    <item quantity="one">%1$d prejemnik_ca je morda znova namestil_a Signal ali zamenjal_a napravo. Tapnite na prejemnika_co, da potrdite novo varnostno številko. Potrditev ni obvezna.</item>
+    <item quantity="two">%1$d prejemnika_ci sta morda znova namestila_i Signal ali zamenjala_i napravo. Tapnite na prejemnika_co, da potrdite novo varnostno številko. Potrditev ni obvezna.</item>
+    <item quantity="few">%1$d prejemniki_ce so morda znova namestili_e Signal ali zamenjali_e napravo. Tapnite na prejemnika_co, da potrdite novo varnostno številko. Potrditev ni obvezna.</item>
+    <item quantity="other">%1$d prejemnikov_c je morda znova namestilo Signal ali zamenjalo napravo. Tapnite na prejemnika_co, da potrdite novo varnostno številko. Potrditev ni obvezna.</item>
+  </plurals>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">Stiki</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -4536,6 +4547,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--Story info header received heading-->
   <string name="StoryInfoHeader__received">Prejeto</string>
   <!--Story info header file size heading-->
+  <string name="StoryInfoHeader__file_size">Velikost datoteke</string>
   <!--Story info "Sent to" header-->
   <string name="StoryInfoBottomSheetDialogFragment__sent_to">Poslano uporabniku_ci</string>
   <!--Story info "Sent from" header-->

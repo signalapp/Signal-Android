@@ -174,7 +174,7 @@
   <string name="ContactsDatabase_signal_call_s">Tawag sa Signal %s</string>
   <!--ContactNameEditActivity-->
   <!--Toolbar title for contact name edit activity-->
-  <string name="ContactNameEditActivity__edit_name">Edit name</string>
+  <string name="ContactNameEditActivity__edit_name">I-edit ang pangalan</string>
   <string name="ContactNameEditActivity_given_name">Pangalan</string>
   <string name="ContactNameEditActivity_family_name">Apelyido</string>
   <string name="ContactNameEditActivity_prefix">Prefix</string>
@@ -182,14 +182,14 @@
   <string name="ContactNameEditActivity_middle_name">Panggitnang Pangalan</string>
   <!--ContactShareEditActivity-->
   <!--ContactShareEditActivity toolbar title-->
-  <string name="ContactShareEditActivity__send_contact">Send contact</string>
+  <string name="ContactShareEditActivity__send_contact">Ipadala ang contact</string>
   <string name="ContactShareEditActivity_type_home">Bahay</string>
   <string name="ContactShareEditActivity_type_mobile">Mobile</string>
   <string name="ContactShareEditActivity_type_work">Trabaho</string>
   <string name="ContactShareEditActivity_type_missing">Iba pa</string>
   <string name="ContactShareEditActivity_invalid_contact">Ang napiling kontak ay invalid</string>
   <!--Content descrption for name edit button on contact share edit activity-->
-  <string name="ContactShareEditActivity__edit_name">Edit name</string>
+  <string name="ContactShareEditActivity__edit_name">I-edit ang pangalan</string>
   <!--Content description for user avatar in edit activity-->
   <string name="ContactShareEditActivity__avatar">Avatar</string>
   <!--ConversationItem-->
@@ -2317,6 +2317,7 @@
   <string name="preferences_enter_proxy_address">I-enter ang proxy address</string>
   <string name="configurable_single_select__customize_option">I-customize ang option</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">All activity</string>
   <string name="PaymentsAllActivityFragment__all">Lahat</string>
@@ -2982,7 +2983,7 @@
   <string name="CallParticipant__s_on_another_device">%1$s (sa ibang device)</string>
   <!--WifiToCellularPopupWindow-->
   <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
-  <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Switched to cellular dahil unstable ang Wi-Fi connection.</string>
+  <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Lumipat sa data connection dahil unstable ang Wi-Fi connection.</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Ang pag-delete ng iyong account ay magreresulta sa:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Ilagay ang numero ng iyong telepono</string>
@@ -4321,7 +4322,7 @@
   <!--Story info header received heading-->
   <string name="StoryInfoHeader__received">Received</string>
   <!--Story info header file size heading-->
-  <string name="StoryInfoHeader__file_size">File size</string>
+  <string name="StoryInfoHeader__file_size">Size ng file</string>
   <!--Story info "Sent to" header-->
   <string name="StoryInfoBottomSheetDialogFragment__sent_to">Sent to</string>
   <!--Story info "Sent from" header-->

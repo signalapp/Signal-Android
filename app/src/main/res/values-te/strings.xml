@@ -2321,6 +2321,7 @@
   <string name="preferences_enter_proxy_address">ప్రాక్సీ చిరునామాను నమోదు చేయండి</string>
   <string name="configurable_single_select__customize_option">అనుకూలీకరించు ఎంపిక</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">మొత్తం యాక్టివిటీ</string>
   <string name="PaymentsAllActivityFragment__all">అన్ని</string>
@@ -2986,6 +2987,7 @@
   <string name="CallParticipant__s_on_another_device">%1$s (మరొక పరికరంలో)</string>
   <!--WifiToCellularPopupWindow-->
   <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
+  <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">బలహీనమైన Wi-Fi. సెల్యూలర్‌కు మారండి.</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">మీ ఖాతాను తొలగిస్తుంది:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">మీ ఫోన్ నంబర్‌ను నమోదు చేయండి</string>
@@ -4300,6 +4302,10 @@
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">భద్రతా సంఖ్య మార్పులు</string>
   <!--Message of safety number review fragment-->
+  <plurals name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">
+    <item quantity="one">%1$dగ్రహీత Signalని తిరిగి ఇన్‌స్టాల్ చేయవచ్చు లేదా పరికరాలను మార్చవచ్చు. కొత్త భద్రతా సంఖ్యను ధృవీకరించడానికి గ్రహీతను తట్టండి. ఇది ఐచ్ఛికం.</item>
+    <item quantity="other">%1$dగ్రహీతలు Signalని తిరిగి ఇన్‌స్టాల్ చేయవచ్చు లేదా పరికరాలను మార్చవచ్చు. కొత్త భద్రతా సంఖ్యను ధృవీకరించడానికి గ్రహీతను తట్టండి. ఇది ఐచ్ఛికం.</item>
+  </plurals>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">పరిచయాలు </string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -4321,6 +4327,7 @@
   <!--Story info header received heading-->
   <string name="StoryInfoHeader__received">అందుకున్న</string>
   <!--Story info header file size heading-->
+  <string name="StoryInfoHeader__file_size">ఫైలు సైజ్</string>
   <!--Story info "Sent to" header-->
   <string name="StoryInfoBottomSheetDialogFragment__sent_to">కు పంపబడింది</string>
   <!--Story info "Sent from" header-->

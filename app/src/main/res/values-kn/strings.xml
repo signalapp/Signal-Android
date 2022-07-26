@@ -174,6 +174,7 @@
   <string name="ContactsDatabase_signal_call_s">Signal ಕರೆ %s</string>
   <!--ContactNameEditActivity-->
   <!--Toolbar title for contact name edit activity-->
+  <string name="ContactNameEditActivity__edit_name">ಹೆಸರು ತಿದ್ದಿ</string>
   <string name="ContactNameEditActivity_given_name">ನೀಡಿರುವ ಹೆಸರು</string>
   <string name="ContactNameEditActivity_family_name">ಕುಟುಂಬದ ಹೆಸರು</string>
   <string name="ContactNameEditActivity_prefix">ಪೂರ್ವಪ್ರತ್ಯಯ</string>
@@ -181,12 +182,14 @@
   <string name="ContactNameEditActivity_middle_name">ಮಧ್ಯದ ಹೆಸರು</string>
   <!--ContactShareEditActivity-->
   <!--ContactShareEditActivity toolbar title-->
+  <string name="ContactShareEditActivity__send_contact">ಸಂಪರ್ಕ ಕಳುಹಿಸಿ</string>
   <string name="ContactShareEditActivity_type_home">ಹೋಮ್</string>
   <string name="ContactShareEditActivity_type_mobile">ಮೊಬೈಲ್</string>
   <string name="ContactShareEditActivity_type_work">ಕೆಲಸ</string>
   <string name="ContactShareEditActivity_type_missing">ಇತರ</string>
   <string name="ContactShareEditActivity_invalid_contact">ಆಯ್ಕೆಮಾಡಿದ ಸಂಪರ್ಕವು ಅಮಾನ್ಯವಾಗಿದೆ</string>
   <!--Content descrption for name edit button on contact share edit activity-->
+  <string name="ContactShareEditActivity__edit_name">ಹೆಸರು ತಿದ್ದಿ</string>
   <!--Content description for user avatar in edit activity-->
   <string name="ContactShareEditActivity__avatar">ಅವತಾರ್</string>
   <!--ConversationItem-->
@@ -1817,7 +1820,9 @@
   <!--Author formatting for group stories-->
   <!--Label indicating that a quote is for a reply to a story you created-->
   <!--Label indicating that the story being replied to no longer exists-->
+  <string name="QuoteView_no_longer_available">ಲಭ್ಯವಿಲ್ಲ</string>
   <!--Label for quoted gift-->
+  <string name="QuoteView__gift">ಉಡುಗೊರೆ</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">ಕೆಳಗಡೆಗೆ ಸ್ಕ್ರಾಲ್ ಮಾಡಿ</string>
   <!--BubbleOptOutTooltip-->
@@ -2273,6 +2278,9 @@
   <string name="preferences_enter_proxy_address">ಪ್ರಾಕ್ಸಿ ವಿಳಾಸ ನಮೂದಿಸಿ</string>
   <string name="configurable_single_select__customize_option">ಆಯ್ಕೆಯನ್ನು ಅಗತ್ಯಾನುಗುಣಗೊಳಿಸಿರಿ</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">ಆನ್‍ಬೋರ್ಡಿಂಗ್ ಫ್ಲ್ಯಾಗ್ ಗಳನ್ನು ತೆರವುಗೊಳಿಸಿ, ಆನ್‍ಬೋರ್ಡಿಂಗ್ ಸ್ಟೋರೀಗಳ ಡೌನ್‍ಲೋಡ್ ಗೆ ಚಲನೆ ನೀಡುತ್ತದೆ.
+
+</string>
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">ಎಲ್ಲ ಚಟುವಟಿಕೆ</string>
   <string name="PaymentsAllActivityFragment__all">ಎಲ್ಲಾ</string>
@@ -2927,6 +2935,7 @@
   <string name="CallParticipant__s_on_another_device">%1$s (ಮತ್ತೊಂದು  ಸಾಧನದಲ್ಲಿ)</string>
   <!--WifiToCellularPopupWindow-->
   <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
+  <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">ದುರ್ಬಲ ವೈ-ಫೈ. ಸೆಲ್ಯುಲಾರ್‌ಗೆ ಸ್ವಿಚ್ ಆಗಿದೆ.</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಅಳಿಸಿದರೆ:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">ನಿಮ್ಮ ಫೋನ್‌ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ</string>
@@ -3358,6 +3367,7 @@
   <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">ಸ್ಟೋರೀಸ್‌ಗೆ ಕಳುಹಿಸಿದ ವಿಡಿಯೋಗಳು 30s ಗಿಂತ ದೀರ್ಘವಾಗಿರುವಂತಿಲ್ಲ.</string>
   <!--Media V2-->
   <string name="ImageEditorHud__cancel">ರದ್ದುಗೊಳಿಸಿ</string>
+  <string name="ImageEditorHud__draw">ರಚಿಸಿ</string>
   <string name="ImageEditorHud__undo">ರದ್ದುಗೊಳಿಸು</string>
   <string name="ImageEditorHud__delete">ಅಳಿಸು</string>
   <string name="MediaCountIndicatorButton__send">ಕಳುಹಿಸು</string>
@@ -3412,6 +3422,7 @@
   <string name="GiftMessageView__view">ತೋರಿಸು</string>
   <!--Gift badge redeeming action label-->
   <!--Gift badge redeemed label-->
+  <string name="GiftMessageView__redeemed">ರೀಡೀಮ್ ಮಾಡಲಾಗಿದೆ</string>
   <!--Stripe decline code generic_failure-->
   <!--Stripe decline code verify on Google Pay and try again-->
   <!--Stripe decline code learn more action label-->
@@ -3521,6 +3532,7 @@
   <!--Donation receipts recurring tab label-->
   <!--Donation receipts one-time tab label-->
   <!--Donation receipts gift tab label-->
+  <string name="DonationReceiptListFragment__gift">ಉಡುಗೊರೆ</string>
   <!--Donation receipts boost row label-->
   <!--Donation receipts details title-->
   <string name="DonationReceiptDetailsFragment__details">ವಿವರಗಳು</string>
@@ -3542,13 +3554,16 @@
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">ನನ್ನ ಸ್ಟೋರೀಸ್</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
+  <string name="StoriesLandingFragment__add_a_story">ಸ್ಟೋರಿ ಸೇರಿಸಿ</string>
   <!--Displayed when there are no stories to display-->
   <!--Context menu option to hide a story-->
+  <string name="StoriesLandingItem__hide_story">ಸ್ಟೋರಿಯನ್ನು ಮರೆಮಾಡಿ</string>
   <!--Context menu option to unhide a story-->
   <!--Context menu option to forward a story-->
   <string name="StoriesLandingItem__forward">ಫಾರ್ವರ್ಡ್</string>
   <!--Context menu option to share a story-->
   <!--Context menu option to go to story chat-->
+  <string name="StoriesLandingItem__go_to_chat">ಚಾಟ್‌ಗೆ ಹೋಗಿ</string>
   <!--Context menu option to go to story info-->
   <!--Label when a story is pending sending-->
   <string name="StoriesLandingItem__sending">ಕಳುಹಿಸಲಾಗುತ್ತಿದೆ…</string>
@@ -3563,6 +3578,7 @@
   <string name="StoriesLandingFragment__hide">ಅಡಗಿಸು</string>
   <!--Displayed in Snackbar after story is hidden-->
   <!--Section header for hidden stories-->
+  <string name="StoriesLandingFragment__hidden_stories">ಮರೆಮಾಡಿದ ಸ್ಟೋರಿಗಳು</string>
   <!--Displayed on each sent story under My Stories-->
   <!--Forward story label, displayed in My Stories context menu-->
   <string name="MyStories_forward">ಫಾರ್ವರ್ಡ್</string>
@@ -3589,8 +3605,11 @@
   <!--Button label displayed when user has disabled receipts-->
   <string name="StoryViewsFragment__go_to_settings">ಸೆಟ್ಟಿಂಗ್‌ಗಳಿಗೆ ಹೋಗಿ</string>
   <!--Displayed when a story has no replies yet-->
+  <string name="StoryGroupReplyFragment__no_replies_yet">ಇನ್ನೂ ಯಾವುದೇ ಪ್ರತ್ಯುತ್ತರವಿಲ್ಲ</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
+  <string name="StoryGroupReactionReplyItem__reacted_to_the_story">ಸ್ಟೋರಿಗೆ ಪ್ರತಿಕ್ರಿಯಿಸಲಾಗಿದೆ</string>
   <!--Label for story views tab-->
+  <string name="StoryViewsAndRepliesDialogFragment__views">ವೀಕ್ಷಣೆಗಳು</string>
   <!--Label for story replies tab-->
   <string name="StoryViewsAndRepliesDialogFragment__replies">ಪ್ರತಿಕ್ರಿಯೆಗಳು</string>
   <!--Description of action for reaction button-->
@@ -3656,12 +3675,14 @@
   <!--Displayed in text post creator before user enters text-->
   <!--Button label for changing font when creating a text post-->
   <!--Displayed in text post creator when prompting user to enter text-->
+  <string name="TextStoryPostTextEntryFragment__add_text">ಪಠ್ಯ ಸೇರಿಸಿ</string>
   <!--Content description for \'done\' button when adding text to a story post-->
   <!--Text label for media selection toggle-->
   <string name="MediaSelectionActivity__text">ಪಠ್ಯ</string>
   <!--Camera label for media selection toggle-->
   <string name="MediaSelectionActivity__camera">ಕ್ಯಾಮರಾ</string>
   <!--Hint for entering a URL for a text post-->
+  <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">URL ಟೈಪ್ ಮಾಡಿ ಅಥವಾ ಪೇಸ್ಟ್ ಮಾಡಿ</string>
   <!--Displayed prior to the user entering a URL for a text post-->
   <!--Hint text for searching for a story text post recipient.-->
   <string name="TextStoryPostSendFragment__search">ಹುಡುಕಿ</string>
@@ -3681,6 +3702,7 @@
   <string name="StoryDialogs__send">ಕಳುಹಿಸು</string>
   <!--Privacy Settings toggle title for stories-->
   <!--Privacy Settings toggle summary for stories-->
+  <string name="PrivacySettingsFragment__you_will_no_longer_be_able">ಈ ಆಯ್ಕೆಯನ್ನು ಆಫ್ ಮಾಡಿದಾಗ ಸ್ಟೋರೀಸ್ ಅನ್ನು ಹಂಚಿಕೊಳ್ಳಲು ಅಥವಾ ವೀಕ್ಷಿಸಲು ನಿಮಗೆ ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ.</string>
   <!--New story viewer selection screen title-->
   <!--New story viewer selection action button label-->
   <string name="CreateStoryViewerSelectionFragment__next">ಮುಂದೆ</string>
@@ -3723,8 +3745,10 @@
   <!--Conversation Item label for when you react to someone else\'s story-->
   <!--Conversation Item label for reactions to your story-->
   <!--Conversation Item label for reactions to an unavailable story-->
+  <string name="ConversationItem__reacted_to_a_story">ಸ್ಟೋರಿಗೆ ಪ್ರತಿಕ್ರಿಯಿಸಲಾಗಿದೆ</string>
   <!--endregion-->
   <!--Content description for expand contacts chevron-->
+  <string name="StoriesLinkPopup__visit_link">ಲಿಂಕ್‌ಗೆ ಭೇಟಿ ನೀಡಿ</string>
   <!--Gift price and duration, formatted as: {price} dot {n} day duration-->
   <!--Tagline for gift row items-->
   <!--Headline text on start fragment for gifting a badge-->
@@ -3740,6 +3764,7 @@
   <!--Displayed in the dialog while verifying the chosen recipient-->
   <!--Title for sheet shown when opening a redeemed gift-->
   <!--Title for sheet shown when opening a sent gift-->
+  <string name="ViewSentGiftBottomSheet__thanks_for_your_support">ನಿಮ್ಮ ಬೆಂಬಲಕ್ಕೆ ಧನ್ಯವಾದಗಳು!</string>
   <!--Description for sheet shown when opening a redeemed gift-->
   <!--Description for sheet shown when opening a sent gift-->
   <!--Primary action for pending gift sheet to redeem badge now-->
@@ -3778,6 +3803,7 @@
   <!--Gift expiry hours remaining-->
   <!--Gift expiry minutes remaining-->
   <!--Gift expiry expired-->
+  <string name="Gifts__expired">ಅವಧಿ ಮುಗಿದಿದೆ</string>
   <!--Label indicating that a user can tap to advance to the next post in a story-->
   <string name="StoryFirstTimeNavigationView__tap_to_advance">ಮುಂದುವರಿಯಲು ಟ್ಯಾಪ್ ಮಾಡಿ</string>
   <!--Label indicating swipe direction to skip current story-->
@@ -3801,7 +3827,7 @@
   <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
   <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆಯ ಪರೀಕ್ಷೆ ಪೂರ್ಣಗೊಂಡಿದೆ</string>
   <!--Message of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
-  <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">ಎಲ್ಲಾ ಸಂಪರ್ಕಗಳನ್ನು ಪರಿಶೀಲಿಸಲಾಗಿದೆ, ಮುಂದುವರಿಸಲು ಸೆಂಡ್ ಅನ್ನು ಟ್ಯಾಪ್ ಮಾಡಿ.</string>
+  <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">ಎಲ್ಲಾ ಸಂಪರ್ಕಗಳನ್ನು ಪರಿಶೀಲಿಸಲಾಗಿದೆ, ಮುಂದುವರಿಸಲು send ಅನ್ನು ಟ್ಯಾಪ್ ಮಾಡಿ.</string>
   <!--Message of safety number changes bottom sheet when not showing individual records-->
   <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">ನೀವು %1$d ಸಂಪರ್ಕಗಳನ್ನು ಹೊಂದಿದ್ದು, ಅವರು Signal ಅನ್ನು ಮರುಸ್ಥಾಪಿಸಿರಬಹುದು ಅಥವಾ ಸಾಧನಗಳನ್ನು ಬದಲಿಸಿರಬಹುದು. ನಿಮ್ಮ ಸ್ಟೋರಿಯನ್ನು ಅವರೊಂದಿಗೆ ಹಂಚಿಕೊಳ್ಳುವ ಮುನ್ನ ಅವರ ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆಗಳನ್ನು ಪರಿಶೀಲಿಸಿ ಅಥವಾ ಅವರನ್ನು ನಿಮ್ಮ ಸ್ಟೋರಿಯಿಂದ ತೆಗೆದುಹಾಕುವುದನ್ನು ಪರಿಗಣಿಸಿ.</string>
   <!--Menu action to launch safety number verification screen-->
@@ -3819,6 +3845,10 @@
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆ ಬದಲಾಗುತ್ತದೆ</string>
   <!--Message of safety number review fragment-->
+  <plurals name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">
+    <item quantity="one">%1$d ಸ್ವೀಕೃತಿದಾರರು Signal ಅನ್ನು ಮರುಸ್ಥಾಪಿಸಿರಬಹುದು ಅಥವಾ ಸಾಧನಗಳನ್ನು ಬದಲಾಯಿಸಿರಬಹುದು. ಹೊಸ ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆಯನ್ನು ದೃಢೀಕರಿಸಲು ಸ್ವೀಕೃತಿದಾರರನ್ನು ಟ್ಯಾಪ್ ಮಾಡಿ. ಇದು ಐಚ್ಛಿಕವಾಗಿದೆ.</item>
+    <item quantity="other">%1$d ಸ್ವೀಕೃತಿದಾರರು Signal ಅನ್ನು ಮರುಸ್ಥಾಪಿಸಿರಬಹುದು ಅಥವಾ ಸಾಧನಗಳನ್ನು ಬದಲಾಯಿಸಿರಬಹುದು. ಹೊಸ ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆಯನ್ನು ದೃಢೀಕರಿಸಲು ಒಬ್ಬ‌ ಸ್ವೀಕೃತಿದಾರರನ್ನು ಟ್ಯಾಪ್ ಮಾಡಿ. ಇದು ಐಚ್ಛಿಕವಾಗಿದೆ.</item>
+  </plurals>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">ಸಂಪರ್ಕಗಳು</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -3840,6 +3870,7 @@
   <!--Story info header received heading-->
   <string name="StoryInfoHeader__received">ಸ್ವೀಕರಿಸಲಾಗಿದೆ</string>
   <!--Story info header file size heading-->
+  <string name="StoryInfoHeader__file_size">ಫೈಲ್ ಗಾತ್ರ</string>
   <!--Story info "Sent to" header-->
   <string name="StoryInfoBottomSheetDialogFragment__sent_to">ಅವರಿಗೆ ಕಳುಹಿಸಲಾಗಿದೆ</string>
   <!--Story info "Sent from" header-->

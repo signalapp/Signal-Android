@@ -1813,7 +1813,7 @@
     <string name="ThreadRecord__you_redeemed_a_gift_badge">You redeemed a gift badge</string>
     <!-- Displayed in the conversation list when someone reacted to your story -->
     <string name="ThreadRecord__reacted_s_to_your_story">Reacted %1$s to your story</string>
-    <!-- Displayed in the conversation list when you reacted to someone's story -->
+    <!-- Displayed in the conversation list when you reacted to someone\'s story -->
     <string name="ThreadRecord__reacted_s_to_their_story">Reacted %1$s to their story</string>
 
     <!-- UpdateApkReadyListener -->

@@ -174,6 +174,7 @@
   <string name="ContactsDatabase_signal_call_s">Signal कॉल %s</string>
   <!--ContactNameEditActivity-->
   <!--Toolbar title for contact name edit activity-->
+  <string name="ContactNameEditActivity__edit_name">नाव संपादित करा</string>
   <string name="ContactNameEditActivity_given_name">दिलेले नाव</string>
   <string name="ContactNameEditActivity_family_name">कुटूंब नाव</string>
   <string name="ContactNameEditActivity_prefix">प्रीफिक्स</string>
@@ -181,12 +182,14 @@
   <string name="ContactNameEditActivity_middle_name">मधले नाव</string>
   <!--ContactShareEditActivity-->
   <!--ContactShareEditActivity toolbar title-->
+  <string name="ContactShareEditActivity__send_contact">संपर्क पाठवा</string>
   <string name="ContactShareEditActivity_type_home">मुख्यस्क्रीन</string>
   <string name="ContactShareEditActivity_type_mobile">मोबाईल</string>
   <string name="ContactShareEditActivity_type_work">कार्य</string>
   <string name="ContactShareEditActivity_type_missing">इतर</string>
   <string name="ContactShareEditActivity_invalid_contact">निवडलेला संपर्क अवैध होता</string>
   <!--Content descrption for name edit button on contact share edit activity-->
+  <string name="ContactShareEditActivity__edit_name">नाव संपादित करा</string>
   <!--Content description for user avatar in edit activity-->
   <string name="ContactShareEditActivity__avatar">अवतार</string>
   <!--ConversationItem-->
@@ -2311,6 +2314,7 @@
   <string name="preferences_enter_proxy_address">प्रॉक्सी पत्ता प्रविष्ट करा</string>
   <string name="configurable_single_select__customize_option">पर्याय सानुकूलित करा</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">सर्व अॅक्टिव्हिटी</string>
   <string name="PaymentsAllActivityFragment__all">सर्व</string>
@@ -2976,6 +2980,7 @@
   <string name="CallParticipant__s_on_another_device">%1$s (दुसऱ्या डिव्हाईसवर)</string>
   <!--WifiToCellularPopupWindow-->
   <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
+  <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">कमकुवत Wi-Fi . सेल्युलरवर स्वीच केले.</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">आपले खाते हटवल्याने खालील गोष्टी होतील:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">आपला फोन नंबर प्रविष्ट करा</string>
@@ -4289,6 +4294,10 @@
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">सुरक्षितता क्रमांक बदल</string>
   <!--Message of safety number review fragment-->
+  <plurals name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">
+    <item quantity="one">%1$d प्राप्तकर्त्याने Signal पुन्हा इन्स्टॉल केलेले किंवा उपकरणे बदलले असू शकते. नवीन सुरक्षितता क्रमांकाची पुष्टी करण्यासाठी एका प्राप्तकर्त्यांवर टॅप करा. हे पर्यायी आहे.</item>
+    <item quantity="other">%1$d प्राप्तकर्त्यांनी Signal पुन्हा इन्स्टॉल केले किंवा उपकरणे बदललेली असू शकतात. नवीन सुरक्षितता क्रमांकाची पुष्टी करण्यासाठी प्राप्तकर्त्यावर टॅप करा. हे पर्यायी आहे.</item>
+  </plurals>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">संपर्क</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -4310,6 +4319,7 @@
   <!--Story info header received heading-->
   <string name="StoryInfoHeader__received">प्राप्त झाले</string>
   <!--Story info header file size heading-->
+  <string name="StoryInfoHeader__file_size">फाईल आकार</string>
   <!--Story info "Sent to" header-->
   <string name="StoryInfoBottomSheetDialogFragment__sent_to">यांना पाठवले</string>
   <!--Story info "Sent from" header-->

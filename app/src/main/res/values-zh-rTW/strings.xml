@@ -173,6 +173,7 @@
   <string name="ContactsDatabase_signal_call_s">與 %s 進行 Signal 通話</string>
   <!--ContactNameEditActivity-->
   <!--Toolbar title for contact name edit activity-->
+  <string name="ContactNameEditActivity__edit_name">編輯名稱</string>
   <string name="ContactNameEditActivity_given_name">名字</string>
   <string name="ContactNameEditActivity_family_name">姓</string>
   <string name="ContactNameEditActivity_prefix">前綴名</string>
@@ -180,12 +181,14 @@
   <string name="ContactNameEditActivity_middle_name">中間名</string>
   <!--ContactShareEditActivity-->
   <!--ContactShareEditActivity toolbar title-->
+  <string name="ContactShareEditActivity__send_contact">傳送聯絡人</string>
   <string name="ContactShareEditActivity_type_home">住家</string>
   <string name="ContactShareEditActivity_type_mobile">行動電話</string>
   <string name="ContactShareEditActivity_type_work">工作電話</string>
   <string name="ContactShareEditActivity_type_missing">其他</string>
   <string name="ContactShareEditActivity_invalid_contact">選擇的聯絡人無效</string>
   <!--Content descrption for name edit button on contact share edit activity-->
+  <string name="ContactShareEditActivity__edit_name">編輯名稱</string>
   <!--Content description for user avatar in edit activity-->
   <string name="ContactShareEditActivity__avatar">頭像</string>
   <!--ConversationItem-->
@@ -2224,6 +2227,7 @@
   <string name="preferences_enter_proxy_address">輸入代理伺服器位址</string>
   <string name="configurable_single_select__customize_option">自定義選項</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">所有活動</string>
   <string name="PaymentsAllActivityFragment__all">全部</string>
@@ -2879,6 +2883,7 @@
   <string name="CallParticipant__s_on_another_device">%1$s (在另一台裝置上)</string>
   <!--WifiToCellularPopupWindow-->
   <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
+  <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Wi-Fi 訊號微弱，已切換至行動數據。</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">刪除你的帳戶將：</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">輸入你的電話號碼</string>
@@ -4172,6 +4177,9 @@
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">安全碼變更詳情</string>
   <!--Message of safety number review fragment-->
+  <plurals name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">
+    <item quantity="other">%1$d 位收件人可能已重新安裝 Signal 或更換裝置。點選任一位收件人即可確認安全碼；這道程序並非強制要求。</item>
+  </plurals>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">聯絡人</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -4193,6 +4201,7 @@
   <!--Story info header received heading-->
   <string name="StoryInfoHeader__received">接收時間</string>
   <!--Story info header file size heading-->
+  <string name="StoryInfoHeader__file_size">檔案大小</string>
   <!--Story info "Sent to" header-->
   <string name="StoryInfoBottomSheetDialogFragment__sent_to">傳送給</string>
   <!--Story info "Sent from" header-->

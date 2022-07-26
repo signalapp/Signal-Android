@@ -174,6 +174,7 @@
   <string name="ContactsDatabase_signal_call_s">Signal-puhelu: %s</string>
   <!--ContactNameEditActivity-->
   <!--Toolbar title for contact name edit activity-->
+  <string name="ContactNameEditActivity__edit_name">Muokkaa nimeä</string>
   <string name="ContactNameEditActivity_given_name">Etunimi</string>
   <string name="ContactNameEditActivity_family_name">Sukunimi</string>
   <string name="ContactNameEditActivity_prefix">Etuliite</string>
@@ -181,12 +182,14 @@
   <string name="ContactNameEditActivity_middle_name">Muut nimet</string>
   <!--ContactShareEditActivity-->
   <!--ContactShareEditActivity toolbar title-->
+  <string name="ContactShareEditActivity__send_contact">Lähetä yhteystieto</string>
   <string name="ContactShareEditActivity_type_home">Koti</string>
   <string name="ContactShareEditActivity_type_mobile">Matkapuhelin</string>
   <string name="ContactShareEditActivity_type_work">Työ</string>
   <string name="ContactShareEditActivity_type_missing">Muu</string>
   <string name="ContactShareEditActivity_invalid_contact">Valittu yhteystieto ei ole kelvollinen</string>
   <!--Content descrption for name edit button on contact share edit activity-->
+  <string name="ContactShareEditActivity__edit_name">Muokkaa nimeä</string>
   <!--Content description for user avatar in edit activity-->
   <string name="ContactShareEditActivity__avatar">Kuvake</string>
   <!--ConversationItem-->
@@ -2308,6 +2311,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="preferences_enter_proxy_address">Syötä välityspalvelimen osoite</string>
   <string name="configurable_single_select__customize_option">Mukautettu vaihtoehto</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Kaikki toiminta</string>
   <string name="PaymentsAllActivityFragment__all">Kaikki</string>
@@ -2973,6 +2977,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="CallParticipant__s_on_another_device">%1$s (toisella laitteella)</string>
   <!--WifiToCellularPopupWindow-->
   <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
+  <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Heikko Wi-Fi-yhteys. Siirrytty mobiilidataan.</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Tilin poistamisesta seuraa:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Syötä puhelinnumerosi</string>
@@ -3965,11 +3970,11 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">Piilota tarina näiltä</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
-  <string name="MyStorySettingsFragment__all_signal_connections">Kaikki Signal-yhteystiedot</string>
+  <string name="MyStorySettingsFragment__all_signal_connections">Kaikki Signal-kontaktit</string>
   <!--Privacy setting description for sending stories to all your signal connections-->
-  <string name="MyStorySettingsFragment__share_with_all_connections">Jaa kaikille yhteystiedoille</string>
+  <string name="MyStorySettingsFragment__share_with_all_connections">Jaa kaikille kontakteille</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
-  <string name="MyStorySettingsFragment__all_signal_connections_except">Kaikki Signal-yhteystiedot paitsi…</string>
+  <string name="MyStorySettingsFragment__all_signal_connections_except">Kaikki Signal-kontaktit paitsi…</string>
   <!--Privacy setting description for sending stories to all except the specified connections-->
   <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Piilota tarina tietyiltä henkilöiltä</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
@@ -3997,9 +4002,9 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--Note about default sharing-->
   <string name="MyStorySettingsFragment__hide_your_story_from">Piilota tarinasi tietyiltä ihmisiltä. Vakioasetuksena on, että tarinasi jaetaan %1$s</string>
   <!--Signal connections bolded text in the Signal Connections sheet-->
-  <string name="SignalConnectionsBottomSheet___signal_connections">Signal-yhteystiedot</string>
+  <string name="SignalConnectionsBottomSheet___signal_connections">Signal-kontaktit</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
-  <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Signal-yhteystiedot ovat henkilöitä, jotka olet valinnut luotetuiksi jollakin seuraavista tavoista:</string>
+  <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Signal-kontaktit ovat henkilöitä, jotka olet valinnut luotetuiksi jollakin seuraavista tavoista:</string>
   <!--Signal connections sheet bullet point 1-->
   <string name="SignalConnectionsBottomSheet__starting_a_conversation">Aloittamalla keskustelun</string>
   <!--Signal connections sheet bullet point 2-->
@@ -4007,7 +4012,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--Signal connections sheet bullet point 3-->
   <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Lisäämällä heidät puhelimen järjestelmän yhteystietoihin</string>
   <!--Note at the bottom of the Signal connections sheet-->
-  <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">Yhteytesi näkevät nimesi ja valokuvasi, ja näet Omaan tarinaan lisäämäsi päivitykset, ellet piilota niitä heiltä.</string>
+  <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">Kontaktisi näkevät nimesi ja valokuvasi, ja näet Omaan tarinaan lisäämäsi päivitykset, ellet piilota niitä heiltä.</string>
   <!--Clickable option to add a viewer to a private story-->
   <string name="PrivateStorySettingsFragment__add_viewer">Lisää katsoja</string>
   <!--Clickable option to delete a custom story-->
@@ -4057,7 +4062,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--Dialog title for first time adding something to a story-->
   <string name="StoryDialogs__add_to_story_q">Haluatko lisätä tarinaan?</string>
   <!--Dialog message for first time adding something to a story-->
-  <string name="StoryDialogs__adding_content">Kun lisäät sisältöä tarinaasi, Signalin yhteydet näkevät sisällön 24 tunnin ajan. Voit valita asetuksissa, kuka näkee tarinasi.</string>
+  <string name="StoryDialogs__adding_content">Kun lisäät sisältöä tarinaasi, Signal-kontaktisi näkevät sisällön 24 tunnin ajan. Voit valita asetuksissa, kuka näkee tarinasi.</string>
   <!--First time share to story dialog: Positive action to go ahead and add to story-->
   <string name="StoryDialogs__add_to_story">Lisää tarinaan</string>
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
@@ -4268,9 +4273,9 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
   <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">Turvanumerotarkistus valmis</string>
   <!--Message of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
-  <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Kaikki yhteystiedot on tarkistettu. Jatka napauttamalla.</string>
+  <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Kaikki kontaktit on tarkistettu. Jatka napauttamalla.</string>
   <!--Message of safety number changes bottom sheet when not showing individual records-->
-  <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">Sinulla on %1$d yhteystietoa, jotka ovat ehkä asentaneet Signalin uudelleen tai vaihtaneet käyttämäänsä laitetta. Tarkista heidän turvanumeronsa tai poista heidät tarinastasi ennen sen jakamista.</string>
+  <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">Sinulla on %1$d kontaktia, jotka ovat ehkä asentaneet Signalin uudelleen tai vaihtaneet käyttämäänsä laitetta. Tarkista heidän turvanumeronsa tai poista heidät tarinastasi ennen sen jakamista.</string>
   <!--Menu action to launch safety number verification screen-->
   <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Varmenna turvanumero</string>
   <!--Menu action to remove user from story-->
@@ -4278,7 +4283,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--Action button at bottom of SafetyNumberBottomSheetFragment to send anyway-->
   <string name="SafetyNumberBottomSheetFragment__send_anyway">Lähetä silti</string>
   <!--Action button at bottom of SafetyNumberBottomSheetFragment to review connections-->
-  <string name="SafetyNumberBottomSheetFragment__review_connections">Tarkista yhteystiedot</string>
+  <string name="SafetyNumberBottomSheetFragment__review_connections">Tarkista kontaktit</string>
   <!--Empty state copy for SafetyNumberBottomSheetFragment-->
   <string name="SafetyNumberBottomSheetFragment__no_more_recipients_to_show">Ei enempää näytettäviä vastaanottajia</string>
   <!--Done button on safety number review fragment-->
@@ -4286,6 +4291,10 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Turvanumeromuutokset</string>
   <!--Message of safety number review fragment-->
+  <plurals name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">
+    <item quantity="one">%1$d vastaanottaja on ehkä asentanut Signalin uudelleen tai vaihtanut käyttämäänsä laitetta. Vahvista uusi turvanumero napauttamalla vastaanottajaa. Toiminto on valinnainen.</item>
+    <item quantity="other">%1$d vastaanottajaa on ehkä asentanut Signalin uudelleen tai vaihtanut käyttämäänsä laitetta. Vahvista uusi turvanumero napauttamalla vastaanottajaa. Toiminto on valinnainen.</item>
+  </plurals>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">Yhteystiedot</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -4297,9 +4306,9 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--Subtitle of initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">Valitse, kuka voi nähdä julkaisut Omaan tarinaan. Voit muuttaa tätä asetuksissa milloin tahansa.</string>
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
-  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Kaikki Signalin yhteystiedot</string>
+  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Kaikki Signal-kontaktit</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
-  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Kaikki Signalin yhteystiedot paitsi…</string>
+  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Kaikki Signal-kontaktit paitsi…</string>
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Jaa vain seuraaville…</string>
   <!--Story info header sent heading-->
@@ -4307,6 +4316,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--Story info header received heading-->
   <string name="StoryInfoHeader__received">Vastaanotettu</string>
   <!--Story info header file size heading-->
+  <string name="StoryInfoHeader__file_size">Tiedoston koko</string>
   <!--Story info "Sent to" header-->
   <string name="StoryInfoBottomSheetDialogFragment__sent_to">Lähetetty käyttäjälle</string>
   <!--Story info "Sent from" header-->

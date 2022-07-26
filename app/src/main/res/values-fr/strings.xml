@@ -175,6 +175,7 @@
   <string name="ContactsDatabase_signal_call_s">Appel Signal %s</string>
   <!--ContactNameEditActivity-->
   <!--Toolbar title for contact name edit activity-->
+  <string name="ContactNameEditActivity__edit_name">Modifier le nom</string>
   <string name="ContactNameEditActivity_given_name">Prénom</string>
   <string name="ContactNameEditActivity_family_name">Nom de famille</string>
   <string name="ContactNameEditActivity_prefix">Titre</string>
@@ -182,12 +183,14 @@
   <string name="ContactNameEditActivity_middle_name">Deuxième prénom</string>
   <!--ContactShareEditActivity-->
   <!--ContactShareEditActivity toolbar title-->
+  <string name="ContactShareEditActivity__send_contact">Envoyer le contact</string>
   <string name="ContactShareEditActivity_type_home">Domicile</string>
   <string name="ContactShareEditActivity_type_mobile">Mobile</string>
   <string name="ContactShareEditActivity_type_work">Travail</string>
   <string name="ContactShareEditActivity_type_missing">Autre</string>
   <string name="ContactShareEditActivity_invalid_contact">Le contact sélectionné était invalide</string>
   <!--Content descrption for name edit button on contact share edit activity-->
+  <string name="ContactShareEditActivity__edit_name">Modifier le nom</string>
   <!--Content description for user avatar in edit activity-->
   <string name="ContactShareEditActivity__avatar">Avatar</string>
   <!--ConversationItem-->
@@ -2391,6 +2394,7 @@
   <string name="preferences_enter_proxy_address">Saisissez l’adresse du mandataire</string>
   <string name="configurable_single_select__customize_option">Personnaliser l’option</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Toutes les activités</string>
   <string name="PaymentsAllActivityFragment__all">Tous</string>
@@ -3066,6 +3070,7 @@
   <string name="CallParticipant__s_on_another_device">%1$s (sur un autre appareil)</string>
   <!--WifiToCellularPopupWindow-->
   <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
+  <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Connexion Wi-Fi faible. Choisir un réseau cellulaire.</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Supprimer votre compte implique :</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Saisir votre numéro de téléphone</string>
@@ -4403,6 +4408,11 @@ Nouvelle tentative…</string>
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Modification du numéro de sécurité</string>
   <!--Message of safety number review fragment-->
+  <plurals name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">
+    <item quantity="one">%1$d de vos contacts a sûrement réinstallé Signal ou changé d\'appareils. Appuyez sur le contact pour confirmer le nouveau numéro de sécurité. Cette étape est facultative.</item>
+    <item quantity="many">%1$d de vos contacts ont sûrement réinstallé Signal ou changé d\'appareils. Appuyez sur le contact pour confirmer le nouveau numéro de sécurité. Cette étape est facultative.</item>
+    <item quantity="other">%1$d de vos contacts ont sûrement réinstallé Signal ou changé d\'appareils. Appuyez sur le contact pour confirmer le nouveau numéro de sécurité. Cette étape est facultative.</item>
+  </plurals>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">Contacts</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -4424,6 +4434,7 @@ Nouvelle tentative…</string>
   <!--Story info header received heading-->
   <string name="StoryInfoHeader__received">Reçu</string>
   <!--Story info header file size heading-->
+  <string name="StoryInfoHeader__file_size">Taille du fichier</string>
   <!--Story info "Sent to" header-->
   <string name="StoryInfoBottomSheetDialogFragment__sent_to">Envoyé à</string>
   <!--Story info "Sent from" header-->

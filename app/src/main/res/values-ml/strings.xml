@@ -40,7 +40,7 @@
   <string name="ApplicationPreferencesActivity_hide_reminder">ഓർമ്മപ്പെടുത്തൽ മറയ്‌ക്കണോ?</string>
   <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">പേയ്മെന്റുകൾ വീണ്ടെടുക്കൽ വാക്യം രേഖപ്പെടുത്തുക</string>
   <string name="ApplicationPreferencesActivity_record_phrase">വാക്യാംശം രേഖപ്പെടുത്തുക</string>
-  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">നിങ്ങളുടെ പിന് പ്രവർത്തനരഹിതമാക്കുന്നതിന് മുമ്പ്, നിങ്ങളുടെ പേയ്മെന്റ് അക്കൗണ്ട് വീണ്ടെടുക്കാൻ കഴിയുമെന്ന് ഉറപ്പാക്കുന്നതിന് നിങ്ങളുടെ പേയ്മെന്റുകൾ വീണ്ടെടുക്കൽ വാക്യം നിങ്ങൾ റെക്കോർഡ് ചെയ്യണം.</string>
+  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">നിങ്ങളുടെ പിൻ പ്രവർത്തനരഹിതമാക്കുന്നതിന് മുമ്പ്, നിങ്ങളുടെ പേയ്മെന്റ് അക്കൗണ്ട് വീണ്ടെടുക്കാൻ കഴിയുമെന്ന് ഉറപ്പാക്കുന്നതിന് നിങ്ങളുടെ പേയ്മെന്റുകൾ വീണ്ടെടുക്കൽ വാക്യം നിങ്ങൾ റെക്കോർഡ് ചെയ്യണം.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d മിനിറ്റ്</item>
@@ -101,7 +101,7 @@
   <string name="BlockUnblockDialog_unblock_s">%1$s-നെ തടഞ്ഞത് മാറ്റണോ?</string>
   <string name="BlockUnblockDialog_block">തടയുക</string>
   <string name="BlockUnblockDialog_block_and_leave">തടഞ്ഞ് വിടുക</string>
-  <string name="BlockUnblockDialog_report_spam_and_block">സ്പാം രേഖപ്പെടുത്തി തടയുക</string>
+  <string name="BlockUnblockDialog_report_spam_and_block">സ്പാമെന്ന് അടയാളപ്പെടുത്തി തടയുക</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">ഇന്ന്</string>
   <string name="BucketedThreadMedia_Yesterday">ഇന്നലെ</string>
@@ -130,11 +130,11 @@
   <!--Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
   <string name="CensorshipCircumventionMegaphone_turn_off_censorship_circumvention">സെൻസർഷിപ്പ് മറികടക്കൽ ഓഫാക്കണോ?</string>
   <!--Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed-->
-  <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">മികച്ച അനുഭവത്തിനായി നിങ്ങൾക്ക് ഇപ്പോൾ Signal സേവനത്തിലേക്ക് നേരിട്ട് ബന്ധിപ്പിക്കാനാകും.</string>
+  <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">മികച്ച അനുഭവത്തിനായി നിങ്ങൾക്ക് ഇപ്പോൾ Signal സേവനത്തിലേക്ക് നേരിട്ട് കണക്റ്റ് ചെയ്യാനാകും.</string>
   <!--Action to prompt the user to disable circumvention since it is no longer needed-->
-  <string name="CensorshipCircumventionMegaphone_turn_off">ഓഫ് ആക്കുക</string>
+  <string name="CensorshipCircumventionMegaphone_turn_off">ഓഫാക്കുക</string>
   <!--Action to prompt the user to dismiss the alert at the bottom of the chat list-->
-  <string name="CensorshipCircumventionMegaphone_no_thanks">വേണ്ട, നന്ദി</string>
+  <string name="CensorshipCircumventionMegaphone_no_thanks">വേണ്ട</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">നീക്കം ചെയ്യുക</string>
   <string name="ClearProfileActivity_remove_profile_photo">പ്രൊഫൈല്‍ ഫോട്ടോ നീക്കം ചെയ്യണോ?</string>
@@ -166,14 +166,15 @@
   <string name="ContactsCursorLoader_phone_number_search">ഫോൺ നമ്പർ തിരയൽ</string>
   <string name="ContactsCursorLoader_username_search">ഉപയോക്തൃനാമം തിരയൽ</string>
   <!--Label for my stories when selecting who to send media to-->
-  <string name="ContactsCursorLoader_my_stories">എന്റെ കഥകള്‍</string>
+  <string name="ContactsCursorLoader_my_stories">എന്റെ സ്റ്റോറീസ്</string>
   <!--Action for creating a new story-->
-  <string name="ContactsCursorLoader_new_story">പുതിയ കഥ</string>
+  <string name="ContactsCursorLoader_new_story">പുതിയ സ്റ്റോറി</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">സന്ദേശ൦ %s</string>
   <string name="ContactsDatabase_signal_call_s">%s നെ Signal കോള്‍ ചെയ്യുക</string>
   <!--ContactNameEditActivity-->
   <!--Toolbar title for contact name edit activity-->
+  <string name="ContactNameEditActivity__edit_name">പേര് എഡിറ്റ് ചെയ്യുക</string>
   <string name="ContactNameEditActivity_given_name">നല്‍കിയ നാമം</string>
   <string name="ContactNameEditActivity_family_name">കുടുംബ നാമം</string>
   <string name="ContactNameEditActivity_prefix">പ്രിഫിക്‌സ്</string>
@@ -181,12 +182,14 @@
   <string name="ContactNameEditActivity_middle_name">മധ്യനാമം</string>
   <!--ContactShareEditActivity-->
   <!--ContactShareEditActivity toolbar title-->
+  <string name="ContactShareEditActivity__send_contact">കോൺടാക്റ്റ് അയയ്ക്കുക</string>
   <string name="ContactShareEditActivity_type_home">വീട്</string>
   <string name="ContactShareEditActivity_type_mobile">മൊബൈൽ</string>
   <string name="ContactShareEditActivity_type_work">ജോലി</string>
   <string name="ContactShareEditActivity_type_missing">മറ്റുള്ളവ</string>
   <string name="ContactShareEditActivity_invalid_contact">തിരഞ്ഞെടുത്ത കോൺടാക്റ്റ് അസാധുവായിരുന്നു</string>
   <!--Content descrption for name edit button on contact share edit activity-->
+  <string name="ContactShareEditActivity__edit_name">പേര് എഡിറ്റ് ചെയ്യുക</string>
   <!--Content description for user avatar in edit activity-->
   <string name="ContactShareEditActivity__avatar">അവതാർ</string>
   <!--ConversationItem-->
@@ -235,7 +238,7 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">അറ്റാച്ചുമെന്റ് നിങ്ങൾ അയയ്‌ക്കുന്ന സന്ദേശ ഇനത്തിന്റെ വലുപ്പ പരിധി കവിഞ്ഞിരിക്കുന്നു.</string>
   <string name="ConversationActivity_unable_to_record_audio">ഓഡിയോ റെക്കോർഡുചെയ്യാനായില്ല!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">ഇപ്പോള്‍ ഒരു അംഗമല്ലാത്തതിനാൽ നിങ്ങൾക്ക് ഈ ഗ്രൂപ്പിലേക്ക് സന്ദേശങ്ങൾ അയയ്ക്കാനാകില്ല.</string>
-  <string name="ConversationActivity_only_s_can_send_messages">%1$s-ന് മാത്രമേ സന്ദേശങ്ങൾ അയയ്ക്കാൻ കഴിയൂ</string>
+  <string name="ConversationActivity_only_s_can_send_messages">%1$s-ന് മാത്രമേ സന്ദേശങ്ങൾ അയയ്ക്കാൻ കഴിയൂ.</string>
   <string name="ConversationActivity_admins">അഡ്മിൻസ്</string>
   <string name="ConversationActivity_message_an_admin">ഒരു അഡ്മിന് സന്ദേശം അയക്കുക</string>
   <string name="ConversationActivity_cant_start_group_call">ഗ്രൂപ്പ് കോൾ ആരംഭിക്കാൻ കഴിയില്ല</string>
@@ -272,7 +275,7 @@
   <string name="ConversationActivity_join">ചേരുക</string>
   <string name="ConversationActivity_full">പൂർണ്ണമായി</string>
   <string name="ConversationActivity_error_sending_media">മീഡിയ അയയ്‌ക്കുന്നതിൽ പിശക്</string>
-  <string name="ConversationActivity__reported_as_spam_and_blocked">സ്‌പാമായി രേഖപ്പെടുത്തി ബ്ലോക്ക് ചെയ്‌തു.</string>
+  <string name="ConversationActivity__reported_as_spam_and_blocked">സ്‌പാമെന്ന് അടയാളപ്പെടുത്തി ബ്ലോക്ക് ചെയ്‌തു.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d വായിക്കാത്ത സന്ദേശം</item>
@@ -330,17 +333,17 @@
   <string name="ConversationFragment_your_safety_number_with_s_changed">%s-മായുള്ള നിങ്ങളുടെ സുരക്ഷാ നമ്പർ മാറി.</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">%s -മായുള്ള നിങ്ങളുടെ സുരക്ഷാ നമ്പർ മാറി. അവർ Signal വീണ്ടും ഇൻസ്റ്റാൾ ചെയ്തതുകൊണ്ടോ ഡിവൈസ് മാറിയതുകൊണ്ടോ ആവാമിത്. പുതിയ സുരക്ഷാ നമ്പർ ഉറപ്പുവരുത്താൻ \'ഉറപ്പാക്കു\' ടാപ് ചെയ്യുക. ഇത് ഓപ്ഷണൽ ആണ്.</string>
   <!--Message shown to indicate which notification profile is on/active-->
-  <string name="ConversationFragment__s_on">%1$sസജീവം</string>
+  <string name="ConversationFragment__s_on">%1$s സജീവം</string>
   <!--Dialog title for block group link join requests-->
   <string name="ConversationFragment__block_request">അഭ്യര്‍ത്ഥന തടയണോ?</string>
   <!--Dialog message for block group link join requests-->
-  <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s ന് ഈ ഗ്രൂപ്പിൽ ചേരാനോ ഗ്രൂപ്പ് ലിങ്ക് വഴി ചേരാൻ അഭ്യർത്ഥിക്കാനോ കഴിയില്ല. അവരെ ഇപ്പോഴും ഗ്രൂപ്പിൽ നേരിട്ട് ചേർക്കാവുന്നതാണ്.</string>
+  <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s എന്നയാൾക്ക് ഈ ഗ്രൂപ്പിൽ ചേരാനോ ഗ്രൂപ്പ് ലിങ്ക് വഴി ചേരാൻ അഭ്യർത്ഥിക്കാനോ കഴിയില്ല. അവരെ ഇപ്പോഴും ഗ്രൂപ്പിൽ നേരിട്ട് ചേർക്കാവുന്നതാണ്.</string>
   <!--Dialog confirm block request button-->
   <string name="ConversationFragment__block_request_button">അഭ്യര്‍ത്ഥന തടയുക</string>
   <!--Dialog cancel block request button-->
   <string name="ConversationFragment__cancel">റദ്ദാക്കൂ</string>
   <!--Message shown after successfully blocking join requests for a user-->
-  <string name="ConversationFragment__blocked">തടഞ്ഞത്</string>
+  <string name="ConversationFragment__blocked">തടഞ്ഞു</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">തിരഞ്ഞെടുത്ത സംഭാഷണം ഇല്ലാതാക്കണോ?</item>
     <item quantity="other">തിരഞ്ഞെടുത്ത സംഭാഷണങ്ങൾ ഇല്ലാതാക്കണോ?</item>
@@ -355,7 +358,7 @@
     <item quantity="one">സംഭാഷണം ആർകൈവ് ചെയ്തു</item>
     <item quantity="other">%d സംഭാഷണങ്ങൾ ആർകൈവ് ചെയ്തു</item>
   </plurals>
-  <string name="ConversationListFragment_undo">തിരിച്ചാക്കുക</string>
+  <string name="ConversationListFragment_undo">പഴയപടിയാക്കുക</string>
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="one">സംഭാഷണം ഇൻ‌ബോക്സിലേക്ക് നീക്കി</item>
     <item quantity="other">%d സംഭാഷണങ്ങൾ ഇൻ‌ബോക്സിലേക്ക് നീക്കി</item>
@@ -370,7 +373,7 @@
   </plurals>
   <plurals name="ConversationListFragment_pin_plural">
     <item quantity="one">പിൻ</item>
-    <item quantity="other">പിൻ</item>
+    <item quantity="other">പിൻ ചെയ്യുക</item>
   </plurals>
   <plurals name="ConversationListFragment_unpin_plural">
     <item quantity="one">അൺപിൻ ചെയ്യുക</item>
@@ -2306,6 +2309,7 @@
   <string name="preferences_enter_proxy_address">പ്രോക്സി വിലാസം നൽകുക</string>
   <string name="configurable_single_select__customize_option">ഓപ്ഷൻ ഇച്ഛാനുസൃതമാക്കുക</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">എല്ലാ പ്രവർത്തനങ്ങളും</string>
   <string name="PaymentsAllActivityFragment__all">എല്ലാം</string>
@@ -2972,6 +2976,7 @@
   <string name="CallParticipant__s_on_another_device">%1$s (മറ്റൊരു ഉപകരണത്തിൽ)</string>
   <!--WifiToCellularPopupWindow-->
   <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
+  <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Wi-Fi സിഗ്നൽ ദുർബലമാണ്. സെല്ലുലാർ കണക്ഷനിലേക്ക് മാറി.</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">നിങ്ങളുടെ അക്കൗണ്ട് ഇല്ലാതാക്കുന്നത്:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">നിങ്ങളുടെ ഫോൺ നമ്പർ നൽകുക</string>
@@ -4285,6 +4290,10 @@
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">സുരക്ഷാ നമ്പറിൽ മാറ്റമുണ്ടായി</string>
   <!--Message of safety number review fragment-->
+  <plurals name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">
+    <item quantity="one">%1$d സ്വീകർത്താവ് Signal വീണ്ടും ഇൻസ്റ്റാൾ ചെയ്യുകയോ ഉപകരണങ്ങൾ മാറുകയോ ചെയ്‌തിട്ടുണ്ടാകാം. പുതിയ സുരക്ഷാ നമ്പർ സ്ഥിരീകരിക്കുന്നതിന്, സ്വീകർത്താവിനെ ടാപ്പ് ചെയ്യുക. ഇത് നിർബന്ധമല്ല.</item>
+    <item quantity="other">%1$d സ്വീകർത്താക്കൾ Signal വീണ്ടും ഇൻസ്റ്റാൾ ചെയ്യുകയോ ഉപകരണങ്ങൾ മാറുകയോ ചെയ്‌തിട്ടുണ്ടാകാം. പുതിയ സുരക്ഷാ നമ്പർ സ്ഥിരീകരിക്കുന്നതിന്, ഒരു സ്വീകർത്താവിനെ ടാപ്പ് ചെയ്യുക. ഇത് ഓപ്ഷണലാണ്.</item>
+  </plurals>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">കോൺടാക്ടുകൾ</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -4306,6 +4315,7 @@
   <!--Story info header received heading-->
   <string name="StoryInfoHeader__received">ലഭിച്ചു</string>
   <!--Story info header file size heading-->
+  <string name="StoryInfoHeader__file_size">ഫയൽ വലുപ്പം</string>
   <!--Story info "Sent to" header-->
   <string name="StoryInfoBottomSheetDialogFragment__sent_to">അയച്ചത്</string>
   <!--Story info "Sent from" header-->

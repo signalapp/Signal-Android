@@ -174,6 +174,7 @@
   <string name="ContactsDatabase_signal_call_s">Trucada del Signal %s</string>
   <!--ContactNameEditActivity-->
   <!--Toolbar title for contact name edit activity-->
+  <string name="ContactNameEditActivity__edit_name">Editar nom</string>
   <string name="ContactNameEditActivity_given_name">Nom</string>
   <string name="ContactNameEditActivity_family_name">Cognom</string>
   <string name="ContactNameEditActivity_prefix">Prefix</string>
@@ -181,12 +182,14 @@
   <string name="ContactNameEditActivity_middle_name">Segon nom de pila</string>
   <!--ContactShareEditActivity-->
   <!--ContactShareEditActivity toolbar title-->
+  <string name="ContactShareEditActivity__send_contact">Enviar contacte</string>
   <string name="ContactShareEditActivity_type_home">Casa</string>
   <string name="ContactShareEditActivity_type_mobile">Mòbil</string>
   <string name="ContactShareEditActivity_type_work">Feina</string>
   <string name="ContactShareEditActivity_type_missing">Altres</string>
   <string name="ContactShareEditActivity_invalid_contact">El contacte seleccionat no és vàlid.</string>
   <!--Content descrption for name edit button on contact share edit activity-->
+  <string name="ContactShareEditActivity__edit_name">Editar nom</string>
   <!--Content description for user avatar in edit activity-->
   <string name="ContactShareEditActivity__avatar">Avatar</string>
   <!--ConversationItem-->
@@ -1303,7 +1306,7 @@
   <!--Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons.-->
   <string name="ValentinesDayMegaphone_happy_heart_day">Feliç dia 💜!</string>
   <!--Body text for the Valentine\'s Day donation megaphone.-->
-  <string name="ValentinesDayMegaphone_show_your_affection">Mostreu afecte convertint-vos en un sostenidor del Signal.</string>
+  <string name="ValentinesDayMegaphone_show_your_affection">Mostra afecte convertint-te en un donant del Signal.</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Toqueu aquí per activar el vídeo</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Per trucar a %1$s, el Signal necessita accés a la càmera.</string>
@@ -2308,6 +2311,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="preferences_enter_proxy_address">Introduïu l\'adreça del servidor intermediari</string>
   <string name="configurable_single_select__customize_option">Opció de personalització</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Tota l\'activitat</string>
   <string name="PaymentsAllActivityFragment__all">Tot</string>
@@ -2973,6 +2977,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="CallParticipant__s_on_another_device">%1$s (en un altre dispositiu)</string>
   <!--WifiToCellularPopupWindow-->
   <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
+  <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">La connexió Wi-Fi és feble. S\'ha canviat a dades del telèfon.</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Suprimir el compte comportarà el següent:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Marqueu el número de telèfon.</string>
@@ -3326,7 +3331,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="AddAProfilePhotoMegaphone__not_now">Ara no</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Afegiu-hi una fotografia</string>
   <!--BecomeASustainerMegaphone-->
-  <string name="BecomeASustainerMegaphone__become_a_sustainer">Sigueu-ne un sostenidor</string>
+  <string name="BecomeASustainerMegaphone__become_a_sustainer">Converteix-te en donant</string>
   <!--Displayed in the Become a Sustainer megaphone-->
   <string name="BecomeASustainerMegaphone__signal_is_powered_by">El Signal és sostingut per persones com vós. Feu una donació i rebeu un distintiu.</string>
   <string name="BecomeASustainerMegaphone__not_now">Ara no</string>
@@ -3505,7 +3510,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="SelectFeaturedBadgeFragment__select_a_badge">Selecciona una insígnia</string>
   <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Heu de seleccionar una insígnia</string>
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Ha fallat actualitzar el perfil.</string>
-  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Converteix-te\'n en un defensor</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Converteix-te en donant</string>
   <string name="ImageView__badge">Insígnia</string>
   <string name="SubscribeFragment__signal_is_powered_by_people_like_you">El Signal és alimentat per persones com vosaltres.</string>
   <string name="SubscribeFragment__support_technology_that_is_built_for_you">Ajudeu la tecnologia creada per a vosaltres —no per a les vostres dades— afegint-vos a la comunitat de persones que la sustenten.</string>
@@ -3536,7 +3541,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">Hau guanyat %s insígnia! Mostreu aquesta insígnia al perfil per crear consciència de la donació al Signal.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Heu guanyat una insígnia d\'empenta! Mostreu aquesta insígnia al perfil per crear consciència de la donació al Signal.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">També podeu</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">esdevenir un sostenidor mensual.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">converteix-te en donant mensual.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Mostra-ho al perfil</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Feu una insígnia inclosa</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Fet</string>
@@ -3581,8 +3586,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">La vostra insígnia d\'empenta ha vençut i ja no és visible al perfil.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Podeu reactivar la insígnia d\'empenta durant 30 dies més amb una aportació única.</string>
   <!--Displayed when we do not think the user is a subscriber when their boost expires-->
-  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Podeu continuar usant el Signal, però per donar suport a la tecnologia creada per a vós, considereu convertir-vos en un sostenidor fent-hi una donació mensual.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Sigueu-ne un sostenidor</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Podeu continuar usant el Signal, però per donar suport a la tecnologia creada per a vós, considereu convertir-vos en un donant fent-hi una donació mensual.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Converteix-te en donant</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Afegiu-hi una empenta</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ara no</string>
   <!--Copy displayed when badge expires after user inactivity-->
@@ -3596,7 +3601,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--Button label to send user to Google Pay website-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Ves a Google Pay</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">No es pot processar el pagament de la subscripció.</string>
-  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">Tenim problemes per cobrar el pagament de sostenidor del Signal. Assegureu-vos que el mètode de pagament estigui actualitzat. Si no és així, actualitzeu-lo a Google Pay. Signal intentarà processar el pagament de nou d\'aquí a uns dies.</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">Tenim problemes per cobrar el pagament de donant del Signal. Assegureu-vos que el mètode de pagament estigui actualitzat. Si no és així, actualitzeu-lo a Google Pay. Signal intentarà processar el pagament de nou d\'aquí a uns dies.</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">No ho tornis a mostrar</string>
   <string name="Subscription__please_contact_support_for_more_information">Poseu-vos en contacte amb el servei d\'assistència per obtenir-ne més informació.</string>
   <string name="Subscription__contact_support">Contacteu amb l\'Assistència</string>
@@ -4193,7 +4198,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--Expired gift sheet top description text-->
   <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">La insígnia de regal ha vençut i ja no és visible per als altres al perfil.</string>
   <!--Expired gift sheet bottom description text-->
-  <string name="ExpiredGiftSheetConfiguration__to_continue">Per continuar donant suport a la tecnologia creada per a vós, considereu convertir-vos en un sostenidor mensual.</string>
+  <string name="ExpiredGiftSheetConfiguration__to_continue">Per continuar donant suport a la tecnologia creada per a vós, considereu convertir-vos en un donant mensual.</string>
   <!--Expired gift sheet make a monthly donation button-->
   <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Feu una donació mensual</string>
   <!--Expired gift sheet not now button-->
@@ -4286,6 +4291,10 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Canvis al número de seguretat</string>
   <!--Message of safety number review fragment-->
+  <plurals name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">
+    <item quantity="one">%1$d destinatari pot haver reinstal·lat Signal o canviat de dispositiu. Toca sobre un destinatari per a confirmar el nou número de seguretat. Aquest pas és opcional.</item>
+    <item quantity="other">%1$ddestinataris poden haver reinstal·lat Signal o canviat de dispositiu. Toca sobre un destinatari per a confirmar el nou número de seguretat. Aquest pas és opcional.</item>
+  </plurals>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">Contactes</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -4307,6 +4316,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--Story info header received heading-->
   <string name="StoryInfoHeader__received">Rebut</string>
   <!--Story info header file size heading-->
+  <string name="StoryInfoHeader__file_size">Mida de l\'arxiu</string>
   <!--Story info "Sent to" header-->
   <string name="StoryInfoBottomSheetDialogFragment__sent_to">Enviat a</string>
   <!--Story info "Sent from" header-->

@@ -176,6 +176,7 @@
   <string name="ContactsDatabase_signal_call_s">Позвонить через Signal на %s</string>
   <!--ContactNameEditActivity-->
   <!--Toolbar title for contact name edit activity-->
+  <string name="ContactNameEditActivity__edit_name">Изменить имя</string>
   <string name="ContactNameEditActivity_given_name">Имя</string>
   <string name="ContactNameEditActivity_family_name">Фамилия</string>
   <string name="ContactNameEditActivity_prefix">Префикс</string>
@@ -183,12 +184,14 @@
   <string name="ContactNameEditActivity_middle_name">Отчество</string>
   <!--ContactShareEditActivity-->
   <!--ContactShareEditActivity toolbar title-->
+  <string name="ContactShareEditActivity__send_contact">Отправить контакт</string>
   <string name="ContactShareEditActivity_type_home">Домашний</string>
   <string name="ContactShareEditActivity_type_mobile">Мобильный</string>
   <string name="ContactShareEditActivity_type_work">Рабочий</string>
   <string name="ContactShareEditActivity_type_missing">Другой</string>
   <string name="ContactShareEditActivity_invalid_contact">Выбранный контакт недействителен</string>
   <!--Content descrption for name edit button on contact share edit activity-->
+  <string name="ContactShareEditActivity__edit_name">Изменить имя</string>
   <!--Content description for user avatar in edit activity-->
   <string name="ContactShareEditActivity__avatar">Аватар</string>
   <!--ConversationItem-->
@@ -2479,6 +2482,7 @@
   <string name="preferences_enter_proxy_address">Введите адрес прокси</string>
   <string name="configurable_single_select__customize_option">Настроить опцию</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Вся активность</string>
   <string name="PaymentsAllActivityFragment__all">Все</string>
@@ -3164,6 +3168,7 @@
   <string name="CallParticipant__s_on_another_device">%1$s (на другом устройстве)</string>
   <!--WifiToCellularPopupWindow-->
   <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
+  <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Слабое Wi-Fi соединение. Выполнено переключение на сотовую связь.</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Удаление вашей учётной записи приведёт к:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Введите свой номер телефона</string>
@@ -4517,6 +4522,12 @@
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Изменения кодов безопасности</string>
   <!--Message of safety number review fragment-->
+  <plurals name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">
+    <item quantity="one">Следующие получатели (%1$d), возможно, переустановили Signal или сменили устройство. Нажмите на получателя, чтобы подтвердить новый код безопасности. Это необязательно.</item>
+    <item quantity="few">Следующие получатели (%1$d), возможно, переустановили Signal или сменили устройство. Нажмите на получателя, чтобы подтвердить новый код безопасности. Это необязательно.</item>
+    <item quantity="many">Следующие получатели (%1$d), возможно, переустановили Signal или сменили устройство. Нажмите на получателя, чтобы подтвердить новый код безопасности. Это необязательно.</item>
+    <item quantity="other">Следующие получатели (%1$d), возможно, переустановили Signal или сменили устройство. Нажмите на получателя, чтобы подтвердить новый код безопасности. Это необязательно.</item>
+  </plurals>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">Контакты</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -4538,6 +4549,7 @@
   <!--Story info header received heading-->
   <string name="StoryInfoHeader__received">Полученные</string>
   <!--Story info header file size heading-->
+  <string name="StoryInfoHeader__file_size">Размер файла</string>
   <!--Story info "Sent to" header-->
   <string name="StoryInfoBottomSheetDialogFragment__sent_to">Отправлено</string>
   <!--Story info "Sent from" header-->

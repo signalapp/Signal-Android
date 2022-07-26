@@ -173,6 +173,7 @@
   <string name="ContactsDatabase_signal_call_s">สาย Signal %s</string>
   <!--ContactNameEditActivity-->
   <!--Toolbar title for contact name edit activity-->
+  <string name="ContactNameEditActivity__edit_name">แก้ไขชื่อ</string>
   <string name="ContactNameEditActivity_given_name">ชื่อ</string>
   <string name="ContactNameEditActivity_family_name">สกุล</string>
   <string name="ContactNameEditActivity_prefix">คำนำหน้า</string>
@@ -180,12 +181,14 @@
   <string name="ContactNameEditActivity_middle_name">ชื่อกลาง</string>
   <!--ContactShareEditActivity-->
   <!--ContactShareEditActivity toolbar title-->
+  <string name="ContactShareEditActivity__send_contact">ส่งผู้ติดต่อ</string>
   <string name="ContactShareEditActivity_type_home">บ้าน</string>
   <string name="ContactShareEditActivity_type_mobile">มือถือ</string>
   <string name="ContactShareEditActivity_type_work">ที่ทำงาน</string>
   <string name="ContactShareEditActivity_type_missing">ที่อื่น</string>
   <string name="ContactShareEditActivity_invalid_contact">ผู้ติดต่อที่เลือกไม่ถูกต้อง</string>
   <!--Content descrption for name edit button on contact share edit activity-->
+  <string name="ContactShareEditActivity__edit_name">แก้ไขชื่อ</string>
   <!--Content description for user avatar in edit activity-->
   <string name="ContactShareEditActivity__avatar">อวตาร</string>
   <!--ConversationItem-->
@@ -2228,6 +2231,7 @@
   <string name="preferences_enter_proxy_address">ป้อนที่อยู่พร็อกซี</string>
   <string name="configurable_single_select__customize_option">กำหนดการตั้งค่า</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">กิจกรรมทั้งหมด</string>
   <string name="PaymentsAllActivityFragment__all">ทั้งหมด</string>
@@ -2883,6 +2887,7 @@
   <string name="CallParticipant__s_on_another_device">%1$s (อยู่บนอุปกรณ์เครื่องอื่น)</string>
   <!--WifiToCellularPopupWindow-->
   <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
+  <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Wi-Fi สัญญาณอ่อน กำลังใช้อินเทอร์เน็ตมือถือ</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">การลบบัญชีของคุณจะส่งผลให้:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">ป้อนหมายเลขโทรศัพท์ของคุณ</string>
@@ -4177,6 +4182,9 @@
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">การเปลี่ยนแปลงหมายเลขความปลอดภัย</string>
   <!--Message of safety number review fragment-->
+  <plurals name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">
+    <item quantity="other">ผู้รับ %1$d คน อาจติดตั้ง Signal ใหม่หรือเปลี่ยนอุปกรณ์ แตะที่ผู้ติดต่อเพื่อยืนยันหมายเลขความปลอดภัยใหม่ ขั้นตอนนี้จะทำหรือไม่ก็ได้</item>
+  </plurals>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">ผู้ติดต่อ</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -4198,6 +4206,7 @@
   <!--Story info header received heading-->
   <string name="StoryInfoHeader__received">ได้รับแล้ว</string>
   <!--Story info header file size heading-->
+  <string name="StoryInfoHeader__file_size">ขนาดไฟล์</string>
   <!--Story info "Sent to" header-->
   <string name="StoryInfoBottomSheetDialogFragment__sent_to">ส่งถึง</string>
   <!--Story info "Sent from" header-->

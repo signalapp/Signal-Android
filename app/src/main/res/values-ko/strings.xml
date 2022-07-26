@@ -173,6 +173,7 @@
   <string name="ContactsDatabase_signal_call_s">%s에 Signal 전화</string>
   <!--ContactNameEditActivity-->
   <!--Toolbar title for contact name edit activity-->
+  <string name="ContactNameEditActivity__edit_name">이름 수정</string>
   <string name="ContactNameEditActivity_given_name">이름</string>
   <string name="ContactNameEditActivity_family_name">성</string>
   <string name="ContactNameEditActivity_prefix">접두사</string>
@@ -180,12 +181,14 @@
   <string name="ContactNameEditActivity_middle_name">중간 이름</string>
   <!--ContactShareEditActivity-->
   <!--ContactShareEditActivity toolbar title-->
+  <string name="ContactShareEditActivity__send_contact">연락처 보내기</string>
   <string name="ContactShareEditActivity_type_home">집</string>
   <string name="ContactShareEditActivity_type_mobile">휴대 전화</string>
   <string name="ContactShareEditActivity_type_work">직장</string>
   <string name="ContactShareEditActivity_type_missing">기타</string>
   <string name="ContactShareEditActivity_invalid_contact">선택한 연락처가 잘못됨</string>
   <!--Content descrption for name edit button on contact share edit activity-->
+  <string name="ContactShareEditActivity__edit_name">이름 수정</string>
   <!--Content description for user avatar in edit activity-->
   <string name="ContactShareEditActivity__avatar">아바타</string>
   <!--ConversationItem-->
@@ -2228,6 +2231,7 @@
   <string name="preferences_enter_proxy_address">프록시 주소 입력하기</string>
   <string name="configurable_single_select__customize_option">옵션 설정하기</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">모든 활동</string>
   <string name="PaymentsAllActivityFragment__all">모두</string>
@@ -2883,6 +2887,7 @@
   <string name="CallParticipant__s_on_another_device">%1$s(다른 기기에서)</string>
   <!--WifiToCellularPopupWindow-->
   <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
+  <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Wi-Fi 신호가 약합니다. 셀룰러 데이터로 전환하세요.</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">계정을 삭제하면:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">전화번호를 입력하세요.</string>
@@ -4175,6 +4180,9 @@
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">안전 번호 변경 내용</string>
   <!--Message of safety number review fragment-->
+  <plurals name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">
+    <item quantity="other">받는 사람 %1$d명이 Signal을 다시 설치했거나 기기를 변경했을 수 있습니다. 받는 사람을 탭하여 새 안전 번호를 확인하세요. 이 작업은 선택 사항입니다.</item>
+  </plurals>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">연락처</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -4196,6 +4204,7 @@
   <!--Story info header received heading-->
   <string name="StoryInfoHeader__received">받은 시간</string>
   <!--Story info header file size heading-->
+  <string name="StoryInfoHeader__file_size">파일 크기</string>
   <!--Story info "Sent to" header-->
   <string name="StoryInfoBottomSheetDialogFragment__sent_to">보냄</string>
   <!--Story info "Sent from" header-->

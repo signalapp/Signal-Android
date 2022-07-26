@@ -174,6 +174,7 @@
   <string name="ContactsDatabase_signal_call_s">Signal повик %s</string>
   <!--ContactNameEditActivity-->
   <!--Toolbar title for contact name edit activity-->
+  <string name="ContactNameEditActivity__edit_name">Сменете го името</string>
   <string name="ContactNameEditActivity_given_name">Име</string>
   <string name="ContactNameEditActivity_family_name">Презиме</string>
   <string name="ContactNameEditActivity_prefix">Префикс</string>
@@ -181,12 +182,14 @@
   <string name="ContactNameEditActivity_middle_name">Средно име</string>
   <!--ContactShareEditActivity-->
   <!--ContactShareEditActivity toolbar title-->
+  <string name="ContactShareEditActivity__send_contact">Испратете го контактот</string>
   <string name="ContactShareEditActivity_type_home">Дома</string>
   <string name="ContactShareEditActivity_type_mobile">Мобилен</string>
   <string name="ContactShareEditActivity_type_work">Работа</string>
   <string name="ContactShareEditActivity_type_missing">Друго</string>
   <string name="ContactShareEditActivity_invalid_contact">Избраниот контакт е невалиден</string>
   <!--Content descrption for name edit button on contact share edit activity-->
+  <string name="ContactShareEditActivity__edit_name">Сменете го името</string>
   <!--Content description for user avatar in edit activity-->
   <string name="ContactShareEditActivity__avatar">Аватар</string>
   <!--ConversationItem-->
@@ -2313,6 +2316,7 @@
   <string name="preferences_enter_proxy_address">Внесете proxy адреса</string>
   <string name="configurable_single_select__customize_option">Сопствена опција</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Цела активност</string>
   <string name="PaymentsAllActivityFragment__all">Сите</string>
@@ -2978,6 +2982,7 @@
   <string name="CallParticipant__s_on_another_device">%1$s (од друг уред)</string>
   <!--WifiToCellularPopupWindow-->
   <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
+  <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Слаба Wi-Fi конекција. Префрлени сте на мобилен интернет.</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Бришењето на Вашата сметка ќе:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Внесете го вашиот телефонски број</string>
@@ -4291,6 +4296,10 @@
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Промени на сигурносен број</string>
   <!--Message of safety number review fragment-->
+  <plurals name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">
+    <item quantity="one">%1$dпримач можно е да има реинсталирано Signal или да сменил уред. Допрете на примачот за да го потврдите новиот сигурносен број. Ова дејство е незадолжително.</item>
+    <item quantity="other">%1$dпримачи можно е да имаат реинсталирано Signal или да смениле уред. Допрете на примачот за да го потврдите новиот сигурносен број. Ова дејство е незадолжително.</item>
+  </plurals>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">Контакти</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -4312,6 +4321,7 @@
   <!--Story info header received heading-->
   <string name="StoryInfoHeader__received">Примено</string>
   <!--Story info header file size heading-->
+  <string name="StoryInfoHeader__file_size">Големина на датотека</string>
   <!--Story info "Sent to" header-->
   <string name="StoryInfoBottomSheetDialogFragment__sent_to">Испратено на</string>
   <!--Story info "Sent from" header-->

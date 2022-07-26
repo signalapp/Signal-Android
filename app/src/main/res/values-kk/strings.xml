@@ -2316,7 +2316,7 @@
   <string name="preferences_enter_proxy_address">Прокси мекенжайын енгізіңіз</string>
   <string name="configurable_single_select__customize_option">Бейімдеу опциясы</string>
   <!--Internal only preferences-->
-  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Тіркелу белгісін тазалайды және тіркелу стористерін жүктеп ала бастайды.</string>
+  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Барлық әрекет</string>
   <string name="PaymentsAllActivityFragment__all">Барлығы</string>

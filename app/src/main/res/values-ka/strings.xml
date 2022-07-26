@@ -174,6 +174,7 @@
   <string name="ContactsDatabase_signal_call_s">Signal-ის ზარი %s</string>
   <!--ContactNameEditActivity-->
   <!--Toolbar title for contact name edit activity-->
+  <string name="ContactNameEditActivity__edit_name">სახელის შეცვლა</string>
   <string name="ContactNameEditActivity_given_name">სახელი</string>
   <string name="ContactNameEditActivity_family_name">გვარი</string>
   <string name="ContactNameEditActivity_prefix">პრეფიქსი</string>
@@ -181,12 +182,14 @@
   <string name="ContactNameEditActivity_middle_name">მეორე სახელი</string>
   <!--ContactShareEditActivity-->
   <!--ContactShareEditActivity toolbar title-->
+  <string name="ContactShareEditActivity__send_contact">კონტაქტის გაგზავნა</string>
   <string name="ContactShareEditActivity_type_home">სახლი</string>
   <string name="ContactShareEditActivity_type_mobile">მობილური</string>
   <string name="ContactShareEditActivity_type_work">სამსახური</string>
   <string name="ContactShareEditActivity_type_missing">სხვა</string>
   <string name="ContactShareEditActivity_invalid_contact">არჩეული კონტაქტი იყო არასწორი</string>
   <!--Content descrption for name edit button on contact share edit activity-->
+  <string name="ContactShareEditActivity__edit_name">სახელის შეცვლა</string>
   <!--Content description for user avatar in edit activity-->
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_sent_tap_for_details">გაუგზავნელი, დეტალებისთვის დააჭირე</string>
@@ -539,7 +542,7 @@
     <item quantity="one">მოწვევა გაგზავნილია</item>
     <item quantity="other">გაგზავნილია %d მოწვევა</item>
   </plurals>
-  <string name="GroupManagement_invite_single_user">“%1$s”--ის შენ მიერ ამ ჯგუფში ავტომატურად დამატება შეუძლებელია.\n\nისინი მოწვეულნი არიან გასაწევრიანებლად და ვერ ნახავენ ჯგუფურ შეტყობინებებს, სანამ მოწვევას არ დაეთანხმებიან.</string>
+  <string name="GroupManagement_invite_single_user">“%1$s”-ის შენს მიერ ამ ჯგუფში ავტომატურად დამატება შეუძლებელია.\n\nისინი მოწვეულნი არიან გასაწევრიანებლად და ვერ ნახავენ ჯგუფურ შეტყობინებებს, სანამ მოწვევას არ დაეთანხმებიან.</string>
   <string name="GroupManagement_invite_multiple_users">შენ მიერ ამ მომხმარებლების ამ ჯგუფში ავტომატურად დამატება შეუძლებელია.\n\nისინი მოწვეული არიან ჯგუფში გასაწევრიანებლად და ვერ ნახავენ ჯგუფურ შეტყობინებებს, სანამ მოწვევას არ დაეთანხმებიან.</string>
   <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationLearnMore_what_are_new_groups">რა არის ახალი ჯგუფები?</string>
@@ -608,7 +611,7 @@
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">სანამ ამ ჯგუფს დატოვებ, ერთი ახალი ადმინი მაინც უნდა აირჩიო.</string>
   <string name="LeaveGroupDialog_choose_admin">ადმინის არჩევა</string>
   <!--LinkPreviewView-->
-  <string name="LinkPreviewView_no_link_preview_available">ბმულის წინასწარი ნახვა შეუძლებელია</string>
+  <string name="LinkPreviewView_no_link_preview_available">ბმულის წინასწარი ნახვა არაა ხელმისაწვდომი</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">ჯგუფის ეს ბმული არ არის აქტიური</string>
   <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
   <!--LinkPreviewRepository-->
@@ -643,7 +646,7 @@
   <string name="RequestingMembersFragment_denied_s">\"%1$s\" უარყოფილია</string>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">შესრულებულია</string>
-  <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">ამ პიროვნების მემკვიდრეობით ჯგუფებში დამატება შეუძლებელია.</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">ამ პიროვნების მოძველებულ ჯგუფებში დამატება შეუძლებელია.</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">ეს პერსონა ვერ დაემატება განცხადების ჯგუფებს.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">დავამატოთ \"%1$s\" \"%2$s\"-ში?</item>
@@ -656,7 +659,7 @@
   <string name="AddGroupDetailsFragment__create_group">ჯგუფის შექმნა</string>
   <string name="AddGroupDetailsFragment__create">შექმენი</string>
   <string name="AddGroupDetailsFragment__members">წევრები</string>
-  <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">ამ ჯგუფის შექმნის შემდეგ შეძლებ მეგობრები დაამატო ან მოიწვიო.</string>
+  <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">ამ ჯგუფის შექმნის შემდეგ შეგიძლია დაამატო ან მოიწვიო მეგობრები.</string>
   <string name="AddGroupDetailsFragment__group_name_required">ჯგუფის სახელი (სავალდებულო)</string>
   <string name="AddGroupDetailsFragment__group_name_optional">ჯგუფის სახელი (არასავალდებულო)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">Ეს ველი სავალდებულოა.</string>
@@ -818,11 +821,11 @@
   <string name="RequestConfirmationDialog_deny">უარყოფა</string>
   <!--ImageEditorHud-->
   <string name="ImageEditorHud_blur_faces">სახეების გაბუნდოვნება</string>
-  <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">სიახლე: გააბუნდოვანე სახეები ან ნებისმიერი მონიშნული ადგილი</string>
-  <string name="ImageEditorHud_draw_anywhere_to_blur">მონიშნე რისი გააბუნდოვანებაც გინდა</string>
-  <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">დახატე, რათა გააბუნდოვნო სახეები ან არეალები</string>
+  <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">სიახლე: გააბუნდოვანე სახეები ან ნებისმიერი მოხაზული ადგილი</string>
+  <string name="ImageEditorHud_draw_anywhere_to_blur">მოხაზე რისი გააბუნდოვანებაც გინდა</string>
+  <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">გასაბუნდოვანებლად მოხაზე სახეები ან არეალები</string>
   <!--InputPanel-->
-  <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">დააჭირე და გეჭიროს, რომ ხმოვანი შეტყობინება ჩაწერო, გაუშვი, როცა გაგზავნა მოგინდება</string>
+  <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">ხმოვანი შეტყობინების ჩასაწერად დააჭირე და გეჭიროს, გასაგზავნად გაუშვი</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">გაზიარება</string>
   <string name="InviteActivity_share_with_contacts">გაუზიარე კონტაქტებს</string>
@@ -849,7 +852,7 @@
   <string name="MessageRetrievalService_signal">Signal</string>
   <string name="MessageRetrievalService_background_connection_enabled">ფონური კავშირი ჩართულია</string>
   <!--MmsDownloader-->
-  <string name="MmsDownloader_error_reading_mms_settings">უკაბელო პროვაიდერის MMS პარამეტრების წაკითხვისას შეცდომა მოხდა</string>
+  <string name="MmsDownloader_error_reading_mms_settings">MMS უკაბელო პროვაიდერის პარამეტრების წაკითხვისას შეცდომა მოხდა</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">მედია</string>
   <string name="MediaOverviewActivity_Files">ფაილები</string>
@@ -861,13 +864,13 @@
   </plurals>
   <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
     <item quantity="one">ეს სამუდამოდ წაშლის მონიშნულ ფაილს. მასთან დაკავშირებული ნებისმიერი შეტყობინების ტექსტიც წაიშლება.</item>
-    <item quantity="other">ეს სამუდამოდ წაშლის %1$d მონიშნულ ფაილს. მათთან დაკავშირებული ნებისმიერი შეტყობინების ტექსტიც წაიშლება.</item>
+    <item quantity="other">ეს სამუდამოდ წაშლის %1$d მონიშნულ ყველა ფაილს. მათთან დაკავშირებული ნებისმიერი შეტყობინების ტექსტიც წაიშლება.</item>
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">იშლება</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">ვშლით შეტყობინებებს…</string>
   <string name="MediaOverviewActivity_Select_all">ყველას მონიშვნა</string>
   <string name="MediaOverviewActivity_collecting_attachments">ვაგროვებთ დანართებს…</string>
-  <string name="MediaOverviewActivity_Sort_by">Დალაგება</string>
+  <string name="MediaOverviewActivity_Sort_by">დახარისხება</string>
   <string name="MediaOverviewActivity_Newest">ყველაზე ახალი</string>
   <string name="MediaOverviewActivity_Oldest">ყველაზე ძველი</string>
   <string name="MediaOverviewActivity_Storage_used">გამოყენებული მეხსიერება</string>
@@ -916,10 +919,10 @@
   <string name="NotificationBarManager__incoming_signal_call">Signal-ის შემომავალი ზარი</string>
   <string name="NotificationBarManager__incoming_signal_group_call">Signal-ის შემომავალი ჯგუფური ზარი</string>
   <!--Temporary notification shown when starting the calling service-->
-  <string name="NotificationBarManager__starting_signal_call_service">ვიწყებთ Signal-ის ზარის სერვისს</string>
-  <string name="NotificationBarManager__stopping_signal_call_service">ვაჩერებთ Signal-ის ზარის სერვისს</string>
-  <string name="NotificationBarManager__decline_call">ზარის დაკიდება</string>
-  <string name="NotificationBarManager__answer_call">ზარზე პასუხი</string>
+  <string name="NotificationBarManager__starting_signal_call_service">ვიწყებთ Signal-ის სერვისის ზარს</string>
+  <string name="NotificationBarManager__stopping_signal_call_service">ვაჩერებთ Signal-ის სერვისის ზარს</string>
+  <string name="NotificationBarManager__decline_call">ზარის უარყოფა</string>
+  <string name="NotificationBarManager__answer_call">ზარის მიღება</string>
   <string name="NotificationBarManager__end_call">ზარის დასრულება</string>
   <string name="NotificationBarManager__cancel_call">ზარის გაუქმება</string>
   <string name="NotificationBarManager__join_call">შეუერთდი ზარს</string>
@@ -930,7 +933,7 @@
   <string name="NotificationsMegaphone_not_now">ახლა არა</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">მულტიმედია შეტყობინება</string>
-  <string name="NotificationMmsMessageRecord_downloading_mms_message">ვიწერთ MMS შეტყობინებას</string>
+  <string name="NotificationMmsMessageRecord_downloading_mms_message">მიმდინარეობს MMS შეტყობინების ჩამოტვირთვა</string>
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">MMS შეტყობინების გადმოწერისას მოხდა ხარვეზი, დააჭირე, რომ თავიდან სცადო</string>
   <!--MediaPickerActivity-->
   <string name="MediaPickerActivity_send_to">%s-სთვის გაგზავნა</string>
@@ -957,24 +960,24 @@
   <string name="MediaRepository__camera">კამერა</string>
   <!--MessageDecryptionUtil-->
   <string name="MessageDecryptionUtil_failed_to_decrypt_message">შეტყობინების გაშიფვრა ვერ მოხერხდა</string>
-  <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">დააჭირე გამართვის ჟურნალის გასაგზავნად</string>
+  <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">დააჭირე გაუმართაობის რეესტრის გასაგზავნად</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">უცნობი</string>
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">მიღებულია Signal-ის ძველი ვერსიის გამოყენებით დაშიფრული შეტყობინება, რომელიც აღარ არის მხარდაჭერილი. გთხოვთ, სთხოვო გამომგზავნს გადმოწეროს აპის უახლესი ვერსია და ხელახლა გამოგიგზავნოს შეტყობინება.</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">მიღებულია Signal-ის ძველი ვერსიის გამოყენებით დაშიფრული შეტყობინება, რომელიც აღარ არის მხარდაჭერილი. გთხოვთ, გამომგზავნს სთხოვო გადმოწეროს უახლესი ვერსია და ხელახლა გამოგიგზავნოს შეტყობინება.</string>
   <string name="MessageRecord_left_group">შენ დატოვე ჯგუფი.</string>
-  <string name="MessageRecord_you_updated_group">შენ გაანახლე ჯგუფი.</string>
+  <string name="MessageRecord_you_updated_group">შენ განაახლე ჯგუფი.</string>
   <string name="MessageRecord_the_group_was_updated">ჯგუფი განახლებულია.</string>
   <string name="MessageRecord_you_called_date">შენ დარეკე · %1$s</string>
   <string name="MessageRecord_missed_audio_call_date">გამოტოვებული აუდიო ზარი · %1$s</string>
   <string name="MessageRecord_missed_video_call_date">გამოტოვებული ვიდეო ზარი · %1$s</string>
-  <string name="MessageRecord_s_updated_group">%s-მა გაანახლა ჯგუფი.</string>
+  <string name="MessageRecord_s_updated_group">%s-მა განაახლა ჯგუფი.</string>
   <string name="MessageRecord_s_called_you_date">%1$s-მა დაგირეკა · %2$s</string>
   <string name="MessageRecord_s_joined_signal">%s Signal-ზეა!</string>
-  <string name="MessageRecord_you_disabled_disappearing_messages">შენ გამორთე გაუჩინარებადი წერილები.</string>
-  <string name="MessageRecord_s_disabled_disappearing_messages">%1$s-მა გამორთო გაუჩინარებადი წერილები.</string>
-  <string name="MessageRecord_you_set_disappearing_message_time_to_s">შენ %1$s-ზე დააყენე გაქრობადი შეტყობინების წამზომი.</string>
-  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s-მა %2$s-ზე დააყენა გაქრობადი შეტყობინების წამზომი.</string>
-  <string name="MessageRecord_disappearing_message_time_set_to_s">გაქრობადი შეტყობინების წამზომი დაყენებულია %1$s-ზე.</string>
+  <string name="MessageRecord_you_disabled_disappearing_messages">შენ გამორთე გაქრობადი შეტყობინებები.</string>
+  <string name="MessageRecord_s_disabled_disappearing_messages">%1$s-მა გამორთო გაქრობადი შეტყობინებები.</string>
+  <string name="MessageRecord_you_set_disappearing_message_time_to_s">შენ %1$s-ზე დააყენე გაქრობადი შეტყობინების ტაიმერი.</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s-მა %2$s-ზე დააყენა გაქრობადი შეტყობინების ტაიმერი.</string>
+  <string name="MessageRecord_disappearing_message_time_set_to_s">გაქრობადი შეტყობინების ტაიმერი დაყენებულია %1$s-ზე.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">ეს ჯგუფი განახლდა და უკვე ახალი ჯგუფია.</string>
   <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">ახალ ჯგუფში ვერ დაემატე და გასაწევრიანებლად მიგიწვიეს.</string>
   <string name="MessageRecord_chat_session_refreshed">ჩატის სესია განახლდა</string>
@@ -984,11 +987,11 @@
   </plurals>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
     <item quantity="one">წევრი ახალ ჯგუფში ვერ დაემატა და წაიშალა.</item>
-    <item quantity="other">%1$s წევრი ახალ ჯგუფში ვერ დაემატა და წაიშალა.</item>
+    <item quantity="other">%1$s წევრი ახალ ჯგუფში ვერ დაემატა და ამოვშალეთ.</item>
   </plurals>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s-მა პროფილის სახელი %2$s-ით შეცვალა.</string>
-  <string name="MessageRecord_changed_their_profile_name_from_to">%1$s-მა პროფილის სახელი %2$s %3$s-ით ჩაანაცვლა.</string>
+  <string name="MessageRecord_changed_their_profile_name_from_to">%1$s-მა პროფილის სახელი %2$s ჩაანაცვლა %3$s-ით.</string>
   <string name="MessageRecord_changed_their_profile">%1$s-მა პროფილი შეცვალა.</string>
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">შენ ჯგუფი შექმენი.</string>
@@ -997,7 +1000,7 @@
   <!--GV2 member additions-->
   <string name="MessageRecord_you_added_s">შენ დაამატე %1$s.</string>
   <string name="MessageRecord_s_added_s">%1$s-მა %2$s დაამატა.</string>
-  <string name="MessageRecord_s_added_you">%1$s-მა დაგამატა.</string>
+  <string name="MessageRecord_s_added_you">%1$s-მა დაგამატა ჯგუფში.</string>
   <string name="MessageRecord_you_joined_the_group">შენ შეუერთდი ჯგუფს.</string>
   <string name="MessageRecord_s_joined_the_group">%1$s შემოუერთდა ჯგუფს.</string>
   <!--GV2 member removals-->
@@ -1040,10 +1043,10 @@
     <item quantity="one">%1$s-მა ჯგუფში ერთი მოწვევა გააუქმა.</item>
     <item quantity="other">%1$s-მა ჯგუფში %2$d მოწვევა გააუქმა.</item>
   </plurals>
-  <string name="MessageRecord_someone_declined_an_invitation_to_the_group">ვიღაცამ უარი თქვა ჯგუფში მოწვევაზე.</string>
-  <string name="MessageRecord_you_declined_the_invitation_to_the_group">შენ უარი თქვი ჯგუფში მოწვევაზე.</string>
-  <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s-მა შენს ჯგუფში მიწვევაზე უარი თქვა.</string>
-  <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">ადმინმა შენ ჯგუფში მიწვევაზე უარი თქვა.</string>
+  <string name="MessageRecord_someone_declined_an_invitation_to_the_group">ვიღაცამ უარყო ჯგუფში მოწვევა.</string>
+  <string name="MessageRecord_you_declined_the_invitation_to_the_group">შენ უარყავი ჯგუფში მოწვევა</string>
+  <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s-მა უარყო ჯგუფში შენი მიწვევა.</string>
+  <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">ადმინმა ჯგუფში შენ მიწვევაზე უარი თქვა.</string>
   <plurals name="MessageRecord_d_invitations_were_revoked">
     <item quantity="one">ჯგუფში ერთი მიწვევა უარყვეს.</item>
     <item quantity="other">ჯგუფში %1$d მიწვევა უარყვეს.</item>
@@ -1055,7 +1058,7 @@
   <string name="MessageRecord_s_added_invited_member_s">%1$s-მა დაამატა მოწვეული წევრი %2$s.</string>
   <!--GV2 title change-->
   <string name="MessageRecord_you_changed_the_group_name_to_s">შენ ჯგუფის სახელად დააყენე \"%1$s\".</string>
-  <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s-მა ჯგუფის სახელად \"%2$s\" დააყენა.</string>
+  <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s-მა ჯგუფის სახელად დააყენა  \"%2$s\" .</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">ჯგუფის სახელად დაყენებულია \"%1$s\".</string>
   <!--GV2 description change-->
   <string name="MessageRecord_you_changed_the_group_description">შენ შეცვალე ჯგუფის აღწერა.</string>
@@ -1428,7 +1431,7 @@
   <string name="RegistrationActivity_call_requested">დარეკვა მოთხოვნილია</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">ახლა გაშორებთ %d ნაბიჯი პრობლემების მოგვარების ჟურნალის გაგზავნიდან.</item>
-    <item quantity="other">ახლა გაშორებთ %d ნაბიჯი პრობლემების მოგვარების ჟურნალის გაგზავნიდან..</item>
+    <item quantity="other">ახლა %d ნაბიჯი გაშორებს გაუმართაობის რეესტრის გაგზავნისგან.</item>
   </plurals>
   <string name="RegistrationActivity_we_need_to_verify_that_youre_human">უნდა შევამოწმოთ, რომ ნამდვილად ადამიანი ხართ.</string>
   <string name="RegistrationActivity_next">შემდეგი</string>
@@ -1517,7 +1520,7 @@
   <string name="SubmitDebugLogActivity_done">შესრულებულია</string>
   <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">დააჭირე ხაზს მის წასაშლელად</string>
   <string name="SubmitDebugLogActivity_submit">Submit</string>
-  <string name="SubmitDebugLogActivity_failed_to_submit_logs">ჟურნალების გაგზავნა ვერ მოხერხდა</string>
+  <string name="SubmitDebugLogActivity_failed_to_submit_logs">რეესტრის გაგზავნა ვერ მოხერხდა</string>
   <string name="SubmitDebugLogActivity_success">Success!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">დააკოპირე ეს URL-ი და დაამატე ის შენი პრობლემის ანგარიშში ან მხარდაჭერის ელ-ფოსტაში:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">გაზიარება</string>
@@ -2043,8 +2046,8 @@
   <string name="AndroidManifest__select_contacts">კონტაქტების არჩევა</string>
   <string name="AndroidManifest__change_passphrase">პაროლ-ფრაზის შეცვლა</string>
   <string name="AndroidManifest__verify_safety_number">უსაფრთხოების ნომრის ვერიფიცირება</string>
-  <string name="AndroidManifest__log_submit">Submit debug log</string>
-  <string name="AndroidManifest__media_preview">მედია-ფაილის პრევიუ</string>
+  <string name="AndroidManifest__log_submit">გაუმართაობის რეესტრის გაგზავნა</string>
+  <string name="AndroidManifest__media_preview">მედია-ფაილის წინასწარი ნახვა</string>
   <string name="AndroidManifest__message_details">შეტყობინების დეტალები</string>
   <string name="AndroidManifest__linked_devices">დაკავშირებული მოწყობილობები</string>
   <string name="AndroidManifest__invite_friends">მოიწვიე მეგობრები</string>
@@ -2059,14 +2062,14 @@
   <string name="HelpFragment__next">შემდეგი</string>
   <string name="HelpFragment__contact_us">დაგვიკავშირდი</string>
   <string name="HelpFragment__tell_us_whats_going_on">გვითხარი რა ხდება</string>
-  <string name="HelpFragment__include_debug_log">გამართვის ჟურნალის ჩართვა.</string>
+  <string name="HelpFragment__include_debug_log">გაუმართაობის რეესტრის ჩართვა.</string>
   <string name="HelpFragment__whats_this">ეს რა არის?</string>
   <string name="HelpFragment__how_do_you_feel">თავს როგორ გრძნობ? (არასავალდებულო)</string>
   <string name="HelpFragment__tell_us_why_youre_reaching_out">გვითხარი რატომ გვიკავშირდები.</string>
   <string name="HelpFragment__support_info">მხარდაჭერის ინფორმაცია</string>
   <string name="HelpFragment__signal_android_support_request">Signal Android-ის მხარდაჭერის მოთხოვნა</string>
-  <string name="HelpFragment__debug_log">გამართვის ჟურნალი:</string>
-  <string name="HelpFragment__could_not_upload_logs">ჟურნალის ატვირთვა ვერ მოხერხდა</string>
+  <string name="HelpFragment__debug_log">გაუმართაობის რეესტრი:</string>
+  <string name="HelpFragment__could_not_upload_logs">რეესტრის ატვირთვა ვერ მოხერხდა</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">გთხოვთ, რაც შეიძლება დეტალურად აღწერო ეს პრობლემა, რომ მის გაგებაში დაგვეხმარო.</string>
   <string-array name="HelpFragment__categories_4">
     <item>\-\- გთხოვთ, აირჩიო ვარიანტი \-\-</item>
@@ -2132,8 +2135,8 @@
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">\"Enter\" კლავიშზე დაჭერა ტექსტურ შეტყობინებებს გააგზავნის</string>
   <string name="preferences__pref_use_address_book_photos">მისამართების წიგნაკის ფოტოების გამოყენება</string>
   <string name="preferences__display_contact_photos_from_your_address_book_if_available">აჩვენე საკონტაქტო ფოტოები შენი მისამართების წიგნიდან, თუ ეს შესაძლებელია</string>
-  <string name="preferences__generate_link_previews">ბმულსი პრევიუების გენერირება</string>
-  <string name="preferences__retrieve_link_previews_from_websites_for_messages">მიიღე ბმულის პრევიუები პირდაპირ ვებსაიტებიდან შენ მიერ გაგზავნილი შეტყობინებებისთვის.</string>
+  <string name="preferences__generate_link_previews">ბმულის წინასწარი ნახვების გენერირება</string>
+  <string name="preferences__retrieve_link_previews_from_websites_for_messages">მიიღე ბმულის წინასწარი ნახვები პირდაპირ ვებსაიტებიდან შენ მიერ გაგზავნილი შეტყობინებებისთვის.</string>
   <string name="preferences__choose_identity">იდენტობის არჩევა</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">აირჩიე შენი საკონტაქტო ჩანაწერი კონტაქტების სიიდან.</string>
   <string name="preferences__change_passphrase">პაროლ-ფრაზის შეცვლა</string>
@@ -2313,6 +2316,7 @@
   <string name="preferences_enter_proxy_address">შეიყვანე პროქსის მისამართი</string>
   <string name="configurable_single_select__customize_option">პარამეტრის მორგება</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">ყველა აქტივობა</string>
   <string name="PaymentsAllActivityFragment__all">ყველა</string>
@@ -2324,7 +2328,7 @@
   <string name="PaymentsHomeFragment__activating_payments">ვააქტიურებთ ტრანზაქციებს…</string>
   <string name="PaymentsHomeFragment__restore_payments_account">ტრანზაქციების ანგარიშის აღდგენა</string>
   <string name="PaymentsHomeFragment__no_recent_activity_yet">ბოლო აქტივობა ჯერ არ მოიძებნა</string>
-  <string name="PaymentsHomeFragment__pending_requests">მომლოდინე მოთხოვნები</string>
+  <string name="PaymentsHomeFragment__pending_requests">მოლოდინის რეჟიმში მყოფი მოთხოვნები</string>
   <string name="PaymentsHomeFragment__recent_activity">ბოლო აქტივობა</string>
   <string name="PaymentsHomeFragment__see_all">ყველას ნახვა</string>
   <string name="PaymentsHomeFragment__add_funds">თანხების დამატება</string>
@@ -2572,7 +2576,7 @@
   <string name="InsightsDashboardFragment__cancel">გაუქმება</string>
   <string name="InsightsDashboardFragment__send">გაგზავნა</string>
   <string name="InsightsModalFragment__title">წარმოგიდგენთ ინსაითებს</string>
-  <string name="InsightsModalFragment__description">გაიგე, შენგან გამავალი რამდენი შეტყობინება გაიგზავნა უსაფრთხოდ, შემდეგ მოიწვიე ახალი კონტაქტები შენი Signal-ის პროცენტის გასაზრდელად.</string>
+  <string name="InsightsModalFragment__description">აღმოაჩინე რამდენი შეტყობინება გაიგზავნა შენგან უსაფრთხოდ, შემდეგ სწრაფად მოიწვიე ახალი კონტაქტები შენი Signal-ის პროცენტის გასაზრდელად.</string>
   <string name="InsightsModalFragment__view_insights">ინსაითების ნახვა</string>
   <string name="FirstInviteReminder__title">მოიწვიე Signal-ში</string>
   <string name="FirstInviteReminder__description">დაშიფრული შეტყობინებების რაოდენობის გაზრდა %1$d%%-ით შეგიძლია</string>
@@ -2678,7 +2682,7 @@
   <string name="conversation_activity__enable_signal_messages">Signal-ის შეტყობინებების ჩართვა</string>
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Signal-ის მონაცემთა ბაზის მიგრირება</string>
   <string name="PushDecryptJob_new_locked_message">ახალი დალუქული შეტყობინება</string>
-  <string name="PushDecryptJob_unlock_to_view_pending_messages">განბლოკე, რომ მომლოდინე შეტყობინებები ნახო</string>
+  <string name="PushDecryptJob_unlock_to_view_pending_messages">განბლოკე განსახილველი შეტყობინებები სანახავად</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">სარეზერვო კოპიების პაროლ-ფრაზა</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">სათადარიგო ასლები შეინახება გარე მეხსიერებაში და დაშიფრული იქნება ქვემოთ მოცემული საიდუმლო ფრაზით. ეს პაროლი სარეზერვო ასლის აღსადგენად უნდა გქონდეს.</string>
   <string name="backup_enable_dialog__you_must_have_this_passphrase">სათადარიგო ასლების აღსადგენად პაროლფრაზა აუცილებელია.</string>
@@ -2809,7 +2813,7 @@
   <string name="DeviceTransferSetup__turn_on_wifi">Wi-Fi-ს ჩართვა</string>
   <string name="DeviceTransferSetup__error_connecting">ხარვეზი დაკავშირებისას</string>
   <string name="DeviceTransferSetup__retry">თავიდან ცდა</string>
-  <string name="DeviceTransferSetup__submit_debug_logs">გამართვის ჟურნალის გაგზავნა</string>
+  <string name="DeviceTransferSetup__submit_debug_logs">გაუმართაობის რეესტრის გაგზავნა</string>
   <string name="DeviceTransferSetup__verify_code">კოდის ვერიფიცირება</string>
   <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">დარწმუნდი, რომ ქვემოთ მოცემული კოდი ემთხვევა შენს ორივე მოწყობილობას. შემდეგ დააჭირე გაგრძელებას.</string>
   <string name="DeviceTransferSetup__the_numbers_do_not_match">ნომრები არ ემთხვევა</string>
@@ -2978,6 +2982,7 @@
   <string name="CallParticipant__s_on_another_device">%1$s (სხვა მოწყობილობით)</string>
   <!--WifiToCellularPopupWindow-->
   <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
+  <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Wi-Fi კავშირი სუსტია. გადაირთო მობილურის ინტერნეტზე.</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">შენი ანგარიშის წაშლა:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">შეიყვანე შენი ტელეფონის ნომერი</string>
@@ -3049,9 +3054,9 @@
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">ფოტოებიდან არჩევა</string>
   <string name="ChatWallpaperSelectionFragment__presets">წინასწარ დაყენებული ფონები</string>
   <!--ChatWallpaperPreviewActivity-->
-  <string name="ChatWallpaperPreviewActivity__preview">გადახედვა</string>
+  <string name="ChatWallpaperPreviewActivity__preview">წინასწარი ნახვა</string>
   <string name="ChatWallpaperPreviewActivity__set_wallpaper">ფონის სურათის დაყენება</string>
-  <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">მეტი ფონის სურათის სანახავად გვერდით გადადი</string>
+  <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">მეტი ფონის სურათის წინასწარ სანახავად გვერდით გადასქროლე</string>
   <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">ფონის სურათის ყველა ჩატისთვის დაყენება</string>
   <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">ფონის სურათის %1$s-სთვის დაყენება</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">შენი გალერეის სანახავად მეხსიერებაზე წვდომის ნებართვა დაგვჭირდება.</string>
@@ -3146,7 +3151,7 @@
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">არცერთი შენი კონტაქტი ან ადამიანი, ვისთანაც მიმოწერა გაქვს, არ არის ამ ჯგუფში. დადასტურებამდე ყურადღებით გადახედე მოთხოვნებს, რათა თავიდან აიცილო არასასურველი შეტყობინებები.</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">შეტყობინების მოთხოვნების შესახებ</string>
   <string name="GroupsInCommonMessageRequest__okay">კარგი</string>
-  <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">აქ არის ჩატის ფერის პრევიუ.</string>
+  <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">ესეც ჩატის ფერის წინასწარი ნახვა.</string>
   <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">ეს ფერი მხოლოდ შენთვისაა ხილული.</string>
   <!--GroupDescriptionDialog-->
   <string name="GroupDescriptionDialog__group_description">ჯგუფის აღწერილობა</string>
@@ -3271,7 +3276,7 @@
   <string name="HelpSettingsFragment__support_center">მხარდაჭერის ცენტრი</string>
   <string name="HelpSettingsFragment__contact_us">დაგვიკავშირდი</string>
   <string name="HelpSettingsFragment__version">ვერსია</string>
-  <string name="HelpSettingsFragment__debug_log">გამართვის ჟურნალი</string>
+  <string name="HelpSettingsFragment__debug_log">გაუმართაობის რეესტრი</string>
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">პირობები &amp; კონფიდენციალურობის პოლიტიკა</string>
   <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">ლიზენცირებულია GPLv3-ის ქვეშ</string>
@@ -3333,19 +3338,19 @@
   <!--BecomeASustainerMegaphone-->
   <string name="BecomeASustainerMegaphone__become_a_sustainer">გახდი მხარდამჭერი</string>
   <!--Displayed in the Become a Sustainer megaphone-->
-  <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal-ი შენნაირ ხალხზე დგას. გაიღე შემოწირულობა და მიიღე ემბლემა.</string>
+  <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal-ი შენნაირ ხალხზე დგას. გააკეთე დონაცია და მიიღე ემბლემა.</string>
   <string name="BecomeASustainerMegaphone__not_now">ახლა არა</string>
-  <string name="BecomeASustainerMegaphone__donate">გაიღე შემოწირულობა</string>
+  <string name="BecomeASustainerMegaphone__donate">დონაციის გაკეთება</string>
   <!--KeyboardPagerFragment-->
-  <string name="KeyboardPagerFragment_emoji">ემოჯი</string>
-  <string name="KeyboardPagerFragment_open_emoji_search">Emoji-ის მომძებნის გახსნა</string>
-  <string name="KeyboardPagerFragment_open_sticker_search">სტიკერის მომძებნის გახსნა</string>
-  <string name="KeyboardPagerFragment_open_gif_search">GIF-ის მომძებნის გახსნა</string>
+  <string name="KeyboardPagerFragment_emoji">Emoji</string>
+  <string name="KeyboardPagerFragment_open_emoji_search">Emoji-ის საძიებოს გახსნა</string>
+  <string name="KeyboardPagerFragment_open_sticker_search">სტიკერის საძიებოს გახსნა</string>
+  <string name="KeyboardPagerFragment_open_gif_search">GIF-ის საძიებოს გახსნა</string>
   <string name="KeyboardPagerFragment_stickers">სტიკერები</string>
   <string name="KeyboardPagerFragment_backspace">უკან გასვლა</string>
   <string name="KeyboardPagerFragment_gifs">GIF-ები</string>
   <string name="KeyboardPagerFragment_search_emoji">emoji-ის მოძებნა</string>
-  <string name="KeyboardPagerfragment_back_to_emoji">emoji-იებზე დაბრუნება</string>
+  <string name="KeyboardPagerfragment_back_to_emoji">emoji-ზე დაბრუნება</string>
   <string name="KeyboardPagerfragment_clear_search_entry">საძიებო ჩანაწერის გასუფთავება</string>
   <string name="KeyboardPagerFragment_search_giphy">GIPHY-ის მოძებნა</string>
   <!--StickerSearchDialogFragment-->
@@ -3364,7 +3369,7 @@
   <string name="ConversationSettingsFragment__mute">დადუმება</string>
   <string name="ConversationSettingsFragment__muted">დადუმებული</string>
   <string name="ConversationSettingsFragment__search">ძიება</string>
-  <string name="ConversationSettingsFragment__disappearing_messages">გაუჩინარებადი წერილები</string>
+  <string name="ConversationSettingsFragment__disappearing_messages">გაქრობადი შეტყობინებები</string>
   <string name="ConversationSettingsFragment__sounds_and_notifications">ხმები &amp; შეტყობინებები</string>
   <string name="ConversationSettingsFragment__contact_details">Საკონტაქტო ინფორმაცია</string>
   <string name="ConversationSettingsFragment__view_safety_number">უსაფრთხოების ნომრის ნახვა</string>
@@ -3380,11 +3385,11 @@
   <string name="ConversationSettingsFragment__group_link">ჯგუფის ბმული</string>
   <string name="ConversationSettingsFragment__add_as_a_contact">კონტაქტად დამატება</string>
   <string name="ConversationSettingsFragment__unmute">მდუმარე რეჟიმის გამორთვა</string>
-  <string name="ConversationSettingsFragment__conversation_muted_until_s">მიწერმოწერა %1$s-მდე დადუმებულია</string>
-  <string name="ConversationSettingsFragment__conversation_muted_forever">მიწერმოწერა სამუდამოდ დადუმებულია</string>
+  <string name="ConversationSettingsFragment__conversation_muted_until_s">მიწერმოწერა დადუმებულია %1$s-მდე</string>
+  <string name="ConversationSettingsFragment__conversation_muted_forever">მიწერმოწერა დადუმებულია სამუდამოდ</string>
   <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">მობილურის ნომერი ბუფერში დაკოპირდა.</string>
   <string name="ConversationSettingsFragment__phone_number">ტელეფონის ნომერი</string>
-  <string name="ConversationSettingsFragment__get_badges">მიიღეთ ემბლემები შენი პროფილისთვის Signal-ის მხარდაჭერით. მეტის გასაგებად დააჭირე ემბლემას.</string>
+  <string name="ConversationSettingsFragment__get_badges">მიიღე ემბლემები შენი პროფილისთვის Signal-ის მხარდაჭერით. მეტი ინფორმაციისთვის დააჭირე ემბლემას.</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">წევრების დამატება</string>
   <string name="PermissionsSettingsFragment__edit_group_info">ჯგუფის ინფორმაციის რედაქტირება</string>
@@ -3395,7 +3400,7 @@
   <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">ვის შეუძლია ამ ჯგუფის ინფორმაციის რედაქტირება?</string>
   <string name="PermissionsSettingsFragment__who_can_send_messages">ვის შეუძლია შეტყობინებების გაგზავნა?</string>
   <!--SoundsAndNotificationsSettingsFragment-->
-  <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">სიახლეების გათიშვა</string>
+  <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">შეტყობინებების გათიშვა</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">დადუმებული არაა</string>
   <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">დადუმებულია %1$s-მდე</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">მონიშვნები</string>
@@ -3447,7 +3452,7 @@
   <!--Displayed in the toolbar when externally sharing text to multiple recipients-->
   <string name="ShareInterstitialActivity__share">გაზიარება</string>
   <!--DSLSettingsToolbar-->
-  <string name="DSLSettingsToolbar__navigate_up">მაღლა ასვლა</string>
+  <string name="DSLSettingsToolbar__navigate_up">ზემოთ ასვლა</string>
   <string name="MultiselectForwardFragment__forward_to">გაეგზავნოთ ჩამოთვლილებს</string>
   <!--Displayed when sharing content via the fragment-->
   <string name="MultiselectForwardFragment__share_with">გაზიარება</string>
@@ -3457,7 +3462,7 @@
   <string name="MultiselectForwardFragment__videos_will_be_trimmed">ვიდეოები დიჭრება 30 წმ კლიპებად და გაიგზავნება რამოდენიმე Story-ის სახით.</string>
   <!--Displayed when user selects a video that cannot be sent as a story-->
   <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">Stories-ში გაგზავნილი ვიდეოები არ შეიძლება იყოს 30 წმ-ზე მეტი.</string>
-  <string name="MultiselectForwardFragment__forwarded_messages_are_now">ახლა გადაგზავნილი შეტყობინებები დაუყოვნებლივ იგზავნება.</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">გადაგზავნილი შეტყობინებები ახლა დაუყოვნებლივ იგზავნება.</string>
   <plurals name="MultiselectForwardFragment_send_d_messages">
     <item quantity="one">%1$d შეტყობინების გაგზავნა</item>
     <item quantity="other">%1$d შეტყობინების გაგზავნა</item>
@@ -3478,7 +3483,7 @@
   <!--Media V2-->
   <string name="MediaReviewFragment__add_a_message">შეტყობინების დამატება</string>
   <string name="MediaReviewFragment__add_a_reply">პასუხის დამატება</string>
-  <string name="MediaReviewFragment__send_to">გაგეგზავნოთ ჩამოთვლილებს</string>
+  <string name="MediaReviewFragment__send_to">გაეგზავნოთ ჩამოთვლილებს</string>
   <string name="MediaReviewFragment__view_once_message">ერთხელ სანახავი შეტყობინება</string>
   <string name="MediaReviewFragment__one_or_more_items_were_too_large">ერთი ან მეტი ელემენტი ზედმეტად დიდი იყო</string>
   <string name="MediaReviewFragment__one_or_more_items_were_invalid">ერთი ან მეტი ელემენტი არავალიდური იყო</string>
@@ -3506,7 +3511,7 @@
   <string name="BadgesOverviewFragment__display_badges_on_profile">ემბლემების პროფილზე ჩვენება</string>
   <string name="BadgesOverviewFragment__failed_to_update_profile">პროფილის განახლება ვერ მოხერხდა</string>
   <string name="BadgeSelectionFragment__select_badges">ემბლემების არჩევა</string>
-  <string name="SelectFeaturedBadgeFragment__preview">გადახედვა</string>
+  <string name="SelectFeaturedBadgeFragment__preview">წინასწარი ნახვა</string>
   <string name="SelectFeaturedBadgeFragment__select_a_badge">ემბლემის არჩევა</string>
   <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">ემბლემა უნდა აირჩიო</string>
   <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">პროფილის განახლება ვერ მოხერხდა</string>
@@ -3539,7 +3544,7 @@
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">მადლობას გიხდით მხარდაჭერისთვის!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">მადლობას გიხდით ბუსტისთვის!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">შენ მიიღე %s ემბლემა! აჩვენე ეს ემბლემა შენს პროფილზე, რათა ხელი შეუწყო Signal-ისთვის დონაციების ზრდას.</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">შენ მოიპოვე Boost-ის ემბლემა! აჩვენე ეს ემბლემა შენს პროფილზე, რათა ხელი შეუწყო Signal-ისთვის დონაციების ზრდას.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">შენ მოიპოვე ბუსტის ემბლემა! აჩვენე ეს ემბლემა შენს პროფილზე, რათა ხელი შეუწყო Signal-ისთვის დონაციების ზრდას.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">ასევე შეგიძლია</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">ყოველთვიური მხარდამჭერი გახდე.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">პროფილზე ჩვენება</string>
@@ -3568,10 +3573,10 @@
   <string name="ManageDonationsFragment__gift_a_badge">ემბლემის გაჩუქება</string>
   <string name="BoostFragment__give_signal_a_boost">Signal-ის დაბუსტვა</string>
   <!--Description text in boost sheet-->
-  <string name="BoostFragment__make_a_one_time">გააკეთე ერთჯერადი დონაცია და მიიღე Boost ემბლემა %1$d დღით.</string>
+  <string name="BoostFragment__make_a_one_time">გააკეთე ერთჯერადი დონაცია და მიიღე ბუსტის ემბლემა %1$d დღით.</string>
   <string name="Boost__enter_custom_amount">მორგებული რაოდენობის შეყვანა</string>
   <string name="Boost__one_time_contribution">ერთჯერადი კონტრიბუცია</string>
-  <string name="MySupportPreference__add_a_signal_boost">Signal ბუსტის დამატება</string>
+  <string name="MySupportPreference__add_a_signal_boost">Signal-ის ბუსტის დამატება</string>
   <string name="MySupportPreference__s_per_month">%1$s/თვე</string>
   <string name="MySupportPreference__renews_s">განახლდება %1$s-ს</string>
   <string name="MySupportPreference__processing_transaction">ვამუშავებთ ტრანზაქციას…</string>
@@ -3583,12 +3588,12 @@
   <!--Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">თვიური დონაცია გაუქმებულია</string>
   <!--Displayed in the bottom sheet when a boost badge expires-->
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">შენი ბუსტის ემბლემას ვადა გაუვიდა და შენს პროფილზე ხილული აღარ იქნება.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">შეგიძლია ბუსტის ემბლემა თავიდან ერთჯერადი კონტრიბუციით გააქტიურო დამატებით 30 დღით.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">შენი ბუსტის ემბლემას ვადა გაუვიდა და შენს პროფილზე ის აღარ ჩანს.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">ერთჯერადი კონტრიბუციით შეგიძლია ბუსტის ემბლემა დამატებით 30 დღით გააგრძელო.</string>
   <!--Displayed when we do not think the user is a subscriber when their boost expires-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">შეგიძლია Signal-ის გამოყენება გააგრძელო, მაგრამ  შენთვის შექმნილი ტექნოლოგიის დასახმარებლად, შენ გაქვს შესაძლებლობა მისი მხარდამჭერი გახდე ყოველთვიური დონაციების გაკეთებით.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">გახდი მხარდამჭერი</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Boost-ის დამატება</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">ბუსტის დამატება</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">ახლა არა</string>
   <!--Copy displayed when badge expires after user inactivity-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">შენი განმეორებადი ყოველთვიური დონაცია ავტომატურად გაუქმდა, რადგან ძალიან დიდი ხნის განმავლობაში უმოქმედო იყავი. შენი %1$s ემბლემა აღარ ჩანს შენს პროფილზე.</string>
@@ -3754,7 +3759,7 @@
   <!--Profile exception to allow all @mentions through the profile restrictions-->
   <string name="NotificationProfileDetails__notify_for_all_mentions">ყველა მონიშვნაზე მამცნობეთ</string>
   <!--Section header for showing schedule information-->
-  <string name="NotificationProfileDetails__schedule">დაგეგმვა</string>
+  <string name="NotificationProfileDetails__schedule">განრიგი</string>
   <!--If member list is long, will truncate the list and show an option to then see all when tapped-->
   <string name="NotificationProfileDetails__see_all">ყველას ნახვა</string>
   <!--Title for add schedule to profile in create flow-->
@@ -4291,6 +4296,10 @@
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">ცვლილებები უსაფრთხოების ნომერში</string>
   <!--Message of safety number review fragment-->
+  <plurals name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">
+    <item quantity="one">%1$d-მა მიმღებმა გადააყენა Signal ან შეცვალა მოწყობილობა. უსაფრთხოების ახალი ნომრის დასადასტურებლად დააჭირე მიმღებზე. არ არის სავალდებულო. </item>
+    <item quantity="other">%1$d-ის მიმღებმა გადააყენა Signal-ი ან შეცვალა მოწყობილობა. უსაფრთხოების ახალი ნომრის დასადასტურებლად დააჭირე მიმღებზე. არ არის სავალდებულო. </item>
+  </plurals>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">კონტაქტები</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -4312,6 +4321,7 @@
   <!--Story info header received heading-->
   <string name="StoryInfoHeader__received">Received</string>
   <!--Story info header file size heading-->
+  <string name="StoryInfoHeader__file_size">ფაილის ზომა</string>
   <!--Story info "Sent to" header-->
   <string name="StoryInfoBottomSheetDialogFragment__sent_to">გაგზავნილია ჩამოთვლილებთან</string>
   <!--Story info "Sent from" header-->

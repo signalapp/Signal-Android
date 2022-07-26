@@ -174,6 +174,7 @@
   <string name="ContactsDatabase_signal_call_s">Κλήση Signal %s</string>
   <!--ContactNameEditActivity-->
   <!--Toolbar title for contact name edit activity-->
+  <string name="ContactNameEditActivity__edit_name">Επεξεργασία ονόματος</string>
   <string name="ContactNameEditActivity_given_name">Όνομα</string>
   <string name="ContactNameEditActivity_family_name">Επώνυμο</string>
   <string name="ContactNameEditActivity_prefix">Πρόθεμα</string>
@@ -181,12 +182,14 @@
   <string name="ContactNameEditActivity_middle_name">Μεσαίο όνομα</string>
   <!--ContactShareEditActivity-->
   <!--ContactShareEditActivity toolbar title-->
+  <string name="ContactShareEditActivity__send_contact">Αποστολή επαφής</string>
   <string name="ContactShareEditActivity_type_home">Σπίτι</string>
   <string name="ContactShareEditActivity_type_mobile">Κινητό</string>
   <string name="ContactShareEditActivity_type_work">Εργασία</string>
   <string name="ContactShareEditActivity_type_missing">Άλλο</string>
   <string name="ContactShareEditActivity_invalid_contact">Η επιλεγμένη επαφή δεν ήταν έγκυρη</string>
   <!--Content descrption for name edit button on contact share edit activity-->
+  <string name="ContactShareEditActivity__edit_name">Επεξεργασία ονόματος</string>
   <!--Content description for user avatar in edit activity-->
   <string name="ContactShareEditActivity__avatar">Εικόνα προφίλ</string>
   <!--ConversationItem-->
@@ -2309,6 +2312,7 @@
   <string name="preferences_enter_proxy_address">Εισαγωγή διεύθυνσης proxy</string>
   <string name="configurable_single_select__customize_option">Προσαρμογή ρύθμισης</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Όλη η δραστηριότητα</string>
   <string name="PaymentsAllActivityFragment__all">Όλοι/ες</string>
@@ -2974,6 +2978,7 @@
   <string name="CallParticipant__s_on_another_device">%1$s (από άλλη συσκευή)</string>
   <!--WifiToCellularPopupWindow-->
   <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
+  <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Αδύναμη σύνδεση Wi-Fi. Έγινε εναλλαγή σε δεδομένα κινητής.</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Με τη διαγραφή του λογαριασμού σου θα γίνουν τα εξής:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Εισαγωγή αριθμού τηλεφώνου</string>
@@ -4287,6 +4292,10 @@
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Αλλαγές αριθμού ασφαλείας</string>
   <!--Message of safety number review fragment-->
+  <plurals name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">
+    <item quantity="one">%1$d παραλήπτης μπορεί να έχει εγκαταστήσει εκ νέου το Signal ή να έχει αλλάξει συσκευή. Πάτα έναν παραλήπτη για να επιβεβαιώσεις τον νέο αριθμό ασφαλείας. Αυτό είναι προαιρετικό.</item>
+    <item quantity="other">%1$d παραλήπτες μπορεί να έχουν εγκαταστήσει εκ νέου το Signal ή να έχουν αλλάξει συσκευή. Πάτα έναν παραλήπτη για να επιβεβαιώσεις τον νέο αριθμό ασφαλείας. Αυτό είναι προαιρετικό.</item>
+  </plurals>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">Επαφές</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -4308,6 +4317,7 @@
   <!--Story info header received heading-->
   <string name="StoryInfoHeader__received">Ελήφθη</string>
   <!--Story info header file size heading-->
+  <string name="StoryInfoHeader__file_size">Μέγεθος αρχείου</string>
   <!--Story info "Sent to" header-->
   <string name="StoryInfoBottomSheetDialogFragment__sent_to">Στάλθηκε σε</string>
   <!--Story info "Sent from" header-->

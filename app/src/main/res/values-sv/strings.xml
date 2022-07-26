@@ -172,6 +172,7 @@
   <string name="ContactsDatabase_signal_call_s">Signal-samtal %s</string>
   <!--ContactNameEditActivity-->
   <!--Toolbar title for contact name edit activity-->
+  <string name="ContactNameEditActivity__edit_name">Redigera namn</string>
   <string name="ContactNameEditActivity_given_name">Förnamn</string>
   <string name="ContactNameEditActivity_family_name">Efternamn</string>
   <string name="ContactNameEditActivity_prefix">Prefix</string>
@@ -179,12 +180,14 @@
   <string name="ContactNameEditActivity_middle_name">Mellannamn</string>
   <!--ContactShareEditActivity-->
   <!--ContactShareEditActivity toolbar title-->
+  <string name="ContactShareEditActivity__send_contact">Skicka kontakt</string>
   <string name="ContactShareEditActivity_type_home">Hem</string>
   <string name="ContactShareEditActivity_type_mobile">Mobil</string>
   <string name="ContactShareEditActivity_type_work">Arbete</string>
   <string name="ContactShareEditActivity_type_missing">Övrigt</string>
   <string name="ContactShareEditActivity_invalid_contact">Vald kontakt var ogiltig</string>
   <!--Content descrption for name edit button on contact share edit activity-->
+  <string name="ContactShareEditActivity__edit_name">Redigera namn</string>
   <!--Content description for user avatar in edit activity-->
   <string name="ContactShareEditActivity__avatar">Avatar</string>
   <!--ConversationItem-->
@@ -2271,6 +2274,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences_enter_proxy_address">Ange proxyadress</string>
   <string name="configurable_single_select__customize_option">Anpassa alternativet</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">All aktivitet</string>
   <string name="PaymentsAllActivityFragment__all">Alla</string>
@@ -2936,6 +2940,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="CallParticipant__s_on_another_device">%1$s (på en annan enhet)</string>
   <!--WifiToCellularPopupWindow-->
   <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
+  <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Svagt wifi. Växlat till mobilnät.</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Borttagning av ditt konto kommer att:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Ange ditt telefonnummer</string>
@@ -3853,6 +3858,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
     <item quantity="other">%1$d svar</item>
   </plurals>
   <!--Used when view receipts are disabled-->
+  <string name="StoryViewerPageFragment__views_off">Visningar av</string>
   <!--Used to join views and replies when both exist on a story item-->
   <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
   <!--Displayed when viewing a post you sent-->
@@ -3865,7 +3871,9 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">Inga visningar ännu</string>
   <!--Displayed when user has disabled receipts-->
+  <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Aktivera läskvitton för att se vem som har sett din berättelse.</string>
   <!--Button label displayed when user has disabled receipts-->
+  <string name="StoryViewsFragment__go_to_settings">Gå till inställningar</string>
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Inga svar ännu</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
@@ -4098,6 +4106,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--Label under name for private stories-->
   <!--Label under name for group stories-->
   <!--Label under name for My Story when first sending to my story-->
+  <string name="ContactSearchItems__tap_to_choose_your_viewers">Tryck för att välja dina tittare</string>
   <!--Label for context menu item to open story settings-->
   <string name="ContactSearchItems__story_settings">Berättelse inställningar</string>
   <!--Label for context menu item to remove a group story from contact results-->
@@ -4122,12 +4131,17 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--Button label to confirm understanding of story navigation-->
   <string name="StoryFirstTimeNagivationView__got_it">Uppfattat</string>
   <!--Content description for vertical context menu button in safety number sheet rows-->
+  <string name="SafetyNumberRecipientRowItem__open_context_menu">Öppna kontextmeny</string>
   <!--Sub-line when a user is verified.-->
+  <string name="SafetyNumberRecipientRowItem__s_dot_verified">%1$s · Verifierad</string>
   <!--Sub-line when a user is verified.-->
   <string name="SafetyNumberRecipientRowItem__verified">Verifierat</string>
   <!--Title of safety number changes bottom sheet when showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_changes">Säkerhetsnummerändringar</string>
   <!--Message of safety number changes bottom sheet when showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__the_following_people">Följande personer kan ha ominstallerat Signal eller bytt enhet. Tryck på en mottagare för att bekräfta det nya säkerhetsnumret. Detta är valfritt.</string>
   <!--Title of safety number changes bottom sheet when not showing individual records-->
+  <string name="SafetyNumberBottomSheetFragment__safety_number_checkup">Kontroll av säkerhetsnummer</string>
   <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
   <!--Message of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
   <!--Message of safety number changes bottom sheet when not showing individual records-->
@@ -4141,7 +4155,12 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--Done button on safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__done">Klar</string>
   <!--Title of safety number review fragment-->
+  <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Säkerhetsnummerändringar</string>
   <!--Message of safety number review fragment-->
+  <plurals name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">
+    <item quantity="one">%1$d mottagare kan ha ominstallerat Signal eller bytt enhet. Tryck på en mottagare för att bekräfta det nya säkerhetsnumret. Detta är valfritt.</item>
+    <item quantity="other">%1$d mottagare kan ha ominstallerat Signal eller bytt enhet. Tryck på en mottagare för att bekräfta det nya säkerhetsnumret. Detta är valfritt.</item>
+  </plurals>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">Kontakter</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -4157,6 +4176,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--Story info header received heading-->
   <string name="StoryInfoHeader__received">Mottaget</string>
   <!--Story info header file size heading-->
+  <string name="StoryInfoHeader__file_size">Filstorlek</string>
   <!--Story info "Sent to" header-->
   <string name="StoryInfoBottomSheetDialogFragment__sent_to">Skickat till</string>
   <!--Story info "Sent from" header-->

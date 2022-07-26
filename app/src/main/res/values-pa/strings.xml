@@ -2316,7 +2316,7 @@
   <string name="preferences_enter_proxy_address">ਪ੍ਰੌਕਸੀ ਐਡਰੈੱਸ ਦਰਜ ਕਰੋ</string>
   <string name="configurable_single_select__customize_option">ਕਸਟਮਾਈਜ਼ ਚੋਣ</string>
   <!--Internal only preferences-->
-  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">ਔਨਬੋਰਡਿੰਗ ਫਲੈਗ ਨੂੰ ਸਾਫ਼ ਕਰਦਾ ਹੈ ਅਤੇ ਔਨਬੋਰਡਿੰਗ ਸਟੋਰੀਆਂ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰਦਾ ਹੈ।</string>
+  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">ਸਾਰੀ ਗਤੀਵਿਧੀ</string>
   <string name="PaymentsAllActivityFragment__all">ਸਾਰੇ</string>
@@ -2982,7 +2982,7 @@
   <string name="CallParticipant__s_on_another_device">%1$s (ਹੋਰ ਡਿਵਾਈਸ ਉੱਤੇ)</string>
   <!--WifiToCellularPopupWindow-->
   <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
-  <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">ਕਮਜ਼ੋਰ Wi-Fi। ਸੈਲਿਊਲਰ \'ਤੇ ਬਦਲਿਆ ਗਿਆ।</string>
+  <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Wi-Fi ਸਿਗਨਲ ਕਮਜ਼ੋਰ ਹੈ। ਸੈਲੂਲਰ \'ਤੇ ਬਦਲਿਆ ਗਿਆ।</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">ਤੁਹਾਡੇ ਖਾਤੇ ਨੂੰ ਹਟਾਉਣ ਨਾਲ:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">ਆਪਣਾ ਫੋਨ ਨੰਬਰ ਦਰਜ ਕਰੋ</string>

@@ -176,6 +176,7 @@
   <string name="ContactsDatabase_signal_call_s">Signal Hovor %s</string>
   <!--ContactNameEditActivity-->
   <!--Toolbar title for contact name edit activity-->
+  <string name="ContactNameEditActivity__edit_name">Upraviť meno</string>
   <string name="ContactNameEditActivity_given_name">Krstné meno</string>
   <string name="ContactNameEditActivity_family_name">Priezvisko</string>
   <string name="ContactNameEditActivity_prefix">Titul pred</string>
@@ -183,12 +184,14 @@
   <string name="ContactNameEditActivity_middle_name">Stredné meno</string>
   <!--ContactShareEditActivity-->
   <!--ContactShareEditActivity toolbar title-->
+  <string name="ContactShareEditActivity__send_contact">Odoslať kontakt</string>
   <string name="ContactShareEditActivity_type_home">Domov</string>
   <string name="ContactShareEditActivity_type_mobile">Mobil</string>
   <string name="ContactShareEditActivity_type_work">Práca</string>
   <string name="ContactShareEditActivity_type_missing">Iné</string>
   <string name="ContactShareEditActivity_invalid_contact">Vybraný kontakt je neplatný</string>
   <!--Content descrption for name edit button on contact share edit activity-->
+  <string name="ContactShareEditActivity__edit_name">Upraviť meno</string>
   <!--Content description for user avatar in edit activity-->
   <string name="ContactShareEditActivity__avatar">Fotka</string>
   <!--ConversationItem-->
@@ -2485,6 +2488,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences_enter_proxy_address">Zadajte adresu proxy servera</string>
   <string name="configurable_single_select__customize_option">Prispôsobiť nastavenie</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Všetky aktivity</string>
   <string name="PaymentsAllActivityFragment__all">Všetko</string>
@@ -3170,6 +3174,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="CallParticipant__s_on_another_device">%1$s (na inom zariadení)</string>
   <!--WifiToCellularPopupWindow-->
   <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
+  <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Slabé Wi-Fi pripojenie. Prepnuté na mobilné dáta.</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Vymazanie účtu spôsobí:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Zadajte svoje telefónne číslo</string>
@@ -4523,6 +4528,12 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Zmeny bezpečnostného čísla</string>
   <!--Message of safety number review fragment-->
+  <plurals name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">
+    <item quantity="one">%1$d príjemca mohol preinštalovať Signal alebo zmeniť zariadenia. Ťuknutím na príjemcu potvrďte nové bezpečnostné číslo. Tento krok je voliteľný.</item>
+    <item quantity="few">%1$d príjemcovia mohli preinštalovať Signal alebo zmeniť zariadenia. Ťuknutím na príjemcu potvrďte nové bezpečnostné číslo. Tento krok je voliteľný.</item>
+    <item quantity="many">%1$d príjemcov mohlo preinštalovať Signal alebo zmeniť zariadenia. Ťuknutím na príjemcu potvrďte nové bezpečnostné číslo. Tento krok je voliteľný.</item>
+    <item quantity="other">%1$d príjemcov mohlo preinštalovať Signal alebo zmeniť zariadenia. Ťuknutím na príjemcu potvrďte nové bezpečnostné číslo. Tento krok je voliteľný.</item>
+  </plurals>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">Kontakty</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -4544,6 +4555,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--Story info header received heading-->
   <string name="StoryInfoHeader__received">Prijatá</string>
   <!--Story info header file size heading-->
+  <string name="StoryInfoHeader__file_size">Veľkosť súboru</string>
   <!--Story info "Sent to" header-->
   <string name="StoryInfoBottomSheetDialogFragment__sent_to">Odoslané komu</string>
   <!--Story info "Sent from" header-->

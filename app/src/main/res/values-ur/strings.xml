@@ -174,6 +174,7 @@
   <string name="ContactsDatabase_signal_call_s">Signal کال %s</string>
   <!--ContactNameEditActivity-->
   <!--Toolbar title for contact name edit activity-->
+  <string name="ContactNameEditActivity__edit_name">نام ایڈٹ کریں</string>
   <string name="ContactNameEditActivity_given_name">دیا گیا نام</string>
   <string name="ContactNameEditActivity_family_name">خاندانی نام</string>
   <string name="ContactNameEditActivity_prefix">سابقہ</string>
@@ -181,12 +182,14 @@
   <string name="ContactNameEditActivity_middle_name">دوسرا ذاتی نام</string>
   <!--ContactShareEditActivity-->
   <!--ContactShareEditActivity toolbar title-->
+  <string name="ContactShareEditActivity__send_contact">کونٹیکٹ بھیجیں</string>
   <string name="ContactShareEditActivity_type_home">ھوم</string>
   <string name="ContactShareEditActivity_type_mobile">موبائل</string>
   <string name="ContactShareEditActivity_type_work">کام</string>
   <string name="ContactShareEditActivity_type_missing">دیگر</string>
   <string name="ContactShareEditActivity_invalid_contact">منتخب شدہ رابطہ غلط تھا</string>
   <!--Content descrption for name edit button on contact share edit activity-->
+  <string name="ContactShareEditActivity__edit_name">نام ایڈٹ کریں</string>
   <!--Content description for user avatar in edit activity-->
   <string name="ContactShareEditActivity__avatar">اوتار</string>
   <!--ConversationItem-->
@@ -2305,6 +2308,7 @@
   <string name="preferences_enter_proxy_address">پراکسی ایڈریس درج کریں</string>
   <string name="configurable_single_select__customize_option">آپشن کو کسٹمائز کریں</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">تمام سرگرمی</string>
   <string name="PaymentsAllActivityFragment__all">تمام</string>
@@ -2970,6 +2974,7 @@
   <string name="CallParticipant__s_on_another_device">%1$s (دوسرے آلے پر)</string>
   <!--WifiToCellularPopupWindow-->
   <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
+  <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Wi-Fi کمزور ہے۔ سیلولر پر سوئچ کریں۔</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">آپ کا اکاؤنٹ حذف کرنے سے یہ ہوگا:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">اپنا فون نمبر درج کریں</string>
@@ -4267,7 +4272,7 @@
   <!--Message of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
   <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">تمام کنکشنز کا جائزہ لیا گیا ہے، جاری رکھنے کے لیے بھیجیں پر ٹیپ کریں۔</string>
   <!--Message of safety number changes bottom sheet when not showing individual records-->
-  <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">آپ کے %1$d کنکشنز  نے Signal کو دوبارہ انسٹال اور ڈیوائسز کو تبدیل کیا ہو گا۔ ان کے ساتھ اپنی اسٹوری شیئر کرنے سے پہلے ان کے حفاظتی نمبرز کا جائزہ لیں یا انہیں اپنی اسٹوری سے ہٹانے پر غور کریں۔</string>
+  <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">آپ کے %1$d کنکشنز  نے شاید Signal کو دوبارہ انسٹال یا ڈیوائسز کو تبدیل کیا ہو گا۔ ان کے ساتھ اپنی اسٹوری شیئر کرنے سے پہلے ان کے حفاظتی نمبرز کا جائزہ لیں یا انہیں اپنی اسٹوری سے ہٹانے پر غور کریں۔</string>
   <!--Menu action to launch safety number verification screen-->
   <string name="SafetyNumberBottomSheetFragment__verify_safety_number">حفاظتی نمبر کی تصدیق کریں</string>
   <!--Menu action to remove user from story-->
@@ -4283,6 +4288,10 @@
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">حفاظتی نمبر تبدیل ہوا ہے</string>
   <!--Message of safety number review fragment-->
+  <plurals name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">
+    <item quantity="one">%1$d وصول کنندہ نے Signal کو دوبارہ انسٹال یا ڈیوائسز کو تبدیل کیا ہو گا۔ نئے حفاظتی نمبر کی تصدیق کے لیے وصول کنندہ پر ٹیپ کریں۔ یہ اختیاری ہے۔</item>
+    <item quantity="other">%1$d وصول کنندگان نے شاید Signal کو دوبارہ انسٹال یا ڈیوائسز کو تبدیل کیا ہو گا۔ نئے حفاظتی نمبر کی تصدیق کے لیے وصول کنندہ پر ٹیپ کریں۔ یہ آپشنل ہے۔</item>
+  </plurals>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">رابطے</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -4304,6 +4313,7 @@
   <!--Story info header received heading-->
   <string name="StoryInfoHeader__received">وصول ہو گیا ہے</string>
   <!--Story info header file size heading-->
+  <string name="StoryInfoHeader__file_size">فائل کا سائز</string>
   <!--Story info "Sent to" header-->
   <string name="StoryInfoBottomSheetDialogFragment__sent_to">کو بھیجا</string>
   <!--Story info "Sent from" header-->

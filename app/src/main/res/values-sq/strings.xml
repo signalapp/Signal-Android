@@ -174,6 +174,7 @@
   <string name="ContactsDatabase_signal_call_s">Telefonatë Signal me %s</string>
   <!--ContactNameEditActivity-->
   <!--Toolbar title for contact name edit activity-->
+  <string name="ContactNameEditActivity__edit_name">Ndrysho emrin</string>
   <string name="ContactNameEditActivity_given_name">Emër</string>
   <string name="ContactNameEditActivity_family_name">Mbiemër</string>
   <string name="ContactNameEditActivity_prefix">Prefiks</string>
@@ -181,12 +182,14 @@
   <string name="ContactNameEditActivity_middle_name">Emri i mesëm</string>
   <!--ContactShareEditActivity-->
   <!--ContactShareEditActivity toolbar title-->
+  <string name="ContactShareEditActivity__send_contact">Dërgo kontaktin</string>
   <string name="ContactShareEditActivity_type_home">Kryefaqja</string>
   <string name="ContactShareEditActivity_type_mobile">Celular</string>
   <string name="ContactShareEditActivity_type_work">Pune</string>
   <string name="ContactShareEditActivity_type_missing">Tjetër</string>
   <string name="ContactShareEditActivity_invalid_contact">Kontakti i zgjedhur ishte i pavlefshëm</string>
   <!--Content descrption for name edit button on contact share edit activity-->
+  <string name="ContactShareEditActivity__edit_name">Ndrysho emrin</string>
   <!--Content description for user avatar in edit activity-->
   <string name="ContactShareEditActivity__avatar">Avatar</string>
   <!--ConversationItem-->
@@ -2317,6 +2320,7 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <string name="preferences_enter_proxy_address">Jepni adresë ndërmjetësi</string>
   <string name="configurable_single_select__customize_option">Përshtatë një mundësi</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Krejt veprimtaria</string>
   <string name="PaymentsAllActivityFragment__all">Krejt</string>
@@ -2984,6 +2988,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="CallParticipant__s_on_another_device">%1$s (në tjetër pajisje)</string>
   <!--WifiToCellularPopupWindow-->
   <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
+  <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Wi-Fi i dobët. Kalo me internetin e celularit.</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Fshirja e llogarisë tuaj do të:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Jepni numrin e telefonit tuaj</string>
@@ -4297,6 +4302,10 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Ndryshimet e numrit të sigurisë</string>
   <!--Message of safety number review fragment-->
+  <plurals name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">
+    <item quantity="one">%1$d marrësit mund të kenë riinstaluar Signal ose mund të kenë ndryshuar pajisje. Kliko mbi një marrës për të konfirmuar numrin e ri të sigurisë. Kjo është opsionale.</item>
+    <item quantity="other">%1$dmarrës mund të kenë riinstaluar Signal ose mund të kenë ndryshuar pajisje. Kliko mbi marrësin për të konfirmuar numrin e ri të sigurisë. Kjo është opsionale.</item>
+  </plurals>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">Kontaktet</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -4318,6 +4327,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <!--Story info header received heading-->
   <string name="StoryInfoHeader__received">Marrë më</string>
   <!--Story info header file size heading-->
+  <string name="StoryInfoHeader__file_size">Madhësia e skedarit</string>
   <!--Story info "Sent to" header-->
   <string name="StoryInfoBottomSheetDialogFragment__sent_to">Dërguar te</string>
   <!--Story info "Sent from" header-->

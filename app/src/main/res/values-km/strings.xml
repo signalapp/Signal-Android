@@ -173,6 +173,7 @@
   <string name="ContactsDatabase_signal_call_s">ការហៅចេញរបស់Signal  %s</string>
   <!--ContactNameEditActivity-->
   <!--Toolbar title for contact name edit activity-->
+  <string name="ContactNameEditActivity__edit_name">កែឈ្មោះ</string>
   <string name="ContactNameEditActivity_given_name">នាមខ្លួន</string>
   <string name="ContactNameEditActivity_family_name">នាមត្រកូល</string>
   <string name="ContactNameEditActivity_prefix">ខាងដើម</string>
@@ -180,12 +181,14 @@
   <string name="ContactNameEditActivity_middle_name">ឈ្មោះកណ្តាល</string>
   <!--ContactShareEditActivity-->
   <!--ContactShareEditActivity toolbar title-->
+  <string name="ContactShareEditActivity__send_contact">ផ្ញើឈ្មោះទំនាក់ទំនង</string>
   <string name="ContactShareEditActivity_type_home">ផ្ទះ</string>
   <string name="ContactShareEditActivity_type_mobile">ចល័ត</string>
   <string name="ContactShareEditActivity_type_work">ធ្វើការ</string>
   <string name="ContactShareEditActivity_type_missing">ផ្សេងៗ</string>
   <string name="ContactShareEditActivity_invalid_contact">លេខទំនាក់ទំនងដែលបានជ្រើសរើសមិនត្រឹមត្រូវ</string>
   <!--Content descrption for name edit button on contact share edit activity-->
+  <string name="ContactShareEditActivity__edit_name">កែឈ្មោះ</string>
   <!--Content description for user avatar in edit activity-->
   <string name="ContactShareEditActivity__avatar">រូបតំណាង</string>
   <!--ConversationItem-->
@@ -2222,6 +2225,7 @@
   <string name="preferences_enter_proxy_address">បញ្ចូលអាសយដ្ឋានប្រូកស៊ី</string>
   <string name="configurable_single_select__customize_option">ជម្រើសធ្វើផ្សេង</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">សកម្មភាពទាំងអស់</string>
   <string name="PaymentsAllActivityFragment__all">ទាំងអស់</string>
@@ -2877,6 +2881,7 @@
   <string name="CallParticipant__s_on_another_device">%1$s (នៅលើឧបករណ៍មួយផ្សេងទៀត)</string>
   <!--WifiToCellularPopupWindow-->
   <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
+  <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">បានប្តូរទៅប្រព័ន្ធអ៊ីនធឺណិតទូរសព្ទ ព្រោះប្រព័ន្ធ Wi-Fi ខ្សោយ។ </string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">លុបគណនីអ្នកនឹង៖</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">វាយបញ្ចូលលេខរបស់អ្នក</string>
@@ -4170,6 +4175,9 @@
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">ការផ្លាស់ប្តូរលេខសុវត្ថិភាព</string>
   <!--Message of safety number review fragment-->
+  <plurals name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">
+    <item quantity="other">អ្នកទទួល %1$d នាក់ប្រហែលជាបានដំឡើង Signal ឡើងវិញ ឬបានផ្លាស់ប្តូរឧបករណ៍។ ចុចលើអ្នកទទួលដើម្បីបញ្ជាក់លេខសុវត្ថិភាពថ្មី។ នេះមិនមែនជាការតម្រូវទេ។</item>
+  </plurals>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">បញ្ជីទំនាក់ទំនង</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -4191,6 +4199,7 @@
   <!--Story info header received heading-->
   <string name="StoryInfoHeader__received">បានទទួល</string>
   <!--Story info header file size heading-->
+  <string name="StoryInfoHeader__file_size">ទំហំ​ឯកសារ</string>
   <!--Story info "Sent to" header-->
   <string name="StoryInfoBottomSheetDialogFragment__sent_to">បានផ្ញើទៅ</string>
   <!--Story info "Sent from" header-->

@@ -2317,6 +2317,7 @@
   <string name="preferences_enter_proxy_address">Sisesta puhverserveri aadress</string>
   <string name="configurable_single_select__customize_option">Kohanda valikut</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Kõik toimingud</string>
   <string name="PaymentsAllActivityFragment__all">Kõik</string>

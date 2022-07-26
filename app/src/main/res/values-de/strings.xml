@@ -174,6 +174,7 @@
   <string name="ContactsDatabase_signal_call_s">Signal-Anruf %s</string>
   <!--ContactNameEditActivity-->
   <!--Toolbar title for contact name edit activity-->
+  <string name="ContactNameEditActivity__edit_name">Name bearbeiten</string>
   <string name="ContactNameEditActivity_given_name">Vorname</string>
   <string name="ContactNameEditActivity_family_name">Nachname</string>
   <string name="ContactNameEditActivity_prefix">Präfix</string>
@@ -181,12 +182,14 @@
   <string name="ContactNameEditActivity_middle_name">Mittelname</string>
   <!--ContactShareEditActivity-->
   <!--ContactShareEditActivity toolbar title-->
+  <string name="ContactShareEditActivity__send_contact">Kontakt senden</string>
   <string name="ContactShareEditActivity_type_home">Privat</string>
   <string name="ContactShareEditActivity_type_mobile">Mobil</string>
   <string name="ContactShareEditActivity_type_work">Arbeit</string>
   <string name="ContactShareEditActivity_type_missing">Sonstige</string>
   <string name="ContactShareEditActivity_invalid_contact">Ausgewählter Kontakt ungültig</string>
   <!--Content descrption for name edit button on contact share edit activity-->
+  <string name="ContactShareEditActivity__edit_name">Name bearbeiten</string>
   <!--Content description for user avatar in edit activity-->
   <string name="ContactShareEditActivity__avatar">Avatar</string>
   <!--ConversationItem-->
@@ -2303,6 +2306,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences_enter_proxy_address">Proxyadresse eingeben</string>
   <string name="configurable_single_select__customize_option">Option anpassen</string>
   <!--Internal only preferences-->
+  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Alle Aktivitäten</string>
   <string name="PaymentsAllActivityFragment__all">Alle</string>
@@ -2968,6 +2972,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="CallParticipant__s_on_another_device">%1$s (auf einem anderen Gerät)</string>
   <!--WifiToCellularPopupWindow-->
   <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
+  <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Schwaches WLAN-Signal. Zu mobile Daten gewechselt.</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Das Löschen deines Nutzerkontos wird:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Gib deine Rufnummer ein</string>
@@ -4302,6 +4307,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--Story info header received heading-->
   <string name="StoryInfoHeader__received">Empfangen</string>
   <!--Story info header file size heading-->
+  <string name="StoryInfoHeader__file_size">Dateigröße</string>
   <!--Story info "Sent to" header-->
   <string name="StoryInfoBottomSheetDialogFragment__sent_to">Gesendet an</string>
   <!--Story info "Sent from" header-->
