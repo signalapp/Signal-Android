@@ -10,6 +10,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.IdentityRecord
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.recipients.Recipient
+import java.util.concurrent.TimeUnit
 
 object UntrustedRecords {
 
@@ -41,7 +42,7 @@ object UntrustedRecords {
       }
       .flatten()
 
-    return ApplicationDependencies.getProtocolStore().aci().identities().getIdentityRecords(recipients).untrustedRecords
+    return ApplicationDependencies.getProtocolStore().aci().identities().getIdentityRecords(recipients).getUntrustedRecords(TimeUnit.SECONDS.toMillis(30))
   }
 
   class UntrustedRecordsException(val untrustedRecords: List<IdentityRecord>, val destinations: Set<ContactSearchKey.RecipientSearchKey>) : Throwable()

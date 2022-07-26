@@ -23,10 +23,11 @@ class ContactSearchMediator(
   selectionLimits: SelectionLimits,
   displayCheckBox: Boolean,
   mapStateToConfiguration: (ContactSearchState) -> ContactSearchConfiguration,
-  private val contactSelectionPreFilter: (View?, Set<ContactSearchKey>) -> Set<ContactSearchKey> = { _, s -> s }
+  private val contactSelectionPreFilter: (View?, Set<ContactSearchKey>) -> Set<ContactSearchKey> = { _, s -> s },
+  performSafetyNumberChecks: Boolean = true
 ) {
 
-  private val viewModel: ContactSearchViewModel = ViewModelProvider(fragment, ContactSearchViewModel.Factory(selectionLimits, ContactSearchRepository())).get(ContactSearchViewModel::class.java)
+  private val viewModel: ContactSearchViewModel = ViewModelProvider(fragment, ContactSearchViewModel.Factory(selectionLimits, ContactSearchRepository(), performSafetyNumberChecks)).get(ContactSearchViewModel::class.java)
 
   init {
 

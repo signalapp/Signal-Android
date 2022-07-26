@@ -112,7 +112,7 @@ public final class ProfileService {
                           .onErrorReturn(ServiceResponse::forUnknownError);
   }
 
-  public @NonNull Single<ServiceResponse<IdentityCheckResponse>> performIdentityCheck(@Nonnull Map<ServiceId, IdentityKey> aciIdentityKeyMap, @Nonnull Optional<UnidentifiedAccess> unidentifiedAccess) {
+  public @NonNull Single<ServiceResponse<IdentityCheckResponse>> performIdentityCheck(@Nonnull Map<ServiceId, IdentityKey> aciIdentityKeyMap) {
     List<AciFingerprintPair> aciKeyPairs = aciIdentityKeyMap.entrySet()
                                                             .stream()
                                                             .map(e -> new AciFingerprintPair(e.getKey(), e.getValue()))
@@ -129,9 +129,9 @@ public final class ProfileService {
 
     ResponseMapper<IdentityCheckResponse> responseMapper = DefaultResponseMapper.getDefault(IdentityCheckResponse.class);
 
-    return signalWebSocket.request(builder.build(), unidentifiedAccess)
+    return signalWebSocket.request(builder.build(), Optional.empty())
                           .map(responseMapper::map)
-                          .onErrorResumeNext(t -> performIdentityCheckRestFallback(request, unidentifiedAccess, responseMapper))
+                          .onErrorResumeNext(t -> performIdentityCheckRestFallback(request, Optional.empty(), responseMapper))
                           .onErrorReturn(ServiceResponse::forUnknownError);
   }
 
