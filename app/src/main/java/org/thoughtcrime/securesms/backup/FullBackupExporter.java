@@ -41,6 +41,7 @@ import org.thoughtcrime.securesms.database.SessionDatabase;
 import org.thoughtcrime.securesms.database.SignedPreKeyDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.StickerDatabase;
+import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.AvatarPickerDatabase;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -175,6 +176,8 @@ public class FullBackupExporter extends FullBackupBase {
           count = exportTable(table, input, outputStream, cursor -> isForNonExpiringMmsMessageAndNotReleaseChannel(input, cursor.getLong(cursor.getColumnIndexOrThrow(AttachmentDatabase.MMS_ID))), (cursor, innerCount) -> exportAttachment(attachmentSecret, cursor, outputStream, innerCount, estimatedCount), count, estimatedCount, cancellationSignal);
         } else if (table.equals(StickerDatabase.TABLE_NAME)) {
           count = exportTable(table, input, outputStream, cursor -> true, (cursor, innerCount) -> exportSticker(attachmentSecret, cursor, outputStream, innerCount, estimatedCount), count, estimatedCount, cancellationSignal);
+        } else if (table.equals(ThreadDatabase.TABLE_NAME)) {
+          count = exportTable(table, input, outputStream, cursor -> isNotReleaseChannel(cursor), null, count, estimatedCount, cancellationSignal);
         } else if (!BLACKLISTED_TABLES.contains(table) && !table.startsWith("sqlite_")) {
           count = exportTable(table, input, outputStream, null, null, count, estimatedCount, cancellationSignal);
         }
@@ -524,7 +527,14 @@ public class FullBackupExporter extends FullBackupBase {
 
   private static boolean isNotReleaseChannel(Cursor cursor) {
     RecipientId releaseChannel = SignalStore.releaseChannelValues().getReleaseChannelRecipientId();
-    return releaseChannel == null || cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.RECIPIENT_ID)) != releaseChannel.toLong();
+    int columnIndex;
+    try {
+      columnIndex = cursor.getColumnIndexOrThrow(MmsDatabase.RECIPIENT_ID);
+    } catch (IllegalArgumentException e) {
+      columnIndex = cursor.getColumnIndexOrThrow(ThreadDatabase.RECIPIENT_ID);
+    }
+
+    return releaseChannel == null || cursor.getLong(columnIndex) != releaseChannel.toLong();
   }
 
   private static class BackupFrameOutputStream extends BackupStream {
