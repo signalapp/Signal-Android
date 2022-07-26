@@ -700,6 +700,12 @@ class StoryViewerPageFragment :
   private fun presentSlate(post: StoryPost) {
     storySlate.setBackground((post.conversationMessage.messageRecord as? MediaMmsMessageRecord)?.slideDeck?.thumbnailSlide?.placeholderBlur)
 
+    if (post.conversationMessage.messageRecord.isOutgoing) {
+      storySlate.moveToState(StorySlateView.State.HIDDEN, post.id)
+      viewModel.setIsDisplayingSlate(false)
+      return
+    }
+
     when (post.content.transferState) {
       AttachmentDatabase.TRANSFER_PROGRESS_DONE -> {
         storySlate.moveToState(StorySlateView.State.HIDDEN, post.id)
@@ -837,7 +843,11 @@ class StoryViewerPageFragment :
   }
 
   private fun presentDate(date: TextView, storyPost: StoryPost) {
-    date.text = DateUtils.getBriefRelativeTimeSpanString(context, Locale.getDefault(), storyPost.dateInMilliseconds)
+    val messageRecord = storyPost.conversationMessage.messageRecord
+    date.text = when {
+      messageRecord.isOutgoing && !messageRecord.isSent -> getString(R.string.StoriesLandingItem__sending)
+      else -> DateUtils.getBriefRelativeTimeSpanString(context, Locale.getDefault(), storyPost.dateInMilliseconds)
+    }
   }
 
   private fun presentSenderAvatar(senderAvatar: AvatarImageView, post: StoryPost) {
