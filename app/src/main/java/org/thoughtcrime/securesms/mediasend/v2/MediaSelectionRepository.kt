@@ -342,14 +342,15 @@ class MediaSelectionRepository(context: Context) {
       MessageSender.sendMediaBroadcast(
         context,
         nonStoryMessages,
-        preUploadResults
+        preUploadResults,
+        true
       )
     }
 
     if (storyPreUploadMessages.isNotEmpty()) {
       Log.d(TAG, "Sending ${storyPreUploadMessages.size} preload messages to stories")
       storyPreUploadMessages.forEach { (preUploadResult, messages) ->
-        MessageSender.sendMediaBroadcast(context, messages, Collections.singleton(preUploadResult))
+        MessageSender.sendMediaBroadcast(context, messages, Collections.singleton(preUploadResult), nonStoryMessages.isEmpty())
       }
     }
 

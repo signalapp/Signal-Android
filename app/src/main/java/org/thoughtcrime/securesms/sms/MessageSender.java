@@ -329,9 +329,10 @@ public class MessageSender {
 
   public static void sendMediaBroadcast(@NonNull Context context,
                                         @NonNull List<OutgoingSecureMediaMessage> messages,
-                                        @NonNull Collection<PreUploadResult> preUploadResults)
+                                        @NonNull Collection<PreUploadResult> preUploadResults,
+                                        boolean overwritePreUploadMessageIds)
   {
-    Log.i(TAG, "Sending media broadcast to " + Stream.of(messages).map(m -> m.getRecipient().getId()).toList());
+    Log.i(TAG, "Sending media broadcast (overwrite: " + overwritePreUploadMessageIds + ") to " + Stream.of(messages).map(m -> m.getRecipient().getId()).toList());
     Preconditions.checkArgument(messages.size() > 0, "No messages!");
     Preconditions.checkArgument(Stream.of(messages).allMatch(m -> m.getAttachments().isEmpty()), "Messages can't have attachments! They should be pre-uploaded.");
 
@@ -343,31 +344,33 @@ public class MessageSender {
     List<String>               preUploadJobIds        = Stream.of(preUploadResults).map(PreUploadResult::getJobIds).flatMap(Stream::of).toList();
     List<Long>                 messageIds             = new ArrayList<>(messages.size());
     List<String>               messageDependsOnIds    = new ArrayList<>(preUploadJobIds);
+    OutgoingSecureMediaMessage primaryMessage         = messages.get(0);
 
     mmsDatabase.beginTransaction();
     try {
-      OutgoingSecureMediaMessage primaryMessage   = messages.get(0);
-      long                       primaryThreadId  = threadDatabase.getOrCreateThreadIdFor(primaryMessage.getRecipient(), primaryMessage.getDistributionType());
-      long                       primaryMessageId = mmsDatabase.insertMessageOutbox(applyUniversalExpireTimerIfNecessary(context, primaryMessage.getRecipient(), primaryMessage, primaryThreadId),
-                                                                                    primaryThreadId,
-                                                                                    false,
-                                                                                    null);
+      if (overwritePreUploadMessageIds) {
+        long primaryThreadId  = threadDatabase.getOrCreateThreadIdFor(primaryMessage.getRecipient(), primaryMessage.getDistributionType());
+        long primaryMessageId = mmsDatabase.insertMessageOutbox(applyUniversalExpireTimerIfNecessary(context, primaryMessage.getRecipient(), primaryMessage, primaryThreadId),
+                                                                primaryThreadId,
+                                                                false,
+                                                                null);
 
-      attachmentDatabase.updateMessageId(preUploadAttachmentIds, primaryMessageId, primaryMessage.getStoryType().isStory());
-      if (primaryMessage.getStoryType() != StoryType.NONE) {
-        for (final AttachmentId preUploadAttachmentId : preUploadAttachmentIds) {
-          attachmentDatabase.updateAttachmentCaption(preUploadAttachmentId, primaryMessage.getBody());
+        attachmentDatabase.updateMessageId(preUploadAttachmentIds, primaryMessageId, primaryMessage.getStoryType().isStory());
+        if (primaryMessage.getStoryType() != StoryType.NONE) {
+          for (final AttachmentId preUploadAttachmentId : preUploadAttachmentIds) {
+            attachmentDatabase.updateAttachmentCaption(preUploadAttachmentId, primaryMessage.getBody());
+          }
         }
+        messageIds.add(primaryMessageId);
       }
-      messageIds.add(primaryMessageId);
 
       List<DatabaseAttachment> preUploadAttachments = Stream.of(preUploadAttachmentIds)
                                                             .map(attachmentDatabase::getAttachment)
                                                             .toList();
 
       if (messages.size() > 0) {
-        List<OutgoingSecureMediaMessage> secondaryMessages    = messages.subList(1, messages.size());
-        List<List<AttachmentId>>         attachmentCopies     = new ArrayList<>();
+        List<OutgoingSecureMediaMessage> secondaryMessages = overwritePreUploadMessageIds ? messages.subList(1, messages.size()) : messages;
+        List<List<AttachmentId>>         attachmentCopies  = new ArrayList<>();
 
         for (int i = 0; i < preUploadAttachmentIds.size(); i++) {
           attachmentCopies.add(new ArrayList<>(messages.size()));
@@ -389,7 +392,7 @@ public class MessageSender {
 
           attachmentDatabase.updateMessageId(attachmentIds, messageId, secondaryMessage.getStoryType().isStory());
           if (primaryMessage.getStoryType() != StoryType.NONE) {
-            for (final AttachmentId preUploadAttachmentId : preUploadAttachmentIds) {
+            for (final AttachmentId preUploadAttachmentId : attachmentIds) {
               attachmentDatabase.updateAttachmentCaption(preUploadAttachmentId, primaryMessage.getBody());
             }
           }
