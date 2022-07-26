@@ -37,6 +37,7 @@ import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionNavigator.Companion
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionState
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionViewModel
 import org.thoughtcrime.securesms.mediasend.v2.MediaValidator
+import org.thoughtcrime.securesms.mediasend.v2.stories.StoriesMultiselectForwardActivity
 import org.thoughtcrime.securesms.mms.SentMediaQuality
 import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.util.MediaUtil
@@ -137,7 +138,16 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
       sharedViewModel.sendCommand(HudCommand.SaveMedia)
     }
 
-    val recipientSelectionLauncher = registerForActivityResult(MultiselectForwardActivity.SelectionContract()) { keys ->
+    val multiselectContract = MultiselectForwardActivity.SelectionContract()
+    val storiesContract = StoriesMultiselectForwardActivity.SelectionContract()
+
+    val multiselectLauncher = registerForActivityResult(multiselectContract) { keys ->
+      if (keys.isNotEmpty()) {
+        performSend(keys)
+      }
+    }
+
+    val storiesLauncher = registerForActivityResult(storiesContract) { keys ->
       if (keys.isNotEmpty()) {
         performSend(keys)
       }
@@ -148,9 +158,16 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
         val args = MultiselectForwardFragmentArgs(
           false,
           title = R.string.MediaReviewFragment__send_to,
-          storySendRequirements = sharedViewModel.getStorySendRequirements()
+          storySendRequirements = sharedViewModel.getStorySendRequirements(),
+          isSearchEnabled = !sharedViewModel.isStory()
         )
-        recipientSelectionLauncher.launch(args)
+
+        if (sharedViewModel.isStory()) {
+          val previews = sharedViewModel.state.value?.selectedMedia?.take(2)?.map { it.uri } ?: emptyList()
+          storiesLauncher.launch(StoriesMultiselectForwardActivity.Args(args, previews))
+        } else {
+          multiselectLauncher.launch(args)
+        }
       } else {
         performSend()
       }

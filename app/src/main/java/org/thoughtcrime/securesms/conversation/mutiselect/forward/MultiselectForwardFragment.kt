@@ -119,6 +119,7 @@ class MultiselectForwardFragment :
     disposables.bindTo(viewLifecycleOwner.lifecycle)
 
     contactFilterView = view.findViewById(R.id.contact_filter_edit_text)
+    contactFilterView.visible = args.isSearchEnabled
 
     contactFilterView.setOnSearchInputFocusChangedListener { _, hasFocus ->
       if (hasFocus) {

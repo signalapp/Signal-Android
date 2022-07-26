@@ -12,7 +12,7 @@ import org.thoughtcrime.securesms.components.FragmentWrapperActivity
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragment.Companion.RESULT_SELECTION
 
-class MultiselectForwardActivity : FragmentWrapperActivity(), MultiselectForwardFragment.Callback {
+open class MultiselectForwardActivity : FragmentWrapperActivity(), MultiselectForwardFragment.Callback, SearchConfigurationProvider {
 
   companion object {
     private const val ARGS = "args"

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <org.thoughtcrime.securesms.util.views.DarkOverflowToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:navigationIcon="@drawable/ic_arrow_left_24"
+        app:title="@string/conversation_activity__send" />
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/fragment_container_wrapper"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/signal_colorBackground"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                <FrameLayout
+                    android:id="@+id/preview_viewport"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="22.5dp"
+                    app:layout_collapseMode="parallax">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/preview_media_2"
+                        android:layout_width="110dp"
+                        android:layout_height="177dp"
+                        android:layout_gravity="center"
+                        android:rotation="-15"
+                        android:scaleType="centerCrop"
+                        android:translationX="-28dp"
+                        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Signal.WallpaperPreview"
+                        tools:background="@color/red" />
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/preview_media_1"
+                        android:layout_width="120dp"
+                        android:layout_height="215dp"
+                        android:layout_gravity="center"
+                        android:padding="1.5dp"
+                        android:scaleType="centerCrop"
+                        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Signal.WallpaperPreview"
+                        app:strokeColor="@color/signal_colorBackground"
+                        app:strokeWidth="3dp"
+                        tools:background="@color/green" />
+
+                </FrameLayout>
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</LinearLayout>

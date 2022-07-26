@@ -119,6 +119,14 @@ object ContactSearchItems {
       }
     }
 
+    override fun bindAvatar(model: StoryModel) {
+      if (model.story.recipient.isMyStory) {
+        avatar.setAvatarUsingProfile(Recipient.self())
+      } else {
+        super.bindAvatar(model)
+      }
+    }
+
     override fun bindLongPress(model: StoryModel) {
       itemView.setOnLongClickListener {
         val actions: List<ActionItem> = when {
@@ -216,12 +224,16 @@ object ContactSearchItems {
       }
 
       name.setText(getRecipient(model))
-      avatar.setAvatar(getRecipient(model))
       badge.setBadgeFromRecipient(getRecipient(model))
 
+      bindAvatar(model)
       bindNumberField(model)
       bindLabelField(model)
       bindSmsTagField(model)
+    }
+
+    protected open fun bindAvatar(model: T) {
+      avatar.setAvatar(getRecipient(model))
     }
 
     protected open fun bindNumberField(model: T) {

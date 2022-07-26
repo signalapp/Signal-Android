@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.mediasend.v2.text
 
 import android.graphics.Bitmap
 import android.graphics.Typeface
+import android.net.Uri
 import android.os.Bundle
 import androidx.annotation.ColorInt
 import androidx.lifecycle.LiveData
@@ -32,9 +33,6 @@ class TextStoryPostCreationViewModel(private val repository: TextStoryPostSendRe
   private val temporaryBodySubject: Subject<String> = BehaviorSubject.createDefault("")
   private val disposables = CompositeDisposable()
 
-  private val internalThumbnail = MutableLiveData<Bitmap>()
-  val thumbnail: LiveData<Bitmap> = internalThumbnail
-
   private val internalTypeface = MutableLiveData<Typeface>()
 
   val state: LiveData<TextStoryPostCreationState> = store.stateLiveData
@@ -55,14 +53,12 @@ class TextStoryPostCreationViewModel(private val repository: TextStoryPostSendRe
       }
   }
 
-  fun setBitmap(bitmap: Bitmap) {
-    internalThumbnail.value?.recycle()
-    internalThumbnail.value = bitmap
+  fun compressToBlob(bitmap: Bitmap): Single<Uri> {
+    return repository.compressToBlob(bitmap)
   }
 
   override fun onCleared() {
     disposables.clear()
-    thumbnail.value?.recycle()
   }
 
   fun saveToInstanceState(outState: Bundle) {
