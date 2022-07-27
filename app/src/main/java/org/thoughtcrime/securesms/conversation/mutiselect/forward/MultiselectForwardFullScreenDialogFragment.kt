@@ -12,7 +12,7 @@ import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.fragments.findListener
 
 class MultiselectForwardFullScreenDialogFragment : FullScreenDialogFragment(), MultiselectForwardFragment.Callback {
-  override fun getTitle(): Int = requireArguments().getParcelable<MultiselectForwardFragmentArgs>(DIALOG_TITLE)!!.title
+  override fun getTitle(): Int = requireArguments().getInt(DIALOG_TITLE)
 
   override fun getDialogLayoutResource(): Int = R.layout.fragment_container
 
