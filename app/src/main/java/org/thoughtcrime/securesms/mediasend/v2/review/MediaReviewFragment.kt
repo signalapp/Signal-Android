@@ -294,7 +294,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
 
   private fun presentSendButton(sendType: MessageSendType) {
     val sendButtonTint = if (sendType.usesSignalTransport) {
-      R.color.signal_colorSecondaryContainer
+      R.color.signal_colorOnSecondaryContainer
     } else {
       R.color.core_grey_50
     }

@@ -285,7 +285,7 @@
             android:layout_marginStart="12dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="16dp"
-            android:background="@color/signal_colorSecondaryContainer"
+            android:background="@color/signal_colorOnSecondaryContainer"
             android:padding="4dp"
             android:scaleType="centerInside"
             android:translationY="48dp"
@@ -296,7 +296,7 @@
             app:layout_goneMarginStart="10dp"
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Signal.Circle"
             app:srcCompat="@drawable/ic_arrow_end_24"
-            app:tint="@color/signal_colorOnSecondaryContainer"
+            app:tint="@color/signal_colorSecondaryContainer"
             tools:translationY="0dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
