@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.text.SpannableStringBuilder
 import android.view.ViewGroup
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -126,7 +127,21 @@ class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.C
 
   private fun getUnresolvedShareData(): UnresolvedShareData {
     return when {
-      intent.action == Intent.ACTION_SEND_MULTIPLE -> {
+      intent.action == Intent.ACTION_SEND_MULTIPLE && intent.hasExtra(Intent.EXTRA_TEXT) -> {
+        intent.getCharSequenceArrayListExtra(Intent.EXTRA_TEXT)?.let { list ->
+          val stringBuilder = SpannableStringBuilder()
+          list.forEachIndexed { index, text ->
+            stringBuilder.append(text)
+
+            if (index != list.lastIndex) {
+              stringBuilder.append("\n")
+            }
+          }
+
+          UnresolvedShareData.ExternalPrimitiveShare(stringBuilder)
+        } ?: error("ACTION_SEND_MULTIPLE with EXTRA_TEXT but the EXTRA_TEXT was null")
+      }
+      intent.action == Intent.ACTION_SEND_MULTIPLE && intent.hasExtra(Intent.EXTRA_STREAM) -> {
         intent.getParcelableArrayListExtra<Uri>(Intent.EXTRA_STREAM)?.let {
           UnresolvedShareData.ExternalMultiShare(it)
         } ?: error("ACTION_SEND_MULTIPLE with EXTRA_STREAM but the EXTRA_STREAM was null")
