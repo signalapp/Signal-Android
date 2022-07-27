@@ -95,9 +95,8 @@ public class ConversationViewModel extends ViewModel {
   private final GroupAuthorNameColorHelper            groupAuthorNameColorHelper;
   private final RxStore<ConversationState>            conversationStateStore;
   private final CompositeDisposable                   disposables;
-  private final BehaviorSubject<Unit>          conversationStateTick;
-  private final RxStore<ThreadCountAggregator> threadCountStore;
-  private final PublishProcessor<Long>         markReadRequestPublisher;
+  private final BehaviorSubject<Unit>                 conversationStateTick;
+  private final PublishProcessor<Long>                markReadRequestPublisher;
 
   private ConversationIntents.Args args;
   private int                      jumpToPosition;
@@ -126,7 +125,6 @@ public class ConversationViewModel extends ViewModel {
     this.conversationStateStore         = new RxStore<>(ConversationState.create(), Schedulers.io());
     this.disposables                    = new CompositeDisposable();
     this.conversationStateTick          = BehaviorSubject.createDefault(Unit.INSTANCE);
-    this.threadCountStore               = new RxStore<>(ThreadCountAggregator.Init.INSTANCE, Schedulers.computation());
     this.markReadRequestPublisher       = PublishProcessor.create();
 
     BehaviorSubject<Recipient> recipientCache = BehaviorSubject.create();
@@ -136,11 +134,6 @@ public class ConversationViewModel extends ViewModel {
         .distinctUntilChanged()
         .map(Recipient::resolved)
         .subscribe(recipientCache);
-
-    disposables.add(threadCountStore.update(
-        threadId.switchMap(conversationRepository::getThreadRecord).toFlowable(BackpressureStrategy.BUFFER),
-        (record, count) -> record.map(count::updateWith).orElse(count)
-    ));
 
     conversationStateStore.update(Observable.combineLatest(recipientId, conversationStateTick, (id, tick) -> id)
                                             .distinctUntilChanged()
@@ -307,13 +300,11 @@ public class ConversationViewModel extends ViewModel {
   }
 
   @NonNull Flowable<Long> getMarkReadRequests() {
-    Flowable<ThreadCountAggregator> nonInitialThreadCount = threadCountStore.getStateFlowable().filter(count -> !(count instanceof ThreadCountAggregator.Init)).take(1);
-
-    return Flowable.combineLatest(markReadRequestPublisher.onBackpressureBuffer(), nonInitialThreadCount, (time, count) -> time);
+    return markReadRequestPublisher.onBackpressureBuffer();
   }
 
-  @NonNull Flowable<Integer> getThreadUnreadCount() {
-    return threadCountStore.getStateFlowable().map(ThreadCountAggregator::getCount);
+  @NonNull Observable<Integer> getThreadUnreadCount(long afterTime) {
+    return threadId.switchMap(id -> conversationRepository.getUnreadCount(id, afterTime));
   }
 
   @NonNull Flowable<ConversationState> getConversationState() {

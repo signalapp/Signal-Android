@@ -78,6 +78,7 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns 
   public abstract int getMessageCountForThread(long threadId);
   public abstract int getMessageCountForThread(long threadId, long beforeTime);
   public abstract boolean hasMeaningfulMessage(long threadId);
+  public abstract int getIncomingMeaningfulMessageCountSince(long threadId, long afterTime);
   public abstract Optional<MmsNotificationInfo> getNotification(long messageId);
 
   public abstract Cursor getExpirationStartedMessages();

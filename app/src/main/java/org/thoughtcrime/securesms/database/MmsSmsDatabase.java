@@ -398,6 +398,13 @@ public class MmsSmsDatabase extends Database {
     return count;
   }
 
+  public int getIncomingMeaningfulMessageCountSince(long threadId, long afterTime) {
+    int count = SignalDatabase.sms().getIncomingMeaningfulMessageCountSince(threadId, afterTime);
+    count    += SignalDatabase.mms().getIncomingMeaningfulMessageCountSince(threadId, afterTime);
+
+    return count;
+  }
+
   public int getMessageCountBeforeDate(long date) {
     String selection = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " < " + date;
 

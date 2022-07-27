@@ -9,14 +9,12 @@ import androidx.annotation.WorkerThread;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery;
-import org.thoughtcrime.securesms.database.Database;
 import org.thoughtcrime.securesms.database.DatabaseObserver;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.MessageDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
-import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.MultiDeviceViewedUpdateJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -34,7 +32,6 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import io.reactivex.rxjava3.core.Observable;
-import io.reactivex.rxjava3.core.Scheduler;
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
@@ -180,16 +177,14 @@ class ConversationRepository {
     }).subscribeOn(Schedulers.io());
   }
 
-  Observable<Optional<ThreadRecord>> getThreadRecord(long threadId) {
-    if (threadId == -1L) {
-      return Observable.just(Optional.empty());
+  Observable<Integer> getUnreadCount(long threadId, long afterTime) {
+    if (threadId <= -1L || afterTime <= 0L) {
+      return Observable.just(0);
     }
 
-    return Observable.<Optional<ThreadRecord>> create(emitter -> {
+    return Observable.<Integer> create(emitter -> {
 
-      DatabaseObserver.Observer listener = () -> {
-        emitter.onNext(Optional.ofNullable(SignalDatabase.threads().getThreadRecord(threadId)));
-      };
+      DatabaseObserver.Observer listener = () -> emitter.onNext(SignalDatabase.mmsSms().getIncomingMeaningfulMessageCountSince(threadId, afterTime));
 
       ApplicationDependencies.getDatabaseObserver().registerConversationObserver(threadId, listener);
       emitter.setCancellable(() -> ApplicationDependencies.getDatabaseObserver().unregisterObserver(listener));

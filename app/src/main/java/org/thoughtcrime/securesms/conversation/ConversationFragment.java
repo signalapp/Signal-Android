@@ -986,7 +986,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     list.addItemDecoration(lastSeenDecoration, 0);
 
     if (lastSeen > 0) {
-      lastSeenDisposable.add(conversationViewModel.getThreadUnreadCount()
+      lastSeenDisposable.add(conversationViewModel.getThreadUnreadCount(lastSeen)
                                                   .distinctUntilChanged()
                                                   .observeOn(AndroidSchedulers.mainThread())
                                                   .subscribe(unreadCount -> {
