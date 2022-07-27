@@ -31,7 +31,6 @@ import androidx.camera.lifecycle.ProcessCameraProvider;
 import androidx.camera.view.PreviewView;
 import androidx.camera.view.SignalCameraView;
 import androidx.core.content.ContextCompat;
-import androidx.lifecycle.Observer;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.util.Executors;
@@ -57,7 +56,9 @@ import org.thoughtcrime.securesms.video.VideoUtil;
 
 import java.io.FileDescriptor;
 import java.io.IOException;
-import java.util.Optional;
+
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.disposables.Disposable;
 
 /**
  * Camera captured implemented using the CameraX SDK, which uses Camera2 under the hood. Should be
@@ -74,8 +75,8 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
   private Controller           controller;
   private View                 selfieFlash;
   private MemoryFileDescriptor videoFileDescriptor;
+  private Disposable           mostRecentItemDisposable = Disposable.disposed();
 
-  private final Observer<Optional<Media>> thumbObserver = this::presentRecentItemThumbnail;
   private boolean isThumbAvailable;
   private boolean isMediaSelected;
 
@@ -161,7 +162,7 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
   @Override
   public void onDestroyView() {
     super.onDestroyView();
-    controller.getMostRecentMediaItem().removeObserver(thumbObserver);
+    mostRecentItemDisposable.dispose();
     closeVideoFileDescriptor();
     requireActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
   }
@@ -221,19 +222,13 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
     initControls();
   }
 
-  private void presentRecentItemThumbnail(Optional<Media> media) {
-    if (media == null) {
-      isThumbAvailable = false;
-      updateGalleryVisibility();
-      return;
-    }
-
+  private void presentRecentItemThumbnail(@Nullable Media media) {
     ImageView thumbnail = controlsContainer.findViewById(R.id.camera_gallery_button);
 
-    if (media.isPresent()) {
+    if (media != null) {
       thumbnail.setVisibility(View.VISIBLE);
       Glide.with(this)
-           .load(new DecryptableUri(media.get().getUri()))
+           .load(new DecryptableUri(media.getUri()))
            .centerCrop()
            .into(thumbnail);
     } else {
@@ -241,7 +236,7 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
       thumbnail.setImageResource(0);
     }
 
-    isThumbAvailable = media.isPresent();
+    isThumbAvailable = media != null;
     updateGalleryVisibility();
   }
 
@@ -292,8 +287,10 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
       }
     }
 
-    controller.getMostRecentMediaItem().removeObserver(thumbObserver);
-    controller.getMostRecentMediaItem().observeForever(thumbObserver);
+    mostRecentItemDisposable.dispose();
+    mostRecentItemDisposable = controller.getMostRecentMediaItem()
+                                         .observeOn(AndroidSchedulers.mainThread())
+                                         .subscribe(item -> presentRecentItemThumbnail(item.orElse(null)));
 
     selfieFlash = requireView().findViewById(R.id.camera_selfie_flash);
 

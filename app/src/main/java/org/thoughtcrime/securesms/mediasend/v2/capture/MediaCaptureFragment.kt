@@ -6,9 +6,9 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.LiveData
 import androidx.navigation.fragment.findNavController
 import app.cash.exhaustive.Exhaustive
+import io.reactivex.rxjava3.core.Flowable
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.mediasend.CameraFragment
@@ -149,7 +149,7 @@ class MediaCaptureFragment : Fragment(R.layout.fragment_container), CameraFragme
     }
   }
 
-  override fun getMostRecentMediaItem(): LiveData<Optional<Media>> {
+  override fun getMostRecentMediaItem(): Flowable<Optional<Media>> {
     return viewModel.getMostRecentMedia()
   }
 

@@ -1,18 +1,18 @@
 package org.thoughtcrime.securesms.mediasend.v2.capture
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import io.reactivex.rxjava3.core.Flowable
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.util.SingleLiveEvent
-import org.thoughtcrime.securesms.util.livedata.Store
+import org.thoughtcrime.securesms.util.rx.RxStore
 import java.io.FileDescriptor
 import java.util.Optional
 
 class MediaCaptureViewModel(private val repository: MediaCaptureRepository) : ViewModel() {
 
-  private val store: Store<MediaCaptureState> = Store(MediaCaptureState())
+  private val store: RxStore<MediaCaptureState> = RxStore(MediaCaptureState())
 
   private val internalEvents: SingleLiveEvent<MediaCaptureEvent> = SingleLiveEvent()
 
@@ -34,8 +34,8 @@ class MediaCaptureViewModel(private val repository: MediaCaptureRepository) : Vi
     repository.renderVideoToMedia(fd, this::onMediaRendered, this::onMediaRenderFailed)
   }
 
-  fun getMostRecentMedia(): LiveData<Optional<Media>> {
-    return Transformations.map(store.stateLiveData) { Optional.ofNullable(it.mostRecentMedia) }
+  fun getMostRecentMedia(): Flowable<Optional<Media>> {
+    return store.stateFlowable.map { Optional.ofNullable(it.mostRecentMedia) }
   }
 
   private fun onMediaRendered(media: Media) {
