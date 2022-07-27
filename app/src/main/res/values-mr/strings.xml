@@ -1569,6 +1569,8 @@
   <string name="ThreadRecord__you_sent_a_gift">आपण एक भेट पाठवली</string>
   <!--Displayed in the notification when the user has opened a received gift-->
   <string name="ThreadRecord__you_redeemed_a_gift_badge">आपण एक भेट बॅज रिडीम केला</string>
+  <!--Displayed in the conversation list when someone reacted to your story-->
+  <!--Displayed in the conversation list when you reacted to someone\'s story-->
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal अद्यतन</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal ची एक नवीन आवृत्ती उपलब्ध आहे, अद्ययावत करण्यासाठी टॅप करा</string>

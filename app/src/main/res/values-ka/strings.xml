@@ -191,6 +191,7 @@
   <!--Content descrption for name edit button on contact share edit activity-->
   <string name="ContactShareEditActivity__edit_name">სახელის შეცვლა</string>
   <!--Content description for user avatar in edit activity-->
+  <string name="ContactShareEditActivity__avatar">ავატარი</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_sent_tap_for_details">გაუგზავნელი, დეტალებისთვის დააჭირე</string>
   <string name="ConversationItem_error_partially_not_delivered">ნაწილობრივ გაგზავნილი, დეტალებისთვის დააჭირე</string>
@@ -1069,23 +1070,23 @@
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s-მა შეცვალა ჯგუფის ავატარი.</string>
   <string name="MessageRecord_the_group_group_avatar_has_been_changed">ჯგუფის ავატარი შეიცვალა.</string>
   <!--GV2 attribute access level change-->
-  <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">შენ დააყენე ის, თუ ვის შეუძლია ჯგუფის ინფორმაციის რედაქტირება \"%1$s\'\'-ზე.</string>
-  <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s-მა დააყენა ის, თუ ვის შეუძლია ჯგუფის ინფორმაციის რედაქტირება \"%2$s\"-ზე.</string>
-  <string name="MessageRecord_who_can_edit_group_info_has_been_changed_to_s">ის, თუ ვის შეუძლია ჯგუფის ინფორმაციის რედაქტირება, დაყენებულია \"%1$s\"-ზე.</string>
+  <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">შენ შეცვალე ის, ვისაც შეუძლია ჯგუფის ინფორმაციის რედაქტირება \"%1$s\'\'-ზე.</string>
+  <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s-მა შეცვალა ის, ვისაც შეუძლია ჯგუფის ინფორმაციის რედაქტირება \"%2$s\"-ზე.</string>
+  <string name="MessageRecord_who_can_edit_group_info_has_been_changed_to_s">ის, ვისაც შეუძლია ჯგუფის ინფორმაციის რედაქტირება შეიცვალა \"%1$s\"-ზე.</string>
   <!--GV2 membership access level change-->
-  <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">თქვენ დააყენე, ვის შეუძლია ჯგუფის წევრობის რედაქტირება \"%1$s\"-ზე.</string>
-  <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s-მა დააყენა, ვის შეუძლია ჯგუფის წევრობის რედაქტირება \"%2$s\"-ზე.</string>
-  <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">ვის შეუძლია ჯგუფის წევრობის რედაქტირება დაყენებულია \"%1$s\"-ზე.</string>
+  <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">შენ შეცვალე ის, ვისაც შეუძლია ჯგუფის წევრობის რედაქტირება \"%1$s\"-ზე.</string>
+  <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s-მა შეცვალა ის, ვისაც შეუძლია ჯგუფის წევრობის რედაქტირება \"%2$s\"-ზე.</string>
+  <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">ის, ვისაც შეუძლია ჯგუფის წევრობის რედაქტირება შეიცვალა \"%1$s\"-ზე.</string>
   <!--GV2 announcement group change-->
   <string name="MessageRecord_you_allow_all_members_to_send">შენ შეცვალე ჯგუფის პარამეტრები ისე, რომ ყველა წევრს შეეძლოს შეტყობინებების გაგზავნა.</string>
   <string name="MessageRecord_you_allow_only_admins_to_send">შენ შეცვალე ჯგუფის პარამეტრები ისე, რომ მხოლოდ ადმინებს შეეძლოთ შეტყობინებების გაგზავნა.</string>
   <string name="MessageRecord_s_allow_all_members_to_send">%1$s-მა შეცვალა ჯგუფის პარამეტრები ისე, რომ ყველა წევრს შეეძლოს შეტყობინებების გაგზავნა.</string>
-  <string name="MessageRecord_s_allow_only_admins_to_send">%1$s-მა შეცვალა ჯგუფის პარამეტრები ისე, რომ ყველა მხოლოდ ადმინებს შეეძლოთ შეტყობინებების გაგზავნა.</string>
-  <string name="MessageRecord_allow_all_members_to_send">ჯგუფის პარამეტრები შეიცვალა, რათა  ყველა წევრს შეეძლოს შეტყობინებების გაგზავნა.</string>
-  <string name="MessageRecord_allow_only_admins_to_send">ჯგუფის პარამეტრები შეიცვალა, რათა მხოლოდ ადმინისტრატორებს შეეძლოთ შეტყობინებების გაგზავნა.</string>
+  <string name="MessageRecord_s_allow_only_admins_to_send">%1$s-მა შეცვალა ჯგუფის პარამეტრები ისე, რომ მხოლოდ ადმინებს შეეძლოთ შეტყობინებების გაგზავნა.</string>
+  <string name="MessageRecord_allow_all_members_to_send">ჯგუფის პარამეტრები შეიცვალა, რათა ყველა წევრს შეეძლოს შეტყობინებების გაგზავნა.</string>
+  <string name="MessageRecord_allow_only_admins_to_send">ჯგუფის პარამეტრები შეიცვალა, რათა მხოლოდ ადმინებსშეეძლოთ შეტყობინებების გაგზავნა.</string>
   <!--GV2 group link invite access level change-->
-  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">შენ ჩართე ჯგუფის ბმული ადმინის დადასტურების გამორთული ფუნქციით.</string>
-  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">შენ ჩართე ჯგუფის ბმული ადმინის დადასტურების ჩართული ფუნქციით.</string>
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">შენ გააქტიურე ჯგუფის ბმული ადმინის დასტურის გამორთული ფუნქციით.</string>
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">შენ გააქტიურე ჯგუფის ბმული ადმინის დასტურის ჩართული ფუნქციით.</string>
   <string name="MessageRecord_you_turned_off_the_group_link">შენ გამორთე ჯგუფის ბმული.</string>
   <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s-მა ჯგუფის ბმული ადმინის დადასტურების გამორთული ფუნქციით ჩართო.</string>
   <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s-მა ჯგუფის ბმული ადმინის დადასტურების ჩართული ფუნქციით ჩართო.</string>
@@ -1101,14 +1102,14 @@
   <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">ჯგუფის ბმულისთვის ადმინის დადასტურების ფუნქცია ჩართულია.</string>
   <!--GV2 group link reset-->
   <string name="MessageRecord_you_reset_the_group_link">შენ შეცვალე ჯგუფის ბმული.</string>
-  <string name="MessageRecord_s_reset_the_group_link">%1$s-მა ჯგუფის ბმული შეცვალა.</string>
+  <string name="MessageRecord_s_reset_the_group_link">%1$s-მა შეცვალა ჯგუფის ბმული.</string>
   <string name="MessageRecord_the_group_link_has_been_reset">ჯგუფის ბმული შეცვლილია.</string>
   <!--GV2 group link joins-->
-  <string name="MessageRecord_you_joined_the_group_via_the_group_link">ჯგუფს ჯგუფის ბმულით შეუერთდი.</string>
-  <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s ჯგუფს ჯგუფის ბმულით შემოუერთდა.</string>
+  <string name="MessageRecord_you_joined_the_group_via_the_group_link">შენ ჯგუფს შეუერთდი ჯგუფის ბმულით.</string>
+  <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s ჯგუფს შემოუერთდა ჯგუფის ბმულით.</string>
   <!--GV2 group link requests-->
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">შენ ჯგუფში გასაწევრიანებლად მოთხოვნა გაგზავნე.</string>
-  <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s-მა ჯგუფში ჯგუფის ბმულით გაწევრიანება მოითხოვა.</string>
+  <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s-მა ჯგუფში გაწევრიანება ჯგუფის ბმულით მოითხოვა.</string>
   <!--Update message shown when someone requests to join via group link and cancels the request back to back-->
   <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
     <item quantity="one">%1$s-მა მოითხოვა და გააუქმა ჯგუფის ბმულით გაწევრიანების მოთხოვნა.</item>
@@ -1124,37 +1125,37 @@
   <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">ჯგუფში გაწევრიანების შენი მოთხოვნა ადმინმა უარყო.</string>
   <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%2$s-ის ჯგუფში გაწევრიანების მოთხოვნა %1$s-მა უარყო.</string>
   <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">%1$s-ის ჯგუფში გაწევრიანების მოთხოვნა უარყოფილია.</string>
-  <string name="MessageRecord_you_canceled_your_request_to_join_the_group">შენ გააუქმე ჯგუფში გაწევრიანების მოთხოვნა.</string>
-  <string name="MessageRecord_s_canceled_their_request_to_join_the_group">%1$s-მა გააუქმა ჯგუფში გაწევრიანების მოთხოვნა.</string>
+  <string name="MessageRecord_you_canceled_your_request_to_join_the_group">შენ გააუქმე ჯგუფში გაწევრიანების შენი მოთხოვნა.</string>
+  <string name="MessageRecord_s_canceled_their_request_to_join_the_group">%1$s-მა გააუქმა ჯგუფში გაწევრიანების თავისი მოთხოვნა.</string>
   <!--End of GV2 specific update messages-->
-  <string name="MessageRecord_your_safety_number_with_s_has_changed">შენი %s-ის შემცველი უსაფრთხოების ნომერი შეიცვალა.</string>
-  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">შენ მონიშნე %s-ის შემცველი შენი უსაფრთხოების ნომერი ვერიფიცირებულად.</string>
-  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">შენ მონიშნე %s-ის შემცველი შენი უსაფრთხოების ნომერი ვერიფიცირებულად სხვა მოწყობილობიდან.</string>
-  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">შენ მონიშნე %s-ის შემცველი შენი უსაფრთხოების ნომერი არა-ვერიფიცირებულად.</string>
-  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">შენ მონიშნე %s-ის შემცველი შენი უსაფრთხოების ნომერი არა-ვერიფიცირებულად სხვა მოწყობილობიდან.</string>
+  <string name="MessageRecord_your_safety_number_with_s_has_changed">შენი უსაფრთხოების ნომერი %s-თან შეიცვალა.</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">შენი უსაფრთხოების ნომერი %s-თან შენ მონიშნე ვერიფიცირებულად.</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">შენი უსაფრთხოების ნომერი %s-თან შენ სხვა მოწყობილობიდან მონიშნე ვერიფიცირებულად.</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">შენი უსაფრთხოების ნომერი %s-თან შენ მონიშნე არა-ვერიფიცირებულად.</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">შენი უსაფრთხოების ნომერი %s-თან შენ სხვა მოწყობილობიდან მონიშნე არა-ვერიფიცირებულად.</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">%s-ის შეტყობინება ვერ გაიგზავნა.</string>
-  <string name="MessageRecord_s_changed_their_phone_number">%1$s-მა ტელეფონის ნომერი გამოცვალა.</string>
+  <string name="MessageRecord_s_changed_their_phone_number">%1$s-მა ტელეფონის ნომერი შეცვალა.</string>
   <!--Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost.-->
   <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">მოგწონს ეს ახალი ფუნქცია? დაგვეხმარე Signal-ის მხარდაჭერაში ერთჯერადი დონაციით.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s-მა ჯგუფური ზარი წამოიწყო · %2$s</string>
-  <string name="MessageRecord_s_is_in_the_group_call_s">%1$s ჯგუფურ ზარშია · %2$s</string>
-  <string name="MessageRecord_you_are_in_the_group_call_s1">ჯგუფურ ზარში ხარ · %1$s</string>
-  <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s და %2$s ჯგუფურ ზარში არიან · %3$s</string>
+  <string name="MessageRecord_s_is_in_the_group_call_s">%1$s ჯგუფურ ზარზეა · %2$s</string>
+  <string name="MessageRecord_you_are_in_the_group_call_s1">ჯგუფურ ზარზე ხარ · %1$s</string>
+  <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s და %2$s ჯგუფურ ზარზე არიან · %3$s</string>
   <string name="MessageRecord_group_call_s">ჯგუფური ზარი · %1$s</string>
   <string name="MessageRecord_s_started_a_group_call">%1$s-მა ჯგუფური ზარი წამოიწყო</string>
-  <string name="MessageRecord_s_is_in_the_group_call">%1$s ჯგუფურ ზარშია</string>
-  <string name="MessageRecord_you_are_in_the_group_call">ჯგუფურ ზარში ხარ</string>
-  <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s და %2$s ჯგუფურ ზარში არიან</string>
+  <string name="MessageRecord_s_is_in_the_group_call">%1$s ჯგუფურ ზარზეა</string>
+  <string name="MessageRecord_you_are_in_the_group_call">ჯგუფურ ზარზე ხარ</string>
+  <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s და %2$s ჯგუფურ ზარზე არიან</string>
   <string name="MessageRecord_group_call">ჯგუფური ზარი</string>
   <string name="MessageRecord_you">შენ</string>
   <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
     <item quantity="one">%1$s, %2$s, და %3$d სხვა ჯგუფურ ზარში არიან · %4$s</item>
-    <item quantity="other">%1$s, %2$s, და %3$d სხვა ჯგუფურ ზარში არიან · %4$s</item>
+    <item quantity="other">%1$s, %2$s, და %3$d სხვა ჯგუფურ ზარზე არიან · %4$s</item>
   </plurals>
   <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call">
     <item quantity="one">%1$s, %2$s, და %3$d სხვა ჯგუფურ ზარში არიან</item>
-    <item quantity="other">%1$s, %2$s, და %3$d სხვა ჯგუფურ ზარში არიან</item>
+    <item quantity="other">%1$s, %2$s, და %3$d სხვა ჯგუფურ ზარზე არიან</item>
   </plurals>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">დასტური</string>
@@ -1162,7 +1163,7 @@
   <string name="MessageRequestBottomView_delete">წაშლა</string>
   <string name="MessageRequestBottomView_block">დაბლოკვა</string>
   <string name="MessageRequestBottomView_unblock">განბლოკვა</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">მივცეთ უფლება %1$s-ს მოგწეროს და შენი სახელი და ფოტო გავუზიაროთ? ვერ გაიგებს, რომ მისი შეტყობინება ნახე, სანამ არ დაეთანხმები.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">მივცეთ უფლება %1$s-ს მოგწეროს და შენი სახელი და ფოტო გავუზიაროთ? ის ვერ გაიგებს, რომ მისი შეტყობინება ნახე, სანამ არ დაეთანხმები.</string>
   <!--Shown in message request flow. Describes what will happen if you unblock a Signal user-->
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">მივცეთ უფლება %1$s-ს მოგწეროს და შენი სახელი და ფოტო გავუზიაროთ? შეტყობინებებს არ მიიღებ, სანამ მას არ განბლოკავ.</string>
   <!--Shown in message request flow. Describes what will happen if you unblock an SMS user-->
@@ -1170,12 +1171,12 @@
   <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">გსურს შეიტყო სიახლეები %1$s-ის შესახებ? განახლებებს არ მიიღებ, სანამ მას არ განბლოკავ.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">გსურს გააგრძელო მიმოწერა ამ ჯგუფთან და გაუზიარო შენი სახელი და ფოტო მის წევრებს?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">განაახლე ეს ჯგუფი ახალი ფუნქციების, მაგალითად @მონიშვნებისა და ადმინების გასააქტიურებლად. წევრები, რომლებსაც არ გაუზიარებიათ თავიანთი სახელი ან ფოტო ამ ჯგუფში, მოწვეულნი იქნებიან გასაწევრიანებლად.</string>
-  <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">ამ მემკვიდრეობითი ჯგუფის გამოყენება აღარ შეიძლება, რადგან ის ძალიან დიდია. ჯგუფის მაქსიმალური ზომაა %1$d.</string>
+  <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">ამ მოძველებული ჯგუფის გამოყენება აღარ შეიძლება, რადგან ის ძალიან დიდია. ჯგუფის მაქსიმალური ზომაა %1$d.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">გსურს გააგრძელო მიმოწერა %1$s-თან და შენი სახელი და ფოტო გაუზიარო?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">გსურს შეუერთდე ამ ჯგუფს და გაუზიარო შენი სახელი და ფოტო მის წევრებს? ისინი ვერ გაიგებენ, რომ მათი შეტყობინებები ნახე, სანამ არ დაეთანხმები.</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">გსურს შეუერთდე ამ ჯგუფს და გაუზიარო შენი სახელი და ფოტო მის წევრებს? მათ შეტყობინებებს ვერ ნახავ, სანამ არ დაეთანხმები.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">გსურს შეუერთდე ამ ჯგუფს? ისინი ვერ გაიგებენ, რომ მათი შეტყობინებები ნახე, სანამ არ დაეთანხმები.</string>
-  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">გსურს განბლოკო ეს ჯგუფი და გაუზიარო შენი სახელი და ფოტო მის წევრებს? შეტყობინებებს არ მიიღებ, სანამ მათ არ განბლოკავ.</string>
+  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">გსურს განბლოკო ეს ჯგუფი და გაუზიარო შენი სახელი და ფოტო მის წევრებს? შეტყობინებებს არ მიიღებ, სანამ მას არ განბლოკავ.</string>
   <string name="MessageRequestProfileView_view">View</string>
   <string name="MessageRequestProfileView_member_of_one_group">%1$s-ის წევრი</string>
   <string name="MessageRequestProfileView_member_of_two_groups">%1$s-ისა და %2$s-ის წევრი</string>
@@ -1205,7 +1206,7 @@
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">მივაბათ ეს მოწყობილობა?</string>
   <string name="DeviceProvisioningActivity_continue">გაგრძელება</string>
-  <string name="DeviceProvisioningActivity_content_intro">ეს შეძლებს</string>
+  <string name="DeviceProvisioningActivity_content_intro">ის შეძლებს, რომ</string>
   <string name="DeviceProvisioningActivity_content_bullets">
         • წაიკითხოს შენი ყველა შეტყობინება
         \n• გააგზავნოს შეტყობინებები შენი სახელით
@@ -1219,15 +1220,15 @@
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">ვწუხვართ, უკვე ძალიან ბევრი მოწყობილობა გაქვს დაკავშირებული, ზოგიერთის წაშლა სცადე</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">ვწუხვართ, ეს არ არის მოწყობილობის მიბმის მოქმედი QR კოდი.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">მივაბათ Signal-ს მოწყობილობა?</string>
-  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">როგორც ჩანს, Signal-ისთვის მოწყობილობის მიბმას მესამე მხარის სკანერის გამოყენებით ცდილობ. შენი უსაფრთხოებისთვის გთხოვთ, ხელახლა დაასკანერო კოდი Signal-იდან.</string>
-  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal-ს QR კოდის დასასკანერებლად კამერის ნებართვა სჭირდება, მაგრამ ის სამუდამოდ უარყოფილია. გთხოვთ, შეხვიდე აპის პარამეტრებში, აირჩიო „ნებართვები“ და ჩართო „კამერა“.</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">როგორც ჩანს, Signal-ისთვის მოწყობილობის მიბმას მე-3 მხარის სკანერის გამოყენებით ცდილობ. შენი უსაფრთხოებისთვის გთხოვთ, ხელახლა დაასკანერო კოდი Signal-იდან.</string>
+  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal-ს QR კოდის დასასკანერებლად კამერის ნებართვა სჭირდება, მაგრამ ის სამუდამოდ იქნა უარყოფილი. გთხოვთ, შეხვიდე აპის პარამეტრებში, აირჩიო „ნებართვები“ და ჩართო „კამერა“.</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">QR კოდის სკანირება კამერის ნებართვის გარეშე შეუძლებელია</string>
   <!--OutdatedBuildReminder-->
-  <string name="OutdatedBuildReminder_update_now">გაანახლე ახლა</string>
+  <string name="OutdatedBuildReminder_update_now">განაახლე ახლავე</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Signal-ის ამ ვერსიას ვადა დღეს ამოეწურება. გადმოწერე უახლესი ვერსია.</string>
   <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
     <item quantity="one">Signal-ის ამ ვერსია ვადა ხვალ გაუვა. გადმოწერე უახლესი ვერსია.</item>
-    <item quantity="other">Signal-ის ამ ვერსია ვადა %d დღეში გაუვა. გადმოწერე უახლესი ვერსია.</item>
+    <item quantity="other">Signal-ის ამ ვერსიას ვადა %d დღეში გაუვა. გადმოწერე უახლესი ვერსია.</item>
   </plurals>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">შეიყვანე პაროლ-ფრაზა</string>
@@ -1235,16 +1236,16 @@
   <string name="PassphrasePromptActivity_ok_button_content_description">პაროლ-ფრაზის დადასტურება</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">არასწორი პაროლ-ფრაზა!</string>
   <string name="PassphrasePromptActivity_unlock_signal">Signal-ის გახსნა</string>
-  <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal Android-ი - მთავარი ეკრანი</string>
+  <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal Android - დაბლოკილი ეკრანი</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">რუკა</string>
-  <string name="PlacePickerActivity_drop_pin">პინის მოხსნა</string>
+  <string name="PlacePickerActivity_drop_pin">პინის დასმა</string>
   <string name="PlacePickerActivity_accept_address">მისამართის დადასტურება</string>
   <!--PlayServicesProblemFragment-->
-  <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">შენ მიერ დაინსტალირებული Google Play Services-ის ვერსია გამართულად არ ფუნქციონირებს. გთხოვთ, ხელახლა დააინსტალირო Google Play Services და თავიდან სცადო.</string>
+  <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">შენ მიერ გადმოწერილი Google Play Services-ის ვერსია გამართულად არ ფუნქციონირებს. გთხოვთ, ხელახლა გადმოწერო Google Play Services და თავიდან სცადო.</string>
   <!--PinRestoreEntryFragment-->
   <string name="PinRestoreEntryFragment_incorrect_pin">არასწორი პინ-კოდი</string>
-  <string name="PinRestoreEntryFragment_skip_pin_entry">გსურს გამოტოვო პინ-კოდის შეყვანა?</string>
+  <string name="PinRestoreEntryFragment_skip_pin_entry">გამოტოვოთ პინ-კოდის შეყვანა?</string>
   <string name="PinRestoreEntryFragment_need_help">დახმარება გჭირდება?</string>
   <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">შენი პინ-კოდი არის %1$d+ ციფრული კოდი, რომელიც შენ შექმენი და შეიძლება იყოს რიცხვითი ან ანბანურ-ციფრული.\n\nთუ არ გახსოვს შენი პინ-კოდი, შეგიძლია ახალი შექმნა. შეგიძლია დარეგისტრირდე და შენი ანგარიში გამოიყენო, მაგრამ ზოგიერთ შენახულ პარამეტრს დაკარგავ, მაგალითად, შენი პროფილის ინფორმაციას.</string>
   <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">თუ არ გახსოვს შენი პინ-კოდი, შეგიძლია ახალი შექმნა. შეგიძლია დარეგისტრირდე და გამოიყენო შენი ანგარიში, მაგრამ დაკარგავ ზოგიერთ შენახულ პარამეტრს, მაგალითად, შენი პროფილის ინფორმაციას.</string>
@@ -1293,14 +1294,14 @@
   <!--RecipientProvider-->
   <string name="RecipientProvider_unnamed_group">უსახელო ჯგუფი</string>
   <!--RedPhone-->
-  <string name="RedPhone_answering">პასუხი…</string>
+  <string name="RedPhone_answering">ზარის მიღება…</string>
   <string name="RedPhone_ending_call">ზარის დასრულება…</string>
-  <string name="RedPhone_ringing">რეკვა…</string>
+  <string name="RedPhone_ringing">ირეკება…</string>
   <string name="RedPhone_busy">დაკავებულია</string>
   <string name="RedPhone_recipient_unavailable">მიმღები მიუწვდომელია</string>
   <string name="RedPhone_network_failed">ქსელი ჩავარდა!</string>
   <string name="RedPhone_number_not_registered">ნომერი არ არის რეგისტრირებული!</string>
-  <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">შენ მიერ აკრეფილ ნომერს არ აქვს უსაფრთხო ხმის მხარდაჭერა!</string>
+  <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">შენ მიერ აკრეფილ ნომერს არ აქვს ხმის უსაფრთხო მხარდაჭერა!</string>
   <string name="RedPhone_got_it">Got it</string>
   <!--Valentine\'s Day Megaphone-->
   <!--Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons.-->
@@ -1327,13 +1328,13 @@
   <string name="WebRtcCallView__signal_call">Signal-ის ზარი</string>
   <string name="WebRtcCallView__signal_video_call">Signal-ის ვიდეო ზარი</string>
   <string name="WebRtcCallView__start_call">ზარის დაწყება</string>
-  <string name="WebRtcCallView__join_call">ზარში შესვლა</string>
+  <string name="WebRtcCallView__join_call">ზარზე შესვლა</string>
   <string name="WebRtcCallView__call_is_full">ზარი გადავსებულია</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">ამ ზარისთვის მიღწეულია მონაწილეთა მაქსიმალური რაოდენობა - %1$d. Მოგვიანებით სცადე.</string>
-  <string name="WebRtcCallView__view_participants_list">ვიდეოს მონაწილეები</string>
+  <string name="WebRtcCallView__view_participants_list">მონაწილეების ნახვა</string>
   <string name="WebRtcCallView__your_video_is_off">შენი ვიდეო გამორთულია</string>
   <string name="WebRtcCallView__reconnecting">ხელახლა დაკავშირება…</string>
-  <string name="WebRtcCallView__joining">შესვლა…</string>
+  <string name="WebRtcCallView__joining">დაკავშირება…</string>
   <string name="WebRtcCallView__disconnected">Disconnected</string>
   <string name="WebRtcCallView__signal_will_ring_s">Signal-ი დარეკავს %1$s</string>
   <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal-ი %1$s-სა და %2$s-ს დაურეკავს</string>
@@ -1355,21 +1356,21 @@
   </plurals>
   <string name="WebRtcCallView__s_is_calling_you">%1$s გირეკავს</string>
   <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s შენ და %2$s-ს გირეკავთ</string>
-  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s შენ, %2$s-სა და %3$s-ს გირეკავთ</string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s შენ, %2$s-ს და %3$s-ს გირეკავთ</string>
   <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
     <item quantity="one">%1$s შენ, %2$s-ს, %3$s-სა და %4$d სხვას გირეკავთ</item>
-    <item quantity="other">%1$s შენ, %2$s-ს, %3$s-სა და %4$d სხვას გირეკავთ</item>
+    <item quantity="other">%1$s შენ, %2$s-ს, %3$s-ს და %4$d სხვას გირეკავთ</item>
   </plurals>
-  <string name="WebRtcCallView__no_one_else_is_here">აქ სხვა არავინაა</string>
-  <string name="WebRtcCallView__s_is_in_this_call">%1$s ამ ზარშია</string>
-  <string name="WebRtcCallView__s_are_in_this_call">%1$s არიან ამ ზარში</string>
-  <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s და %2$s ამ ზარში არიან</string>
+  <string name="WebRtcCallView__no_one_else_is_here">აქ არავინაა</string>
+  <string name="WebRtcCallView__s_is_in_this_call">%1$s ამ ზარზეა</string>
+  <string name="WebRtcCallView__s_are_in_this_call">%1$s არიან ამ ზარზე</string>
+  <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s და %2$s ამ ზარზე არიან</string>
   <string name="WebRtcCallView__s_is_presenting">%1$s წარადგენს</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="one">%1$s, %2$s, და %3$d ამ ზარში არიან</item>
-    <item quantity="other">%1$s, %2$s, და %3$d ამ ზარში არიან</item>
+    <item quantity="other">%1$s, %2$s, და %3$d ამ ზარზე არიან</item>
   </plurals>
-  <string name="WebRtcCallView__flip">შემობრუნება</string>
+  <string name="WebRtcCallView__flip">გადართვა</string>
   <string name="WebRtcCallView__speaker">სპიკერი</string>
   <string name="WebRtcCallView__camera">კამერა</string>
   <string name="WebRtcCallView__unmute">მდუმარე რეჟიმის გამორთვა</string>
@@ -1379,7 +1380,7 @@
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">ამ ზარში · %1$d ადამიანი</item>
-    <item quantity="other">ამ ზარში · %1$d ადამიანი</item>
+    <item quantity="other">ამ ზარზე · %1$d ადამიანი</item>
   </plurals>
   <!--CallParticipantView-->
   <string name="CallParticipantView__s_is_blocked">%1$s დაბლოკილია</string>
@@ -1571,6 +1572,8 @@
   <string name="ThreadRecord__you_sent_a_gift">შენ გააგზავნე საჩუქარი</string>
   <!--Displayed in the notification when the user has opened a received gift-->
   <string name="ThreadRecord__you_redeemed_a_gift_badge">შენ გამოიყენე საჩუქრის ემბლემა</string>
+  <!--Displayed in the conversation list when someone reacted to your story-->
+  <!--Displayed in the conversation list when you reacted to someone\'s story-->
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal-ის განახლება</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal-ის ახალი ვერსია ხელმისაწვდომია. დააჭირე განახლებისთვის</string>
@@ -2920,8 +2923,8 @@
   <string name="GroupsLearnMore_what_are_legacy_groups">რა არის მემკვიდრეობითი ჯგუფები?</string>
   <string name="GroupsLearnMore_paragraph_1">მემკვიდეობითი ჯგუფები არის ჯგუფები, რომლებიც არ არის თავსებადი ახალი ჯგუფის ისეთ ფუნქციებთან, როგორიცაა ადმინისტრატორები და უფრო აღწერილობითი ჯგუფის განახლებები.</string>
   <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">შემიძლია მემკვიდრეობითი ჯგუფის განახლება?</string>
-  <string name="GroupsLearnMore_paragraph_2">მემკვიდრეობითი ჯგუფის განახლება ახალ ჯგუფებად ჯერ ვერ მოხერხდება, მაგრამ შეგიძლია შექმნა ახალი ჯგუფი იმავე წევრებით, თუ ისინი Signal-ის უახლეს ვერსიაზე არიან.</string>
-  <string name="GroupsLearnMore_paragraph_3">Signal-ი მომავალში შემოგთავაზებს გზას მემკვიდრეობითი ჯგუფების განახლებისთვის.</string>
+  <string name="GroupsLearnMore_paragraph_2">მოძველებული ჯგუფის განახლება ახალ ჯგუფებად ჯერ ვერ მოხერხდება, მაგრამ შეგიძლია შექმნა ახალი ჯგუფი იმავე წევრებით, თუ ისინი Signal-ის უახლეს ვერსიაზე არიან.</string>
+  <string name="GroupsLearnMore_paragraph_3">Signal-ი მომავალში შემოგთავაზებს გზას მოძველებული ჯგუფების განახლებისთვის.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
   <string name="GroupLinkBottomSheet_share_hint_requiring_approval">ნებისმიერს, ვისაც აქვს ეს ბმული, შეუძლია ნახოს ჯგუფის სახელი და ფოტო და მოითხოვოს გაწევრიანება. გაუზიარე ის ადამიანებს, რომლებსაც ენდობი.</string>
   <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">ნებისმიერს, ვისაც აქვს ეს ბმული, შეუძლია ნახოს ჯგუფის სახელი და ფოტო და შეუერთდეს ჯგუფს. გაუზიარე ის ადამიანებს, რომლებსაც ენდობი.</string>

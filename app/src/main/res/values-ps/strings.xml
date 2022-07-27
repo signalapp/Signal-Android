@@ -1445,6 +1445,8 @@
   <!--Displayed in the notification when the user is sent a gift-->
   <!--Displayed in the notification when the user sends a gift-->
   <!--Displayed in the notification when the user has opened a received gift-->
+  <!--Displayed in the conversation list when someone reacted to your story-->
+  <!--Displayed in the conversation list when you reacted to someone\'s story-->
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">د Signal اپډیټ کول</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">د Signal نوې نسخه د لاسرسي وړ ده، د اپډیټ کولو لپاره کلیک وکړئ</string>

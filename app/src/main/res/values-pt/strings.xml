@@ -175,6 +175,7 @@
   <string name="ContactsDatabase_signal_call_s">Chamada do Signal %s</string>
   <!--ContactNameEditActivity-->
   <!--Toolbar title for contact name edit activity-->
+  <string name="ContactNameEditActivity__edit_name">Editar nome</string>
   <string name="ContactNameEditActivity_given_name">Nome próprio</string>
   <string name="ContactNameEditActivity_family_name">Apelido</string>
   <string name="ContactNameEditActivity_prefix">Prefixo</string>
@@ -182,12 +183,14 @@
   <string name="ContactNameEditActivity_middle_name">Nome do meio</string>
   <!--ContactShareEditActivity-->
   <!--ContactShareEditActivity toolbar title-->
+  <string name="ContactShareEditActivity__send_contact">Enviar contacto</string>
   <string name="ContactShareEditActivity_type_home">Casa</string>
   <string name="ContactShareEditActivity_type_mobile">Telemóvel</string>
   <string name="ContactShareEditActivity_type_work">Trabalho</string>
   <string name="ContactShareEditActivity_type_missing">Outro</string>
   <string name="ContactShareEditActivity_invalid_contact">O contacto selecionado é inválido</string>
   <!--Content descrption for name edit button on contact share edit activity-->
+  <string name="ContactShareEditActivity__edit_name">Editar nome</string>
   <!--Content description for user avatar in edit activity-->
   <string name="ContactShareEditActivity__avatar">Avatar</string>
   <!--ConversationItem-->
@@ -1641,6 +1644,8 @@
   <string name="ThreadRecord__you_sent_a_gift">Enviou uma oferta</string>
   <!--Displayed in the notification when the user has opened a received gift-->
   <string name="ThreadRecord__you_redeemed_a_gift_badge">Resgatou um crachá de oferta</string>
+  <!--Displayed in the conversation list when someone reacted to your story-->
+  <!--Displayed in the conversation list when you reacted to someone\'s story-->
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Atualização do Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Está disponível uma nova versão do Signal, toque para atualizar</string>
@@ -3075,6 +3080,7 @@
   <string name="CallParticipant__s_on_another_device">%1$s (noutro dispositivo)</string>
   <!--WifiToCellularPopupWindow-->
   <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
+  <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Sinal Wi-Fi fraco. Mudou para a rede móvel.</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Eliminar a sua conta irá:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Introduza o sue número de telefone</string>
@@ -4434,6 +4440,7 @@
   <!--Story info header received heading-->
   <string name="StoryInfoHeader__received">Recebida</string>
   <!--Story info header file size heading-->
+  <string name="StoryInfoHeader__file_size">Tamanho do ficheiro</string>
   <!--Story info "Sent to" header-->
   <string name="StoryInfoBottomSheetDialogFragment__sent_to">Enviar para</string>
   <!--Story info "Sent from" header-->

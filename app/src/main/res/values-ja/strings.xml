@@ -1489,6 +1489,8 @@
   <string name="ThreadRecord__you_sent_a_gift">ギフトを贈りました</string>
   <!--Displayed in the notification when the user has opened a received gift-->
   <string name="ThreadRecord__you_redeemed_a_gift_badge">ギフトバッジの交換</string>
+  <!--Displayed in the conversation list when someone reacted to your story-->
+  <!--Displayed in the conversation list when you reacted to someone\'s story-->
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signalアップデート</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">新バージョンのSignalを利用できます。タップしてアップデートします。</string>

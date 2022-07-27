@@ -1535,6 +1535,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--Displayed in the notification when the user sends a gift-->
   <!--Displayed in the notification when the user has opened a received gift-->
   <string name="ThreadRecord__you_redeemed_a_gift_badge">Du løste inn et gavemerke</string>
+  <!--Displayed in the conversation list when someone reacted to your story-->
+  <!--Displayed in the conversation list when you reacted to someone\'s story-->
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal oppdatering</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">En ny versjon av Signal er tilgjengelig, trykk for å oppdatere</string>
@@ -3408,6 +3410,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--Displayed in the bottom sheet when a boost badge expires-->
   <!--Displayed when we do not think the user is a subscriber when their boost expires-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Bli en støttespiller</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Kjøp en boost</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ikke nå</string>
   <!--Copy displayed when badge expires after user inactivity-->
   <!--Copy displayed when badge expires after payment failure-->
@@ -3429,6 +3432,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--Displayed as title when some generic error happens during gift badge sending-->
   <string name="DonationsErrors__failed_to_send_gift_badge">Kunne ikke sende gavemerket</string>
   <!--Displayed as message when some generic error happens during gift badge sending-->
+  <string name="DonationsErrors__your_payment_is_still">Betalingen behandles. Dette kan ta et par minutter avhengig av nettilkoblingen din.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay er ikke tilgjengelig</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Kunne ikke avslutte abonnementet</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Du må være koblet til internett for å si opp abonnementet.</string>
@@ -3448,6 +3452,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
     <item quantity="other">Utløper om %1$d måneder</item>
   </plurals>
   <!--Gift badge redeem action label-->
+  <string name="GiftMessageView__redeem">Løs inn</string>
   <!--Gift badge view action label-->
   <string name="GiftMessageView__view">Vis</string>
   <!--Gift badge redeeming action label-->
@@ -3933,6 +3938,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--Description for sheet shown when opening a redeemed gift-->
   <!--Description for sheet shown when opening a sent gift-->
   <!--Primary action for pending gift sheet to redeem badge now-->
+  <string name="ViewReceivedGiftSheet__redeem">Løs inn</string>
   <!--Primary action for pending gift sheet to redeem badge later-->
   <string name="ViewReceivedGiftSheet__not_now">Ikke nå</string>
   <!--Dialog text while redeeming a gift-->

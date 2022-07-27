@@ -1564,6 +1564,8 @@
   <string name="ThreadRecord__you_sent_a_gift">നിങ്ങളൊരു ഗിഫ്റ്റ് അയച്ചു</string>
   <!--Displayed in the notification when the user has opened a received gift-->
   <string name="ThreadRecord__you_redeemed_a_gift_badge">നിങ്ങളൊരു ഗിഫ്റ്റ് ബാഡ്‍ജ് റിഡീം ചെയ്‌തു</string>
+  <!--Displayed in the conversation list when someone reacted to your story-->
+  <!--Displayed in the conversation list when you reacted to someone\'s story-->
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal അപ്‌ഡേറ്റ്</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal-ന്റെ ഒരു പുതിയ പതിപ്പ് ലഭ്യമാണ്, അപ്‌ഡേറ്റ് ചെയ്യാൻ തൊടുക</string>

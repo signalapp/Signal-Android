@@ -1570,6 +1570,8 @@ ontvang!</string>
   <string name="ThreadRecord__you_sent_a_gift">Jy het ’n geskenk gestuur</string>
   <!--Displayed in the notification when the user has opened a received gift-->
   <string name="ThreadRecord__you_redeemed_a_gift_badge">Jy het \'n geskenkwapen afgelos</string>
+  <!--Displayed in the conversation list when someone reacted to your story-->
+  <!--Displayed in the conversation list when you reacted to someone\'s story-->
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal-bywerking</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">\'n Nuwe weergawe van Signal is beskikbaar, tik om by te werk</string>

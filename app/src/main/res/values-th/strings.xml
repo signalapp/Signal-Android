@@ -1499,6 +1499,8 @@
   <string name="ThreadRecord__you_sent_a_gift">คุณส่งของขวัญแล้ว</string>
   <!--Displayed in the notification when the user has opened a received gift-->
   <string name="ThreadRecord__you_redeemed_a_gift_badge">คุณแลกโล่ของขวัญแล้ว</string>
+  <!--Displayed in the conversation list when someone reacted to your story-->
+  <!--Displayed in the conversation list when you reacted to someone\'s story-->
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">ปรับรุ่น Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal รุ่นใหม่มาแล้ว แตะเพื่อปรับรุ่น</string>
@@ -3870,11 +3872,11 @@
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">ซ่อนสตอรี่จาก</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
-  <string name="MyStorySettingsFragment__all_signal_connections">ผู้ติดต่อ Signal ทั้งหมด</string>
+  <string name="MyStorySettingsFragment__all_signal_connections">เครือข่าย Signal ทั้งหมด</string>
   <!--Privacy setting description for sending stories to all your signal connections-->
-  <string name="MyStorySettingsFragment__share_with_all_connections">แชร์กับผู้ติดต่อทั้งหมด</string>
+  <string name="MyStorySettingsFragment__share_with_all_connections"> แบ่งปันกับผู้ติดต่อทั้งหมด</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
-  <string name="MyStorySettingsFragment__all_signal_connections_except">ผู้ติดต่อ Signal ทั้งหมด ยกเว้น…</string>
+  <string name="MyStorySettingsFragment__all_signal_connections_except">เครือข่าย Signal ทั้งหมด ยกเว้น…</string>
   <!--Privacy setting description for sending stories to all except the specified connections-->
   <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">ซ่อนสตอรี่ของคุณจากบางคน</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
@@ -3900,9 +3902,9 @@
   <!--Note about default sharing-->
   <string name="MyStorySettingsFragment__hide_your_story_from">ซ่อนสตอรี่จากคนบางคน ในค่าเริ่มต้น สตอรี่ของคุณจะถูกแชร์กับ %1$s ของคุณ</string>
   <!--Signal connections bolded text in the Signal Connections sheet-->
-  <string name="SignalConnectionsBottomSheet___signal_connections">ผู้ติดต่อ Signal</string>
+  <string name="SignalConnectionsBottomSheet___signal_connections">เครือข่าย Signal</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
-  <string name="SignalConnectionsBottomSheet__signal_connections_are_people">ผู้ติดต่อ Signal คือคนที่คุณได้เลือกที่จะไว้ใจ โดย:</string>
+  <string name="SignalConnectionsBottomSheet__signal_connections_are_people">เครือข่าย Signal คือคนที่คุณได้เลือกที่จะไว้ใจ โดย:</string>
   <!--Signal connections sheet bullet point 1-->
   <string name="SignalConnectionsBottomSheet__starting_a_conversation">กำลังเริ่มต้นการสนทนา</string>
   <!--Signal connections sheet bullet point 2-->
@@ -4196,9 +4198,9 @@
   <!--Subtitle of initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">เลือกว่าจะให้ใครเห็นโพสต์ในสตอรี่ของฉัน คุณสามารถเปลี่ยนแปลงได้ทุกเมื่อในการตั้งค่า</string>
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
-  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">สายสัมพันธ์ Signal ทั้งหมด</string>
+  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">เครือข่าย Signal ทั้งหมด</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
-  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">สายสัมพันธ์ Signal ทั้งหมด ยกเว้น…</string>
+  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">เครือข่าย Signal ทั้งหมด ยกเว้น…</string>
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">แบ่งปันให้เฉพาะ…</string>
   <!--Story info header sent heading-->

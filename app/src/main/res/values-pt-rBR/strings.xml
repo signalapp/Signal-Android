@@ -175,6 +175,7 @@
   <string name="ContactsDatabase_signal_call_s">Chamada Signal %s</string>
   <!--ContactNameEditActivity-->
   <!--Toolbar title for contact name edit activity-->
+  <string name="ContactNameEditActivity__edit_name">Editar nome</string>
   <string name="ContactNameEditActivity_given_name">Primeiro nome</string>
   <string name="ContactNameEditActivity_family_name">Sobrenome</string>
   <string name="ContactNameEditActivity_prefix">Prefixo</string>
@@ -182,12 +183,14 @@
   <string name="ContactNameEditActivity_middle_name">Segundo nome</string>
   <!--ContactShareEditActivity-->
   <!--ContactShareEditActivity toolbar title-->
+  <string name="ContactShareEditActivity__send_contact">Enviar contato</string>
   <string name="ContactShareEditActivity_type_home">Casa</string>
   <string name="ContactShareEditActivity_type_mobile">Celular</string>
   <string name="ContactShareEditActivity_type_work">Trabalho</string>
   <string name="ContactShareEditActivity_type_missing">Outro</string>
   <string name="ContactShareEditActivity_invalid_contact">O contato selecionado é inválido</string>
   <!--Content descrption for name edit button on contact share edit activity-->
+  <string name="ContactShareEditActivity__edit_name">Editar nome</string>
   <!--Content description for user avatar in edit activity-->
   <string name="ContactShareEditActivity__avatar">Avatar</string>
   <!--ConversationItem-->
@@ -1642,6 +1645,8 @@
   <string name="ThreadRecord__you_sent_a_gift">Você enviou um selo de presente</string>
   <!--Displayed in the notification when the user has opened a received gift-->
   <string name="ThreadRecord__you_redeemed_a_gift_badge">Você resgatou um selo de presente</string>
+  <!--Displayed in the conversation list when someone reacted to your story-->
+  <!--Displayed in the conversation list when you reacted to someone\'s story-->
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Atualização do Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Uma nova versão do Signal está disponível, toque para atualizar</string>
@@ -2400,7 +2405,7 @@
   <string name="preferences_enter_proxy_address">Digite o endereço de proxy</string>
   <string name="configurable_single_select__customize_option">Opção para personalizar</string>
   <!--Internal only preferences-->
-  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
+  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Remove o indicador de integração e inicia o download de stories de integração.</string>
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Todas as atividades</string>
   <string name="PaymentsAllActivityFragment__all">Todos</string>
@@ -3076,6 +3081,7 @@
   <string name="CallParticipant__s_on_another_device">%1$s (em outro aparelho)</string>
   <!--WifiToCellularPopupWindow-->
   <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
+  <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Sinal de Wi-Fi fraco - mudando para rede de celular.</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Excluir sua conta vai:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Digite o seu número de telefone</string>
@@ -4409,6 +4415,11 @@
   <!--Title of safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Alterações no número de segurança</string>
   <!--Message of safety number review fragment-->
+  <plurals name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">
+    <item quantity="one">%1$d destinatário talvez tenha reinstalado o Signal ou trocado de aparelho. Toque em um destinatário para confirmar o novo número de segurança. Isso é opcional.</item>
+    <item quantity="many">%1$d destinatários talvez tenham reinstalado o Signal ou trocado de aparelho. Toque em um destinatário para confirmar o novo número de segurança. Isso é opcional.</item>
+    <item quantity="other">%1$d destinatários podem ter reinstalado o Signal ou trocado de aparelho. Toque em um destinatário para confirmar o novo número de segurança. Essa ação é opcional.</item>
+  </plurals>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">Contatos</string>
   <!--Context menu label for distribution list headers in review fragment-->
@@ -4430,6 +4441,7 @@
   <!--Story info header received heading-->
   <string name="StoryInfoHeader__received">Recebidos</string>
   <!--Story info header file size heading-->
+  <string name="StoryInfoHeader__file_size">Tamanho do arquivo</string>
   <!--Story info "Sent to" header-->
   <string name="StoryInfoBottomSheetDialogFragment__sent_to">Enviada para</string>
   <!--Story info "Sent from" header-->

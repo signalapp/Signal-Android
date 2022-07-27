@@ -1714,6 +1714,8 @@
   <string name="ThreadRecord__you_sent_a_gift">Jūs išsiuntėte dovaną</string>
   <!--Displayed in the notification when the user has opened a received gift-->
   <string name="ThreadRecord__you_redeemed_a_gift_badge">Jūs atsiėmėte dovanos ženkliuką</string>
+  <!--Displayed in the conversation list when someone reacted to your story-->
+  <!--Displayed in the conversation list when you reacted to someone\'s story-->
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal atnaujinimas</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Yra prieinama nauja Signal versija, bakstelėkite norėdami atnaujinti</string>

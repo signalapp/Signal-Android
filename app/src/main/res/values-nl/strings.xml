@@ -1577,6 +1577,8 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="ThreadRecord__you_sent_a_gift">Je hebt een cadeau verzonden</string>
   <!--Displayed in the notification when the user has opened a received gift-->
   <string name="ThreadRecord__you_redeemed_a_gift_badge">Je hebt een cadeau-badge in ontvangst genomen</string>
+  <!--Displayed in the conversation list when someone reacted to your story-->
+  <!--Displayed in the conversation list when you reacted to someone\'s story-->
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Nieuwe versie van Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Er is een nieuwe versie van Signal beschikbaar. Tik hier om bij te werken</string>
@@ -4160,6 +4162,10 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="ExpandModel__view_more">Meer weergeven</string>
   <string name="StoriesLinkPopup__visit_link">Verwijzing volgen</string>
   <!--Gift price and duration, formatted as: {price} dot {n} day duration-->
+  <plurals name="GiftRowItem_s_dot_d_day_duration">
+    <item quantity="one">%1$s · %2$d dagen geldig</item>
+    <item quantity="other">%1$s · %2$d dagen geldig</item>
+  </plurals>
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">Een cadeau-badge verzenden</string>
   <!--Headline text on start fragment for gifting a badge-->
