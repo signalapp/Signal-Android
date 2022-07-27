@@ -109,23 +109,26 @@ public class CameraXUtil {
     return Build.VERSION.SDK_INT >= 21 && !CameraXModelBlacklist.isBlacklisted();
   }
 
-  public static int toCameraDirectionInt(int facing) {
-    if (facing == CameraSelector.LENS_FACING_FRONT) {
+  @RequiresApi(21)
+  public static int toCameraDirectionInt(CameraSelector cameraSelector) {
+    if (cameraSelector == CameraSelector.DEFAULT_FRONT_CAMERA) {
       return Camera.CameraInfo.CAMERA_FACING_FRONT;
     } else {
       return Camera.CameraInfo.CAMERA_FACING_BACK;
     }
   }
 
-  public static int toLensFacing(@CameraSelector.LensFacing int cameraDirectionInt) {
+  @RequiresApi(21)
+  public static CameraSelector toCameraSelector(@CameraSelector.LensFacing int cameraDirectionInt) {
     if (cameraDirectionInt == Camera.CameraInfo.CAMERA_FACING_FRONT) {
-      return CameraSelector.LENS_FACING_FRONT;
+      return CameraSelector.DEFAULT_FRONT_CAMERA;
     } else {
-      return CameraSelector.LENS_FACING_BACK;
+      return CameraSelector.DEFAULT_BACK_CAMERA;
     }
   }
 
-  public static @NonNull @ImageCapture.CaptureMode int getOptimalCaptureMode() {
+  @RequiresApi(21)
+  public static @ImageCapture.CaptureMode int getOptimalCaptureMode() {
     return FastCameraModels.contains(Build.MODEL) ? ImageCapture.CAPTURE_MODE_MAXIMIZE_QUALITY
                                                   : ImageCapture.CAPTURE_MODE_MINIMIZE_LATENCY;
   }

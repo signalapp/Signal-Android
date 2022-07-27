@@ -12,12 +12,12 @@
         app:cardElevation="0dp"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.camera.view.SignalCameraView
+        <androidx.camera.view.PreviewView
             android:id="@+id/camerax_camera"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="top"
-            app:lensFacing="back" />
+            app:implementationMode="compatible" />
     </androidx.cardview.widget.CardView>
 
     <FrameLayout

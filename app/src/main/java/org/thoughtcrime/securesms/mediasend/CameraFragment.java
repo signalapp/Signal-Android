@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.res.Configuration;
 
 import androidx.annotation.NonNull;
+import androidx.camera.view.video.ExperimentalVideo;
 import androidx.fragment.app.Fragment;
 
 import org.thoughtcrime.securesms.mediasend.camerax.CameraXUtil;
@@ -18,7 +19,7 @@ public interface CameraFragment {
 
   float PORTRAIT_ASPECT_RATIO = 9 / 16f;
 
-  @SuppressLint("RestrictedApi")
+  @SuppressLint({ "RestrictedApi", "UnsafeOptInUsageError" })
   static Fragment newInstance() {
     if (CameraXUtil.isSupported()) {
       return CameraXFragment.newInstance();
@@ -27,7 +28,7 @@ public interface CameraFragment {
     }
   }
 
-  @SuppressLint("RestrictedApi")
+  @SuppressLint({ "RestrictedApi", "UnsafeOptInUsageError" })
   static Fragment newInstanceForAvatarCapture() {
     if (CameraXUtil.isSupported()) {
       return CameraXFragment.newInstanceForAvatarCapture();

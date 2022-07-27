@@ -169,6 +169,10 @@ public final class MemoryFileDescriptor implements Closeable {
     return parcelFileDescriptor.getFileDescriptor();
   }
 
+  public ParcelFileDescriptor getParcelFileDescriptor() {
+    return parcelFileDescriptor;
+  }
+
   public void seek(long position) throws IOException {
     try (FileInputStream fileInputStream = new FileInputStream(getFileDescriptor())) {
       fileInputStream.getChannel().position(position);

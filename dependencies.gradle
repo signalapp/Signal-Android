@@ -6,7 +6,7 @@ dependencyResolutionManagement {
         libs {
             version('libsignal-client', '0.18.1')
             version('exoplayer', '2.15.0')
-            version('androidx-camera', '1.0.0-beta11')
+            version('androidx-camera', '1.1.0')
             version('androidx-lifecycle', '2.3.1')
             version('mp4parser', '1.9.39')
             version('kotlin', '1.6.21')
@@ -42,7 +42,7 @@ dependencyResolutionManagement {
             alias('androidx-camera-core').to('androidx.camera', 'camera-core').versionRef('androidx-camera')
             alias('androidx-camera-camera2').to('androidx.camera', 'camera-camera2').versionRef('androidx-camera')
             alias('androidx-camera-lifecycle').to('androidx.camera', 'camera-lifecycle').versionRef('androidx-camera')
-            alias('androidx-camera-view').to('androidx.camera:camera-view:1.0.0-alpha18')
+            alias('androidx-camera-view').to('androidx.camera', 'camera-view').versionRef('androidx-camera')
             alias('androidx-concurrent-futures').to('androidx.concurrent:concurrent-futures:1.0.0')
             alias('androidx-autofill').to('androidx.autofill:autofill:1.0.0')
             alias('androidx-biometric').to('androidx.biometric:biometric:1.1.0')

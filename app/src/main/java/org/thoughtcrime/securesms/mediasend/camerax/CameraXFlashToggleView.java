@@ -6,6 +6,7 @@ import android.os.Parcelable;
 import android.util.AttributeSet;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.camera.core.ImageCapture;
 
@@ -14,6 +15,7 @@ import org.thoughtcrime.securesms.R;
 import java.util.Arrays;
 import java.util.List;
 
+@RequiresApi(21)
 public final class CameraXFlashToggleView extends AppCompatImageView {
 
   private static final String STATE_FLASH_INDEX  = "flash.toggle.state.flash.index";

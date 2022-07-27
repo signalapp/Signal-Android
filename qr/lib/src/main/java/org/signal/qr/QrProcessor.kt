@@ -1,5 +1,6 @@
 package org.signal.qr
 
+import androidx.annotation.RequiresApi
 import androidx.camera.core.ImageProxy
 import com.google.zxing.BinaryBitmap
 import com.google.zxing.ChecksumException
@@ -23,6 +24,7 @@ class QrProcessor {
   private var previousHeight = 0
   private var previousWidth = 0
 
+  @RequiresApi(21)
   fun getScannedData(proxy: ImageProxy): String? {
     return getScannedData(ImageProxyLuminanceSource(proxy))
   }

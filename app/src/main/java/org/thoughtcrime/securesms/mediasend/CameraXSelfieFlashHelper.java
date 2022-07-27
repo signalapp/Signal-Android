@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.camera.core.CameraSelector;
 import androidx.camera.core.ImageCapture;
-import androidx.camera.view.SignalCameraView;
+import androidx.camera.view.CameraController;
 
 @RequiresApi(21)
 final class CameraXSelfieFlashHelper {
@@ -18,14 +18,14 @@ final class CameraXSelfieFlashHelper {
   private static final long  SELFIE_FLASH_DURATION_MS = 250;
 
   private final Window           window;
-  private final SignalCameraView camera;
+  private final CameraController camera;
   private final View             selfieFlash;
 
   private float   brightnessBeforeFlash;
   private boolean inFlash;
 
   CameraXSelfieFlashHelper(@NonNull Window window,
-                           @NonNull SignalCameraView camera,
+                           @NonNull CameraController camera,
                            @NonNull View selfieFlash)
   {
     this.window      = window;
@@ -64,11 +64,9 @@ final class CameraXSelfieFlashHelper {
   }
 
   private boolean shouldUseViewBasedFlash() {
-    Integer cameraLensFacing = camera.getCameraLensFacing();
+    CameraSelector cameraSelector = camera.getCameraSelector() ;
 
-    return camera.getFlash() == ImageCapture.FLASH_MODE_ON &&
-           !camera.hasFlash()                              &&
-           cameraLensFacing != null                        &&
-           cameraLensFacing == CameraSelector.LENS_FACING_FRONT;
+    return camera.getImageCaptureFlashMode() == ImageCapture.FLASH_MODE_ON &&
+           cameraSelector == CameraSelector.DEFAULT_FRONT_CAMERA;
   }
 }
