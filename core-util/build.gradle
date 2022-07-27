@@ -50,6 +50,7 @@ dependencies {
     implementation libs.androidx.core.ktx
     implementation libs.google.protobuf.javalite
     implementation libs.androidx.sqlite
+    implementation libs.rxjava3.rxjava
 
     testImplementation testLibs.junit.junit
     testImplementation testLibs.mockito.core
