@@ -538,7 +538,7 @@ public class TextSecurePreferences {
   }
 
   public static boolean isNewContactsNotificationEnabled(Context context) {
-    return getBooleanPreference(context, NEW_CONTACTS_NOTIFICATIONS, true);
+    return getBooleanPreference(context, NEW_CONTACTS_NOTIFICATIONS, false);
   }
 
   public static long getRatingLaterTimestamp(Context context) {
