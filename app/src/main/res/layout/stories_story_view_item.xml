@@ -4,8 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="@dimen/dsl_settings_gutter"
-    android:minHeight="64dp">
+    android:layout_marginHorizontal="@dimen/selectable_list_item_margin"
+    android:background="@drawable/selectable_list_item_background"
+    android:minHeight="64dp"
+    android:paddingHorizontal="@dimen/selectable_list_item_padding">
 
     <org.thoughtcrime.securesms.components.AvatarImageView
         android:id="@+id/avatar"

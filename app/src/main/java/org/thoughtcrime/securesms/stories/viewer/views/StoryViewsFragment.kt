@@ -4,12 +4,15 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.components.settings.configure
+import org.thoughtcrime.securesms.conversation.ConversationIntents
+import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.stories.viewer.reply.StoryViewsAndRepliesPagerChild
 import org.thoughtcrime.securesms.stories.viewer.reply.StoryViewsAndRepliesPagerParent
 import org.thoughtcrime.securesms.util.fragments.findListener
@@ -66,10 +69,35 @@ class StoryViewsFragment :
 
   private fun getConfiguration(state: StoryViewsState): DSLConfiguration {
     return configure {
-      state.views.forEach {
-        customPref(StoryViewItem.Model(it))
+      state.views.forEach { storyViewItemData ->
+        customPref(
+          StoryViewItem.Model(
+            storyViewItemData = storyViewItemData,
+            canRemoveMember = state.storyRecipient?.isDistributionList ?: false,
+            goToChat = {
+              val chatIntent = ConversationIntents.createBuilder(requireContext(), it.storyViewItemData.recipient.id, -1L).build()
+              startActivity(chatIntent)
+            },
+            removeFromStory = {
+              if (state.storyRecipient?.isDistributionList == true) {
+                confirmRemoveFromStory(it.storyViewItemData.recipient, state.storyRecipient)
+              }
+            }
+          )
+        )
       }
     }
+  }
+
+  private fun confirmRemoveFromStory(user: Recipient, story: Recipient) {
+    MaterialAlertDialogBuilder(requireContext())
+      .setTitle(R.string.StoryViewsFragment__remove_viewer)
+      .setMessage(getString(R.string.StoryViewsFragment__s_will_still_be_able, user.getShortDisplayName(requireContext()), story.getDisplayName(requireContext())))
+      .setPositiveButton(R.string.StoryViewsFragment__remove) { _, _ ->
+        viewModel.removeUserFromStory(user, story)
+      }
+      .setNegativeButton(android.R.string.cancel) { _, _ -> }
+      .show()
   }
 
   companion object {

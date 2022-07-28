@@ -4628,6 +4628,14 @@
     <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Enable read receipts to see who\'s viewed your stories.</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">Go to settings</string>
+    <!-- Dialog action to remove viewer from a story -->
+    <string name="StoryViewsFragment__remove">Remove</string>
+    <!-- Dialog title when removing a viewer from a story -->
+    <string name="StoryViewsFragment__remove_viewer">Remove viewer?</string>
+    <!-- Dialog message when removing a viewer from a story -->
+    <string name="StoryViewsFragment__s_will_still_be_able">%1$s will still be able to view this post, but will not be able to view any future posts you share to %2$s.</string>
+    <!-- Story View context menu action to remove them from a story -->
+    <string name="StoryViewItem__remove_viewer">Remove viewer</string>
     <!-- Displayed when a story has no replies yet -->
     <string name="StoryGroupReplyFragment__no_replies_yet">No replies yet</string>
     <!-- Displayed for each user that reacted to a story when viewing replies -->
