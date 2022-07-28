@@ -40,6 +40,7 @@ import org.thoughtcrime.securesms.database.loaders.GroupedThreadMediaLoader;
 import org.thoughtcrime.securesms.database.loaders.MediaLoader;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.PartAuthority;
+import org.thoughtcrime.securesms.util.BottomOffsetDecoration;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
@@ -130,6 +131,7 @@ public final class MediaOverviewPageFragment extends Fragment
     this.recyclerView.setLayoutManager(gridManager);
     this.recyclerView.setHasFixedSize(true);
     this.recyclerView.addItemDecoration(new MediaGridDividerDecoration(spans, ViewUtil.dpToPx(4), adapter));
+    this.recyclerView.addItemDecoration(new BottomOffsetDecoration(ViewUtil.dpToPx(160)));
 
     MediaOverviewViewModel viewModel = MediaOverviewViewModel.getMediaOverviewViewModel(requireActivity());
 
