@@ -61,6 +61,9 @@ class PhotoEditorFragment : Fragment(R.layout.avatar_photo_editor_fragment), Ima
     Navigation.findNavController(requireView()).popBackStack()
   }
 
+  override fun restoreState() {
+  }
+
   override fun onMainImageLoaded() {
   }
 

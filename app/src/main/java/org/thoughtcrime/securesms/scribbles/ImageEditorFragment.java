@@ -220,6 +220,7 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
+    controller.restoreState();
 
     Mode mode = Mode.getByCode(requireArguments().getString(KEY_MODE));
 
@@ -588,8 +589,10 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
 
   @Override
   public void onClearAll() {
-    imageEditorView.getModel().clearUndoStack();
-    updateHudDialRotation();
+    if (imageEditorView != null) {
+      imageEditorView.getModel().clearUndoStack();
+      updateHudDialRotation();
+    }
   }
 
   @Override
@@ -1050,6 +1053,8 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
     void onMainImageLoaded();
 
     void onMainImageFailedToLoad();
+
+    void restoreState();
   }
 
   private static class FaceDetectionResult {

@@ -23,7 +23,6 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import app.cash.exhaustive.Exhaustive
-import io.reactivex.rxjava3.disposables.CompositeDisposable
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.conversation.MessageSendType
@@ -40,6 +39,7 @@ import org.thoughtcrime.securesms.mediasend.v2.MediaValidator
 import org.thoughtcrime.securesms.mediasend.v2.stories.StoriesMultiselectForwardActivity
 import org.thoughtcrime.securesms.mms.SentMediaQuality
 import org.thoughtcrime.securesms.permissions.Permissions
+import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.fragments.requireListener
@@ -80,10 +80,12 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
   )
 
   private var animatorSet: AnimatorSet? = null
-  private var disposables: CompositeDisposable? = null
+  private var disposables: LifecycleDisposable = LifecycleDisposable()
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     postponeEnterTransition()
+
+    disposables.bindTo(viewLifecycleOwner)
 
     callback = requireListener()
 
@@ -110,15 +112,12 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
 
     val pagerAdapter = MediaReviewFragmentPagerAdapter(this)
 
-    disposables = CompositeDisposable()
-    disposables?.add(
-      sharedViewModel.hudCommands.subscribe {
-        when (it) {
-          HudCommand.ResumeEntryTransition -> startPostponedEnterTransition()
-          else -> Unit
-        }
+    disposables += sharedViewModel.hudCommands.subscribe {
+      when (it) {
+        HudCommand.ResumeEntryTransition -> startPostponedEnterTransition()
+        else -> Unit
       }
-    )
+    }
 
     pager.adapter = pagerAdapter
 
@@ -249,11 +248,6 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
 
   override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
     Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults)
-  }
-
-  override fun onDestroyView() {
-    disposables?.dispose()
-    super.onDestroyView()
   }
 
   private fun handleMediaValidatorFilterError(error: MediaValidator.FilterError) {

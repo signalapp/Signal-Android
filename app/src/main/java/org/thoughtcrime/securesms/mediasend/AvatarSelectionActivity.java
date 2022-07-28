@@ -183,6 +183,10 @@ public class AvatarSelectionActivity extends AppCompatActivity implements Camera
 
   }
 
+  @Override
+  public void restoreState() {
+  }
+
   public boolean popToRoot() {
     final int backStackCount = getSupportFragmentManager().getBackStackEntryCount();
     if (backStackCount == 0) {
