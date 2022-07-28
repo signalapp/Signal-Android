@@ -125,6 +125,13 @@ class AddMessageDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_a
     }
   }
 
+  override fun onKeyboardShown() {
+    super.onKeyboardShown()
+    if (emojiDrawerStub.resolved() && emojiDrawerStub.get().isShowing && !emojiDrawerStub.get().isEmojiSearchMode) {
+      emojiDrawerStub.get().hide(true)
+    }
+  }
+
   override fun onDestroyView() {
     super.onDestroyView()
     disposables.dispose()
