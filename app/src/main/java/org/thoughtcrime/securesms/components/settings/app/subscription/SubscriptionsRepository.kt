@@ -23,7 +23,7 @@ class SubscriptionsRepository(private val donationsService: DonationsService) {
   fun getActiveSubscription(): Single<ActiveSubscription> {
     val localSubscription = SignalStore.donationsValues().getSubscriber()
     return if (localSubscription != null) {
-      donationsService.getSubscription(localSubscription.subscriberId)
+      Single.fromCallable { donationsService.getSubscription(localSubscription.subscriberId) }
         .subscribeOn(Schedulers.io())
         .flatMap(ServiceResponse<ActiveSubscription>::flattenResult)
     } else {
@@ -31,7 +31,8 @@ class SubscriptionsRepository(private val donationsService: DonationsService) {
     }
   }
 
-  fun getSubscriptions(): Single<List<Subscription>> = donationsService.getSubscriptionLevels(Locale.getDefault())
+  fun getSubscriptions(): Single<List<Subscription>> = Single
+    .fromCallable { donationsService.getSubscriptionLevels(Locale.getDefault()) }
     .subscribeOn(Schedulers.io())
     .flatMap(ServiceResponse<SubscriptionLevels>::flattenResult)
     .map { subscriptionLevels ->

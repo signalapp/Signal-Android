@@ -9,7 +9,11 @@ import java.util.Locale
 
 class DonationReceiptListRepository {
   fun getBadges(): Single<List<DonationReceiptBadge>> {
-    val boostBadges: Single<List<DonationReceiptBadge>> = ApplicationDependencies.getDonationsService().getBoostBadge(Locale.getDefault())
+    val boostBadges: Single<List<DonationReceiptBadge>> = Single
+      .fromCallable {
+        ApplicationDependencies.getDonationsService()
+          .getBoostBadge(Locale.getDefault())
+      }
       .map { response ->
         if (response.result.isPresent) {
           listOf(DonationReceiptBadge(DonationReceiptRecord.Type.BOOST, -1, Badges.fromServiceBadge(response.result.get())))
@@ -18,7 +22,8 @@ class DonationReceiptListRepository {
         }
       }
 
-    val subBadges: Single<List<DonationReceiptBadge>> = ApplicationDependencies.getDonationsService().getSubscriptionLevels(Locale.getDefault())
+    val subBadges: Single<List<DonationReceiptBadge>> = Single
+      .fromCallable { ApplicationDependencies.getDonationsService().getSubscriptionLevels(Locale.getDefault()) }
       .map { response ->
         if (response.result.isPresent) {
           response.result.get().levels.map {

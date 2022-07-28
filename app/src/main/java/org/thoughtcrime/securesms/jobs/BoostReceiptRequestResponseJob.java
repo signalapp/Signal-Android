@@ -153,8 +153,7 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
 
     Log.d(TAG, "Submitting credential to server", true);
     ServiceResponse<ReceiptCredentialResponse> response = ApplicationDependencies.getDonationsService()
-                                                                                 .submitBoostReceiptCredentialRequest(paymentIntentId, requestContext.getRequest())
-                                                                                 .blockingGet();
+                                                                                 .submitBoostReceiptCredentialRequestSync(paymentIntentId, requestContext.getRequest());
 
     if (response.getApplicationError().isPresent()) {
       handleApplicationError(context, response, donationErrorSource);

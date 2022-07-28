@@ -9,9 +9,12 @@ import java.util.Locale
 
 class DonationReceiptDetailRepository {
   fun getSubscriptionLevelName(subscriptionLevel: Int): Single<String> {
-    return ApplicationDependencies
-      .getDonationsService()
-      .getSubscriptionLevels(Locale.getDefault())
+    return Single
+      .fromCallable {
+        ApplicationDependencies
+          .getDonationsService()
+          .getSubscriptionLevels(Locale.getDefault())
+      }
       .flatMap { it.flattenResult() }
       .map { it.levels[subscriptionLevel.toString()] ?: throw Exception("Subscription level $subscriptionLevel not found") }
       .map { it.name }

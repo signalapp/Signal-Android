@@ -52,8 +52,7 @@ class DeleteAccountRepository {
 
         Subscriber                     subscriber                 = SignalStore.donationsValues().requireSubscriber();
         ServiceResponse<EmptyResponse> cancelSubscriptionResponse = ApplicationDependencies.getDonationsService()
-                                                                                           .cancelSubscription(subscriber.getSubscriberId())
-                                                                                           .blockingGet();
+                                                                                           .cancelSubscription(subscriber.getSubscriberId());
 
         if (cancelSubscriptionResponse.getExecutionError().isPresent()) {
           Log.w(TAG, "deleteAccount: failed attempt to cancel subscription");

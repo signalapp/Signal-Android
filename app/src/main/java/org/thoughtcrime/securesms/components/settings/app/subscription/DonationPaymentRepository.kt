@@ -170,8 +170,11 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
   fun cancelActiveSubscription(): Completable {
     Log.d(TAG, "Canceling active subscription...", true)
     val localSubscriber = SignalStore.donationsValues().requireSubscriber()
-    return ApplicationDependencies.getDonationsService()
-      .cancelSubscription(localSubscriber.subscriberId)
+    return Single
+      .fromCallable {
+        ApplicationDependencies.getDonationsService()
+          .cancelSubscription(localSubscriber.subscriberId)
+      }
       .subscribeOn(Schedulers.io())
       .flatMap(ServiceResponse<EmptyResponse>::flattenResult)
       .ignoreElement()
@@ -181,9 +184,12 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
   fun ensureSubscriberId(): Completable {
     Log.d(TAG, "Ensuring SubscriberId exists on Signal service...", true)
     val subscriberId = SignalStore.donationsValues().getSubscriber()?.subscriberId ?: SubscriberId.generate()
-    return ApplicationDependencies
-      .getDonationsService()
-      .putSubscription(subscriberId)
+    return Single
+      .fromCallable {
+        ApplicationDependencies
+          .getDonationsService()
+          .putSubscription(subscriberId)
+      }
       .subscribeOn(Schedulers.io())
       .flatMap(ServiceResponse<EmptyResponse>::flattenResult).ignoreElement()
       .doOnComplete {
@@ -268,67 +274,71 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
         val subscriber = SignalStore.donationsValues().requireSubscriber()
 
         Log.d(TAG, "Attempting to set user subscription level to $subscriptionLevel", true)
-        ApplicationDependencies.getDonationsService().updateSubscriptionLevel(
-          subscriber.subscriberId,
-          subscriptionLevel,
-          subscriber.currencyCode,
-          levelUpdateOperation.idempotencyKey.serialize(),
-          SubscriptionReceiptRequestResponseJob.MUTEX
-        ).flatMapCompletable {
-          if (it.status == 200 || it.status == 204) {
-            Log.d(TAG, "Successfully set user subscription to level $subscriptionLevel with response code ${it.status}", true)
-            SignalStore.donationsValues().updateLocalStateForLocalSubscribe()
-            scheduleSyncForAccountRecordChange()
-            LevelUpdate.updateProcessingState(false)
-            Completable.complete()
-          } else {
-            if (it.applicationError.isPresent) {
-              Log.w(TAG, "Failed to set user subscription to level $subscriptionLevel with response code ${it.status}", it.applicationError.get(), true)
-              SignalStore.donationsValues().clearLevelOperations()
+        Single
+          .fromCallable {
+            ApplicationDependencies.getDonationsService().updateSubscriptionLevel(
+              subscriber.subscriberId,
+              subscriptionLevel,
+              subscriber.currencyCode,
+              levelUpdateOperation.idempotencyKey.serialize(),
+              SubscriptionReceiptRequestResponseJob.MUTEX
+            )
+          }
+          .flatMapCompletable {
+            if (it.status == 200 || it.status == 204) {
+              Log.d(TAG, "Successfully set user subscription to level $subscriptionLevel with response code ${it.status}", true)
+              SignalStore.donationsValues().updateLocalStateForLocalSubscribe()
+              scheduleSyncForAccountRecordChange()
+              LevelUpdate.updateProcessingState(false)
+              Completable.complete()
             } else {
-              Log.w(TAG, "Failed to set user subscription to level $subscriptionLevel", it.executionError.orElse(null), true)
-            }
-
-            LevelUpdate.updateProcessingState(false)
-            it.flattenResult().ignoreElement()
-          }
-        }.andThen {
-          Log.d(TAG, "Enqueuing request response job chain.", true)
-          val countDownLatch = CountDownLatch(1)
-          var finalJobState: JobTracker.JobState? = null
-
-          SubscriptionReceiptRequestResponseJob.createSubscriptionContinuationJobChain().enqueue { _, jobState ->
-            if (jobState.isComplete) {
-              finalJobState = jobState
-              countDownLatch.countDown()
-            }
-          }
-
-          try {
-            if (countDownLatch.await(10, TimeUnit.SECONDS)) {
-              when (finalJobState) {
-                JobTracker.JobState.SUCCESS -> {
-                  Log.d(TAG, "Subscription request response job chain succeeded.", true)
-                  it.onComplete()
-                }
-                JobTracker.JobState.FAILURE -> {
-                  Log.d(TAG, "Subscription request response job chain failed permanently.", true)
-                  it.onError(DonationError.genericBadgeRedemptionFailure(DonationErrorSource.SUBSCRIPTION))
-                }
-                else -> {
-                  Log.d(TAG, "Subscription request response job chain ignored due to in-progress jobs.", true)
-                  it.onError(DonationError.timeoutWaitingForToken(DonationErrorSource.SUBSCRIPTION))
-                }
+              if (it.applicationError.isPresent) {
+                Log.w(TAG, "Failed to set user subscription to level $subscriptionLevel with response code ${it.status}", it.applicationError.get(), true)
+                SignalStore.donationsValues().clearLevelOperations()
+              } else {
+                Log.w(TAG, "Failed to set user subscription to level $subscriptionLevel", it.executionError.orElse(null), true)
               }
-            } else {
-              Log.d(TAG, "Subscription request response job timed out.", true)
+
+              LevelUpdate.updateProcessingState(false)
+              it.flattenResult().ignoreElement()
+            }
+          }.andThen {
+            Log.d(TAG, "Enqueuing request response job chain.", true)
+            val countDownLatch = CountDownLatch(1)
+            var finalJobState: JobTracker.JobState? = null
+
+            SubscriptionReceiptRequestResponseJob.createSubscriptionContinuationJobChain().enqueue { _, jobState ->
+              if (jobState.isComplete) {
+                finalJobState = jobState
+                countDownLatch.countDown()
+              }
+            }
+
+            try {
+              if (countDownLatch.await(10, TimeUnit.SECONDS)) {
+                when (finalJobState) {
+                  JobTracker.JobState.SUCCESS -> {
+                    Log.d(TAG, "Subscription request response job chain succeeded.", true)
+                    it.onComplete()
+                  }
+                  JobTracker.JobState.FAILURE -> {
+                    Log.d(TAG, "Subscription request response job chain failed permanently.", true)
+                    it.onError(DonationError.genericBadgeRedemptionFailure(DonationErrorSource.SUBSCRIPTION))
+                  }
+                  else -> {
+                    Log.d(TAG, "Subscription request response job chain ignored due to in-progress jobs.", true)
+                    it.onError(DonationError.timeoutWaitingForToken(DonationErrorSource.SUBSCRIPTION))
+                  }
+                }
+              } else {
+                Log.d(TAG, "Subscription request response job timed out.", true)
+                it.onError(DonationError.timeoutWaitingForToken(DonationErrorSource.SUBSCRIPTION))
+              }
+            } catch (e: InterruptedException) {
+              Log.w(TAG, "Subscription request response interrupted.", e, true)
               it.onError(DonationError.timeoutWaitingForToken(DonationErrorSource.SUBSCRIPTION))
             }
-          } catch (e: InterruptedException) {
-            Log.w(TAG, "Subscription request response interrupted.", e, true)
-            it.onError(DonationError.timeoutWaitingForToken(DonationErrorSource.SUBSCRIPTION))
           }
-        }
       }.doOnError {
         LevelUpdate.updateProcessingState(false)
       }.subscribeOn(Schedulers.io())
@@ -356,9 +366,12 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
 
   override fun fetchPaymentIntent(price: FiatMoney, level: Long): Single<StripeApi.PaymentIntent> {
     Log.d(TAG, "Fetching payment intent from Signal service for $price... (Locale.US minimum precision: ${price.minimumUnitPrecisionString})")
-    return ApplicationDependencies
-      .getDonationsService()
-      .createDonationIntentWithAmount(price.minimumUnitPrecisionString, price.currency.currencyCode, level)
+    return Single
+      .fromCallable {
+        ApplicationDependencies
+          .getDonationsService()
+          .createDonationIntentWithAmount(price.minimumUnitPrecisionString, price.currency.currencyCode, level)
+      }
       .flatMap(ServiceResponse<SubscriptionClientSecret>::flattenResult)
       .map {
         StripeApi.PaymentIntent(it.id, it.clientSecret)
@@ -370,7 +383,13 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
   override fun fetchSetupIntent(): Single<StripeApi.SetupIntent> {
     Log.d(TAG, "Fetching setup intent from Signal service...")
     return Single.fromCallable { SignalStore.donationsValues().requireSubscriber() }
-      .flatMap { ApplicationDependencies.getDonationsService().createSubscriptionPaymentMethod(it.subscriberId) }
+      .flatMap {
+        Single.fromCallable {
+          ApplicationDependencies
+            .getDonationsService()
+            .createSubscriptionPaymentMethod(it.subscriberId)
+        }
+      }
       .flatMap(ServiceResponse<SubscriptionClientSecret>::flattenResult)
       .map { StripeApi.SetupIntent(it.id, it.clientSecret) }
       .doOnSuccess {
@@ -383,7 +402,11 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
     return Single.fromCallable {
       SignalStore.donationsValues().requireSubscriber()
     }.flatMap {
-      ApplicationDependencies.getDonationsService().setDefaultPaymentMethodId(it.subscriberId, paymentMethodId)
+      Single.fromCallable {
+        ApplicationDependencies
+          .getDonationsService()
+          .setDefaultPaymentMethodId(it.subscriberId, paymentMethodId)
+      }
     }.flatMap(ServiceResponse<EmptyResponse>::flattenResult).ignoreElement().doOnComplete {
       Log.d(TAG, "Set default payment method via Signal service!")
     }

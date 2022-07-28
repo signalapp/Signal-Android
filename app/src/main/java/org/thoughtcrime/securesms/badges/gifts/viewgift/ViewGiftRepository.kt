@@ -19,9 +19,12 @@ import java.util.Locale
 class ViewGiftRepository {
   fun getBadge(giftBadge: GiftBadge): Single<Badge> {
     val presentation = ReceiptCredentialPresentation(giftBadge.redemptionToken.toByteArray())
-    return ApplicationDependencies
-      .getDonationsService()
-      .getGiftBadge(Locale.getDefault(), presentation.receiptLevel)
+    return Single
+      .fromCallable {
+        ApplicationDependencies
+          .getDonationsService()
+          .getGiftBadge(Locale.getDefault(), presentation.receiptLevel)
+      }
       .flatMap { it.flattenResult() }
       .map { Badges.fromServiceBadge(it) }
       .subscribeOn(Schedulers.io())

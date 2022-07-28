@@ -47,7 +47,7 @@ data class GiftBadgeModel(val giftBadge: GiftBadge) : Key {
     override fun loadData(priority: Priority, callback: DataFetcher.DataCallback<in InputStream>) {
       try {
         val receiptCredentialPresentation = ReceiptCredentialPresentation(giftBadge.giftBadge.redemptionToken.toByteArray())
-        val giftBadgeResponse = ApplicationDependencies.getDonationsService().getGiftBadge(Locale.getDefault(), receiptCredentialPresentation.receiptLevel).blockingGet()
+        val giftBadgeResponse = ApplicationDependencies.getDonationsService().getGiftBadge(Locale.getDefault(), receiptCredentialPresentation.receiptLevel)
         if (giftBadgeResponse.result.isPresent) {
           val badge = Badges.fromServiceBadge(giftBadgeResponse.result.get())
           okHttpStreamFetcher = OkHttpStreamFetcher(client, GlideUrl(badge.imageUrl.toString()))

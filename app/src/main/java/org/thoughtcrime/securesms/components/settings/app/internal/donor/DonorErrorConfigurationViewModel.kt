@@ -26,20 +26,29 @@ class DonorErrorConfigurationViewModel : ViewModel() {
   val state: Flowable<DonorErrorConfigurationState> = store.stateFlowable
 
   init {
-    val giftBadges: Single<List<Badge>> = ApplicationDependencies.getDonationsService()
-      .getGiftBadges(Locale.getDefault())
+    val giftBadges: Single<List<Badge>> = Single
+      .fromCallable {
+        ApplicationDependencies.getDonationsService()
+          .getGiftBadges(Locale.getDefault())
+      }
       .flatMap { it.flattenResult() }
       .map { results -> results.values.map { Badges.fromServiceBadge(it) } }
       .subscribeOn(Schedulers.io())
 
-    val boostBadges: Single<List<Badge>> = ApplicationDependencies.getDonationsService()
-      .getBoostBadge(Locale.getDefault())
+    val boostBadges: Single<List<Badge>> = Single
+      .fromCallable {
+        ApplicationDependencies.getDonationsService()
+          .getBoostBadge(Locale.getDefault())
+      }
       .flatMap { it.flattenResult() }
       .map { listOf(Badges.fromServiceBadge(it)) }
       .subscribeOn(Schedulers.io())
 
-    val subscriptionBadges: Single<List<Badge>> = ApplicationDependencies.getDonationsService()
-      .getSubscriptionLevels(Locale.getDefault())
+    val subscriptionBadges: Single<List<Badge>> = Single
+      .fromCallable {
+        ApplicationDependencies.getDonationsService()
+          .getSubscriptionLevels(Locale.getDefault())
+      }
       .flatMap { it.flattenResult() }
       .map { levels -> levels.levels.values.map { Badges.fromServiceBadge(it.badge) } }
       .subscribeOn(Schedulers.io())

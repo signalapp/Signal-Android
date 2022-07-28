@@ -86,15 +86,13 @@ public class SubscriptionKeepAliveJob extends BaseJob {
     }
 
     ServiceResponse<EmptyResponse> response = ApplicationDependencies.getDonationsService()
-                                                                     .putSubscription(subscriber.getSubscriberId())
-                                                                     .blockingGet();
+                                                                     .putSubscription(subscriber.getSubscriberId());
 
     verifyResponse(response);
     Log.i(TAG, "Successful call to PUT subscription ID", true);
 
     ServiceResponse<ActiveSubscription> activeSubscriptionResponse = ApplicationDependencies.getDonationsService()
-                                                                                            .getSubscription(subscriber.getSubscriberId())
-                                                                                            .blockingGet();
+                                                                                            .getSubscription(subscriber.getSubscriberId());
 
     verifyResponse(activeSubscriptionResponse);
     Log.i(TAG, "Successful call to GET active subscription", true);

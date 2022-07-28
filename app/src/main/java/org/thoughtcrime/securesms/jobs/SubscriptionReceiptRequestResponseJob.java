@@ -187,8 +187,7 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
 
     Log.d(TAG, "Submitting receipt credential request.");
     ServiceResponse<ReceiptCredentialResponse> response = ApplicationDependencies.getDonationsService()
-                                                                                 .submitReceiptCredentialRequest(subscriberId, requestContext.getRequest())
-                                                                                 .blockingGet();
+                                                                                 .submitReceiptCredentialRequestSync(subscriberId, requestContext.getRequest());
 
     if (response.getApplicationError().isPresent()) {
       handleApplicationError(response);
@@ -216,8 +215,7 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
 
   private @NonNull ActiveSubscription getLatestSubscriptionInformation() throws Exception {
     ServiceResponse<ActiveSubscription> activeSubscription = ApplicationDependencies.getDonationsService()
-                                                                                    .getSubscription(subscriberId)
-                                                                                    .blockingGet();
+                                                                                    .getSubscription(subscriberId);
 
     if (activeSubscription.getResult().isPresent()) {
       return activeSubscription.getResult().get();

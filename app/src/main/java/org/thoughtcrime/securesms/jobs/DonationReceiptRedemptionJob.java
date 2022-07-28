@@ -149,8 +149,7 @@ public class DonationReceiptRedemptionJob extends BaseJob {
     ServiceResponse<EmptyResponse> response = ApplicationDependencies.getDonationsService()
                                                                      .redeemReceipt(presentation,
                                                                                     SignalStore.donationsValues().getDisplayBadgesOnProfile(),
-                                                                                    makePrimary)
-                                                                     .blockingGet();
+                                                                                    makePrimary);
 
     if (response.getApplicationError().isPresent()) {
       if (response.getStatus() >= 500) {

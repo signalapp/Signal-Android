@@ -18,8 +18,11 @@ import java.util.Locale
 class GiftFlowRepository {
 
   fun getGiftBadge(): Single<Pair<Long, Badge>> {
-    return ApplicationDependencies.getDonationsService()
-      .getGiftBadges(Locale.getDefault())
+    return Single
+      .fromCallable {
+        ApplicationDependencies.getDonationsService()
+          .getGiftBadges(Locale.getDefault())
+      }
       .flatMap(ServiceResponse<Map<Long, SignalServiceProfile.Badge>>::flattenResult)
       .map { gifts -> gifts.map { it.key to Badges.fromServiceBadge(it.value) } }
       .map { it.first() }
@@ -27,8 +30,11 @@ class GiftFlowRepository {
   }
 
   fun getGiftPricing(): Single<Map<Currency, FiatMoney>> {
-    return ApplicationDependencies.getDonationsService()
-      .giftAmount
+    return Single
+      .fromCallable {
+        ApplicationDependencies.getDonationsService()
+          .giftAmount
+      }
       .subscribeOn(Schedulers.io())
       .flatMap { it.flattenResult() }
       .map { result ->

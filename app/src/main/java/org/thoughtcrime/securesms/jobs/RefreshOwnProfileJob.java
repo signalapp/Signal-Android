@@ -276,8 +276,7 @@ public class RefreshOwnProfileJob extends BaseJob {
         boolean isDueToPaymentFailure = false;
         if (subscriber != null) {
           ServiceResponse<ActiveSubscription> response = ApplicationDependencies.getDonationsService()
-                                                                                .getSubscription(subscriber.getSubscriberId())
-                                                                                .blockingGet();
+                                                                                .getSubscription(subscriber.getSubscriberId());
 
           if (response.getResult().isPresent()) {
             ActiveSubscription activeSubscription = response.getResult().get();
