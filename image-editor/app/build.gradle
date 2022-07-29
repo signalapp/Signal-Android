@@ -11,6 +11,7 @@ android {
         applicationId "org.signal.imageeditor.app"
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
 
         minSdk MINIMUM_SDK
         targetSdk TARGET_SDK
