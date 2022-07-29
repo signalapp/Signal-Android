@@ -53,7 +53,7 @@ class MmsDatabaseTest_stories {
   @Test
   fun givenNoStories_whenIGetOrderedStoryRecipientsAndIds_thenIExpectAnEmptyList() {
     // WHEN
-    val result = mms.orderedStoryRecipientsAndIds
+    val result = mms.getOrderedStoryRecipientsAndIds(false)
 
     // THEN
     assertEquals(0, result.size)
@@ -84,7 +84,7 @@ class MmsDatabaseTest_stories {
     )
 
     // WHEN
-    val result = mms.orderedStoryRecipientsAndIds
+    val result = mms.getOrderedStoryRecipientsAndIds(false)
 
     // THEN
     assertEquals(listOf(sender.toLong(), myStory.id.toLong()), result.map { it.recipientId.toLong() })
@@ -139,7 +139,7 @@ class MmsDatabaseTest_stories {
     }
 
     // WHEN
-    val result = SignalDatabase.mms.orderedStoryRecipientsAndIds
+    val result = SignalDatabase.mms.getOrderedStoryRecipientsAndIds(false)
     val resultOrderedIds = result.map { it.messageId }
 
     // THEN
@@ -193,7 +193,7 @@ class MmsDatabaseTest_stories {
       }
     }
 
-    val result = SignalDatabase.mms.orderedStoryRecipientsAndIds
+    val result = SignalDatabase.mms.getOrderedStoryRecipientsAndIds(false)
     val resultOrderedIds = result.map { it.messageId }
 
     assertEquals(unviewedIds.reversed() + interspersedIds.reversed(), resultOrderedIds)
