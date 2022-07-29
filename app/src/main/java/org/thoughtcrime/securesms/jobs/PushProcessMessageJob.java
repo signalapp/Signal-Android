@@ -24,7 +24,7 @@ import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.signalservice.api.groupsv2.NoCredentialForRedemptionTimeException;
 import org.whispersystems.signalservice.api.messages.SignalServiceContent;
-import org.whispersystems.signalservice.api.messages.SignalServiceGroupContext;
+import org.whispersystems.signalservice.api.messages.SignalServiceGroupV2;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
 import java.io.IOException;
@@ -120,27 +120,23 @@ public final class PushProcessMessageJob extends BaseJob {
                                                  .setMaxAttempts(Parameters.UNLIMITED);
 
     if (content != null) {
-      SignalServiceGroupContext signalServiceGroupContext = GroupUtil.getGroupContextIfPresent(content);
+      SignalServiceGroupV2 signalServiceGroupContext = GroupUtil.getGroupContextIfPresent(content);
 
       if (signalServiceGroupContext != null) {
-        try {
-          GroupId groupId = GroupUtil.idFromGroupContext(signalServiceGroupContext);
+        GroupId groupId = GroupId.v2(signalServiceGroupContext.getMasterKey());
 
-          queueName = getQueueName(Recipient.externalPossiblyMigratedGroup(groupId).getId());
+        queueName = getQueueName(Recipient.externalPossiblyMigratedGroup(groupId).getId());
 
-          if (groupId.isV2()) {
-            int localRevision = SignalDatabase.groups().getGroupV2Revision(groupId.requireV2());
+        if (groupId.isV2()) {
+          int localRevision = SignalDatabase.groups().getGroupV2Revision(groupId.requireV2());
 
-            if (signalServiceGroupContext.getGroupV2().get().getRevision() > localRevision ||
-                SignalDatabase.groups().getGroupV1ByExpectedV2(groupId.requireV2()).isPresent())
-            {
-              Log.i(TAG, "Adding network constraint to group-related job.");
-              builder.addConstraint(NetworkConstraint.KEY)
-                     .setLifespan(TimeUnit.DAYS.toMillis(30));
-            }
+          if (signalServiceGroupContext.getRevision() > localRevision ||
+              SignalDatabase.groups().getGroupV1ByExpectedV2(groupId.requireV2()).isPresent())
+          {
+            Log.i(TAG, "Adding network constraint to group-related job.");
+            builder.addConstraint(NetworkConstraint.KEY)
+                   .setLifespan(TimeUnit.DAYS.toMillis(30));
           }
-        } catch (BadGroupIdException e) {
-          Log.w(TAG, "Bad groupId! Using default queue. ID: " + content.getTimestamp());
         }
       } else if (content.getSyncMessage().isPresent() && content.getSyncMessage().get().getSent().isPresent() && content.getSyncMessage().get().getSent().get().getDestination().isPresent()) {
         queueName = getQueueName(RecipientId.from(content.getSyncMessage().get().getSent().get().getDestination().get()));

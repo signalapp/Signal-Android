@@ -124,7 +124,7 @@ public final class GroupsV1MigrationUtil {
         break;
       case NOT_A_MEMBER:
         Log.w(TAG, "The migrated group already exists, but we are not a member. Doing a local leave.");
-        handleLeftBehind(context, gv1Id, groupRecipient, threadId);
+        handleLeftBehind(gv1Id);
         return;
       case FULL_OR_PENDING_MEMBER:
         Log.w(TAG, "The migrated group already exists, and we're in it. Continuing on.");
@@ -177,7 +177,7 @@ public final class GroupsV1MigrationUtil {
         throw new IOException("[Local] The group should exist already!");
       } catch (GroupNotAMemberException e) {
         Log.w(TAG, "[Local] We are not in the group. Doing a local leave.");
-        handleLeftBehind(context, gv1Id, groupRecipient, threadId);
+        handleLeftBehind(gv1Id);
         return null;
       }
 
@@ -195,15 +195,7 @@ public final class GroupsV1MigrationUtil {
     }
   }
 
-  private static void handleLeftBehind(@NonNull Context context, @NonNull GroupId.V1 gv1Id, @NonNull Recipient groupRecipient, long threadId) {
-    OutgoingMediaMessage leaveMessage = GroupUtil.createGroupV1LeaveMessage(gv1Id, groupRecipient);
-    try {
-      long id = SignalDatabase.mms().insertMessageOutbox(leaveMessage, threadId, false, null);
-      SignalDatabase.mms().markAsSent(id, true);
-    } catch (MmsException e) {
-      Log.w(TAG, "Failed to insert group leave message!", e);
-    }
-
+  private static void handleLeftBehind(@NonNull GroupId.V1 gv1Id) {
     SignalDatabase.groups().setActive(gv1Id, false);
     SignalDatabase.groups().remove(gv1Id, Recipient.self().getId());
   }

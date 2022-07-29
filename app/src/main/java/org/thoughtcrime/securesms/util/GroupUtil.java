@@ -6,31 +6,23 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
-import com.google.protobuf.ByteString;
 
 import org.signal.core.util.StringUtil;
 import org.signal.core.util.logging.Log;
-import org.signal.libsignal.protocol.InvalidMessageException;
 import org.signal.libsignal.zkgroup.InvalidInputException;
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.groups.BadGroupIdException;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.mms.MessageGroupContext;
-import org.thoughtcrime.securesms.mms.OutgoingGroupUpdateMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.signalservice.api.messages.SignalServiceContent;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
-import org.whispersystems.signalservice.api.messages.SignalServiceGroup;
-import org.whispersystems.signalservice.api.messages.SignalServiceGroupContext;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroupV2;
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupContext;
 
 import java.io.IOException;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,7 +36,7 @@ public final class GroupUtil {
   /**
    * @return The group context present on the content if one exists, otherwise null.
    */
-  public static @Nullable SignalServiceGroupContext getGroupContextIfPresent(@Nullable SignalServiceContent content) {
+  public static @Nullable SignalServiceGroupV2 getGroupContextIfPresent(@Nullable SignalServiceContent content) {
     if (content == null) {
       return null;
     } else if (content.getDataMessage().isPresent() && content.getDataMessage().get().getGroupContext().isPresent()) {
@@ -56,11 +48,7 @@ public final class GroupUtil {
     {
       return content.getSyncMessage().get().getSent().get().getDataMessage().get().getGroupContext().get();
     } else if (content.getStoryMessage().isPresent() && content.getStoryMessage().get().getGroupContext().isPresent()) {
-      try {
-        return SignalServiceGroupContext.create(null, content.getStoryMessage().get().getGroupContext().get());
-      } catch (InvalidMessageException e) {
-        throw new AssertionError(e);
-      }
+      return content.getStoryMessage().get().getGroupContext().get();
     } else {
       return null;
     }
@@ -69,36 +57,12 @@ public final class GroupUtil {
   /**
    * Result may be a v1 or v2 GroupId.
    */
-  public static @NonNull GroupId idFromGroupContext(@NonNull SignalServiceGroupContext groupContext)
-      throws BadGroupIdException
-  {
-    if (groupContext.getGroupV1().isPresent()) {
-      return GroupId.v1(groupContext.getGroupV1().get().getGroupId());
-    } else if (groupContext.getGroupV2().isPresent()) {
-      return GroupId.v2(groupContext.getGroupV2().get().getMasterKey());
-    } else {
-      throw new AssertionError();
-    }
-  }
-
-  public static @NonNull GroupId idFromGroupContextOrThrow(@NonNull SignalServiceGroupContext groupContext) {
-    try {
-      return idFromGroupContext(groupContext);
-    } catch (BadGroupIdException e) {
-      throw new AssertionError(e);
-    }
-  }
-
-  /**
-   * Result may be a v1 or v2 GroupId.
-   */
-  public static @NonNull Optional<GroupId> idFromGroupContext(@NonNull Optional<SignalServiceGroupContext> groupContext)
-      throws BadGroupIdException
-  {
+  public static @NonNull Optional<GroupId> idFromGroupContext(@NonNull Optional<SignalServiceGroupV2> groupContext) {
     if (groupContext.isPresent()) {
-      return Optional.of(idFromGroupContext(groupContext.get()));
+      return Optional.of(GroupId.v2(groupContext.get().getMasterKey()));
+    } else {
+      return Optional.empty();
     }
-    return Optional.empty();
   }
 
   public static @NonNull GroupMasterKey requireMasterKey(@NonNull byte[] masterKey) {
@@ -129,36 +93,14 @@ public final class GroupUtil {
                                                 @NonNull GroupId.Push groupId)
   {
     if (groupId.isV2()) {
-        GroupDatabase                   groupDatabase     = SignalDatabase.groups();
-        GroupDatabase.GroupRecord       groupRecord       = groupDatabase.requireGroup(groupId);
-        GroupDatabase.V2GroupProperties v2GroupProperties = groupRecord.requireV2GroupProperties();
-        SignalServiceGroupV2            group             = SignalServiceGroupV2.newBuilder(v2GroupProperties.getGroupMasterKey())
-                                                                                .withRevision(v2GroupProperties.getGroupRevision())
-                                                                                .build();
-        dataMessageBuilder.asGroupMessage(group);
-      } else {
-        dataMessageBuilder.asGroupMessage(new SignalServiceGroup(groupId.getDecodedId()));
-      }
-  }
-
-  public static OutgoingGroupUpdateMessage createGroupV1LeaveMessage(@NonNull GroupId.V1 groupId,
-                                                                     @NonNull Recipient groupRecipient)
-  {
-    GroupContext groupContext = GroupContext.newBuilder()
-                                            .setId(ByteString.copyFrom(groupId.getDecodedId()))
-                                            .setType(GroupContext.Type.QUIT)
-                                            .build();
-
-    return new OutgoingGroupUpdateMessage(groupRecipient,
-                                          groupContext,
-                                          null,
-                                          System.currentTimeMillis(),
-                                          0,
-                                          false,
-                                          null,
-                                          Collections.emptyList(),
-                                          Collections.emptyList(),
-                                          Collections.emptyList());
+      GroupDatabase                   groupDatabase     = SignalDatabase.groups();
+      GroupDatabase.GroupRecord       groupRecord       = groupDatabase.requireGroup(groupId);
+      GroupDatabase.V2GroupProperties v2GroupProperties = groupRecord.requireV2GroupProperties();
+      SignalServiceGroupV2            group             = SignalServiceGroupV2.newBuilder(v2GroupProperties.getGroupMasterKey())
+                                                                              .withRevision(v2GroupProperties.getGroupRevision())
+                                                                              .build();
+      dataMessageBuilder.asGroupMessage(group);
+    }
   }
 
   public static class GroupDescription {

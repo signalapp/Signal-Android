@@ -11,9 +11,8 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.util.GroupUtil
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
-import org.whispersystems.signalservice.api.messages.SignalServiceGroupContext
+import org.whispersystems.signalservice.api.messages.SignalServiceGroupV2
 import java.util.Optional
 
 class IncomingMediaMessage(
@@ -96,7 +95,7 @@ class IncomingMediaMessage(
     viewOnce: Boolean,
     unidentified: Boolean,
     body: Optional<String>,
-    group: Optional<SignalServiceGroupContext>,
+    group: Optional<SignalServiceGroupV2>,
     attachments: Optional<List<SignalServiceAttachment>>,
     quote: Optional<QuoteModel>,
     sharedContacts: Optional<List<Contact>>,
@@ -107,7 +106,7 @@ class IncomingMediaMessage(
     giftBadge: GiftBadge?
   ) : this(
     from = from,
-    groupId = if (group.isPresent) GroupUtil.idFromGroupContextOrThrow(group.get()) else null,
+    groupId = if (group.isPresent) GroupId.v2(group.get().masterKey) else null,
     body = body.orElse(null),
     isPushMessage = true,
     storyType = storyType,

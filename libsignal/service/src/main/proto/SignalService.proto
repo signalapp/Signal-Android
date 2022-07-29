@@ -313,7 +313,7 @@ message DataMessage {
 
   optional string             body                    = 1;
   repeated AttachmentPointer  attachments             = 2;
-  optional GroupContext       group                   = 3;
+  reserved                  /*groupV1*/                 3;
   optional GroupContextV2     groupV2                 = 15;
   optional uint32             flags                   = 4;
   optional uint32             expireTimer             = 5;

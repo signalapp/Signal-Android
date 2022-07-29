@@ -10,7 +10,6 @@ import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobMigration.JobData;
 import org.thoughtcrime.securesms.jobs.FailingJob;
-import org.thoughtcrime.securesms.jobs.RequestGroupInfoJob;
 import org.thoughtcrime.securesms.jobs.SendDeliveryReceiptJob;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
@@ -28,35 +27,6 @@ public class RecipientIdFollowUpJobMigrationTest {
 
   @Mock
   private MockedStatic<Job.Parameters> jobParametersMockedStatic;
-
-  @Test
-  public void migrate_requestGroupInfoJob_good() throws Exception {
-    JobData testData = new JobData("RequestGroupInfoJob", null, new Data.Builder().putString("source", "1")
-                                                                                  .putString("group_id", "__textsecure_group__!abcdef0123456789abcdef0123456789")
-                                                                                  .build());
-    RecipientIdFollowUpJobMigration subject   = new RecipientIdFollowUpJobMigration();
-    JobData                         converted = subject.migrate(testData);
-
-    assertEquals("RequestGroupInfoJob", converted.getFactoryKey());
-    assertNull(converted.getQueueKey());
-    assertEquals("1", converted.getData().getString("source"));
-    assertEquals("__textsecure_group__!abcdef0123456789abcdef0123456789", converted.getData().getString("group_id"));
-
-    new RequestGroupInfoJob.Factory().create(mock(Job.Parameters.class), converted.getData());
-  }
-
-  @Test
-  public void migrate_requestGroupInfoJob_bad() throws Exception {
-    JobData testData = new JobData("RequestGroupInfoJob", null, new Data.Builder().putString("source", "1")
-                                                                                  .build());
-    RecipientIdFollowUpJobMigration subject   = new RecipientIdFollowUpJobMigration();
-    JobData                         converted = subject.migrate(testData);
-
-    assertEquals("FailingJob", converted.getFactoryKey());
-    assertNull(converted.getQueueKey());
-
-    new FailingJob.Factory().create(mock(Job.Parameters.class), converted.getData());
-  }
 
   @Test
   public void migrate_sendDeliveryReceiptJob_good() throws Exception {

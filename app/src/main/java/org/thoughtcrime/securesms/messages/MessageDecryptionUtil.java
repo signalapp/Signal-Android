@@ -207,15 +207,7 @@ public final class MessageDecryptionUtil {
 
     if (sender == null) throw new NoSenderException();
 
-    GroupId groupId = null;
-
-    if (e.getGroup().isPresent()) {
-      try {
-        groupId = GroupUtil.idFromGroupContext(e.getGroup().get());
-      } catch (BadGroupIdException ex) {
-        Log.w(TAG, "Bad group id found in unsupported data message", ex);
-      }
-    }
+    GroupId groupId = e.getGroup().isPresent() ? GroupId.v2(e.getGroup().get().getMasterKey()) : null;
 
     return new ExceptionMetadata(sender, e.getSenderDevice(), groupId);
   }

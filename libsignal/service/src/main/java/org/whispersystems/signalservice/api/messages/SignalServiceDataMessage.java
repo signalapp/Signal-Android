@@ -27,7 +27,7 @@ public class SignalServiceDataMessage {
   private final long                                    timestamp;
   private final Optional<List<SignalServiceAttachment>> attachments;
   private final Optional<String>                        body;
-  private final Optional<SignalServiceGroupContext>     group;
+  private final Optional<SignalServiceGroupV2>          group;
   private final Optional<byte[]>                        profileKey;
   private final boolean                                 endSession;
   private final boolean                                 expirationUpdate;
@@ -50,7 +50,6 @@ public class SignalServiceDataMessage {
    * Construct a SignalServiceDataMessage.
    *
    * @param timestamp The sent timestamp.
-   * @param group The group information (or null if none).
    * @param groupV2 The group information (or null if none).
    * @param attachments The attachments (or null if none).
    * @param body The message contents.
@@ -58,7 +57,6 @@ public class SignalServiceDataMessage {
    * @param expiresInSeconds Number of seconds in which the message should disappear after being seen.
    */
   SignalServiceDataMessage(long timestamp,
-                           SignalServiceGroup group,
                            SignalServiceGroupV2 groupV2,
                            List<SignalServiceAttachment> attachments,
                            String body,
@@ -80,12 +78,7 @@ public class SignalServiceDataMessage {
                            StoryContext storyContext,
                            GiftBadge giftBadge)
   {
-    try {
-      this.group = SignalServiceGroupContext.createOptional(group, groupV2);
-    } catch (InvalidMessageException e) {
-      throw new AssertionError(e);
-    }
-
+    this.group            = Optional.ofNullable(groupV2);
     this.timestamp        = timestamp;
     this.body             = OptionalUtil.absentIfEmpty(body);
     this.endSession       = endSession;
@@ -156,7 +149,7 @@ public class SignalServiceDataMessage {
   /**
    * @return The message group context (if any).
    */
-  public Optional<SignalServiceGroupContext> getGroupContext() {
+  public Optional<SignalServiceGroupV2> getGroupContext() {
     return group;
   }
 
@@ -172,20 +165,13 @@ public class SignalServiceDataMessage {
     return profileKeyUpdate;
   }
 
-  public boolean isGroupV1Update() {
-    return group.isPresent() &&
-           group.get().getGroupV1().isPresent() &&
-           group.get().getGroupV1().get().getType() != SignalServiceGroup.Type.DELIVER;
-  }
-
   public boolean isGroupV2Message() {
-    return group.isPresent() &&
-           group.get().getGroupV2().isPresent();
+    return group.isPresent();
   }
 
   public boolean isGroupV2Update() {
-    return isGroupV2Message() &&
-           group.get().getGroupV2().get().hasSignedGroupChange() &&
+    return group.isPresent() &&
+           group.get().hasSignedGroupChange() &&
            !hasRenderableContent();
   }
 
@@ -265,8 +251,8 @@ public class SignalServiceDataMessage {
   public Optional<byte[]> getGroupId() {
     byte[] groupId = null;
 
-    if (getGroupContext().isPresent() && getGroupContext().get().getGroupV2().isPresent()) {
-      SignalServiceGroupV2 gv2 = getGroupContext().get().getGroupV2().get();
+    if (getGroupContext().isPresent() && getGroupContext().isPresent()) {
+      SignalServiceGroupV2 gv2 = getGroupContext().get();
       groupId = GroupSecretParams.deriveFromMasterKey(gv2.getMasterKey())
                                  .getPublicParams()
                                  .getGroupIdentifier()
@@ -284,7 +270,6 @@ public class SignalServiceDataMessage {
     private List<Mention>                 mentions       = new LinkedList<>();
 
     private long                 timestamp;
-    private SignalServiceGroup   group;
     private SignalServiceGroupV2 groupV2;
     private String               body;
     private boolean              endSession;
@@ -309,18 +294,7 @@ public class SignalServiceDataMessage {
       return this;
     }
 
-    public Builder asGroupMessage(SignalServiceGroup group) {
-      if (this.groupV2 != null) {
-        throw new AssertionError("Can not contain both V1 and V2 group contexts.");
-      }
-      this.group = group;
-      return this;
-    }
-
     public Builder asGroupMessage(SignalServiceGroupV2 group) {
-      if (this.group != null) {
-        throw new AssertionError("Can not contain both V1 and V2 group contexts.");
-      }
       this.groupV2 = group;
       return this;
     }
@@ -440,7 +414,7 @@ public class SignalServiceDataMessage {
 
     public SignalServiceDataMessage build() {
       if (timestamp == 0) timestamp = System.currentTimeMillis();
-      return new SignalServiceDataMessage(timestamp, group, groupV2, attachments, body, endSession,
+      return new SignalServiceDataMessage(timestamp, groupV2, attachments, body, endSession,
                                           expiresInSeconds, expirationUpdate, profileKey,
                                           profileKeyUpdate, quote, sharedContacts, previews,
                                           mentions, sticker, viewOnce, reaction, remoteDelete,

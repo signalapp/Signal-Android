@@ -56,14 +56,11 @@ public class PushProcessMessageQueueJobMigration extends JobMigration {
 
       if (content != null && content.getDataMessage().isPresent() && content.getDataMessage().get().getGroupContext().isPresent()) {
         Log.i(TAG, "Migrating a group message.");
-        try {
-          GroupId   groupId   = GroupUtil.idFromGroupContext(content.getDataMessage().get().getGroupContext().get());
-          Recipient recipient = Recipient.externalGroupExact(groupId);
 
-          suffix = recipient.getId().toQueueKey();
-        } catch (BadGroupIdException e) {
-          Log.w(TAG, "Bad groupId! Using default queue.");
-        }
+        GroupId   groupId   = GroupId.v2(content.getDataMessage().get().getGroupContext().get().getMasterKey());
+        Recipient recipient = Recipient.externalGroupExact(groupId);
+
+        suffix = recipient.getId().toQueueKey();
       } else if (content != null) {
         Log.i(TAG, "Migrating an individual message.");
         suffix = RecipientId.from(content.getSender()).toQueueKey();

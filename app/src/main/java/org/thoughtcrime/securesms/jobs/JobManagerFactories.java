@@ -142,7 +142,6 @@ public final class JobManagerFactories {
       put(PushDistributionListSendJob.KEY,           new PushDistributionListSendJob.Factory());
       put(PushGroupSendJob.KEY,                      new PushGroupSendJob.Factory());
       put(PushGroupSilentUpdateSendJob.KEY,          new PushGroupSilentUpdateSendJob.Factory());
-      put(PushGroupUpdateJob.KEY,                    new PushGroupUpdateJob.Factory());
       put(PushMediaSendJob.KEY,                      new PushMediaSendJob.Factory());
       put(PushNotificationReceiveJob.KEY,            new PushNotificationReceiveJob.Factory());
       put(PushProcessEarlyMessagesJob.KEY,           new PushProcessEarlyMessagesJob.Factory());
@@ -156,7 +155,6 @@ public final class JobManagerFactories {
       put(RemoteConfigRefreshJob.KEY,                new RemoteConfigRefreshJob.Factory());
       put(RemoteDeleteSendJob.KEY,                   new RemoteDeleteSendJob.Factory());
       put(ReportSpamJob.KEY,                         new ReportSpamJob.Factory());
-      put(RequestGroupInfoJob.KEY,                   new RequestGroupInfoJob.Factory());
       put(ResendMessageJob.KEY,                      new ResendMessageJob.Factory());
       put(ResumableUploadSpecJob.KEY,                new ResumableUploadSpecJob.Factory());
       put(RequestGroupV2InfoWorkerJob.KEY,           new RequestGroupV2InfoWorkerJob.Factory());
@@ -240,6 +238,8 @@ public final class JobManagerFactories {
       put("StorageSyncJob",                          new StorageSyncJob.Factory());
       put("WakeGroupV2Job",                          new FailingJob.Factory());
       put("LeaveGroupJob",                           new FailingJob.Factory());
+      put("PushGroupUpdateJob",                      new FailingJob.Factory());
+      put("RequestGroupInfoJob",                     new FailingJob.Factory());
     }};
   }
 

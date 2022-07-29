@@ -157,7 +157,6 @@ final class GroupManagerV1 {
       Recipient recipient = Recipient.resolved(member);
       if (recipient.hasE164()) {
         e164Members.add(recipient.requireE164());
-        uuidMembers.add(GroupV1MessageProcessor.createMember(recipient.requireE164()));
       }
     }
 
@@ -216,6 +215,6 @@ final class GroupManagerV1 {
       return Optional.empty();
     }
 
-    return Optional.of(GroupUtil.createGroupV1LeaveMessage(groupId, groupRecipient));
+    return Optional.empty();
   }
 }
