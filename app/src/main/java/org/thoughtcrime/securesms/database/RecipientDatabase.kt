@@ -527,11 +527,11 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
 
     return writableDatabase.withinTransaction {
       when {
-        serviceId is PNI -> processPnpTuple(e164, serviceId, null, pniVerified = false)
-        serviceId is ACI -> processPnpTuple(e164, null, serviceId, pniVerified = false)
-        serviceId == null -> processPnpTuple(e164, null, null, pniVerified = false)
-        getByPni(PNI.from(serviceId.uuid())).isPresent -> processPnpTuple(e164, PNI.from(serviceId.uuid()), null, pniVerified = false)
-        else -> processPnpTuple(e164, null, ACI.fromNullable(serviceId), pniVerified = false)
+        serviceId is PNI -> processPnpTuple(e164, serviceId, null, pniVerified = false, changeSelf = changeSelf)
+        serviceId is ACI -> processPnpTuple(e164, null, serviceId, pniVerified = false, changeSelf = changeSelf)
+        serviceId == null -> processPnpTuple(e164, null, null, pniVerified = false, changeSelf = changeSelf)
+        getByPni(PNI.from(serviceId.uuid())).isPresent -> processPnpTuple(e164, PNI.from(serviceId.uuid()), null, pniVerified = false, changeSelf = changeSelf)
+        else -> processPnpTuple(e164, null, ACI.fromNullable(serviceId), pniVerified = false, changeSelf = changeSelf)
       }
     }
   }
@@ -2201,8 +2201,8 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
    * @return The [RecipientId] of the resulting recipient.
    */
   @VisibleForTesting
-  fun processPnpTuple(e164: String?, pni: PNI?, aci: ACI?, pniVerified: Boolean): RecipientId {
-    val changeSet = processPnpTupleToChangeSet(e164, pni, aci, pniVerified)
+  fun processPnpTuple(e164: String?, pni: PNI?, aci: ACI?, pniVerified: Boolean, changeSelf: Boolean = false): RecipientId {
+    val changeSet = processPnpTupleToChangeSet(e164, pni, aci, pniVerified, changeSelf)
     return writePnpChangeSetToDisk(changeSet)
   }
 
@@ -2326,7 +2326,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
    * It is assumed that we are in a transaction.
    */
   @VisibleForTesting
-  fun processPnpTupleToChangeSet(e164: String?, pni: PNI?, aci: ACI?, pniVerified: Boolean): PnpChangeSet {
+  fun processPnpTupleToChangeSet(e164: String?, pni: PNI?, aci: ACI?, pniVerified: Boolean, changeSelf: Boolean = false): PnpChangeSet {
     Preconditions.checkArgument(e164 != null || pni != null || aci != null, "Must provide at least one field!")
     Preconditions.checkArgument(pni == null || e164 != null, "If a PNI is provided, you must also provide an E164!")
 
@@ -2374,11 +2374,13 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
         )
       }
 
-      if (e164 != null && record.e164 != e164) {
+      var updatedNumber = false
+      if (e164 != null && record.e164 != e164 && (changeSelf || aci != SignalStore.account().aci)) {
         operations += PnpOperation.SetE164(
           recipientId = partialData.commonId,
           e164 = e164
         )
+        updatedNumber = true
       }
 
       if (pni != null && record.pni != pni) {
@@ -2395,11 +2397,11 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
         )
       }
 
-      if (e164 != null && record.e164 != null && record.e164 != e164) {
+      if (record.e164 != null && updatedNumber) {
         operations += PnpOperation.ChangeNumberInsert(
           recipientId = partialData.commonId,
           oldE164 = record.e164,
-          newE164 = e164
+          newE164 = e164!!
         )
       }
 
@@ -2460,7 +2462,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       )
     }
 
-    if (finalData.byE164 == null && e164 != null) {
+    if (finalData.byE164 == null && e164 != null && (changeSelf || aci != SignalStore.account().aci)) {
       operations += PnpOperation.SetE164(
         recipientId = primaryId,
         e164 = e164

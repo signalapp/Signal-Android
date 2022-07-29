@@ -350,7 +350,6 @@ class RecipientDatabaseTest_getAndPossiblyMergePnp {
   }
 
   /** This is a case where normally we'd update the E164 of a user, but here the changeSelf flag is disabled, so we shouldn't. */
-  @Ignore("Change self isn't implemented yet!")
   @Test
   fun getAndPossiblyMerge_aciMapsToExistingUserButE164DoesNot_aciBelongsToLocalUser_changeSelfFalse() {
     val dataSet = KeyValueDataSet().apply {
