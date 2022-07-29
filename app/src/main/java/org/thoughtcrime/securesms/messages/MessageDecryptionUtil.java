@@ -112,7 +112,7 @@ public final class MessageDecryptionUtil {
         return DecryptionResult.forError(MessageState.INVALID_VERSION, toExceptionMetadata(e), jobs);
 
       } catch (ProtocolInvalidKeyIdException | ProtocolInvalidKeyException | ProtocolUntrustedIdentityException | ProtocolNoSessionException | ProtocolInvalidMessageException e) {
-        Log.w(TAG, String.valueOf(envelope.getTimestamp()), e);
+        Log.w(TAG, String.valueOf(envelope.getTimestamp()), e, true);
         Recipient sender = Recipient.external(context, e.getSender());
 
         if (sender.supportsMessageRetries() && Recipient.self().supportsMessageRetries() && FeatureFlags.retryReceipts()) {
@@ -155,11 +155,11 @@ public final class MessageDecryptionUtil {
       try {
         groupId = Optional.of(GroupId.push(protocolException.getGroupId().get()));
       } catch (BadGroupIdException e) {
-        Log.w(TAG, "[" + envelope.getTimestamp() + "] Bad groupId!");
+        Log.w(TAG, "[" + envelope.getTimestamp() + "] Bad groupId!", true);
       }
     }
 
-    Log.w(TAG, "[" + envelope.getTimestamp() + "] Could not decrypt a message with a type of " + contentHint);
+    Log.w(TAG, "[" + envelope.getTimestamp() + "] Could not decrypt a message with a type of " + contentHint, true);
 
     long threadId;
 
@@ -172,16 +172,16 @@ public final class MessageDecryptionUtil {
 
     switch (contentHint) {
       case DEFAULT:
-        Log.w(TAG, "[" + envelope.getTimestamp() + "] Inserting an error right away because it's " + contentHint);
+        Log.w(TAG, "[" + envelope.getTimestamp() + "] Inserting an error right away because it's " + contentHint, true);
         SignalDatabase.sms().insertBadDecryptMessage(sender.getId(), senderDevice, envelope.getTimestamp(), receivedTimestamp, threadId);
         break;
       case RESENDABLE:
-        Log.w(TAG, "[" + envelope.getTimestamp() + "] Inserting into pending retries store because it's " + contentHint);
+        Log.w(TAG, "[" + envelope.getTimestamp() + "] Inserting into pending retries store because it's " + contentHint, true);
         ApplicationDependencies.getPendingRetryReceiptCache().insert(sender.getId(), senderDevice, envelope.getTimestamp(), receivedTimestamp, threadId);
         ApplicationDependencies.getPendingRetryReceiptManager().scheduleIfNecessary();
         break;
       case IMPLICIT:
-        Log.w(TAG, "[" + envelope.getTimestamp() + "] Not inserting any error because it's " + contentHint);
+        Log.w(TAG, "[" + envelope.getTimestamp() + "] Not inserting any error because it's " + contentHint, true);
         break;
     }
 
