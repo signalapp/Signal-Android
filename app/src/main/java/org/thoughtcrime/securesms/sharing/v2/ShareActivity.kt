@@ -193,6 +193,7 @@ class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.C
       .withDraftText(multiShareArgs.draftText)
       .withStickerLocator(multiShareArgs.stickerLocator)
       .asBorderless(multiShareArgs.isBorderless)
+      .withShareDataTimestamp(System.currentTimeMillis())
 
     finish()
     startActivity(conversationIntentBuilder.build())

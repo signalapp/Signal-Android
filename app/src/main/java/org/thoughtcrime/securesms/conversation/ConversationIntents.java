@@ -36,6 +36,7 @@ public class ConversationIntents {
   private static final String EXTRA_FIRST_TIME_IN_SELF_CREATED_GROUP = "first_time_in_group";
   private static final String EXTRA_WITH_SEARCH_OPEN                 = "with_search_open";
   private static final String EXTRA_GIFT_BADGE                       = "gift_badge";
+  private static final String EXTRA_SHARE_DATA_TIMESTAMP             = "share_data_timestamp";
   private static final String INTENT_DATA                            = "intent_data";
   private static final String INTENT_TYPE                            = "intent_type";
 
@@ -99,7 +100,8 @@ public class ConversationIntents {
     private final int              startingPosition;
     private final boolean          firstTimeInSelfCreatedGroup;
     private final boolean          withSearchOpen;
-    private final Badge            giftBadge;
+    private final Badge giftBadge;
+    private final long  shareDataTimestamp;
 
     static Args from(@NonNull Bundle arguments) {
       Uri intentDataUri = getIntentData(arguments);
@@ -114,7 +116,8 @@ public class ConversationIntents {
                         -1,
                         false,
                         false,
-                        null);
+                        null,
+                        -1L);
       }
 
       return new Args(RecipientId.from(Objects.requireNonNull(arguments.getString(EXTRA_RECIPIENT))),
@@ -127,7 +130,8 @@ public class ConversationIntents {
                       arguments.getInt(EXTRA_STARTING_POSITION, -1),
                       arguments.getBoolean(EXTRA_FIRST_TIME_IN_SELF_CREATED_GROUP, false),
                       arguments.getBoolean(EXTRA_WITH_SEARCH_OPEN, false),
-                      arguments.getParcelable(EXTRA_GIFT_BADGE));
+                      arguments.getParcelable(EXTRA_GIFT_BADGE),
+                      arguments.getLong(EXTRA_SHARE_DATA_TIMESTAMP, -1L));
     }
 
     private Args(@NonNull RecipientId recipientId,
@@ -140,7 +144,8 @@ public class ConversationIntents {
                  int startingPosition,
                  boolean firstTimeInSelfCreatedGroup,
                  boolean withSearchOpen,
-                 @Nullable Badge giftBadge)
+                 @Nullable Badge giftBadge,
+                 long shareDataTimestamp)
     {
       this.recipientId                 = recipientId;
       this.threadId                    = threadId;
@@ -152,7 +157,8 @@ public class ConversationIntents {
       this.startingPosition            = startingPosition;
       this.firstTimeInSelfCreatedGroup = firstTimeInSelfCreatedGroup;
       this.withSearchOpen              = withSearchOpen;
-      this.giftBadge                   = giftBadge;
+      this.giftBadge          = giftBadge;
+      this.shareDataTimestamp = shareDataTimestamp;
     }
 
     public @NonNull RecipientId getRecipientId() {
@@ -206,6 +212,10 @@ public class ConversationIntents {
     public @Nullable Badge getGiftBadge() {
       return giftBadge;
     }
+
+    public long getShareDataTimestamp() {
+      return shareDataTimestamp;
+    }
   }
 
   public final static class Builder {
@@ -225,6 +235,7 @@ public class ConversationIntents {
     private boolean        firstTimeInSelfCreatedGroup;
     private boolean        withSearchOpen;
     private Badge          giftBadge;
+    private long           shareDataTimestamp = -1L;
 
     private Builder(@NonNull Context context,
                     @NonNull RecipientId recipientId,
@@ -298,6 +309,11 @@ public class ConversationIntents {
       this.giftBadge = badge;
       return this;
     }
+
+    public Builder withShareDataTimestamp(long timestamp) {
+      this.shareDataTimestamp = timestamp;
+      return this;
+    }
     
     public @NonNull Intent build() {
       if (stickerLocator != null && media != null) {
@@ -325,6 +341,7 @@ public class ConversationIntents {
       intent.putExtra(EXTRA_FIRST_TIME_IN_SELF_CREATED_GROUP, firstTimeInSelfCreatedGroup);
       intent.putExtra(EXTRA_WITH_SEARCH_OPEN, withSearchOpen);
       intent.putExtra(EXTRA_GIFT_BADGE, giftBadge);
+      intent.putExtra(EXTRA_SHARE_DATA_TIMESTAMP, shareDataTimestamp);
 
       if (draftText != null) {
         intent.putExtra(EXTRA_TEXT, draftText);

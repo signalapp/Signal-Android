@@ -455,7 +455,6 @@ public class ConversationParentFragment extends Fragment
   private int           distributionType;
   private int           reactWithAnyEmojiStartPage    = -1;
   private boolean       isSearchRequested             = false;
-  private boolean       hasProcessedShareData         = false;
 
   private final LifecycleDisposable disposables               = new LifecycleDisposable();
   private final Debouncer           optionsMenuDebouncer      = new Debouncer(50);
@@ -523,10 +522,6 @@ public class ConversationParentFragment extends Fragment
       getChildFragmentManager().beginTransaction()
                                .replace(R.id.fragment_content, fragment)
                                .commitNow();
-    }
-
-    if (savedInstanceState != null) {
-      hasProcessedShareData = savedInstanceState.getBoolean("SHARED", false);
     }
 
     initializeReceivers();
@@ -794,7 +789,6 @@ public class ConversationParentFragment extends Fragment
 
     outState.putInt(STATE_REACT_WITH_ANY_PAGE, reactWithAnyEmojiStartPage);
     outState.putBoolean(STATE_IS_SEARCH_REQUESTED, isSearchRequested);
-    outState.putBoolean("SHARED", hasProcessedShareData);
   }
 
   @Override
@@ -1604,10 +1598,16 @@ public class ConversationParentFragment extends Fragment
   private ListenableFuture<Boolean> initializeDraft(@NonNull ConversationIntents.Args args) {
     final SettableFuture<Boolean> result = new SettableFuture<>();
 
+    long    sharedDataTimestamp   = args.getShareDataTimestamp();
+    long    lastTimestamp         = callback.getShareDataTimestamp();
+    boolean hasProcessedShareData = sharedDataTimestamp > 0 && sharedDataTimestamp <= lastTimestamp;
     if (hasProcessedShareData) {
       Log.d(TAG, "Already processed this share data. Skipping.");
       result.set(false);
       return result;
+    } else {
+      Log.d(TAG, "Have not processed this share data. Proceeding.");
+      callback.setShareDataTimestamp(sharedDataTimestamp);
     }
 
     final CharSequence   draftText        = args.getDraftText();
@@ -1617,8 +1617,6 @@ public class ConversationParentFragment extends Fragment
     final List<Media>    mediaList        = args.getMedia();
     final StickerLocator stickerLocator   = args.getStickerLocator();
     final boolean        borderless       = args.isBorderless();
-
-    hasProcessedShareData = true;
 
     if (stickerLocator != null && draftMedia != null) {
       Log.d(TAG, "Handling shared sticker.");
@@ -4232,6 +4230,10 @@ public class ConversationParentFragment extends Fragment
   }
 
   public interface Callback {
+    long getShareDataTimestamp();
+
+    void setShareDataTimestamp(long timestamp);
+
     default void onInitializeToolbar(@NonNull Toolbar toolbar) {
     }
 
