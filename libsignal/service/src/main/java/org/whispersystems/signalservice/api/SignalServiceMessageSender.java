@@ -1157,6 +1157,9 @@ public class SignalServiceMessageSender {
 
     if (recipient.isPresent()) {
       sentMessage.setDestinationUuid(recipient.get().getServiceId().toString());
+      if (recipient.get().getNumber().isPresent()) {
+        sentMessage.setDestinationE164(recipient.get().getNumber().get());
+      }
     }
 
     if (dataMessage != null) {

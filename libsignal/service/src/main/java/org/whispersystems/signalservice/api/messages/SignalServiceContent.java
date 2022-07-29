@@ -674,7 +674,7 @@ public final class SignalServiceContent {
       Optional<SignalServiceDataMessage>      dataMessage          = sentContent.hasMessage() ? Optional.of(createSignalServiceMessage(metadata, sentContent.getMessage())) : Optional.empty();
       Optional<SignalServiceStoryMessage>     storyMessage         = sentContent.hasStoryMessage() ? Optional.of(createStoryMessage(sentContent.getStoryMessage())) : Optional.empty();
       Optional<SignalServiceAddress>          address              = SignalServiceAddress.isValidAddress(sentContent.getDestinationUuid())
-                                                                     ? Optional.of(new SignalServiceAddress(ServiceId.parseOrThrow(sentContent.getDestinationUuid())))
+                                                                     ? Optional.of(new SignalServiceAddress(ServiceId.parseOrThrow(sentContent.getDestinationUuid()), sentContent.getDestinationE164()))
                                                                      : Optional.empty();
       Set<SignalServiceStoryMessageRecipient> recipientManifest    = sentContent.getStoryMessageRecipientsList()
                                                                                 .stream()

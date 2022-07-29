@@ -433,7 +433,7 @@ message SyncMessage {
       optional bool   isAllowedToReply    = 3;
     }
 
-    reserved                          /*destinationE164*/          1;
+    optional string                     destinationE164          = 1;
     optional string                     destinationUuid          = 7;
     optional uint64                     timestamp                = 2;
     optional DataMessage                message                  = 3;

@@ -34,7 +34,8 @@ public class SignalServiceAddress {
     this.e164      = e164;
   }
 
-  @SuppressWarnings("NewApi") public SignalServiceAddress(ServiceId serviceId) {
+  @SuppressWarnings("NewApi")
+  public SignalServiceAddress(ServiceId serviceId) {
     this.serviceId = Preconditions.checkNotNull(serviceId);
     this.e164      = Optional.empty();
   }
