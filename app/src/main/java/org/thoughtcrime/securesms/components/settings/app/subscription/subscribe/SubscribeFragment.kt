@@ -30,6 +30,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.models.Cu
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.GooglePayButton
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.NetworkFailure
 import org.thoughtcrime.securesms.components.settings.configure
+import org.thoughtcrime.securesms.components.settings.models.Button
 import org.thoughtcrime.securesms.components.settings.models.Progress
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
@@ -38,6 +39,7 @@ import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.fragments.requireListener
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
+import org.thoughtcrime.securesms.util.visible
 import java.util.Currency
 import java.util.concurrent.TimeUnit
 
@@ -63,6 +65,10 @@ class SubscribeFragment : DSLSettingsFragment(
   private lateinit var processingDonationPaymentDialog: AlertDialog
   private lateinit var donationPaymentComponent: DonationPaymentComponent
 
+  private lateinit var googlePayButtonViewHolder: GooglePayButton.ViewHolder
+  private lateinit var updateSubscriptionButtonViewHolder: Button.ViewHolder<Button.Model.Primary>
+  private lateinit var cancelSubscriptionButtonViewHolder: Button.ViewHolder<Button.Model.SecondaryNoOutline>
+
   private var errorDialog: DialogInterface? = null
 
   private val viewModel: SubscribeViewModel by viewModels(
@@ -83,9 +89,12 @@ class SubscribeFragment : DSLSettingsFragment(
     BadgePreview.register(adapter)
     CurrencySelection.register(adapter)
     Subscription.register(adapter)
-    GooglePayButton.register(adapter)
     Progress.register(adapter)
     NetworkFailure.register(adapter)
+
+    googlePayButtonViewHolder = GooglePayButton.ViewHolder(requireView().findViewById(R.id.pay_button_wrapper))
+    updateSubscriptionButtonViewHolder = Button.ViewHolder(requireView().findViewById(R.id.update_button_wrapper))
+    cancelSubscriptionButtonViewHolder = Button.ViewHolder(requireView().findViewById(R.id.cancel_button_wrapper))
 
     processingDonationPaymentDialog = MaterialAlertDialogBuilder(requireContext())
       .setView(R.layout.processing_payment_dialog)
@@ -93,6 +102,7 @@ class SubscribeFragment : DSLSettingsFragment(
       .create()
 
     viewModel.state.observe(viewLifecycleOwner) { state ->
+      bindFixedButtons(state)
       adapter.submitList(getConfiguration(state).toMappingModelList())
     }
 
@@ -202,71 +212,83 @@ class SubscribeFragment : DSLSettingsFragment(
           )
         }
       }
+    }
+  }
 
-      if (state.activeSubscription?.isActive == true) {
-        space(DimensionUnit.DP.toPixels(16f).toInt())
+  private fun bindFixedButtons(state: SubscribeState) {
+    val areFieldsEnabled = state.stage == SubscribeState.Stage.READY && !state.hasInProgressSubscriptionTransaction
 
-        val activeAndSameLevel = state.activeSubscription.isActive &&
-          state.selectedSubscription?.level == state.activeSubscription.activeSubscription?.level
+    if (state.activeSubscription?.isActive == true) {
+      val activeAndSameLevel = state.activeSubscription.isActive &&
+        state.selectedSubscription?.level == state.activeSubscription.activeSubscription?.level
 
-        primaryButton(
-          text = DSLSettingsText.from(R.string.SubscribeFragment__update_subscription),
-          isEnabled = areFieldsEnabled && (!activeAndSameLevel || state.isSubscriptionExpiring()),
-          onClick = {
-            val price = viewModel.getPriceOfSelectedSubscription() ?: return@primaryButton
+      val updateModel = Button.Model.Primary(
+        title = DSLSettingsText.from(R.string.SubscribeFragment__update_subscription),
+        icon = null,
+        isEnabled = areFieldsEnabled && (!activeAndSameLevel || state.isSubscriptionExpiring()),
+        onClick = {
+          val price = viewModel.getPriceOfSelectedSubscription() ?: return@Primary
 
-            MaterialAlertDialogBuilder(requireContext())
-              .setTitle(R.string.SubscribeFragment__update_subscription_question)
-              .setMessage(
-                getString(
-                  R.string.SubscribeFragment__you_will_be_charged_the_full_amount_s_of,
-                  FiatMoneyUtil.format(
-                    requireContext().resources,
-                    price,
-                    FiatMoneyUtil.formatOptions().trimZerosAfterDecimal()
-                  )
+          MaterialAlertDialogBuilder(requireContext())
+            .setTitle(R.string.SubscribeFragment__update_subscription_question)
+            .setMessage(
+              getString(
+                R.string.SubscribeFragment__you_will_be_charged_the_full_amount_s_of,
+                FiatMoneyUtil.format(
+                  requireContext().resources,
+                  price,
+                  FiatMoneyUtil.formatOptions().trimZerosAfterDecimal()
                 )
               )
-              .setPositiveButton(R.string.SubscribeFragment__update) { dialog, _ ->
-                dialog.dismiss()
-                viewModel.updateSubscription()
-              }
-              .setNegativeButton(android.R.string.cancel) { dialog, _ ->
-                dialog.dismiss()
-              }
-              .show()
-          }
-        )
+            )
+            .setPositiveButton(R.string.SubscribeFragment__update) { dialog, _ ->
+              dialog.dismiss()
+              viewModel.updateSubscription()
+            }
+            .setNegativeButton(android.R.string.cancel) { dialog, _ ->
+              dialog.dismiss()
+            }
+            .show()
+        }
+      )
 
-        secondaryButtonNoOutline(
-          text = DSLSettingsText.from(R.string.SubscribeFragment__cancel_subscription),
-          isEnabled = areFieldsEnabled,
-          onClick = {
-            MaterialAlertDialogBuilder(requireContext())
-              .setTitle(R.string.SubscribeFragment__confirm_cancellation)
-              .setMessage(R.string.SubscribeFragment__you_wont_be_charged_again)
-              .setPositiveButton(R.string.SubscribeFragment__confirm) { d, _ ->
-                d.dismiss()
-                viewModel.cancel()
-              }
-              .setNegativeButton(R.string.SubscribeFragment__not_now) { d, _ ->
-                d.dismiss()
-              }
-              .show()
-          }
-        )
-      } else {
-        space(DimensionUnit.DP.toPixels(16f).toInt())
+      updateSubscriptionButtonViewHolder.bind(updateModel)
 
-        customPref(
-          GooglePayButton.Model(
-            onClick = this@SubscribeFragment::onGooglePayButtonClicked,
-            isEnabled = areFieldsEnabled && state.selectedSubscription != null
-          )
-        )
+      val cancelModel = Button.Model.SecondaryNoOutline(
+        title = DSLSettingsText.from(R.string.SubscribeFragment__cancel_subscription),
+        icon = null,
+        isEnabled = areFieldsEnabled,
+        onClick = {
+          MaterialAlertDialogBuilder(requireContext())
+            .setTitle(R.string.SubscribeFragment__confirm_cancellation)
+            .setMessage(R.string.SubscribeFragment__you_wont_be_charged_again)
+            .setPositiveButton(R.string.SubscribeFragment__confirm) { d, _ ->
+              d.dismiss()
+              viewModel.cancel()
+            }
+            .setNegativeButton(R.string.SubscribeFragment__not_now) { d, _ ->
+              d.dismiss()
+            }
+            .show()
+        }
+      )
 
-        space(DimensionUnit.DP.toPixels(8f).toInt())
-      }
+      cancelSubscriptionButtonViewHolder.bind(cancelModel)
+
+      updateSubscriptionButtonViewHolder.itemView.visible = true
+      cancelSubscriptionButtonViewHolder.itemView.visible = true
+      googlePayButtonViewHolder.itemView.visible = false
+    } else {
+      val googlePayModel = GooglePayButton.Model(
+        onClick = this@SubscribeFragment::onGooglePayButtonClicked,
+        isEnabled = areFieldsEnabled && state.selectedSubscription != null
+      )
+
+      googlePayButtonViewHolder.bind(googlePayModel)
+
+      updateSubscriptionButtonViewHolder.itemView.visible = false
+      cancelSubscriptionButtonViewHolder.itemView.visible = false
+      googlePayButtonViewHolder.itemView.visible = true
     }
   }
 
