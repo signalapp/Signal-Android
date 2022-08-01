@@ -103,6 +103,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.signal.core.util.DimensionUnit;
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.concurrent.SimpleTask;
@@ -137,6 +138,8 @@ import org.thoughtcrime.securesms.components.emoji.RecentEmojiPageModel;
 import org.thoughtcrime.securesms.components.identity.UnverifiedBannerView;
 import org.thoughtcrime.securesms.components.location.SignalPlace;
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation;
+import org.thoughtcrime.securesms.components.menu.ActionItem;
+import org.thoughtcrime.securesms.components.menu.SignalContextMenu;
 import org.thoughtcrime.securesms.components.reminder.BubbleOptOutReminder;
 import org.thoughtcrime.securesms.components.reminder.ExpiredBuildReminder;
 import org.thoughtcrime.securesms.components.reminder.GroupsV1MigrationSuggestionsReminder;
@@ -163,6 +166,11 @@ import org.thoughtcrime.securesms.conversation.ConversationMessage.ConversationM
 import org.thoughtcrime.securesms.conversation.drafts.DraftRepository;
 import org.thoughtcrime.securesms.conversation.drafts.DraftViewModel;
 import org.thoughtcrime.securesms.conversation.ui.groupcall.GroupCallViewModel;
+import org.thoughtcrime.securesms.conversation.ui.inlinequery.InlineQuery;
+import org.thoughtcrime.securesms.conversation.ui.inlinequery.InlineQueryChangedListener;
+import org.thoughtcrime.securesms.conversation.ui.inlinequery.InlineQueryResultsController;
+import org.thoughtcrime.securesms.conversation.ui.inlinequery.InlineQueryResultsPopup;
+import org.thoughtcrime.securesms.conversation.ui.inlinequery.InlineQueryViewModel;
 import org.thoughtcrime.securesms.conversation.ui.mentions.MentionsPickerViewModel;
 import org.thoughtcrime.securesms.crypto.ReentrantSessionLock;
 import org.thoughtcrime.securesms.crypto.SecurityEvent;
@@ -328,8 +336,11 @@ import java.util.concurrent.TimeoutException;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Flowable;
+import io.reactivex.rxjava3.disposables.Disposable;
 
+import static android.content.res.Configuration.ORIENTATION_LANDSCAPE;
 import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 
 /**
@@ -443,12 +454,14 @@ public class ConversationParentFragment extends Fragment
   private InviteReminderModel          inviteReminderModel;
   private ConversationGroupViewModel   groupViewModel;
   private MentionsPickerViewModel      mentionsViewModel;
+  private InlineQueryViewModel         inlineQueryViewModel;
   private GroupCallViewModel           groupCallViewModel;
   private VoiceRecorderWakeLock        voiceRecorderWakeLock;
   private DraftViewModel               draftViewModel;
   private VoiceNoteMediaController     voiceNoteMediaController;
   private VoiceNotePlayerView          voiceNotePlayerView;
   private Material3OnScrollHelper      material3OnScrollHelper;
+  private InlineQueryResultsController inlineQueryResultsController;
 
   private LiveRecipient recipient;
   private long          threadId;
@@ -643,6 +656,10 @@ public class ConversationParentFragment extends Fragment
 
     if (reactionDelegate.isShowing()) {
      reactionDelegate.hide();
+    }
+
+    if (inlineQueryResultsController != null) {
+      inlineQueryResultsController.onOrientationChange(newConfig.orientation == ORIENTATION_LANDSCAPE);
     }
   }
 
@@ -2330,7 +2347,17 @@ public class ConversationParentFragment extends Fragment
   }
 
   private void initializeMentionsViewModel() {
-    mentionsViewModel = new ViewModelProvider(requireActivity(), new MentionsPickerViewModel.Factory()).get(MentionsPickerViewModel.class);
+    mentionsViewModel    = new ViewModelProvider(requireActivity(), new MentionsPickerViewModel.Factory()).get(MentionsPickerViewModel.class);
+    inlineQueryViewModel = new ViewModelProvider(requireActivity()).get(InlineQueryViewModel.class);
+
+    inlineQueryResultsController = new InlineQueryResultsController(
+        requireContext(),
+        inlineQueryViewModel,
+        inputPanel,
+        (ViewGroup) requireView(),
+        composeText,
+        getViewLifecycleOwner()
+    );
 
     recipient.observe(getViewLifecycleOwner(), r -> {
       if (r.isPushV2Group() && !mentionsSuggestions.resolved()) {
@@ -2339,12 +2366,29 @@ public class ConversationParentFragment extends Fragment
       mentionsViewModel.onRecipientChange(r);
     });
 
-    composeText.setMentionQueryChangedListener(query -> {
-      if (getRecipient().isPushV2Group() && getRecipient().isActiveGroup()) {
-        if (!mentionsSuggestions.resolved()) {
-          mentionsSuggestions.get();
+    composeText.setInlineQueryChangedListener(new InlineQueryChangedListener() {
+      @Override
+      public void onQueryChanged(@NonNull InlineQuery inlineQuery) {
+        if (inlineQuery instanceof InlineQuery.Mention) {
+          if (getRecipient().isPushV2Group() && getRecipient().isActiveGroup()) {
+            if (!mentionsSuggestions.resolved()) {
+              mentionsSuggestions.get();
+            }
+            mentionsViewModel.onQueryChange(inlineQuery.getQuery());
+          }
+          inlineQueryViewModel.onQueryChange(inlineQuery);
+        } else if (inlineQuery instanceof InlineQuery.Emoji) {
+          inlineQueryViewModel.onQueryChange(inlineQuery);
+          mentionsViewModel.onQueryChange(null);
+        } else if (inlineQuery instanceof InlineQuery.NoQuery) {
+          mentionsViewModel.onQueryChange(null);
+          inlineQueryViewModel.onQueryChange(inlineQuery);
         }
-        mentionsViewModel.onQueryChange(query);
+      }
+
+      @Override
+      public void clearQuery() {
+        onQueryChanged(InlineQuery.NoQuery.INSTANCE);
       }
     });
 
@@ -2365,6 +2409,15 @@ public class ConversationParentFragment extends Fragment
     mentionsViewModel.getSelectedRecipient().observe(getViewLifecycleOwner(), recipient -> {
       composeText.replaceTextWithMention(recipient.getDisplayName(requireContext()), recipient.getId());
     });
+
+    Disposable disposable = inlineQueryViewModel
+        .getSelection()
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(r -> {
+          composeText.replaceText(r);
+        });
+
+    disposables.add(disposable);
   }
 
   public void initializeGroupCallViewModel() {
@@ -3776,6 +3829,7 @@ public class ConversationParentFragment extends Fragment
     reactionDelegate.setOnActionSelectedListener(onActionSelectedListener);
     reactionDelegate.setOnHideListener(onHideListener);
     reactionDelegate.show(requireActivity(), recipient.get(), conversationMessage, groupViewModel.isNonAdminInAnnouncementGroup(), selectedConversationModel);
+    composeText.clearFocus();
     if (attachmentKeyboardStub.resolved()) {
       attachmentKeyboardStub.get().hide(true);
     }

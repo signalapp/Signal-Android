@@ -26,6 +26,7 @@ import androidx.core.view.inputmethod.EditorInfoCompat;
 import androidx.core.view.inputmethod.InputConnectionCompat;
 import androidx.core.view.inputmethod.InputContentInfoCompat;
 
+import org.signal.core.util.StringUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiEditText;
@@ -34,18 +35,24 @@ import org.thoughtcrime.securesms.components.mention.MentionDeleter;
 import org.thoughtcrime.securesms.components.mention.MentionRendererDelegate;
 import org.thoughtcrime.securesms.components.mention.MentionValidatorWatcher;
 import org.thoughtcrime.securesms.conversation.MessageSendType;
+import org.thoughtcrime.securesms.conversation.ui.inlinequery.InlineQuery;
+import org.thoughtcrime.securesms.conversation.ui.inlinequery.InlineQueryChangedListener;
+import org.thoughtcrime.securesms.conversation.ui.inlinequery.InlineQueryReplacement;
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.signal.core.util.StringUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 import static org.thoughtcrime.securesms.database.MentionUtil.MENTION_STARTER;
 
 public class ComposeText extends EmojiEditText {
+
+  private static final char EMOJI_STARTER       = ':';
+  private static final long EMOJI_KEYWORD_DELAY = TimeUnit.SECONDS.toMillis(1);
 
   private CharSequence            hint;
   private SpannableString         subHint;
@@ -54,7 +61,14 @@ public class ComposeText extends EmojiEditText {
 
   @Nullable private InputPanel.MediaListener      mediaListener;
   @Nullable private CursorPositionChangedListener cursorPositionChangedListener;
-  @Nullable private MentionQueryChangedListener   mentionQueryChangedListener;
+  @Nullable private InlineQueryChangedListener    inlineQueryChangedListener;
+
+  private final Runnable keywordSearchRunnable = () -> {
+    Editable text = getText();
+    if (text != null && enoughToFilter(text, true)) {
+      performFiltering(text, true);
+    }
+  };
 
   public ComposeText(Context context) {
     super(context);
@@ -111,7 +125,7 @@ public class ComposeText extends EmojiEditText {
       if (selectionStart == selectionEnd) {
         doAfterCursorChange(getText());
       } else {
-        updateQuery(null);
+        clearInlineQuery();
       }
     }
 
@@ -189,8 +203,8 @@ public class ComposeText extends EmojiEditText {
     this.cursorPositionChangedListener = listener;
   }
 
-  public void setMentionQueryChangedListener(@Nullable MentionQueryChangedListener listener) {
-    this.mentionQueryChangedListener = listener;
+  public void setInlineQueryChangedListener(@Nullable InlineQueryChangedListener listener) {
+    this.inlineQueryChangedListener = listener;
   }
 
   public void setMentionValidator(@Nullable MentionValidatorWatcher.MentionValidator mentionValidator) {
@@ -226,15 +240,23 @@ public class ComposeText extends EmojiEditText {
   public InputConnection onCreateInputConnection(EditorInfo editorInfo) {
     InputConnection inputConnection = super.onCreateInputConnection(editorInfo);
 
-    if(SignalStore.settings().isEnterKeySends()) {
+    if (SignalStore.settings().isEnterKeySends()) {
       editorInfo.imeOptions &= ~EditorInfo.IME_FLAG_NO_ENTER_ACTION;
     }
 
-    if (Build.VERSION.SDK_INT < 21) return inputConnection;
-    if (mediaListener == null)      return inputConnection;
-    if (inputConnection == null)    return null;
+    if (Build.VERSION.SDK_INT < 21) {
+      return inputConnection;
+    }
 
-    EditorInfoCompat.setContentMimeTypes(editorInfo, new String[] {"image/jpeg", "image/png", "image/gif"});
+    if (mediaListener == null) {
+      return inputConnection;
+    }
+
+    if (inputConnection == null) {
+      return null;
+    }
+
+    EditorInfoCompat.setContentMimeTypes(editorInfo, new String[] { "image/jpeg", "image/png", "image/gif" });
     return InputConnectionCompat.createWrapper(inputConnection, editorInfo, new CommitContentListener(mediaListener));
   }
 
@@ -300,35 +322,53 @@ public class ComposeText extends EmojiEditText {
   }
 
   private void doAfterCursorChange(@NonNull Editable text) {
-    if (enoughToFilter(text)) {
-      performFiltering(text);
+    removeCallbacks(keywordSearchRunnable);
+    if (enoughToFilter(text, false)) {
+      performFiltering(text, false);
     } else {
-      updateQuery(null);
+      postDelayed(keywordSearchRunnable, EMOJI_KEYWORD_DELAY);
+      clearInlineQuery();
     }
   }
 
-  private void performFiltering(@NonNull Editable text) {
-    int          end   = getSelectionEnd();
-    int          start = findQueryStart(text, end);
-    CharSequence query = text.subSequence(start, end);
-    updateQuery(query.toString());
-  }
+  private void performFiltering(@NonNull Editable text, boolean keywordEmojiSearch) {
+    int        end        = getSelectionEnd();
+    QueryStart queryStart = findQueryStart(text, end, keywordEmojiSearch);
+    int        start      = queryStart.index;
+    String     query      = text.subSequence(start, end).toString();
 
-  private void updateQuery(@Nullable String query) {
-    if (mentionQueryChangedListener != null) {
-      mentionQueryChangedListener.onQueryChanged(query);
+    if (inlineQueryChangedListener != null) {
+      if (queryStart.isMentionQuery) {
+        inlineQueryChangedListener.onQueryChanged(new InlineQuery.Mention(query));
+      } else {
+        inlineQueryChangedListener.onQueryChanged(new InlineQuery.Emoji(query, keywordEmojiSearch));
+      }
     }
   }
 
-  private boolean enoughToFilter(@NonNull Editable text) {
+  private void clearInlineQuery() {
+    if (inlineQueryChangedListener != null) {
+      inlineQueryChangedListener.clearQuery();
+    }
+  }
+
+  private boolean enoughToFilter(@NonNull Editable text, boolean keywordEmojiSearch) {
     int end = getSelectionEnd();
     if (end < 0) {
       return false;
     }
-    return findQueryStart(text, end) != -1;
+    return findQueryStart(text, end, keywordEmojiSearch).index != -1;
   }
 
   public void replaceTextWithMention(@NonNull String displayName, @NonNull RecipientId recipientId) {
+    replaceText(createReplacementToken(displayName, recipientId), false);
+  }
+
+  public void replaceText(@NonNull InlineQueryReplacement replacement) {
+    replaceText(replacement.toCharSequence(getContext()), replacement.isKeywordSearch());
+  }
+
+  private void replaceText(@NonNull CharSequence replacement, boolean keywordReplacement) {
     Editable text = getText();
     if (text == null) {
       return;
@@ -336,10 +376,11 @@ public class ComposeText extends EmojiEditText {
 
     clearComposingText();
 
-    int    end      = getSelectionEnd();
-    int    start    = findQueryStart(text, end) - 1;
+    int end   = getSelectionEnd();
+    int start = findQueryStart(text, end, keywordReplacement).index - (keywordReplacement ? 0 : 1);
 
-    text.replace(start, end, createReplacementToken(displayName, recipientId));
+    text.replace(start, end, "");
+    text.insert(start, replacement);
   }
 
   private @NonNull CharSequence createReplacementToken(@NonNull CharSequence text, @NonNull RecipientId recipientId) {
@@ -357,17 +398,37 @@ public class ComposeText extends EmojiEditText {
     return builder;
   }
 
-  private int findQueryStart(@NonNull CharSequence text, int inputCursorPosition) {
+  private QueryStart findQueryStart(@NonNull CharSequence text, int inputCursorPosition, boolean keywordEmojiSearch) {
+    if (keywordEmojiSearch) {
+      int start = findQueryStart(text, inputCursorPosition, ' ');
+      if (start == -1 && inputCursorPosition != 0) {
+        start = 0;
+      } else if (start == inputCursorPosition) {
+        start = -1;
+      }
+      return new QueryStart(start, false);
+    }
+
+    QueryStart queryStart = new QueryStart(findQueryStart(text, inputCursorPosition, MENTION_STARTER), true);
+
+    if (queryStart.index < 0) {
+      queryStart = new QueryStart(findQueryStart(text, inputCursorPosition, EMOJI_STARTER), false);
+    }
+
+    return queryStart;
+  }
+
+  private int findQueryStart(@NonNull CharSequence text, int inputCursorPosition, char starter) {
     if (inputCursorPosition == 0) {
       return -1;
     }
 
     int delimiterSearchIndex = inputCursorPosition - 1;
-    while (delimiterSearchIndex >= 0 && (text.charAt(delimiterSearchIndex) != MENTION_STARTER && text.charAt(delimiterSearchIndex) != ' ')) {
+    while (delimiterSearchIndex >= 0 && (text.charAt(delimiterSearchIndex) != starter && text.charAt(delimiterSearchIndex) != ' ')) {
       delimiterSearchIndex--;
     }
 
-    if (delimiterSearchIndex >= 0 && text.charAt(delimiterSearchIndex) == MENTION_STARTER) {
+    if (delimiterSearchIndex >= 0 && text.charAt(delimiterSearchIndex) == starter) {
       return delimiterSearchIndex + 1;
     }
     return -1;
@@ -405,11 +466,18 @@ public class ComposeText extends EmojiEditText {
     }
   }
 
+  private static class QueryStart {
+    public int     index;
+    public boolean isMentionQuery;
+
+    public QueryStart(int index, boolean isMentionQuery) {
+      this.index          = index;
+      this.isMentionQuery = isMentionQuery;
+    }
+  }
+
   public interface CursorPositionChangedListener {
     void onCursorPositionChanged(int start, int end);
   }
 
-  public interface MentionQueryChangedListener {
-    void onQueryChanged(@Nullable String query);
-  }
 }

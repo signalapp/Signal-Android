@@ -133,11 +133,11 @@ class SignalContextMenu private constructor(
     val container: ViewGroup
   ) {
 
-    var onDismiss: Runnable? = null
-    var offsetX = 0
-    var offsetY = 0
-    var horizontalPosition = HorizontalPosition.START
-    var verticalPosition = VerticalPosition.BELOW
+    private var onDismiss: Runnable? = null
+    private var offsetX = 0
+    private var offsetY = 0
+    private var horizontalPosition = HorizontalPosition.START
+    private var verticalPosition = VerticalPosition.BELOW
 
     fun onDismiss(onDismiss: Runnable): Builder {
       this.onDismiss = onDismiss

@@ -7,10 +7,10 @@ import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.database.model.EmojiSearchData;
 import org.signal.core.util.CursorUtil;
-import org.thoughtcrime.securesms.util.FtsUtil;
 import org.signal.core.util.SqlUtil;
+import org.thoughtcrime.securesms.database.model.EmojiSearchData;
+import org.thoughtcrime.securesms.util.FtsUtil;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -48,7 +48,7 @@ public class EmojiSearchDatabase extends Database {
     String   selection  = LABEL + " MATCH (?)";
     String[] args       = SqlUtil.buildArgs(matchString);
 
-    try (Cursor cursor = db.query(true, TABLE_NAME, projection, selection, args, null, null,"rank", String.valueOf(limit))) {
+    try (Cursor cursor = db.query(true, TABLE_NAME, projection, selection, args, null, null, "rank", String.valueOf(limit))) {
       while (cursor.moveToNext()) {
         results.add(CursorUtil.requireString(cursor, EMOJI));
       }

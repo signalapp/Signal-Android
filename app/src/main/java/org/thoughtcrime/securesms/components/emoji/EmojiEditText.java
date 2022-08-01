@@ -10,14 +10,17 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatEditText;
 
-import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiProvider.EmojiDrawable;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 
+import java.util.HashSet;
+import java.util.Set;
+
 
 public class EmojiEditText extends AppCompatEditText {
-  private static final String TAG = Log.tag(EmojiEditText.class);
+
+  private final Set<OnFocusChangeListener> onFocusChangeListeners = new HashSet<>();
 
   public EmojiEditText(Context context) {
     this(context, null);
@@ -38,6 +41,12 @@ public class EmojiEditText extends AppCompatEditText {
     if (!isInEditMode() && (forceCustom || !SignalStore.settings().isPreferSystemEmoji())) {
       setFilters(appendEmojiFilter(this.getFilters(), jumboEmoji));
     }
+
+    super.setOnFocusChangeListener((v, hasFocus) -> {
+      for (OnFocusChangeListener listener : onFocusChangeListeners) {
+        listener.onFocusChange(v, hasFocus);
+      }
+    });
   }
 
   public void insertEmoji(String emoji) {
@@ -52,6 +61,17 @@ public class EmojiEditText extends AppCompatEditText {
   public void invalidateDrawable(@NonNull Drawable drawable) {
     if (drawable instanceof EmojiDrawable) invalidate();
     else                                   super.invalidateDrawable(drawable);
+  }
+
+  @Override
+  public void setOnFocusChangeListener(@Nullable OnFocusChangeListener listener) {
+    if (listener != null) {
+      onFocusChangeListeners.add(listener);
+    }
+  }
+
+  public void addOnFocusChangeListener(@NonNull OnFocusChangeListener listener) {
+    onFocusChangeListeners.add(listener);
   }
 
   private InputFilter[] appendEmojiFilter(@Nullable InputFilter[] originalFilters, boolean jumboEmoji) {

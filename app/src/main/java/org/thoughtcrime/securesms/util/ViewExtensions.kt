@@ -22,3 +22,9 @@ fun ConstraintLayout.changeConstraints(change: ConstraintSet.() -> Unit) {
   set.change()
   set.applyTo(this)
 }
+
+inline fun View.doOnEachLayout(crossinline action: (view: View) -> Unit): View.OnLayoutChangeListener {
+  val listener = View.OnLayoutChangeListener { view, _, _, _, _, _, _, _, _ -> action(view) }
+  addOnLayoutChangeListener(listener)
+  return listener
+}
