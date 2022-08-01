@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet
 import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.stories.StoryTextPostView
 import org.thoughtcrime.securesms.util.LifecycleDisposable
+import org.thoughtcrime.securesms.util.livedata.LiveDataUtil
 import org.thoughtcrime.securesms.util.visible
 
 class TextStoryPostCreationFragment : Fragment(R.layout.stories_text_post_creation_fragment), TextStoryPostTextEntryFragment.Callback, SafetyNumberBottomSheet.Callbacks {
@@ -102,8 +103,10 @@ class TextStoryPostCreationFragment : Fragment(R.layout.stories_text_post_creati
       send.isEnabled = canSend
     }
 
-    linkPreviewViewModel.linkPreviewState.observe(viewLifecycleOwner) { state ->
-      storyTextPostView.bindLinkPreviewState(state, View.GONE)
+    LiveDataUtil.combineLatest(viewModel.state, linkPreviewViewModel.linkPreviewState) { viewState, linkState ->
+      Pair(viewState.body.isBlank(), linkState)
+    }.observe(viewLifecycleOwner) { (useLargeThumb, linkState) ->
+      storyTextPostView.bindLinkPreviewState(linkState, View.GONE, useLargeThumb)
       storyTextPostView.postAdjustLinkPreviewTranslationY()
     }
 

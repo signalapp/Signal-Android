@@ -46,7 +46,8 @@ class StoryTextPostPreviewFragment : Fragment(R.layout.stories_text_post_preview
         StoryTextPostState.LoadState.INIT -> Unit
         StoryTextPostState.LoadState.LOADED -> {
           storyTextPostView.bindFromStoryTextPost(state.storyTextPost!!)
-          storyTextPostView.bindLinkPreview(state.linkPreview)
+          storyTextPostView.bindLinkPreview(state.linkPreview, state.storyTextPost.body.isBlank())
+          storyTextPostView.postAdjustLinkPreviewTranslationY()
 
           if (state.linkPreview != null) {
             storyTextPostView.setLinkPreviewClickListener {

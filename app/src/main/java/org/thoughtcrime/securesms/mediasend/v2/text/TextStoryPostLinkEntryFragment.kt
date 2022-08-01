@@ -62,7 +62,7 @@ class TextStoryPostLinkEntryFragment : KeyboardEntryDialogFragment(
     }
 
     linkPreviewViewModel.linkPreviewState.observe(viewLifecycleOwner) { state ->
-      linkPreview.bind(state)
+      linkPreview.bind(state, useLargeThumbnail = false)
       shareALinkGroup.visible = !state.isLoading && !state.linkPreview.isPresent && (state.error == null && state.activeUrlForError == null)
       confirmButton.isEnabled = state.linkPreview.isPresent || state.activeUrlForError != null
     }

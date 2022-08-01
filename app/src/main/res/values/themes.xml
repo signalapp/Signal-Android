@@ -13,8 +13,7 @@
         <item name="contactCheckboxBackground">@drawable/contact_selection_checkbox</item>
     </style>
 
-    <style name="Theme.Signal.DayNight.NoActionBar" parent="TextSecure.LightNoActionBar">
-    </style>
+    <style name="Theme.Signal.DayNight.NoActionBar" parent="TextSecure.LightNoActionBar"></style>
 
     <style name="TextSecure.LightNoActionBar" parent="@style/TextSecure.BaseLightNoActionBar">
         <!-- leave empty to allow overriding -->
@@ -335,18 +334,15 @@
     </style>
 
 
-    <style name="Theme.Signal.Insights.Modal" parent="@style/Theme.AppCompat.Dialog.MinWidth">
-    </style>
+    <style name="Theme.Signal.Insights.Modal" parent="@style/Theme.AppCompat.Dialog.MinWidth"></style>
 
     <style name="TextSecure.MediaSendProgressDialog" parent="@android:style/Theme.Dialog">
         <item name="android:background">@color/core_grey_95</item>
     </style>
 
-    <style name="TextSecure.LightRegistrationTheme" parent="TextSecure.LightNoActionBar">
-    </style>
+    <style name="TextSecure.LightRegistrationTheme" parent="TextSecure.LightNoActionBar"></style>
 
-    <style name="TextSecure.DarkRegistrationTheme" parent="TextSecure.DarkNoActionBar">
-    </style>
+    <style name="TextSecure.DarkRegistrationTheme" parent="TextSecure.DarkNoActionBar"></style>
 
     <style name="TextSecure.LightNoActionBar.ConversationSettings" parent="TextSecure.LightNoActionBar">
         <item name="android:windowBackground">@color/transparent_black_20</item>
@@ -412,11 +408,9 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="Theme.Signal.Light.BottomSheetDialog" parent="Theme.Material3.Light.BottomSheetDialog">
-    </style>
+    <style name="Theme.Signal.Light.BottomSheetDialog" parent="Theme.Material3.Light.BottomSheetDialog"></style>
 
-    <style name="Theme.Signal.BottomSheetDialog" parent="Theme.Material3.Dark.BottomSheetDialog">
-    </style>
+    <style name="Theme.Signal.BottomSheetDialog" parent="Theme.Material3.Dark.BottomSheetDialog"></style>
 
     <style name="Theme.Signal.Light.BottomSheetDialog.Fixed">
         <item name="android:windowIsFloating">false</item>
@@ -497,14 +491,6 @@
         <item name="cornerSizeTopLeft">18dp</item>
         <item name="cornerSizeBottomLeft">0dp</item>
         <item name="cornerSizeBottomRight">0dp</item>
-    </style>
-
-    <style name="ShapeAppearanceOverlay.Signal.Story.LinkPreview.Icon" parent="">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSizeTopRight">8dp</item>
-        <item name="cornerSizeTopLeft">8dp</item>
-        <item name="cornerSizeBottomLeft">8dp</item>
-        <item name="cornerSizeBottomRight">8dp</item>
     </style>
 
     <style name="ShapeAppearanceOverlay.Signal.Story.Preview" parent="">
@@ -632,7 +618,7 @@
         <item name="chipCornerRadius">8dp</item>
         <item name="android:textAppearance">@style/Signal.Text.LabelLarge</item>
     </style>
-    
+
     <style name="ThemeOverlay.Signal.EditProfileInput" parent="ThemeOverlay.MaterialComponents">
         <item name="colorAccent">@color/signal_accent_primary</item>
         <item name="colorControlNormal">@color/signal_accent_primary</item>

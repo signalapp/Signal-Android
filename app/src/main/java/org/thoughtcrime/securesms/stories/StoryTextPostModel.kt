@@ -6,6 +6,7 @@ import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.os.Parcel
 import android.os.Parcelable
+import android.view.ContextThemeWrapper
 import android.view.View
 import androidx.core.graphics.scale
 import androidx.core.view.drawToBitmap
@@ -14,6 +15,7 @@ import com.bumptech.glide.load.Options
 import com.bumptech.glide.load.ResourceDecoder
 import com.bumptech.glide.load.engine.Resource
 import com.bumptech.glide.load.resource.SimpleResource
+import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MessageRecord
@@ -23,6 +25,8 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.fonts.TextFont
 import org.thoughtcrime.securesms.fonts.TextToScript
 import org.thoughtcrime.securesms.fonts.TypefaceCache
+import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader
+import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.Base64
@@ -109,7 +113,7 @@ data class StoryTextPostModel(
 
     override fun decode(source: StoryTextPostModel, width: Int, height: Int, options: Options): Resource<Bitmap> {
       val message = SignalDatabase.mmsSms.getMessageFor(source.storySentAtMillis, source.storyAuthor)
-      val view = StoryTextPostView(ApplicationDependencies.getApplication())
+      val view = StoryTextPostView(ContextThemeWrapper(ApplicationDependencies.getApplication(), R.style.TextSecure_DarkNoActionBar))
       val typeface = TypefaceCache.get(
         ApplicationDependencies.getApplication(),
         TextFont.fromStyle(source.storyTextPost.style),
@@ -119,9 +123,30 @@ data class StoryTextPostModel(
       val displayWidth: Int = ApplicationDependencies.getApplication().resources.displayMetrics.widthPixels
       val arHeight: Int = (RENDER_HW_AR * displayWidth).toInt()
 
+      val linkPreview = (message as? MmsMessageRecord)?.linkPreviews?.firstOrNull()
+      val useLargeThumbnail = source.text.isBlank()
+
       view.setTypeface(typeface)
       view.bindFromStoryTextPost(source.storyTextPost)
-      view.bindLinkPreview((message as? MmsMessageRecord)?.linkPreviews?.firstOrNull())
+      view.bindLinkPreview(linkPreview, useLargeThumbnail, loadThumbnail = false)
+      view.postAdjustLinkPreviewTranslationY()
+
+      view.invalidate()
+      view.measure(View.MeasureSpec.makeMeasureSpec(displayWidth, View.MeasureSpec.EXACTLY), View.MeasureSpec.makeMeasureSpec(arHeight, View.MeasureSpec.EXACTLY))
+      view.layout(0, 0, view.measuredWidth, view.measuredHeight)
+
+      val drawable = if (linkPreview != null && linkPreview.thumbnail.isPresent) {
+        GlideApp
+          .with(view)
+          .load(DecryptableStreamUriLoader.DecryptableUri(linkPreview.thumbnail.get().uri!!))
+          .centerCrop()
+          .submit(view.getLinkPreviewThumbnailWidth(useLargeThumbnail), view.getLinkPreviewThumbnailHeight(useLargeThumbnail))
+          .get()
+      } else {
+        null
+      }
+
+      view.setLinkPreviewDrawable(drawable, useLargeThumbnail)
 
       view.invalidate()
       view.measure(View.MeasureSpec.makeMeasureSpec(displayWidth, View.MeasureSpec.EXACTLY), View.MeasureSpec.makeMeasureSpec(arHeight, View.MeasureSpec.EXACTLY))

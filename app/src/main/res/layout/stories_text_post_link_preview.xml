@@ -4,16 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    tools:background="@color/signal_dark_colorBackground"
     tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
 
-    <androidx.cardview.widget.CardView
+    <org.thoughtcrime.securesms.components.ClippedCardView
         android:id="@+id/link_preview_card"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="24dp"
-        app:cardBackgroundColor="@color/transparent_black_40"
+        android:maxWidth="280dp"
+        app:cardBackgroundColor="#F6F8FB"
         app:cardCornerRadius="12dp"
         app:cardElevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -23,30 +25,44 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="16dp"
-            android:paddingTop="12dp"
-            android:paddingBottom="12dp">
+            android:layout_height="wrap_content">
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/link_preview_fallback_icon"
-                android:layout_width="42dp"
-                android:layout_height="42dp"
-                android:background="@color/core_grey_02"
+            <org.thoughtcrime.securesms.components.ThumbnailView
+                android:id="@+id/link_preview_large"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="#FAFAFA"
                 android:importantForAccessibility="no"
+                android:scaleType="centerCrop"
+                android:visibility="gone"
+                app:thumbnail_radius="0dp"
+                app:layout_constraintDimensionRatio="280:161"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/link_preview_fallback_icon"
+                android:layout_width="94dp"
+                android:layout_height="0dp"
+                android:background="#FAFAFA"
+                android:importantForAccessibility="no"
+                android:padding="12dp"
                 android:scaleType="centerInside"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:shapeAppearance="@style/ShapeAppearanceOverlay.Signal.Story.LinkPreview.Icon"
                 app:srcCompat="@drawable/ic_link_24"
                 app:tint="@color/core_grey_75" />
 
-            <org.thoughtcrime.securesms.components.OutlinedThumbnailView
+            <org.thoughtcrime.securesms.components.ThumbnailView
                 android:id="@+id/link_preview_image"
-                android:layout_width="76dp"
-                android:layout_height="76dp"
+                android:layout_width="94dp"
+                android:layout_height="0dp"
+                android:background="#FAFAFA"
+                android:scaleType="centerCrop"
                 android:visibility="gone"
+                app:thumbnail_radius="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -64,15 +80,18 @@
                 android:id="@+id/link_preview_title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="16dp"
                 android:ellipsize="end"
                 android:maxLines="3"
-                android:textAppearance="@style/TextAppearance.Signal.Body1.Bold"
-                android:textColor="@color/core_white"
+                android:textAppearance="@style/Signal.Text.LabelLarge"
+                android:textColor="@color/signal_light_colorOnSurface"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@id/link_preview_description"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/image_barrier"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/link_preview_large"
+                app:layout_goneMarginBottom="12dp"
                 app:layout_goneMarginStart="0dp"
                 tools:text="ASDF dot com, the resource of your asdf dreams and whatnot. This needs to be 3 lines for testing." />
 
@@ -82,22 +101,24 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:textAppearance="@style/TextAppearance.Signal.Body2"
-                android:textColor="@color/core_white"
+                android:textAppearance="@style/Signal.Text.BodyMedium"
+                android:textColor="@color/signal_light_colorOnSurfaceVariant"
                 app:layout_constraintBottom_toTopOf="@id/link_preview_url"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/link_preview_title"
                 app:layout_constraintTop_toBottomOf="@id/link_preview_title"
+                app:layout_goneMarginBottom="12dp"
                 tools:text="Blah blah blah" />
 
             <org.thoughtcrime.securesms.components.emoji.EmojiTextView
                 android:id="@+id/link_preview_url"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:textAppearance="@style/TextAppearance.Signal.Body2"
-                android:textColor="@color/transparent_white_60"
+                android:textAppearance="@style/Signal.Text.BodySmall"
+                android:textColor="@color/signal_light_colorOnSurfaceVariant"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/link_preview_title"
@@ -116,13 +137,13 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
+    </org.thoughtcrime.securesms.components.ClippedCardView>
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/link_preview_close"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:background="@color/transparent_black_80"
+        android:background="@color/transparent_white_80"
         android:padding="6dp"
         android:scaleType="centerInside"
         android:visibility="gone"
@@ -130,6 +151,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Signal.Circle"
         app:srcCompat="@drawable/ic_x_24"
-        app:tint="@color/core_white"
+        app:tint="@color/signal_light_colorOnSurface"
         tools:visibility="visible" />
 </merge>
