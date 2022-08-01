@@ -352,6 +352,7 @@ class StoryViewerPageFragment :
 
       if (context == null) {
         Log.d(TAG, "Subscriber called while fragment is detached. Ignoring state update.")
+        return@subscribe
       }
 
       if (state.posts.isNotEmpty() && state.selectedPostIndex in state.posts.indices) {
