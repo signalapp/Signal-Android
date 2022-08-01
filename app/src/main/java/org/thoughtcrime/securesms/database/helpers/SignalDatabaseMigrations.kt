@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.conversation.colors.ChatColorsMapper.entrySet
 import org.thoughtcrime.securesms.database.KeyValueDatabase
 import org.thoughtcrime.securesms.database.RecipientDatabase
+import org.thoughtcrime.securesms.database.helpers.migration.UrgentMslFlagMigration
 import org.thoughtcrime.securesms.database.model.databaseprotos.ReactionList
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.groups.GroupId
@@ -203,8 +204,9 @@ object SignalDatabaseMigrations {
   private const val QUOTE_INDEX = 147
   private const val MY_STORY_PRIVACY_MODE = 148
   private const val EXPIRING_PROFILE_CREDENTIALS = 149
+  private const val URGENT_FLAG = 150
 
-  const val DATABASE_VERSION = 149
+  const val DATABASE_VERSION = 150
 
   @JvmStatic
   fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -2662,6 +2664,10 @@ object SignalDatabaseMigrations {
 
     if (oldVersion < EXPIRING_PROFILE_CREDENTIALS) {
       db.execSQL("UPDATE recipient SET profile_key_credential = NULL")
+    }
+
+    if (oldVersion < URGENT_FLAG) {
+      UrgentMslFlagMigration.migrate(context, db, oldVersion, newVersion)
     }
   }
 

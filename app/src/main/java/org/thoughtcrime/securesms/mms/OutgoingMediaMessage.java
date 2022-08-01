@@ -249,6 +249,10 @@ public class OutgoingMediaMessage {
     return giftBadge;
   }
 
+  public boolean isUrgent() {
+    return true;
+  }
+
   private static String buildMessage(SlideDeck slideDeck, String message) {
     if (!TextUtils.isEmpty(message) && !TextUtils.isEmpty(slideDeck.getBody())) {
       return slideDeck.getBody() + "\n\n" + message;

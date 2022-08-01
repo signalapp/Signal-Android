@@ -33,6 +33,7 @@ message SignalServiceEnvelopeProto {
   optional int64  serverDeliveredTimestamp = 9;
   optional string serverGuid               = 10;
   optional string destinationUuid          = 11;
+  optional bool   urgent                   = 12 [default = true];
 }
 
 message MetadataProto {

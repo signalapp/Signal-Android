@@ -292,7 +292,7 @@ public final class PushGroupSendJob extends PushSendJob {
                                                                               .withExpiration(groupRecipient.getExpiresInSeconds())
                                                                               .asGroupMessage(group)
                                                                               .build();
-          return GroupSendUtil.sendResendableDataMessage(context, groupRecipient.requireGroupId().requireV2(), destinations, isRecipientUpdate, ContentHint.IMPLICIT, new MessageId(messageId, true), groupDataMessage);
+          return GroupSendUtil.sendResendableDataMessage(context, groupRecipient.requireGroupId().requireV2(), destinations, isRecipientUpdate, ContentHint.IMPLICIT, new MessageId(messageId, true), groupDataMessage, message.isUrgent());
         } else {
           throw new UndeliverableMessageException("Messages can no longer be sent to V1 groups!");
         }
@@ -351,7 +351,8 @@ public final class PushGroupSendJob extends PushSendJob {
                                                        isRecipientUpdate,
                                                        ContentHint.RESENDABLE,
                                                        new MessageId(messageId, true),
-                                                       groupMessageBuilder.build());
+                                                       groupMessageBuilder.build(),
+                                                       message.isUrgent());
       }
     } catch (ServerRejectedException e) {
       throw new UndeliverableMessageException(e);

@@ -254,11 +254,11 @@ public class PushMediaSendJob extends PushSendJob {
       if (Util.equals(SignalStore.account().getAci(), address.getServiceId())) {
         Optional<UnidentifiedAccessPair> syncAccess = UnidentifiedAccessUtil.getAccessForSync(context);
         SendMessageResult                result     = messageSender.sendSyncMessage(mediaMessage);
-        SignalDatabase.messageLog().insertIfPossible(messageRecipient.getId(), message.getSentTimeMillis(), result, ContentHint.RESENDABLE, new MessageId(messageId, true));
+        SignalDatabase.messageLog().insertIfPossible(messageRecipient.getId(), message.getSentTimeMillis(), result, ContentHint.RESENDABLE, new MessageId(messageId, true), false);
         return syncAccess.isPresent();
       } else {
-        SendMessageResult result = messageSender.sendDataMessage(address, UnidentifiedAccessUtil.getAccessFor(context, messageRecipient), ContentHint.RESENDABLE, mediaMessage, IndividualSendEvents.EMPTY);
-        SignalDatabase.messageLog().insertIfPossible(messageRecipient.getId(), message.getSentTimeMillis(), result, ContentHint.RESENDABLE, new MessageId(messageId, true));
+        SendMessageResult result = messageSender.sendDataMessage(address, UnidentifiedAccessUtil.getAccessFor(context, messageRecipient), ContentHint.RESENDABLE, mediaMessage, IndividualSendEvents.EMPTY, message.isUrgent());
+        SignalDatabase.messageLog().insertIfPossible(messageRecipient.getId(), message.getSentTimeMillis(), result, ContentHint.RESENDABLE, new MessageId(messageId, true), message.isUrgent());
         return result.getSuccess().isUnidentified();
       }
     } catch (UnregisteredUserException e) {

@@ -32,4 +32,8 @@ public class OutgoingExpirationUpdateMessage extends OutgoingSecureMediaMessage 
     return true;
   }
 
+  @Override
+  public boolean isUrgent() {
+    return false;
+  }
 }

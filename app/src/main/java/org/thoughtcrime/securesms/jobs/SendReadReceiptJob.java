@@ -186,7 +186,7 @@ public class SendReadReceiptJob extends BaseJob {
                                                          receiptMessage);
 
     if (Util.hasItems(messageIds)) {
-      SignalDatabase.messageLog().insertIfPossible(recipientId, timestamp, result, ContentHint.IMPLICIT, messageIds);
+      SignalDatabase.messageLog().insertIfPossible(recipientId, timestamp, result, ContentHint.IMPLICIT, messageIds, false);
     }
   }
 

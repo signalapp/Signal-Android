@@ -110,7 +110,7 @@ public final class PaymentNotificationSendJob extends BaseJob {
                                                                    .withPayment(new SignalServiceDataMessage.Payment(new SignalServiceDataMessage.PaymentNotification(payment.getReceipt(), payment.getNote())))
                                                                    .build();
 
-    SendMessageResult sendMessageResult = messageSender.sendDataMessage(address, unidentifiedAccess, ContentHint.DEFAULT, dataMessage, IndividualSendEvents.EMPTY);
+    SendMessageResult sendMessageResult = messageSender.sendDataMessage(address, unidentifiedAccess, ContentHint.DEFAULT, dataMessage, IndividualSendEvents.EMPTY, false);
 
     if (sendMessageResult.getIdentityFailure() != null) {
       Log.w(TAG, "Identity failure for " + recipient.getId());

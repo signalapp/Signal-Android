@@ -51,6 +51,7 @@ public class ResendMessageJob extends BaseJob {
   private final long           sentTimestamp;
   private final Content        content;
   private final ContentHint    contentHint;
+  private final boolean        urgent;
   private final GroupId.V2     groupId;
   private final DistributionId distributionId;
 
@@ -58,6 +59,7 @@ public class ResendMessageJob extends BaseJob {
   private static final String KEY_SENT_TIMESTAMP  = "sent_timestamp";
   private static final String KEY_CONTENT         = "content";
   private static final String KEY_CONTENT_HINT    = "content_hint";
+  private static final String KEY_URGENT          = "urgent";
   private static final String KEY_GROUP_ID        = "group_id";
   private static final String KEY_DISTRIBUTION_ID = "distribution_id";
 
@@ -65,6 +67,7 @@ public class ResendMessageJob extends BaseJob {
                           long sentTimestamp,
                           @NonNull Content content,
                           @NonNull ContentHint contentHint,
+                          boolean urgent,
                           @Nullable GroupId.V2 groupId,
                           @Nullable DistributionId distributionId)
   {
@@ -72,6 +75,7 @@ public class ResendMessageJob extends BaseJob {
          sentTimestamp,
          content,
          contentHint,
+         urgent,
          groupId,
          distributionId,
          new Parameters.Builder().setQueue(recipientId.toQueueKey())
@@ -85,6 +89,7 @@ public class ResendMessageJob extends BaseJob {
                            long sentTimestamp,
                            @NonNull Content content,
                            @NonNull ContentHint contentHint,
+                           boolean urgent,
                            @Nullable GroupId.V2 groupId,
                            @Nullable DistributionId distributionId,
                            @NonNull Parameters parameters)
@@ -95,6 +100,7 @@ public class ResendMessageJob extends BaseJob {
     this.sentTimestamp  = sentTimestamp;
     this.content        = content;
     this.contentHint    = contentHint;
+    this.urgent         = urgent;
     this.groupId        = groupId;
     this.distributionId = distributionId;
   }
@@ -106,6 +112,7 @@ public class ResendMessageJob extends BaseJob {
                    .putLong(KEY_SENT_TIMESTAMP, sentTimestamp)
                    .putBlobAsString(KEY_CONTENT, content.toByteArray())
                    .putInt(KEY_CONTENT_HINT, contentHint.getType())
+                   .putBoolean(KEY_URGENT, urgent)
                    .putBlobAsString(KEY_GROUP_ID, groupId != null ? groupId.getDecodedId() : null)
                    .putString(KEY_DISTRIBUTION_ID, distributionId != null ? distributionId.toString() : null)
                    .build();
@@ -152,7 +159,7 @@ public class ResendMessageJob extends BaseJob {
       contentToSend = contentToSend.toBuilder().setSenderKeyDistributionMessage(distributionBytes).build();
     }
 
-    SendMessageResult result = messageSender.resendContent(address, access, sentTimestamp, contentToSend, contentHint, Optional.ofNullable(groupId).map(GroupId::getDecodedId));
+    SendMessageResult result = messageSender.resendContent(address, access, sentTimestamp, contentToSend, contentHint, Optional.ofNullable(groupId).map(GroupId::getDecodedId), urgent);
 
     if (result.isSuccess() && distributionId != null) {
       List<SignalProtocolAddress> addresses = result.getSuccess()
@@ -195,6 +202,7 @@ public class ResendMessageJob extends BaseJob {
                                   data.getLong(KEY_SENT_TIMESTAMP),
                                   content,
                                   ContentHint.fromType(data.getInt(KEY_CONTENT_HINT)),
+                                  data.getBooleanOrDefault(KEY_URGENT, true),
                                   groupId,
                                   distributionId,
                                   parameters);

@@ -212,7 +212,7 @@ public class PushServiceSocket {
 
   private static final String DIRECTORY_AUTH_PATH       = "/v1/directory/auth";
   private static final String MESSAGE_PATH              = "/v1/messages/%s";
-  private static final String GROUP_MESSAGE_PATH        = "/v1/messages/multi_recipient?ts=%s&online=%s";
+  private static final String GROUP_MESSAGE_PATH        = "/v1/messages/multi_recipient?ts=%s&online=%s&urgent=%s";
   private static final String SENDER_ACK_MESSAGE_PATH   = "/v1/messages/%s/%d";
   private static final String UUID_ACK_MESSAGE_PATH     = "/v1/messages/uuid/%s";
   private static final String ATTACHMENT_V2_PATH        = "/v2/attachments/form/upload";
@@ -463,12 +463,12 @@ public class PushServiceSocket {
     return JsonUtil.fromJson(responseText, SenderCertificate.class).getCertificate();
   }
 
-  public SendGroupMessageResponse sendGroupMessage(byte[] body, byte[] joinedUnidentifiedAccess, long timestamp, boolean online)
+  public SendGroupMessageResponse sendGroupMessage(byte[] body, byte[] joinedUnidentifiedAccess, long timestamp, boolean online, boolean urgent)
       throws IOException
   {
     ServiceConnectionHolder connectionHolder = (ServiceConnectionHolder) getRandom(serviceClients, random);
 
-    String path = String.format(Locale.US, GROUP_MESSAGE_PATH, timestamp, online);
+    String path = String.format(Locale.US, GROUP_MESSAGE_PATH, timestamp, online, urgent);
 
     Request.Builder requestBuilder = new Request.Builder();
     requestBuilder.url(String.format("%s%s", connectionHolder.getUrl(), path));

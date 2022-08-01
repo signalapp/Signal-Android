@@ -1273,16 +1273,7 @@ final class GroupManagerV2 {
       GroupId.V2              groupId                 = GroupId.v2(masterKey);
       Recipient               groupRecipient          = Recipient.externalGroupExact(groupId);
       DecryptedGroupV2Context decryptedGroupV2Context = GroupProtoUtil.createDecryptedGroupV2Context(masterKey, groupMutation, signedGroupChange);
-      OutgoingGroupUpdateMessage outgoingMessage = new OutgoingGroupUpdateMessage(groupRecipient,
-                                                                                  decryptedGroupV2Context,
-                                                                                  null,
-                                                                                  System.currentTimeMillis(),
-                                                                                  0,
-                                                                                  false,
-                                                                                  null,
-                                                                                  Collections.emptyList(),
-                                                                                  Collections.emptyList(),
-                                                                                  Collections.emptyList());
+      OutgoingGroupUpdateMessage outgoingMessage      = new OutgoingGroupUpdateMessage(groupRecipient, decryptedGroupV2Context, System.currentTimeMillis());
 
 
       DecryptedGroupChange plainGroupChange = groupMutation.getGroupChange();

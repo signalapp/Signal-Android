@@ -37,6 +37,9 @@ public class SignalServiceEnvelopeEntity {
   @JsonProperty
   private String guid;
 
+  @JsonProperty
+  private Boolean urgent;
+
   public SignalServiceEnvelopeEntity() {}
 
   public int getType() {
@@ -85,5 +88,9 @@ public class SignalServiceEnvelopeEntity {
 
   public String getDestinationUuid() {
     return destinationUuid;
+  }
+
+  public boolean isUrgent() {
+    return urgent == null || urgent;
   }
 }

@@ -12,6 +12,8 @@ data class MessageLogEntry(
   val dateSent: Long,
   val content: SignalServiceProtos.Content,
   val contentHint: ContentHint,
+  @get:JvmName("isUrgent")
+  val urgent: Boolean,
   val relatedMessages: List<MessageId>
 ) {
   val hasRelatedMessage: Boolean

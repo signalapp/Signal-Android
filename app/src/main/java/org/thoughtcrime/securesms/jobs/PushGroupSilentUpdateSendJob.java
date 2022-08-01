@@ -175,7 +175,7 @@ public final class PushGroupSilentUpdateSendJob extends BaseJob {
                                                                         .asGroupMessage(group)
                                                                         .build();
 
-    List<SendMessageResult> results = GroupSendUtil.sendUnresendableDataMessage(context, groupId, destinations, false, ContentHint.IMPLICIT, groupDataMessage);
+    List<SendMessageResult> results = GroupSendUtil.sendUnresendableDataMessage(context, groupId, destinations, false, ContentHint.IMPLICIT, groupDataMessage, false);
 
     return GroupSendJobHelper.getCompletedSends(destinations, results).completed;
   }

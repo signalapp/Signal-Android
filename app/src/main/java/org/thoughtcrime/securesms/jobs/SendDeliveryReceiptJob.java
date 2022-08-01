@@ -122,7 +122,7 @@ public class SendDeliveryReceiptJob extends BaseJob {
                                                          receiptMessage);
 
     if (messageId != null) {
-      SignalDatabase.messageLog().insertIfPossible(recipientId, timestamp, result, ContentHint.IMPLICIT, messageId);
+      SignalDatabase.messageLog().insertIfPossible(recipientId, timestamp, result, ContentHint.IMPLICIT, messageId, false);
     }
   }
 

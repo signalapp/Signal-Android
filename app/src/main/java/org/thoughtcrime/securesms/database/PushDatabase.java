@@ -94,7 +94,8 @@ public class PushDatabase extends Database {
                                          cursor.getLong(cursor.getColumnIndexOrThrow(SERVER_RECEIVED_TIMESTAMP)),
                                          cursor.getLong(cursor.getColumnIndexOrThrow(SERVER_DELIVERED_TIMESTAMP)),
                                          cursor.getString(cursor.getColumnIndexOrThrow(SERVER_GUID)),
-                                         "");
+                                         "",
+                                         true);
       }
     } catch (IOException e) {
       Log.w(TAG, e);
@@ -180,7 +181,8 @@ public class PushDatabase extends Database {
                                          serverReceivedTimestamp,
                                          serverDeliveredTimestamp,
                                          serverGuid,
-                                         "");
+                                         "",
+                                         true);
       } catch (IOException e) {
         throw new AssertionError(e);
       }

@@ -464,18 +464,8 @@ public class GroupsV2StateProcessor {
                                                                       .addDeleteMembers(UuidUtil.toByteString(selfUuid))
                                                                       .build();
 
-      DecryptedGroupV2Context decryptedGroupV2Context = GroupProtoUtil.createDecryptedGroupV2Context(masterKey, new GroupMutation(decryptedGroup, simulatedGroupChange, simulatedGroupState), null);
-
-      OutgoingGroupUpdateMessage leaveMessage = new OutgoingGroupUpdateMessage(groupRecipient,
-                                                                               decryptedGroupV2Context,
-                                                                               null,
-                                                                               System.currentTimeMillis(),
-                                                                               0,
-                                                                               false,
-                                                                               null,
-                                                                               Collections.emptyList(),
-                                                                               Collections.emptyList(),
-                                                                               Collections.emptyList());
+      DecryptedGroupV2Context    decryptedGroupV2Context = GroupProtoUtil.createDecryptedGroupV2Context(masterKey, new GroupMutation(decryptedGroup, simulatedGroupChange, simulatedGroupState), null);
+      OutgoingGroupUpdateMessage leaveMessage            = new OutgoingGroupUpdateMessage(groupRecipient, decryptedGroupV2Context, System.currentTimeMillis());
 
       try {
         MessageDatabase mmsDatabase    = SignalDatabase.mms();
@@ -703,7 +693,7 @@ public class GroupsV2StateProcessor {
           ThreadDatabase             threadDatabase  = SignalDatabase.threads();
           RecipientId                recipientId     = recipientDatabase.getOrInsertFromGroupId(groupId);
           Recipient                  recipient       = Recipient.resolved(recipientId);
-          OutgoingGroupUpdateMessage outgoingMessage = new OutgoingGroupUpdateMessage(recipient, decryptedGroupV2Context, null, timestamp, 0, false, null, Collections.emptyList(), Collections.emptyList(), Collections.emptyList());
+          OutgoingGroupUpdateMessage outgoingMessage = new OutgoingGroupUpdateMessage(recipient, decryptedGroupV2Context, timestamp);
           long                       threadId        = threadDatabase.getOrCreateThreadIdFor(recipient);
           long                       messageId       = mmsDatabase.insertMessageOutbox(outgoingMessage, threadId, false, null);
 

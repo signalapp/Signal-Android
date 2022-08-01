@@ -214,7 +214,8 @@ public class RemoteDeleteSendJob extends BaseJob {
                                                                                    false,
                                                                                    ContentHint.RESENDABLE,
                                                                                    new MessageId(messageId, isMms),
-                                                                                   dataMessage);
+                                                                                   dataMessage,
+                                                                                   true);
 
     return GroupSendJobHelper.getCompletedSends(destinations, results);
   }

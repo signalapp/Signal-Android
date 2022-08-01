@@ -67,16 +67,9 @@ public final class OutgoingGroupUpdateMessage extends OutgoingSecureMediaMessage
 
   public OutgoingGroupUpdateMessage(@NonNull Recipient recipient,
                                     @NonNull DecryptedGroupV2Context group,
-                                    @Nullable final Attachment avatar,
-                                    long sentTimeMillis,
-                                    long expireIn,
-                                    boolean viewOnce,
-                                    @Nullable QuoteModel quote,
-                                    @NonNull List<Contact> contacts,
-                                    @NonNull List<LinkPreview> previews,
-                                    @NonNull List<Mention> mentions)
+                                    long sentTimeMillis)
   {
-    this(recipient, new MessageGroupContext(group), getAttachments(avatar), sentTimeMillis, expireIn, viewOnce, quote, contacts, previews, mentions);
+    this(recipient, new MessageGroupContext(group), Collections.emptyList(), sentTimeMillis, 0, false, null, Collections.emptyList(), Collections.emptyList(), Collections.emptyList());
   }
 
   @Override
@@ -98,6 +91,11 @@ public final class OutgoingGroupUpdateMessage extends OutgoingSecureMediaMessage
 
   public @NonNull MessageGroupContext.GroupV2Properties requireGroupV2Properties() {
     return messageGroupContext.requireGroupV2Properties();
+  }
+
+  @Override
+  public boolean isUrgent() {
+    return false;
   }
 
   private static List<Attachment> getAttachments(@Nullable Attachment avatar) {

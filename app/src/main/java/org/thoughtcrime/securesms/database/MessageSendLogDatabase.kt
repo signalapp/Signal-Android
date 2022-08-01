@@ -6,6 +6,8 @@ import net.zetetic.database.sqlcipher.SQLiteConstraintException
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.logging.Log
+import org.signal.core.util.requireBoolean
+import org.signal.core.util.toInt
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageLogEntry
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -67,13 +69,15 @@ class MessageSendLogDatabase constructor(context: Context?, databaseHelper: Sign
     const val DATE_SENT = "date_sent"
     const val CONTENT = "content"
     const val CONTENT_HINT = "content_hint"
+    const val URGENT = "urgent"
 
     const val CREATE_TABLE = """
       CREATE TABLE $TABLE_NAME (
         $ID INTEGER PRIMARY KEY,
         $DATE_SENT INTEGER NOT NULL,
         $CONTENT BLOB NOT NULL,
-        $CONTENT_HINT INTEGER NOT NULL
+        $CONTENT_HINT INTEGER NOT NULL,
+        $URGENT INTEGER NOT NULL DEFAULT 1
       )
     """
 
@@ -152,31 +156,31 @@ class MessageSendLogDatabase constructor(context: Context?, databaseHelper: Sign
   }
 
   /** @return The ID of the inserted entry, or -1 if none was inserted. Can be used with [addRecipientToExistingEntryIfPossible] */
-  fun insertIfPossible(recipientId: RecipientId, sentTimestamp: Long, sendMessageResult: SendMessageResult, contentHint: ContentHint, messageId: MessageId): Long {
+  fun insertIfPossible(recipientId: RecipientId, sentTimestamp: Long, sendMessageResult: SendMessageResult, contentHint: ContentHint, messageId: MessageId, urgent: Boolean): Long {
     if (!FeatureFlags.retryReceipts()) return -1
 
     if (sendMessageResult.isSuccess && sendMessageResult.success.content.isPresent) {
       val recipientDevice = listOf(RecipientDevice(recipientId, sendMessageResult.success.devices))
-      return insert(recipientDevice, sentTimestamp, sendMessageResult.success.content.get(), contentHint, listOf(messageId))
+      return insert(recipientDevice, sentTimestamp, sendMessageResult.success.content.get(), contentHint, listOf(messageId), urgent)
     }
 
     return -1
   }
 
   /** @return The ID of the inserted entry, or -1 if none was inserted. Can be used with [addRecipientToExistingEntryIfPossible] */
-  fun insertIfPossible(recipientId: RecipientId, sentTimestamp: Long, sendMessageResult: SendMessageResult, contentHint: ContentHint, messageIds: List<MessageId>): Long {
+  fun insertIfPossible(recipientId: RecipientId, sentTimestamp: Long, sendMessageResult: SendMessageResult, contentHint: ContentHint, messageIds: List<MessageId>, urgent: Boolean): Long {
     if (!FeatureFlags.retryReceipts()) return -1
 
     if (sendMessageResult.isSuccess && sendMessageResult.success.content.isPresent) {
       val recipientDevice = listOf(RecipientDevice(recipientId, sendMessageResult.success.devices))
-      return insert(recipientDevice, sentTimestamp, sendMessageResult.success.content.get(), contentHint, messageIds)
+      return insert(recipientDevice, sentTimestamp, sendMessageResult.success.content.get(), contentHint, messageIds, urgent)
     }
 
     return -1
   }
 
   /** @return The ID of the inserted entry, or -1 if none was inserted. Can be used with [addRecipientToExistingEntryIfPossible] */
-  fun insertIfPossible(sentTimestamp: Long, possibleRecipients: List<Recipient>, results: List<SendMessageResult>, contentHint: ContentHint, messageId: MessageId): Long {
+  fun insertIfPossible(sentTimestamp: Long, possibleRecipients: List<Recipient>, results: List<SendMessageResult>, contentHint: ContentHint, messageId: MessageId, urgent: Boolean): Long {
     if (!FeatureFlags.retryReceipts()) return -1
 
     val accessList = RecipientAccessList(possibleRecipients)
@@ -194,10 +198,10 @@ class MessageSendLogDatabase constructor(context: Context?, databaseHelper: Sign
 
     val content: SignalServiceProtos.Content = results.first { it.isSuccess && it.success.content.isPresent }.success.content.get()
 
-    return insert(recipientDevices, sentTimestamp, content, contentHint, listOf(messageId))
+    return insert(recipientDevices, sentTimestamp, content, contentHint, listOf(messageId), urgent)
   }
 
-  fun addRecipientToExistingEntryIfPossible(payloadId: Long, recipientId: RecipientId, sentTimestamp: Long, sendMessageResult: SendMessageResult, contentHint: ContentHint, messageId: MessageId): Long {
+  fun addRecipientToExistingEntryIfPossible(payloadId: Long, recipientId: RecipientId, sentTimestamp: Long, sendMessageResult: SendMessageResult, contentHint: ContentHint, messageId: MessageId, urgent: Boolean): Long {
     if (!FeatureFlags.retryReceipts()) return payloadId
 
     if (sendMessageResult.isSuccess && sendMessageResult.success.content.isPresent) {
@@ -218,9 +222,9 @@ class MessageSendLogDatabase constructor(context: Context?, databaseHelper: Sign
         db.setTransactionSuccessful()
       } catch (e: SQLiteConstraintException) {
         Log.w(TAG, "Failed to append to existing entry. Creating a new one.")
-        val payloadId = insertIfPossible(recipientId, sentTimestamp, sendMessageResult, contentHint, messageId)
+        val newPayloadId = insertIfPossible(recipientId, sentTimestamp, sendMessageResult, contentHint, messageId, urgent)
         db.setTransactionSuccessful()
-        return payloadId
+        return newPayloadId
       } finally {
         db.endTransaction()
       }
@@ -229,7 +233,7 @@ class MessageSendLogDatabase constructor(context: Context?, databaseHelper: Sign
     return payloadId
   }
 
-  private fun insert(recipients: List<RecipientDevice>, dateSent: Long, content: SignalServiceProtos.Content, contentHint: ContentHint, messageIds: List<MessageId>): Long {
+  private fun insert(recipients: List<RecipientDevice>, dateSent: Long, content: SignalServiceProtos.Content, contentHint: ContentHint, messageIds: List<MessageId>, urgent: Boolean): Long {
     val db = databaseHelper.signalWritableDatabase
 
     db.beginTransaction()
@@ -238,6 +242,7 @@ class MessageSendLogDatabase constructor(context: Context?, databaseHelper: Sign
         put(PayloadTable.DATE_SENT, dateSent)
         put(PayloadTable.CONTENT, content.toByteArray())
         put(PayloadTable.CONTENT_HINT, contentHint.type)
+        put(PayloadTable.URGENT, urgent.toInt())
       }
 
       val payloadId: Long = db.insert(PayloadTable.TABLE_NAME, null, payloadValues)
@@ -304,6 +309,7 @@ class MessageSendLogDatabase constructor(context: Context?, databaseHelper: Sign
             dateSent = CursorUtil.requireLong(entryCursor, PayloadTable.DATE_SENT),
             content = SignalServiceProtos.Content.parseFrom(CursorUtil.requireBlob(entryCursor, PayloadTable.CONTENT)),
             contentHint = ContentHint.fromType(CursorUtil.requireInt(entryCursor, PayloadTable.CONTENT_HINT)),
+            urgent = entryCursor.requireBoolean(PayloadTable.URGENT),
             relatedMessages = messageIds
           )
         }

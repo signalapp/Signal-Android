@@ -33,7 +33,8 @@ message Envelope {
   optional bytes  content         = 8; // Contains an encrypted Content
   optional string serverGuid      = 9;
   optional uint64 serverTimestamp = 10;
-  // NEXT ID: 14
+  optional bool   urgent          = 14 [default = true];
+  // NEXT ID: 15
 }
 
 message Content {

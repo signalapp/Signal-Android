@@ -57,9 +57,9 @@ public class GroupCallUpdateSendJob extends BaseJob {
     }
 
     List<RecipientId> recipientIds = Stream.of(RecipientUtil.getEligibleForSending(Recipient.resolvedList(conversationRecipient.getParticipantIds())))
-                                         .filterNot(Recipient::isSelf)
-                                         .map(Recipient::getId)
-                                         .toList();
+                                           .filterNot(Recipient::isSelf)
+                                           .map(Recipient::getId)
+                                           .toList();
 
     return new GroupCallUpdateSendJob(recipientId,
                                       eraId,
@@ -161,7 +161,8 @@ public class GroupCallUpdateSendJob extends BaseJob {
                                                                                              nonSelfDestinations,
                                                                                              false,
                                                                                              ContentHint.DEFAULT,
-                                                                                             dataMessage);
+                                                                                             dataMessage,
+                                                                                             false);
 
     if (includesSelf) {
       results.add(ApplicationDependencies.getSignalServiceMessageSender().sendSyncMessage(dataMessage));

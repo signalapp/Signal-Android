@@ -65,14 +65,16 @@ public class SignalServiceEnvelope {
                                long serverReceivedTimestamp,
                                long serverDeliveredTimestamp,
                                String uuid,
-                               String destinationUuid)
+                               String destinationUuid,
+                               boolean urgent)
   {
     Envelope.Builder builder = Envelope.newBuilder()
                                        .setType(Envelope.Type.valueOf(type))
                                        .setSourceDevice(senderDevice)
                                        .setTimestamp(timestamp)
                                        .setServerTimestamp(serverReceivedTimestamp)
-                                       .setDestinationUuid(destinationUuid);
+                                       .setDestinationUuid(destinationUuid)
+                                       .setUrgent(urgent);
 
     if (sender.isPresent()) {
       builder.setSourceUuid(sender.get().getServiceId().toString());
@@ -100,13 +102,15 @@ public class SignalServiceEnvelope {
                                long serverReceivedTimestamp,
                                long serverDeliveredTimestamp,
                                String uuid,
-                               String destinationUuid)
+                               String destinationUuid,
+                               boolean urgent)
   {
     Envelope.Builder builder = Envelope.newBuilder()
                                        .setType(Envelope.Type.valueOf(type))
                                        .setTimestamp(timestamp)
                                        .setServerTimestamp(serverReceivedTimestamp)
-                                       .setDestinationUuid(destinationUuid);
+                                       .setDestinationUuid(destinationUuid)
+                                       .setUrgent(urgent);
 
     if (uuid != null) {
       builder.setServerGuid(uuid);
@@ -273,6 +277,9 @@ public class SignalServiceEnvelope {
     return envelope.getDestinationUuid();
   }
 
+  public boolean isUrgent() {
+    return envelope.getUrgent();
+  }
 
   private SignalServiceEnvelopeProto.Builder serializeToProto() {
     SignalServiceEnvelopeProto.Builder builder = SignalServiceEnvelopeProto.newBuilder()
@@ -280,7 +287,8 @@ public class SignalServiceEnvelope {
                                                                            .setDeviceId(getSourceDevice())
                                                                            .setTimestamp(getTimestamp())
                                                                            .setServerReceivedTimestamp(getServerReceivedTimestamp())
-                                                                           .setServerDeliveredTimestamp(getServerDeliveredTimestamp());
+                                                                           .setServerDeliveredTimestamp(getServerDeliveredTimestamp())
+                                                                           .setUrgent(isUrgent());
 
     if (getSourceUuid().isPresent()) {
       builder.setSourceUuid(getSourceUuid().get());
@@ -330,6 +338,7 @@ public class SignalServiceEnvelope {
                                      proto.getServerReceivedTimestamp(),
                                      proto.getServerDeliveredTimestamp(),
                                      proto.getServerGuid(),
-                                     proto.getDestinationUuid());
+                                     proto.getDestinationUuid(),
+                                     proto.getUrgent());
   }
 }

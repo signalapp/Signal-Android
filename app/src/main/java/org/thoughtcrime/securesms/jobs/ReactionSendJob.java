@@ -242,7 +242,8 @@ public class ReactionSendJob extends BaseJob {
                                                                                            false,
                                                                                            ContentHint.RESENDABLE,
                                                                                            messageId,
-                                                                                           dataMessage);
+                                                                                           dataMessage,
+                                                                                           true);
 
     if (includesSelf) {
       results.add(ApplicationDependencies.getSignalServiceMessageSender().sendSyncMessage(dataMessage));

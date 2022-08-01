@@ -198,4 +198,10 @@ public class SignalServiceCallMessage {
   public Optional<Long> getTimestamp() {
     return timestamp;
   }
+
+  public boolean isUrgent() {
+    return offerMessage.isPresent() ||
+           hangupMessage.isPresent() ||
+           opaqueMessage.map(m -> m.getUrgency() == OpaqueMessage.Urgency.HANDLE_IMMEDIATELY).orElse(false);
+  }
 }

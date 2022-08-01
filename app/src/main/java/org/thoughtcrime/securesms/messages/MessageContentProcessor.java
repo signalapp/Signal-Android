@@ -2694,6 +2694,7 @@ public final class MessageContentProcessor {
                                                                        messageLogEntry.getDateSent(),
                                                                        messageLogEntry.getContent(),
                                                                        messageLogEntry.getContentHint(),
+                                                                       messageLogEntry.isUrgent(),
                                                                        groupId,
                                                                        distributionId));
     } else {
@@ -2735,6 +2736,7 @@ public final class MessageContentProcessor {
                                                                        messageLogEntry.getDateSent(),
                                                                        messageLogEntry.getContent(),
                                                                        messageLogEntry.getContentHint(),
+                                                                       messageLogEntry.isUrgent(),
                                                                        null,
                                                                        null));
     } else if (archivedSession) {
