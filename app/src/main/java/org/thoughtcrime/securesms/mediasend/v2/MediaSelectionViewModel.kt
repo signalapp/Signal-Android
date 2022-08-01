@@ -40,7 +40,8 @@ class MediaSelectionViewModel(
   initialMessage: CharSequence?,
   val isReply: Boolean,
   isStory: Boolean,
-  private val repository: MediaSelectionRepository
+  private val repository: MediaSelectionRepository,
+  private val identityChangesSince: Long = System.currentTimeMillis()
 ) : ViewModel() {
 
   private val selectedMediaSubject: Subject<List<Media>> = BehaviorSubject.create()
@@ -308,7 +309,7 @@ class MediaSelectionViewModel(
   fun send(
     selectedContacts: List<ContactSearchKey.RecipientSearchKey> = emptyList()
   ): Maybe<MediaSendActivityResult> {
-    return UntrustedRecords.checkForBadIdentityRecords(selectedContacts.toSet()).andThen(
+    return UntrustedRecords.checkForBadIdentityRecords(selectedContacts.toSet(), identityChangesSince).andThen(
       repository.send(
         store.state.selectedMedia,
         store.state.editorStateMap,

@@ -14,23 +14,23 @@ import java.util.concurrent.TimeUnit
 
 object UntrustedRecords {
 
-  fun checkForBadIdentityRecords(contactSearchKeys: Set<ContactSearchKey.RecipientSearchKey>): Completable {
+  fun checkForBadIdentityRecords(contactSearchKeys: Set<ContactSearchKey.RecipientSearchKey>, changedSince: Long): Completable {
     return Completable.fromAction {
-      val untrustedRecords: List<IdentityRecord> = checkForBadIdentityRecordsSync(contactSearchKeys)
+      val untrustedRecords: List<IdentityRecord> = checkForBadIdentityRecordsSync(contactSearchKeys, changedSince)
       if (untrustedRecords.isNotEmpty()) {
         throw UntrustedRecordsException(untrustedRecords, contactSearchKeys)
       }
     }.subscribeOn(Schedulers.io())
   }
 
-  fun checkForBadIdentityRecords(contactSearchKeys: Set<ContactSearchKey.RecipientSearchKey>, consumer: Consumer<List<IdentityRecord>>) {
+  fun checkForBadIdentityRecords(contactSearchKeys: Set<ContactSearchKey.RecipientSearchKey>, changedSince: Long, consumer: Consumer<List<IdentityRecord>>) {
     SignalExecutors.BOUNDED.execute {
-      consumer.accept(checkForBadIdentityRecordsSync(contactSearchKeys))
+      consumer.accept(checkForBadIdentityRecordsSync(contactSearchKeys, changedSince))
     }
   }
 
   @WorkerThread
-  private fun checkForBadIdentityRecordsSync(contactSearchKeys: Set<ContactSearchKey.RecipientSearchKey>): List<IdentityRecord> {
+  private fun checkForBadIdentityRecordsSync(contactSearchKeys: Set<ContactSearchKey.RecipientSearchKey>, changedSince: Long): List<IdentityRecord> {
     val recipients: List<Recipient> = contactSearchKeys
       .map { Recipient.resolved(it.recipientId) }
       .map { recipient ->
@@ -42,7 +42,13 @@ object UntrustedRecords {
       }
       .flatten()
 
-    return ApplicationDependencies.getProtocolStore().aci().identities().getIdentityRecords(recipients).getUntrustedRecords(TimeUnit.SECONDS.toMillis(30))
+    val calculatedUntrustedWindow = System.currentTimeMillis() - changedSince
+    return ApplicationDependencies
+      .getProtocolStore()
+      .aci()
+      .identities()
+      .getIdentityRecords(recipients)
+      .getUntrustedRecords(calculatedUntrustedWindow.coerceIn(TimeUnit.SECONDS.toMillis(5)..TimeUnit.HOURS.toMillis(1)))
   }
 
   class UntrustedRecordsException(val untrustedRecords: List<IdentityRecord>, val destinations: Set<ContactSearchKey.RecipientSearchKey>) : Throwable()

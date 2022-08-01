@@ -38,9 +38,9 @@ class TextStoryPostSendRepository {
     }.subscribeOn(Schedulers.computation())
   }
 
-  fun send(contactSearchKey: Set<ContactSearchKey>, textStoryPostCreationState: TextStoryPostCreationState, linkPreview: LinkPreview?): Single<TextStoryPostSendResult> {
+  fun send(contactSearchKey: Set<ContactSearchKey>, textStoryPostCreationState: TextStoryPostCreationState, linkPreview: LinkPreview?, identityChangesSince: Long): Single<TextStoryPostSendResult> {
     return UntrustedRecords
-      .checkForBadIdentityRecords(contactSearchKey.filterIsInstance(ContactSearchKey.RecipientSearchKey::class.java).toSet())
+      .checkForBadIdentityRecords(contactSearchKey.filterIsInstance(ContactSearchKey.RecipientSearchKey::class.java).toSet(), identityChangesSince)
       .toSingleDefault<TextStoryPostSendResult>(TextStoryPostSendResult.Success)
       .onErrorReturn {
         if (it is UntrustedRecords.UntrustedRecordsException) {

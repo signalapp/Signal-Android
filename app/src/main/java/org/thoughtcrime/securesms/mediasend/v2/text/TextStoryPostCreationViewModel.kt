@@ -26,7 +26,7 @@ import org.thoughtcrime.securesms.mediasend.v2.text.send.TextStoryPostSendReposi
 import org.thoughtcrime.securesms.mediasend.v2.text.send.TextStoryPostSendResult
 import org.thoughtcrime.securesms.util.livedata.Store
 
-class TextStoryPostCreationViewModel(private val repository: TextStoryPostSendRepository) : ViewModel() {
+class TextStoryPostCreationViewModel(private val repository: TextStoryPostSendRepository, private val identityChangesSince: Long = System.currentTimeMillis()) : ViewModel() {
 
   private val store = Store(TextStoryPostCreationState())
   private val textFontSubject: Subject<TextFont> = BehaviorSubject.create()
@@ -123,7 +123,8 @@ class TextStoryPostCreationViewModel(private val repository: TextStoryPostSendRe
     return repository.send(
       contacts,
       store.state,
-      linkPreview
+      linkPreview,
+      identityChangesSince
     )
   }
 

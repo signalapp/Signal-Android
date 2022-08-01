@@ -16,7 +16,8 @@ class MultiselectForwardViewModel(
   private val storySendRequirements: Stories.MediaTransform.SendRequirements,
   private val records: List<MultiShareArgs>,
   private val isSelectionOnly: Boolean,
-  private val repository: MultiselectForwardRepository
+  private val repository: MultiselectForwardRepository,
+  private val identityChangesSince: Long = System.currentTimeMillis()
 ) : ViewModel() {
 
   private val store = Store(
@@ -48,7 +49,7 @@ class MultiselectForwardViewModel(
       store.update { it.copy(stage = MultiselectForwardState.Stage.FirstConfirmation) }
     } else {
       store.update { it.copy(stage = MultiselectForwardState.Stage.LoadingIdentities) }
-      UntrustedRecords.checkForBadIdentityRecords(selectedContacts.filterIsInstance(ContactSearchKey.RecipientSearchKey::class.java).toSet()) { identityRecords ->
+      UntrustedRecords.checkForBadIdentityRecords(selectedContacts.filterIsInstance(ContactSearchKey.RecipientSearchKey::class.java).toSet(), identityChangesSince) { identityRecords ->
         if (identityRecords.isEmpty()) {
           performSend(additionalMessage, selectedContacts)
         } else {

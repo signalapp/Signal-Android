@@ -2,6 +2,7 @@
 
 package org.signal.core.util.concurrent
 
+import android.annotation.SuppressLint
 import io.reactivex.rxjava3.core.Single
 import java.lang.RuntimeException
 
@@ -11,6 +12,7 @@ import java.lang.RuntimeException
  *
  * [Single.blockingGet] is considered harmful and should not be used.
  */
+@SuppressLint("UnsafeBlockingGet")
 @Throws(InterruptedException::class)
 fun <T : Any> Single<T>.safeBlockingGet(): T {
   try {

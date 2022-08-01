@@ -16,7 +16,7 @@ public final class IdentityRecordList {
 
   public static final IdentityRecordList EMPTY = new IdentityRecordList(Collections.emptyList());
 
-  private static final long DEFAULT_UNTRUSTED_WINDOW = TimeUnit.SECONDS.toMillis(5);
+  public static final long DEFAULT_UNTRUSTED_WINDOW = TimeUnit.SECONDS.toMillis(5);
 
   private final List<IdentityRecord> identityRecords;
   private final boolean              isVerified;

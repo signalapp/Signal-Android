@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.contacts.paged
 import androidx.annotation.VisibleForTesting
 import io.reactivex.rxjava3.core.Single
 import org.signal.core.util.concurrent.SignalExecutors
+import org.signal.core.util.concurrent.safeBlockingGet
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.crypto.storage.SignalIdentityKeyStore
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
@@ -26,11 +27,18 @@ class SafetyNumberRepository(
   private val recentlyFetched: MutableMap<RecipientId, Long> = HashMap()
 
   fun batchSafetyNumberCheck(newSelectionEntries: List<ContactSearchKey>) {
-    SignalExecutors.UNBOUNDED.execute { batchSafetyNumberCheckSync(newSelectionEntries) }
+    SignalExecutors.UNBOUNDED.execute {
+      try {
+        batchSafetyNumberCheckSync(newSelectionEntries)
+      } catch (e: InterruptedException) {
+        Log.w(TAG, "Unable to fetch safety number change", e)
+      }
+    }
   }
 
   @Suppress("UNCHECKED_CAST")
   @VisibleForTesting
+  @Throws(InterruptedException::class)
   fun batchSafetyNumberCheckSync(newSelectionEntries: List<ContactSearchKey>, now: Long = System.currentTimeMillis(), batchSize: Int = MAX_BATCH_SIZE) {
     val stopwatch = Stopwatch("batch-snc")
     val recipientIds: Set<RecipientId> = newSelectionEntries.flattenToRecipientIds()
@@ -49,7 +57,7 @@ class SafetyNumberRepository(
         responses
           .map { it as List<IdentityCheckResponse.AciIdentityPair> }
           .flatten()
-      }.blockingGet()
+      }.safeBlockingGet()
 
       stopwatch.split("batch-fetches")
 
