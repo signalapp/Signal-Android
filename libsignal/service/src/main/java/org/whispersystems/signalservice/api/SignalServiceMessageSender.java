@@ -252,6 +252,7 @@ public class SignalServiceMessageSender {
 
   public List<SendMessageResult> sendStory(List<SignalServiceAddress>              recipients,
                                            List<Optional<UnidentifiedAccessPair>>  unidentifiedAccess,
+                                           boolean                                 isRecipientUpdate,
                                            SignalServiceStoryMessage               message,
                                            long                                    timestamp,
                                            Set<SignalServiceStoryMessageRecipient> manifest)
@@ -260,21 +261,23 @@ public class SignalServiceMessageSender {
     Content                  content            = createStoryContent(message);
     EnvelopeContent          envelopeContent    = EnvelopeContent.encrypted(content, ContentHint.RESENDABLE, Optional.empty());
     List<SendMessageResult>  sendMessageResults = sendMessage(recipients, getTargetUnidentifiedAccess(unidentifiedAccess), timestamp, envelopeContent, false, null, null);
-    SignalServiceSyncMessage syncMessage        = createSelfSendSyncMessageForStory(message, timestamp, manifest);
 
-    sendSyncMessage(syncMessage, Optional.empty());
+    if (store.isMultiDevice()) {
+      SignalServiceSyncMessage syncMessage = createSelfSendSyncMessageForStory(message, timestamp, isRecipientUpdate, manifest);
+      sendSyncMessage(syncMessage, Optional.empty());
+    }
 
     return sendMessageResults;
   }
 
   /**
-   * Send a typing indicator to a group using sender key. Doesn't bother with return results, since these are best-effort.
-   * @return
+   * Send a story using sender key.
    */
   public List<SendMessageResult> sendGroupStory(DistributionId                          distributionId,
                                                 Optional<byte[]>                        groupId,
                                                 List<SignalServiceAddress>              recipients,
                                                 List<UnidentifiedAccess>                unidentifiedAccess,
+                                                boolean                                 isRecipientUpdate,
                                                 SignalServiceStoryMessage               message,
                                                 long                                    timestamp,
                                                 Set<SignalServiceStoryMessageRecipient> manifest)
@@ -282,9 +285,11 @@ public class SignalServiceMessageSender {
   {
     Content                  content            = createStoryContent(message);
     List<SendMessageResult>  sendMessageResults = sendGroupMessage(distributionId, recipients, unidentifiedAccess, timestamp, content, ContentHint.RESENDABLE, groupId, false, SenderKeyGroupEvents.EMPTY);
-    SignalServiceSyncMessage syncMessage        = createSelfSendSyncMessageForStory(message, timestamp, manifest);
 
-    sendSyncMessage(syncMessage, Optional.empty());
+    if (store.isMultiDevice()) {
+      SignalServiceSyncMessage syncMessage = createSelfSendSyncMessageForStory(message, timestamp, isRecipientUpdate, manifest);
+      sendSyncMessage(syncMessage, Optional.empty());
+    }
 
     return sendMessageResults;
   }
@@ -1576,13 +1581,17 @@ public class SignalServiceMessageSender {
     return results;
   }
 
-  private SignalServiceSyncMessage createSelfSendSyncMessageForStory(SignalServiceStoryMessage message, long sentTimestamp, Set<SignalServiceStoryMessageRecipient> manifest) {
+  private SignalServiceSyncMessage createSelfSendSyncMessageForStory(SignalServiceStoryMessage message,
+                                                                     long sentTimestamp,
+                                                                     boolean isRecipientUpdate,
+                                                                     Set<SignalServiceStoryMessageRecipient> manifest)
+  {
     SentTranscriptMessage transcript = new SentTranscriptMessage(Optional.of(localAddress),
                                                                  sentTimestamp,
                                                                  Optional.empty(),
                                                                  0,
                                                                  Collections.singletonMap(localAddress.getServiceId(), false),
-                                                                 false,
+                                                                 isRecipientUpdate,
                                                                  Optional.of(message),
                                                                  manifest);
 

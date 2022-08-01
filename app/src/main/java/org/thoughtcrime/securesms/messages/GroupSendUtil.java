@@ -636,7 +636,7 @@ public final class GroupSendUtil {
                                                               boolean isRecipientUpdate)
         throws NoSessionException, UntrustedIdentityException, InvalidKeyException, IOException, InvalidRegistrationIdException
     {
-      return messageSender.sendGroupStory(distributionId, Optional.ofNullable(groupId).map(GroupId::getDecodedId), targets, access, message, getSentTimestamp(), manifest);
+      return messageSender.sendGroupStory(distributionId, Optional.ofNullable(groupId).map(GroupId::getDecodedId), targets, access, isRecipientUpdate, message, getSentTimestamp(), manifest);
     }
 
     @Override
@@ -648,7 +648,7 @@ public final class GroupSendUtil {
                                                        @Nullable CancelationSignal cancelationSignal)
         throws IOException, UntrustedIdentityException
     {
-      return messageSender.sendStory(targets, access, message, getSentTimestamp(), manifest);
+      return messageSender.sendStory(targets, access, isRecipientUpdate, message, getSentTimestamp(), manifest);
     }
 
     @Override
