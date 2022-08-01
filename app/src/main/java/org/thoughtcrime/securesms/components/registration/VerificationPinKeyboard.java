@@ -3,8 +3,6 @@ package org.thoughtcrime.securesms.components.registration;
 
 import android.content.Context;
 import android.graphics.PorterDuff;
-import android.inputmethodservice.Keyboard;
-import android.inputmethodservice.KeyboardView;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
@@ -21,17 +19,18 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.components.NumericKeyboardView;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
 
 public class VerificationPinKeyboard extends FrameLayout {
 
-  private KeyboardView keyboardView;
-  private ProgressBar  progressBar;
-  private ImageView    successView;
-  private ImageView    failureView;
-  private ImageView    lockedView;
+  private NumericKeyboardView keyboardView;
+  private ProgressBar         progressBar;
+  private ImageView           successView;
+  private ImageView           failureView;
+  private ImageView           lockedView;
 
   private OnKeyPressListener listener;
 
@@ -65,27 +64,8 @@ public class VerificationPinKeyboard extends FrameLayout {
     this.failureView  = findViewById(R.id.failure);
     this.lockedView   = findViewById(R.id.locked);
 
-    keyboardView.setPreviewEnabled(false);
-    keyboardView.setKeyboard(new Keyboard(getContext(), R.xml.pin_keyboard));
-    keyboardView.setOnKeyboardActionListener(new KeyboardView.OnKeyboardActionListener() {
-      @Override
-      public void onPress(int primaryCode) {
-        if (listener != null) listener.onKeyPress(primaryCode);
-      }
-      @Override
-      public void onRelease(int primaryCode) {}
-      @Override
-      public void onKey(int primaryCode, int[] keyCodes) {}
-      @Override
-      public void onText(CharSequence text) {}
-      @Override
-      public void swipeLeft() {}
-      @Override
-      public void swipeRight() {}
-      @Override
-      public void swipeDown() {}
-      @Override
-      public void swipeUp() {}
+    keyboardView.setListener(keyCode -> {
+      if (listener != null) listener.onKeyPress(keyCode);
     });
 
     displayKeyboard();

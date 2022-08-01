@@ -2,7 +2,7 @@
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
        xmlns:tools="http://schemas.android.com/tools">
 
-    <android.inputmethodservice.KeyboardView
+    <org.thoughtcrime.securesms.components.NumericKeyboardView
             android:id="@+id/keyboard_view"
             android:keyBackground="@color/grey_300"
             android:background="@color/grey_300"
