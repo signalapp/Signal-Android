@@ -88,7 +88,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
@@ -152,6 +151,7 @@ public class MessageSender {
 
     try {
       database.beginTransaction();
+
       for (OutgoingSecureMediaMessage message : messages) {
         long      allocatedThreadId = threadDatabase.getOrCreateValidThreadId(message.getRecipient(), -1L, message.getDistributionType());
         Recipient recipient         = message.getRecipient();

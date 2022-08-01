@@ -186,18 +186,10 @@ object Stories {
     @JvmStatic
     @WorkerThread
     fun canPreUploadMedia(media: Media): Boolean {
-      return if (MediaUtil.isVideo(media.mimeType)) {
-        getSendRequirements(media) != SendRequirements.REQUIRES_CLIP
-      } else {
-        !hasHighQualityTransform(media)
+      return when {
+        MediaUtil.isVideo(media.mimeType) -> getSendRequirements(media) != SendRequirements.REQUIRES_CLIP
+        else -> true
       }
-    }
-
-    /**
-     * Checkst to see if the given media has the "High Quality" toggled in its transform properties.
-     */
-    fun hasHighQualityTransform(media: Media): Boolean {
-      return MediaUtil.isImageType(media.mimeType) && media.transformProperties.map { it.sentMediaQuality == SentMediaQuality.HIGH.code }.orElse(false)
     }
 
     @JvmStatic
