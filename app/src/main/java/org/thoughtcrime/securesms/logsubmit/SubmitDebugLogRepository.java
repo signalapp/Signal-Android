@@ -81,6 +81,7 @@ public class SubmitDebugLogRepository {
     add(new LogSectionExoPlayerPool());
     add(new LogSectionKeyPreferences());
     add(new LogSectionSMS());
+    add(new LogSectionStories());
     add(new LogSectionBadges());
     add(new LogSectionPermissions());
     add(new LogSectionTrace());
