@@ -45,6 +45,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -128,7 +129,7 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns 
   public abstract void markGiftRedemptionFailed(long messageId);
 
   public abstract Set<MessageUpdate> incrementReceiptCount(SyncMessageId messageId, long timestamp, @NonNull ReceiptType receiptType, boolean storiesOnly);
-  abstract @NonNull MmsSmsDatabase.TimestampReadResult setTimestampRead(SyncMessageId messageId, long proposedExpireStarted, @NonNull Map<Long, Long> threadToLatestRead);
+
   public abstract List<MarkedMessageInfo> setEntireThreadRead(long threadId);
   public abstract List<MarkedMessageInfo> setMessagesReadSince(long threadId, long timestamp);
   public abstract List<MarkedMessageInfo> setAllMessagesRead();
@@ -274,6 +275,50 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns 
         return 0;
       }
     }
+  }
+
+  /**
+   * Handles a synchronized read message.
+   * @param messageId An id representing the author-timestamp pair of the message that was read on a linked device. Note that the author could be self when
+   *                  syncing read receipts for reactions.
+   */
+  final @NonNull MmsSmsDatabase.TimestampReadResult setTimestampReadFromSyncMessage(SyncMessageId messageId, long proposedExpireStarted, @NonNull Map<Long, Long> threadToLatestRead) {
+    SQLiteDatabase         database   = databaseHelper.getSignalWritableDatabase();
+    List<Pair<Long, Long>> expiring   = new LinkedList<>();
+    String[]               projection = new String[] { ID, THREAD_ID, EXPIRES_IN, EXPIRE_STARTED };
+    String                 query      = getDateSentColumnName() + " = ? AND (" + RECIPIENT_ID + " = ? OR (" + RECIPIENT_ID + " = ? AND " + getOutgoingTypeClause() + "))";
+    String[]               args       = SqlUtil.buildArgs(messageId.getTimetamp(), messageId.getRecipientId(), Recipient.self().getId());
+    List<Long>             threads    = new LinkedList<>();
+
+    try (Cursor cursor = database.query(getTableName(), projection, query, args, null, null, null)) {
+      while (cursor.moveToNext()) {
+        long id            = cursor.getLong(cursor.getColumnIndexOrThrow(ID));
+        long threadId      = cursor.getLong(cursor.getColumnIndexOrThrow(THREAD_ID));
+        long expiresIn     = cursor.getLong(cursor.getColumnIndexOrThrow(EXPIRES_IN));
+        long expireStarted = cursor.getLong(cursor.getColumnIndexOrThrow(EXPIRE_STARTED));
+
+        expireStarted = expireStarted > 0 ? Math.min(proposedExpireStarted, expireStarted) : proposedExpireStarted;
+
+        ContentValues values = new ContentValues();
+        values.put(READ, 1);
+        values.put(REACTIONS_UNREAD, 0);
+        values.put(REACTIONS_LAST_SEEN, System.currentTimeMillis());
+
+        if (expiresIn > 0) {
+          values.put(EXPIRE_STARTED, expireStarted);
+          expiring.add(new Pair<>(id, expiresIn));
+        }
+
+        database.update(getTableName(), values, ID_WHERE, SqlUtil.buildArgs(id));
+
+        threads.add(threadId);
+
+        Long latest = threadToLatestRead.get(threadId);
+        threadToLatestRead.put(threadId, (latest != null) ? Math.max(latest, messageId.getTimetamp()) : messageId.getTimetamp());
+      }
+    }
+
+    return new MmsSmsDatabase.TimestampReadResult(expiring, threads);
   }
 
   private int getMessageCountForRecipientsAndType(String typeClause) {
