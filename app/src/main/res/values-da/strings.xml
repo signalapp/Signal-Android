@@ -1572,7 +1572,9 @@ nummer (%s) er ugyldigt</string>
   <!--Displayed in the notification when the user has opened a received gift-->
   <string name="ThreadRecord__you_redeemed_a_gift_badge">Du indløste et gaveemblem</string>
   <!--Displayed in the conversation list when someone reacted to your story-->
+  <string name="ThreadRecord__reacted_s_to_your_story">Reagerede %1$s på din historie</string>
   <!--Displayed in the conversation list when you reacted to someone\'s story-->
+  <string name="ThreadRecord__reacted_s_to_their_story">Reagerede %1$s på vedkommendes historie</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Opdater Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">En ny version af Signal er tilgængelig, tryk for at opdatere</string>
@@ -2318,7 +2320,7 @@ nummer (%s) er ugyldigt</string>
   <string name="preferences_enter_proxy_address">Indtast proxy-adresse</string>
   <string name="configurable_single_select__customize_option">Tilpas mulighed</string>
   <!--Internal only preferences-->
-  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Fjerner onboarding flag, og igangsætter download af onboarding historier.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Fjerner onboarding flag, og igangsætter download af onboarding historier.</string> -->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Alle aktiviteter</string>
   <string name="PaymentsAllActivityFragment__all">Alle</string>
@@ -3927,7 +3929,7 @@ nummer (%s) er ugyldigt</string>
     <item quantity="other">%1$d svar</item>
   </plurals>
   <!--Used when view receipts are disabled-->
-  <string name="StoryViewerPageFragment__views_off">Visninger slået fra</string>
+  <string name="StoryViewerPageFragment__views_off">Visninger deaktiveret</string>
   <!--Used to join views and replies when both exist on a story item-->
   <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
   <!--Displayed when viewing a post you sent-->

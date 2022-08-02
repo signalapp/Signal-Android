@@ -1501,7 +1501,9 @@
   <!--Displayed in the notification when the user has opened a received gift-->
   <string name="ThreadRecord__you_redeemed_a_gift_badge">您领取了一个礼品徽章</string>
   <!--Displayed in the conversation list when someone reacted to your story-->
+  <string name="ThreadRecord__reacted_s_to_your_story">已用 %1$s 回应您的动态</string>
   <!--Displayed in the conversation list when you reacted to someone\'s story-->
+  <string name="ThreadRecord__reacted_s_to_their_story">已用 %1$s 回应对方的动态</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal 更新</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal 新版本可用，点击升级</string>
@@ -2234,7 +2236,7 @@
   <string name="preferences_enter_proxy_address">请输入代理地址</string>
   <string name="configurable_single_select__customize_option">自定义选项</string>
   <!--Internal only preferences-->
-  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string> -->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">全部活动</string>
   <string name="PaymentsAllActivityFragment__all">全部</string>

@@ -1573,7 +1573,9 @@
   <!--Displayed in the notification when the user has opened a received gift-->
   <string name="ThreadRecord__you_redeemed_a_gift_badge">Bir hədiyyə nişanı aldınız</string>
   <!--Displayed in the conversation list when someone reacted to your story-->
+  <string name="ThreadRecord__reacted_s_to_your_story">Hekayənizə %1$sreaksiyası verdi</string>
   <!--Displayed in the conversation list when you reacted to someone\'s story-->
+  <string name="ThreadRecord__reacted_s_to_their_story">Hekayəyə %1$s reaksiyası verdiniz</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal yeniləməsi</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal-ın daha yeni bir versiyası var, yeniləmək üçün toxunun</string>
@@ -2319,7 +2321,7 @@
   <string name="preferences_enter_proxy_address">Proksi ünvanını daxil et</string>
   <string name="configurable_single_select__customize_option">Seçimi özəlləşdir</string>
   <!--Internal only preferences-->
-  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string> -->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Bütün fəaliyyətlər</string>
   <string name="PaymentsAllActivityFragment__all">Hamısı</string>

@@ -1572,7 +1572,9 @@
   <!--Displayed in the notification when the user has opened a received gift-->
   <string name="ThreadRecord__you_redeemed_a_gift_badge">Прифативте подарок беџ</string>
   <!--Displayed in the conversation list when someone reacted to your story-->
+  <string name="ThreadRecord__reacted_s_to_your_story">Реагираше со %1$s на вашата приказна</string>
   <!--Displayed in the conversation list when you reacted to someone\'s story-->
+  <string name="ThreadRecord__reacted_s_to_their_story">Реагиравте со %1$s на нивната приказна</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal ажурирање</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Достапна е нова верзија на Signal, допрете за ажурирање</string>
@@ -2318,7 +2320,7 @@
   <string name="preferences_enter_proxy_address">Внесете proxy адреса</string>
   <string name="configurable_single_select__customize_option">Сопствена опција</string>
   <!--Internal only preferences-->
-  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string> -->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Цела активност</string>
   <string name="PaymentsAllActivityFragment__all">Сите</string>

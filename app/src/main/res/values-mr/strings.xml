@@ -1570,7 +1570,9 @@
   <!--Displayed in the notification when the user has opened a received gift-->
   <string name="ThreadRecord__you_redeemed_a_gift_badge">आपण एक भेट बॅज रिडीम केला</string>
   <!--Displayed in the conversation list when someone reacted to your story-->
+  <string name="ThreadRecord__reacted_s_to_your_story">आपल्या स्टोरी वर %1$s प्रतिक्रिया दिली</string>
   <!--Displayed in the conversation list when you reacted to someone\'s story-->
+  <string name="ThreadRecord__reacted_s_to_their_story">त्यांच्या स्टोरीवर %1$s नी प्रतिक्रिया दिली</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal अद्यतन</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal ची एक नवीन आवृत्ती उपलब्ध आहे, अद्ययावत करण्यासाठी टॅप करा</string>
@@ -2316,7 +2318,7 @@
   <string name="preferences_enter_proxy_address">प्रॉक्सी पत्ता प्रविष्ट करा</string>
   <string name="configurable_single_select__customize_option">पर्याय सानुकूलित करा</string>
   <!--Internal only preferences-->
-  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string> -->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">सर्व अॅक्टिव्हिटी</string>
   <string name="PaymentsAllActivityFragment__all">सर्व</string>

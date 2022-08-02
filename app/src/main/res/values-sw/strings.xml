@@ -1566,7 +1566,9 @@ nambari yako ya simu</string>
   <!--Displayed in the notification when the user has opened a received gift-->
   <string name="ThreadRecord__you_redeemed_a_gift_badge">Umepokea beji ya zawadi</string>
   <!--Displayed in the conversation list when someone reacted to your story-->
+  <string name="ThreadRecord__reacted_s_to_your_story">Ame-react %1$s kwa stori yako</string>
   <!--Displayed in the conversation list when you reacted to someone\'s story-->
+  <string name="ThreadRecord__reacted_s_to_their_story">Ame-react %1$s kwa stori yao</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Sasisho ya Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Toleo jipya la Signal linapatikana, bonyeza kusasisha</string>
@@ -2313,7 +2315,7 @@ nambari yako ya simu</string>
   <string name="preferences_enter_proxy_address">Weka anwani mbadala</string>
   <string name="configurable_single_select__customize_option">Badilisha chaguo likufae</string>
   <!--Internal only preferences-->
-  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string> -->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Shughuli zote</string>
   <string name="PaymentsAllActivityFragment__all">Zote</string>

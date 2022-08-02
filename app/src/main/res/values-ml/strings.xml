@@ -1565,7 +1565,9 @@
   <!--Displayed in the notification when the user has opened a received gift-->
   <string name="ThreadRecord__you_redeemed_a_gift_badge">നിങ്ങളൊരു ഗിഫ്റ്റ് ബാഡ്‍ജ് റിഡീം ചെയ്‌തു</string>
   <!--Displayed in the conversation list when someone reacted to your story-->
+  <string name="ThreadRecord__reacted_s_to_your_story">നിങ്ങളുടെ സ്റ്റോറിയോട് %1$s എന്ന് പ്രതികരിച്ചു</string>
   <!--Displayed in the conversation list when you reacted to someone\'s story-->
+  <string name="ThreadRecord__reacted_s_to_their_story">അവരുടെ സ്റ്റോറിയോട് %1$s എന്ന് പ്രതികരിച്ചു</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal അപ്‌ഡേറ്റ്</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal-ന്റെ ഒരു പുതിയ പതിപ്പ് ലഭ്യമാണ്, അപ്‌ഡേറ്റ് ചെയ്യാൻ തൊടുക</string>
@@ -2311,7 +2313,7 @@
   <string name="preferences_enter_proxy_address">പ്രോക്സി വിലാസം നൽകുക</string>
   <string name="configurable_single_select__customize_option">ഓപ്ഷൻ ഇച്ഛാനുസൃതമാക്കുക</string>
   <!--Internal only preferences-->
-  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string> -->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">എല്ലാ പ്രവർത്തനങ്ങളും</string>
   <string name="PaymentsAllActivityFragment__all">എല്ലാം</string>

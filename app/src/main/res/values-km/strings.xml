@@ -1494,7 +1494,9 @@
   <!--Displayed in the notification when the user has opened a received gift-->
   <string name="ThreadRecord__you_redeemed_a_gift_badge">អ្នកបានប្តូរយកស្លាកកាដូចំនួនមួយ</string>
   <!--Displayed in the conversation list when someone reacted to your story-->
+  <string name="ThreadRecord__reacted_s_to_your_story">បានប្រតិកម្ម %1$s ទៅនឹងរឿងរ៉ាវរបស់អ្នក</string>
   <!--Displayed in the conversation list when you reacted to someone\'s story-->
+  <string name="ThreadRecord__reacted_s_to_their_story">បានប្រតិកម្ម %1$s ទៅនឹងរឿងរ៉ាវរបស់គេ</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">បច្ចុប្បន្នភាព Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">កំណែថ្មីរបស់ Signal មានហើយ, ចុច ដើម្បីធ្វើបច្ចុប្បន្នភាព។</string>
@@ -2227,7 +2229,7 @@
   <string name="preferences_enter_proxy_address">បញ្ចូលអាសយដ្ឋានប្រូកស៊ី</string>
   <string name="configurable_single_select__customize_option">ជម្រើសធ្វើផ្សេង</string>
   <!--Internal only preferences-->
-  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string> -->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">សកម្មភាពទាំងអស់</string>
   <string name="PaymentsAllActivityFragment__all">ទាំងអស់</string>

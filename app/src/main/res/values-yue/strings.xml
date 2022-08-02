@@ -229,7 +229,7 @@
   <string name="ConversationActivity_transport_insecure_sms_with_sim">唔安全嘅短訊 (%1$s)</string>
   <string name="ConversationActivity_transport_insecure_mms">唔安全嘅多媒體短訊</string>
   <!--A title for the option to send an SMS with a placeholder to put the name of their SIM card-->
-  <string name="ConversationActivity_transport_insecure_mms_with_sim">唔安全嘅多媒體短訊 (%1$s)</string>
+  <string name="ConversationActivity_transport_insecure_mms_with_sim">唔安全嘅多媒體訊息 (%1$s)</string>
   <string name="ConversationActivity_transport_signal">Signal 訊息</string>
   <string name="ConversationActivity_lets_switch_to_signal">不如我哋齊齊轉會 Signal %1$s</string>
   <string name="ConversationActivity_specify_recipient">請揀一位聯絡人吖</string>
@@ -629,7 +629,7 @@
   <string name="AddGroupDetailsFragment__group_creation_failed">開唔到新谷。</string>
   <string name="AddGroupDetailsFragment__try_again_later">陣間再試下啦。</string>
   <!--Displayed when adding group details to an MMS Group-->
-  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">你揀咗一個唔支援 Signal 群組嘅聯絡人，所以呢個群組將會用多媒體短訊。只有你睇到自訂多媒體短訊群組嘅名同埋相。</string>
+  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">你揀咗一個唔支援 Signal 群組嘅聯絡人，所以呢個群組將會用多媒體訊息。只有你睇到自訂多媒體訊息群組嘅名同埋相。</string>
   <string name="AddGroupDetailsFragment__remove">移除</string>
   <string name="AddGroupDetailsFragment__sms_contact">短訊聯絡人</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">係咪要踼 %1$s 出呢個谷？</string>
@@ -1500,7 +1500,9 @@
   <!--Displayed in the notification when the user has opened a received gift-->
   <string name="ThreadRecord__you_redeemed_a_gift_badge">你換領咗一個餽贈徽章</string>
   <!--Displayed in the conversation list when someone reacted to your story-->
+  <string name="ThreadRecord__reacted_s_to_your_story">用 %1$s 回應咗你嘅限時動態</string>
   <!--Displayed in the conversation list when you reacted to someone\'s story-->
+  <string name="ThreadRecord__reacted_s_to_their_story">用 %1$s 回應咗佢嘅限時動態</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal 更新</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal 出咗新版本喇，撳一下以更新</string>
@@ -2233,7 +2235,7 @@
   <string name="preferences_enter_proxy_address">輸入代理伺服器位址</string>
   <string name="configurable_single_select__customize_option">自訂選項</string>
   <!--Internal only preferences-->
-  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string> -->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">所有活動</string>
   <string name="PaymentsAllActivityFragment__all">全部</string>

@@ -1500,7 +1500,9 @@
   <!--Displayed in the notification when the user has opened a received gift-->
   <string name="ThreadRecord__you_redeemed_a_gift_badge">คุณแลกโล่ของขวัญแล้ว</string>
   <!--Displayed in the conversation list when someone reacted to your story-->
+  <string name="ThreadRecord__reacted_s_to_your_story">แสดงความรู้สึกต่อสตอรี่ของคุณด้วย %1$s</string>
   <!--Displayed in the conversation list when you reacted to someone\'s story-->
+  <string name="ThreadRecord__reacted_s_to_their_story">คุณแสดงความรู้สึกต่อสตอรี่ด้วย %1$s</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">ปรับรุ่น Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal รุ่นใหม่มาแล้ว แตะเพื่อปรับรุ่น</string>
@@ -2233,7 +2235,7 @@
   <string name="preferences_enter_proxy_address">ป้อนที่อยู่พร็อกซี</string>
   <string name="configurable_single_select__customize_option">กำหนดการตั้งค่า</string>
   <!--Internal only preferences-->
-  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string> -->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">กิจกรรมทั้งหมด</string>
   <string name="PaymentsAllActivityFragment__all">ทั้งหมด</string>
@@ -3904,15 +3906,15 @@
   <!--Signal connections bolded text in the Signal Connections sheet-->
   <string name="SignalConnectionsBottomSheet___signal_connections">เครือข่าย Signal</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
-  <string name="SignalConnectionsBottomSheet__signal_connections_are_people">เครือข่าย Signal คือคนที่คุณได้เลือกที่จะไว้ใจ โดย:</string>
+  <string name="SignalConnectionsBottomSheet__signal_connections_are_people">เครือข่าย Signal คือคนที่คุณได้เลือกที่จะไว้ใจ ด้วยการ:</string>
   <!--Signal connections sheet bullet point 1-->
-  <string name="SignalConnectionsBottomSheet__starting_a_conversation">กำลังเริ่มต้นการสนทนา</string>
+  <string name="SignalConnectionsBottomSheet__starting_a_conversation">เริ่มต้นการสนทนา</string>
   <!--Signal connections sheet bullet point 2-->
-  <string name="SignalConnectionsBottomSheet__accepting_a_message_request">กำลังรับคำขอส่งข้อความ</string>
+  <string name="SignalConnectionsBottomSheet__accepting_a_message_request">รับคำขอส่งข้อความ</string>
   <!--Signal connections sheet bullet point 3-->
-  <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">กำลังใส่พวกเขาเข้าไปในรายชื่อผู้ติดต่อในระบบของคุณ</string>
+  <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">มีรายชื่ออยู่ในระบบผู้ติดต่อของคุณ</string>
   <!--Note at the bottom of the Signal connections sheet-->
-  <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">สายสัมพันธ์ของคุณจะสามารถมองเห็นชื่อและรูปภาพ และโพสต์ใน \"สตอรี่ของฉัน\" จนกว่าคุณจะซ่อนสตอรี่นั้นจากพวกเขา</string>
+  <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">เครือข่ายของคุณจะสามารถมองเห็นชื่อและรูปภาพของคุณ รวมถึงโพสต์ใน \"สตอรี่ของฉัน\" เว้นแต่ว่าคุณจะซ่อนสตอรี่นั้นจากพวกเขา</string>
   <!--Clickable option to add a viewer to a private story-->
   <string name="PrivateStorySettingsFragment__add_viewer">เพิ่มผู้ชม</string>
   <!--Clickable option to delete a custom story-->

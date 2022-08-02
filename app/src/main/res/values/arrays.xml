@@ -47,6 +47,7 @@
 <!-- sw --><item>Kiswahili</item>
 <!-- ko --><item>Korean 한국어</item>
 <!-- ku --><item>Kurdí</item>
+<!-- ky --><item>Kyrgyz Кыргыз тили</item>
 <!-- lv --><item>Latviešu</item>
 <!-- lt --><item>Lietuvių</item>
 <!-- lg --><item>Luganda</item>
@@ -132,6 +133,7 @@
       <item>sw</item>
       <item>ko</item>
       <item>ku</item>
+      <item>ky</item>
       <item>lv</item>
       <item>lt</item>
       <item>lg</item>

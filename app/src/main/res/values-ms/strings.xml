@@ -1491,9 +1491,9 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <!--Displayed in the notification when the user has opened a received gift-->
   <string name="ThreadRecord__you_redeemed_a_gift_badge">Anda telah menebus lencana hadiah</string>
   <!--Displayed in the conversation list when someone reacted to your story-->
-  <string name="ThreadRecord__reacted_s_to_your_story">Bereaksi %1$s kepada cerita anda</string>
+  <string name="ThreadRecord__reacted_s_to_your_story">Menghantar reaksi %1$s kepada cerita anda</string>
   <!--Displayed in the conversation list when you reacted to someone\'s story-->
-  <string name="ThreadRecord__reacted_s_to_their_story">Bereaksi %1$s kepada cerita mereka</string>
+  <string name="ThreadRecord__reacted_s_to_their_story">Menghantar reaksi %1$s kepada cerita mereka</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Kemas kini Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Versi baru Signal tersedia, ketik untuk kemas kini</string>
@@ -2226,7 +2226,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="preferences_enter_proxy_address">Masukkan alamat proksi</string>
   <string name="configurable_single_select__customize_option">Sesuaikan pilihan</string>
   <!--Internal only preferences-->
-  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string> -->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Semua aktiviti</string>
   <string name="PaymentsAllActivityFragment__all">Semua</string>

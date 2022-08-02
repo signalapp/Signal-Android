@@ -1640,7 +1640,9 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <!--Displayed in the notification when the user has opened a received gift-->
   <string name="ThreadRecord__you_redeemed_a_gift_badge">Jūs izpirkāt dāvanas nozīmīti</string>
   <!--Displayed in the conversation list when someone reacted to your story-->
+  <string name="ThreadRecord__reacted_s_to_your_story">Lietotāja reakcija uz jūsu stāstu: %1$s</string>
   <!--Displayed in the conversation list when you reacted to someone\'s story-->
+  <string name="ThreadRecord__reacted_s_to_their_story">Jūsu reakcija uz lietotāja stāstu: %1$s</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal atjauninājums</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Ir pieejama jauna Signal versija, pieskarieties, lai atjauninātu</string>
@@ -2399,7 +2401,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="preferences_enter_proxy_address">Ievadīt starpniekservera adresi</string>
   <string name="configurable_single_select__customize_option">Pielāgot opciju</string>
   <!--Internal only preferences-->
-  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string> -->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Visas darbības</string>
   <string name="PaymentsAllActivityFragment__all">Visas</string>

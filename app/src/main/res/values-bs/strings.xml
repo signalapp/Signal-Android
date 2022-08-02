@@ -1646,7 +1646,9 @@
   <!--Displayed in the notification when the user has opened a received gift-->
   <string name="ThreadRecord__you_redeemed_a_gift_badge">Prihvatili ste značku na poklon</string>
   <!--Displayed in the conversation list when someone reacted to your story-->
+  <string name="ThreadRecord__reacted_s_to_your_story">Reagirao/la %1$s je na vašu priču</string>
   <!--Displayed in the conversation list when you reacted to someone\'s story-->
+  <string name="ThreadRecord__reacted_s_to_their_story">Reagirali ste %1$s na priču korisnika</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Nova verzija Signala</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Dostupna je nova verzija Signala, pritisnite da ažurirate</string>
@@ -2405,7 +2407,7 @@
   <string name="preferences_enter_proxy_address">Unesite proxy adresu</string>
   <string name="configurable_single_select__customize_option">Prilagodi</string>
   <!--Internal only preferences-->
-  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string> -->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Aktivnosti</string>
   <string name="PaymentsAllActivityFragment__all">Sve</string>

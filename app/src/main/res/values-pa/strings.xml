@@ -1572,7 +1572,9 @@
   <!--Displayed in the notification when the user has opened a received gift-->
   <string name="ThreadRecord__you_redeemed_a_gift_badge">ਤੁਸੀਂ ਤੋਹਫ਼ੇ ਵਿੱਚ ਮਿਲਿਆ ਬੈਜ ਰੀਡੀਮ ਕੀਤਾ</string>
   <!--Displayed in the conversation list when someone reacted to your story-->
+  <string name="ThreadRecord__reacted_s_to_your_story">ਤੁਹਾਡੀ ਸਟੋਰੀ ਉੱਤੇ %1$s ਰਿਐਕਸ਼ਨ ਦਿੱਤਾ</string>
   <!--Displayed in the conversation list when you reacted to someone\'s story-->
+  <string name="ThreadRecord__reacted_s_to_their_story">ਉਹਨਾਂ ਦੀ ਸਟੋਰੀ ਉੱਤੇ %1$s ਰਿਐਕਸ਼ਨ ਦਿੱਤਾ</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal ਅੱਪਡੇਟ</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal ਦਾ ਨਵਾਂ ਵਰਜ਼ਨ ਉਪਲਬਧ ਹੈ, ਅੱਪਡੇਟ ਕਰਨ ਲਈ ਛੂਹੋ</string>
@@ -1712,7 +1714,7 @@
   <string name="SingleRecipientNotificationBuilder_message_request">ਸੁਨੇਹਾ ਬੇਨਤੀ</string>
   <string name="SingleRecipientNotificationBuilder_you">ਤੁਸੀਂ</string>
   <!--Notification subtext for group stories-->
-  <string name="SingleRecipientNotificationBuilder__s_dot_story">%1$s • ਕਹਾਣੀ</string>
+  <string name="SingleRecipientNotificationBuilder__s_dot_story">%1$s • ਸਟੋਰੀ</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">ਵੀਡੀਓ ਚਲਾਓ</string>
   <string name="ThumbnailView_Has_a_caption_description">ਇਸਦੀ ਕੈਪਸ਼ਨ ਹੈ</string>
@@ -1961,7 +1963,7 @@
   <!--Displayed in a toast when user long presses an item in MyStories-->
   <string name="MyStoriesFragment__copied_sent_timestamp_to_clipboard">ਭੇਜੀ ਗਈ ਟਾਈਮਸਟੈਂਪ ਨੂੰ ਕਲਿੱਪਬੋਰਡ \'ਤੇ ਕਾਪੀ ਕੀਤਾ ਗਿਆ।</string>
   <!--Displayed when there are no outgoing stories-->
-  <string name="MyStoriesFragment__updates_to_your_story_will_show_up_here">ਤੁਹਾਡੀ ਕਹਾਣੀ ਵਿੱਚ ਕੀਤੀਆਂ ਅੱਪਡੇਟਾਂ ਇੱਥੇ ਦਿਖਾਈ ਦੇਣਗੀਆਂ।</string>
+  <string name="MyStoriesFragment__updates_to_your_story_will_show_up_here">ਤੁਹਾਡੀ ਸਟੋਰੀ ਵਿੱਚ ਕੀਤੀਆਂ ਅੱਪਡੇਟਾਂ ਇੱਥੇ ਦਿਖਾਈ ਦੇਣਗੀਆਂ।</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s ਗਰੁੱਪ ਵਿਚ ਸ਼ਾਮਲ ਹੋ ਗਏ.</item>
@@ -2318,7 +2320,7 @@
   <string name="preferences_enter_proxy_address">ਪ੍ਰੌਕਸੀ ਐਡਰੈੱਸ ਦਰਜ ਕਰੋ</string>
   <string name="configurable_single_select__customize_option">ਕਸਟਮਾਈਜ਼ ਚੋਣ</string>
   <!--Internal only preferences-->
-  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string> -->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">ਸਾਰੀ ਗਤੀਵਿਧੀ</string>
   <string name="PaymentsAllActivityFragment__all">ਸਾਰੇ</string>
@@ -3461,9 +3463,9 @@
   <string name="MultiselectForwardFragment__add_a_message">ਸੁਨੇਹਾ ਜੋੜੋ</string>
   <string name="MultiselectForwardFragment__faster_forwards">ਵੱਧ ਤੇਜ਼ੀ ਨਾਲ ਅੱਗੇ </string>
   <!--Displayed when user selects a video that will be clipped before sharing to a story-->
-  <string name="MultiselectForwardFragment__videos_will_be_trimmed">ਵੀਡੀਓ ਨੂੰ ਕੱਟ ਕੇ 30 ਸਕਿੰਟ ਦੀਆਂ ਕਲਿੱਪਾਂ ਬਣਾਈਆਂ ਜਾਣਗੀਆਂ ਅਤੇ ਉਹਨਾਂ ਨੂੰ ਕਈ ਕਹਾਣੀਆਂ ਦੇ ਰੂਪ ਵਿੱਚ ਭੇਜਿਆ ਜਾਵੇਗਾ।</string>
+  <string name="MultiselectForwardFragment__videos_will_be_trimmed">ਵੀਡੀਓ ਨੂੰ ਕੱਟ ਕੇ 30 ਸਕਿੰਟ ਦੀਆਂ ਕਲਿੱਪਾਂ ਬਣਾਈਆਂ ਜਾਣਗੀਆਂ ਅਤੇ ਉਹਨਾਂ ਨੂੰ ਕਈ ਸਟੋਰੀਆਂ ਦੇ ਰੂਪ ਵਿੱਚ ਭੇਜਿਆ ਜਾਵੇਗਾ।</string>
   <!--Displayed when user selects a video that cannot be sent as a story-->
-  <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">ਕਹਾਣੀ ਵਿੱਚ ਭੇਜੇ ਗਏ ਵੀਡੀਓ 30 ਸਕਿੰਟ ਤੋਂ ਲੰਮੇ ਨਹੀਂ ਹੋਣੇ ਚਾਹੀਦੇ।</string>
+  <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">ਸਟੋਰੀ ਵਿੱਚ ਭੇਜੇ ਗਏ ਵੀਡੀਓ 30 ਸਕਿੰਟ ਤੋਂ ਲੰਮੇ ਨਹੀਂ ਹੋਣੇ ਚਾਹੀਦੇ।</string>
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">ਅੱਗੇ ਭੇਜੇ ਸੁਨੇਹੇ ਹੁਣ ਫ਼ੌਰਨ ਭੇਜੇ ਜਾਂਦੇ ਹਨ।</string>
   <plurals name="MultiselectForwardFragment_send_d_messages">
     <item quantity="one">%1$dਸੁਨੇਹਾ ਭੇਜੋ </item>
@@ -3866,13 +3868,13 @@
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">ਮੇਰੀਆਂ ਕਹਾਣੀਆਂ</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <string name="StoriesLandingFragment__add_a_story">ਕਹਾਣੀ ਸ਼ਾਮਲ ਕਰੋ</string>
+  <string name="StoriesLandingFragment__add_a_story">ਸਟੋਰੀ ਸ਼ਾਮਲ ਕਰੋ</string>
   <!--Displayed when there are no stories to display-->
-  <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">ਇਸ ਵੇਲੇ ਦਿਖਾਉਣ ਲਈ ਕੋਈ ਵੀ ਨਵੀਂ ਅੱਪਡੇਟ ਉਪਲਬਧ ਨਹੀਂ ਹੈ। ਆਪਣੀ ਕਹਾਣੀ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰਨ ਲਈ + \'ਤੇ ਟੈਪ ਕਰੋ।</string>
+  <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">ਇਸ ਵੇਲੇ ਦਿਖਾਉਣ ਲਈ ਕੋਈ ਵੀ ਨਵੀਂ ਅੱਪਡੇਟ ਉਪਲਬਧ ਨਹੀਂ ਹੈ। ਆਪਣੀ ਸਟੋਰੀ ਵਿੱਚ ਕੁਝ ਸ਼ਾਮਲ ਕਰਨ ਲਈ + \'ਤੇ ਟੈਪ ਕਰੋ।</string>
   <!--Context menu option to hide a story-->
-  <string name="StoriesLandingItem__hide_story">ਕਹਾਣੀ ਲੁਕਾਓ</string>
+  <string name="StoriesLandingItem__hide_story">ਸਟੋਰੀ ਲੁਕਾਓ</string>
   <!--Context menu option to unhide a story-->
-  <string name="StoriesLandingItem__unhide_story">ਕਹਾਣੀ ਨਾ ਲੁਕਾਓ</string>
+  <string name="StoriesLandingItem__unhide_story">ਸਟੋਰੀ ਨਾ ਲੁਕਾਓ</string>
   <!--Context menu option to forward a story-->
   <string name="StoriesLandingItem__forward">ਅੱਗੇ ਭੇਜੋ </string>
   <!--Context menu option to share a story-->
@@ -3892,15 +3894,15 @@
   <!--Status label when a story fails to send indicating user action to retry-->
   <string name="StoriesLandingItem__tap_to_retry">ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ</string>
   <!--Title of dialog confirming decision to hide a story-->
-  <string name="StoriesLandingFragment__hide_story">ਕੀ ਕਹਾਣੀ ਨੂੰ ਲੁਕਾਉਣਾ ਹੈ?</string>
+  <string name="StoriesLandingFragment__hide_story">ਕੀ ਸਟੋਰੀ ਨੂੰ ਲੁਕਾਉਣਾ ਹੈ?</string>
   <!--Message of dialog confirming decision to hide a story-->
-  <string name="StoriesLandingFragment__new_story_updates">%1$s ਦੀਆਂ ਨਵੀਆਂ ਕਹਾਣੀਆਂ ਹੁਣ ਕਹਾਣੀਆਂ ਦੀ ਸੂਚੀ ਵਿੱਚ ਸਿਖਰ \'ਤੇ ਦਿਖਾਈ ਨਹੀਂ ਦੇਣਗੀਆਂ।</string>
+  <string name="StoriesLandingFragment__new_story_updates">%1$s ਦੀਆਂ ਨਵੀਆਂ ਸਟੋਰੀਆਂ ਹੁਣ ਸਟੋਰੀਆਂ ਦੀ ਸੂਚੀ ਵਿੱਚ ਸਿਖਰ \'ਤੇ ਦਿਖਾਈ ਨਹੀਂ ਦੇਣਗੀਆਂ।</string>
   <!--Positive action of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide">ਲੁਕਾਓ</string>
   <!--Displayed in Snackbar after story is hidden-->
-  <string name="StoriesLandingFragment__story_hidden">ਕਹਾਣੀ ਲੁਕਾਈ ਗਈ</string>
+  <string name="StoriesLandingFragment__story_hidden">ਸਟੋਰੀ ਲੁਕਾਈ ਗਈ</string>
   <!--Section header for hidden stories-->
-  <string name="StoriesLandingFragment__hidden_stories">ਲੁਕੀਆਂ ਹੋਈਆਂ ਕਹਾਣੀਆਂ</string>
+  <string name="StoriesLandingFragment__hidden_stories">ਲੁਕੀਆਂ ਹੋਈਆਂ ਸਟੋਰੀਆਂ</string>
   <!--Displayed on each sent story under My Stories-->
   <plurals name="MyStories__d_views">
     <item quantity="one">%1$d ਵਿਊ</item>
@@ -3909,11 +3911,11 @@
   <!--Forward story label, displayed in My Stories context menu-->
   <string name="MyStories_forward">ਅੱਗੇ ਭੇਜੋ </string>
   <!--Label for stories for a single user. Format is {given name}\'s Story-->
-  <string name="MyStories__ss_story">%1$s ਦੀ ਕਹਾਣੀ</string>
+  <string name="MyStories__ss_story">%1$s ਦੀ ਸਟੋਰੀ</string>
   <!--Title of dialog to confirm deletion of story-->
-  <string name="MyStories__delete_story">ਕੀ ਕਹਾਣੀ ਨੂੰ ਹਟਾਉਣਾ ਹੈ?</string>
+  <string name="MyStories__delete_story">ਕੀ ਸਟੋਰੀ ਨੂੰ ਹਟਾਉਣਾ ਹੈ?</string>
   <!--Message of dialog to confirm deletion of story-->
-  <string name="MyStories__this_story_will_be_deleted">ਇਹ ਕਹਾਣੀ ਤੁਹਾਡੇ ਲਈ ਅਤੇ ਜਿਸ ਨੂੰ ਵੀ ਪ੍ਰਾਪਤ ਹੋਈ ਹੈ, ਉਹਨਾਂ ਸਭ ਲਈ ਹਟਾ ਦਿੱਤੀ ਜਾਵੇਗੀ।</string>
+  <string name="MyStories__this_story_will_be_deleted">ਇਹ ਸਟੋਰੀ ਤੁਹਾਡੇ ਲਈ ਅਤੇ ਜਿਸ ਨੂੰ ਵੀ ਪ੍ਰਾਪਤ ਹੋਈ ਹੈ, ਉਹਨਾਂ ਸਭ ਲਈ ਹਟਾ ਦਿੱਤੀ ਜਾਵੇਗੀ।</string>
   <!--Toast shown when story media cannot be saved-->
   <string name="MyStories__unable_to_save">ਸੇਵ ਕਰਨ ਵਿੱਚ ਅਸਮਰੱਥ ਰਹੇ</string>
   <!--Displayed at bottom of story viewer when current item has views-->
@@ -3947,13 +3949,13 @@
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">ਅਜੇ ਤੱਕ ਕਿਸੇ ਨੇ ਜਵਾਬ ਨਹੀਂ ਦਿੱਤਾ</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
-  <string name="StoryGroupReactionReplyItem__reacted_to_the_story">ਕਹਾਣੀ ਉੱਤੇ ਰਿਐਕਸ਼ਨ ਦਿੱਤਾ</string>
+  <string name="StoryGroupReactionReplyItem__reacted_to_the_story">ਸਟੋਰੀ ਉੱਤੇ ਰਿਐਕਸ਼ਨ ਦਿੱਤਾ</string>
   <!--Label for story views tab-->
   <string name="StoryViewsAndRepliesDialogFragment__views">ਵਿਊ</string>
   <!--Label for story replies tab-->
   <string name="StoryViewsAndRepliesDialogFragment__replies">ਜਵਾਬ</string>
   <!--Description of action for reaction button-->
-  <string name="StoryReplyComposer__react_to_this_story">ਇਸ ਕਹਾਣੀ ਉੱਤੇ ਰਿਐਕਸ਼ਨ ਦਿਓ</string>
+  <string name="StoryReplyComposer__react_to_this_story">ਇਸ ਸਟੋਰੀ ਉੱਤੇ ਰਿਐਕਸ਼ਨ ਦਿਓ</string>
   <!--Displayed when the user is replying privately to someone who replied to one of their stories-->
   <string name="StoryReplyComposer__replying_privately_to_s">%1$s ਨੂੰ ਨਿੱਜੀ ਤੌਰ \'ਤੇ ਜਵਾਬ ਦਿੱਤਾ ਜਾ ਰਿਹਾ ਹੈ</string>
   <!--Context menu item to privately reply to a story response-->
@@ -3963,19 +3965,19 @@
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">ਹਟਾਓ</string>
   <!--Story settings page title-->
-  <string name="StorySettingsFragment__story_settings">ਕਹਾਣੀ ਦੀਆਂ ਸੈਟਿੰਗਾਂ</string>
+  <string name="StorySettingsFragment__story_settings">ਸਟੋਰੀ ਦੀਆਂ ਸੈਟਿੰਗਾਂ</string>
   <!--Story settings private stories heading-->
-  <string name="StorySettingsFragment__private_stories">ਨਿੱਜੀ ਕਹਾਣੀਆਂ</string>
+  <string name="StorySettingsFragment__private_stories">ਨਿੱਜੀ ਸਟੋਰੀਆਂ</string>
   <!--Note at bottom of story settings regarding who can see private stories.-->
-  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">ਪ੍ਰਾਈਵੇਟ ਕਹਾਣੀਆਂ ਨੂੰ ਸਿਰਫ਼ ਉਹ ਲੋਕ ਦੇਖ ਸਕਦੇ ਹਨ ਜਿਹਨਾਂ ਨੂੰ ਤੁਸੀਂ ਉਹਨਾਂ ਕਹਾਣੀਆਂ ਵਿੱਚ ਸ਼ਾਮਲ ਕੀਤਾ ਹੈ। ਕਹਾਣੀ ਦਾ ਨਾਮ ਸਿਰਫ਼ ਤੁਸੀਂ ਦੇਖ ਸਕਦੇ ਹੋ।</string>
+  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">ਪ੍ਰਾਈਵੇਟ ਸਟੋਰੀਆਂ ਨੂੰ ਸਿਰਫ਼ ਉਹ ਲੋਕ ਦੇਖ ਸਕਦੇ ਹਨ ਜਿਹਨਾਂ ਨੂੰ ਤੁਸੀਂ ਉਹਨਾਂ ਸਟੋਰੀਆਂ ਵਿੱਚ ਸ਼ਾਮਲ ਕੀਤਾ ਹੈ। ਸਟੋਰੀ ਦਾ ਨਾਮ ਸਿਰਫ਼ ਤੁਸੀਂ ਦੇਖ ਸਕਦੇ ਹੋ।</string>
   <!--Option label for creating a new private story-->
-  <string name="StorySettingsFragment__new_private_story">ਨਵੀਂ ਨਿੱਜੀ ਕਹਾਣੀ</string>
+  <string name="StorySettingsFragment__new_private_story">ਨਵੀਂ ਨਿੱਜੀ ਸਟੋਰੀ</string>
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">ਮੇਰੀ ਕਹਾਣੀ</string>
   <!--Section heading for story visibility-->
-  <string name="MyStorySettingsFragment__who_can_see_this_story">ਇਸ ਕਹਾਣੀ ਨੂੰ ਕੌਣ ਦੇਖ ਸਕਦਾ ਹੈ</string>
+  <string name="MyStorySettingsFragment__who_can_see_this_story">ਇਸ ਸਟੋਰੀ ਨੂੰ ਕੌਣ ਦੇਖ ਸਕਦਾ ਹੈ</string>
   <!--Clickable option for selecting people to hide your story from-->
-  <string name="MyStorySettingsFragment__hide_story_from">ਕਹਾਣੀ ਇਹਨਾਂ ਤੋਂ ਲੁਕਾਓ</string>
+  <string name="MyStorySettingsFragment__hide_story_from">ਸਟੋਰੀ ਇਹਨਾਂ ਤੋਂ ਲੁਕਾਓ</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
   <string name="MyStorySettingsFragment__all_signal_connections">ਸਾਰੇ Signal ਕਨੈਕਸ਼ਨ</string>
   <!--Privacy setting description for sending stories to all your signal connections-->
@@ -3983,7 +3985,7 @@
   <!--Privacy setting title for sending stories to all except the specified connections-->
   <string name="MyStorySettingsFragment__all_signal_connections_except">ਸਾਰੇ Signal ਕਨੈਕਸ਼ਨ ਨਾਲ, ਇਹਨਾਂ ਨੂੰ ਛੱਡਕੇ…</string>
   <!--Privacy setting description for sending stories to all except the specified connections-->
-  <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">ਆਪਣੀ ਕਹਾਣੀ ਨੂੰ ਖਾਸ ਲੋਕਾਂ ਕੋਲੋਂ ਲੁਕਾਓ</string>
+  <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">ਆਪਣੀ ਸਟੋਰੀ ਨੂੰ ਖਾਸ ਲੋਕਾਂ ਤੋਂ ਲੁਕਾਓ</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
   <plurals name="MyStorySettingsFragment__d_people_excluded">
     <item quantity="one">%1$d ਵਿਅਕਤੀ ਨੂੰ ਬਾਹਰ ਰੱਖਿਆ ਗਿਆ</item>
@@ -3999,15 +4001,15 @@
     <item quantity="other">%1$d ਲੋਕ</item>
   </plurals>
   <!--My story privacy fine print about what the privacy settings are for-->
-  <string name="MyStorySettingsFragment__choose_who_can_view_your_story">ਚੁਣੋ ਕਿ ਤੁਹਾਡੀ ਕਹਾਣੀ ਕੌਣ ਦੇਖ ਸਕਦਾ ਹੈ। ਤਬਦੀਲੀਆਂ ਉਹਨਾਂ ਕਹਾਣੀਆਂ ਨੂੰ ਪ੍ਰਭਾਵਿਤ ਨਹੀਂ ਕਰਨਗੀਆਂ ਜੋ ਤੁਸੀਂ ਪਹਿਲਾਂ ਹੀ ਭੇਜ ਚੁੱਕੇ ਹੋ।</string>
+  <string name="MyStorySettingsFragment__choose_who_can_view_your_story">ਚੁਣੋ ਕਿ ਤੁਹਾਡੀ ਸਟੋਰੀ ਕੌਣ ਦੇਖ ਸਕਦਾ ਹੈ। ਤਬਦੀਲੀਆਂ ਉਹਨਾਂ ਸਟੋਰੀਆਂ ਨੂੰ ਪ੍ਰਭਾਵਿਤ ਨਹੀਂ ਕਰਨਗੀਆਂ ਜੋ ਤੁਸੀਂ ਪਹਿਲਾਂ ਹੀ ਭੇਜ ਚੁੱਕੇ ਹੋ।</string>
   <!--Section header for options related to replies and reactions-->
   <string name="MyStorySettingsFragment__replies_amp_reactions">ਜਵਾਬ ਅਤੇ ਰਿਐਕਸ਼ਨ</string>
   <!--Switchable option for allowing replies and reactions on your stories-->
   <string name="MyStorySettingsFragment__allow_replies_amp_reactions">ਜਵਾਬ ਅਤੇ ਰਿਐਕਸ਼ਨ ਭੇਜਣ ਦੀ ਮਨਜ਼ੂਰੀ ਦਿਓ</string>
   <!--Summary for switchable option allowing replies and reactions on your story-->
-  <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">ਜਿਹੜੇ ਲੋਕ ਤੁਹਾਡੀ ਕਹਾਣੀ ਦੇਖ ਸਕਦੇ ਹਨ, ਉਹਨਾਂ ਨੂੰ ਜਵਾਬ ਅਤੇ ਰਿਐਕਸ਼ਨ ਭੇਜਣ ਦੀ ਸਹੂਲਤ ਦਿਓ</string>
+  <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">ਜਿਹੜੇ ਲੋਕ ਤੁਹਾਡੀ ਸਟੋਰੀ ਦੇਖ ਸਕਦੇ ਹਨ, ਉਹਨਾਂ ਨੂੰ ਜਵਾਬ ਅਤੇ ਰਿਐਕਸ਼ਨ ਭੇਜਣ ਦੀ ਸਹੂਲਤ ਦਿਓ</string>
   <!--Note about default sharing-->
-  <string name="MyStorySettingsFragment__hide_your_story_from">ਆਪਣੀ ਕਹਾਣੀ ਨੂੰ ਕੁਝ ਖਾਸ ਲੋਕਾਂ ਤੋਂ ਲੁਕਾਓ। ਡਿਫਾਲਟ ਰੂਪ ਵਿੱਚ, ਤੁਹਾਡੀ ਕਹਾਣੀ ਤੁਹਾਡੇ %1$s ਨਾਲ ਸਾਂਝੀ ਕੀਤੀ ਜਾਂਦੀ ਹੈ</string>
+  <string name="MyStorySettingsFragment__hide_your_story_from">ਆਪਣੀ ਸਟੋਰੀ ਨੂੰ ਕੁਝ ਖਾਸ ਲੋਕਾਂ ਤੋਂ ਲੁਕਾਓ। ਡਿਫਾਲਟ ਰੂਪ ਵਿੱਚ, ਤੁਹਾਡੀ ਸਟੋਰੀ ਤੁਹਾਡੇ %1$s ਨਾਲ ਸਾਂਝੀ ਕੀਤੀ ਜਾਂਦੀ ਹੈ</string>
   <!--Signal connections bolded text in the Signal Connections sheet-->
   <string name="SignalConnectionsBottomSheet___signal_connections">Signal ਕਨੈਕਸ਼ਨ</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
@@ -4019,15 +4021,15 @@
   <!--Signal connections sheet bullet point 3-->
   <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">ਉਹਨਾਂ ਨੂੰ ਆਪਣੇ ਸਿਸਟਮ ਦੇ ਸੰਪਰਕਾਂ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰਕੇ</string>
   <!--Note at the bottom of the Signal connections sheet-->
-  <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">ਤੁਹਾਡੇ ਕਨੈਕਸ਼ਨ ਤੁਹਾਡਾ ਨਾਮ ਅਤੇ ਫ਼ੋਟੋ ਦੇਖ ਸਕਦੇ ਹਨ, ਅਤੇ \"ਮੇਰੀ ਕਹਾਣੀ\" ਵਿਚਲੀਆਂ ਪੋਸਟਾਂ ਦੇਖ ਸਕਦੇ ਹਨ, ਬਸ਼ਰਤੇ ਤੁਸੀਂ ਉਹਨਾਂ ਕੋਲੋਂ ਇਸ ਨੂੰ ਲੁਕਾਇਆ ਨਾ ਹੋਵੇ।</string>
+  <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">ਤੁਹਾਡੇ ਕਨੈਕਸ਼ਨ ਤੁਹਾਡਾ ਨਾਮ ਅਤੇ ਫ਼ੋਟੋ ਦੇਖ ਸਕਦੇ ਹਨ, ਅਤੇ \"ਮੇਰੀ ਸਟੋਰੀ\" ਵਿਚਲੀਆਂ ਪੋਸਟਾਂ ਦੇਖ ਸਕਦੇ ਹਨ, ਬਸ਼ਰਤੇ ਤੁਸੀਂ ਉਹਨਾਂ ਕੋਲੋਂ ਇਸ ਨੂੰ ਲੁਕਾਇਆ ਨਾ ਹੋਵੇ।</string>
   <!--Clickable option to add a viewer to a private story-->
   <string name="PrivateStorySettingsFragment__add_viewer">ਦਰਸ਼ਕ ਸ਼ਾਮਲ ਕਰੋ</string>
   <!--Clickable option to delete a custom story-->
-  <string name="PrivateStorySettingsFragment__delete_private_story">ਨਿੱਜੀ ਕਹਾਣੀ ਹਟਾਓ</string>
+  <string name="PrivateStorySettingsFragment__delete_private_story">ਨਿੱਜੀ ਸਟੋਰੀ ਹਟਾਓ</string>
   <!--Dialog title when attempting to remove someone from a private story-->
   <string name="PrivateStorySettingsFragment__remove_s">ਕੀ %1$s ਨੂੰ ਹਟਾਉਣਾ ਹੈ?</string>
   <!--Dialog message when attempting to remove someone from a private story-->
-  <string name="PrivateStorySettingsFragment__this_person_will_no_longer">ਇਸ ਵਿਅਕਤੀ ਨੂੰ ਹੁਣ ਤੁਹਾਡੀ ਕਹਾਣੀ ਦਿਖਾਈ ਨਹੀਂ ਦੇਵੇਗੀ।</string>
+  <string name="PrivateStorySettingsFragment__this_person_will_no_longer">ਇਸ ਵਿਅਕਤੀ ਨੂੰ ਹੁਣ ਤੁਹਾਡੀ ਸਟੋਰੀ ਦਿਖਾਈ ਨਹੀਂ ਦੇਵੇਗੀ।</string>
   <!--Positive action label when attempting to remove someone from a private story-->
   <string name="PrivateStorySettingsFragment__remove">ਹਟਾਓ</string>
   <!--Dialog title when deleting a private story-->
@@ -4035,9 +4037,9 @@
   <!--Dialog message when deleting a private story-->
   <string name="PrivateStorySettingsFragment__this_action_cannot">ਇਸ ਕਾਰਵਾਈ ਨੂੰ ਅਣਕੀਤਾ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ।</string>
   <!--Page title for editing a private story name-->
-  <string name="EditPrivateStoryNameFragment__edit_story_name">ਕਹਾਣੀ ਦਾ ਨਾਮ ਸੋਧੋ</string>
+  <string name="EditPrivateStoryNameFragment__edit_story_name">ਸਟੋਰੀ ਦਾ ਨਾਮ ਸੋਧੋ</string>
   <!--Input field hint when editing a private story name-->
-  <string name="EditPrivateStoryNameFragment__story_name">ਕਹਾਣੀ ਦਾ ਨਾਮ</string>
+  <string name="EditPrivateStoryNameFragment__story_name">ਸਟੋਰੀ ਦਾ ਨਾਮ</string>
   <!--Save button label when editing a private story name-->
   <string name="EditPrivateStoryNameFragment__save">ਸੰਭਾਲੋ</string>
   <!--Displayed in text post creator before user enters text-->
@@ -4055,7 +4057,7 @@
   <!--Hint for entering a URL for a text post-->
   <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">URL ਟਾਈਪ ਕਰੋ ਜਾਂ ਪੇਸਟ ਕਰੋ</string>
   <!--Displayed prior to the user entering a URL for a text post-->
-  <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">ਆਪਣੀ ਕਹਾਣੀ ਦੇ ਦਰਸ਼ਕਾਂ ਨਾਲ ਇੱਕ ਲਿੰਕ ਸਾਂਝਾ ਕਰੋ</string>
+  <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">ਆਪਣੀ ਸਟੋਰੀ ਦੇ ਦਰਸ਼ਕਾਂ ਨਾਲ ਇੱਕ ਲਿੰਕ ਸਾਂਝਾ ਕਰੋ</string>
   <!--Hint text for searching for a story text post recipient.-->
   <string name="TextStoryPostSendFragment__search">ਖੋਜੋ</string>
   <!--Toast shown when an unexpected error occurs while sending a text story-->
@@ -4067,21 +4069,21 @@
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">ਮੁਕੰਮਲ</string>
   <!--Dialog title for first time adding something to a story-->
-  <string name="StoryDialogs__add_to_story_q">ਕੀ ਤੁਸੀਂ ਕਹਾਣੀ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
+  <string name="StoryDialogs__add_to_story_q">ਕੀ ਤੁਸੀਂ ਸਟੋਰੀ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
   <!--Dialog message for first time adding something to a story-->
-  <string name="StoryDialogs__adding_content">ਜੇ ਤੁਸੀਂ ਆਪਣੀ ਕਹਾਣੀ ਵਿੱਚ ਕੁਝ ਸ਼ਾਮਲ ਕਰਦੇ ਹੋ ਤਾਂ ਤੁਹਾਡੇ Signal ਕਨੈਕਸ਼ਨ 24 ਘੰਟਿਆਂ ਤੱਕ ਉਸ ਨੂੰ ਦੇਖ ਸਕਦੇ ਹਨ। ਤੁਹਾਡੀ ਕਹਾਣੀ ਕੌਣ ਦੇਖ ਸਕਦਾ ਹੈ ਇਹ ਤੁਸੀਂ ਸੈਟਿੰਗਾਂ ਵਿੱਚ ਬਦਲ ਸਕਦੇ ਹੋ।</string>
+  <string name="StoryDialogs__adding_content">ਜੇ ਤੁਸੀਂ ਆਪਣੀ ਸਟੋਰੀ ਵਿੱਚ ਕੁਝ ਸ਼ਾਮਲ ਕਰਦੇ ਹੋ ਤਾਂ ਤੁਹਾਡੇ Signal ਕਨੈਕਸ਼ਨ 24 ਘੰਟਿਆਂ ਤੱਕ ਉਸ ਨੂੰ ਦੇਖ ਸਕਦੇ ਹਨ। ਤੁਹਾਡੀ ਸਟੋਰੀ ਕੌਣ ਦੇਖ ਸਕਦਾ ਹੈ ਇਹ ਤੁਸੀਂ ਸੈਟਿੰਗਾਂ ਵਿੱਚ ਬਦਲ ਸਕਦੇ ਹੋ।</string>
   <!--First time share to story dialog: Positive action to go ahead and add to story-->
-  <string name="StoryDialogs__add_to_story">ਕਹਾਣੀ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰੋ</string>
+  <string name="StoryDialogs__add_to_story">ਸਟੋਰੀ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰੋ</string>
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
   <string name="StoryDialogs__edit_viewers">ਦਰਸ਼ਕਾਂ ਨੂੰ ਸੋਧੋ</string>
   <!--Error message shown when a failure occurs during story send-->
-  <string name="StoryDialogs__story_could_not_be_sent">ਕਹਾਣੀ ਭੇਜ ਨਹੀਂ ਸਕੇ। ਆਪਣੇ ਕਨੈਕਸ਼ਨ ਦੀ ਜਾਂਚ ਕਰੋ ਅਤੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
+  <string name="StoryDialogs__story_could_not_be_sent">ਸਟੋਰੀ ਭੇਜ ਨਹੀਂ ਸਕੇ। ਆਪਣੇ ਕਨੈਕਸ਼ਨ ਦੀ ਜਾਂਚ ਕਰੋ ਅਤੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
   <!--Error message dialog button to resend a previously failed story send-->
   <string name="StoryDialogs__send">ਭੇਜੋ</string>
   <!--Privacy Settings toggle title for stories-->
-  <string name="PrivacySettingsFragment__share_and_view_stories">ਕਹਾਣੀਆਂ ਨੂੰ ਸਾਂਝਾ ਕਰੋ ਅਤੇ ਦੇਖੋ</string>
+  <string name="PrivacySettingsFragment__share_and_view_stories">ਸਟੋਰੀਆਂ ਨੂੰ ਸਾਂਝਾ ਕਰੋ ਅਤੇ ਦੇਖੋ</string>
   <!--Privacy Settings toggle summary for stories-->
-  <string name="PrivacySettingsFragment__you_will_no_longer_be_able">ਇਸ ਵਿਕਲਪ ਦੇ ਬੰਦ ਹੋਣ \'ਤੇ ਤੁਸੀਂ ਨਾ ਹੀ ਕਹਾਣੀਆਂ ਨੂੰ ਸਾਂਝਾ ਕਰ ਸਕੋਗੇ ਅਤੇ ਨਾ ਹੋ ਦੇਖ ਸਕੋਗੇ।</string>
+  <string name="PrivacySettingsFragment__you_will_no_longer_be_able">ਇਸ ਵਿਕਲਪ ਦੇ ਬੰਦ ਹੋਣ \'ਤੇ ਤੁਸੀਂ ਨਾ ਹੀ ਸਟੋਰੀਆਂ ਨੂੰ ਸਾਂਝਾ ਕਰ ਸਕੋਗੇ ਅਤੇ ਨਾ ਹੋ ਦੇਖ ਸਕੋਗੇ।</string>
   <!--New story viewer selection screen title-->
   <string name="CreateStoryViewerSelectionFragment__choose_viewers">ਦਰਸ਼ਕ ਚੁਣੋ</string>
   <!--New story viewer selection action button label-->
@@ -4092,9 +4094,9 @@
     <item quantity="other">%1$d ਦਰਸ਼ਕ</item>
   </plurals>
   <!--Name story screen title-->
-  <string name="CreateStoryWithViewersFragment__name_story">ਕਹਾਣੀ ਨੂੰ ਨਾਮ ਦਿਓ</string>
+  <string name="CreateStoryWithViewersFragment__name_story">ਸਟੋਰੀ ਨੂੰ ਨਾਮ ਦਿਓ</string>
   <!--Name story screen label hint-->
-  <string name="CreateStoryWithViewersFragment__story_name_required">ਕਹਾਣੀ ਦਾ ਨਾਮ (ਲਾਜ਼ਮੀ ਹੈ)</string>
+  <string name="CreateStoryWithViewersFragment__story_name_required">ਸਟੋਰੀ ਦਾ ਨਾਮ (ਲਾਜ਼ਮੀ ਹੈ)</string>
   <!--Name story screen viewers subheading-->
   <string name="CreateStoryWithViewersFragment__viewers">ਦਰਸ਼ਕ</string>
   <!--Name story screen create button label-->
@@ -4102,17 +4104,17 @@
   <!--Name story screen error when save attempted with no label-->
   <string name="CreateStoryWithViewersFragment__this_field_is_required">ਇਹ ਖੇਤਰ ਲਾਜ਼ਮੀ ਹੈ।</string>
   <!--Name story screen error when save attempted but label is duplicate-->
-  <string name="CreateStoryWithViewersFragment__there_is_already_a_story_with_this_name">ਇਸ ਨਾਮ ਵਾਲੀ ਇੱਕ ਕਹਾਣੀ ਪਹਿਲਾਂ ਹੀ ਮੌਜੂਦ ਹੈ।</string>
+  <string name="CreateStoryWithViewersFragment__there_is_already_a_story_with_this_name">ਇਸ ਨਾਮ ਵਾਲੀ ਇੱਕ ਸਟੋਰੀ ਪਹਿਲਾਂ ਹੀ ਮੌਜੂਦ ਹੈ।</string>
   <!--Text for select all action when editing recipients for a story-->
   <string name="BaseStoryRecipientSelectionFragment__select_all">ਸਾਰਿਆ ਨੂੰ ਚੁਣੋ</string>
   <!--Choose story type bottom sheet title-->
-  <string name="ChooseStoryTypeBottomSheet__choose_your_story_type">ਆਪਣੀ ਕਹਾਣੀ ਦੀ ਕਿਸਮ ਚੁਣੋ</string>
+  <string name="ChooseStoryTypeBottomSheet__choose_your_story_type">ਆਪਣੀ ਸਟੋਰੀ ਦੀ ਕਿਸਮ ਚੁਣੋ</string>
   <!--Choose story type bottom sheet new story row title-->
-  <string name="ChooseStoryTypeBottomSheet__new_private_story">ਨਵੀਂ ਨਿੱਜੀ ਕਹਾਣੀ</string>
+  <string name="ChooseStoryTypeBottomSheet__new_private_story">ਨਵੀਂ ਨਿੱਜੀ ਸਟੋਰੀ</string>
   <!--Choose story type bottom sheet new story row summary-->
   <string name="ChooseStoryTypeBottomSheet__visible_only_to">ਸਿਰਫ਼ ਕੁਝ ਖਾਸ ਲੋਕਾਂ ਨੂੰ ਦਿਖਾਈ ਦਿੰਦੀ ਹੈ</string>
   <!--Choose story type bottom sheet group story title-->
-  <string name="ChooseStoryTypeBottomSheet__group_story">ਗਰੁੱਪ ਕਹਾਣੀ</string>
+  <string name="ChooseStoryTypeBottomSheet__group_story">ਗਰੁੱਪ ਸਟੋਰੀ</string>
   <!--Choose story type bottom sheet group story summary-->
   <string name="ChooseStoryTypeBottomSheet__share_to_an_existing_group">ਕਿਸੇ ਮੌਜੂਦਾ ਗਰੁੱਪ ਵਿੱਚ ਸਾਂਝਾ ਕਰੋ</string>
   <!--Choose groups bottom sheet title-->
@@ -4124,17 +4126,17 @@
   <!--Displayed in toast after sending a direct reply-->
   <string name="StoryDirectReplyDialogFragment__sending_reply">ਜਵਾਬ ਭੇਜਿਆ ਜਾ ਰਿਹਾ ਹੈ…</string>
   <!--Displayed in the viewer when a story is no longer available-->
-  <string name="StorySlateView__this_story_is_no_longer_available">ਇਹ ਕਹਾਣੀ ਹੁਣ ਉਪਲਬਧ ਨਹੀਂ ਹੈ।</string>
+  <string name="StorySlateView__this_story_is_no_longer_available">ਇਹ ਸਟੋਰੀ ਹੁਣ ਉਪਲਬਧ ਨਹੀਂ ਹੈ।</string>
   <!--Displayed in the viewer when the network is not available-->
   <string name="StorySlateView__no_internet_connection">ਇੰਟਰਨੈੱਟ ਕਨੈਕਸ਼ਨ ਨਹੀਂ ਹੈ</string>
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
   <string name="StorySlateView__couldnt_load_content">ਸਮੱਗਰੀ ਲੋਡ ਨਹੀਂ ਕਰ ਸਕੇ</string>
   <!--Toasted when the user externally shares to a text story successfully-->
-  <string name="TextStoryPostCreationFragment__sent_story">ਕਹਾਣੀ ਭੇਜੀ ਗਈ</string>
+  <string name="TextStoryPostCreationFragment__sent_story">ਸਟੋਰੀ ਭੇਜੀ ਗਈ</string>
   <!--Toasted when the user external share to a text story fails-->
-  <string name="TextStoryPostCreationFragment__failed_to_send_story">ਕਹਾਣੀ ਭੇਜਣ ਵਿੱਚ ਅਸਫਲ ਰਹੇ</string>
+  <string name="TextStoryPostCreationFragment__failed_to_send_story">ਸਟੋਰੀ ਭੇਜਣ ਵਿੱਚ ਅਸਫਲ ਰਹੇ</string>
   <!--Displayed in a dialog to let the user select a given users story-->
-  <string name="StoryDialogs__view_story">ਕਹਾਣੀ ਭੇਜੋ</string>
+  <string name="StoryDialogs__view_story">ਸਟੋਰੀ ਭੇਜੋ</string>
   <!--Displayed in a dialog to let the user select a given users profile photo-->
   <string name="StoryDialogs__view_profile_photo">ਪ੍ਰੋਫਾਈਲ ਫ਼ੋਟੋ ਦੇਖੋ</string>
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
@@ -4146,11 +4148,11 @@
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">ਬੰਦ ਕਰੋ</string>
   <!--Conversation Item label for when you react to someone else\'s story-->
-  <string name="ConversationItem__you_reacted_to_s_story">ਤੁਸੀਂ %1$s ਦੀ ਕਹਾਣੀ \'ਤੇ ਰਿਐਕਸ਼ਨ ਦਿੱਤਾ</string>
+  <string name="ConversationItem__you_reacted_to_s_story">ਤੁਸੀਂ %1$s ਦੀ ਸਟੋਰੀ ਉੱਤੇ ਰਿਐਕਸ਼ਨ ਦਿੱਤਾ</string>
   <!--Conversation Item label for reactions to your story-->
-  <string name="ConversationItem__reacted_to_your_story">ਤੁਹਾਡੀ ਕਹਾਣੀ ਉੱਤੇ ਰਿਐਕਸ਼ਨ ਦਿੱਤਾ</string>
+  <string name="ConversationItem__reacted_to_your_story">ਤੁਹਾਡੀ ਸਟੋਰੀ ਉੱਤੇ ਰਿਐਕਸ਼ਨ ਦਿੱਤਾ</string>
   <!--Conversation Item label for reactions to an unavailable story-->
-  <string name="ConversationItem__reacted_to_a_story">ਕਿਸੇ ਕਹਾਣੀ ਉੱਤੇ ਰਿਐਕਸ਼ਨ ਦਿੱਤਾ</string>
+  <string name="ConversationItem__reacted_to_a_story">ਕਿਸੇ ਸਟੋਰੀ ਉੱਤੇ ਰਿਐਕਸ਼ਨ ਦਿੱਤਾ</string>
   <!--endregion-->
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">ਹੋਰ ਵੇਖੋ</string>
@@ -4213,31 +4215,31 @@
   <!--Label under name for private stories-->
   <plurals name="ContactSearchItems__private_story_d_viewers">
     <item quantity="one">ਨਿੱਜੀ ਕਹਾਣੀ · %1$d ਦਰਸ਼ਕ</item>
-    <item quantity="other">ਨਿੱਜੀ ਕਹਾਣੀ · %1$d ਦਰਸ਼ਕ</item>
+    <item quantity="other">ਨਿੱਜੀ ਸਟੋਰੀ · %1$d ਦਰਸ਼ਕ</item>
   </plurals>
   <!--Label under name for group stories-->
   <plurals name="ContactSearchItems__group_story_d_viewers">
     <item quantity="one">ਗਰੁੱਪ ਕਹਾਣੀ · %1$d ਦਰਸ਼ਕ</item>
-    <item quantity="other">ਗਰੁੱਪ ਕਹਾਣੀ  · %1$d ਦਰਸ਼ਕ</item>
+    <item quantity="other">ਗਰੁੱਪ ਸਟੋਰੀ · %1$d ਦਰਸ਼ਕ</item>
   </plurals>
   <!--Label under name for My Story when first sending to my story-->
   <string name="ContactSearchItems__tap_to_choose_your_viewers">ਆਪਣੇ ਦਰਸ਼ਕ ਚੁਣਨ ਲਈ ਟੈਪ ਕਰੋ</string>
   <!--Label for context menu item to open story settings-->
-  <string name="ContactSearchItems__story_settings">ਕਹਾਣੀ ਦੀਆਂ ਸੈਟਿੰਗਾਂ</string>
+  <string name="ContactSearchItems__story_settings">ਸਟੋਰੀ ਦੀਆਂ ਸੈਟਿੰਗਾਂ</string>
   <!--Label for context menu item to remove a group story from contact results-->
-  <string name="ContactSearchItems__remove_story">ਕਹਾਣੀ ਹਟਾਓ</string>
+  <string name="ContactSearchItems__remove_story">ਸਟੋਰੀ ਹਟਾਓ</string>
   <!--Label for context menu item to delete a private story-->
   <string name="ContactSearchItems__delete_story">ਕਹਾਣੀ ਮਿਟਾਓ</string>
   <!--Dialog title for removing a group story-->
-  <string name="ContactSearchMediator__remove_group_story">ਕੀ ਗਰੁੱਪ ਕਹਾਣੀ ਨੂੰ ਹਟਾਉਣਾ ਹੈ?</string>
+  <string name="ContactSearchMediator__remove_group_story">ਕੀ ਗਰੁੱਪ ਸਟੋਰੀ ਨੂੰ ਹਟਾਉਣਾ ਹੈ?</string>
   <!--Dialog message for removing a group story-->
-  <string name="ContactSearchMediator__this_will_remove">ਅਜਿਹਾ ਕਰਨ \'ਤੇ ਸੂਚੀ ਵਿੱਚੋਂ ਕਹਾਣੀ ਨੂੰ ਹਟਾ ਦਿੱਤਾ ਜਾਵੇਗਾ। ਤੁਸੀਂ ਅਜੇ ਵੀ ਇਸ ਗਰੁੱਪ ਦੀਆਂ ਕਹਾਣੀਆਂ ਦੇਖ ਸਕੋਗੇ।</string>
+  <string name="ContactSearchMediator__this_will_remove">ਅਜਿਹਾ ਕਰਨ \'ਤੇ ਸੂਚੀ ਵਿੱਚੋਂ ਸਟੋਰੀ ਨੂੰ ਹਟਾ ਦਿੱਤਾ ਜਾਵੇਗਾ। ਤੁਸੀਂ ਅਜੇ ਵੀ ਇਸ ਗਰੁੱਪ ਦੀਆਂ ਸਟੋਰੀਆਂ ਦੇਖ ਸਕੋਗੇ।</string>
   <!--Dialog action item for removing a group story-->
   <string name="ContactSearchMediator__remove">ਹਟਾਓ</string>
   <!--Dialog title for deleting a private story-->
-  <string name="ContactSearchMediator__delete_story">ਕੀ ਕਹਾਣੀ ਨੂੰ ਹਟਾਉਣਾ ਹੈ?</string>
+  <string name="ContactSearchMediator__delete_story">ਕੀ ਸਟੋਰੀ ਨੂੰ ਹਟਾਉਣਾ ਹੈ?</string>
   <!--Dialog message for deleting a private story-->
-  <string name="ContactSearchMediator__delete_the_private">ਕੀ \"%1$s\" ਨਿੱਜੀ ਕਹਾਣੀ ਨੂੰ ਹਟਾਉਣਾ ਹੈ?</string>
+  <string name="ContactSearchMediator__delete_the_private">ਕੀ \"%1$s\" ਨਿੱਜੀ ਸਟੋਰੀ ਨੂੰ ਹਟਾਉਣਾ ਹੈ?</string>
   <!--Dialog action item for deleting a private story-->
   <string name="ContactSearchMediator__delete">ਹਟਾਓ</string>
   <!--Gift expiry days remaining-->

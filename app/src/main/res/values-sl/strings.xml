@@ -1710,7 +1710,9 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--Displayed in the notification when the user has opened a received gift-->
   <string name="ThreadRecord__you_redeemed_a_gift_badge">Vnovčili ste darilni bedž</string>
   <!--Displayed in the conversation list when someone reacted to your story-->
+  <string name="ThreadRecord__reacted_s_to_your_story">Odziv na vašo Zgodbo: %1$s</string>
   <!--Displayed in the conversation list when you reacted to someone\'s story-->
+  <string name="ThreadRecord__reacted_s_to_their_story">Vaš odziv na Zgodbo: %1$s</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Nadgradnja aplikacije Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Na voljo je nova različica aplikacije Signal. Tapnite za nadgradnjo.</string>
@@ -2482,7 +2484,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences_enter_proxy_address">Vnesite naslov proksi</string>
   <string name="configurable_single_select__customize_option">Nastavitve po meri</string>
   <!--Internal only preferences-->
-  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string> -->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Vse dejavnosti</string>
   <string name="PaymentsAllActivityFragment__all">Vse</string>

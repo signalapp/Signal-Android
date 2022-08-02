@@ -1637,7 +1637,9 @@
   <!--Displayed in the notification when the user has opened a received gift-->
   <string name="ThreadRecord__you_redeemed_a_gift_badge">Vous avez utilisé un macaron cadeau</string>
   <!--Displayed in the conversation list when someone reacted to your story-->
+  <string name="ThreadRecord__reacted_s_to_your_story">%1$sutilisateurs ont réagi à votre Story</string>
   <!--Displayed in the conversation list when you reacted to someone\'s story-->
+  <string name="ThreadRecord__reacted_s_to_their_story">%1$sutilisateurs ont réagi à votre Story</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Mise à jour de Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Une nouvelle version de Signal est proposée, touchez pour lancer la mise à jour</string>
@@ -2396,7 +2398,7 @@
   <string name="preferences_enter_proxy_address">Saisissez l’adresse du mandataire</string>
   <string name="configurable_single_select__customize_option">Personnaliser l’option</string>
   <!--Internal only preferences-->
-  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string> -->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Toutes les activités</string>
   <string name="PaymentsAllActivityFragment__all">Tous</string>
@@ -4413,7 +4415,7 @@ Nouvelle tentative…</string>
   <plurals name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">
     <item quantity="one">%1$d de vos contacts a sûrement réinstallé Signal ou changé d\'appareils. Appuyez sur le contact pour confirmer le nouveau numéro de sécurité. Cette étape est facultative.</item>
     <item quantity="many">%1$d de vos contacts ont sûrement réinstallé Signal ou changé d\'appareils. Appuyez sur le contact pour confirmer le nouveau numéro de sécurité. Cette étape est facultative.</item>
-    <item quantity="other">%1$d de vos contacts ont sûrement réinstallé Signal ou changé d\'appareils. Appuyez sur le contact pour confirmer le nouveau numéro de sécurité. Cette étape est facultative.</item>
+    <item quantity="other">%1$d de vos contacts ont sûrement réinstallé Signal ou changé d\'appareil. Appuyez sur le contact pour confirmer le nouveau numéro de sécurité. Cette étape est facultative.</item>
   </plurals>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">Contacts</string>

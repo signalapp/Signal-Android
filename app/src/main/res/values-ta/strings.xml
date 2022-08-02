@@ -1570,7 +1570,9 @@
   <!--Displayed in the notification when the user has opened a received gift-->
   <string name="ThreadRecord__you_redeemed_a_gift_badge">நீங்கள் ஒரு பரிசு பேட்ஜை மீட்டெடுத்துள்ளீர்கள்</string>
   <!--Displayed in the conversation list when someone reacted to your story-->
+  <string name="ThreadRecord__reacted_s_to_your_story">உங்கள் ஸ்டோரி-க்கு %1$s என்று பதிலளித்துள்ளார்</string>
   <!--Displayed in the conversation list when you reacted to someone\'s story-->
+  <string name="ThreadRecord__reacted_s_to_their_story">அவர்கள் ஸ்டோரி-க்கு %1$s என்று பதிலளித்துள்ளீர்கள்</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal புதுப்பிப்பு</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal புதிய பதிப்பு கிடைக்கும், புதுப்பிக்க தட்டவும்</string>
@@ -2308,7 +2310,7 @@
   <string name="preferences_enter_proxy_address">பதிலி முகவரியைப் பதியவும்</string>
   <string name="configurable_single_select__customize_option">விருப்ப அமைப்பைத் தனிப்பயனாக்கவும்</string>
   <!--Internal only preferences-->
-  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string> -->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">அனைத்து செயல்பாடுகளும்</string>
   <string name="PaymentsAllActivityFragment__all">அனைத்து</string>

@@ -778,7 +778,7 @@
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Только администраторы могут сбрасывать ссылку на группу.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">У вас нет прав, чтобы сделать это</string>
   <string name="ManageGroupActivity_not_capable">Кто-то из тех, кого вы добавили, не поддерживает новые группы и должен(-на) обновить Signal</string>
-  <string name="ManageGroupActivity_not_announcement_capable">Кто-то из тех, кого вы добавили, не поддерживает группы для объявлений и должен(-на) обновить Signal</string>
+  <string name="ManageGroupActivity_not_announcement_capable">Кто-то из добавленных вами не поддерживает группы для объявлений и должен(-на) обновить Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Не удалось обновить группу</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Вы не являетесь участником этой группы</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Не удалось обновить группу, пожалуйста, попробуйте позже</string>
@@ -1712,7 +1712,9 @@
   <!--Displayed in the notification when the user has opened a received gift-->
   <string name="ThreadRecord__you_redeemed_a_gift_badge">Вы приняли значок, полученный в подарок</string>
   <!--Displayed in the conversation list when someone reacted to your story-->
+  <string name="ThreadRecord__reacted_s_to_your_story">Отреагировал(-а) %1$s на вашу историю</string>
   <!--Displayed in the conversation list when you reacted to someone\'s story-->
+  <string name="ThreadRecord__reacted_s_to_their_story">Отреагировал(-а) %1$s на их историю</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Обновление Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Доступна новая версия Signal. Обновиться?</string>
@@ -2484,7 +2486,7 @@
   <string name="preferences_enter_proxy_address">Введите адрес прокси</string>
   <string name="configurable_single_select__customize_option">Настроить опцию</string>
   <!--Internal only preferences-->
-  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string> -->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Вся активность</string>
   <string name="PaymentsAllActivityFragment__all">Все</string>
@@ -3199,7 +3201,7 @@
   <!--Title of error dialog shown when a network error occurs during account deletion-->
   <string name="DeleteAccountFragment__account_not_deleted">Учётная запись не удалена</string>
   <!--Message of error dialog shown when a network error occurs during account deletion-->
-  <string name="DeleteAccountFragment__there_was_a_problem">В процессе удаления произошла ошибка. Проверьте своё соединение с интернетом и попробуйте ещё раз.</string>
+  <string name="DeleteAccountFragment__there_was_a_problem">В процессе удаления произошла ошибка. Проверьте ваше соединение с интернетом и попробуйте ещё раз.</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">Поиск по странам</string>
   <!--CreateGroupActivity-->

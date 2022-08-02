@@ -1500,7 +1500,9 @@
   <!--Displayed in the notification when the user has opened a received gift-->
   <string name="ThreadRecord__you_redeemed_a_gift_badge">선물 배지를 사용했습니다.</string>
   <!--Displayed in the conversation list when someone reacted to your story-->
+  <string name="ThreadRecord__reacted_s_to_your_story">내 스토리에 %1$s 이모지로 반응했습니다. </string>
   <!--Displayed in the conversation list when you reacted to someone\'s story-->
+  <string name="ThreadRecord__reacted_s_to_their_story">상대 스토리에 %1$s 이모지로 반응했습니다.</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal 업데이트</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">새 Signal 버전 출시, 탭하여 업데이트</string>
@@ -2233,7 +2235,7 @@
   <string name="preferences_enter_proxy_address">프록시 주소 입력하기</string>
   <string name="configurable_single_select__customize_option">옵션 설정하기</string>
   <!--Internal only preferences-->
-  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string> -->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">모든 활동</string>
   <string name="PaymentsAllActivityFragment__all">모두</string>
@@ -4169,6 +4171,7 @@
   <!--Message of safety number changes bottom sheet when not showing individual records-->
   <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">Signal을 다시 설치했거나 기기를 변경했을 수 있는 커넥션이 %1$d개 있습니다. 스토리를 공유하기 전에 해당 사용자의 안전 번호를 검토하거나 스토리에서 이들을 제거하세요.</string>
   <!--Menu action to launch safety number verification screen-->
+  <string name="SafetyNumberBottomSheetFragment__verify_safety_number">안전 번호 확인</string>
   <!--Menu action to remove user from story-->
   <string name="SafetyNumberBottomSheetFragment__remove_from_story">스토리에서 제거</string>
   <!--Action button at bottom of SafetyNumberBottomSheetFragment to send anyway-->

@@ -1562,7 +1562,9 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--Displayed in the notification when the user has opened a received gift-->
   <string name="ThreadRecord__you_redeemed_a_gift_badge">Du hast ein Geschenkabzeichen eingelöst</string>
   <!--Displayed in the conversation list when someone reacted to your story-->
+  <string name="ThreadRecord__reacted_s_to_your_story">%1$s haben auf deine Story reagiert</string>
   <!--Displayed in the conversation list when you reacted to someone\'s story-->
+  <string name="ThreadRecord__reacted_s_to_their_story">%1$s haben auf ihre*seine Story reagiert</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal-Aktualisierung</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Eine neue Signal-Version ist verfügbar. Zum Aktualisieren antippen.</string>
@@ -2308,7 +2310,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences_enter_proxy_address">Proxyadresse eingeben</string>
   <string name="configurable_single_select__customize_option">Option anpassen</string>
   <!--Internal only preferences-->
-  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string> -->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Alle Aktivitäten</string>
   <string name="PaymentsAllActivityFragment__all">Alle</string>
@@ -3975,6 +3977,10 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--Privacy setting description for sending stories to all except the specified connections-->
   <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Deine Story vor bestimmten Personen verbergen</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
+  <plurals name="MyStorySettingsFragment__d_people_excluded">
+    <item quantity="one">%1$d Person ausgeschlossen</item>
+    <item quantity="other">%1$d Personen ausgeschlossen</item>
+  </plurals>
   <!--Privacy setting title for only sharing your story with specified connections-->
   <string name="MyStorySettingsFragment__only_share_with">Nur teilen mit …</string>
   <!--Privacy setting description for only sharing your story with specified connections-->

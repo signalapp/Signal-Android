@@ -1567,7 +1567,9 @@
   <!--Displayed in the notification when the user has opened a received gift-->
   <string name="ThreadRecord__you_redeemed_a_gift_badge">আপনি একটি গিফট ব্যাজ ফিরে পেয়েছেন</string>
   <!--Displayed in the conversation list when someone reacted to your story-->
+  <string name="ThreadRecord__reacted_s_to_your_story">আপনার স্টোরি-তে %1$s রিঅ্যাক্ট করেছেন</string>
   <!--Displayed in the conversation list when you reacted to someone\'s story-->
+  <string name="ThreadRecord__reacted_s_to_their_story">তাদের স্টোরি-তে %1$s রিঅ্যাক্ট করেছেন</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal আপডেট</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal এর একটি নতুন ভার্সন পাওয়া যাচ্ছে, অাপডেট করতে ট্যাপ করুন</string>
@@ -2313,7 +2315,7 @@
   <string name="preferences_enter_proxy_address">প্রক্সি ঠিকানা লিখুন</string>
   <string name="configurable_single_select__customize_option">বিকল্পগুলি কাস্টমাইজ করুন</string>
   <!--Internal only preferences-->
-  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string> -->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">সমস্ত ক্রিয়াকলাপ</string>
   <string name="PaymentsAllActivityFragment__all">সব</string>

@@ -1573,7 +1573,9 @@
   <!--Displayed in the notification when the user has opened a received gift-->
   <string name="ThreadRecord__you_redeemed_a_gift_badge">Nag-redeem ka ng gift badge</string>
   <!--Displayed in the conversation list when someone reacted to your story-->
+  <string name="ThreadRecord__reacted_s_to_your_story">Nag-react ng %1$s sa story mo</string>
   <!--Displayed in the conversation list when you reacted to someone\'s story-->
+  <string name="ThreadRecord__reacted_s_to_their_story">Nag-react ng %1$s sa story nila</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Update sa Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">May bagong bersyon ang Signal, pindutin upang i-update</string>
@@ -1772,7 +1774,7 @@
   <string name="ContactSelectionListFragment_maximum_group_size_reached">Maximum group size reached</string>
   <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Ang Signal groups ay may maximum na %1$d members.</string>
   <string name="ContactSelectionListFragment_recommended_member_limit_reached">Recommended member limit reached</string>
-  <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Signal groups perform best with %1$d members or fewer. Ang pagdagdag ng mas marami pang members ay maaaring magdulot ng delay sa pag-send at pag-receive ng messages.</string>
+  <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Signal groups perform best with %1$d members or fewer. Ang pagdagdag ng mas maraming members ay maaaring magdulot ng delay sa pag-send at pag-receive ng messages.</string>
   <plurals name="ContactSelectionListFragment_d_members">
     <item quantity="one">%1$d member</item>
     <item quantity="other">%1$d members</item>
@@ -2319,7 +2321,7 @@
   <string name="preferences_enter_proxy_address">I-enter ang proxy address</string>
   <string name="configurable_single_select__customize_option">I-customize ang option</string>
   <!--Internal only preferences-->
-  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string> -->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">All activity</string>
   <string name="PaymentsAllActivityFragment__all">Lahat</string>

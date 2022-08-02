@@ -1500,7 +1500,9 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--Displayed in the notification when the user has opened a received gift-->
   <string name="ThreadRecord__you_redeemed_a_gift_badge">Anda telah menebus lencana hadiah</string>
   <!--Displayed in the conversation list when someone reacted to your story-->
+  <string name="ThreadRecord__reacted_s_to_your_story">Memberi tanggapan %1$s untuk cerita Anda</string>
   <!--Displayed in the conversation list when you reacted to someone\'s story-->
+  <string name="ThreadRecord__reacted_s_to_their_story">Memberi tanggapan %1$s untuk cerita mereka</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Pembaharuan Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Versi baru Signal tersedia, ketuk untuk memperbarui</string>
@@ -1591,14 +1593,14 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Buka Signal untuk memeriksa notifikasi terbaru.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kontak</string>
-  <string name="MessageNotifier_reacted_s_to_s">Bereaksi %1$s ke: \"%2$s\".</string>
-  <string name="MessageNotifier_reacted_s_to_your_video">Bereaksi %1$sterhadap video Anda.</string>
-  <string name="MessageNotifier_reacted_s_to_your_image">Bereaksi %1$s terhadap gambar Anda.</string>
-  <string name="MessageNotifier_reacted_s_to_your_gif">Menanggapi %1$s pada GIF Anda.</string>
-  <string name="MessageNotifier_reacted_s_to_your_file">Bereaksi %1$s terhadap berkas Anda.</string>
-  <string name="MessageNotifier_reacted_s_to_your_audio">Bereaksi %1$s terhadap audio Anda.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_media">Bereaksi %1$s terhadap media sekali-lihat Anda.</string>
-  <string name="MessageNotifier_reacted_s_to_your_sticker">Bereaksi %1$s terhadap stiker Anda.</string>
+  <string name="MessageNotifier_reacted_s_to_s">Memberi tanggapan %1$s untuk: \"%2$s\".</string>
+  <string name="MessageNotifier_reacted_s_to_your_video">Memberi tanggapan %1$s untuk video Anda.</string>
+  <string name="MessageNotifier_reacted_s_to_your_image">Memberi tanggapan %1$s untuk gambar Anda.</string>
+  <string name="MessageNotifier_reacted_s_to_your_gif">Memberi tanggapan %1$s untuk GIF Anda.</string>
+  <string name="MessageNotifier_reacted_s_to_your_file">Memberi tanggapan %1$s untuk file Anda.</string>
+  <string name="MessageNotifier_reacted_s_to_your_audio">Memberi tanggapan %1$s untuk audio Anda.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_media">Memberi tanggapan %1$s untuk media sekali-lihat Anda.</string>
+  <string name="MessageNotifier_reacted_s_to_your_sticker">Memberi tanggapan %1$s untuk stiker Anda.</string>
   <string name="MessageNotifier_this_message_was_deleted">Pesan ini telah dihapus.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Matikan notifikasi kontak bergabung Signal? Anda dapat menyalakannya kembali di Signal &gt; Pengaturan &gt; Notifikasi.</string>
   <!--Notification Channels-->
@@ -2233,7 +2235,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="preferences_enter_proxy_address">Masukkan alamat proxy</string>
   <string name="configurable_single_select__customize_option">Sesuaikan opsi</string>
   <!--Internal only preferences-->
-  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string> -->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Semua aktivitas</string>
   <string name="PaymentsAllActivityFragment__all">Semua</string>
@@ -3841,13 +3843,13 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Belum ada balasan</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
-  <string name="StoryGroupReactionReplyItem__reacted_to_the_story">Bereaksi terhadap cerita</string>
+  <string name="StoryGroupReactionReplyItem__reacted_to_the_story">Menanggapi cerita</string>
   <!--Label for story views tab-->
   <string name="StoryViewsAndRepliesDialogFragment__views">Dilihat</string>
   <!--Label for story replies tab-->
   <string name="StoryViewsAndRepliesDialogFragment__replies">Balasan</string>
   <!--Description of action for reaction button-->
-  <string name="StoryReplyComposer__react_to_this_story">Bereaksi terhadap cerita ini</string>
+  <string name="StoryReplyComposer__react_to_this_story">Menanggapi cerita ini</string>
   <!--Displayed when the user is replying privately to someone who replied to one of their stories-->
   <string name="StoryReplyComposer__replying_privately_to_s">Membalas secara privat ke %1$s</string>
   <!--Context menu item to privately reply to a story response-->
@@ -3893,11 +3895,11 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--My story privacy fine print about what the privacy settings are for-->
   <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Pilih siapa yang bisa melihat cerita Anda. Perubahan tidak akan memengaruhi cerita yang telah terkirim.</string>
   <!--Section header for options related to replies and reactions-->
-  <string name="MyStorySettingsFragment__replies_amp_reactions">Balasan &amp; reaksi</string>
+  <string name="MyStorySettingsFragment__replies_amp_reactions">Balasan &amp; tanggapan</string>
   <!--Switchable option for allowing replies and reactions on your stories-->
-  <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Biarkan balasan &amp; reaksi</string>
+  <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Izinkan balasan &amp; tanggapan</string>
   <!--Summary for switchable option allowing replies and reactions on your story-->
-  <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Biarkan orang yang bisa melihat cerita Anda bereaksi dan membalas</string>
+  <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Biarkan orang yang bisa melihat cerita Anda menanggapi dan membalas</string>
   <!--Note about default sharing-->
   <string name="MyStorySettingsFragment__hide_your_story_from">Sembunyikan cerita Anda dari orang-orang spesifik. Secara default, cerita Anda dibagikan dengan %1$s Anda</string>
   <!--Signal connections bolded text in the Signal Connections sheet-->
@@ -4038,11 +4040,11 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">Matikan</string>
   <!--Conversation Item label for when you react to someone else\'s story-->
-  <string name="ConversationItem__you_reacted_to_s_story">Anda bereaksi terhadapt cerita %1$s</string>
+  <string name="ConversationItem__you_reacted_to_s_story">Anda menanggapi cerita %1$s</string>
   <!--Conversation Item label for reactions to your story-->
-  <string name="ConversationItem__reacted_to_your_story">Bereaksi terhadap cerita Anda</string>
+  <string name="ConversationItem__reacted_to_your_story">Menanggapi cerita Anda</string>
   <!--Conversation Item label for reactions to an unavailable story-->
-  <string name="ConversationItem__reacted_to_a_story">Bereaksi terhadap sebuah cerita</string>
+  <string name="ConversationItem__reacted_to_a_story">Menanggapi sebuah cerita</string>
   <!--endregion-->
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">Perlihatkan lebih banyak</string>

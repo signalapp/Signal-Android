@@ -1862,7 +1862,9 @@
   <!--Displayed in the notification when the user has opened a received gift-->
   <string name="ThreadRecord__you_redeemed_a_gift_badge">لقد استرددت الشارة المُهداة</string>
   <!--Displayed in the conversation list when someone reacted to your story-->
+  <string name="ThreadRecord__reacted_s_to_your_story">تفاعل %1$s مع قِصتك</string>
   <!--Displayed in the conversation list when you reacted to someone\'s story-->
+  <string name="ThreadRecord__reacted_s_to_their_story">تفاعل %1$s مع قِصتهم</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">تحديث Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">إصدار جديد لـ Signal متوفر، أنقر للتحديث</string>
@@ -2650,7 +2652,7 @@
   <string name="preferences_enter_proxy_address">عليك بإدخال عنوان الوكيل</string>
   <string name="configurable_single_select__customize_option">تخصيص الخيارات</string>
   <!--Internal only preferences-->
-  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string> -->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">كل النشاطات</string>
   <string name="PaymentsAllActivityFragment__all">الجميع</string>

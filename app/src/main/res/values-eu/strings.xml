@@ -1574,7 +1574,9 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--Displayed in the notification when the user has opened a received gift-->
   <string name="ThreadRecord__you_redeemed_a_gift_badge">Opari-berreizgarri bat eskatu duzu</string>
   <!--Displayed in the conversation list when someone reacted to your story-->
+  <string name="ThreadRecord__reacted_s_to_your_story">%1$s emojiarekin erreakzionatu du zure istorioa ikustean</string>
   <!--Displayed in the conversation list when you reacted to someone\'s story-->
+  <string name="ThreadRecord__reacted_s_to_their_story">%1$s emojiarekin erreakzionatu duzu haren istorioa ikustean</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal eguneratu</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal-en bertsio berri bat dago; sakatu eguneratzeko</string>
@@ -2320,7 +2322,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="preferences_enter_proxy_address">Idatzi proxyaren helbidea</string>
   <string name="configurable_single_select__customize_option">Pertsonalizatu aukera</string>
   <!--Internal only preferences-->
-  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string> -->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Jarduera guztiak</string>
   <string name="PaymentsAllActivityFragment__all">Denak</string>
@@ -2986,7 +2988,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="CallParticipant__s_on_another_device">%1$s (beste gailu baten)</string>
   <!--WifiToCellularPopupWindow-->
   <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
-  <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Wi-Fi ahula. Telefonora aldatuta.</string>
+  <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Wifi-konexio ahula. Datu-konexiora aldatu da.</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Zure kontua ezabatzean zera gertatuko da:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Idatzi zure telefono zenbakia</string>

@@ -1718,7 +1718,9 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--Displayed in the notification when the user has opened a received gift-->
   <string name="ThreadRecord__you_redeemed_a_gift_badge">Uplatnili ste darčekový odznak</string>
   <!--Displayed in the conversation list when someone reacted to your story-->
+  <string name="ThreadRecord__reacted_s_to_your_story">Poslal/a %1$s ako reakciu na tvoj príbeh</string>
   <!--Displayed in the conversation list when you reacted to someone\'s story-->
+  <string name="ThreadRecord__reacted_s_to_their_story">Poslal/a %1$s ako reakciu na ich príbeh</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Aktualizácia Signalu</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">K dispozícii je nová verzia Signalu, ťuknutím aktualizujte</string>
@@ -2490,7 +2492,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences_enter_proxy_address">Zadajte adresu proxy servera</string>
   <string name="configurable_single_select__customize_option">Prispôsobiť nastavenie</string>
   <!--Internal only preferences-->
-  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string> -->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Všetky aktivity</string>
   <string name="PaymentsAllActivityFragment__all">Všetko</string>

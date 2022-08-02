@@ -1494,7 +1494,9 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--Displayed in the notification when the user has opened a received gift-->
   <string name="ThreadRecord__you_redeemed_a_gift_badge">Bạn đã nhận một huy hiệu quà tặng</string>
   <!--Displayed in the conversation list when someone reacted to your story-->
+  <string name="ThreadRecord__reacted_s_to_your_story">Đã bày tỏ cảm xúc %1$s với story của bạn</string>
   <!--Displayed in the conversation list when you reacted to someone\'s story-->
+  <string name="ThreadRecord__reacted_s_to_their_story">Đã bày tỏ cảm xúc %1$s với story của họ</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Cập nhật Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Đã có phiên bản mới của Signal, nhấn để cập nhật</string>
@@ -2217,7 +2219,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="preferences_enter_proxy_address">Nhập địa chỉ proxy</string>
   <string name="configurable_single_select__customize_option">Sửa cài đặt</string>
   <!--Internal only preferences-->
-  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string> -->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Tất cả hoạt động</string>
   <string name="PaymentsAllActivityFragment__all">Tất cả</string>

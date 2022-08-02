@@ -1000,9 +1000,9 @@
   <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Сигналу је потребан приступ вашим контактима како би их приказао.</string>
   <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal захтева приступ вашим контактима да би их показао, али му је дозвола трајно забрањена. Молимо вас да у апликацији за подешавање телефона Signal-у дозволите пруиступ контактима.</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
-    <item quantity="one">Maksimalan broj stavki koje možete podeliti je %d.</item>
-    <item quantity="few">Maksimalan broj stavki koje možete podeliti je %d.</item>
-    <item quantity="other">Maksimalan broj stavki koje možete podeliti je %d.</item>
+    <item quantity="one">Ne možete podeliti više od %d stavke.</item>
+    <item quantity="few">Ne možete podeliti više od %d stavke.</item>
+    <item quantity="other">Ne možete podeliti više od %d stavki.</item>
   </plurals>
   <string name="MediaSendActivity_select_recipients_description">Изаберите примаоце</string>
   <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">Кликните овде да порука нестане када буде погледана.</string>
@@ -1169,9 +1169,9 @@
   <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s je zatražio/la da se pridruži grupi preko linka za grupu.</string>
   <!--Update message shown when someone requests to join via group link and cancels the request back to back-->
   <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
-    <item quantity="one">%1$s затражио и отказао захтев за придруживање групи преко везе.</item>
-    <item quantity="few">%1$s затражили и отказали %2$d захтева за придруживање групи преко везе.</item>
-    <item quantity="other">%1$s je zatražio/la da se pridruži grupi preko linka za grupu i zatim otkazao/la zahteve (%2$d) da se pridruži.</item>
+    <item quantity="one">%1$s je zatražio/la da se pridruži grupi preko linka za grupu i zatim otkazao/la zahtev da se pridruži.</item>
+    <item quantity="few">%1$s je zatražio/la da se pridruži grupi preko linka za grupu i zatim otkazao/la %2$d zahteva da se pridruži.</item>
+    <item quantity="other">%1$s je zatražio/la da se pridruži grupi preko linka za grupu i zatim otkazao/la %2$d zahteva da se pridruži.</item>
   </plurals>
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s је прихватио/ла Ваш захтев за придруживање групи.</string>
@@ -1644,7 +1644,9 @@
   <!--Displayed in the notification when the user has opened a received gift-->
   <string name="ThreadRecord__you_redeemed_a_gift_badge">Искористили сте поклон значку</string>
   <!--Displayed in the conversation list when someone reacted to your story-->
+  <string name="ThreadRecord__reacted_s_to_your_story">Dobili ste reakciju %1$s na priču.</string>
   <!--Displayed in the conversation list when you reacted to someone\'s story-->
+  <string name="ThreadRecord__reacted_s_to_their_story">Poslali ste reakciju %1$s na priču.</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Надоградња Signal-a</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Ново издање Signal-a је доступно, тапните за надоградњу</string>
@@ -1791,9 +1793,9 @@
   <string name="ThumbnailView_Has_a_caption_description">Има натпис</string>
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">
-    <item quantity="one">Stavki: %d</item>
-    <item quantity="few">Stavki: %d</item>
-    <item quantity="other">Stavki: %d</item>
+    <item quantity="one">%d stavka</item>
+    <item quantity="few">%d stavke</item>
+    <item quantity="other">%d stavki</item>
   </plurals>
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">Уређај више није регистрован</string>
@@ -1862,9 +1864,9 @@
   </plurals>
   <!--Displays number of viewers for a story-->
   <plurals name="contact_selection_list_item__number_of_viewers">
-    <item quantity="one">Gledalaca: %1$d</item>
-    <item quantity="few">Gledalaca: %1$d</item>
-    <item quantity="other">Gledalaca: %1$d </item>
+    <item quantity="one">%1$d gledalac</item>
+    <item quantity="few">%1$d gledaoca</item>
+    <item quantity="other">%1$d gledalaca </item>
   </plurals>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal порука</string>
@@ -2404,7 +2406,7 @@
   <string name="preferences_enter_proxy_address">Унети адресу проксија</string>
   <string name="configurable_single_select__customize_option">Прилагодите опцију</string>
   <!--Internal only preferences-->
-  <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string> -->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Сва активност</string>
   <string name="PaymentsAllActivityFragment__all">Сви</string>
@@ -4094,9 +4096,9 @@
   <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Sakrijite priču od određenih ljudi</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
   <plurals name="MyStorySettingsFragment__d_people_excluded">
-    <item quantity="one">Izuzetih osoba: %1$d</item>
-    <item quantity="few">Izuzetih osoba: %1$d</item>
-    <item quantity="other">Izuzetih osoba: %1$d</item>
+    <item quantity="one">%1$d izuzeta osoba</item>
+    <item quantity="few">%1$d izuzete osobe</item>
+    <item quantity="other">%1$d izuzetih osoba</item>
   </plurals>
   <!--Privacy setting title for only sharing your story with specified connections-->
   <string name="MyStorySettingsFragment__only_share_with">Samo podelite sa…</string>
@@ -4198,9 +4200,9 @@
   <string name="CreateStoryViewerSelectionFragment__next">Даље</string>
   <!--New story viewer selection screen title as recipients are selected-->
   <plurals name="SelectViewersFragment__d_viewers">
-    <item quantity="one">Gledalaca: %1$d</item>
-    <item quantity="few">Gledalaca: %1$d</item>
-    <item quantity="other">Gledalaca: %1$d</item>
+    <item quantity="one">%1$d gledalac</item>
+    <item quantity="few">%1$d gledaoca</item>
+    <item quantity="other">%1$d gledalaca</item>
   </plurals>
   <!--Name story screen title-->
   <string name="CreateStoryWithViewersFragment__name_story">Име приче</string>
@@ -4269,8 +4271,8 @@
   <!--Gift price and duration, formatted as: {price} dot {n} day duration-->
   <plurals name="GiftRowItem_s_dot_d_day_duration">
     <item quantity="one">%1$s · trajanje: %2$d dan</item>
-    <item quantity="few">%1$s · trajanje: %2$d dan(a)</item>
-    <item quantity="other">%1$s · trajanje: %2$d dan(a)</item>
+    <item quantity="few">%1$s · trajanje: %2$d dana</item>
+    <item quantity="other">%1$s · trajanje: %2$d dana</item>
   </plurals>
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">Послати поклон значку</string>
@@ -4324,15 +4326,15 @@
   <string name="ExpiredGiftSheetConfiguration__not_now">Не сада</string>
   <!--Label under name for private stories-->
   <plurals name="ContactSearchItems__private_story_d_viewers">
-    <item quantity="one">Privatna priča · Gledalaca: %1$d</item>
-    <item quantity="few">Privatna priča · Gledalaca: %1$d</item>
-    <item quantity="other">Privatna priča · Gledalaca: %1$d</item>
+    <item quantity="one">Privatna priča · %1$d gledalac</item>
+    <item quantity="few">Privatna priča · %1$d gledaoca</item>
+    <item quantity="other">Privatna priča · %1$d gledalaca</item>
   </plurals>
   <!--Label under name for group stories-->
   <plurals name="ContactSearchItems__group_story_d_viewers">
-    <item quantity="one">Grupna priča · Gledalaca: %1$d</item>
-    <item quantity="few">Grupna priča · Gledalaca: %1$d</item>
-    <item quantity="other">Grupna priča · Gledalaca: %1$d</item>
+    <item quantity="one">Grupna priča · %1$d gledalac</item>
+    <item quantity="few">Grupna priča · %1$d gledaoca</item>
+    <item quantity="other">Grupna priča · %1$d gledalaca</item>
   </plurals>
   <!--Label under name for My Story when first sending to my story-->
   <string name="ContactSearchItems__tap_to_choose_your_viewers">Dodirnite da izaberete gledaoce</string>
@@ -4399,7 +4401,7 @@
   <!--Message of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
   <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Sve veze su pregledane, dodirnite „Pošalji“ da nastavite.</string>
   <!--Message of safety number changes bottom sheet when not showing individual records-->
-  <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">Vaše veze (njih %1$d) možda su ponovo instalirale Signal ili promenile uređaj. Pre nego što podelite priču sa njima, pregledajte njihove sigurnosne brojeve ili razmislite o tome da ih uklonite iz priče.</string>
+  <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">Njih %1$d je možda ponovo instaliralo Signal ili promenilo uređaj. Pre nego što podelite priču sa tim vezama, pregledajte njihove sigurnosne brojeve ili razmislite o tome da ih uklonite iz priče.</string>
   <!--Menu action to launch safety number verification screen-->
   <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Овери безбедносни број</string>
   <!--Menu action to remove user from story-->
@@ -4416,9 +4418,9 @@
   <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Promene sigurnosnog broja</string>
   <!--Message of safety number review fragment-->
   <plurals name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">
-    <item quantity="one">%1$d Primalac je možda ponovo instalirao Signal ili promenio uređaj. Dodirnite primaoca da potvrdite novi sigurnosni broj. Ovaj korak nije obavezan.</item>
-    <item quantity="few">Njih %1$d je možda ponovo instaliralo Signal ili promenilo uređaj. Dodirnite primaoca da potvrdite novi sigurnosni broj. Ovaj korak nije obavezan.</item>
-    <item quantity="other">Njih %1$d je možda ponovo instaliralo Signal ili promenilo uređaj. Dodirnite primaoca da potvrdite novi sigurnosni broj. Ovaj korak nije obavezan.</item>
+    <item quantity="one">%1$d primalac je možda ponovo instalirao Signal ili promenio uređaj. Dodirnite primaoca da potvrdite novi sigurnosni broj. Ovaj korak nije obavezan.</item>
+    <item quantity="few">%1$d primaoca su možda ponovo instalirala Signal ili promenila uređaj. Dodirnite primaoca da potvrdite novi sigurnosni broj. Ovaj korak nije obavezan.</item>
+    <item quantity="other">%1$d primalaca je možda ponovo instaliralo Signal ili promenilo uređaj. Dodirnite primaoca da potvrdite novi sigurnosni broj. Ovaj korak nije obavezan.</item>
   </plurals>
   <!--Section header for 1:1 contacts in review fragment-->
   <string name="SafetyNumberBucketRowItem__contacts">Именик</string>
