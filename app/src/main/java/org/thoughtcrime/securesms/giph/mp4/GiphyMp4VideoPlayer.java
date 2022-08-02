@@ -53,12 +53,6 @@ public final class GiphyMp4VideoPlayer extends FrameLayout implements DefaultLif
   }
 
   @Override
-  protected void onDetachedFromWindow() {
-    Log.d(TAG, "onDetachedFromWindow");
-    super.onDetachedFromWindow();
-  }
-
-  @Override
   protected void dispatchDraw(Canvas canvas) {
     super.dispatchDraw(canvas);
 
