@@ -10,7 +10,6 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob
 import org.thoughtcrime.securesms.messages.RestStrategy
 import org.thoughtcrime.securesms.util.concurrent.SerialMonoLifoExecutor
-import java.lang.IllegalStateException
 
 /**
  * Our goals with FCM processing are as follows:
@@ -64,7 +63,7 @@ object FcmFetchManager {
           activeCount++
           Log.i(TAG, "Incrementing active count to $activeCount")
         }
-      } catch (e: IllegalStateException) {
+      } catch (e: Exception) {
         Log.w(TAG, "Failed to start service!", e)
         return false
       }
