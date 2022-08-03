@@ -19,6 +19,7 @@ import org.signal.libsignal.protocol.state.SignedPreKeyRecord;
 import org.signal.libsignal.zkgroup.profiles.ExpiringProfileKeyCredential;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 import org.whispersystems.signalservice.api.account.AccountAttributes;
+import org.whispersystems.signalservice.api.account.ChangePhoneNumberRequest;
 import org.whispersystems.signalservice.api.crypto.InvalidCiphertextException;
 import org.whispersystems.signalservice.api.crypto.ProfileCipher;
 import org.whispersystems.signalservice.api.crypto.ProfileCipherOutputStream;
@@ -106,6 +107,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.function.Consumer;
 
+import javax.annotation.Nonnull;
+
 import io.reactivex.rxjava3.core.Single;
 
 import static org.whispersystems.signalservice.internal.push.ProvisioningProtos.ProvisionMessage;
@@ -181,7 +184,7 @@ public class SignalServiceAccountManager {
    * V1 PINs are no longer used in favor of V2 PINs stored on KBS.
    *
    * You can remove a V1 PIN, but typically this is unnecessary, as setting a V2 PIN via
-   * {@link KeyBackupService.Session#enableRegistrationLock(MasterKey)}} will automatically clear the
+   * {@link KeyBackupService.PinChangeSession#enableRegistrationLock(MasterKey)}} will automatically clear the
    * V1 PIN on the service.
    */
   public void removeRegistrationLockV1() throws IOException {
@@ -280,7 +283,8 @@ public class SignalServiceAccountManager {
                                                               byte[] unidentifiedAccessKey,
                                                               boolean unrestrictedUnidentifiedAccess,
                                                               AccountAttributes.Capabilities capabilities,
-                                                              boolean discoverableByPhoneNumber)
+                                                              boolean discoverableByPhoneNumber,
+                                                              int pniRegistrationId)
   {
     try {
       VerifyAccountResponse response = this.pushServiceSocket.verifyAccountCode(verificationCode,
@@ -292,7 +296,8 @@ public class SignalServiceAccountManager {
                                                                                 unidentifiedAccessKey,
                                                                                 unrestrictedUnidentifiedAccess,
                                                                                 capabilities,
-                                                                                discoverableByPhoneNumber);
+                                                                                discoverableByPhoneNumber,
+                                                                                pniRegistrationId);
       return ServiceResponse.forResult(response, 200, null);
     } catch (IOException e) {
       return ServiceResponse.forUnknownError(e);
@@ -320,7 +325,8 @@ public class SignalServiceAccountManager {
                                                                                      byte[] unidentifiedAccessKey,
                                                                                      boolean unrestrictedUnidentifiedAccess,
                                                                                      AccountAttributes.Capabilities capabilities,
-                                                                                     boolean discoverableByPhoneNumber)
+                                                                                     boolean discoverableByPhoneNumber,
+                                                                                     int pniRegistrationId)
   {
     try {
       VerifyAccountResponse response = this.pushServiceSocket.verifyAccountCode(verificationCode,
@@ -332,7 +338,8 @@ public class SignalServiceAccountManager {
                                                                                 unidentifiedAccessKey,
                                                                                 unrestrictedUnidentifiedAccess,
                                                                                 capabilities,
-                                                                                discoverableByPhoneNumber);
+                                                                                discoverableByPhoneNumber,
+                                                                                pniRegistrationId);
       return ServiceResponse.forResult(response, 200, null);
     } catch (IOException e) {
       return ServiceResponse.forUnknownError(e);
@@ -346,7 +353,8 @@ public class SignalServiceAccountManager {
                                                     boolean unrestrictedUnidentifiedAccess,
                                                     AccountAttributes.Capabilities capabilities,
                                                     boolean discoverableByPhoneNumber,
-                                                    byte[] encryptedDeviceName)
+                                                    byte[] encryptedDeviceName,
+                                                    int pniRegistrationId)
       throws IOException
   {
     AccountAttributes accountAttributes = new AccountAttributes(
@@ -359,15 +367,16 @@ public class SignalServiceAccountManager {
         unrestrictedUnidentifiedAccess,
         capabilities,
         discoverableByPhoneNumber,
-        Base64.encodeBytes(encryptedDeviceName)
+        Base64.encodeBytes(encryptedDeviceName),
+        pniRegistrationId
     );
 
     return this.pushServiceSocket.verifySecondaryDevice(verificationCode, accountAttributes);
   }
 
-  public ServiceResponse<VerifyAccountResponse> changeNumber(String code, String e164NewNumber, String registrationLock) {
+  public @Nonnull ServiceResponse<VerifyAccountResponse> changeNumber(@Nonnull ChangePhoneNumberRequest changePhoneNumberRequest) {
     try {
-      VerifyAccountResponse response = this.pushServiceSocket.changeNumber(code, e164NewNumber, registrationLock);
+      VerifyAccountResponse response = this.pushServiceSocket.changeNumber(changePhoneNumberRequest);
       return ServiceResponse.forResult(response, 200, null);
     } catch (IOException e) {
       return ServiceResponse.forUnknownError(e);
@@ -396,7 +405,8 @@ public class SignalServiceAccountManager {
                                    boolean unrestrictedUnidentifiedAccess,
                                    AccountAttributes.Capabilities capabilities,
                                    boolean discoverableByPhoneNumber,
-                                   byte[] encryptedDeviceName)
+                                   byte[] encryptedDeviceName,
+                                   int pniRegistrationId)
       throws IOException
   {
     this.pushServiceSocket.setAccountAttributes(
@@ -409,7 +419,8 @@ public class SignalServiceAccountManager {
         unrestrictedUnidentifiedAccess,
         capabilities,
         discoverableByPhoneNumber,
-        encryptedDeviceName
+        encryptedDeviceName,
+        pniRegistrationId
     );
   }
 
@@ -523,6 +534,13 @@ public class SignalServiceAccountManager {
     ServiceResponse<CdsiV2Service.Response> serviceResponse;
     try {
       serviceResponse = single.blockingGet();
+    } catch (RuntimeException e) {
+      Throwable cause = e.getCause();
+      if (cause instanceof InterruptedException) {
+        throw new IOException("Interrupted", cause);
+      } else {
+        throw e;
+      }
     } catch (Exception e) {
       throw new RuntimeException("Unexpected exception when retrieving registered users!", e);
     }

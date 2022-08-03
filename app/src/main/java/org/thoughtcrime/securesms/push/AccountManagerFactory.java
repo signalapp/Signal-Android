@@ -65,7 +65,7 @@ public class AccountManagerFactory {
       });
     }
 
-    return new SignalServiceAccountManager(new SignalServiceNetworkAccess(context).getConfiguration(number),
+    return new SignalServiceAccountManager(ApplicationDependencies.getSignalServiceNetworkAccess().getConfiguration(number),
                                            null,
                                            null,
                                            number,

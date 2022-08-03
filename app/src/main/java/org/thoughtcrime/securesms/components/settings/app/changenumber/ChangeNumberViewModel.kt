@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel
 import androidx.savedstate.SavedStateRegistryOwner
 import com.google.i18n.phonenumbers.NumberParseException
 import com.google.i18n.phonenumbers.PhoneNumberUtil
+import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
@@ -107,6 +108,10 @@ class ChangeNumberViewModel(
     }
   }
 
+  fun ensureDecryptionsDrained(): Completable {
+    return changeNumberRepository.ensureDecryptionsDrained()
+  }
+
   override fun verifyCodeWithoutRegistrationLock(code: String): Single<VerifyAccountResponseProcessor> {
     return super.verifyCodeWithoutRegistrationLock(code)
       .doOnSubscribe { SignalStore.misc().lockChangeNumber() }
@@ -122,6 +127,7 @@ class ChangeNumberViewModel(
   private fun <T : VerifyProcessor> attemptToUnlockChangeNumber(processor: T): Single<T> {
     return if (processor.hasResult() || processor.isServerSentError()) {
       SignalStore.misc().unlockChangeNumber()
+      SignalStore.misc().clearPendingChangeNumberMetadata()
       Single.just(processor)
     } else {
       changeNumberRepository.whoAmI()
@@ -129,6 +135,7 @@ class ChangeNumberViewModel(
           if (Objects.equals(whoAmI.number, localNumber)) {
             Log.i(TAG, "Local and remote numbers match, we can unlock.")
             SignalStore.misc().unlockChangeNumber()
+            SignalStore.misc().clearPendingChangeNumberMetadata()
           }
           processor
         }
@@ -172,7 +179,7 @@ class ChangeNumberViewModel(
 
       val viewModel = ChangeNumberViewModel(
         localNumber = localNumber,
-        changeNumberRepository = ChangeNumberRepository(context),
+        changeNumberRepository = ChangeNumberRepository(),
         savedState = handle,
         password = password,
         verifyAccountRepository = VerifyAccountRepository(context),

@@ -239,3 +239,10 @@ message GiftBadge {
 message SignalStoreList {
     repeated string contents = 1;
 }
+
+message PendingChangeNumberMetadata {
+    bytes previousPni        = 1;
+    bytes pniIdentityKeyPair = 2;
+    int32 pniRegistrationId  = 3;
+    int32 pniSignedPreKeyId  = 4;
+}

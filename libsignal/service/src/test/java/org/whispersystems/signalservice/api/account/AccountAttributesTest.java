@@ -18,7 +18,8 @@ public final class AccountAttributesTest {
                                                         false,
                                                         new AccountAttributes.Capabilities(true, true, true, true, true, true, true, true, true),
                                                         false,
-                                                        null));
+                                                        null,
+                                                        321));
     assertEquals("{\"signalingKey\":\"skey\"," +
                  "\"registrationId\":123," +
                  "\"voice\":true," +
@@ -30,7 +31,7 @@ public final class AccountAttributesTest {
                  "\"unrestrictedUnidentifiedAccess\":false," +
                  "\"discoverableByPhoneNumber\":false," +
                  "\"capabilities\":{\"uuid\":true,\"storage\":true,\"senderKey\":true,\"announcementGroup\":true,\"changeNumber\":true,\"stories\":true,\"giftBadges\":true,\"gv2-3\":true,\"gv1-migration\":true}," +
-                 "\"name\":null}", json);
+                 "\"name\":null,\"pniRegistrationId\":321}", json);
   }
 
   @Test

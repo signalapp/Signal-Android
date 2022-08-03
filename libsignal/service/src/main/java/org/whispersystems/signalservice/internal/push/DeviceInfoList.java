@@ -9,7 +9,7 @@ import java.util.List;
 public class DeviceInfoList {
 
   @JsonProperty
-  private List<DeviceInfo> devices;
+  public List<DeviceInfo> devices;
 
   public DeviceInfoList() {}
 

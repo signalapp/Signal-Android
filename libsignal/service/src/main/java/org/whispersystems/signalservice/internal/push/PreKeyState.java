@@ -23,6 +23,7 @@ public class PreKeyState {
   @JsonProperty
   private SignedPreKeyEntity signedPreKey;
 
+  public PreKeyState() {}
 
   public PreKeyState(List<PreKeyEntity> preKeys, SignedPreKeyEntity signedPreKey, IdentityKey identityKey) {
     this.preKeys       = preKeys;
@@ -30,4 +31,15 @@ public class PreKeyState {
     this.identityKey   = identityKey;
   }
 
+  public IdentityKey getIdentityKey() {
+    return identityKey;
+  }
+
+  public List<PreKeyEntity> getPreKeys() {
+    return preKeys;
+  }
+
+  public SignedPreKeyEntity getSignedPreKey() {
+    return signedPreKey;
+  }
 }

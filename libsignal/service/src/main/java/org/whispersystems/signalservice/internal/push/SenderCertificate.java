@@ -20,7 +20,7 @@ public class SenderCertificate {
   @JsonProperty
   @JsonDeserialize(using = ByteArrayDesieralizer.class)
   @JsonSerialize(using = ByteArraySerializer.class)
-  private byte[] certificate;
+  public byte[] certificate;
 
   public SenderCertificate() {}
 

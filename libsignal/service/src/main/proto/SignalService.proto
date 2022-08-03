@@ -569,6 +569,12 @@ message SyncMessage {
     }
   }
 
+  message PniChangeNumber {
+    optional bytes  identityKeyPair = 1; // Serialized libsignal-client IdentityKeyPair
+    optional bytes  signedPreKey    = 2; // Serialized libsignal-client SignedPreKeyRecord
+    optional uint32 registrationId  = 3;
+  }
+
   optional Sent                   sent                   = 1;
   optional Contacts               contacts               = 2;
   optional Groups                 groups                 = 3;
@@ -586,6 +592,7 @@ message SyncMessage {
   optional OutgoingPayment        outgoingPayment        = 15;
   repeated Viewed                 viewed                 = 16;
   optional PniIdentity            pniIdentity            = 17;
+  optional PniChangeNumber        pniChangeNumber        = 18;
 }
 
 message AttachmentPointer {

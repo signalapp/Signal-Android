@@ -1,10 +1,15 @@
 package org.thoughtcrime.securesms.database.model
 
+import com.google.protobuf.ByteString
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 
 /**
  * Collection of extensions to make working with database protos cleaner.
  */
+
+fun ByteArray.toProtoByteString(): ByteString {
+  return ByteString.copyFrom(this)
+}
 
 fun BodyRangeList.Builder.addStyle(style: BodyRangeList.BodyRange.Style, start: Int, length: Int): BodyRangeList.Builder {
   addRanges(

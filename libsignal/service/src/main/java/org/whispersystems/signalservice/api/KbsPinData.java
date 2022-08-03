@@ -8,7 +8,8 @@ public final class KbsPinData {
   private final MasterKey     masterKey;
   private final TokenResponse tokenResponse;
 
-  KbsPinData(MasterKey masterKey, TokenResponse tokenResponse) {
+  // Visible for testing
+  public KbsPinData(MasterKey masterKey, TokenResponse tokenResponse) {
     this.masterKey     = masterKey;
     this.tokenResponse = tokenResponse;
   }

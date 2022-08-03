@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2014-2016 Open Whisper Systems
  *
  * Licensed according to the LICENSE file in this repository.
@@ -47,6 +47,9 @@ public class AccountAttributes {
   @JsonProperty
   private String name;
 
+  @JsonProperty
+  private int pniRegistrationId;
+
   public AccountAttributes(String signalingKey,
                            int registrationId,
                            boolean fetchesMessages,
@@ -56,7 +59,8 @@ public class AccountAttributes {
                            boolean unrestrictedUnidentifiedAccess,
                            Capabilities capabilities,
                            boolean discoverableByPhoneNumber,
-                           String name)
+                           String name,
+                           int pniRegistrationId)
   {
     this.signalingKey                   = signalingKey;
     this.registrationId                 = registrationId;
@@ -70,6 +74,7 @@ public class AccountAttributes {
     this.capabilities                   = capabilities;
     this.discoverableByPhoneNumber      = discoverableByPhoneNumber;
     this.name                           = name;
+    this.pniRegistrationId              = pniRegistrationId;
   }
 
   public AccountAttributes() {}
@@ -120,6 +125,10 @@ public class AccountAttributes {
 
   public String getName() {
     return name;
+  }
+
+  public int getPniRegistrationId() {
+    return pniRegistrationId;
   }
 
   public static class Capabilities {

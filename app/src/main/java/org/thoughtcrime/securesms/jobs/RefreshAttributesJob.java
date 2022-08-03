@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.KbsValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.registration.RegistrationRepository;
 import org.thoughtcrime.securesms.registration.secondary.DeviceNameCipher;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
@@ -86,6 +87,7 @@ public class RefreshAttributesJob extends BaseJob {
     String    registrationLockV1          = null;
     String    registrationLockV2          = null;
     KbsValues kbsValues                   = SignalStore.kbsValues();
+    int       pniRegistrationId           = new RegistrationRepository(ApplicationDependencies.getApplication()).getPniRegistrationId();
 
     if (kbsValues.isV2RegistrationLockEnabled()) {
       registrationLockV2 = kbsValues.getRegistrationLockToken();
@@ -115,12 +117,17 @@ public class RefreshAttributesJob extends BaseJob {
                "\n    UUID? " + capabilities.isUuid());
 
     SignalServiceAccountManager signalAccountManager = ApplicationDependencies.getSignalServiceAccountManager();
-    signalAccountManager.setAccountAttributes(null, registrationId, fetchesMessages,
-                                              registrationLockV1, registrationLockV2,
-                                              unidentifiedAccessKey, universalUnidentifiedAccess,
+    signalAccountManager.setAccountAttributes(null,
+                                              registrationId,
+                                              fetchesMessages,
+                                              registrationLockV1,
+                                              registrationLockV2,
+                                              unidentifiedAccessKey,
+                                              universalUnidentifiedAccess,
                                               capabilities,
                                               phoneNumberDiscoverable,
-                                              encryptedDeviceName);
+                                              encryptedDeviceName,
+                                              pniRegistrationId);
 
     hasRefreshedThisAppCycle = true;
   }

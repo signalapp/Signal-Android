@@ -26,7 +26,7 @@ import java.security.SecureRandom;
 import java.security.SignatureException;
 import java.util.Locale;
 
-public final class KeyBackupService {
+public class KeyBackupService {
 
   private static final String TAG = KeyBackupService.class.getSimpleName();
 

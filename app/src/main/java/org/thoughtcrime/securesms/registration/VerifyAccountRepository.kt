@@ -70,7 +70,8 @@ class VerifyAccountRepository(private val context: Application) {
         unidentifiedAccessKey,
         universalUnidentifiedAccess,
         AppCapabilities.getCapabilities(true),
-        SignalStore.phoneNumberPrivacy().phoneNumberListingMode.isDiscoverable
+        SignalStore.phoneNumberPrivacy().phoneNumberListingMode.isDiscoverable,
+        registrationData.pniRegistrationId
       )
     }.subscribeOn(Schedulers.io())
   }
@@ -99,7 +100,8 @@ class VerifyAccountRepository(private val context: Application) {
           unidentifiedAccessKey,
           universalUnidentifiedAccess,
           AppCapabilities.getCapabilities(true),
-          SignalStore.phoneNumberPrivacy().phoneNumberListingMode.isDiscoverable
+          SignalStore.phoneNumberPrivacy().phoneNumberListingMode.isDiscoverable,
+          registrationData.pniRegistrationId
         )
         VerifyAccountWithRegistrationLockResponse.from(response, kbsData)
       } catch (e: KeyBackupSystemWrongPinException) {

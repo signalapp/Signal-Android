@@ -11,3 +11,5 @@ interface Serializer<T, R> {
 interface StringSerializer<T> : Serializer<T, String>
 
 interface LongSerializer<T> : Serializer<T, Long>
+
+interface ByteSerializer<T> : Serializer<T, ByteArray>

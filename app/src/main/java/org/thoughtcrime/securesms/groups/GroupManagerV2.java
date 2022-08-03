@@ -646,7 +646,7 @@ final class GroupManagerV2 {
 
       for (int attempt = 0; attempt < 5; attempt++) {
         try {
-          return commitChange(authServiceId, change, allowWhenBlocked, sendToMembers);
+          return commitChange(change, allowWhenBlocked, sendToMembers);
         } catch (GroupPatchNotAcceptedException e) {
           if (change.getAddMembersCount() > 0 && !refetchedAddMemberCredentials) {
             refetchedAddMemberCredentials = true;
@@ -724,7 +724,7 @@ final class GroupManagerV2 {
       return change;
     }
 
-    private GroupManager.GroupActionResult commitChange(@NonNull ServiceId authServiceId, @NonNull GroupChange.Actions.Builder change, boolean allowWhenBlocked, boolean sendToMembers)
+    private GroupManager.GroupActionResult commitChange(@NonNull GroupChange.Actions.Builder change, boolean allowWhenBlocked, boolean sendToMembers)
         throws GroupNotAMemberException, GroupChangeFailedException, IOException, GroupInsufficientRightsException
     {
       final GroupDatabase.GroupRecord       groupRecord         = groupDatabase.requireGroup(groupId);
@@ -741,7 +741,7 @@ final class GroupManagerV2 {
 
       previousGroupState  = v2GroupProperties.getDecryptedGroup();
 
-      GroupChange signedGroupChange = commitToServer(authServiceId, changeActions);
+      GroupChange signedGroupChange = commitToServer(changeActions);
       try {
         //noinspection OptionalGetWithoutIsPresent
         decryptedChange     = groupOperations.decryptChange(signedGroupChange, false).get();
@@ -761,7 +761,7 @@ final class GroupManagerV2 {
       return new GroupManager.GroupActionResult(recipientAndThread.groupRecipient, recipientAndThread.threadId, newMembersCount, newPendingMembers);
     }
 
-    private @NonNull GroupChange commitToServer(@NonNull ServiceId authServiceId, @NonNull GroupChange.Actions change)
+    private @NonNull GroupChange commitToServer(@NonNull GroupChange.Actions change)
         throws GroupNotAMemberException, GroupChangeFailedException, IOException, GroupInsufficientRightsException
     {
       try {

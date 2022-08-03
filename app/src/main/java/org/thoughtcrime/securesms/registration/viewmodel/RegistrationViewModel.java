@@ -130,7 +130,8 @@ public final class RegistrationViewModel extends BaseRegistrationViewModel {
                                 getRegistrationSecret(),
                                 registrationRepository.getRegistrationId(),
                                 registrationRepository.getProfileKey(getNumber().getE164Number()),
-                                getFcmToken());
+                                getFcmToken(),
+                                registrationRepository.getPniRegistrationId());
   }
 
   public static final class Factory extends AbstractSavedStateViewModelFactory {

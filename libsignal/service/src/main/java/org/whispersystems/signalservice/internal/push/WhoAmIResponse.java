@@ -4,13 +4,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class WhoAmIResponse {
   @JsonProperty
-  private String uuid;
+  public String uuid;
 
   @JsonProperty
-  private String pni;
+  public String pni;
 
   @JsonProperty
-  private String number;
+  public String number;
 
   public String getAci() {
     return uuid;

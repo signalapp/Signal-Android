@@ -5,12 +5,15 @@ import android.os.Handler;
 import android.os.HandlerThread;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.VisibleForTesting;
 
+import org.signal.core.util.Hex;
 import org.signal.core.util.concurrent.DeadlockDetector;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations;
 import org.signal.libsignal.zkgroup.receipts.ClientZkReceiptOperations;
 import org.thoughtcrime.securesms.BuildConfig;
+import org.thoughtcrime.securesms.KbsEnclave;
 import org.thoughtcrime.securesms.components.TypingStatusRepository;
 import org.thoughtcrime.securesms.components.TypingStatusSender;
 import org.thoughtcrime.securesms.crypto.ReentrantSessionLock;
@@ -70,6 +73,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.video.exo.GiphyMp4Cache;
 import org.thoughtcrime.securesms.video.exo.SimpleExoPlayerPool;
 import org.thoughtcrime.securesms.webrtc.audio.AudioManagerCompat;
+import org.whispersystems.signalservice.api.KeyBackupService;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.SignalServiceDataStore;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
@@ -85,8 +89,10 @@ import org.whispersystems.signalservice.api.util.CredentialsProvider;
 import org.whispersystems.signalservice.api.util.SleepTimer;
 import org.whispersystems.signalservice.api.util.UptimeSleepTimer;
 import org.whispersystems.signalservice.api.websocket.WebSocketFactory;
+import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
 import org.whispersystems.signalservice.internal.websocket.WebSocketConnection;
 
+import java.security.KeyStore;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
@@ -101,45 +107,45 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
     this.context = context;
   }
 
-  private @NonNull ClientZkOperations provideClientZkOperations() {
-    return ClientZkOperations.create(provideSignalServiceNetworkAccess().getConfiguration());
+  private @NonNull ClientZkOperations provideClientZkOperations(@NonNull SignalServiceConfiguration signalServiceConfiguration) {
+    return ClientZkOperations.create(signalServiceConfiguration);
   }
 
   @Override
-  public @NonNull GroupsV2Operations provideGroupsV2Operations() {
-    return new GroupsV2Operations(provideClientZkOperations(), FeatureFlags.groupLimits().getHardLimit());
+  public @NonNull GroupsV2Operations provideGroupsV2Operations(@NonNull SignalServiceConfiguration signalServiceConfiguration) {
+    return new GroupsV2Operations(provideClientZkOperations(signalServiceConfiguration), FeatureFlags.groupLimits().getHardLimit());
   }
 
   @Override
-  public @NonNull SignalServiceAccountManager provideSignalServiceAccountManager() {
-    return new SignalServiceAccountManager(provideSignalServiceNetworkAccess().getConfiguration(),
+  public @NonNull SignalServiceAccountManager provideSignalServiceAccountManager(@NonNull SignalServiceConfiguration signalServiceConfiguration, @NonNull GroupsV2Operations groupsV2Operations) {
+    return new SignalServiceAccountManager(signalServiceConfiguration,
                                            new DynamicCredentialsProvider(),
                                            BuildConfig.SIGNAL_AGENT,
-                                           provideGroupsV2Operations(),
+                                           groupsV2Operations,
                                            FeatureFlags.okHttpAutomaticRetry());
   }
 
   @Override
-  public @NonNull SignalServiceMessageSender provideSignalServiceMessageSender(@NonNull SignalWebSocket signalWebSocket, @NonNull SignalServiceDataStore protocolStore) {
-      return new SignalServiceMessageSender(provideSignalServiceNetworkAccess().getConfiguration(),
+  public @NonNull SignalServiceMessageSender provideSignalServiceMessageSender(@NonNull SignalWebSocket signalWebSocket, @NonNull SignalServiceDataStore protocolStore, @NonNull SignalServiceConfiguration signalServiceConfiguration) {
+      return new SignalServiceMessageSender(signalServiceConfiguration,
                                             new DynamicCredentialsProvider(),
                                             protocolStore,
                                             ReentrantSessionLock.INSTANCE,
                                             BuildConfig.SIGNAL_AGENT,
                                             signalWebSocket,
                                             Optional.of(new SecurityEventListener(context)),
-                                            provideClientZkOperations().getProfileOperations(),
+                                            provideGroupsV2Operations(signalServiceConfiguration).getProfileOperations(),
                                             SignalExecutors.newCachedBoundedExecutor("signal-messages", 1, 16, 30),
                                             ByteUnit.KILOBYTES.toBytes(256),
                                             FeatureFlags.okHttpAutomaticRetry());
   }
 
   @Override
-  public @NonNull SignalServiceMessageReceiver provideSignalServiceMessageReceiver() {
-    return new SignalServiceMessageReceiver(provideSignalServiceNetworkAccess().getConfiguration(),
+  public @NonNull SignalServiceMessageReceiver provideSignalServiceMessageReceiver(@NonNull SignalServiceConfiguration signalServiceConfiguration) {
+    return new SignalServiceMessageReceiver(signalServiceConfiguration,
                                             new DynamicCredentialsProvider(),
                                             BuildConfig.SIGNAL_AGENT,
-                                            provideClientZkOperations().getProfileOperations(),
+                                            provideGroupsV2Operations(signalServiceConfiguration).getProfileOperations(),
                                             FeatureFlags.okHttpAutomaticRetry());
   }
 
@@ -275,10 +281,10 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
   }
 
   @Override
-  public @NonNull SignalWebSocket provideSignalWebSocket() {
+  public @NonNull SignalWebSocket provideSignalWebSocket(@NonNull SignalServiceConfiguration signalServiceConfiguration) {
     SleepTimer                   sleepTimer      = SignalStore.account().isFcmEnabled() ? new UptimeSleepTimer() : new AlarmSleepTimer(context);
     SignalWebSocketHealthMonitor healthMonitor   = new SignalWebSocketHealthMonitor(context, sleepTimer);
-    SignalWebSocket              signalWebSocket = new SignalWebSocket(provideWebSocketFactory(healthMonitor));
+    SignalWebSocket              signalWebSocket = new SignalWebSocket(provideWebSocketFactory(signalServiceConfiguration, healthMonitor));
 
     healthMonitor.monitor(signalWebSocket);
 
@@ -346,11 +352,11 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
   }
 
   @Override
-  public @NonNull DonationsService provideDonationsService() {
-    return new DonationsService(provideSignalServiceNetworkAccess().getConfiguration(),
+  public @NonNull DonationsService provideDonationsService(@NonNull SignalServiceConfiguration signalServiceConfiguration, @NonNull GroupsV2Operations groupsV2Operations) {
+    return new DonationsService(signalServiceConfiguration,
                                 new DynamicCredentialsProvider(),
                                 BuildConfig.SIGNAL_AGENT,
-                                provideGroupsV2Operations(),
+                                groupsV2Operations,
                                 FeatureFlags.okHttpAutomaticRetry());
   }
 
@@ -370,16 +376,25 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
   }
 
   @Override
-  public @NonNull ClientZkReceiptOperations provideClientZkReceiptOperations() {
-    return provideClientZkOperations().getReceiptOperations();
+  public @NonNull ClientZkReceiptOperations provideClientZkReceiptOperations(@NonNull SignalServiceConfiguration signalServiceConfiguration) {
+    return provideClientZkOperations(signalServiceConfiguration).getReceiptOperations();
   }
 
-  private @NonNull WebSocketFactory provideWebSocketFactory(@NonNull SignalWebSocketHealthMonitor healthMonitor) {
+  @Override
+  public @NonNull KeyBackupService provideKeyBackupService(@NonNull SignalServiceAccountManager signalServiceAccountManager, @NonNull KeyStore keyStore, @NonNull KbsEnclave enclave) {
+    return signalServiceAccountManager.getKeyBackupService(keyStore,
+                                                           enclave.getEnclaveName(),
+                                                           Hex.fromStringOrThrow(enclave.getServiceId()),
+                                                           enclave.getMrEnclave(),
+                                                           10);
+  }
+
+  private @NonNull WebSocketFactory provideWebSocketFactory(@NonNull SignalServiceConfiguration signalServiceConfiguration, @NonNull SignalWebSocketHealthMonitor healthMonitor) {
     return new WebSocketFactory() {
       @Override
       public WebSocketConnection createWebSocket() {
         return new WebSocketConnection("normal",
-                                       provideSignalServiceNetworkAccess().getConfiguration(),
+                                       signalServiceConfiguration,
                                        Optional.of(new DynamicCredentialsProvider()),
                                        BuildConfig.SIGNAL_AGENT,
                                        healthMonitor);
@@ -388,7 +403,7 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
       @Override
       public WebSocketConnection createUnidentifiedWebSocket() {
         return new WebSocketConnection("unidentified",
-                                       provideSignalServiceNetworkAccess().getConfiguration(),
+                                       signalServiceConfiguration,
                                        Optional.empty(),
                                        BuildConfig.SIGNAL_AGENT,
                                        healthMonitor);
@@ -396,7 +411,8 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
     };
   }
 
-  private static class DynamicCredentialsProvider implements CredentialsProvider {
+  @VisibleForTesting
+  static class DynamicCredentialsProvider implements CredentialsProvider {
 
     @Override
     public ACI getAci() {

@@ -24,6 +24,7 @@ import org.signal.libsignal.protocol.InvalidKeyException;
 import org.signal.libsignal.protocol.InvalidKeyIdException;
 import org.signal.libsignal.protocol.ecc.Curve;
 import org.signal.libsignal.protocol.ecc.ECKeyPair;
+import org.signal.libsignal.protocol.ecc.ECPrivateKey;
 import org.signal.libsignal.protocol.state.PreKeyRecord;
 import org.signal.libsignal.protocol.state.SignalProtocolStore;
 import org.signal.libsignal.protocol.state.SignedPreKeyRecord;
@@ -64,22 +65,35 @@ public class PreKeyUtil {
   }
 
   public synchronized static @NonNull SignedPreKeyRecord generateAndStoreSignedPreKey(@NonNull SignalProtocolStore protocolStore, @NonNull PreKeyMetadataStore metadataStore, boolean setAsActive) {
+    return generateAndStoreSignedPreKey(protocolStore, metadataStore, protocolStore.getIdentityKeyPair().getPrivateKey(), setAsActive);
+  }
+
+  public synchronized static @NonNull SignedPreKeyRecord generateAndStoreSignedPreKey(@NonNull SignalProtocolStore protocolStore,
+                                                                                      @NonNull PreKeyMetadataStore metadataStore,
+                                                                                      @NonNull ECPrivateKey privateKey,
+                                                                                      boolean setAsActive)
+  {
     Log.i(TAG, "Generating signed prekeys...");
 
+    int                signedPreKeyId = metadataStore.getNextSignedPreKeyId();
+    SignedPreKeyRecord record         = generateSignedPreKey(signedPreKeyId, privateKey);
+
+    protocolStore.storeSignedPreKey(signedPreKeyId, record);
+    metadataStore.setNextSignedPreKeyId((signedPreKeyId + 1) % Medium.MAX_VALUE);
+
+    if (setAsActive) {
+      metadataStore.setActiveSignedPreKeyId(signedPreKeyId);
+    }
+
+    return record;
+  }
+
+  public synchronized static @NonNull SignedPreKeyRecord generateSignedPreKey(int signedPreKeyId, @NonNull ECPrivateKey privateKey) {
     try {
-      int                signedPreKeyId = metadataStore.getNextSignedPreKeyId();
-      ECKeyPair          keyPair        = Curve.generateKeyPair();
-      byte[]             signature      = Curve.calculateSignature(protocolStore.getIdentityKeyPair().getPrivateKey(), keyPair.getPublicKey().serialize());
-      SignedPreKeyRecord record         = new SignedPreKeyRecord(signedPreKeyId, System.currentTimeMillis(), keyPair, signature);
+      ECKeyPair keyPair   = Curve.generateKeyPair();
+      byte[]    signature = Curve.calculateSignature(privateKey, keyPair.getPublicKey().serialize());
 
-      protocolStore.storeSignedPreKey(signedPreKeyId, record);
-      metadataStore.setNextSignedPreKeyId((signedPreKeyId + 1) % Medium.MAX_VALUE);
-
-      if (setAsActive) {
-        metadataStore.setActiveSignedPreKeyId(signedPreKeyId);
-      }
-
-      return record;
+      return new SignedPreKeyRecord(signedPreKeyId, System.currentTimeMillis(), keyPair, signature);
     } catch (InvalidKeyException e) {
       throw new AssertionError(e);
     }

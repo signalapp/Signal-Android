@@ -141,6 +141,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.stream.Collectors;
 
+import javax.annotation.Nonnull;
+
 /**
  * The main interface for sending Signal Service messages.
  *
@@ -156,8 +158,8 @@ public class SignalServiceMessageSender {
   private final SignalServiceAccountDataStore store;
   private final SignalSessionLock             sessionLock;
   private final SignalServiceAddress          localAddress;
-  private final int                     localDeviceId;
-  private final Optional<EventListener> eventListener;
+  private final int                           localDeviceId;
+  private final Optional<EventListener>       eventListener;
 
   private final AttachmentService attachmentService;
   private final MessagingService  messagingService;
@@ -582,6 +584,24 @@ public class SignalServiceMessageSender {
     EnvelopeContent envelopeContent = EnvelopeContent.encrypted(content, ContentHint.IMPLICIT, Optional.empty());
 
     return sendMessage(localAddress, Optional.empty(), timestamp, envelopeContent, false, null, urgent);
+  }
+
+  /**
+   * Create a device specific sync message that includes updated PNI details for that specific linked device. This message is
+   * sent to the server via the change number endpoint and not the normal sync message sending flow.
+   *
+   * @param deviceId - Device ID of linked device to build message for
+   * @param pniChangeNumber - Linked device specific updated PNI details
+   * @return Encrypted {@link OutgoingPushMessage} to be included in the change number request sent to the server
+   */
+  public @Nonnull OutgoingPushMessage getEncryptedSyncPniChangeNumberMessage(int deviceId, @Nonnull SyncMessage.PniChangeNumber pniChangeNumber)
+      throws UntrustedIdentityException, IOException, InvalidKeyException
+  {
+    SyncMessage.Builder syncMessage     = createSyncMessageBuilder().setPniChangeNumber(pniChangeNumber);
+    Content.Builder     content         = Content.newBuilder().setSyncMessage(syncMessage);
+    EnvelopeContent     envelopeContent = EnvelopeContent.encrypted(content.build(), ContentHint.IMPLICIT, Optional.empty());
+
+    return getEncryptedMessage(socket, localAddress, Optional.empty(), deviceId, envelopeContent);
   }
 
   public void setSoTimeoutMillis(long soTimeoutMillis) {

@@ -1,9 +1,11 @@
 package org.thoughtcrime.securesms.keyvalue;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.google.protobuf.InvalidProtocolBufferException;
 
+import org.signal.core.util.ByteSerializer;
 import org.signal.core.util.StringSerializer;
 import org.thoughtcrime.securesms.database.model.databaseprotos.SignalStoreList;
 
@@ -51,6 +53,15 @@ abstract class SignalStoreValues {
     return store.getBlob(key, defaultValue);
   }
 
+  <T> T getObject(@NonNull String key, @Nullable T defaultValue, @NonNull ByteSerializer<T> serializer) {
+    byte[] blob = store.getBlob(key, null);
+    if (blob == null) {
+      return defaultValue;
+    } else {
+      return serializer.deserialize(blob);
+    }
+  }
+
   <T> List<T> getList(@NonNull String key, @NonNull StringSerializer<T> serializer) {
     byte[] blob = getBlob(key, null);
     if (blob == null) {
@@ -92,6 +103,10 @@ abstract class SignalStoreValues {
 
   void putString(@NonNull String key, String value) {
     store.beginWrite().putString(key, value).apply();
+  }
+
+  <T> void putObject(@NonNull String key, T value, @NonNull ByteSerializer<T> serializer) {
+    putBlob(key, serializer.serialize(value));
   }
 
   <T> void putList(@NonNull String key, @NonNull List<T> values, @NonNull StringSerializer<T> serializer) {

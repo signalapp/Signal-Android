@@ -1,12 +1,12 @@
 package org.thoughtcrime.securesms.dependencies;
 
+import android.annotation.SuppressLint;
 import android.app.Application;
 
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
 
-import org.signal.core.util.Hex;
 import org.signal.core.util.concurrent.DeadlockDetector;
 import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations;
 import org.signal.libsignal.zkgroup.receipts.ClientZkReceiptOperations;
@@ -56,10 +56,12 @@ import org.whispersystems.signalservice.api.push.TrustStore;
 import org.whispersystems.signalservice.api.services.DonationsService;
 import org.whispersystems.signalservice.api.services.ProfileService;
 import org.whispersystems.signalservice.api.util.Tls12SocketFactory;
+import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
 import org.whispersystems.signalservice.internal.util.BlacklistingTrustManager;
 import org.whispersystems.signalservice.internal.util.Util;
 
 import java.security.KeyManagementException;
+import java.security.KeyStore;
 import java.security.NoSuchAlgorithmException;
 
 import javax.net.ssl.SSLContext;
@@ -77,6 +79,7 @@ import okhttp3.OkHttpClient;
  * All future application-scoped singletons should be written as normal objects, then placed here
  * to manage their singleton-ness.
  */
+@SuppressLint("StaticFieldLeak")
 public class ApplicationDependencies {
 
   private static final Object LOCK                    = new Object();
@@ -159,7 +162,7 @@ public class ApplicationDependencies {
 
     synchronized (LOCK) {
       if (accountManager == null) {
-        accountManager = provider.provideSignalServiceAccountManager();
+        accountManager = provider.provideSignalServiceAccountManager(getSignalServiceNetworkAccess().getConfiguration(), getGroupsV2Operations());
       }
       return accountManager;
     }
@@ -183,7 +186,7 @@ public class ApplicationDependencies {
     if (groupsV2Operations == null) {
       synchronized (LOCK) {
         if (groupsV2Operations == null) {
-          groupsV2Operations = provider.provideGroupsV2Operations();
+          groupsV2Operations = provider.provideGroupsV2Operations(getSignalServiceNetworkAccess().getConfiguration());
         }
       }
     }
@@ -192,11 +195,7 @@ public class ApplicationDependencies {
   }
 
   public static @NonNull KeyBackupService getKeyBackupService(@NonNull KbsEnclave enclave) {
-    return getSignalServiceAccountManager().getKeyBackupService(IasKeyStore.getIasKeyStore(application),
-                                                                enclave.getEnclaveName(),
-                                                                Hex.fromStringOrThrow(enclave.getServiceId()),
-                                                                enclave.getMrEnclave(),
-                                                                10);
+    return provider.provideKeyBackupService(getSignalServiceAccountManager(), IasKeyStore.getIasKeyStore(application), enclave);
   }
 
   public static @NonNull GroupsV2StateProcessor getGroupsV2StateProcessor() {
@@ -220,7 +219,7 @@ public class ApplicationDependencies {
 
     synchronized (LOCK) {
       if (messageSender == null) {
-        messageSender = provider.provideSignalServiceMessageSender(getSignalWebSocket(), getProtocolStore());
+        messageSender = provider.provideSignalServiceMessageSender(getSignalWebSocket(), getProtocolStore(), getSignalServiceNetworkAccess().getConfiguration());
       }
       return messageSender;
     }
@@ -229,7 +228,7 @@ public class ApplicationDependencies {
   public static @NonNull SignalServiceMessageReceiver getSignalServiceMessageReceiver() {
     synchronized (LOCK) {
       if (messageReceiver == null) {
-        messageReceiver = provider.provideSignalServiceMessageReceiver();
+        messageReceiver = provider.provideSignalServiceMessageReceiver(getSignalServiceNetworkAccess().getConfiguration());
       }
       return messageReceiver;
     }
@@ -571,7 +570,7 @@ public class ApplicationDependencies {
     if (signalWebSocket == null) {
       synchronized (LOCK) {
         if (signalWebSocket == null) {
-          signalWebSocket = provider.provideSignalWebSocket();
+          signalWebSocket = provider.provideSignalWebSocket(getSignalServiceNetworkAccess().getConfiguration());
         }
       }
     }
@@ -627,7 +626,7 @@ public class ApplicationDependencies {
     if (donationsService == null) {
       synchronized (LOCK) {
         if (donationsService == null) {
-          donationsService = provider.provideDonationsService();
+          donationsService = provider.provideDonationsService(getSignalServiceNetworkAccess().getConfiguration(), getGroupsV2Operations());
         }
       }
     }
@@ -651,7 +650,7 @@ public class ApplicationDependencies {
     if (clientZkReceiptOperations == null) {
       synchronized (LOCK) {
         if (clientZkReceiptOperations == null) {
-          clientZkReceiptOperations = provider.provideClientZkReceiptOperations();
+          clientZkReceiptOperations = provider.provideClientZkReceiptOperations(getSignalServiceNetworkAccess().getConfiguration());
         }
       }
     }
@@ -670,10 +669,10 @@ public class ApplicationDependencies {
   }
 
   public interface Provider {
-    @NonNull GroupsV2Operations provideGroupsV2Operations();
-    @NonNull SignalServiceAccountManager provideSignalServiceAccountManager();
-    @NonNull SignalServiceMessageSender provideSignalServiceMessageSender(@NonNull SignalWebSocket signalWebSocket, @NonNull SignalServiceDataStore protocolStore);
-    @NonNull SignalServiceMessageReceiver provideSignalServiceMessageReceiver();
+    @NonNull GroupsV2Operations provideGroupsV2Operations(@NonNull SignalServiceConfiguration signalServiceConfiguration);
+    @NonNull SignalServiceAccountManager provideSignalServiceAccountManager(@NonNull SignalServiceConfiguration signalServiceConfiguration, @NonNull GroupsV2Operations groupsV2Operations);
+    @NonNull SignalServiceMessageSender provideSignalServiceMessageSender(@NonNull SignalWebSocket signalWebSocket, @NonNull SignalServiceDataStore protocolStore, @NonNull SignalServiceConfiguration signalServiceConfiguration);
+    @NonNull SignalServiceMessageReceiver provideSignalServiceMessageReceiver(@NonNull SignalServiceConfiguration signalServiceConfiguration);
     @NonNull SignalServiceNetworkAccess provideSignalServiceNetworkAccess();
     @NonNull IncomingMessageProcessor provideIncomingMessageProcessor();
     @NonNull BackgroundMessageRetriever provideBackgroundMessageRetriever();
@@ -697,14 +696,15 @@ public class ApplicationDependencies {
     @NonNull SignalCallManager provideSignalCallManager();
     @NonNull PendingRetryReceiptManager providePendingRetryReceiptManager();
     @NonNull PendingRetryReceiptCache providePendingRetryReceiptCache();
-    @NonNull SignalWebSocket provideSignalWebSocket();
+    @NonNull SignalWebSocket provideSignalWebSocket(@NonNull SignalServiceConfiguration signalServiceConfiguration);
     @NonNull SignalServiceDataStoreImpl provideProtocolStore();
     @NonNull GiphyMp4Cache provideGiphyMp4Cache();
     @NonNull SimpleExoPlayerPool provideExoPlayerPool();
     @NonNull AudioManagerCompat provideAndroidCallAudioManager();
-    @NonNull DonationsService provideDonationsService();
+    @NonNull DonationsService provideDonationsService(@NonNull SignalServiceConfiguration signalServiceConfiguration, @NonNull GroupsV2Operations groupsV2Operations);
     @NonNull ProfileService provideProfileService(@NonNull ClientZkProfileOperations profileOperations, @NonNull SignalServiceMessageReceiver signalServiceMessageReceiver, @NonNull SignalWebSocket signalWebSocket);
     @NonNull DeadlockDetector provideDeadlockDetector();
-    @NonNull ClientZkReceiptOperations provideClientZkReceiptOperations();
+    @NonNull ClientZkReceiptOperations provideClientZkReceiptOperations(@NonNull SignalServiceConfiguration signalServiceConfiguration);
+    @NonNull KeyBackupService provideKeyBackupService(@NonNull SignalServiceAccountManager signalServiceAccountManager, @NonNull KeyStore keyStore, @NonNull KbsEnclave enclave);
   }
 }

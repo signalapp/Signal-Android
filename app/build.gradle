@@ -231,7 +231,7 @@ android {
             }
         }
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "org.thoughtcrime.securesms.testing.SignalTestRunner"
         testInstrumentationRunnerArguments clearPackageData: 'true'
     }
 
@@ -544,6 +544,9 @@ dependencies {
     androidTestImplementation testLibs.androidx.test.core
     androidTestImplementation testLibs.androidx.test.core.ktx
     androidTestImplementation testLibs.androidx.test.ext.junit.ktx
+    androidTestImplementation testLibs.mockito.android
+    androidTestImplementation testLibs.mockito.kotlin
+    androidTestImplementation testLibs.square.okhttp.mockserver
 
     testImplementation testLibs.espresso.core
 

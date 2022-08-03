@@ -354,26 +354,31 @@ public class PushServiceSocket {
     return JsonUtil.fromJsonResponse(body, CdsiAuthResponse.class);
   }
 
-  public VerifyAccountResponse verifyAccountCode(String verificationCode, String signalingKey, int registrationId, boolean fetchesMessages,
-                                                 String pin, String registrationLock,
-                                                 byte[] unidentifiedAccessKey, boolean unrestrictedUnidentifiedAccess,
+  public VerifyAccountResponse verifyAccountCode(String verificationCode,
+                                                 String signalingKey,
+                                                 int registrationId,
+                                                 boolean fetchesMessages,
+                                                 String pin,
+                                                 String registrationLock,
+                                                 byte[] unidentifiedAccessKey,
+                                                 boolean unrestrictedUnidentifiedAccess,
                                                  AccountAttributes.Capabilities capabilities,
-                                                 boolean discoverableByPhoneNumber)
+                                                 boolean discoverableByPhoneNumber,
+                                                 int pniRegistrationId)
       throws IOException
   {
-    AccountAttributes signalingKeyEntity = new AccountAttributes(signalingKey, registrationId, fetchesMessages, pin, registrationLock, unidentifiedAccessKey, unrestrictedUnidentifiedAccess, capabilities, discoverableByPhoneNumber, null);
+    AccountAttributes signalingKeyEntity = new AccountAttributes(signalingKey, registrationId, fetchesMessages, pin, registrationLock, unidentifiedAccessKey, unrestrictedUnidentifiedAccess, capabilities, discoverableByPhoneNumber, null, pniRegistrationId);
     String            requestBody        = JsonUtil.toJson(signalingKeyEntity);
     String            responseBody       = makeServiceRequest(String.format(VERIFY_ACCOUNT_CODE_PATH, verificationCode), "PUT", requestBody);
 
     return JsonUtil.fromJson(responseBody, VerifyAccountResponse.class);
   }
 
-  public VerifyAccountResponse changeNumber(String code, String e164NewNumber, String registrationLock)
+  public VerifyAccountResponse changeNumber(@Nonnull ChangePhoneNumberRequest changePhoneNumberRequest)
       throws IOException
   {
-    ChangePhoneNumberRequest changePhoneNumberRequest = new ChangePhoneNumberRequest(e164NewNumber, code, registrationLock);
-    String                   requestBody              = JsonUtil.toJson(changePhoneNumberRequest);
-    String                   responseBody             = makeServiceRequest(CHANGE_NUMBER_PATH, "PUT", requestBody);
+    String requestBody  = JsonUtil.toJson(changePhoneNumberRequest);
+    String responseBody = makeServiceRequest(CHANGE_NUMBER_PATH, "PUT", requestBody);
 
     return JsonUtil.fromJson(responseBody, VerifyAccountResponse.class);
   }
@@ -387,7 +392,8 @@ public class PushServiceSocket {
                                    boolean unrestrictedUnidentifiedAccess,
                                    AccountAttributes.Capabilities capabilities,
                                    boolean discoverableByPhoneNumber,
-                                   byte[] encryptedDeviceName)
+                                   byte[] encryptedDeviceName,
+                                   int pniRegistrationId)
       throws IOException
   {
     if (registrationLock != null && pin != null) {
@@ -396,9 +402,18 @@ public class PushServiceSocket {
 
     String name = (encryptedDeviceName == null) ? null :  Base64.encodeBytes(encryptedDeviceName);
 
-    AccountAttributes accountAttributes = new AccountAttributes(signalingKey, registrationId, fetchesMessages, pin, registrationLock,
-                                                                unidentifiedAccessKey, unrestrictedUnidentifiedAccess, capabilities,
-                                                                discoverableByPhoneNumber, name);
+    AccountAttributes accountAttributes = new AccountAttributes(signalingKey,
+                                                                registrationId,
+                                                                fetchesMessages,
+                                                                pin,
+                                                                registrationLock,
+                                                                unidentifiedAccessKey,
+                                                                unrestrictedUnidentifiedAccess,
+                                                                capabilities,
+                                                                discoverableByPhoneNumber,
+                                                                name,
+                                                                pniRegistrationId);
+
     makeServiceRequest(SET_ACCOUNT_ATTRIBUTES, "PUT", JsonUtil.toJson(accountAttributes));
   }
 

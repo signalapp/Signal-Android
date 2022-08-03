@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2014-2016 Open Whisper Systems
  *
  * Licensed according to the LICENSE file in this repository.
@@ -11,20 +11,20 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class DeviceInfo {
 
   @JsonProperty
-  private long id;
+  public int id;
 
   @JsonProperty
-  private String name;
+  public String name;
 
   @JsonProperty
-  private long created;
+  public long created;
 
   @JsonProperty
-  private long lastSeen;
+  public long lastSeen;
 
   public DeviceInfo() {}
 
-  public long getId() {
+  public int getId() {
     return id;
   }
 

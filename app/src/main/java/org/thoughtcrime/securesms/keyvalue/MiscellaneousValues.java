@@ -3,6 +3,8 @@ package org.thoughtcrime.securesms.keyvalue;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.thoughtcrime.securesms.database.model.databaseprotos.PendingChangeNumberMetadata;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -17,6 +19,7 @@ public final class MiscellaneousValues extends SignalStoreValues {
   private static final String OLD_DEVICE_TRANSFER_LOCKED      = "misc.old_device.transfer.locked";
   private static final String HAS_EVER_HAD_AN_AVATAR          = "misc.has.ever.had.an.avatar";
   private static final String CHANGE_NUMBER_LOCK              = "misc.change_number.lock";
+  private static final String PENDING_CHANGE_NUMBER_METADATA  = "misc.pending_change_number.metadata";
   private static final String CENSORSHIP_LAST_CHECK_TIME      = "misc.censorship.last_check_time";
   private static final String CENSORSHIP_SERVICE_REACHABLE    = "misc.censorship.service_reachable";
   private static final String LAST_GV2_PROFILE_CHECK_TIME     = "misc.last_gv2_profile_check_time";
@@ -115,6 +118,20 @@ public final class MiscellaneousValues extends SignalStoreValues {
 
   public void unlockChangeNumber() {
     putBoolean(CHANGE_NUMBER_LOCK, false);
+  }
+
+  public @Nullable PendingChangeNumberMetadata getPendingChangeNumberMetadata() {
+    return getObject(PENDING_CHANGE_NUMBER_METADATA, null, PendingChangeNumberMetadataSerializer.INSTANCE);
+  }
+
+  /** Store pending new PNI data to be applied after successful change number */
+  public void setPendingChangeNumberMetadata(@NonNull PendingChangeNumberMetadata metadata) {
+    putObject(PENDING_CHANGE_NUMBER_METADATA, metadata, PendingChangeNumberMetadataSerializer.INSTANCE);
+  }
+
+  /** Clear pending new PNI data after confirmed successful or failed change number */
+  public void clearPendingChangeNumberMetadata() {
+    remove(PENDING_CHANGE_NUMBER_METADATA);
   }
 
   public long getLastCensorshipServiceReachabilityCheckTime() {

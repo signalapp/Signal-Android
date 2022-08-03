@@ -48,29 +48,29 @@ class ChangeNumberVerifyFragment : LoggingFragment(R.layout.fragment_change_phon
   }
 
   private fun requestCode() {
-    lifecycleDisposable.add(
-      viewModel.requestVerificationCode(VerifyAccountRepository.Mode.SMS_WITHOUT_LISTENER)
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe { processor ->
-          if (processor.hasResult()) {
-            findNavController().safeNavigate(R.id.action_changePhoneNumberVerifyFragment_to_changeNumberEnterCodeFragment)
-          } else if (processor.localRateLimit()) {
-            Log.i(TAG, "Unable to request sms code due to local rate limit")
-            findNavController().safeNavigate(R.id.action_changePhoneNumberVerifyFragment_to_changeNumberEnterCodeFragment)
-          } else if (processor.captchaRequired()) {
-            Log.i(TAG, "Unable to request sms code due to captcha required")
-            findNavController().safeNavigate(R.id.action_changePhoneNumberVerifyFragment_to_captchaFragment, getCaptchaArguments())
-            requestingCaptcha = true
-          } else if (processor.rateLimit()) {
-            Log.i(TAG, "Unable to request sms code due to rate limit")
-            Toast.makeText(requireContext(), R.string.RegistrationActivity_rate_limited_to_service, Toast.LENGTH_LONG).show()
-            findNavController().navigateUp()
-          } else {
-            Log.w(TAG, "Unable to request sms code", processor.error)
-            Toast.makeText(requireContext(), R.string.RegistrationActivity_unable_to_connect_to_service, Toast.LENGTH_LONG).show()
-            findNavController().navigateUp()
-          }
+    lifecycleDisposable += viewModel
+      .ensureDecryptionsDrained()
+      .andThen(viewModel.requestVerificationCode(VerifyAccountRepository.Mode.SMS_WITHOUT_LISTENER))
+      .observeOn(AndroidSchedulers.mainThread())
+      .subscribe { processor ->
+        if (processor.hasResult()) {
+          findNavController().safeNavigate(R.id.action_changePhoneNumberVerifyFragment_to_changeNumberEnterCodeFragment)
+        } else if (processor.localRateLimit()) {
+          Log.i(TAG, "Unable to request sms code due to local rate limit")
+          findNavController().safeNavigate(R.id.action_changePhoneNumberVerifyFragment_to_changeNumberEnterCodeFragment)
+        } else if (processor.captchaRequired()) {
+          Log.i(TAG, "Unable to request sms code due to captcha required")
+          findNavController().safeNavigate(R.id.action_changePhoneNumberVerifyFragment_to_captchaFragment, getCaptchaArguments())
+          requestingCaptcha = true
+        } else if (processor.rateLimit()) {
+          Log.i(TAG, "Unable to request sms code due to rate limit")
+          Toast.makeText(requireContext(), R.string.RegistrationActivity_rate_limited_to_service, Toast.LENGTH_LONG).show()
+          findNavController().navigateUp()
+        } else {
+          Log.w(TAG, "Unable to request sms code", processor.error)
+          Toast.makeText(requireContext(), R.string.RegistrationActivity_unable_to_connect_to_service, Toast.LENGTH_LONG).show()
+          findNavController().navigateUp()
         }
-    )
+      }
   }
 }

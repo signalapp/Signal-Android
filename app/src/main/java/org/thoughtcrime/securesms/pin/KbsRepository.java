@@ -30,7 +30,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
  * Using provided or already stored authorization, provides various get token data from KBS
  * and generate {@link KbsPinData}.
  */
-public final class KbsRepository {
+public class KbsRepository {
 
   private static final String TAG = Log.tag(KbsRepository.class);
 
