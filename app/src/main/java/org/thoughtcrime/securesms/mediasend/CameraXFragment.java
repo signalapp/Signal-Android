@@ -131,7 +131,6 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     ViewGroup cameraParent = view.findViewById(R.id.camerax_camera_parent);
-    requireActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
 
     this.previewView       = view.findViewById(R.id.camerax_camera);
     this.controlsContainer = view.findViewById(R.id.camerax_controls_container);
@@ -171,7 +170,7 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
     super.onResume();
 
     cameraController.bindToLifecycle(getViewLifecycleOwner());
-    requireActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
+    requireActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
   }
 
   @Override
