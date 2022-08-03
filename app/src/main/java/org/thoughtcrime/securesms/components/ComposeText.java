@@ -52,7 +52,7 @@ import static org.thoughtcrime.securesms.database.MentionUtil.MENTION_STARTER;
 public class ComposeText extends EmojiEditText {
 
   private static final char EMOJI_STARTER       = ':';
-  private static final long EMOJI_KEYWORD_DELAY = TimeUnit.SECONDS.toMillis(1);
+  private static final long EMOJI_KEYWORD_DELAY = 1500;
 
   private CharSequence            hint;
   private SpannableString         subHint;
@@ -322,11 +322,9 @@ public class ComposeText extends EmojiEditText {
   }
 
   private void doAfterCursorChange(@NonNull Editable text) {
-    removeCallbacks(keywordSearchRunnable);
     if (enoughToFilter(text, false)) {
       performFiltering(text, false);
     } else {
-      postDelayed(keywordSearchRunnable, EMOJI_KEYWORD_DELAY);
       clearInlineQuery();
     }
   }

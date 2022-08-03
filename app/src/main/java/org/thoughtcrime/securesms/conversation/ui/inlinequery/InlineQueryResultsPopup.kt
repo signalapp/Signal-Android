@@ -6,8 +6,8 @@ import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewOutlineProvider
 import android.widget.PopupWindow
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.util.ViewUtil
@@ -34,7 +34,11 @@ class InlineQueryResultsPopup(
   private val adapter: MappingAdapter
 
   init {
-    setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.signal_context_menu_background))
+    if (Build.VERSION.SDK_INT >= 21) {
+      contentView.outlineProvider = ViewOutlineProvider.BACKGROUND
+      contentView.clipToOutline = true
+    }
+
     inputMethodMode = INPUT_METHOD_NOT_NEEDED
 
     setOnDismissListener {

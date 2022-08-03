@@ -2358,6 +2358,7 @@ public class ConversationParentFragment extends Fragment
         composeText,
         getViewLifecycleOwner()
     );
+    inlineQueryResultsController.onOrientationChange(getResources().getConfiguration().orientation == ORIENTATION_LANDSCAPE);
 
     recipient.observe(getViewLifecycleOwner(), r -> {
       if (r.isPushV2Group() && !mentionsSuggestions.resolved()) {

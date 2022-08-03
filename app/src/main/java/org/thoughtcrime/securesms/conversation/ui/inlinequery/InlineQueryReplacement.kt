@@ -10,7 +10,7 @@ sealed class InlineQueryReplacement(@get:JvmName("isKeywordSearch") val keywordS
 
   class Emoji(private val emoji: String, keywordSearch: Boolean) : InlineQueryReplacement(keywordSearch) {
     override fun toCharSequence(context: Context): CharSequence {
-      return "$emoji "
+      return emoji
     }
   }
 }

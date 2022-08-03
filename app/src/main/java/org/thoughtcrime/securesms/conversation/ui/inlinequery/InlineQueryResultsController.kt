@@ -10,7 +10,6 @@ import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.core.util.DimensionUnit
 import org.thoughtcrime.securesms.components.ComposeText
 import org.thoughtcrime.securesms.util.LifecycleDisposable
-import org.thoughtcrime.securesms.util.VibrateUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.AnyMappingModel
 import org.thoughtcrime.securesms.util.doOnEachLayout
 
@@ -30,6 +29,7 @@ class InlineQueryResultsController(
   private var popup: InlineQueryResultsPopup? = null
   private var previousResults: List<AnyMappingModel>? = null
   private var canShow: Boolean = false
+  private var isLandscape: Boolean = false
 
   init {
     lifecycleDisposable.bindTo(lifecycleOwner)
@@ -61,6 +61,8 @@ class InlineQueryResultsController(
   }
 
   fun onOrientationChange(isLandscape: Boolean) {
+    this.isLandscape = isLandscape
+
     if (isLandscape) {
       dismiss()
     } else {
@@ -70,7 +72,7 @@ class InlineQueryResultsController(
 
   private fun updateList(results: List<AnyMappingModel>) {
     previousResults = results
-    if (results.isEmpty() || !canShow) {
+    if (results.isEmpty() || !canShow || isLandscape) {
       dismiss()
     } else if (popup != null) {
       popup?.setResults(results)
@@ -82,7 +84,6 @@ class InlineQueryResultsController(
         baseOffsetX = DimensionUnit.DP.toPixels(16f).toInt(),
         callback = this
       ).show()
-      VibrateUtil.vibrateTick(context)
     }
   }
 

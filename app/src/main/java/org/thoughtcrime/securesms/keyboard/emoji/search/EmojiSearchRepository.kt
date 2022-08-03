@@ -18,18 +18,20 @@ private const val MINIMUM_QUERY_THRESHOLD = 1
 private const val MINIMUM_INLINE_QUERY_THRESHOLD = 2
 private const val EMOJI_SEARCH_LIMIT = 20
 
+private val NOT_PUNCTUATION = "[A-Za-z0-9 ]".toRegex()
+
 class EmojiSearchRepository(private val context: Context) {
 
   private val emojiSearchDatabase: EmojiSearchDatabase = SignalDatabase.emojiSearch
 
   fun submitQuery(query: String, limit: Int = EMOJI_SEARCH_LIMIT): Single<List<String>> {
-    if (query.length < MINIMUM_INLINE_QUERY_THRESHOLD) {
-      return Single.just(emptyList())
+    val result = if (query.length >= MINIMUM_INLINE_QUERY_THRESHOLD && NOT_PUNCTUATION.matches(query.substring(query.lastIndex))) {
+      Single.fromCallable<List<String>> { emojiSearchDatabase.query(query, limit) }
+    } else {
+      Single.just(emptyList())
     }
 
-    return Single.fromCallable<List<String>> {
-      emojiSearchDatabase.query(query, limit)
-    }.subscribeOn(Schedulers.io())
+    return result.subscribeOn(Schedulers.io())
   }
 
   fun submitQuery(query: String, includeRecents: Boolean, limit: Int = EMOJI_SEARCH_LIMIT, consumer: Consumer<EmojiPageModel>) {
