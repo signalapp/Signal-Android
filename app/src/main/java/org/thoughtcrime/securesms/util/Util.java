@@ -161,6 +161,10 @@ public class Util {
     return collection != null && !collection.isEmpty();
   }
 
+  public static <K, V> boolean hasItems(@Nullable Map<K, V> map) {
+    return map != null && !map.isEmpty();
+  }
+
   public static <K, V> V getOrDefault(@NonNull Map<K, V> map, K key, V defaultValue) {
     return map.containsKey(key) ? map.get(key) : defaultValue;
   }

@@ -27,12 +27,15 @@ import org.thoughtcrime.securesms.messages.IncomingMessageProcessor.Processor;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.util.AppForegroundObserver;
+import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.SignalWebSocket;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 import org.whispersystems.signalservice.api.websocket.WebSocketUnavailableException;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.TimeUnit;
@@ -50,6 +53,7 @@ public class IncomingMessageObserver {
 
   public static final  int  FOREGROUND_ID           = 313399;
   private static final long REQUEST_TIMEOUT_MINUTES = 1;
+  private static final long OLD_REQUEST_WINDOW_MS   = TimeUnit.MINUTES.toMillis(5);
 
   private static final AtomicInteger INSTANCE_COUNT = new AtomicInteger(0);
 
@@ -57,6 +61,7 @@ public class IncomingMessageObserver {
   private final SignalServiceNetworkAccess networkAccess;
   private final List<Runnable>             decryptionDrainedListeners;
   private final BroadcastReceiver          connectionReceiver;
+  private final Map<String, Long>          keepAliveTokens;
 
   private boolean appVisible;
 
@@ -72,6 +77,7 @@ public class IncomingMessageObserver {
     this.context                    = context;
     this.networkAccess              = ApplicationDependencies.getSignalServiceNetworkAccess();
     this.decryptionDrainedListeners = new CopyOnWriteArrayList<>();
+    this.keepAliveTokens            = new HashMap<>();
 
     new MessageRetrievalThread().start();
 
@@ -155,12 +161,18 @@ public class IncomingMessageObserver {
     boolean fcmEnabled = SignalStore.account().isFcmEnabled();
     boolean hasNetwork = NetworkConstraint.isMet(context);
     boolean hasProxy   = SignalStore.proxy().isProxyEnabled();
+    long    oldRequest = System.currentTimeMillis() - OLD_REQUEST_WINDOW_MS;
 
-    Log.d(TAG, String.format("Network: %s, Foreground: %s, FCM: %s, Censored: %s, Registered: %s, Proxy: %s",
-                             hasNetwork, appVisible, fcmEnabled, networkAccess.isCensored(), registered, hasProxy));
+    boolean removedRequests = keepAliveTokens.entrySet().removeIf(e -> e.getValue() < oldRequest);
+    if (removedRequests) {
+      Log.d(TAG, "Removed old keep web socket open requests.");
+    }
+
+    Log.d(TAG, String.format("Network: %s, Foreground: %s, FCM: %s, Stay open requests: [%s], Censored: %s, Registered: %s, Proxy: %s",
+                             hasNetwork, appVisible, fcmEnabled, Util.join(keepAliveTokens.entrySet(), ","), networkAccess.isCensored(), registered, hasProxy));
 
     return registered &&
-           (appVisible || !fcmEnabled) &&
+           (appVisible || !fcmEnabled || Util.hasItems(keepAliveTokens)) &&
            hasNetwork &&
            !networkAccess.isCensored();
   }
@@ -187,6 +199,16 @@ public class IncomingMessageObserver {
 
   private void disconnect() {
     ApplicationDependencies.getSignalWebSocket().disconnect();
+  }
+
+  public synchronized void registerKeepAliveToken(String key) {
+    keepAliveTokens.put(key, System.currentTimeMillis());
+    notifyAll();
+  }
+
+  public synchronized void removeKeepAliveToken(String key) {
+    keepAliveTokens.remove(key);
+    notifyAll();
   }
 
   private class MessageRetrievalThread extends Thread implements Thread.UncaughtExceptionHandler {
