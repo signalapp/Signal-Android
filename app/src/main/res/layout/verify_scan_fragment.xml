@@ -15,11 +15,10 @@
               app:layout_constraintEnd_toStartOf="parent"
               app:layout_constraintEnd_toEndOf="parent" />
 
-    <org.thoughtcrime.securesms.components.camera.CameraView
+    <org.signal.qr.QrScannerView
             android:id="@+id/scanner"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:camera="0"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintEnd_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"

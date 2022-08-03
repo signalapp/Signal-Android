@@ -40,6 +40,7 @@ class QrScannerView @JvmOverloads constructor(
     this.scannerView = (scannerView as ScannerView)
   }
 
+  @JvmOverloads
   fun start(lifecycleOwner: LifecycleOwner, forceLegacy: Boolean = false) {
     if (scannerView != null) {
       Log.w(TAG, "Attempt to start scanning that has already started")

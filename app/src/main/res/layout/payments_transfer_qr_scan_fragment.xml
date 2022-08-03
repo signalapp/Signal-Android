@@ -23,11 +23,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/payments_transfer_scan_qr">
 
-        <org.thoughtcrime.securesms.components.camera.CameraView
+        <org.signal.qr.QrScannerView
             android:id="@+id/scanner"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:camera="0" />
+            android:layout_height="match_parent" />
 
         <LinearLayout
             android:id="@+id/overlay"

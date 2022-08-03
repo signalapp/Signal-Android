@@ -57,7 +57,7 @@ public class DeviceAddFragment extends LoggingFragment {
       });
     }
 
-    scannerView.start(getViewLifecycleOwner(), FeatureFlags.useQrLegacyScan());
+    scannerView.start(getViewLifecycleOwner());
 
     lifecycleDisposable.bindTo(getViewLifecycleOwner());
 

@@ -97,7 +97,6 @@ public final class FeatureFlags {
   private static final String STORIES_AUTO_DOWNLOAD_MAXIMUM     = "android.stories.autoDownloadMaximum";
   private static final String GIFT_BADGE_RECEIVE_SUPPORT        = "android.giftBadges.receiving";
   private static final String GIFT_BADGE_SEND_SUPPORT           = "android.giftBadges.sending";
-  private static final String USE_QR_LEGACY_SCAN                = "android.qr.legacy_scan";
   private static final String TELECOM_MANUFACTURER_ALLOWLIST    = "android.calling.telecomAllowList";
   private static final String TELECOM_MODEL_BLOCKLIST           = "android.calling.telecomModelBlockList";
 
@@ -150,7 +149,6 @@ public final class FeatureFlags {
       STORIES_AUTO_DOWNLOAD_MAXIMUM,
       GIFT_BADGE_RECEIVE_SUPPORT,
       GIFT_BADGE_SEND_SUPPORT,
-      USE_QR_LEGACY_SCAN,
       TELECOM_MANUFACTURER_ALLOWLIST,
       TELECOM_MODEL_BLOCKLIST
   );
@@ -212,7 +210,6 @@ public final class FeatureFlags {
       USE_AEC3,
       PAYMENTS_COUNTRY_BLOCKLIST,
       USE_FCM_FOREGROUND_SERVICE,
-      USE_QR_LEGACY_SCAN,
       TELECOM_MANUFACTURER_ALLOWLIST,
       TELECOM_MODEL_BLOCKLIST
   );
@@ -528,10 +525,6 @@ public final class FeatureFlags {
    */
   public static boolean giftBadgeSendSupport() {
     return giftBadgeReceiveSupport() && getBoolean(GIFT_BADGE_SEND_SUPPORT, Environment.IS_STAGING);
-  }
-
-  public static boolean useQrLegacyScan() {
-    return getBoolean(USE_QR_LEGACY_SCAN, false);
   }
 
   /** Only for rendering debug info. */

@@ -11,22 +11,25 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
-import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
-import org.signal.qr.kitkat.ScanningThread;
+import org.signal.qr.QrScannerView;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.components.camera.CameraView;
 import org.thoughtcrime.securesms.payments.MobileCoinPublicAddress;
+import org.thoughtcrime.securesms.util.LifecycleDisposable;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
+
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.disposables.Disposable;
 
 public final class PaymentsTransferQrScanFragment extends LoggingFragment {
 
   private static final String TAG = Log.tag(PaymentsTransferQrScanFragment.class);
 
+  private final LifecycleDisposable lifecycleDisposable = new LifecycleDisposable();
+
   private LinearLayout              overlay;
-  private CameraView                scannerView;
-  private ScanningThread            scanningThread;
+  private QrScannerView             scannerView;
   private PaymentsTransferViewModel viewModel;
 
   public PaymentsTransferQrScanFragment() {
@@ -48,45 +51,35 @@ public final class PaymentsTransferQrScanFragment extends LoggingFragment {
 
     Toolbar toolbar = view.findViewById(R.id.payments_transfer_scan_qr);
     toolbar.setNavigationOnClickListener(v -> Navigation.findNavController(v).popBackStack());
-  }
 
-  @Override
-  public void onResume() {
-    super.onResume();
-    scanningThread = new ScanningThread();
-    scanningThread.setScanListener(data -> ThreadUtil.runOnMain(() -> {
-      try {
-        viewModel.postQrData(MobileCoinPublicAddress.fromQr(data).getPaymentAddressBase58());
-        SafeNavigation.safeNavigate(Navigation.findNavController(requireView()), R.id.action_paymentsScanQr_pop);
-      } catch (MobileCoinPublicAddress.AddressException e) {
-        Log.e(TAG, "Not a valid address");
-      }
-    }));
-    scannerView.onResume();
-    scannerView.setPreviewCallback(scanningThread);
-    scanningThread.start();
-  }
+    scannerView.start(getViewLifecycleOwner());
 
-  @Override
-  public void onPause() {
-    super.onPause();
-    scannerView.onPause();
-    scanningThread.stopScanning();
+    lifecycleDisposable.bindTo(getViewLifecycleOwner());
+
+    Disposable qrDisposable = scannerView
+        .getQrData()
+        .distinctUntilChanged()
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(data -> {
+          try {
+            viewModel.postQrData(MobileCoinPublicAddress.fromQr(data).getPaymentAddressBase58());
+            SafeNavigation.safeNavigate(Navigation.findNavController(requireView()), R.id.action_paymentsScanQr_pop);
+          } catch (MobileCoinPublicAddress.AddressException e) {
+            Log.e(TAG, "Not a valid address");
+          }
+        });
+
+    lifecycleDisposable.add(qrDisposable);
   }
 
   @Override
   public void onConfigurationChanged(@NonNull Configuration newConfiguration) {
     super.onConfigurationChanged(newConfiguration);
 
-    scannerView.onPause();
-
     if (newConfiguration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
       overlay.setOrientation(LinearLayout.HORIZONTAL);
     } else {
       overlay.setOrientation(LinearLayout.VERTICAL);
     }
-
-    scannerView.onResume();
-    scannerView.setPreviewCallback(scanningThread);
   }
 }
