@@ -6,9 +6,10 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobs.DownloadLatestEmojiDataJob;
+import org.thoughtcrime.securesms.jobs.EmojiSearchIndexDownloadJob;
 
 /**
- * Schedules a emoji download job to get the latest version.
+ * Schedules jobs to get the latest emoji and search index.
  */
 public final class EmojiDownloadMigrationJob extends MigrationJob {
 
@@ -35,6 +36,7 @@ public final class EmojiDownloadMigrationJob extends MigrationJob {
   @Override
   public void performMigration() {
     ApplicationDependencies.getJobManager().add(new DownloadLatestEmojiDataJob(false));
+    EmojiSearchIndexDownloadJob.scheduleImmediately();
   }
 
   @Override
