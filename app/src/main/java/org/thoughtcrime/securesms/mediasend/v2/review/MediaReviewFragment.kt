@@ -39,6 +39,7 @@ import org.thoughtcrime.securesms.mediasend.v2.MediaValidator
 import org.thoughtcrime.securesms.mediasend.v2.stories.StoriesMultiselectForwardActivity
 import org.thoughtcrime.securesms.mms.SentMediaQuality
 import org.thoughtcrime.securesms.permissions.Permissions
+import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
@@ -61,7 +62,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
   private lateinit var cropAndRotateButton: View
   private lateinit var qualityButton: ImageView
   private lateinit var saveButton: View
-  private lateinit var sendButton: View
+  private lateinit var sendButton: ImageView
   private lateinit var addMediaButton: View
   private lateinit var viewOnceButton: ViewSwitcher
   private lateinit var viewOnceMessage: TextView
@@ -219,7 +220,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
         state.selectedMedia.map { MediaReviewSelectedItem.Model(it, state.focusedMedia == it) } + MediaReviewAddItem.Model
       )
 
-      presentSendButton(state.sendType)
+      presentSendButton(state.sendType, state.recipient)
       presentPager(state)
       presentAddMessageEntry(state.message)
       presentImageQualityToggle(state.quality)
@@ -303,14 +304,26 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
     )
   }
 
-  private fun presentSendButton(sendType: MessageSendType) {
-    val sendButtonTint = if (sendType.usesSignalTransport) {
-      R.color.signal_colorOnSecondaryContainer
-    } else {
-      R.color.core_grey_50
+  private fun presentSendButton(sendType: MessageSendType, recipient: Recipient?) {
+    val sendButtonBackgroundTint = when {
+      recipient != null -> recipient.chatColors.asSingleColor()
+      sendType.usesSignalTransport -> ContextCompat.getColor(requireContext(), R.color.signal_colorOnSecondaryContainer)
+      else -> ContextCompat.getColor(requireContext(), R.color.core_grey_50)
     }
 
-    ViewCompat.setBackgroundTintList(sendButton, ColorStateList.valueOf(ContextCompat.getColor(requireContext(), sendButtonTint)))
+    val sendButtonForegroundDrawable = when {
+      recipient != null -> ContextCompat.getDrawable(requireContext(), R.drawable.ic_send_24)
+      else -> ContextCompat.getDrawable(requireContext(), R.drawable.ic_arrow_end_24)
+    }
+
+    val sendButtonForegroundTint = when {
+      recipient != null -> ContextCompat.getColor(requireContext(), R.color.signal_colorOnCustom)
+      else -> ContextCompat.getColor(requireContext(), R.color.signal_colorSecondaryContainer)
+    }
+
+    sendButton.setImageDrawable(sendButtonForegroundDrawable)
+    sendButton.setColorFilter(sendButtonForegroundTint)
+    ViewCompat.setBackgroundTintList(sendButton, ColorStateList.valueOf(sendButtonBackgroundTint))
   }
 
   private fun presentPager(state: MediaSelectionState) {
