@@ -41,6 +41,9 @@
   <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Gravar a senha de recuperação de pagamentos</string>
   <string name="ApplicationPreferencesActivity_record_phrase">Gravar senha</string>
   <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Antes de desabilitar seu PIN, você deve gravar a sua senha de recuperação de pagamentos para garantir que você possa recuperar a sua conta de pagamentos.</string>
+  <!--NumericKeyboardView-->
+  <!--Back button on numeric keyboard-->
+  <string name="NumericKeyboardView__backspace">Apagar</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minuto</item>
@@ -2407,7 +2410,6 @@
   <string name="preferences_enter_proxy_address">Digite o endereço de proxy</string>
   <string name="configurable_single_select__customize_option">Opção para personalizar</string>
   <!--Internal only preferences-->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Remove o indicador de integração e inicia o download de stories de integração.</string> -->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Todas as atividades</string>
   <string name="PaymentsAllActivityFragment__all">Todos</string>
@@ -4054,6 +4056,11 @@
   <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Ative as confirmações de leitura para ver quem visualizou seus stories.</string>
   <!--Button label displayed when user has disabled receipts-->
   <string name="StoryViewsFragment__go_to_settings">Acessar configurações</string>
+  <!--Dialog action to remove viewer from a story-->
+  <string name="StoryViewsFragment__remove">Remover</string>
+  <!--Dialog title when removing a viewer from a story-->
+  <!--Dialog message when removing a viewer from a story-->
+  <!--Story View context menu action to remove them from a story-->
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Ainda não há respostas</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->

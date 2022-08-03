@@ -41,6 +41,9 @@
   <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">ಪೇಮೆಂಟ್ಸ್ ರಿಕವರಿ ಪದಗುಚ್ಛವನ್ನು ರೆಕಾರ್ಡ್‌ ಮಾಡಿ</string>
   <string name="ApplicationPreferencesActivity_record_phrase">ಪದಗುಚ್ಛವನ್ನು ರೆಕಾರ್ಡ್‌ ಮಾಡಿ</string>
   <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">ನಿಮ್ಮ PIN ಅನ್ನು ನೀವು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸುವ‌ ಮೊದಲು, ನಿಮ್ಮ ಪೇಮೆಂಟ್ಸ್ ರಿಕವರಿ ಪದಗುಚ್ಛವನ್ನು ರೆಕಾರ್ಡ್‌ ಮಾಡಿ ನಿಮ್ಮ ಪೇಮೆಂಟ್ಸ್ ಖಾತೆಯ ರಿಕವರಿ ಮಾಡುವುದನ್ನು ನೀವು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳಬೇಕು. </string>
+  <!--NumericKeyboardView-->
+  <!--Back button on numeric keyboard-->
+  <string name="NumericKeyboardView__backspace">ಬ್ಯಾಕ್‌ಸ್ಪೇಸ್</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%dನಿಮಿಷಗಳು</item>
@@ -2318,9 +2321,6 @@
   <string name="preferences_enter_proxy_address">ಪ್ರಾಕ್ಸಿ ವಿಳಾಸ ನಮೂದಿಸಿ</string>
   <string name="configurable_single_select__customize_option">ಆಯ್ಕೆಯನ್ನು ಅಗತ್ಯಾನುಗುಣಗೊಳಿಸಿರಿ</string>
   <!--Internal only preferences-->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">ಆನ್‍ಬೋರ್ಡಿಂಗ್ ಫ್ಲ್ಯಾಗ್ ಗಳನ್ನು ತೆರವುಗೊಳಿಸಿ, ಆನ್‍ಬೋರ್ಡಿಂಗ್ ಸ್ಟೋರೀಗಳ ಡೌನ್‍ಲೋಡ್ ಗೆ ಚಲನೆ ನೀಡುತ್ತದೆ.
-
-</string> -->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">ಎಲ್ಲ ಚಟುವಟಿಕೆ</string>
   <string name="PaymentsAllActivityFragment__all">ಎಲ್ಲಾ</string>
@@ -3946,6 +3946,11 @@
   <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">ನಿಮ್ಮ ಸ್ಟೋರೀಸ್ ಯಾರು ವೀಕ್ಷಿಸಿದ್ದಾರೆಂದು ನೋಡಲು ರೀಡ್ ರೆಸಿಪ್ಟ್ಸ್ ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
   <!--Button label displayed when user has disabled receipts-->
   <string name="StoryViewsFragment__go_to_settings">ಸೆಟ್ಟಿಂಗ್‌ಗಳಿಗೆ ಹೋಗಿ</string>
+  <!--Dialog action to remove viewer from a story-->
+  <string name="StoryViewsFragment__remove">ತೆಗೆದುಹಾಕಿ</string>
+  <!--Dialog title when removing a viewer from a story-->
+  <!--Dialog message when removing a viewer from a story-->
+  <!--Story View context menu action to remove them from a story-->
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">ಇನ್ನೂ ಯಾವುದೇ ಪ್ರತ್ಯುತ್ತರವಿಲ್ಲ</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->

@@ -41,6 +41,9 @@
   <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Ödənişlərin bərpa parolunu qeyd edin</string>
   <string name="ApplicationPreferencesActivity_record_phrase">Parolu qeyd edin   </string>
   <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">PIN-inizi sıradan çıxartmazdan əvvəl, ödəniş hesabınızı bərpa edə biləcəyinizə əmin olmaq üçün ödəniş bərpa parolunuzu qeyd edin.</string>
+  <!--NumericKeyboardView-->
+  <!--Back button on numeric keyboard-->
+  <string name="NumericKeyboardView__backspace">Backspace</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d dəqiqə</item>
@@ -2321,7 +2324,6 @@
   <string name="preferences_enter_proxy_address">Proksi ünvanını daxil et</string>
   <string name="configurable_single_select__customize_option">Seçimi özəlləşdir</string>
   <!--Internal only preferences-->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string> -->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Bütün fəaliyyətlər</string>
   <string name="PaymentsAllActivityFragment__all">Hamısı</string>
@@ -3947,6 +3949,11 @@
   <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Hekayələrinizə baxanları görmək üçün oxunma bildirişlərini aktivləşdirin.</string>
   <!--Button label displayed when user has disabled receipts-->
   <string name="StoryViewsFragment__go_to_settings">Parametrlərə keçin</string>
+  <!--Dialog action to remove viewer from a story-->
+  <string name="StoryViewsFragment__remove">Çıxart</string>
+  <!--Dialog title when removing a viewer from a story-->
+  <!--Dialog message when removing a viewer from a story-->
+  <!--Story View context menu action to remove them from a story-->
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Hələ ki, cavab yoxdur</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->

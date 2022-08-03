@@ -41,6 +41,9 @@
   <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Ödemeleri kurtarma parolasını kaydet</string>
   <string name="ApplicationPreferencesActivity_record_phrase">Parolayı kaydet</string>
   <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">PIN\'inizi devre dışı bırakmadan önce, ödemeler hesabınızın kurtarılmasını güvence altına almak için ödemeler kurtarma parolanızı kaydetmeniz gerekiyor.</string>
+  <!--NumericKeyboardView-->
+  <!--Back button on numeric keyboard-->
+  <string name="NumericKeyboardView__backspace">Geri silme</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d dakika</item>
@@ -2319,7 +2322,6 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="preferences_enter_proxy_address">Vekil sunucu adresi girin</string>
   <string name="configurable_single_select__customize_option">Seçeneği düzenle</string>
   <!--Internal only preferences-->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string> -->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Tüm faaliyet</string>
   <string name="PaymentsAllActivityFragment__all">Tümü</string>
@@ -3945,6 +3947,11 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Hikayelerini kimlerin görüntülediğini görmek için okundu bilgisini etkinleştir.</string>
   <!--Button label displayed when user has disabled receipts-->
   <string name="StoryViewsFragment__go_to_settings">Ayarlara git</string>
+  <!--Dialog action to remove viewer from a story-->
+  <string name="StoryViewsFragment__remove">Kaldır</string>
+  <!--Dialog title when removing a viewer from a story-->
+  <!--Dialog message when removing a viewer from a story-->
+  <!--Story View context menu action to remove them from a story-->
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Henüz yanıt yok</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->

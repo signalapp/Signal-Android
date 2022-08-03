@@ -41,6 +41,9 @@
   <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">決済機能リカバリーフレーズの保管</string>
   <string name="ApplicationPreferencesActivity_record_phrase">フレーズを記録</string>
   <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">PINを無効にする前に、口座を回復するためのリカバリーフレーズを保管しなければなりません。</string>
+  <!--NumericKeyboardView-->
+  <!--Back button on numeric keyboard-->
+  <string name="NumericKeyboardView__backspace">バックスペース</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="other">%d分</item>
@@ -2225,7 +2228,6 @@
   <string name="preferences_enter_proxy_address">プロキシアドレスを入力してください</string>
   <string name="configurable_single_select__customize_option">オプションのカスタマイズ</string>
   <!--Internal only preferences-->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string> -->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">すべてのアクティビティ</string>
   <string name="PaymentsAllActivityFragment__all">すべて</string>
@@ -3831,6 +3833,11 @@
   <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">既読を有効にすると、誰があなたのストーリーズを見たのかがわかります。</string>
   <!--Button label displayed when user has disabled receipts-->
   <string name="StoryViewsFragment__go_to_settings">設定へ</string>
+  <!--Dialog action to remove viewer from a story-->
+  <string name="StoryViewsFragment__remove">削除</string>
+  <!--Dialog title when removing a viewer from a story-->
+  <!--Dialog message when removing a viewer from a story-->
+  <!--Story View context menu action to remove them from a story-->
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">返信 なし</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->

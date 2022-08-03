@@ -41,6 +41,9 @@
   <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">पेमेंट रिकव्हरी फ्रेझ रेकॉर्ड करा</string>
   <string name="ApplicationPreferencesActivity_record_phrase">फ्रेझ रेकॉर्ड करा</string>
   <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">आपला PIN अक्षम करण्यापूर्वी, आपले पेमेंट खाते आपण रिकव्हर करू शकता हे सुनिश्चित करण्यासाठी आपली पेमेंट रिकव्हरी फ्रेझ रेकॉर्ड करणे आवश्यक आहे.</string>
+  <!--NumericKeyboardView-->
+  <!--Back button on numeric keyboard-->
+  <string name="NumericKeyboardView__backspace">बॅकस्पेस</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d मिनिट</item>
@@ -2318,7 +2321,6 @@
   <string name="preferences_enter_proxy_address">प्रॉक्सी पत्ता प्रविष्ट करा</string>
   <string name="configurable_single_select__customize_option">पर्याय सानुकूलित करा</string>
   <!--Internal only preferences-->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string> -->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">सर्व अॅक्टिव्हिटी</string>
   <string name="PaymentsAllActivityFragment__all">सर्व</string>
@@ -3944,6 +3946,11 @@
   <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">आपल्या स्टोरीज कोणी पाहिल्या आहेत ते पाहण्यासाठी पोच वाचा ला सक्षम करा.</string>
   <!--Button label displayed when user has disabled receipts-->
   <string name="StoryViewsFragment__go_to_settings">सेटिंग्ज वर जा</string>
+  <!--Dialog action to remove viewer from a story-->
+  <string name="StoryViewsFragment__remove">काढा</string>
+  <!--Dialog title when removing a viewer from a story-->
+  <!--Dialog message when removing a viewer from a story-->
+  <!--Story View context menu action to remove them from a story-->
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">अद्याप कोणतीही प्रत्युत्तरे नाहीत</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->

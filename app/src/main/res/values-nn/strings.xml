@@ -41,6 +41,9 @@
   <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Skriv inn gjenopprettingsfrase for betalingar</string>
   <string name="ApplicationPreferencesActivity_record_phrase">Skriv inn frase</string>
   <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Før du kan skru av PIN-en din, må du skriva inn gjenopprettingsfrasen for betalingar for å stadfesta at du kan gjenoppretta betalingskontoen din.</string>
+  <!--NumericKeyboardView-->
+  <!--Back button on numeric keyboard-->
+  <string name="NumericKeyboardView__backspace">Visk ut</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minutt</item>
@@ -3932,6 +3935,11 @@ Sjekkar igjen no …</string>
   <string name="StoryViewsFragment__no_views_yet">Ikkje vist enno</string>
   <!--Displayed when user has disabled receipts-->
   <!--Button label displayed when user has disabled receipts-->
+  <!--Dialog action to remove viewer from a story-->
+  <string name="StoryViewsFragment__remove">Fjern</string>
+  <!--Dialog title when removing a viewer from a story-->
+  <!--Dialog message when removing a viewer from a story-->
+  <!--Story View context menu action to remove them from a story-->
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Ingen svar enno</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->

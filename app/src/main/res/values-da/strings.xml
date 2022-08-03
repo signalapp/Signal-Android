@@ -41,6 +41,9 @@
   <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Registrer gendannelsessætning for betalinger</string>
   <string name="ApplicationPreferencesActivity_record_phrase">Registrer sætning</string>
   <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Før du kan deaktivere din pinkode, skal du notere din gendannelsessætning til betaling for at sikre, at du kan gendanne din betalingskonto.</string>
+  <!--NumericKeyboardView-->
+  <!--Back button on numeric keyboard-->
+  <string name="NumericKeyboardView__backspace">Tilbagetast</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minut</item>
@@ -2320,7 +2323,6 @@ nummer (%s) er ugyldigt</string>
   <string name="preferences_enter_proxy_address">Indtast proxy-adresse</string>
   <string name="configurable_single_select__customize_option">Tilpas mulighed</string>
   <!--Internal only preferences-->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Fjerner onboarding flag, og igangsætter download af onboarding historier.</string> -->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Alle aktiviteter</string>
   <string name="PaymentsAllActivityFragment__all">Alle</string>
@@ -3946,6 +3948,11 @@ nummer (%s) er ugyldigt</string>
   <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Slå kvittering for læsning til for at se, hvem der har set dine historier.</string>
   <!--Button label displayed when user has disabled receipts-->
   <string name="StoryViewsFragment__go_to_settings">Gå til indstillinger</string>
+  <!--Dialog action to remove viewer from a story-->
+  <string name="StoryViewsFragment__remove">Fjern</string>
+  <!--Dialog title when removing a viewer from a story-->
+  <!--Dialog message when removing a viewer from a story-->
+  <!--Story View context menu action to remove them from a story-->
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Ingen svar endnu</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->

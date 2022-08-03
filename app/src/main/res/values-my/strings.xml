@@ -41,6 +41,9 @@
   <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">ငွေပေးချေမှု ပြန်လည်ရယူမည့် စာပုဒ်တိုကို မှတ်ထားပါ</string>
   <string name="ApplicationPreferencesActivity_record_phrase">စာပုဒ်တိုကို မှတ်ထားပါ</string>
   <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">ပင်နံပါတ်ကို မပိတ်မီ ငွေပေးချေသည့် အကောင့်ကို ပြန်ရယူနိုင်ရန် ငွေပေးချေမှု ပြန်လည်ရယူသည့် စာပုဒ်တိုကို မှတ်ထားရပါမည်။</string>
+  <!--NumericKeyboardView-->
+  <!--Back button on numeric keyboard-->
+  <string name="NumericKeyboardView__backspace">Backspace</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="other">%d မိနစ်</item>
@@ -2230,7 +2233,6 @@
   <string name="preferences_enter_proxy_address">ကြားခံလိပ်စာကို ထည့်ပါ</string>
   <string name="configurable_single_select__customize_option">ရွေးချယ်မှုကို စိတ်ကြိုက်ပြင်ဆင်မယ်</string>
   <!--Internal only preferences-->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string> -->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">လှုပ်ရှားမှုများအားလုံး</string>
   <string name="PaymentsAllActivityFragment__all">အားလုံး</string>
@@ -3835,6 +3837,11 @@
   <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">သင့်စတိုရီများအား မည်သူ ကြည့်ပြီးပြီလဲကို မြင်နိုင်ရန် ဖတ်ပြီးကြောင်းညွှန်ပြမှုကို ဖွင့်ပါ။</string>
   <!--Button label displayed when user has disabled receipts-->
   <string name="StoryViewsFragment__go_to_settings">ဆက်တင်သို့ သွားရန်</string>
+  <!--Dialog action to remove viewer from a story-->
+  <string name="StoryViewsFragment__remove">ဖယ်ရှားမယ်</string>
+  <!--Dialog title when removing a viewer from a story-->
+  <!--Dialog message when removing a viewer from a story-->
+  <!--Story View context menu action to remove them from a story-->
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">ပြန်စာများ မရှိသေးပါ</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->

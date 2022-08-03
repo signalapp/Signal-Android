@@ -41,6 +41,9 @@
   <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">ថតឃ្លាសង្គ្រោះការទូទាត់</string>
   <string name="ApplicationPreferencesActivity_record_phrase">ថតឃ្លា</string>
   <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">មុនពេលអ្នកអាចបិទលេខកូដ PIN របស់អ្នក អ្នកត្រូវរក្សាទុកឃ្លាស្តារការទូទាត់របស់អ្នក ដើម្បីប្រាកដថាអ្នកអាចស្តារគណនីទូទាត់របស់អ្នកបាន។</string>
+  <!--NumericKeyboardView-->
+  <!--Back button on numeric keyboard-->
+  <string name="NumericKeyboardView__backspace">ផ្នែកខាងក្រោយ</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="other">%d នាទី</item>
@@ -2229,7 +2232,6 @@
   <string name="preferences_enter_proxy_address">បញ្ចូលអាសយដ្ឋានប្រូកស៊ី</string>
   <string name="configurable_single_select__customize_option">ជម្រើសធ្វើផ្សេង</string>
   <!--Internal only preferences-->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string> -->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">សកម្មភាពទាំងអស់</string>
   <string name="PaymentsAllActivityFragment__all">ទាំងអស់</string>
@@ -3834,6 +3836,11 @@
   <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">បើកមុខងារអានសារដើម្បីមើលថាអ្នកណាដែលបានមើលរឿងរ៉ាវរបស់អ្នក។</string>
   <!--Button label displayed when user has disabled receipts-->
   <string name="StoryViewsFragment__go_to_settings">ចូលទៅកាន់ការកំណត់</string>
+  <!--Dialog action to remove viewer from a story-->
+  <string name="StoryViewsFragment__remove">លុបចេញ</string>
+  <!--Dialog title when removing a viewer from a story-->
+  <!--Dialog message when removing a viewer from a story-->
+  <!--Story View context menu action to remove them from a story-->
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">មិនទាន់មានការឆ្លើយតបទេ</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->

@@ -33,7 +33,7 @@
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">Lock ng screen %1$s, Lock ng pagpaparehistro %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Wika%2$s</string>
-  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Kailangan ang mga PIN para sa registration lock. Para idisable, pakiusap na unang huwag paganahin ang registration lock.</string>
+  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Kinailangan ang mga PIN para sa registration lock. Para mag-disable ng PIN, paki disable muna ang registration lock.</string>
   <string name="ApplicationPreferencesActivity_pin_created">Nalikha na ang PIN.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">Naka-disable ang PIN.</string>
   <string name="ApplicationPreferencesActivity_hide">I-hide</string>
@@ -41,6 +41,9 @@
   <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">I-record ang payments recovery phase</string>
   <string name="ApplicationPreferencesActivity_record_phrase">I-record ang phrase</string>
   <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Bago mo ma-disable ang iyong PIN, kinakailangan mong i-record ang payments recovery phrase mo para masiguradong mare-recover mo ang iyong payments account.</string>
+  <!--NumericKeyboardView-->
+  <!--Back button on numeric keyboard-->
+  <string name="NumericKeyboardView__backspace">Backspace</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%dminuto</item>
@@ -93,14 +96,14 @@
   <!--Text that is shown when unblocking an SMS contact-->
   <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">Pwede niyo nang i-message ang isa\'t isa.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Hindi makakatawag o makakapag-send ng messages ang blocked users sa\'yo.</string>
-  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">Hindi makakapag-send ng messages ang blocked users sa\'yo.</string>
+  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">Hindi ka mapapadalhan ng messages ng mga taong binlock mo.</string>
   <!--Message shown on block dialog when blocking the Signal release notes recipient-->
   <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">I-block ang pag-receive ng updates at news mula sa Signal.</string>
   <!--Message shown on unblock dialog when unblocking the Signal release notes recipient-->
   <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">I-resume ang pag-receive ng updates at news mula sa Signal.</string>
   <string name="BlockUnblockDialog_unblock_s">I-unblock ang %1$s?</string>
   <string name="BlockUnblockDialog_block">I-block</string>
-  <string name="BlockUnblockDialog_block_and_leave">I-block at Mag-leave</string>
+  <string name="BlockUnblockDialog_block_and_leave">I-block at Umalis</string>
   <string name="BlockUnblockDialog_report_spam_and_block">I-report ang spam at i-block</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Ngayong araw</string>
@@ -154,7 +157,7 @@
   <string name="CommunicationActions_cancel">Kanselahin</string>
   <string name="CommunicationActions_call">Tawagan</string>
   <string name="CommunicationActions_insecure_call">Hindi secure na tawag</string>
-  <string name="CommunicationActions_carrier_charges_may_apply">Maaaring malapatan ng mga singilin mula sa carrier. Ang numerong iyong tinatawagan ay hindi rehistrado sa Signal. Ang tawag na ito ay dadaan sa iyong mobile carrier, hindi sa pamamagitan ng internet. </string>
+  <string name="CommunicationActions_carrier_charges_may_apply">Maaari kang singilin ng network mo sa tawag na ito. Hindi naka-register sa Signal ang number na tinatawagan mo. Dadaan ang tawag sa network mo at hindi sa internet. </string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Nagbago ang iyong numerong pangkaligtasan kay %1$s. Posibleng ang ibig sabihin nito\'y may nagtatangkang manghimasok sa inyong komunikasyon, o kaya\'y nag-reinstall lamang si %2$s ng Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Maaari mong beripikahin ang iyong numerong pangkaligtasan sa kontak na ito.</string>
@@ -244,7 +247,7 @@
   <string name="ConversationActivity_cant_start_group_call">Hindi masimulan ang group call</string>
   <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Ang admins ng group lamang ang pwedeng mag-start ng isang call.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Walang available na app upang i-handle ang link na ito sa iyong device.</string>
-  <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Ang iyong request to join ay naipadala na sa group admin. You\'ll be notified when they take action.</string>
+  <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Ang iyong request to join ay na-send na sa group admin. You\'ll be notified when they take action.</string>
   <string name="ConversationActivity_cancel_request">I-cancel ang Request</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Upang magpadala ng mensaheng audio, payagan ang Signal na magamit ang iyong mikropono.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Kailangan ng Signal ang pahintulot sa Mikropono upang makapagpadala ng mensaheng audio, ngunit permanente itong ipinagbabawal. Pumunta sa app settings, piliin ang \"Mga Pahintulot\", at i-enable ang \"Mikropono\".</string>
@@ -406,7 +409,7 @@
     <item quantity="other">%d selected</item>
   </plurals>
   <!--Show in conversation list overflow menu to open selection bottom sheet-->
-  <string name="ConversationListFragment__notification_profile">Notification profile</string>
+  <string name="ConversationListFragment__notification_profile">Profile ng notification</string>
   <!--Tooltip shown after you have created your first notification profile-->
   <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">I-turn on o off ang iyong notifications dito.</string>
   <!--Message shown in top toast to indicate the named profile is on-->
@@ -547,7 +550,7 @@
   <string name="GroupManagement_invite_multiple_users">Ang users na ito ay hindi mo automatic na maidadagdag sa grupong ito. Sila ay naimbitahan mag-join, at hindi makakakita ng anumang group messages hanggang i-accept nila ito.</string>
   <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Ano ang mga New Groups?</string>
-  <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Ang New Groups ay may features tulad ng @mentions at group admins, at magdadagdagan pa ito ng ibang features sa hinaharap.</string>
+  <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Ang Bagong Groups ay may features tulad ng @mentions at group admins, at magdadagdagan pa ito ng ibang features sa hinaharap.</string>
   <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Lahat ng message history at media ay naingatan bago mangyari ang upgrade.</string>
   <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">Kinakailangan mong mag-accept ng invite para maka-join ulit sa group na ito, at hindi ka makakatanggap ng group messages hanggang i-accept mo ito.</string>
   <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
@@ -561,7 +564,7 @@
   <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Mag-upgrade sa New Group</string>
   <string name="GroupsV1MigrationInitiation_upgrade_this_group">I-upgrade ang group na ito</string>
-  <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">Ang New Groups ay may features tulad ng @mentions at group admins, at magdadagdagan pa ito ng ibang features sa hinaharap.</string>
+  <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">Ang Bagong Groups ay may features tulad ng @mentions at group admins, at magdadagdagan pa ito ng ibang features sa hinaharap.</string>
   <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">Lahat ng message history at media ay iingatan bago mangyari ang upgrade.</string>
   <string name="GroupsV1MigrationInitiation_encountered_a_network_error">Encountered a network error. Subukan ulit mamaya.</string>
   <string name="GroupsV1MigrationInitiation_failed_to_upgrade">Failed to upgrade.</string>
@@ -793,7 +796,7 @@
   <!--Message shown when you try to get information for a group via link but an unknown issue occurred-->
   <string name="GroupJoinBottomSheetDialogFragment_joining_via_this_link_failed_try_joining_again_later">Joining via this link failed. Subukang mag-join ulit mamaya.</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Gusto mo bang mag-join sa group na ito at i-share ang iyong pangalan at photo sa members nito?</string>
-  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Ang admin ng group na ito\'y dapat i-approve ang request mo bago ka makasali sa group na ito. Kapag ikaw ay nag-request to join, ang iyong pangalan at photo ay isha-share sa group members.</string>
+  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Dapat i-approve ng group admin ang iyong request bago ka maka-join sa group na ito. Kung ma-approve ka, ang name at photo mo ay isha-share sa members.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
     <item quantity="one">Group · %1$d member</item>
     <item quantity="other">Group · %1$d members</item>
@@ -980,7 +983,7 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">Itinakda ni %1$s ang timer ng naglalahong mensahe sa %2$s.</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">Ang disappearing message timer ay naka-set sa %1$s.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Ang group na ito\'y naka-update na sa New Group.</string>
-  <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Hindi ka ma-add sa New Group at na-invite para mag-join.</string>
+  <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Hindi ka ma-add sa Bagong Group at inimbitahan kang sumali.</string>
   <string name="MessageRecord_chat_session_refreshed">Chat session refreshed</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
     <item quantity="one">Isang member ang hindi ma-add sa New Group at na-invite para mag-join.</item>
@@ -1155,7 +1158,7 @@
   </plurals>
   <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call">
     <item quantity="one">Sila %1$s, %2$s, at %3$d pa ay nasa group call</item>
-    <item quantity="other">Sila %1$s, %2$s, at %3$d others ay nasa group call</item>
+    <item quantity="other">Sila %1$s, %2$s, at %3$d pa ay nasa group call</item>
   </plurals>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Tanggapin</string>
@@ -1176,7 +1179,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Gusto mo bang mag-join sa group na ito at i-share sa members ang pangalan at photo mo? Hindi nila malalaman na nakita mo ang kanilang messages hanggang sa i-accept mo ito.</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Gusto mo bang mag-join sa group na ito at i-share sa members ang pangalan at photo mo? Hindi mo makikita ang kanilang messages hanggang sa i-accept mo ito.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Gusto mo bang mag-join sa group na ito? Hindi nila malalaman na nakita mo ang kanilang messages hanggang sa i-accept mo ito.</string>
-  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Gusto mo bang i-unblock ang group na ito at i-share sa members ang pangalan at photo mo? Hindi ka makakatanggap ng anumang messages hanggang sa i-unblock mo sila.</string>
+  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Gusto mo bang i-unblock ang group na ito at i-share sa members ang pangalan at photo mo? Hindi ka makakatanggap ng anumang message hangga\'t hindi mo sila ina-unblock.</string>
   <string name="MessageRequestProfileView_view">Tingnan</string>
   <string name="MessageRequestProfileView_member_of_one_group">Kasapi ng %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Kasapi ng %1$s at %2$s</string>
@@ -1422,8 +1425,8 @@
   <string name="RegistrationActivity_play_services_error">Nagka-error sa Play Services</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Ang Google Play Services ay nag-u-update o kaya\'y pansamantalang hindi available. Pakisubukang muli. </string>
   <string name="RegistrationActivity_terms_and_privacy">Mga Tutunin at Patakaran sa Privacy</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Ang Signal ay nangangailangan ng contacts at media permissions para maka-connect ka sa iyong friends at makapag-send ng messages. Naka-upload ang contacts mo gamit ang private contact discovery ng Signal, kung saan sila\'y end-to-end encrypted and never visible sa Signal service.</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Ang Signal ay nangangailangan ng contacts permission para maka-connect ka sa iyong friends. Naka-upload ang contacts mo gamit ang private contact discovery ng Signal, kung saan sila\'y end-to-end encrypted and never visible sa Signal service.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Kinakailangan ng Signal ng pahintulot para ma-access ang contacts at media para maka-connect ka sa friends mo at makapag-send ng message. Ina-upload ang contacts mo gamit ang private contact discovery ng Signal, kung saan end-to-end encrypted ang mga ito at hindi kailanman makikita ng Signal service.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Kinakailangan ng Signal ng pahintulot para ma-access ang contacts para maka-connect ka sa friends mo. Ina-upload ang contacts mo gamit ang private contact discovery ng Signal, kung saan end-to-end encrypted ang mga ito at hindi kailanman makikita ng Signal service.</string>
   <string name="RegistrationActivity_rate_limited_to_service">Nakagawa ka ng napakaraming pagtatangkang irehistro ang numerong ito. Pakiusap na subukang muli kinalaunan.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Hindi makakonekta sa serbisyo. Pakisuri ang koneksyon ng network at subukang muli.</string>
   <string name="RegistrationActivity_non_standard_number_format">Non-standard number format</string>
@@ -1498,7 +1501,7 @@
   <string name="SmsMessageRecord_secure_session_reset_s">Ni-reset ni %s ang secure na sesyon.</string>
   <string name="SmsMessageRecord_duplicate_message">Dobleng mensahe.</string>
   <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Ang mensaheng ito ay hindi maiproseso dahil ipinadala ito mula sa mas bagong bersyon ng Signal. Maaari mong hilingin sa iyong kontak na ipadalang muli ang mensahe matapos mong mag-update.</string>
-  <string name="SmsMessageRecord_error_handling_incoming_message">May error sa pag-aasikaso ng paparating na mensahe.</string>
+  <string name="SmsMessageRecord_error_handling_incoming_message">Nagka-error sa paghatid ng parating na message.</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Mga Sticker</string>
   <!--StickerManagementAdapter-->
@@ -2321,7 +2324,6 @@
   <string name="preferences_enter_proxy_address">I-enter ang proxy address</string>
   <string name="configurable_single_select__customize_option">I-customize ang option</string>
   <!--Internal only preferences-->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string> -->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">All activity</string>
   <string name="PaymentsAllActivityFragment__all">Lahat</string>
@@ -2361,7 +2363,7 @@
   <string name="PaymentsHomeFragment__balance_is_not_currently_available">Ang Balance ay hindi available sa ngayon.</string>
   <string name="PaymentsHomeFragment__payments_deactivated">Deactivated na ang payments.</string>
   <string name="PaymentsHomeFragment__payment_failed">Payment failed</string>
-  <string name="PaymentsHomeFragment__details">Detalye</string>
+  <string name="PaymentsHomeFragment__details">Mga Detalye</string>
   <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Pwede mong gamitin ang Signal para maka-send at maka-receive ng MobileCoin. All payments are subject to the Terms of Use for MobileCoins and the MobileCoin Wallet. Ito\'y isang beta feature kaya maaari kang maka-encounter ng issues at ang payments o balances na mawawala sa\'yo ay hindi mare-recover.</string>
   <string name="PaymentsHomeFragment__activate">I-activate</string>
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">View MobileCoin terms</string>
@@ -2373,7 +2375,7 @@
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Nakopya na sa clipboard</string>
   <string name="PaymentsAddMoneyFragment__to_add_funds">To add funds, mag-send ng MobileCoin sa iyong wallet address. Magsimula ng isang transaction from your account sa isang exchange that supports MobileCoin, pagkatapos ay i-scan ang QR code or copy your wallet address.</string>
   <!--PaymentsDetailsFragment-->
-  <string name="PaymentsDetailsFragment__details">Detalye</string>
+  <string name="PaymentsDetailsFragment__details">Mga Detalye</string>
   <string name="PaymentsDetailsFragment__status">Status</string>
   <string name="PaymentsDetailsFragment__submitting_payment">Submitting payment…</string>
   <string name="PaymentsDetailsFragment__processing_payment">Processing payment…</string>
@@ -2660,7 +2662,7 @@
   </plurals>
   <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
     <item quantity="one">Kung maubusan ka ng pagtatangka ang iyong accouny ay malo-lock sa loob ng %1$d araw. Pagkaraan ng %1$d araw ng kawalang-aktibidad, magagawa mong magrehistrong muli nang wala ang iyong PIN. Ang iyong account ay malilinis at mabubura ang lahat ng laman. </item>
-    <item quantity="other">Kung maubusan ka ng pagtatangka ang iyong account ay malo-lock sa loob ng %1$d araw. Pagkaraan ng %1$d araw ng kawalang-aktibidad, magagawa mong magrehistrong muli nang wala ang iyong PIN. Ang iyong account ay malilinis at mabubura ang lahat ng laman. </item>
+    <item quantity="other">Kapag nakailang ulit ka nang sumubok na mag-log in, mala-lock ang account mo nang %1$d araw. Pagkaraan nang %1$d araw ng kawalang-aktibidad, maaari ka ulit mag-register nang hindi nangangailangan ng PIN. Buburahin ang lahat ng laman ng account mo.</item>
   </plurals>
   <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
     <item quantity="one">May %1$d pagtatangka ka pang natitira.</item>
@@ -2753,7 +2755,7 @@
   <string name="preferences_app_protection__create_a_pin">Lumikha ng PIN</string>
   <string name="preferences_app_protection__change_your_pin">Baguhin ang iyong PIN</string>
   <string name="preferences_app_protection__pin_reminders">PIN reminders</string>
-  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Pinapanatiling encrypted ng PIN ang mga impormasyong naka-imbak sa Signal upang ikaw lang ang maka-access nito. Ang iyong profile, mga setting, at kontak ay mare-restore kapag nagre-install ka ng Signal.</string>
+  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Pinapanatiling encrypted ng mga PIN ang mga impormasyong naka-save sa Signal para ikaw lang ang pwedeng maka-access ng mga ito. Ang profile, settings, at contacts mo ay mare-restore kapag in-install mo ulit ang Signal.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Magdagdag ng extra security by requiring your Signal PIN na i-register ulit ang phone number mo sa Signal.</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Reminders help you remember your PIN dahil hindi na ito nare-recover. You\'ll be asked less frequently over time.</string>
   <string name="preferences_app_protection__turn_off">Patayin</string>
@@ -3840,7 +3842,7 @@
   <!--Donation receipts boost row label-->
   <string name="DonationReceiptListFragment__boost">Boost</string>
   <!--Donation receipts details title-->
-  <string name="DonationReceiptDetailsFragment__details">Detalye</string>
+  <string name="DonationReceiptDetailsFragment__details">Mga Detalye</string>
   <!--Donation receipts donation type heading-->
   <string name="DonationReceiptDetailsFragment__donation_type">Donation type</string>
   <!--Donation receipts date paid heading-->
@@ -3947,6 +3949,11 @@
   <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">I-enable ang read receipts para makita kung sinong nag-view ng stories mo.</string>
   <!--Button label displayed when user has disabled receipts-->
   <string name="StoryViewsFragment__go_to_settings">Pumunta sa settings</string>
+  <!--Dialog action to remove viewer from a story-->
+  <string name="StoryViewsFragment__remove">Tanggalin</string>
+  <!--Dialog title when removing a viewer from a story-->
+  <!--Dialog message when removing a viewer from a story-->
+  <!--Story View context menu action to remove them from a story-->
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Wala pang replies</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
@@ -4267,7 +4274,7 @@
   <!--Label indicating swipe direction to exit story viewer-->
   <string name="StoryFirstTimeNavigationView__swipe_right_to_exit">I-swipe right para mag-exit</string>
   <!--Button label to confirm understanding of story navigation-->
-  <string name="StoryFirstTimeNagivationView__got_it">Got it</string>
+  <string name="StoryFirstTimeNagivationView__got_it">OK</string>
   <!--Content description for vertical context menu button in safety number sheet rows-->
   <string name="SafetyNumberRecipientRowItem__open_context_menu">Buksan ang context menu</string>
   <!--Sub-line when a user is verified.-->
@@ -4306,7 +4313,7 @@
     <item quantity="other">Maaaring nag-reinstall ng Signal o nagpalit ng devices ang %1$d recipients. Mag-tap ng isang recipient para i-confirm ang bagong safety number. Ito ay optional.</item>
   </plurals>
   <!--Section header for 1:1 contacts in review fragment-->
-  <string name="SafetyNumberBucketRowItem__contacts">Mga Contacts</string>
+  <string name="SafetyNumberBucketRowItem__contacts">Contacts</string>
   <!--Context menu label for distribution list headers in review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__remove_all">Alisin lahat</string>
   <!--Context menu label for 1:1 contacts to remove from send-->

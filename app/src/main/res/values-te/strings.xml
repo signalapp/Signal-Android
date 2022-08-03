@@ -41,6 +41,9 @@
   <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">రికార్డ్ చెల్లింపులు రికవరీ పదబంధం</string>
   <string name="ApplicationPreferencesActivity_record_phrase">రికార్డ్ పదబంధం</string>
   <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">మీరు మీ పిన్ను నిలిపివేయడానికి ముందు, మీరు మీ చెల్లింపుల ఖాతాను తిరిగి పొందగలరని నిర్ధారించుకోవడానికి మీ చెల్లింపుల రికవరీ పదబంధాన్ని రికార్డ్ చేయాలి.</string>
+  <!--NumericKeyboardView-->
+  <!--Back button on numeric keyboard-->
+  <string name="NumericKeyboardView__backspace">బ్యాక్‌స్పేస్</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d నిమిషాలు</item>
@@ -2325,7 +2328,6 @@
   <string name="preferences_enter_proxy_address">ప్రాక్సీ చిరునామాను నమోదు చేయండి</string>
   <string name="configurable_single_select__customize_option">అనుకూలీకరించు ఎంపిక</string>
   <!--Internal only preferences-->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string> -->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">మొత్తం యాక్టివిటీ</string>
   <string name="PaymentsAllActivityFragment__all">అన్ని</string>
@@ -3952,6 +3954,11 @@
   <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">మీ స్టోరీస్ ఎవరు చూశారనేది చూడటానికి రీడ్ రిసిప్ట్‌లు ప్రారంభించండి.</string>
   <!--Button label displayed when user has disabled receipts-->
   <string name="StoryViewsFragment__go_to_settings">సెట్టింగ్‌లకు వెళ్లండి</string>
+  <!--Dialog action to remove viewer from a story-->
+  <string name="StoryViewsFragment__remove">తొలగించు</string>
+  <!--Dialog title when removing a viewer from a story-->
+  <!--Dialog message when removing a viewer from a story-->
+  <!--Story View context menu action to remove them from a story-->
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">ఇంకా ఎలాంటి రిప్లైలు లేవు</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->

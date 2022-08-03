@@ -43,6 +43,9 @@
   <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Werstel-sin foar oerskriuwingen fêstlizze</string>
   <string name="ApplicationPreferencesActivity_record_phrase">Sin fêstlizze</string>
   <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Do moatst in werstel-sin opnimme eardatsto oerskriuwingen útskeakelje kinst, sadat it mooglik wurdt om dyn oerskriuwingen-account te werstellen.</string>
+  <!--NumericKeyboardView-->
+  <!--Back button on numeric keyboard-->
+  <string name="NumericKeyboardView__backspace">Backspace</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minút</item>
@@ -3915,6 +3918,11 @@
   <string name="StoryViewsFragment__no_views_yet">Noch troch net ien sjoen</string>
   <!--Displayed when user has disabled receipts-->
   <!--Button label displayed when user has disabled receipts-->
+  <!--Dialog action to remove viewer from a story-->
+  <string name="StoryViewsFragment__remove">Furt helje</string>
+  <!--Dialog title when removing a viewer from a story-->
+  <!--Dialog message when removing a viewer from a story-->
+  <!--Story View context menu action to remove them from a story-->
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Noch gjin reaksjes</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->

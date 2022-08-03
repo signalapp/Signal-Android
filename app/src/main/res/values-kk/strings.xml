@@ -41,6 +41,9 @@
   <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Төлемдерді қалпына келтіру сөйлемін жазу</string>
   <string name="ApplicationPreferencesActivity_record_phrase">Сөйлемді жазу</string>
   <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">PIN-кодты өшіріп тастамас бұрын, төлемдер аккаунтыңызды қалпына келтіре алатыныңызға көз жеткізу үшін төлемдерді қалпына келтіру сөйлемін жазуыңыз керек.</string>
+  <!--NumericKeyboardView-->
+  <!--Back button on numeric keyboard-->
+  <string name="NumericKeyboardView__backspace">Backspace</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d минут</item>
@@ -1573,9 +1576,9 @@
   <!--Displayed in the notification when the user has opened a received gift-->
   <string name="ThreadRecord__you_redeemed_a_gift_badge">Сыйлық таңбасын белсендірдіңіз</string>
   <!--Displayed in the conversation list when someone reacted to your story-->
-  <string name="ThreadRecord__reacted_s_to_your_story">сіздің сторисіңізге %1$s деп реакция қалдырды</string>
+  <string name="ThreadRecord__reacted_s_to_your_story">Сіздің сторисіңізге %1$s деп реакция қалдырды</string>
   <!--Displayed in the conversation list when you reacted to someone\'s story-->
-  <string name="ThreadRecord__reacted_s_to_their_story">оның сторисіне %1$s деп реакция қалдырды</string>
+  <string name="ThreadRecord__reacted_s_to_their_story">Олардың сторисіне %1$s деп реакция қалдырды</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal-ды жаңарту</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal-дың жаңа нұсқасы шықты, жаңарту үшін түртіңіз</string>
@@ -2321,7 +2324,6 @@
   <string name="preferences_enter_proxy_address">Прокси мекенжайын енгізіңіз</string>
   <string name="configurable_single_select__customize_option">Бейімдеу опциясы</string>
   <!--Internal only preferences-->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string> -->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Барлық әрекет</string>
   <string name="PaymentsAllActivityFragment__all">Барлығы</string>
@@ -3947,6 +3949,11 @@
   <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Стористеріңізді кім көргенін білу үшін осы функцияны қосып қойыңыз.</string>
   <!--Button label displayed when user has disabled receipts-->
   <string name="StoryViewsFragment__go_to_settings">Параметрлерге өту</string>
+  <!--Dialog action to remove viewer from a story-->
+  <string name="StoryViewsFragment__remove">Жою</string>
+  <!--Dialog title when removing a viewer from a story-->
+  <!--Dialog message when removing a viewer from a story-->
+  <!--Story View context menu action to remove them from a story-->
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Ешкім жауап жазбаған</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->

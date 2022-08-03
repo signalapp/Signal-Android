@@ -41,6 +41,9 @@
   <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Zaznamenajte frázu obnovy platieb</string>
   <string name="ApplicationPreferencesActivity_record_phrase">Zaznamenajte frázu</string>
   <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Pred deaktiváciou kódu PIN musíte zaznamenať frázu na obnovenie platieb, aby ste sa ubezpečili, že môžete svoj platobný účet obnoviť.</string>
+  <!--NumericKeyboardView-->
+  <!--Back button on numeric keyboard-->
+  <string name="NumericKeyboardView__backspace">Backspace</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minúta</item>
@@ -1720,7 +1723,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--Displayed in the conversation list when someone reacted to your story-->
   <string name="ThreadRecord__reacted_s_to_your_story">Poslal/a %1$s ako reakciu na tvoj príbeh</string>
   <!--Displayed in the conversation list when you reacted to someone\'s story-->
-  <string name="ThreadRecord__reacted_s_to_their_story">Poslal/a %1$s ako reakciu na ich príbeh</string>
+  <string name="ThreadRecord__reacted_s_to_their_story">Poslal/a si %1$s ako reakciu na ich príbeh</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Aktualizácia Signalu</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">K dispozícii je nová verzia Signalu, ťuknutím aktualizujte</string>
@@ -2492,7 +2495,6 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences_enter_proxy_address">Zadajte adresu proxy servera</string>
   <string name="configurable_single_select__customize_option">Prispôsobiť nastavenie</string>
   <!--Internal only preferences-->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string> -->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Všetky aktivity</string>
   <string name="PaymentsAllActivityFragment__all">Všetko</string>
@@ -4160,6 +4162,11 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Povoľte potvrdenia o prečítaní, ktoré vám umožnia zistiť, kto si pozrel vaše príbehy.</string>
   <!--Button label displayed when user has disabled receipts-->
   <string name="StoryViewsFragment__go_to_settings">Prejsť na nastavenia</string>
+  <!--Dialog action to remove viewer from a story-->
+  <string name="StoryViewsFragment__remove">Odstrániť</string>
+  <!--Dialog title when removing a viewer from a story-->
+  <!--Dialog message when removing a viewer from a story-->
+  <!--Story View context menu action to remove them from a story-->
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Zatiaľ žiadne odpovede</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->

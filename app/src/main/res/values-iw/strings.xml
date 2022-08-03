@@ -41,6 +41,9 @@
   <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">תעד משפט השבה של תשלומים</string>
   <string name="ApplicationPreferencesActivity_record_phrase">תעד משפט</string>
   <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">לפני שתוכל להשבית את ה־PIN שלך, אתה חייב לתעד את משפט ההשבה של התשלומים שלך כדי להבטיח שתוכל להשיב את חשבון התשלומים שלך.</string>
+  <!--NumericKeyboardView-->
+  <!--Back button on numeric keyboard-->
+  <string name="NumericKeyboardView__backspace">מקש חזרה</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">דקה %d</item>
@@ -1721,7 +1724,7 @@
   <!--Displayed in the conversation list when someone reacted to your story-->
   <string name="ThreadRecord__reacted_s_to_your_story">הגיב/ה %1$s לסטורי שלך</string>
   <!--Displayed in the conversation list when you reacted to someone\'s story-->
-  <string name="ThreadRecord__reacted_s_to_their_story">הגיב/ה %1$s לסטורי שלהם</string>
+  <string name="ThreadRecord__reacted_s_to_their_story">הגבת %1$s לסטורי שלהם</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">עדכון Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">גרסה חדשה של Signal זמינה, הקש כדי לעדכן</string>
@@ -2493,7 +2496,6 @@
   <string name="preferences_enter_proxy_address">הכנס כתובת יפוי כוח</string>
   <string name="configurable_single_select__customize_option">התאם אישית אפשרות</string>
   <!--Internal only preferences-->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string> -->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">כל הפעילות</string>
   <string name="PaymentsAllActivityFragment__all">הכול</string>
@@ -4161,6 +4163,11 @@
   <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">ניתן לאפשר אישורי קריאה כדי לראות מי צפה בסטוריז שלך.</string>
   <!--Button label displayed when user has disabled receipts-->
   <string name="StoryViewsFragment__go_to_settings">מעבר להגדרות</string>
+  <!--Dialog action to remove viewer from a story-->
+  <string name="StoryViewsFragment__remove">הסר</string>
+  <!--Dialog title when removing a viewer from a story-->
+  <!--Dialog message when removing a viewer from a story-->
+  <!--Story View context menu action to remove them from a story-->
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">אין תשובות עדין</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->

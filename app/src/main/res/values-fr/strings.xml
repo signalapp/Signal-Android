@@ -41,6 +41,9 @@
   <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Enregistrer une phrase de récupération des paiements</string>
   <string name="ApplicationPreferencesActivity_record_phrase">Enregistrez la phrase</string>
   <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Avant de pouvoir désactiver votre NIP, vous devez enregistrer votre phrase de récupération des paiements pour vous permettre de récupérer votre compte de paiements.</string>
+  <!--NumericKeyboardView-->
+  <!--Back button on numeric keyboard-->
+  <string name="NumericKeyboardView__backspace">Retour en arrière</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minute</item>
@@ -2398,7 +2401,6 @@
   <string name="preferences_enter_proxy_address">Saisissez l’adresse du mandataire</string>
   <string name="configurable_single_select__customize_option">Personnaliser l’option</string>
   <!--Internal only preferences-->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string> -->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Toutes les activités</string>
   <string name="PaymentsAllActivityFragment__all">Tous</string>
@@ -4049,6 +4051,11 @@ Nouvelle tentative…</string>
   <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Activer les accusés de lecture pour savoir qui a consulté vos Stories.</string>
   <!--Button label displayed when user has disabled receipts-->
   <string name="StoryViewsFragment__go_to_settings">Rendez-vous dans les Paramètres</string>
+  <!--Dialog action to remove viewer from a story-->
+  <string name="StoryViewsFragment__remove">Supprimer</string>
+  <!--Dialog title when removing a viewer from a story-->
+  <!--Dialog message when removing a viewer from a story-->
+  <!--Story View context menu action to remove them from a story-->
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Aucune réponse pour le moment</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->

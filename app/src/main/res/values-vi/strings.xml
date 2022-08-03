@@ -41,6 +41,9 @@
   <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Lưu lại cụm từ khôi phục thanh toán</string>
   <string name="ApplicationPreferencesActivity_record_phrase">Lưu lại cụm từ</string>
   <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Trước khi bạn có thể tắt mã PIN của mình, bạn phải lưu lại cụm từ khôi phục thanh toán để đảm bảo bạn có thể khôi phục tài khoản thanh toán của bạn.</string>
+  <!--NumericKeyboardView-->
+  <!--Back button on numeric keyboard-->
+  <string name="NumericKeyboardView__backspace">Xoá lùi</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="other">%d phút</item>
@@ -2219,7 +2222,6 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="preferences_enter_proxy_address">Nhập địa chỉ proxy</string>
   <string name="configurable_single_select__customize_option">Sửa cài đặt</string>
   <!--Internal only preferences-->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string> -->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Tất cả hoạt động</string>
   <string name="PaymentsAllActivityFragment__all">Tất cả</string>
@@ -3824,6 +3826,11 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Bật thông báo đã xem để biết ai đã xem story của bạn.</string>
   <!--Button label displayed when user has disabled receipts-->
   <string name="StoryViewsFragment__go_to_settings">Đến mục cài đặt</string>
+  <!--Dialog action to remove viewer from a story-->
+  <string name="StoryViewsFragment__remove">Xóa</string>
+  <!--Dialog title when removing a viewer from a story-->
+  <!--Dialog message when removing a viewer from a story-->
+  <!--Story View context menu action to remove them from a story-->
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Chưa có phản hồi</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->

@@ -41,6 +41,9 @@
   <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Skrá frasa fyrir endurheimtu greiðslna</string>
   <string name="ApplicationPreferencesActivity_record_phrase">Skrá endurheimtufrasa</string>
   <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Áður en þú getur gert PIN-númerið þitt óvirkt, verðurðu að skrá endurheimtufrasa fyrir greiðslurnar þínar til að tryggja að þú getir endurheimt greiðsluaðganginn þinn.</string>
+  <!--NumericKeyboardView-->
+  <!--Back button on numeric keyboard-->
+  <string name="NumericKeyboardView__backspace">Hopa (backspace)</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d mínúta</item>
@@ -3913,6 +3916,11 @@ hegðun þína.</string>
   <string name="StoryViewsFragment__no_views_yet">Ennþá engin innlit</string>
   <!--Displayed when user has disabled receipts-->
   <!--Button label displayed when user has disabled receipts-->
+  <!--Dialog action to remove viewer from a story-->
+  <string name="StoryViewsFragment__remove">Fjarlægja</string>
+  <!--Dialog title when removing a viewer from a story-->
+  <!--Dialog message when removing a viewer from a story-->
+  <!--Story View context menu action to remove them from a story-->
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Ennþá engin svör</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->

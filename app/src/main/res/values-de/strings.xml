@@ -41,6 +41,9 @@
   <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Wiederherstellungsphrase für Zahlungen notieren</string>
   <string name="ApplicationPreferencesActivity_record_phrase">Phrase notieren</string>
   <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Bevor du deine PIN deaktivieren kannst, musst du deine  Wiederherstellungsphrase für Zahlungen notieren. Dies stellt sicher, dass du dein Zahlungskonto wiederherstellen kannst.</string>
+  <!--NumericKeyboardView-->
+  <!--Back button on numeric keyboard-->
+  <string name="NumericKeyboardView__backspace">Rücktaste</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d Minute</item>
@@ -2310,7 +2313,6 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences_enter_proxy_address">Proxyadresse eingeben</string>
   <string name="configurable_single_select__customize_option">Option anpassen</string>
   <!--Internal only preferences-->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string> -->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Alle Aktivitäten</string>
   <string name="PaymentsAllActivityFragment__all">Alle</string>
@@ -3936,6 +3938,11 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Lesebestätigungen aktivieren, um zu sehen, wer deine Storys gesehen hat.</string>
   <!--Button label displayed when user has disabled receipts-->
   <string name="StoryViewsFragment__go_to_settings">Zu Einstellungen</string>
+  <!--Dialog action to remove viewer from a story-->
+  <string name="StoryViewsFragment__remove">Entfernen</string>
+  <!--Dialog title when removing a viewer from a story-->
+  <!--Dialog message when removing a viewer from a story-->
+  <!--Story View context menu action to remove them from a story-->
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Bisher keine Antworten</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->

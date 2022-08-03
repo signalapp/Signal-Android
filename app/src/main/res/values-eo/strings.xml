@@ -41,6 +41,9 @@
   <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Registri la restarigan frazon pri pagoj</string>
   <string name="ApplicationPreferencesActivity_record_phrase">Registri frazon</string>
   <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Antaŭ ol vi povas malŝalti vian PIN-on, vi devas registri vian restarigan frazon pri pagoj por certigi, ke vi povos restarigi vian pagokonton.</string>
+  <!--NumericKeyboardView-->
+  <!--Back button on numeric keyboard-->
+  <string name="NumericKeyboardView__backspace">Retropaŝo</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minuto</item>
@@ -3916,6 +3919,11 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="StoryViewsFragment__no_views_yet">Neniu vido</string>
   <!--Displayed when user has disabled receipts-->
   <!--Button label displayed when user has disabled receipts-->
+  <!--Dialog action to remove viewer from a story-->
+  <string name="StoryViewsFragment__remove">Forviŝi</string>
+  <!--Dialog title when removing a viewer from a story-->
+  <!--Dialog message when removing a viewer from a story-->
+  <!--Story View context menu action to remove them from a story-->
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Neniu respondo</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->

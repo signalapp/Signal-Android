@@ -41,6 +41,9 @@
   <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">记下付款恢复短语</string>
   <string name="ApplicationPreferencesActivity_record_phrase">记下短语</string>
   <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">在禁用 PIN 码之前，务必记下付款恢复短语，以确保可恢复您的付款帐户。</string>
+  <!--NumericKeyboardView-->
+  <!--Back button on numeric keyboard-->
+  <string name="NumericKeyboardView__backspace">退格键</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="other">%d 分钟</item>
@@ -2236,7 +2239,6 @@
   <string name="preferences_enter_proxy_address">请输入代理地址</string>
   <string name="configurable_single_select__customize_option">自定义选项</string>
   <!--Internal only preferences-->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string> -->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">全部活动</string>
   <string name="PaymentsAllActivityFragment__all">全部</string>
@@ -3841,6 +3843,11 @@
   <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">启用已读回执功能，看看谁浏览了您的动态。</string>
   <!--Button label displayed when user has disabled receipts-->
   <string name="StoryViewsFragment__go_to_settings">前往设置</string>
+  <!--Dialog action to remove viewer from a story-->
+  <string name="StoryViewsFragment__remove">移除</string>
+  <!--Dialog title when removing a viewer from a story-->
+  <!--Dialog message when removing a viewer from a story-->
+  <!--Story View context menu action to remove them from a story-->
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">未有回复</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->

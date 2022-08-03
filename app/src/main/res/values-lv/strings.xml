@@ -41,6 +41,9 @@
   <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Ierakstīt maksājumu atkopšanas frāzi</string>
   <string name="ApplicationPreferencesActivity_record_phrase">Ierakstīt frāzi</string>
   <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Pirms PIN atspējošanas ir jāieraksta maksājumu atkopšanas frāze, lai nodrošinātu iespēju atgūt savu maksājumu kontu.</string>
+  <!--NumericKeyboardView-->
+  <!--Back button on numeric keyboard-->
+  <string name="NumericKeyboardView__backspace">Dzēst (uz atpakaļu)</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="zero">%d minūšu</item>
@@ -2401,7 +2404,6 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="preferences_enter_proxy_address">Ievadīt starpniekservera adresi</string>
   <string name="configurable_single_select__customize_option">Pielāgot opciju</string>
   <!--Internal only preferences-->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string> -->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Visas darbības</string>
   <string name="PaymentsAllActivityFragment__all">Visas</string>
@@ -4048,6 +4050,11 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Iespējojiet skatīšanas apliecinājumus, lai uzzinātu, kuri lietotāji ir redzējuši jūsu stāstus.</string>
   <!--Button label displayed when user has disabled receipts-->
   <string name="StoryViewsFragment__go_to_settings">Atvērt iestatījumus</string>
+  <!--Dialog action to remove viewer from a story-->
+  <string name="StoryViewsFragment__remove">Noņemt</string>
+  <!--Dialog title when removing a viewer from a story-->
+  <!--Dialog message when removing a viewer from a story-->
+  <!--Story View context menu action to remove them from a story-->
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Vēl nav atbilžu</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->

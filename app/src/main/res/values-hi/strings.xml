@@ -41,6 +41,9 @@
   <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">भुगतान रिकवरी फ़्रेज़ रिकॉर्ड करें</string>
   <string name="ApplicationPreferencesActivity_record_phrase">वाक्यांश रिकॉर्ड करें</string>
   <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">इससे पहले कि आप अपना PIN अक्षम करें, अपने भुगतान खाते को रिकवर करना सुनिश्चित करने के लिए आपको अपना भुगतान रिकवरी फ़्रेज़ रिकॉर्ड करना होगा।</string>
+  <!--NumericKeyboardView-->
+  <!--Back button on numeric keyboard-->
+  <string name="NumericKeyboardView__backspace">बैकस्पेस</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d मिनट</item>
@@ -2314,7 +2317,6 @@ href=\"https://signal.org/redirect/safety-numbers\">ज़्यादा जा
   <string name="preferences_enter_proxy_address">प्रॉक्सी पता दर्ज करें</string>
   <string name="configurable_single_select__customize_option">अनुकूलित करने का विकल्प</string>
   <!--Internal only preferences-->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string> -->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">सभी गतिविधि</string>
   <string name="PaymentsAllActivityFragment__all">सब</string>
@@ -3940,6 +3942,11 @@ href=\"https://signal.org/redirect/safety-numbers\">ज़्यादा जा
   <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">आपकी स्टोरीज़ किसने देखी हैं यह देखने के लिए प्राप्ति सूचनाएँ सक्षम करें।</string>
   <!--Button label displayed when user has disabled receipts-->
   <string name="StoryViewsFragment__go_to_settings">सेटिंग्स पर जाएँ</string>
+  <!--Dialog action to remove viewer from a story-->
+  <string name="StoryViewsFragment__remove">हटा दें </string>
+  <!--Dialog title when removing a viewer from a story-->
+  <!--Dialog message when removing a viewer from a story-->
+  <!--Story View context menu action to remove them from a story-->
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">कोई जवाब नहीं</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->

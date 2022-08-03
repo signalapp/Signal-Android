@@ -41,6 +41,9 @@
   <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">பதிவு செலுத்துதல் மீட்பு சொற்றொடர்</string>
   <string name="ApplicationPreferencesActivity_record_phrase">பதிவு சொற்றொடர்</string>
   <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">உங்களால் முடியும் முன் முடக்கு உங்கள் பின், உங்கள் கொடுப்பனவுகளை மீட்டெடுக்க முடியும் என்பதை உறுதிப்படுத்த உங்கள் கொடுப்பனவு மீட்பு சொற்றொடரை நீங்கள் பதிவு செய்ய வேண்டும் கணக்கு.</string>
+  <!--NumericKeyboardView-->
+  <!--Back button on numeric keyboard-->
+  <string name="NumericKeyboardView__backspace">பின்வெளி</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d நிமிடம்</item>
@@ -2310,7 +2313,6 @@
   <string name="preferences_enter_proxy_address">பதிலி முகவரியைப் பதியவும்</string>
   <string name="configurable_single_select__customize_option">விருப்ப அமைப்பைத் தனிப்பயனாக்கவும்</string>
   <!--Internal only preferences-->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string> -->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">அனைத்து செயல்பாடுகளும்</string>
   <string name="PaymentsAllActivityFragment__all">அனைத்து</string>
@@ -3941,6 +3943,11 @@
   <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">உங்கள் ஸ்டோரீஸ்-ஐ யார் பார்த்தார்கள் என்பதைக் காண, வாசித்ததற்கான அறிவிப்புகளை இயக்கவும்.</string>
   <!--Button label displayed when user has disabled receipts-->
   <string name="StoryViewsFragment__go_to_settings">அமைப்புகளுக்குச் செல்</string>
+  <!--Dialog action to remove viewer from a story-->
+  <string name="StoryViewsFragment__remove">நீக்கு</string>
+  <!--Dialog title when removing a viewer from a story-->
+  <!--Dialog message when removing a viewer from a story-->
+  <!--Story View context menu action to remove them from a story-->
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">இதுவரை பதில்கள் ஏதுமில்லை</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->

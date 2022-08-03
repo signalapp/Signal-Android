@@ -41,6 +41,9 @@
   <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">عبارت بازیابی پرداخت‌ها را ثبت کنید</string>
   <string name="ApplicationPreferencesActivity_record_phrase">ثبت عبارت</string>
   <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">قبل از اینکه قادر به غیرفعال کردن پین خود باشید، باید عبارت بازیابی پرداخت‌های خود را ثبت کنید تا مطمئن شوید که می‌توانید حساب کاربری پرداخت‌های خود را بازیابی کنید.</string>
+  <!--NumericKeyboardView-->
+  <!--Back button on numeric keyboard-->
+  <string name="NumericKeyboardView__backspace">Backspace</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d دقیقه</item>
@@ -2319,7 +2322,6 @@
   <string name="preferences_enter_proxy_address">نشانی پروکسی را وارد کنید</string>
   <string name="configurable_single_select__customize_option">گزینهٔ سفارشی‌سازی</string>
   <!--Internal only preferences-->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string> -->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">همهٔ فعالیت‌ها</string>
   <string name="PaymentsAllActivityFragment__all">همه</string>
@@ -3945,6 +3947,11 @@
   <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">رسیدهای خوانده شدن را فعال کنید تا بتوانید ببینید چه کسی از استوری‌های شما بازدید کرده است.</string>
   <!--Button label displayed when user has disabled receipts-->
   <string name="StoryViewsFragment__go_to_settings">رفتن به تنظیمات </string>
+  <!--Dialog action to remove viewer from a story-->
+  <string name="StoryViewsFragment__remove">حذف</string>
+  <!--Dialog title when removing a viewer from a story-->
+  <!--Dialog message when removing a viewer from a story-->
+  <!--Story View context menu action to remove them from a story-->
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">هنوز پاسخی داده نشده است</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->

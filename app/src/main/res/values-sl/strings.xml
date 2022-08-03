@@ -41,6 +41,9 @@
   <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Shrani obnovitveno frazo za plačila</string>
   <string name="ApplicationPreferencesActivity_record_phrase">Shrani frazo</string>
   <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Preden onemogočite svoj PIN, morate shraniti obnovitveno frazo za plačila, da jih boste lahko kasneje obnovili.</string>
+  <!--NumericKeyboardView-->
+  <!--Back button on numeric keyboard-->
+  <string name="NumericKeyboardView__backspace">Nazaj</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minuta</item>
@@ -1710,9 +1713,9 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--Displayed in the notification when the user has opened a received gift-->
   <string name="ThreadRecord__you_redeemed_a_gift_badge">Vnovčili ste darilni bedž</string>
   <!--Displayed in the conversation list when someone reacted to your story-->
-  <string name="ThreadRecord__reacted_s_to_your_story">Odziv na vašo Zgodbo: %1$s</string>
+  <string name="ThreadRecord__reacted_s_to_your_story">Odziv na vašo zgodbo: %1$s</string>
   <!--Displayed in the conversation list when you reacted to someone\'s story-->
-  <string name="ThreadRecord__reacted_s_to_their_story">Vaš odziv na Zgodbo: %1$s</string>
+  <string name="ThreadRecord__reacted_s_to_their_story">Vaš odziv na zgodbo: %1$s</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Nadgradnja aplikacije Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Na voljo je nova različica aplikacije Signal. Tapnite za nadgradnjo.</string>
@@ -1854,7 +1857,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="SingleRecipientNotificationBuilder_message_request">Prošnja za pogovor</string>
   <string name="SingleRecipientNotificationBuilder_you">Vi</string>
   <!--Notification subtext for group stories-->
-  <string name="SingleRecipientNotificationBuilder__s_dot_story">%1$s • Zgodba</string>
+  <string name="SingleRecipientNotificationBuilder__s_dot_story">%1$s • zgodba</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Predvajaj video</string>
   <string name="ThumbnailView_Has_a_caption_description">Ima besedilo</string>
@@ -1997,7 +2000,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="QuoteView_you">Vi</string>
   <string name="QuoteView_original_missing">Izvorno sporočilo ni bilo najdeno</string>
   <!--Author formatting for group stories-->
-  <string name="QuoteView_s_story">%1$s · Zgodba</string>
+  <string name="QuoteView_s_story">%1$s · zgodba</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
   <string name="QuoteView_your_story">Vi - zgodba</string>
   <!--Label indicating that the story being replied to no longer exists-->
@@ -2484,7 +2487,6 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences_enter_proxy_address">Vnesite naslov proksi</string>
   <string name="configurable_single_select__customize_option">Nastavitve po meri</string>
   <!--Internal only preferences-->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string> -->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Vse dejavnosti</string>
   <string name="PaymentsAllActivityFragment__all">Vse</string>
@@ -4152,6 +4154,11 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Omogočite potrdila o branju, da vidite, kdo si je ogledal vaše zgodbe.</string>
   <!--Button label displayed when user has disabled receipts-->
   <string name="StoryViewsFragment__go_to_settings">Pojdite v nastavitve</string>
+  <!--Dialog action to remove viewer from a story-->
+  <string name="StoryViewsFragment__remove">Odstrani</string>
+  <!--Dialog title when removing a viewer from a story-->
+  <!--Dialog message when removing a viewer from a story-->
+  <!--Story View context menu action to remove them from a story-->
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Brez odgovorov</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
@@ -4191,7 +4198,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--Privacy setting title for sending stories to all except the specified connections-->
   <string name="MyStorySettingsFragment__all_signal_connections_except">Vse Signal povezave razen …</string>
   <!--Privacy setting description for sending stories to all except the specified connections-->
-  <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Skrijte svojo Zgodbo pred določenimi ljudmi</string>
+  <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Skrijte svojo zgodbo pred določenimi ljudmi</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
   <plurals name="MyStorySettingsFragment__d_people_excluded">
     <item quantity="one">%1$d oseba izključena</item>
@@ -4211,7 +4218,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
     <item quantity="other">%1$d ljudi</item>
   </plurals>
   <!--My story privacy fine print about what the privacy settings are for-->
-  <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Izberite, kdo lahko vidi vašo Zgodbo. Spremembe ne bodo vplivale na že poslane Zgodbe.</string>
+  <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Izberite, kdo lahko vidi vašo zgodbo. Spremembe ne bodo vplivale na že poslane zgodbe.</string>
   <!--Section header for options related to replies and reactions-->
   <string name="MyStorySettingsFragment__replies_amp_reactions">Odgovori &amp; odzivi</string>
   <!--Switchable option for allowing replies and reactions on your stories-->
@@ -4445,19 +4452,19 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--Label for context menu item to open story settings-->
   <string name="ContactSearchItems__story_settings">Nastavitve zgodbe</string>
   <!--Label for context menu item to remove a group story from contact results-->
-  <string name="ContactSearchItems__remove_story">Odstrani Zgodbo</string>
+  <string name="ContactSearchItems__remove_story">Odstrani zgodbo</string>
   <!--Label for context menu item to delete a private story-->
-  <string name="ContactSearchItems__delete_story">Izbriši Zgodbo</string>
+  <string name="ContactSearchItems__delete_story">Izbriši zgodbo</string>
   <!--Dialog title for removing a group story-->
-  <string name="ContactSearchMediator__remove_group_story">Želite odstraniti Zgodbo skupine?</string>
+  <string name="ContactSearchMediator__remove_group_story">Želite odstraniti zgodbo skupine?</string>
   <!--Dialog message for removing a group story-->
-  <string name="ContactSearchMediator__this_will_remove">To bo odstranilo Zgodbo iz tega seznama. Še vedno boste lahko videli Zgodbe iz te skupine.</string>
+  <string name="ContactSearchMediator__this_will_remove">To bo odstranilo zgodbo iz tega seznama. Še vedno boste lahko videli zgodbe iz te skupine.</string>
   <!--Dialog action item for removing a group story-->
   <string name="ContactSearchMediator__remove">Odstrani</string>
   <!--Dialog title for deleting a private story-->
   <string name="ContactSearchMediator__delete_story">Želite izbrisati zgodbo?</string>
   <!--Dialog message for deleting a private story-->
-  <string name="ContactSearchMediator__delete_the_private">Želite izbrisati zasebno Zgodbo \"%1$s\"?</string>
+  <string name="ContactSearchMediator__delete_the_private">Želite izbrisati zasebno zgodbo \"%1$s\"?</string>
   <!--Dialog action item for deleting a private story-->
   <string name="ContactSearchMediator__delete">Izbriši</string>
   <!--Gift expiry days remaining-->
@@ -4508,11 +4515,11 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--Message of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
   <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Vse povezave so bile pregledane, tapnite pošlji za nadaljevanje.</string>
   <!--Message of safety number changes bottom sheet when not showing individual records-->
-  <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">Imate %1$d povezav, ki so morda znova namestile Signal ali zamenjale napravo. Preden z njimi delite svojo Zgodbo, preglejte njihove varnostne številke ali razmislite o njihovi odstranitvi iz ogleda Zgodbe.</string>
+  <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">Imate %1$d povezav, ki so morda znova namestile Signal ali zamenjale napravo. Preden z njimi delite svojo zgodbo, preglejte njihove varnostne številke ali razmislite o njihovi odstranitvi iz ogleda zgodbe.</string>
   <!--Menu action to launch safety number verification screen-->
   <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Preglej varnostno število</string>
   <!--Menu action to remove user from story-->
-  <string name="SafetyNumberBottomSheetFragment__remove_from_story">Odstrani iz Zgodbe</string>
+  <string name="SafetyNumberBottomSheetFragment__remove_from_story">Odstrani iz zgodbe</string>
   <!--Action button at bottom of SafetyNumberBottomSheetFragment to send anyway-->
   <string name="SafetyNumberBottomSheetFragment__send_anyway">Vseeno pošlji</string>
   <!--Action button at bottom of SafetyNumberBottomSheetFragment to review connections-->

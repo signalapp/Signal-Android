@@ -41,6 +41,9 @@
   <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Cofnodi ymadrodd adfer taliadau</string>
   <string name="ApplicationPreferencesActivity_record_phrase">Recordio ymadrodd</string>
   <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Cyn y gallwch analluogi eich PIN, rhaid i chi gofnodi eich ymadrodd adfer taliadau i sicrhau y gallwch adfer eich cyfrif taliadau.</string>
+  <!--NumericKeyboardView-->
+  <!--Back button on numeric keyboard-->
+  <string name="NumericKeyboardView__backspace">Backspace</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d munud</item>
@@ -4132,6 +4135,11 @@ Anfon neges heb ei diogelu?</string>
   <string name="StoryViewsFragment__no_views_yet">Neb wedi\'i darllen eto</string>
   <!--Displayed when user has disabled receipts-->
   <!--Button label displayed when user has disabled receipts-->
+  <!--Dialog action to remove viewer from a story-->
+  <string name="StoryViewsFragment__remove">Tynnu</string>
+  <!--Dialog title when removing a viewer from a story-->
+  <!--Dialog message when removing a viewer from a story-->
+  <!--Story View context menu action to remove them from a story-->
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Dim atebion eto</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->

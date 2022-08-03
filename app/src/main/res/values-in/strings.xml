@@ -41,6 +41,9 @@
   <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Rekam frasa pemulihan pembayaran</string>
   <string name="ApplicationPreferencesActivity_record_phrase">Rekam frasa</string>
   <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Sebelum Anda dapat menonaktifkan PIN, Anda harus merekam frasa pemulihan pembayaran Anda untuk memastikan Anda dapat memulihkan akun pembayaran Anda.</string>
+  <!--NumericKeyboardView-->
+  <!--Back button on numeric keyboard-->
+  <string name="NumericKeyboardView__backspace">Hapus</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="other">%dmenit</item>
@@ -2235,7 +2238,6 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="preferences_enter_proxy_address">Masukkan alamat proxy</string>
   <string name="configurable_single_select__customize_option">Sesuaikan opsi</string>
   <!--Internal only preferences-->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string> -->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Semua aktivitas</string>
   <string name="PaymentsAllActivityFragment__all">Semua</string>
@@ -3840,6 +3842,11 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Aktifkan bukti pesan terbaca untuk melihat siapa yang melihat cerita Anda.</string>
   <!--Button label displayed when user has disabled receipts-->
   <string name="StoryViewsFragment__go_to_settings">Buka pengaturan</string>
+  <!--Dialog action to remove viewer from a story-->
+  <string name="StoryViewsFragment__remove">Hapus</string>
+  <!--Dialog title when removing a viewer from a story-->
+  <!--Dialog message when removing a viewer from a story-->
+  <!--Story View context menu action to remove them from a story-->
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Belum ada balasan</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->

@@ -41,6 +41,9 @@
   <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">چىقىمنى ئەسلىگە كەلتۈرۈش جۈملىسىنى خاتىرىلەيدۇ</string>
   <string name="ApplicationPreferencesActivity_record_phrase">جۈملە خاتىرىلە</string>
   <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">سىز PIN نى چەكلەشتىن ئىلگىرى، چىقىم قىلىش ھېساباتىڭىزنى ئەسلىگە كەلتۈرۈشكە كاپالەتلىك قىلىش ئۈچۈن چىقىمنى ئەسلىگە كەلتۈرۈش چۈملىسىنى خاتىرىلىشىڭىز زۆرۈر.</string>
+  <!--NumericKeyboardView-->
+  <!--Back button on numeric keyboard-->
+  <string name="NumericKeyboardView__backspace">Backspace</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d مىنۇت</item>
@@ -3545,6 +3548,11 @@
   <!--Displayed when a story has no views-->
   <!--Displayed when user has disabled receipts-->
   <!--Button label displayed when user has disabled receipts-->
+  <!--Dialog action to remove viewer from a story-->
+  <string name="StoryViewsFragment__remove">چىقىرىۋەت</string>
+  <!--Dialog title when removing a viewer from a story-->
+  <!--Dialog message when removing a viewer from a story-->
+  <!--Story View context menu action to remove them from a story-->
   <!--Displayed when a story has no replies yet-->
   <!--Displayed for each user that reacted to a story when viewing replies-->
   <!--Label for story views tab-->

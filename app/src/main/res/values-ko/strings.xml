@@ -41,6 +41,9 @@
   <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">결제 복구 문구 기록</string>
   <string name="ApplicationPreferencesActivity_record_phrase">녹음 문구</string>
   <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">PIN을 사용 중지하기 전에 결제 계정을 복구할 수 있도록 결제 복구 문구를 기록해야 합니다.</string>
+  <!--NumericKeyboardView-->
+  <!--Back button on numeric keyboard-->
+  <string name="NumericKeyboardView__backspace">백스페이스</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="other">%d분</item>
@@ -2235,7 +2238,6 @@
   <string name="preferences_enter_proxy_address">프록시 주소 입력하기</string>
   <string name="configurable_single_select__customize_option">옵션 설정하기</string>
   <!--Internal only preferences-->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string> -->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">모든 활동</string>
   <string name="PaymentsAllActivityFragment__all">모두</string>
@@ -3840,6 +3842,11 @@
   <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">내 스토리를 본 사람을 확인하려면 수신 확인을 활성화하세요.</string>
   <!--Button label displayed when user has disabled receipts-->
   <string name="StoryViewsFragment__go_to_settings">설정으로 이동</string>
+  <!--Dialog action to remove viewer from a story-->
+  <string name="StoryViewsFragment__remove">삭제</string>
+  <!--Dialog title when removing a viewer from a story-->
+  <!--Dialog message when removing a viewer from a story-->
+  <!--Story View context menu action to remove them from a story-->
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">답장 없음</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->

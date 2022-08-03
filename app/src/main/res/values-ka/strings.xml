@@ -41,6 +41,9 @@
   <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">ტრანზაქციების აღდგენის ფრაზის ჩაწერა</string>
   <string name="ApplicationPreferencesActivity_record_phrase">ფრაზის ჩაწერა</string>
   <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">სანამ პინ-კოდის გამორთვას შეძლებ, უნდა ჩაწერო შენი ტრანზაქციების აღდგენის ფრაზა, რათა უზრუნველყო შენი გადახდების ანგარიშის აღდგენა.</string>
+  <!--NumericKeyboardView-->
+  <!--Back button on numeric keyboard-->
+  <string name="NumericKeyboardView__backspace">უკან გასვლა</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d წუთი</item>
@@ -2063,7 +2066,7 @@
   <string name="MessageRequestsMegaphone__users_can_now_choose_to_accept">მომხმარებლებს ახლა შეუძლიათ აირჩიონ ახალი მიმოწერის დადასტურება. პროფილის სახელები აცნობებს ხალხს, ვინ უგზავნის მათ შეტყობინებას.</string>
   <string name="MessageRequestsMegaphone__add_profile_name">პროფილის სახელის დამატება</string>
   <!--HelpFragment-->
-  <string name="HelpFragment__have_you_read_our_faq_yet">უკვე წაიკითხე ჩვენი ხდკ?</string>
+  <string name="HelpFragment__have_you_read_our_faq_yet">უკვე წაიკითხე ჩვენი FAQ?</string>
   <string name="HelpFragment__next">შემდეგი</string>
   <string name="HelpFragment__contact_us">დაგვიკავშირდი</string>
   <string name="HelpFragment__tell_us_whats_going_on">გვითხარი რა ხდება</string>
@@ -2101,7 +2104,7 @@
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">ვერაფერი მოიძებნა</string>
   <!--arrays.xml-->
   <string name="arrays__use_default">ნაგულისხმევის გამოყენება</string>
-  <string name="arrays__use_custom">მორგებულის გამოყენება</string>
+  <string name="arrays__use_custom">პერსონალიზირებულის გამოყენება</string>
   <string name="arrays__mute_for_one_hour">1 საათით დადუმება</string>
   <string name="arrays__mute_for_eight_hours">8 საათით დადუმება</string>
   <string name="arrays__mute_for_one_day">1 დღით დადუმება</string>
@@ -2123,11 +2126,11 @@
   <string name="arrays__extra_large">ძალიან დიდი</string>
   <string name="arrays__default">ძირითადი</string>
   <string name="arrays__high">მაღალი</string>
-  <string name="arrays__max">მაქს.</string>
+  <string name="arrays__max">მაქსიმალური</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="one">%dს</item>
-    <item quantity="other">%dს</item>
+    <item quantity="other">%dსთ</item>
   </plurals>
   <!--preferences.xml-->
   <string name="preferences_beta">ბეტა ვერსია</string>
@@ -2136,11 +2139,11 @@
   <string name="preferences__pref_all_mms_title">ყველა MMS-ის მიღება</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Signal-ის გამოყენება ყველა შემომავალი ტექსტური შეტყობინებისთვის</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Signal-ის გამოყენება ყველა შემომავალი მულტიმედიური შეტყობინებისთვის</string>
-  <string name="preferences__pref_enter_sends_title">\"Enter\" კლავიში გზავნის</string>
-  <string name="preferences__pressing_the_enter_key_will_send_text_messages">\"Enter\" კლავიშზე დაჭერა ტექსტურ შეტყობინებებს გააგზავნის</string>
+  <string name="preferences__pref_enter_sends_title">\"Enter\" ღილაკი გზავნის</string>
+  <string name="preferences__pressing_the_enter_key_will_send_text_messages">\"Enter\" ღილაკზე დაჭერა ტექსტურ შეტყობინებებს გააგზავნის</string>
   <string name="preferences__pref_use_address_book_photos">მისამართების წიგნაკის ფოტოების გამოყენება</string>
   <string name="preferences__display_contact_photos_from_your_address_book_if_available">აჩვენე საკონტაქტო ფოტოები შენი მისამართების წიგნიდან, თუ ეს შესაძლებელია</string>
-  <string name="preferences__generate_link_previews">ბმულის წინასწარი ნახვების გენერირება</string>
+  <string name="preferences__generate_link_previews">ბმულსი წინასწარი ნახვის გენერირება</string>
   <string name="preferences__retrieve_link_previews_from_websites_for_messages">მიიღე ბმულის წინასწარი ნახვები პირდაპირ ვებსაიტებიდან შენ მიერ გაგზავნილი შეტყობინებებისთვის.</string>
   <string name="preferences__choose_identity">იდენტობის არჩევა</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">აირჩიე შენი საკონტაქტო ჩანაწერი კონტაქტების სიიდან.</string>
@@ -2157,7 +2160,7 @@
   <string name="preferences__led_color">LED ფერი</string>
   <string name="preferences__led_color_unknown">უცნობი</string>
   <string name="preferences__pref_led_blink_title">LED ციმციმის ნიმუში</string>
-  <string name="preferences__customize">მორგება</string>
+  <string name="preferences__customize">პერსონალიზირება</string>
   <string name="preferences__change_sound_and_vibration">ხმისა და ვიბრაციის შეცვლა</string>
   <string name="preferences__sound">ხმა</string>
   <string name="preferences__silent">ჩუმი</string>
@@ -2256,7 +2259,7 @@
   <string name="preferences_storage__thirty_days">30 დღით</string>
   <string name="preferences_storage__none">არცერთი</string>
   <string name="preferences_storage__s_messages">%1$s შეტყობინება</string>
-  <string name="preferences_storage__custom">მორგებული</string>
+  <string name="preferences_storage__custom">პერსონალიზირებული</string>
   <string name="preferences_advanced__use_system_emoji">სისტემის emoji-ის გამოყენება</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Signal-ში ჩაშენებული emoji-ის მხარდაჭერის გამორთვა</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">გადაიტანე ყველა ზარი Signal-ის სერვერის მეშვეობით, რათა თავიდან აიცილო შენი IP მისამართის გამოჩენა შენს კონტაქტზე. ამის ჩართვა შეამცირებს ზარის ხარისხს.</string>
@@ -2321,7 +2324,6 @@
   <string name="preferences_enter_proxy_address">შეიყვანე პროქსის მისამართი</string>
   <string name="configurable_single_select__customize_option">პარამეტრის მორგება</string>
   <!--Internal only preferences-->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string> -->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">ყველა აქტივობა</string>
   <string name="PaymentsAllActivityFragment__all">ყველა</string>
@@ -3947,6 +3949,11 @@
   <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">ჩართე წაკითხვის დადასტურება, რომ გამოგიჩნდეს ვინ ნახა შენი Story-ები.</string>
   <!--Button label displayed when user has disabled receipts-->
   <string name="StoryViewsFragment__go_to_settings">შედი პარამეტრებში</string>
+  <!--Dialog action to remove viewer from a story-->
+  <string name="StoryViewsFragment__remove">წაშლა</string>
+  <!--Dialog title when removing a viewer from a story-->
+  <!--Dialog message when removing a viewer from a story-->
+  <!--Story View context menu action to remove them from a story-->
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">პასუხები ჯერ არაა</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->

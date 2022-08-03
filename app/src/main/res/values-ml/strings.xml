@@ -41,6 +41,9 @@
   <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">പേയ്മെന്റുകൾ വീണ്ടെടുക്കൽ വാക്യം രേഖപ്പെടുത്തുക</string>
   <string name="ApplicationPreferencesActivity_record_phrase">വാക്യാംശം രേഖപ്പെടുത്തുക</string>
   <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">നിങ്ങളുടെ പിൻ പ്രവർത്തനരഹിതമാക്കുന്നതിന് മുമ്പ്, നിങ്ങളുടെ പേയ്മെന്റ് അക്കൗണ്ട് വീണ്ടെടുക്കാൻ കഴിയുമെന്ന് ഉറപ്പാക്കുന്നതിന് നിങ്ങളുടെ പേയ്മെന്റുകൾ വീണ്ടെടുക്കൽ വാക്യം നിങ്ങൾ റെക്കോർഡ് ചെയ്യണം.</string>
+  <!--NumericKeyboardView-->
+  <!--Back button on numeric keyboard-->
+  <string name="NumericKeyboardView__backspace">Backspace</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d മിനിറ്റ്</item>
@@ -2313,7 +2316,6 @@
   <string name="preferences_enter_proxy_address">പ്രോക്സി വിലാസം നൽകുക</string>
   <string name="configurable_single_select__customize_option">ഓപ്ഷൻ ഇച്ഛാനുസൃതമാക്കുക</string>
   <!--Internal only preferences-->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string> -->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">എല്ലാ പ്രവർത്തനങ്ങളും</string>
   <string name="PaymentsAllActivityFragment__all">എല്ലാം</string>
@@ -3940,6 +3942,11 @@
   <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">നിങ്ങളുടെ സ്റ്റോറീസ് ആരൊക്കെ കണ്ടുവെന്ന് അറിയാൻ വായിച്ചതിനുള്ള സ്ഥിരീകരണം പ്രവർത്തനക്ഷമമാക്കുക.</string>
   <!--Button label displayed when user has disabled receipts-->
   <string name="StoryViewsFragment__go_to_settings">ക്രമീകരണത്തിലേക്ക് പോകുക</string>
+  <!--Dialog action to remove viewer from a story-->
+  <string name="StoryViewsFragment__remove">നീക്കം ചെയ്യുക</string>
+  <!--Dialog title when removing a viewer from a story-->
+  <!--Dialog message when removing a viewer from a story-->
+  <!--Story View context menu action to remove them from a story-->
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">ഇതുവരെ മറുപടികളൊന്നുമില്ല</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->

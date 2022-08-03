@@ -41,6 +41,9 @@
   <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Ηχογραφήστε το συνθηματικό της αποκατάστασης των πληρωμών</string>
   <string name="ApplicationPreferencesActivity_record_phrase">Καταγραφή φράσης</string>
   <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Πριν μπορέσετε να απενεργοποιήσετε το PIN σας, πρέπει να καταγράψετε τη φράση ανάκτησης πληρωμών για να διασφαλίσετε ότι μπορείτε να ανακτήσετε τον λογαριασμό πληρωμών σας.</string>
+  <!--NumericKeyboardView-->
+  <!--Back button on numeric keyboard-->
+  <string name="NumericKeyboardView__backspace">Backspace</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d λεπτό</item>
@@ -2316,7 +2319,6 @@
   <string name="preferences_enter_proxy_address">Εισαγωγή διεύθυνσης proxy</string>
   <string name="configurable_single_select__customize_option">Προσαρμογή ρύθμισης</string>
   <!--Internal only preferences-->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories">Clears onboarding flag and triggers download of onboarding stories.</string> -->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Όλη η δραστηριότητα</string>
   <string name="PaymentsAllActivityFragment__all">Όλοι/ες</string>
@@ -3942,6 +3944,11 @@
   <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Ενεργοποίησε το αποδεικτικό ανάγνωσης για να βλέπεις ποια άτομα βλέπουν τις ιστορίες σου.</string>
   <!--Button label displayed when user has disabled receipts-->
   <string name="StoryViewsFragment__go_to_settings">Πήγαινε στις ρυθμίσεις</string>
+  <!--Dialog action to remove viewer from a story-->
+  <string name="StoryViewsFragment__remove">Αφαίρεση</string>
+  <!--Dialog title when removing a viewer from a story-->
+  <!--Dialog message when removing a viewer from a story-->
+  <!--Story View context menu action to remove them from a story-->
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Καμία απάντηση ακόμα</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
