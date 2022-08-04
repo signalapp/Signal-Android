@@ -29,7 +29,6 @@ import androidx.camera.core.CameraSelector;
 import androidx.camera.core.ImageCapture;
 import androidx.camera.core.ImageCaptureException;
 import androidx.camera.core.ImageProxy;
-import androidx.camera.lifecycle.ProcessCameraProvider;
 import androidx.camera.view.CameraController;
 import androidx.camera.view.LifecycleCameraController;
 import androidx.camera.view.PreviewView;
@@ -315,9 +314,8 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
 
     previewView.setScaleType(PreviewView.ScaleType.FILL_CENTER);
 
-    ProcessCameraProvider.getInstance(requireContext())
-                         .addListener(() -> initializeFlipButton(flipButton, flashButton),
-                                            Executors.mainThreadExecutor());
+    cameraController.getInitializationFuture()
+                    .addListener(() -> initializeFlipButton(flipButton, flashButton), Executors.mainThreadExecutor());
 
     flashButton.setAutoFlashEnabled(cameraController.getImageCaptureFlashMode() >= ImageCapture.FLASH_MODE_AUTO);
     flashButton.setFlash(cameraController.getImageCaptureFlashMode());
