@@ -67,6 +67,8 @@ class AddMessageDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_a
 
   private var requestedEmojiDrawer: Boolean = false
 
+  private var recipient: Recipient? = null
+
   private val disposables = CompositeDisposable()
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -154,8 +156,6 @@ class AddMessageDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_a
   }
 
   private fun initializeMentions() {
-    val recipientId: RecipientId = viewModel.destination.getRecipientSearchKey()?.recipientId ?: return
-
     mentionsContainer = requireView().findViewById(R.id.mentions_picker_container)
 
     inlineQueryResultsController = InlineQueryResultsController(
@@ -167,34 +167,42 @@ class AddMessageDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_a
       viewLifecycleOwner
     )
 
-    Recipient.live(recipientId).observe(viewLifecycleOwner) { recipient ->
-      mentionsViewModel.onRecipientChange(recipient)
-
-      input.setInlineQueryChangedListener(object : InlineQueryChangedListener {
-        override fun onQueryChanged(inlineQuery: InlineQuery) {
-          when (inlineQuery) {
-            is InlineQuery.Mention -> {
-              if (recipient.isPushV2Group && recipient.isActiveGroup) {
-                ensureMentionsContainerFilled()
-                mentionsViewModel.onQueryChange(inlineQuery.query)
-              }
-              inlineQueryViewModel.onQueryChange(inlineQuery)
+    input.setInlineQueryChangedListener(object : InlineQueryChangedListener {
+      override fun onQueryChanged(inlineQuery: InlineQuery) {
+        when (inlineQuery) {
+          is InlineQuery.Mention -> {
+            recipient?.takeIf { it.isPushV2Group && it.isActiveGroup }.let {
+              ensureMentionsContainerFilled()
+              mentionsViewModel.onQueryChange(inlineQuery.query)
             }
-            is InlineQuery.Emoji -> {
-              inlineQueryViewModel.onQueryChange(inlineQuery)
-              mentionsViewModel.onQueryChange(null)
-            }
-            is NoQuery -> {
-              mentionsViewModel.onQueryChange(null)
-              inlineQueryViewModel.onQueryChange(inlineQuery)
-            }
+            inlineQueryViewModel.onQueryChange(inlineQuery)
+          }
+          is InlineQuery.Emoji -> {
+            inlineQueryViewModel.onQueryChange(inlineQuery)
+            mentionsViewModel.onQueryChange(null)
+          }
+          is NoQuery -> {
+            mentionsViewModel.onQueryChange(null)
+            inlineQueryViewModel.onQueryChange(inlineQuery)
           }
         }
+      }
 
-        override fun clearQuery() {
-          onQueryChanged(NoQuery)
-        }
-      })
+      override fun clearQuery() {
+        onQueryChanged(NoQuery)
+      }
+    })
+
+    disposables += inlineQueryViewModel
+      .selection
+      .observeOn(AndroidSchedulers.mainThread())
+      .subscribe { r -> input.replaceText(r) }
+
+    val recipientId: RecipientId = viewModel.destination.getRecipientSearchKey()?.recipientId ?: return
+
+    Recipient.live(recipientId).observe(viewLifecycleOwner) { recipient ->
+      this.recipient = recipient
+      mentionsViewModel.onRecipientChange(recipient)
 
       input.setMentionValidator { annotations ->
         if (!recipient.isPushV2Group) {
@@ -215,11 +223,6 @@ class AddMessageDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_a
     mentionsViewModel.selectedRecipient.observe(viewLifecycleOwner) { recipient ->
       input.replaceTextWithMention(recipient.getDisplayName(requireContext()), recipient.id)
     }
-
-    disposables += inlineQueryViewModel
-      .selection
-      .observeOn(AndroidSchedulers.mainThread())
-      .subscribe { r -> input.replaceText(r) }
   }
 
   private fun ensureMentionsContainerFilled() {
