@@ -79,7 +79,9 @@ class AddMessageDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_a
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     input = view.findViewById(R.id.add_a_message_input)
 
-    EditTextUtil.addGraphemeClusterLimitFilter(input, Stories.MAX_BODY_SIZE)
+    if (Stories.isFeatureEnabled()) {
+      EditTextUtil.addGraphemeClusterLimitFilter(input, Stories.MAX_BODY_SIZE)
+    }
 
     input.setText(requireArguments().getCharSequence(ARG_INITIAL_TEXT))
 

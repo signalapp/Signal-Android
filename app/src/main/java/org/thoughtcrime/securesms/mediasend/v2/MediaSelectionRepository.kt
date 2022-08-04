@@ -159,7 +159,7 @@ class MediaSelectionRepository(context: Context) {
   }
 
   private fun getTruncatedBody(body: String?): String? {
-    return if (body.isNullOrEmpty()) {
+    return if (!Stories.isFeatureEnabled() || body.isNullOrEmpty()) {
       body
     } else {
       val iterator = BreakIteratorCompat.getInstance()
