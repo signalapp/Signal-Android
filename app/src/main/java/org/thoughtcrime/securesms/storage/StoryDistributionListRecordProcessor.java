@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 
 import org.signal.core.util.StringUtil;
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.RecipientRecord;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -75,7 +76,16 @@ public class StoryDistributionListRecordProcessor extends DefaultStorageRecordPr
         throw new IllegalStateException("Found matching recipient but couldn't generate record for sync.");
       }
 
-      return StorageSyncModels.localToRemoteRecord(recordForSync).getStoryDistributionList();
+      if (recordForSync.getGroupType().getId() != RecipientDatabase.GroupType.DISTRIBUTION_LIST.getId()) {
+        throw new InvalidGroupTypeException();
+      }
+
+      Optional<SignalStoryDistributionListRecord> record = StorageSyncModels.localToRemoteRecord(recordForSync).getStoryDistributionList();
+      if (record.isPresent()) {
+        return record;
+      } else {
+        throw new UnexpectedEmptyOptionalException();
+      }
     } else {
       return Optional.empty();
     }
@@ -145,4 +155,16 @@ public class StoryDistributionListRecordProcessor extends DefaultStorageRecordPr
            allowsReplies == record.allowsReplies() &&
            isBlockList == record.isBlockList();
   }
+
+  /**
+   * Thrown when the RecipientSettings object for a given distribution list is not the
+   * correct group type (4).
+   */
+  private static class InvalidGroupTypeException extends RuntimeException {}
+
+  /**
+   * Thrown when the distribution list object returned from the storage sync helper is
+   * absent, even though a RecipientSettings was found.
+   */
+  private static class UnexpectedEmptyOptionalException extends RuntimeException {}
 }

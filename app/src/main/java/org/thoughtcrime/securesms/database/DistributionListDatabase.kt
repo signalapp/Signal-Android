@@ -599,7 +599,7 @@ class DistributionListDatabase constructor(context: Context?, databaseHelper: Si
     SignalDatabase.recipients.updateStorageId(recipientId, update.new.id.raw)
 
     if (update.new.deletedAtTimestamp > 0L) {
-      if (distributionId.asUuid().equals(DistributionId.MY_STORY.asUuid())) {
+      if (distributionId == DistributionId.MY_STORY) {
         Log.w(TAG, "Refusing to delete My Story.")
         return
       }
