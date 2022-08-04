@@ -1040,12 +1040,12 @@
   </plurals>
   <!--GV2 invitation revokes-->
   <plurals name="MessageRecord_you_revoked_invites">
-    <item quantity="one">Hindi mo tinanggap ang isang invitation sa group.</item>
-    <item quantity="other">Hindi mo tinanggap ang %1$d invitations sa group.</item>
+    <item quantity="one">Binawi mo ang isang invitation sa group.</item>
+    <item quantity="other">Binawi mo ang %1$d invitations sa group.</item>
   </plurals>
   <plurals name="MessageRecord_s_revoked_invites">
-    <item quantity="one">Hindi tinanggap ni %1$s ang isang invitation sa group.</item>
-    <item quantity="other">Hindi tinanggap ni %1$s ang %2$d invitations sa group.</item>
+    <item quantity="one">Binawi ni %1$s ang isang invitation sa group.</item>
+    <item quantity="other">Binawi ni %1$s ang %2$d invitations sa group.</item>
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">May nag-decline ng isang invitation sa group.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Hindi mo tinanggap ang invitation na sumali sa group.</string>
@@ -2912,8 +2912,8 @@
   <string name="RecipientBottomSheet_voice_call_description">Voice call</string>
   <string name="RecipientBottomSheet_insecure_voice_call_description">Insecure voice call</string>
   <string name="RecipientBottomSheet_video_call_description">Video call</string>
-  <string name="RecipientBottomSheet_remove_s_as_group_admin">Gusto mo bang i-remove si %1$s as group admin?</string>
-  <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">\"%1$s\" will be able to edit this group at ang members nito.</string>
+  <string name="RecipientBottomSheet_remove_s_as_group_admin">Gusto mo bang i-remove si %1$s bilang group admin?</string>
+  <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">Pwedeng i-edit ni \"%1$s\" ang group at ang members nito.</string>
   <string name="RecipientBottomSheet_remove_s_from_the_group">Gusto mo bang i-remove si %1$s mula sa group?</string>
   <!--Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin-->
   <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">Gusto mo bang i-remove si %1$s mula sa group? Hindi na siya pwedeng mag-rejoin gamit ang group link.</string>
@@ -3261,8 +3261,8 @@
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Show status icon</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Magpakita ng icon sa message details when they were delivered gamit ang sealed sender.</string>
   <!--ExpireTimerSettingsFragment-->
-  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">When enabled, magdi-disappear ang new messages sent and received sa new chats na sinimulan mo kapag na-seen na ito.</string>
-  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">When enabled, magdi-disappear ang new messages sent and received kapag na-seen na ito.</string>
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">When enabled, mawawala ang bagong messages na na-send at na-receive sa new chats na sinimulan mo kapag na-seen na nila ito.</string>
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">When enabled, mawawala ang bagong messages na na-send at na-receive dito sa chat na sinimulan mo kapag na-seen na niya ito.</string>
   <string name="ExpireTimerSettingsFragment__off">Off</string>
   <string name="ExpireTimerSettingsFragment__4_weeks">4 weeks</string>
   <string name="ExpireTimerSettingsFragment__1_week">1 week</string>

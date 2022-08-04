@@ -877,7 +877,7 @@
   <string name="MediaOverviewActivity_Sort_by">დახარისხება</string>
   <string name="MediaOverviewActivity_Newest">ყველაზე ახალი</string>
   <string name="MediaOverviewActivity_Oldest">ყველაზე ძველი</string>
-  <string name="MediaOverviewActivity_Storage_used">გამოყენებული მეხსიერება</string>
+  <string name="MediaOverviewActivity_Storage_used">ათვისებული მეხსიერება</string>
   <string name="MediaOverviewActivity_All_storage_use">მთლიანი მეხსიერების გამოყენება</string>
   <string name="MediaOverviewActivity_Grid_view_description">ბადის ვიზუალი</string>
   <string name="MediaOverviewActivity_List_view_description">სიის ვიზუალი</string>
@@ -1624,7 +1624,7 @@
   <string name="MmsMessageRecord_bad_encrypted_mms_message">ცუდად დაშიფრული MMS-შეტყობინება</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS-შეტყობინება დაშიფრულია არარსებული სესიისთვის</string>
   <!--MuteDialog-->
-  <string name="MuteDialog_mute_notifications">შეტყობინებების გათიშვა</string>
+  <string name="MuteDialog_mute_notifications">შეტყობინებების დადუმება</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">მიმდინარეობს იმპორტირება</string>
   <string name="ApplicationMigrationService_importing_text_messages">მიმდინარეობს ტექსტური შეტყობინებების იმპორტირება</string>
@@ -1699,7 +1699,7 @@
   <string name="NotificationChannel_call_status">ზარის სტატუსი</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
-  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">სწრაფი პასუხი შეუძლებელი, როცა Signal-ი გამორთულია!</string>
+  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">სწრაფი პასუხი შეუძლებელია, როცა Signal-ი გამორთულია!</string>
   <string name="QuickResponseService_problem_sending_message">პრობლემა შეტყობინების გაგზავნისას!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_saved_to">შეინახა %s-ში</string>
@@ -1877,7 +1877,7 @@
   <string name="safety_number_change_dialog__join_call">ზარზე შესვლა</string>
   <string name="safety_number_change_dialog__continue_call">ზარის გაგრძელება</string>
   <string name="safety_number_change_dialog__leave_call">ზარის დატოვება</string>
-  <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">ამ ადამიანებმა შეიძლება ხელახლა დააინსტალირეს ან შეცვალეს მოწყობილობები. კონფიდენციალურობის უზრუნველსაყოფად, დაადასტურე შენი უსაფრთხოების ნომერი მათთან.</string>
+  <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">ამ ადამიანებმა შესაძლოა გადააყენეს ან შეცვალეს მოწყობილობები. კონფიდენციალურობის უზრუნველსაყოფად, დაადასტურე შენი უსაფრთხოების ნომერი მათთან.</string>
   <string name="safety_number_change_dialog__view">View</string>
   <string name="safety_number_change_dialog__previous_verified">წინა ვერიფიცირებული</string>
   <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
@@ -2144,18 +2144,18 @@
   <string name="preferences__pref_use_address_book_photos">მისამართების წიგნაკის ფოტოების გამოყენება</string>
   <string name="preferences__display_contact_photos_from_your_address_book_if_available">აჩვენე საკონტაქტო ფოტოები შენი მისამართების წიგნიდან, თუ ეს შესაძლებელია</string>
   <string name="preferences__generate_link_previews">ბმულსი წინასწარი ნახვის გენერირება</string>
-  <string name="preferences__retrieve_link_previews_from_websites_for_messages">მიიღე ბმულის წინასწარი ნახვები პირდაპირ ვებსაიტებიდან შენ მიერ გაგზავნილი შეტყობინებებისთვის.</string>
+  <string name="preferences__retrieve_link_previews_from_websites_for_messages">მიიღე ბმულის წინასწარი ნახვა შენს მიერ გაგზავნილი შეტყობინებებისთვის პირდაპირ ვებსაიტებიდან.</string>
   <string name="preferences__choose_identity">იდენტობის არჩევა</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">აირჩიე შენი საკონტაქტო ჩანაწერი კონტაქტების სიიდან.</string>
   <string name="preferences__change_passphrase">პაროლ-ფრაზის შეცვლა</string>
   <string name="preferences__change_your_passphrase">შეცვალე შენი პაროლ-ფრაზა</string>
   <string name="preferences__enable_passphrase">ჩართე პაროლ-ფრაზით ეკრანის დაბლოკვა</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">ეკრანისა და შეტყობინებების დაბლოქვა პაროლ-ფრაზით</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">ეკრანისა და შეტყობინებების დაბლოკვა პაროლ-ფრაზით</string>
   <string name="preferences__screen_security">ეკრანის უსაფრთხოება</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">დაბლოკე სქრინები უახლესთა სიასა და აპის შიგნით</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">ავტომატურად დალუქე Signal-ი უმოქმედობის გარკვეული დროის ინტერვალის შემდეგ</string>
-  <string name="preferences__inactivity_timeout_passphrase">უმოქმედობის ვადის ამოწურვის პაროლ-ფრაზა</string>
-  <string name="preferences__inactivity_timeout_interval">უმოქმედობის ვადის ამოწურვის ინტერვალი</string>
+  <string name="preferences__inactivity_timeout_passphrase">უმოქმედობის დროის ამოწურვის პაროლ-ფრაზა</string>
+  <string name="preferences__inactivity_timeout_interval">უმოქმედობის დროის ამოწურვის ინტერვალი</string>
   <string name="preferences__notifications">შეტყობინებები</string>
   <string name="preferences__led_color">LED ფერი</string>
   <string name="preferences__led_color_unknown">უცნობი</string>
@@ -2185,8 +2185,8 @@
   <string name="preferences__normal">ნორმალური</string>
   <string name="preferences__slow">ნელი</string>
   <string name="preferences__help">დახმარება</string>
-  <string name="preferences__advanced">Მოწინავე</string>
-  <string name="preferences__donate_to_signal">Signal-ისთვის შემოწირულობის გაღება</string>
+  <string name="preferences__advanced">დეტალური</string>
+  <string name="preferences__donate_to_signal">Signal-ისთვის დონაციის გაკეთება</string>
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__one_time_donation">ერთჯერადი დონაცია</string>
   <string name="preferences__privacy">კონფიდენციალურობა</string>
@@ -2198,7 +2198,7 @@
   <string name="preferences__mmsc_username">MMSC მომხმარებლის სახელი</string>
   <string name="preferences__mmsc_password">MMSC პაროლი</string>
   <string name="preferences__sms_delivery_reports">SMS-ების გაგზავნის ანგარიშები</string>
-  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">მოითხოვე გაგზავნის ანგარიში შენ მიერ გაგზავნილი თითოეული SMS შეტყობინებისთვის</string>
+  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">მოითხოვე გაგზავნის ანგარიში შენს მიერ გაგზავნილი თითოეული SMS შეტყობინებისთვის</string>
   <string name="preferences__data_and_storage">მონაცემები და მეხსიერება</string>
   <string name="preferences__storage">მეხსიერება</string>
   <string name="preferences__payments">ტრანზაქციები</string>
@@ -2215,9 +2215,9 @@
   <string name="preferences__chat_color_and_wallpaper">ჩატის ფერი &amp; ფონის სურათი</string>
   <string name="preferences__disable_pin">პინ-კოდის გამორთვა</string>
   <string name="preferences__enable_pin">პინ-კოდის ჩართვა</string>
-  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">თუ პინ-კოდს გამორთავ, Signal-ზე ხელახლა დარეგისტრირებისას ყველა მონაცემს დაკარგავ, თუ ხელით არ შექმნი სარეზერვო ასლს და აღადგენ. რეგისტრაციის დაბლოკვას ვერ ჩართვა, სანამ პინ-კოდი გამორთულია.</string>
-  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">პინ-კოდები ინარჩუნებს Signal-ით შენახულ ინფორმაციას დაშიფრულად, რათა მხოლოდ შენ შეძლო მასზე წვდომა. შენი პროფილი, პარამეტრები და კონტაქტები აღდგება ხელახლა ინსტალაციისას. შენი პინ-კოდი აპის გასახსნელად არ დაგჭირდება.</string>
-  <string name="preferences__system_default">სისტემის ნაგულისხმევი</string>
+  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">თუ პინ-კოდს გამორთავ, Signal-ზე ხელახლა დარეგისტრირებისას ყველა მონაცემს დაკარგავ, თუ ხელით არ შექმნი სარეზერვო კოპიას და არ აღადგენ. რეგისტრაციის დაბლოკვას ვერ ჩართავ, სანამ პინ-კოდი გამორთულია.</string>
+  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">პინ-კოდები ინარჩუნებს Signal-ით შენახული ინფორმაციის დაშიფრულად, რათა მხოლოდ შენ შეძლო მასზე წვდომა. შენი პროფილი, პარამეტრები და კონტაქტები აღდგება ხელახალი ინსტალაციისას. შენი პინ-კოდი აპის გასახსნელად არ დაგჭირდება.</string>
+  <string name="preferences__system_default">სისტემის ნაგულისხმევი პარამეტრები</string>
   <string name="preferences__language">ენა</string>
   <string name="preferences__signal_messages_and_calls">Signal-ის შეტყობინებები და ზარები</string>
   <string name="preferences__advanced_pin_settings">პინ-კოდის გაფართოებული პარამეტრები</string>
@@ -2228,18 +2228,18 @@
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">ჩართე, თუ შენი მოწყობილობა SMS/MMS-ს WiFi-ით აგზავნის (ჩართე მხოლოდ მაშინ, როცა შენს მოწყობილობაზე ჩართულია „WiFi Calling“)</string>
   <string name="preferences__incognito_keyboard">ინკოგნიტო კლავიატურა</string>
   <string name="preferences__read_receipts">წაკითხვის დადასტურება</string>
-  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">თუ წაკითხვის დადასტურება გამორთულია, ვერ შეძლებ სხვების წაკითხვის ქვითრების ნახვას.</string>
+  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">თუ წაკითხვის დადასტურება გამორთულია, ვერ შეძლებ სხვების წაკითხვის დადასტურების ნახვას.</string>
   <string name="preferences__typing_indicators">ბეჭდვის ინდიკატორი</string>
-  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">თუ ბეჭდვის ინდიკატორი გამორთულია, ვერ ნახავ სხვებისგან ბეჭდვის ინდიკატორს.</string>
+  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">თუ ბეჭდვის ინდიკატორი გამორთულია, ვერ ნახავ სხვების ბეჭდვის ინდიკატორს.</string>
   <string name="preferences__request_keyboard_to_disable">მოითხოვე, რომ კლავიატურამ გათიშოს პერსონალიზებული სწავლა.</string>
-  <string name="preferences__this_setting_is_not_a_guarantee">ეს პარამეტრი გარანტია არ არის და შენმა კლავიატურამ შეიძლება ის უგულებელყოს.</string>
+  <string name="preferences__this_setting_is_not_a_guarantee">ეს პარამეტრი არ არის გარანტირებული და შენმა კლავიატურამ შეიძლება ის უგულებელყოს.</string>
   <string name="preferences_app_protection__blocked_users">დაბლოკილი მომხმარებლები</string>
   <string name="preferences_chats__when_using_mobile_data">მობილური ინტერნეტის გამოყენებისას</string>
   <string name="preferences_chats__when_using_wifi">Wi-Fi-ის გამოყენებისას</string>
-  <string name="preferences_chats__when_roaming">როუმინგისას</string>
+  <string name="preferences_chats__when_roaming">როუმინგში</string>
   <string name="preferences_chats__media_auto_download">მედია-ფაილების ავტომატური ჩამოტვირთვა</string>
   <string name="preferences_chats__message_history">შეტყობინების ისტორია</string>
-  <string name="preferences_storage__storage_usage">მეხსიერების გამოყენება</string>
+  <string name="preferences_storage__storage_usage">მეხსიერების ათვისება</string>
   <string name="preferences_storage__photos">ფოტოები</string>
   <string name="preferences_storage__videos">ვიდეოები</string>
   <string name="preferences_storage__files">ფაილები</string>
@@ -2247,14 +2247,14 @@
   <string name="preferences_storage__review_storage">მეხსიერების გადახედვა</string>
   <string name="preferences_storage__delete_older_messages">წავშალოთ ძველი შეტყობინებები?</string>
   <string name="preferences_storage__clear_message_history">გავასუფთავოთ შეტყობინებების ისტორია?</string>
-  <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">ეს შენი მოწყობილობიდან სამუდამოდ წაშლის მიმოწერის მთელ ისტორიას, რომელიც %1$s-ამდე გქონდათ.</string>
+  <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">ეს შენი მოწყობილობიდან სამუდამოდ წაშლის მიმოწერის მთელ ისტორიას, რომელიც %1$s-მდე გქონდათ.</string>
   <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">ეს სამუდამოდ წაშლის ყველა მიმოწერას %1$s უახლეს შეტყობინებებამდე.</string>
   <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">ეს სამუდამოდ წაშლის შეტყობინებების მთელ ისტორიას და მედია-ფაილებს შენი მოწყობილობიდან.</string>
   <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">დარწმუნებული ხარ, რომ გსურს წაშალო შეტყობინებების მთელი ისტორია?</string>
   <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">შეტყობინებების მთელი ისტორია სამუდამოდ წაიშლება. ამ მოქმედების გაუქმება შეუძლებელია.</string>
-  <string name="preferences_storage__delete_all_now">ყველას ახლა წაშლა</string>
+  <string name="preferences_storage__delete_all_now">ყველას წაშლა ახლავე</string>
   <string name="preferences_storage__forever">სამუდამოდ</string>
-  <string name="preferences_storage__one_year">1 წლით</string>
+  <string name="preferences_storage__one_year">1  წლით</string>
   <string name="preferences_storage__six_months">6 თვით</string>
   <string name="preferences_storage__thirty_days">30 დღით</string>
   <string name="preferences_storage__none">არცერთი</string>
@@ -2262,7 +2262,7 @@
   <string name="preferences_storage__custom">პერსონალიზირებული</string>
   <string name="preferences_advanced__use_system_emoji">სისტემის emoji-ის გამოყენება</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Signal-ში ჩაშენებული emoji-ის მხარდაჭერის გამორთვა</string>
-  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">გადაიტანე ყველა ზარი Signal-ის სერვერის მეშვეობით, რათა თავიდან აიცილო შენი IP მისამართის გამოჩენა შენს კონტაქტზე. ამის ჩართვა შეამცირებს ზარის ხარისხს.</string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">გადაიტანე ყველა ზარის განახორციელება Signal-ის სერვერზე, რათა აირიდო შენი IP მისამართის გამოჩენა შენს კონტაქტთან. ამის ჩართვა შეამცირებს ზარის ხარისხს.</string>
   <string name="preferences_advanced__always_relay_calls">ყოველთვის გადაიტანე ზარები</string>
   <string name="preferences_app_protection__who_can">ვის შეუძლია…</string>
   <string name="preferences_app_protection__app_access">აპზე წვდომა</string>
@@ -2270,19 +2270,19 @@
   <string name="preferences_chats__chats">ჩატები</string>
   <string name="preferences_data_and_storage__manage_storage">მეხსიერების მართვა</string>
   <string name="preferences_data_and_storage__calls">ზარები</string>
-  <string name="preferences_data_and_storage__use_less_data_for_calls">ზარებისთვის ნაკლები მობილური ინტერნეტის გამოყენება</string>
+  <string name="preferences_data_and_storage__use_less_data_for_calls">ზარებისთვის ნაკლები მონაცემების გამოყენება</string>
   <string name="preferences_data_and_storage__never">არასდროს</string>
   <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi და მობილური ინტერნეტი</string>
   <string name="preferences_data_and_storage__mobile_data_only">მხოლოდ მობილური ინტერნეტი</string>
-  <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">ნაკლები მობილური ინტერნეტის გამოყენებამ შეიძლება გააუმჯობესოს ზარები ცუდ ქსელებში</string>
+  <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">ნაკლები მონაცემების გამოყენებამ შეიძლება გააუმჯობესოს ზარები ცუდ ქსელებში</string>
   <string name="preferences_notifications__messages">შეტყობინებები</string>
   <string name="preferences_notifications__events">ღონისძიებები</string>
   <string name="preferences_notifications__in_chat_sounds">ჩატს-შიდა ხმები</string>
   <string name="preferences_notifications__show">ჩვენება</string>
   <string name="preferences_notifications__calls">ზარები</string>
-  <string name="preferences_notifications__ringtone">ზარის მელოდია</string>
+  <string name="preferences_notifications__ringtone">მელოდია</string>
   <string name="preferences_chats__show_invitation_prompts">მოწვევის მოთხოვნების ჩვენება</string>
-  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">კონტაქტებისთვის მოწვევის მოთხოვნის ჩვენება Signal-ის გარეშე</string>
+  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">მოწვევის მოთხოვნის ჩვენება Signal-ის გარეშე კონტაქტებისთვის </string>
   <string name="preferences_chats__message_text_size">შეტყობინების ფონტის ზომა</string>
   <string name="preferences_events__contact_joined_signal">კონტაქტი Signal-ს შემოუერთდა</string>
   <string name="preferences_notifications__priority">პრიორიტეტი</string>
@@ -2290,7 +2290,7 @@
   <string name="preferences_communication__category_censorship_circumvention">ცენზურისთვის გვერდის ავლა</string>
   <!--Title of the \'censorship circumvention\' toggle switch-->
   <string name="preferences_communication__censorship_circumvention">ცენზურისთვის გვერდის ავლა</string>
-  <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">თუ ამას ჩართავ, Signal-ი შეეცდება აირიდოს ცენზურა. არ ჩართო ეს ფუნქცია, თუ არ იმყოფები ისეთ ადგილას, სადაც Signal-ი ცენზურადადებულია.</string>
+  <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">თუ ამას ჩართავ, Signal-ი შეეცდება გვერდი აარიდოს ცენზურას. არ ჩართო ეს ფუნქცია, თუ არ იმყოფები ისეთ ადგილას, სადაც Signal-ი ცენზურადადებულია.</string>
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country-->
   <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">ცენზურისთვის გვერდის ავლა გააქტიურებულია შენი ანგარიშის ტელეფონის ნომრის საფუძველზე.</string>
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country-->
@@ -2301,8 +2301,8 @@
   <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">ცენზურისთვის გვერდის ავლა შეიძლება გააქტიურდეს მხოლოდ ინტერნეტთან დაკავშირებისას.</string>
   <string name="preferences_communication__category_sealed_sender">დალუქული გამგზავნი</string>
   <string name="preferences_communication__sealed_sender_display_indicators">ინდიკატორების ჩვენება</string>
-  <string name="preferences_communication__sealed_sender_display_indicators_description">აჩვენე სტატუსის ხატულა, როდესაც აირჩევ „შეტყობინებების დეტალებს“ შეტყობინებებზე, რომლებიც გამოგზავნილია დალუქული გამგზავნის გამოყენებით.</string>
-  <string name="preferences_communication__sealed_sender_allow_from_anyone">ყველასგან დაშვება</string>
+  <string name="preferences_communication__sealed_sender_display_indicators_description">აჩვენე სტატუსის ხატულა, როდესაც აირჩევ „შეტყობინებების დეტალები“ შეტყობინებებზე, რომლებიც გამოგზავნილია დალუქული გამგზავნის გამოყენებით.</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone">ყველასთვის დაშვება</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">ჩართე დალუქული გამგზავნი შემომავალი შეტყობინებებისთვის იმ ადამიანებისგან, ვინც არ გყავს კონტაქტებში და ვისთანაც არ გაგიზიარებია შენი პროფილი.</string>
   <string name="preferences_communication__sealed_sender_learn_more">გაიგე მეტი</string>
   <string name="preferences_setup_a_username">მომხმარებლის სახელის შექმნა</string>
@@ -2310,7 +2310,7 @@
   <string name="preferences_use_proxy">პროქსის გამოყენება</string>
   <string name="preferences_off">გამორთული</string>
   <string name="preferences_on">ჩართული</string>
-  <string name="preferences_proxy_address">Პროქსი მისამართი</string>
+  <string name="preferences_proxy_address">Პროქსის მისამართი</string>
   <string name="preferences_only_use_a_proxy_if">პროქსი მხოლოდ იმ შემთხვევაში გამოიყენე, თუ ვერ ახერხებ Signal-თან დაკავშირებას მობილური ინტერნეტით ან Wi-Fi-ით.</string>
   <string name="preferences_share">გაზიარება</string>
   <string name="preferences_save">შენახვა</string>
@@ -2322,7 +2322,7 @@
   <string name="preferences_success">წარმატება</string>
   <string name="preferences_failed_to_connect">დაკავშირება ვერ მოხერხდა</string>
   <string name="preferences_enter_proxy_address">შეიყვანე პროქსის მისამართი</string>
-  <string name="configurable_single_select__customize_option">პარამეტრის მორგება</string>
+  <string name="configurable_single_select__customize_option">პარამეტრის პერსონალიზირება</string>
   <!--Internal only preferences-->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">ყველა აქტივობა</string>

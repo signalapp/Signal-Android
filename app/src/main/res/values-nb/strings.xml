@@ -3087,19 +3087,19 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--DeactivateWalletFragment-->
   <string name="DeactivateWalletFragment__deactivate_wallet">Deaktiver lommeboken</string>
   <string name="DeactivateWalletFragment__your_balance">Din balanse</string>
-  <string name="DeactivateWalletFragment__its_recommended_that_you">Vi anbefaler deg å overføre pengene til en annen lommebokadresse før du deaktiverer betalingene. Hvis du velger å ikke overføre pengene dine nå, vil de forbli i lommeboken som er knyttet til Signal hvis du aktiverer betalinger på nytt.</string>
+  <string name="DeactivateWalletFragment__its_recommended_that_you">Vi anbefaler deg å overføre pengene til en annen lommebokadresse før du deaktiverer betalingene. Hvis du velger å ikke overføre pengene dine nå, forblir de i lommeboken som er knyttet til Signal hvis du aktiverer betalinger på nytt.</string>
   <string name="DeactivateWalletFragment__transfer_remaining_balance">Overfør gjenværende saldo</string>
-  <string name="DeactivateWalletFragment__deactivate_without_transferring">Deaktiver uten overføring</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring">Deaktiver uten å overføre</string>
   <string name="DeactivateWalletFragment__deactivate">Deaktiver</string>
   <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Vil du deaktivere uten å overføre?</string>
   <string name="DeactivateWalletFragment__your_balance_will_remain">Kontosaldoen din vil holde seg i lommeboken du har koblet til Signal, hvis du ønsker å reaktivere betalingene.</string>
-  <string name="DeactivateWalletFragment__error_deactivating_wallet">Kunne ikke deaktivere lommeboken.</string>
+  <string name="DeactivateWalletFragment__error_deactivating_wallet">Feil ved deaktivering av lommeboken.</string>
   <!--PaymentsRecoveryStartFragment-->
   <string name="PaymentsRecoveryStartFragment__recovery_phrase">Gjenopprettingsfrase</string>
   <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Se gjenopprettingsfrasen</string>
   <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Skriv inn gjenopprettingsfrasen</string>
-  <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Saldoen din gjenopprettes automatisk når du installerer Signal igjen og bekrefter med PIN-koden din. Du kan også gjenopprette saldoen din med et gjenopprettingspassord, som er en setning på %1$d ord som du velger selv. Skriv den ned og oppbevar den på et trygt sted.</string>
-  <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Gjenopprettingspassordet ditt er en setning på %1$d ord som du velger selv. Det kan brukes til å gjenopprette betalingskontoen din.</string>
+  <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Saldoen din gjenopprettes automatisk når du installerer Signal på nytt og bekrefter med PIN-koden din. Du kan også gjenopprette saldoen din med et gjenopprettingspassord, som er en setning på %1$d ord som du velger selv. Skriv den ned og oppbevar den på et trygt sted.</string>
+  <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Gjenopprettingspassordet ditt er en setning på %1$d ord som du velger selv. Det kan brukes til å gjenopprette saldoen din.</string>
   <string name="PaymentsRecoveryStartFragment__start">Start</string>
   <string name="PaymentsRecoveryStartFragment__enter_manually">Skriv inn manuelt</string>
   <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Lim inn fra utklippstavlen</string>
@@ -3119,7 +3119,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">Ikke ta skjermbilder eller send frasen via e-post.</string>
   <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">Betalingskontoen ble gjenopprettet.</string>
   <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">Ugyldig gjenopprettingsfrase</string>
-  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">Pass på at du har skrevet inn riktig passord og prøv igjen.</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">Pass på at du har skrevet inn riktig passord, og prøv igjen.</string>
   <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">Kopier til utklippstavlen?</string>
   <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">Pass på at gjenopprettingspassordet er lagret en trygg og sikker plass hvis du velger å lagre det digitalt.</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">Kopier</string>
@@ -3169,9 +3169,9 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="AccountSettingsFragment__account">Konto</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Du vil bli spurt sjeldnere over tid</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Krev Signal-PIN for å registrere telefonnummeret på nytt hos Signal</string>
-  <string name="AccountSettingsFragment__change_phone_number">Bytt telefonnummer</string>
+  <string name="AccountSettingsFragment__change_phone_number">Endre telefonnummer</string>
   <!--ChangeNumberFragment-->
-  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Velg dette for å bytte ut det nåværende telefonnummeret ditt. Dette kan ikke angres senere.
+  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Velg dette for å bytte ut det nåværende telefonnummeret ditt. Denne endringen kan ikke angres senere.
 
 Dobbeltsjekk at det nye nummeret ditt kan motta både SMS og anrop før du fortsetter.</string>
   <string name="ChangeNumberFragment__continue">Fortsett</string>
@@ -3186,23 +3186,23 @@ Dobbeltsjekk at det nye nummeret ditt kan motta både SMS og anrop før du forts
   <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Ditt nye nummer</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Nytt telefonnummer</string>
   <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Telefonnummeret du tastet inn stemmer ikke med kontoen din sitt.</string>
-  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Du må oppgi landskoden til det gamle nummeret ditt</string>
-  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Du må oppgi det gamle nummeret ditt</string>
-  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Du må oppgi landskoden til det nye nummeret ditt</string>
-  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Du må oppgi det nye nummeret ditt</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Du må oppgi landskoden for det gamle nummeret ditt</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Du må oppgi det gamle telefonnummeret ditt</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Du må oppgi landskoden for det nye nummeret ditt</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Du må oppgi det nye telefonnummeret ditt</string>
   <!--ChangeNumberVerifyFragment-->
   <string name="ChangeNumberVerifyFragment__change_number">Endre telefonnummer</string>
   <string name="ChangeNumberVerifyFragment__verifying_s">Bekrefter %1$s</string>
   <string name="ChangeNumberVerifyFragment__captcha_required">Captcha kreves</string>
   <!--ChangeNumberConfirmFragment-->
   <string name="ChangeNumberConfirmFragment__change_number">Endre telefonnummer</string>
-  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Telefonnummeret ditt byttes fra %1$s til %2$s.\n\nDobbeltsjekk at nummeret under er riktig før du går videre.</string>
+  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Telefonnummeret ditt endres fra %1$s til %2$s.\n\nDobbeltsjekk at nummeret under er riktig før du går videre.</string>
   <string name="ChangeNumberConfirmFragment__edit_number">Rediger nummer</string>
   <!--ChangeNumberRegistrationLockFragment-->
-  <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Endre telefonnummer på Signal - Hjelp med PIN-kode på Android (v2-PIN)</string>
+  <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Endre telefonnummer på Signal – Trenger hjelp med PIN-kode på Android (v2-PIN)</string>
   <!--ChangeNumberPinDiffersFragment-->
   <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">PIN-kodene stemmer ikke overens</string>
-  <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">PIN-koden som er knyttet til det nye nummeret ditt er annerledes enn PIN-koden til det gamle nummeret ditt. Vil du beholde den gamle PIN-koden din eller bytte den?</string>
+  <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">PIN-koden som er knyttet til det nye nummeret ditt, er annerledes enn PIN-koden til det gamle nummeret ditt. Vil du beholde den gamle PIN-koden din eller oppdatere den?</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Behold gammel PIN-kode</string>
   <string name="ChangeNumberPinDiffersFragment__update_pin">Oppdater PIN</string>
   <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Vil du beholde den gamle PIN-koden?</string>
@@ -3216,7 +3216,7 @@ Dobbeltsjekk at det nye nummeret ditt kan motta både SMS og anrop før du forts
   <!--Dialog title shown if we were not able to confirm your phone number with the server and thus cannot let leave the change flow yet after a crash during the regular flow-->
   <string name="ChangeNumberLockActivity__change_status_unconfirmed">Endringsstatus ikke bekreftet</string>
   <!--Dialog message shown when we can\'t verify the phone number on the server, only shown if there was a network error communicating with the server after a crash during the regular flow-->
-  <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">Vi klarte ikke å finne statusen for forespørselen din om å bytte nummer.\n\n(Feil: %1$s)</string>
+  <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">Vi klarte ikke å finne statusen for forespørselen din om å endre nummer.\n\n(Feil: %1$s)</string>
   <!--Dialog button to retry confirming the number on the server-->
   <string name="ChangeNumberLockActivity__retry">Prøv på nytt</string>
   <!--Dialog button shown to leave the app when in the unconfirmed change status after a crash in the regular flow-->
@@ -3392,7 +3392,7 @@ Dobbeltsjekk at det nye nummeret ditt kan motta både SMS og anrop før du forts
   <string name="ConversationSettingsFragment__conversation_muted_forever">Samtalen er satt på lydløs for alltid</string>
   <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Telefonnummeret er kopiert til utklippstavlen.</string>
   <string name="ConversationSettingsFragment__phone_number">Telefonnummer</string>
-  <string name="ConversationSettingsFragment__get_badges">Få merker til profilen din ved å gi et bidrag til Signal. Trykk på et merke for å lese mer.</string>
+  <string name="ConversationSettingsFragment__get_badges">Få merker til profilen din ved å støtte Signal. Trykk på et merke for å lese mer.</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Legg til medlemmer</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Rediger gruppe info</string>
@@ -3482,12 +3482,12 @@ Dobbeltsjekk at det nye nummeret ditt kan motta både SMS og anrop før du forts
     <item quantity="one">Kunne ikke videresende meldingen fordi den ikke lenger er tilgjengelig.</item>
     <item quantity="other">Kunne ikke videresende meldingene fordi de ikke lenger er tilgjengelige.</item>
   </plurals>
-  <string name="MultiselectForwardFragment__limit_reached">Maksantallet er nådd</string>
+  <string name="MultiselectForwardFragment__limit_reached">Grensen er nådd</string>
   <!--Media V2-->
   <string name="MediaReviewFragment__add_a_message">Legg til en melding</string>
   <string name="MediaReviewFragment__add_a_reply">Legg til et svar</string>
   <string name="MediaReviewFragment__send_to">Send til</string>
-  <string name="MediaReviewFragment__view_once_message">Se-én-gang-melding</string>
+  <string name="MediaReviewFragment__view_once_message">Se én gang-melding</string>
   <string name="MediaReviewFragment__one_or_more_items_were_too_large">Elementene er for store</string>
   <string name="MediaReviewFragment__one_or_more_items_were_invalid">Elementene er ugyldige</string>
   <string name="MediaReviewFragment__too_many_items_selected">For mange valgte elementer</string>
@@ -3499,9 +3499,9 @@ Dobbeltsjekk at det nye nummeret ditt kan motta både SMS og anrop før du forts
   <string name="ImageEditorHud__done_editing">Avslutt redigering</string>
   <string name="ImageEditorHud__clear_all">Fjern alt</string>
   <string name="ImageEditorHud__undo">Angre</string>
-  <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Bytt mellom tusj og markeringstusj</string>
+  <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Veksle mellom tusj og markeringstusj</string>
   <string name="ImageEditorHud__delete">Slett</string>
-  <string name="ImageEditorHud__toggle_between_text_styles">Bytt mellom tekststiler</string>
+  <string name="ImageEditorHud__toggle_between_text_styles">Veksle mellom tekststiler</string>
   <string name="MediaCountIndicatorButton__send">Send</string>
   <string name="MediaReviewSelectedItem__tap_to_remove">Trykk for å fjerne</string>
   <string name="MediaReviewSelectedItem__tap_to_select">Trykk for å velge</string>
@@ -3535,7 +3535,7 @@ Dobbeltsjekk at det nye nummeret ditt kan motta både SMS og anrop før du forts
   <string name="SubscribeFragment__your_subscription_has_been_cancelled">Abonnementet ditt er sagt opp.</string>
   <string name="SubscribeFragment__update_subscription_question">Oppdatere abonnementet?</string>
   <string name="SubscribeFragment__update">Oppdater</string>
-  <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Hele prisen for abonnementet (%1$s) vil trekkes i dag. Abonnementet ditt vil fornyes månedlig.</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Hele prisen for abonnementet (%1$s) trekkes i dag. Abonnementet ditt fornyes månedlig.</string>
   <string name="Subscription__s_per_month">%s per måned</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s per måned · Fornyes %2$s</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s per måned · Utløper %2$s</string>
@@ -3546,16 +3546,16 @@ Dobbeltsjekk at det nye nummeret ditt kan motta både SMS og anrop før du forts
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Pengebeløpet ditt styrker denne saken og hjelper oss med å betale for utviklingen og driften av en app som millioner av mennesker bruker for å kommunisere privat. Ingen annonser. Ingen sporing. Ingen spøk.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Takk for støtten!</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Takk for gaven!</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">Du har fått et %s-merke! Vis frem merket i profilen din for å oppmuntre andre til å donere til Signal.</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Du har fått et Boost-merke! Vis frem merket i profilen din for å oppmuntre andre til å donere til Signal.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">Du har fått et %s-merke! Vis frem merket i profilen din for å oppmuntre andre til å gi penger til Signal.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Du har fått et Boost-merke! Vis frem merket i profilen din for å oppmuntre andre til å gi penger til Signal.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Du kan også</string>
-  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">bli en Støttespiller.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">bli en månedlig støttespiller.</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Vis på profilen</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Vis frem som utvalgt merke</string>
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Ferdig</string>
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Når du har mer enn ett merke, kan du velge ett som skal vises som andre kan se på profilen din.</string>
-  <string name="BecomeASustainerFragment__get_badges">Få merker til profilen din ved å gi et bidrag til Signal.</string>
-  <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal er en ideell organisasjon uten annonsører og investorer, og drives kun av folk som deg.</string>
+  <string name="BecomeASustainerFragment__get_badges">Få merker til profilen din ved å støtte Signal.</string>
+  <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal er en ideell organisasjon uten annonsører og investorer som drives kun av folk som deg.</string>
   <!--Button label for creating a monthly donation-->
   <string name="ManageDonationsFragment__make_a_monthly_donation">Gi et månedlig pengebeløp</string>
   <!--Heading for more area of manage subscriptions page-->
@@ -3579,7 +3579,7 @@ Dobbeltsjekk at det nye nummeret ditt kan motta både SMS og anrop før du forts
   <string name="BoostFragment__make_a_one_time">Gi et engangsbeløp og få et Boost-merke i %1$d dager.</string>
   <string name="Boost__enter_custom_amount">Angi tilpasset beløp</string>
   <string name="Boost__one_time_contribution">Engangsbeløp</string>
-  <string name="MySupportPreference__add_a_signal_boost">Gi Signal en gave</string>
+  <string name="MySupportPreference__add_a_signal_boost">Legg til en Signal-gave</string>
   <string name="MySupportPreference__s_per_month">%1$s per måned</string>
   <string name="MySupportPreference__renews_s">Fornyes %1$s</string>
   <string name="MySupportPreference__processing_transaction">Transaksjonen behandles …</string>
@@ -3594,22 +3594,22 @@ Dobbeltsjekk at det nye nummeret ditt kan motta både SMS og anrop før du forts
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Boost-merket ditt er utløpt og vises ikke lenger på profilen din.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Du kan aktivere Boost-merket på nytt i 30 dager ved å gi et engangsbeløp til Signal.</string>
   <!--Displayed when we do not think the user is a subscriber when their boost expires-->
-  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Du kan fortsette å bruke Signal, men hvis du ønsker å støtte teknologi som er utviklet med deg i fokus, kan du bli en av våre støttespillere ved å gi en månedlig pengegave.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Du kan fortsette å bruke Signal, men hvis du ønsker å støtte teknologi som er utviklet for deg, kan du bli en av våre støttespillere ved å gi et månedlig pengebeløp.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Bli en støttespiller</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Legg til en boost</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ikke nå</string>
   <!--Copy displayed when badge expires after user inactivity-->
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Det månedlige pengebeløpet ditt ble stoppet fordi du var inaktiv for lenge. %1$s-merket ditt vil ikke lenger vises på profilen din.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Det månedlige pengebeløpet ditt ble stoppet fordi du var inaktiv for lenge. %1$s-merket ditt vises ikke lenger på profilen din.</string>
   <!--Copy displayed when badge expires after payment failure-->
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Det månedlige pengebeløpet ditt ble stoppet fordi vi ikke kunne behandle betalingen. Merket ditt vil ikke lenger vises på profilen din.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Det månedlige pengebeløpet ditt ble stoppet fordi vi ikke kunne behandle betalingen din. Merket ditt vises ikke lenger på profilen din.</string>
   <!--Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason-->
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Det månedlige pengebeløpet ditt ble stoppet. %1$s %2$s-merket ditt vil ikke lenger vises på profilen din.</string>
-  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">hDu kan fortsatt bruke Signal, men hvis du vil støtte appen og beholde merket ditt, kan du fornye abonnementet nå.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Det månedlige pengebeløpet ditt ble stoppet. %1$s %2$s-merket ditt vises ikke lenger på profilen din.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Du kan fortsatt bruke Signal, men hvis du vil støtte appen og beholde merket ditt, må du fornye abonnementet nå.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Forny abonnementet</string>
   <!--Button label to send user to Google Pay website-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Gå til Google Pay</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Kunne ikke behandle abonnementsbetalingen</string>
-  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">Vi har litt problemer med å behandle Støttespiller-betalingen din. Pass på at betalingsmåten din er oppdatert. Oppdater den i Google Pay hvis ikke. Signal vil forsøke å behandle betalingen igjen om et par dager.</string>
+  <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">Vi har problemer med å behandle støttespiller-betalingen din. Pass på at betalingsmåten din er oppdatert. Oppdater den i Google Pay hvis ikke. Signal vil forsøke å behandle betalingen igjen om et par dager.</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">Ikke vis dette igjen</string>
   <string name="Subscription__please_contact_support_for_more_information">Ta kontakt med kundestøtten vår for å få mer informasjon.</string>
   <string name="Subscription__contact_support">Kontakt brukerstøtte</string>
@@ -3637,13 +3637,13 @@ Dobbeltsjekk at det nye nummeret ditt kan motta både SMS og anrop før du forts
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Du har koblet til Google Pay for å gi penger i appen.</string>
   <string name="DonationsErrors__failed_to_cancel_subscription">Kunne ikke avslutte abonnementet</string>
   <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Du må være koblet til internett for å si opp abonnementet.</string>
-  <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Enheten din støtter ikke Google Pay, så du kan ikke abonnere for å få et merke. Du kan fremdeles gi Signal støtte ved å gi et pengebeløp via nettsiden vår.</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Enheten din støtter ikke Google Pay, så du kan ikke abonnere for å få et merke. Du kan fremdeles støtte Signal ved å gi et pengebeløp via nettsiden vår.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Nettverksfeil. Sjekk internettilkoblingen din og prøv igjen.</string>
   <string name="NetworkFailure__retry">Prøv på nytt</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
   <string name="DonationsErrors__recipient_verification_failed">Mottakeren kunne ikke bekreftes.</string>
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
-  <string name="DonationsErrors__target_does_not_support_gifting">Mottakeren kan ikke motta gaver.</string>
+  <string name="DonationsErrors__target_does_not_support_gifting">Mottakeren støtter ikke gavegiving.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
   <string name="DonationsErrors__could_not_verify_recipient">Kunne ikke bekrefte mottakeren.</string>
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
@@ -3660,7 +3660,7 @@ Dobbeltsjekk at det nye nummeret ditt kan motta både SMS og anrop før du forts
   <!--Gift badge view action label-->
   <string name="GiftMessageView__view">Vis</string>
   <!--Gift badge redeeming action label-->
-  <string name="GiftMessageView__redeeming">Løser inn…</string>
+  <string name="GiftMessageView__redeeming">Løser inn …</string>
   <!--Gift badge redeemed label-->
   <string name="GiftMessageView__redeemed">Innløst</string>
   <!--Stripe decline code generic_failure-->
@@ -3674,7 +3674,7 @@ Dobbeltsjekk at det nye nummeret ditt kan motta både SMS og anrop før du forts
   <!--Stripe decline code purchase not supported-->
   <string name="DeclineCode__your_card_does_not_support_this_type_of_purchase">Betalingskortet ditt kan ikke brukes til denne typen kjøp. Prøv en annen betalingsmåte.</string>
   <!--Stripe decline code your card has expired-->
-  <string name="DeclineCode__your_card_has_expired">Betalingskortet ditt er utløpt. Oppdater betalingsinformasjonen din i Google Pay og prøv igjen.</string>
+  <string name="DeclineCode__your_card_has_expired">Betalingskortet ditt er utløpt. Oppdater betalingsmåten din i Google Pay og prøv igjen.</string>
   <!--Stripe decline code go to google pay action label-->
   <string name="DeclineCode__go_to_google_pay">Gå til Google Pay</string>
   <!--Stripe decline code incorrect card number-->
@@ -3682,7 +3682,7 @@ Dobbeltsjekk at det nye nummeret ditt kan motta både SMS og anrop før du forts
   <!--Stripe decline code incorrect cvc-->
   <string name="DeclineCode__your_cards_cvc_number_is_incorrect">Kortets CVC-nummer stemmer ikke. Oppdater det i Google Pay og prøv på nytt.</string>
   <!--Stripe decline code insufficient funds-->
-  <string name="DeclineCode__your_card_does_not_have_sufficient_funds">Betalingskortet ditt har ikke dekning til å gjennomføre kjøpet. Prøv en annen betalingsmåte.</string>
+  <string name="DeclineCode__your_card_does_not_have_sufficient_funds">Betalingskortet ditt har ikke dekning til å gjennomføre dette kjøpet. Prøv en annen betalingsmåte.</string>
   <!--Stripe decline code incorrect expiration month-->
   <string name="DeclineCode__the_expiration_month">Utløpsmåneden for betalingsmåten din stemmer ikke. Oppdater den i Google Pay og prøv på nytt.</string>
   <!--Stripe decline code incorrect expiration year-->
@@ -3690,7 +3690,7 @@ Dobbeltsjekk at det nye nummeret ditt kan motta både SMS og anrop før du forts
   <!--Stripe decline code issuer not available-->
   <string name="DeclineCode__try_completing_the_payment_again">Prøv å gjennomføre betalingen igjen, eller ta kontakt med banken din for å få mer informasjon.</string>
   <!--Stripe decline code processing error-->
-  <string name="DeclineCode__try_again">Prøv igjen eller ta kontakt med banken din for å få mer informasjon.</string>
+  <string name="DeclineCode__try_again">Prøv igjen, eller ta kontakt med banken din for å få mer informasjon.</string>
   <!--Title of create notification profile screen-->
   <string name="EditNotificationProfileFragment__name_your_profile">Gi et navn til profilen din</string>
   <!--Hint text for create/edit notification profile name-->
@@ -3714,7 +3714,7 @@ Dobbeltsjekk at det nye nummeret ditt kan motta både SMS og anrop før du forts
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
   <string name="EditNotificationProfileFragment__driving">Kjører</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
-  <string name="EditNotificationProfileFragment__downtime">Avkoblet</string>
+  <string name="EditNotificationProfileFragment__downtime">Nedetid</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
   <string name="EditNotificationProfileFragment__focus">Fokusert</string>
   <!--Error message shown when attempting to next/save without a profile name-->
@@ -3768,7 +3768,7 @@ Dobbeltsjekk at det nye nummeret ditt kan motta både SMS og anrop før du forts
   <!--Title for add schedule to profile in create flow-->
   <string name="EditNotificationProfileSchedule__add_a_schedule">Legg til en timeplan</string>
   <!--Descriptor text indicating what the user can do with this screen-->
-  <string name="EditNotificationProfileSchedule__set_up_a_schedule_to_enable_this_notification_profile_automatically">Lag en timeplan for å skru på denne varslingsprofilen automatisk.</string>
+  <string name="EditNotificationProfileSchedule__set_up_a_schedule_to_enable_this_notification_profile_automatically">Lag en timeplan for å slå på denne varslingsprofilen automatisk.</string>
   <!--Text shown next to toggle switch to enable/disable schedule-->
   <string name="EditNotificationProfileSchedule__schedule">Timeplan</string>
   <!--Label for showing the start time for the schedule-->
@@ -3824,7 +3824,7 @@ Dobbeltsjekk at det nye nummeret ditt kan motta både SMS og anrop før du forts
   <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="NotificationSettingsFragment__failed_to_open_picker">Kunne ikke åpne velgeren.</string>
   <!--Description shown for the Signal Release Notes channel-->
-  <string name="ReleaseNotes__signal_release_notes_and_news">Oppdateringer og nyheter fra Signal</string>
+  <string name="ReleaseNotes__signal_release_notes_and_news">Merknader og nyheter fra Signal</string>
   <!--Donation receipts activity title-->
   <string name="DonationReceiptListFragment__all_activity">All aktivitet</string>
   <!--Donation receipts all tab label-->
@@ -3840,7 +3840,7 @@ Dobbeltsjekk at det nye nummeret ditt kan motta både SMS og anrop før du forts
   <!--Donation receipts details title-->
   <string name="DonationReceiptDetailsFragment__details">Detaljer</string>
   <!--Donation receipts donation type heading-->
-  <string name="DonationReceiptDetailsFragment__donation_type">Bidragstype</string>
+  <string name="DonationReceiptDetailsFragment__donation_type">Type pengebeløp</string>
   <!--Donation receipts date paid heading-->
   <string name="DonationReceiptDetailsFragment__date_paid">Betalingsdato</string>
   <!--Donation receipts share PNG-->
@@ -3895,7 +3895,7 @@ Dobbeltsjekk at det nye nummeret ditt kan motta både SMS og anrop før du forts
   <!--Title of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide_story">Skjule storyen?</string>
   <!--Message of dialog confirming decision to hide a story-->
-  <string name="StoriesLandingFragment__new_story_updates">Nye oppdateringer fra %1$s vil ikke havne øverst på listen over stories lengre.</string>
+  <string name="StoriesLandingFragment__new_story_updates">Nye oppdateringer fra %1$s vises ikke øverst på listen over storyer lenger.</string>
   <!--Positive action of dialog confirming decision to hide a story-->
   <string name="StoriesLandingFragment__hide">Skjul</string>
   <!--Displayed in Snackbar after story is hidden-->
@@ -4079,7 +4079,7 @@ Dobbeltsjekk at det nye nummeret ditt kan motta både SMS og anrop før du forts
   <!--First time share to story dialog: Positive action to go ahead and add to story-->
   <string name="StoryDialogs__add_to_story">Legg til i story</string>
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
-  <string name="StoryDialogs__edit_viewers">Endre seerlisten</string>
+  <string name="StoryDialogs__edit_viewers">Rediger seerlisten</string>
   <!--Error message shown when a failure occurs during story send-->
   <string name="StoryDialogs__story_could_not_be_sent">Storyen kunne ikke sendes. Sjekk internettilkoblingen din og prøv igjen.</string>
   <!--Error message dialog button to resend a previously failed story send-->
@@ -4195,23 +4195,23 @@ Dobbeltsjekk at det nye nummeret ditt kan motta både SMS og anrop før du forts
   <!--Description for sheet shown when opening a redeemed gift-->
   <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">Du har fått et merke i gave fra %1$s! Vis frem merket på profilen din, og spre ordet om Signals støtteprogram.</string>
   <!--Description for sheet shown when opening a sent gift-->
-  <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">Du har gitt et merke i gave til %1$s. Når vedkommende løser det inn, får han eller hun valget om å vise frem eller skjule merket.</string>
+  <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">Du har gitt et merke i gave til %1$s. Når vedkommende godtar det, får han eller hun valget om å vise frem eller skjule merket.</string>
   <!--Primary action for pending gift sheet to redeem badge now-->
   <string name="ViewReceivedGiftSheet__redeem">Løs inn</string>
   <!--Primary action for pending gift sheet to redeem badge later-->
   <string name="ViewReceivedGiftSheet__not_now">Ikke nå</string>
   <!--Dialog text while redeeming a gift-->
-  <string name="ViewReceivedGiftSheet__redeeming_gift">Løser inn gaven…</string>
+  <string name="ViewReceivedGiftSheet__redeeming_gift">Løser inn gaven …</string>
   <!--Snackbar text when user presses "not now" on redemption sheet-->
   <string name="ConversationFragment__you_can_redeem_your_badge_later">Du kan løse inn merket ditt senere.</string>
   <!--Description text in gift thanks sheet-->
-  <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">Du har gitt et merke i gave til %1$s. Når vedkommende løser det inn, får han eller hun valget om å vise frem eller skjule merket.</string>
+  <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">Du har gitt et merke i gave til %1$s. Når vedkommende godtar det, får han eller hun valget om å vise frem eller skjule merket.</string>
   <!--Expired gift sheet title-->
   <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">Gavemerket ditt er utløpt</string>
   <!--Expired gift sheet top description text-->
   <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">Gavemerket er utløpt og vises ikke lenger på profilen din.</string>
   <!--Expired gift sheet bottom description text-->
-  <string name="ExpiredGiftSheetConfiguration__to_continue">Hvis du vil fortsette å gi din støtte til teknologi som utvikles med deg i fokus, kan du bli en månedlig Støttespiller.</string>
+  <string name="ExpiredGiftSheetConfiguration__to_continue">Hvis du vil fortsette å støtte teknologi som utvikles for deg, kan du bli en månedlig støttespiller.</string>
   <!--Expired gift sheet make a monthly donation button-->
   <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Gi et månedlig pengebeløp</string>
   <!--Expired gift sheet not now button-->
