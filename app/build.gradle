@@ -171,6 +171,8 @@ android {
         vectorDrawables.useSupportLibrary = true
         project.ext.set("archivesBaseName", "Signal");
 
+        manifestPlaceholders = [mapsKey:"AIzaSyCSx9xea86GwDKGznCAULE9Y5a8b-TfN9U"]
+
         buildConfigField "long", "BUILD_TIMESTAMP", getLastCommitTimestamp() + "L"
         buildConfigField "String", "GIT_HASH", "\"${getGitHash()}\""
         buildConfigField "String", "SIGNAL_URL", "\"https://chat.signal.org\""
@@ -262,6 +264,8 @@ android {
                     'proguard/proguard.cfg'
             testProguardFiles 'proguard/proguard-automation.pro',
                     'proguard/proguard.cfg'
+
+            manifestPlaceholders = [mapsKey:getMapsKey()]
 
             buildConfigField "String", "BUILD_VARIANT_TYPE", "\"Debug\""
         }
@@ -636,4 +640,12 @@ def getDateSuffix() {
     def date = new Date()
     def formattedDate = date.format('yyyy-MM-dd-HH:mm')
     return formattedDate
+}
+
+def getMapsKey() {
+    def mapKey = file("${project.rootDir}/maps.key")
+    if (mapKey.exists()) {
+        return mapKey.readLines()[0]
+    }
+    return "AIzaSyCSx9xea86GwDKGznCAULE9Y5a8b-TfN9U"
 }

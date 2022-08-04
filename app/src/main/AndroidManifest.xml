@@ -109,7 +109,7 @@
 
     <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCSx9xea86GwDKGznCAULE9Y5a8b-TfN9U"/>
+            android:value="${mapsKey}"/>
 
     <meta-data android:name="android.supports_size_changes"
                android:value="true" />
