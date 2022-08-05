@@ -699,7 +699,7 @@ public class SignalServiceAccountManager {
       List<StorageId>    ids               = new ArrayList<>(record.getIdentifiersCount());
 
       for (ManifestRecord.Identifier id : record.getIdentifiersList()) {
-        ids.add(StorageId.forType(id.getRaw().toByteArray(), id.getType().getNumber()));
+        ids.add(StorageId.forType(id.getRaw().toByteArray(), id.getTypeValue()));
       }
 
       SignalStorageManifest conflictManifest = new SignalStorageManifest(record.getVersion(), ids);
