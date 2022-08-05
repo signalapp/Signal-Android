@@ -22,4 +22,12 @@
       android:title="@string/SubmitDebugLogActivity_done"
       android:visible="false"
       app:showAsAction="always" />
+
+  <item
+      android:id="@+id/menu_save"
+      android:icon="@drawable/ic_save_24"
+      android:title="@string/SubmitDebugLogActivity_save"
+      android:visible="false"
+      app:showAsAction="never" />
+
 </menu>

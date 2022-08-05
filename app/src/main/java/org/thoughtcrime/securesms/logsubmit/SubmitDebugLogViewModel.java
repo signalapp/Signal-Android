@@ -1,6 +1,9 @@
 package org.thoughtcrime.securesms.logsubmit;
 
+import android.net.Uri;
+
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -17,6 +20,7 @@ import org.signal.paging.PagingController;
 import org.signal.paging.ProxyPagingController;
 import org.thoughtcrime.securesms.database.LogDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.util.SingleLiveEvent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,11 +28,14 @@ import java.util.Optional;
 
 public class SubmitDebugLogViewModel extends ViewModel {
 
+  private static final String TAG = Log.tag(SubmitDebugLogViewModel.class);
+
   private final SubmitDebugLogRepository        repo;
   private final MutableLiveData<Mode>           mode;
   private final ProxyPagingController<Long>     pagingController;
   private final List<LogLine>                   staticLines;
   private final MediatorLiveData<List<LogLine>> lines;
+  private final SingleLiveEvent<Event>          event;
   private final long                            firstViewTime;
   private final byte[]                          trace;
 
@@ -41,6 +48,7 @@ public class SubmitDebugLogViewModel extends ViewModel {
     this.firstViewTime    = System.currentTimeMillis();
     this.staticLines      = new ArrayList<>();
     this.lines            = new MediatorLiveData<>();
+    this.event            = new SingleLiveEvent<>();
 
     repo.getPrefixLogLines(staticLines -> {
       this.staticLines.addAll(staticLines);
@@ -89,6 +97,26 @@ public class SubmitDebugLogViewModel extends ViewModel {
     return result;
   }
 
+  @NonNull LiveData<Event> getEvents() {
+    return event;
+  }
+
+  void onDiskSaveLocationReady(@Nullable Uri uri) {
+    if (uri == null) {
+      Log.w(TAG, "Null URI!");
+      event.postValue(Event.FILE_SAVE_ERROR);
+      return;
+    }
+
+    repo.writeLogToDisk(uri, firstViewTime, success -> {
+      if (success) {
+        event.postValue(Event.FILE_SAVE_SUCCESS);
+      } else {
+        event.postValue(Event.FILE_SAVE_ERROR);
+      }
+    });
+  }
+
   void onQueryUpdated(@NonNull String query) {
     throw new UnsupportedOperationException("Not yet implemented.");
   }
@@ -120,6 +148,10 @@ public class SubmitDebugLogViewModel extends ViewModel {
 
   enum Mode {
     NORMAL, EDIT, SUBMITTING
+  }
+
+  enum Event {
+    FILE_SAVE_SUCCESS, FILE_SAVE_ERROR
   }
 
   public static class Factory extends ViewModelProvider.NewInstanceFactory {
