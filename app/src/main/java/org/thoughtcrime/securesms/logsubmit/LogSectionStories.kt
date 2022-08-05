@@ -24,6 +24,7 @@ class LogSectionStories : LogSection {
       output.append("Database ID    : ${myStoryRecord.id}\n")
       output.append("Distribution ID: ${myStoryRecord.distributionId} (Matches expected value? ${myStoryRecord.distributionId == DistributionId.MY_STORY})\n")
       output.append("Recipient ID   : ${presentRecipientId(myStoryRecipientId)}\n")
+      output.append("toString() Test: ${DistributionId.MY_STORY} | ${DistributionId.MY_STORY.asUuid()}")
     } else {
       output.append("< My story does not exist >\n")
     }
