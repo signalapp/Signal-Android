@@ -69,24 +69,36 @@ public class StoryDistributionListRecordProcessor extends DefaultStorageRecordPr
 
   @Override
   @NonNull Optional<SignalStoryDistributionListRecord> getMatching(@NonNull SignalStoryDistributionListRecord remote, @NonNull StorageKeyGenerator keyGenerator) {
+    Log.d(TAG, "Attempting to get matching record...");
     RecipientId matching = SignalDatabase.distributionLists().getRecipientIdForSyncRecord(remote);
+    if (matching == null && UuidUtil.parseOrThrow(remote.getIdentifier()).equals(DistributionId.MY_STORY.asUuid())) {
+      Log.e(TAG, "Cannot find matching database record for My Story.");
+      throw new MyStoryDoesNotExistException();
+    }
+
     if (matching != null) {
+      Log.d(TAG, "Found a matching RecipientId for the distribution list...");
       RecipientRecord recordForSync = SignalDatabase.recipients().getRecordForSync(matching);
       if (recordForSync == null) {
+        Log.e(TAG, "Could not find a record for the recipient id in the recipient table");
         throw new IllegalStateException("Found matching recipient but couldn't generate record for sync.");
       }
 
       if (recordForSync.getGroupType().getId() != RecipientDatabase.GroupType.DISTRIBUTION_LIST.getId()) {
+        Log.d(TAG, "Record has an incorrect group type.");
         throw new InvalidGroupTypeException();
       }
 
       Optional<SignalStoryDistributionListRecord> record = StorageSyncModels.localToRemoteRecord(recordForSync).getStoryDistributionList();
       if (record.isPresent()) {
+        Log.d(TAG, "Found a matching record.");
         return record;
       } else {
+        Log.e(TAG, "Could not resolve the record");
         throw new UnexpectedEmptyOptionalException();
       }
     } else {
+      Log.d(TAG, "Could not find a matching record. Returning an empty.");
       return Optional.empty();
     }
   }
@@ -167,4 +179,10 @@ public class StoryDistributionListRecordProcessor extends DefaultStorageRecordPr
    * absent, even though a RecipientSettings was found.
    */
   private static class UnexpectedEmptyOptionalException extends RuntimeException {}
+
+  /**
+   * Thrown when we try to ge the matching record for the "My Story" distribution ID but
+   * it isn't in the database.
+   */
+  private static class MyStoryDoesNotExistException extends RuntimeException {}
 }
