@@ -106,7 +106,7 @@ public class CameraXUtil {
   }
 
   public static boolean isSupported() {
-    return Build.VERSION.SDK_INT >= 21 && !CameraXModelBlacklist.isBlacklisted();
+    return Build.VERSION.SDK_INT >= 21 && !CameraXModelBlocklist.isBlocklisted();
   }
 
   @RequiresApi(21)

@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.service.webrtc
 
 import android.os.Build
-import androidx.annotation.VisibleForTesting
+import org.signal.core.util.asListContains
 import org.signal.ringrtc.CallManager.AudioProcessingMethod
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.FeatureFlags
@@ -31,32 +31,15 @@ object RingRtcDynamicConfiguration {
   }
 
   fun isTelecomAllowedForDevice(): Boolean {
-    return modelInList(Build.MANUFACTURER.lowercase(), FeatureFlags.telecomManufacturerAllowList().lowercase()) &&
-      !modelInList(Build.MODEL.lowercase(), FeatureFlags.telecomModelBlockList().lowercase())
+    return FeatureFlags.telecomManufacturerAllowList().lowercase().asListContains(Build.MANUFACTURER.lowercase()) &&
+      !FeatureFlags.telecomModelBlockList().lowercase().asListContains(Build.MODEL.lowercase())
   }
 
   private fun isHardwareBlocklisted(): Boolean {
-    return modelInList(Build.MODEL, FeatureFlags.hardwareAecBlocklistModels())
+    return FeatureFlags.hardwareAecBlocklistModels().asListContains(Build.MODEL)
   }
 
   private fun isSoftwareBlocklisted(): Boolean {
-    return modelInList(Build.MODEL, FeatureFlags.softwareAecBlocklistModels())
-  }
-
-  @VisibleForTesting
-  fun modelInList(model: String, serializedList: String): Boolean {
-    val items: List<String> = serializedList
-      .split(",")
-      .map { it.trim() }
-      .filter { it.isNotEmpty() }
-      .toList()
-
-    val exactMatches = items.filter { it.last() != '*' }
-    val prefixMatches = items.filter { it.last() == '*' }
-
-    return exactMatches.contains(model) ||
-      prefixMatches
-        .map { it.substring(0, it.length - 1) }
-        .any { model.startsWith(it) }
+    return FeatureFlags.softwareAecBlocklistModels().asListContains(Build.MODEL)
   }
 }

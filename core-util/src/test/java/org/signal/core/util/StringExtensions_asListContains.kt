@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.service.webrtc
+package org.signal.core.util
 
 import org.junit.Assert.assertEquals
 import org.junit.Test
@@ -6,7 +6,7 @@ import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
 @RunWith(Parameterized::class)
-class RingRtcDynamicConfigurationTest_inList(
+class StringExtensions_asListContains(
   private val model: String,
   private val serializedList: String,
   private val expected: Boolean
@@ -14,7 +14,7 @@ class RingRtcDynamicConfigurationTest_inList(
 
   @Test
   fun testModelInList() {
-    val actual = RingRtcDynamicConfiguration.modelInList(model, serializedList)
+    val actual = serializedList.asListContains(model)
     assertEquals(expected, actual)
   }
 
