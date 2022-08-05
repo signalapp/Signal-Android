@@ -378,7 +378,6 @@
         <item name="titleTextStyle">@style/Signal.Text.TitleLarge</item>
         <item name="closeItemLayout">@layout/action_mode_close_layout</item>
         <item name="theme">@style/Signal.ActionModeTheme</item>
-        <item name="android:paddingStart">10dp</item>
         <item name="height">@dimen/signal_m3_toolbar_height</item>
     </style>
 
