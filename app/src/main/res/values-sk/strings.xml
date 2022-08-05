@@ -1667,6 +1667,10 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--SubmitDebugLogActivity-->
   <string name="SubmitDebugLogActivity_edit">Upraviť</string>
   <string name="SubmitDebugLogActivity_done">Hotovo</string>
+  <!--Menu option to save a debug log file to disk.-->
+  <string name="SubmitDebugLogActivity_save">Uložiť</string>
+  <!--Error that is show in a toast when we fail to save a debug log file to disk.-->
+  <!--Toast that is show to notify that we have saved the debug log file to disk.-->
   <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Pre odstránenie riadka naň ťuknite</string>
   <string name="SubmitDebugLogActivity_submit">Potvrdiť</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">Odoslanie denníkov zlyhalo</string>

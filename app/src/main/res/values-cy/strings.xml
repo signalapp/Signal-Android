@@ -1661,6 +1661,10 @@ Anfon neges heb ei diogelu?</string>
   <!--SubmitDebugLogActivity-->
   <string name="SubmitDebugLogActivity_edit">Golygu</string>
   <string name="SubmitDebugLogActivity_done">Wedi Gorffen</string>
+  <!--Menu option to save a debug log file to disk.-->
+  <string name="SubmitDebugLogActivity_save">Cadw</string>
+  <!--Error that is show in a toast when we fail to save a debug log file to disk.-->
+  <!--Toast that is show to notify that we have saved the debug log file to disk.-->
   <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Tapio llinell i\'w dileu</string>
   <string name="SubmitDebugLogActivity_submit">Cyflwyno</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">Wedi methu cyflwyno cofnodion</string>

@@ -1398,6 +1398,10 @@
   <!--SubmitDebugLogActivity-->
   <string name="SubmitDebugLogActivity_edit">تصحیح</string>
   <string name="SubmitDebugLogActivity_done">تر سره شو</string>
+  <!--Menu option to save a debug log file to disk.-->
+  <string name="SubmitDebugLogActivity_save">ثبت</string>
+  <!--Error that is show in a toast when we fail to save a debug log file to disk.-->
+  <!--Toast that is show to notify that we have saved the debug log file to disk.-->
   <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">پر هغې کرښې چې غواړئ پاکه یې کړئ کلیک وکړئ</string>
   <string name="SubmitDebugLogActivity_submit">تسلیمول</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">د رپوټونو تسلیمول ناکام شو</string>

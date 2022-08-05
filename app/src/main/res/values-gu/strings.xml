@@ -1516,6 +1516,10 @@
   <!--SubmitDebugLogActivity-->
   <string name="SubmitDebugLogActivity_edit">ફેરફાર કરો</string>
   <string name="SubmitDebugLogActivity_done">થઈ ગયું</string>
+  <!--Menu option to save a debug log file to disk.-->
+  <string name="SubmitDebugLogActivity_save">સેવ કરો</string>
+  <!--Error that is show in a toast when we fail to save a debug log file to disk.-->
+  <!--Toast that is show to notify that we have saved the debug log file to disk.-->
   <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">તેને કાઢી નાખવા માટે એક લાઇન ટેપ કરો</string>
   <string name="SubmitDebugLogActivity_submit">સબમિટ કરો</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">લોગ સબમિટ કરવામાં નિષ્ફળ</string>

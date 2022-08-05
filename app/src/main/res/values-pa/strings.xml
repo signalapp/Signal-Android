@@ -1521,6 +1521,10 @@
   <!--SubmitDebugLogActivity-->
   <string name="SubmitDebugLogActivity_edit">ਸੋਧੋ</string>
   <string name="SubmitDebugLogActivity_done">ਮੁਕੰਮਲ</string>
+  <!--Menu option to save a debug log file to disk.-->
+  <string name="SubmitDebugLogActivity_save">ਸੰਭਾਲੋ</string>
+  <!--Error that is show in a toast when we fail to save a debug log file to disk.-->
+  <!--Toast that is show to notify that we have saved the debug log file to disk.-->
   <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">ਇਸਨੂੰ ਹਟਾਉਣ ਲਈ ਕਿਸੇ ਲਾਈਨ ਨੂੰ ਟੈਪ ਕਰੋ</string>
   <string name="SubmitDebugLogActivity_submit">ਭੇਜੋ</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">ਲੌਗ ਦਰਜ ਕਰਨਾ ਅਸਫਲ ਰਿਹਾ</string>
@@ -3951,8 +3955,11 @@
   <!--Dialog action to remove viewer from a story-->
   <string name="StoryViewsFragment__remove">ਹਟਾਓ</string>
   <!--Dialog title when removing a viewer from a story-->
+  <string name="StoryViewsFragment__remove_viewer">ਦਰਸ਼ਕ ਨੂੰ ਹਟਾਉਣਾ ਹੈ?</string>
   <!--Dialog message when removing a viewer from a story-->
+  <string name="StoryViewsFragment__s_will_still_be_able">%1$s ਹਾਲੇ ਵੀ ਇਸ ਪੋਸਟ ਨੂੰ ਦੇਖ ਸਕਣਗੇ, ਪਰ ਭਵਿੱਖ ਵਿੱਚ ਤੁਹਾਡੇ ਵੱਲੋਂ %2$s ਨਾਲ ਸਾਂਝੀਆਂ ਕੀਤੀਆਂ ਪੋਸਟਾਂ ਦੇਖ ਨਹੀਂ ਸਕਣਗੇ।</string>
   <!--Story View context menu action to remove them from a story-->
+  <string name="StoryViewItem__remove_viewer">ਦਰਸ਼ਕ ਨੂੰ ਹਟਾਓ</string>
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">ਅਜੇ ਤੱਕ ਕਿਸੇ ਨੇ ਜਵਾਬ ਨਹੀਂ ਦਿੱਤਾ</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->

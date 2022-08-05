@@ -1527,6 +1527,10 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <!--SubmitDebugLogActivity-->
   <string name="SubmitDebugLogActivity_edit">Aanpassen</string>
   <string name="SubmitDebugLogActivity_done">Klaar</string>
+  <!--Menu option to save a debug log file to disk.-->
+  <string name="SubmitDebugLogActivity_save">Bijlage opslaan</string>
+  <!--Error that is show in a toast when we fail to save a debug log file to disk.-->
+  <!--Toast that is show to notify that we have saved the debug log file to disk.-->
   <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Tip op een regel om die te wissen</string>
   <string name="SubmitDebugLogActivity_submit">Uploaden</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">Uploaden van foutopsporingslogs is mislukt</string>

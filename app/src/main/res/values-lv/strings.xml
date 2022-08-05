@@ -1589,6 +1589,10 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <!--SubmitDebugLogActivity-->
   <string name="SubmitDebugLogActivity_edit">Rediģēt</string>
   <string name="SubmitDebugLogActivity_done">Darīts</string>
+  <!--Menu option to save a debug log file to disk.-->
+  <string name="SubmitDebugLogActivity_save">Saglabāt</string>
+  <!--Error that is show in a toast when we fail to save a debug log file to disk.-->
+  <!--Toast that is show to notify that we have saved the debug log file to disk.-->
   <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Pieskarieties līnijai, lai to izdzēstu</string>
   <string name="SubmitDebugLogActivity_submit">Iesniegt</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">Neizdevās iesniegt žurnālu</string>

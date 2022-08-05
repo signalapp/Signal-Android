@@ -1449,6 +1449,10 @@
   <!--SubmitDebugLogActivity-->
   <string name="SubmitDebugLogActivity_edit">수정</string>
   <string name="SubmitDebugLogActivity_done">확인</string>
+  <!--Menu option to save a debug log file to disk.-->
+  <string name="SubmitDebugLogActivity_save">저장</string>
+  <!--Error that is show in a toast when we fail to save a debug log file to disk.-->
+  <!--Toast that is show to notify that we have saved the debug log file to disk.-->
   <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">줄을 탭하여 삭제하세요</string>
   <string name="SubmitDebugLogActivity_submit">제출</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">로그를 제출하는데 실패했습니다.</string>

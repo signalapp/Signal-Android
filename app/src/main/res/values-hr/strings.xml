@@ -1592,6 +1592,10 @@ broj telefona</string>
   <!--SubmitDebugLogActivity-->
   <string name="SubmitDebugLogActivity_edit">Uredi</string>
   <string name="SubmitDebugLogActivity_done">Gotovo</string>
+  <!--Menu option to save a debug log file to disk.-->
+  <string name="SubmitDebugLogActivity_save">Spremi</string>
+  <!--Error that is show in a toast when we fail to save a debug log file to disk.-->
+  <!--Toast that is show to notify that we have saved the debug log file to disk.-->
   <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Pritisnite liniju za izbrisati</string>
   <string name="SubmitDebugLogActivity_submit">Pošalji</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">Slanje zapisa nije uspjelo</string>
@@ -4056,8 +4060,11 @@ broj telefona</string>
   <!--Dialog action to remove viewer from a story-->
   <string name="StoryViewsFragment__remove">Ukloni</string>
   <!--Dialog title when removing a viewer from a story-->
+  <string name="StoryViewsFragment__remove_viewer">Ukloni gledatelja?</string>
   <!--Dialog message when removing a viewer from a story-->
+  <string name="StoryViewsFragment__s_will_still_be_able">%1$s će i dalje moći vidjeti ovu objavu, ali neće moći vidjeti buduće objave koje budete dijelili na %2$s.</string>
   <!--Story View context menu action to remove them from a story-->
+  <string name="StoryViewItem__remove_viewer">Ukloni gledatelja</string>
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Još nema odgovora</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->

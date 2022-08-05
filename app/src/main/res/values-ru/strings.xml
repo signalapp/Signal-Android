@@ -1661,6 +1661,10 @@
   <!--SubmitDebugLogActivity-->
   <string name="SubmitDebugLogActivity_edit">Изменить</string>
   <string name="SubmitDebugLogActivity_done">Готово</string>
+  <!--Menu option to save a debug log file to disk.-->
+  <string name="SubmitDebugLogActivity_save">Сохранить</string>
+  <!--Error that is show in a toast when we fail to save a debug log file to disk.-->
+  <!--Toast that is show to notify that we have saved the debug log file to disk.-->
   <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Нажмите на строку, чтобы удалить её</string>
   <string name="SubmitDebugLogActivity_submit">Отправить</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">Не удалось отправить журналы</string>

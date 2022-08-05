@@ -1443,6 +1443,10 @@
   <!--SubmitDebugLogActivity-->
   <string name="SubmitDebugLogActivity_edit">កែប្រែ</string>
   <string name="SubmitDebugLogActivity_done">បញ្ចប់</string>
+  <!--Menu option to save a debug log file to disk.-->
+  <string name="SubmitDebugLogActivity_save">រក្សាទុក</string>
+  <!--Error that is show in a toast when we fail to save a debug log file to disk.-->
+  <!--Toast that is show to notify that we have saved the debug log file to disk.-->
   <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">ចុចលើបន្ទាត់ដើម្បីលុបវា</string>
   <string name="SubmitDebugLogActivity_submit">បញ្ជូន</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">បរាជ័យក្នុងការបញ្ជូនកំណត់ត្រា</string>

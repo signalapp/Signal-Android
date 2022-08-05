@@ -1591,6 +1591,10 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--SubmitDebugLogActivity-->
   <string name="SubmitDebugLogActivity_edit">Editează</string>
   <string name="SubmitDebugLogActivity_done">Gata</string>
+  <!--Menu option to save a debug log file to disk.-->
+  <string name="SubmitDebugLogActivity_save">Salvează</string>
+  <!--Error that is show in a toast when we fail to save a debug log file to disk.-->
+  <!--Toast that is show to notify that we have saved the debug log file to disk.-->
   <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Atinge o linie pentru a o șterge</string>
   <string name="SubmitDebugLogActivity_submit">Trimite</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">Eroare la trimiterea jurnalului de depanare.</string>

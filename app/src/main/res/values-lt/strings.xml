@@ -1668,6 +1668,10 @@
   <!--SubmitDebugLogActivity-->
   <string name="SubmitDebugLogActivity_edit">Taisyti</string>
   <string name="SubmitDebugLogActivity_done">Atlikta</string>
+  <!--Menu option to save a debug log file to disk.-->
+  <string name="SubmitDebugLogActivity_save">Įrašyti</string>
+  <!--Error that is show in a toast when we fail to save a debug log file to disk.-->
+  <!--Toast that is show to notify that we have saved the debug log file to disk.-->
   <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Bakstelėkite ant eilutės norėdami ją ištrinti</string>
   <string name="SubmitDebugLogActivity_submit">Pateikti</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">Nepavyko pateikti žurnalų</string>

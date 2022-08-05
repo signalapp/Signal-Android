@@ -1519,6 +1519,10 @@
   <!--SubmitDebugLogActivity-->
   <string name="SubmitDebugLogActivity_edit">ತಿದ್ದಿ</string>
   <string name="SubmitDebugLogActivity_done">ಮುಗಿದಿದೆ</string>
+  <!--Menu option to save a debug log file to disk.-->
+  <string name="SubmitDebugLogActivity_save">ಉಳಿಸಿ</string>
+  <!--Error that is show in a toast when we fail to save a debug log file to disk.-->
+  <!--Toast that is show to notify that we have saved the debug log file to disk.-->
   <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">ಅದನ್ನು ಅಳಿಸಲು ಸಾಲನ್ನು ಟ್ಯಾಪ್ ಮಾಡಿ</string>
   <string name="SubmitDebugLogActivity_submit">ಸಲ್ಲಿಸಿ</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">ಲಾಗ್ ಗಳನ್ನು ಸಲ್ಲಿಸಲು ವಿಫಲವಾಗಿದೆ</string>

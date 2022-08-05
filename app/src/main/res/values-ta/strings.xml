@@ -1519,6 +1519,10 @@
   <!--SubmitDebugLogActivity-->
   <string name="SubmitDebugLogActivity_edit">தொகு</string>
   <string name="SubmitDebugLogActivity_done">முடிந்தது</string>
+  <!--Menu option to save a debug log file to disk.-->
+  <string name="SubmitDebugLogActivity_save">சேமி</string>
+  <!--Error that is show in a toast when we fail to save a debug log file to disk.-->
+  <!--Toast that is show to notify that we have saved the debug log file to disk.-->
   <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">வரியை நீக்க ஒரு வரியைத் தட்டவும்</string>
   <string name="SubmitDebugLogActivity_submit">சமர்ப்பி</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">பதிவுகளை சமர்ப்பிப்பதில் தோல்வி</string>

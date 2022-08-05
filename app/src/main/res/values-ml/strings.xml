@@ -1514,6 +1514,10 @@
   <!--SubmitDebugLogActivity-->
   <string name="SubmitDebugLogActivity_edit">തിരുത്തുക</string>
   <string name="SubmitDebugLogActivity_done">ചെയ്‌തു</string>
+  <!--Menu option to save a debug log file to disk.-->
+  <string name="SubmitDebugLogActivity_save">സംരക്ഷിക്കുക</string>
+  <!--Error that is show in a toast when we fail to save a debug log file to disk.-->
+  <!--Toast that is show to notify that we have saved the debug log file to disk.-->
   <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">ഇല്ലാതാക്കാൻ ഒരു വരി തൊടുക</string>
   <string name="SubmitDebugLogActivity_submit">സമർപ്പിക്കുക</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">ലോഗുകൾ സമർപ്പിക്കുന്നതിൽ പരാജയപ്പെട്ടു</string>

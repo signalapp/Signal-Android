@@ -1526,6 +1526,10 @@
   <!--SubmitDebugLogActivity-->
   <string name="SubmitDebugLogActivity_edit">సరిచేయు</string>
   <string name="SubmitDebugLogActivity_done">పూర్తి</string>
+  <!--Menu option to save a debug log file to disk.-->
+  <string name="SubmitDebugLogActivity_save">సేవ్ చేయండి</string>
+  <!--Error that is show in a toast when we fail to save a debug log file to disk.-->
+  <!--Toast that is show to notify that we have saved the debug log file to disk.-->
   <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">దాన్ని తొలగించడానికి ఒక పంక్తిని నొక్కండి</string>
   <string name="SubmitDebugLogActivity_submit">సమర్పించండి</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">లాగ్‌లను సమర్పించడంలో విఫలమైంది</string>

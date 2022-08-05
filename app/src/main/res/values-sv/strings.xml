@@ -1516,6 +1516,10 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--SubmitDebugLogActivity-->
   <string name="SubmitDebugLogActivity_edit">Ändra</string>
   <string name="SubmitDebugLogActivity_done">Klar</string>
+  <!--Menu option to save a debug log file to disk.-->
+  <string name="SubmitDebugLogActivity_save">Spara</string>
+  <!--Error that is show in a toast when we fail to save a debug log file to disk.-->
+  <!--Toast that is show to notify that we have saved the debug log file to disk.-->
   <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Tryck på en rad för att ta bort den</string>
   <string name="SubmitDebugLogActivity_submit">Skicka</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">Det gick inte att skicka loggar</string>

@@ -1449,6 +1449,10 @@
   <!--SubmitDebugLogActivity-->
   <string name="SubmitDebugLogActivity_edit">编辑</string>
   <string name="SubmitDebugLogActivity_done">完成</string>
+  <!--Menu option to save a debug log file to disk.-->
+  <string name="SubmitDebugLogActivity_save">保存</string>
+  <!--Error that is show in a toast when we fail to save a debug log file to disk.-->
+  <!--Toast that is show to notify that we have saved the debug log file to disk.-->
   <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">点击一行删除它</string>
   <string name="SubmitDebugLogActivity_submit">提交</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">未能提交日志</string>

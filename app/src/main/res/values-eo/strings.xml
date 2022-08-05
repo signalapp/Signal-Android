@@ -1513,6 +1513,10 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--SubmitDebugLogActivity-->
   <string name="SubmitDebugLogActivity_edit">Modifi</string>
   <string name="SubmitDebugLogActivity_done">Farita</string>
+  <!--Menu option to save a debug log file to disk.-->
+  <string name="SubmitDebugLogActivity_save">Konservi</string>
+  <!--Error that is show in a toast when we fail to save a debug log file to disk.-->
+  <!--Toast that is show to notify that we have saved the debug log file to disk.-->
   <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Tuŝetu linion por forigi ĝin</string>
   <string name="SubmitDebugLogActivity_submit">Sendi</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">Malsukcesa sendo de la protokoloj</string>

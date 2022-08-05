@@ -1443,6 +1443,10 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--SubmitDebugLogActivity-->
   <string name="SubmitDebugLogActivity_edit">Sửa</string>
   <string name="SubmitDebugLogActivity_done">Xong</string>
+  <!--Menu option to save a debug log file to disk.-->
+  <string name="SubmitDebugLogActivity_save">Lưu</string>
+  <!--Error that is show in a toast when we fail to save a debug log file to disk.-->
+  <!--Toast that is show to notify that we have saved the debug log file to disk.-->
   <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Nhấn vào một dòng để xóa nó</string>
   <string name="SubmitDebugLogActivity_submit">Gửi</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">Không thể gửi nhật kí lỗi</string>

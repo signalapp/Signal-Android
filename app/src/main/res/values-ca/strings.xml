@@ -1516,6 +1516,10 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--SubmitDebugLogActivity-->
   <string name="SubmitDebugLogActivity_edit">Edita</string>
   <string name="SubmitDebugLogActivity_done">Fet</string>
+  <!--Menu option to save a debug log file to disk.-->
+  <string name="SubmitDebugLogActivity_save">Desats</string>
+  <!--Error that is show in a toast when we fail to save a debug log file to disk.-->
+  <!--Toast that is show to notify that we have saved the debug log file to disk.-->
   <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Toqueu una línia per suprimir-la</string>
   <string name="SubmitDebugLogActivity_submit">Envia</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">Ha fallat enviar els registres.</string>

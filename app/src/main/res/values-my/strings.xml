@@ -1443,6 +1443,10 @@
   <!--SubmitDebugLogActivity-->
   <string name="SubmitDebugLogActivity_edit">ပြင်မယ်</string>
   <string name="SubmitDebugLogActivity_done">ပြီးပြီ </string>
+  <!--Menu option to save a debug log file to disk.-->
+  <string name="SubmitDebugLogActivity_save">သိမ်းရန်</string>
+  <!--Error that is show in a toast when we fail to save a debug log file to disk.-->
+  <!--Toast that is show to notify that we have saved the debug log file to disk.-->
   <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">၎င်းကိုဖျက်ရန် မျဉ်းတစ်ကြောင်းနှိပ်ပါ</string>
   <string name="SubmitDebugLogActivity_submit">တင်မယ်</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">မှတ်တမ်းများတင်သွင်းရန်မအောင်မြင်ပါ</string>
