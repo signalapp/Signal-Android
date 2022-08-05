@@ -489,6 +489,12 @@ public class AttachmentManager {
   private class RemoveButtonListener implements View.OnClickListener {
     @Override
     public void onClick(View v) {
+      slide.ifPresent(oldSlide -> {
+        if (oldSlide instanceof LocationSlide) {
+          attachmentListener.onLocationRemoved();
+        }
+      });
+
       cleanup();
       clear(GlideApp.with(context.getApplicationContext()), true);
     }
@@ -496,6 +502,7 @@ public class AttachmentManager {
 
   public interface AttachmentListener {
     void onAttachmentChanged();
+    void onLocationRemoved();
   }
 
 }

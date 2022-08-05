@@ -1,87 +1,126 @@
 package org.thoughtcrime.securesms.conversation.drafts
 
-import android.net.Uri
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Flowable
+import io.reactivex.rxjava3.core.Single
+import org.thoughtcrime.securesms.components.location.SignalPlace
 import org.thoughtcrime.securesms.components.voice.VoiceNoteDraft
-import org.thoughtcrime.securesms.database.DraftDatabase
+import org.thoughtcrime.securesms.database.DraftDatabase.Draft
+import org.thoughtcrime.securesms.database.MentionUtil
+import org.thoughtcrime.securesms.database.model.Mention
+import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
+import org.thoughtcrime.securesms.mms.QuoteId
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.util.Base64
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture
-import org.thoughtcrime.securesms.util.livedata.Store
+import org.thoughtcrime.securesms.util.rx.RxStore
 
 /**
  * ViewModel responsible for holding Voice Note draft state. The intention is to allow
  * other pieces of draft state to be held here as well in the future, and to serve as a
  * management pattern going forward for drafts.
  */
-class DraftViewModel(
-  private val repository: DraftRepository
+class DraftViewModel @JvmOverloads constructor(
+  private val repository: DraftRepository = DraftRepository()
 ) : ViewModel() {
 
-  private val store = Store<DraftState>(DraftState())
+  private val store = RxStore(DraftState())
 
-  val state: LiveData<DraftState> = store.stateLiveData
+  val state: Flowable<DraftState> = store.stateFlowable.observeOn(AndroidSchedulers.mainThread())
 
-  private var voiceNoteDraftFuture: ListenableFuture<VoiceNoteDraft>? = null
-
-  val voiceNoteDraft: DraftDatabase.Draft?
+  val voiceNoteDraft: Draft?
     get() = store.state.voiceNoteDraft
 
-  fun consumeVoiceNoteDraftFuture(): ListenableFuture<VoiceNoteDraft>? {
-    val future = voiceNoteDraftFuture
-    voiceNoteDraftFuture = null
-
-    return future
+  fun setThreadId(threadId: Long) {
+    store.update { it.copy(threadId = threadId) }
   }
 
-  fun setVoiceNoteDraftFuture(voiceNoteDraftFuture: ListenableFuture<VoiceNoteDraft>) {
-    this.voiceNoteDraftFuture = voiceNoteDraftFuture
+  fun setDistributionType(distributionType: Int) {
+    store.update { it.copy(distributionType = distributionType) }
   }
 
-  fun setVoiceNoteDraft(recipientId: RecipientId, draft: DraftDatabase.Draft) {
+  fun saveEphemeralVoiceNoteDraft(voiceNoteDraftFuture: ListenableFuture<VoiceNoteDraft>) {
     store.update {
-      it.copy(recipientId = recipientId, voiceNoteDraft = draft)
+      saveDrafts(it.copy(voiceNoteDraft = voiceNoteDraftFuture.get().asDraft()))
     }
   }
 
-  @get:JvmName("hasVoiceNoteDraft")
-  val hasVoiceNoteDraft: Boolean
-    get() = store.state.voiceNoteDraft != null
-
-  fun clearVoiceNoteDraft() {
-    store.update {
-      it.copy(voiceNoteDraft = null)
-    }
+  fun cancelEphemeralVoiceNoteDraft(draft: Draft) {
+    repository.deleteVoiceNoteDraftData(draft)
   }
 
   fun deleteVoiceNoteDraft() {
-    val draft = store.state.voiceNoteDraft
-    if (draft != null) {
-      clearVoiceNoteDraft()
-      repository.deleteVoiceNoteDraft(draft)
+    store.update {
+      repository.deleteVoiceNoteDraftData(it.voiceNoteDraft)
+      saveDrafts(it.copy(voiceNoteDraft = null))
     }
   }
 
   fun onRecipientChanged(recipient: Recipient) {
+    store.update { it.copy(recipientId = recipient.id) }
+  }
+
+  fun setTextDraft(text: String, mentions: List<Mention>) {
     store.update {
-      if (recipient.id != it.recipientId) {
-        it.copy(recipientId = recipient.id, voiceNoteDraft = null)
-      } else {
-        it
+      saveDrafts(it.copy(textDraft = text.toTextDraft(), mentionsDraft = mentions.toMentionsDraft()))
+    }
+  }
+
+  fun setLocationDraft(place: SignalPlace) {
+    store.update {
+      saveDrafts(it.copy(locationDraft = Draft(Draft.LOCATION, place.serialize())))
+    }
+  }
+
+  fun clearLocationDraft() {
+    store.update {
+      saveDrafts(it.copy(locationDraft = null))
+    }
+  }
+
+  fun setQuoteDraft(id: Long, author: RecipientId) {
+    store.update {
+      saveDrafts(it.copy(quoteDraft = Draft(Draft.QUOTE, QuoteId(id, author).serialize())))
+    }
+  }
+
+  fun clearQuoteDraft() {
+    store.update {
+      saveDrafts(it.copy(quoteDraft = null))
+    }
+  }
+
+  fun onSendComplete(threadId: Long) {
+    repository.deleteVoiceNoteDraftData(store.state.voiceNoteDraft)
+    store.update { saveDrafts(it.copyAndClearDrafts(threadId)) }
+  }
+
+  private fun saveDrafts(state: DraftState): DraftState {
+    repository.saveDrafts(Recipient.resolved(state.recipientId), state.threadId, state.distributionType, state.toDrafts())
+    return state
+  }
+
+  fun loadDrafts(threadId: Long): Single<DraftRepository.DatabaseDraft> {
+    return repository
+      .loadDrafts(threadId)
+      .doOnSuccess { drafts ->
+        store.update { it.copyAndSetDrafts(threadId, drafts.drafts) }
       }
-    }
+      .observeOn(AndroidSchedulers.mainThread())
   }
+}
 
-  fun deleteBlob(uri: Uri) {
-    repository.deleteBlob(uri)
-  }
+private fun String.toTextDraft(): Draft? {
+  return if (isNotEmpty()) Draft(Draft.TEXT, this) else null
+}
 
-  class Factory(private val repository: DraftRepository) : ViewModelProvider.Factory {
-
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return requireNotNull(modelClass.cast(DraftViewModel(repository)))
-    }
+private fun List<Mention>.toMentionsDraft(): Draft? {
+  val mentions: BodyRangeList? = MentionUtil.mentionsToBodyRangeList(this)
+  return if (mentions != null) {
+    Draft(Draft.MENTION, Base64.encodeBytes(mentions.toByteArray()))
+  } else {
+    null
   }
 }

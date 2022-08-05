@@ -43,8 +43,6 @@ import android.provider.Browser;
 import android.provider.ContactsContract;
 import android.provider.Settings;
 import android.text.Editable;
-import android.text.Spannable;
-import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.TextWatcher;
 import android.text.method.LinkMovementMethod;
@@ -103,7 +101,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-import org.signal.core.util.DimensionUnit;
+import org.signal.core.util.StringUtil;
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.concurrent.SimpleTask;
@@ -138,8 +136,6 @@ import org.thoughtcrime.securesms.components.emoji.RecentEmojiPageModel;
 import org.thoughtcrime.securesms.components.identity.UnverifiedBannerView;
 import org.thoughtcrime.securesms.components.location.SignalPlace;
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation;
-import org.thoughtcrime.securesms.components.menu.ActionItem;
-import org.thoughtcrime.securesms.components.menu.SignalContextMenu;
 import org.thoughtcrime.securesms.components.reminder.BubbleOptOutReminder;
 import org.thoughtcrime.securesms.components.reminder.ExpiredBuildReminder;
 import org.thoughtcrime.securesms.components.reminder.GroupsV1MigrationSuggestionsReminder;
@@ -163,25 +159,19 @@ import org.thoughtcrime.securesms.contactshare.ContactUtil;
 import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher;
 import org.thoughtcrime.securesms.conversation.ConversationGroupViewModel.GroupActiveState;
 import org.thoughtcrime.securesms.conversation.ConversationMessage.ConversationMessageFactory;
-import org.thoughtcrime.securesms.conversation.drafts.DraftRepository;
 import org.thoughtcrime.securesms.conversation.drafts.DraftViewModel;
 import org.thoughtcrime.securesms.conversation.ui.groupcall.GroupCallViewModel;
 import org.thoughtcrime.securesms.conversation.ui.inlinequery.InlineQuery;
 import org.thoughtcrime.securesms.conversation.ui.inlinequery.InlineQueryChangedListener;
 import org.thoughtcrime.securesms.conversation.ui.inlinequery.InlineQueryResultsController;
-import org.thoughtcrime.securesms.conversation.ui.inlinequery.InlineQueryResultsPopup;
 import org.thoughtcrime.securesms.conversation.ui.inlinequery.InlineQueryViewModel;
 import org.thoughtcrime.securesms.conversation.ui.mentions.MentionsPickerViewModel;
 import org.thoughtcrime.securesms.crypto.ReentrantSessionLock;
 import org.thoughtcrime.securesms.crypto.SecurityEvent;
-import org.thoughtcrime.securesms.database.DraftDatabase;
 import org.thoughtcrime.securesms.database.DraftDatabase.Draft;
 import org.thoughtcrime.securesms.database.DraftDatabase.Drafts;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus;
-import org.thoughtcrime.securesms.database.MentionUtil;
-import org.thoughtcrime.securesms.database.MentionUtil.UpdatedBodyAndMentions;
-import org.thoughtcrime.securesms.database.MmsSmsColumns.Types;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RegisteredState;
 import org.thoughtcrime.securesms.database.SignalDatabase;
@@ -242,7 +232,6 @@ import org.thoughtcrime.securesms.mms.GifSlide;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.ImageSlide;
-import org.thoughtcrime.securesms.mms.LocationSlide;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage;
@@ -285,7 +274,6 @@ import org.thoughtcrime.securesms.stickers.StickerSearchRepository;
 import org.thoughtcrime.securesms.stories.StoryViewerArgs;
 import org.thoughtcrime.securesms.stories.viewer.StoryViewerActivity;
 import org.thoughtcrime.securesms.util.AsynchronousCallback;
-import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.BubbleUtil;
 import org.thoughtcrime.securesms.util.CharacterCalculator.CharacterState;
@@ -417,7 +405,7 @@ public class ConversationParentFragment extends Fragment
   protected Stub<ReminderView>           reminderView;
   private   Stub<UnverifiedBannerView>   unverifiedBannerView;
   private   Stub<ReviewBannerView>       reviewBanner;
-  private   TypingStatusTextWatcher      typingTextWatcher;
+  private   ComposeTextWatcher           typingTextWatcher;
   private   ConversationSearchBottomBar  searchNav;
   private   MenuItem                     searchViewItem;
   private   MessageRequestsBottomView    messageRequestBottomView;
@@ -466,11 +454,12 @@ public class ConversationParentFragment extends Fragment
   private LiveRecipient recipient;
   private long          threadId;
   private int           distributionType;
-  private int           reactWithAnyEmojiStartPage    = -1;
-  private boolean       isSearchRequested             = false;
+  private int           reactWithAnyEmojiStartPage = -1;
+  private boolean       isSearchRequested          = false;
 
-  private final LifecycleDisposable disposables               = new LifecycleDisposable();
-  private final Debouncer           optionsMenuDebouncer      = new Debouncer(50);
+  private final LifecycleDisposable disposables            = new LifecycleDisposable();
+  private final Debouncer           optionsMenuDebouncer   = new Debouncer(50);
+  private final Debouncer           textDraftSaveDebouncer = new Debouncer(500);
 
   private IdentityRecordList   identityRecords = new IdentityRecordList(Collections.emptyList());
   private Callback             callback;
@@ -640,7 +629,6 @@ public class ConversationParentFragment extends Fragment
   @Override
   public void onStop() {
     super.onStop();
-    saveDraft();
     EventBus.getDefault().unregister(this);
   }
 
@@ -730,6 +718,7 @@ public class ConversationParentFragment extends Fragment
     case PICK_LOCATION:
       SignalPlace place = new SignalPlace(PlacePickerActivity.addressFromData(data));
       attachmentManager.setLocation(place, getCurrentMediaConstraints());
+      draftViewModel.setLocationDraft(place);
       break;
     case SMS_DEFAULT:
       viewModel.updateSecurityInfo();
@@ -1423,6 +1412,7 @@ public class ConversationParentFragment extends Fragment
 
   private void handleDistributionBroadcastEnabled(MenuItem item) {
     distributionType = ThreadDatabase.DistributionTypes.BROADCAST;
+    draftViewModel.setDistributionType(distributionType);
     item.setChecked(true);
 
     if (threadId != -1) {
@@ -1438,6 +1428,7 @@ public class ConversationParentFragment extends Fragment
 
   private void handleDistributionConversationEnabled(MenuItem item) {
     distributionType = ThreadDatabase.DistributionTypes.CONVERSATION;
+    draftViewModel.setDistributionType(distributionType);
     item.setChecked(true);
 
     if (threadId != -1) {
@@ -1772,90 +1763,68 @@ public class ConversationParentFragment extends Fragment
   private ListenableFuture<Boolean> initializeDraftFromDatabase() {
     SettableFuture<Boolean> future = new SettableFuture<>();
 
-    final Context context = requireContext().getApplicationContext();
+    Disposable disposable = draftViewModel
+        .loadDrafts(threadId)
+        .subscribe(databaseDrafts -> {
+          Drafts       drafts      = databaseDrafts.getDrafts();
+          CharSequence updatedText = databaseDrafts.getUpdatedText();
 
-    new AsyncTask<Void, Void, Pair<Drafts, CharSequence>>() {
-      @Override
-      protected Pair<Drafts, CharSequence> doInBackground(Void... params) {
-        DraftDatabase draftDatabase = SignalDatabase.drafts();
-        Drafts        results       = draftDatabase.getDrafts(threadId);
-        Draft         mentionsDraft = results.getDraftOfType(Draft.MENTION);
-        Spannable     updatedText   = null;
+          if (drafts.isEmpty()) {
+            future.set(false);
+            updateToggleButtonState();
+            return;
+          }
 
-        if (mentionsDraft != null) {
-          String                 text     = results.getDraftOfType(Draft.TEXT).getValue();
-          List<Mention>          mentions = MentionUtil.bodyRangeListToMentions(context, Base64.decodeOrThrow(mentionsDraft.getValue()));
-          UpdatedBodyAndMentions updated  = MentionUtil.updateBodyAndMentionsWithDisplayNames(context, text, mentions);
+          AtomicInteger                      draftsRemaining = new AtomicInteger(drafts.size());
+          AtomicBoolean                      success         = new AtomicBoolean(false);
+          ListenableFuture.Listener<Boolean> listener        = new AssertedSuccessListener<Boolean>() {
+            @Override
+            public void onSuccess(Boolean result) {
+              success.compareAndSet(false, result);
 
-          updatedText = new SpannableString(updated.getBody());
-          MentionAnnotation.setMentionAnnotations(updatedText, updated.getMentions());
-        }
+              if (draftsRemaining.decrementAndGet() <= 0) {
+                future.set(success.get());
+              }
+            }
+          };
 
-        draftDatabase.clearDrafts(threadId);
+          for (Draft draft : drafts) {
+            try {
+              switch (draft.getType()) {
+                case Draft.TEXT:
+                  composeText.setText(updatedText == null ? draft.getValue() : updatedText);
+                  listener.onSuccess(true);
+                  break;
+                case Draft.LOCATION:
+                  attachmentManager.setLocation(SignalPlace.deserialize(draft.getValue()), getCurrentMediaConstraints()).addListener(listener);
+                  break;
+                case Draft.IMAGE:
+                  setMedia(Uri.parse(draft.getValue()), MediaType.IMAGE).addListener(listener);
+                  break;
+                case Draft.AUDIO:
+                  setMedia(Uri.parse(draft.getValue()), MediaType.AUDIO).addListener(listener);
+                  break;
+                case Draft.VIDEO:
+                  setMedia(Uri.parse(draft.getValue()), MediaType.VIDEO).addListener(listener);
+                  break;
+                case Draft.QUOTE:
+                  SettableFuture<Boolean> quoteResult = new SettableFuture<>();
+                  new QuoteRestorationTask(draft.getValue(), quoteResult).execute();
+                  quoteResult.addListener(listener);
+                  break;
+                case Draft.VOICE_NOTE:
+                  listener.onSuccess(true);
+                  break;
+              }
+            } catch (IOException e) {
+              Log.w(TAG, e);
+            }
+          }
 
-        return new Pair<>(results, updatedText);
-      }
-
-      @Override
-      protected void onPostExecute(Pair<Drafts, CharSequence> draftsWithUpdatedMentions) {
-        Drafts       drafts      = Objects.requireNonNull(draftsWithUpdatedMentions.first());
-        CharSequence updatedText = draftsWithUpdatedMentions.second();
-
-        if (drafts.isEmpty()) {
-          future.set(false);
           updateToggleButtonState();
-          return;
-        }
+        });
 
-        AtomicInteger                      draftsRemaining = new AtomicInteger(drafts.size());
-        AtomicBoolean                      success         = new AtomicBoolean(false);
-        ListenableFuture.Listener<Boolean> listener        = new AssertedSuccessListener<Boolean>() {
-          @Override
-          public void onSuccess(Boolean result) {
-            success.compareAndSet(false, result);
-
-            if (draftsRemaining.decrementAndGet() <= 0) {
-              future.set(success.get());
-            }
-          }
-        };
-
-        for (Draft draft : drafts) {
-          try {
-            switch (draft.getType()) {
-              case Draft.TEXT:
-                composeText.setText(updatedText == null ? draft.getValue() : updatedText);
-                listener.onSuccess(true);
-                break;
-              case Draft.LOCATION:
-                attachmentManager.setLocation(SignalPlace.deserialize(draft.getValue()), getCurrentMediaConstraints()).addListener(listener);
-                break;
-              case Draft.IMAGE:
-                setMedia(Uri.parse(draft.getValue()), MediaType.IMAGE).addListener(listener);
-                break;
-              case Draft.AUDIO:
-                setMedia(Uri.parse(draft.getValue()), MediaType.AUDIO).addListener(listener);
-                break;
-              case Draft.VIDEO:
-                setMedia(Uri.parse(draft.getValue()), MediaType.VIDEO).addListener(listener);
-                break;
-              case Draft.QUOTE:
-                SettableFuture<Boolean> quoteResult = new SettableFuture<>();
-                new QuoteRestorationTask(draft.getValue(), quoteResult).execute();
-                quoteResult.addListener(listener);
-                break;
-              case Draft.VOICE_NOTE:
-                draftViewModel.setVoiceNoteDraft(recipient.getId(), draft);
-                break;
-            }
-          } catch (IOException e) {
-            Log.w(TAG, e);
-          }
-        }
-
-        updateToggleButtonState();
-      }
-    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    disposables.add(disposable);
 
     return future;
   }
@@ -2062,7 +2031,7 @@ public class ConversationParentFragment extends Fragment
 
     attachmentManager = new AttachmentManager(requireActivity(), this);
     audioRecorder     = new AudioRecorder(requireContext());
-    typingTextWatcher = new TypingStatusTextWatcher();
+    typingTextWatcher = new ComposeTextWatcher();
 
     SendButtonListener        sendButtonListener        = new SendButtonListener();
     ComposeKeyPressedListener composeKeyPressedListener = new ComposeKeyPressedListener();
@@ -2437,17 +2406,24 @@ public class ConversationParentFragment extends Fragment
   }
 
   public void initializeDraftViewModel() {
-    draftViewModel = new ViewModelProvider(this, new DraftViewModel.Factory(new DraftRepository(requireContext().getApplicationContext()))).get(DraftViewModel.class);
+    draftViewModel = new ViewModelProvider(this).get(DraftViewModel.class);
 
     recipient.observe(getViewLifecycleOwner(), r -> {
       draftViewModel.onRecipientChanged(r);
     });
 
-    draftViewModel.getState().observe(getViewLifecycleOwner(),
-                                      state -> {
-                                        inputPanel.setVoiceNoteDraft(state.getVoiceNoteDraft());
-                                        updateToggleButtonState();
-                                      });
+    draftViewModel.setThreadId(threadId);
+    draftViewModel.setDistributionType(distributionType);
+
+    disposables.add(
+        draftViewModel
+            .getState()
+            .distinctUntilChanged(state -> state.getVoiceNoteDraft())
+            .subscribe(state -> {
+              inputPanel.setVoiceNoteDraft(state.getVoiceNoteDraft());
+              updateToggleButtonState();
+            })
+    );
   }
 
   private void showGroupCallingTooltip() {
@@ -2605,6 +2581,7 @@ public class ConversationParentFragment extends Fragment
           this.threadId = threadId;
           fragment.reload(recipient, this.threadId);
           setVisibleThread(this.threadId);
+          draftViewModel.setThreadId(this.threadId);
         }
       });
     }
@@ -2713,102 +2690,6 @@ public class ConversationParentFragment extends Fragment
 
     builder.setItems(numberItems, (dialog, which) -> composeText.append(numbers[which]));
     builder.show();
-  }
-
-  private Drafts getDraftsForCurrentState() {
-    Drafts drafts = new Drafts();
-
-    if (recipient.get().isGroup() && !recipient.get().isActiveGroup()) {
-      return drafts;
-    }
-
-    if (!Util.isEmpty(composeText)) {
-      drafts.add(new Draft(Draft.TEXT, composeText.getTextTrimmed().toString()));
-      List<Mention> draftMentions = composeText.getMentions();
-      if (!draftMentions.isEmpty()) {
-        drafts.add(new Draft(Draft.MENTION, Base64.encodeBytes(MentionUtil.mentionsToBodyRangeList(draftMentions).toByteArray())));
-      }
-    }
-
-    for (Slide slide : attachmentManager.buildSlideDeck().getSlides()) {
-      if      (slide.hasAudio() && slide.getUri() != null)    drafts.add(new Draft(Draft.AUDIO, slide.getUri().toString()));
-      else if (slide.hasVideo() && slide.getUri() != null)    drafts.add(new Draft(Draft.VIDEO, slide.getUri().toString()));
-      else if (slide.hasLocation())                           drafts.add(new Draft(Draft.LOCATION, ((LocationSlide)slide).getPlace().serialize()));
-      else if (slide.hasImage() && slide.getUri() != null)    drafts.add(new Draft(Draft.IMAGE, slide.getUri().toString()));
-    }
-
-    Optional<QuoteModel> quote = inputPanel.getQuote();
-
-    if (quote.isPresent()) {
-      drafts.add(new Draft(Draft.QUOTE, new QuoteId(quote.get().getId(), quote.get().getAuthor()).serialize()));
-    }
-
-    Draft voiceNoteDraft = draftViewModel.getVoiceNoteDraft();
-    if (voiceNoteDraft != null) {
-      drafts.add(voiceNoteDraft);
-    }
-
-    return drafts;
-  }
-
-  protected ListenableFuture<Long> saveDraft() {
-    final SettableFuture<Long> future = new SettableFuture<>();
-
-    if (this.recipient == null) {
-      future.set(threadId);
-      return future;
-    }
-
-    final Context                          context              = requireContext().getApplicationContext();
-    final Drafts                           drafts               = getDraftsForCurrentState();
-    final long                             thisThreadId         = this.threadId;
-    final RecipientId                      recipientId          = this.recipient.getId();
-    final int                              thisDistributionType = this.distributionType;
-    final ListenableFuture<VoiceNoteDraft> voiceNoteDraftFuture = draftViewModel.consumeVoiceNoteDraftFuture();
-
-    new AsyncTask<Long, Void, Long>() {
-      @Override
-      protected Long doInBackground(Long... params) {
-        if (voiceNoteDraftFuture != null) {
-          try {
-            Draft voiceNoteDraft = voiceNoteDraftFuture.get().asDraft();
-            draftViewModel.setVoiceNoteDraft(recipientId, voiceNoteDraft);
-            drafts.add(voiceNoteDraft);
-          } catch (ExecutionException | InterruptedException e) {
-            Log.w(TAG, "Could not extract voice note draft data.", e);
-          }
-        }
-
-        ThreadDatabase threadDatabase = SignalDatabase.threads();
-        DraftDatabase  draftDatabase  = SignalDatabase.drafts();
-        long           threadId       = params[0];
-
-        if (drafts.size() > 0) {
-          if (threadId == -1) threadId = threadDatabase.getOrCreateThreadIdFor(getRecipient(), thisDistributionType);
-
-          draftDatabase.replaceDrafts(threadId, drafts);
-          threadDatabase.updateSnippet(threadId, drafts.getSnippet(context),
-                                       drafts.getUriSnippet(),
-                                       System.currentTimeMillis(), Types.BASE_DRAFT_TYPE, true);
-        } else if (threadId > 0) {
-          threadDatabase.update(threadId, false);
-        }
-
-        if (drafts.isEmpty()) {
-          draftDatabase.clearDrafts(threadId);
-        }
-
-        return threadId;
-      }
-
-      @Override
-      protected void onPostExecute(Long result) {
-        future.set(result);
-      }
-
-    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, thisThreadId);
-
-    return future;
   }
 
   private void setBlockedUserState(Recipient recipient, @NonNull ConversationSecurityInfo conversationSecurityInfo) {
@@ -2972,6 +2853,8 @@ public class ConversationParentFragment extends Fragment
 
     updateLinkPreviewState();
     callback.onSendComplete(threadId);
+
+    draftViewModel.onSendComplete(threadId);
   }
 
   private void sendMessage(@Nullable String metricId) {
@@ -2985,7 +2868,6 @@ public class ConversationParentFragment extends Fragment
       AudioSlide audioSlide = AudioSlide.createFromVoiceNoteDraft(requireContext(), voiceNote);
 
       sendVoiceNote(Objects.requireNonNull(audioSlide.getUri()), audioSlide.getFileSize());
-      draftViewModel.clearVoiceNoteDraft();
       return;
     }
 
@@ -3205,7 +3087,7 @@ public class ConversationParentFragment extends Fragment
       return;
     }
 
-    if (draftViewModel.hasVoiceNoteDraft()) {
+    if (draftViewModel.getVoiceNoteDraft() != null) {
       buttonToggle.display(sendButton);
       quickAttachmentToggle.hide();
       inlineAttachmentToggle.hide();
@@ -3329,7 +3211,7 @@ public class ConversationParentFragment extends Fragment
     if (getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.RESUMED)) {
       future.addListener(new DeleteCanceledVoiceNoteListener());
     } else {
-      draftViewModel.setVoiceNoteDraftFuture(future);
+      draftViewModel.saveEphemeralVoiceNoteDraft(future);
     }
   }
 
@@ -3357,6 +3239,16 @@ public class ConversationParentFragment extends Fragment
   @Override
   public void onStickerSuggestionSelected(@NonNull StickerRecord sticker) {
     sendSticker(sticker, true);
+  }
+
+  @Override
+  public void onQuoteChanged(long id, @NonNull RecipientId author) {
+    draftViewModel.setQuoteDraft(id, author);
+  }
+
+  @Override
+  public void onQuoteCleared() {
+    draftViewModel.clearQuoteDraft();
   }
 
   @Override
@@ -3389,32 +3281,26 @@ public class ConversationParentFragment extends Fragment
   }
 
   private void sendVoiceNote(@NonNull Uri uri, long size) {
-    boolean    initiating     = threadId == -1;
-    long       expiresIn      = TimeUnit.SECONDS.toMillis(recipient.get().getExpiresInSeconds());
-    AudioSlide audioSlide     = new AudioSlide(requireContext(), uri, size, MediaUtil.AUDIO_AAC, true);
-    SlideDeck  slideDeck      = new SlideDeck();
+    boolean    initiating = threadId == -1;
+    long       expiresIn  = TimeUnit.SECONDS.toMillis(recipient.get().getExpiresInSeconds());
+    AudioSlide audioSlide = new AudioSlide(requireContext(), uri, size, MediaUtil.AUDIO_AAC, true);
+    SlideDeck  slideDeck  = new SlideDeck();
+
     slideDeck.addSlide(audioSlide);
 
-    ListenableFuture<Void> sendResult = sendMediaMessage(recipient.getId(),
-                                                         sendButton.getSelectedSendType(),
-                                                         "",
-                                                         slideDeck,
-                                                         inputPanel.getQuote().orElse(null),
-                                                         Collections.emptyList(),
-                                                         Collections.emptyList(),
-                                                         composeText.getMentions(),
-                                                         expiresIn,
-                                                         false,
-                                                         initiating,
-                                                         true,
-                                                         null);
-
-    sendResult.addListener(new AssertedSuccessListener<Void>() {
-      @Override
-      public void onSuccess(Void nothing) {
-        draftViewModel.deleteBlob(uri);
-      }
-    });
+    sendMediaMessage(recipient.getId(),
+                     sendButton.getSelectedSendType(),
+                     "",
+                     slideDeck,
+                     inputPanel.getQuote().orElse(null),
+                     Collections.emptyList(),
+                     Collections.emptyList(),
+                     composeText.getMentions(),
+                     expiresIn,
+                     false,
+                     initiating,
+                     true,
+                     null);
   }
 
   private void sendSticker(@NonNull StickerRecord stickerRecord, boolean clearCompose) {
@@ -3446,9 +3332,9 @@ public class ConversationParentFragment extends Fragment
   }
 
   private void silentlySetComposeText(String text) {
-    typingTextWatcher.setEnabled(false);
+    typingTextWatcher.setTypingStatusEnabled(false);
     composeText.setText(text);
-    typingTextWatcher.setEnabled(true);
+    typingTextWatcher.setTypingStatusEnabled(true);
   }
 
   @Override
@@ -3584,7 +3470,7 @@ public class ConversationParentFragment extends Fragment
   private final class DeleteCanceledVoiceNoteListener implements ListenableFuture.Listener<VoiceNoteDraft> {
     @Override
     public void onSuccess(final VoiceNoteDraft result) {
-      draftViewModel.deleteBlob(result.getUri());
+      draftViewModel.cancelEphemeralVoiceNoteDraft(result.asDraft());
     }
 
     @Override
@@ -3691,15 +3577,24 @@ public class ConversationParentFragment extends Fragment
     }
   }
 
-  private class TypingStatusTextWatcher extends SimpleTextWatcher {
+  private class ComposeTextWatcher extends SimpleTextWatcher {
 
-    private boolean enabled = true;
+    private boolean typingStatusEnabled = true;
 
     private String previousText = "";
 
     @Override
-    public void onTextChanged(String text) {
-      if (enabled && threadId > 0 && viewModel.isPushAvailable() && !isSmsForced() && !recipient.get().isBlocked() && !recipient.get().isSelf()) {
+    public void onTextChanged(@NonNull CharSequence text) {
+      handleSaveDraftOnTextChange(text);
+      handleTypingIndicatorOnTextChange(text.toString());
+    }
+
+    private void handleSaveDraftOnTextChange(@NonNull CharSequence text) {
+      textDraftSaveDebouncer.publish(() -> draftViewModel.setTextDraft(StringUtil.trimSequence(text).toString(), MentionAnnotation.getMentionsFromAnnotations(text)));
+    }
+
+    private void handleTypingIndicatorOnTextChange(@NonNull String text) {
+      if (typingStatusEnabled && threadId > 0 && viewModel.isPushAvailable() && !isSmsForced() && !recipient.get().isBlocked() && !recipient.get().isSelf()) {
         TypingStatusSender typingStatusSender = ApplicationDependencies.getTypingStatusSender();
 
         if (text.length() == 0) {
@@ -3714,8 +3609,8 @@ public class ConversationParentFragment extends Fragment
       }
     }
 
-    public void setEnabled(boolean enabled) {
-      this.enabled = enabled;
+    public void setTypingStatusEnabled(boolean enabled) {
+      this.typingStatusEnabled = enabled;
     }
   }
 
@@ -3931,6 +3826,7 @@ public class ConversationParentFragment extends Fragment
   @Override
   public void setThreadId(long threadId) {
     this.threadId = threadId;
+    draftViewModel.setThreadId(threadId);
   }
 
   @Override
@@ -4026,6 +3922,11 @@ public class ConversationParentFragment extends Fragment
     handleSecurityChange(viewModel.getConversationStateSnapshot().getSecurityInfo());
     updateToggleButtonState();
     updateLinkPreviewState();
+  }
+
+  @Override
+  public void onLocationRemoved() {
+    draftViewModel.clearLocationDraft();
   }
 
   private void onMessageRequestDeleteClicked(@NonNull MessageRequestViewModel requestModel) {

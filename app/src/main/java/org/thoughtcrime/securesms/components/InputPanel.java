@@ -50,6 +50,7 @@ import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.QuoteModel;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.AssertedSuccessListener;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
@@ -210,6 +211,10 @@ public class InputPanel extends LinearLayout
       int cornerRadius = readDimen(R.dimen.message_corner_collapse_radius);
       this.linkPreview.setCorners(cornerRadius, cornerRadius);
     }
+
+    if (listener != null) {
+      listener.onQuoteChanged(id, author.getId());
+    }
   }
 
   public void clearQuote() {
@@ -230,6 +235,10 @@ public class InputPanel extends LinearLayout
     });
 
     quoteAnimator.start();
+
+    if (listener != null) {
+      listener.onQuoteCleared();
+    }
   }
 
   private static ValueAnimator createHeightAnimator(@NonNull View view,
@@ -572,6 +581,8 @@ public class InputPanel extends LinearLayout
     void onEmojiToggle();
     void onLinkPreviewCanceled();
     void onStickerSuggestionSelected(@NonNull StickerRecord sticker);
+    void onQuoteChanged(long id, @NonNull RecipientId author);
+    void onQuoteCleared();
   }
 
   private static class SlideToCancel {

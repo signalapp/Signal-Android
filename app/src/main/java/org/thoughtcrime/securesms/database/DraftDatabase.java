@@ -164,6 +164,12 @@ public class DraftDatabase extends Database {
   }
 
   public static class Drafts extends LinkedList<Draft> {
+    public void addIfNotNull(@Nullable Draft draft) {
+      if (draft != null) {
+        add(draft);
+      }
+    }
+
     public @Nullable Draft getDraftOfType(String type) {
       for (Draft draft : this) {
         if (type.equals(draft.getType())) {
