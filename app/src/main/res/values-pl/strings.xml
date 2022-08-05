@@ -4158,8 +4158,11 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--Dialog action to remove viewer from a story-->
   <string name="StoryViewsFragment__remove">Usuń</string>
   <!--Dialog title when removing a viewer from a story-->
+  <string name="StoryViewsFragment__remove_viewer">Usunąć widza?</string>
   <!--Dialog message when removing a viewer from a story-->
+  <string name="StoryViewsFragment__s_will_still_be_able">%1$s zachowa możliwość wyświetlania tego posta, ale nie zobaczy postów, które udostępnisz w %2$s w przyszłości.</string>
   <!--Story View context menu action to remove them from a story-->
+  <string name="StoryViewItem__remove_viewer">Usuń widza</string>
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Brak odpowiedzi</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->

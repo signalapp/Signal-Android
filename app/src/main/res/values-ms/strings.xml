@@ -3836,8 +3836,11 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <!--Dialog action to remove viewer from a story-->
   <string name="StoryViewsFragment__remove">Alih keluar</string>
   <!--Dialog title when removing a viewer from a story-->
+  <string name="StoryViewsFragment__remove_viewer">Alih keluar penonton?</string>
   <!--Dialog message when removing a viewer from a story-->
+  <string name="StoryViewsFragment__s_will_still_be_able">%1$s masih boleh melihat siaran ini, tapi tidak boleh melihat sebarang siaran akan datang yang anda kongsikan ke %2$s.</string>
   <!--Story View context menu action to remove them from a story-->
+  <string name="StoryViewItem__remove_viewer">Alih keluar penonton</string>
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Tiada balasan lagi</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->

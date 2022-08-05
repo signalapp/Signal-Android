@@ -3949,8 +3949,11 @@
   <!--Dialog action to remove viewer from a story-->
   <string name="StoryViewsFragment__remove">काढा</string>
   <!--Dialog title when removing a viewer from a story-->
+  <string name="StoryViewsFragment__remove_viewer">दर्शकाला हटवायचे?</string>
   <!--Dialog message when removing a viewer from a story-->
+  <string name="StoryViewsFragment__s_will_still_be_able">%1$s हे अद्याप या पोस्टला पाहू शकतात, मात्र आपण  %2$sला सामायिक केलेल्या भविष्यातील कोणत्याही पोस्ट पाहू शकणार नाही.</string>
   <!--Story View context menu action to remove them from a story-->
+  <string name="StoryViewItem__remove_viewer">दर्शकाला हटवा</string>
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">अद्याप कोणतीही प्रत्युत्तरे नाहीत</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->

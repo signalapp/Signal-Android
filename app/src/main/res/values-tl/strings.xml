@@ -1179,7 +1179,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Gusto mo bang mag-join sa group na ito at i-share sa members ang pangalan at photo mo? Hindi nila malalaman na nakita mo ang kanilang messages hanggang sa i-accept mo ito.</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Gusto mo bang mag-join sa group na ito at i-share sa members ang pangalan at photo mo? Hindi mo makikita ang kanilang messages hanggang sa i-accept mo ito.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Gusto mo bang mag-join sa group na ito? Hindi nila malalaman na nakita mo ang kanilang messages hanggang sa i-accept mo ito.</string>
-  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Gusto mo bang i-unblock ang group na ito at i-share sa members ang pangalan at photo mo? Hindi ka makakatanggap ng anumang message hangga\'t hindi mo sila ina-unblock.</string>
+  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Gusto mo bang i-unblock ang group na ito at i-share sa members ang pangalan at photo mo? Wala kang matatanggap na anumang mensahe hangga\'t hindi mo sila ina-unblock.</string>
   <string name="MessageRequestProfileView_view">Tingnan</string>
   <string name="MessageRequestProfileView_member_of_one_group">Kasapi ng %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Kasapi ng %1$s at %2$s</string>
@@ -2914,11 +2914,11 @@
   <string name="RecipientBottomSheet_video_call_description">Video call</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">Gusto mo bang i-remove si %1$s bilang group admin?</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">Pwedeng i-edit ni \"%1$s\" ang group at ang members nito.</string>
-  <string name="RecipientBottomSheet_remove_s_from_the_group">Gusto mo bang i-remove si %1$s mula sa group?</string>
+  <string name="RecipientBottomSheet_remove_s_from_the_group">Gusto mo bang tanggalin si %1$s mula sa group?</string>
   <!--Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin-->
-  <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">Gusto mo bang i-remove si %1$s mula sa group? Hindi na siya pwedeng mag-rejoin gamit ang group link.</string>
+  <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">Gusto mo bang tanggalin si %1$s mula sa group? Hindi na siya pwedeng mag-rejoin gamit ang group link.</string>
   <string name="RecipientBottomSheet_remove">Tanggalin</string>
-  <string name="RecipientBottomSheet_copied_to_clipboard">Nakopya na sa clipboard</string>
+  <string name="RecipientBottomSheet_copied_to_clipboard">Copied to clipboard</string>
   <string name="GroupRecipientListItem_admin">Admin</string>
   <string name="GroupRecipientListItem_approve_description">Approve</string>
   <string name="GroupRecipientListItem_deny_description">I-deny</string>
@@ -2951,7 +2951,7 @@
   <!--ReviewCardDialogFragment-->
   <string name="ReviewCardDialogFragment__review_members">I-review ang Members</string>
   <string name="ReviewCardDialogFragment__review_request">I-review ang Request</string>
-  <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d group members ang may parehong pangalan, i-review ang members sa baba at i-tap to take action.</string>
+  <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d group members ang may parehong pangalan, i-review ang members sa baba at piliing mag-take action.</string>
   <string name="ReviewCardDialogFragment__if_youre_not_sure">Kung hindi ka sigurado kung kanino galing ang request na ito, i-review ang contacts sa baba and take action.</string>
   <string name="ReviewCardDialogFragment__no_other_groups_in_common">Walang other groups in common.</string>
   <string name="ReviewCardDialogFragment__no_groups_in_common">Walang groups in common.</string>

@@ -1805,7 +1805,7 @@
   <string name="conversation_activity__compose_description">შეტყობინების შედგენა</string>
   <string name="conversation_activity__emoji_toggle_description">emoji-ების კლავიატურაზე გადართვა</string>
   <string name="conversation_activity__attachment_thumbnail">დანართის მინიატურა</string>
-  <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">კამერის სწრაფი დანართის უჯრაზე გადართვა</string>
+  <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">კამერის სწრაფი გადართვის პანელი</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">აუდიო დანართის ჩაწერა და გაგზავნა</string>
   <string name="conversation_activity__quick_attachment_drawer_lock_record_description">აუდიო დანართის ჩაწერის დალუქვა</string>
   <string name="conversation_activity__enable_signal_for_sms">Signal-ის ჩართვა SMS-ისთვის</string>
@@ -1977,11 +1977,11 @@
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">განლუქვა</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal-ი მედია და ჯგუფური შეტყობინებების მიწოდებისთვის საჭიროებს MMS-ის პარამეტრებს შენი უკაბელო ოპერატორის მეშვეობით. შენი მოწყობილობა არ ხდის ამ ინფორმაციას ხელმისაწვდომს, რაც ზოგჯერ რეალურია ჩაკეტილ მოწყობილობებსა და სხვა შემზღუდველ კონფიგურაციებზე.</string>
-  <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">მედია და ჯგუფური შეტყობინებების გასაგზავნად, დააჭირე „OK-ს“ და შეავსე მოთხოვნილი პარამეტრები. შენი ოპერატორის MMS პარამეტრები, როგორც წესი, შეიძლება განთავსდეს „შენი ოპერატორის APN“-ის მოძიებით. ამის გაკეთება მხოლოდ ერთხელ დაგჭირდება.</string>
+  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">მედია-ფაილების და ჯგუფური შეტყობინებების მიწოდებისთვის Signal-ი საჭიროებს შენი უკაბელო ოპერატორის MMS-ის პარამეტრებს. შენს მოწყობილობაზე ეს ინფორმაცია არ არის ხელმისაწვდომი, რაც ზოგჯერ მართალია ჩაკეტილი მოწყობილობებისთვის და სხვა შემზღუდველი კონფიგურაციებისთვის.</string>
+  <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">მედია-ფაილების და ჯგუფური შეტყობინებების გასაგზავნად, დააჭირე „OK“-ს და შეავსე მოთხოვნილი პარამეტრები. შენი ოპერატორის MMS პარამეტრები, როგროც წესია, შეგიძლიათ მოიძიოთ „შენი ოპერატორის APN“-ის ადგილას. ამის გაკეთება მხოლოდ ერთხელ დაგჭირდება.</string>
   <!--BadDecryptLearnMoreDialog-->
   <string name="BadDecryptLearnMoreDialog_delivery_issue">გაგზავნის პრობლემა</string>
-  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">შეტყობინება, სტიკერი, რეაქცია ან წაკითვის ქვითარი ვერ გამოგეგზავნება %s-სგან. მან შესაძლოა გამოგზავნა შენთვის პირდაპირ, ან ჯგუფში სცადა.</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">შეტყობინება, სტიკერი, რეაქცია ან წაკითვის დასტური ვერ გამოგეგზავნება %s-სგან. შესაძლოა მან გამოგზავნა პირდაპირ, ან ჯგუფში სცადა.</string>
   <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">შეტყობინება, სტიკერი, გამოხმაურება ან წაკითხვის ქვითარი ვერ გამოგეგზავნება %s-სგან.</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">სახელი (სავალდებულო)</string>
@@ -1989,7 +1989,7 @@
   <string name="CreateProfileActivity_next">შემდეგი</string>
   <string name="CreateProfileActivity__username">მომხმარებლის სახელი</string>
   <string name="CreateProfileActivity__create_a_username">შექმენი მომხმარებლის სახელი</string>
-  <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">მორგებული MMS ჯგუფის სახელები და ფოტოები მხოლოდ შენთვის იქნება ხილული.</string>
+  <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">პერსონალიზირებული MMS ჯგუფის სახელები და ფოტოები მხოლოდ შენთვის იქნება ხილული.</string>
   <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">ჯგუფის აღწერილობები ხილული იქნება ამ ჯგუფის წევრებისა და მოწვეული ადამიანებისთვის.</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">შესახებ</string>
@@ -2017,7 +2017,7 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>შეიყვანე სახელი ან ნომერი</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ რომ შენი ბოლომდე დაშიფვრის უსაფრთხოება დაადასტურო %s-ით, შეადარო ზემოთ მოცემული ნომრები მის მოწყობილობას. ასევე შეგიძლია კოდის სკანირება მის ტელეფონზე. <a href="https://signal.org/redirect/safety-numbers">გაიგე მეტი.</a>]]></string>
+  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ რომ შეამოწმო დაშიფვრის უსაფრთხოება  %s-სთან, შეადარე ზემოთ მოცემული ნომრები მის მოწყობილობასთან. ან შეგიძლია მის ტელეფონზე კოდი დაასკანირო. <a href="https://signal.org/redirect/safety-numbers">გაიგე მეტი.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">დააჭირე დასასკანირებლად</string>
   <string name="verify_display_fragment__successful_match">წარმატებული დამთხვევა</string>
   <string name="verify_display_fragment__failed_to_verify_safety_number">უსაფრთხოების ნომრის ვერიფიცირება ვერ მოხერხდა</string>
@@ -2330,19 +2330,19 @@
   <string name="PaymentsAllActivityFragment__sent">Sent</string>
   <string name="PaymentsAllActivityFragment__received">Received</string>
   <string name="PaymentsHomeFragment__introducing_payments">წარმოგიდგენთ ტრანზაქციებს (ბეტა)</string>
-  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">გამოიყენე Signal-ი MobileCoin-ის, კონფიდენციალურობაზე ორიენტირებული ახალი ციფრული ვალუტის გასაგზავნად და მისაღებად. დასაწყებად გააქტიურე.</string>
+  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">გამოიყენე Signal-ი ახალი, კონფიდენციალურობაზე ორიენტირებული, ციფრული ვალუტის MobileCoin-ის გასაგზავნად და მისაღებად. დასაწყებად გააქტიურე.</string>
   <string name="PaymentsHomeFragment__activate_payments">ტრანზაქციების აქტივაცია</string>
   <string name="PaymentsHomeFragment__activating_payments">ვააქტიურებთ ტრანზაქციებს…</string>
   <string name="PaymentsHomeFragment__restore_payments_account">ტრანზაქციების ანგარიშის აღდგენა</string>
-  <string name="PaymentsHomeFragment__no_recent_activity_yet">ბოლო აქტივობა ჯერ არ მოიძებნა</string>
+  <string name="PaymentsHomeFragment__no_recent_activity_yet">ბოლო აქტივობა ვერ მოიძებნა</string>
   <string name="PaymentsHomeFragment__pending_requests">მოლოდინის რეჟიმში მყოფი მოთხოვნები</string>
   <string name="PaymentsHomeFragment__recent_activity">ბოლო აქტივობა</string>
   <string name="PaymentsHomeFragment__see_all">ყველას ნახვა</string>
-  <string name="PaymentsHomeFragment__add_funds">თანხების დამატება</string>
+  <string name="PaymentsHomeFragment__add_funds">თანხის დამატება</string>
   <string name="PaymentsHomeFragment__send">გაგზავნა</string>
   <string name="PaymentsHomeFragment__sent_s">გაიგზავნა %1$s-ს</string>
   <string name="PaymentsHomeFragment__received_s">მიღებულია %1$s-ს</string>
-  <string name="PaymentsHomeFragment__transfer_to_exchange">გასაცვლელად გადარიცხე</string>
+  <string name="PaymentsHomeFragment__transfer_to_exchange">გასაცვლელად გადარიცხვა</string>
   <string name="PaymentsHomeFragment__currency_conversion">ვალუტის კონვერტაცია</string>
   <string name="PaymentsHomeFragment__deactivate_payments">ტრანზაქციების დეაქტივაცია</string>
   <string name="PaymentsHomeFragment__recovery_phrase">აღსადგენი ფრაზა</string>
@@ -2350,14 +2350,14 @@
   <string name="PaymentsHomeFragment__coin_cleanup_fee">Coin cleanup-ის საფასური</string>
   <string name="PaymentsHomeFragment__sent_payment">გაგზავნილი ტრანზაქცია</string>
   <string name="PaymentsHomeFragment__received_payment">მიღებული ტრანზაქცია</string>
-  <string name="PaymentsHomeFragment__processing_payment">დამუშავების მოლოდინში მყოფი ტრანზაქცია</string>
+  <string name="PaymentsHomeFragment__processing_payment">ვამუშავებთ ტრანზაქციას</string>
   <string name="PaymentsHomeFragment__unknown_amount">---</string>
   <string name="PaymentsHomeFragment__currency_conversion_not_available">ვალუტის კონვერტაცია მიუწვდომელია</string>
   <string name="PaymentsHomeFragment__cant_display_currency_conversion">ვალუტის კონვერტაციის ჩვენება შეუძლებელია. შეამოწმე შენი მობილურის კავშირი და სცადე ხელახლა.</string>
   <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">ტრანზაქციები შენს რეგიონში ხელმისაწვდომი არაა.</string>
   <string name="PaymentsHomeFragment__could_not_enable_payments">ტრანზაქციების ჩართვა ვერ მოხერხდა. მოგვიანებით კიდევ სცადე.</string>
   <string name="PaymentsHomeFragment__deactivate_payments_question">გსურს ტრანზაქციების დეაქტივაცია?</string>
-  <string name="PaymentsHomeFragment__you_will_not_be_able_to_send">შენ ვერ შეძლებ გაგზავნო ან მიიღო MobileCoin-ი Signal-ში, თუ ტრანზაქციებს გამორთავ.</string>
+  <string name="PaymentsHomeFragment__you_will_not_be_able_to_send">შენ ვერ შეძლებ MobileCoin-ის Signal-ში გაგზავანას ან მიღებას , თუ ტრანზაქციებს გამორთავ.</string>
   <string name="PaymentsHomeFragment__deactivate">დეაქტივაცია</string>
   <string name="PaymentsHomeFragment__continue">გაგრძელება</string>
   <string name="PaymentsHomeFragment__balance_is_not_currently_available">ბალანსი ამჟამად ხელმისაწვდომი არაა.</string>
@@ -2365,15 +2365,15 @@
   <string name="PaymentsHomeFragment__payment_failed">ტრანზაქცია ვერ მოხერხდა</string>
   <string name="PaymentsHomeFragment__details">Details</string>
   <string name="PaymentsHomeFragment__you_can_use_signal_to_send">შეგიძლია Signal-ი MobileCoin-ის გასაგზავნად და მისაღებად გამოიყენო. ყველა ტრანზაქცია ექვემდებარება MobileCoin-ისა და MobileCoin Wallet-ის გამოყენების პირობებს. ეს არის ბეტა ფუნქცია, ასე რომ შეიძლება პრობლემები შეგექმნას და ტრანზაქციები ან ნაშთები, რომლებიც შეიძლება დაკარგო, ვერ აღდგება.</string>
-  <string name="PaymentsHomeFragment__activate">აქტივაცია</string>
+  <string name="PaymentsHomeFragment__activate">გააქტიურება</string>
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">MobileCoin-ის პირობების ნახვა</string>
-  <string name="PaymentsHomeFragment__payments_not_available">ტრანზაქციები Signal-ში აღარ არის ხელმისაწვდომი. ისევ შეგიძლია თანხების გადარიცხვა ბირჟაზე, მაგრამ აღარ შეგიძლია ტრანზაქციების გაგზავნა და მიღება ან თანხის დამატება.</string>
+  <string name="PaymentsHomeFragment__payments_not_available">ტრანზაქციები Signal-ში აღარ არის ხელმისაწვდომი. ისევ შეგიძლია თანხების გადარიცხვა ბირჟაზე, მაგრამ აღარ შეგიძლია ტრანზაქციების გაგზავნა და მიღება, ან თანხის დამატება.</string>
   <!--PaymentsAddMoneyFragment-->
-  <string name="PaymentsAddMoneyFragment__add_funds">თანხების დამატება</string>
+  <string name="PaymentsAddMoneyFragment__add_funds">თანხის დამატება</string>
   <string name="PaymentsAddMoneyFragment__your_wallet_address">შენი საფულის მისამართი</string>
-  <string name="PaymentsAddMoneyFragment__copy">ჩაკოპირება</string>
+  <string name="PaymentsAddMoneyFragment__copy">დაკოპირება</string>
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">დაკოპირებულია ბუფერში</string>
-  <string name="PaymentsAddMoneyFragment__to_add_funds">თანხების დასამატებლად გაგზავნე MobileCoin-ი შენი საფულის მისამართზე. დაიწყე ტრანზაქცია შენი ანგარიშიდან ბირჟაზე, რომელიც მხარს უჭერს MobileCoin-ს, შემდეგ დაასკანირეთ QR კოდი ან დააკოპირეთ შენი საფულის მისამართი.</string>
+  <string name="PaymentsAddMoneyFragment__to_add_funds">თანხების დასამატებლად გააგზავნე MobileCoin-ი შენი საფულის მისამართზე. დაიწყე ტრანზაქცია შენი ანგარიშიდან ბირჟაზე, რომელიც მხარს უჭერს MobileCoin-ს, შემდეგ დაასკანირეთ QR კოდი ან დააკოპირე შენი საფულის მისამართი.</string>
   <!--PaymentsDetailsFragment-->
   <string name="PaymentsDetailsFragment__details">Details</string>
   <string name="PaymentsDetailsFragment__status">სტატუსი</string>
@@ -2382,7 +2382,7 @@
   <string name="PaymentsDetailsFragment__payment_complete">ტრანზაქცია დასრულებულია</string>
   <string name="PaymentsDetailsFragment__payment_failed">ტრანზაქცია ვერ მოხერხდა</string>
   <string name="PaymentsDetailsFragment__network_fee">ქსელის საფასური</string>
-  <string name="PaymentsDetailsFragment__sent_by">გამოგზავნეს ჩამოთვლილებმა</string>
+  <string name="PaymentsDetailsFragment__sent_by">გამოგიგზავნა</string>
   <string name="PaymentsDetailsFragment__sent_to_s">გაგზავნილია %1$s-სთან</string>
   <string name="PaymentsDetailsFragment__you_on_s_at_s">შენ %1$s-ს %2$s-ზე</string>
   <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s %2$s-ს %3$s-ზე</string>
@@ -3952,8 +3952,11 @@
   <!--Dialog action to remove viewer from a story-->
   <string name="StoryViewsFragment__remove">წაშლა</string>
   <!--Dialog title when removing a viewer from a story-->
+  <string name="StoryViewsFragment__remove_viewer">ამოვშალოთ მნახველი?</string>
   <!--Dialog message when removing a viewer from a story-->
+  <string name="StoryViewsFragment__s_will_still_be_able">%1$s ამ პოსტის ნახვას ისევ შეძლებს, მაგრამ ვეღარ ნახავს მომავალ პოსტებს, რომელთაც %2$s-ში გააზიარებ.</string>
   <!--Story View context menu action to remove them from a story-->
+  <string name="StoryViewItem__remove_viewer">მნახველის ამოშლა</string>
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">პასუხები ჯერ არაა</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->

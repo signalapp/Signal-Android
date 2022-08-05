@@ -3718,7 +3718,7 @@
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
   <string name="EditNotificationProfileFragment__downtime">استراحت</string>
   <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
-  <string name="EditNotificationProfileFragment__focus">تمرکز</string>
+  <string name="EditNotificationProfileFragment__focus">فوکوس</string>
   <!--Error message shown when attempting to next/save without a profile name-->
   <string name="EditNotificationProfileFragment__profile_must_have_a_name">باید یک نام داشته باشید</string>
   <!--Title for add recipients to notification profile screen in create flow-->
@@ -3950,8 +3950,11 @@
   <!--Dialog action to remove viewer from a story-->
   <string name="StoryViewsFragment__remove">حذف</string>
   <!--Dialog title when removing a viewer from a story-->
+  <string name="StoryViewsFragment__remove_viewer">حذف بازدیدکننده؟</string>
   <!--Dialog message when removing a viewer from a story-->
+  <string name="StoryViewsFragment__s_will_still_be_able">%1$s همچنان قادر خواهد بود که این پست را مشاهده کند، اما قادر نخواهد بود که پست‌هایی را که شما در آینده با %2$s به اشتراک می‌گذارید مشاهده نماید.</string>
   <!--Story View context menu action to remove them from a story-->
+  <string name="StoryViewItem__remove_viewer">حذف بازدیدکننده</string>
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">هنوز پاسخی داده نشده است</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
