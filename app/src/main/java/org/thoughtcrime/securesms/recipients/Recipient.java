@@ -489,7 +489,7 @@ public class Recipient {
 
   public @Nullable String getGroupName(@NonNull Context context) {
     if (groupId != null && Util.isEmpty(this.groupName)) {
-      RecipientId     selfId = Recipient.self().getId();
+      RecipientId     selfId = ApplicationDependencies.getRecipientCache().getSelfId();
       List<Recipient> others = participantIds.stream()
                                              .filter(id -> !id.equals(selfId))
                                              .limit(MAX_MEMBER_NAMES)
