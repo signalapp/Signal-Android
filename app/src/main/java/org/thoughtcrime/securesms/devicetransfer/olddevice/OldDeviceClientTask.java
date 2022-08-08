@@ -9,7 +9,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.signal.core.util.logging.Log;
 import org.signal.devicetransfer.ClientTask;
-import org.thoughtcrime.securesms.backup.FullBackupBase;
+import org.thoughtcrime.securesms.backup.BackupEvent;
 import org.thoughtcrime.securesms.backup.FullBackupExporter;
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
 import org.thoughtcrime.securesms.database.SignalDatabase;
@@ -56,8 +56,8 @@ final class OldDeviceClientTask implements ClientTask {
   }
 
   @Subscribe(threadMode = ThreadMode.POSTING)
-  public void onEvent(FullBackupBase.BackupEvent event) {
-    if (event.getType() == FullBackupBase.BackupEvent.Type.PROGRESS) {
+  public void onEvent(BackupEvent event) {
+    if (event.getType() == BackupEvent.Type.PROGRESS) {
       if (System.currentTimeMillis() > lastProgressUpdate + PROGRESS_UPDATE_THROTTLE) {
         EventBus.getDefault().post(new Status(event.getCount(), event.getEstimatedTotalCount(), event.getCompletionPercentage(), false));
         lastProgressUpdate = System.currentTimeMillis();

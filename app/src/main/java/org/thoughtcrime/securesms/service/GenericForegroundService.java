@@ -163,6 +163,28 @@ public final class GenericForegroundService extends Service {
     ContextCompat.startForegroundService(context, intent);
   }
 
+  synchronized void replaceTitle(int id, @NonNull String title) {
+    Entry oldEntry = allActiveMessages.get(id);
+
+    if (oldEntry == null) {
+      Log.w(TAG, "Failed to replace notification, it was not found");
+      return;
+    }
+
+    Entry newEntry = new Entry(title, oldEntry.channelId, oldEntry.iconRes, oldEntry.id, oldEntry.progressMax, oldEntry.progress, oldEntry.indeterminate);
+
+    if (oldEntry.equals(newEntry)) {
+      Log.d(TAG, String.format("handleReplace() skip, no change %s", newEntry));
+      return;
+    }
+
+    Log.i(TAG, String.format("handleReplace() %s", newEntry));
+
+    allActiveMessages.put(newEntry.id, newEntry);
+
+    updateNotification();
+  }
+
   synchronized void replaceProgress(int id, int progressMax, int progress, boolean indeterminate) {
     Entry oldEntry = allActiveMessages.get(id);
 

@@ -67,6 +67,14 @@ public final class NotificationController implements AutoCloseable,
     setProgress((int) newProgressMax, (int) newProgress, false);
   }
 
+  public void replaceTitle(@NonNull String title) {
+    GenericForegroundService genericForegroundService = service.get();
+
+    if (genericForegroundService == null) return;
+
+    genericForegroundService.replaceTitle(id, title);
+  }
+
   private synchronized void setProgress(int newProgressMax, int newProgress, boolean indeterminant) {
     int newPercent = newProgressMax != 0 ? 100 * newProgress / newProgressMax : -1;
 

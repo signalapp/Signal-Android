@@ -41,8 +41,8 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.AppInitialization;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.backup.BackupEvent;
 import org.thoughtcrime.securesms.backup.BackupPassphrase;
-import org.thoughtcrime.securesms.backup.FullBackupBase;
 import org.thoughtcrime.securesms.backup.FullBackupImporter;
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
@@ -353,7 +353,7 @@ public final class RestoreBackupFragment extends LoggingFragment {
   }
 
   @Subscribe(threadMode = ThreadMode.MAIN)
-  public void onEvent(@NonNull FullBackupBase.BackupEvent event) {
+  public void onEvent(@NonNull BackupEvent event) {
     long count = event.getCount();
 
     if (count == 0) {
@@ -365,7 +365,7 @@ public final class RestoreBackupFragment extends LoggingFragment {
     restoreButton.setSpinning();
     skipRestoreButton.setVisibility(View.INVISIBLE);
 
-    if (event.getType() == FullBackupBase.BackupEvent.Type.FINISHED) {
+    if (event.getType() == BackupEvent.Type.FINISHED) {
       onBackupComplete();
     }
   }

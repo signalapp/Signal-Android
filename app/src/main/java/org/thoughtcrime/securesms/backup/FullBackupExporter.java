@@ -96,7 +96,7 @@ public class FullBackupExporter extends FullBackupBase {
       AvatarPickerDatabase.TABLE_NAME
   );
 
-  public static void export(@NonNull Context context,
+  public static BackupEvent export(@NonNull Context context,
                             @NonNull AttachmentSecret attachmentSecret,
                             @NonNull SQLiteDatabase input,
                             @NonNull File output,
@@ -105,12 +105,12 @@ public class FullBackupExporter extends FullBackupBase {
       throws IOException
   {
     try (OutputStream outputStream = new FileOutputStream(output)) {
-      internalExport(context, attachmentSecret, input, outputStream, passphrase, true, cancellationSignal);
+      return internalExport(context, attachmentSecret, input, outputStream, passphrase, true, cancellationSignal);
     }
   }
 
   @RequiresApi(29)
-  public static void export(@NonNull Context context,
+  public static BackupEvent export(@NonNull Context context,
                             @NonNull AttachmentSecret attachmentSecret,
                             @NonNull SQLiteDatabase input,
                             @NonNull DocumentFile output,
@@ -119,7 +119,7 @@ public class FullBackupExporter extends FullBackupBase {
       throws IOException
   {
     try (OutputStream outputStream = Objects.requireNonNull(context.getContentResolver().openOutputStream(output.getUri()))) {
-      internalExport(context, attachmentSecret, input, outputStream, passphrase, true, cancellationSignal);
+      return internalExport(context, attachmentSecret, input, outputStream, passphrase, true, cancellationSignal);
     }
   }
 
@@ -130,16 +130,16 @@ public class FullBackupExporter extends FullBackupBase {
                               @NonNull String passphrase)
       throws IOException
   {
-    internalExport(context, attachmentSecret, input, outputStream, passphrase, false, () -> false);
+    EventBus.getDefault().post(internalExport(context, attachmentSecret, input, outputStream, passphrase, false, () -> false));
   }
 
-  private static void internalExport(@NonNull Context context,
-                                     @NonNull AttachmentSecret attachmentSecret,
-                                     @NonNull SQLiteDatabase input,
-                                     @NonNull OutputStream fileOutputStream,
-                                     @NonNull String passphrase,
-                                     boolean closeOutputStream,
-                                     @NonNull BackupCancellationSignal cancellationSignal)
+  private static BackupEvent internalExport(@NonNull Context context,
+                                            @NonNull AttachmentSecret attachmentSecret,
+                                            @NonNull SQLiteDatabase input,
+                                            @NonNull OutputStream fileOutputStream,
+                                            @NonNull String passphrase,
+                                            boolean closeOutputStream,
+                                            @NonNull BackupCancellationSignal cancellationSignal)
       throws IOException
   {
     BackupFrameOutputStream outputStream          = new BackupFrameOutputStream(fileOutputStream, passphrase);
@@ -210,8 +210,8 @@ public class FullBackupExporter extends FullBackupBase {
       if (closeOutputStream) {
         outputStream.close();
       }
-      EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.FINISHED, ++count, estimatedCountOutside));
     }
+    return new BackupEvent(BackupEvent.Type.FINISHED, ++count, estimatedCountOutside);
   }
 
   private static long calculateCount(@NonNull Context context, @NonNull SQLiteDatabase input, List<String> tables) {

@@ -9,11 +9,13 @@ import androidx.documentfile.provider.DocumentFile;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.signal.core.util.Stopwatch;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.backup.BackupEvent;
 import org.thoughtcrime.securesms.backup.BackupFileIOError;
 import org.thoughtcrime.securesms.backup.BackupPassphrase;
-import org.thoughtcrime.securesms.backup.FullBackupBase;
+import org.thoughtcrime.securesms.backup.BackupVerifier;
 import org.thoughtcrime.securesms.backup.FullBackupExporter;
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
 import org.thoughtcrime.securesms.database.SignalDatabase;
@@ -74,7 +76,7 @@ public final class LocalBackupJobApi29 extends BaseJob {
       throw new IOException("Backup Directory has not been selected!");
     }
 
-    ProgressUpdater updater = new ProgressUpdater();
+    ProgressUpdater updater = new ProgressUpdater(context.getString(R.string.LocalBackupJob_verifying_signal_backup));
     try (NotificationController notification = GenericForegroundService.startForegroundTask(context,
                                                                                             context.getString(R.string.LocalBackupJob_creating_signal_backup),
                                                                                             NotificationChannels.BACKUPS,
@@ -112,16 +114,28 @@ public final class LocalBackupJobApi29 extends BaseJob {
       }
 
       try {
-        FullBackupExporter.export(context,
-                                  AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret(),
-                                  SignalDatabase.getBackupDatabase(),
-                                  temporaryFile,
-                                  backupPassword,
-                                  this::isCanceled);
+        Stopwatch   stopwatch     = new Stopwatch("backup-export");
+        BackupEvent finishedEvent = FullBackupExporter.export(context,
+                                                              AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret(),
+                                                              SignalDatabase.getBackupDatabase(),
+                                                              temporaryFile,
+                                                              backupPassword,
+                                                              this::isCanceled);
+        stopwatch.split("backup-create");
 
-        if (!temporaryFile.renameTo(fileName)) {
-          Log.w(TAG, "Failed to rename temp file");
-          throw new IOException("Renaming temporary backup file failed!");
+        boolean valid = BackupVerifier.verifyFile(context.getContentResolver().openInputStream(temporaryFile.getUri()), backupPassword, finishedEvent.getCount());
+        stopwatch.split("backup-verify");
+        stopwatch.stop(TAG);
+
+        EventBus.getDefault().post(finishedEvent);
+
+        if (valid) {
+          if (!temporaryFile.renameTo(fileName)) {
+            Log.w(TAG, "Failed to rename temp file");
+            throw new IOException("Renaming temporary backup file failed!");
+          }
+        } else {
+          BackupFileIOError.VERIFICATION_FAILED.postNotification(context);
         }
       } catch (FullBackupExporter.BackupCanceledException e) {
         Log.w(TAG, "Backup cancelled");
@@ -173,19 +187,29 @@ public final class LocalBackupJobApi29 extends BaseJob {
   }
 
   private static class ProgressUpdater {
-    private NotificationController notification;
+    private final String                 verifyProgressTitle;
+    private       NotificationController notification;
+    private       boolean                verifying = false;
+
+    public ProgressUpdater(String verifyProgressTitle) {
+      this.verifyProgressTitle = verifyProgressTitle;
+    }
 
     @Subscribe(threadMode = ThreadMode.POSTING)
-    public void onEvent(FullBackupBase.BackupEvent event) {
+    public void onEvent(BackupEvent event) {
       if (notification == null) {
         return;
       }
 
-      if (event.getType() == FullBackupBase.BackupEvent.Type.PROGRESS) {
+      if (event.getType() == BackupEvent.Type.PROGRESS || event.getType() == BackupEvent.Type.PROGRESS_VERIFYING) {
         if (event.getEstimatedTotalCount() == 0) {
           notification.setIndeterminateProgress();
         } else {
           notification.setProgress(100, (int) event.getCompletionPercentage());
+          if (event.getType() == BackupEvent.Type.PROGRESS_VERIFYING && !verifying) {
+            notification.replaceTitle(verifyProgressTitle);
+            verifying = true;
+          }
         }
       }
     }

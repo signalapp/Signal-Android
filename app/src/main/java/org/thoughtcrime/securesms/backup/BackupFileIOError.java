@@ -21,6 +21,7 @@ public enum BackupFileIOError {
   ACCESS_ERROR(R.string.LocalBackupJobApi29_backup_failed, R.string.LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved),
   FILE_TOO_LARGE(R.string.LocalBackupJobApi29_backup_failed, R.string.LocalBackupJobApi29_your_backup_file_is_too_large),
   NOT_ENOUGH_SPACE(R.string.LocalBackupJobApi29_backup_failed, R.string.LocalBackupJobApi29_there_is_not_enough_space),
+  VERIFICATION_FAILED(R.string.LocalBackupJobApi29_backup_failed, R.string.LocalBackupJobApi29_your_backup_could_not_be_verified),
   UNKNOWN(R.string.LocalBackupJobApi29_backup_failed, R.string.LocalBackupJobApi29_tap_to_manage_backups);
 
   private static final short BACKUP_FAILED_ID = 31321;

@@ -14,11 +14,8 @@ import androidx.annotation.NonNull;
 import net.zetetic.database.sqlcipher.SQLiteDatabase;
 
 import org.greenrobot.eventbus.EventBus;
-import org.signal.core.util.Conversions;
-import org.signal.core.util.StreamUtil;
+import org.signal.core.util.SqlUtil;
 import org.signal.core.util.logging.Log;
-import org.signal.libsignal.protocol.kdf.HKDFv3;
-import org.signal.libsignal.protocol.util.ByteUtil;
 import org.thoughtcrime.securesms.backup.BackupProtos.Attachment;
 import org.thoughtcrime.securesms.backup.BackupProtos.BackupFrame;
 import org.thoughtcrime.securesms.backup.BackupProtos.DatabaseVersion;
@@ -38,7 +35,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.BackupUtil;
-import org.signal.core.util.SqlUtil;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -46,23 +42,11 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
-
-import javax.crypto.BadPaddingException;
-import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.Mac;
-import javax.crypto.NoSuchPaddingException;
-import javax.crypto.spec.IvParameterSpec;
-import javax.crypto.spec.SecretKeySpec;
 
 public class FullBackupImporter extends FullBackupBase {
 
@@ -185,7 +169,7 @@ public class FullBackupImporter extends FullBackupBase {
 
       contentValues.put(AttachmentDatabase.DATA, dataFile.getAbsolutePath());
       contentValues.put(AttachmentDatabase.DATA_RANDOM, output.first);
-    } catch (BadMacException e) {
+    } catch (BackupRecordInputStream.BadMacException e) {
       Log.w(TAG, "Bad MAC for attachment " + attachment.getAttachmentId() + "! Can't restore it.", e);
       dataFile.delete();
       contentValues.put(AttachmentDatabase.DATA, (String) null);
@@ -300,144 +284,6 @@ public class FullBackupImporter extends FullBackupBase {
       }
     }
   }
-
-  private static class BackupRecordInputStream extends BackupStream {
-
-    private final InputStream in;
-    private final Cipher      cipher;
-    private final Mac         mac;
-
-    private final byte[] cipherKey;
-    private final byte[] macKey;
-
-    private byte[] iv;
-    private int    counter;
-
-    private BackupRecordInputStream(@NonNull InputStream in, @NonNull String passphrase) throws IOException {
-      try {
-        this.in = in;
-
-        byte[] headerLengthBytes = new byte[4];
-        StreamUtil.readFully(in, headerLengthBytes);
-
-        int headerLength = Conversions.byteArrayToInt(headerLengthBytes);
-        byte[] headerFrame = new byte[headerLength];
-        StreamUtil.readFully(in, headerFrame);
-
-        BackupFrame frame = BackupFrame.parseFrom(headerFrame);
-
-        if (!frame.hasHeader()) {
-          throw new IOException("Backup stream does not start with header!");
-        }
-
-        BackupProtos.Header header = frame.getHeader();
-
-        this.iv = header.getIv().toByteArray();
-
-        if (iv.length != 16) {
-          throw new IOException("Invalid IV length!");
-        }
-
-        byte[]   key     = getBackupKey(passphrase, header.hasSalt() ? header.getSalt().toByteArray() : null);
-        byte[]   derived = new HKDFv3().deriveSecrets(key, "Backup Export".getBytes(), 64);
-        byte[][] split   = ByteUtil.split(derived, 32, 32);
-
-        this.cipherKey = split[0];
-        this.macKey    = split[1];
-
-        this.cipher = Cipher.getInstance("AES/CTR/NoPadding");
-        this.mac    = Mac.getInstance("HmacSHA256");
-        this.mac.init(new SecretKeySpec(macKey, "HmacSHA256"));
-
-        this.counter = Conversions.byteArrayToInt(iv);
-      } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException e) {
-        throw new AssertionError(e);
-      }
-    }
-
-    BackupFrame readFrame() throws IOException {
-      return readFrame(in);
-    }
-
-    void readAttachmentTo(OutputStream out, int length) throws IOException {
-      try {
-        Conversions.intToByteArray(iv, 0, counter++);
-        cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(cipherKey, "AES"), new IvParameterSpec(iv));
-        mac.update(iv);
-
-        byte[] buffer = new byte[8192];
-
-        while (length > 0) {
-          int read = in.read(buffer, 0, Math.min(buffer.length, length));
-          if (read == -1) throw new IOException("File ended early!");
-
-          mac.update(buffer, 0, read);
-
-          byte[] plaintext = cipher.update(buffer, 0, read);
-
-          if (plaintext != null) {
-            out.write(plaintext, 0, plaintext.length);
-          }
-
-          length -= read;
-        }
-
-        byte[] plaintext = cipher.doFinal();
-
-        if (plaintext != null) {
-          out.write(plaintext, 0, plaintext.length);
-        }
-
-        out.close();
-
-        byte[] ourMac   = ByteUtil.trim(mac.doFinal(), 10);
-        byte[] theirMac = new byte[10];
-
-        try {
-          StreamUtil.readFully(in, theirMac);
-        } catch (IOException e) {
-          throw new IOException(e);
-        }
-
-        if (!MessageDigest.isEqual(ourMac, theirMac)) {
-          throw new BadMacException();
-        }
-      } catch (InvalidKeyException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
-        throw new AssertionError(e);
-      }
-    }
-
-    private BackupFrame readFrame(InputStream in) throws IOException {
-      try {
-        byte[] length = new byte[4];
-        StreamUtil.readFully(in, length);
-
-        byte[] frame = new byte[Conversions.byteArrayToInt(length)];
-        StreamUtil.readFully(in, frame);
-
-        byte[] theirMac = new byte[10];
-        System.arraycopy(frame, frame.length - 10, theirMac, 0, theirMac.length);
-
-        mac.update(frame, 0, frame.length - 10);
-        byte[] ourMac = ByteUtil.trim(mac.doFinal(), 10);
-
-        if (!MessageDigest.isEqual(ourMac, theirMac)) {
-          throw new IOException("Bad MAC");
-        }
-
-        Conversions.intToByteArray(iv, 0, counter++);
-        cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(cipherKey, "AES"), new IvParameterSpec(iv));
-
-        byte[] plaintext = cipher.doFinal(frame, 0, frame.length - 10);
-
-        return BackupFrame.parseFrom(plaintext);
-      } catch (InvalidKeyException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
-        throw new AssertionError(e);
-      }
-    }
-  }
-
-  private static class BadMacException extends IOException {}
 
   public static class DatabaseDowngradeException extends IOException {
     DatabaseDowngradeException(int currentVersion, int backupVersion) {

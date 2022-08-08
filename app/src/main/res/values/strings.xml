@@ -536,6 +536,8 @@
     <string name="BackupsPreferenceFragment__to_restore_a_backup">To restore a backup, install a new copy of Signal. Open the app and tap "Restore backup", then locate a backup file. %1$s</string>
     <string name="BackupsPreferenceFragment__learn_more">Learn more</string>
     <string name="BackupsPreferenceFragment__in_progress">In progress…</string>
+    <!-- Status text shown in backup preferences when verifying a backup -->
+    <string name="BackupsPreferenceFragment__verifying_backup">Verifying backup…</string>
     <string name="BackupsPreferenceFragment__d_so_far">%1$d so far…</string>
     <!-- Show percentage of completion of backup -->
     <string name="BackupsPreferenceFragment__s_so_far">%1$s%% so far…</string>
@@ -3276,10 +3278,14 @@
     <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">You successfully entered your backup passphrase</string>
     <string name="BackupDialog_passphrase_was_not_correct">Passphrase was not correct</string>
     <string name="LocalBackupJob_creating_signal_backup">Creating Signal backup…</string>
+    <!-- Title for progress notification shown in a system notification while verifying a recent backup. -->
+    <string name="LocalBackupJob_verifying_signal_backup">Verifying Signal backup…</string>
     <string name="LocalBackupJobApi29_backup_failed">Backup failed</string>
     <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Your backup directory has been deleted or moved.</string>
     <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Your backup file is too large to store on this volume.</string>
     <string name="LocalBackupJobApi29_there_is_not_enough_space">There is not enough space to store your backup.</string>
+    <!-- Error message shown if a newly created backup could not be verified as accurate -->
+    <string name="LocalBackupJobApi29_your_backup_could_not_be_verified">Your recent backup could not be created and verified. Please create a new one.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Tap to manage backups.</string>
     <string name="ProgressPreference_d_messages_so_far">%d messages so far</string>
     <string name="RegistrationActivity_wrong_number">Wrong number</string>
