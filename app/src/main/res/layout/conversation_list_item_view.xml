@@ -68,6 +68,7 @@
         android:drawablePadding="5dp"
         android:ellipsize="end"
         android:maxLines="1"
+        android:textAlignment="viewStart"
         android:textColor="@color/signal_colorOnSurface"
         app:layout_constraintBottom_toTopOf="@id/conversation_list_item_summary"
         app:layout_constraintEnd_toStartOf="@id/conversation_list_item_date"
