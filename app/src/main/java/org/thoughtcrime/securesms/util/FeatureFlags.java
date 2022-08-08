@@ -96,7 +96,7 @@ public final class FeatureFlags {
   private static final String USE_FCM_FOREGROUND_SERVICE        = "android.useFcmForegroundService.3";
   private static final String STORIES_AUTO_DOWNLOAD_MAXIMUM     = "android.stories.autoDownloadMaximum";
   private static final String GIFT_BADGE_RECEIVE_SUPPORT        = "android.giftBadges.receiving";
-  private static final String GIFT_BADGE_SEND_SUPPORT           = "android.giftBadges.sending";
+  private static final String GIFT_BADGE_SEND_SUPPORT           = "android.giftBadges.sending.2";
   private static final String TELECOM_MANUFACTURER_ALLOWLIST    = "android.calling.telecomAllowList";
   private static final String TELECOM_MODEL_BLOCKLIST           = "android.calling.telecomModelBlockList";
 
