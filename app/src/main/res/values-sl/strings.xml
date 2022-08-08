@@ -4161,8 +4161,11 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--Dialog action to remove viewer from a story-->
   <string name="StoryViewsFragment__remove">Odstrani</string>
   <!--Dialog title when removing a viewer from a story-->
+  <string name="StoryViewsFragment__remove_viewer">Želite odstraniti gledalca_ko?</string>
   <!--Dialog message when removing a viewer from a story-->
+  <string name="StoryViewsFragment__s_will_still_be_able">%1$s bo še zmeraj lahko videl_a to objavo, ne bo pa si mogel_a ogledati prihodnjih objav, ki jih boste delili na %2$s.</string>
   <!--Story View context menu action to remove them from a story-->
+  <string name="StoryViewItem__remove_viewer">Odstrani gledalca_ko</string>
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Brez odgovorov</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->

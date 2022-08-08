@@ -3949,9 +3949,11 @@
   <!--Dialog action to remove viewer from a story-->
   <string name="StoryViewsFragment__remove">നീക്കം ചെയ്യുക</string>
   <!--Dialog title when removing a viewer from a story-->
-  <string name="StoryViewsFragment__remove_viewer">കാണുന്ന വ്യക്തിയെ നീക്കം ചെയ്യണോ?</string>
+  <string name="StoryViewsFragment__remove_viewer">കാണുന്നയാളെ നീക്കം ചെയ്യണോ?</string>
   <!--Dialog message when removing a viewer from a story-->
+  <string name="StoryViewsFragment__s_will_still_be_able">%1$s എന്നയാൾക്ക് ഇപ്പോഴും ഈ പോസ്റ്റ് കാണാൻ കഴിയും, എന്നാൽ നിങ്ങൾ %2$s എന്നതിലേക്ക് പങ്കിടുന്ന ഭാവി പോസ്റ്റുകളൊന്നും കാണാൻ കഴിയില്ല.</string>
   <!--Story View context menu action to remove them from a story-->
+  <string name="StoryViewItem__remove_viewer">കാണുന്നയാളെ നീക്കം ചെയ്യുക</string>
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">ഇതുവരെ മറുപടികളൊന്നുമില്ല</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->

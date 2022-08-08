@@ -3950,8 +3950,11 @@
   <!--Dialog action to remove viewer from a story-->
   <string name="StoryViewsFragment__remove">நீக்கு</string>
   <!--Dialog title when removing a viewer from a story-->
+  <string name="StoryViewsFragment__remove_viewer">பார்வையாளரை அகற்றுவதா?</string>
   <!--Dialog message when removing a viewer from a story-->
+  <string name="StoryViewsFragment__s_will_still_be_able">%1$s -ஆல் இன்னும் இந்த போஸ்ட்டைப் பார்க்க முடியும், ஆனால் %2$s -க்கு நீங்கள் எதிர்காலத்தில் பகிரும் எந்தவொரு போஸ்ட்டுகளையும் பார்க்க முடியாது.</string>
   <!--Story View context menu action to remove them from a story-->
+  <string name="StoryViewItem__remove_viewer">பார்வையாளரை அகற்று</string>
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">இதுவரை பதில்கள் ஏதுமில்லை</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->

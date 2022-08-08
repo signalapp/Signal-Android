@@ -1718,7 +1718,7 @@
   </plurals>
   <!--Displays number of viewers for a story-->
   <plurals name="contact_selection_list_item__number_of_viewers">
-    <item quantity="other">%1$d 個觀看者</item>
+    <item quantity="other">%1$d 個瀏覽者</item>
   </plurals>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal 訊息</string>
@@ -3848,8 +3848,11 @@
   <!--Dialog action to remove viewer from a story-->
   <string name="StoryViewsFragment__remove">移除</string>
   <!--Dialog title when removing a viewer from a story-->
+  <string name="StoryViewsFragment__remove_viewer">要移除瀏覽者嗎？</string>
   <!--Dialog message when removing a viewer from a story-->
+  <string name="StoryViewsFragment__s_will_still_be_able">%1$s 仍可瀏覽此貼文，但將無法瀏覽你以後在 %2$s 分享的任何貼文。</string>
   <!--Story View context menu action to remove them from a story-->
+  <string name="StoryViewItem__remove_viewer">移除瀏覽者</string>
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">未有回覆</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
@@ -3925,7 +3928,7 @@
   <!--Note at the bottom of the Signal connections sheet-->
   <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">您的人脈可以看見您的名稱和照片。除非您對他們隱藏，否則亦可看見「我的限時動態」中的帖文。</string>
   <!--Clickable option to add a viewer to a private story-->
-  <string name="PrivateStorySettingsFragment__add_viewer">新增觀看者</string>
+  <string name="PrivateStorySettingsFragment__add_viewer">新增瀏覽者</string>
   <!--Clickable option to delete a custom story-->
   <string name="PrivateStorySettingsFragment__delete_private_story">刪除個人限時動態</string>
   <!--Dialog title when attempting to remove someone from a private story-->
@@ -3959,7 +3962,7 @@
   <!--Hint for entering a URL for a text post-->
   <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">輸入或貼上 URL</string>
   <!--Displayed prior to the user entering a URL for a text post-->
-  <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">與您的限時動態觀看者分享連結</string>
+  <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">與你限時動態的瀏覽者分享連結</string>
   <!--Hint text for searching for a story text post recipient.-->
   <string name="TextStoryPostSendFragment__search">搜尋</string>
   <!--Toast shown when an unexpected error occurs while sending a text story-->
@@ -3977,7 +3980,7 @@
   <!--First time share to story dialog: Positive action to go ahead and add to story-->
   <string name="StoryDialogs__add_to_story">新增至限時動態</string>
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
-  <string name="StoryDialogs__edit_viewers">編輯觀看者</string>
+  <string name="StoryDialogs__edit_viewers">編輯瀏覽者</string>
   <!--Error message shown when a failure occurs during story send-->
   <string name="StoryDialogs__story_could_not_be_sent">限時動態無法傳送。請檢查您的連線，然後再試一次。</string>
   <!--Error message dialog button to resend a previously failed story send-->
@@ -3987,19 +3990,19 @@
   <!--Privacy Settings toggle summary for stories-->
   <string name="PrivacySettingsFragment__you_will_no_longer_be_able">關閉此選項時，您將無法再分享或觀看限時動態。</string>
   <!--New story viewer selection screen title-->
-  <string name="CreateStoryViewerSelectionFragment__choose_viewers">選擇觀看者</string>
+  <string name="CreateStoryViewerSelectionFragment__choose_viewers">選擇瀏覽者</string>
   <!--New story viewer selection action button label-->
   <string name="CreateStoryViewerSelectionFragment__next">下一步</string>
   <!--New story viewer selection screen title as recipients are selected-->
   <plurals name="SelectViewersFragment__d_viewers">
-    <item quantity="other">%1$d 個觀看者</item>
+    <item quantity="other">%1$d 個瀏覽者</item>
   </plurals>
   <!--Name story screen title-->
   <string name="CreateStoryWithViewersFragment__name_story">為限時動態命名</string>
   <!--Name story screen label hint-->
   <string name="CreateStoryWithViewersFragment__story_name_required">限時動態名稱 (必填)</string>
   <!--Name story screen viewers subheading-->
-  <string name="CreateStoryWithViewersFragment__viewers">觀看者</string>
+  <string name="CreateStoryWithViewersFragment__viewers">瀏覽者</string>
   <!--Name story screen create button label-->
   <string name="CreateStoryWithViewersFragment__create">建立</string>
   <!--Name story screen error when save attempted with no label-->
@@ -4114,14 +4117,14 @@
   <string name="ExpiredGiftSheetConfiguration__not_now">現在不要</string>
   <!--Label under name for private stories-->
   <plurals name="ContactSearchItems__private_story_d_viewers">
-    <item quantity="other">個人限時動態 · %1$d 個觀看者</item>
+    <item quantity="other">個人限時動態 · %1$d 個瀏覽者</item>
   </plurals>
   <!--Label under name for group stories-->
   <plurals name="ContactSearchItems__group_story_d_viewers">
-    <item quantity="other">群組限時動態 · %1$d 個觀看者</item>
+    <item quantity="other">群組限時動態 · %1$d 個瀏覽者</item>
   </plurals>
   <!--Label under name for My Story when first sending to my story-->
-  <string name="ContactSearchItems__tap_to_choose_your_viewers">點按以選擇你的觀看對象</string>
+  <string name="ContactSearchItems__tap_to_choose_your_viewers">點按以選擇你的瀏覽者</string>
   <!--Label for context menu item to open story settings-->
   <string name="ContactSearchItems__story_settings">限時動態設定</string>
   <!--Label for context menu item to remove a group story from contact results-->

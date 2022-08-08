@@ -1525,7 +1525,9 @@
   <!--Menu option to save a debug log file to disk.-->
   <string name="SubmitDebugLogActivity_save">Salvesta</string>
   <!--Error that is show in a toast when we fail to save a debug log file to disk.-->
+  <string name="SubmitDebugLogActivity_failed_to_save">Salvestamine nurjus</string>
   <!--Toast that is show to notify that we have saved the debug log file to disk.-->
+  <string name="SubmitDebugLogActivity_save_complete">Salvestatud</string>
   <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Rea kustutamiseks koputa sellel</string>
   <string name="SubmitDebugLogActivity_submit">Postita</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">Silumislogi postitamine ei õnnestunud</string>
@@ -3956,8 +3958,11 @@
   <!--Dialog action to remove viewer from a story-->
   <string name="StoryViewsFragment__remove">Eemalda</string>
   <!--Dialog title when removing a viewer from a story-->
+  <string name="StoryViewsFragment__remove_viewer">Kas eemaldada vaataja?</string>
   <!--Dialog message when removing a viewer from a story-->
+  <string name="StoryViewsFragment__s_will_still_be_able">%1$s näeb endiselt seda postitust, kuid ei näe ühtki tulevast postitust, mida sa loos %2$s jagad.</string>
   <!--Story View context menu action to remove them from a story-->
+  <string name="StoryViewItem__remove_viewer">Eemalda vaataja</string>
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Vastuseid veel pole</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->

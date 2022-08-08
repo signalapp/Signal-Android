@@ -3955,7 +3955,7 @@
   <!--Dialog action to remove viewer from a story-->
   <string name="StoryViewsFragment__remove">ਹਟਾਓ</string>
   <!--Dialog title when removing a viewer from a story-->
-  <string name="StoryViewsFragment__remove_viewer">ਦਰਸ਼ਕ ਨੂੰ ਹਟਾਉਣਾ ਹੈ?</string>
+  <string name="StoryViewsFragment__remove_viewer">ਕੀ ਦਰਸ਼ਕ ਨੂੰ ਹਟਾਉਣਾ ਹੈ?</string>
   <!--Dialog message when removing a viewer from a story-->
   <string name="StoryViewsFragment__s_will_still_be_able">%1$s ਹਾਲੇ ਵੀ ਇਸ ਪੋਸਟ ਨੂੰ ਦੇਖ ਸਕਣਗੇ, ਪਰ ਭਵਿੱਖ ਵਿੱਚ ਤੁਹਾਡੇ ਵੱਲੋਂ %2$s ਨਾਲ ਸਾਂਝੀਆਂ ਕੀਤੀਆਂ ਪੋਸਟਾਂ ਦੇਖ ਨਹੀਂ ਸਕਣਗੇ।</string>
   <!--Story View context menu action to remove them from a story-->

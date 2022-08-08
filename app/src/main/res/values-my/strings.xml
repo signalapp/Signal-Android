@@ -3844,8 +3844,11 @@
   <!--Dialog action to remove viewer from a story-->
   <string name="StoryViewsFragment__remove">ဖယ်ရှားမယ်</string>
   <!--Dialog title when removing a viewer from a story-->
+  <string name="StoryViewsFragment__remove_viewer">ကြည့်ရှုသူအား ဖယ်ရှားမည်လား။</string>
   <!--Dialog message when removing a viewer from a story-->
+  <string name="StoryViewsFragment__s_will_still_be_able">%1$s သည် ဤပို့စ်ကို ဆက်လက်မြင်နိုင်မည် ဖြစ်သော်လည်း %2$s ထံ သင်ဝေမျှသည့် နောင်လာမည့် ပို့စ်များကို မြင်ရတော့မည် မဟုတ်ပါ။</string>
   <!--Story View context menu action to remove them from a story-->
+  <string name="StoryViewItem__remove_viewer">ကြည့်ရှုသူအား ဖယ်ရှားရန်</string>
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">ပြန်စာများ မရှိသေးပါ</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->

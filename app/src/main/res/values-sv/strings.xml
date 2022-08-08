@@ -3950,8 +3950,11 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--Dialog action to remove viewer from a story-->
   <string name="StoryViewsFragment__remove">Ta bort</string>
   <!--Dialog title when removing a viewer from a story-->
+  <string name="StoryViewsFragment__remove_viewer">Ta bort tittare?</string>
   <!--Dialog message when removing a viewer from a story-->
+  <string name="StoryViewsFragment__s_will_still_be_able">%1$s kommer fortfarande kunna se det här inlägget men inte se några framtida inlägg som du delar till %2$s.</string>
   <!--Story View context menu action to remove them from a story-->
+  <string name="StoryViewItem__remove_viewer">Ta bort tittare</string>
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Inga svar ännu</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->

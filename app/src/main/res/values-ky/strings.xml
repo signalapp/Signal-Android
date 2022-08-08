@@ -1188,7 +1188,7 @@
   <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">PIN кодуңуз - сандардан же сан менен тамгалардан өзүңүз түзгөн код (%1$d+).\n\nЭгер PIN кодуңузду эстей албай жатсаңыз, жаңысын түзсөңүз болот. Аккаунт түзүп, аны колдоно алганыңыз менен, профилиңиздеги маалымат сыяктуу айрым сакталган нерселерди жоготуп алышыңыз мүмкүн.</string>
   <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Эгер PIN кодуңузду эстей албай жатсаңыз, жаңысын түзсөңүз болот. Аккаунт түзүп, аны колдоно алганыңыз менен, профилиңиздеги маалымат сыяктуу айрым сакталган нерселерди жоготуп алышыңыз мүмкүн.</string>
   <string name="PinRestoreEntryFragment_create_new_pin">Жаңы PIN код түзүү</string>
-  <string name="PinRestoreEntryFragment_contact_support">Кардарларды тейлеген кызматка кайрылуу</string>
+  <string name="PinRestoreEntryFragment_contact_support">Кардарларды колдоо кызматына кайрылуу</string>
   <string name="PinRestoreEntryFragment_cancel">Жокко чыгаруу</string>
   <string name="PinRestoreEntryFragment_skip">Өткөрүп жиберүү</string>
   <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
@@ -1449,7 +1449,9 @@
   <!--Menu option to save a debug log file to disk.-->
   <string name="SubmitDebugLogActivity_save">Сактоо</string>
   <!--Error that is show in a toast when we fail to save a debug log file to disk.-->
+  <string name="SubmitDebugLogActivity_failed_to_save">Сакталбай калды</string>
   <!--Toast that is show to notify that we have saved the debug log file to disk.-->
+  <string name="SubmitDebugLogActivity_save_complete">Сактоо аяктады</string>
   <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Өчүрүлө турган сапты басыңыз</string>
   <string name="SubmitDebugLogActivity_submit">Тапшыруу</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">Журналдар тапшырылган жок</string>
@@ -1504,9 +1506,9 @@
   <!--Displayed in the notification when the user has opened a received gift-->
   <string name="ThreadRecord__you_redeemed_a_gift_badge">Белекке төшбелги алдыңыз</string>
   <!--Displayed in the conversation list when someone reacted to your story-->
-  <string name="ThreadRecord__reacted_s_to_your_story">Окуяңызга %1$s мемилесин билдирди</string>
+  <string name="ThreadRecord__reacted_s_to_your_story">Окуяңызга %1$s реакция кылды</string>
   <!--Displayed in the conversation list when you reacted to someone\'s story-->
-  <string name="ThreadRecord__reacted_s_to_their_story">%1$s окуясына мемилесин билдирди</string>
+  <string name="ThreadRecord__reacted_s_to_their_story">%1$s окуясына реакция кылды</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal\'ды жаңыртуу</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal\'дын жаңы версиясы чыкты, жаңыртуу үчүн басып коюңуз</string>
@@ -1597,14 +1599,14 @@
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Соңку билдирмелерди текшерүү үчүн Signal\'ды ачыңыз</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Байланыш</string>
-  <string name="MessageNotifier_reacted_s_to_s">Төмөнкүгө болгон мамилесин %1$s деп билдирди: \"%2$s\".</string>
-  <string name="MessageNotifier_reacted_s_to_your_video">Видеоңузга болгон мамилесин %1$s деп билдирди.</string>
-  <string name="MessageNotifier_reacted_s_to_your_image">Сүрөтүңүзгө болгон мамилесин %1$s деп билдирди.</string>
-  <string name="MessageNotifier_reacted_s_to_your_gif">GIF анимацияңызга болгон мамилесин %1$s деп билдирди.</string>
-  <string name="MessageNotifier_reacted_s_to_your_file">Файлыңызга болгон мамилесин %1$s деп билдирди.</string>
-  <string name="MessageNotifier_reacted_s_to_your_audio">Аудиоңузга болгон мамилесин %1$s деп билдирди.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_media">Бир жолу көрүлүүчү медиафайлыңызга болгон мамилесин %1$s деп билдирди.</string>
-  <string name="MessageNotifier_reacted_s_to_your_sticker">Стикериңизге болгон мамилесин %1$s деп билдирди.</string>
+  <string name="MessageNotifier_reacted_s_to_s">Төмөнкүгө %1$s деп реакция кылды: \"%2$s\".</string>
+  <string name="MessageNotifier_reacted_s_to_your_video">Видеоңузга %1$s деп реакция кылды.</string>
+  <string name="MessageNotifier_reacted_s_to_your_image">Сүрөтүңүзгө %1$s деп реакция кылды.</string>
+  <string name="MessageNotifier_reacted_s_to_your_gif">GIF анимацияңызга %1$s деп реакция кылды.</string>
+  <string name="MessageNotifier_reacted_s_to_your_file">Файлыңызга %1$s деп реакция кылды.</string>
+  <string name="MessageNotifier_reacted_s_to_your_audio">Аудиоңузга %1$s деп реакция кылды.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_media">Бир жолу көрүлүүчү медиафайлыңызга %1$s деп реакция кылды.</string>
+  <string name="MessageNotifier_reacted_s_to_your_sticker">Стикериңизге %1$s деп реакция кылды.</string>
   <string name="MessageNotifier_this_message_was_deleted">Бул билдирүү өчүрүлгөн.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">«Signal\'га байланыш кошулду» деген билдирмени өчүрөсүзбү? Аны кайра Signal\'дан &gt; Тууралоо &gt; Билдирмелер бөлүмүнөн иштете аласыз.</string>
   <!--Notification Channels-->
@@ -1990,8 +1992,8 @@
   <string name="HelpFragment__whats_this">Бул эмне?</string>
   <string name="HelpFragment__how_do_you_feel">Кандайсыз? (Жооп бербей деле койсоңуз болот)</string>
   <string name="HelpFragment__tell_us_why_youre_reaching_out">Эмне болгонун айтып бериңиз.</string>
-  <string name="HelpFragment__support_info">Кардарларды тейлеген кызматка маалымат</string>
-  <string name="HelpFragment__signal_android_support_request">Signal Android Кардарларын тейлөө өтүнүчү</string>
+  <string name="HelpFragment__support_info">Колдоо тууралуу маалымат</string>
+  <string name="HelpFragment__signal_android_support_request">Signal Android Кардарларын колдоо өтүнүчү</string>
   <string name="HelpFragment__debug_log">Мүчүлүштүктөр журналы:</string>
   <string name="HelpFragment__could_not_upload_logs">Журналдар жүктөлүп берилген жок</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Маселени мүмкүн болушунча кененирээк түшүндүрүп бериңиз.</string>
@@ -2643,7 +2645,7 @@
   <string name="ProgressPreference_d_messages_so_far">Азырынча %d билдирүү</string>
   <string name="RegistrationActivity_wrong_number">Туура эмес номер</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Анын ордуна мага чалыңыз \n (%1$02d:%2$02dүчүн колдонууга мүмкүн) </string>
-  <string name="RegistrationActivity_contact_signal_support">Signal Колдоо Кызматы менен байланышыңыз</string>
+  <string name="RegistrationActivity_contact_signal_support">Signal\'дын кардарларды колдоо кызматы менен байланышыңыз</string>
   <string name="RegistrationActivity_code_support_subject">Signal\'ды каттоо - Android үчүн текшерүү коду</string>
   <string name="RegistrationActivity_incorrect_code">Код туура эмес</string>
   <string name="BackupUtil_never">Эч качан</string>
@@ -2784,7 +2786,7 @@
   <string name="NewDeviceTransferComplete__transfer_successful">Которуу ийгиликтүү болду</string>
   <string name="NewDeviceTransferComplete__transfer_complete">Которуу аяктады</string>
   <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">Которуу процессин аяктоо үчүн каттоону улантуу керек.</string>
-  <string name="NewDeviceTransferComplete__continue_registration">Каттоону улантуу</string>
+  <string name="NewDeviceTransferComplete__continue_registration">Катталууну улантуу</string>
   <!--DeviceToDeviceTransferService-->
   <string name="DeviceToDeviceTransferService_content_title">Аккаунтту которуу</string>
   <string name="DeviceToDeviceTransferService_status_ready">Башка Android түзмөгүңүзгө туташууга даярдалууда…</string>
@@ -3184,7 +3186,7 @@
   <string name="CustomExpireTimerSelectorView__days">күн</string>
   <string name="CustomExpireTimerSelectorView__weeks">жума</string>
   <!--HelpSettingsFragment-->
-  <string name="HelpSettingsFragment__support_center">Кардарларды тейлеген кызмат</string>
+  <string name="HelpSettingsFragment__support_center">Кардарларды колдоо борбору</string>
   <string name="HelpSettingsFragment__contact_us">Биз менен байланышыңыз</string>
   <string name="HelpSettingsFragment__version">Версия</string>
   <string name="HelpSettingsFragment__debug_log">Мүчүлүштүктөр журналы</string>
@@ -3487,7 +3489,7 @@
   <string name="MySupportPreference__processing_transaction">Транзакция иштетилүүдө…</string>
   <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
   <string name="MySupportPreference__couldnt_add_badge_s">Төшбелги кошулган жок. %1$s</string>
-  <string name="MySupportPreference__please_contact_support">Кардарларды тейлеген кызматка кайрылыңыз.</string>
+  <string name="MySupportPreference__please_contact_support">Кардарларды колдоо кызматына кайрылыңыз.</string>
   <!--Title of expiry sheet when boost badge falls off profile unexpectedly.-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Колдоочу төшбелгисинин мөөнөтү бүттү</string>
   <!--Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile-->
@@ -3513,8 +3515,8 @@
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Жазылуу төлөмүн иштетүү мүмкүн эмес</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">Signal Колдоочу төлөмүңүздү чогултууда көйгөй болуп жатат. Төлөм ыкмаңыз жаңыртылганын текшериңиз. Болбосо, аны Google Pay\'де жаңыртыңыз. Signal төлөмдү бир нече күндөн кийин кайра иштетүүгө аракет кылат.</string>
   <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">Башка көрсөтпө</string>
-  <string name="Subscription__please_contact_support_for_more_information">Көбүрөөк маалымат алуу үчүн кардарларды тейлеген кызматка кайрылыңыз.</string>
-  <string name="Subscription__contact_support">Кардарларды тейлеген кызматка кайрылуу</string>
+  <string name="Subscription__please_contact_support_for_more_information">Көбүрөөк маалымат алуу үчүн кардарларды колдоо кызматына кайрылыңыз.</string>
+  <string name="Subscription__contact_support">Кардарларды колдоо кызматына кайрылуу</string>
   <string name="Subscription__earn_a_s_badge">%1$s төшбелгисне ээ болуңуз</string>
   <string name="SubscribeFragment__processing_payment">Төлөм иштетилүүдө…</string>
   <!--Displayed in notification when user payment fails to process on Stripe-->
@@ -3528,12 +3530,12 @@
   <!--Displayed when badge credential couldn\'t be verified-->
   <string name="DonationsErrors__failed_to_validate_badge">Төшбелгинин жарактуулугу текшерилбей калды</string>
   <!--Displayed when badge credential couldn\'t be verified-->
-  <string name="DonationsErrors__could_not_validate">Сервердин жообу текшерилбей калды. Сураныч, кардарларды тейлеген кызматка кайрылыңыз.</string>
+  <string name="DonationsErrors__could_not_validate">Сервердин жообу текшерилбей калды. Сураныч, кардарларды колдоо кызматына кайрылыңыз.</string>
   <!--Displayed as title when some generic error happens during gift badge sending-->
   <string name="DonationsErrors__failed_to_send_gift_badge">Белек төшбелгиси жөнөтүлбөй калды</string>
   <!--Displayed as message when some generic error happens during gift badge sending-->
-  <string name="DonationsErrors__could_not_send_gift_badge">Белек төшбелгиси жөнөтүлбөй койду. Сураныч, кардарларды тейлеген кызматка кайрылыңыз.</string>
-  <string name="DonationsErrors__your_badge_could_not">Төшбелгиңиз аккаунтуңузга кошулбай койду, бирок сизден төлөм алынган болушу мүмкүн. Сураныч, кардарларды тейлеген кызматка кайрылыңыз.</string>
+  <string name="DonationsErrors__could_not_send_gift_badge">Белек төшбелгиси жөнөтүлбөй койду. Сураныч, кардарларды колдоо кызматына кайрылыңыз.</string>
+  <string name="DonationsErrors__your_badge_could_not">Төшбелгиңиз аккаунтуңузга кошулбай койду, бирок сизден төлөм алынган болушу мүмкүн. Сураныч, кардарларды колдоо кызматына кайрылыңыз.</string>
   <string name="DonationsErrors__your_payment_is_still">Төлөмүңүз дагы эле иштетилүүдө. Бул сиздин туташууңузга жараша бир нече мүнөткө созулушу мүмкүн.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay жеткиликсиз</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Колдонмого салым кылуу үчүн сизде Google Pay орнотулган болушу керек.</string>
@@ -3846,18 +3848,21 @@
   <!--Dialog action to remove viewer from a story-->
   <string name="StoryViewsFragment__remove">Алып салуу</string>
   <!--Dialog title when removing a viewer from a story-->
+  <string name="StoryViewsFragment__remove_viewer">Көрүүчү алынып салынсынбы?</string>
   <!--Dialog message when removing a viewer from a story-->
+  <string name="StoryViewsFragment__s_will_still_be_able">%1$s дагы эле бул постту көрө алат, бирок сиз %2$s менен бөлүшкөн келечектеги постторду көрө албайт.</string>
   <!--Story View context menu action to remove them from a story-->
+  <string name="StoryViewItem__remove_viewer">Көрүүчүнү алып салуу</string>
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Азырынча жооп жок</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
-  <string name="StoryGroupReactionReplyItem__reacted_to_the_story">Окуяга мамиле билдирди</string>
+  <string name="StoryGroupReactionReplyItem__reacted_to_the_story">Окуяга реакция кылды</string>
   <!--Label for story views tab-->
   <string name="StoryViewsAndRepliesDialogFragment__views">Көрүүлөр</string>
   <!--Label for story replies tab-->
   <string name="StoryViewsAndRepliesDialogFragment__replies">Жооптор</string>
   <!--Description of action for reaction button-->
-  <string name="StoryReplyComposer__react_to_this_story">Бул окуяга жооп берүү</string>
+  <string name="StoryReplyComposer__react_to_this_story">Бул окуяга реакция кылуу</string>
   <!--Displayed when the user is replying privately to someone who replied to one of their stories-->
   <string name="StoryReplyComposer__replying_privately_to_s">%1$s үчүн жеке жооп берүүдө</string>
   <!--Context menu item to privately reply to a story response-->
@@ -3907,7 +3912,7 @@
   <!--Switchable option for allowing replies and reactions on your stories-->
   <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Жоопторго жана реакцияларга уруксат берүү</string>
   <!--Summary for switchable option allowing replies and reactions on your story-->
-  <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Окуяңызды көрө алган адамдарга жооп берип, мамилесин билдирүүгө мүмкүнчүлүк берүү</string>
+  <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Окуяңызды көрө алган адамдарга жооп берип, реакция кылууга мүмкүнчүлүк берүү</string>
   <!--Note about default sharing-->
   <string name="MyStorySettingsFragment__hide_your_story_from">Окуяңызды белгилүү бир адамдардан жашырып койсоңуз болот. Демейки боюнча, окуяңыз %1$s менен бөлүшүлөт</string>
   <!--Signal connections bolded text in the Signal Connections sheet-->
@@ -4047,11 +4052,11 @@
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">Өчүрүү</string>
   <!--Conversation Item label for when you react to someone else\'s story-->
-  <string name="ConversationItem__you_reacted_to_s_story">Сиз %1$s окуясына жооп бердиңиз</string>
+  <string name="ConversationItem__you_reacted_to_s_story">Сиз %1$s окуясына реакция кылдыңыз</string>
   <!--Conversation Item label for reactions to your story-->
-  <string name="ConversationItem__reacted_to_your_story">Окуяңызга мемилесин билдирди</string>
+  <string name="ConversationItem__reacted_to_your_story">Окуяңызга реакция кылды</string>
   <!--Conversation Item label for reactions to an unavailable story-->
-  <string name="ConversationItem__reacted_to_a_story">Окуяга мамилесин билдирди</string>
+  <string name="ConversationItem__reacted_to_a_story">Окуяга реакция кылды</string>
   <!--endregion-->
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">Көбүрөөк көрүү</string>

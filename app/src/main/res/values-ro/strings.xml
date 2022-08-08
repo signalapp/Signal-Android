@@ -973,7 +973,7 @@
   <string name="NotificationBarManager__incoming_signal_group_call">Primire apel Signal de grup</string>
   <!--Temporary notification shown when starting the calling service-->
   <string name="NotificationBarManager__starting_signal_call_service">Se inițializează serviciul de apel Signal</string>
-  <string name="NotificationBarManager__stopping_signal_call_service">Se oprește serviciul de apelare Signal</string>
+  <string name="NotificationBarManager__stopping_signal_call_service">Se oprește serviciul de apel Signal</string>
   <string name="NotificationBarManager__decline_call">Respinge apelul</string>
   <string name="NotificationBarManager__answer_call">Răspunde apelului</string>
   <string name="NotificationBarManager__end_call">Închide apelul</string>
@@ -2047,7 +2047,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="media_overview_activity__no_media">Nu ai fișiere media</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">Vizualizare</string>
-  <string name="message_recipients_list_item__resend">Re-trimite</string>
+  <string name="message_recipients_list_item__resend">Retrimite</string>
   <!--Displayed in a toast when user long presses an item in MyStories-->
   <string name="MyStoriesFragment__copied_sent_timestamp_to_clipboard">Timpul a fost copiat în clipboard.</string>
   <!--Displayed when there are no outgoing stories-->
@@ -2579,7 +2579,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--Button to save a message attachment (image, file etc.)-->
   <string name="conversation_selection__menu_save">Salvează</string>
   <!--Button to retry sending a message-->
-  <string name="conversation_selection__menu_resend_message">Re-trimite</string>
+  <string name="conversation_selection__menu_resend_message">Retrimite</string>
   <!--Button to select a message and enter selection mode-->
   <string name="conversation_selection__menu_multi_select">Selectează</string>
   <!--conversation_expiring_on-->
@@ -3710,7 +3710,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--Copy displayed when badge expires after payment failure-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Donația ta lunară recurentă a fost anulată deoarece nu am putut procesa plata. Insigna ta nu va mai fi vizibilă pe profilul tău.</string>
   <!--Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason-->
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Donația ta lunară recurentă a fost anulară. %1$s Insigna ta %2$s nu mai este vizibilă la profil.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Donația ta lunară recurentă a fost anulată. %1$s Insigna ta %2$s nu mai este vizibilă la profil.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Poți folosi în continuare Signal dar pentru a sprijini aplicația și pentru a-ți reactiva insigna, reînnoiește acum.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Reînnoiește abonamentul</string>
   <!--Button label to send user to Google Pay website-->
@@ -4059,8 +4059,11 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--Dialog action to remove viewer from a story-->
   <string name="StoryViewsFragment__remove">Elimină</string>
   <!--Dialog title when removing a viewer from a story-->
+  <string name="StoryViewsFragment__remove_viewer">Elimini vizualizatorul?</string>
   <!--Dialog message when removing a viewer from a story-->
+  <string name="StoryViewsFragment__s_will_still_be_able">%1$s tot va putea să vadă postarea, dar nu va putea să vadă viitoarele postări pe care le trimiți către %2$s.</string>
   <!--Story View context menu action to remove them from a story-->
+  <string name="StoryViewItem__remove_viewer">Elimină vizualizatorul</string>
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Niciun răspuns încă</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->

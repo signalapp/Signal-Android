@@ -1446,7 +1446,9 @@
   <!--Menu option to save a debug log file to disk.-->
   <string name="SubmitDebugLogActivity_save">រក្សាទុក</string>
   <!--Error that is show in a toast when we fail to save a debug log file to disk.-->
+  <string name="SubmitDebugLogActivity_failed_to_save">មិនអាចរក្សាទុក</string>
   <!--Toast that is show to notify that we have saved the debug log file to disk.-->
+  <string name="SubmitDebugLogActivity_save_complete">បានរក្សាទុក</string>
   <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">ចុចលើបន្ទាត់ដើម្បីលុបវា</string>
   <string name="SubmitDebugLogActivity_submit">បញ្ជូន</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">បរាជ័យក្នុងការបញ្ជូនកំណត់ត្រា</string>
@@ -3843,8 +3845,11 @@
   <!--Dialog action to remove viewer from a story-->
   <string name="StoryViewsFragment__remove">លុបចេញ</string>
   <!--Dialog title when removing a viewer from a story-->
+  <string name="StoryViewsFragment__remove_viewer">ដកអ្នកមើលចេញឬ?</string>
   <!--Dialog message when removing a viewer from a story-->
+  <string name="StoryViewsFragment__s_will_still_be_able">%1$s នៅតែអាចមើលសារបង្ហោះនេះបាន ប៉ុន្តែនឹងមិនអាចមើលសារបង្ហោះណាមួយដែល​អ្នកចែករំលែកទៅ %2$s នាពេលអនាគតទេ។</string>
   <!--Story View context menu action to remove them from a story-->
+  <string name="StoryViewItem__remove_viewer">ដកអ្នកមើលចេញ</string>
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">មិនទាន់មានការឆ្លើយតបទេ</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->

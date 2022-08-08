@@ -4169,8 +4169,11 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--Dialog action to remove viewer from a story-->
   <string name="StoryViewsFragment__remove">Odstrániť</string>
   <!--Dialog title when removing a viewer from a story-->
+  <string name="StoryViewsFragment__remove_viewer">Odstrániť sledovateľa?</string>
   <!--Dialog message when removing a viewer from a story-->
+  <string name="StoryViewsFragment__s_will_still_be_able">%1$s si bude môcť pozrieť tento príspevok, no nebude si môcť pozrieť žiadne ďalšie príspevky, ktoré budete zdieľať v %2$s.</string>
   <!--Story View context menu action to remove them from a story-->
+  <string name="StoryViewItem__remove_viewer">Odstrániť sledovateľa</string>
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Zatiaľ žiadne odpovede</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->

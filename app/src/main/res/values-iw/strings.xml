@@ -4170,8 +4170,11 @@
   <!--Dialog action to remove viewer from a story-->
   <string name="StoryViewsFragment__remove">הסר</string>
   <!--Dialog title when removing a viewer from a story-->
+  <string name="StoryViewsFragment__remove_viewer">להסיר צופה?</string>
   <!--Dialog message when removing a viewer from a story-->
+  <string name="StoryViewsFragment__s_will_still_be_able">ל%1$s עדיין תהיה אפשרות לראות את הפוסט הזה, אבל לא תהיה לו או לה אפשרות לראות פוסטים עתידיים שישותפו ב%2$s.</string>
   <!--Story View context menu action to remove them from a story-->
+  <string name="StoryViewItem__remove_viewer">הסרת צופה</string>
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">אין תשובות עדין</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->

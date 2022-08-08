@@ -1628,7 +1628,7 @@
   <string name="MmsMessageRecord_bad_encrypted_mms_message">ცუდად დაშიფრული MMS-შეტყობინება</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS-შეტყობინება დაშიფრულია არარსებული სესიისთვის</string>
   <!--MuteDialog-->
-  <string name="MuteDialog_mute_notifications">შეტყობინებების დადუმება</string>
+  <string name="MuteDialog_mute_notifications">შეტყობინებების გათიშვა</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">მიმდინარეობს იმპორტირება</string>
   <string name="ApplicationMigrationService_importing_text_messages">მიმდინარეობს ტექსტური შეტყობინებების იმპორტირება</string>
@@ -2394,24 +2394,24 @@
   <string name="PaymentsDetailsFragment__from">From</string>
   <string name="PaymentsDetailsFragment__information">ტრანზაქციის დეტალები, მათ შორის გადახდის თანხა და ტრანზაქციის დრო, არის MobileCoin Ledger-ის ნაწილი.</string>
   <string name="PaymentsDetailsFragment__coin_cleanup_fee">Coin cleanup-ის საფასური</string>
-  <string name="PaymentsDetailsFragment__coin_cleanup_information">\"coin cleanup-ის საფასური\" ირიცხება, როდესაც შენს მფლობელობაში არსებული მონეტები არ შეიძლება გაერთიანდეს ტრანზაქციის დასასრულებლად. coin cleanup-ი საშუალებას მოგცემს გააგრძელო გადახდების გაგზავნა.</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_information">\"coin cleanup-ის საფასური\" ირიცხება, როდესაც შენს მფლობელობაში არსებული მონეტები არ შეიძლება გაერთიანდეს ტრანზაქციის დასასრულებლად. cleanup-ი საშუალებას მოგცემს გააგრძელო გადახდების გაგზავნა.</string>
   <string name="PaymentsDetailsFragment__no_details_available">დამატებითი დეტალები ამ ტრანზაქციის შესახებ არ არის ხელმისაწვდომი</string>
   <string name="PaymentsDetailsFragment__sent_payment">გაგზავნილი ტრანზაქცია</string>
   <string name="PaymentsDetailsFragment__received_payment">მიღებული ტრანზაქცია</string>
   <string name="PaymentsDeatilsFragment__payment_completed_s">ტრანზაქცია შესრულდა %1$s</string>
   <string name="PaymentsDetailsFragment__block_number">ნომრის დაბლოკვა</string>
   <!--PaymentsTransferFragment-->
-  <string name="PaymentsTransferFragment__transfer">გადატანა</string>
+  <string name="PaymentsTransferFragment__transfer">გადარიცხვა</string>
   <string name="PaymentsTransferFragment__scan_qr_code">QR კოდის დასკანირება</string>
   <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">დაასკანირე ან შეიყვანე საფულის მისამართი</string>
   <string name="PaymentsTransferFragment__you_can_transfer">შეგიძლია გადარიცხო MobileCoin ბირჟის მიერ მითითებულ საფულის მისამართზე გადარიცხვის დასრულებით. საფულის მისამართი არის რიცხვებისა და ასოების სტრიქონი, რომელიც ყველაზე ხშირად არის QR კოდის ქვემოთ.</string>
   <string name="PaymentsTransferFragment__next">შემდეგი</string>
   <string name="PaymentsTransferFragment__invalid_address">არასწორი მისამართი</string>
-  <string name="PaymentsTransferFragment__check_the_wallet_address">შეამოწმე საფულის მისამართი, რომლის გადაცემასაც ცდილობ და სცადე ხელახლა.</string>
-  <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">შენი Signal-ის საფულის მისამართზე გადარიცხვა არ შეგიძლია. შეიყვანე საფულის მისამართი შენი ანგარიშიდან მხარდაჭერილ ბირჟაზე.</string>
-  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">QR კოდის დასასკანირებლად Signal-ს კამერაზე წვდომა დასჭირდება.</string>
-  <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">QR კოდის დასასკანირებლად Signal-ს კამერაზე წვდომა დასჭირდება. შედი პარამეტრებში, აირჩიე \"ნებართვები\" და ჩართე \"კამერა\".</string>
-  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">QR კოდის დასასკანირებლად Signal-ს კამერაზე წვდომა დასჭირდება.</string>
+  <string name="PaymentsTransferFragment__check_the_wallet_address">შეამოწმე საფულის მისამართი, რომელზეც ცდილობ გადარიცხვას და სცადე ხელახლა.</string>
+  <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">შენი Signal-ის საფულის მისამართზე გადარიცხვა არ შეგიძლია. შეიყვანე საფულის მისამართი მხარდაჭერილი ბირჟის შენი ანგარიშიდან .</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">QR კოდის დასასკანირებლად Signal-ს კამერაზე წვდომა სჭირდება.</string>
+  <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">QR კოდის დასასკანირებლად Signal-ს კამერაზე წვდომა სჭირდება. შედი პარამეტრებში, აირჩიე \"ნებართვები\" და ჩართე \"კამერა\".</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">QR კოდის დასასკანირებლად Signal-ს კამერაზე წვდომა სჭირდება.</string>
   <string name="PaymentsTransferFragment__settings">Settings</string>
   <!--PaymentsTransferQrScanFragment-->
   <string name="PaymentsTransferQrScanFragment__scan_address_qr_code">მისამართის QR კოდის სკანირება</string>
@@ -2435,16 +2435,16 @@
   <string name="CreatePaymentFragment__lt">&lt;</string>
   <string name="CreatePaymentFragment__backspace">უკან გასვლა</string>
   <string name="CreatePaymentFragment__add_note">ჩანიშვნის დამატება</string>
-  <string name="CreatePaymentFragment__conversions_are_just_estimates">კონვერტაციები მხოლოდ მიახლოებითია და შეიძლება არ იყოს ზუსტი.</string>
+  <string name="CreatePaymentFragment__conversions_are_just_estimates">კონვერტაციები მხოლოდ სავარაუდო და შეიძლება არ იყოს ზუსტი.</string>
   <!--EditNoteFragment-->
   <string name="EditNoteFragment_note">ჩანიშვნა</string>
   <!--ConfirmPaymentFragment-->
   <string name="ConfirmPayment__confirm_payment">ტრანზაქციის დადასტურება</string>
   <string name="ConfirmPayment__network_fee">ქსელის საფასური</string>
   <string name="ConfirmPayment__error_getting_fee">საფასურის მიღებისას მოხდა ხარვეზი</string>
-  <string name="ConfirmPayment__estimated_s">სავარაუდო %1$s</string>
+  <string name="ConfirmPayment__estimated_s">ნავარაუდევი %1$s</string>
   <string name="ConfirmPayment__to">To</string>
-  <string name="ConfirmPayment__total_amount">Მთლიანი რაოდენობა</string>
+  <string name="ConfirmPayment__total_amount">ჯამი</string>
   <string name="ConfirmPayment__balance_s">ბალანსი: %1$s</string>
   <string name="ConfirmPayment__submitting_payment">ვაგზავნით ტრანზაქციას…</string>
   <string name="ConfirmPayment__processing_payment">ვამუშავებთ ტრანზაქციას…</string>
@@ -2453,7 +2453,7 @@
   <string name="ConfirmPayment__payment_will_continue_processing">ტრანზაქციის დამუშავება გაგრძელდება</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">არასწორი მიმღები</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">ამ ადამიანს არ აქვს გააქტიურებული ტრანზაქციები</string>
-  <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">ქსელის გადასახადის მოთხოვნა შეუძლებელია. ამ ტრანზაქციის გასაგრძელებლად დააჭირე „კარგი“-ს თავიდან საცდელად.</string>
+  <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">ქსელის გადასახადის მოთხოვნა შეუძლებელია. ამ ტრანზაქციის გასაგრძელებლად დააჭირე „კარგი“-ს, რომ თავიდან სცადო.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
   <string name="CurrencyAmountFormatter_s_at_s">%1$s არის %2$s</string>
   <!--SetCurrencyFragment-->
@@ -2465,7 +2465,7 @@
   <!--contact_selection_list-->
   <string name="contact_selection_list__unknown_contact">ახალი შეტყობინება…</string>
   <string name="contact_selection_list__unknown_contact_block">მომხმარებლის დაბლოკვა</string>
-  <string name="contact_selection_list__unknown_contact_add_to_group">დამატებულია ჯგუფში</string>
+  <string name="contact_selection_list__unknown_contact_add_to_group">ჯგუფში დამატება</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">დარეკვა</string>
   <!--conversation_callable_secure-->
@@ -2481,12 +2481,12 @@
   <!--Button to save a message attachment (image, file etc.)-->
   <string name="conversation_context_image__save_attachment">შენახვა</string>
   <!--conversation_expiring_off-->
-  <string name="conversation_expiring_off__disappearing_messages">გაუჩინარებადი წერილები</string>
+  <string name="conversation_expiring_off__disappearing_messages">გაქრობადი შეტყობინებები</string>
   <!--conversation_selection-->
   <!--Button to view detailed information for a message-->
   <string name="conversation_selection__menu_message_details">ინფორმაცია</string>
   <!--Button to copy a message\'s text to the clipboard-->
-  <string name="conversation_selection__menu_copy">ჩაკოპირება</string>
+  <string name="conversation_selection__menu_copy">დაკოპირება</string>
   <!--Button to delete a message-->
   <string name="conversation_selection__menu_delete">წაშლა</string>
   <!--Button to forward a message to another person or group chat-->
@@ -2503,12 +2503,12 @@
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">მოწვევა</string>
   <!--conversation_list_batch-->
-  <string name="conversation_list_batch__menu_delete_selected">შერჩეულთა წაშლა</string>
-  <string name="conversation_list_batch__menu_pin_selected">შერჩეულთა აპინვა</string>
-  <string name="conversation_list_batch__menu_unpin_selected">პინის მოხსნა შერჩეულებისთვის</string>
+  <string name="conversation_list_batch__menu_delete_selected">მონიშნულის წაშლა</string>
+  <string name="conversation_list_batch__menu_pin_selected">მონიშნულის აპინვა</string>
+  <string name="conversation_list_batch__menu_unpin_selected">მონიშნულებზე პინის მოხსნა </string>
   <string name="conversation_list_batch__menu_select_all">ყველას მონიშვნა</string>
-  <string name="conversation_list_batch_archive__menu_archive_selected">შერჩეულთა დაარქივება</string>
-  <string name="conversation_list_batch_unarchive__menu_unarchive_selected">შერჩეულთა ამოღება არქივიდან</string>
+  <string name="conversation_list_batch_archive__menu_archive_selected">მონიშნულის დაარქივება</string>
+  <string name="conversation_list_batch_unarchive__menu_unarchive_selected">მონიშნულის არქივიდან ამოღება </string>
   <string name="conversation_list_batch__menu_mark_as_read">წაკითხულად მონიშვნა</string>
   <string name="conversation_list_batch__menu_mark_as_unread">წაუკითხავად მონიშვნა</string>
   <!--conversation_list-->
@@ -2519,26 +2519,26 @@
   <string name="conversation_list__you_can_only_pin_up_to_d_chats">მაქსიმუმ %1$d ჩატის აპინვა შეგიძლია</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">კონტაქტის ფოტო სურათი</string>
-  <string name="conversation_list_item_view__archived">დაარქივებულები</string>
+  <string name="conversation_list_item_view__archived">დაარქივებული</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">ახალი მიმოწერა</string>
   <string name="conversation_list_fragment__open_camera_description">კამერის გახსნა</string>
-  <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">ჯერ ჩატები ვერ მოიძებნა.\nდაიწყე მეგობართან შეტყობინების გაგზავნით.</string>
+  <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">ჩატები ჯერ ვერ მოიძებნა.\nდაიწყე მეგობართან შეტყობინების გაგზავნით.</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">უსაფრთხო სესიის გადატვირთვა</string>
   <!--conversation_muted-->
   <string name="conversation_muted__unmute">მდუმარე რეჟიმის გამორთვა</string>
   <!--conversation_unmuted-->
-  <string name="conversation_unmuted__mute_notifications">სიახლეების გათიშვა</string>
+  <string name="conversation_unmuted__mute_notifications">შეტყობინებების გათიშვა</string>
   <!--conversation-->
   <string name="conversation__menu_group_settings">ჯგუფის პარამეტრები</string>
   <string name="conversation__menu_leave_group">ჯგუფის დატოვება</string>
   <string name="conversation__menu_view_all_media">ყველა მედია-ფაილი</string>
   <string name="conversation__menu_conversation_settings">მიმოწერის პარამეტრები</string>
-  <string name="conversation__menu_add_shortcut">მობილურის საწყის ეკრანზე დამატება</string>
-  <string name="conversation__menu_create_bubble">ბუშტის შექმნა</string>
+  <string name="conversation__menu_add_shortcut">მთავარ გვერდზე დამატება</string>
+  <string name="conversation__menu_create_bubble">ბაბლის შექმნა</string>
   <!--conversation_popup-->
-  <string name="conversation_popup__menu_expand_popup">ამომხტარი ფანჯრის გაფართოება</string>
+  <string name="conversation_popup__menu_expand_popup">ფანჯრის გაფართოება</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_add_to_contacts__menu_add_to_contacts">კონტაქტებში დამატება</string>
   <!--conversation_group_options-->
@@ -2553,7 +2553,7 @@
   <string name="text_secure_normal__mark_all_as_read">ყველას წაკითხულად მონიშვნა</string>
   <string name="text_secure_normal__invite_friends">მოიწვიე მეგობრები</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment_context_menu__copy_to_clipboard">ბუფერში დაკოპირება</string>
+  <string name="verify_display_fragment_context_menu__copy_to_clipboard">ბუფერში ჩაკოპირება</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">ბუფერთან შედარება</string>
   <!--reminder_header-->
   <string name="reminder_header_sms_import_title">სისტემის SMS-ის იმპორტირება</string>
@@ -2576,12 +2576,12 @@
   <string name="Insights__percent">%</string>
   <string name="Insights__title">ინსაითები</string>
   <string name="InsightsDashboardFragment__title">ინსაითები</string>
-  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal-ის პროტოკოლი ავტომატურად იცავდა შენს %1$d%% გამავალ შეტყობინებას ბოლო %2$d დღის განმავლობაში. Signal-ის მომხმარებლებს შორის საუბრები ყოველთვის ბოლომდეა დაშიფრული.</string>
-  <string name="InsightsDashboardFragment__spread_the_word">გაავრცელე სიტყვა</string>
+  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal-ის პროტოკოლი ავტომატურად იცავდა შენს %1$d%% გამავალ შეტყობინებას ბოლო %2$d დღის განმავლობაში. Signal-ის მომხმარებლებს შორის საუბრები ყოველთვის სრულადაა დაშიფრული.</string>
+  <string name="InsightsDashboardFragment__spread_the_word">გაავრცელე ხმა</string>
   <string name="InsightsDashboardFragment__not_enough_data">არასაკმარისი მონაცემი</string>
-  <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">შენი ინსაითების პროცენტი გამოითვლება გასული %1$d დღის განმავლობაში გამავალი შეტყობინებების საფუძველზე, რომლებიც არ გამქრალა ან წაშლილა.</string>
+  <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">შენი ინსაითების პროცენტი ითვლება გასული %1$d დღის განმავლობაში გამავალი შეტყობინებების საფუძველზე, რომლებიც არ გამქრალა ან წაშლილა.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">მიმოწერის დაწყება</string>
-  <string name="InsightsDashboardFragment__invite_your_contacts">დაიწყე უსაფრთხო კომუნიკაცია და ჩართე ახალი ფუნქციები, რომლებიც სცილდება დაშიფრული SMS შეტყობინებების შეზღუდვებს, Signal-ში გასაწევრიანებლად მეტი კონტაქტის მოწვევით.</string>
+  <string name="InsightsDashboardFragment__invite_your_contacts">დაიწყე უსაფრთხო კომუნიკაცია და ჩართე ახალი ფუნქციები, რომლებიც სცილდება დაუშიფრავი SMS შეტყობინებების შეზღუდვებს, Signal-ში გასაწევრიანებლად მეტი კონტაქტის მოწვევით.</string>
   <string name="InsightsDashboardFragment__this_stat_was_generated_locally">ეს სტატისტიკა ადგილობრივად შეიქმნა შენს მოწყობილობაზე და მისი ნახვა მხოლოდ შენ შეგიძლია. ის არასოდეს არსად გადაიცემა.</string>
   <string name="InsightsDashboardFragment__encrypted_messages">დაშიფრული შეტყობინებები</string>
   <string name="InsightsDashboardFragment__cancel">გაუქმება</string>
@@ -2594,12 +2594,12 @@
   <string name="SecondInviteReminder__title">დაბუსტე შენი Signal-ი</string>
   <string name="SecondInviteReminder__description">მოიწვიე %1$s</string>
   <string name="InsightsReminder__view_insights">ინსაითების ნახვა</string>
-  <string name="InsightsReminder__invite">მოწვევა</string>
+  <string name="InsightsReminder__invite">მოიწვიე</string>
   <!--Edit KBS Pin-->
   <!--BaseKbsPinFragment-->
   <string name="BaseKbsPinFragment__next">შემდეგი</string>
   <string name="BaseKbsPinFragment__create_alphanumeric_pin">შექმენი ანბანურ-ციფრული პინ-კოდი</string>
-  <string name="BaseKbsPinFragment__create_numeric_pin">ციფრული პინ-კოდის შექმნა</string>
+  <string name="BaseKbsPinFragment__create_numeric_pin">შექმენი ციფრული პინ-კოდი</string>
   <!--CreateKbsPinFragment-->
   <plurals name="CreateKbsPinFragment__pin_must_be_at_least_characters">
     <item quantity="one">პინ-კოდი მინიმუმ %1$d სიმბოლოსგან უნდა შედგებოდეს</item>
@@ -2610,7 +2610,7 @@
     <item quantity="other">პინ-კოდი მინიმუმ %1$d ციფრისგან უნდა შედგებოდეს</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">ახალი პინ-კოდის შექმნა</string>
-  <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">შენი პინ-კოდის შეცვლა შეგიძლია, სანამ ეს მოწყობილობა რეგისტრირებულია.</string>
+  <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">შენი პინ-კოდის შეცვლა შეგიძლია, სანამ ეს მოწყობილობა იქნება რეგისტრირებული.</string>
   <string name="CreateKbsPinFragment__create_your_pin">შექმენი შენი პინ-კოდი</string>
   <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">პინ-კოდები Signal-ით შენახულ ინფორმაციას დაშიფრულად ინახავენ, რათა მხოლოდ შენ შეძლო მასზე წვდომა. შენი პროფილი, პარამეტრები და კონტაქტები აღდგება ხელახლა ინსტალაციისას. შენი პინ-კოდი აპის გასახსნელად არ დაგჭირდება.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">უფრო საიმედო პინ-კოდი აირჩიე</string>
@@ -2625,25 +2625,25 @@
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">წარმოგიდგენთ პინ-კოდებს</string>
   <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">პინ-კოდები Signal-ით შენახულ ინფორმაციას დაშიფრულად ინახავენ, რათა მხოლოდ შენ შეძლო მასზე წვდომა. შენი პროფილი, პარამეტრები და კონტაქტები აღდგება ხელახლა ინსტალაციისას. შენი პინ-კოდი აპის გასახსნელად არ დაგჭირდება.</string>
-  <string name="KbsSplashFragment__learn_more">მეტის გაგება</string>
-  <string name="KbsSplashFragment__registration_lock_equals_pin">რეგისტრაციის დაბლოკვა = პინ-კოდი</string>
-  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">შენი რეგისტრაციის დაბლოკვას ახლა პინ-კოდი ეწოდება და ის უფრო მეტს აკეთებს. განაახლე ახლავე.</string>
+  <string name="KbsSplashFragment__learn_more">გაიგე მეტი</string>
+  <string name="KbsSplashFragment__registration_lock_equals_pin">რეგისტრაციის ლუქი = პინ-კოდი</string>
+  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">შენი რეგისტრაციის ლუქს ახლა პინ-კოდი ეწოდება და ის უფრო მეტს აკეთებს. განაახლე ახლავე.</string>
   <string name="KbsSplashFragment__update_pin">პინ-კოდის განახლება</string>
   <string name="KbsSplashFragment__create_your_pin">შექმენი შენი პინ-კოდი</string>
   <string name="KbsSplashFragment__learn_more_about_pins">გაიგე მეტი პინ-კოდებზე</string>
   <string name="KbsSplashFragment__disable_pin">პინ-კოდის გამორთვა</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">შეიყვანე შენი Signal-ის პინ-კოდი</string>
-  <string name="KbsReminderDialog__to_help_you_memorize_your_pin">იმისათვის, რომ შენი პინ-კოდის დამახსოვრებაში დაგეხმაროთ, მოგთხოვთ პერიოდულად შეიყვანო ის. დროთა განმავლობაში ამას ნაკლებად გავაკეთებთ.</string>
+  <string name="KbsReminderDialog__to_help_you_memorize_your_pin">იმისათვის, რომ შენი პინ-კოდის დამახსოვრებაში დაგეხმაროთ, პერიოდულად მოგთხოვთ მის შეიყვანას. დროთა განმავლობაში ამას ნაკლებად გავაკეთებთ.</string>
   <string name="KbsReminderDialog__skip">გამოტოვება</string>
   <string name="KbsReminderDialog__submit">Submit</string>
   <string name="KbsReminderDialog__forgot_pin">დაგავიწყდა პინ-კოდი?</string>
-  <string name="KbsReminderDialog__incorrect_pin_try_again">არასწორი პინი. ხელახლა სცადე.</string>
+  <string name="KbsReminderDialog__incorrect_pin_try_again">არასწორი პინ-კოდი. ხელახლა სცადე.</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">ანგარიში დალუქულია</string>
-  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">შენი ანგარიში შენი კონფიდენციალურობისა და უსაფრთხოების დასაცავად დაილუქა. შენს ანგარიშზე %1$d დღის უმოქმედობის შემდეგ შეძლებ ხელახლა დაარეგისტრირო ეს ტელეფონის ნომერი შენი პინ-კოდის გარეშე. კონტენტი მთლიანად წაიშლება.</string>
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">შენი ანგარიში კონფიდენციალურობისა და უსაფრთხოების დასაცავად დაილუქა. შენს ანგარიშზე %1$d დღის უმოქმედობის შემდეგ, პინ-კოდის გარეშე შეძლებ ხელახლა დაარეგისტრირო ეს ტელეფონის ნომერი. კონტენტი მთლიანად წაიშლება.</string>
   <string name="AccountLockedFragment__next">შემდეგი</string>
-  <string name="AccountLockedFragment__learn_more">მეტის გაგება</string>
+  <string name="AccountLockedFragment__learn_more">გაიგე მეტი</string>
   <!--KbsLockFragment-->
   <string name="RegistrationLockFragment__enter_your_pin">შეიყვანე შენი პინ-კოდი</string>
   <string name="RegistrationLockFragment__enter_the_pin_you_created">შეიყვანე შენი ანგარიშისთვის შექმნილი პინ-კოდი. ის განსხვავდება შენი SMS-ის დამადასტურებელი კოდისგან.</string>
@@ -2654,11 +2654,11 @@
   <string name="RegistrationLockFragment__incorrect_pin">არასწორი პინ-კოდი</string>
   <string name="RegistrationLockFragment__forgot_your_pin">დაგავიწყდა პინ-კოდი?</string>
   <string name="RegistrationLockFragment__not_many_tries_left">ბევრი მცდელობა აღარ დაგრჩათ!</string>
-  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">Signal-ის რეგისტრაცია - გჭირდება დახმარება პინ-კოდთან დაკავშირებით, Android-ისთვის (v1 PIN)</string>
-  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal-ის რეგისტრაცია - გჭირდება დახმარება პინ-კოდთან დაკავშირებით, Android-ისთვის (v2 PIN)</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">Signal-ის რეგისტრაცია -მჭირდება დახმარება პინ-კოდთან დაკავშირებით, Android-ისთვის (v1 PIN)</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal-ის რეგისტრაცია - მჭირდება დახმარება პინ-კოდთან დაკავშირებით, Android-ისთვის (v2 PIN)</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
     <item quantity="one">შენი კონფიდენციალურობისა და უსაფრთხოების უზრუნველსაყოფად, პინ-კოდის აღდგენის გზა არ არსებობს. თუ შენი პინ-კოდი არ გახსოვს, SMS-ით ხელახლა შეგიძლია დაადასტურო უმოქმედობის %1$d დღის შემდეგ. ამ შემთხვევაში, შენი ანგარიში გასუფთავდება და მთელი კონტენტი წაიშლება.</item>
-    <item quantity="other">შენი კონფიდენციალურობისა და უსაფრთხოების უზრუნველსაყოფად, პინ-კოდის აღდგენის გზა არ არსებობს. თუ შენი პინ-კოდი არ გახსოვს, SMS-ით ხელახლა შეგიძლია დაადასტურო უმოქმედობის%1$d დღის შემდეგ. ამ შემთხვევაში, შენი ანგარიში გასუფთავდება და მთელი კონტენტი წაიშლება.</item>
+    <item quantity="other">შენი კონფიდენციალურობისა და უსაფრთხოების უზრუნველსაყოფად, პინ-კოდის აღდგენის გზა არ არსებობს. თუ შენი პინ-კოდი არ გახსოვს, უმოქმედობის %1$d დღის შემდეგ შეგიძლია SMS-ის ხელახლა დაადასტურო. ამ შემთხვევაში, შენი ანგარიში გასუფთავდება და მთელი კონტენტი წაიშლება.</item>
   </plurals>
   <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
     <item quantity="one">არასწორი პინ-კოდი. დაგრჩა %1$d მცდელობა.</item>

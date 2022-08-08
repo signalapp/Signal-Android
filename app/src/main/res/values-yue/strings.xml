@@ -3849,8 +3849,11 @@
   <!--Dialog action to remove viewer from a story-->
   <string name="StoryViewsFragment__remove">剷走佢</string>
   <!--Dialog title when removing a viewer from a story-->
+  <string name="StoryViewsFragment__remove_viewer">係咪要移除瀏覽者呀？</string>
   <!--Dialog message when removing a viewer from a story-->
+  <string name="StoryViewsFragment__s_will_still_be_able">%1$s 仍然可以睇到呢個貼文，但唔會睇到你以後喺 %2$s 分享嘅任何貼文喇。</string>
   <!--Story View context menu action to remove them from a story-->
+  <string name="StoryViewItem__remove_viewer">移除瀏覽者</string>
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">未有人回覆</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
@@ -4122,7 +4125,7 @@
     <item quantity="other">成谷放送是日花生 · %1$d 位花生友</item>
   </plurals>
   <!--Label under name for My Story when first sending to my story-->
-  <string name="ContactSearchItems__tap_to_choose_your_viewers">㩒一吓就可以揀選你嘅觀看對象</string>
+  <string name="ContactSearchItems__tap_to_choose_your_viewers">㩒一吓就可以揀選你嘅瀏覽者</string>
   <!--Label for context menu item to open story settings-->
   <string name="ContactSearchItems__story_settings">是日花生設定</string>
   <!--Label for context menu item to remove a group story from contact results-->

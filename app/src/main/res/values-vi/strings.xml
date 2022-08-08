@@ -3833,8 +3833,11 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--Dialog action to remove viewer from a story-->
   <string name="StoryViewsFragment__remove">Xóa</string>
   <!--Dialog title when removing a viewer from a story-->
+  <string name="StoryViewsFragment__remove_viewer">Gỡ người xem?</string>
   <!--Dialog message when removing a viewer from a story-->
+  <string name="StoryViewsFragment__s_will_still_be_able">%1$s sẽ vẫn xem được bài đăng này, nhưng sẽ không còn xem được bất kỳ bài đăng nào bạn chia sẻ vào %2$s.</string>
   <!--Story View context menu action to remove them from a story-->
+  <string name="StoryViewItem__remove_viewer">Gỡ người xem</string>
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Chưa có phản hồi</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->

@@ -3958,7 +3958,7 @@
   <!--Dialog title when removing a viewer from a story-->
   <string name="StoryViewsFragment__remove_viewer">Көрерменді өшіру керек пе?</string>
   <!--Dialog message when removing a viewer from a story-->
-  <string name="StoryViewsFragment__s_will_still_be_able">%1$s бұл посты бәрібір көре алатын болады, бірақ сіздің болашақта %2$s бетінде жариялаған постарыңызды көре алмайды.</string>
+  <string name="StoryViewsFragment__s_will_still_be_able">%1$s бұл постты бәрібір көре алады, бірақ сіздің болашақта %2$s бетінде жариялаған посттарыңызды көре алмайды.</string>
   <!--Story View context menu action to remove them from a story-->
   <string name="StoryViewItem__remove_viewer">Көрерменді өшіру</string>
   <!--Displayed when a story has no replies yet-->

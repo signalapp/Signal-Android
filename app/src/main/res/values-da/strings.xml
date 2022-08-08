@@ -3957,7 +3957,7 @@ nummer (%s) er ugyldigt</string>
   <!--Dialog title when removing a viewer from a story-->
   <string name="StoryViewsFragment__remove_viewer">Fjern tilskuer?</string>
   <!--Dialog message when removing a viewer from a story-->
-  <string name="StoryViewsFragment__s_will_still_be_able">%1$s kan stadig se dette opslag, men de vil ikke kunne se fremtidige opslag du deler på%2$s.</string>
+  <string name="StoryViewsFragment__s_will_still_be_able">%1$s kan stadig se dette opslag, men vil ikke kunne se fremtidige opslag, du deler på%2$s.</string>
   <!--Story View context menu action to remove them from a story-->
   <string name="StoryViewItem__remove_viewer">Fjern tilskuer</string>
   <!--Displayed when a story has no replies yet-->

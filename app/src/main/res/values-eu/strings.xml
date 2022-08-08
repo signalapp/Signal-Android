@@ -3957,8 +3957,11 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--Dialog action to remove viewer from a story-->
   <string name="StoryViewsFragment__remove">Ezabatu</string>
   <!--Dialog title when removing a viewer from a story-->
+  <string name="StoryViewsFragment__remove_viewer">Ikuslea kendu nahi duzu?</string>
   <!--Dialog message when removing a viewer from a story-->
+  <string name="StoryViewsFragment__s_will_still_be_able">Kentzen baduzu ere, %1$s(e)k argitalpen hau ikusi ahalko du, baina ezingo ditu ikusi etorkizunean hemen egiten dituzun argitalpenak: %2$s.</string>
   <!--Story View context menu action to remove them from a story-->
+  <string name="StoryViewItem__remove_viewer">Kendu ikuslea</string>
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Erantzunik ez oraindik</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->
