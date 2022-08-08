@@ -17,6 +17,7 @@ import net.zetetic.database.sqlcipher.SQLiteDatabase
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.Hex
 import org.signal.core.util.SqlUtil
+import org.signal.core.util.Stopwatch
 import org.signal.core.util.logging.Log
 import org.signal.core.util.requireString
 import org.thoughtcrime.securesms.color.MaterialColor
@@ -40,7 +41,6 @@ import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.Base64
 import org.thoughtcrime.securesms.util.FileUtils
 import org.thoughtcrime.securesms.util.ServiceUtil
-import org.thoughtcrime.securesms.util.Stopwatch
 import org.thoughtcrime.securesms.util.Triple
 import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.push.ACI

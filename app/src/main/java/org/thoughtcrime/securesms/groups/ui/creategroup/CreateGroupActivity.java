@@ -24,7 +24,7 @@ import org.thoughtcrime.securesms.groups.ui.creategroup.details.AddGroupDetailsA
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.FeatureFlags;
-import org.thoughtcrime.securesms.util.Stopwatch;
+import org.signal.core.util.Stopwatch;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 

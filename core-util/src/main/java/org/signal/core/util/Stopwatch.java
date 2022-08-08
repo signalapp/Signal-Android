@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.util;
+package org.signal.core.util;
 
 import androidx.annotation.NonNull;
 

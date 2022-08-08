@@ -29,7 +29,7 @@ import androidx.camera.core.ImageProxy;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
-import org.thoughtcrime.securesms.util.Stopwatch;
+import org.signal.core.util.Stopwatch;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

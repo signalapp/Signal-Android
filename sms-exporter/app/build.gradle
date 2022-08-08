@@ -1,0 +1,19 @@
+apply from: "$rootProject.projectDir/signalModuleApp.gradle"
+
+android {
+    defaultConfig {
+        applicationId "org.signal.smsexporter.app"
+    }
+}
+
+dependencies {
+    implementation libs.androidx.core.ktx
+    implementation libs.androidx.appcompat
+    implementation libs.androidx.core.role
+    implementation libs.material.material
+    implementation libs.rxjava3.rxjava
+    implementation libs.rxjava3.rxandroid
+    implementation libs.rxjava3.rxkotlin
+    implementation project(':core-util')
+    implementation project(':sms-exporter')
+}

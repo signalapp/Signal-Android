@@ -21,7 +21,7 @@ import org.thoughtcrime.securesms.payments.TransactionSubmissionResult;
 import org.thoughtcrime.securesms.payments.Wallet;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.util.Stopwatch;
+import org.signal.core.util.Stopwatch;
 import org.whispersystems.signalservice.api.payments.Money;
 
 import java.util.Objects;

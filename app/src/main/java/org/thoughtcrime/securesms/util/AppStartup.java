@@ -7,6 +7,7 @@ import android.os.Looper;
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 
+import org.signal.core.util.Stopwatch;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 

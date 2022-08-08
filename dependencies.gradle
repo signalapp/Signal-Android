@@ -48,6 +48,7 @@ dependencyResolutionManagement {
             alias('androidx-biometric').to('androidx.biometric:biometric:1.1.0')
             alias('androidx-sharetarget').to('androidx.sharetarget:sharetarget:1.1.0')
             alias('androidx-sqlite').to('androidx.sqlite:sqlite:2.1.0')
+            alias('androidx-core-role').to('androidx.core:core-role:1.0.0')
 
             // Material
             alias('material-material').to('com.google.android.material:material:1.5.0')

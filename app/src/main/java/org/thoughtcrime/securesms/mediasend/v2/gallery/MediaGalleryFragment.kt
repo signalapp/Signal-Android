@@ -11,13 +11,13 @@ import androidx.lifecycle.Transformations
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
+import org.signal.core.util.Stopwatch
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.recyclerview.GridDividerDecoration
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.MediaRepository
 import org.thoughtcrime.securesms.mediasend.v2.MediaCountIndicatorButton
 import org.thoughtcrime.securesms.util.Material3OnScrollHelper
-import org.thoughtcrime.securesms.util.Stopwatch
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.fragments.requireListener

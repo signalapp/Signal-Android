@@ -19,8 +19,8 @@ import org.greenrobot.eventbus.EventBus;
 import org.signal.core.util.Conversions;
 import org.signal.core.util.CursorUtil;
 import org.signal.core.util.SetUtil;
+import org.signal.core.util.Stopwatch;
 import org.signal.core.util.logging.Log;
-import org.signal.libsignal.protocol.kdf.HKDF;
 import org.signal.libsignal.protocol.kdf.HKDFv3;
 import org.signal.libsignal.protocol.util.ByteUtil;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
@@ -50,7 +50,6 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.keyvalue.KeyValueDataSet;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
-import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 
@@ -79,22 +78,22 @@ public class FullBackupExporter extends FullBackupBase {
 
   private static final String TAG = Log.tag(FullBackupExporter.class);
 
-  private static final long DATABASE_VERSION_RECORD_COUNT = 1L;
-  private static final long TABLE_RECORD_COUNT_MULTIPLIER = 3L;
+  private static final long DATABASE_VERSION_RECORD_COUNT    = 1L;
+  private static final long TABLE_RECORD_COUNT_MULTIPLIER    = 3L;
   private static final long IDENTITY_KEY_BACKUP_RECORD_COUNT = 2L;
-  private static final long FINAL_MESSAGE_COUNT = 1L;
+  private static final long FINAL_MESSAGE_COUNT              = 1L;
 
   private static final Set<String> BLACKLISTED_TABLES = SetUtil.newHashSet(
-    SignedPreKeyDatabase.TABLE_NAME,
-    OneTimePreKeyDatabase.TABLE_NAME,
-    SessionDatabase.TABLE_NAME,
-    SearchDatabase.SMS_FTS_TABLE_NAME,
-    SearchDatabase.MMS_FTS_TABLE_NAME,
-    EmojiSearchDatabase.TABLE_NAME,
-    SenderKeyDatabase.TABLE_NAME,
-    SenderKeySharedDatabase.TABLE_NAME,
-    PendingRetryReceiptDatabase.TABLE_NAME,
-    AvatarPickerDatabase.TABLE_NAME
+      SignedPreKeyDatabase.TABLE_NAME,
+      OneTimePreKeyDatabase.TABLE_NAME,
+      SessionDatabase.TABLE_NAME,
+      SearchDatabase.SMS_FTS_TABLE_NAME,
+      SearchDatabase.MMS_FTS_TABLE_NAME,
+      EmojiSearchDatabase.TABLE_NAME,
+      SenderKeyDatabase.TABLE_NAME,
+      SenderKeySharedDatabase.TABLE_NAME,
+      PendingRetryReceiptDatabase.TABLE_NAME,
+      AvatarPickerDatabase.TABLE_NAME
   );
 
   public static void export(@NonNull Context context,
@@ -315,7 +314,7 @@ public class FullBackupExporter extends FullBackupBase {
 
           statement.append('(');
 
-          for (int i=0;i<cursor.getColumnCount();i++) {
+          for (int i = 0; i < cursor.getColumnCount(); i++) {
             statement.append('?');
 
             if (cursor.getType(i) == Cursor.FIELD_TYPE_STRING) {
@@ -329,10 +328,10 @@ public class FullBackupExporter extends FullBackupBase {
             } else if (cursor.getType(i) == Cursor.FIELD_TYPE_NULL) {
               statementBuilder.addParameters(BackupProtos.SqlStatement.SqlParameter.newBuilder().setNullparameter(true));
             } else {
-              throw new AssertionError("unknown type?"  + cursor.getType(i));
+              throw new AssertionError("unknown type?" + cursor.getType(i));
             }
 
-            if (i < cursor.getColumnCount()-1) {
+            if (i < cursor.getColumnCount() - 1) {
               statement.append(',');
             }
           }
@@ -375,7 +374,7 @@ public class FullBackupExporter extends FullBackupBase {
         InputStream inputStream;
 
         if (random != null && random.length == 32) inputStream = ModernDecryptingPartInputStream.createFor(attachmentSecret, random, new File(data), 0);
-        else                                       inputStream = ClassicDecryptingPartInputStream.createFor(attachmentSecret, new File(data));
+        else inputStream = ClassicDecryptingPartInputStream.createFor(attachmentSecret, new File(data));
 
         EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, ++count, estimatedCount));
         outputStream.write(new AttachmentId(rowId, uniqueId), inputStream, size);
@@ -390,8 +389,8 @@ public class FullBackupExporter extends FullBackupBase {
 
   private static int exportSticker(@NonNull AttachmentSecret attachmentSecret, @NonNull Cursor cursor, @NonNull BackupFrameOutputStream outputStream, int count, long estimatedCount) {
     try {
-      long rowId    = cursor.getLong(cursor.getColumnIndexOrThrow(StickerDatabase._ID));
-      long size     = cursor.getLong(cursor.getColumnIndexOrThrow(StickerDatabase.FILE_LENGTH));
+      long rowId = cursor.getLong(cursor.getColumnIndexOrThrow(StickerDatabase._ID));
+      long size  = cursor.getLong(cursor.getColumnIndexOrThrow(StickerDatabase.FILE_LENGTH));
 
       String data   = cursor.getString(cursor.getColumnIndexOrThrow(StickerDatabase.FILE_PATH));
       byte[] random = cursor.getBlob(cursor.getColumnIndexOrThrow(StickerDatabase.FILE_RANDOM));
@@ -410,13 +409,13 @@ public class FullBackupExporter extends FullBackupBase {
   }
 
   private static long calculateVeryOldStreamLength(@NonNull AttachmentSecret attachmentSecret, @Nullable byte[] random, @NonNull String data) throws IOException {
-    long result = 0;
+    long        result = 0;
     InputStream inputStream;
 
     if (random != null && random.length == 32) inputStream = ModernDecryptingPartInputStream.createFor(attachmentSecret, random, new File(data), 0);
-    else                                       inputStream = ClassicDecryptingPartInputStream.createFor(attachmentSecret, new File(data));
+    else inputStream = ClassicDecryptingPartInputStream.createFor(attachmentSecret, new File(data));
 
-    int read;
+    int    read;
     byte[] buffer = new byte[8192];
 
     while ((read = inputStream.read(buffer, 0, buffer.length)) != -1) {
@@ -479,7 +478,7 @@ public class FullBackupExporter extends FullBackupBase {
 
   private static boolean isNonExpiringMmsMessage(@NonNull Cursor cursor) {
     return cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsColumns.EXPIRES_IN)) <= 0 &&
-           cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.VIEW_ONCE))    <= 0;
+           cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.VIEW_ONCE)) <= 0;
   }
 
   private static boolean isNonExpiringSmsMessage(@NonNull Cursor cursor) {
@@ -509,7 +508,7 @@ public class FullBackupExporter extends FullBackupBase {
   }
 
   private static boolean isForNonExpiringMmsMessage(@NonNull SQLiteDatabase db, long mmsId) {
-    String[] columns = new String[] { MmsDatabase.RECIPIENT_ID, MmsDatabase.EXPIRES_IN, MmsDatabase.VIEW_ONCE};
+    String[] columns = new String[] { MmsDatabase.RECIPIENT_ID, MmsDatabase.EXPIRES_IN, MmsDatabase.VIEW_ONCE };
     String   where   = MmsDatabase.ID + " = ?";
     String[] args    = new String[] { String.valueOf(mmsId) };
 
@@ -528,8 +527,8 @@ public class FullBackupExporter extends FullBackupBase {
     private final Cipher       cipher;
     private final Mac          mac;
 
-    private final byte[]       cipherKey;
-    private final byte[]       macKey;
+    private final byte[] cipherKey;
+    private final byte[] macKey;
 
     private byte[] iv;
     private int    counter;
@@ -695,5 +694,6 @@ public class FullBackupExporter extends FullBackupBase {
     boolean isCanceled();
   }
 
-  public static final class BackupCanceledException extends IOException { }
+  public static final class BackupCanceledException extends IOException {
+  }
 }

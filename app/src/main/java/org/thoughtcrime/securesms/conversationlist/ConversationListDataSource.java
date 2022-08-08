@@ -22,7 +22,7 @@ import org.thoughtcrime.securesms.database.model.UpdateDescription;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.util.Stopwatch;
+import org.signal.core.util.Stopwatch;
 
 import java.util.ArrayList;
 import java.util.HashSet;

@@ -19,7 +19,7 @@ import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.signal.core.util.CursorUtil;
 import org.thoughtcrime.securesms.util.LRUCache;
-import org.thoughtcrime.securesms.util.Stopwatch;
+import org.signal.core.util.Stopwatch;
 import org.thoughtcrime.securesms.util.concurrent.FilteredExecutor;
 import org.whispersystems.signalservice.api.push.ACI;
 

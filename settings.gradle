@@ -12,6 +12,8 @@ include ':device-transfer'
 include ':device-transfer-app'
 include ':image-editor'
 include ':image-editor-app'
+include ':sms-exporter'
+include ':sms-exporter-app'
 include ':donations'
 include ':donations-app'
 include ':spinner'
@@ -32,6 +34,9 @@ project(':libsignal-service').projectDir = file('libsignal/service')
 
 project(':image-editor').projectDir = file('image-editor/lib')
 project(':image-editor-app').projectDir = file('image-editor/app')
+
+project(':sms-exporter').projectDir = file('sms-exporter/lib')
+project(':sms-exporter-app').projectDir = file('sms-exporter/app')
 
 project(':donations').projectDir = file('donations/lib')
 project(':donations-app').projectDir = file('donations/app')

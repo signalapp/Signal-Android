@@ -46,7 +46,7 @@ import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.stories.Stories;
 import org.thoughtcrime.securesms.stories.viewer.page.StoryDisplay;
 import org.thoughtcrime.securesms.util.ServiceUtil;
-import org.thoughtcrime.securesms.util.Stopwatch;
+import org.signal.core.util.Stopwatch;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.io.ByteArrayOutputStream;

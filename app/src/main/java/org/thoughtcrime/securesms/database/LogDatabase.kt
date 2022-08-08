@@ -8,6 +8,7 @@ import net.zetetic.database.sqlcipher.SQLiteDatabase
 import net.zetetic.database.sqlcipher.SQLiteOpenHelper
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.SqlUtil
+import org.signal.core.util.Stopwatch
 import org.signal.core.util.delete
 import org.signal.core.util.getTableRowCount
 import org.signal.core.util.logging.Log
@@ -15,7 +16,6 @@ import org.thoughtcrime.securesms.crypto.DatabaseSecret
 import org.thoughtcrime.securesms.crypto.DatabaseSecretProvider
 import org.thoughtcrime.securesms.database.model.LogEntry
 import org.thoughtcrime.securesms.util.ByteUnit
-import org.thoughtcrime.securesms.util.Stopwatch
 import java.io.Closeable
 import java.util.concurrent.TimeUnit
 import kotlin.math.abs

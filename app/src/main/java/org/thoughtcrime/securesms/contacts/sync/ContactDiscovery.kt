@@ -11,6 +11,7 @@ import org.signal.contacts.ContactLinkConfiguration
 import org.signal.contacts.SystemContactsRepository
 import org.signal.contacts.SystemContactsRepository.ContactIterator
 import org.signal.contacts.SystemContactsRepository.ContactPhoneDetails
+import org.signal.core.util.Stopwatch
 import org.signal.core.util.StringUtil
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.BuildConfig
@@ -30,7 +31,6 @@ import org.thoughtcrime.securesms.registration.RegistrationUtil
 import org.thoughtcrime.securesms.sms.IncomingJoinedMessage
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.FeatureFlags
-import org.thoughtcrime.securesms.util.Stopwatch
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.push.SignalServiceAddress

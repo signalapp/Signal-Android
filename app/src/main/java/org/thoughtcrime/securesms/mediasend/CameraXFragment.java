@@ -53,7 +53,7 @@ import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.stories.Stories;
 import org.thoughtcrime.securesms.stories.viewer.page.StoryDisplay;
 import org.thoughtcrime.securesms.util.MemoryFileDescriptor;
-import org.thoughtcrime.securesms.util.Stopwatch;
+import org.signal.core.util.Stopwatch;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.video.VideoUtil;
 

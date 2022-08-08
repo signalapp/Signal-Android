@@ -1,0 +1,18 @@
+apply from: "$rootProject.projectDir/signalModule.gradle"
+
+dependencies {
+    lintChecks project(':lintchecks')
+
+    implementation project(':core-util')
+
+    coreLibraryDesugaring libs.android.tools.desugar
+
+    implementation libs.androidx.core.ktx
+    implementation libs.androidx.annotation
+    implementation libs.androidx.appcompat
+    implementation libs.androidx.core.role
+    implementation libs.android.smsmms
+    implementation libs.rxjava3.rxjava
+    implementation libs.rxjava3.rxandroid
+    implementation libs.rxjava3.rxkotlin
+}
