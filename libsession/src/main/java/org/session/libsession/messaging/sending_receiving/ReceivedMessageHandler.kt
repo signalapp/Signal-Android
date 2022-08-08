@@ -254,9 +254,9 @@ fun MessageReceiver.handleVisibleMessage(message: VisibleMessage,
         val messageInfo = messageDataProvider.getMessageForQuote(quote.id, author)
         if (messageInfo != null) {
             val attachments = if (messageInfo.second) messageDataProvider.getAttachmentsAndLinkPreviewFor(messageInfo.first) else ArrayList()
-            quoteModel = QuoteModel(quote.id, author, messageDataProvider.getMessageBodyFor(quote.id, quote.author), false, attachments)
+            quoteModel = QuoteModel(quote.id, author,null,false, attachments)
         } else {
-            quoteModel = QuoteModel(quote.id, author, quote.text, true, PointerAttachment.forPointers(proto.dataMessage.quote.attachmentsList))
+            quoteModel = QuoteModel(quote.id, author,null, true, PointerAttachment.forPointers(proto.dataMessage.quote.attachmentsList))
         }
     }
     // Parse link preview if needed

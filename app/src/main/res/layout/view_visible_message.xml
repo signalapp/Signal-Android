@@ -31,7 +31,7 @@
             android:layout_height="1dp"/>
 
         <include
-            tools:visibility="gone"
+            tools:visibility="visible"
             android:id="@+id/profilePictureView"
             layout="@layout/view_profile_picture"
             android:layout_marginBottom="@dimen/small_spacing"
@@ -44,6 +44,7 @@
             android:layout_gravity="center" />
 
         <ImageView
+            tools:visibility="visible"
             android:visibility="gone"
             android:id="@+id/moderatorIconImageView"
             android:layout_width="16dp"
@@ -87,7 +88,7 @@
 
             <org.thoughtcrime.securesms.conversation.v2.components.ExpirationTimerView
                 tools:visibility="visible"
-                android:visibility="gone"
+                android:visibility="invisible"
                 android:id="@+id/expirationTimerView"
                 android:layout_width="12dp"
                 android:layout_height="12dp"

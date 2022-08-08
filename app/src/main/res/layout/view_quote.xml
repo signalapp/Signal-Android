@@ -6,7 +6,6 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@color/input_bar_background"
-    android:minWidth="300dp"
     android:minHeight="52dp"
     android:paddingVertical="12dp"
     android:paddingHorizontal="12dp"
@@ -24,6 +23,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <RelativeLayout
+        tools:visibility="visible"
         android:id="@+id/quoteViewAttachmentPreviewContainer"
         android:layout_width="40dp"
         android:layout_height="40dp"
@@ -71,30 +71,27 @@
         android:textColor="@color/text"
         android:textSize="@dimen/small_font_size"
         android:textStyle="bold"
-        android:visibility="gone"
+        android:maxWidth="240dp"
         app:layout_constraintBottom_toTopOf="@+id/quoteViewBodyTextView"
-        app:layout_constraintEnd_toEndOf="@+id/quoteViewBodyTextView"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toEndOf="@+id/quoteStartBarrier"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
-        tools:text="Spiderman" />
+        tools:text="@tools:sample/full_names" />
 
     <TextView
         android:id="@+id/quoteViewBodyTextView"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/medium_spacing"
         android:ellipsize="end"
-        android:maxLines="3"
+        android:maxLines="1"
         android:textColor="@color/text"
         android:textSize="@dimen/small_font_size"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/quoteStartBarrier"
         app:layout_constraintTop_toBottomOf="@+id/quoteViewAuthorTextView"
-        app:layout_constraintVertical_chainStyle="packed"
         android:maxWidth="240dp"
         tools:maxLines="1"
         tools:text="@tools:sample/lorem/random" />

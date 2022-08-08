@@ -30,7 +30,7 @@ class Quote() {
         fun from(signalQuote: SignalQuote?): Quote? {
             if (signalQuote == null) { return null }
             val attachmentID = (signalQuote.attachments?.firstOrNull() as? DatabaseAttachment)?.attachmentId?.rowId
-            return Quote(signalQuote.id, signalQuote.author.serialize(), signalQuote.text, attachmentID)
+            return Quote(signalQuote.id, signalQuote.author.serialize(), "", attachmentID) // TODO: re-add this
         }
     }
 

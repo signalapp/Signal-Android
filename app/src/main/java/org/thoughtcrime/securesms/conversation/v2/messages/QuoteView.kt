@@ -67,18 +67,11 @@ class QuoteView @JvmOverloads constructor(context: Context, attrs: AttributeSet?
     fun bind(authorPublicKey: String, body: String?, attachments: SlideDeck?, thread: Recipient,
         isOutgoingMessage: Boolean, isOpenGroupInvitation: Boolean, threadID: Long,
         isOriginalMissing: Boolean, glide: GlideRequests) {
-        // Reduce the max body text view line count to 2 if this is a group thread because
-        // we'll be showing the author text view and we don't want the overall quote view height
-        // to get too big.
-        binding.quoteViewBodyTextView.maxLines = if (thread.isGroupRecipient) 2 else 3
         // Author
-        if (thread.isGroupRecipient) {
-            val author = contactDb.getContactWithSessionID(authorPublicKey)
-            val authorDisplayName = author?.displayName(Contact.contextForRecipient(thread)) ?: "${authorPublicKey.take(4)}...${authorPublicKey.takeLast(4)}"
-            binding.quoteViewAuthorTextView.text = authorDisplayName
-            binding.quoteViewAuthorTextView.setTextColor(getTextColor(isOutgoingMessage))
-        }
-        binding.quoteViewAuthorTextView.isVisible = thread.isGroupRecipient
+        val author = contactDb.getContactWithSessionID(authorPublicKey)
+        val authorDisplayName = author?.displayName(Contact.contextForRecipient(thread)) ?: "${authorPublicKey.take(4)}...${authorPublicKey.takeLast(4)}"
+        binding.quoteViewAuthorTextView.text = authorDisplayName
+        binding.quoteViewAuthorTextView.setTextColor(getTextColor(isOutgoingMessage))
         // Body
         binding.quoteViewBodyTextView.text = if (isOpenGroupInvitation) resources.getString(R.string.open_group_invitation_view__open_group_invitation) else MentionUtilities.highlightMentions((body ?: "").toSpannable(), threadID, context)
         binding.quoteViewBodyTextView.setTextColor(getTextColor(isOutgoingMessage))

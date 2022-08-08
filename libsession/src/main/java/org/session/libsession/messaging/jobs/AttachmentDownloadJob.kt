@@ -60,6 +60,15 @@ class AttachmentDownloadJob(val attachmentID: Long, val databaseMessageID: Long)
                     messageDataProvider.setAttachmentState(AttachmentState.FAILED, AttachmentId(attachmentID,0), databaseMessageID)
                 }
                 this.handlePermanentFailure(exception)
+            } else if (exception == Error.DuplicateData) {
+                attachment?.let { id ->
+                    Log.d("AttachmentDownloadJob", "Setting attachment state = done from duplicate data")
+                    messageDataProvider.setAttachmentState(AttachmentState.DONE, id, databaseMessageID)
+                } ?: run {
+                    Log.d("AttachmentDownloadJob", "Setting attachment state = done from duplicate data")
+                    messageDataProvider.setAttachmentState(AttachmentState.DONE, AttachmentId(attachmentID,0), databaseMessageID)
+                }
+                this.handleSuccess()
             } else {
                 if (failureCount + 1 >= maxFailureCount) {
                     attachment?.let { id ->

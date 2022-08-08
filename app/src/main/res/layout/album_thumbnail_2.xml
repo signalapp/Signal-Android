@@ -17,7 +17,7 @@
         android:id="@+id/album_cell_2"
         android:layout_width="@dimen/album_2_cell_width"
         android:layout_height="@dimen/album_2_total_height"
-        android:layout_gravity="right|end"
+        android:layout_gravity="end"
         app:thumbnail_radius="0dp"/>
 
 </FrameLayout>

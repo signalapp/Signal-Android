@@ -258,7 +258,7 @@ public class DefaultMessageNotifier implements MessageNotifier {
     Cursor pushCursor  = null;
 
     try {
-      telcoCursor = DatabaseComponent.get(context).mmsSmsDatabase().getUnread();
+      telcoCursor = DatabaseComponent.get(context).mmsSmsDatabase().getUnread(); // TODO: add a notification specific lighter query here
 
       if ((telcoCursor == null || telcoCursor.isAfterLast()) || !TextSecurePreferences.hasSeenWelcomeScreen(context))
       {

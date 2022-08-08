@@ -563,12 +563,6 @@ public class SmsDatabase extends MessagingDatabase {
     Log.i("MessageDatabase", "Deleting: " + messageId);
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     long threadId = getThreadIdForMessage(messageId);
-    try {
-      SmsMessageRecord toDelete = getMessage(messageId);
-      DatabaseComponent.get(context).mmsDatabase().deleteQuotedFromMessages(toDelete);
-    } catch (NoSuchMessageException e) {
-      Log.e(TAG, "Couldn't find message record for messageId "+messageId, e);
-    }
     db.delete(TABLE_NAME, ID_WHERE, new String[] {messageId+""});
     boolean threadDeleted = DatabaseComponent.get(context).threadDatabase().update(threadId, false);
     notifyConversationListeners(threadId);
