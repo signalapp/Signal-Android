@@ -55,6 +55,7 @@ class EmojiSearchDatabase(context: Context, databaseHelper: SignalDatabase) : Da
       .sortedWith { lhs, rhs ->
         similarityScore(query, lhs.label) - similarityScore(query, rhs.label)
       }
+      .distinctBy { it.emoji }
       .take(originalLimit)
       .map { it.emoji }
   }
