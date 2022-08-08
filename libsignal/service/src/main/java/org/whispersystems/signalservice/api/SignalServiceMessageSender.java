@@ -261,7 +261,7 @@ public class SignalServiceMessageSender {
       throws IOException, UntrustedIdentityException
   {
     Content                  content            = createStoryContent(message);
-    EnvelopeContent          envelopeContent    = EnvelopeContent.encrypted(content, ContentHint.RESENDABLE, Optional.empty());
+    EnvelopeContent          envelopeContent    = EnvelopeContent.encrypted(content, ContentHint.IMPLICIT, Optional.empty());
     List<SendMessageResult>  sendMessageResults = sendMessage(recipients, getTargetUnidentifiedAccess(unidentifiedAccess), timestamp, envelopeContent, false, null, null, false);
 
     if (store.isMultiDevice()) {
@@ -286,7 +286,7 @@ public class SignalServiceMessageSender {
       throws IOException, UntrustedIdentityException, InvalidKeyException, NoSessionException, InvalidRegistrationIdException
   {
     Content                  content            = createStoryContent(message);
-    List<SendMessageResult>  sendMessageResults = sendGroupMessage(distributionId, recipients, unidentifiedAccess, timestamp, content, ContentHint.RESENDABLE, groupId, false, SenderKeyGroupEvents.EMPTY, false);
+    List<SendMessageResult>  sendMessageResults = sendGroupMessage(distributionId, recipients, unidentifiedAccess, timestamp, content, ContentHint.IMPLICIT, groupId, false, SenderKeyGroupEvents.EMPTY, false);
 
     if (store.isMultiDevice()) {
       SignalServiceSyncMessage syncMessage = createSelfSendSyncMessageForStory(message, timestamp, isRecipientUpdate, manifest);
