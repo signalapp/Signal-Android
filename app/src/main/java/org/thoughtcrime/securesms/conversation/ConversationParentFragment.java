@@ -2161,7 +2161,9 @@ public class ConversationParentFragment extends Fragment
       int toolbarTextAndIconColor = getResources().getColor(R.color.signal_colorOnSurface);
       toolbar.setTitleTextColor(toolbarTextAndIconColor);
       setToolbarActionItemTint(toolbar, toolbarTextAndIconColor);
-      WindowUtil.setNavigationBarColor(requireActivity(), getResources().getColor(R.color.signal_colorBackground));
+      if (!releaseChannelUnmute.resolved()) {
+        WindowUtil.setNavigationBarColor(requireActivity(), getResources().getColor(R.color.signal_colorBackground));
+      }
     }
     fragment.onWallpaperChanged(chatWallpaper);
     messageRequestBottomView.setWallpaperEnabled(chatWallpaper != null);
@@ -2719,8 +2721,10 @@ public class ConversationParentFragment extends Fragment
         unmuteBanner.setVisibility(View.VISIBLE);
         unmuteBanner.findViewById(R.id.conversation_activity_unmute_button)
                     .setOnClickListener(v -> handleUnmuteNotifications());
+        WindowUtil.setNavigationBarColor(requireActivity(), getResources().getColor(R.color.signal_colorSurface2));
       } else if (releaseChannelUnmute.resolved()) {
         releaseChannelUnmute.get().setVisibility(View.GONE);
+        WindowUtil.setNavigationBarColor(requireActivity(), getResources().getColor(R.color.signal_colorBackground));
       }
     } else {
       boolean inactivePushGroup = isPushGroupConversation() && !recipient.isActiveGroup();
