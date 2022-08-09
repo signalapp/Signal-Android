@@ -9,7 +9,6 @@ import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotEquals
 import org.junit.Assert.assertTrue
 import org.junit.Before
-import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.signal.core.util.CursorUtil
@@ -188,7 +187,6 @@ class RecipientDatabaseTest_getAndPossiblyMergePnp {
   }
 
   /** We never want to remove the e164 of our own contact entry. Leave the e164 alone. */
-  @Ignore("Change self isn't implemented yet!")
   @Test
   fun getAndPossiblyMerge_e164MapsToExistingUserButAciDoesNot_e164BelongsToLocalUser() {
     val dataSet = KeyValueDataSet().apply {
@@ -237,16 +235,15 @@ class RecipientDatabaseTest_getAndPossiblyMergePnp {
     val existingAciId: RecipientId = recipientDatabase.getAndPossiblyMergePnp(ACI_A, null)
     val existingE164Id: RecipientId = recipientDatabase.getAndPossiblyMergePnp(null, E164_A)
 
-    val retrievedId: RecipientId = recipientDatabase.getAndPossiblyMergePnp(ACI_A, E164_A)
-    assertEquals(existingAciId, retrievedId)
+    val mergedId: RecipientId = recipientDatabase.getAndPossiblyMergePnp(ACI_A, E164_A)
+    assertEquals(existingAciId, mergedId)
 
-    val retrievedRecipient = Recipient.resolved(retrievedId)
+    val retrievedRecipient = Recipient.resolved(mergedId)
     assertEquals(ACI_A, retrievedRecipient.requireServiceId())
     assertEquals(E164_A, retrievedRecipient.requireE164())
 
-    // TODO: Recipient remapping!
-//    val existingE164Recipient = Recipient.resolved(existingE164Id)
-//    assertEquals(retrievedId, existingE164Recipient.id)
+    val existingE164Recipient = Recipient.resolved(existingE164Id)
+    assertEquals(mergedId, existingE164Recipient.id)
 
     changeNumberListener.waitForJobManager()
     assertFalse(changeNumberListener.numberChangeWasEnqueued)
@@ -268,13 +265,11 @@ class RecipientDatabaseTest_getAndPossiblyMergePnp {
     assertEquals(ACI_A, retrievedRecipient.requireServiceId())
     assertEquals(E164_A, retrievedRecipient.requireE164())
 
-    // TODO: Recipient remapping!
-//    val existingE164Recipient = Recipient.resolved(existingE164Id)
-//    assertEquals(retrievedId, existingE164Recipient.id)
+    val existingE164Recipient = Recipient.resolved(existingE164Id)
+    assertEquals(retrievedId, existingE164Recipient.id)
 
-    // TODO: Change number!
-//    changeNumberListener.waitForJobManager()
-//    assert(changeNumberListener.numberChangeWasEnqueued)
+    changeNumberListener.waitForJobManager()
+    assert(changeNumberListener.numberChangeWasEnqueued)
   }
 
   /** No new rules here, just a more complex scenario to show how different rules interact. */
@@ -297,8 +292,8 @@ class RecipientDatabaseTest_getAndPossiblyMergePnp {
     assertEquals(ACI_B, existingRecipient2.requireServiceId())
     assertFalse(existingRecipient2.hasE164())
 
-    // TODO: Change number!
-//    assert(changeNumberListener.numberChangeWasEnqueued)
+    changeNumberListener.waitForJobManager()
+    assert(changeNumberListener.numberChangeWasEnqueued)
   }
 
   /**
@@ -319,13 +314,11 @@ class RecipientDatabaseTest_getAndPossiblyMergePnp {
 
     assertFalse(recipientDatabase.getByE164(E164_B).isPresent)
 
-    // TODO: Recipient remapping!
-//    val recipientWithId2 = Recipient.resolved(existingId2)
-//    assertEquals(retrievedId, recipientWithId2.id)
+    val recipientWithId2 = Recipient.resolved(existingId2)
+    assertEquals(retrievedId, recipientWithId2.id)
   }
 
   /** We never want to remove the e164 of our own contact entry. Leave the e164 alone. */
-  @Ignore("Change self isn't implemented yet!")
   @Test
   fun getAndPossiblyMerge_bothAciAndE164MapToExistingUser_e164BelongsToLocalUser() {
     val dataSet = KeyValueDataSet().apply {
@@ -402,13 +395,11 @@ class RecipientDatabaseTest_getAndPossiblyMergePnp {
     assertEquals(ACI_A, retrievedRecipient.requireServiceId())
     assertEquals(E164_B, retrievedRecipient.requireE164())
 
-    // TODO: Change number!
-//    changeNumberListener.waitForJobManager()
-//    assert(changeNumberListener.numberChangeWasEnqueued)
+    changeNumberListener.waitForJobManager()
+    assert(changeNumberListener.numberChangeWasEnqueued)
   }
 
   /** High trust lets you merge two different users into one. You should prefer the ACI user. Not shown: merging threads, dropping e164 sessions, etc. */
-  @Ignore("This level of merging isn't implemented yet!")
   @Test
   fun getAndPossiblyMerge_merge_general() {
     // Setup

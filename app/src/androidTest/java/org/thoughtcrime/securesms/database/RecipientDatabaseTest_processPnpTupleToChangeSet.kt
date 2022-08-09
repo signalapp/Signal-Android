@@ -14,7 +14,6 @@ import org.whispersystems.signalservice.api.push.ACI
 import org.whispersystems.signalservice.api.push.PNI
 import org.whispersystems.signalservice.api.push.ServiceId
 import java.lang.AssertionError
-import java.lang.IllegalArgumentException
 import java.lang.IllegalStateException
 import java.util.UUID
 
@@ -68,12 +67,12 @@ class RecipientDatabaseTest_processPnpTupleToChangeSet {
     )
   }
 
-  @Test(expected = IllegalArgumentException::class)
+  @Test(expected = IllegalStateException::class)
   fun noMatch_pniOnly() {
     db.processPnpTupleToChangeSet(null, PNI_A, null, pniVerified = false)
   }
 
-  @Test(expected = IllegalArgumentException::class)
+  @Test(expected = IllegalStateException::class)
   fun noMatch_noData() {
     db.processPnpTupleToChangeSet(null, null, null, pniVerified = false)
   }
@@ -603,11 +602,48 @@ class RecipientDatabaseTest_processPnpTupleToChangeSet {
         id = PnpIdResolver.PnpNoopId(result.secondId),
         operations = listOf(
           PnpOperation.RemovePni(result.firstId),
-          PnpOperation.Update(
+          PnpOperation.SetPni(
+            recipientId = result.secondId,
+            pni = PNI_A,
+          ),
+          PnpOperation.SetE164(
             recipientId = result.secondId,
             e164 = E164_A,
+          )
+        )
+      ),
+      result.changeSet
+    )
+  }
+
+  @Test
+  fun merge_e164AndPni_aciOnly_e164RecordHasSeparateE164_changeNumber() {
+    val result = applyAndAssert(
+      listOf(
+        Input(E164_B, PNI_A, null),
+        Input(E164_C, null, ACI_A),
+      ),
+      Update(E164_A, PNI_A, ACI_A),
+      Output(E164_A, PNI_A, ACI_A)
+    )
+
+    assertEquals(
+      PnpChangeSet(
+        id = PnpIdResolver.PnpNoopId(result.secondId),
+        operations = listOf(
+          PnpOperation.RemovePni(result.firstId),
+          PnpOperation.SetPni(
+            recipientId = result.secondId,
             pni = PNI_A,
-            aci = ACI_A
+          ),
+          PnpOperation.SetE164(
+            recipientId = result.secondId,
+            e164 = E164_A,
+          ),
+          PnpOperation.ChangeNumberInsert(
+            recipientId = result.secondId,
+            oldE164 = E164_C,
+            newE164 = E164_A
           )
         )
       ),
@@ -806,5 +842,6 @@ class RecipientDatabaseTest_processPnpTupleToChangeSet {
 
     const val E164_A = "+12221234567"
     const val E164_B = "+13331234567"
+    const val E164_C = "+14441234567"
   }
 }

@@ -292,6 +292,7 @@ class RecipientDatabaseTest_getAndPossiblyMergeLegacy {
     assertEquals(ACI_B, existingRecipient2.requireServiceId())
     assertFalse(existingRecipient2.hasE164())
 
+    changeNumberListener.waitForJobManager()
     assert(changeNumberListener.numberChangeWasEnqueued)
   }
 

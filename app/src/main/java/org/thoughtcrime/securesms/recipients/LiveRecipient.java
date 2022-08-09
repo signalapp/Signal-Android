@@ -201,7 +201,7 @@ public final class LiveRecipient {
       details = RecipientDetails.forIndividual(context, record);
     }
 
-    Recipient recipient = new Recipient(id, details, true);
+    Recipient recipient = new Recipient(record.getId(), details, true);
     RecipientIdCache.INSTANCE.put(recipient);
     return recipient;
   }

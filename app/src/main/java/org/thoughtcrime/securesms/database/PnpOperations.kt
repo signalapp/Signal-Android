@@ -47,15 +47,6 @@ data class PnpDataSet(
     for (operation in operations) {
       @Exhaustive
       when (operation) {
-        is PnpOperation.Update -> {
-          records.replace(operation.recipientId) { record ->
-            record.copy(
-              e164 = operation.e164,
-              pni = operation.pni,
-              serviceId = operation.aci ?: operation.pni
-            )
-          }
-        }
         is PnpOperation.RemoveE164 -> {
           records.replace(operation.recipientId) { it.copy(e164 = null) }
         }
@@ -145,8 +136,28 @@ data class PnpDataSet(
  */
 data class PnpChangeSet(
   val id: PnpIdResolver,
-  val operations: List<PnpOperation> = emptyList()
-)
+  val operations: List<PnpOperation> = emptyList(),
+  val breadCrumbs: List<String> = emptyList()
+) {
+  // We want to exclude breadcrumbs from equality for testing purposes
+  override fun equals(other: Any?): Boolean {
+    if (this === other) return true
+    if (javaClass != other?.javaClass) return false
+
+    other as PnpChangeSet
+
+    if (id != other.id) return false
+    if (operations != other.operations) return false
+
+    return true
+  }
+
+  override fun hashCode(): Int {
+    var result = id.hashCode()
+    result = 31 * result + operations.hashCode()
+    return result
+  }
+}
 
 sealed class PnpIdResolver {
   data class PnpNoopId(
@@ -165,33 +176,28 @@ sealed class PnpIdResolver {
  * Lets us describe various situations as a series of operations, making code clearer and tests easier.
  */
 sealed class PnpOperation {
-  data class Update(
-    val recipientId: RecipientId,
-    val e164: String?,
-    val pni: PNI?,
-    val aci: ACI?
-  ) : PnpOperation()
+  abstract val recipientId: RecipientId
 
   data class RemoveE164(
-    val recipientId: RecipientId
+    override val recipientId: RecipientId
   ) : PnpOperation()
 
   data class RemovePni(
-    val recipientId: RecipientId
+    override val recipientId: RecipientId
   ) : PnpOperation()
 
   data class SetE164(
-    val recipientId: RecipientId,
+    override val recipientId: RecipientId,
     val e164: String
   ) : PnpOperation()
 
   data class SetPni(
-    val recipientId: RecipientId,
+    override val recipientId: RecipientId,
     val pni: PNI
   ) : PnpOperation()
 
   data class SetAci(
-    val recipientId: RecipientId,
+    override val recipientId: RecipientId,
     val aci: ACI
   ) : PnpOperation()
 
@@ -201,14 +207,17 @@ sealed class PnpOperation {
   data class Merge(
     val primaryId: RecipientId,
     val secondaryId: RecipientId
-  ) : PnpOperation()
+  ) : PnpOperation() {
+    override val recipientId: RecipientId
+      get() = throw UnsupportedOperationException()
+  }
 
   data class SessionSwitchoverInsert(
-    val recipientId: RecipientId
+    override val recipientId: RecipientId
   ) : PnpOperation()
 
   data class ChangeNumberInsert(
-    val recipientId: RecipientId,
+    override val recipientId: RecipientId,
     val oldE164: String,
     val newE164: String
   ) : PnpOperation()

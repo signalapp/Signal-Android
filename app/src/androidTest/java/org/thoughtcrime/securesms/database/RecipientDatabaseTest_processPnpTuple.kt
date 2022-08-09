@@ -16,7 +16,6 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.push.ACI
 import org.whispersystems.signalservice.api.push.PNI
 import org.whispersystems.signalservice.api.push.ServiceId
-import java.lang.IllegalArgumentException
 import java.util.UUID
 
 @RunWith(AndroidJUnit4::class)
@@ -61,14 +60,14 @@ class RecipientDatabaseTest_processPnpTuple {
     }
   }
 
-  @Test(expected = IllegalArgumentException::class)
+  @Test(expected = IllegalStateException::class)
   fun noMatch_pniOnly() {
     test {
       process(null, PNI_A, null)
     }
   }
 
-  @Test(expected = IllegalArgumentException::class)
+  @Test(expected = IllegalStateException::class)
   fun noMatch_noData() {
     test {
       process(null, null, null)
@@ -416,7 +415,13 @@ class RecipientDatabaseTest_processPnpTuple {
     }
 
     fun process(e164: String?, pni: PNI?, aci: ACI?) {
-      generatedIds += recipientDatabase.processPnpTuple(e164, pni, aci, false)
+      SignalDatabase.rawDatabase.beginTransaction()
+      try {
+        generatedIds += recipientDatabase.processPnpTuple(e164, pni, aci, pniVerified = false, pnpEnabled = true).finalId
+        SignalDatabase.rawDatabase.setTransactionSuccessful()
+      } finally {
+        SignalDatabase.rawDatabase.endTransaction()
+      }
     }
 
     fun expect(e164: String?, pni: PNI?, aci: ACI?) {
