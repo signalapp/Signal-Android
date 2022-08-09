@@ -3851,7 +3851,7 @@
   <!--Dialog title when removing a viewer from a story-->
   <string name="StoryViewsFragment__remove_viewer">볼 수 있는 사람을 제거할까요?</string>
   <!--Dialog message when removing a viewer from a story-->
-  <string name="StoryViewsFragment__s_will_still_be_able">%1$s 님은 이 게시물은 계속 볼 수 있지만 앞으로 사용자가 %2$s에 공유하는 게시물은 볼 수 없게 됩니다.</string>
+  <string name="StoryViewsFragment__s_will_still_be_able">%1$s 님은 이 게시물은 계속 볼 수 있지만 앞으로 내가 %2$s에 공유하는 게시물은 볼 수 없게 됩니다.</string>
   <!--Story View context menu action to remove them from a story-->
   <string name="StoryViewItem__remove_viewer">볼 수 있는 사람 제거</string>
   <!--Displayed when a story has no replies yet-->

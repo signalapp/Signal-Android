@@ -3961,8 +3961,11 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <!--Dialog action to remove viewer from a story-->
   <string name="StoryViewsFragment__remove">Verwijderen</string>
   <!--Dialog title when removing a viewer from a story-->
+  <string name="StoryViewsFragment__remove_viewer">Gebruiker verwijderen?</string>
   <!--Dialog message when removing a viewer from a story-->
+  <string name="StoryViewsFragment__s_will_still_be_able">%1$s kan deze post nog steeds zien, maar zal toekomstige posts die je deelt via %2$s niet meer kunnen zien.</string>
   <!--Story View context menu action to remove them from a story-->
+  <string name="StoryViewItem__remove_viewer">Gebruiker verwijderen</string>
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Nog geen reacties</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->

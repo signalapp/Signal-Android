@@ -4063,8 +4063,11 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--Dialog action to remove viewer from a story-->
   <string name="StoryViewsFragment__remove">Eliminar</string>
   <!--Dialog title when removing a viewer from a story-->
+  <string name="StoryViewsFragment__remove_viewer">¿Quitar espectador?</string>
   <!--Dialog message when removing a viewer from a story-->
+  <string name="StoryViewsFragment__s_will_still_be_able">%1$s todavía podrá ver esta publicación, pero no podrá ver ninguna publicación futura que compartas con %2$s.</string>
   <!--Story View context menu action to remove them from a story-->
+  <string name="StoryViewItem__remove_viewer">Quitar espectador</string>
   <!--Displayed when a story has no replies yet-->
   <string name="StoryGroupReplyFragment__no_replies_yet">Sin respuestas por ahora</string>
   <!--Displayed for each user that reacted to a story when viewing replies-->

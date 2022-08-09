@@ -3965,7 +3965,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <!--Dialog title when removing a viewer from a story-->
   <string name="StoryViewsFragment__remove_viewer">Të hiqet shikuesi?</string>
   <!--Dialog message when removing a viewer from a story-->
-  <string name="StoryViewsFragment__s_will_still_be_able">%1$sdo të jetë ende në gjendje ta shikojë këtë postim, por nuk do të jetë në gjendje të shikojë asnjë postim të ardhshëm që ndani me%2$s.</string>
+  <string name="StoryViewsFragment__s_will_still_be_able">%1$sdo të mund ta shohë ende këtë postim, por nuk do të mund të shohë asnjë postim të ardhshëm që ndani në %2$s.</string>
   <!--Story View context menu action to remove them from a story-->
   <string name="StoryViewItem__remove_viewer">Hiqe shikuesin</string>
   <!--Displayed when a story has no replies yet-->
