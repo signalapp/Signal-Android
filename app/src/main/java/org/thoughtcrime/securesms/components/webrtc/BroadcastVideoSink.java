@@ -26,8 +26,8 @@ public class BroadcastVideoSink implements VideoSink {
   private final WeakHashMap<Object, Point>      requestingSizes;
   private       int                             deviceOrientationDegrees;
   private       boolean                         rotateToRightSide;
-  private       boolean                         forceRotate;
-  private       boolean                         rotateWithDevice;
+  private final boolean                         forceRotate;
+  private final boolean                         rotateWithDevice;
   private       RequestedSize                   currentlyRequestedMaxSize;
 
   public BroadcastVideoSink() {
@@ -62,14 +62,6 @@ public class BroadcastVideoSink implements VideoSink {
     sinks.remove(sink);
   }
 
-  public void setForceRotate(boolean forceRotate) {
-    this.forceRotate = forceRotate;
-  }
-
-  public void setRotateWithDevice(boolean rotateWithDevice) {
-    this.rotateWithDevice = rotateWithDevice;
-  }
-
   /**
    * Set the specific rotation desired when not rotating with device.
    *
@@ -86,9 +78,8 @@ public class BroadcastVideoSink implements VideoSink {
   @Override
   public synchronized void onFrame(@NonNull VideoFrame videoFrame) {
     boolean isDeviceRotationIgnored = deviceOrientationDegrees == DEVICE_ROTATION_IGNORE;
-    boolean isWideVideoFrame        = videoFrame.getRotatedHeight() < videoFrame.getRotatedWidth();
 
-    if (!isDeviceRotationIgnored && (isWideVideoFrame || forceRotate)) {
+    if (!isDeviceRotationIgnored && forceRotate) {
       int rotation = calculateRotation();
       if (rotation > 0) {
         rotation += rotateWithDevice ? videoFrame.getRotation() : 0;

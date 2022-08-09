@@ -15,7 +15,9 @@ object CallParticipantsLayoutStrategies {
       if (callParticipant.isScreenSharing) {
         callParticipantView.setScalingType(RendererCommon.ScalingType.SCALE_ASPECT_FIT)
       } else {
-        callParticipantView.setScalingType(if (isPortrait || childCount < 3) RendererCommon.ScalingType.SCALE_ASPECT_FILL else RendererCommon.ScalingType.SCALE_ASPECT_BALANCED)
+        val matchOrientationScaling = if (isPortrait || childCount < 3) RendererCommon.ScalingType.SCALE_ASPECT_FILL else RendererCommon.ScalingType.SCALE_ASPECT_BALANCED
+        val mismatchOrientationScaling = if (childCount == 1) RendererCommon.ScalingType.SCALE_ASPECT_FIT else matchOrientationScaling
+        callParticipantView.setScalingType(matchOrientationScaling, mismatchOrientationScaling)
       }
     }
 

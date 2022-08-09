@@ -1,10 +1,12 @@
 package org.thoughtcrime.securesms.components.sensors;
 
+import android.content.ContentResolver;
 import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.provider.Settings;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.DefaultLifecycleObserver;
@@ -22,8 +24,9 @@ public final class DeviceOrientationMonitor implements DefaultLifecycleObserver 
   private static final float LANDSCAPE_PITCH_MINIMUM = -0.5f;
   private static final float LANDSCAPE_PITCH_MAXIMUM = 0.5f;
 
-  private final SensorManager sensorManager;
-  private final EventListener eventListener = new EventListener();
+  private final SensorManager   sensorManager;
+  private final ContentResolver contentResolver;
+  private final EventListener   eventListener = new EventListener();
 
   private final float[] accelerometerReading = new float[3];
   private final float[] magnetometerReading  = new float[3];
@@ -34,7 +37,8 @@ public final class DeviceOrientationMonitor implements DefaultLifecycleObserver 
   private final MutableLiveData<Orientation> orientation = new MutableLiveData<>(Orientation.PORTRAIT_BOTTOM_EDGE);
 
   public DeviceOrientationMonitor(@NonNull Context context) {
-    this.sensorManager = ServiceUtil.getSensorManager(context);
+    this.sensorManager   = ServiceUtil.getSensorManager(context);
+    this.contentResolver = context.getContentResolver();
   }
 
   @Override
@@ -65,6 +69,12 @@ public final class DeviceOrientationMonitor implements DefaultLifecycleObserver 
   }
 
   private void updateOrientationAngles() {
+    int rotationLocked = Settings.System.getInt(contentResolver, Settings.System.ACCELEROMETER_ROTATION, -1);
+    if (rotationLocked == 0) {
+      orientation.setValue(Orientation.PORTRAIT_BOTTOM_EDGE);
+      return;
+    }
+
     boolean success = SensorManager.getRotationMatrix(rotationMatrix, null, accelerometerReading, magnetometerReading);
     if (!success) {
       SensorUtil.getRotationMatrixWithoutMagneticSensorData(rotationMatrix, accelerometerReading);

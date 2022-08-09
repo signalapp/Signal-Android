@@ -122,24 +122,8 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
     }
   }
 
-  public void addFrameListener(@NonNull EglRenderer.FrameListener listener, float scale, @NonNull RendererCommon.GlDrawer drawerParam) {
-    eglRenderer.addFrameListener(listener, scale, drawerParam);
-  }
-
-  public void addFrameListener(@NonNull EglRenderer.FrameListener listener, float scale) {
-    eglRenderer.addFrameListener(listener, scale);
-  }
-
   public void removeFrameListener(@NonNull EglRenderer.FrameListener listener) {
     eglRenderer.removeFrameListener(listener);
-  }
-
-  public void setEnableHardwareScaler(boolean enabled) {
-    ThreadUtils.checkIsOnMainThread();
-
-    enableFixedSize = enabled;
-
-    updateSurfaceSize();
   }
 
   public void setMirror(boolean mirror) {
@@ -162,18 +146,6 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
     videoLayoutMeasure.setScalingType(scalingTypeMatchOrientation, scalingTypeMismatchOrientation);
 
     requestLayout();
-  }
-
-  public void setFpsReduction(float fps) {
-    eglRenderer.setFpsReduction(fps);
-  }
-
-  public void disableFpsReduction() {
-    eglRenderer.disableFpsReduction();
-  }
-
-  public void pauseVideo() {
-    eglRenderer.pauseVideo();
   }
 
   @Override

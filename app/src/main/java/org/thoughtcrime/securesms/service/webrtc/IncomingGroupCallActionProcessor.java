@@ -150,7 +150,7 @@ public final class IncomingGroupCallActionProcessor extends DeviceAwareActionPro
                                                                     remotePeerGroup.getRecipient(),
                                                                     null,
                                                                     new BroadcastVideoSink(currentState.getVideoState().getLockableEglBase(),
-                                                                                           false,
+                                                                                           true,
                                                                                            true,
                                                                                            currentState.getLocalDeviceState().getOrientation().getDegrees()),
                                                                     true,
