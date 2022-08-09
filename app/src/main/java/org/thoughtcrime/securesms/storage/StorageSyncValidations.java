@@ -146,6 +146,10 @@ public final class StorageSyncValidations {
           throw new SelfAddedAsContactError();
         }
       }
+
+      if (insert.getAccount().isPresent() && !insert.getAccount().get().getProfileKey().isPresent()) {
+        Log.w(TAG, "Uploading a null profile key in our AccountRecord!");
+      }
     }
   }
 
