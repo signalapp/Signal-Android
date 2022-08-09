@@ -1,4 +1,6 @@
 <org.thoughtcrime.securesms.components.ListenableHorizontalScrollView
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:viewBindingIgnore="true"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/log_item_scroll"
     android:layout_height="wrap_content"

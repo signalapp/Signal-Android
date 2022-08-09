@@ -2,6 +2,7 @@
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
+    tools:viewBindingIgnore="true"
     android:layout_height="fill_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:fillViewport="true"

@@ -158,6 +158,9 @@ android {
         exclude 'signal_jni.dll'
     }
 
+    buildFeatures {
+        viewBinding true
+    }
 
     defaultConfig {
         versionCode canonicalVersionCode * postFixSize

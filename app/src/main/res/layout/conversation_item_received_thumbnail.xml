@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <org.thoughtcrime.securesms.components.ConversationItemThumbnail
         xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:viewBindingIgnore="true"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/image_view"
