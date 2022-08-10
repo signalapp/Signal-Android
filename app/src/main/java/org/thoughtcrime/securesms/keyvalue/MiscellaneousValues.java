@@ -25,6 +25,7 @@ public final class MiscellaneousValues extends SignalStoreValues {
   private static final String LAST_GV2_PROFILE_CHECK_TIME     = "misc.last_gv2_profile_check_time";
   private static final String CDS_TOKEN                       = "misc.cds_token";
   private static final String LAST_FCM_FOREGROUND_TIME        = "misc.last_fcm_foreground_time";
+  private static final String LAST_FOREGROUND_TIME            = "misc.last_foreground_time";
 
   MiscellaneousValues(@NonNull KeyValueStore store) {
     super(store);
@@ -174,5 +175,13 @@ public final class MiscellaneousValues extends SignalStoreValues {
 
   public void setLastFcmForegroundServiceTime(long time) {
     putLong(LAST_FCM_FOREGROUND_TIME, time);
+  }
+
+  public long getLastForegroundTime() {
+    return getLong(LAST_FOREGROUND_TIME, 0);
+  }
+
+  public void setLastForegroundTime(long time) {
+    putLong(LAST_FOREGROUND_TIME, time);
   }
 }
