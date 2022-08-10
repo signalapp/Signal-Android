@@ -838,9 +838,7 @@ public class ConversationParentFragment extends Fragment
           });
         }
 
-        if (TextSecurePreferences.isTypingIndicatorsEnabled(ApplicationDependencies.getApplication())) {
-          composeText.addTextChangedListener(typingTextWatcher);
-        }
+        composeText.addTextChangedListener(typingTextWatcher);
         composeText.setSelection(composeText.length(), composeText.length());
       }
     });
