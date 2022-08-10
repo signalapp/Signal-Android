@@ -82,7 +82,7 @@ class ConversationView : LinearLayout {
         }
         binding.muteIndicatorImageView.setImageResource(drawableRes)
         val rawSnippet = thread.getDisplayBody(context)
-        val snippet = highlightMentions(rawSnippet, recipient.isOpenGroupRecipient, context)
+        val snippet = highlightMentions(rawSnippet, thread.threadId, context)
         binding.snippetTextView.text = snippet
         binding.snippetTextView.typeface = if (unreadCount > 0 && !thread.isRead) Typeface.DEFAULT_BOLD else Typeface.DEFAULT
         binding.snippetTextView.visibility = if (isTyping) View.GONE else View.VISIBLE

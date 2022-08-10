@@ -1,9 +1,8 @@
 package org.session.libsession.utilities
 
 import okhttp3.HttpUrl
-import org.session.libsession.messaging.file_server.FileServerAPIV2
+import org.session.libsession.messaging.file_server.FileServerApi
 import org.session.libsignal.utilities.Log
-import org.session.libsignal.messages.SignalServiceAttachment
 import java.io.*
 
 object DownloadUtilities {
@@ -37,7 +36,7 @@ object DownloadUtilities {
         val url = HttpUrl.parse(urlAsString)!!
         val fileID = url.pathSegments().last()
         try {
-            FileServerAPIV2.download(fileID.toLong()).get().let {
+            FileServerApi.download(fileID).get().let {
                 outputStream.write(it)
             }
         } catch (e: Exception) {

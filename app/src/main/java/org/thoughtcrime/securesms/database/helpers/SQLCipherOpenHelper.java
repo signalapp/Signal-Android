@@ -14,8 +14,10 @@ import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsignal.utilities.Log;
 import org.thoughtcrime.securesms.crypto.DatabaseSecret;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
+import org.thoughtcrime.securesms.database.BlindedIdMappingDatabase;
 import org.thoughtcrime.securesms.database.DraftDatabase;
 import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.database.GroupMemberDatabase;
 import org.thoughtcrime.securesms.database.GroupReceiptDatabase;
 import org.thoughtcrime.securesms.database.JobDatabase;
 import org.thoughtcrime.securesms.database.LokiAPIDatabase;
@@ -67,9 +69,10 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int lokiV32                          = 53;
   private static final int lokiV33                          = 54;
   private static final int lokiV34                          = 55;
+  private static final int lokiV35                          = 55;
 
   // Loki - onUpgrade(...) must be updated to use Loki version numbers if Signal makes any database changes
-  private static final int    DATABASE_VERSION = lokiV34;
+  private static final int    DATABASE_VERSION = lokiV35;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -135,6 +138,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     db.execSQL(LokiAPIDatabase.getCreateOpenGroupProfilePictureTableCommand());
     db.execSQL(LokiAPIDatabase.getCreateClosedGroupEncryptionKeyPairsTable());
     db.execSQL(LokiAPIDatabase.getCreateClosedGroupPublicKeysTable());
+    db.execSQL(LokiAPIDatabase.getCreateServerCapabilitiesCommand());
+    db.execSQL(LokiAPIDatabase.getCreateLastInboxMessageServerIdCommand());
+    db.execSQL(LokiAPIDatabase.getCreateLastOutboxMessageServerIdCommand());
     db.execSQL(LokiMessageDatabase.getCreateMessageIDTableCommand());
     db.execSQL(LokiMessageDatabase.getCreateMessageToThreadMappingTableCommand());
     db.execSQL(LokiMessageDatabase.getCreateErrorMessageTableCommand());
@@ -161,6 +167,8 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     db.execSQL(LokiAPIDatabase.DROP_LEGACY_LAST_HASH);
     db.execSQL(LokiAPIDatabase.INSERT_RECEIVED_HASHES_DATA);
     db.execSQL(LokiAPIDatabase.DROP_LEGACY_RECEIVED_HASHES);
+    db.execSQL(BlindedIdMappingDatabase.CREATE_BLINDED_ID_MAPPING_TABLE_COMMAND);
+    db.execSQL(GroupMemberDatabase.CREATE_GROUP_MEMBER_TABLE_COMMAND);
 
     executeStatements(db, SmsDatabase.CREATE_INDEXS);
     executeStatements(db, MmsDatabase.CREATE_INDEXS);
@@ -367,6 +375,14 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
         db.execSQL(LokiAPIDatabase.DROP_LEGACY_LAST_HASH);
         db.execSQL(LokiAPIDatabase.INSERT_RECEIVED_HASHES_DATA);
         db.execSQL(LokiAPIDatabase.DROP_LEGACY_RECEIVED_HASHES);
+      }
+
+      if (oldVersion < lokiV35) {
+        db.execSQL(LokiAPIDatabase.getCreateServerCapabilitiesCommand());
+        db.execSQL(LokiAPIDatabase.getCreateLastInboxMessageServerIdCommand());
+        db.execSQL(LokiAPIDatabase.getCreateLastOutboxMessageServerIdCommand());
+        db.execSQL(BlindedIdMappingDatabase.CREATE_BLINDED_ID_MAPPING_TABLE_COMMAND);
+        db.execSQL(GroupMemberDatabase.CREATE_GROUP_MEMBER_TABLE_COMMAND);
       }
 
       db.setTransactionSuccessful();

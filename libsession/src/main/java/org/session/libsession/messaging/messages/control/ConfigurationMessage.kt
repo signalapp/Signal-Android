@@ -11,7 +11,7 @@ import org.session.libsignal.crypto.ecc.DjbECPrivateKey
 import org.session.libsignal.crypto.ecc.DjbECPublicKey
 import org.session.libsignal.crypto.ecc.ECKeyPair
 import org.session.libsignal.protos.SignalServiceProtos
-import org.session.libsignal.utilities.removing05PrefixIfNeeded
+import org.session.libsignal.utilities.removingIdPrefixIfNeeded
 import org.session.libsignal.utilities.toHexString
 import org.session.libsignal.utilities.Hex
 
@@ -36,7 +36,7 @@ class ConfigurationMessage(var closedGroups: List<ClosedGroup>, var openGroups: 
                 val publicKey = proto.publicKey.toByteArray().toHexString()
                 val name = proto.name
                 val encryptionKeyPairAsProto = proto.encryptionKeyPair
-                val encryptionKeyPair = ECKeyPair(DjbECPublicKey(encryptionKeyPairAsProto.publicKey.toByteArray().removing05PrefixIfNeeded()),
+                val encryptionKeyPair = ECKeyPair(DjbECPublicKey(encryptionKeyPairAsProto.publicKey.toByteArray().removingIdPrefixIfNeeded()),
                     DjbECPrivateKey(encryptionKeyPairAsProto.privateKey.toByteArray()))
                 val members = proto.membersList.map { it.toByteArray().toHexString() }
                 val admins = proto.adminsList.map { it.toByteArray().toHexString() }
@@ -50,7 +50,7 @@ class ConfigurationMessage(var closedGroups: List<ClosedGroup>, var openGroups: 
             result.publicKey = ByteString.copyFrom(Hex.fromStringCondensed(publicKey))
             result.name = name
             val encryptionKeyPairAsProto = SignalServiceProtos.KeyPair.newBuilder()
-            encryptionKeyPairAsProto.publicKey = ByteString.copyFrom(encryptionKeyPair!!.publicKey.serialize().removing05PrefixIfNeeded())
+            encryptionKeyPairAsProto.publicKey = ByteString.copyFrom(encryptionKeyPair!!.publicKey.serialize().removingIdPrefixIfNeeded())
             encryptionKeyPairAsProto.privateKey = ByteString.copyFrom(encryptionKeyPair!!.privateKey.serialize())
             result.encryptionKeyPair = encryptionKeyPairAsProto.build()
             result.addAllMembers(members.map { ByteString.copyFrom(Hex.fromStringCondensed(it)) })
@@ -134,8 +134,8 @@ class ConfigurationMessage(var closedGroups: List<ClosedGroup>, var openGroups: 
                 }
                 if (group.isOpenGroup) {
                     val threadID = storage.getThreadId(group.encodedId) ?: continue
-                    val openGroupV2 = storage.getV2OpenGroup(threadID)
-                    val shareUrl = openGroupV2?.joinURL ?: continue
+                    val openGroup = storage.getOpenGroup(threadID)
+                    val shareUrl = openGroup?.joinURL ?: continue
                     openGroups.add(shareUrl)
                 }
             }

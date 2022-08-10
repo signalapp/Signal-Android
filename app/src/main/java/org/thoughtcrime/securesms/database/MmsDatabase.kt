@@ -1031,6 +1031,16 @@ class MmsDatabase(context: Context, databaseHelper: SQLCipherOpenHelper) : Messa
         return threadDeleted
     }
 
+    override fun updateThreadId(fromId: Long, toId: Long) {
+        val contentValues = ContentValues(1)
+        contentValues.put(THREAD_ID, toId)
+
+        val db = databaseHelper.writableDatabase
+        db.update(SmsDatabase.TABLE_NAME, contentValues, "$THREAD_ID = ?", arrayOf("$fromId"))
+        notifyConversationListeners(toId)
+        notifyConversationListListeners()
+    }
+
     fun deleteThread(threadId: Long) {
         deleteThreads(setOf(threadId))
     }

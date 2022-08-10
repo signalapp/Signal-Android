@@ -115,6 +115,8 @@ public class ThreadRecord extends DisplayRecord {
       return emphasisAdded(context.getString(R.string.ThreadRecord_you_marked_verified));
     } else if (SmsDatabase.Types.isIdentityDefault(type)) {
       return emphasisAdded(context.getString(R.string.ThreadRecord_you_marked_unverified));
+    } else if (MmsSmsColumns.Types.isMessageRequestResponse(type)) {
+      return emphasisAdded(context.getString(R.string.message_requests_accepted));
     } else if (getCount() == 0) {
       return new SpannableString(context.getString(R.string.ThreadRecord_empty_message));
     } else {

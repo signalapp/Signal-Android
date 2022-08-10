@@ -1,5 +1,6 @@
 rootProject.name = "session-android"
 
 include ':app'
+include ':liblazysodium'
 include ':libsession'
 include ':libsignal'

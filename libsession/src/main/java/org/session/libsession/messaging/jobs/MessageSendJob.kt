@@ -3,8 +3,6 @@ package org.session.libsession.messaging.jobs
 import com.esotericsoftware.kryo.Kryo
 import com.esotericsoftware.kryo.io.Input
 import com.esotericsoftware.kryo.io.Output
-import nl.komponents.kovenant.FailedException
-import nl.komponents.kovenant.Promise
 import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.jobs.Job.Companion.MAX_BUFFER_SIZE
 import org.session.libsession.messaging.messages.Destination

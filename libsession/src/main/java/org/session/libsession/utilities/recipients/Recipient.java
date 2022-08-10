@@ -40,6 +40,7 @@ import org.session.libsession.messaging.contacts.Contact;
 import org.session.libsession.utilities.Address;
 import org.session.libsession.utilities.FutureTaskListener;
 import org.session.libsession.utilities.GroupRecord;
+import org.session.libsession.utilities.GroupUtil;
 import org.session.libsession.utilities.ListenableFutureTask;
 import org.session.libsession.utilities.MaterialColor;
 import org.session.libsession.utilities.ProfilePictureModifiedEvent;
@@ -314,6 +315,11 @@ public class Recipient implements RecipientModifiedListener {
       } else {
         return this.name;
       }
+    } else if (isOpenGroupInboxRecipient()){
+      String inboxID = GroupUtil.getDecodedOpenGroupInbox(sessionID);
+      Contact contact = storage.getContactWithSessionID(inboxID);
+      if (contact == null) { return sessionID; }
+      return contact.displayName(Contact.ContactContext.REGULAR);
     } else {
       Contact contact = storage.getContactWithSessionID(sessionID);
       if (contact == null) { return sessionID; }
@@ -429,6 +435,10 @@ public class Recipient implements RecipientModifiedListener {
 
   public boolean isOpenGroupRecipient() {
     return address.isOpenGroup();
+  }
+
+  public boolean isOpenGroupInboxRecipient() {
+    return address.isOpenGroupInbox();
   }
 
   public boolean isClosedGroupRecipient() {

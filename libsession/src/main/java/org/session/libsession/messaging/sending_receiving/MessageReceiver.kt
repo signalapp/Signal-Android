@@ -12,8 +12,11 @@ import org.session.libsession.messaging.messages.control.ReadReceipt
 import org.session.libsession.messaging.messages.control.TypingIndicator
 import org.session.libsession.messaging.messages.control.UnsendRequest
 import org.session.libsession.messaging.messages.visible.VisibleMessage
+import org.session.libsession.messaging.utilities.SessionId
+import org.session.libsession.messaging.utilities.SodiumUtilities
 import org.session.libsignal.crypto.PushTransportDetails
 import org.session.libsignal.protos.SignalServiceProtos
+import org.session.libsignal.utilities.IdPrefix
 import org.session.libsignal.utilities.Log
 
 object MessageReceiver {
@@ -31,6 +34,7 @@ object MessageReceiver {
         object SelfSend: Error("Message addressed at self.")
         object InvalidGroupPublicKey: Error("Invalid group public key.")
         object NoGroupKeyPair: Error("Missing group key pair.")
+        object NoUserED25519KeyPair : Error("Couldn't find user ED25519 key pair.")
 
         internal val isRetryable: Boolean = when (this) {
             is DuplicateMessage, is InvalidMessage, is UnknownMessage,
@@ -40,7 +44,13 @@ object MessageReceiver {
         }
     }
 
-    internal fun parse(data: ByteArray, openGroupServerID: Long?): Pair<Message, SignalServiceProtos.Content> {
+    internal fun parse(
+        data: ByteArray,
+        openGroupServerID: Long?,
+        isOutgoing: Boolean? = null,
+        otherBlindedPublicKey: String? = null,
+        openGroupPublicKey: String? = null,
+    ): Pair<Message, SignalServiceProtos.Content> {
         val storage = MessagingModuleConfiguration.shared.storage
         val userPublicKey = storage.getUserPublicKey()
         val isOpenGroupMessage = (openGroupServerID != null)
@@ -59,10 +69,23 @@ object MessageReceiver {
         } else {
             when (envelope.type) {
                 SignalServiceProtos.Envelope.Type.SESSION_MESSAGE -> {
-                    val userX25519KeyPair = MessagingModuleConfiguration.shared.storage.getUserX25519KeyPair()
-                    val decryptionResult = MessageDecrypter.decrypt(ciphertext.toByteArray(), userX25519KeyPair)
-                    plaintext = decryptionResult.first
-                    sender = decryptionResult.second
+                    if (IdPrefix.fromValue(envelope.source) == IdPrefix.BLINDED) {
+                        openGroupPublicKey ?: throw Error.InvalidGroupPublicKey
+                        otherBlindedPublicKey ?: throw Error.DecryptionFailed
+                        val decryptionResult = MessageDecrypter.decryptBlinded(
+                            ciphertext.toByteArray(),
+                            isOutgoing ?: false,
+                            otherBlindedPublicKey,
+                            openGroupPublicKey
+                        )
+                        plaintext = decryptionResult.first
+                        sender = decryptionResult.second
+                    } else {
+                        val userX25519KeyPair = MessagingModuleConfiguration.shared.storage.getUserX25519KeyPair()
+                        val decryptionResult = MessageDecrypter.decrypt(ciphertext.toByteArray(), userX25519KeyPair)
+                        plaintext = decryptionResult.first
+                        sender = decryptionResult.second
+                    }
                 }
                 SignalServiceProtos.Envelope.Type.CLOSED_GROUP_MESSAGE -> {
                     val hexEncodedGroupPublicKey = envelope.source
@@ -118,8 +141,9 @@ object MessageReceiver {
             VisibleMessage.fromProto(proto) ?: run {
             throw Error.UnknownMessage
         }
+        val isUserBlindedSender = sender == openGroupPublicKey?.let { SodiumUtilities.blindedKeyPair(it, MessagingModuleConfiguration.shared.getUserED25519KeyPair()!!) }?.let { SessionId(IdPrefix.BLINDED, it.publicKey.asBytes).hexString }
         // Ignore self send if needed
-        if (!message.isSelfSendValid && sender == userPublicKey) {
+        if (!message.isSelfSendValid && (sender == userPublicKey || isUserBlindedSender)) {
             throw Error.SelfSend
         }
         // Guard against control messages in open groups

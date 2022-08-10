@@ -13,6 +13,7 @@ import org.session.libsession.messaging.sending_receiving.notifications.PushNoti
 import org.session.libsession.messaging.utilities.Data
 import org.session.libsession.snode.SnodeMessage
 import org.session.libsession.snode.OnionRequestAPI
+import org.session.libsession.snode.Version
 
 import org.session.libsignal.utilities.Log
 import org.session.libsignal.utilities.JsonUtil
@@ -38,10 +39,10 @@ class NotifyPNServerJob(val message: SnodeMessage) : Job {
         val body = RequestBody.create(MediaType.get("application/json"), JsonUtil.toJson(parameters))
         val request = Request.Builder().url(url).post(body)
         retryIfNeeded(4) {
-            OnionRequestAPI.sendOnionRequest(request.build(), server, PushNotificationAPI.serverPublicKey, "/loki/v2/lsrpc").map { json ->
-                val code = json["code"] as? Int
+            OnionRequestAPI.sendOnionRequest(request.build(), server, PushNotificationAPI.serverPublicKey, Version.V2).map { response ->
+                val code = response.info["code"] as? Int
                 if (code == null || code == 0) {
-                    Log.d("Loki", "Couldn't notify PN server due to error: ${json["message"] as? String ?: "null"}.")
+                    Log.d("Loki", "Couldn't notify PN server due to error: ${response.info["message"] as? String ?: "null"}.")
                 }
             }.fail { exception ->
                 Log.d("Loki", "Couldn't notify PN server due to error: $exception.")

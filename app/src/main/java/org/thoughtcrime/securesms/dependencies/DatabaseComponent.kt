@@ -42,4 +42,6 @@ interface DatabaseComponent {
     fun sessionContactDatabase(): SessionContactDatabase
     fun storage(): Storage
     fun attachmentProvider(): MessageDataProvider
+    fun blindedIdMappingDatabase(): BlindedIdMappingDatabase
+    fun groupMemberDatabase(): GroupMemberDatabase
 }

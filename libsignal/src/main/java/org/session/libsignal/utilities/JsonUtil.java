@@ -1,6 +1,7 @@
 package org.session.libsignal.utilities;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -28,6 +29,10 @@ public class JsonUtil {
 
   public static <T> T fromJson(byte[] serialized, Class<T> clazz) throws IOException {
     return fromJson(new String(serialized), clazz);
+  }
+
+  public static <T> T fromJson(String serialized, TypeReference<T> typeReference) throws IOException {
+    return objectMapper.readValue(serialized, typeReference);
   }
 
   public static <T> T fromJson(String serialized, Class<T> clazz) throws IOException {

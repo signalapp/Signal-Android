@@ -17,7 +17,7 @@ import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.jobs.BatchMessageReceiveJob
 import org.session.libsession.messaging.jobs.MessageReceiveParameters
 import org.session.libsession.messaging.sending_receiving.pollers.ClosedGroupPollerV2
-import org.session.libsession.messaging.sending_receiving.pollers.OpenGroupPollerV2
+import org.session.libsession.messaging.sending_receiving.pollers.OpenGroupPoller
 import org.session.libsession.snode.SnodeAPI
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.utilities.Log
@@ -72,13 +72,13 @@ class BackgroundPollWorker(val context: Context, params: WorkerParameters) : Wor
 
             // Open Groups
             val threadDB = DatabaseComponent.get(context).lokiThreadDatabase()
-            val v2OpenGroups = threadDB.getAllV2OpenGroups()
-            val v2OpenGroupServers = v2OpenGroups.map { it.value.server }.toSet()
+            val openGroups = threadDB.getAllOpenGroups()
+            val openGroupServers = openGroups.map { it.value.server }.toSet()
 
-            for (server in v2OpenGroupServers) {
-                val poller = OpenGroupPollerV2(server, null)
+            for (server in openGroupServers) {
+                val poller = OpenGroupPoller(server, null)
                 poller.hasStarted = true
-                promises.add(poller.poll(true))
+                promises.add(poller.poll())
             }
 
             // Wait until all the promises are resolved

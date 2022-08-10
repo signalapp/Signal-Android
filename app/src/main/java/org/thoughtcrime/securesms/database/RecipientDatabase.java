@@ -255,10 +255,6 @@ public class RecipientDatabase extends Database {
     recipient.resolve().setApproved(approved);
   }
 
-  public void setAllApproved(List<String> addresses) {
-
-  }
-
   public void setApprovedMe(@NonNull Recipient recipient, boolean approvedMe) {
     ContentValues values = new ContentValues();
     values.put(APPROVED_ME, approvedMe ? 1 : 0);

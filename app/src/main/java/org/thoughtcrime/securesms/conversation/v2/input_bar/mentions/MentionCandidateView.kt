@@ -7,7 +7,7 @@ import android.view.View
 import android.widget.RelativeLayout
 import network.loki.messenger.databinding.ViewMentionCandidateV2Binding
 import org.session.libsession.messaging.mentions.Mention
-import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
+import org.thoughtcrime.securesms.groups.OpenGroupManager
 import org.thoughtcrime.securesms.mms.GlideRequests
 
 class MentionCandidateView : RelativeLayout {
@@ -34,7 +34,7 @@ class MentionCandidateView : RelativeLayout {
         profilePictureView.root.glide = glide!!
         profilePictureView.root.update()
         if (openGroupServer != null && openGroupRoom != null) {
-            val isUserModerator = OpenGroupAPIV2.isUserModerator(candidate.publicKey, openGroupRoom!!, openGroupServer!!)
+            val isUserModerator = OpenGroupManager.isUserModerator(context, "$openGroupRoom.$openGroupServer", candidate.publicKey)
             moderatorIconImageView.visibility = if (isUserModerator) View.VISIBLE else View.GONE
         } else {
             moderatorIconImageView.visibility = View.GONE

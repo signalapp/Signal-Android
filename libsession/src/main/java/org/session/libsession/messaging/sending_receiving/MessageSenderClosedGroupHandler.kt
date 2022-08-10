@@ -21,7 +21,7 @@ import org.session.libsignal.utilities.guava.Optional
 import org.session.libsignal.messages.SignalServiceGroup
 import org.session.libsignal.protos.SignalServiceProtos
 import org.session.libsignal.utilities.hexEncodedPublicKey
-import org.session.libsignal.utilities.removing05PrefixIfNeeded
+import org.session.libsignal.utilities.removingIdPrefixIfNeeded
 import org.session.libsignal.utilities.Hex
 import org.session.libsignal.utilities.ThreadUtils
 import org.session.libsignal.utilities.Log
@@ -290,7 +290,7 @@ fun MessageSender.generateAndSendNewEncryptionKeyPair(groupPublicKey: String, ta
 fun MessageSender.sendEncryptionKeyPair(groupPublicKey: String, newKeyPair: ECKeyPair, targetMembers: Collection<String>, targetUser: String? = null, force: Boolean = true): Promise<Unit, Exception>? {
     val destination = targetUser ?: GroupUtil.doubleEncodeGroupID(groupPublicKey)
     val proto = SignalServiceProtos.KeyPair.newBuilder()
-    proto.publicKey = ByteString.copyFrom(newKeyPair.publicKey.serialize().removing05PrefixIfNeeded())
+    proto.publicKey = ByteString.copyFrom(newKeyPair.publicKey.serialize().removingIdPrefixIfNeeded())
     proto.privateKey = ByteString.copyFrom(newKeyPair.privateKey.serialize())
     val plaintext = proto.build().toByteArray()
     val wrappers = targetMembers.map { publicKey ->
@@ -326,7 +326,7 @@ fun MessageSender.sendLatestEncryptionKeyPair(publicKey: String, groupPublicKey:
         ?: storage.getLatestClosedGroupEncryptionKeyPair(groupPublicKey) ?: return
     // Send it
     val proto = SignalServiceProtos.KeyPair.newBuilder()
-    proto.publicKey = ByteString.copyFrom(encryptionKeyPair.publicKey.serialize().removing05PrefixIfNeeded())
+    proto.publicKey = ByteString.copyFrom(encryptionKeyPair.publicKey.serialize().removingIdPrefixIfNeeded())
     proto.privateKey = ByteString.copyFrom(encryptionKeyPair.privateKey.serialize())
     val plaintext = proto.build().toByteArray()
     val ciphertext = MessageEncrypter.encrypt(plaintext, publicKey)

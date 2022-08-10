@@ -4,7 +4,7 @@ import android.content.Context
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.deferred
 import okio.Buffer
-import org.session.libsession.messaging.file_server.FileServerAPIV2
+import org.session.libsession.messaging.file_server.FileServerApi
 import org.session.libsignal.streams.ProfileCipherOutputStream
 import org.session.libsignal.utilities.ProfileAvatarData
 import org.session.libsignal.streams.DigestingRequestBody
@@ -30,13 +30,13 @@ object ProfilePictureUtilities {
             var id: Long = 0
             try {
                 id = retryIfNeeded(4) {
-                    FileServerAPIV2.upload(data)
+                    FileServerApi.upload(data)
                 }.get()
             } catch (e: Exception) {
                 deferred.reject(e)
             }
             TextSecurePreferences.setLastProfilePictureUpload(context, Date().time)
-            val url = "${FileServerAPIV2.server}/files/$id"
+            val url = "${FileServerApi.server}/file/$id"
             TextSecurePreferences.setProfilePictureURL(context, url)
             deferred.resolve(Unit)
         }

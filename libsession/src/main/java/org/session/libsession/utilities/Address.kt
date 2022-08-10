@@ -25,8 +25,10 @@ class Address private constructor(address: String) : Parcelable, Comparable<Addr
         get() = GroupUtil.isClosedGroup(address)
     val isOpenGroup: Boolean
         get() = GroupUtil.isOpenGroup(address)
+    val isOpenGroupInbox: Boolean
+        get() = GroupUtil.isOpenGroupInbox(address)
     val isContact: Boolean
-        get() = !isGroup
+        get() = !(isGroup || isOpenGroupInbox)
 
     fun contactIdentifier(): String {
         if (!isContact && !isOpenGroup) {

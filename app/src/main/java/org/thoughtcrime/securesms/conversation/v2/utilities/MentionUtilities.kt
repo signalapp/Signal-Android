@@ -11,6 +11,7 @@ import androidx.core.content.res.ResourcesCompat
 import network.loki.messenger.R
 import nl.komponents.kovenant.combine.Tuple2
 import org.session.libsession.messaging.contacts.Contact
+import org.session.libsession.messaging.utilities.SodiumUtilities
 import org.session.libsession.utilities.TextSecurePreferences
 import org.thoughtcrime.securesms.dependencies.DatabaseComponent
 import org.thoughtcrime.securesms.util.UiModeUtilities
@@ -20,39 +21,27 @@ object MentionUtilities {
 
     @JvmStatic
     fun highlightMentions(text: CharSequence, threadID: Long, context: Context): String {
-        val threadDB = DatabaseComponent.get(context).threadDatabase()
-        val isOpenGroup = threadDB.getRecipientForThreadId(threadID)?.isOpenGroupRecipient ?: false
-        return highlightMentions(text, false, isOpenGroup, context).toString() // isOutgoingMessage is irrelevant
-    }
-
-    @JvmStatic
-    fun highlightMentions(text:CharSequence, isOpenGroup: Boolean, context: Context): String {
-        return highlightMentions(text, false, isOpenGroup, context).toString()
+        return highlightMentions(text, false, threadID, context).toString() // isOutgoingMessage is irrelevant
     }
 
     @JvmStatic
     fun highlightMentions(text: CharSequence, isOutgoingMessage: Boolean, threadID: Long, context: Context): SpannableString {
-        val threadDB = DatabaseComponent.get(context).threadDatabase()
-        val isOpenGroup = threadDB.getRecipientForThreadId(threadID)?.isOpenGroupRecipient ?: false
-        return highlightMentions(text, isOutgoingMessage, isOpenGroup, context) // isOutgoingMessage is irrelevant
-    }
-
-    @JvmStatic
-    fun highlightMentions(text: CharSequence, isOutgoingMessage: Boolean, isOpenGroup: Boolean, context: Context): SpannableString {
         @Suppress("NAME_SHADOWING") var text = text
         val pattern = Pattern.compile("@[0-9a-fA-F]*")
         var matcher = pattern.matcher(text)
         val mentions = mutableListOf<Tuple2<Range<Int>, String>>()
         var startIndex = 0
         val userPublicKey = TextSecurePreferences.getLocalNumber(context)!!
+        val openGroup = DatabaseComponent.get(context).storage().getOpenGroup(threadID)
         if (matcher.find(startIndex)) {
             while (true) {
                 val publicKey = text.subSequence(matcher.start() + 1, matcher.end()).toString() // +1 to get rid of the @
-                val userDisplayName: String? = if (publicKey.equals(userPublicKey, ignoreCase = true)) {
-                    TextSecurePreferences.getProfileName(context)
+                val isUserBlindedPublicKey = openGroup?.let { SodiumUtilities.sessionId(userPublicKey, publicKey, it.publicKey) } ?: false
+                val userDisplayName: String? = if (publicKey.equals(userPublicKey, ignoreCase = true) || isUserBlindedPublicKey) {
+                    context.getString(R.string.MessageRecord_you)
                 } else {
                     val contact = DatabaseComponent.get(context).sessionContactDatabase().getContactWithSessionID(publicKey)
-                    @Suppress("NAME_SHADOWING") val context = if (isOpenGroup) Contact.ContactContext.OPEN_GROUP else Contact.ContactContext.REGULAR
+                    @Suppress("NAME_SHADOWING") val context = if (openGroup != null) Contact.ContactContext.OPEN_GROUP else Contact.ContactContext.REGULAR
                     contact?.displayName(context)
                 }
                 if (userDisplayName != null) {

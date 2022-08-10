@@ -20,4 +20,5 @@ object ContactUtilities {
         }
         return result
     }
+
 }

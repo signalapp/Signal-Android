@@ -11,12 +11,14 @@ import org.session.libsession.messaging.messages.control.ConfigurationMessage
 import org.session.libsession.messaging.messages.control.MessageRequestResponse
 import org.session.libsession.messaging.messages.visible.Attachment
 import org.session.libsession.messaging.messages.visible.VisibleMessage
-import org.session.libsession.messaging.open_groups.OpenGroupV2
+import org.session.libsession.messaging.open_groups.OpenGroup
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentId
 import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment
 import org.session.libsession.messaging.sending_receiving.data_extraction.DataExtractionNotificationInfoMessage
 import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview
 import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel
+import org.session.libsession.messaging.BlindedIdMapping
+import org.session.libsession.messaging.open_groups.GroupMember
 import org.session.libsession.utilities.Address
 import org.session.libsession.utilities.GroupRecord
 import org.session.libsession.utilities.recipients.Recipient
@@ -54,13 +56,20 @@ interface StorageProtocol {
     fun setAuthToken(room: String, server: String, newValue: String)
     fun removeAuthToken(room: String, server: String)
 
+    // Servers
+    fun setServerCapabilities(server: String, capabilities: List<String>)
+    fun getServerCapabilities(server: String): List<String>
+
     // Open Groups
-    fun getAllV2OpenGroups(): Map<Long, OpenGroupV2>
-    fun getV2OpenGroup(threadId: Long): OpenGroupV2?
+    fun getAllOpenGroups(): Map<Long, OpenGroup>
+    fun updateOpenGroup(openGroup: OpenGroup)
+    fun getOpenGroup(threadId: Long): OpenGroup?
     fun addOpenGroup(urlAsString: String)
     fun onOpenGroupAdded(urlAsString: String)
     fun hasBackgroundGroupAddJob(groupJoinUrl: String): Boolean
     fun setOpenGroupServerMessageID(messageID: Long, serverID: Long, threadID: Long, isSms: Boolean)
+    fun getOpenGroup(room: String, server: String): OpenGroup?
+    fun addGroupMember(member: GroupMember)
 
     // Open Group Public Keys
     fun getOpenGroupPublicKey(server: String): String?
@@ -167,4 +176,16 @@ interface StorageProtocol {
     fun setRecipientApprovedMe(recipient: Recipient, approvedMe: Boolean)
     fun insertCallMessage(senderPublicKey: String, callMessageType: CallMessageType, sentTimestamp: Long)
     fun conversationHasOutgoing(userPublicKey: String): Boolean
+
+    // Last Inbox Message Id
+    fun getLastInboxMessageId(server: String): Long?
+    fun setLastInboxMessageId(server: String, messageId: Long)
+    fun removeLastInboxMessageId(server: String)
+
+    // Last Outbox Message Id
+    fun getLastOutboxMessageId(server: String): Long?
+    fun setLastOutboxMessageId(server: String, messageId: Long)
+    fun removeLastOutboxMessageId(server: String)
+    fun getOrCreateBlindedIdMapping(blindedId: String, server: String, serverPublicKey: String, fromOutbox: Boolean = false): BlindedIdMapping
+
 }

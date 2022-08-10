@@ -575,6 +575,17 @@ public class SmsDatabase extends MessagingDatabase {
     return threadDeleted;
   }
 
+  @Override
+  public void updateThreadId(long fromId, long toId) {
+    ContentValues contentValues = new ContentValues(1);
+    contentValues.put(MmsSmsColumns.THREAD_ID, toId);
+
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+    db.update(TABLE_NAME, contentValues, THREAD_ID + " = ?", new String[] {fromId + ""});
+    notifyConversationListeners(toId);
+    notifyConversationListListeners();
+  }
+
   private boolean isDuplicate(IncomingTextMessage message, long threadId) {
     SQLiteDatabase database = databaseHelper.getReadableDatabase();
     Cursor         cursor   = database.query(TABLE_NAME, null, DATE_SENT + " = ? AND " + ADDRESS + " = ? AND " + THREAD_ID + " = ?",
