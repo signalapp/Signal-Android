@@ -69,7 +69,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int lokiV32                          = 53;
   private static final int lokiV33                          = 54;
   private static final int lokiV34                          = 55;
-  private static final int lokiV35                          = 55;
+  private static final int lokiV35                          = 56;
 
   // Loki - onUpgrade(...) must be updated to use Loki version numbers if Signal makes any database changes
   private static final int    DATABASE_VERSION = lokiV35;
