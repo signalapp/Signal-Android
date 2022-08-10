@@ -576,6 +576,7 @@ object OpenGroupApi {
         )
         rooms.forEach { room ->
             val infoUpdates = storage.getOpenGroup(room, server)?.infoUpdates ?: 0
+            val lastMessageServerId = storage.getLastMessageServerID(room, server) ?: 0L
             requests.add(
                 BatchRequestInfo(
                     request = BatchRequest(
@@ -587,7 +588,7 @@ object OpenGroupApi {
                 )
             )
             requests.add(
-                if (shouldRetrieveRecentMessages) {
+                if (shouldRetrieveRecentMessages || lastMessageServerId == 0L) {
                     BatchRequestInfo(
                         request = BatchRequest(
                             method = GET,
@@ -597,7 +598,6 @@ object OpenGroupApi {
                         responseType = object : TypeReference<List<Message>>(){}
                     )
                 } else {
-                    val lastMessageServerId = storage.getLastMessageServerID(room, server) ?: 0L
                     BatchRequestInfo(
                         request = BatchRequest(
                             method = GET,
