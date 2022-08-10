@@ -1609,6 +1609,8 @@ public class ConversationParentFragment extends Fragment
     long    sharedDataTimestamp   = args.getShareDataTimestamp();
     long    lastTimestamp         = callback.getShareDataTimestamp();
     boolean hasProcessedShareData = sharedDataTimestamp > 0 && sharedDataTimestamp <= lastTimestamp;
+
+    Log.d(TAG, "Shared this data at " + sharedDataTimestamp + " and last processed share data at " + lastTimestamp);
     if (hasProcessedShareData) {
       Log.d(TAG, "Already processed this share data. Skipping.");
       result.set(false);
