@@ -1,12 +1,10 @@
 package org.session.libsignal.utilities
 
-import org.session.libsignal.utilities.Hex
-
-fun String.removing05PrefixIfNeeded(): String {
-  return if (length == 66) removePrefix("05") else this
+fun String.removingIdPrefixIfNeeded(): String {
+  return if (length == 66 && IdPrefix.fromValue(this) != null) removeRange(0..1) else this
 }
 
-fun ByteArray.removing05PrefixIfNeeded(): ByteArray {
-    val string = Hex.toStringCondensed(this).removing05PrefixIfNeeded()
+fun ByteArray.removingIdPrefixIfNeeded(): ByteArray {
+    val string = Hex.toStringCondensed(this).removingIdPrefixIfNeeded()
     return Hex.fromStringCondensed(string)
 }

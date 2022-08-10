@@ -1,7 +1,7 @@
 package org.session.libsession.messaging.jobs
 
 import org.session.libsession.messaging.MessagingModuleConfiguration
-import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
+import org.session.libsession.messaging.open_groups.OpenGroupApi
 import org.session.libsession.messaging.utilities.Data
 import org.session.libsession.utilities.GroupUtil
 
@@ -15,8 +15,9 @@ class GroupAvatarDownloadJob(val room: String, val server: String) : Job {
     override fun execute() {
         val storage = MessagingModuleConfiguration.shared.storage
         try {
-            val info = OpenGroupAPIV2.getInfo(room, server).get()
-            val bytes = OpenGroupAPIV2.downloadOpenGroupProfilePicture(info.id, server).get()
+            val info = OpenGroupApi.getRoomInfo(room, server).get()
+            val imageId = info.imageId ?: return
+            val bytes = OpenGroupApi.downloadOpenGroupProfilePicture(server, info.token, imageId).get()
             val groupId = GroupUtil.getEncodedOpenGroupID("$server.$room".toByteArray())
             storage.updateProfilePicture(groupId, bytes)
             storage.updateTimestampUpdated(groupId, System.currentTimeMillis())

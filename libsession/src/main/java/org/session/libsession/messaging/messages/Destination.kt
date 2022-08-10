@@ -1,7 +1,6 @@
 package org.session.libsession.messaging.messages
 
 import org.session.libsession.messaging.MessagingModuleConfiguration
-import org.session.libsession.messaging.open_groups.OpenGroupV2
 import org.session.libsession.utilities.Address
 import org.session.libsession.utilities.GroupUtil
 import org.session.libsignal.utilities.toHexString
@@ -14,13 +13,27 @@ sealed class Destination {
     class ClosedGroup(var groupPublicKey: String) : Destination() {
         internal constructor(): this("")
     }
-    class OpenGroupV2(var room: String, var server: String) : Destination() {
+    class LegacyOpenGroup(var roomToken: String, var server: String) : Destination() {
         internal constructor(): this("", "")
     }
 
+    class OpenGroup(
+        var roomToken: String = "",
+        var server: String = "",
+        var whisperTo: List<String> = emptyList(),
+        var whisperMods: Boolean = false,
+        var fileIds: List<String> = emptyList()
+    ) : Destination()
+
+    class OpenGroupInbox(
+        var server: String,
+        var serverPublicKey: String,
+        var blindedPublicKey: String
+    ) : Destination()
+
     companion object {
 
-        fun from(address: Address): Destination {
+        fun from(address: Address, fileIds: List<String> = emptyList()): Destination {
             return when {
                 address.isContact -> {
                     Contact(address.contactIdentifier())
@@ -33,11 +46,17 @@ sealed class Destination {
                 address.isOpenGroup -> {
                     val storage = MessagingModuleConfiguration.shared.storage
                     val threadID = storage.getThreadId(address)!!
-                    when (val openGroup = storage.getV2OpenGroup(threadID)) {
-                        is org.session.libsession.messaging.open_groups.OpenGroupV2
-                            -> Destination.OpenGroupV2(openGroup.room, openGroup.server)
-                        else -> throw Exception("Missing open group for thread with ID: $threadID.")
-                    }
+                    storage.getOpenGroup(threadID)?.let {
+                        OpenGroup(roomToken = it.room, server = it.server, fileIds = fileIds)
+                    } ?: throw Exception("Missing open group for thread with ID: $threadID.")
+                }
+                address.isOpenGroupInbox -> {
+                    val groupInboxId = GroupUtil.getDecodedGroupID(address.serialize()).split("!")
+                    OpenGroupInbox(
+                        groupInboxId.dropLast(2).joinToString("!"),
+                        groupInboxId.dropLast(1).last(),
+                        groupInboxId.last()
+                    )
                 }
                 else -> {
                     throw Exception("TODO: Handle legacy closed groups.")

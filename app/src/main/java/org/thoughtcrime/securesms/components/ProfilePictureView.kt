@@ -15,6 +15,7 @@ import org.session.libsession.avatars.ProfileContactPhoto
 import org.session.libsession.avatars.ResourceContactPhoto
 import org.session.libsession.messaging.contacts.Contact
 import org.session.libsession.utilities.Address
+import org.session.libsession.utilities.GroupUtil
 import org.session.libsession.utilities.recipients.Recipient
 import org.thoughtcrime.securesms.dependencies.DatabaseComponent
 import org.thoughtcrime.securesms.mms.GlideRequests
@@ -57,6 +58,11 @@ class ProfilePictureView @JvmOverloads constructor(
             val apk = members.getOrNull(1)?.serialize() ?: ""
             additionalPublicKey = apk
             additionalDisplayName = getUserDisplayName(apk)
+        } else if(recipient.isOpenGroupInboxRecipient) {
+            val publicKey = GroupUtil.getDecodedOpenGroupInbox(recipient.address.serialize())
+            this.publicKey = publicKey
+            displayName = getUserDisplayName(publicKey)
+            additionalPublicKey = null
         } else {
             val publicKey = recipient.address.toString()
             this.publicKey = publicKey

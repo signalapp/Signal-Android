@@ -58,19 +58,22 @@ import org.session.libsession.messaging.messages.control.DataExtractionNotificat
 import org.session.libsession.messaging.messages.signal.OutgoingMediaMessage
 import org.session.libsession.messaging.messages.signal.OutgoingTextMessage
 import org.session.libsession.messaging.messages.visible.VisibleMessage
-import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
+import org.session.libsession.messaging.open_groups.OpenGroupApi
 import org.session.libsession.messaging.sending_receiving.MessageSender
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment
 import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview
 import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel
+import org.session.libsession.messaging.utilities.SessionId
 import org.session.libsession.utilities.Address
 import org.session.libsession.utilities.Address.Companion.fromSerialized
+import org.session.libsession.utilities.GroupUtil
 import org.session.libsession.utilities.MediaTypes
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsession.utilities.concurrent.SimpleTask
 import org.session.libsession.utilities.recipients.Recipient
 import org.session.libsession.utilities.recipients.RecipientModifiedListener
 import org.session.libsignal.crypto.MnemonicCodec
+import org.session.libsignal.utilities.IdPrefix
 import org.session.libsignal.utilities.ListenableFuture
 import org.session.libsignal.utilities.guava.Optional
 import org.session.libsignal.utilities.hexEncodedPrivateKey
@@ -109,6 +112,7 @@ import org.thoughtcrime.securesms.database.MmsDatabase
 import org.thoughtcrime.securesms.database.MmsSmsDatabase
 import org.thoughtcrime.securesms.database.SessionContactDatabase
 import org.thoughtcrime.securesms.database.SmsDatabase
+import org.thoughtcrime.securesms.database.Storage
 import org.thoughtcrime.securesms.database.ThreadDatabase
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
@@ -167,6 +171,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     @Inject lateinit var smsDb: SmsDatabase
     @Inject lateinit var mmsDb: MmsDatabase
     @Inject lateinit var lokiMessageDb: LokiMessageDatabase
+    @Inject lateinit var storage: Storage
     @Inject lateinit var viewModelFactory: ConversationViewModel.AssistedFactory
 
     private val screenWidth = Resources.getSystem().displayMetrics.widthPixels
@@ -177,9 +182,25 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     private val viewModel: ConversationViewModel by viewModels {
         var threadId = intent.getLongExtra(THREAD_ID, -1L)
         if (threadId == -1L) {
-            intent.getParcelableExtra<Address>(ADDRESS)?.let { address ->
-                val recipient = Recipient.from(this, address, false)
-                threadId = threadDb.getOrCreateThreadIdFor(recipient)
+            intent.getParcelableExtra<Address>(ADDRESS)?.let { it ->
+                threadId = threadDb.getThreadIdIfExistsFor(it.serialize())
+                if (threadId == -1L) {
+                    val sessionId = SessionId(it.serialize())
+                    val openGroup = lokiThreadDb.getOpenGroupChat(intent.getLongExtra(FROM_GROUP_THREAD_ID, -1))
+                    val address = if (sessionId.prefix == IdPrefix.BLINDED && openGroup != null) {
+                        storage.getOrCreateBlindedIdMapping(sessionId.hexString, openGroup.server, openGroup.publicKey).sessionId?.let {
+                            fromSerialized(it)
+                        } ?: run {
+                            val openGroupInboxId =
+                                "${openGroup.server}!${openGroup.publicKey}!${sessionId.hexString}".toByteArray()
+                            fromSerialized(GroupUtil.getEncodedOpenGroupInboxID(openGroupInboxId))
+                        }
+                    } else {
+                        it
+                    }
+                    val recipient = Recipient.from(this, address, false)
+                    threadId = threadDb.getOrCreateThreadIdFor(recipient)
+                }
             } ?: finish()
         }
         viewModelFactory.create(threadId)
@@ -263,6 +284,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         // Extras
         const val THREAD_ID = "thread_id"
         const val ADDRESS = "address"
+        const val FROM_GROUP_THREAD_ID = "from_group_thread_id"
         const val SCROLL_MESSAGE_ID = "scroll_message_id"
         const val SCROLL_MESSAGE_AUTHOR = "scroll_message_author"
         // Request codes
@@ -508,7 +530,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
 
     private fun getLatestOpenGroupInfoIfNeeded() {
         val openGroup = lokiThreadDb.getOpenGroupChat(viewModel.threadId) ?: return
-        OpenGroupAPIV2.getMemberCount(openGroup.room, openGroup.server).successUi { updateSubtitle() }
+        OpenGroupApi.getMemberCount(openGroup.room, openGroup.server).successUi { updateSubtitle() }
     }
 
     // called from onCreate

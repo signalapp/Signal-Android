@@ -93,12 +93,11 @@ public class MmsSmsDatabase extends Database {
       MmsSmsDatabase.Reader reader = readerFor(cursor);
 
       MessageRecord messageRecord;
+      boolean isOwnNumber = Util.isOwnNumber(context, serializedAuthor);
 
       while ((messageRecord = reader.getNext()) != null) {
-        if ((Util.isOwnNumber(context, serializedAuthor) && messageRecord.isOutgoing()) ||
-                (!Util.isOwnNumber(context, serializedAuthor)
-                        && messageRecord.getIndividualRecipient().getAddress().serialize().equals(serializedAuthor)
-                ))
+        if ((isOwnNumber && messageRecord.isOutgoing()) ||
+                (!isOwnNumber && messageRecord.getIndividualRecipient().getAddress().serialize().equals(serializedAuthor)))
         {
           return messageRecord;
         }

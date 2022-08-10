@@ -6,9 +6,10 @@ import com.esotericsoftware.kryo.io.Output
 import nl.komponents.kovenant.Promise
 import okio.Buffer
 import org.session.libsession.messaging.MessagingModuleConfiguration
-import org.session.libsession.messaging.file_server.FileServerAPIV2
+import org.session.libsession.messaging.file_server.FileServerApi
+import org.session.libsession.messaging.messages.Destination
 import org.session.libsession.messaging.messages.Message
-import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
+import org.session.libsession.messaging.open_groups.OpenGroupApi
 import org.session.libsession.messaging.sending_receiving.MessageSender
 import org.session.libsession.messaging.utilities.Data
 import org.session.libsession.utilities.DecodedAudio
@@ -50,15 +51,15 @@ class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val mess
             val messageDataProvider = MessagingModuleConfiguration.shared.messageDataProvider
             val attachment = messageDataProvider.getScaledSignalAttachmentStream(attachmentID)
                 ?: return handleFailure(Error.NoAttachment)
-            val v2OpenGroup = storage.getV2OpenGroup(threadID.toLong())
-            if (v2OpenGroup != null) {
-                val keyAndResult = upload(attachment, v2OpenGroup.server, false) {
-                    OpenGroupAPIV2.upload(it, v2OpenGroup.room, v2OpenGroup.server)
+            val openGroup = storage.getOpenGroup(threadID.toLong())
+            if (openGroup != null) {
+                val keyAndResult = upload(attachment, openGroup.server, false) {
+                    OpenGroupApi.upload(it, openGroup.room, openGroup.server)
                 }
                 handleSuccess(attachment, keyAndResult.first, keyAndResult.second)
             } else {
-                val keyAndResult = upload(attachment, FileServerAPIV2.server, true) {
-                    FileServerAPIV2.upload(it)
+                val keyAndResult = upload(attachment, FileServerApi.server, true) {
+                    FileServerApi.upload(it)
                 }
                 handleSuccess(attachment, keyAndResult.first, keyAndResult.second)
             }
@@ -100,7 +101,7 @@ class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val mess
         val id = upload(data).get()
         val digest = drb.transmittedDigest
         // Return
-        return Pair(key, UploadResult(id, "${server}/files/$id", digest))
+        return Pair(key, UploadResult(id, "${server}/file/$id", digest))
     }
 
     private fun handleSuccess(attachment: SignalServiceAttachmentStream, attachmentKey: ByteArray, uploadResult: UploadResult) {
@@ -122,7 +123,25 @@ class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val mess
                 Log.e("Loki", "Couldn't process audio attachment", e)
             }
         }
-        MessagingModuleConfiguration.shared.storage.resumeMessageSendJobIfNeeded(messageSendJobID)
+        val storage = MessagingModuleConfiguration.shared.storage
+        storage.getMessageSendJob(messageSendJobID)?.let {
+            val destination = it.destination as? Destination.OpenGroup ?: return@let
+            val updatedJob = MessageSendJob(
+                message = it.message,
+                destination = Destination.OpenGroup(
+                    destination.roomToken,
+                    destination.server,
+                    destination.whisperTo,
+                    destination.whisperMods,
+                    destination.fileIds + uploadResult.id.toString()
+                )
+            )
+            updatedJob.id = it.id
+            updatedJob.delegate = it.delegate
+            updatedJob.failureCount = it.failureCount
+            storage.persistJob(updatedJob)
+        }
+        storage.resumeMessageSendJobIfNeeded(messageSendJobID)
     }
 
     private fun handlePermanentFailure(e: Exception) {

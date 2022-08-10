@@ -1,16 +1,12 @@
 package org.session.libsession.messaging.messages.control
 
 import com.google.protobuf.ByteString
-import org.session.libsession.messaging.MessagingModuleConfiguration
-import org.session.libsession.utilities.Address
-import org.session.libsession.utilities.recipients.Recipient
-import org.session.libsession.utilities.GroupUtil
 import org.session.libsignal.crypto.ecc.DjbECPrivateKey
 import org.session.libsignal.crypto.ecc.DjbECPublicKey
 import org.session.libsignal.crypto.ecc.ECKeyPair
 import org.session.libsignal.protos.SignalServiceProtos
 import org.session.libsignal.protos.SignalServiceProtos.DataMessage
-import org.session.libsignal.utilities.removing05PrefixIfNeeded
+import org.session.libsignal.utilities.removingIdPrefixIfNeeded
 import org.session.libsignal.utilities.toHexString
 import org.session.libsignal.utilities.Hex
 import org.session.libsignal.utilities.Log
@@ -140,7 +136,7 @@ class ClosedGroupControlMessage() : ControlMessage() {
                     closedGroupControlMessage.publicKey = kind.publicKey
                     closedGroupControlMessage.name = kind.name
                     val encryptionKeyPair = SignalServiceProtos.KeyPair.newBuilder()
-                    encryptionKeyPair.publicKey = ByteString.copyFrom(kind.encryptionKeyPair!!.publicKey.serialize().removing05PrefixIfNeeded())
+                    encryptionKeyPair.publicKey = ByteString.copyFrom(kind.encryptionKeyPair!!.publicKey.serialize().removingIdPrefixIfNeeded())
                     encryptionKeyPair.privateKey = ByteString.copyFrom(kind.encryptionKeyPair!!.privateKey.serialize())
                     closedGroupControlMessage.encryptionKeyPair = encryptionKeyPair.build()
                     closedGroupControlMessage.addAllMembers(kind.members)

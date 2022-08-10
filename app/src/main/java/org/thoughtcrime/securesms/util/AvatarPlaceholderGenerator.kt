@@ -12,6 +12,7 @@ import android.graphics.drawable.BitmapDrawable
 import android.text.TextPaint
 import android.text.TextUtils
 import network.loki.messenger.R
+import org.session.libsignal.utilities.IdPrefix
 import java.math.BigInteger
 import java.security.MessageDigest
 import java.util.Locale
@@ -66,7 +67,7 @@ object AvatarPlaceholderGenerator {
     fun extractLabel(content: String): String {
         val trimmedContent = content.trim()
         if (trimmedContent.isEmpty()) return EMPTY_LABEL
-        return if (trimmedContent.length > 2 && trimmedContent.startsWith("05")) {
+        return if (trimmedContent.length > 2 && IdPrefix.fromValue(trimmedContent) != null) {
             trimmedContent[2].toString()
         } else {
             val splitWords = trimmedContent.split(Regex("\\W"))

@@ -43,6 +43,7 @@ import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsession.utilities.Util;
 import org.session.libsession.utilities.recipients.Recipient;
 import org.session.libsession.utilities.recipients.Recipient.RecipientSettings;
+import org.session.libsignal.utilities.IdPrefix;
 import org.session.libsignal.utilities.Log;
 import org.session.libsignal.utilities.Pair;
 import org.session.libsignal.utilities.guava.Optional;
@@ -444,6 +445,11 @@ public class ThreadDatabase extends Database {
   public Cursor getConversationList() {
     String where  = "(" + MESSAGE_COUNT + " != 0 OR " + GroupDatabase.TABLE_NAME + "." + GROUP_ID + " LIKE '" + OPEN_GROUP_PREFIX + "%') " +
             "AND " + ARCHIVED + " = 0 ";
+    return getConversationList(where);
+  }
+
+  public Cursor getBlindedConversationList() {
+    String where  = TABLE_NAME + "." + ADDRESS + " LIKE '" + IdPrefix.BLINDED.getValue() + "%' ";
     return getConversationList(where);
   }
 

@@ -23,11 +23,13 @@ class OpenGroupDeleteJob(private val messageServerIds: LongArray, private val th
         val dataProvider = MessagingModuleConfiguration.shared.messageDataProvider
         val numberToDelete = messageServerIds.size
         Log.d(TAG, "Deleting $numberToDelete messages")
+        var numberDeleted = 0
         messageServerIds.forEach { serverId ->
             val (messageId, isSms) = dataProvider.getMessageID(serverId, threadId) ?: return@forEach
             dataProvider.deleteMessage(messageId, isSms)
+            numberDeleted++
         }
-        Log.d(TAG, "Deleted $numberToDelete messages successfully")
+        Log.d(TAG, "Deleted $numberDeleted messages successfully")
         delegate?.handleJobSucceeded(this)
     }
 

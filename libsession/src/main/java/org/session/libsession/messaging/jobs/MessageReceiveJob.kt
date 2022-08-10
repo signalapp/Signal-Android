@@ -2,6 +2,7 @@ package org.session.libsession.messaging.jobs
 
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.deferred
+import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.sending_receiving.MessageReceiver
 import org.session.libsession.messaging.sending_receiving.handle
 import org.session.libsession.messaging.utilities.Data
@@ -32,7 +33,10 @@ class MessageReceiveJob(val data: ByteArray, val serverHash: String? = null, val
         val deferred = deferred<Unit, Exception>()
         try {
             val isRetry: Boolean = failureCount != 0
-            val (message, proto) = MessageReceiver.parse(this.data, this.openGroupMessageServerID)
+            val serverPublicKey = openGroupID?.let {
+                MessagingModuleConfiguration.shared.storage.getOpenGroupPublicKey(it.split(".").dropLast(1).joinToString("."))
+            }
+            val (message, proto) = MessageReceiver.parse(this.data, this.openGroupMessageServerID, openGroupPublicKey = serverPublicKey)
             message.serverHash = serverHash
             MessageReceiver.handle(message, proto, this.openGroupID)
             this.handleSuccess()
