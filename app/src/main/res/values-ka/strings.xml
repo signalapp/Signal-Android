@@ -2404,7 +2404,7 @@
   <string name="PaymentsTransferFragment__transfer">გადარიცხვა</string>
   <string name="PaymentsTransferFragment__scan_qr_code">QR კოდის დასკანირება</string>
   <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">დაასკანირე ან შეიყვანე საფულის მისამართი</string>
-  <string name="PaymentsTransferFragment__you_can_transfer">შეგიძლია გადარიცხო MobileCoin ბირჟის მიერ მითითებულ საფულის მისამართზე გადარიცხვის დასრულებით. საფულის მისამართი არის რიცხვებისა და ასოების სტრიქონი, რომელიც ყველაზე ხშირად არის QR კოდის ქვემოთ.</string>
+  <string name="PaymentsTransferFragment__you_can_transfer">შეგიძლია გადარიცხო MobileCoin თანხის გადატანისთ ბირჟის მიერ მითითებული საფულის მისამართზე. საფულის მისამართი არის რიცხვებისა და ასოების სტრიქონი, რომელიც ყველაზე ხშირად არის QR კოდის ქვემოთ.</string>
   <string name="PaymentsTransferFragment__next">შემდეგი</string>
   <string name="PaymentsTransferFragment__invalid_address">არასწორი მისამართი</string>
   <string name="PaymentsTransferFragment__check_the_wallet_address">შეამოწმე საფულის მისამართი, რომელზეც ცდილობ გადარიცხვას და სცადე ხელახლა.</string>
@@ -2658,7 +2658,7 @@
   <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal-ის რეგისტრაცია - მჭირდება დახმარება პინ-კოდთან დაკავშირებით, Android-ისთვის (v2 PIN)</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
     <item quantity="one">შენი კონფიდენციალურობისა და უსაფრთხოების უზრუნველსაყოფად, პინ-კოდის აღდგენის გზა არ არსებობს. თუ შენი პინ-კოდი არ გახსოვს, SMS-ით ხელახლა შეგიძლია დაადასტურო უმოქმედობის %1$d დღის შემდეგ. ამ შემთხვევაში, შენი ანგარიში გასუფთავდება და მთელი კონტენტი წაიშლება.</item>
-    <item quantity="other">შენი კონფიდენციალურობისა და უსაფრთხოების უზრუნველსაყოფად, პინ-კოდის აღდგენის გზა არ არსებობს. თუ შენი პინ-კოდი არ გახსოვს, უმოქმედობის %1$d დღის შემდეგ შეგიძლია SMS-ის ხელახლა დაადასტურო. ამ შემთხვევაში, შენი ანგარიში გასუფთავდება და მთელი კონტენტი წაიშლება.</item>
+    <item quantity="other">შენი კონფიდენციალურობისა და უსაფრთხოების უზრუნველსაყოფად, პინ-კოდის აღდგენის გზა არ არსებობს. თუ შენი პინ-კოდი არ გახსოვს, ხელახლი  ვერიფიკაცია შეგიძლია SMS-ით გაიარო უმოქმედობის %1$d დღის შემდეგ. ამ შემთხვევაში, შენი ანგარიში გასუფთავდება და მთელი კონტენტი წაიშლება.</item>
   </plurals>
   <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
     <item quantity="one">არასწორი პინ-კოდი. დაგრჩა %1$d მცდელობა.</item>
@@ -2666,7 +2666,7 @@
   </plurals>
   <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
     <item quantity="one">თუ ყველა მცდელობა გამოიყენე, შენი ანგარიში დაბლოკილი იქნება %1$d დღის განმავლობაში. %1$d დღის უმოქმედობის შემდეგ, შეგიძლია ხელახლა დარეგისტრირდე შენი პინ-კოდის გარეშე. შენი ანგარიში გასუფთავდება და მთელი კონტენტი წაიშლება.</item>
-    <item quantity="other">თუ ყველა მცდელობა გამოიყენე, შენი ანგარიში დაბლოკილი იქნება %1$d დღის განმავლობაში. %1$d დღის უმოქმედობის შემდეგ, შეგიძლია ხელახლა დარეგისტრირდე შენი პინ-კოდის გარეშე. შენი ანგარიში გასუფთავდება და მთელი კონტენტი წაიშლება.</item>
+    <item quantity="other">თუ ყველა მცდელობა გამოიყენე, შენი ანგარიში დაიბლოკება %1$d დღით. %1$d დღის უმოქმედობის შემდეგ, შეგიძლია ხელახლა დარეგისტრირდე შენი პინ-კოდის გარეშე. შენი ანგარიში გასუფთავდება და მთელი კონტენტი წაიშლება.</item>
   </plurals>
   <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
     <item quantity="one">დაგრჩათ %1$d მცდელობა.</item>
@@ -2677,7 +2677,7 @@
     <item quantity="other">%1$d მცდელობა დარჩა.</item>
   </plurals>
   <!--CalleeMustAcceptMessageRequestDialogFragment-->
-  <string name="CalleeMustAcceptMessageRequestDialogFragment__s_will_get_a_message_request_from_you">%1$s შენგან შეტყობინების მოთხოვნას მიიღებს. დარეკვას შენი შეტყობინების მოთხოვნის მიღების შემდეგ შეძლებ.</string>
+  <string name="CalleeMustAcceptMessageRequestDialogFragment__s_will_get_a_message_request_from_you">%1$s შენგან შეტყობინების მოთხოვნას მიიღებს. დარეკვას შეძლებ შენი შეტყობინების მოთხოვნის დადასტურების შემდეგ.</string>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">შექმენი პინ-კოდი</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">პინ-კოდები Signal-ით შენახულ ინფორმაციას დაშიფრულად ინახავენ.</string>
@@ -2687,18 +2687,18 @@
   <string name="ConversationListFragment_loading">იტვირთება…</string>
   <string name="CallNotificationBuilder_connecting">ვუკავშირდებით…</string>
   <string name="Permissions_permission_required">საჭიროა ნებართვა</string>
-  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal-ს SMS გასაგზავნად SMS-ზე წვდომის ნებართვა სჭირდება, მაგრამ ის სამუდამოდ იქნა უარყოფილი. გთხოვთ, შეხვიდე აპის პარამეტრებში, აირჩიო „ნებართვები“ და ჩართო „SMS“.</string>
+  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal-ს SMS-ის გასაგზავნად SMS-ზე წვდომის ნებართვა სჭირდება, მაგრამ ის სამუდამოდ იქნა უარყოფილი. გთხოვთ, შეხვიდე აპის პარამეტრებში, აირჩიო „ნებართვები“ და ჩართო „SMS“.</string>
   <string name="Permissions_continue">გაგრძელება</string>
   <string name="Permissions_not_now">ახლა არა</string>
   <string name="conversation_activity__enable_signal_messages">Signal-ის შეტყობინებების ჩართვა</string>
-  <string name="SQLCipherMigrationHelper_migrating_signal_database">Signal-ის მონაცემთა ბაზის მიგრირება</string>
+  <string name="SQLCipherMigrationHelper_migrating_signal_database">Signal-ის მონაცემთა ბაზის გადატანა</string>
   <string name="PushDecryptJob_new_locked_message">ახალი დალუქული შეტყობინება</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">განბლოკე განსახილველი შეტყობინებები სანახავად</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">სარეზერვო კოპიების პაროლ-ფრაზა</string>
-  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">სათადარიგო ასლები შეინახება გარე მეხსიერებაში და დაშიფრული იქნება ქვემოთ მოცემული საიდუმლო ფრაზით. ეს პაროლი სარეზერვო ასლის აღსადგენად უნდა გქონდეს.</string>
-  <string name="backup_enable_dialog__you_must_have_this_passphrase">სათადარიგო ასლების აღსადგენად პაროლფრაზა აუცილებელია.</string>
-  <string name="backup_enable_dialog__folder">საქაღალდე</string>
-  <string name="backup_enable_dialog__i_have_written_down_this_passphrase">ეს პაროლ-ფრაზა ჩაივიწერე. ამის გარეშე ვერ შევძლებ სათადარიგო ასლის აღდგენას.</string>
+  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">სარეზერვო კოპიები შეინახება გარე მეხსიერებაში და დაშიფრული იქნება ქვემოთ მოცემული პაროლ-ფრაზით. ეს პაროლ-ფრაზა სარეზერვო კოპიების აღსადგენად უნდა იქონიო.</string>
+  <string name="backup_enable_dialog__you_must_have_this_passphrase">სარეზერვო კოპიების აღსადგენად პაროლ-ფრაზა აუცილებელია.</string>
+  <string name="backup_enable_dialog__folder">შენახვის ადგილი</string>
+  <string name="backup_enable_dialog__i_have_written_down_this_passphrase">ეს პაროლ-ფრაზა ჩავიწერე. ამის გარეშე ვერ შევძლებ სათადარიგო ასლის აღდგენას.</string>
   <string name="registration_activity__restore_backup">რეზერვის აღდგენა</string>
   <string name="registration_activity__transfer_or_restore_account">გადაიტანე ან აღადგინე ანგარიში</string>
   <string name="registration_activity__transfer_account">ანგარიშის გადატანა</string>
@@ -2706,32 +2706,32 @@
   <string name="preferences_chats__chat_backups">ჩატის სარეზერვო კოპიები</string>
   <string name="preferences_chats__backup_chats_to_external_storage">ჩატების სარეზერვო კოპიების შექმნა გარე მეხსიერებაში </string>
   <string name="preferences_chats__transfer_account">ანგარიშის გადატანა</string>
-  <string name="preferences_chats__transfer_account_to_a_new_android_device">ანგარიშის ახალ Android მოწყობილობაში გადატანა</string>
+  <string name="preferences_chats__transfer_account_to_a_new_android_device">გადაიტანე ანგარიში Android-ის ახალ მოწყობილობაში</string>
   <string name="RegistrationActivity_enter_backup_passphrase">შეიყვანე სარეზერვო კოპიების პაროლ-ფრაზა</string>
   <string name="RegistrationActivity_restore">აღდგენა</string>
   <string name="RegistrationActivity_backup_failure_downgrade">შეუძლებელია სარეზერვო კოპიების გადმოტანა Signal-ის უფრო ახალი ვერსიებიდან </string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">სარეზერვო კოპიების პაროლ-ფრაზა არასწორია </string>
   <string name="RegistrationActivity_checking">მიმდინარეობს შემოწმება…</string>
   <string name="RegistrationActivity_d_messages_so_far">აქამდე მიღებულია %dშეტყობინება…</string>
-  <string name="RegistrationActivity_restore_from_backup">აღვადგინოთ სარეზერვო კოპიიდან?</string>
+  <string name="RegistrationActivity_restore_from_backup">სარეზერვო კოპიიდან აღვადგინოთ?</string>
   <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">აღადგინე შენი შეტყობინებები და მედია ადგილობრივი სარეზერვო კოპიიდან. თუ ახლა არ აღადგენ, მოგვიანებით ვეღარ შეძლებ აღდგენას.</string>
   <string name="RegistrationActivity_backup_size_s">სარეზერვო კოპიების ზომა: %s</string>
   <string name="RegistrationActivity_backup_timestamp_s">სარეზერვო კოპიების დროის ნიშნული: %s</string>
   <string name="BackupDialog_enable_local_backups">ჩავრთოთ ადგილობრივი სარეზერვო კოპიები?</string>
   <string name="BackupDialog_enable_backups">სარეზერვო კოპიების ჩართვა</string>
-  <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">გთხოვთ, დაადასტურო, რომ გაიგე, დადასტურების ველის მონიშვნით.</string>
+  <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">გთხოვთ, დადასტურების ველის მონიშვნით დაგვიდასტურო, რომ გაიგე,</string>
   <string name="BackupDialog_delete_backups">წავშალოთ სარეზერვო კოპიები?</string>
-  <string name="BackupDialog_disable_and_delete_all_local_backups">გამოვრთოთ და წავშალოთ ყველა ადგილობრივი სათადარიგო ასლი?</string>
+  <string name="BackupDialog_disable_and_delete_all_local_backups">გამოვრთოთ და წავშალოთ ყველა ადგილობრივი სარეზერვო კოპია?</string>
   <string name="BackupDialog_delete_backups_statement">სარეზერვო კოპიების წაშლა</string>
   <string name="BackupDialog_to_enable_backups_choose_a_folder">სარეზერვო კოპიების ჩასართავად აირჩიე შენახვის ადგილი. სარეზერვო კოპიებს მანდ მოვუყრით თავს.</string>
   <string name="BackupDialog_choose_folder">აირჩიე შენახვის ადგილი</string>
   <string name="BackupDialog_copied_to_clipboard">დაკოპირებულია ბუფერში</string>
   <string name="BackupDialog_no_file_picker_available">ფაილის ამომრჩევი არაა ხელმისაწვდომი.</string>
-  <string name="BackupDialog_enter_backup_passphrase_to_verify">ვერიფიცირებისთვის შეიყვანე შენი სათადარიგო ასლების პაროლ-ფრაზა</string>
+  <string name="BackupDialog_enter_backup_passphrase_to_verify">ვერიფიცირებისთვის შეიყვანე შენი სარეზერვო კოპიების პაროლ-ფრაზა</string>
   <string name="BackupDialog_verify">ვერიფიკაცია</string>
-  <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">შენ წარმატებით შეიყვანე სათადარიგო ასლების პაროლ-ფრაზა</string>
+  <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">შენ წარმატებით შეიყვანე სარეზერვო კოპიების პაროლ-ფრაზა</string>
   <string name="BackupDialog_passphrase_was_not_correct">პაროლ-ფრაზა არასწორი იყო</string>
-  <string name="LocalBackupJob_creating_signal_backup">ვქმნით Signal-ის სათადარიგო ასლებს…</string>
+  <string name="LocalBackupJob_creating_signal_backup">ვქმნით Signal-ის სარეზერვო კოპიებს…</string>
   <string name="LocalBackupJobApi29_backup_failed">სარეზერვო კოპიების შენახვა ვერ მოხერხდა</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">შენი სარეზერვო კოპიების შესანახი ადგილი იქნა წაშლილი ან გადატანილი.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">შენი სარეზერვო კოპიის ფაილი ზედმეტად დიდია აქ შესანახად.</string>
@@ -2751,16 +2751,16 @@
   <string name="PhoneNumberPrivacy_my_contacts">ჩემი კონტაქტები</string>
   <string name="PhoneNumberPrivacy_nobody">არავინ</string>
   <string name="PhoneNumberPrivacy_everyone_see_description">შენი ტელეფონის ნომერი ხილული იქნება ყველა ადამიანისა და ჯგუფისთვის, რომელთაც სწერ.</string>
-  <string name="PhoneNumberPrivacy_everyone_find_description">ნებისმიერს, ვისაც შენი ტელეფონის ნომერი თავის კონტაქტებში აქვს, შენ დაინახავ, როგორც კონტაქტს Signal-ზე. სხვები შენს პოვნას საძიებო ველში შეძლებენ.</string>
+  <string name="PhoneNumberPrivacy_everyone_find_description">ნებისმიერს, ვისაც შენი ტელეფონის ნომერი თავის კონტაქტებში აქვს Signal-ის კონტაქტებში გნახავენ. სხვები კი შენს პოვნას საძიებო ველში შეძლებენ.</string>
   <string name="preferences_app_protection__screen_lock">Ეკრანის დაბლოკვა</string>
-  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">დალუქე Signal-ზე წვდომა Android-ის ეკრანის დაბლოკვით ან თითის ანაბეჭდით</string>
+  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">შეზღუდე Signal-ზე წვდომა Android-ის ეკრანის დაბლოკვით ან თითის ანაბეჭდით</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">ეკრანის დაბლოკვის უმოქმედობის დრო</string>
   <string name="preferences_app_protection__signal_pin">Signal-ის პინ-კოდი</string>
   <string name="preferences_app_protection__create_a_pin">შექმენი პინ-კოდი</string>
   <string name="preferences_app_protection__change_your_pin">შეცვალე შენი პინ-კოდი</string>
   <string name="preferences_app_protection__pin_reminders">პინ-კოდის შეხსენებები</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">პინ-კოდები Signal-ით შენახულ ინფორმაციას დაშიფრულად ინახავენ, რათა მხოლოდ შენ შეძლო მასზე წვდომა. შენი პროფილი, პარამეტრები და კონტაქტები Signal-ის ხელახლა ინსტალაციისას აღდგება.</string>
-  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">დაამატე ექსტრა-უსაფრთხოება შენს Signal-ზე პინ-კოდის მოთხოვნით, რათა ხელახლა დაარეგისტრირო შენი ტელეფონის ნომერი Signal-ით.</string>
+  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">დაამატე ექსტრა-უსაფრთხოება შენი Signal-ის პინ-კოდის მოთხოვნით, რათა ხელახლა დაარეგისტრირო შენი ტელეფონის ნომერი Signal-ზე.</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">შეხსენებები დაგეხმარება დაიმახსოვრო შენი პინ-კოდი, რადგან მისი აღდგენა შეუძლებელია. დროთა განმავლობაში ნაკლები სიხშირით გკითხავთ.</string>
   <string name="preferences_app_protection__turn_off">გამორთვა</string>
   <string name="preferences_app_protection__confirm_pin">პინ-კოდის დადასტურება</string>
