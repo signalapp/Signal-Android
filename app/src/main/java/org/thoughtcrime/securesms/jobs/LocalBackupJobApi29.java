@@ -138,11 +138,13 @@ public final class LocalBackupJobApi29 extends BaseJob {
           BackupFileIOError.VERIFICATION_FAILED.postNotification(context);
         }
       } catch (FullBackupExporter.BackupCanceledException e) {
+        EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.FINISHED, 0, 0));
         Log.w(TAG, "Backup cancelled");
         throw e;
       } catch (IOException e) {
         Log.w(TAG, "Error during backup!", e);
-        BackupFileIOError.postNotificationForException(context, e, getRunAttempt());
+        EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.FINISHED, 0, 0));
+        BackupFileIOError.postNotificationForException(context, e);
         throw e;
       } finally {
         DocumentFile fileToCleanUp = backupDirectory.findFile(temporaryName);

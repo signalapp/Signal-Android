@@ -11,7 +11,7 @@ public class BackupEvent {
   private final long count;
   private final long estimatedTotalCount;
 
-  BackupEvent(Type type, long count, long estimatedTotalCount) {
+  public BackupEvent(Type type, long count, long estimatedTotalCount) {
     this.type                = type;
     this.count               = count;
     this.estimatedTotalCount = estimatedTotalCount;

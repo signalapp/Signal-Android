@@ -21,7 +21,7 @@ import org.signal.core.util.CursorUtil;
 import org.signal.core.util.SetUtil;
 import org.signal.core.util.Stopwatch;
 import org.signal.core.util.logging.Log;
-import org.signal.libsignal.protocol.kdf.HKDFv3;
+import org.signal.libsignal.protocol.kdf.HKDF;
 import org.signal.libsignal.protocol.util.ByteUtil;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.crypto.AttachmentSecret;
@@ -144,7 +144,7 @@ public class FullBackupExporter extends FullBackupBase {
   {
     BackupFrameOutputStream outputStream          = new BackupFrameOutputStream(fileOutputStream, passphrase);
     int                     count                 = 0;
-    long                    estimatedCountOutside = 0L;
+    long                    estimatedCountOutside;
 
     try {
       outputStream.writeDatabaseVersion(input.getVersion());
@@ -351,78 +351,84 @@ public class FullBackupExporter extends FullBackupBase {
     return count;
   }
 
-  private static int exportAttachment(@NonNull AttachmentSecret attachmentSecret, @NonNull Cursor cursor, @NonNull BackupFrameOutputStream outputStream, int count, long estimatedCount) {
-    try {
-      long rowId    = cursor.getLong(cursor.getColumnIndexOrThrow(AttachmentDatabase.ROW_ID));
-      long uniqueId = cursor.getLong(cursor.getColumnIndexOrThrow(AttachmentDatabase.UNIQUE_ID));
-      long size     = cursor.getLong(cursor.getColumnIndexOrThrow(AttachmentDatabase.SIZE));
+  private static int exportAttachment(@NonNull AttachmentSecret attachmentSecret,
+                                      @NonNull Cursor cursor,
+                                      @NonNull BackupFrameOutputStream outputStream,
+                                      int count,
+                                      long estimatedCount)
+      throws IOException
+  {
+    long rowId    = cursor.getLong(cursor.getColumnIndexOrThrow(AttachmentDatabase.ROW_ID));
+    long uniqueId = cursor.getLong(cursor.getColumnIndexOrThrow(AttachmentDatabase.UNIQUE_ID));
+    long size     = cursor.getLong(cursor.getColumnIndexOrThrow(AttachmentDatabase.SIZE));
 
-      String data   = cursor.getString(cursor.getColumnIndexOrThrow(AttachmentDatabase.DATA));
-      byte[] random = cursor.getBlob(cursor.getColumnIndexOrThrow(AttachmentDatabase.DATA_RANDOM));
+    String data   = cursor.getString(cursor.getColumnIndexOrThrow(AttachmentDatabase.DATA));
+    byte[] random = cursor.getBlob(cursor.getColumnIndexOrThrow(AttachmentDatabase.DATA_RANDOM));
 
-      if (!TextUtils.isEmpty(data)) {
-        long fileLength = new File(data).length();
-        long dbLength   = size;
+    if (!TextUtils.isEmpty(data)) {
+      long fileLength = new File(data).length();
+      long dbLength   = size;
 
-        if (size <= 0 || fileLength != dbLength) {
-          size = calculateVeryOldStreamLength(attachmentSecret, random, data);
-          Log.w(TAG, "Needed size calculation! Manual: " + size + " File: " + fileLength + "  DB: " + dbLength + " ID: " + new AttachmentId(rowId, uniqueId));
-        }
+      if (size <= 0 || fileLength != dbLength) {
+        size = calculateVeryOldStreamLength(attachmentSecret, random, data);
+        Log.w(TAG, "Needed size calculation! Manual: " + size + " File: " + fileLength + "  DB: " + dbLength + " ID: " + new AttachmentId(rowId, uniqueId));
       }
+    }
 
-      if (!TextUtils.isEmpty(data) && size > 0) {
-        InputStream inputStream;
-
-        if (random != null && random.length == 32) inputStream = ModernDecryptingPartInputStream.createFor(attachmentSecret, random, new File(data), 0);
-        else inputStream = ClassicDecryptingPartInputStream.createFor(attachmentSecret, new File(data));
-
+    if (!TextUtils.isEmpty(data) && size > 0) {
+      try (InputStream inputStream = openAttachmentStream(attachmentSecret, random, data)) {
         EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, ++count, estimatedCount));
         outputStream.write(new AttachmentId(rowId, uniqueId), inputStream, size);
-        inputStream.close();
       }
-    } catch (IOException e) {
-      Log.w(TAG, e);
     }
 
     return count;
   }
 
-  private static int exportSticker(@NonNull AttachmentSecret attachmentSecret, @NonNull Cursor cursor, @NonNull BackupFrameOutputStream outputStream, int count, long estimatedCount) {
-    try {
-      long rowId = cursor.getLong(cursor.getColumnIndexOrThrow(StickerDatabase._ID));
-      long size  = cursor.getLong(cursor.getColumnIndexOrThrow(StickerDatabase.FILE_LENGTH));
+  private static int exportSticker(@NonNull AttachmentSecret attachmentSecret,
+                                   @NonNull Cursor cursor,
+                                   @NonNull BackupFrameOutputStream outputStream,
+                                   int count,
+                                   long estimatedCount)
+      throws IOException
+  {
+    long rowId = cursor.getLong(cursor.getColumnIndexOrThrow(StickerDatabase._ID));
+    long size  = cursor.getLong(cursor.getColumnIndexOrThrow(StickerDatabase.FILE_LENGTH));
 
-      String data   = cursor.getString(cursor.getColumnIndexOrThrow(StickerDatabase.FILE_PATH));
-      byte[] random = cursor.getBlob(cursor.getColumnIndexOrThrow(StickerDatabase.FILE_RANDOM));
+    String data   = cursor.getString(cursor.getColumnIndexOrThrow(StickerDatabase.FILE_PATH));
+    byte[] random = cursor.getBlob(cursor.getColumnIndexOrThrow(StickerDatabase.FILE_RANDOM));
 
-      if (!TextUtils.isEmpty(data) && size > 0) {
-        EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, ++count, estimatedCount));
-        try (InputStream inputStream = ModernDecryptingPartInputStream.createFor(attachmentSecret, random, new File(data), 0)) {
-          outputStream.writeSticker(rowId, inputStream, size);
-        }
+    if (!TextUtils.isEmpty(data) && size > 0) {
+      EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, ++count, estimatedCount));
+      try (InputStream inputStream = ModernDecryptingPartInputStream.createFor(attachmentSecret, random, new File(data), 0)) {
+        outputStream.writeSticker(rowId, inputStream, size);
       }
-    } catch (IOException e) {
-      Log.w(TAG, e);
     }
 
     return count;
   }
 
   private static long calculateVeryOldStreamLength(@NonNull AttachmentSecret attachmentSecret, @Nullable byte[] random, @NonNull String data) throws IOException {
-    long        result = 0;
-    InputStream inputStream;
+    long result = 0;
 
-    if (random != null && random.length == 32) inputStream = ModernDecryptingPartInputStream.createFor(attachmentSecret, random, new File(data), 0);
-    else inputStream = ClassicDecryptingPartInputStream.createFor(attachmentSecret, new File(data));
+    try (InputStream inputStream = openAttachmentStream(attachmentSecret, random, data)) {
+      int    read;
+      byte[] buffer = new byte[8192];
 
-    int    read;
-    byte[] buffer = new byte[8192];
-
-    while ((read = inputStream.read(buffer, 0, buffer.length)) != -1) {
-      result += read;
+      while ((read = inputStream.read(buffer, 0, buffer.length)) != -1) {
+        result += read;
+      }
     }
 
     return result;
+  }
+
+  private static InputStream openAttachmentStream(@NonNull AttachmentSecret attachmentSecret, @Nullable byte[] random, @NonNull String data) throws IOException {
+    if (random != null && random.length == 32) {
+      return ModernDecryptingPartInputStream.createFor(attachmentSecret, random, new File(data), 0);
+    } else {
+      return ClassicDecryptingPartInputStream.createFor(attachmentSecret, new File(data));
+    }
   }
 
   private static int exportKeyValues(@NonNull BackupFrameOutputStream outputStream,
@@ -528,20 +534,18 @@ public class FullBackupExporter extends FullBackupBase {
     private final Mac          mac;
 
     private final byte[] cipherKey;
-    private final byte[] macKey;
-
-    private byte[] iv;
-    private int    counter;
+    private final byte[] iv;
+    private       int    counter;
 
     private BackupFrameOutputStream(@NonNull OutputStream output, @NonNull String passphrase) throws IOException {
       try {
         byte[]   salt    = Util.getSecretBytes(32);
         byte[]   key     = getBackupKey(passphrase, salt);
-        byte[]   derived = new HKDFv3().deriveSecrets(key, "Backup Export".getBytes(), 64);
+        byte[]   derived = HKDF.deriveSecrets(key, "Backup Export".getBytes(), 64);
         byte[][] split   = ByteUtil.split(derived, 32, 32);
 
         this.cipherKey = split[0];
-        this.macKey    = split[1];
+        byte[] macKey  = split[1];
 
         this.cipher       = Cipher.getInstance("AES/CTR/NoPadding");
         this.mac          = Mac.getInstance("HmacSHA256");
@@ -576,12 +580,17 @@ public class FullBackupExporter extends FullBackupBase {
     }
 
     public void write(@NonNull String avatarName, @NonNull InputStream in, long size) throws IOException {
-      write(outputStream, BackupProtos.BackupFrame.newBuilder()
-                                                  .setAvatar(BackupProtos.Avatar.newBuilder()
-                                                                                .setRecipientId(avatarName)
-                                                                                .setLength(Util.toIntExact(size))
-                                                                                .build())
-                                                  .build());
+      try {
+        write(outputStream, BackupProtos.BackupFrame.newBuilder()
+                                                    .setAvatar(BackupProtos.Avatar.newBuilder()
+                                                                                  .setRecipientId(avatarName)
+                                                                                  .setLength(Util.toIntExact(size))
+                                                                                  .build())
+                                                    .build());
+      } catch (ArithmeticException e) {
+        Log.w(TAG, "Unable to write avatar to backup", e);
+        throw new InvalidBackupStreamException();
+      }
 
       if (writeStream(in) != size) {
         throw new IOException("Size mismatch!");
@@ -589,13 +598,18 @@ public class FullBackupExporter extends FullBackupBase {
     }
 
     public void write(@NonNull AttachmentId attachmentId, @NonNull InputStream in, long size) throws IOException {
-      write(outputStream, BackupProtos.BackupFrame.newBuilder()
-                                                  .setAttachment(BackupProtos.Attachment.newBuilder()
-                                                                                        .setRowId(attachmentId.getRowId())
-                                                                                        .setAttachmentId(attachmentId.getUniqueId())
-                                                                                        .setLength(Util.toIntExact(size))
-                                                                                        .build())
-                                                  .build());
+      try {
+        write(outputStream, BackupProtos.BackupFrame.newBuilder()
+                                                    .setAttachment(BackupProtos.Attachment.newBuilder()
+                                                                                          .setRowId(attachmentId.getRowId())
+                                                                                          .setAttachmentId(attachmentId.getUniqueId())
+                                                                                          .setLength(Util.toIntExact(size))
+                                                                                          .build())
+                                                    .build());
+      } catch (ArithmeticException e) {
+        Log.w(TAG, "Unable to write " + attachmentId + " to backup", e);
+        throw new InvalidBackupStreamException();
+      }
 
       if (writeStream(in) != size) {
         throw new IOException("Size mismatch!");
@@ -603,12 +617,17 @@ public class FullBackupExporter extends FullBackupBase {
     }
 
     public void writeSticker(long rowId, @NonNull InputStream in, long size) throws IOException {
-      write(outputStream, BackupProtos.BackupFrame.newBuilder()
-                                                  .setSticker(BackupProtos.Sticker.newBuilder()
-                                                                                  .setRowId(rowId)
-                                                                                  .setLength(Util.toIntExact(size))
-                                                                                  .build())
-                                                  .build());
+      try {
+        write(outputStream, BackupProtos.BackupFrame.newBuilder()
+                                                    .setSticker(BackupProtos.Sticker.newBuilder()
+                                                                                    .setRowId(rowId)
+                                                                                    .setLength(Util.toIntExact(size))
+                                                                                    .build())
+                                                    .build());
+      } catch (ArithmeticException e) {
+        Log.w(TAG, "Unable to write sticker to backup", e);
+        throw new InvalidBackupStreamException();
+      }
 
       if (writeStream(in) != size) {
         throw new IOException("Size mismatch!");
@@ -687,13 +706,14 @@ public class FullBackupExporter extends FullBackupBase {
   }
 
   public interface PostProcessor {
-    int postProcess(@NonNull Cursor cursor, int count);
+    int postProcess(@NonNull Cursor cursor, int count) throws IOException;
   }
 
   public interface BackupCancellationSignal {
     boolean isCanceled();
   }
 
-  public static final class BackupCanceledException extends IOException {
-  }
+  public static final class BackupCanceledException extends IOException {}
+
+  public static final class InvalidBackupStreamException extends IOException {}
 }

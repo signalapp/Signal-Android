@@ -22,6 +22,7 @@ public enum BackupFileIOError {
   FILE_TOO_LARGE(R.string.LocalBackupJobApi29_backup_failed, R.string.LocalBackupJobApi29_your_backup_file_is_too_large),
   NOT_ENOUGH_SPACE(R.string.LocalBackupJobApi29_backup_failed, R.string.LocalBackupJobApi29_there_is_not_enough_space),
   VERIFICATION_FAILED(R.string.LocalBackupJobApi29_backup_failed, R.string.LocalBackupJobApi29_your_backup_could_not_be_verified),
+  ATTACHMENT_TOO_LARGE(R.string.LocalBackupJobApi29_backup_failed, R.string.LocalBackupJobApi29_your_backup_contains_a_very_large_file),
   UNKNOWN(R.string.LocalBackupJobApi29_backup_failed, R.string.LocalBackupJobApi29_tap_to_manage_backups);
 
   private static final short BACKUP_FAILED_ID = 31321;
@@ -44,6 +45,7 @@ public enum BackupFileIOError {
                                                                   .setSmallIcon(R.drawable.ic_signal_backup)
                                                                   .setContentTitle(context.getString(titleId))
                                                                   .setContentText(context.getString(messageId))
+                                                                  .setStyle(new NotificationCompat.BigTextStyle().bigText(context.getString(messageId)))
                                                                   .setContentIntent(pendingIntent)
                                                                   .build();
 
@@ -51,22 +53,27 @@ public enum BackupFileIOError {
                              .notify(BACKUP_FAILED_ID, backupFailedNotification);
   }
 
-  public static void postNotificationForException(@NonNull Context context, @NonNull IOException e, int runAttempt) {
+  public static void postNotificationForException(@NonNull Context context, @NonNull IOException e) {
     BackupFileIOError error = getFromException(e);
 
     if (error != null) {
       error.postNotification(context);
     }
 
-    if (error == null && runAttempt > 0) {
+    if (error == null) {
       UNKNOWN.postNotification(context);
     }
   }
 
   private static @Nullable BackupFileIOError getFromException(@NonNull IOException e) {
-    if (e.getMessage() != null) {
-           if (e.getMessage().contains("EFBIG"))  return FILE_TOO_LARGE;
-      else if (e.getMessage().contains("ENOSPC")) return NOT_ENOUGH_SPACE;
+    if (e instanceof FullBackupExporter.InvalidBackupStreamException) {
+      return ATTACHMENT_TOO_LARGE;
+    } else if (e.getMessage() != null) {
+      if (e.getMessage().contains("EFBIG")) {
+        return FILE_TOO_LARGE;
+      } else if (e.getMessage().contains("ENOSPC")) {
+        return NOT_ENOUGH_SPACE;
+      }
     }
 
     return null;
