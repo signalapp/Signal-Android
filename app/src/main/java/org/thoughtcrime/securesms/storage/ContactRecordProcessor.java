@@ -10,8 +10,11 @@ import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.RecipientRecord;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.whispersystems.signalservice.api.push.ACI;
+import org.whispersystems.signalservice.api.push.PNI;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.storage.SignalContactRecord;
@@ -29,6 +32,10 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
   private final Recipient         self;
   private final RecipientDatabase recipientDatabase;
 
+  private final ACI    selfAci;
+  private final PNI    selfPni;
+  private final String selfE164;
+
   public ContactRecordProcessor(@NonNull Context context, @NonNull Recipient self) {
     this(self, SignalDatabase.recipients());
   }
@@ -36,6 +43,9 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
   ContactRecordProcessor(@NonNull Recipient self, @NonNull RecipientDatabase recipientDatabase) {
     this.self              = self;
     this.recipientDatabase = recipientDatabase;
+    this.selfAci           = SignalStore.account().getAci();
+    this.selfPni           = SignalStore.account().getPni();
+    this.selfE164          = SignalStore.account().getE164();
   }
 
   /**
@@ -55,8 +65,9 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
     } else if (!address.hasValidServiceId()) {
       Log.w(TAG, "Found a ContactRecord without a UUID -- marking as invalid.");
       return true;
-    } else if ((self.getServiceId().isPresent() && address.getServiceId().equals(self.requireServiceId())) ||
-               (self.getE164().isPresent() && address.getNumber().equals(self.getE164())))
+    } else if (address.getServiceId().equals(selfAci) ||
+               address.getServiceId().equals(selfPni) ||
+               (selfE164 != null && address.getNumber().isPresent() && address.getNumber().get().equals(selfE164)))
     {
       Log.w(TAG, "Found a ContactRecord for ourselves -- marking as invalid.");
       return true;
