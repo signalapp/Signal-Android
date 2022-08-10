@@ -340,7 +340,7 @@ public final class FeatureFlags {
    * IMPORTANT: This is under active development. Enabling this *will* break your contacts in terrible, irreversible ways.
    */
   public static boolean phoneNumberPrivacy() {
-    return getBoolean(PHONE_NUMBER_PRIVACY, false) && Environment.IS_STAGING;
+    return getBoolean(PHONE_NUMBER_PRIVACY, false);
   }
 
   /** Whether to use the custom streaming muxer or built in android muxer. */
