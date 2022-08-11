@@ -58,9 +58,7 @@ public enum BackupFileIOError {
 
     if (error != null) {
       error.postNotification(context);
-    }
-
-    if (error == null) {
+    } else {
       UNKNOWN.postNotification(context);
     }
   }
