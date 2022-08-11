@@ -463,6 +463,7 @@
   <string name="BackupsPreferenceFragment__to_restore_a_backup">För att återställa en säkerhetskopia, installera en ny kopia av Signal. Öppna appen och tryck på \"Återställ säkerhetskopia\" och leta reda på en säkerhetskopia. %1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">Läs mer</string>
   <string name="BackupsPreferenceFragment__in_progress">Pågående…</string>
+  <!--Status text shown in backup preferences when verifying a backup-->
   <string name="BackupsPreferenceFragment__d_so_far">%1$d hittills…</string>
   <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment__s_so_far">%1$s%% hittills…</string>
@@ -2726,10 +2727,13 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Du har angett ditt lösenord för säkerhetskopian</string>
   <string name="BackupDialog_passphrase_was_not_correct">Lösenordet var inte korrekt</string>
   <string name="LocalBackupJob_creating_signal_backup">Skapar Signal-säkerhetskopia…</string>
+  <!--Title for progress notification shown in a system notification while verifying a recent backup.-->
   <string name="LocalBackupJobApi29_backup_failed">Säkerhetskopieringen misslyckades</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Din mapp för säkerhetskopior har tagits bort eller flyttats.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Din säkerhetskopieringsfil är för stor för att lagras på denna volym.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">Det finns inte tillräckligt med utrymme för att lagra din säkerhetskopia.</string>
+  <!--Error message shown if a newly created backup could not be verified as accurate-->
+  <!--Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail-->
   <string name="LocalBackupJobApi29_tap_to_manage_backups">Tryck för att hantera säkerhetskopior.</string>
   <string name="ProgressPreference_d_messages_so_far">%d meddelanden än så länge</string>
   <string name="RegistrationActivity_wrong_number">Fel nummer</string>
@@ -3988,11 +3992,11 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">Dölj berättelse från</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
-  <string name="MyStorySettingsFragment__all_signal_connections">Alla Signal-anslutningar</string>
+  <string name="MyStorySettingsFragment__all_signal_connections">Alla Signal-förbindelser</string>
   <!--Privacy setting description for sending stories to all your signal connections-->
-  <string name="MyStorySettingsFragment__share_with_all_connections">Dela med alla kontakter</string>
+  <string name="MyStorySettingsFragment__share_with_all_connections">Dela med alla förbindelser</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
-  <string name="MyStorySettingsFragment__all_signal_connections_except">Alla Signal-anslutningar utom …</string>
+  <string name="MyStorySettingsFragment__all_signal_connections_except">Alla Signal-förbindelser utom …</string>
   <!--Privacy setting description for sending stories to all except the specified connections-->
   <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Dölj din berättelse för specifika personer</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
@@ -4020,9 +4024,9 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--Note about default sharing-->
   <string name="MyStorySettingsFragment__hide_your_story_from">Dölj din berättelse från specifika personer. Som standard delas din berättelse med dina %1$s</string>
   <!--Signal connections bolded text in the Signal Connections sheet-->
-  <string name="SignalConnectionsBottomSheet___signal_connections">Signal-anslutningar</string>
+  <string name="SignalConnectionsBottomSheet___signal_connections">Signal-förbindelser</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
-  <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Signal-anslutningar är personer som du har valt att lita på, antingen genom att:</string>
+  <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Signal-förbindelser är personer som du har valt att lita på, antingen genom att:</string>
   <!--Signal connections sheet bullet point 1-->
   <string name="SignalConnectionsBottomSheet__starting_a_conversation">Starta en konversation</string>
   <!--Signal connections sheet bullet point 2-->
@@ -4030,7 +4034,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--Signal connections sheet bullet point 3-->
   <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Ha dem i dina systemkontakter</string>
   <!--Note at the bottom of the Signal connections sheet-->
-  <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">Dina anslutningar kan se ditt namn och foto, och kan se inlägg på \"Din berättelse\" om du inte döljer den från dem.</string>
+  <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">Dina förbindelser kan se ditt namn och foto, och kan se inlägg på \"Din berättelse\" om du inte döljer den från dem.</string>
   <!--Clickable option to add a viewer to a private story-->
   <string name="PrivateStorySettingsFragment__add_viewer">Lägg till tittare</string>
   <!--Clickable option to delete a custom story-->
@@ -4080,7 +4084,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--Dialog title for first time adding something to a story-->
   <string name="StoryDialogs__add_to_story_q">Lägg till i berättelse?</string>
   <!--Dialog message for first time adding something to a story-->
-  <string name="StoryDialogs__adding_content">Att lägga till innehåll på din berättelse tillåter dina Signal-anslutningar att se det i 24 timmar. Du kan ändra vem som kan se din berättelse i Inställningar.</string>
+  <string name="StoryDialogs__adding_content">Att lägga till innehåll på din berättelse tillåter dina Signal-förbindelser att se det i 24 timmar. Du kan ändra vem som kan se din berättelse i Inställningar.</string>
   <!--First time share to story dialog: Positive action to go ahead and add to story-->
   <string name="StoryDialogs__add_to_story">Lägg till i berättelse</string>
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
@@ -4291,9 +4295,9 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--Title of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
   <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">Kontroll av säkerhetsnummer slutförd</string>
   <!--Message of safety number changes bottom sheet when not showing individual records and user has seen review screen-->
-  <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Alla anslutningar har granskats. Klicka på skicka för att fortsätta.</string>
+  <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Alla förbindelser har granskats. Klicka på skicka för att fortsätta.</string>
   <!--Message of safety number changes bottom sheet when not showing individual records-->
-  <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">Du har %1$d anslutningar som kan ha ominstallerat Signal eller bytt enheter. Granska deras säkerhetsnummer eller ta bort dem från din berättelse innan du delar den.</string>
+  <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">Du har %1$d förbindelser som kan ha ominstallerat Signal eller bytt enheter. Granska deras säkerhetsnummer eller ta bort dem från din berättelse innan du delar den.</string>
   <!--Menu action to launch safety number verification screen-->
   <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Verifiera säkerhetsnummer</string>
   <!--Menu action to remove user from story-->
@@ -4301,9 +4305,9 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--Action button at bottom of SafetyNumberBottomSheetFragment to send anyway-->
   <string name="SafetyNumberBottomSheetFragment__send_anyway">Skicka ändå</string>
   <!--Action button at bottom of SafetyNumberBottomSheetFragment to review connections-->
-  <string name="SafetyNumberBottomSheetFragment__review_connections">Granska anslutningar</string>
+  <string name="SafetyNumberBottomSheetFragment__review_connections">Granska förbindelser</string>
   <!--Empty state copy for SafetyNumberBottomSheetFragment-->
-  <string name="SafetyNumberBottomSheetFragment__no_more_recipients_to_show">Inga fler anslutningar att visa</string>
+  <string name="SafetyNumberBottomSheetFragment__no_more_recipients_to_show">Inga fler mottagare att visa</string>
   <!--Done button on safety number review fragment-->
   <string name="SafetyNumberReviewConnectionsFragment__done">Klar</string>
   <!--Title of safety number review fragment-->
@@ -4324,9 +4328,9 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--Subtitle of initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">Välj vem som kan se Min berättelse-inlägg. Du kan göra ändringar i inställningar.</string>
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
-  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Alla Signal-anslutningar</string>
+  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Alla Signal-förbindelser</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
-  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Alla Signal-anslutningar utom …</string>
+  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Alla Signal-förbindelser utom …</string>
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Dela endast med …</string>
   <!--Story info header sent heading-->

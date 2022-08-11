@@ -457,6 +457,7 @@
   <string name="BackupsPreferenceFragment__to_restore_a_backup">Por restaŭri savkopion, instalu novan Signal-on. Malfermu la aplikaĵon kaj tuŝetu „Restaŭri savkopion“, poste elektu dosieron de savkopi. %1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">Scii pli</string>
   <string name="BackupsPreferenceFragment__in_progress">Savkopiado…</string>
+  <!--Status text shown in backup preferences when verifying a backup-->
   <string name="BackupsPreferenceFragment__d_so_far">%1$d ĝis nun…</string>
   <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment__s_so_far">%1$s %% ĝis nun…</string>
@@ -2711,10 +2712,13 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Vi sukcese entajpis vian savkopian pasfrazon</string>
   <string name="BackupDialog_passphrase_was_not_correct">La pasfrazo malĝustas</string>
   <string name="LocalBackupJob_creating_signal_backup">Kreo de Signal-savkopio…</string>
+  <!--Title for progress notification shown in a system notification while verifying a recent backup.-->
   <string name="LocalBackupJobApi29_backup_failed">Savkopiado malsukcesis</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Via savkopia dosierujo foriĝis aŭ moviĝis.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Via savkopi-dosiero tro grandas por konserviĝi en tiun portilon.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">Ne plu estas sufiĉa spaco por konservi vian savkopion.</string>
+  <!--Error message shown if a newly created backup could not be verified as accurate-->
+  <!--Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail-->
   <string name="LocalBackupJobApi29_tap_to_manage_backups">Tuŝeti por administri la savkopiadon.</string>
   <string name="ProgressPreference_d_messages_so_far">%d mesaĝoj ĝis nun</string>
   <string name="RegistrationActivity_wrong_number">Erara numero</string>

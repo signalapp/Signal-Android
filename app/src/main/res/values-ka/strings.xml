@@ -40,7 +40,7 @@
   <string name="ApplicationPreferencesActivity_hide_reminder">დავმალოთ შეხსენება?</string>
   <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">ტრანზაქციების აღდგენის ფრაზის ჩაწერა</string>
   <string name="ApplicationPreferencesActivity_record_phrase">ფრაზის ჩაწერა</string>
-  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">სანამ პინ-კოდის გამორთვას შეძლებ, უნდა ჩაწერო შენი ტრანზაქციების აღდგენის ფრაზა, რათა უზრუნველყო შენი გადახდების ანგარიშის აღდგენა.</string>
+  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">სანამ პინ-კოდის გამორთვას შეძლებ, უნდა ჩაწერო შენი ტრანზაქციების აღდგენის ფრაზა, რათა უზრუნველყო შენი გადახდების მონაცემების აღდგენა.</string>
   <!--NumericKeyboardView-->
   <!--Back button on numeric keyboard-->
   <string name="NumericKeyboardView__backspace">უკან გასვლა</string>
@@ -325,7 +325,7 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">შეგიძლია ნებისმიერ შეტყობინებაზე მარცხნივ გადაწიოო, რათა სწრაფად უპასუხო</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">გამავალი ერთხელ სანახავი მედია ფაილები ავტომატურად წაიშლება მათი გაგზავნის შემდეგ</string>
   <string name="ConversationFragment_you_already_viewed_this_message">უკვე ნახე ეს შეტყობინება</string>
-  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">შეგიძლია ამ მიმოწერაში ჩანიშვნები დაამატო. \nთუ შენს ანგარიშზე რაიმე დაკავშირებული მოწყობილობებია, ახალი ჩანიშვნები დასინქრონიზდება.</string>
+  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">შეგიძლია ამ მიმოწერაში ჩანიშვნები დაამატო. \nთუ შენს პროფილთან დაკავშირებულია რაიმე მოწყობილობები, ახალი ჩანიშვნები დასინქრონიზდება.</string>
   <string name="ConversationFragment__d_group_members_have_the_same_name">ჯგუფში %1$d სეხნიაა.</string>
   <string name="ConversationFragment__tap_to_review">დააჭირე, რათა გადახედო</string>
   <string name="ConversationFragment__review_requests_carefully">ყურადღებით გადახედე მოთხოვნებს</string>
@@ -463,6 +463,7 @@
   <string name="BackupsPreferenceFragment__to_restore_a_backup">სათადარიგო ასლის აღსადგენად გადმოწერე Signal-ის ახალი ვერსია. გახსენი აპლიკაცია და დააჭირე \"სარეზერვო ასლის აღდგენას\", შემდეგ იპოვე სათადარიგო ფაილი. %1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">გაიგე მეტი</string>
   <string name="BackupsPreferenceFragment__in_progress">იტვირთება…</string>
+  <!--Status text shown in backup preferences when verifying a backup-->
   <string name="BackupsPreferenceFragment__d_so_far">%1$d ჯერ…</string>
   <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment__s_so_far">%1$s%% ჯერ…</string>
@@ -1265,7 +1266,7 @@
   <string name="PinRestoreEntryFragment_enter_numeric_pin">შეიყვანე ციფრული პინ-კოდი</string>
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">შექმენი შენი პინ-კოდი</string>
-  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">პინ-კოდის გამოცნობის რაოდენობა ამოგეწურა, მაგრამ მაინც შეგიძლია Signal-ის შენს ანგარიშზე წვდომა აღიდგინო ახალი პინ-კოდის შექმნით. შენი კონფიდენციალურობისა და უსაფრთხოებისთვის შენი ანგარიში აღდგება შენახული პროფილის ინფორმაციის ან პარამეტრების გარეშე.</string>
+  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">პინ-კოდის გამოცნობის რაოდენობა ამოგეწურა, მაგრამ მაინც შეგიძლია Signal-ის შენს მონაცემებზე წვდომა აღიდგინო ახალი პინ-კოდის შექმნით. შენი კონფიდენციალურობისა და უსაფრთხოებისთვის შენი მონაცემები აღდგება შენახული პროფილის ინფორმაციის ან პარამეტრების გარეშე.</string>
   <string name="PinRestoreLockedFragment_create_new_pin">შექმენი ახალი პინ-კოდი</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">გაფრთხილება</string>
@@ -1452,7 +1453,7 @@
   <!--RegistrationLockV2Dialog-->
   <string name="RegistrationLockV2Dialog_turn_on_registration_lock">ჩავრთოთ რეგისტრაციის დაბლოკვა?</string>
   <string name="RegistrationLockV2Dialog_turn_off_registration_lock">გამოვრთოთ რეგისტრაციის დაბლოკვა?</string>
-  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">თუ Signal-ზე რეგისტრირებისას კვლავ დაგავიწყდება შენი Signal-ის პინ-კოდი, 7 დღით დაბლოკილი იქნები ანგარიშიდან.</string>
+  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">თუ Signal-ზე რეგისტრირებისას კვლავ დაგავიწყდება შენი Signal-ის პინ-კოდი, შენი პროფილი 7 დღით დაიბლოკება.</string>
   <string name="RegistrationLockV2Dialog_turn_on">ჩართვა</string>
   <string name="RegistrationLockV2Dialog_turn_off">გამორთვა</string>
   <!--RevealableMessageView-->
@@ -2226,8 +2227,8 @@
   <string name="preferences__signal_messages_and_calls">Signal-ის შეტყობინებები და ზარები</string>
   <string name="preferences__advanced_pin_settings">პინ-კოდის გაფართოებული პარამეტრები</string>
   <string name="preferences__free_private_messages_and_calls">უფასო პირადი შეტყობინებები და ზარები Signal-ის მომხმარებლებისთვის</string>
-  <string name="preferences__submit_debug_log">Submit debug log</string>
-  <string name="preferences__delete_account">ანგარიშის წაშლა</string>
+  <string name="preferences__submit_debug_log">გაუმართაობის რეესტრის გაგზავნა</string>
+  <string name="preferences__delete_account">მონაცემების წაშლა</string>
   <string name="preferences__support_wifi_calling">\"WiFi Calling\" თავსებადობის რეჟიმი</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">ჩართე, თუ შენი მოწყობილობა SMS/MMS-ს WiFi-ით აგზავნის (ჩართე მხოლოდ მაშინ, როცა შენს მოწყობილობაზე ჩართულია „WiFi Calling“)</string>
   <string name="preferences__incognito_keyboard">ინკოგნიტო კლავიატურა</string>
@@ -2296,7 +2297,7 @@
   <string name="preferences_communication__censorship_circumvention">ცენზურისთვის გვერდის ავლა</string>
   <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">თუ ამას ჩართავ, Signal-ი შეეცდება გვერდი აარიდოს ცენზურას. არ ჩართო ეს ფუნქცია, თუ არ იმყოფები ისეთ ადგილას, სადაც Signal-ი ცენზურადადებულია.</string>
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country-->
-  <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">ცენზურისთვის გვერდის ავლა გააქტიურებულია შენი ანგარიშის ტელეფონის ნომრის საფუძველზე.</string>
+  <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">ცენზურისთვის გვერდის ავლა გააქტიურებულია შენს მონაცემებში არსებული ტელეფონის ნომრის საფუძველზე.</string>
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country-->
   <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">შენ ხელით გამორთე ცენზურისთვის გვერდის ავლა.</string>
   <!--Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service-->
@@ -2337,7 +2338,7 @@
   <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">გამოიყენე Signal-ი ახალი, კონფიდენციალურობაზე ორიენტირებული, ციფრული ვალუტის MobileCoin-ის გასაგზავნად და მისაღებად. დასაწყებად გააქტიურე.</string>
   <string name="PaymentsHomeFragment__activate_payments">ტრანზაქციების აქტივაცია</string>
   <string name="PaymentsHomeFragment__activating_payments">ვააქტიურებთ ტრანზაქციებს…</string>
-  <string name="PaymentsHomeFragment__restore_payments_account">ტრანზაქციების ანგარიშის აღდგენა</string>
+  <string name="PaymentsHomeFragment__restore_payments_account">ტრანზაქციების მონაცემების აღდგენა</string>
   <string name="PaymentsHomeFragment__no_recent_activity_yet">ბოლო აქტივობა ვერ მოიძებნა</string>
   <string name="PaymentsHomeFragment__pending_requests">მოლოდინის რეჟიმში მყოფი მოთხოვნები</string>
   <string name="PaymentsHomeFragment__recent_activity">ბოლო აქტივობა</string>
@@ -2640,13 +2641,13 @@
   <string name="KbsReminderDialog__forgot_pin">დაგავიწყდა პინ-კოდი?</string>
   <string name="KbsReminderDialog__incorrect_pin_try_again">არასწორი პინ-კოდი. ხელახლა სცადე.</string>
   <!--AccountLockedFragment-->
-  <string name="AccountLockedFragment__account_locked">ანგარიში დალუქულია</string>
-  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">შენი ანგარიში კონფიდენციალურობისა და უსაფრთხოების დასაცავად დაილუქა. შენს ანგარიშზე %1$d დღის უმოქმედობის შემდეგ, პინ-კოდის გარეშე შეძლებ ხელახლა დაარეგისტრირო ეს ტელეფონის ნომერი. კონტენტი მთლიანად წაიშლება.</string>
+  <string name="AccountLockedFragment__account_locked">მონაცემები დაბლოკილია</string>
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">შენი მონაცემები დაიბლოკა მათი კონფიდენციალურობისა და უსაფრთხოების დასაცავად. შენს პროფილზე %1$d დღის უმოქმედობის შემდეგ, პინ-კოდის გარეშე შეძლებ ხელახლა დაარეგისტრირო ეს ტელეფონის ნომერი. კონტენტი მთლიანად წაიშლება.</string>
   <string name="AccountLockedFragment__next">შემდეგი</string>
   <string name="AccountLockedFragment__learn_more">გაიგე მეტი</string>
   <!--KbsLockFragment-->
   <string name="RegistrationLockFragment__enter_your_pin">შეიყვანე შენი პინ-კოდი</string>
-  <string name="RegistrationLockFragment__enter_the_pin_you_created">შეიყვანე შენი ანგარიშისთვის შექმნილი პინ-კოდი. ის განსხვავდება შენი SMS-ის დამადასტურებელი კოდისგან.</string>
+  <string name="RegistrationLockFragment__enter_the_pin_you_created">შეიყვანე შენი მონაცემებისთვის შექმნილი პინ-კოდი. ის განსხვავდება შენი SMS ვერიფიკაციის კოდისგან.</string>
   <string name="RegistrationLockFragment__enter_alphanumeric_pin">შეიყვანე ანბანურ-ციფრული პინ-კოდი</string>
   <string name="RegistrationLockFragment__enter_numeric_pin">შეიყვანე ციფრული პინ-კოდი</string>
   <string name="RegistrationLockFragment__incorrect_pin_try_again">არასწორი პინ-კოდი. ხელახლა სცადე.</string>
@@ -2666,7 +2667,7 @@
   </plurals>
   <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
     <item quantity="one">თუ ყველა მცდელობა გამოიყენე, შენი ანგარიში დაბლოკილი იქნება %1$d დღის განმავლობაში. %1$d დღის უმოქმედობის შემდეგ, შეგიძლია ხელახლა დარეგისტრირდე შენი პინ-კოდის გარეშე. შენი ანგარიში გასუფთავდება და მთელი კონტენტი წაიშლება.</item>
-    <item quantity="other">თუ ყველა მცდელობა გამოიყენე, შენი ანგარიში დაიბლოკება %1$d დღით. %1$d დღის უმოქმედობის შემდეგ, შეგიძლია ხელახლა დარეგისტრირდე შენი პინ-კოდის გარეშე. შენი ანგარიში გასუფთავდება და მთელი კონტენტი წაიშლება.</item>
+    <item quantity="other">თუ ყველა მცდელობა გამოიყენე, შენი მონაცემები დაიბლოკება %1$d დღით. %1$d დღის უმოქმედობის შემდეგ, შეგიძლია ხელახლა დარეგისტრირდე შენი პინ-კოდის გარეშე. შენი მონაცემები გასუფთავდება და მთელი კონტენტი წაიშლება.</item>
   </plurals>
   <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
     <item quantity="one">დაგრჩათ %1$d მცდელობა.</item>
@@ -2700,13 +2701,13 @@
   <string name="backup_enable_dialog__folder">შენახვის ადგილი</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">ეს პაროლ-ფრაზა ჩავიწერე. ამის გარეშე ვერ შევძლებ სათადარიგო ასლის აღდგენას.</string>
   <string name="registration_activity__restore_backup">რეზერვის აღდგენა</string>
-  <string name="registration_activity__transfer_or_restore_account">გადაიტანე ან აღადგინე ანგარიში</string>
-  <string name="registration_activity__transfer_account">ანგარიშის გადატანა</string>
+  <string name="registration_activity__transfer_or_restore_account">გადაიტანე ან აღადგინე მონაცემები</string>
+  <string name="registration_activity__transfer_account">მონაცემების გადატანა</string>
   <string name="registration_activity__skip">გამოტოვება</string>
   <string name="preferences_chats__chat_backups">ჩატის სარეზერვო კოპიები</string>
   <string name="preferences_chats__backup_chats_to_external_storage">ჩატების სარეზერვო კოპიების შექმნა გარე მეხსიერებაში </string>
-  <string name="preferences_chats__transfer_account">ანგარიშის გადატანა</string>
-  <string name="preferences_chats__transfer_account_to_a_new_android_device">გადაიტანე ანგარიში Android-ის ახალ მოწყობილობაში</string>
+  <string name="preferences_chats__transfer_account">მონაცემების გადატანა</string>
+  <string name="preferences_chats__transfer_account_to_a_new_android_device">გადაიტანე მონაცემები Android-ის ახალ მოწყობილობაში</string>
   <string name="RegistrationActivity_enter_backup_passphrase">შეიყვანე სარეზერვო კოპიების პაროლ-ფრაზა</string>
   <string name="RegistrationActivity_restore">აღდგენა</string>
   <string name="RegistrationActivity_backup_failure_downgrade">შეუძლებელია სარეზერვო კოპიების გადმოტანა Signal-ის უფრო ახალი ვერსიებიდან </string>
@@ -2732,10 +2733,13 @@
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">შენ წარმატებით შეიყვანე სარეზერვო კოპიების პაროლ-ფრაზა</string>
   <string name="BackupDialog_passphrase_was_not_correct">პაროლ-ფრაზა არასწორი იყო</string>
   <string name="LocalBackupJob_creating_signal_backup">ვქმნით Signal-ის სარეზერვო კოპიებს…</string>
+  <!--Title for progress notification shown in a system notification while verifying a recent backup.-->
   <string name="LocalBackupJobApi29_backup_failed">სარეზერვო კოპიების შენახვა ვერ მოხერხდა</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">შენი სარეზერვო კოპიების შესანახი ადგილი იქნა წაშლილი ან გადატანილი.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">შენი სარეზერვო კოპიის ფაილი ზედმეტად დიდია აქ შესანახად.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">მეხსიერებაში საკმარისი ადგილი არ არის შენი სარეზერვო კოპიის შესანახად.</string>
+  <!--Error message shown if a newly created backup could not be verified as accurate-->
+  <!--Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail-->
   <string name="LocalBackupJobApi29_tap_to_manage_backups">დააჭირე სარეზერვო კოპიების სამართავად.</string>
   <string name="ProgressPreference_d_messages_so_far">ჯერ-ჯერობით %d შეტყობინება</string>
   <string name="RegistrationActivity_wrong_number">არასწორი ნომერი</string>
@@ -2774,7 +2778,7 @@
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">უნდა შეიყვანო შენი რეგისტრციის დაბლოკვის პინ-კოდი</string>
   <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">შენი პინ-კოდი შედგება არანაკლებ %d ციფრის ან სიმბოლოსგან</string>
   <string name="RegistrationActivity_too_many_attempts">ძალიან ბევრი მცდელობა</string>
-  <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">შენ განახორციელე რეგისტრაციის დაბლოკვის პინ-კოდის ძალიან ბევრი არასწორი მცდელობა. გთხოვთ ხელახლა სცადო ერთ დღეში.</string>
+  <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">შენი რეგისტრაციის დაბლოკვის პინ-კოდი ძალიან ბევრჯერ შეიყვანე არასწორად. გთხოვთ ერთ დღეში ხელახლა სცადო.</string>
   <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">თქვენ განახორციელეთ ძალიან ბევრი მცდელობა. გთხოვთ ხელახლა სცადოთ მოგვიანებით.</string>
   <string name="RegistrationActivity_error_connecting_to_service">სერვისთან დაკავშირების შეცდომა</string>
   <string name="preferences_chats__backups">სარეზერვო კოპიები</string>
@@ -2782,39 +2786,39 @@
   <string name="prompt_passphrase_activity__tap_to_unlock">დააჭირე განბლოკვისთვის</string>
   <string name="Recipient_unknown">უცნობი</string>
   <!--TransferOrRestoreFragment-->
-  <string name="TransferOrRestoreFragment__transfer_or_restore_account">გადაიტანე ან აღადგინე ანგარიში</string>
-  <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">თუ ადრე დაარეგისტრირე Signal-ის ანგარიში, შეგიძლია გადაიტანო ან აღადგინო შენი ანგარიში და შეტყობინებები</string>
+  <string name="TransferOrRestoreFragment__transfer_or_restore_account">გადაიტანე ან აღადგინე მონაცემები</string>
+  <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">თუ ადრე დაარეგისტრირე Signal-ის პროფილი, შეგიძლია გადაიტანო ან აღადგინო შენი მონაცემები და შეტყობინებები</string>
   <string name="TransferOrRestoreFragment__transfer_from_android_device">Android მოწყობილობიდან გადმოტანა</string>
-  <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">გადმოიტანე შენი ანგარიში და შეტყობინებები ძველი Android მოწყობილობიდან. დაგჭირდება წვდომა შენს ძველ მოწყობილობაზე.</string>
+  <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">გადმოიტანე შენი მონაცემები და შეტყობინებები ძველი Android მოწყობილობიდან. დაგჭირდება წვდომა შენს ძველ მოწყობილობაზე.</string>
   <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">შენს ძველ მოწყობილობაზე წვდომა გჭირდება.</string>
-  <string name="TransferOrRestoreFragment__restore_from_backup">სათადარიგო ასლებიდან აღდგენა</string>
-  <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">აღადგინე შენი შეტყობინებები ადგილობრივი სათადარიგო ასლებიდან. თუ ახლა არ აღადგენ, მოგვიანებით აღდგენას ვეღარ შეძლებ.</string>
+  <string name="TransferOrRestoreFragment__restore_from_backup">სარეზერვო კოპიიდან აღდგენა</string>
+  <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">აღადგინე შენი შეტყობინებები ადგილობრივი სარეზერვო კოპიიდან. თუ ახლა არ აღადგენ, მოგვიანებით აღდგენას ვეღარ შეძლებ.</string>
   <!--NewDeviceTransferInstructionsFragment-->
   <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">გახსენი Signal-ი შენს ძველ Android მობილურზე</string>
   <string name="NewDeviceTransferInstructions__continue">გაგრძელება</string>
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">პარამეტრების გასახსნელად ზედა მარცხენა კუთხეში შენი პროფილის ფოტოს დააჭირე</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-  <string name="NewDeviceTransferInstructions__tap_on_account">დააჭირე \"ანგარიშზე\"</string>
+  <string name="NewDeviceTransferInstructions__tap_on_account">დააჭირე \"მონაცემები\"-ს</string>
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
-  <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">დააჭირე „ანგარიშის გადაცემას“ და შემდეგ „გაგრძელებას“ ორივე მოწყობილობაზე</string>
+  <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">დააჭირე „მონაცემების გადატანა“-ს და შემდეგ „გაგრძელება“-ს ორივე მოწყობილობაზე</string>
   <!--NewDeviceTransferSetupFragment-->
   <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">ვემზადებით ძველ Android მოწყობილობასთან დასაკავშირებლად…</string>
-  <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">ერთი წუთით, მალე მზად უნდა იყოს</string>
-  <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">ველოდებით ძველ Android მოწყობილობას, რომ დაუკავშირდეს…</string>
+  <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">დაელოდე, მალე მზად უნდა იყოს</string>
+  <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">ველოდებით ძველ Android მოწყობილობას, რომ დავაკავშიროთ…</string>
   <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">შენი ძველი Android მოწყობილობის აღმოსაჩენად და მასთან დასაკავშირებლად, Signal-ს მდებარეობაზე წვდომის ნებართვა სჭირდება.</string>
   <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal-ს სჭირდება მდებარეობის სერვისების ჩართვა შენი ძველი Android მოწყობილობის აღმოსაჩენად და მასთან დასაკავშირებლად.</string>
   <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal-ს სჭირდება ჩართული Wi-Fi შენი ძველი Android მოწყობილობის აღმოსაჩენად და მასთან დასაკავშირებლად. Wi-Fi უნდა იყოს ჩართული, მაგრამ არ უნდა იყოს დაკავშირებული Wi-Fi ქსელთან.</string>
-  <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">ბოდიში, როგორც ჩანს, ამ მოწყობილობას არ აქვს Wi-Fi Direct-ის მხარდაჭერა. Signal-ი Wi-Fi Direct-ს შენი ძველი Android მოწყობილობის აღმოსაჩენად და მასთან დასაკავშირებლად იყენებს. მაინც შეგიძლია აღადგინო სათადარიგო ასლი შენი ანგარიშის აღსადგენად შენი ძველი Android მოწყობილობიდან.</string>
-  <string name="NewDeviceTransferSetup__restore_a_backup">სათადარიგო ასლის აღდგენა</string>
+  <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">ბოდიში, როგორც ჩანს, ამ მოწყობილობას არ აქვს Wi-Fi Direct-ის მხარდაჭერა. Signal-ი Wi-Fi Direct-ს შენი ძველი Android მოწყობილობის აღმოსაჩენად და მასთან დასაკავშირებლად იყენებს. თუმცა შენი მონაცემების აღსადგენად, შეგიძლია შენი ძველი Android მოწყობილობის სარეზერვო კოპია აღადგინო.</string>
+  <string name="NewDeviceTransferSetup__restore_a_backup">სარეზერვო კოპიის აღდგენა</string>
   <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">შენს ძველ Android მოწყობილობასთან დაკავშირების მცდელობისას მოხდა მოულოდნელი შეცდომა.</string>
   <!--OldDeviceTransferSetupFragment-->
   <string name="OldDeviceTransferSetup__searching_for_new_android_device">ვეძებთ ახალ Android მოწყობილობას…</string>
   <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">შენი ახალი Android მოწყობილობის აღმოსაჩენად და მასთან დასაკავშირებლად Signal-ს მდებარეობაზე წვდომის ნებართვა სჭირდება.</string>
   <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal-ს სჭირდება ჩართული მდებარეობის სერვისები შენი ახალი Android მოწყობილობის აღმოსაჩენად და მასთან დასაკავშირებლად.</string>
   <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal-ს სჭირდება ჩართული Wi-Fi შენი ახალი Android მოწყობილობის აღმოსაჩენად და მასთან დასაკავშირებლად. Wi-Fi უნდა იყოს ჩართული, მაგრამ არ უნდა იყოს დაკავშირებული Wi-Fi ქსელთან.</string>
-  <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">ბოდიში, როგორც ჩანს, ამ მოწყობილობას არ აქვს Wi-Fi Direct-ის მხარდაჭერა. Signal-ი Wi-Fi Direct-ს შენი ახალი Android მოწყობილობის აღმოსაჩენად და მასთან დასაკავშირებლად იყენებს. მაინც შეგიძლია აღადგინო სათადარიგო ასლი შენი ანგარიშის აღსადგენად შენი ახალი Android მოწყობილობიდან.</string>
-  <string name="OldDeviceTransferSetup__create_a_backup">სათადარიგო ასლის შექმნა</string>
+  <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">ბოდიში, როგორც ჩანს, ამ მოწყობილობას არ აქვს Wi-Fi Direct-ის მხარდაჭერა. Signal-ი Wi-Fi Direct-ს შენი ახალი Android მოწყობილობის აღმოსაჩენად და მასთან დასაკავშირებლად იყენებს. თუმცა შენი მონაცემების აღსადგენად, შენი ახალი Android მოწყობილობაზე შეგიძლია სარეზერვო კოპია შექმნა.</string>
+  <string name="OldDeviceTransferSetup__create_a_backup">სარეზერვო კოპიის შექმნა</string>
   <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">შენს ახალ Android მოწყობილობასთან დაკავშირების მცდელობისას მოხდა მოულოდნელი შეცდომა.</string>
   <!--DeviceTransferSetupFragment-->
   <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Wi-Fi პარამეტრების გახსნა ვერ მოხერხდა. გთხოვთ, ხელით ჩართო Wi-Fi.</string>
@@ -2830,7 +2834,7 @@
   <string name="DeviceTransferSetup__the_numbers_do_not_match">ნომრები არ ემთხვევა</string>
   <string name="DeviceTransferSetup__continue">გაგრძელება</string>
   <string name="DeviceTransferSetup__number_is_not_the_same">ნომერი არ არის იგივე</string>
-  <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">თუ შენს მოწყობილობებზე ნომრები არ ემთხვევა, შესაძლოა არასწორ მოწყობილობას დაუკავშირდი. ამის გამოსასწორებლად შეაჩერე გადატანა, ხელახლა სცადე და მოწყობილობები ერთად გეჭიროს.</string>
+  <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">თუ შენს მოწყობილობებზე ნომრები არ ემთხვევა, შესაძლოა არასწორ მოწყობილობას დაუკავშირდი. ამის გამოსასწორებლად შეაჩერე გადატანა და ხელახლა სცადე, ისე რომ ორივე მოწყობილობა ერთად გეჭიროს.</string>
   <string name="DeviceTransferSetup__stop_transfer">გადატანის გაჩერება</string>
   <string name="DeviceTransferSetup__unable_to_discover_old_device">ძველი მოწყობილობის მოძებნა ვერ მოხერხდა</string>
   <string name="DeviceTransferSetup__unable_to_discover_new_device">ახალი მოწყობილობის მოძებნა ვერ მოხერხდა</string>
@@ -2838,7 +2842,7 @@
   <string name="DeviceTransferSetup__location_permission">ადგილმდებარეობის ნებართვა</string>
   <string name="DeviceTransferSetup__location_services">ადგილმდებარეობის სერვისები</string>
   <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
-  <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">WiFi Direct-ის ეკრანზე წაშალე ყველა დამახსოვრებული ჯგუფი და გააუქმე ნებისმიერი მოწვეული ან დაკავშირებული მოწყობილობის დაკავშირება.</string>
+  <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">WiFi Direct-ის ეკრანზე წაშალე ყველა დამახსოვრებული ჯგუფი და გააუქმე ნებისმიერი მოწვეული ან დაკავშირებული მოწყობილობა.</string>
   <string name="DeviceTransferSetup__wifi_direct_screen">WiFi Direct-ის ეკრანი</string>
   <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">სცადე Wi-Fi-ის გამორთვა და ჩართვა ორივე მოწყობილობაზე.</string>
   <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">დარწმუნდი, რომ ორივე მოწყობილობა გადატანის რეჟიმშია.</string>
@@ -2848,10 +2852,10 @@
   <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">გადაცემის დასაწყებად დააჭირე გაგრძელებას შენს მეორე მოწყობილობაზე.</string>
   <string name="DeviceTransferSetup__tap_continue_on_your_other_device">დააჭირე გაგრძელებას შენს მეორე მოწყობილობაზე…</string>
   <!--NewDeviceTransferFragment-->
-  <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Signal-ის ახალი ვერსიებიდან გადატანა ვერ მოხერხდა</string>
+  <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Signal-ის უფრო ახალი ვერსიებიდან გადატანა შეუძლებელია </string>
   <!--DeviceTransferFragment-->
   <string name="DeviceTransfer__transferring_data">მონაცემთა გადატანა</string>
-  <string name="DeviceTransfer__keep_both_devices_near_each_other">ორივე მოწყობილობა ერთმანეთთან ახლოს გეჭიროს. არ გამორთო მოწყობილობები და Signal-ი გახსნილი გქონდეს. გადატანები ბოლომდე დაშიფრულია.</string>
+  <string name="DeviceTransfer__keep_both_devices_near_each_other">ორივე მოწყობილობა ერთმანეთთან ახლოს გეჭიროს. არ გამორთო მოწყობილობები და Signal-ი გახსნილი გქონდეს. გადატანა ბოლომდეა დაშიფრული.</string>
   <string name="DeviceTransfer__d_messages_so_far">ჯერ-ჯერობი %1$d შეტყობინება…</string>
   <!--Filled in with total percentage of messages transferred-->
   <string name="DeviceTransfer__s_of_messages_so_far">ჯერ-ჯერობით %%-დან %1$s შეტყობინება…</string>
@@ -2861,38 +2865,38 @@
   <string name="DeviceTransfer__stop_transfer">გადატანის გაჩერება</string>
   <string name="DeviceTransfer__all_transfer_progress_will_be_lost">გადატანის მთლიანი პროგრესი დაიკარგება.</string>
   <string name="DeviceTransfer__transfer_failed">გადატანა ვერ მოხერხდა</string>
-  <string name="DeviceTransfer__unable_to_transfer">გადატანის შესრულება ვერ მოხერხდა</string>
+  <string name="DeviceTransfer__unable_to_transfer">გადატანა შეუძლებელია</string>
   <!--OldDeviceTransferInstructionsFragment-->
-  <string name="OldDeviceTransferInstructions__transfer_account">ანგარიშის გადატანა</string>
-  <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">შეგიძლია შენი Signal-ის ანგარიში ახალ Android მოწყობილობაზე Signal-ის დაყენებისას გადაიტანო. გაგრძელებამდე:</string>
+  <string name="OldDeviceTransferInstructions__transfer_account">მონაცემების გადატანა</string>
+  <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">შეგიძლია Signal-ის შენი მონაცემები ახალ Android მოწყობილობაზე Signal-ის დაყენებისას გადაიტანო. გაგრძელებამდე:</string>
   <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
   <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">ჩამოტვირთე Signal-ი შენს ახალ Android მოწყობილობაზე</string>
   <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
-  <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">დააჭირე \"ანგარიშის გადატანას ან აღდგენას\"</string>
+  <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">დააჭირე \"მონაცემების გადატანა ან აღდგენა\"</string>
   <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
   <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">მოთხოვნისას აირჩიე \"Android მოწყობილობიდან გადატანა\" და შემდეგ \"გაგრძელება\". ორივე მოწყობილობა ახლოს გეჭიროს.</string>
   <string name="OldDeviceTransferInstructions__continue">გაგრძელება</string>
   <!--OldDeviceTransferComplete-->
   <string name="OldDeviceTransferComplete__transfer_complete">გადატანა დასრულებულია</string>
   <string name="OldDeviceTransferComplete__go_to_your_new_device">შედი შენს ახალ მოწყობილობაში</string>
-  <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">შენი Signal-ის მონაცემები გადაეცა შენს ახალ მოწყობილობას. გადატანის პროცესის დასასრულებლად, უნდა გააგრძელოთ რეგისტრაცია შენს ახალ მოწყობილობაზე.</string>
+  <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">Signal-ის შენი მონაცემები გადატანილია შენს ახალ მოწყობილობაზე. გადატანის პროცესის დასასრულებლად, უნდა გააგრძელო რეგისტრაცია შენს ახალ მოწყობილობაზე.</string>
   <string name="OldDeviceTransferComplete__close">Close</string>
   <!--NewDeviceTransferComplete-->
-  <string name="NewDeviceTransferComplete__transfer_successful">წარმატებული გადატანა</string>
+  <string name="NewDeviceTransferComplete__transfer_successful">გადატანა წარმატებით შესრულდა</string>
   <string name="NewDeviceTransferComplete__transfer_complete">გადატანა დასრულებულია</string>
   <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">გადატანის პროცესის დასასრულებლად რეგისტრაცია უნდა განაგრძო.</string>
   <string name="NewDeviceTransferComplete__continue_registration">რეგისტრაციის გაგრძელება</string>
   <!--DeviceToDeviceTransferService-->
-  <string name="DeviceToDeviceTransferService_content_title">ანგარიშის გადატანა</string>
+  <string name="DeviceToDeviceTransferService_content_title">მონაცემების გადატანა</string>
   <string name="DeviceToDeviceTransferService_status_ready">ვემზადებით სხვა Android მოწყობილობასთან დასაკავშირებლად…</string>
   <string name="DeviceToDeviceTransferService_status_starting_up">ვემზადებით შენს Android მოწყობილობასთან დასაკავშირებლად…</string>
   <string name="DeviceToDeviceTransferService_status_discovery">ვეძებთ შენს Android მოწყობილობას…</string>
   <string name="DeviceToDeviceTransferService_status_network_connected">ვუკავშირდებით შენს Android მოწყობილობას…</string>
   <string name="DeviceToDeviceTransferService_status_verification_required">ვერიფიკაცია სავალდებულოა</string>
-  <string name="DeviceToDeviceTransferService_status_service_connected">გადაგვაქვს ანგარიში…</string>
+  <string name="DeviceToDeviceTransferService_status_service_connected">გადაგვაქვს მონაცემები…</string>
   <!--OldDeviceTransferLockedDialog-->
   <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">დაასრულე რეგისტრაცია შენს ახალ მოწყობილობაზე</string>
-  <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">შენი Signal-ის ანგარიში გადატანილია შენს ახალ მოწყობილობაზე, მაგრამ გასაგრძელებლად მასზე რეგისტრაცია უნდა დაასრულო. Signal-ი არააქტიური იქნება ამ მოწყობილობაზე.</string>
+  <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Signal-ის შენი მონაცემები გადატანილია შენს ახალ მოწყობილობაზე, მაგრამ გასაგრძელებლად მასზე რეგისტრაცია უნდა დაასრულო. Signal-ი არააქტიური იქნება ამ მოწყობილობაზე.</string>
   <string name="OldDeviceTransferLockedDialog__done">შესრულებულია</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">გაუქმება და ამ მოწყობილობის აქტივაცია</string>
   <!--AdvancedPreferenceFragment-->
@@ -2995,24 +2999,24 @@
   <!--Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead.-->
   <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Wi-Fi კავშირი სუსტია. გადაირთო მობილურის ინტერნეტზე.</string>
   <!--DeleteAccountFragment-->
-  <string name="DeleteAccountFragment__deleting_your_account_will">შენი ანგარიშის წაშლა:</string>
+  <string name="DeleteAccountFragment__deleting_your_account_will">შენი მონაცემების წაშლა:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">შეიყვანე შენი ტელეფონის ნომერი</string>
-  <string name="DeleteAccountFragment__delete_account">ანგარიშის წაშლა</string>
-  <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">წაშლის შენი ანგარიშის ინფორმაციასა და პროფილის ფოტოს</string>
+  <string name="DeleteAccountFragment__delete_account">მონაცემების წაშლა</string>
+  <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">წაშლის შენს მონაცემებს და პროფილის ფოტოს</string>
   <string name="DeleteAccountFragment__delete_all_your_messages">წაშლის ყველა შენს შეტყობინებას</string>
-  <string name="DeleteAccountFragment__delete_s_in_your_payments_account">წაშლის %1$s-ს შენი ტრანზაქციების ანგარიშში</string>
+  <string name="DeleteAccountFragment__delete_s_in_your_payments_account">წაშლის %1$s-ს შენი ტრანზაქციების მონაცემებს</string>
   <string name="DeleteAccountFragment__no_country_code">ქვეყნის კოდი არ არის მითითებული</string>
   <string name="DeleteAccountFragment__no_number">ნომერი არ არის მითითებული</string>
-  <string name="DeleteAccountFragment__the_phone_number">შეყვანილი მობილურის ნომერი არ ემთხვევა შენი ანგარიშისას.</string>
-  <string name="DeleteAccountFragment__are_you_sure">დარწმუნებული ხარ, რომ შენი ანგარიშის წაშლა გსურს?</string>
-  <string name="DeleteAccountFragment__this_will_delete_your_signal_account">ეს წაშლის შენს Signal-ის ანგარიშს და განაახლებს აპლიკაციას. პროცესის დასრულების შემდეგ აპლიკაცია დაიხურება.</string>
-  <string name="DeleteAccountFragment__failed_to_delete_account">ანგარიშის წაშლა ვერ მოხერხდა. ინტერნეტ კავშირი გაქვს?</string>
+  <string name="DeleteAccountFragment__the_phone_number">შეყვანილი მობილურის ნომერი არ ემთხვევა შენ მონაცემებს.</string>
+  <string name="DeleteAccountFragment__are_you_sure">დარწმუნებული ხარ, რომ შენი მონაცემების წაშლა გსურს?</string>
+  <string name="DeleteAccountFragment__this_will_delete_your_signal_account">ეს წაშლის Signal-ის შენ მონაცემებს და განაახლებს აპლიკაციას. პროცესის დასრულების შემდეგ აპლიკაცია დაიხურება.</string>
+  <string name="DeleteAccountFragment__failed_to_delete_account">მონაცემების წაშლა ვერ მოხერხდა. ინტერნეტთან მიერთებული ხარ?</string>
   <string name="DeleteAccountFragment__failed_to_delete_local_data">ადგილობრივი მონაცემების წაშლა ვერ მოხერხდა. შეგიძლია ისინი ხელით წაშალო სისტემის აპლიკაციის პარამეტრებში.</string>
   <string name="DeleteAccountFragment__launch_app_settings">აპის პარამეტრების გაშვება</string>
   <!--Title of progress dialog shown when a user deletes their account and the process is leaving all groups-->
   <string name="DeleteAccountFragment__leaving_groups">მიმდინარეობს ჯგუფების დატოვება…</string>
   <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
-  <string name="DeleteAccountFragment__deleting_account">მიმდინარეობს ანგარიშის წაშლა…</string>
+  <string name="DeleteAccountFragment__deleting_account">მიმდინარეობს მონაცემების წაშლა…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is canceling their subscription-->
   <string name="DeleteAccountFragment__canceling_your_subscription">მიმდინარეობს შენი გამოწერის გაუქმება…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
@@ -3089,7 +3093,7 @@
   <string name="payment_info_card_hide_this_card">დავმალოთ ეს ბარათი?</string>
   <string name="payment_info_card_hide">დამალვა</string>
   <string name="payment_info_card_record_recovery_phrase">ჩანაწერთა აღდგენის ფრაზა</string>
-  <string name="payment_info_card_your_recovery_phrase_gives_you">აღდგენის ფრაზა შენი გადახდების ანგარიშის აღსადგენად დამატებით საშუალებას გაძლევს.</string>
+  <string name="payment_info_card_your_recovery_phrase_gives_you">აღდგენის ფრაზა შენი გადახდების მონაცემების აღსადგენად დამატებით საშუალებას გაძლევს.</string>
   <string name="payment_info_card_record_your_phrase">ჩაიწერე შენი ფრაზა</string>
   <string name="payment_info_card_update_your_pin">განაახლე შენი პინ-კოდი</string>
   <string name="payment_info_card_with_a_high_balance">მაღალი ბალანსით, შეიძლება ანბანურ-ციფრულ პინ-კოდზე გადასვლა დაგჭირდეს, რათა შენი ანგარიში უკეთ დაიცვა.</string>
@@ -3127,7 +3131,7 @@
   <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">ჩაიწერე მომდევნო %1$d სიტყვა ქრონოლოგიურად. შენი სია საიმედო ადგილას შეინახე.</string>
   <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">დარწმუნდი, რომ შენი ფრაზა სწორად შეიყვანე.</string>
   <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">არ გადაუღო სქრინშოთი ან გაგზავნო ელ-ფოსტით.</string>
-  <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">ტრანზაქციების ანგარიში აღდგენილია.</string>
+  <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">ტრანზაქციების მონაცემები აღდგენილია.</string>
   <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">არასწორი აღდგენის ფრაზა</string>
   <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">დარწმუნდი, რომ შენი ფრაზა სწორად შეიყვანე და თავიდან სცადე.</string>
   <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">დავაკოპიროთ ბუფერში?</string>
@@ -3639,7 +3643,7 @@
   <string name="DonationsErrors__failed_to_send_gift_badge">ემბლემის საჩუქრად გაგზავნა ვერ მოხერხდა</string>
   <!--Displayed as message when some generic error happens during gift badge sending-->
   <string name="DonationsErrors__could_not_send_gift_badge">ემბლემის საჩუქრად გაგზავნა ვერ მოხერხდა. გთხოვთ მხარდაჭერის გუნდს დაუკავშირდე.</string>
-  <string name="DonationsErrors__your_badge_could_not">შენი ბეჯი ვერ დაემატა შენს ანგარიშს, მაგრამ შესაძლოა თანხა ჩამოგეჭრას. გთხოვთ, მხარდაჭერის გუნდს დაუკავშირდე.</string>
+  <string name="DonationsErrors__your_badge_could_not">შენი ბეჯი ვერ დაემატა შენს პროფილზე, მაგრამ შესაძლოა თანხა ჩამოგეჭრას. გთხოვთ, მხარდაჭერის გუნდს დაუკავშირდე.</string>
   <string name="DonationsErrors__your_payment_is_still">შენი ტრანზაქცია ჯერ კიდევ მუშავდება. ამას შეიძლება რამდენიმე წუთი დასჭირდეს, რაც შენს ინტერნეტ კავშირზეა დამოკიდებული.</string>
   <string name="DonationsErrors__google_pay_unavailable">Google Pay ხელმისაწვდომი არაა</string>
   <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">აპიდან დონაციის გასაკეთებლად Google Pay უნდა დააყენო.</string>

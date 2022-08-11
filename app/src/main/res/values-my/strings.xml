@@ -442,6 +442,7 @@
   <string name="BackupsPreferenceFragment__to_restore_a_backup">အရန်ကူးခြင်းတစ်ခုကို ပြန်ယူလိုလျှင် Signal မိတ္တူအသစ်ကိုထည့်သွင်းပါ။ အက်ပ်ကိုဖွင့်၍ \"အရန်ကူးထားခြင်းကိုပြန်ယူပါ\" ကို နှိပ်ပြီး အရန်ဖိုင်ကို ရှာဖွေရွေးပေးပါ။ %1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">ထပ်မံလေ့လာရန်</string>
   <string name="BackupsPreferenceFragment__in_progress">ဆောင်ရွက်ဆဲ</string>
+  <!--Status text shown in backup preferences when verifying a backup-->
   <string name="BackupsPreferenceFragment__d_so_far">%1$d ထိလုပ်ဆောင်ပြီး…</string>
   <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment__s_so_far">%1$s%% လုပ်ဆောင်ပြီး…</string>
@@ -2633,10 +2634,13 @@
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">သင်၏အရန်ကူးထားသောစကားဝှက်ကို အောင်မြင်စွာထည့်ပြီးပါပြီ</string>
   <string name="BackupDialog_passphrase_was_not_correct">စကားဝှက်သည်မမှန်ပါ</string>
   <string name="LocalBackupJob_creating_signal_backup">Signal ဘက်ခ်အပ် ဖန်တီးနေဆဲ…</string>
+  <!--Title for progress notification shown in a system notification while verifying a recent backup.-->
   <string name="LocalBackupJobApi29_backup_failed">အရန်သိမ်းဆည်းမှုများ မအောင်မြင်ပါ</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">သင်၏ အရန်သိမ်းဆည်းမှုများ၏ လမ်းညွှန်အား ဖျက်ထားသည် သို့မဟုတ် ပြောင်းရွှေ့သွားသည်</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">သင်၏ အရန်သိမ်းဆည်းထားသောဖိုင်ကို သိမ်းဆည်းရန် အလွန်ကြီးမားသည်</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">သင်၏ အရန်သိမ်းဆည်းမှုများကို သိမ်းဆည်းရန် နေရာမလုံလောက်ပါ</string>
+  <!--Error message shown if a newly created backup could not be verified as accurate-->
+  <!--Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail-->
   <string name="LocalBackupJobApi29_tap_to_manage_backups">အရန်ကူးခြင်းများကိုစီမံရန် နှိပ်ပါ</string>
   <string name="ProgressPreference_d_messages_so_far">လက်ရှိအချိန်အထိ %d စာ ရှိပါသည်</string>
   <string name="RegistrationActivity_wrong_number">နံပါတ်မှားယွင်းနေပါသည်</string>

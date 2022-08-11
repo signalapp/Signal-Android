@@ -458,6 +458,7 @@ Viss kontoen din har lenka einingar, så vil nye notat bli synkroniserte.</strin
   <string name="BackupsPreferenceFragment__to_restore_a_backup">For å gjenoppretta ein reservekopi må du installera Signal på nytt eller på ei ny eining. Opna appen og trykk «Gjenopprett reservekopi» og finn kopi-fila. %1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">Lær meir</string>
   <string name="BackupsPreferenceFragment__in_progress">I gang …</string>
+  <!--Status text shown in backup preferences when verifying a backup-->
   <string name="BackupsPreferenceFragment__d_so_far">%1$d så langt …</string>
   <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment__s_so_far">%1$s%% så langt …</string>
@@ -2718,10 +2719,13 @@ Kom i gang ved å senda ei melding til ein venn.</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Du skreiv inn rett passordfrase for reservekopiane dine</string>
   <string name="BackupDialog_passphrase_was_not_correct">Feil passordfrase</string>
   <string name="LocalBackupJob_creating_signal_backup">Opprettar Signal-reservekopi …</string>
+  <!--Title for progress notification shown in a system notification while verifying a recent backup.-->
   <string name="LocalBackupJobApi29_backup_failed">Reservekopiering feila</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Mappa for reservekopiar er sletta eller flytta.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Reservekopi-fila er for stor til å lagra på denne plasseringa.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">Du har ikkje nok lagringsplass til reservekopien din.</string>
+  <!--Error message shown if a newly created backup could not be verified as accurate-->
+  <!--Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail-->
   <string name="LocalBackupJobApi29_tap_to_manage_backups">Trykk for å handtera reserverkopiar.</string>
   <string name="ProgressPreference_d_messages_so_far">%dmeldingar så langt</string>
   <string name="RegistrationActivity_wrong_number">Feil nummer</string>

@@ -468,6 +468,7 @@
   <string name="BackupsPreferenceFragment__to_restore_a_backup">ప్రత్యామ్నాయము‌ను పునరుద్ధరించడానికి, Signal యొక్క క్రొత్త కాపీని ఇన్‌స్టాల్ చేయండి. అనువర్తనాన్ని తెరిచి, \"ప్రత్యామ్నాయము పునరుద్ధరించు\" నొక్కండి, ఆపై బ్యాకప్ ఫైల్‌ను కనుగొనండి. %1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">ఇంకా నేర్చుకో</string>
   <string name="BackupsPreferenceFragment__in_progress">పురోగతిలో ఉన్నది…</string>
+  <!--Status text shown in backup preferences when verifying a backup-->
   <string name="BackupsPreferenceFragment__d_so_far">ఇప్పటి వరకు %1$d…</string>
   <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment__s_so_far">%1$s%% ఇప్పటి వరకు…</string>
@@ -2736,10 +2737,13 @@
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">మీరు మీ ప్రత్యామ్నాయములు పాస్‌ఫ్రేజ్‌ని విజయవంతంగా నమోదు చేశారు</string>
   <string name="BackupDialog_passphrase_was_not_correct">పాస్‌ఫ్రేజ్ సరైనది కాదు</string>
   <string name="LocalBackupJob_creating_signal_backup">Signal బ్యాకప్‌ని సృష్టిస్తోంది…</string>
+  <!--Title for progress notification shown in a system notification while verifying a recent backup.-->
   <string name="LocalBackupJobApi29_backup_failed">ప్రత్యామ్నాయ విఫలమైంది</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">మీ చాట్ బ్యాకప్ తొలగించబడినధి లేదా తరలించబడినవి</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">మీ ప్రత్యామ్నాయములు ఫైల్ ఈ వాల్యూమ్‌లో నిల్వ చేయడానికి చాలా పెద్దది.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">మీ ప్రత్యామ్నాయములు ‌ను నిల్వ చేయడానికి తగినంత స్థలం లేదు.</string>
+  <!--Error message shown if a newly created backup could not be verified as accurate-->
+  <!--Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail-->
   <string name="LocalBackupJobApi29_tap_to_manage_backups">ప్రత్యామ్నాయములు ను నిర్వహించడానికి నొక్కండి.</string>
   <string name="ProgressPreference_d_messages_so_far">ఇప్పటివరకు %d సందేశాలు</string>
   <string name="RegistrationActivity_wrong_number">తప్పు సంఖ్య</string>

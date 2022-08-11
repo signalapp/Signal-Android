@@ -484,6 +484,7 @@
   <string name="BackupsPreferenceFragment__to_restore_a_backup">Para restaurar tus chat con una copia de seguridad, reinstala Signal. Abre Signal y toca en «Restaurar copia» y busca la copia de seguridad. %1$s </string>
   <string name="BackupsPreferenceFragment__learn_more">Saber más</string>
   <string name="BackupsPreferenceFragment__in_progress">En curso …</string>
+  <!--Status text shown in backup preferences when verifying a backup-->
   <string name="BackupsPreferenceFragment__d_so_far">%1$d por el momento …</string>
   <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment__s_so_far">%1$s de %% de momento …</string>
@@ -2826,10 +2827,13 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">La clave es correcta</string>
   <string name="BackupDialog_passphrase_was_not_correct">La clave es incorrecta</string>
   <string name="LocalBackupJob_creating_signal_backup">Creando copia de seguridad …</string>
+  <!--Title for progress notification shown in a system notification while verifying a recent backup.-->
   <string name="LocalBackupJobApi29_backup_failed">Fallo en la copia</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Parece que tu carpeta de copias de seguridad se ha eliminado o movido.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">La copia de seguridad es demasiado grande para guardarla en este dispositivo.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">No hay suficiente espacio para guardar tu copia de seguridad.</string>
+  <!--Error message shown if a newly created backup could not be verified as accurate-->
+  <!--Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail-->
   <string name="LocalBackupJobApi29_tap_to_manage_backups">Toca para gestionar las copias.</string>
   <string name="ProgressPreference_d_messages_so_far">%d mensajes hasta ahora</string>
   <string name="RegistrationActivity_wrong_number">Número incorrecto</string>

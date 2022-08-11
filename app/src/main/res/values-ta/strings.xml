@@ -463,6 +463,7 @@
   <string name="BackupsPreferenceFragment__to_restore_a_backup">மறுபிரதியை மீட்டமைக்க, சிக்னலின் புதிய நகலை நிறுவவும். பயன்பாட்டைத் திறந்து \"மறுபிரதியை மீட்டமை\" என்பதைத் தட்டவும், பின்னர் மறுபிரதி கோப்பைக் கண்டறியவும்.%1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">மேலும் அறிக</string>
   <string name="BackupsPreferenceFragment__in_progress">செயல்நிலையில் உள்ளது…</string>
+  <!--Status text shown in backup preferences when verifying a backup-->
   <string name="BackupsPreferenceFragment__d_so_far">%1$dஇதுவரை…</string>
   <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment__s_so_far">இதுவரை %1$s%%… </string>
@@ -2723,10 +2724,13 @@
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">உங்கள் காப்புப்பிரதி கடவுச்சொற்றொடரை வெற்றிகரமாக உள்ளிட்டுள்ளீர்கள்</string>
   <string name="BackupDialog_passphrase_was_not_correct">கடவுச்சொல் சரியாக இல்லை</string>
   <string name="LocalBackupJob_creating_signal_backup">சிக்னல் காப்புநகலை உருவாக்குகிறது…</string>
+  <!--Title for progress notification shown in a system notification while verifying a recent backup.-->
   <string name="LocalBackupJobApi29_backup_failed">மறுபிரதி தோல்வியுற்றது</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">உங்கள் மறுபிரதி கோப்புறை நீக்கப்பட்டது அல்லது வேறு இடத்திற்கு நகர்த்தப்பட்டது.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">உங்கள் மறுபிரதி கோப்பின் அளவு இந்த தொகுதியில் சேமிக்க முடியாத அளவுக்கு பெரியது.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">உங்கள் காப்புப்பிரதியை சேமிக்க போதுமான இடம் இல்லை.</string>
+  <!--Error message shown if a newly created backup could not be verified as accurate-->
+  <!--Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail-->
   <string name="LocalBackupJobApi29_tap_to_manage_backups">மறுபிரதிகளை நிர்வகிக்க தட்டவும்</string>
   <string name="ProgressPreference_d_messages_so_far">இதுவரை 1%d செய்திகள்</string>
   <string name="RegistrationActivity_wrong_number">தவறான எண்</string>

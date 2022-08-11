@@ -463,6 +463,7 @@
   <string name="BackupsPreferenceFragment__to_restore_a_backup">બૅકઅપ રિસ્ટોર કરવા માટે, Signal ની નવી કૉપી ઇન્સ્ટોલ કરો. એપ્લિકેશન ખોલો અને \"રિસ્ટોર બૅકઅપ\" ટેપ કરો, પછી બૅકઅપ ફાઇલ શોધો. %1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">વધુ શીખો</string>
   <string name="BackupsPreferenceFragment__in_progress">થાય છે…</string>
+  <!--Status text shown in backup preferences when verifying a backup-->
   <string name="BackupsPreferenceFragment__d_so_far">%1$dઅત્યાર સુધી…</string>
   <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment__s_so_far">%1$s%% અત્યાર સુધી…</string>
@@ -2728,10 +2729,13 @@
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">તમે સફળતાપૂર્વક તમારો બૅકઅપ પાસફ્રેઝ દાખલ કર્યો</string>
   <string name="BackupDialog_passphrase_was_not_correct">પાસફ્રેઝ સાચો ન હતો</string>
   <string name="LocalBackupJob_creating_signal_backup">Signal બૅકઅપ બની રહ્યું છે…</string>
+  <!--Title for progress notification shown in a system notification while verifying a recent backup.-->
   <string name="LocalBackupJobApi29_backup_failed">બૅકઅપ નિષ્ફળ</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">તમારી બૅકઅપ ડિરેક્ટરી કાઢી નાખવામાં આવી છે અથવા ખસેડવામાં આવી છે.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">આ વોલ્યુમ પર સ્ટોર કરવા માટે તમારી બૅકઅપ ફાઇલ ખૂબ મોટી છે.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">તમારા બૅકઅપને સ્ટોર કરવા માટે પૂરતી જગ્યા નથી.</string>
+  <!--Error message shown if a newly created backup could not be verified as accurate-->
+  <!--Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail-->
   <string name="LocalBackupJobApi29_tap_to_manage_backups">બેકઅપ મેનેજ કરવા માટે ટેપ કરો.</string>
   <string name="ProgressPreference_d_messages_so_far">%d મેસેજ અત્યાર સુધી</string>
   <string name="RegistrationActivity_wrong_number">ખોટો નંબર</string>

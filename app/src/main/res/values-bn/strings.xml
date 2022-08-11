@@ -463,6 +463,7 @@
   <string name="BackupsPreferenceFragment__to_restore_a_backup">একটি ব্যাকআপ পুনরুদ্ধার করতে, নতুন করে Signal  ইনস্টল করুন। অ্যাপ্লিকেশনটি খুলুন এবং \" ব্যাকআপ পুনরুদ্ধার করুন\" বাটনে আলতো চাপুন, তারপরে ব্যাকআপ ফাইলটি সনাক্ত করুন। %1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">আরও জানুন</string>
   <string name="BackupsPreferenceFragment__in_progress">চলমান…</string>
+  <!--Status text shown in backup preferences when verifying a backup-->
   <string name="BackupsPreferenceFragment__d_so_far">%1$d এখন অব্দি…</string>
   <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment__s_so_far">এখন পর্যন্ত %1$s %%…</string>
@@ -2728,10 +2729,13 @@
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">আপনি সফলভাবে আপনার ব্যাকআপ পাসফ্রেজটি প্রবেশ করিয়েছেন</string>
   <string name="BackupDialog_passphrase_was_not_correct">পাসফ্রেজ সঠিক ছিলোনা।</string>
   <string name="LocalBackupJob_creating_signal_backup">Signal ব্যাকআপ তৈরি করা হচ্ছে…</string>
+  <!--Title for progress notification shown in a system notification while verifying a recent backup.-->
   <string name="LocalBackupJobApi29_backup_failed">ব্যাকআপ ব্যর্থ হয়েছে</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">আপনার ব্যাকআপ ডিরেক্টরি মুছে ফেলা হয়েছে বা সরানো হয়েছে।</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">আপনার ব্যাকআপ ফাইলটি এই স্থানে সংরক্ষণ করার জন্য খুব বড়।</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">আপনার ব্যাকআপ সংরক্ষণের জন্য পর্যাপ্ত জায়গা নেই।</string>
+  <!--Error message shown if a newly created backup could not be verified as accurate-->
+  <!--Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail-->
   <string name="LocalBackupJobApi29_tap_to_manage_backups">ব্যাকআপগুলি পরিচালনা করতে আলতো চাপুন।</string>
   <string name="ProgressPreference_d_messages_so_far">এযাবৎ %d টি বার্তা</string>
   <string name="RegistrationActivity_wrong_number">ভুল নাম্বার</string>

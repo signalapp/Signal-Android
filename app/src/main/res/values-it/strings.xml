@@ -484,6 +484,7 @@
   <string name="BackupsPreferenceFragment__to_restore_a_backup">Per ripristinare un backup, installa una nuova copia di Signal. Apri l\'app e tocca \"Ripristina backup\", quindi individua un file di backup. %1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">Scopri di più</string>
   <string name="BackupsPreferenceFragment__in_progress">In corso…</string>
+  <!--Status text shown in backup preferences when verifying a backup-->
   <string name="BackupsPreferenceFragment__d_so_far">%1$d finora…</string>
   <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment__s_so_far">%1$s%% finora…</string>
@@ -2826,10 +2827,13 @@
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Hai inserito correttamente la passphrase del tuo backup</string>
   <string name="BackupDialog_passphrase_was_not_correct">La passphrase non è corretta</string>
   <string name="LocalBackupJob_creating_signal_backup">Creazione backup di Signal…</string>
+  <!--Title for progress notification shown in a system notification while verifying a recent backup.-->
   <string name="LocalBackupJobApi29_backup_failed">Backup fallito</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">La cartella di backup è stata eliminata o spostata.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Il tuo file di backup è troppo grande per essere memorizzato su questo volume.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">Spazio insufficiente per memorizzare il backup.</string>
+  <!--Error message shown if a newly created backup could not be verified as accurate-->
+  <!--Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail-->
   <string name="LocalBackupJobApi29_tap_to_manage_backups">Clicca per gestire i backup.</string>
   <string name="ProgressPreference_d_messages_so_far">Ancora %d messaggi</string>
   <string name="RegistrationActivity_wrong_number">Numero errato</string>

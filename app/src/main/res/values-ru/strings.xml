@@ -505,6 +505,7 @@
   <string name="BackupsPreferenceFragment__to_restore_a_backup">Чтобы восстановить из резервной копии, установите новую копию Signal. Откройте приложение и нажмите «Восстановить резервную копию», затем выберите файл резервной копии. %1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">Узнать больше</string>
   <string name="BackupsPreferenceFragment__in_progress">В процессе…</string>
+  <!--Status text shown in backup preferences when verifying a backup-->
   <string name="BackupsPreferenceFragment__d_so_far">Уже %1$d…</string>
   <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment__s_so_far">Уже %1$s%%…</string>
@@ -2913,10 +2914,13 @@
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Вы успешно ввели парольную фразу своей резервной копии</string>
   <string name="BackupDialog_passphrase_was_not_correct">Парольная фраза была неправильной</string>
   <string name="LocalBackupJob_creating_signal_backup">Создаём резервную копию Signal…</string>
+  <!--Title for progress notification shown in a system notification while verifying a recent backup.-->
   <string name="LocalBackupJobApi29_backup_failed">Резервное копирование не удалось</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Ваша папка для резервных копий была удалена или перемещена.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Ваш файл резервной копии слишком большой для хранения на этом носителе.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">Недостаточно места, чтобы сохранить вашу резервную копию.</string>
+  <!--Error message shown if a newly created backup could not be verified as accurate-->
+  <!--Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail-->
   <string name="LocalBackupJobApi29_tap_to_manage_backups">Нажмите, чтобы управлять резервным копированием.</string>
   <string name="ProgressPreference_d_messages_so_far">Уже %d сообщений</string>
   <string name="RegistrationActivity_wrong_number">Неправильный номер</string>

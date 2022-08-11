@@ -442,6 +442,7 @@
   <string name="BackupsPreferenceFragment__to_restore_a_backup">如需还原备份，请重新安装 Signal，然后打开该应用并点击“还原备份”，接着打开备份文件。%1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">了解更多</string>
   <string name="BackupsPreferenceFragment__in_progress">正在进行…</string>
+  <!--Status text shown in backup preferences when verifying a backup-->
   <string name="BackupsPreferenceFragment__d_so_far">%1$d 到目前为止…</string>
   <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment__s_so_far">目前已完成 %1$s%%…</string>
@@ -2639,10 +2640,13 @@
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">已成功输入备份密码</string>
   <string name="BackupDialog_passphrase_was_not_correct">密码错误</string>
   <string name="LocalBackupJob_creating_signal_backup">创建 Signal 备份…</string>
+  <!--Title for progress notification shown in a system notification while verifying a recent backup.-->
   <string name="LocalBackupJobApi29_backup_failed">备份失败</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">备份目录已删除或移动。</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">您的备份文件太大，无法保存到此位置。</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">没有足够的空间来存放您的备份。</string>
+  <!--Error message shown if a newly created backup could not be verified as accurate-->
+  <!--Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail-->
   <string name="LocalBackupJobApi29_tap_to_manage_backups">点击以管理备份。</string>
   <string name="ProgressPreference_d_messages_so_far">已处理 %d 条消息</string>
   <string name="RegistrationActivity_wrong_number">号码错误</string>

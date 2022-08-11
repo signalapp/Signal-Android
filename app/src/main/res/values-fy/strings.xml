@@ -458,6 +458,7 @@
   <string name="BackupsPreferenceFragment__to_restore_a_backup">Om dyn gegevens út in besteande reservekopy werom te pleatsen moatsto dyn Signal opnij ynstallearje. Iepenje dan de krekt ynstallearre Signal-app en tik op ‘Reservekopygegevens weromsette’. %1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">Mear lêze</string>
   <string name="BackupsPreferenceFragment__in_progress">Wurdt no útfierd…</string>
+  <!--Status text shown in backup preferences when verifying a backup-->
   <string name="BackupsPreferenceFragment__d_so_far">Oant no ta %1$d…</string>
   <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment__s_so_far">%1$s%% oant no ta…</string>
@@ -2713,10 +2714,13 @@
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Do hast it krekte reservekopywachtwurd ynfierd</string>
   <string name="BackupDialog_passphrase_was_not_correct">Do hast net it krekte reservekopywachtwurd ynfierd</string>
   <string name="LocalBackupJob_creating_signal_backup">Signal reservekopy oan it meitsjen…</string>
+  <!--Title for progress notification shown in a system notification while verifying a recent backup.-->
   <string name="LocalBackupJobApi29_backup_failed">It meitsjen fan in reservekopy is mislearre</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Dyn reservekopymap is fuortsmiten of ferpleatst.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Dyn reservekopy is te grut om op dit folume te bewarjen.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">Der is net genôch ûnthâld om dyn reservekopy te bewarjen.</string>
+  <!--Error message shown if a newly created backup could not be verified as accurate-->
+  <!--Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail-->
   <string name="LocalBackupJobApi29_tap_to_manage_backups">Tik hjir om it meitsjen fan reservekopyen yn te stellen.</string>
   <string name="ProgressPreference_d_messages_so_far">%d berjochten oant no ta</string>
   <string name="RegistrationActivity_wrong_number">Ferkeard nûmer</string>

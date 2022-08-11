@@ -463,6 +463,7 @@
   <string name="BackupsPreferenceFragment__to_restore_a_backup">Για να ανακτήσεις ένα αντίγραφο ασφαλείας, εγκατέστησε από την αρχή το Signal. Άνοιξε την εφαρμογή, πάτα \"Επαναφορά αντίγραφου ασφαλείας\" και εντόπισε ένα αρχείο - αντίγραφο ασφαλείας. %1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">Μάθε περισσότερα</string>
   <string name="BackupsPreferenceFragment__in_progress">Σε εξέλιξη…</string>
+  <!--Status text shown in backup preferences when verifying a backup-->
   <string name="BackupsPreferenceFragment__d_so_far">%1$d μέχρι τώρα…</string>
   <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment__s_so_far">%1$s%% μέχρι τώρα…</string>
@@ -2727,10 +2728,13 @@
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Εισάγατε το συνθηματικό αντιγράφου ασφαλείας με επιτυχία</string>
   <string name="BackupDialog_passphrase_was_not_correct">Το συνθηματικό δεν ήταν σωστό</string>
   <string name="LocalBackupJob_creating_signal_backup">Δημιουργείται το αντίγραφο ασφαλείας Signal…</string>
+  <!--Title for progress notification shown in a system notification while verifying a recent backup.-->
   <string name="LocalBackupJobApi29_backup_failed">Ή δημιουργία αντίγραφου ασφαλείας απέτυχε</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Ο φάκελος αντίγραφων ασφαλείας έχει διαγραφεί ή μετακινηθεί.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Το αρχείο - αντίγραφο ασφαλείας είναι πολύ μεγάλο για να αποθηκευτεί σε αυτή τη συσκευή.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">Δεν υπάρχει αρκετός χώρος για την αποθήκευση του αντίγραφου ασφαλείας.</string>
+  <!--Error message shown if a newly created backup could not be verified as accurate-->
+  <!--Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail-->
   <string name="LocalBackupJobApi29_tap_to_manage_backups">Πάτα για διαχείριση αντίγραφων ασφαλείας.</string>
   <string name="ProgressPreference_d_messages_so_far">%d μηνύματα μέχρι τώρα</string>
   <string name="RegistrationActivity_wrong_number">Λάθος αριθμός</string>

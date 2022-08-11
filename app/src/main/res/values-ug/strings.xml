@@ -401,6 +401,7 @@
   <string name="BackupsPreferenceFragment__to_restore_a_backup">زاپاسلاشنى ئەسلىگە كەلتۈرۈش ئۈچۈن ، Signal بىر يېڭى نەشرىنى قاچىلاڭ. ئاندىن ئەپنى ئېچىپ «زاپاسلاشنى ئەسلىگە كەلتۈرۈش» نى چېكىڭ، ئاندىن زاپاس ھۆججىتىنى كۆرسىتىپ بېرىڭ.%1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">كۆپرەك ئۆگىنىش</string>
   <string name="BackupsPreferenceFragment__in_progress">داۋام قىلىۋاتىدۇ…</string>
+  <!--Status text shown in backup preferences when verifying a backup-->
   <string name="BackupsPreferenceFragment__d_so_far">%1$d ھازىرغىچە..</string>
   <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">زاپاسلاشنى قۇرۇش ئۈچۈن Signal سىرتقى ساقلىغۇچ ھوقۇقىنى تەلەپ قىلىدۇ، ئەمما ئۇ مەڭگۈلۈك رەت قىلىندى. ئەپ تەڭشەكلىرىگە بېرىڭ، «ھوقۇقلار» نى تاللاڭ ۋە «ساقلىغۇچ» نى قوزغىتىڭ.</string>
@@ -2565,10 +2566,13 @@
   <string name="BackupDialog_verify">دەلىللەش</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">زاپاسلاش ئىم ئىبارىسىنى توغرا كىرگۈزدىڭىز</string>
   <string name="BackupDialog_passphrase_was_not_correct">ئىم ئىبارىسى توغرا ئەمەس</string>
+  <!--Title for progress notification shown in a system notification while verifying a recent backup.-->
   <string name="LocalBackupJobApi29_backup_failed">زاپاسلاش مەغلۇپ بولدى</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">زاپاسلاش مۇندەرىجىڭىز ئۆچۈرۈلگەن ياكى يۆتكىۋېتىلگەن.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">زاپاس ھۆججىتىڭىز بەك چوڭ بولغاچقا بۇ جىلدقا سىغمىدى.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">بۇ يەردە زاپاسلىرىڭىزنى ساقلىغۇدەك يېتەرلىك بوشلۇق يوق. </string>
+  <!--Error message shown if a newly created backup could not be verified as accurate-->
+  <!--Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail-->
   <string name="LocalBackupJobApi29_tap_to_manage_backups">زاپاسلارنى باشقۇرۇش ئۈچۈن چېكىڭ</string>
   <string name="ProgressPreference_d_messages_so_far">ھازىرچە %d ئۇچۇر</string>
   <string name="RegistrationActivity_wrong_number">خاتا نومۇر</string>

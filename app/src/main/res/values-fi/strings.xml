@@ -463,6 +463,7 @@
   <string name="BackupsPreferenceFragment__to_restore_a_backup">Palauta varmuuskopio asentamalla Signal uudelleen tai uuteen laitteeseen. Avaa sovellus, napauta Palauta varmuuskopio ja etsi sitten varmuuskopiotiedosto. %1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">Lue lisää</string>
   <string name="BackupsPreferenceFragment__in_progress">Käsitellään…</string>
+  <!--Status text shown in backup preferences when verifying a backup-->
   <string name="BackupsPreferenceFragment__d_so_far">%1$d tähän mennessä…</string>
   <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment__s_so_far">%1$s%% tähän mennessä…</string>
@@ -2726,10 +2727,13 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Varmuuskopion salalauseen syöttö onnistui</string>
   <string name="BackupDialog_passphrase_was_not_correct">Salalause ei ollut oikea</string>
   <string name="LocalBackupJob_creating_signal_backup">Luodaan Signal-varmuuskopiota…</string>
+  <!--Title for progress notification shown in a system notification while verifying a recent backup.-->
   <string name="LocalBackupJobApi29_backup_failed">Varmuuskopio epäonnistui</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Varmuuskopiohakemisto on poistettu tai siirretty.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Varmuuskopiotiedosto on liian suuri tallennettavaksi tähän tallennustilaan.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">Varmuuskopion tallentamiseen ei ole tarpeeksi tilaa.</string>
+  <!--Error message shown if a newly created backup could not be verified as accurate-->
+  <!--Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail-->
   <string name="LocalBackupJobApi29_tap_to_manage_backups">Hallitse varmuuskopioita napauttamalla.</string>
   <string name="ProgressPreference_d_messages_so_far">%d viestiä tähän mennessä</string>
   <string name="RegistrationActivity_wrong_number">Väärä numero</string>

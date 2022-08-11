@@ -442,6 +442,7 @@
   <string name="BackupsPreferenceFragment__to_restore_a_backup">ដើម្បីស្តារការបម្រុងទុក ដំឡើងកម្មវិធី Signal ថ្មី។ បើកកម្មវិធី និងចុច \"ស្តារការបម្រុងទុក\" បន្ទាប់មកជ្រើសរើសទីតាំងឯកសារបម្រុងទុក។ %1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">សិក្សាបន្ថែម</string>
   <string name="BackupsPreferenceFragment__in_progress">កំពុងដំណើរការ…</string>
+  <!--Status text shown in backup preferences when verifying a backup-->
   <string name="BackupsPreferenceFragment__d_so_far">%1$d ឥឡូវនេះ …</string>
   <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment__s_so_far">%1$s%% ឥឡូវនេះ​…</string>
@@ -2634,10 +2635,13 @@
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">អ្នកបានបញ្ចូលឃ្លាសម្ងាត់បម្រុងទុករបស់អ្នកដោយជោគជ័យ</string>
   <string name="BackupDialog_passphrase_was_not_correct">ឃ្លាសម្ងាត់មិនត្រឹមត្រូវ</string>
   <string name="LocalBackupJob_creating_signal_backup">កំពុងបង្កើតការបម្រុងទុក Signal…</string>
+  <!--Title for progress notification shown in a system notification while verifying a recent backup.-->
   <string name="LocalBackupJobApi29_backup_failed">ការបម្រុងទុកបរាជ័យ</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">ថតឯកសារបម្រុងទុករបស់អ្នក ត្រូវបានលុបចោល ឬប្តូរទីតាំង។</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">ឯកសារបម្រុងទុករបស់អ្នក រក្សាទុកនៅទីតាំងនេះ​ មានទំហំធំពេក។</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">មិនមានទំហំគ្រប់គ្រាន់ដើម្បីរក្សាទុកការបម្រុងទុករបស់អ្នកទេ។</string>
+  <!--Error message shown if a newly created backup could not be verified as accurate-->
+  <!--Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail-->
   <string name="LocalBackupJobApi29_tap_to_manage_backups">ចុច ដើម្បីគ្រប់គ្រងការបម្រុងទុក។</string>
   <string name="ProgressPreference_d_messages_so_far">ឥឡូវនេះសារ%d</string>
   <string name="RegistrationActivity_wrong_number">ខុសលេខ</string>
