@@ -66,25 +66,28 @@ final class MobileCoinMainNetConfig extends MobileCoinConfig {
     try {
       Set<X509Certificate> trustRoots          = getTrustRoots(R.raw.signal_mobilecoin_authority);
       ClientConfig         config              = new ClientConfig();
-      String[]             hardeningAdvisories = { "INTEL-SA-00334" };
+      String[]             hardeningAdvisories = { "INTEL-SA-00334", "INTEL-SA-00615" };
       VerifierFactory      verifierFactory     = new VerifierFactory(hardeningAdvisories,
-                                                                     new ServiceConfig(
-                                                                         "e66db38b8a43a33f6c1610d335a361963bb2b31e056af0dc0a895ac6c857cab9",
-                                                                         "709ab90621e3a8d9eb26ed9e2830e091beceebd55fb01c5d7c31d27e83b9b0d1",
-                                                                         "511eab36de691ded50eb08b173304194da8b9d86bfdd7102001fe6bb279c3666",
-                                                                         "ddd59da874fdf3239d5edb1ef251df07a8728c9ef63057dd0b50ade5a9ddb041"
-                                                                     ),
+                                                                     // ~June 23, 2021
                                                                      new ServiceConfig(
                                                                          "653228afd2b02a6c28f1dc3b108b1dfa457d170b32ae8ec2978f941bd1655c83",
                                                                          "f3f7e9a674c55fb2af543513527b6a7872de305bac171783f6716a0bf6919499",
                                                                          "89db0d1684fcc98258295c39f4ab68f7de5917ef30f0004d9a86f29930cebbbd",
                                                                          "dd84abda7f05116e21fcd1ee6361b0ec29445fff0472131eaf37bf06255b567a"
                                                                      ),
+                                                                     // ~July 8th, 2022
                                                                      new ServiceConfig(
                                                                          "733080d6ece4504f66ba606fa8163dae0a5220f3dbf6ca55fbafbac12c6f1897",
                                                                          "660103d766cde0fd1e1cfb443b99e52da2ce0617d0dee42f8b875f7104942c6b",
                                                                          "ed8ed6e1b4b6827e5543b25c1c13b9c06b478d819f8df912eb11fa140780fc51",
                                                                          "c64a3b04348b10596442868758875f312dc3a755b450805149774a091d2822d3"
+                                                                     ),
+                                                                     // ~August 10th, 2022
+                                                                     new ServiceConfig(
+                                                                         "d6e54e43c368f0fa2c5f13361afd303ee8f890424e99bd6c367f6164b5fff1b5",
+                                                                         "3e9bf61f3191add7b054f0e591b62f832854606f6594fd63faef1e2aedec4021",
+                                                                         "92fb35d0f603ceb5eaf2988b24a41d4a4a83f8fb9cd72e67c3bc37960d864ad6",
+                                                                         "3d6e528ee0574ae3299915ea608b71ddd17cbe855d4f5e1c46df9b0d22b04cdb"
                                                                      ));
 
 

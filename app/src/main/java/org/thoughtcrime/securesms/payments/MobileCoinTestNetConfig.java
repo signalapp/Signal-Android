@@ -5,9 +5,7 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 
 import com.mobilecoin.lib.ClientConfig;
-import com.mobilecoin.lib.Verifier;
 import com.mobilecoin.lib.exceptions.AttestationException;
-import com.mobilecoin.lib.util.Hex;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.Base64;
@@ -20,13 +18,7 @@ import java.util.Set;
 
 final class MobileCoinTestNetConfig extends MobileCoinConfig {
 
-  private static final short SECURITY_VERSION      = 1;
-  private static final short CONSENSUS_PRODUCT_ID  = 1;
-  private static final short FOG_LEDGER_PRODUCT_ID = 2;
-  private static final short FOG_VIEW_PRODUCT_ID   = 3;
-  private static final short FOG_REPORT_PRODUCT_ID = 4;
-
-  private final SignalServiceAccountManager signalServiceAccountManager;
+ private final SignalServiceAccountManager signalServiceAccountManager;
 
   public MobileCoinTestNetConfig(@NonNull SignalServiceAccountManager signalServiceAccountManager) {
     this.signalServiceAccountManager = signalServiceAccountManager;
@@ -60,27 +52,27 @@ final class MobileCoinTestNetConfig extends MobileCoinConfig {
   @Override
   @NonNull ClientConfig getConfig() {
     try {
-      byte[]               mrEnclaveConsensus  = Hex.toByteArray("4f134dcfd9c0885956f2f9af0f05c2050d8bdee2dc63b468a640670d7adeb7f8");
-      byte[]               mrEnclaveReport     = Hex.toByteArray("8f2f3bf81f24bf493fa6d76e29e0f081815022592b1e854f95bda750aece7452");
-      byte[]               mrEnclaveLedger     = Hex.toByteArray("685481b33f2846585f33506ab65649c98a4a6d1244989651fd0fcde904ebd82f");
-      byte[]               mrEnclaveView       = Hex.toByteArray("719ca43abbe02f507bb91ea11ff8bc900aa86363a7d7e77b8130426fc53d8684");
-      byte[]               mrSigner            = Hex.toByteArray("bf7fa957a6a94acb588851bc8767e0ca57706c79f4fc2aa6bcb993012c3c386c");
       Set<X509Certificate> trustRoots          = getTrustRoots(R.raw.signal_mobilecoin_authority);
       ClientConfig         config              = new ClientConfig();
-      String[]             hardeningAdvisories = {"INTEL-SA-00334"};
+      String[]             hardeningAdvisories = { "INTEL-SA-00334", "INTEL-SA-00615" };
+      VerifierFactory      verifierFactory     = new VerifierFactory(hardeningAdvisories,
+                                                                     // ~July 15, 2022
+                                                                     new ServiceConfig(
+                                                                         "4f134dcfd9c0885956f2f9af0f05c2050d8bdee2dc63b468a640670d7adeb7f8",
+                                                                         "8f2f3bf81f24bf493fa6d76e29e0f081815022592b1e854f95bda750aece7452",
+                                                                         "685481b33f2846585f33506ab65649c98a4a6d1244989651fd0fcde904ebd82f",
+                                                                         "719ca43abbe02f507bb91ea11ff8bc900aa86363a7d7e77b8130426fc53d8684"
+                                                                     ));
 
       config.logAdapter = new MobileCoinLogAdapter();
       config.fogView    = new ClientConfig.Service().withTrustRoots(trustRoots)
-                                                    .withVerifier(new Verifier().withMrEnclave(mrEnclaveView, null, hardeningAdvisories)
-                                                                                .withMrSigner(mrSigner, FOG_VIEW_PRODUCT_ID, SECURITY_VERSION, null, hardeningAdvisories));
+                                                    .withVerifier(verifierFactory.createViewVerifier());
       config.fogLedger  = new ClientConfig.Service().withTrustRoots(trustRoots)
-                                                    .withVerifier(new Verifier().withMrEnclave(mrEnclaveLedger, null, hardeningAdvisories)
-                                                                                .withMrSigner(mrSigner, FOG_LEDGER_PRODUCT_ID, SECURITY_VERSION, null, hardeningAdvisories));
+                                                    .withVerifier(verifierFactory.createLedgerVerifier());
       config.consensus  = new ClientConfig.Service().withTrustRoots(trustRoots)
-                                                    .withVerifier(new Verifier().withMrEnclave(mrEnclaveConsensus, null, hardeningAdvisories)
-                                                                                .withMrSigner(mrSigner, CONSENSUS_PRODUCT_ID, SECURITY_VERSION, null, hardeningAdvisories));
-      config.report     = new ClientConfig.Service().withVerifier(new Verifier().withMrEnclave(mrEnclaveReport, null, hardeningAdvisories)
-                                                                                .withMrSigner(mrSigner, FOG_REPORT_PRODUCT_ID, SECURITY_VERSION, null, hardeningAdvisories));
+                                                    .withVerifier(verifierFactory.createConsensusVerifier());
+      config.report     = new ClientConfig.Service().withVerifier(verifierFactory.createReportVerifier());
+
       return config;
     } catch (AttestationException ex) {
       throw new IllegalStateException();
