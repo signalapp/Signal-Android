@@ -5,6 +5,7 @@ import android.content.Context
 import android.util.Size
 import android.widget.FrameLayout
 import androidx.annotation.RequiresApi
+import androidx.camera.core.AspectRatio
 import androidx.camera.core.Camera
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageAnalysis
@@ -74,7 +75,7 @@ internal class ScannerView21 constructor(
     val preview = Preview.Builder().build()
 
     val imageAnalysis = ImageAnalysis.Builder()
-      .setTargetResolution(Size(1280, 960))
+      .setTargetAspectRatio(AspectRatio.RATIO_4_3)
       .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
       .build()
 
