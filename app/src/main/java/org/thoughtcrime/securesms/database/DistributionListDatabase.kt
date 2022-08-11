@@ -320,7 +320,19 @@ class DistributionListDatabase constructor(context: Context?, databaseHelper: Si
   }
 
   fun getList(listId: DistributionListId): DistributionListRecord? {
-    readableDatabase.query(ListTable.TABLE_NAME, null, "${ListTable.ID} = ? AND ${ListTable.IS_NOT_DELETED}", SqlUtil.buildArgs(listId), null, null, null).use { cursor ->
+    return getListByQuery("${ListTable.ID} = ? AND ${ListTable.IS_NOT_DELETED}", SqlUtil.buildArgs(listId))
+  }
+
+  fun getList(recipientId: RecipientId): DistributionListRecord? {
+    return getListByQuery("${ListTable.RECIPIENT_ID} = ? AND ${ListTable.IS_NOT_DELETED}", SqlUtil.buildArgs(recipientId))
+  }
+
+  fun getListByDistributionId(distributionId: DistributionId): DistributionListRecord? {
+    return getListByQuery("${ListTable.DISTRIBUTION_ID} = ? AND ${ListTable.IS_NOT_DELETED}", SqlUtil.buildArgs(distributionId))
+  }
+
+  private fun getListByQuery(query: String, args: Array<String>): DistributionListRecord? {
+    readableDatabase.query(ListTable.TABLE_NAME, null, query, args, null, null, null).use { cursor ->
       return if (cursor.moveToFirst()) {
         val id: DistributionListId = DistributionListId.from(cursor.requireLong(ListTable.ID))
         val privacyMode: DistributionListPrivacyMode = cursor.requireObject(ListTable.PRIVACY_MODE, DistributionListPrivacyMode.Serializer)
@@ -385,6 +397,16 @@ class DistributionListDatabase constructor(context: Context?, databaseHelper: Si
 
   fun getDistributionId(listId: DistributionListId): DistributionId? {
     readableDatabase.query(ListTable.TABLE_NAME, arrayOf(ListTable.DISTRIBUTION_ID), "${ListTable.ID} = ? AND ${ListTable.IS_NOT_DELETED}", SqlUtil.buildArgs(listId), null, null, null).use { cursor ->
+      return if (cursor.moveToFirst()) {
+        DistributionId.from(cursor.requireString(ListTable.DISTRIBUTION_ID))
+      } else {
+        null
+      }
+    }
+  }
+
+  fun getDistributionId(recipientId: RecipientId): DistributionId? {
+    readableDatabase.query(ListTable.TABLE_NAME, arrayOf(ListTable.DISTRIBUTION_ID), "${ListTable.RECIPIENT_ID} = ? AND ${ListTable.IS_NOT_DELETED}", SqlUtil.buildArgs(recipientId), null, null, null).use { cursor ->
       return if (cursor.moveToFirst()) {
         DistributionId.from(cursor.requireString(ListTable.DISTRIBUTION_ID))
       } else {

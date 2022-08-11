@@ -29,6 +29,7 @@ import org.thoughtcrime.securesms.jobmanager.migrations.RecipientIdFollowUpJobMi
 import org.thoughtcrime.securesms.jobmanager.migrations.RecipientIdJobMigration;
 import org.thoughtcrime.securesms.jobmanager.migrations.RetrieveProfileJobMigration;
 import org.thoughtcrime.securesms.jobmanager.migrations.SendReadReceiptsJobMigration;
+import org.thoughtcrime.securesms.jobmanager.migrations.SenderKeyDistributionSendJobRecipientMigration;
 import org.thoughtcrime.securesms.migrations.AccountRecordMigrationJob;
 import org.thoughtcrime.securesms.migrations.ApplyUnknownFieldsToSelfMigrationJob;
 import org.thoughtcrime.securesms.migrations.AttachmentCleanupMigrationJob;
@@ -272,6 +273,7 @@ public final class JobManagerFactories {
                          new SendReadReceiptsJobMigration(SignalDatabase.mmsSms()),
                          new PushProcessMessageQueueJobMigration(application),
                          new RetrieveProfileJobMigration(),
-                         new PushDecryptMessageJobEnvelopeMigration(application));
+                         new PushDecryptMessageJobEnvelopeMigration(application),
+                         new SenderKeyDistributionSendJobRecipientMigration());
   }
 }

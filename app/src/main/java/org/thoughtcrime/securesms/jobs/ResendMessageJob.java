@@ -13,6 +13,7 @@ import org.signal.libsignal.protocol.message.SenderKeyDistributionMessage;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 import org.thoughtcrime.securesms.database.SignalDatabase;
+import org.thoughtcrime.securesms.database.model.DistributionListRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.jobmanager.Data;
@@ -143,14 +144,28 @@ public class ResendMessageJob extends BaseJob {
     Content                          contentToSend = content;
 
     if (distributionId != null) {
-      Optional<GroupRecord> groupRecord = SignalDatabase.groups().getGroupByDistributionId(distributionId);
+      if (groupId != null) {
+        Log.d(TAG, "GroupId is present. Assuming this is a group message.");
+        Optional<GroupRecord> groupRecord = SignalDatabase.groups().getGroupByDistributionId(distributionId);
 
-      if (!groupRecord.isPresent()) {
-        Log.w(TAG, "Could not find a matching group for the distributionId! Skipping message send.");
-        return;
-      } else if (!groupRecord.get().getMembers().contains(recipientId)) {
-        Log.w(TAG, "The target user is no longer in the group! Skipping message send.");
-        return;
+        if (!groupRecord.isPresent()) {
+          Log.w(TAG, "Could not find a matching group for the distributionId! Skipping message send.");
+          return;
+        } else if (!groupRecord.get().getMembers().contains(recipientId)) {
+          Log.w(TAG, "The target user is no longer in the group! Skipping message send.");
+          return;
+        }
+      } else {
+        Log.d(TAG, "GroupId is not present. Assuming this is a message for a distribution list.");
+        DistributionListRecord listRecord = SignalDatabase.distributionLists().getListByDistributionId(distributionId);
+
+        if (listRecord == null) {
+          Log.w(TAG, "Could not find a matching distribution list for the distributionId! Skipping message send.");
+          return;
+        } else if (!listRecord.getMembers().contains(recipientId)) {
+          Log.w(TAG, "The target user is no longer in the distribution list! Skipping message send.");
+          return;
+        }
       }
 
       SenderKeyDistributionMessage senderKeyDistributionMessage = messageSender.getOrCreateNewGroupSession(distributionId);

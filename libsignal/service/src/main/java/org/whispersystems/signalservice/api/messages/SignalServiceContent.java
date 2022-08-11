@@ -560,8 +560,8 @@ public final class SignalServiceContent {
                                         metadata.getGroupId(),
                                         metadata.getDestinationUuid(),
                                         serviceContentProto);
-      } else if (senderKeyDistributionMessage.isPresent()) {
-        return new SignalServiceContent(senderKeyDistributionMessage.get(),
+      } else if (message.hasStoryMessage()) {
+        return new SignalServiceContent(createStoryMessage(message.getStoryMessage()),
                                         metadata.getSender(),
                                         metadata.getSenderDevice(),
                                         metadata.getTimestamp(),
@@ -572,8 +572,9 @@ public final class SignalServiceContent {
                                         metadata.getGroupId(),
                                         metadata.getDestinationUuid(),
                                         serviceContentProto);
-      } else if (message.hasStoryMessage()) {
-        return new SignalServiceContent(createStoryMessage(message.getStoryMessage()),
+      } else if (senderKeyDistributionMessage.isPresent()) {
+        // IMPORTANT: This block should always be last, since you can pair SKDM's with other content
+        return new SignalServiceContent(senderKeyDistributionMessage.get(),
                                         metadata.getSender(),
                                         metadata.getSenderDevice(),
                                         metadata.getTimestamp(),

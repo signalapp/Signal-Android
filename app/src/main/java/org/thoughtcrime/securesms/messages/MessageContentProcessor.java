@@ -49,6 +49,7 @@ import org.thoughtcrime.securesms.database.SentStorySyncManifest;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.StickerDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.database.model.DistributionListRecord;
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageLogEntry;
@@ -2683,13 +2684,27 @@ public final class MessageContentProcessor {
       return;
     }
 
-    if (!threadRecipient.isPushV2Group()) {
-      warn(content.getTimestamp(), "[RetryReceipt-SK] Thread recipient is not a v2 group! Skipping.");
+    if (!threadRecipient.isPushV2Group() && !threadRecipient.isDistributionList()) {
+      warn(content.getTimestamp(), "[RetryReceipt-SK] Thread recipient is not a V2 group or distribution list! Skipping.");
       return;
     }
 
-    GroupId.V2            groupId          = threadRecipient.requireGroupId().requireV2();
-    DistributionId        distributionId   = SignalDatabase.groups().getOrCreateDistributionId(groupId);
+    DistributionId distributionId;
+    GroupId.V2     groupId;
+
+    if (threadRecipient.isGroup()) {
+      groupId        = threadRecipient.requireGroupId().requireV2();
+      distributionId = SignalDatabase.groups().getOrCreateDistributionId(groupId);
+    } else {
+      groupId        = null;
+      distributionId = SignalDatabase.distributionLists().getDistributionId(threadRecipient.getId());
+    }
+
+    if (distributionId == null) {
+      Log.w(TAG, "[RetryReceipt-SK] Failed to find a distributionId! Skipping.");
+      return;
+    }
+
     SignalProtocolAddress requesterAddress = new SignalProtocolAddress(requester.requireServiceId().toString(), content.getSenderDevice());
 
     SignalDatabase.senderKeyShared().delete(distributionId, Collections.singleton(requesterAddress));
@@ -2705,22 +2720,8 @@ public final class MessageContentProcessor {
                                                                        groupId,
                                                                        distributionId));
     } else {
-      warn(content.getTimestamp(), "[RetryReceipt-SK] Unable to find MSL entry for " + requester.getId() + " (" + requesterAddress + ") with timestamp " + sentTimestamp + ".");
-
-      Optional<GroupRecord> groupRecord = SignalDatabase.groups().getGroup(groupId);
-
-      if (!groupRecord.isPresent()) {
-        warn(content.getTimestamp(), "[RetryReceipt-SK] Could not find a record for the group!");
-        return;
-      }
-
-      if (!groupRecord.get().getMembers().contains(requester.getId())) {
-        warn(content.getTimestamp(), "[RetryReceipt-SK] The requester is not in the group, so we cannot send them a SenderKeyDistributionMessage.");
-        return;
-      }
-
-      warn(content.getTimestamp(), "[RetryReceipt-SK] The requester is in the group, so we'll send them a SenderKeyDistributionMessage.");
-      ApplicationDependencies.getJobManager().add(new SenderKeyDistributionSendJob(requester.getId(), groupRecord.get().getId().requireV2()));
+      warn(content.getTimestamp(), "[RetryReceipt-SK] Unable to find MSL entry for " + requester.getId() + " (" + requesterAddress + ") with timestamp " + sentTimestamp + " for " + (groupId != null ? "group " + groupId : "distribution list") + ". Scheduling a job to send them the SenderKeyDistributionMessage. Membership will be checked there.");
+      ApplicationDependencies.getJobManager().add(new SenderKeyDistributionSendJob(requester.getId(), threadRecipient.getId()));
     }
   }
 

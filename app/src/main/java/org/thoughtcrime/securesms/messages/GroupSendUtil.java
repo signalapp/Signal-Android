@@ -673,7 +673,7 @@ public final class GroupSendUtil {
 
     @Override
     public @NonNull ContentHint getContentHint() {
-      return ContentHint.RESENDABLE;
+      return ContentHint.IMPLICIT;
     }
 
     @Override
