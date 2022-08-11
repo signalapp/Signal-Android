@@ -212,6 +212,7 @@ object OpenGroupApi {
         val parameters: Any? = null,
         val headers: Map<String, String> = mapOf(),
         val isAuthRequired: Boolean = true,
+        val body: ByteArray? = null,
         /**
          * Always `true` under normal circumstances. You might want to disable
          * this when running over Lokinet.
@@ -219,7 +220,8 @@ object OpenGroupApi {
         val useOnionRouting: Boolean = true
     )
 
-    private fun createBody(parameters: Any?): RequestBody? {
+    private fun createBody(body: ByteArray?, parameters: Any?): RequestBody? {
+        if (body != null) return RequestBody.create(MediaType.get("application/octet-stream"), body)
         if (parameters == null) return null
         val parametersAsJSON = JsonUtil.toJson(parameters)
         return RequestBody.create(MediaType.get("application/json"), parametersAsJSON)
@@ -276,6 +278,17 @@ object OpenGroupApi {
                     ) {
                         bodyHash = parameterHash
                     }
+                } else if (request.body != null) {
+                    val byteHash = ByteArray(GenericHash.BYTES_MAX)
+                    if (sodium.cryptoGenericHash(
+                            byteHash,
+                            byteHash.size,
+                            request.body,
+                            request.body.size.toLong()
+                        )
+                    ) {
+                        bodyHash = byteHash
+                    }
                 }
                 val messageBytes = Hex.fromStringCondensed(publicKey)
                     .plus(nonce)
@@ -320,9 +333,9 @@ object OpenGroupApi {
                 .headers(Headers.of(headers))
             when (request.verb) {
                 GET -> requestBuilder.get()
-                PUT -> requestBuilder.put(createBody(request.parameters)!!)
-                POST -> requestBuilder.post(createBody(request.parameters)!!)
-                DELETE -> requestBuilder.delete(createBody(request.parameters))
+                PUT -> requestBuilder.put(createBody(request.body, request.parameters)!!)
+                POST -> requestBuilder.post(createBody(request.body, request.parameters)!!)
+                DELETE -> requestBuilder.delete(createBody(request.body, request.parameters))
             }
             if (!request.room.isNullOrEmpty()) {
                 requestBuilder.header("Room", request.room)
@@ -354,13 +367,16 @@ object OpenGroupApi {
 
     // region Upload/Download
     fun upload(file: ByteArray, room: String, server: String): Promise<Long, Exception> {
-        val parameters = mapOf("file" to file)
         val request = Request(
             verb = POST,
             room = room,
             server = server,
             endpoint = Endpoint.RoomFile(room),
-            parameters = parameters
+            body = file,
+            headers = mapOf(
+                "Content-Disposition" to "attachment",
+                "Content-Type" to "application/octet-stream"
+            )
         )
         return getResponseBodyJson(request).map { json ->
             (json["id"] as? Number)?.toLong() ?: throw Error.ParsingFailed
