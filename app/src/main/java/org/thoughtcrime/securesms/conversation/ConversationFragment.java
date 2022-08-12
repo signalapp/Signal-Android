@@ -80,6 +80,7 @@ import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.badges.gifts.OpenableGift;
 import org.thoughtcrime.securesms.badges.gifts.OpenableGiftItemDecoration;
+import org.thoughtcrime.securesms.badges.gifts.flow.GiftFlowActivity;
 import org.thoughtcrime.securesms.badges.gifts.viewgift.received.ViewReceivedGiftBottomSheet;
 import org.thoughtcrime.securesms.badges.gifts.viewgift.sent.ViewSentGiftBottomSheet;
 import org.thoughtcrime.securesms.components.ConversationScrollToView;
@@ -2048,7 +2049,9 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
 
     @Override
     public void onCallToAction(@NonNull String action) {
-
+      if ("gift_badge".equals(action)) {
+        startActivity(new Intent(requireContext(), GiftFlowActivity.class));
+      }
     }
 
     @Override
