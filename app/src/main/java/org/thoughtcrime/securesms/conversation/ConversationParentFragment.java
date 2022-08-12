@@ -1659,7 +1659,7 @@ public class ConversationParentFragment extends Fragment
       return setMedia(draftMedia, draftMediaType);
     }
 
-    if (draftText == null && draftMedia == null && draftMediaType == null) {
+    if (draftText == null && (draftMedia == null || ConversationIntents.isBubbleIntentUri(draftMedia)) && draftMediaType == null) {
       Log.d(TAG, "Initializing draft from database");
       return initializeDraftFromDatabase();
     } else {
