@@ -528,7 +528,7 @@ final class GroupManagerV2 {
       GroupCandidate groupCandidate = groupCandidateHelper.recipientIdToCandidate(Recipient.self().getId());
 
       if (!groupCandidate.hasValidProfileKeyCredential()) {
-        Log.w(TAG, "No credential available, repairing");
+        Log.w(TAG, "[updateSelfProfileKeyInGroup] No credential available, repairing");
         ApplicationDependencies.getJobManager().add(new ProfileUploadJob());
         return null;
       }
@@ -554,7 +554,8 @@ final class GroupManagerV2 {
       GroupCandidate groupCandidate = groupCandidateHelper.recipientIdToCandidate(Recipient.self().getId());
 
       if (!groupCandidate.hasValidProfileKeyCredential()) {
-        Log.w(TAG, "No credential available");
+        Log.w(TAG, "[AcceptInvite] No credential available, repairing");
+        ApplicationDependencies.getJobManager().add(new ProfileUploadJob());
         return null;
       }
 
