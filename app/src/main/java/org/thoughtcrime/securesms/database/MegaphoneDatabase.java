@@ -57,6 +57,7 @@ public class MegaphoneDatabase extends SQLiteOpenHelper implements SignalDatabas
       synchronized (MegaphoneDatabase.class) {
         if (instance == null) {
           SqlCipherLibraryLoader.load();
+          SignalDatabase.triggerDatabaseAccess(); // Ensures that our main database is up-to-date before this one is accessed
           instance = new MegaphoneDatabase(context, DatabaseSecretProvider.getOrCreateDatabaseSecret(context));
           instance.setWriteAheadLoggingEnabled(true);
         }
