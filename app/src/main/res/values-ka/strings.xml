@@ -2888,10 +2888,10 @@
   <string name="NewDeviceTransferComplete__continue_registration">რეგისტრაციის გაგრძელება</string>
   <!--DeviceToDeviceTransferService-->
   <string name="DeviceToDeviceTransferService_content_title">მონაცემების გადატანა</string>
-  <string name="DeviceToDeviceTransferService_status_ready">ვემზადებით სხვა Android მოწყობილობასთან დასაკავშირებლად…</string>
-  <string name="DeviceToDeviceTransferService_status_starting_up">ვემზადებით შენს Android მოწყობილობასთან დასაკავშირებლად…</string>
-  <string name="DeviceToDeviceTransferService_status_discovery">ვეძებთ შენს Android მოწყობილობას…</string>
-  <string name="DeviceToDeviceTransferService_status_network_connected">ვუკავშირდებით შენს Android მოწყობილობას…</string>
+  <string name="DeviceToDeviceTransferService_status_ready">ვემზადებით შენს სხვა Android მოწყობილობასთან დასაკავშირებლად…</string>
+  <string name="DeviceToDeviceTransferService_status_starting_up">ვემზადებით შენს სხვა Android მოწყობილობასთან დასაკავშირებლად…</string>
+  <string name="DeviceToDeviceTransferService_status_discovery">ვეძებთ შენს სხვა Android მოწყობილობას…</string>
+  <string name="DeviceToDeviceTransferService_status_network_connected">ვუკავშირდებით შენს სხვა Android მოწყობილობას…</string>
   <string name="DeviceToDeviceTransferService_status_verification_required">ვერიფიკაცია სავალდებულოა</string>
   <string name="DeviceToDeviceTransferService_status_service_connected">გადაგვაქვს მონაცემები…</string>
   <!--OldDeviceTransferLockedDialog-->
@@ -2913,38 +2913,38 @@
   <string name="RecipientBottomSheet_add_to_a_group">ჯგუფში დამატება</string>
   <string name="RecipientBottomSheet_add_to_another_group">სხვა ჯგუფში დამატება</string>
   <string name="RecipientBottomSheet_view_safety_number">უსაფრთხოების ნომრის ნახვა</string>
-  <string name="RecipientBottomSheet_make_admin">ადმინისტრატორად დანიშნვა</string>
-  <string name="RecipientBottomSheet_remove_as_admin">ადმინისტრატორობის ჩამორთმევა</string>
+  <string name="RecipientBottomSheet_make_admin">ადმინად დანიშნვა</string>
+  <string name="RecipientBottomSheet_remove_as_admin">ადმინობის ჩამორთმევა</string>
   <string name="RecipientBottomSheet_remove_from_group">ჯგუფიდან წაშლა</string>
   <string name="RecipientBottomSheet_message_description">მიწერა</string>
-  <string name="RecipientBottomSheet_voice_call_description">ვიდეო ზარი</string>
+  <string name="RecipientBottomSheet_voice_call_description">ხმოვანი ზარი</string>
   <string name="RecipientBottomSheet_insecure_voice_call_description">დაუცველი ხმოვანი ზარი</string>
   <string name="RecipientBottomSheet_video_call_description">ვიდეო ზარი</string>
-  <string name="RecipientBottomSheet_remove_s_as_group_admin">ჩამოვართვათ %1$s-ს ჯგუფის ადმინისტრატორობა?</string>
+  <string name="RecipientBottomSheet_remove_s_as_group_admin">ჩამოვართვათ %1$s-ს ჯგუფის ადმინობა?</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">„%1$s“ შეძლებს ამ ჯგუფისა და მისი წევრების რედაქტირებას.</string>
   <string name="RecipientBottomSheet_remove_s_from_the_group">წავშალოთ %1$s ჯგუფიდან?</string>
   <!--Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin-->
   <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">წავშალოთ %1$s ჯგუფიდან? ის ვეღარ შეძლებს ჯგუფის ბმულით თავიდან გაწევრიანებას.</string>
   <string name="RecipientBottomSheet_remove">წაშლა</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">დაკოპირებულია ბუფერში</string>
-  <string name="GroupRecipientListItem_admin">ადმინისტრატორი</string>
+  <string name="GroupRecipientListItem_admin">ადმინი</string>
   <string name="GroupRecipientListItem_approve_description">დადასტურება</string>
-  <string name="GroupRecipientListItem_deny_description">უარის თქმა</string>
+  <string name="GroupRecipientListItem_deny_description">უარყოფა</string>
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
-  <string name="GroupsLearnMore_legacy_vs_new_groups">მემკვიდრეობითი VS ახალი ჯგუფები</string>
-  <string name="GroupsLearnMore_what_are_legacy_groups">რა არის მემკვიდრეობითი ჯგუფები?</string>
-  <string name="GroupsLearnMore_paragraph_1">მემკვიდეობითი ჯგუფები არის ჯგუფები, რომლებიც არ არის თავსებადი ახალი ჯგუფის ისეთ ფუნქციებთან, როგორიცაა ადმინისტრატორები და უფრო აღწერილობითი ჯგუფის განახლებები.</string>
-  <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">შემიძლია მემკვიდრეობითი ჯგუფის განახლება?</string>
+  <string name="GroupsLearnMore_legacy_vs_new_groups">მოძველებული VS ახალი ჯგუფები</string>
+  <string name="GroupsLearnMore_what_are_legacy_groups">რა არის მოძველებული ჯგუფები?</string>
+  <string name="GroupsLearnMore_paragraph_1">მოძველებული ჯგუფები არის ჯგუფები, რომლებიც არ არის თავსებადი ახალი ჯგუფის ისეთ ფუნქციებთან, როგორიცაა ადმინები და უფრო აღწერილობითი ჯგუფის განახლებები.</string>
+  <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">შემიძლია მოძველებული ჯგუფის განახლება?</string>
   <string name="GroupsLearnMore_paragraph_2">მოძველებული ჯგუფის განახლება ახალ ჯგუფებად ჯერ ვერ მოხერხდება, მაგრამ შეგიძლია შექმნა ახალი ჯგუფი იმავე წევრებით, თუ ისინი Signal-ის უახლეს ვერსიაზე არიან.</string>
   <string name="GroupsLearnMore_paragraph_3">Signal-ი მომავალში შემოგთავაზებს გზას მოძველებული ჯგუფების განახლებისთვის.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
   <string name="GroupLinkBottomSheet_share_hint_requiring_approval">ნებისმიერს, ვისაც აქვს ეს ბმული, შეუძლია ნახოს ჯგუფის სახელი და ფოტო და მოითხოვოს გაწევრიანება. გაუზიარე ის ადამიანებს, რომლებსაც ენდობი.</string>
   <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">ნებისმიერს, ვისაც აქვს ეს ბმული, შეუძლია ნახოს ჯგუფის სახელი და ფოტო და შეუერთდეს ჯგუფს. გაუზიარე ის ადამიანებს, რომლებსაც ენდობი.</string>
   <string name="GroupLinkBottomSheet_share_via_signal">Signal-ით გაზიარება</string>
-  <string name="GroupLinkBottomSheet_copy">ჩაკოპირება</string>
+  <string name="GroupLinkBottomSheet_copy">დაკოპირება</string>
   <string name="GroupLinkBottomSheet_qr_code">QR კოდი</string>
   <string name="GroupLinkBottomSheet_share">გაზიარება</string>
-  <string name="GroupLinkBottomSheet_copied_to_clipboard">დაკოპირებულია ბუფერში</string>
+  <string name="GroupLinkBottomSheet_copied_to_clipboard">ჩაკოპირებულია ბუფერში</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">ბმული ამჟამად არ არის აქტიური</string>
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">ხმოვანი შეტყობინების ჩართვა ვერ მოხერხდა</string>
@@ -2957,12 +2957,12 @@
   <string name="BlockedUsersActivity__failed_to_block_s">\"%1$s\"-ის დაბლოკვა ვერ მოხერხდა.</string>
   <string name="BlockedUsersActivity__s_has_been_unblocked">\"%1$s\" განბლოკილია.</string>
   <!--ReviewCardDialogFragment-->
-  <string name="ReviewCardDialogFragment__review_members">წევრების მიმოხილვა</string>
+  <string name="ReviewCardDialogFragment__review_members">წევრების გადახედვა</string>
   <string name="ReviewCardDialogFragment__review_request">მოთხოვნის განხილვა</string>
   <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">ჯგუფის %1$d წევრს აქვს იგივე სახელი, გადახედე ქვემოთ მოცემულ წევრებს და აირჩიე მოქმედება.</string>
   <string name="ReviewCardDialogFragment__if_youre_not_sure">თუ არ ხარ დარწმუნებული, ვისგან არის მოთხოვნა, გადახედე ქვემოთ მოცემულ კონტაქტებს და მიიღე ზომები.</string>
-  <string name="ReviewCardDialogFragment__no_other_groups_in_common">არც ერთი სხვა საერთო ჯგუფი.</string>
-  <string name="ReviewCardDialogFragment__no_groups_in_common">არც ერთი საერთო ჯგუფი.</string>
+  <string name="ReviewCardDialogFragment__no_other_groups_in_common">არცერთი სხვა საერთო ჯგუფი.</string>
+  <string name="ReviewCardDialogFragment__no_groups_in_common">არცერთი საერთო ჯგუფი.</string>
   <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
     <item quantity="one">%d საერთო ჯგუფი</item>
     <item quantity="other">%d საერთო ჯგუფი</item>
@@ -2982,16 +2982,16 @@
   <string name="ReviewCard__update_contact">კონტაქტის განახლება</string>
   <string name="ReviewCard__block">დაბლოკვა</string>
   <string name="ReviewCard__delete">წაშლა</string>
-  <string name="ReviewCard__recently_changed">ახლახანს ჩაანაცვალა პროფილის სახელი %1$s %2$s-ით</string>
+  <string name="ReviewCard__recently_changed">ახლახანს შეცვალა პროფილის სახელი %1$s %2$s-ით</string>
   <!--CallParticipantsListUpdatePopupWindow-->
   <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s შემოგიერთდათ</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s და %2$s შემოგიერთდნენ</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s, %2$s და %3$s შემოგიერთდნენ</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">%1$s, %2$s და %3$d სხვა შემოგიერთდათ</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">%1$s, %2$s და %3$d სხვები შემოგიერთდნენ</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_left">%1$s გავიდა</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s და %2$s გავიდნენ</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s და %3$s გავიდნენ</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s და %3$d სხვა გავიდა</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s და %3$d სხვები გავიდნენ</string>
   <string name="CallParticipant__you">შენ</string>
   <string name="CallParticipant__you_on_another_device">შენ (სხვა მოწყობილობით)</string>
   <string name="CallParticipant__s_on_another_device">%1$s (სხვა მოწყობილობით)</string>
@@ -3003,7 +3003,7 @@
   <string name="DeleteAccountFragment__enter_your_phone_number">შეიყვანე შენი ტელეფონის ნომერი</string>
   <string name="DeleteAccountFragment__delete_account">მონაცემების წაშლა</string>
   <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">წაშლის შენს მონაცემებს და პროფილის ფოტოს</string>
-  <string name="DeleteAccountFragment__delete_all_your_messages">წაშლის ყველა შენს შეტყობინებას</string>
+  <string name="DeleteAccountFragment__delete_all_your_messages">ყველა შენი შეტყობინების წაშალა</string>
   <string name="DeleteAccountFragment__delete_s_in_your_payments_account">წაშლის %1$s-ს შენი ტრანზაქციების მონაცემებს</string>
   <string name="DeleteAccountFragment__no_country_code">ქვეყნის კოდი არ არის მითითებული</string>
   <string name="DeleteAccountFragment__no_number">ნომერი არ არის მითითებული</string>
@@ -3020,7 +3020,7 @@
   <!--Message of progress dialog shown when a user deletes their account and the process is canceling their subscription-->
   <string name="DeleteAccountFragment__canceling_your_subscription">მიმდინარეობს შენი გამოწერის გაუქმება…</string>
   <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
-  <string name="DeleteAccountFragment__depending_on_the_number_of_groups">იმ ჯგუფების რაოდენობის მიხედვით, რომლებშიც ხარ, ამას შეიძლება რამდენიმე წუთი დასჭირდეს</string>
+  <string name="DeleteAccountFragment__depending_on_the_number_of_groups">ამას შეიძლება რამოდენიმე წუთი დასჭირდეს, დამოკიდებულია იმ ჯგუფების რაოდენობაზე, რომლებშიც ხარ</string>
   <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
   <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">მიმდინარეობს მომხმარებლის მონაცემთა წაშლა და აპის გადატვირთვა</string>
   <!--Title of error dialog shown when a network error occurs during account deletion-->
@@ -3028,7 +3028,7 @@
   <!--Message of error dialog shown when a network error occurs during account deletion-->
   <string name="DeleteAccountFragment__there_was_a_problem">წაშლის პროცესის დასრულებისას წარმოიშვა პრობლემა. შეამოწმე შენი ქსელის კავშირი და სცადე ხელახლა.</string>
   <!--DeleteAccountCountryPickerFragment-->
-  <string name="DeleteAccountCountryPickerFragment__search_countries">ძებნა გრძელდება</string>
+  <string name="DeleteAccountCountryPickerFragment__search_countries">ქვეყნების ძებნა</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity__skip">გამოტოვება</string>
   <plurals name="CreateGroupActivity__d_members">
@@ -3042,7 +3042,7 @@
   <string name="ShareActivity__sharing_to_multiple_chats_is">მრავალ ჩატთან გაზიარება მხარდაჭერილია მხოლოდ Signal-ის შეტყობინებებისთვის</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">ზოგიერთ მომხმარებელთან გაგზავნა ვერ მოხერხდა</string>
-  <string name="MultiShareDialogs__you_can_only_share_with_up_to">მხოლოდ მაქსიმუმ %1$d ჩატში შეგიძლია გაზიარება</string>
+  <string name="MultiShareDialogs__you_can_only_share_with_up_to">მხოლოდ %1$d-მდე ჩატში შეგიძლია გაზიარება</string>
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">ჩატის ფონის სურათი</string>
   <!--ChatWallpaperFragment-->
@@ -3050,8 +3050,8 @@
   <string name="ChatWallpaperFragment__reset_chat_colors">ჩატის ფერების გადაყენება</string>
   <string name="ChatWallpaperFragment__reset_chat_color">ჩატის ფერის გადაყენება</string>
   <string name="ChatWallpaperFragment__reset_chat_color_question">გადავაყენოთ ჩატის ფერი?</string>
-  <string name="ChatWallpaperFragment__set_wallpaper">ფონის სურათი დაყენება</string>
-  <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">ბნელი რეჟიმი ფონის სურათს აქრობს</string>
+  <string name="ChatWallpaperFragment__set_wallpaper">ფონის სურათის დაყენება</string>
+  <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">მუქი რეჟიმი ფონის სურათს ამქრთალებს</string>
   <string name="ChatWallpaperFragment__contact_name">კონტაქტის სახელი</string>
   <string name="ChatWallpaperFragment__reset">ახლიდან დაყენება</string>
   <string name="ChatWallpaperFragment__clear">გასუფთავება</string>
@@ -3060,14 +3060,14 @@
   <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">გსურს ყველა ფონის სურათის გადაფარვა?</string>
   <string name="ChatWallpaperFragment__reset_default_colors">ნაგულისხმევი ფერების გადაყენება</string>
   <string name="ChatWallpaperFragment__reset_all_colors">ყველა ფერის გადაყენება</string>
-  <string name="ChatWallpaperFragment__reset_default_wallpaper">ნაგულისხმევი ფონის სურათის გადაყენება</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers">ყველა ფონის სურათის გადაყენება</string>
+  <string name="ChatWallpaperFragment__reset_default_wallpaper">ნაგულისხმევი ფონის სურათის შეცვლა</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">ყველა ფონის სურათის შეცვლა</string>
   <string name="ChatWallpaperFragment__reset_wallpapers">ფონის სურათების გადაყენება</string>
   <string name="ChatWallpaperFragment__reset_wallpaper">ფონის სურათის გადაყენება</string>
-  <string name="ChatWallpaperFragment__reset_wallpaper_question">გსურს ფონის სურათის გადაყენება?</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper_question">გადაყენოთ ფონის სურათი?</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">ფოტოებიდან არჩევა</string>
-  <string name="ChatWallpaperSelectionFragment__presets">წინასწარ დაყენებული ფონები</string>
+  <string name="ChatWallpaperSelectionFragment__presets">ქარხნული პარამეტრები</string>
   <!--ChatWallpaperPreviewActivity-->
   <string name="ChatWallpaperPreviewActivity__preview">წინასწარი ნახვა</string>
   <string name="ChatWallpaperPreviewActivity__set_wallpaper">ფონის სურათის დაყენება</string>
@@ -3076,27 +3076,27 @@
   <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">ფონის სურათის %1$s-სთვის დაყენება</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">შენი გალერეის სანახავად მეხსიერებაზე წვდომის ნებართვა დაგვჭირდება.</string>
   <!--WallpaperImageSelectionActivity-->
-  <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">ფონის სურათის სურათის არჩევა</string>
+  <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">ფონის სურათის არჩევა</string>
   <!--WallpaperCropActivity-->
   <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">მისაახლოებლად ორივე თითი დააჭირე, მოსარგებად-ერთი</string>
   <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">ფონის სურათის ყველა ჩატისთვის დაყენება.</string>
   <string name="WallpaperCropActivity__set_wallpaper_for_s">ფონის სურათის %s-სთვის დაყენება.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">ფონის სურათის დაყენებისას ხარვეზი მოხდა.</string>
-  <string name="WallpaperCropActivity__blur_photo">ფოტოს გაბუნდოვნება</string>
+  <string name="WallpaperCropActivity__blur_photo">ფოტოს გაბუნდოვანება</string>
   <!--InfoCard-->
   <string name="payment_info_card_about_mobilecoin">MobileCoin-ის შესახებ</string>
   <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin-ი არის ახალი კონფიდენციალურობაზე ორიენტირებული ციფრული ვალუტა.</string>
-  <string name="payment_info_card_adding_funds">თანხების დამატება</string>
-  <string name="payment_info_card_you_can_add_funds_for_use_in">შეგიძლია Signal-ში გამოსაყენებლად თანხები დაამატო MobileCoin-ის შენი საფულის მისამართზე გაგზავნით.</string>
+  <string name="payment_info_card_adding_funds">თანხის დამატება</string>
+  <string name="payment_info_card_you_can_add_funds_for_use_in">შეგიძლია Signal-ში გამოსაყენებლად თანხა დაამატო MobileCoin-ის შენი საფულის მისამართზე გაგზავნით.</string>
   <string name="payment_info_card_cashing_out">განაღდება</string>
-  <string name="payment_info_card_you_can_cash_out_mobilecoin">შეგიძლია გაანაღდო MobileCoin ნებისმიერ დროს იმ ბირჟაზე, რომელიც მხარს უჭერს MobileCoin-ს. უბრალოდ გადარიცხე ის შენს ანგარიშზე ამ ბირჟაზე.</string>
+  <string name="payment_info_card_you_can_cash_out_mobilecoin">შეგიძლია გაანაღდო MobileCoin ნებისმიერ დროს იმ ბირჟაზე, რომელიც ემსახურება MobileCoin-ს. უბრალოდ გადარიცხე მაგ ბირჟის შენს ანგარიშზე.</string>
   <string name="payment_info_card_hide_this_card">დავმალოთ ეს ბარათი?</string>
   <string name="payment_info_card_hide">დამალვა</string>
-  <string name="payment_info_card_record_recovery_phrase">ჩანაწერთა აღდგენის ფრაზა</string>
+  <string name="payment_info_card_record_recovery_phrase">აღდგენის ფრაზის ჩაწერა </string>
   <string name="payment_info_card_your_recovery_phrase_gives_you">აღდგენის ფრაზა შენი გადახდების მონაცემების აღსადგენად დამატებით საშუალებას გაძლევს.</string>
   <string name="payment_info_card_record_your_phrase">ჩაიწერე შენი ფრაზა</string>
   <string name="payment_info_card_update_your_pin">განაახლე შენი პინ-კოდი</string>
-  <string name="payment_info_card_with_a_high_balance">მაღალი ბალანსით, შეიძლება ანბანურ-ციფრულ პინ-კოდზე გადასვლა დაგჭირდეს, რათა შენი ანგარიში უკეთ დაიცვა.</string>
+  <string name="payment_info_card_with_a_high_balance">მეტი ბალანსით, ანბანურ-ციფრულ პინ-კოდზე გადასვლა შეგეძლება, რათა შენი ანგარიში უკეთ დაიცვა.</string>
   <string name="payment_info_card_update_pin">პინ-კოდის განახლება</string>
   <!--DeactivateWalletFragment-->
   <string name="DeactivateWalletFragment__deactivate_wallet">საფულის დეაქტივაცია</string>

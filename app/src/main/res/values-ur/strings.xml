@@ -465,6 +465,7 @@
   <string name="BackupsPreferenceFragment__learn_more">مزید پڑھیں</string>
   <string name="BackupsPreferenceFragment__in_progress">کام جاری ہے…</string>
   <!--Status text shown in backup preferences when verifying a backup-->
+  <string name="BackupsPreferenceFragment__verifying_backup">بیک اپ کی تصدیق کر رہے ہیں…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d اب تک…</string>
   <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment__s_so_far">%1$s%% اب تک…</string>
@@ -1517,7 +1518,9 @@
   <!--Menu option to save a debug log file to disk.-->
   <string name="SubmitDebugLogActivity_save">محفوظ کریں</string>
   <!--Error that is show in a toast when we fail to save a debug log file to disk.-->
+  <string name="SubmitDebugLogActivity_failed_to_save">محفوظ کرنے میں ناکامی ہوئی</string>
   <!--Toast that is show to notify that we have saved the debug log file to disk.-->
+  <string name="SubmitDebugLogActivity_save_complete">محفوط کرنا مکمل ہو گیا</string>
   <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">اسے حذف کرنے کیلئے ایک لائن پر ٹیپ کریں</string>
   <string name="SubmitDebugLogActivity_submit">جمع کرائیں</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">لوگز پیش کرنے میں ناکام</string>
@@ -2725,12 +2728,15 @@
   <string name="BackupDialog_passphrase_was_not_correct">پاسفریز صحیح نہیں تھا</string>
   <string name="LocalBackupJob_creating_signal_backup">Signal بیک اپ تخلیق کیا جا رہا ہے…</string>
   <!--Title for progress notification shown in a system notification while verifying a recent backup.-->
+  <string name="LocalBackupJob_verifying_signal_backup">Signal بیک اپ کی تصدیق کر رہے ہیں…</string>
   <string name="LocalBackupJobApi29_backup_failed">بیک اپ ناکام ہوگیا</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">آپ کی بیک اپ ڈائرکٹری کو حذف یا منتقل کردیا گیا ہے۔</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">اس حجم پر آپ کی بیک اپ فائل ذخیرہ کرنے کیلئے بہت بڑی ہے۔</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">آپ کا بیک اپ محفوظ کرنے کے لئے کافی جگہ نہیں ہے۔</string>
   <!--Error message shown if a newly created backup could not be verified as accurate-->
+  <string name="LocalBackupJobApi29_your_backup_could_not_be_verified">آپ کا حالیہ بیک اپ تخلیق اور اس کی تصدیق نہیں کی جا سکی۔ براہ کرم ایک نیا بیک اپ تخلیق کریں۔</string>
   <!--Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail-->
+  <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">آپ کے بیک اپ میں ایک بہت بڑی فائل شامل ہے جسے بیک اپ نہیں کیا جا سکتا۔ براہ کرم اسے حذف کریں اور ایک نیا بیک اپ تخلیق کریں۔</string>
   <string name="LocalBackupJobApi29_tap_to_manage_backups">بیک اپ کا انتظام کرنے کے لئے ٹیپ کریں۔</string>
   <string name="ProgressPreference_d_messages_so_far">%dپیغامات بہت دور ہیں</string>
   <string name="RegistrationActivity_wrong_number">غلط نمبر</string>

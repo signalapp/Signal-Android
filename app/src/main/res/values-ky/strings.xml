@@ -443,6 +443,7 @@
   <string name="BackupsPreferenceFragment__learn_more">Кененирээк маалымат</string>
   <string name="BackupsPreferenceFragment__in_progress">Иштелип жатат…</string>
   <!--Status text shown in backup preferences when verifying a backup-->
+  <string name="BackupsPreferenceFragment__verifying_backup">Камдык көчүрмө ырасталууда…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d болуп калды …</string>
   <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment__s_so_far">%1$s%% болуп калды…</string>
@@ -1452,7 +1453,7 @@
   <!--Error that is show in a toast when we fail to save a debug log file to disk.-->
   <string name="SubmitDebugLogActivity_failed_to_save">Сакталбай калды</string>
   <!--Toast that is show to notify that we have saved the debug log file to disk.-->
-  <string name="SubmitDebugLogActivity_save_complete">Сактоо аяктады</string>
+  <string name="SubmitDebugLogActivity_save_complete">Сакталды</string>
   <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Өчүрүлө турган сапты басыңыз</string>
   <string name="SubmitDebugLogActivity_submit">Тапшыруу</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">Журналдар тапшырылган жок</string>
@@ -2639,12 +2640,15 @@
   <string name="BackupDialog_passphrase_was_not_correct">Купуя сөз айкашы туура эмес</string>
   <string name="LocalBackupJob_creating_signal_backup">Signal\'дын камдык көчүрмөсү түзүлүүдө…</string>
   <!--Title for progress notification shown in a system notification while verifying a recent backup.-->
+  <string name="LocalBackupJob_verifying_signal_backup">Signal камдык көчүрмөсү ырасталууда…</string>
   <string name="LocalBackupJobApi29_backup_failed">Камдык көчүрмө сакталган жок</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Камдык папкаңыз жок кылынды же жылдырылды.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Камдык файлыңыз бул томдо сактоо үчүн өтө чоң.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">Камдык көчүрмөңүздү сактоо үчүн орун жетишсиз.</string>
   <!--Error message shown if a newly created backup could not be verified as accurate-->
+  <string name="LocalBackupJobApi29_your_backup_could_not_be_verified">Соңку камдык көчүрмөңүз түзүлгөн да жок, ырасталган да жок. Жаңысын түзүңүз.</string>
   <!--Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail-->
+  <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Камдык көчүрмөңүздө өтө көлөмдүү файл болгондуктан, ал түзүлгөн жок. Аны өчүрүп туруп, жаңысын түзүңүз.</string>
   <string name="LocalBackupJobApi29_tap_to_manage_backups">Камдык көчүрмөлөрдү башкаруу үчүн басыңыз.</string>
   <string name="ProgressPreference_d_messages_so_far">Азырынча %d билдирүү</string>
   <string name="RegistrationActivity_wrong_number">Туура эмес номер</string>
@@ -3448,7 +3452,7 @@
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/айына · %2$s жаңырат</string>
   <string name="Subscription__s_per_month_dot_expires_s">%1$s/айына · %2$s мөөнөтү бүтөт</string>
   <!--First small text blurb on learn more sheet-->
-  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal - эч кандай жарнакчылар же инвесторлор жок коммерциялык эмес долбоор. Аны колдонгон жана баалаган адамдар тарабынан иштейт. Ай сайын колдоо көрсөтүп, профилиңизден төшбелгилерге ээ болуп, башкалар менен бөлүшүңүз.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal - эч кандай жарнамачылары же инвесторлору жок коммерциялык эмес долбоор. Signal аны колдонгон жана баалаган адамдардын колдоосу менен иштейт. Ай сайын колдоо көрсөтүп, профилиңизден төшбелгилерге ээ болуп, башкалар менен бөлүшүңүз.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">Эмне үчүн колдоо керек?</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Сигнал ар кимге өз оюн айтууга жана дүйнө жүзү боюнча адамдар менен коопсуз баарлашууга мүмкүндүк берген ачык булактуу купуялык технологиясын иштеп чыгууга багытталган.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Сиздин демөөрчүлүгүңүз бул максатты ишке ашырууга жана миллиондогон адамдар жеке мамилелерди куруу жана аны иштетүү үчүн колдонгон колдонмону сактап калууга жардам берет. Жарнамалар жок. Трекерлер жок. Бул тамаша эмес.</string>
@@ -3463,7 +3467,7 @@
   <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Бүттү</string>
   <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Эгер сизде бирден ашык төшбелги болсо, профилиңизде башкаларга көрсөтүү үчүн бирин тандай аласыз.</string>
   <string name="BecomeASustainerFragment__get_badges">Signal\'ды колдоо менен профилиңизге төшбелги алыңыз.</string>
-  <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal – бул сизге окшогон адамдар тарабынан гана колдоого алынган, эч кандай жарнакчылар же инвесторлор жок коммерциялык эмес долбоор.</string>
+  <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal – сизге окшогон адамдардын колдоосу менен иштеген, эч кандай жарнамачылары же инвесторлору жок коммерциялык эмес уюм.</string>
   <!--Button label for creating a monthly donation-->
   <string name="ManageDonationsFragment__make_a_monthly_donation">Ай сайын колдоо көрсөтүңүз</string>
   <!--Heading for more area of manage subscriptions page-->

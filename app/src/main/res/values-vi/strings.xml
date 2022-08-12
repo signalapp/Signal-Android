@@ -443,6 +443,7 @@
   <string name="BackupsPreferenceFragment__learn_more">Tìm hiểu thêm</string>
   <string name="BackupsPreferenceFragment__in_progress">Đang thực hiện…</string>
   <!--Status text shown in backup preferences when verifying a backup-->
+  <string name="BackupsPreferenceFragment__verifying_backup">Đang xác minh bản lưu dự phòng…</string>
   <string name="BackupsPreferenceFragment__d_so_far">Đã được %1$d…</string>
   <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment__s_so_far">%1$s%% đến giờ…</string>
@@ -1447,7 +1448,9 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--Menu option to save a debug log file to disk.-->
   <string name="SubmitDebugLogActivity_save">Lưu</string>
   <!--Error that is show in a toast when we fail to save a debug log file to disk.-->
+  <string name="SubmitDebugLogActivity_failed_to_save">Lưu không thành công</string>
   <!--Toast that is show to notify that we have saved the debug log file to disk.-->
+  <string name="SubmitDebugLogActivity_save_complete">Lưu hoàn tất</string>
   <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Nhấn vào một dòng để xóa nó</string>
   <string name="SubmitDebugLogActivity_submit">Gửi</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">Không thể gửi nhật kí lỗi</string>
@@ -2624,12 +2627,15 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="BackupDialog_passphrase_was_not_correct">Mật khẩu không chính xác</string>
   <string name="LocalBackupJob_creating_signal_backup">Đang tạo bản sao lưu Signal…</string>
   <!--Title for progress notification shown in a system notification while verifying a recent backup.-->
+  <string name="LocalBackupJob_verifying_signal_backup">Đang xác minh bản lưu dự phòng của Signal…</string>
   <string name="LocalBackupJobApi29_backup_failed">Sao lưu thất bại.</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Thư mục sao lưu của bạn đã bị xoá hoặc dời đi.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Tập tin sao lưu của bạn quá lớn để có thể được lưu trữ trên ổ này.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">Không có đủ dung lượng để lưu trữ sao lưu của bạn.</string>
   <!--Error message shown if a newly created backup could not be verified as accurate-->
+  <string name="LocalBackupJobApi29_your_backup_could_not_be_verified">Bản lưu dự phòng gần đây của bạn không thể được tạo và xác minh. Vui lòng tạo một bản mới.</string>
   <!--Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail-->
+  <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Bản lưu dự phòng của bạn chứa một tập tin rất lớn và không thể được sao lưu. Vui lòng xóa tập tin đó và tạo một bản lưu dự phòng mới.</string>
   <string name="LocalBackupJobApi29_tap_to_manage_backups">Nhấn để quản lý các bản sao lưu.</string>
   <string name="ProgressPreference_d_messages_so_far">Đã được %d tin nhắn</string>
   <string name="RegistrationActivity_wrong_number">Sai số điện thoại</string>
