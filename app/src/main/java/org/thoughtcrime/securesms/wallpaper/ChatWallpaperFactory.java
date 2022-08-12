@@ -17,7 +17,7 @@ public final class ChatWallpaperFactory {
     if (model.hasSingleColor()) {
       return buildForSingleColor(model.getSingleColor(), model.getDimLevelInDarkTheme());
     } else if (model.hasLinearGradient()) {
-      return buildForLinearGradinent(model.getLinearGradient(), model.getDimLevelInDarkTheme());
+      return buildForLinearGradient(model.getLinearGradient(), model.getDimLevelInDarkTheme());
     } else if (model.hasFile()) {
       return buildForFile(model.getFile(), model.getDimLevelInDarkTheme());
     } else {
@@ -39,7 +39,7 @@ public final class ChatWallpaperFactory {
     return new SingleColorChatWallpaper(singleColor.getColor(), dimLevelInDarkTheme);
   }
 
-  private static @NonNull ChatWallpaper buildForLinearGradinent(@NonNull Wallpaper.LinearGradient gradient, float dimLevelInDarkTheme) {
+  private static @NonNull ChatWallpaper buildForLinearGradient(@NonNull Wallpaper.LinearGradient gradient, float dimLevelInDarkTheme) {
     int[] colors = new int[gradient.getColorsCount()];
     for (int i = 0; i < colors.length; i++) {
       colors[i] = gradient.getColors(i);
