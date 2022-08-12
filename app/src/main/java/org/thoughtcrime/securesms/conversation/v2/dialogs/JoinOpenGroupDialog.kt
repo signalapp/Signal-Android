@@ -5,6 +5,7 @@ import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.style.StyleSpan
 import android.view.LayoutInflater
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import network.loki.messenger.R
@@ -37,9 +38,13 @@ class JoinOpenGroupDialog(private val name: String, private val url: String) : B
         val openGroup = OpenGroupUrlParser.parseUrl(url)
         val activity = requireContext() as AppCompatActivity
         ThreadUtils.queue {
-            OpenGroupManager.add(openGroup.server, openGroup.room, openGroup.serverPublicKey, activity)
-            MessagingModuleConfiguration.shared.storage.onOpenGroupAdded(url)
-            ConfigurationMessageUtilities.forceSyncConfigurationNowIfNeeded(activity)
+            try {
+                OpenGroupManager.add(openGroup.server, openGroup.room, openGroup.serverPublicKey, activity)
+                MessagingModuleConfiguration.shared.storage.onOpenGroupAdded(url)
+                ConfigurationMessageUtilities.forceSyncConfigurationNowIfNeeded(activity)
+            } catch (e: Exception) {
+                Toast.makeText(activity, R.string.activity_join_public_chat_error, Toast.LENGTH_SHORT).show()
+            }
         }
         dismiss()
     }

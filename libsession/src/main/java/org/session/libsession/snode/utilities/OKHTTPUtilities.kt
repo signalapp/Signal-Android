@@ -3,10 +3,9 @@ package org.session.libsession.utilities
 import okhttp3.MultipartBody
 import okhttp3.Request
 import okio.Buffer
-import java.io.IOException
-import java.util.*
-
 import org.session.libsignal.utilities.Base64
+import java.io.IOException
+import java.util.Locale
 
 internal fun Request.getHeadersForOnionRequest(): Map<String, Any> {
     val result = mutableMapOf<String, Any>()
@@ -40,6 +39,8 @@ internal fun Request.getBodyForOnionRequest(): Any? {
         if (body is MultipartBody) {
             val base64EncodedBody: String = Base64.encodeBytes(bodyAsData)
             return mapOf( "fileUpload" to base64EncodedBody )
+        } else if (body.contentType()?.toString() == "application/octet-stream") {
+            return bodyAsData
         } else {
             val charset = body.contentType()?.charset() ?: Charsets.UTF_8
             return bodyAsData?.toString(charset)

@@ -483,7 +483,7 @@ object OnionRequestAPI {
             val prefixData = "l${requestData.size}:".toByteArray(Charsets.US_ASCII)
             val suffixData = "e".toByteArray(Charsets.US_ASCII)
             if (request.body() != null) {
-                val bodyData = body.toString().toByteArray()
+                val bodyData = if (body is ByteArray) body else body.toString().toByteArray()
                 val bodyLengthData = "${bodyData.size}:".toByteArray(Charsets.US_ASCII)
                 prefixData + requestData + bodyLengthData + bodyData + suffixData
             } else {
