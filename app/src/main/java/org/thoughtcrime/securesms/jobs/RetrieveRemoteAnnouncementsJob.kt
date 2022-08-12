@@ -210,7 +210,7 @@ class RetrieveRemoteAnnouncementsJob private constructor(private val force: Bool
         )
 
         if (insertResult != null) {
-          addedNewNotes = true
+          addedNewNotes = addedNewNotes || (note.releaseNote.includeBoostMessage ?: true)
           SignalDatabase.attachments.getAttachmentsForMessage(insertResult.messageId)
             .forEach { ApplicationDependencies.getJobManager().add(AttachmentDownloadJob(insertResult.messageId, it.attachmentId, false)) }
 
@@ -370,7 +370,8 @@ class RetrieveRemoteAnnouncementsJob private constructor(private val force: Bool
     @JsonProperty val countries: String?,
     @JsonProperty val androidMinVersion: String?,
     @JsonProperty val link: String?,
-    @JsonProperty val ctaId: String?
+    @JsonProperty val ctaId: String?,
+    @JsonProperty val includeBoostMessage: Boolean?
   )
 
   data class RemoteMegaphone(
