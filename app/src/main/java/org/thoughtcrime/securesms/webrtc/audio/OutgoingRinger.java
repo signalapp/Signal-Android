@@ -30,12 +30,12 @@ public class OutgoingRinger {
   public OutgoingRinger(@NonNull Context context) {
     this.context        = context;
   }
-  
+
   public void start(Type type) {
     int soundId;
 
-    if      (type == Type.RINGING) soundId = R.raw.redphone_outring;
-    else if (type == Type.BUSY)    soundId = R.raw.redphone_busy;
+    if      (type == Type.RINGING) soundId = R.raw.signal_call_outring;
+    else if (type == Type.BUSY)    soundId = R.raw.signal_call_busy;
     else throw new IllegalArgumentException("Not a valid sound type");
 
     if( mediaPlayer != null ) {
