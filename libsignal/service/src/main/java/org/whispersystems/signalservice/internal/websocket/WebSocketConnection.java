@@ -58,7 +58,7 @@ import static org.whispersystems.signalservice.internal.websocket.WebSocketProto
 public class WebSocketConnection extends WebSocketListener {
 
   private static final String TAG                       = WebSocketConnection.class.getSimpleName();
-  public  static final int    KEEPALIVE_TIMEOUT_SECONDS = 55;
+  public  static final int    KEEPALIVE_TIMEOUT_SECONDS = 30;
 
   private final LinkedList<WebSocketRequestMessage> incomingRequests = new LinkedList<>();
   private final Map<Long, OutgoingRequest>          outgoingRequests = new HashMap<>();
