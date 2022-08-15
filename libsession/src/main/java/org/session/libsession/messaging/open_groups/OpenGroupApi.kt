@@ -404,12 +404,19 @@ object OpenGroupApi {
         fileIds: List<String>? = null
     ): Promise<OpenGroupMessage, Exception> {
         val signedMessage = message.sign(room, server, fallbackSigningType = IdPrefix.STANDARD) ?: return Promise.ofFail(Error.SigningFailed)
+        val parameters = signedMessage.toJSON().toMutableMap()
+
+        // add file IDs if there are any (from attachments)
+        if (!fileIds.isNullOrEmpty()) {
+            parameters += "files" to fileIds
+        }
+
         val request = Request(
             verb = POST,
             room = room,
             server = server,
             endpoint = Endpoint.RoomMessage(room),
-            parameters = signedMessage.toJSON()
+            parameters = parameters
         )
         return getResponseBodyJson(request).map { json ->
             @Suppress("UNCHECKED_CAST") val rawMessage = json as? Map<String, Any>
