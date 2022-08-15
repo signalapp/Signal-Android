@@ -208,8 +208,9 @@ object SignalDatabaseMigrations {
   private const val URGENT_FLAG = 150
   private const val MY_STORY_MIGRATION = 151
   private const val STORY_GROUP_TYPES = 152
+  private const val MY_STORY_MIGRATION_2 = 153
 
-  const val DATABASE_VERSION = 152
+  const val DATABASE_VERSION = 153
 
   @JvmStatic
   fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -2685,6 +2686,10 @@ object SignalDatabaseMigrations {
         WHERE distribution_list_id IS NOT NULL
         """.trimIndent()
       )
+    }
+
+    if (oldVersion < MY_STORY_MIGRATION_2) {
+      MyStoryMigration.migrate(context, db, oldVersion, newVersion)
     }
   }
 

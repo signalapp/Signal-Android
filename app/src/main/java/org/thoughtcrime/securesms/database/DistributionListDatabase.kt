@@ -342,6 +342,24 @@ class DistributionListDatabase constructor(context: Context?, databaseHelper: Si
     }
   }
 
+  /**
+   * Gets the raw string value of distribution ID of the desired row. Added for additional logging around the UUID issues we've seen.
+   */
+  fun getRawDistributionId(listId: DistributionListId): String? {
+    return readableDatabase
+      .select(ListTable.DISTRIBUTION_ID)
+      .from(ListTable.TABLE_NAME)
+      .where("${ListTable.ID} = ?", listId)
+      .run()
+      .use { cursor ->
+        if (cursor.moveToFirst()) {
+          cursor.requireString(ListTable.DISTRIBUTION_ID)
+        } else {
+          null
+        }
+      }
+  }
+
   fun getListForStorageSync(listId: DistributionListId): DistributionListRecord? {
     readableDatabase.query(ListTable.TABLE_NAME, null, "${ListTable.ID} = ?", SqlUtil.buildArgs(listId), null, null, null).use { cursor ->
       return if (cursor.moveToFirst()) {
