@@ -464,6 +464,7 @@
   <string name="BackupsPreferenceFragment__learn_more">Läs mer</string>
   <string name="BackupsPreferenceFragment__in_progress">Pågående…</string>
   <!--Status text shown in backup preferences when verifying a backup-->
+  <string name="BackupsPreferenceFragment__verifying_backup">Verifierar säkerhetskopia …</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d hittills…</string>
   <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment__s_so_far">%1$s%% hittills…</string>
@@ -1520,7 +1521,9 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--Menu option to save a debug log file to disk.-->
   <string name="SubmitDebugLogActivity_save">Spara</string>
   <!--Error that is show in a toast when we fail to save a debug log file to disk.-->
+  <string name="SubmitDebugLogActivity_failed_to_save">Det gick inte att spara</string>
   <!--Toast that is show to notify that we have saved the debug log file to disk.-->
+  <string name="SubmitDebugLogActivity_save_complete">Sparad</string>
   <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Tryck på en rad för att ta bort den</string>
   <string name="SubmitDebugLogActivity_submit">Skicka</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">Det gick inte att skicka loggar</string>
@@ -2728,12 +2731,15 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="BackupDialog_passphrase_was_not_correct">Lösenordet var inte korrekt</string>
   <string name="LocalBackupJob_creating_signal_backup">Skapar Signal-säkerhetskopia…</string>
   <!--Title for progress notification shown in a system notification while verifying a recent backup.-->
+  <string name="LocalBackupJob_verifying_signal_backup">Verifierar Signal-säkerhetskopia …</string>
   <string name="LocalBackupJobApi29_backup_failed">Säkerhetskopieringen misslyckades</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Din mapp för säkerhetskopior har tagits bort eller flyttats.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Din säkerhetskopieringsfil är för stor för att lagras på denna volym.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">Det finns inte tillräckligt med utrymme för att lagra din säkerhetskopia.</string>
   <!--Error message shown if a newly created backup could not be verified as accurate-->
+  <string name="LocalBackupJobApi29_your_backup_could_not_be_verified">Din senaste säkerhetskopia kunde inte skapas och verifieras. Skapa en ny.</string>
   <!--Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail-->
+  <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Din säkerhetskopia innehåller en stor fil som inte kan säkerhetskopieras. Radera den och skapa en ny säkerhetskopia.</string>
   <string name="LocalBackupJobApi29_tap_to_manage_backups">Tryck för att hantera säkerhetskopior.</string>
   <string name="ProgressPreference_d_messages_so_far">%d meddelanden än så länge</string>
   <string name="RegistrationActivity_wrong_number">Fel nummer</string>

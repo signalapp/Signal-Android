@@ -43,7 +43,7 @@
   <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Преди да можете да деактивирате своя PIN, трябва да запишете фразата си за възстановяване на плащания, за да можете да възстановите своя акаунт за плащания.</string>
   <!--NumericKeyboardView-->
   <!--Back button on numeric keyboard-->
-  <string name="NumericKeyboardView__backspace">Backspace</string>
+  <string name="NumericKeyboardView__backspace">Назад</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d минута</item>
@@ -464,6 +464,7 @@
   <string name="BackupsPreferenceFragment__learn_more">Научете повече</string>
   <string name="BackupsPreferenceFragment__in_progress">Архивира се…</string>
   <!--Status text shown in backup preferences when verifying a backup-->
+  <string name="BackupsPreferenceFragment__verifying_backup">Проверка на архив…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d архивирани до тук…</string>
   <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment__s_so_far">%1$s%% дотук…</string>
@@ -1522,7 +1523,9 @@
   <!--Menu option to save a debug log file to disk.-->
   <string name="SubmitDebugLogActivity_save">Запази</string>
   <!--Error that is show in a toast when we fail to save a debug log file to disk.-->
+  <string name="SubmitDebugLogActivity_failed_to_save">Неуспешно запазване</string>
   <!--Toast that is show to notify that we have saved the debug log file to disk.-->
+  <string name="SubmitDebugLogActivity_save_complete">Запазването приключи</string>
   <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Докоснете ред, за да го изтриете</string>
   <string name="SubmitDebugLogActivity_submit">Изпрати</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">Неуспешно изпращане на регистрационни файлове</string>
@@ -2731,12 +2734,15 @@
   <string name="BackupDialog_passphrase_was_not_correct">Паролата не беше правилна</string>
   <string name="LocalBackupJob_creating_signal_backup">Създаване на резервно копие на Signal…</string>
   <!--Title for progress notification shown in a system notification while verifying a recent backup.-->
+  <string name="LocalBackupJob_verifying_signal_backup">Проверка на Signal архива…</string>
   <string name="LocalBackupJobApi29_backup_failed">Архивирането не бе успешно</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Вашата резервна директория е изтрита или преместена.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Вашият архивен файл е твърде голям, за да се съхранява на този том.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">Няма достатъчно място за съхранение на архива ви.</string>
   <!--Error message shown if a newly created backup could not be verified as accurate-->
+  <string name="LocalBackupJobApi29_your_backup_could_not_be_verified">Последният ви архив не беше създаден и проверен. Моля, създайте нов.</string>
   <!--Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail-->
+  <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Архивът ви съдържа много голям файл, който не може да бъде архивиран. Моля, изтрийте го и създайте нов архив.</string>
   <string name="LocalBackupJobApi29_tap_to_manage_backups">Докоснете, за да управлявате резервни копия.</string>
   <string name="ProgressPreference_d_messages_so_far">%d съобщения до тук</string>
   <string name="RegistrationActivity_wrong_number">Грешен номер</string>

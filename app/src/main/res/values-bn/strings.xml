@@ -464,6 +464,7 @@
   <string name="BackupsPreferenceFragment__learn_more">আরও জানুন</string>
   <string name="BackupsPreferenceFragment__in_progress">চলমান…</string>
   <!--Status text shown in backup preferences when verifying a backup-->
+  <string name="BackupsPreferenceFragment__verifying_backup">ব্যাকআপ যাচাই করা হচ্ছে…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d এখন অব্দি…</string>
   <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment__s_so_far">এখন পর্যন্ত %1$s %%…</string>
@@ -1520,7 +1521,7 @@
   <!--Menu option to save a debug log file to disk.-->
   <string name="SubmitDebugLogActivity_save">সংরক্ষণ করুন</string>
   <!--Error that is show in a toast when we fail to save a debug log file to disk.-->
-  <string name="SubmitDebugLogActivity_failed_to_save">সেভ করা সফল হয়নি</string>
+  <string name="SubmitDebugLogActivity_failed_to_save">সেভ করা ব্যর্থ হয়েছে</string>
   <!--Toast that is show to notify that we have saved the debug log file to disk.-->
   <string name="SubmitDebugLogActivity_save_complete">সেভ সম্পন্ন হয়েছে</string>
   <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">লাইনটিকে মুছে ফেলতে লাইনের উপর চাপুন</string>
@@ -2730,12 +2731,15 @@
   <string name="BackupDialog_passphrase_was_not_correct">পাসফ্রেজ সঠিক ছিলোনা।</string>
   <string name="LocalBackupJob_creating_signal_backup">Signal ব্যাকআপ তৈরি করা হচ্ছে…</string>
   <!--Title for progress notification shown in a system notification while verifying a recent backup.-->
+  <string name="LocalBackupJob_verifying_signal_backup">Signal ব্যাকআপ যাচাই করা হচ্ছে…</string>
   <string name="LocalBackupJobApi29_backup_failed">ব্যাকআপ ব্যর্থ হয়েছে</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">আপনার ব্যাকআপ ডিরেক্টরি মুছে ফেলা হয়েছে বা সরানো হয়েছে।</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">আপনার ব্যাকআপ ফাইলটি এই স্থানে সংরক্ষণ করার জন্য খুব বড়।</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">আপনার ব্যাকআপ সংরক্ষণের জন্য পর্যাপ্ত জায়গা নেই।</string>
   <!--Error message shown if a newly created backup could not be verified as accurate-->
+  <string name="LocalBackupJobApi29_your_backup_could_not_be_verified">আপনার সাম্প্রতিক ব্যাকআপটি তৈরি এবং যাচাই করা যায়নি। অনুগ্রহ করে নতুন ব্যাকআপ তৈরি করুন।</string>
   <!--Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail-->
+  <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">আপনার ব্যাকআপে একটি বেশ বড় আকারের ফাইল রয়েছে যার ব্যাকআপ নেওয়া যাচ্ছে না। ফাইলটি মুছে দিন এবং একটি নতুন ব্যাকআপ তৈরি করুন।</string>
   <string name="LocalBackupJobApi29_tap_to_manage_backups">ব্যাকআপগুলি পরিচালনা করতে আলতো চাপুন।</string>
   <string name="ProgressPreference_d_messages_so_far">এযাবৎ %d টি বার্তা</string>
   <string name="RegistrationActivity_wrong_number">ভুল নাম্বার</string>

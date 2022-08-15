@@ -464,6 +464,7 @@
   <string name="BackupsPreferenceFragment__learn_more">Matuto pa</string>
   <string name="BackupsPreferenceFragment__in_progress">In progress…</string>
   <!--Status text shown in backup preferences when verifying a backup-->
+  <string name="BackupsPreferenceFragment__verifying_backup">Vine-verify ang backup…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d so far…</string>
   <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment__s_so_far">%1$s%% so far…</string>
@@ -1526,7 +1527,9 @@
   <!--Menu option to save a debug log file to disk.-->
   <string name="SubmitDebugLogActivity_save">I-save</string>
   <!--Error that is show in a toast when we fail to save a debug log file to disk.-->
+  <string name="SubmitDebugLogActivity_failed_to_save">Hindi na-save</string>
   <!--Toast that is show to notify that we have saved the debug log file to disk.-->
+  <string name="SubmitDebugLogActivity_save_complete">Tapos na ang pag-save</string>
   <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Pindutin ang linya upang burahin ito</string>
   <string name="SubmitDebugLogActivity_submit">Isumite</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">Bigo na ipadala ang mga log</string>
@@ -2734,12 +2737,15 @@
   <string name="BackupDialog_passphrase_was_not_correct">Ang passphrase ay hindi tama</string>
   <string name="LocalBackupJob_creating_signal_backup">Creating Signal backup…</string>
   <!--Title for progress notification shown in a system notification while verifying a recent backup.-->
+  <string name="LocalBackupJob_verifying_signal_backup">Vine-verify ang Signal backup…</string>
   <string name="LocalBackupJobApi29_backup_failed">Backup failed</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Ang iyong backup directory ay deleted or moved.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Ang iyong backup file ay masyadong malaki to store on this volume.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">Walang enough space to store your backup.</string>
   <!--Error message shown if a newly created backup could not be verified as accurate-->
+  <string name="LocalBackupJobApi29_your_backup_could_not_be_verified">Hindi magawa at ma-verify ang pinakahuling backup mo. Mangyaring gumawa ng bago.</string>
   <!--Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail-->
+  <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Ang backup mo ay may lamang masyadong malaking file na hindi ma-back up. Mangyaring burahin ito at gumawa ng bagong backup.</string>
   <string name="LocalBackupJobApi29_tap_to_manage_backups">I-tap to manage backups.</string>
   <string name="ProgressPreference_d_messages_so_far">%d mensahe sa ngayon</string>
   <string name="RegistrationActivity_wrong_number">Mali ang numero</string>

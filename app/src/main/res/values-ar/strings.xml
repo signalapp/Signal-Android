@@ -549,6 +549,7 @@
   <string name="BackupsPreferenceFragment__learn_more">لمعرفة المزيد</string>
   <string name="BackupsPreferenceFragment__in_progress">يجري الآن…</string>
   <!--Status text shown in backup preferences when verifying a backup-->
+  <string name="BackupsPreferenceFragment__verifying_backup">جارٍ التحقّق من النسخة الاحتياطية…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d حتى الآن…‏</string>
   <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment__s_so_far">‫%1$s%% إلى الآن…</string>
@@ -1815,7 +1816,9 @@
   <!--Menu option to save a debug log file to disk.-->
   <string name="SubmitDebugLogActivity_save">حفظ</string>
   <!--Error that is show in a toast when we fail to save a debug log file to disk.-->
+  <string name="SubmitDebugLogActivity_failed_to_save">فشل الحفظ</string>
   <!--Toast that is show to notify that we have saved the debug log file to disk.-->
+  <string name="SubmitDebugLogActivity_save_complete">تمّ الحفظ</string>
   <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">المس على الخط لحذفه</string>
   <string name="SubmitDebugLogActivity_submit">إرسال</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">فشل إرسال السجل</string>
@@ -3097,12 +3100,15 @@
   <string name="BackupDialog_passphrase_was_not_correct">العبارة السرية غير صحيحة</string>
   <string name="LocalBackupJob_creating_signal_backup">‫يجري إنشاء نسخة Signal احتياطية…</string>
   <!--Title for progress notification shown in a system notification while verifying a recent backup.-->
+  <string name="LocalBackupJob_verifying_signal_backup">‫جارٍ التحقّق من نسخة Signal الاحتياطية…</string>
   <string name="LocalBackupJobApi29_backup_failed">فشل النسخ الاحتياطي</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">حُذف أو نُقل مجلد نسخك الاحتياطية.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">لا يمكن حفظ ملف النسخة الاحتياطية في وحدة التخزين هذه لأنه كبير جدا.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">لم يبق مكان كافٍ لحفظ نسختك الاحتياطية.</string>
   <!--Error message shown if a newly created backup could not be verified as accurate-->
+  <string name="LocalBackupJobApi29_your_backup_could_not_be_verified">تعذّر إنشاء نسختك الاحتياطية الأخيرة والتحقّق منها. يُرجى إنشاء واحدة أخرى.</string>
   <!--Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail-->
+  <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">تحتوي نسختك الاحتياطية على ملف كبير جدًا لا يُمكن نسخه احتياطيًا. يُرجى حذفه وإنشاء نسخة احتياطية جديدة.</string>
   <string name="LocalBackupJobApi29_tap_to_manage_backups">يُرجى اللمس لإدارة النسخ الاحتياطية.</string>
   <string name="ProgressPreference_d_messages_so_far">%d رسالة حتى الآن</string>
   <string name="RegistrationActivity_wrong_number">رقم خاطئ </string>

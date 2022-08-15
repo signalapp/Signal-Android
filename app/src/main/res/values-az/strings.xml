@@ -2743,7 +2743,7 @@
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Nüsxə faylınız bu sürücüdə saxlanılmaq üçün çox böyükdür.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">Nüsxəni saxlamaq üçün yetərli sahə yoxdur.</string>
   <!--Error message shown if a newly created backup could not be verified as accurate-->
-  <string name="LocalBackupJobApi29_your_backup_could_not_be_verified">Yeni ehtiyat nüsxəsi yaratmaq və yoxlamaq mümkün olmadı. Lütfən yenisini yaradın.</string>
+  <string name="LocalBackupJobApi29_your_backup_could_not_be_verified">Yeni ehtiyat nüsxə yaratmaq və yoxlamaq mümkün olmadı. Lütfən yenisini yaradın.</string>
   <!--Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail-->
   <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Ehtiyat nüsxənizə çox böyük həcmli bir fayl daxil edildiyi üçün nüsxəni çıxarmaq mümkün olmadı. Həmin faylı silib yeni bir ehtiyat nüsxə yaradın.</string>
   <string name="LocalBackupJobApi29_tap_to_manage_backups">Nüsxələri idarə etmək üçün toxunun.</string>

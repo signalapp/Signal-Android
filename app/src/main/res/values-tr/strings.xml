@@ -464,6 +464,7 @@
   <string name="BackupsPreferenceFragment__learn_more">Dahasını öğrenin</string>
   <string name="BackupsPreferenceFragment__in_progress">Devam ediyor…</string>
   <!--Status text shown in backup preferences when verifying a backup-->
+  <string name="BackupsPreferenceFragment__verifying_backup">Yedekleme doğrulanıyor…</string>
   <string name="BackupsPreferenceFragment__d_so_far">Şu ana kadar %1$d…</string>
   <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment__s_so_far">Şu ana kadar %1$s%% …</string>
@@ -1524,7 +1525,9 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--Menu option to save a debug log file to disk.-->
   <string name="SubmitDebugLogActivity_save">Kaydet</string>
   <!--Error that is show in a toast when we fail to save a debug log file to disk.-->
+  <string name="SubmitDebugLogActivity_failed_to_save">Kaydetme işlemi başarısız</string>
   <!--Toast that is show to notify that we have saved the debug log file to disk.-->
+  <string name="SubmitDebugLogActivity_save_complete">Kaydetme işlemi tamamlandı</string>
   <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Silmek istediğiniz dizeye tıklayın</string>
   <string name="SubmitDebugLogActivity_submit">Gönder</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">Günlükler gönderilemedi</string>
@@ -2732,12 +2735,15 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="BackupDialog_passphrase_was_not_correct">Parolanız doğru değil</string>
   <string name="LocalBackupJob_creating_signal_backup">Signal yedeği yaratılıyor…</string>
   <!--Title for progress notification shown in a system notification while verifying a recent backup.-->
+  <string name="LocalBackupJob_verifying_signal_backup">Signal yedeklemesi doğrulanıyor…</string>
   <string name="LocalBackupJobApi29_backup_failed">Yedekleme başarısız oldu</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Yedekleme dizininiz silindi veya taşındı.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Yedek dosyası bu sürücüde saklanmak için çok büyük.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">Yedeğinizi kaydetmek için yereli disk alanı yok.</string>
   <!--Error message shown if a newly created backup could not be verified as accurate-->
+  <string name="LocalBackupJobApi29_your_backup_could_not_be_verified">Son yedekleme oluşturulamadı ve doğrulanamadı. Lütfen yeni bir tane oluştur.</string>
   <!--Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail-->
+  <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Yedekleme işlemi, çok büyük bir dosya içeriyor ve yedeklenemiyor. Lütfen bu dosyayı sil ve yeni bir yedekleme oluştur.</string>
   <string name="LocalBackupJobApi29_tap_to_manage_backups">Yedekleri yönetmek için dokunun.</string>
   <string name="ProgressPreference_d_messages_so_far">Şimdiye kadar %d ileti</string>
   <string name="RegistrationActivity_wrong_number">Yanlış numara</string>

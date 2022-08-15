@@ -466,6 +466,7 @@
   <string name="BackupsPreferenceFragment__learn_more">ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</string>
   <string name="BackupsPreferenceFragment__in_progress">ಪ್ರಗತಿಯಲ್ಲಿದೆ…</string>
   <!--Status text shown in backup preferences when verifying a backup-->
+  <string name="BackupsPreferenceFragment__verifying_backup">ಬ್ಯಾಕಪ್ ದೃಢೀಕರಿಸಲಾಗುತ್ತಿದೆ…</string>
   <string name="BackupsPreferenceFragment__d_so_far">ಇಲ್ಲಿಯವರೆಗು %1$d…</string>
   <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment__s_so_far">%1$s%% ಈ ತನಕ…</string>
@@ -1523,7 +1524,9 @@
   <!--Menu option to save a debug log file to disk.-->
   <string name="SubmitDebugLogActivity_save">ಉಳಿಸಿ</string>
   <!--Error that is show in a toast when we fail to save a debug log file to disk.-->
+  <string name="SubmitDebugLogActivity_failed_to_save">ಉಳಿಸಲು ವಿಫಲವಾಗಿದೆ</string>
   <!--Toast that is show to notify that we have saved the debug log file to disk.-->
+  <string name="SubmitDebugLogActivity_save_complete">ಉಳಿಸುವಿಕೆ ಪೂರ್ಣಗೊಂಡಿದೆ</string>
   <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">ಅದನ್ನು ಅಳಿಸಲು ಸಾಲನ್ನು ಟ್ಯಾಪ್ ಮಾಡಿ</string>
   <string name="SubmitDebugLogActivity_submit">ಸಲ್ಲಿಸಿ</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">ಲಾಗ್ ಗಳನ್ನು ಸಲ್ಲಿಸಲು ವಿಫಲವಾಗಿದೆ</string>
@@ -2731,12 +2734,15 @@
   <string name="BackupDialog_passphrase_was_not_correct">ಪಾಸ್‌ಫ್ರೇಸ್ ಸರಿಯಾಗಿರಲಿಲ್ಲ</string>
   <string name="LocalBackupJob_creating_signal_backup">Signal ಬ್ಯಾಕಪ್ ರಚಿಸಲಾಗುತ್ತಿದೆ…</string>
   <!--Title for progress notification shown in a system notification while verifying a recent backup.-->
+  <string name="LocalBackupJob_verifying_signal_backup">Signal ಬ್ಯಾಕಪ್ ದೃಢೀಕರಿಸಲಾಗುತ್ತಿದೆ…</string>
   <string name="LocalBackupJobApi29_backup_failed">ಬ್ಯಾಕಪ್ ವಿಫಲವಾಗಿದೆ</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">ನಿಮ್ಮ ಬ್ಯಾಕಪ್ ಡೈರೆಕ್ಟರಿಯನ್ನು ಅಳಿಸಲಾಗಿದೆ ಅಥವಾ ಸರಿಸಲಾಗಿದೆ.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">ನಿಮ್ಮ ಬ್ಯಾಕಪ್ ಫೈಲ್ ಈ ಪ್ರಮಾಣದಲ್ಲಿ ಸಂಗ್ರಹಿಸಲು ತುಂಬಾ ದೊಡ್ಡದಾಗಿದೆ.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">ನಿಮ್ಮ ಬ್ಯಾಕಪ್ ಸಂಗ್ರಹಿಸಲು ಸಾಕಷ್ಟು ಸ್ಥಳವಿಲ್ಲ.</string>
   <!--Error message shown if a newly created backup could not be verified as accurate-->
+  <string name="LocalBackupJobApi29_your_backup_could_not_be_verified">ನಿಮ್ಮ ಇತ್ತೀಚಿನ ಬ್ಯಾಕಪ್ ಅನ್ನು ರಚಿಸಲು ಹಾಗು ದೃಢೀಕರಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ದಯವವಿಟ್ಟು ಹೊಸತನ್ನು ರಚಿಸಿ.</string>
   <!--Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail-->
+  <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">ನಿಮ್ಮ ಬ್ಯಾಕಪ್, ಬ್ಯಾಕ್ ಮಾಡಲು ಸಾಧ್ಯವಿಲ್ಲದ‌ ತೀರಾ ದೊಡ್ಡ ಫೈಲ್ ಅನ್ನು ಹೊಂದಿದೆ. ದಯವಿಟ್ಟು ಅದನ್ನು ಅಳಿಸಿ ಮತ್ತು ಹೊಸ ಬ್ಯಾಕಪ್ ರಚಿಸಿ.</string>
   <string name="LocalBackupJobApi29_tap_to_manage_backups">ಬ್ಯಾಕಪ್‌ಗಳನ್ನು ನಿರ್ವಯಿಸಲು ಟ್ಯಾಪ್ ಮಾಡಿ.</string>
   <string name="ProgressPreference_d_messages_so_far">ಇಲ್ಲಿಯವರೆಗೆ %d ಸಂದೇಶಗಳು</string>
   <string name="RegistrationActivity_wrong_number">ತಪ್ಪಾದ ಸಂಖ್ಯೆ</string>

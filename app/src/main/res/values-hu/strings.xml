@@ -464,6 +464,7 @@
   <string name="BackupsPreferenceFragment__learn_more">Tudj meg többet!</string>
   <string name="BackupsPreferenceFragment__in_progress">Folyamatban…</string>
   <!--Status text shown in backup preferences when verifying a backup-->
+  <string name="BackupsPreferenceFragment__verifying_backup">Biztonsági mentés ellenőrzése…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d eddig…</string>
   <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment__s_so_far">%1$s%% eddig…</string>
@@ -1527,7 +1528,9 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--Menu option to save a debug log file to disk.-->
   <string name="SubmitDebugLogActivity_save">Mentés</string>
   <!--Error that is show in a toast when we fail to save a debug log file to disk.-->
+  <string name="SubmitDebugLogActivity_failed_to_save">Mentés sikertelen</string>
   <!--Toast that is show to notify that we have saved the debug log file to disk.-->
+  <string name="SubmitDebugLogActivity_save_complete">Mentés kész</string>
   <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Koppints egy sorra a törléshez</string>
   <string name="SubmitDebugLogActivity_submit">Küldés</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">Nem sikerült elküldeni a naplót</string>
@@ -2735,12 +2738,15 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="BackupDialog_passphrase_was_not_correct">A jelmondat nem megfelelő</string>
   <string name="LocalBackupJob_creating_signal_backup">Signal biztonsági mentés létrehozása…</string>
   <!--Title for progress notification shown in a system notification while verifying a recent backup.-->
+  <string name="LocalBackupJob_verifying_signal_backup">Signal biztonsági mentés ellenőrzése…</string>
   <string name="LocalBackupJobApi29_backup_failed">Sikertelen biztonsági mentés</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">A biztonsági mentéseket tartalmazó könyvtár törölve lett, vagy át lett helyezve.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">A biztonsági mentés mérete túl nagy ahhoz, hogy itt legyen létrehozva.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">Nincs elég tárterület a biztonsági mentés létrehozásához.</string>
   <!--Error message shown if a newly created backup could not be verified as accurate-->
+  <string name="LocalBackupJobApi29_your_backup_could_not_be_verified">A legutóbbi biztonsági mentés létrehozása és ellenőrzése nem sikerült. Kérjük, hozz létre egy újat!</string>
   <!--Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail-->
+  <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">A biztonsági mentés egy olyan nagyon nagy fájlt tartalmaz, amelyről nem lehet biztonsági másolatot készíteni. Kérjük, töröld, és hozz létre egy új biztonsági mentést!</string>
   <string name="LocalBackupJobApi29_tap_to_manage_backups">Koppints a biztonsági mentések kezeléséhez!</string>
   <string name="ProgressPreference_d_messages_so_far">Eddig %d db üzenet</string>
   <string name="RegistrationActivity_wrong_number">Hibás szám</string>

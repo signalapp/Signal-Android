@@ -2748,9 +2748,9 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Kartela e kopjeruajtjes tuaj është shumë e madhe për t\’u depozituar në këtë vëllim.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">S\’ka hapësirë të mjaftueshme për të depozituar kopjeruajtjen tuaj.</string>
   <!--Error message shown if a newly created backup could not be verified as accurate-->
-  <string name="LocalBackupJobApi29_your_backup_could_not_be_verified">Rezerva jote e fundit nuk mund të krijohej dhe verifikohej.  Të lutem krijo një të re.</string>
+  <string name="LocalBackupJobApi29_your_backup_could_not_be_verified">Rezerva jote e fundit nuk mundi të krijohej dhe të verifikohej.  Të lutem krijo një të re.</string>
   <!--Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail-->
-  <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Rezerva jote përmban një skedar shumë të madh që nuk mund të rezervohet.  Të lutem, fshije atë dhe krijo një kopje rezervë të re.</string>
+  <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Rezerva jote përmban një skedar shumë të madh, që nuk mund të rezervohet.  Të lutem, fshije dhe krijo një kopje të re rezervë.</string>
   <string name="LocalBackupJobApi29_tap_to_manage_backups">Prekeni që të administroni kopjeruajtje.</string>
   <string name="ProgressPreference_d_messages_so_far">%d mesazhe deri këtu</string>
   <string name="RegistrationActivity_wrong_number">Numër i gabuar</string>

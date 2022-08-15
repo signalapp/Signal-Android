@@ -464,6 +464,7 @@
   <string name="BackupsPreferenceFragment__learn_more">Vind meer uit</string>
   <string name="BackupsPreferenceFragment__in_progress">Aan die gang…</string>
   <!--Status text shown in backup preferences when verifying a backup-->
+  <string name="BackupsPreferenceFragment__verifying_backup">Besig om rugsteun te verifieer…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d tot dusver…</string>
   <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment__s_so_far">%1$s%% tot dusver…</string>
@@ -1524,7 +1525,9 @@ ontvang!</string>
   <!--Menu option to save a debug log file to disk.-->
   <string name="SubmitDebugLogActivity_save">Stoor</string>
   <!--Error that is show in a toast when we fail to save a debug log file to disk.-->
+  <string name="SubmitDebugLogActivity_failed_to_save">Kon nie stoor nie</string>
   <!--Toast that is show to notify that we have saved the debug log file to disk.-->
+  <string name="SubmitDebugLogActivity_save_complete">Storing voltooi</string>
   <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Tik op \'n lyn om dit te skrap</string>
   <string name="SubmitDebugLogActivity_submit">Dien in</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">Kon nie logs indien nie.</string>
@@ -2732,12 +2735,15 @@ ontvang!</string>
   <string name="BackupDialog_passphrase_was_not_correct">Wagwoordfrase verkeerd</string>
   <string name="LocalBackupJob_creating_signal_backup">Skep tans Signal-rugsteun…</string>
   <!--Title for progress notification shown in a system notification while verifying a recent backup.-->
+  <string name="LocalBackupJob_verifying_signal_backup">Besig om Signal-rugsteun te verifieer…</string>
   <string name="LocalBackupJobApi29_backup_failed">Rugsteun het misluk</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Jou rugsteungids is geskrap of verskuif.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Jou rugsteunlêer is te groot om in hierdie volume te stoor.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">Daar is nie genoeg ruimte om jou rugsteun te stoor nie.</string>
   <!--Error message shown if a newly created backup could not be verified as accurate-->
+  <string name="LocalBackupJobApi29_your_backup_could_not_be_verified">Jou onlangse rugsteun kon nie geskep en geverifieer word nie. Skep asb. \'n nuwe een.</string>
   <!--Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail-->
+  <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Jou rugsteun bevat \'n baie groot lêer wat nie gerugsteun kan word nie. Skrap dit asb. en skep \'n nuwe rugsteun.</string>
   <string name="LocalBackupJobApi29_tap_to_manage_backups">Tik om rugsteunkopieë te bestuur.</string>
   <string name="ProgressPreference_d_messages_so_far">%d boodskappe tot dusver</string>
   <string name="RegistrationActivity_wrong_number">Verkeerde nommer</string>

@@ -485,6 +485,7 @@
   <string name="BackupsPreferenceFragment__learn_more">Saznajte više</string>
   <string name="BackupsPreferenceFragment__in_progress">U toku…</string>
   <!--Status text shown in backup preferences when verifying a backup-->
+  <string name="BackupsPreferenceFragment__verifying_backup">Provjera sigurnosne kopije…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d do sada…</string>
   <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment__s_so_far">%1$s%% do sada…</string>
@@ -1599,7 +1600,9 @@
   <!--Menu option to save a debug log file to disk.-->
   <string name="SubmitDebugLogActivity_save">Pohrani</string>
   <!--Error that is show in a toast when we fail to save a debug log file to disk.-->
+  <string name="SubmitDebugLogActivity_failed_to_save">Pohranjivanje nije uspjelo</string>
   <!--Toast that is show to notify that we have saved the debug log file to disk.-->
+  <string name="SubmitDebugLogActivity_save_complete">Pohranjivanje je završeno</string>
   <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Dotaknite red da ga izbrišete</string>
   <string name="SubmitDebugLogActivity_submit">Šalji</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">Neuspjelo slanje izvještaja</string>
@@ -2828,12 +2831,15 @@
   <string name="BackupDialog_passphrase_was_not_correct">Lozinka nije tačna</string>
   <string name="LocalBackupJob_creating_signal_backup">Kreiram rezervnu kopiju Signalovih podataka…</string>
   <!--Title for progress notification shown in a system notification while verifying a recent backup.-->
+  <string name="LocalBackupJob_verifying_signal_backup">Provjera sigurnosne kopije Signala…</string>
   <string name="LocalBackupJobApi29_backup_failed">Neuspjelo kreiranje rezervne kopije</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Direktorij sa rezervnim kopijama izbrisan je ili premješten.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Vaša rezervna kopija prevelika je za pohranjivanje na ovoj lokaciji.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">Nema dovoljno prostora za pohranjivanje rezervne kopije.</string>
   <!--Error message shown if a newly created backup could not be verified as accurate-->
+  <string name="LocalBackupJobApi29_your_backup_could_not_be_verified">Kreiranje i provjera vaše nedavne sigurnosne kopije nije uspjelo. Kreirajte novu.</string>
   <!--Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail-->
+  <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Vaša sigurnosna kopija sadrži veoma veliku datoteku za koju nije moguće kreirati sigurnosnu kopiju. Izbrišite je i kreirajte novu sigurnosnu kopiju.</string>
   <string name="LocalBackupJobApi29_tap_to_manage_backups">Pritisnite da rasporedite rezervne kopije.</string>
   <string name="ProgressPreference_d_messages_so_far">%d poruka do sada</string>
   <string name="RegistrationActivity_wrong_number">Pogrešan broj</string>

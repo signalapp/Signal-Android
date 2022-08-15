@@ -506,7 +506,7 @@
   <string name="BackupsPreferenceFragment__learn_more">Dowiedz się więcej</string>
   <string name="BackupsPreferenceFragment__in_progress">W trakcie…</string>
   <!--Status text shown in backup preferences when verifying a backup-->
-  <string name="BackupsPreferenceFragment__verifying_backup">Trwa sprawdzanie kopii zapasowej…</string>
+  <string name="BackupsPreferenceFragment__verifying_backup">Sprawdzanie kopii zapasowej…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d wiadomości…</string>
   <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment__s_so_far">%1$s%% wiadomości…</string>
@@ -2917,7 +2917,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="BackupDialog_passphrase_was_not_correct">Hasło jest nieprawidłowe</string>
   <string name="LocalBackupJob_creating_signal_backup">Tworzenie kopii zapasowej Signal…</string>
   <!--Title for progress notification shown in a system notification while verifying a recent backup.-->
-  <string name="LocalBackupJob_verifying_signal_backup">Trwa sprawdzanie kopii zapasowej Signal…</string>
+  <string name="LocalBackupJob_verifying_signal_backup">Sprawdzanie kopii zapasowej Signal…</string>
   <string name="LocalBackupJobApi29_backup_failed">Zapisywanie kopii zapasowej nie powiodło się</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Twój folder kopii zapasowej został usunięty lub przeniesiony.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Twój plik kopii zapasowej jest zbyt duży, aby przechować go na tym wolumenie.</string>

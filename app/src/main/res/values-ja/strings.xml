@@ -443,6 +443,7 @@
   <string name="BackupsPreferenceFragment__learn_more">詳しく見る</string>
   <string name="BackupsPreferenceFragment__in_progress">実行しています…</string>
   <!--Status text shown in backup preferences when verifying a backup-->
+  <string name="BackupsPreferenceFragment__verifying_backup">バックアップを検証しています…</string>
   <string name="BackupsPreferenceFragment__d_so_far">これまで %1$d…</string>
   <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment__s_so_far">%1$s%%完了</string>
@@ -1443,7 +1444,9 @@
   <!--Menu option to save a debug log file to disk.-->
   <string name="SubmitDebugLogActivity_save">保存</string>
   <!--Error that is show in a toast when we fail to save a debug log file to disk.-->
+  <string name="SubmitDebugLogActivity_failed_to_save">保存に失敗しました</string>
   <!--Toast that is show to notify that we have saved the debug log file to disk.-->
+  <string name="SubmitDebugLogActivity_save_complete">保存が完了しました</string>
   <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">タップした行を削除します</string>
   <string name="SubmitDebugLogActivity_submit">提出する</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">ログの送信に失敗しました</string>
@@ -2630,12 +2633,15 @@
   <string name="BackupDialog_passphrase_was_not_correct">パスフレーズが違います</string>
   <string name="LocalBackupJob_creating_signal_backup">Signalのバックアップを作成しています…</string>
   <!--Title for progress notification shown in a system notification while verifying a recent backup.-->
+  <string name="LocalBackupJob_verifying_signal_backup">Signalのバックアップを検証しています…</string>
   <string name="LocalBackupJobApi29_backup_failed">バックアップに失敗しました</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">バックアップディレクトリは削除または移動されています。</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">あなたのバックアップファイルは、このボリュームに保存するには大きすぎます。</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">バックアップを保存できる十分なスペースがありません。</string>
   <!--Error message shown if a newly created backup could not be verified as accurate-->
+  <string name="LocalBackupJobApi29_your_backup_could_not_be_verified">最新のバックアップの作成および検証ができませんでした。 新しいものを作成してください。</string>
   <!--Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail-->
+  <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">非常に大きなファイルが含まれているためバックアップできません。そのファイルを削除して、新しいバックアップを作成してください。</string>
   <string name="LocalBackupJobApi29_tap_to_manage_backups">タップしてバックアップを管理</string>
   <string name="ProgressPreference_d_messages_so_far">これまで%d件のメッセージ</string>
   <string name="RegistrationActivity_wrong_number">電話番号を訂正</string>

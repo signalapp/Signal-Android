@@ -443,6 +443,7 @@
   <string name="BackupsPreferenceFragment__learn_more">ထပ်မံလေ့လာရန်</string>
   <string name="BackupsPreferenceFragment__in_progress">ဆောင်ရွက်ဆဲ</string>
   <!--Status text shown in backup preferences when verifying a backup-->
+  <string name="BackupsPreferenceFragment__verifying_backup">ဘက်ခ်အပ် အတည်ပြုနေဆဲ…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d ထိလုပ်ဆောင်ပြီး…</string>
   <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment__s_so_far">%1$s%% လုပ်ဆောင်ပြီး…</string>
@@ -1447,7 +1448,9 @@
   <!--Menu option to save a debug log file to disk.-->
   <string name="SubmitDebugLogActivity_save">သိမ်းရန်</string>
   <!--Error that is show in a toast when we fail to save a debug log file to disk.-->
+  <string name="SubmitDebugLogActivity_failed_to_save">သိမ်းရန် မအောင်မြင်ခဲ့ပါ</string>
   <!--Toast that is show to notify that we have saved the debug log file to disk.-->
+  <string name="SubmitDebugLogActivity_save_complete">သိမ်းပြီးပါပြီ</string>
   <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">၎င်းကိုဖျက်ရန် မျဉ်းတစ်ကြောင်းနှိပ်ပါ</string>
   <string name="SubmitDebugLogActivity_submit">တင်မယ်</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">မှတ်တမ်းများတင်သွင်းရန်မအောင်မြင်ပါ</string>
@@ -2635,12 +2638,15 @@
   <string name="BackupDialog_passphrase_was_not_correct">စကားဝှက်သည်မမှန်ပါ</string>
   <string name="LocalBackupJob_creating_signal_backup">Signal ဘက်ခ်အပ် ဖန်တီးနေဆဲ…</string>
   <!--Title for progress notification shown in a system notification while verifying a recent backup.-->
+  <string name="LocalBackupJob_verifying_signal_backup">Signal ဘက်ခ်အပ် အတည်ပြုနေဆဲ…</string>
   <string name="LocalBackupJobApi29_backup_failed">အရန်သိမ်းဆည်းမှုများ မအောင်မြင်ပါ</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">သင်၏ အရန်သိမ်းဆည်းမှုများ၏ လမ်းညွှန်အား ဖျက်ထားသည် သို့မဟုတ် ပြောင်းရွှေ့သွားသည်</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">သင်၏ အရန်သိမ်းဆည်းထားသောဖိုင်ကို သိမ်းဆည်းရန် အလွန်ကြီးမားသည်</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">သင်၏ အရန်သိမ်းဆည်းမှုများကို သိမ်းဆည်းရန် နေရာမလုံလောက်ပါ</string>
   <!--Error message shown if a newly created backup could not be verified as accurate-->
+  <string name="LocalBackupJobApi29_your_backup_could_not_be_verified">သင်၏ မကြာသေးမီက ဘက်ခ်အပ်ကို ဖန်တီး၍ မရနိုင်ခဲ့သည်အပြင် အတည်ပြု၍ မရခဲ့ပါ။ အသစ်တစ်ခု ဖန်တီးပေးပါ။</string>
   <!--Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail-->
+  <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">သင့်ဘက်ခ်အပ်တွင် ဘက်ခ်အပ်လုပ်၍ မရနိုင်သည့် အလွန်ကြီးသော ဖိုင်တစ်ဖိုင် ပါဝင်နေပါသည်။ ၎င်းကို ဖျက်ပြီး ဘက်ခ်အပ်အသစ် ဖန်တီးပါ။</string>
   <string name="LocalBackupJobApi29_tap_to_manage_backups">အရန်ကူးခြင်းများကိုစီမံရန် နှိပ်ပါ</string>
   <string name="ProgressPreference_d_messages_so_far">လက်ရှိအချိန်အထိ %d စာ ရှိပါသည်</string>
   <string name="RegistrationActivity_wrong_number">နံပါတ်မှားယွင်းနေပါသည်</string>
