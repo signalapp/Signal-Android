@@ -23,6 +23,7 @@ import org.whispersystems.signalservice.api.push.exceptions.NetworkFailureExcept
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.concurrent.TimeUnit;
 
 public class RefreshAttributesJob extends BaseJob {
 
@@ -49,6 +50,8 @@ public class RefreshAttributesJob extends BaseJob {
                            .addConstraint(NetworkConstraint.KEY)
                            .setQueue("RefreshAttributesJob")
                            .setMaxInstancesForFactory(2)
+                           .setLifespan(TimeUnit.DAYS.toDays(30))
+                           .setMaxAttempts(Parameters.UNLIMITED)
                            .build(),
          forced);
   }

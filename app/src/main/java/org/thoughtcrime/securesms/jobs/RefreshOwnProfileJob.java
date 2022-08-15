@@ -120,6 +120,14 @@ public class RefreshOwnProfileJob extends BaseJob {
         Util.isEmpty(profile.getAboutEmoji()))
     {
       Log.w(TAG, "The profile we retrieved was empty! Ignoring it.");
+
+      if (!self.getProfileName().isEmpty()) {
+        Log.w(TAG, "We have a name locally. Scheduling a profile upload.");
+        ApplicationDependencies.getJobManager().add(new ProfileUploadJob());
+      } else {
+        Log.w(TAG, "We don't have a name locally, either!");
+      }
+
       return;
     }
 

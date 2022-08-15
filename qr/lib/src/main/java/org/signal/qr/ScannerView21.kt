@@ -2,7 +2,6 @@ package org.signal.qr
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.util.Size
 import android.widget.FrameLayout
 import androidx.annotation.RequiresApi
 import androidx.camera.core.AspectRatio
