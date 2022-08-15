@@ -59,9 +59,9 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         private val token = "token"
         @JvmStatic val createOpenGroupAuthTokenTableCommand = "CREATE TABLE $openGroupAuthTokenTable ($server TEXT PRIMARY KEY, $token TEXT);"
         // Last message server IDs
-        private val lastMessageServerIDTable = "loki_api_last_message_server_id_cache"
+        private const val lastMessageServerIDTable = "loki_api_last_message_server_id_cache"
         private val lastMessageServerIDTableIndex = "loki_api_last_message_server_id_cache_index"
-        private val lastMessageServerID = "last_message_server_id"
+        private const val lastMessageServerID = "last_message_server_id"
         @JvmStatic val createLastMessageServerIDTableCommand = "CREATE TABLE $lastMessageServerIDTable ($lastMessageServerIDTableIndex STRING PRIMARY KEY, $lastMessageServerID INTEGER DEFAULT 0);"
         // Last deletion server IDs
         private val lastDeletionServerIDTable = "loki_api_last_deletion_server_id_cache"
@@ -153,6 +153,9 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
             "$requestSignature STRING NULLABLE DEFAULT NULL, $authorizationSignature STRING NULLABLE DEFAULT NULL, PRIMARY KEY ($masterPublicKey, $slavePublicKey));"
         private val sessionRequestTimestampCache = "session_request_timestamp_cache"
         @JvmStatic val createSessionRequestTimestampCacheCommand = "CREATE TABLE $sessionRequestTimestampCache ($publicKey STRING PRIMARY KEY, $timestamp STRING);"
+
+        const val RESET_SEQ_NO = "UPDATE $lastMessageServerIDTable SET $lastMessageServerID = 0;"
+
         // endregion
     }
 
