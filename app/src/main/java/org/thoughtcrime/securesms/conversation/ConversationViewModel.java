@@ -135,8 +135,7 @@ public class ConversationViewModel extends ViewModel {
         .map(Recipient::resolved)
         .subscribe(recipientCache);
 
-    conversationStateStore.update(Observable.combineLatest(recipientId, conversationStateTick, (id, tick) -> id)
-                                            .distinctUntilChanged()
+    conversationStateStore.update(Observable.combineLatest(recipientId.distinctUntilChanged(), conversationStateTick, (id, tick) -> id)
                                             .switchMap(conversationRepository::getSecurityInfo)
                                             .toFlowable(BackpressureStrategy.LATEST),
                                   (securityInfo, state) -> state.withSecurityInfo(securityInfo));
@@ -313,7 +312,8 @@ public class ConversationViewModel extends ViewModel {
 
   @NonNull Flowable<ConversationSecurityInfo> getConversationSecurityInfo(@NonNull RecipientId recipientId) {
     return getConversationState().map(ConversationState::getSecurityInfo)
-                                 .filter(info -> info.isInitialized() && Objects.equals(info.getRecipientId(), recipientId));
+                                 .filter(info -> info.isInitialized() && Objects.equals(info.getRecipientId(), recipientId))
+                                 .distinctUntilChanged();
   }
 
   void updateSecurityInfo() {

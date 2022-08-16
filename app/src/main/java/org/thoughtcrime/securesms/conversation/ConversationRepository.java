@@ -131,7 +131,7 @@ class ConversationRepository {
   }
 
   /**
-   * Watchest the given recipient id for changes, and gets the security info for the recipient
+   * Watches the given recipient id for changes, and gets the security info for the recipient
    * whenever a change occurs.
    *
    * @param recipientId The recipient id we are interested in
@@ -140,6 +140,7 @@ class ConversationRepository {
    */
   @NonNull Observable<ConversationSecurityInfo> getSecurityInfo(@NonNull RecipientId recipientId) {
     return Recipient.observable(recipientId)
+                    .distinctUntilChanged((lhs, rhs) -> lhs.isPushGroup() == rhs.isPushGroup() && lhs.getRegistered().equals(rhs.getRegistered()))
                     .switchMapSingle(this::getSecurityInfo)
                     .subscribeOn(Schedulers.io());
   }
@@ -154,7 +155,7 @@ class ConversationRepository {
         registeredState = RecipientDatabase.RegisteredState.REGISTERED;
       } else {
         Log.i(TAG, "Checking through resolved recipient");
-        registeredState = recipient.resolve().getRegistered();
+        registeredState = recipient.getRegistered();
       }
 
       Log.i(TAG, "Resolved registered state: " + registeredState);
