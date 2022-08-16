@@ -172,9 +172,6 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
         customPref(
           MyStoriesItem.Model(
             onClick = {
-              startActivityIfAble(Intent(requireContext(), MyStoriesActivity::class.java))
-            },
-            onClickThumbnail = {
               cameraFab.performClick()
             }
           )
