@@ -58,6 +58,8 @@ class StoryFirstTimeNavigationView @JvmOverloads constructor(
       blurHashView.setImageDrawable(null)
       hide()
     }
+
+    setOnClickListener { }
   }
 
   override fun dispatchDraw(canvas: Canvas) {
