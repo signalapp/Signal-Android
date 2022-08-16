@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:viewBindingIgnore="true"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:viewBindingIgnore="true">
 
     <org.thoughtcrime.securesms.util.views.DarkOverflowToolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/signal_m3_toolbar_height"
+        android:minHeight="@dimen/signal_m3_toolbar_height"
         app:navigationIcon="@drawable/ic_arrow_left_24"
-        app:title="@string/conversation_activity__send" />
+        app:title="@string/conversation_activity__send"
+        app:titleTextAppearance="@style/Signal.Text.TitleLarge" />
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/fragment_container_wrapper"
@@ -36,7 +38,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingVertical="22.5dp"
-                    app:layout_collapseMode="parallax">
+                    app:layout_collapseMode="none">
 
                     <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/preview_media_2"
