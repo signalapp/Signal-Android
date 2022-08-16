@@ -57,6 +57,11 @@ open class ConversationActivity : PassphraseRequiredActivity(), ConversationPare
     replaceFragment(intent!!)
   }
 
+  override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    super.onActivityResult(requestCode, resultCode, data)
+    googlePayResultPublisher.onNext(DonationPaymentComponent.GooglePayResult(requestCode, resultCode, data))
+  }
+
   private fun replaceFragment(intent: Intent) {
     fragment = ConversationParentFragment.create(intent)
     supportFragmentManager
