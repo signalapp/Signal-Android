@@ -28,6 +28,8 @@ class ChooseInitialMyStoryMembershipBottomSheetDialogFragment :
   WrapperDialogFragment.WrapperDialogFragmentCallback,
   BaseStoryRecipientSelectionFragment.Callback {
 
+  override val peekHeightPercentage: Float = 1f
+
   private val viewModel: ChooseInitialMyStoryMembershipViewModel by viewModels()
 
   private lateinit var lifecycleDisposable: LifecycleDisposable
