@@ -6,12 +6,14 @@ import android.net.Uri
 import android.os.Bundle
 import android.text.SpannableStringBuilder
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.core.content.pm.ShortcutManagerCompat
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import org.signal.core.util.Result
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
@@ -42,9 +44,10 @@ class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.C
   private val lifecycleDisposable = LifecycleDisposable()
 
   private lateinit var finishOnOkResultLauncher: ActivityResultLauncher<Intent>
+  private lateinit var unresolvedShareData: UnresolvedShareData
 
   private val viewModel: ShareViewModel by viewModels {
-    ShareViewModel.Factory(getUnresolvedShareData(), ShareRepository(this))
+    ShareViewModel.Factory(unresolvedShareData, ShareRepository(this))
   }
 
   private val directShareTarget: RecipientId?
@@ -57,6 +60,22 @@ class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.C
 
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
     setContentView(R.layout.share_activity_v2)
+
+    val isIntentValid = getUnresolvedShareData().either(
+      onSuccess = {
+        unresolvedShareData = it
+        true
+      },
+      onFailure = {
+        handleIntentError(it)
+        false
+      }
+    )
+
+    if (!isIntentValid) {
+      finish()
+      return
+    }
 
     finishOnOkResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
       if (it.resultCode == Activity.RESULT_OK) {
@@ -125,7 +144,7 @@ class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.C
 
   override fun getDialogBackgroundColor(): Int = ContextCompat.getColor(this, R.color.signal_background_primary)
 
-  private fun getUnresolvedShareData(): UnresolvedShareData {
+  private fun getUnresolvedShareData(): Result<UnresolvedShareData, IntentError> {
     return when {
       intent.action == Intent.ACTION_SEND_MULTIPLE && intent.hasExtra(Intent.EXTRA_TEXT) -> {
         intent.getCharSequenceArrayListExtra(Intent.EXTRA_TEXT)?.let { list ->
@@ -138,26 +157,26 @@ class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.C
             }
           }
 
-          UnresolvedShareData.ExternalPrimitiveShare(stringBuilder)
-        } ?: error("ACTION_SEND_MULTIPLE with EXTRA_TEXT but the EXTRA_TEXT was null")
+          Result.success(UnresolvedShareData.ExternalPrimitiveShare(stringBuilder))
+        } ?: Result.failure(IntentError.SEND_MULTIPLE_TEXT)
       }
       intent.action == Intent.ACTION_SEND_MULTIPLE && intent.hasExtra(Intent.EXTRA_STREAM) -> {
         intent.getParcelableArrayListExtra<Uri>(Intent.EXTRA_STREAM)?.let {
-          UnresolvedShareData.ExternalMultiShare(it)
-        } ?: error("ACTION_SEND_MULTIPLE with EXTRA_STREAM but the EXTRA_STREAM was null")
+          Result.success(UnresolvedShareData.ExternalMultiShare(it))
+        } ?: Result.failure(IntentError.SEND_MULTIPLE_STREAM)
       }
       intent.action == Intent.ACTION_SEND && intent.hasExtra(Intent.EXTRA_STREAM) -> {
         intent.getParcelableExtra<Uri>(Intent.EXTRA_STREAM)?.let {
-          UnresolvedShareData.ExternalSingleShare(it, intent.type)
-        } ?: error("ACTION_SEND with EXTRA_STREAM but the EXTRA_STREAM was null")
+          Result.success(UnresolvedShareData.ExternalSingleShare(it, intent.type))
+        } ?: Result.failure(IntentError.SEND_STREAM)
       }
       intent.action == Intent.ACTION_SEND && intent.hasExtra(Intent.EXTRA_TEXT) -> {
         intent.getCharSequenceExtra(Intent.EXTRA_TEXT)?.let {
-          UnresolvedShareData.ExternalPrimitiveShare(it)
-        } ?: error("ACTION_SEND with EXTRA_TEXT but the EXTRA_TEXT was null")
+          Result.success(UnresolvedShareData.ExternalPrimitiveShare(it))
+        } ?: Result.failure(IntentError.SEND_TEXT)
       }
       else -> null
-    } ?: error("Intent Action: ${Intent.ACTION_SEND_MULTIPLE} could not be resolved with the given arguments.")
+    } ?: Result.failure(IntentError.UNKNOWN)
   }
 
   private fun ensureFragment(resolvedShareData: ResolvedShareData) {
@@ -251,5 +270,29 @@ class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.C
         finish()
       }
     }
+  }
+
+  private fun handleIntentError(intentError: IntentError) {
+    val logEntry = when (intentError) {
+      IntentError.SEND_MULTIPLE_TEXT -> "Failed to parse text array from intent for multi-share."
+      IntentError.SEND_MULTIPLE_STREAM -> "Failed to parse stream array from intent for multi-share."
+      IntentError.SEND_TEXT -> "Failed to parse text from intent for single-share."
+      IntentError.SEND_STREAM -> "Failed to parse stream from intent for single-share."
+      IntentError.UNKNOWN -> "Failed to parse unknown from intent."
+    }
+
+    Log.w(TAG, "$logEntry action: ${intent.action}, type: ${intent.type}")
+    Toast.makeText(this, R.string.ShareActivity__could_not_get_share_data_from_intent, Toast.LENGTH_LONG).show()
+  }
+
+  /**
+   * Represents an error with the intent when trying to extract the unresolved share data.
+   */
+  private enum class IntentError {
+    SEND_MULTIPLE_TEXT,
+    SEND_MULTIPLE_STREAM,
+    SEND_TEXT,
+    SEND_STREAM,
+    UNKNOWN
   }
 }
