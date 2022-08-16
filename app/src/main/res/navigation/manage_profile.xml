@@ -62,6 +62,9 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_manageProfileFragment_to_shareUsernameDialog"
+            app:destination="@id/shareUsernameDialog" />
 
     </fragment>
 
@@ -86,5 +89,10 @@
     <include app:graph="@navigation/manage_badges" />
 
     <include app:graph="@navigation/avatar_picker" />
+
+    <dialog
+        android:id="@+id/shareUsernameDialog"
+        android:name="org.thoughtcrime.securesms.profiles.manage.UsernameShareBottomSheet"
+        android:label="fragment_username_share" />
 
 </navigation>

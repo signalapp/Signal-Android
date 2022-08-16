@@ -37,6 +37,14 @@
                 app:nullable="true" />
         </action>
 
+        <action
+            android:id="@+id/action_createProfileFragment_to_phoneNumberPrivacy"
+            app:destination="@id/phoneNumberPrivacy"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
     </fragment>
 
     <fragment
@@ -46,5 +54,11 @@
         tools:layout="@layout/username_edit_fragment" />
 
     <include app:graph="@navigation/avatar_picker" />
+
+    <fragment
+        android:id="@+id/phoneNumberPrivacy"
+        android:name="org.thoughtcrime.securesms.profiles.edit.pnp.WhoCanSeeMyPhoneNumberFragment"
+        android:label="fragment_phone_number_privacy"
+        tools:layout="@layout/dsl_settings_fragment" />
 
 </navigation>

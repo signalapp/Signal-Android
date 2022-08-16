@@ -13,7 +13,7 @@ import io.reactivex.rxjava3.subjects.PublishSubject
  */
 class RxStore<T : Any>(
   defaultValue: T,
-  private val scheduler: Scheduler = Schedulers.computation()
+  scheduler: Scheduler = Schedulers.computation()
 ) {
 
   private val behaviorProcessor = BehaviorProcessor.createDefault(defaultValue)

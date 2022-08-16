@@ -2,7 +2,6 @@
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:viewBindingIgnore="true"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -37,13 +36,12 @@
 
                 <TextView
                     android:id="@+id/title"
-                    style="@style/TextAppearance.Signal.Title2.Bold"
-                    android:layout_width="wrap_content"
+                    style="@style/Signal.Text.TitleLarge"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginStart="8dp"
                     android:layout_marginTop="32dp"
-                    android:layout_marginEnd="8dp"
+                    android:paddingHorizontal="@dimen/dsl_settings_gutter"
                     android:text="@string/CreateProfileActivity_set_up_your_profile"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -52,15 +50,28 @@
                     app:layout_constraintVertical_bias="0.0"
                     app:layout_constraintVertical_chainStyle="spread_inside" />
 
+                <org.thoughtcrime.securesms.util.views.LearnMoreTextView
+                    android:id="@+id/profile_description_text"
+                    style="@style/Signal.Text.BodyMedium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dsl_settings_gutter"
+                    android:layout_marginTop="11dp"
+                    android:layout_marginEnd="@dimen/dsl_settings_gutter"
+                    android:layout_marginBottom="16dp"
+                    android:text="@string/ProfileCreateFragment__profiles_are_only_visible_to_people_you_message"
+                    android:textColor="@color/core_grey_60"
+                    app:layout_constraintTop_toBottomOf="@id/title" />
+
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/avatar_background"
-                    android:layout_width="96dp"
-                    android:layout_height="96dp"
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
                     android:layout_marginTop="16dp"
                     android:src="@drawable/circle_tintable"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/title"
+                    app:layout_constraintTop_toBottomOf="@+id/profile_description_text"
                     app:layout_goneMarginTop="?attr/actionBarSize" />
 
                 <androidx.appcompat.widget.AppCompatImageView
@@ -100,8 +111,8 @@
                     android:id="@+id/camera_icon"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
-                    android:layout_marginStart="56dp"
-                    android:layout_marginTop="56dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="32dp"
                     android:background="@drawable/circle_tintable_padded"
                     android:cropToPadding="false"
                     android:elevation="4dp"
@@ -122,65 +133,130 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/name_preview">
 
-                    <org.thoughtcrime.securesms.components.emoji.EmojiEditText
-                        android:id="@+id/given_name"
-                        style="@style/Signal.Text.Body"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/given_name_wrapper"
+                        style="@style/Widget.Signal.TextInputLayout.FilledBox.ContactNameEditor"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginStart="16dp"
                         android:layout_marginTop="13dp"
-                        android:layout_marginEnd="16dp"
-                        android:layout_weight="1"
-                        android:autofillHints="personGivenName"
-                        android:hint="@string/CreateProfileActivity_first_name_required"
-                        android:inputType="textPersonName"
-                        android:singleLine="true" />
+                        android:hint="@string/CreateProfileActivity_first_name_required">
+
+                        <org.thoughtcrime.securesms.components.emoji.EmojiEditText
+                            android:id="@+id/given_name"
+                            style="@style/Signal.Text.Body"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:autofillHints="personGivenName"
+                            android:inputType="textPersonName"
+                            android:singleLine="true" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
 
                     <TextView
                         android:id="@+id/mms_group_hint"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginEnd="20dp"
+                        android:layout_marginStart="@dimen/dsl_settings_gutter"
+                        android:layout_marginEnd="@dimen/dsl_settings_gutter"
                         android:text="@string/CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you"
                         android:textAppearance="@style/Signal.Text.Caption"
                         android:textColor="@color/signal_text_secondary"
                         android:visibility="gone"
                         tools:visibility="visible" />
 
-                    <org.thoughtcrime.securesms.components.emoji.EmojiEditText
-                        android:id="@+id/family_name"
-                        style="@style/Signal.Text.Body"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/family_name_wrapper"
+                        style="@style/Widget.Signal.TextInputLayout.FilledBox.ContactNameEditor"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginStart="16dp"
                         android:layout_marginTop="13dp"
-                        android:layout_marginEnd="16dp"
-                        android:layout_weight="1"
-                        android:autofillHints="personFamilyName"
-                        android:hint="@string/CreateProfileActivity_last_name_optional"
-                        android:inputType="textPersonName"
-                        android:singleLine="true" />
+                        android:hint="@string/CreateProfileActivity_last_name_optional">
 
+                        <org.thoughtcrime.securesms.components.emoji.EmojiEditText
+                            android:id="@+id/family_name"
+                            style="@style/Signal.Text.Body"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:autofillHints="personFamilyName"
+                            android:inputType="textPersonName"
+                            android:singleLine="true" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
 
                 <org.thoughtcrime.securesms.util.views.LearnMoreTextView
-                    android:id="@+id/description_text"
-                    style="@style/Signal.Text.Preview"
+                    android:id="@+id/group_description_text"
+                    style="@style/Signal.Text.BodyMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="@dimen/dsl_settings_gutter"
                     android:layout_marginTop="11dp"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginEnd="@dimen/dsl_settings_gutter"
                     android:layout_marginBottom="16dp"
-                    android:text="@string/CreateProfileActivity_signal_profiles_are_end_to_end_encrypted"
+                    android:text="@string/CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited"
                     android:textColor="@color/core_grey_60"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/name_container"
                     app:layout_constraintVertical_bias="1.0" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/who_can_find_me_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="23dp"
+                    android:background="?selectableItemBackground"
+                    android:minHeight="72dp"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@id/group_description_text"
+                    tools:visibility="visible">
+
+                    <ImageView
+                        android:id="@+id/who_can_find_me_icon"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginStart="@dimen/dsl_settings_gutter"
+                        android:importantForAccessibility="no"
+                        android:scaleType="centerInside"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_group_24" />
+
+                    <TextView
+                        android:id="@+id/who_can_find_me_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginEnd="@dimen/dsl_settings_gutter"
+                        android:text="@string/ProfileCreateFragment__who_can_find_me"
+                        android:textAppearance="@style/Signal.Text.BodyLarge"
+                        android:textColor="@color/signal_colorOnSurface"
+                        app:layout_constraintBottom_toTopOf="@id/who_can_find_me_description"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/who_can_find_me_icon"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_chainStyle="packed" />
+
+                    <TextView
+                        android:id="@+id/who_can_find_me_description"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginEnd="@dimen/dsl_settings_gutter"
+                        android:textAppearance="@style/Signal.Text.BodyMedium"
+                        android:textColor="@color/signal_colorOnSurfaceVariant"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/who_can_find_me_icon"
+                        app:layout_constraintTop_toBottomOf="@id/who_can_find_me_title"
+                        tools:text="@string/PhoneNumberPrivacy_everyone" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -196,8 +272,8 @@
             android:layout_marginEnd="32dp"
             android:layout_marginBottom="16dp"
             android:enabled="false"
-            app:materialThemeOverlay="@style/ThemeOverlay.Signal.CircularProgressIndicator.Primary"
-            app:circularProgressMaterialButton__label="@string/CreateProfileActivity_next" />
+            app:circularProgressMaterialButton__label="@string/CreateProfileActivity_next"
+            app:materialThemeOverlay="@style/ThemeOverlay.Signal.CircularProgressIndicator.Primary" />
 
     </LinearLayout>
 

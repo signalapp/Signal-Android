@@ -11,6 +11,7 @@
     <string name="sustainer_boost_and_badges" translatable="false">https://support.signal.org/hc/articles/4408365318426</string>
     <string name="google_pay_url" translatable="false">https://pay.google.com</string>
     <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string>
+    <string name="signal_me_url" translatable="false">https://signal.me/%1$s</string>
 
     <string name="yes">Yes</string>
     <string name="no">No</string>
@@ -503,6 +504,20 @@
     <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Your profile is end-to-end encrypted. Your profile and changes to it will be visible to your contacts, when you initiate or accept new conversations, and when you join new groups.</string>
     <string name="CreateProfileActivity_set_avatar_description">Set avatar</string>
 
+    <!-- ProfileCreateFragment -->
+    <!-- Displayed at the top of the screen and explains how profiles can be viewed. -->
+    <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">Profiles are only visible to people you message.</string>
+    <!-- Title of clickable row to select phone number privacy settings -->
+    <string name="ProfileCreateFragment__who_can_find_me">Who can find me by number?</string>
+
+    <!-- WhoCanSeeMyPhoneNumberFragment -->
+    <!-- Toolbar title for this screen -->
+    <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">Who can find me by number?</string>
+    <!-- Description for radio item stating anyone can see your phone number -->
+    <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has">Anyone who has your phone number in their contacts will see you as a contact on Signal. Others will be able to find you with your number in search.</string>
+    <!-- Description for radio item stating no one will be able to see your phone number -->
+    <string name="WhoCanSeeMyPhoneNumberFragment__nobody_on_signal">Nobody on Signal will be able to find you with your phone number.</string>
+
     <!-- ChooseBackupFragment -->
     <string name="ChooseBackupFragment__restore_from_backup">Restore from backup?</string>
     <string name="ChooseBackupFragment__restore_your_messages_and_media">Restore your messages and media from a local backup. If you don\'t restore now, you won\'t be able to restore later.</string>
@@ -856,6 +871,11 @@
     <string name="ManageProfileFragment_failed_to_set_avatar">Failed to set avatar</string>
     <string name="ManageProfileFragment_badges">Badges</string>
     <string name="ManageProfileFragment__edit_photo">Edit photo</string>
+    <!-- Snackbar message after creating username -->
+    <string name="ManageProfileFragment__username_created">Username created</string>
+    <!-- Snackbar message after copying username -->
+    <string name="ManageProfileFragment__username_copied">Username copied</string>
+
 
     <!-- ManageRecipientActivity -->
     <string name="ManageRecipientActivity_no_groups_in_common">No groups in common</string>
@@ -1851,6 +1871,8 @@
     <string name="UnverifiedSendDialog_send">Send</string>
 
     <!-- UsernameEditFragment -->
+    <!-- Instructional text at the top of the username edit screen -->
+    <string name="UsernameEditFragment__choose_your_username">Choose your username</string>
     <string name="UsernameEditFragment_username">Username</string>
     <string name="UsernameEditFragment_delete">Delete</string>
     <string name="UsernameEditFragment_successfully_set_username">Successfully set username.</string>
@@ -1862,12 +1884,20 @@
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Usernames cannot begin with a number.</string>
     <string name="UsernameEditFragment_username_is_invalid">Username is invalid.</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Usernames must be between %1$d and %2$d characters.</string>
-    <string name="UsernameEditFragment_usernames_on_signal_are_optional">Usernames on Signal are optional. If you choose to create a username, other Signal users will be able to find you by this username and contact you without knowing your phone number.</string>
+    <!-- Explanation about what usernames provide -->
+    <string name="UsernameEditFragment__usernames_let_others_message">Usernames let others message you without needing your phone number. They are paired with a set of digits to help keep your address private.</string>
+    <!-- Dialog title for explanation about numbers at the end of the username -->
+    <string name="UsernameEditFragment__what_is_this_number">What is this number?</string>
+    <string name="UsernameEditFragment__these_digits_help_keep">These digits help keep your username private so you can avoid unwanted messages. Share your username with only the people and groups you\'d like to chat with. If you change usernames you\'ll get a new set of digits.</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">%d contact is on Signal!</item>
         <item quantity="other">%d contacts are on Signal!</item>
     </plurals>
+
+    <!-- UsernameShareBottomSheet -->
+    <!-- Explanation of what the sheet enables the user to do -->
+    <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">Copy or share a username link</string>
 
     <!-- VerifyIdentityActivity -->
     <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Your contact is running an old version of Signal. Please ask them to update before verifying your safety number.</string>

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:viewBindingIgnore="true"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,59 +9,94 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="@dimen/signal_m3_toolbar_height"
+        android:minHeight="@dimen/signal_m3_toolbar_height"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:navigationIcon="@drawable/ic_arrow_left_24"
-        app:title="@string/UsernameEditFragment_username" />
+        app:navigationIcon="@drawable/ic_x_24"
+        app:title="@string/UsernameEditFragment_username"
+        app:titleTextAppearance="@style/Signal.Text.TitleLarge" />
 
-    <EditText
-        android:id="@+id/username_text"
-        style="@style/Signal.Text.Body"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:hint="@string/UsernameEditFragment_username"
-        android:imeOptions="actionDone"
-        android:importantForAutofill="no"
-        android:inputType="text"
-        android:maxLines="1"
-        android:minHeight="56dp"
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/circle_tintable"
+        android:importantForAccessibility="no"
+        android:padding="14dp"
+        app:backgroundTint="@color/signal_colorSurface2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:srcCompat="@drawable/ic_at_24" />
 
-    <TextView
-        android:id="@+id/username_subtext"
-        style="@style/Signal.Text.Caption"
-        android:layout_width="0dp"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/username_text_wrapper"
+        style="@style/Widget.Signal.TextInputLayout.FilledBox.ContactNameEditor"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="24dp"
+        app:boxStrokeColor="@color/signal_colorPrimary"
+        app:boxStrokeWidthFocused="2dp"
+        app:expandedHintEnabled="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/username_text"
-        tools:text="Some error code" />
+        app:layout_constraintTop_toBottomOf="@id/summary"
+        app:suffixTextColor="@color/signal_colorOnSurface"
+        tools:suffixText="| #1234">
+
+        <EditText
+            android:id="@+id/username_text"
+            style="@style/Signal.Text.Body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/UsernameEditFragment_username"
+            android:imeOptions="actionDone"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:maxLines="1"
+            android:minHeight="56dp">
+
+            <requestFocus />
+        </EditText>
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
+        android:id="@+id/summary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dsl_settings_gutter"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="@dimen/dsl_settings_gutter"
+        android:gravity="center"
+        android:text="@string/UsernameEditFragment__choose_your_username"
+        android:textAppearance="@style/Signal.Text.BodyLarge"
+        android:textColor="@color/signal_colorOnSurfaceVariant"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/icon" />
+
+    <org.thoughtcrime.securesms.util.views.LearnMoreTextView
         android:id="@+id/username_description"
         style="@style/Signal.Text.Caption"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:text="@string/UsernameEditFragment_usernames_on_signal_are_optional"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dsl_settings_gutter"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="@dimen/dsl_settings_gutter"
+        android:layout_marginBottom="24dp"
+        android:text="@string/UsernameEditFragment__usernames_let_others_message"
+        android:textAppearance="@style/Signal.Text.BodyMedium"
+        android:textColor="@color/signal_colorOnSurfaceVariant"
         app:layout_constraintBottom_toTopOf="@id/username_button_barrier"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/username_subtext" />
+        app:layout_constraintTop_toBottomOf="@id/username_text_wrapper"
+        app:layout_constraintVertical_bias="0" />
 
     <org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton
         android:id="@+id/username_submit_button"

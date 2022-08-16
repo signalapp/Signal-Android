@@ -5,7 +5,6 @@ import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -16,8 +15,13 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
 import org.thoughtcrime.securesms.util.UsernameUtil;
 import org.thoughtcrime.securesms.util.UsernameUtil.InvalidReason;
+import org.thoughtcrime.securesms.util.rx.RxStore;
 
 import java.util.Optional;
+
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Flowable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 
 class UsernameEditViewModel extends ViewModel {
@@ -25,72 +29,66 @@ class UsernameEditViewModel extends ViewModel {
   private static final String TAG = Log.tag(UsernameEditViewModel.class);
 
   private final Application            application;
-  private final MutableLiveData<State> uiState;
   private final SingleLiveEvent<Event> events;
   private final UsernameEditRepository repo;
+  private final RxStore<State>         uiState;
 
   private UsernameEditViewModel() {
     this.application = ApplicationDependencies.getApplication();
     this.repo        = new UsernameEditRepository();
-    this.uiState     = new MutableLiveData<>();
+    this.uiState     = new RxStore<>(new State(ButtonState.SUBMIT_DISABLED, UsernameStatus.NONE, UsernameSuffix.NONE), Schedulers.computation());
     this.events      = new SingleLiveEvent<>();
-
-    uiState.setValue(new State(ButtonState.SUBMIT_DISABLED, UsernameStatus.NONE));
   }
 
   void onUsernameUpdated(@NonNull String username) {
-    if (TextUtils.isEmpty(username) && Recipient.self().getUsername().isPresent()) {
-      uiState.setValue(new State(ButtonState.DELETE, UsernameStatus.NONE));
-      return;
-    }
+    uiState.update(state -> {
+      if (TextUtils.isEmpty(username) && Recipient.self().getUsername().isPresent()) {
+        return new State(ButtonState.DELETE, UsernameStatus.NONE, state.usernameSuffix);
+      }
 
-    if (username.equals(Recipient.self().getUsername().orElse(null))) {
-      uiState.setValue(new State(ButtonState.SUBMIT_DISABLED, UsernameStatus.NONE));
-      return;
-    }
+      if (username.equals(Recipient.self().getUsername().orElse(null))) {
+        return new State(ButtonState.SUBMIT_DISABLED, UsernameStatus.NONE, state.usernameSuffix);
+      }
 
-    Optional<InvalidReason> invalidReason = UsernameUtil.checkUsername(username);
+      Optional<InvalidReason> invalidReason = UsernameUtil.checkUsername(username);
 
-    if (invalidReason.isPresent()) {
-      uiState.setValue(new State(ButtonState.SUBMIT_DISABLED, mapUsernameError(invalidReason.get())));
-      return;
-    }
-
-    uiState.setValue(new State(ButtonState.SUBMIT, UsernameStatus.NONE));
+      return invalidReason.map(reason -> new State(ButtonState.SUBMIT_DISABLED, mapUsernameError(reason), state.usernameSuffix))
+                          .orElseGet(() -> new State(ButtonState.SUBMIT, UsernameStatus.NONE, state.usernameSuffix));
+    });
   }
 
   void onUsernameSubmitted(@NonNull String username) {
     if (username.equals(Recipient.self().getUsername().orElse(null))) {
-      uiState.setValue(new State(ButtonState.SUBMIT_DISABLED, UsernameStatus.NONE));
+      uiState.update(state -> new State(ButtonState.SUBMIT_DISABLED, UsernameStatus.NONE, state.usernameSuffix));
       return;
     }
 
     Optional<InvalidReason> invalidReason = UsernameUtil.checkUsername(username);
 
     if (invalidReason.isPresent()) {
-      uiState.setValue(new State(ButtonState.SUBMIT_DISABLED, mapUsernameError(invalidReason.get())));
+      uiState.update(state -> new State(ButtonState.SUBMIT_DISABLED, mapUsernameError(invalidReason.get()), state.usernameSuffix));
       return;
     }
 
-    uiState.setValue(new State(ButtonState.SUBMIT_LOADING, UsernameStatus.NONE));
+    uiState.update(state -> new State(ButtonState.SUBMIT_LOADING, UsernameStatus.NONE, state.usernameSuffix));
 
     repo.setUsername(username, (result) -> {
       ThreadUtil.runOnMain(() -> {
         switch (result) {
           case SUCCESS:
-            uiState.setValue(new State(ButtonState.SUBMIT_DISABLED, UsernameStatus.NONE));
+            uiState.update(state -> new State(ButtonState.SUBMIT_DISABLED, UsernameStatus.NONE, state.usernameSuffix));
             events.postValue(Event.SUBMIT_SUCCESS);
             break;
           case USERNAME_INVALID:
-            uiState.setValue(new State(ButtonState.SUBMIT_DISABLED, UsernameStatus.INVALID_GENERIC));
+            uiState.update(state -> new State(ButtonState.SUBMIT_DISABLED, UsernameStatus.INVALID_GENERIC, state.usernameSuffix));
             events.postValue(Event.SUBMIT_FAIL_INVALID);
             break;
           case USERNAME_UNAVAILABLE:
-            uiState.setValue(new State(ButtonState.SUBMIT_DISABLED, UsernameStatus.TAKEN));
+            uiState.update(state -> new State(ButtonState.SUBMIT_DISABLED, UsernameStatus.TAKEN, state.usernameSuffix));
             events.postValue(Event.SUBMIT_FAIL_TAKEN);
             break;
           case NETWORK_ERROR:
-            uiState.setValue(new State(ButtonState.SUBMIT, UsernameStatus.NONE));
+            uiState.update(state -> new State(ButtonState.SUBMIT, UsernameStatus.NONE, state.usernameSuffix));
             events.postValue(Event.NETWORK_FAILURE);
             break;
         }
@@ -99,17 +97,17 @@ class UsernameEditViewModel extends ViewModel {
   }
 
   void onUsernameDeleted() {
-    uiState.setValue(new State(ButtonState.DELETE_LOADING, UsernameStatus.NONE));
+    uiState.update(state -> new State(ButtonState.DELETE_LOADING, UsernameStatus.NONE, state.usernameSuffix));
 
     repo.deleteUsername((result) -> {
       ThreadUtil.runOnMain(() -> {
         switch (result) {
           case SUCCESS:
-            uiState.postValue(new State(ButtonState.DELETE_DISABLED, UsernameStatus.NONE));
+            uiState.update(state -> new State(ButtonState.DELETE_DISABLED, UsernameStatus.NONE, state.usernameSuffix));
             events.postValue(Event.DELETE_SUCCESS);
             break;
           case NETWORK_ERROR:
-            uiState.postValue(new State(ButtonState.DELETE, UsernameStatus.NONE));
+            uiState.update(state -> new State(ButtonState.DELETE, UsernameStatus.NONE, state.usernameSuffix));
             events.postValue(Event.NETWORK_FAILURE);
             break;
         }
@@ -117,8 +115,8 @@ class UsernameEditViewModel extends ViewModel {
     });
   }
 
-  @NonNull LiveData<State> getUiState() {
-    return uiState;
+  @NonNull Flowable<State> getUiState() {
+    return uiState.getStateFlowable().observeOn(AndroidSchedulers.mainThread());
   }
 
   @NonNull LiveData<Event> getEvents() {
@@ -138,12 +136,15 @@ class UsernameEditViewModel extends ViewModel {
   static class State {
     private final ButtonState    buttonState;
     private final UsernameStatus usernameStatus;
+    private final UsernameSuffix usernameSuffix;
 
     private State(@NonNull ButtonState buttonState,
-                  @NonNull UsernameStatus usernameStatus)
+                  @NonNull UsernameStatus usernameStatus,
+                  @NonNull UsernameSuffix usernameSuffix)
     {
       this.buttonState    = buttonState;
       this.usernameStatus = usernameStatus;
+      this.usernameSuffix = usernameSuffix;
     }
 
     @NonNull ButtonState getButtonState() {
@@ -152,6 +153,10 @@ class UsernameEditViewModel extends ViewModel {
 
     @NonNull UsernameStatus getUsernameStatus() {
       return usernameStatus;
+    }
+
+    @NonNull UsernameSuffix getUsernameSuffix() {
+      return usernameSuffix;
     }
   }
 
