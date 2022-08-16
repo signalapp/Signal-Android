@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:viewBindingIgnore="true"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:background="@color/signal_dark_colorBackground"
-    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
+    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout"
+    tools:viewBindingIgnore="true">
 
     <org.thoughtcrime.securesms.components.ClippedCardView
         android:id="@+id/link_preview_card"
@@ -15,14 +15,14 @@
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="24dp"
-        android:maxWidth="280dp"
         app:cardBackgroundColor="#F6F8FB"
         app:cardCornerRadius="12dp"
         app:cardElevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_max="280dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -36,11 +36,11 @@
                 android:importantForAccessibility="no"
                 android:scaleType="centerCrop"
                 android:visibility="gone"
-                app:thumbnail_radius="0dp"
                 app:layout_constraintDimensionRatio="280:161"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:thumbnail_radius="0dp" />
 
             <ImageView
                 android:id="@+id/link_preview_fallback_icon"
@@ -63,10 +63,10 @@
                 android:background="#FAFAFA"
                 android:scaleType="centerCrop"
                 android:visibility="gone"
-                app:thumbnail_radius="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:thumbnail_radius="0dp"
                 tools:src="@drawable/test_gradient" />
 
             <androidx.constraintlayout.widget.Barrier
