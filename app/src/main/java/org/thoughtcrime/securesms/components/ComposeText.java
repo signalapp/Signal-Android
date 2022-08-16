@@ -426,7 +426,7 @@ public class ComposeText extends EmojiEditText {
     }
 
     int delimiterSearchIndex = inputCursorPosition - 1;
-    while (delimiterSearchIndex >= 0 && (text.charAt(delimiterSearchIndex) != starter && text.charAt(delimiterSearchIndex) != ' ')) {
+    while (delimiterSearchIndex >= 0 && (text.charAt(delimiterSearchIndex) != starter && !Character.isWhitespace(text.charAt(delimiterSearchIndex)))) {
       delimiterSearchIndex--;
     }
 
