@@ -64,14 +64,13 @@ public class PreKeyUtil {
     return records;
   }
 
-  public synchronized static @NonNull SignedPreKeyRecord generateAndStoreSignedPreKey(@NonNull SignalProtocolStore protocolStore, @NonNull PreKeyMetadataStore metadataStore, boolean setAsActive) {
-    return generateAndStoreSignedPreKey(protocolStore, metadataStore, protocolStore.getIdentityKeyPair().getPrivateKey(), setAsActive);
+  public synchronized static @NonNull SignedPreKeyRecord generateAndStoreSignedPreKey(@NonNull SignalProtocolStore protocolStore, @NonNull PreKeyMetadataStore metadataStore) {
+    return generateAndStoreSignedPreKey(protocolStore, metadataStore, protocolStore.getIdentityKeyPair().getPrivateKey());
   }
 
   public synchronized static @NonNull SignedPreKeyRecord generateAndStoreSignedPreKey(@NonNull SignalProtocolStore protocolStore,
                                                                                       @NonNull PreKeyMetadataStore metadataStore,
-                                                                                      @NonNull ECPrivateKey privateKey,
-                                                                                      boolean setAsActive)
+                                                                                      @NonNull ECPrivateKey privateKey)
   {
     Log.i(TAG, "Generating signed prekeys...");
 
@@ -80,10 +79,6 @@ public class PreKeyUtil {
 
     protocolStore.storeSignedPreKey(signedPreKeyId, record);
     metadataStore.setNextSignedPreKeyId((signedPreKeyId + 1) % Medium.MAX_VALUE);
-
-    if (setAsActive) {
-      metadataStore.setActiveSignedPreKeyId(signedPreKeyId);
-    }
 
     return record;
   }

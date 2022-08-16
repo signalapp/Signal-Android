@@ -75,10 +75,11 @@ public class PniAccountInitializationMigrationJob extends MigrationJob {
 
     if (!metadataStore.isSignedPreKeyRegistered()) {
       Log.i(TAG, "Uploading signed prekey for PNI.");
-      SignedPreKeyRecord signedPreKey   = PreKeyUtil.generateAndStoreSignedPreKey(protocolStore, metadataStore, true);
+      SignedPreKeyRecord signedPreKey   = PreKeyUtil.generateAndStoreSignedPreKey(protocolStore, metadataStore);
       List<PreKeyRecord> oneTimePreKeys = PreKeyUtil.generateAndStoreOneTimePreKeys(protocolStore, metadataStore);
 
       accountManager.setPreKeys(ServiceIdType.PNI, protocolStore.getIdentityKeyPair().getPublicKey(), signedPreKey, oneTimePreKeys);
+      metadataStore.setActiveSignedPreKeyId(signedPreKey.getId());
       metadataStore.setSignedPreKeyRegistered(true);
     } else {
       Log.w(TAG, "Already uploaded signed prekey for PNI. Skipping this step.");

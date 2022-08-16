@@ -217,7 +217,7 @@ class ChangeNumberRepository(private val accountManager: SignalServiceAccountMan
 
       // Signed Prekeys
       val signedPreKeyRecord = if (deviceId == primaryDeviceId) {
-        PreKeyUtil.generateAndStoreSignedPreKey(pniProtocolStore, pniMetadataStore, pniIdentity.privateKey, false)
+        PreKeyUtil.generateAndStoreSignedPreKey(pniProtocolStore, pniMetadataStore, pniIdentity.privateKey)
       } else {
         PreKeyUtil.generateSignedPreKey(SecureRandom().nextInt(Medium.MAX_VALUE), pniIdentity.privateKey)
       }

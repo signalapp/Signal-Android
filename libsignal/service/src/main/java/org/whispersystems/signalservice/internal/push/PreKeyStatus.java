@@ -15,6 +15,10 @@ public class PreKeyStatus {
 
   public PreKeyStatus() {}
 
+  public PreKeyStatus(int count) {
+    this.count = count;
+  }
+
   public int getCount() {
     return count;
   }

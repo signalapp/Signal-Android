@@ -16,8 +16,7 @@ import org.thoughtcrime.securesms.database.helpers.SignalDatabaseMigrations
 import org.thoughtcrime.securesms.database.helpers.SignalDatabaseMigrations.migrate
 import org.thoughtcrime.securesms.database.helpers.SignalDatabaseMigrations.migratePostTransaction
 import org.thoughtcrime.securesms.database.model.AvatarPickerDatabase
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
-import org.thoughtcrime.securesms.jobs.RefreshPreKeysJob
+import org.thoughtcrime.securesms.jobs.PreKeysSyncJob
 import org.thoughtcrime.securesms.migrations.LegacyMigrationJob
 import org.thoughtcrime.securesms.migrations.LegacyMigrationJob.DatabaseUpgradeListener
 import org.thoughtcrime.securesms.service.KeyCachingService
@@ -145,7 +144,7 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
       val masterSecret = KeyCachingService.getMasterSecret(context)
       if (masterSecret != null) SQLCipherMigrationHelper.migrateCiphertext(context, masterSecret, legacyDb, db, null) else TextSecurePreferences.setNeedsSqlCipherMigration(context, true)
       if (!PreKeyMigrationHelper.migratePreKeys(context, db)) {
-        ApplicationDependencies.getJobManager().add(RefreshPreKeysJob())
+        PreKeysSyncJob.enqueue()
       }
       SessionStoreMigrationHelper.migrateSessions(context, db)
       PreKeyMigrationHelper.cleanUpPreKeys(context)

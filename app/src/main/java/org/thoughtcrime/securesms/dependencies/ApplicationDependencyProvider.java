@@ -31,11 +31,11 @@ import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.JobMigrator;
 import org.thoughtcrime.securesms.jobmanager.impl.FactoryJobPredicate;
 import org.thoughtcrime.securesms.jobmanager.impl.JsonDataSerializer;
-import org.thoughtcrime.securesms.jobs.CreateSignedPreKeyJob;
 import org.thoughtcrime.securesms.jobs.FastJobStorage;
 import org.thoughtcrime.securesms.jobs.GroupCallUpdateSendJob;
 import org.thoughtcrime.securesms.jobs.JobManagerFactories;
 import org.thoughtcrime.securesms.jobs.MarkerJob;
+import org.thoughtcrime.securesms.jobs.PreKeysSyncJob;
 import org.thoughtcrime.securesms.jobs.PushDecryptMessageJob;
 import org.thoughtcrime.securesms.jobs.PushGroupSendJob;
 import org.thoughtcrime.securesms.jobs.PushMediaSendJob;
@@ -317,7 +317,7 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
     }
 
     if (needsPreKeyJob) {
-      CreateSignedPreKeyJob.enqueueIfNeeded();
+      PreKeysSyncJob.enqueueIfNeeded();
     }
 
     SignalBaseIdentityKeyStore baseIdentityStore = new SignalBaseIdentityKeyStore(context);

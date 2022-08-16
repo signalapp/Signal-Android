@@ -92,8 +92,8 @@ public abstract class BaseJob extends Job {
     warn(tag, "", message, null);
   }
 
-  protected void warn(@NonNull String tag, @NonNull String event, @NonNull String message) {
-    warn(tag, event, message, null);
+  protected void warn(@NonNull String tag, @NonNull Object extra, @NonNull String message) {
+    warn(tag, extra.toString(), message, null);
   }
 
   protected void warn(@NonNull String tag, @Nullable Throwable t) {
