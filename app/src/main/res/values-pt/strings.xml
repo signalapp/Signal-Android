@@ -485,6 +485,7 @@
   <string name="BackupsPreferenceFragment__learn_more">Saber mais</string>
   <string name="BackupsPreferenceFragment__in_progress">Em progresso…</string>
   <!--Status text shown in backup preferences when verifying a backup-->
+  <string name="BackupsPreferenceFragment__verifying_backup">A verificar cópia de segurança…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d até ao momento…</string>
   <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment__s_so_far">%1$s%% até agora…</string>
@@ -1598,7 +1599,9 @@
   <!--Menu option to save a debug log file to disk.-->
   <string name="SubmitDebugLogActivity_save">Guardar</string>
   <!--Error that is show in a toast when we fail to save a debug log file to disk.-->
+  <string name="SubmitDebugLogActivity_failed_to_save">Falha ao guardar</string>
   <!--Toast that is show to notify that we have saved the debug log file to disk.-->
+  <string name="SubmitDebugLogActivity_save_complete">Guardado com sucesso</string>
   <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Toque numa linha para a eliminar</string>
   <string name="SubmitDebugLogActivity_submit">Submeter</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">Ocorreu um erro ao tentar enviar os históricos</string>
@@ -2827,12 +2830,15 @@
   <string name="BackupDialog_passphrase_was_not_correct">Frase-chave incorreta</string>
   <string name="LocalBackupJob_creating_signal_backup">A criar cópia de segurança…</string>
   <!--Title for progress notification shown in a system notification while verifying a recent backup.-->
+  <string name="LocalBackupJob_verifying_signal_backup">A verificar cópia de segurança do Signal…</string>
   <string name="LocalBackupJobApi29_backup_failed">Falha ao fazer cópia de segurança</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">A sua diretoria da cópia de segurança foi eliminada ou movida.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">O seu ficheiro de cópia de segurança é demasiado grande para ser guardada neste volume.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">Não existe espaço suficiente para guardar a sua cópia de segurança.</string>
   <!--Error message shown if a newly created backup could not be verified as accurate-->
+  <string name="LocalBackupJobApi29_your_backup_could_not_be_verified">Não foi possível criar e verificar a sua cópia de segurança recente. Crie uma nova.</string>
   <!--Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail-->
+  <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">A sua cópia de segurança contém um ficheiro muito grande que não pode ser copiado. Elimine esse ficheiro e crie uma nova cópia de segurança.</string>
   <string name="LocalBackupJobApi29_tap_to_manage_backups">Toque para gerir as cópias de segurança.</string>
   <string name="ProgressPreference_d_messages_so_far">%d mensagens até à data</string>
   <string name="RegistrationActivity_wrong_number">Número errado</string>

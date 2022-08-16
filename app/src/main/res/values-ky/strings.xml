@@ -503,7 +503,7 @@
   <string name="GiphyFragmentPagerAdapter_stickers">Стикерлер</string>
   <!--AddToGroupActivity-->
   <string name="AddToGroupActivity_add_member">Мүчө кошосузбу?</string>
-  <string name="AddToGroupActivity_add_s_to_s">\"%1$s\" адамды \"%2$s\" тобуна кошосузбу?</string>
+  <string name="AddToGroupActivity_add_s_to_s">Бул адамды \"%1$s\" \"%2$s\" тобуна кошосузбу?</string>
   <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" \"%2$s\" тобуна кошулду.</string>
   <string name="AddToGroupActivity_add_to_group">Топко кошуу</string>
   <string name="AddToGroupActivity_add_to_groups">Топторго кошуу</string>
@@ -1275,10 +1275,10 @@
   <string name="WebRtcCallView__reconnecting">Кайра байланышып жатасыз…</string>
   <string name="WebRtcCallView__joining">Кошулуп жатасыз…</string>
   <string name="WebRtcCallView__disconnected">Өчүк</string>
-  <string name="WebRtcCallView__signal_will_ring_s">Signal %1$s чалат</string>
-  <string name="WebRtcCallView__signal_will_ring_s_and_s">Сигнал %1$s жана %2$s чалат</string>
+  <string name="WebRtcCallView__signal_will_ring_s">Signal чалат: %1$s</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal чалат: %1$s менен %2$s </string>
   <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
-    <item quantity="other">Signal %1$s, %2$s жана %3$d чалат</item>
+    <item quantity="other">Signal чалат: %1$s, %2$s жана башка %3$d</item>
   </plurals>
   <string name="WebRtcCallView__s_will_be_notified">%1$s билдирме алат</string>
   <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s менен %2$s билдирме алышат</string>
@@ -2046,7 +2046,7 @@
   <string name="arrays__extra_large">Өтө чоң</string>
   <string name="arrays__default">Демейки</string>
   <string name="arrays__high">Шашылыш</string>
-  <string name="arrays__max">Максималдуу</string>
+  <string name="arrays__max">Өтө</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
     <item quantity="other">%dc</item>
@@ -2074,18 +2074,18 @@
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Акыркы колдонмолор тизмесинде жана колдонмолордун ичинде скриншотторду кулпулайсыз</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Белгилүү бир убакыт бою эч нерсе жасалбаса, Signal автоматтык түрдө кулпуланат</string>
   <string name="preferences__inactivity_timeout_passphrase">Эч нерсе жасалбагандагы сыр сөз айкашы</string>
-  <string name="preferences__inactivity_timeout_interval">Аракетсиздик убакыты</string>
+  <string name="preferences__inactivity_timeout_interval">Аракетсиздик мезгили</string>
   <string name="preferences__notifications">Билдирмелер</string>
   <string name="preferences__led_color">LED түсү</string>
   <string name="preferences__led_color_unknown">Белгисиз</string>
-  <string name="preferences__pref_led_blink_title">LED жарыгынын үлгүсү</string>
+  <string name="preferences__pref_led_blink_title">LED кантип бүлбүлдөйт</string>
   <string name="preferences__customize">Тууралоо</string>
   <string name="preferences__change_sound_and_vibration">Үн менен дирилдөөнү өзгөртүү</string>
   <string name="preferences__sound">Үн</string>
   <string name="preferences__silent">Үнсүз</string>
   <string name="preferences__default">Демейки</string>
-  <string name="preferences__repeat_alerts">Билдирмелерди кайталоо</string>
-  <string name="preferences__never">Эч качан</string>
+  <string name="preferences__repeat_alerts">Билдирмелер канча жолу кайталанат</string>
+  <string name="preferences__never">Кайталанбайт</string>
   <string name="preferences__one_time">Бир жолу</string>
   <string name="preferences__two_times">Эки жолу</string>
   <string name="preferences__three_times">Үч жолу</string>
@@ -2105,28 +2105,28 @@
   <string name="preferences__slow">Жай</string>
   <string name="preferences__help">Жардам</string>
   <string name="preferences__advanced">Өркүндөтүлгөн</string>
-  <string name="preferences__donate_to_signal">Signal\'ды колдоо</string>
+  <string name="preferences__donate_to_signal">Signal\'га колдоо көрсөтүү</string>
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__one_time_donation">Бир жолу колдоо көрсөтүү</string>
   <string name="preferences__privacy">Купуялык</string>
   <string name="preferences__mms_user_agent">MMS колдонуучу агенти</string>
   <string name="preferences__advanced_mms_access_point_names">Кол менен MMS тууралоо</string>
   <string name="preferences__mmsc_url">MMSC URL</string>
-  <string name="preferences__mms_proxy_host">MMS-прокси дареги</string>
+  <string name="preferences__mms_proxy_host">MMS прокси дареги</string>
   <string name="preferences__mms_proxy_port">MMS прокси порту</string>
   <string name="preferences__mmsc_username">MMSC колдонуучу аты</string>
   <string name="preferences__mmsc_password">MMSC сырсөзү</string>
-  <string name="preferences__sms_delivery_reports">SMS жеткирүү отчеттору</string>
-  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Ар бир жөнөткөн SMS билдирүүңүз үчүн жеткирүү отчетун сураңыз</string>
-  <string name="preferences__data_and_storage">Берилмелер жана сактагыч</string>
+  <string name="preferences__sms_delivery_reports">SMS жеткенин кабарлоо</string>
+  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Ар бир жөнөтүлгөн SMS билдирүүңүздүн жеткенин билип турасыз</string>
+  <string name="preferences__data_and_storage">Маалыматтар жана сактагыч</string>
   <string name="preferences__storage">Сактагыч</string>
   <string name="preferences__payments">Төлөмдөр</string>
   <string name="preferences__payments_beta">Төлөмдөр (Бета)</string>
-  <string name="preferences__conversation_length_limit">Сүйлөшүүнүн узундук чеги</string>
+  <string name="preferences__conversation_length_limit">Сүйлөшүүнүн узундугу</string>
   <string name="preferences__keep_messages">Билдирүүлөрдү сактоо</string>
-  <string name="preferences__clear_message_history">Билдирүү таржымалын тазалоо</string>
+  <string name="preferences__clear_message_history">Билдирүүлөр таржымалын тазалоо</string>
   <string name="preferences__linked_devices">Байланышкан түзмөктөр</string>
-  <string name="preferences__light_theme">Жарык</string>
+  <string name="preferences__light_theme">Ачык</string>
   <string name="preferences__dark_theme">Күңүрт</string>
   <string name="preferences__appearance">Тышкы көрүнүшү</string>
   <string name="preferences__theme">Тема</string>
@@ -2135,11 +2135,11 @@
   <string name="preferences__disable_pin">PIN кодду өчүрүү</string>
   <string name="preferences__enable_pin">PIN кодду иштетүү</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">PIN кодду өчүрүп салсаңыз, Signal колдонмосун кайра орноткондо аккаунтуңуздагы бардык нерселер өчүп калат (эгер алардын көчүрмөсүн кол менен башка жерге сактап койбосоңуз). PIN код өчүк болгондо, Катталууга жол бербөө функциясын иштете албай каласыз.</string>
-  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN код Signal\'да сакталган маалыматты шифрленген формада сактайт, андыктан ага сиз гана кире аласыз. Профилиңиз, тууралоолоруңуз жана байланыштарыңыз кайра орнотулгандан кийин калыбына келтирилет. Колдонмону ачуу үчүн сизге PIN коддун кереги жок.</string>
-  <string name="preferences__system_default">Система демейкиси</string>
+  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN коддор Signal\'да сакталган маалыматты шифрлеп, аны өзүңүз гана көрө аласыз. Signal\'ды кайра орнотсоңуз, профилиңиз, параметрлериңиз жана байланыштарыңыз калыбына келтирилет. Колдонмону ачуу үчүн PIN коддун кереги жок.</string>
+  <string name="preferences__system_default">Демейки</string>
   <string name="preferences__language">Тил</string>
   <string name="preferences__signal_messages_and_calls">Signal билдирүүлөрү жана чалуулары</string>
-  <string name="preferences__advanced_pin_settings">Өркүндөтүлгөн PIN тууралоолору</string>
+  <string name="preferences__advanced_pin_settings">Өркүндөтүлгөн PIN параметрлери</string>
   <string name="preferences__free_private_messages_and_calls">Signal колдонуучуларына акысыз жеке билдирүүлөр жана чалуулар</string>
   <string name="preferences__submit_debug_log">Мүчүлүштүктөр журналын жөнөтүү</string>
   <string name="preferences__delete_account">Аккаунтту жок кылуу</string>

@@ -1530,7 +1530,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--Error that is show in a toast when we fail to save a debug log file to disk.-->
   <string name="SubmitDebugLogActivity_failed_to_save">Ezin izan da gorde</string>
   <!--Toast that is show to notify that we have saved the debug log file to disk.-->
-  <string name="SubmitDebugLogActivity_save_complete">Ondo gorde da</string>
+  <string name="SubmitDebugLogActivity_save_complete">Gorde da</string>
   <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Lerro bat ezabatzeko, uki ezazu</string>
   <string name="SubmitDebugLogActivity_submit">Bidali</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">Errorea arazteko erregistroak bidaltzerakoan</string>
@@ -2738,15 +2738,15 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="BackupDialog_passphrase_was_not_correct">Pasaesaldi ez da zuzena</string>
   <string name="LocalBackupJob_creating_signal_backup">Signal babeskopia sortzen…</string>
   <!--Title for progress notification shown in a system notification while verifying a recent backup.-->
-  <string name="LocalBackupJob_verifying_signal_backup">Signal babeskopia egiaztatzen…</string>
+  <string name="LocalBackupJob_verifying_signal_backup">Signal-en babeskopia egiaztatzen…</string>
   <string name="LocalBackupJobApi29_backup_failed">Babeskopiak huts egin du</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Babeskopiak gordetzeko karpeta ezabatu edo mugitu da.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Zure babeskopia duen fitxategia handiegia da bolumen honetan gordetzeko.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">Ez dago leku nahikorik zure babeskopia gordetzeko.</string>
   <!--Error message shown if a newly created backup could not be verified as accurate-->
-  <string name="LocalBackupJobApi29_your_backup_could_not_be_verified">Zure babeskopia ezin izan da sortu eta egiaztatu. Mesedez, sortu berri bat.</string>
+  <string name="LocalBackupJobApi29_your_backup_could_not_be_verified">Ezin izan da sortu eta egiaztatu azken babeskopia. Sortu beste bat.</string>
   <!--Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail-->
-  <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Zure babeskopiak fitxategi handi bat dauka eta ezin da hori babestu. Mesedez, ezabatu eta babeskopia berri bat sortu.</string>
+  <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Babeskopiak oso handia den fitxategi bat dauka, eta ezin da egin haren babeskopia. Ezaba ezazu eta sortu beste babeskopia bat.</string>
   <string name="LocalBackupJobApi29_tap_to_manage_backups">Sakatu babeskopiak kudeatzeko.</string>
   <string name="ProgressPreference_d_messages_so_far">%d mezu orain arte</string>
   <string name="RegistrationActivity_wrong_number">Zenbaki okerra</string>

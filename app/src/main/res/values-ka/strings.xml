@@ -464,7 +464,7 @@
   <string name="BackupsPreferenceFragment__learn_more">გაიგე მეტი</string>
   <string name="BackupsPreferenceFragment__in_progress">იტვირთება…</string>
   <!--Status text shown in backup preferences when verifying a backup-->
-  <string name="BackupsPreferenceFragment__verifying_backup">მიმდინარეობს სათადარიგო ასლების ვერიფიცირება…</string>
+  <string name="BackupsPreferenceFragment__verifying_backup">მიმდინარეობს სარეზერვო კოპიების ვერიფიცირება…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d ჯერ…</string>
   <!--Show percentage of completion of backup-->
   <string name="BackupsPreferenceFragment__s_so_far">%1$s%% ჯერ…</string>
@@ -2737,15 +2737,15 @@
   <string name="BackupDialog_passphrase_was_not_correct">პაროლ-ფრაზა არასწორი იყო</string>
   <string name="LocalBackupJob_creating_signal_backup">ვქმნით Signal-ის სარეზერვო კოპიებს…</string>
   <!--Title for progress notification shown in a system notification while verifying a recent backup.-->
-  <string name="LocalBackupJob_verifying_signal_backup">მიმდინარეობს Signal-ის სათადარიგო ასლების ვერიფიცირება…</string>
+  <string name="LocalBackupJob_verifying_signal_backup">მიმდინარეობს Signal-ის სარეზერვო კოპიების ვერიფიცირება…</string>
   <string name="LocalBackupJobApi29_backup_failed">სარეზერვო კოპიების შენახვა ვერ მოხერხდა</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">შენი სარეზერვო კოპიების შესანახი ადგილი იქნა წაშლილი ან გადატანილი.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">შენი სარეზერვო კოპიის ფაილი ზედმეტად დიდია აქ შესანახად.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">მეხსიერებაში საკმარისი ადგილი არ არის შენი სარეზერვო კოპიის შესანახად.</string>
   <!--Error message shown if a newly created backup could not be verified as accurate-->
-  <string name="LocalBackupJobApi29_your_backup_could_not_be_verified">შენი ბოლო სათადარიგო ასლების შექმნა და ვერიფიცირება ვერ მოხერხდა. გთხოვთ ახალი შექმნა.</string>
+  <string name="LocalBackupJobApi29_your_backup_could_not_be_verified">შენი ბოლო სარეზერვო კოპიის შექმნა და ვერიფიცირება ვერ მოხერხდა. გთხოვთ ახალი შექმნა.</string>
   <!--Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail-->
-  <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">შენი სათადარიგო ასლი ძალიან დიდ ფაილს შეიცავს, რომლის სათადარიგო ასლთა რიგებში დამატებაც ვერ მოხერხდა. გთხოვთ წაშალო ის და ახალი სათადარიგო ასლი შექმნა.</string>
+  <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">შენი სარეზერვო კოპია შეიცავს ძალიან დიდ ფაილს, რომლის კოპირებაც ვერ ხერხდება. გთხოვთ წაშალო ის და ახალი სარეზერვო კოპია შექმნა.</string>
   <string name="LocalBackupJobApi29_tap_to_manage_backups">დააჭირე სარეზერვო კოპიების სამართავად.</string>
   <string name="ProgressPreference_d_messages_so_far">ჯერ-ჯერობით %d შეტყობინება</string>
   <string name="RegistrationActivity_wrong_number">არასწორი ნომერი</string>
@@ -3786,7 +3786,7 @@
   <!--Title for add schedule to profile in create flow-->
   <string name="EditNotificationProfileSchedule__add_a_schedule">განრიგის დამატება</string>
   <!--Descriptor text indicating what the user can do with this screen-->
-  <string name="EditNotificationProfileSchedule__set_up_a_schedule_to_enable_this_notification_profile_automatically">შექმენი განრიგი, რომ ავტომატურად ჩართო შეტყობინებების პროფილი.</string>
+  <string name="EditNotificationProfileSchedule__set_up_a_schedule_to_enable_this_notification_profile_automatically">შექმენი განრიგი, რათა ავტომატურად გააქტიურო შეტყობინებების მახასიათებლები.</string>
   <!--Text shown next to toggle switch to enable/disable schedule-->
   <string name="EditNotificationProfileSchedule__schedule">განრიგი</string>
   <!--Label for showing the start time for the schedule-->

@@ -2740,7 +2740,7 @@
   <!--Error message shown if a newly created backup could not be verified as accurate-->
   <string name="LocalBackupJobApi29_your_backup_could_not_be_verified">Το πρόσφατο αντίγραφο ασφαλείας σου δεν μπόρεσε να δημιουργηθεί και να επιβεβαιωθεί. Δημιούργησε ένα καινούργιο.</string>
   <!--Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail-->
-  <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Το αντίγραφο ασφαλείας σου περιέχει ένα πολύ μεγάλο αρχείο που δεν μπορεί να αντιγραφεί. Διέγραψέ το και δημιούργησε ένα καινούργιο αντίγραφο ασφαλείας.</string>
+  <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Το αντίγραφο ασφαλείας σου περιέχει ένα πολύ μεγάλο αρχείο που δεν μπορεί να αντιγραφεί. Διάγραψέ το και δημιούργησε ένα καινούργιο αντίγραφο ασφαλείας.</string>
   <string name="LocalBackupJobApi29_tap_to_manage_backups">Πάτα για διαχείριση αντίγραφων ασφαλείας.</string>
   <string name="ProgressPreference_d_messages_so_far">%d μηνύματα μέχρι τώρα</string>
   <string name="RegistrationActivity_wrong_number">Λάθος αριθμός</string>
