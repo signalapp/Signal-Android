@@ -7,11 +7,14 @@ import android.content.Intent;
 import android.content.pm.LabeledIntent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 public class IntentUtils {
 
@@ -36,5 +39,4 @@ public class IntentUtils {
     }
     return null;
   }
-
 }
