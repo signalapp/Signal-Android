@@ -24,6 +24,7 @@ import org.signal.storageservice.protos.groups.Member;
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
 import org.signal.storageservice.protos.groups.local.EnabledState;
+import org.thoughtcrime.securesms.contacts.paged.ContactSearchSortOrder;
 import org.thoughtcrime.securesms.crypto.SenderKeyUtil;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.BadGroupIdException;
@@ -287,6 +288,31 @@ public class GroupDatabase extends Database {
   }
 
   public Reader queryGroupsByTitle(String inputQuery, boolean includeInactive, boolean excludeV1, boolean excludeMms) {
+    SqlUtil.Query query  = getGroupQueryWhereStatement(inputQuery, includeInactive, excludeV1, excludeMms);
+    Cursor        cursor = databaseHelper.getSignalReadableDatabase().query(TABLE_NAME, null, query.getWhere(), query.getWhereArgs(), null, null, TITLE + " COLLATE NOCASE ASC");
+
+    return new Reader(cursor);
+  }
+
+  public Reader queryGroupsByRecency(@NonNull GroupQuery groupQuery) {
+    SqlUtil.Query query = getGroupQueryWhereStatement(groupQuery.searchQuery, groupQuery.includeInactive, !groupQuery.includeV1, !groupQuery.includeMms);
+    String sql = "SELECT * FROM " + TABLE_NAME +
+                 " LEFT JOIN " + ThreadDatabase.TABLE_NAME + " ON " + RECIPIENT_ID + " = " + ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.RECIPIENT_ID +
+                 " WHERE " + query.getWhere() +
+                 " ORDER BY " + ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.DATE + " DESC";
+
+    return new Reader(databaseHelper.getSignalReadableDatabase().rawQuery(sql, query.getWhereArgs()));
+  }
+
+  public Reader queryGroups(@NonNull GroupQuery groupQuery) {
+    if (groupQuery.sortOrder == ContactSearchSortOrder.NATURAL) {
+      return queryGroupsByTitle(groupQuery.searchQuery, groupQuery.includeInactive, !groupQuery.includeV1, !groupQuery.includeMms);
+    } else {
+      return queryGroupsByRecency(groupQuery);
+    }
+  }
+
+  private @NonNull SqlUtil.Query getGroupQueryWhereStatement(String inputQuery, boolean includeInactive, boolean excludeV1, boolean excludeMms) {
     String   query;
     String[] queryArgs;
 
@@ -308,9 +334,7 @@ public class GroupDatabase extends Database {
       query += " AND " + MMS + " = 0";
     }
 
-    Cursor cursor = databaseHelper.getSignalReadableDatabase().query(TABLE_NAME, null, query, queryArgs, null, null, TITLE + " COLLATE NOCASE ASC");
-
-    return new Reader(cursor);
+    return new SqlUtil.Query(query, queryArgs);
   }
 
   public @NonNull DistributionId getOrCreateDistributionId(@NonNull GroupId.V2 groupId) {
@@ -1442,6 +1466,59 @@ public class GroupDatabase extends Database {
 
     public boolean isInGroup() {
       return inGroup;
+    }
+  }
+
+  public static class GroupQuery {
+    private final String  searchQuery;
+    private final boolean includeInactive;
+    private final boolean                includeV1;
+    private final boolean                includeMms;
+    private final ContactSearchSortOrder sortOrder;
+
+    private GroupQuery(@NonNull Builder builder) {
+      this.searchQuery     = builder.searchQuery;
+      this.includeInactive = builder.includeInactive;
+      this.includeV1       = builder.includeV1;
+      this.includeMms      = builder.includeMms;
+      this.sortOrder       = builder.sortOrder;
+    }
+
+    public static class Builder {
+      private String                 searchQuery     = "";
+      private boolean                includeInactive = false;
+      private boolean                includeV1       = false;
+      private boolean                includeMms      = false;
+      private ContactSearchSortOrder sortOrder       = ContactSearchSortOrder.NATURAL;
+
+      public @NonNull Builder withSearchQuery(@Nullable String query) {
+        this.searchQuery = TextUtils.isEmpty(query) ? "" : query;
+        return this;
+      }
+
+      public @NonNull Builder withInactiveGroups(boolean includeInactive) {
+        this.includeInactive = includeInactive;
+        return this;
+      }
+
+      public @NonNull Builder withV1Groups(boolean includeV1Groups) {
+        this.includeV1 = includeV1Groups;
+        return this;
+      }
+
+      public @NonNull Builder withMmsGroups(boolean includeMmsGroups) {
+        this.includeMms = includeMmsGroups;
+        return this;
+      }
+
+      public @NonNull Builder withSortOrder(@NonNull ContactSearchSortOrder sortOrder) {
+        this.sortOrder = sortOrder;
+        return this;
+      }
+
+      public GroupQuery build() {
+        return new GroupQuery(this);
+      }
     }
   }
 

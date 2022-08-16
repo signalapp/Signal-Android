@@ -63,6 +63,7 @@ class ContactSearchConfiguration private constructor(
       val includeV1: Boolean = false,
       val includeInactive: Boolean = false,
       val returnAsGroupStories: Boolean = false,
+      val sortOrder: ContactSearchSortOrder = ContactSearchSortOrder.NATURAL,
       override val includeHeader: Boolean,
       override val expandConfig: ExpandConfig? = null
     ) : Section(SectionKey.GROUPS)
