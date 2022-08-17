@@ -4,15 +4,18 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import org.signal.core.util.DimensionUnit
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
+import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPaymentComponent
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.CurrencySelection
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.NetworkFailure
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.components.settings.models.IndeterminateLoadingCircle
+import org.thoughtcrime.securesms.components.settings.models.SplashImage
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.fragments.requireListener
@@ -37,6 +40,7 @@ class GiftFlowStartFragment : DSLSettingsFragment(
     GiftRowItem.register(adapter)
     NetworkFailure.register(adapter)
     IndeterminateLoadingCircle.register(adapter)
+    SplashImage.register(adapter)
 
     val next = requireView().findViewById<View>(R.id.next)
     next.setOnClickListener {
@@ -58,6 +62,28 @@ class GiftFlowStartFragment : DSLSettingsFragment(
 
   private fun getConfiguration(state: GiftFlowState): DSLConfiguration {
     return configure {
+      customPref(
+        SplashImage.Model(
+          R.drawable.ic_gift_chat
+        )
+      )
+
+      noPadTextPref(
+        title = DSLSettingsText.from(
+          R.string.GiftFlowStartFragment__gift_a_badge,
+          DSLSettingsText.CenterModifier,
+          DSLSettingsText.TextAppearanceModifier(R.style.Signal_Text_Headline)
+        )
+      )
+
+      space(DimensionUnit.DP.toPixels(16f).toInt())
+
+      noPadTextPref(
+        title = DSLSettingsText.from(R.string.GiftFlowStartFragment__gift_someone_a_badge, DSLSettingsText.CenterModifier)
+      )
+
+      space(DimensionUnit.DP.toPixels(16f).toInt())
+
       customPref(
         CurrencySelection.Model(
           selectedCurrency = state.currency,
