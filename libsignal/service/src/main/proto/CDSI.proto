@@ -15,7 +15,10 @@ message ClientRequest {
   bytes new_e164s = 3;
   bytes discard_e164s = 4;
 
-  reserved /*bool has_more*/ 5;
+  // If true, the client has more pairs or e164s to send.  If false or unset,
+  // this is the client's last request, and processing should commence.
+  // NOT NECESSARY FOR CDSI
+  // bool has_more = 5;
 
   // If set, a token which allows rate limiting to discount the e164s in
   // the request's prev_e164s, only counting new_e164s.  If not set, then
@@ -53,6 +56,11 @@ message ClientResponse {
   // e164s sent up in this request, only counting those in the next
   // request's new_e164s.
   bytes token = 3;
+
+  // On a successful response to a token_ack request, the number of permits
+  // that were deducted from the user's rate-limit in order to process the
+  // request
+  int32 debug_permits_used = 4;
 }
 
 message EnclaveLoad {
@@ -71,8 +79,9 @@ message EnclaveLoad {
 }
 
 message ClientHandshakeStart {
-  // Public key associated with this server's enclave
-  bytes pubkey = 1;
+  // Public key associated with this server's enclave. For use in test-only
+  // contexts where attestation is not available
+  bytes test_only_pubkey = 1;
 
   // Remote-attestation evidence associated with the public key
   bytes evidence = 2;

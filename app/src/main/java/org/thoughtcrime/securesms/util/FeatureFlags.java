@@ -101,6 +101,7 @@ public final class FeatureFlags {
   private static final String TELECOM_MODEL_BLOCKLIST           = "android.calling.telecomModelBlockList";
   private static final String CAMERAX_MODEL_BLOCKLIST           = "android.cameraXModelBlockList";
   private static final String RECIPIENT_MERGE_V2                = "android.recipientMergeV2";
+  private static final String CDS_V2_LOAD_TEST                  = "android.csdV2LoadTest";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -154,7 +155,8 @@ public final class FeatureFlags {
       TELECOM_MANUFACTURER_ALLOWLIST,
       TELECOM_MODEL_BLOCKLIST,
       CAMERAX_MODEL_BLOCKLIST,
-      RECIPIENT_MERGE_V2
+      RECIPIENT_MERGE_V2,
+      CDS_V2_LOAD_TEST
   );
 
   @VisibleForTesting
@@ -217,7 +219,8 @@ public final class FeatureFlags {
       TELECOM_MANUFACTURER_ALLOWLIST,
       TELECOM_MODEL_BLOCKLIST,
       CAMERAX_MODEL_BLOCKLIST,
-      RECIPIENT_MERGE_V2
+      RECIPIENT_MERGE_V2,
+      CDS_V2_LOAD_TEST
   );
 
   /**
@@ -543,6 +546,13 @@ public final class FeatureFlags {
    */
   public static boolean recipientMergeV2() {
     return getBoolean(RECIPIENT_MERGE_V2, false);
+  }
+
+  /**
+   * Whether or not we should also query CDSv2 as a form of load test.
+   */
+  public static boolean cdsV2LoadTesting() {
+    return getBoolean(CDS_V2_LOAD_TEST, false);
   }
 
   /** Only for rendering debug info. */

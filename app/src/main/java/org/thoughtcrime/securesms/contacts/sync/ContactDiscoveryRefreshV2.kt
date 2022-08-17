@@ -24,7 +24,8 @@ import java.util.Optional
  */
 object ContactDiscoveryRefreshV2 {
 
-  private val TAG = Log.tag(ContactDiscoveryRefreshV2::class.java)
+  // Using Log.tag will cut off the version number
+  private const val TAG = "CdsRefreshV2"
 
   /**
    * The maximum number items we will allow in a 'one-off' request.
@@ -38,7 +39,7 @@ object ContactDiscoveryRefreshV2 {
   @WorkerThread
   @Synchronized
   @JvmStatic
-  fun refreshAll(context: Context): ContactDiscovery.RefreshResult {
+  fun refreshAll(context: Context, ignoreResults: Boolean = false): ContactDiscovery.RefreshResult {
     val stopwatch = Stopwatch("refresh-all")
 
     val previousE164s: Set<String> = if (SignalStore.misc().cdsToken != null) {
@@ -59,28 +60,45 @@ object ContactDiscoveryRefreshV2 {
 
     val newE164s: Set<String> = newRecipientE164s + newSystemE164s
 
+    val tokenToUse: ByteArray? = if (previousE164s.isNotEmpty()) {
+      SignalStore.misc().cdsToken
+    } else {
+      if (SignalStore.misc().cdsToken != null) {
+        Log.w(TAG, "We have a token, but our previousE164 list is empty! We cannot provide a token.")
+      }
+      null
+    }
+
     val response: CdsiV2Service.Response = makeRequest(
       previousE164s = previousE164s,
       newE164s = newE164s,
       serviceIds = SignalDatabase.recipients.getAllServiceIdProfileKeyPairs(),
-      token = SignalStore.misc().cdsToken,
-      saveToken = true
+      token = tokenToUse,
+      saveToken = true,
+      tag = "refresh-all"
     )
     stopwatch.split("network")
 
     SignalDatabase.cds.updateAfterCdsQuery(newE164s, recipientE164s + systemE164s)
     stopwatch.split("cds-db")
 
-    val registeredIds: Set<RecipientId> = SignalDatabase.recipients.bulkProcessCdsV2Result(
-      response.results
-        .mapValues { entry -> RecipientDatabase.CdsV2Result(entry.value.pni, entry.value.aci.orElse(null)) }
-    )
-    stopwatch.split("recipient-db")
+    var registeredIds: Set<RecipientId> = emptySet()
 
-    SignalDatabase.recipients.bulkUpdatedRegisteredStatus(registeredIds.associateWith { null }, emptyList())
-    stopwatch.split("update-registered")
+    if (ignoreResults) {
+      Log.w(TAG, "[refresh-all] Ignoring CDSv2 results.")
+    } else {
+      registeredIds = SignalDatabase.recipients.bulkProcessCdsV2Result(
+        response.results
+          .mapValues { entry -> RecipientDatabase.CdsV2Result(entry.value.pni, entry.value.aci.orElse(null)) }
+      )
+      stopwatch.split("recipient-db")
+
+      SignalDatabase.recipients.bulkUpdatedRegisteredStatus(registeredIds.associateWith { null }, emptyList())
+      stopwatch.split("update-registered")
+    }
 
     stopwatch.stop(TAG)
+    Log.d(TAG, "[refresh-all] Used ${response.quotaUsedDebugOnly} units of our quota.")
 
     return ContactDiscovery.RefreshResult(registeredIds, emptyMap())
   }
@@ -89,7 +107,7 @@ object ContactDiscoveryRefreshV2 {
   @WorkerThread
   @Synchronized
   @JvmStatic
-  fun refresh(context: Context, inputRecipients: List<Recipient>): ContactDiscovery.RefreshResult {
+  fun refresh(context: Context, inputRecipients: List<Recipient>, ignoreResults: Boolean = false): ContactDiscovery.RefreshResult {
     val stopwatch = Stopwatch("refresh-some")
 
     val recipients = inputRecipients.map { it.resolve() }
@@ -100,7 +118,7 @@ object ContactDiscoveryRefreshV2 {
 
     if (inputE164s.size > MAXIMUM_ONE_OFF_REQUEST_SIZE) {
       Log.i(TAG, "List of specific recipients to refresh is too large! (Size: ${recipients.size}). Doing a full refresh instead.")
-      val fullResult: ContactDiscovery.RefreshResult = refreshAll(context)
+      val fullResult: ContactDiscovery.RefreshResult = refreshAll(context, ignoreResults)
 
       return ContactDiscovery.RefreshResult(
         registeredIds = fullResult.registeredIds.intersect(inputIds),
@@ -120,35 +138,44 @@ object ContactDiscoveryRefreshV2 {
       newE164s = inputE164s,
       serviceIds = SignalDatabase.recipients.getAllServiceIdProfileKeyPairs(),
       token = null,
-      saveToken = false
+      saveToken = false,
+      tag = "refresh-some"
     )
     stopwatch.split("network")
 
-    val registeredIds: Set<RecipientId> = SignalDatabase.recipients.bulkProcessCdsV2Result(
-      response.results
-        .mapValues { entry -> RecipientDatabase.CdsV2Result(entry.value.pni, entry.value.aci.orElse(null)) }
-    )
-    stopwatch.split("recipient-db")
+    var registeredIds: Set<RecipientId> = emptySet()
 
-    SignalDatabase.recipients.bulkUpdatedRegisteredStatus(registeredIds.associateWith { null }, emptyList())
-    stopwatch.split("update-registered")
+    if (ignoreResults) {
+      Log.w(TAG, "[refresh-some] Ignoring CDSv2 results.")
+    } else {
+      registeredIds = SignalDatabase.recipients.bulkProcessCdsV2Result(
+        response.results
+          .mapValues { entry -> RecipientDatabase.CdsV2Result(entry.value.pni, entry.value.aci.orElse(null)) }
+      )
+      stopwatch.split("recipient-db")
 
+      SignalDatabase.recipients.bulkUpdatedRegisteredStatus(registeredIds.associateWith { null }, emptyList())
+      stopwatch.split("update-registered")
+    }
+
+    Log.d(TAG, "[refresh-some] Used ${response.quotaUsedDebugOnly} units of our quota.")
     stopwatch.stop(TAG)
 
     return ContactDiscovery.RefreshResult(registeredIds, emptyMap())
   }
 
   @Throws(IOException::class)
-  private fun makeRequest(previousE164s: Set<String>, newE164s: Set<String>, serviceIds: Map<ServiceId, ProfileKey>, token: ByteArray?, saveToken: Boolean): CdsiV2Service.Response {
+  private fun makeRequest(previousE164s: Set<String>, newE164s: Set<String>, serviceIds: Map<ServiceId, ProfileKey>, token: ByteArray?, saveToken: Boolean, tag: String): CdsiV2Service.Response {
     return ApplicationDependencies.getSignalServiceAccountManager().getRegisteredUsersWithCdsi(
       previousE164s,
       newE164s,
       serviceIds,
       Optional.ofNullable(token),
       BuildConfig.CDSI_MRENCLAVE
-    ) { token ->
+    ) { tokenToSave ->
       if (saveToken) {
-        SignalStore.misc().cdsToken = token
+        SignalStore.misc().cdsToken = tokenToSave
+        Log.d(TAG, "[$tag] Token saved!")
       }
     }
   }

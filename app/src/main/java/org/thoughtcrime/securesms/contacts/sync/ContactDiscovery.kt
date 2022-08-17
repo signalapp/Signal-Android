@@ -13,6 +13,7 @@ import org.signal.contacts.SystemContactsRepository.ContactIterator
 import org.signal.contacts.SystemContactsRepository.ContactPhoneDetails
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.StringUtil
+import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.R
@@ -36,7 +37,11 @@ import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.api.util.UuidUtil
 import java.io.IOException
+import java.lang.Exception
 import java.util.Calendar
+import java.util.concurrent.Callable
+import java.util.concurrent.ExecutionException
+import java.util.concurrent.Future
 
 /**
  * Methods for discovering which users are registered and marking them as such in the database.
@@ -76,6 +81,8 @@ object ContactDiscovery {
       refresh = {
         if (FeatureFlags.phoneNumberPrivacy()) {
           ContactDiscoveryRefreshV2.refreshAll(context)
+        } else if (FeatureFlags.cdsV2LoadTesting()) {
+          loadTestRefreshAll(context)
         } else {
           ContactDiscoveryRefreshV1.refreshAll(context)
         }
@@ -97,6 +104,8 @@ object ContactDiscovery {
       refresh = {
         if (FeatureFlags.phoneNumberPrivacy()) {
           ContactDiscoveryRefreshV2.refresh(context, recipients)
+        } else if (FeatureFlags.cdsV2LoadTesting()) {
+          loadTestRefresh(context, recipients)
         } else {
           ContactDiscoveryRefreshV1.refresh(context, recipients)
         }
@@ -116,6 +125,8 @@ object ContactDiscovery {
       refresh = {
         if (FeatureFlags.phoneNumberPrivacy()) {
           ContactDiscoveryRefreshV2.refresh(context, listOf(recipient))
+        } else if (FeatureFlags.cdsV2LoadTesting()) {
+          loadTestRefresh(context, listOf(recipient))
         } else {
           ContactDiscoveryRefreshV1.refresh(context, listOf(recipient))
         }
@@ -365,6 +376,38 @@ object ContactDiscovery {
 
     return ApplicationDependencies.getProtocolStore().aci().containsSession(protocolAddress) ||
       ApplicationDependencies.getProtocolStore().pni().containsSession(protocolAddress)
+  }
+
+  private fun loadTestRefreshAll(context: Context): RefreshResult {
+    return loadTestOperation(
+      { ContactDiscoveryRefreshV1.refreshAll(context) },
+      { ContactDiscoveryRefreshV2.refreshAll(context, ignoreResults = true) }
+    )
+  }
+
+  private fun loadTestRefresh(context: Context, recipients: List<Recipient>): RefreshResult {
+    return loadTestOperation(
+      { ContactDiscoveryRefreshV1.refresh(context, recipients) },
+      { ContactDiscoveryRefreshV2.refresh(context, recipients, ignoreResults = true) }
+    )
+  }
+
+  private fun loadTestOperation(operationV1: Callable<RefreshResult>, operationV2: Callable<RefreshResult>): RefreshResult {
+    val v1Future: Future<RefreshResult> = SignalExecutors.UNBOUNDED.submit(operationV1)
+    val v2Future: Future<RefreshResult> = SignalExecutors.UNBOUNDED.submit(operationV2)
+
+    try {
+      v2Future.get()
+    } catch (e: Exception) {
+      Log.w(TAG, "Failed to complete the V2 fetch!", e)
+    }
+
+    try {
+      return v1Future.get()
+    } catch (e: ExecutionException) {
+      Log.w(TAG, "Hit exception during V1 fetch!", e)
+      throw e.cause!!
+    }
   }
 
   class RefreshResult(

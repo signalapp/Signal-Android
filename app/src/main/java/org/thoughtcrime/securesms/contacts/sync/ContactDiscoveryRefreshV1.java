@@ -62,7 +62,8 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
  */
 class ContactDiscoveryRefreshV1 {
 
-  private static final String TAG = Log.tag(ContactDiscoveryRefreshV1.class);
+  // Using Log.tag will cut off the version number
+  private static final String TAG = "CdsRefreshV1";
 
   private static final int MAX_NUMBERS = 20_500;
 
