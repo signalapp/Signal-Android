@@ -149,8 +149,8 @@ public class CallParticipantView extends ConstraintLayout {
 
       boolean hasContentToRender = (participant.isVideoEnabled() || participant.isScreenSharing()) && participant.isForwardingVideo();
 
-      rendererFrame.setVisibility(hasContentToRender ? View.VISIBLE : View.GONE);
-      renderer.setVisibility(hasContentToRender ? View.VISIBLE : View.GONE);
+      rendererFrame.setVisibility(hasContentToRender ? View.VISIBLE : View.INVISIBLE);
+      renderer.setVisibility(hasContentToRender ? View.VISIBLE : View.INVISIBLE);
 
       if (participant.isVideoEnabled()) {
         participant.getVideoSink().getLockableEglBase().performWithValidEglBase(eglBase -> {
