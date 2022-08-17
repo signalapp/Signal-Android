@@ -6,6 +6,7 @@ import android.database.Cursor
 import android.net.Uri
 import androidx.core.content.contentValuesOf
 import androidx.core.net.toUri
+import org.signal.core.util.delete
 import org.signal.core.util.readToList
 import org.signal.core.util.requireInt
 import org.signal.core.util.requireLong
@@ -164,6 +165,13 @@ class RemoteMegaphoneDatabase(context: Context, databaseHelper: SignalDatabase) 
         IMAGE_BLOB_URI to null
       )
       .where("$UUID = ?", uuid)
+      .run()
+  }
+
+  /** Only call from internal settings */
+  fun debugRemoveAll() {
+    writableDatabase
+      .delete(TABLE_NAME)
       .run()
   }
 

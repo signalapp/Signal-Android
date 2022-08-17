@@ -1,16 +1,14 @@
 package org.thoughtcrime.securesms.jobs
 
-import okhttp3.Request
 import okhttp3.ResponseBody
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobmanager.Data
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.AutoDownloadEmojiConstraint
 import org.thoughtcrime.securesms.providers.BlobProvider
+import org.thoughtcrime.securesms.s3.S3
 import org.thoughtcrime.securesms.transport.RetryLaterException
-import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
 import java.io.IOException
 import java.util.concurrent.TimeUnit
 
@@ -42,29 +40,20 @@ class FetchRemoteMegaphoneImageJob(parameters: Parameters, private val uuid: Str
   }
 
   override fun onRun() {
-    val request = Request.Builder()
-      .get()
-      .url(imageUrl)
-      .build()
-
     try {
-      ApplicationDependencies.getOkHttpClient().newCall(request).execute().use { response ->
-        if (response.isSuccessful) {
-          val body: ResponseBody? = response.body()
-          if (body != null) {
-            val uri = BlobProvider.getInstance()
-              .forData(body.byteStream(), body.contentLength())
-              .createForMultipleSessionsOnDisk(context)
+      S3.getObject(imageUrl).use { response ->
+        val body: ResponseBody? = response.body()
+        if (body != null) {
+          val uri = BlobProvider.getInstance()
+            .forData(body.byteStream(), body.contentLength())
+            .createForMultipleSessionsOnDisk(context)
 
-            SignalDatabase.remoteMegaphones.setImageUri(uuid, uri)
-          }
-        } else {
-          throw NonSuccessfulResponseCodeException(response.code())
+          SignalDatabase.remoteMegaphones.setImageUri(uuid, uri)
         }
       }
     } catch (e: IOException) {
       Log.i(TAG, "Encountered unknown IO error while fetching image for $uuid", e)
-      throw RetryLaterException()
+      throw RetryLaterException(e)
     }
   }
 

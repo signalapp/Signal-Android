@@ -39,7 +39,7 @@ object RemoteMegaphoneRepository {
   }
 
   private val donate: Action = Action { context, controller, remote ->
-    controller.onMegaphoneNavigationRequested(AppSettingsActivity.subscriptions(context))
+    controller.onMegaphoneNavigationRequested(AppSettingsActivity.manageSubscriptions(context))
     finish.run(context, controller, remote)
   }
 
