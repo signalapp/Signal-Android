@@ -819,6 +819,7 @@ private void processStateless(@NonNull Function1<WebRtcEphemeralState, WebRtcEph
       WebRtcViewModel.GroupCallState groupCallState = s.getCallInfoState().getGroupCallState();
 
       if (callState == CALL_INCOMING && (groupCallState == IDLE || groupCallState.isRinging())) {
+        Log.i(TAG, "Starting call activity from foreground listener");
         startCallCardActivityIfPossible();
       }
       ApplicationDependencies.getAppForegroundObserver().removeListener(this);
