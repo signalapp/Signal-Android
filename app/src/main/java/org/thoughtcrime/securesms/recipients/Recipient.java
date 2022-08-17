@@ -239,6 +239,39 @@ public class Recipient {
   }
 
   /**
+   * Create a recipient with a full (ACI, PNI, E164) tuple. It is assumed that the association between the PNI and serviceId is trusted.
+   * That means it must be from either storage service or a PNI verification message.
+   */
+  public static @NonNull Recipient trustedPush(@NonNull ServiceId serviceId, @Nullable PNI pni, @Nullable String e164) {
+    if (ServiceId.UNKNOWN.equals(serviceId)) {
+      throw new AssertionError("Unknown serviceId!");
+    }
+
+    RecipientDatabase db = SignalDatabase.recipients();
+
+    RecipientId recipientId;
+
+    if (FeatureFlags.phoneNumberPrivacy()) {
+      recipientId = db.getAndPossiblyMergePnpVerified(serviceId, pni, e164);
+    } else {
+      recipientId = db.getAndPossiblyMerge(serviceId, e164);
+    }
+
+    Recipient resolved = resolved(recipientId);
+
+    if (!resolved.getId().equals(recipientId)) {
+      Log.w(TAG, "Resolved " + recipientId + ", but got back a recipient with " + resolved.getId());
+    }
+
+    if (!resolved.isRegistered()) {
+      Log.w(TAG, "External push was locally marked unregistered. Marking as registered.");
+      db.markRegistered(recipientId, serviceId);
+    }
+
+    return resolved;
+  }
+
+  /**
    * Returns a fully-populated {@link Recipient} based off of a ServiceId and phone number, creating one
    * in the database if necessary. We want both piece of information so we're able to associate them
    * both together, depending on which are available.

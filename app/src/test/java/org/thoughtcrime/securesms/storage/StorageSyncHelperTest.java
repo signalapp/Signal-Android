@@ -176,7 +176,8 @@ public final class StorageSyncHelperTest {
                                                             String e164,
                                                             String profileName)
   {
-    return new SignalContactRecord.Builder(byteArray(key), new SignalServiceAddress(aci, e164), null)
+    return new SignalContactRecord.Builder(byteArray(key), aci, null)
+                                  .setE164(e164)
                                   .setGivenName(profileName);
   }
 

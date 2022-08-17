@@ -10,6 +10,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.Base64;
 import org.signal.core.util.SetUtil;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+import org.whispersystems.signalservice.api.storage.SignalContactRecord;
 import org.whispersystems.signalservice.api.storage.SignalStorageManifest;
 import org.whispersystems.signalservice.api.storage.SignalStorageRecord;
 import org.whispersystems.signalservice.api.storage.StorageId;
@@ -141,8 +142,12 @@ public final class StorageSyncValidations {
       }
 
       if (insert.getContact().isPresent()) {
-        SignalServiceAddress address = insert.getContact().get().getAddress();
-        if (self.requireE164().equals(address.getNumber().orElse("")) || self.requireServiceId().equals(address.getServiceId())) {
+        SignalContactRecord contact = insert.getContact().get();
+
+        if (self.requireServiceId().equals(contact.getServiceId()) ||
+            self.requirePni().equals(contact.getPni().orElse(null)) ||
+            self.requireE164().equals(contact.getNumber().orElse("")))
+        {
           throw new SelfAddedAsContactError();
         }
       }

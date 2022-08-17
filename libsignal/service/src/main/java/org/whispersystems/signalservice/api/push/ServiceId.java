@@ -78,6 +78,10 @@ public class ServiceId {
     return uuid.equals(UNKNOWN.uuid);
   }
 
+  public boolean isValid() {
+    return !isUnknown();
+  }
+
   public SignalProtocolAddress toProtocolAddress(int deviceId) {
     return new SignalProtocolAddress(uuid.toString(), deviceId);
   }

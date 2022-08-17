@@ -51,7 +51,8 @@ public class SignalContactRecordTest {
                                                             String e164,
                                                             String givenName)
   {
-    return new SignalContactRecord.Builder(byteArray(key), new SignalServiceAddress(serviceId, e164), null)
+    return new SignalContactRecord.Builder(byteArray(key), serviceId, null)
+                                  .setE164(e164)
                                   .setGivenName(givenName);
   }
 }

@@ -71,8 +71,9 @@ message ContactRecord {
     UNVERIFIED = 2;
   }
 
-  string        serviceUuid         = 1;
+  string        serviceId           = 1;
   string        serviceE164         = 2;
+  string        servicePni          = 15;
   bytes         profileKey          = 3;
   bytes         identityKey         = 4;
   IdentityState identityState       = 5;

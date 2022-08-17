@@ -523,6 +523,27 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
   @VisibleForTesting
   fun getAndPossiblyMergePnp(serviceId: ServiceId?, e164: String?, changeSelf: Boolean = false): RecipientId {
     require(!(serviceId == null && e164 == null)) { "Must provide an ACI or E164!" }
+    return getAndPossiblyMergePnp(serviceId = serviceId, pni = null, e164 = e164, pniVerified = false, changeSelf = changeSelf)
+  }
+
+  /**
+   * Gets and merges a (serviceId, pni, e164) tuple, doing merges/updates as needed, and giving you back the final RecipientId.
+   * It is assumed that the tuple is verified. Do not give this method an untrusted association.
+   */
+  fun getAndPossiblyMergePnpVerified(serviceId: ServiceId?, pni: PNI?, e164: String?): RecipientId {
+    if (!FeatureFlags.phoneNumberPrivacy()) {
+      throw AssertionError()
+    }
+
+    return getAndPossiblyMergePnp(serviceId = serviceId, pni = pni, e164 = e164, pniVerified = true, changeSelf = false)
+  }
+
+  private fun getAndPossiblyMergePnp(serviceId: ServiceId?, pni: PNI?, e164: String?, pniVerified: Boolean = false, changeSelf: Boolean = false): RecipientId {
+    require(!(serviceId == null && e164 == null)) { "Must provide an ACI or E164!" }
+
+    if ((serviceId is PNI) && pni != null && serviceId != pni) {
+      throw AssertionError("Provided two non-matching PNIs! serviceId: $serviceId, pni: $pni")
+    }
 
     val db = writableDatabase
     var transactionSuccessful = false
@@ -531,11 +552,13 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     db.beginTransaction()
     try {
       result = when {
-        serviceId is PNI -> processPnpTuple(e164, serviceId, null, pniVerified = false, changeSelf = changeSelf)
-        serviceId is ACI -> processPnpTuple(e164, null, serviceId, pniVerified = false, changeSelf = changeSelf)
-        serviceId == null -> processPnpTuple(e164, null, null, pniVerified = false, changeSelf = changeSelf)
-        getByPni(PNI.from(serviceId.uuid())).isPresent -> processPnpTuple(e164, PNI.from(serviceId.uuid()), null, pniVerified = false, changeSelf = changeSelf)
-        else -> processPnpTuple(e164, null, ACI.fromNullable(serviceId), pniVerified = false, changeSelf = changeSelf)
+        serviceId is ACI -> processPnpTuple(e164 = e164, pni = pni, aci = serviceId, pniVerified = pniVerified, changeSelf = changeSelf)
+        serviceId is PNI -> processPnpTuple(e164 = e164, pni = serviceId, aci = null, pniVerified = pniVerified, changeSelf = changeSelf)
+        serviceId == null -> processPnpTuple(e164 = e164, pni = pni, aci = null, pniVerified = pniVerified, changeSelf = changeSelf)
+        serviceId == pni -> processPnpTuple(e164 = e164, pni = pni, aci = null, pniVerified = pniVerified, changeSelf = changeSelf)
+        pni != null -> processPnpTuple(e164 = e164, pni = pni, aci = ACI.from(serviceId.uuid()), pniVerified = pniVerified, changeSelf = changeSelf)
+        getByPni(PNI.from(serviceId.uuid())).isPresent -> processPnpTuple(e164 = e164, pni = PNI.from(serviceId.uuid()), aci = null, pniVerified = pniVerified, changeSelf = changeSelf)
+        else -> processPnpTuple(e164 = e164, pni = pni, aci = ACI.fromNullable(serviceId), pniVerified = pniVerified, changeSelf = changeSelf)
       }
 
       if (result.operations.isNotEmpty()) {
@@ -917,16 +940,20 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     val recipientId: RecipientId
     if (id < 0) {
       Log.w(TAG, "[applyStorageSyncContactInsert] Failed to insert. Possibly merging.")
-      recipientId = getAndPossiblyMerge(if (insert.address.hasValidServiceId()) insert.address.serviceId else null, insert.address.number.orElse(null))
+      if (FeatureFlags.phoneNumberPrivacy()) {
+        recipientId = getAndPossiblyMerge(if (insert.serviceId.isValid) insert.serviceId else null, insert.number.orElse(null))
+      } else {
+        recipientId = getAndPossiblyMergePnpVerified(if (insert.serviceId.isValid) insert.serviceId else null, insert.pni.orElse(null), insert.number.orElse(null))
+      }
       db.update(TABLE_NAME, values, ID_WHERE, SqlUtil.buildArgs(recipientId))
     } else {
       recipientId = RecipientId.from(id)
     }
 
-    if (insert.identityKey.isPresent && insert.address.hasValidServiceId()) {
+    if (insert.identityKey.isPresent && insert.serviceId.isValid) {
       try {
         val identityKey = IdentityKey(insert.identityKey.get(), 0)
-        identities.updateIdentityAfterSync(insert.address.identifier, recipientId, identityKey, StorageSyncModels.remoteToLocalIdentityStatus(insert.identityState))
+        identities.updateIdentityAfterSync(insert.serviceId.toString(), recipientId, identityKey, StorageSyncModels.remoteToLocalIdentityStatus(insert.identityState))
       } catch (e: InvalidKeyException) {
         Log.w(TAG, "Failed to process identity key during insert! Skipping.", e)
       }
@@ -954,7 +981,11 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       var recipientId = getByColumn(STORAGE_SERVICE_ID, Base64.encodeBytes(update.old.id.raw)).get()
 
       Log.w(TAG, "[applyStorageSyncContactUpdate] Found user $recipientId. Possibly merging.")
-      recipientId = getAndPossiblyMerge(if (update.new.address.hasValidServiceId()) update.new.address.serviceId else null, update.new.address.number.orElse(null))
+      if (FeatureFlags.phoneNumberPrivacy()) {
+        recipientId = getAndPossiblyMergePnpVerified(if (update.new.serviceId.isValid) update.new.serviceId else null, update.new.pni.orElse(null), update.new.number.orElse(null))
+      } else {
+        recipientId = getAndPossiblyMerge(if (update.new.serviceId.isValid) update.new.serviceId else null, update.new.number.orElse(null))
+      }
 
       Log.w(TAG, "[applyStorageSyncContactUpdate] Merged into $recipientId")
       db.update(TABLE_NAME, values, ID_WHERE, SqlUtil.buildArgs(recipientId))
@@ -970,9 +1001,9 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
 
     try {
       val oldIdentityRecord = identityStore.getIdentityRecord(recipientId)
-      if (update.new.identityKey.isPresent && update.new.address.hasValidServiceId()) {
+      if (update.new.identityKey.isPresent && update.new.serviceId.isValid) {
         val identityKey = IdentityKey(update.new.identityKey.get(), 0)
-        identities.updateIdentityAfterSync(update.new.address.identifier, recipientId, identityKey, StorageSyncModels.remoteToLocalIdentityStatus(update.new.identityState))
+        identities.updateIdentityAfterSync(update.new.serviceId.toString(), recipientId, identityKey, StorageSyncModels.remoteToLocalIdentityStatus(update.new.identityState))
       }
 
       val newIdentityRecord = identityStore.getIdentityRecord(recipientId)
@@ -3564,11 +3595,15 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       val profileName = ProfileName.fromParts(contact.givenName.orElse(null), contact.familyName.orElse(null))
       val username = contact.username.orElse(null)
 
-      if (contact.address.hasValidServiceId()) {
-        put(SERVICE_ID, contact.address.serviceId.toString())
+      if (contact.serviceId.isValid) {
+        put(SERVICE_ID, contact.serviceId.toString())
       }
 
-      put(PHONE, contact.address.number.orElse(null))
+      if (FeatureFlags.phoneNumberPrivacy()) {
+        put(PNI_COLUMN, contact.pni.toString())
+      }
+
+      put(PHONE, contact.number.orElse(null))
       put(PROFILE_GIVEN_NAME, profileName.givenName)
       put(PROFILE_FAMILY_NAME, profileName.familyName)
       put(PROFILE_JOINED_NAME, profileName.toString())
