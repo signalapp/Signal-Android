@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:viewBindingIgnore="true"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
+    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout"
+    tools:viewBindingIgnore="true">
 
     <TextView
         android:id="@+id/numeric_keyboard_1"
@@ -15,6 +15,7 @@
         android:gravity="center"
         android:text="@string/NumericKeyboardView__1"
         android:textAppearance="@style/Signal.Text.TitleLarge"
+        android:textColor="@color/signal_light_colorOnSurface"
         app:layout_constraintBottom_toTopOf="@id/numeric_keyboard_4"
         app:layout_constraintEnd_toStartOf="@id/numeric_keyboard_2"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,6 +29,7 @@
         android:gravity="center"
         android:text="@string/NumericKeyboardView__2"
         android:textAppearance="@style/Signal.Text.TitleLarge"
+        android:textColor="@color/signal_light_colorOnSurface"
         app:layout_constraintBottom_toTopOf="@id/numeric_keyboard_4"
         app:layout_constraintEnd_toStartOf="@id/numeric_keyboard_3"
         app:layout_constraintStart_toEndOf="@id/numeric_keyboard_1"
@@ -41,6 +43,7 @@
         android:gravity="center"
         android:text="@string/NumericKeyboardView__3"
         android:textAppearance="@style/Signal.Text.TitleLarge"
+        android:textColor="@color/signal_light_colorOnSurface"
         app:layout_constraintBottom_toTopOf="@id/numeric_keyboard_4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/numeric_keyboard_2"
@@ -54,6 +57,7 @@
         android:gravity="center"
         android:text="@string/NumericKeyboardView__4"
         android:textAppearance="@style/Signal.Text.TitleLarge"
+        android:textColor="@color/signal_light_colorOnSurface"
         app:layout_constraintBottom_toTopOf="@id/numeric_keyboard_7"
         app:layout_constraintEnd_toStartOf="@id/numeric_keyboard_5"
         app:layout_constraintStart_toStartOf="parent"
@@ -67,6 +71,7 @@
         android:gravity="center"
         android:text="@string/NumericKeyboardView__5"
         android:textAppearance="@style/Signal.Text.TitleLarge"
+        android:textColor="@color/signal_light_colorOnSurface"
         app:layout_constraintBottom_toTopOf="@id/numeric_keyboard_7"
         app:layout_constraintEnd_toStartOf="@id/numeric_keyboard_6"
         app:layout_constraintStart_toEndOf="@id/numeric_keyboard_4"
@@ -80,6 +85,7 @@
         android:gravity="center"
         android:text="@string/NumericKeyboardView__6"
         android:textAppearance="@style/Signal.Text.TitleLarge"
+        android:textColor="@color/signal_light_colorOnSurface"
         app:layout_constraintBottom_toTopOf="@id/numeric_keyboard_7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/numeric_keyboard_5"
@@ -93,6 +99,7 @@
         android:gravity="center"
         android:text="@string/NumericKeyboardView__7"
         android:textAppearance="@style/Signal.Text.TitleLarge"
+        android:textColor="@color/signal_light_colorOnSurface"
         app:layout_constraintBottom_toTopOf="@id/numeric_keyboard_0"
         app:layout_constraintEnd_toStartOf="@id/numeric_keyboard_8"
         app:layout_constraintStart_toStartOf="parent"
@@ -106,6 +113,7 @@
         android:gravity="center"
         android:text="@string/NumericKeyboardView__8"
         android:textAppearance="@style/Signal.Text.TitleLarge"
+        android:textColor="@color/signal_light_colorOnSurface"
         app:layout_constraintBottom_toTopOf="@id/numeric_keyboard_0"
         app:layout_constraintEnd_toEndOf="@id/numeric_keyboard_9"
         app:layout_constraintStart_toEndOf="@id/numeric_keyboard_7"
@@ -119,6 +127,7 @@
         android:gravity="center"
         android:text="@string/NumericKeyboardView__9"
         android:textAppearance="@style/Signal.Text.TitleLarge"
+        android:textColor="@color/signal_light_colorOnSurface"
         app:layout_constraintBottom_toTopOf="@id/numeric_keyboard_0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/numeric_keyboard_8"
@@ -132,6 +141,7 @@
         android:gravity="center"
         android:text="@string/NumericKeyboardView__0"
         android:textAppearance="@style/Signal.Text.TitleLarge"
+        android:textColor="@color/signal_light_colorOnSurface"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/numeric_keyboard_8"
         app:layout_constraintStart_toStartOf="@id/numeric_keyboard_8"
@@ -148,6 +158,7 @@
         app:layout_constraintEnd_toEndOf="@id/numeric_keyboard_9"
         app:layout_constraintStart_toStartOf="@id/numeric_keyboard_9"
         app:layout_constraintTop_toBottomOf="@id/numeric_keyboard_9"
-        app:srcCompat="@drawable/ic_backspace_24" />
+        app:srcCompat="@drawable/ic_backspace_24"
+        app:tint="@color/signal_light_colorOnSurface" />
 
 </merge>
