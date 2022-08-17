@@ -136,9 +136,15 @@ class OpenGroupPoller(private val server: String, private val executorService: S
         pollInfo.details?.moderators?.forEach {
             storage.addGroupMember(GroupMember(groupId, it, GroupMemberRole.MODERATOR))
         }
+        pollInfo.details?.hiddenModerators?.forEach {
+            storage.addGroupMember(GroupMember(groupId, it, GroupMemberRole.HIDDEN_MODERATOR))
+        }
         // - Admins
         pollInfo.details?.admins?.forEach {
             storage.addGroupMember(GroupMember(groupId, it, GroupMemberRole.ADMIN))
+        }
+        pollInfo.details?.hiddenAdmins?.forEach {
+            storage.addGroupMember(GroupMember(groupId, it, GroupMemberRole.HIDDEN_ADMIN))
         }
     }
 

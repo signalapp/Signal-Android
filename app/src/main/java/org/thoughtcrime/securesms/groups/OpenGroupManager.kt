@@ -148,8 +148,12 @@ object OpenGroupManager {
         val standardRoles = memberDatabase.getGroupMemberRoles(groupId, standardPublicKey)
         val blindedRoles = blindedPublicKey?.let { memberDatabase.getGroupMemberRoles(groupId, it) } ?: emptyList()
 
-        return GroupMemberRole.ADMIN in standardRoles || GroupMemberRole.MODERATOR in standardRoles ||
-                GroupMemberRole.ADMIN in blindedRoles || GroupMemberRole.MODERATOR in blindedRoles
+        // roles to check against
+        val moderatorRoles = listOf(
+            GroupMemberRole.MODERATOR, GroupMemberRole.ADMIN,
+            GroupMemberRole.HIDDEN_MODERATOR, GroupMemberRole.HIDDEN_ADMIN
+        )
+        return standardRoles.any { it in moderatorRoles } || blindedRoles.any { it in moderatorRoles }
     }
 
 }
