@@ -1753,7 +1753,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Používateľské mená nemôžu začínať číslicou.</string>
   <string name="UsernameEditFragment_username_is_invalid">Používateľské meno je neplatné.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Používateľské mená musia obsahovať %1$d až %2$d znakov.</string>
-  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Používateľské mená sú v aplikácii Signal voliteľné. Ak sa rozhodnete vytvoriť používateľské meno, ostatní používatelia Signalu vás budú môcť podľa neho nájsť a spojiť sa s vami bez toho, aby poznali vaše telefónne číslo.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Používateľské mená sú v aplikácii Signal voliteľné. Ak sa rozhodnete vytvoriť používateľské meno, ostatní používatelia Signalu vás budú môcť podľa neho nájsť a spojiť sa s vami bez toho, aby poznali vaše telefónne číslo.</string> -->
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d váš kontakt začal používať Signal!</item>
     <item quantity="few">%d vaše kontakty začali používať Signal!</item>
@@ -4092,7 +4092,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">Moje príbehy</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <string name="StoriesLandingFragment__add_a_story">Pridajte príbeh</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">Pridajte príbeh</string> -->
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">Momentálne nie sú k dispozícii žiadne najnovšie aktualizácie. Klepnutím na + pridáte do svojho príbehu.</string>
   <!--Context menu option to hide a story-->
@@ -4203,13 +4203,13 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Odstrániť</string>
   <!--Story settings page title-->
-  <string name="StorySettingsFragment__story_settings">Nastavenia príbehu</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">Nastavenia príbehu</string> -->
   <!--Story settings private stories heading-->
-  <string name="StorySettingsFragment__private_stories">Súkromné ​​príbehy</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">Súkromné ​​príbehy</string> -->
   <!--Note at bottom of story settings regarding who can see private stories.-->
-  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Súkromné ​​príbehy môžu zobraziť iba ľudia, ktorých si do nich pridáte. Názov príbehu vidíte iba vy.</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Súkromné ​​príbehy môžu zobraziť iba ľudia, ktorých si do nich pridáte. Názov príbehu vidíte iba vy.</string> -->
   <!--Option label for creating a new private story-->
-  <string name="StorySettingsFragment__new_private_story">Nový súkromný príbeh</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">Nový súkromný príbeh</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Môj príbeh</string>
   <!--Section heading for story visibility-->

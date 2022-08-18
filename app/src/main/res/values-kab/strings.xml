@@ -1369,7 +1369,7 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Ismawen n yiseqdacen ur zmiren ad bdun s umiḍan.</string>
   <string name="UsernameEditFragment_username_is_invalid">Isem n useqdac d arameɣtu.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Ismawen n useqdac ilaq ad yili gar %1$d d %2$d n yisekkilen.</string>
-  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Isemawen n yiseqdacen deg Signal d ifrayanen. Ma yella tferneḍ ad ternuḍ isem n useqdac, iseqdacen-nniḍen n Signal ad izmiren ad ak·akem-afen s yisem-a n useqdac syen ad ak·akem-id-remsen war ma ssnen uṭṭun-ik·im n tiliɣri.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Isemawen n yiseqdacen deg Signal d ifrayanen. Ma yella tferneḍ ad ternuḍ isem n useqdac, iseqdacen-nniḍen n Signal ad izmiren ad ak·akem-afen s yisem-a n useqdac syen ad ak·akem-id-remsen war ma ssnen uṭṭun-ik·im n tiliɣri.</string> -->
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d n unermis yella ɣef Signal!</item>
     <item quantity="other">%d n yinermisen llan ɣef Signal!</item>

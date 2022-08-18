@@ -1609,7 +1609,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Erabiltzaile izenak ezin dira zenbaki batez hasi.</string>
   <string name="UsernameEditFragment_username_is_invalid">Erabiltzaile izena baliogabea da.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Erabiltzaile izenek %1$d eta %2$d karaktere bitartean egon behar dira.</string>
-  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Erabiltzaile izenak aukerazkoak dira Signal-en. Erabiltzaile bat sortzea erabakitzen baduzu, beste erabiltzaile batzuek topatu ahal izango zaituzte izen hau erabiliz eta zurekin harremanetan jarri ahal izango dira zure telefono zenbakia jakin gabe.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Erabiltzaile izenak aukerazkoak dira Signal-en. Erabiltzaile bat sortzea erabakitzen baduzu, beste erabiltzaile batzuek topatu ahal izango zaituzte izen hau erabiliz eta zurekin harremanetan jarri ahal izango dira zure telefono zenbakia jakin gabe.</string> -->
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">Kontaktu %d Signalen dago!</item>
     <item quantity="other">%d kontaktu Signalen daude!</item>
@@ -3886,7 +3886,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">Nire istorioak</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <string name="StoriesLandingFragment__add_a_story">Gehitu storie bat</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">Gehitu storie bat</string> -->
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">Ez dago eguneratze berririk erakusteko. Sakatu + istorioan gehitzeko.</string>
   <!--Context menu option to hide a story-->
@@ -3991,13 +3991,13 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Ezabatu</string>
   <!--Story settings page title-->
-  <string name="StorySettingsFragment__story_settings">Story ezarpenak</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">Story ezarpenak</string> -->
   <!--Story settings private stories heading-->
-  <string name="StorySettingsFragment__private_stories">Story pribatuak</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">Story pribatuak</string> -->
   <!--Note at bottom of story settings regarding who can see private stories.-->
-  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Story pribatuak gehitzen dituzun pertsonek soilik ikus ditzakete. Zuk bakarrik ikus dezakezu storie-aren izena.</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Story pribatuak gehitzen dituzun pertsonek soilik ikus ditzakete. Zuk bakarrik ikus dezakezu storie-aren izena.</string> -->
   <!--Option label for creating a new private story-->
-  <string name="StorySettingsFragment__new_private_story">Story pribatu berria</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">Story pribatu berria</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Nire istorioa</string>
   <!--Section heading for story visibility-->

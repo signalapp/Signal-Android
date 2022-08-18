@@ -1529,7 +1529,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">ឈ្មោះអ្នកប្រើប្រាស់មិនអាចចាប់ផ្តើមពីលេខ។</string>
   <string name="UsernameEditFragment_username_is_invalid">ឈ្មោះអ្នកប្រើប្រាស់មិនត្រឹមត្រូវ។</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">ឈ្មោះអ្នកប្រើប្រាស់ត្រូវនៅចន្លោះតួអក្សរ%1$d និង%2$d ។</string>
-  <string name="UsernameEditFragment_usernames_on_signal_are_optional">ឈ្មោះអ្នកប្រើប្រាស់ Signal គឺជាជម្រើស។ បើអ្នកជ្រើសរើសបង្កើតឈ្មោះអ្នកប្រើប្រាស់មួយ អ្នកប្រើប្រាស់ Signal ផ្សេងទៀត​ នឹងអាចស្វែងរកអ្នកតាមឈ្មោះអ្នកប្រើប្រាស់នេះ និងទាក់ទងអ្នកដោយមិនចាំបាច់ដឹងលេខទូរស័ព្ទរបស់អ្នកទេ។</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">ឈ្មោះអ្នកប្រើប្រាស់ Signal គឺជាជម្រើស។ បើអ្នកជ្រើសរើសបង្កើតឈ្មោះអ្នកប្រើប្រាស់មួយ អ្នកប្រើប្រាស់ Signal ផ្សេងទៀត​ នឹងអាចស្វែងរកអ្នកតាមឈ្មោះអ្នកប្រើប្រាស់នេះ និងទាក់ទងអ្នកដោយមិនចាំបាច់ដឹងលេខទូរស័ព្ទរបស់អ្នកទេ។</string> -->
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="other">លេខទំនាក់ទំនង%dនៅលើ  Signal!</item>
   </plurals>
@@ -3775,7 +3775,7 @@
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">រឿងរ៉ាវរបស់ខ្ញុំ</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <string name="StoriesLandingFragment__add_a_story">បញ្ចូលរឿងរ៉ាវ</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">បញ្ចូលរឿងរ៉ាវ</string> -->
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">មិនមានព័ត៌មានថ្មីៗសម្រាប់បង្ហាញនៅពេលនេះទេ។ ចុច + ដើម្បីបញ្ចូលទៅរឿងរ៉ាវរបស់អ្នក។</string>
   <!--Context menu option to hide a story-->
@@ -3877,13 +3877,13 @@
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">លុប</string>
   <!--Story settings page title-->
-  <string name="StorySettingsFragment__story_settings">ការកំណត់រឿងរ៉ាវ</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">ការកំណត់រឿងរ៉ាវ</string> -->
   <!--Story settings private stories heading-->
-  <string name="StorySettingsFragment__private_stories">រឿងរ៉ាវឯកជន</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">រឿងរ៉ាវឯកជន</string> -->
   <!--Note at bottom of story settings regarding who can see private stories.-->
-  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">មានតែមនុស្សដែលអ្នកបានបញ្ចូលប៉ុណ្ណោះទើបអាចមើលរឿងរ៉ាវឯកជនបាន។ មានតែអ្នកទេដែលអាចមើលឃើញឈ្មោះរឿងរ៉ាវ។</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">មានតែមនុស្សដែលអ្នកបានបញ្ចូលប៉ុណ្ណោះទើបអាចមើលរឿងរ៉ាវឯកជនបាន។ មានតែអ្នកទេដែលអាចមើលឃើញឈ្មោះរឿងរ៉ាវ។</string> -->
   <!--Option label for creating a new private story-->
-  <string name="StorySettingsFragment__new_private_story">រឿងរ៉ាវឯកជនថ្មី</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">រឿងរ៉ាវឯកជនថ្មី</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">រឿងរ៉ាវរបស់ខ្ញុំ</string>
   <!--Section heading for story visibility-->

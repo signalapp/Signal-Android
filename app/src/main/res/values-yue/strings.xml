@@ -1535,7 +1535,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">使用者名稱冇得用數目字開頭。</string>
   <string name="UsernameEditFragment_username_is_invalid">使用者名稱無效。</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">使用者名稱一定要係 %1$d 至 %2$d 個字元之間。</string>
-  <string name="UsernameEditFragment_usernames_on_signal_are_optional">喺 Signal 唔係事必要整個使用者名稱嘅。若果您揀去整個使用者名稱嘅話，咁其他 Signal 使用者就唔使知您個電話冧把，都可以用您呢個使用者名稱去搵到您、同您聯絡囉。</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">喺 Signal 唔係事必要整個使用者名稱嘅。若果您揀去整個使用者名稱嘅話，咁其他 Signal 使用者就唔使知您個電話冧把，都可以用您呢個使用者名稱去搵到您、同您聯絡囉。</string> -->
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="other">%d 位聯絡人開咗 Signal 喇！</item>
   </plurals>
@@ -3781,7 +3781,7 @@
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">我嘅是日花生</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <string name="StoriesLandingFragment__add_a_story">發辦一味是日花生</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">發辦一味是日花生</string> -->
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">目前未有新動靜有得睇。撳一下 + 加料落您放送嘅是日花生。</string>
   <!--Context menu option to hide a story-->
@@ -3883,13 +3883,13 @@
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">刪除</string>
   <!--Story settings page title-->
-  <string name="StorySettingsFragment__story_settings">是日花生設定</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">是日花生設定</string> -->
   <!--Story settings private stories heading-->
-  <string name="StorySettingsFragment__private_stories">私伙放送是日花生</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">私伙放送是日花生</string> -->
   <!--Note at bottom of story settings regarding who can see private stories.-->
-  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">只有你加入嘅成員會睇到私人限時動態。只有你睇到限時動態嘅名。</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">只有你加入嘅成員會睇到私人限時動態。只有你睇到限時動態嘅名。</string> -->
   <!--Option label for creating a new private story-->
-  <string name="StorySettingsFragment__new_private_story">整多味私伙放送是日花生</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">整多味私伙放送是日花生</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">我嘅是日花生</string>
   <!--Section heading for story visibility-->

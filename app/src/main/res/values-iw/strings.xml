@@ -1754,7 +1754,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">שמות משתמש אינם יכולים להתחיל במספר.</string>
   <string name="UsernameEditFragment_username_is_invalid">שם משתמש בלתי תקף.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">שמות משתמש חייבים להיות בין %1$d לבין %2$d תווים.</string>
-  <string name="UsernameEditFragment_usernames_on_signal_are_optional">שמות משתמש ב־Signal הם רשותיים. אם אתה בוחר ליצור שם משתמש, משתמשי Signal אחרים יוכלו למצוא אותך לפי שם משתמש זה וליצור איתך קשר בלי לדעת את מספר הטלפון שלך.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">שמות משתמש ב־Signal הם רשותיים. אם אתה בוחר ליצור שם משתמש, משתמשי Signal אחרים יוכלו למצוא אותך לפי שם משתמש זה וליצור איתך קשר בלי לדעת את מספר הטלפון שלך.</string> -->
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">איש קשר %d ב־Signal!</item>
     <item quantity="two">%d אנשי קשר ב־Signal!</item>
@@ -4093,7 +4093,7 @@
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">הסיפורים שלי</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <string name="StoriesLandingFragment__add_a_story">הוסף סיפור</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">הוסף סיפור</string> -->
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">אין עדכונים אחרונים להראות כרגע. הקש על + כדי להוסיף אל הסיפור שלך.</string>
   <!--Context menu option to hide a story-->
@@ -4204,13 +4204,13 @@
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">מחק</string>
   <!--Story settings page title-->
-  <string name="StorySettingsFragment__story_settings">הגדרות סיפור</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">הגדרות סיפור</string> -->
   <!--Story settings private stories heading-->
-  <string name="StorySettingsFragment__private_stories">סיפורים פרטיים</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">סיפורים פרטיים</string> -->
   <!--Note at bottom of story settings regarding who can see private stories.-->
-  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">סיפורים פרטיים יכולים להיראות רק ע״י האנשים שאתה מוסיף אליהם. רק אתה רואה את שם הסיפור.</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">סיפורים פרטיים יכולים להיראות רק ע״י האנשים שאתה מוסיף אליהם. רק אתה רואה את שם הסיפור.</string> -->
   <!--Option label for creating a new private story-->
-  <string name="StorySettingsFragment__new_private_story">סיפור פרטי חדש</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">סיפור פרטי חדש</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">הסיפור שלי</string>
   <!--Section heading for story visibility-->

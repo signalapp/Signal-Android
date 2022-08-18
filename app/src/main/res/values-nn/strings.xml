@@ -1600,7 +1600,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Brukarnamn kan ikkje begynna med siffer.</string>
   <string name="UsernameEditFragment_username_is_invalid">Brukarnamnet er ugyldig.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Brukarnamn må vera mellom %1$d og %2$d teikn lange.</string>
-  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Brukarnamn er valfrie på Signal. Viss du vil laga eit brukarnamn, så kan andre Signal-brukarar finna deg med dette og kontakta deg utan å kjenna til telefonnummeret ditt.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Brukarnamn er valfrie på Signal. Viss du vil laga eit brukarnamn, så kan andre Signal-brukarar finna deg med dette og kontakta deg utan å kjenna til telefonnummeret ditt.</string> -->
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d kontakt er på Signal!</item>
     <item quantity="other">%d kontaktar er på Signal!</item>
@@ -3870,7 +3870,7 @@ Sjekkar igjen no …</string>
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">Mine historier</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <string name="StoriesLandingFragment__add_a_story">Lag historie</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">Lag historie</string> -->
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">Ingen nylege oppdateringar å visa nett no. Trykk + for å legga til din historie.</string>
   <!--Context menu option to hide a story-->
@@ -3967,13 +3967,13 @@ Sjekkar igjen no …</string>
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Slett</string>
   <!--Story settings page title-->
-  <string name="StorySettingsFragment__story_settings">Historieinnstillingar</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">Historieinnstillingar</string> -->
   <!--Story settings private stories heading-->
-  <string name="StorySettingsFragment__private_stories">Private historier</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">Private historier</string> -->
   <!--Note at bottom of story settings regarding who can see private stories.-->
-  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Private historier er berre synlege for dei du har lagt til på dei. Berre du kan sjå namnet på historia.</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Private historier er berre synlege for dei du har lagt til på dei. Berre du kan sjå namnet på historia.</string> -->
   <!--Option label for creating a new private story-->
-  <string name="StorySettingsFragment__new_private_story">Ny privat historie</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">Ny privat historie</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Mi historie</string>
   <!--Section heading for story visibility-->

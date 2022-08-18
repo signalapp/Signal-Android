@@ -1608,7 +1608,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Kasutajanimed ei tohi alata numbriga.</string>
   <string name="UsernameEditFragment_username_is_invalid">Kasutajanimi on sobimatu.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Kasutajanimede pikkus peab olema %1$d ja %2$d tähemärgi vahel.</string>
-  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Kasutajanimed on Signalis vabatahtlikud. Kui otsustad endale kasutajanime luua, siis saavad teised Signali kasutajad leida sind kasutajanime järgi ja võtta ühendust sinu telefoninumbrit teadmata.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Kasutajanimed on Signalis vabatahtlikud. Kui otsustad endale kasutajanime luua, siis saavad teised Signali kasutajad leida sind kasutajanime järgi ja võtta ühendust sinu telefoninumbrit teadmata.</string> -->
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d kontakt on Signalis!</item>
     <item quantity="other">%d kontakti on Signalis!</item>
@@ -3885,7 +3885,7 @@
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">Minu lood</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <string name="StoriesLandingFragment__add_a_story">Lisa lugu</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">Lisa lugu</string> -->
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">Hetkel pole kuvamiseks hiljutisi uuendusi. Oma loo lisamiseks toksa +.</string>
   <!--Context menu option to hide a story-->
@@ -3990,13 +3990,13 @@
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Kustuta</string>
   <!--Story settings page title-->
-  <string name="StorySettingsFragment__story_settings">Loo sätted</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">Loo sätted</string> -->
   <!--Story settings private stories heading-->
-  <string name="StorySettingsFragment__private_stories">Privaatsed lood</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">Privaatsed lood</string> -->
   <!--Note at bottom of story settings regarding who can see private stories.-->
-  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Privaatseid lugusid saavad vaadata ainult inimesed, kelle sina oled lugudesse lisanud. Loo nime näed ainult sina.</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Privaatseid lugusid saavad vaadata ainult inimesed, kelle sina oled lugudesse lisanud. Loo nime näed ainult sina.</string> -->
   <!--Option label for creating a new private story-->
-  <string name="StorySettingsFragment__new_private_story">Uus privaatne lugu</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">Uus privaatne lugu</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Minu lugu</string>
   <!--Section heading for story visibility-->

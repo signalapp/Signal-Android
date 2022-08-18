@@ -1605,7 +1605,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Потребителските имена не могат да започват с цифра.</string>
   <string name="UsernameEditFragment_username_is_invalid">Потребителското име е невалидно.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Потребителските имена трябва да са между %1$d и %2$d знака.</string>
-  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Потребителските имена в Signal не са задължителни. Ако решите да създадете потребителско име, други потребители на Signal ще могат да ви намерят по това потребителско име и да се свържат с вас, без да знаят телефонния ви номер.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Потребителските имена в Signal не са задължителни. Ако решите да създадете потребителско име, други потребители на Signal ще могат да ви намерят по това потребителско име и да се свържат с вас, без да знаят телефонния ви номер.</string> -->
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d контакт е в Signal!</item>
     <item quantity="other">%d контакта са в Signal!</item>
@@ -3882,7 +3882,7 @@
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">Моите истории</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <string name="StoriesLandingFragment__add_a_story">Добавете история</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">Добавете история</string> -->
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">В момента няма скорошни актуализации за показване. Докоснете +, за да добавите към историята си.</string>
   <!--Context menu option to hide a story-->
@@ -3987,13 +3987,13 @@
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Изтриване</string>
   <!--Story settings page title-->
-  <string name="StorySettingsFragment__story_settings">Настройки за истории</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">Настройки за истории</string> -->
   <!--Story settings private stories heading-->
-  <string name="StorySettingsFragment__private_stories">Частни истории</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">Частни истории</string> -->
   <!--Note at bottom of story settings regarding who can see private stories.-->
-  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Частните истории могат да се виждат само от хората, които добавите към тях. Само вие виждате името на историята.</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Частните истории могат да се виждат само от хората, които добавите към тях. Само вие виждате името на историята.</string> -->
   <!--Option label for creating a new private story-->
-  <string name="StorySettingsFragment__new_private_story">Нова частна история</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">Нова частна история</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Моята история</string>
   <!--Section heading for story visibility-->

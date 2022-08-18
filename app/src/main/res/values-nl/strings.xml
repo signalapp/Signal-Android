@@ -1613,7 +1613,7 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Gebruikersnamen mogen niet met een cijfer beginnen.</string>
   <string name="UsernameEditFragment_username_is_invalid">Gebruikersnaam is ongeldig.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Gebruikersnamen moeten uit ten minste %1$d en maximaal %2$d karakters bestaan.</string>
-  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Gebruikersnamen in Signal zijn optioneel. Als je een gebruikersnaam aanmaakt zullen andere Signal gebruikers je kunnen vinden met deze naam en contact met je kunnen opnemen zonder je telefoonnummer te kennen.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Gebruikersnamen in Signal zijn optioneel. Als je een gebruikersnaam aanmaakt zullen andere Signal gebruikers je kunnen vinden met deze naam en contact met je kunnen opnemen zonder je telefoonnummer te kennen.</string> -->
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d van je contactpersonen is bereikbaar via Signal.</item>
     <item quantity="other">%d van je contactpersonen zijn bereikbaar via Signal.</item>
@@ -3890,7 +3890,7 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">Mijn verhalen</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <string name="StoriesLandingFragment__add_a_story">Een verhaal toevoegen</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">Een verhaal toevoegen</string> -->
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">Er zijn op dit moment geen nieuwe verhaaldelen om weer te geven. Tik op de +-knop om jouw verhaal toe te voegen.</string>
   <!--Context menu option to hide a story-->
@@ -3995,13 +3995,13 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Wissen</string>
   <!--Story settings page title-->
-  <string name="StorySettingsFragment__story_settings">Verhaalinstellingen</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">Verhaalinstellingen</string> -->
   <!--Story settings private stories heading-->
-  <string name="StorySettingsFragment__private_stories">Privéverhalen</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">Privéverhalen</string> -->
   <!--Note at bottom of story settings regarding who can see private stories.-->
-  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Privéverhalen kunnen alleen worden gezien door personen voor wie jij ze zichtbaar maakt. De naam van het verhaal kun je alleen zelf zien.</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Privéverhalen kunnen alleen worden gezien door personen voor wie jij ze zichtbaar maakt. De naam van het verhaal kun je alleen zelf zien.</string> -->
   <!--Option label for creating a new private story-->
-  <string name="StorySettingsFragment__new_private_story">Nieuw privéverhaal</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">Nieuw privéverhaal</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Mijn verhaal</string>
   <!--Section heading for story visibility-->

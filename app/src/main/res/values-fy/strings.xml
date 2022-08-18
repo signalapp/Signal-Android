@@ -1598,7 +1598,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Brûkersnammen meie net mei in sifer begjinne.</string>
   <string name="UsernameEditFragment_username_is_invalid">Brûkersnamme is ûnjildich.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Brûkersnammen moatte op syn minst út %1$d en maksimaal %2$d karakters bestean.</string>
-  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Brûkersnammen yn Signal binne opsjoneel. Asto in brûkersnamme oanmakkest, sille oare Signal-brûkers dy fine kinne mei dizze namme en kontakt mei dy opnimme kinne sûnder dyn telefoannûmer te witten.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Brûkersnammen yn Signal binne opsjoneel. Asto in brûkersnamme oanmakkest, sille oare Signal-brûkers dy fine kinne mei dizze namme en kontakt mei dy opnimme kinne sûnder dyn telefoannûmer te witten.</string> -->
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d fan dyn kontaktpersoanen is berikber fia Signal.</item>
     <item quantity="other">%d fan dyn kontaktpersoanen binne berikber fia Signal.</item>
@@ -3855,7 +3855,7 @@
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">Myn ferhalen</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <string name="StoriesLandingFragment__add_a_story">In ferhaal tafoegje</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">In ferhaal tafoegje</string> -->
   <!--Displayed when there are no stories to display-->
   <!--Context menu option to hide a story-->
   <string name="StoriesLandingItem__hide_story">Ferhaal ferstopje</string>
@@ -3950,12 +3950,12 @@
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Fuortsmite</string>
   <!--Story settings page title-->
-  <string name="StorySettingsFragment__story_settings">Ferhaalynstellingen</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">Ferhaalynstellingen</string> -->
   <!--Story settings private stories heading-->
-  <string name="StorySettingsFragment__private_stories">Priveeferhalen</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">Priveeferhalen</string> -->
   <!--Note at bottom of story settings regarding who can see private stories.-->
   <!--Option label for creating a new private story-->
-  <string name="StorySettingsFragment__new_private_story">Nij priveeferhaal</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">Nij priveeferhaal</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Myn ferhaal</string>
   <!--Section heading for story visibility-->

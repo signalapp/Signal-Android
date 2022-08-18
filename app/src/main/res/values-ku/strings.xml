@@ -1296,7 +1296,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Navên bikarhêneriyê nikarin bi hejmarê dest pê bikin.</string>
   <string name="UsernameEditFragment_username_is_invalid">Navê bikarhêner nederbasdar e.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Navên bikarhêneriyê divê di navbera %1$d û %2$d karakteran de bin.</string>
-  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Navên bikarhêneriyê di Signalê de li gorî daxwazê ne. Heke tu bixwazî navekî bikarhêneriyê çêbikî ew ê bikarhênerên din ên Signalê karibin bi vî navê te yê bikarhêneriyê re bêyî ku nimreya telefona te zanibin te bibînin û bi te re têkevine têkiliyê.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Navên bikarhêneriyê di Signalê de li gorî daxwazê ne. Heke tu bixwazî navekî bikarhêneriyê çêbikî ew ê bikarhênerên din ên Signalê karibin bi vî navê te yê bikarhêneriyê re bêyî ku nimreya telefona te zanibin te bibînin û bi te re têkevine têkiliyê.</string> -->
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d kes tevlî Signalê bû!</item>
     <item quantity="other">%d kes tevlî Signalê bûn!</item>

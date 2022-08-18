@@ -1476,7 +1476,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">کارن نوم نه باید په عدد سره پیل شي.</string>
   <string name="UsernameEditFragment_username_is_invalid">کارن نوم نامعتبر دی.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">کارن نومونه باید له %1$d تر %2$d تورو پورې وی.</string>
-  <string name="UsernameEditFragment_usernames_on_signal_are_optional">په Signal کې کارن نومونه اختیاري دي. که غواړئ چې یو کارن نوم جوړ کړئ، د Signal نور کارنونه به وکولای شي چې تاسې د همدې کارن نوم په مټ ومومي او پرته له دې چې ستاسې د ټلیفون شمېره ولري، تاسې سره اړیکه کې شي.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">په Signal کې کارن نومونه اختیاري دي. که غواړئ چې یو کارن نوم جوړ کړئ، د Signal نور کارنونه به وکولای شي چې تاسې د همدې کارن نوم په مټ ومومي او پرته له دې چې ستاسې د ټلیفون شمېره ولري، تاسې سره اړیکه کې شي.</string> -->
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d مخاطب په Signal کې ده!</item>
     <item quantity="other">%d مخاطبین په Signal کې دي!</item>

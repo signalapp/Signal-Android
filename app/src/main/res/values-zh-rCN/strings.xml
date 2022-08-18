@@ -1536,7 +1536,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">用户名不能以数字开头。</string>
   <string name="UsernameEditFragment_username_is_invalid">用户名无效。</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">用户名所含字符数量必须在 %1$d 与 %2$d 之间。</string>
-  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Signal 上的用户名是可选功能。如果您选择创建用户名，其他 Signal 用户无需知道您的电话号码，即可通过此用户名与您取得联系。</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Signal 上的用户名是可选功能。如果您选择创建用户名，其他 Signal 用户无需知道您的电话号码，即可通过此用户名与您取得联系。</string> -->
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="other">%d 个联系人在使用 Signal！</item>
   </plurals>
@@ -3782,7 +3782,7 @@
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">我的动态</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <string name="StoriesLandingFragment__add_a_story">添加动态</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">添加动态</string> -->
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">目前没有可以显示的更新。请点击 + 符号添加您的动态。</string>
   <!--Context menu option to hide a story-->
@@ -3884,13 +3884,13 @@
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">删除</string>
   <!--Story settings page title-->
-  <string name="StorySettingsFragment__story_settings">动态设置</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">动态设置</string> -->
   <!--Story settings private stories heading-->
-  <string name="StorySettingsFragment__private_stories">私密动态</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">私密动态</string> -->
   <!--Note at bottom of story settings regarding who can see private stories.-->
-  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">私密动态仅对您选中的用户可见。只有您能看见动态名称。</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">私密动态仅对您选中的用户可见。只有您能看见动态名称。</string> -->
   <!--Option label for creating a new private story-->
-  <string name="StorySettingsFragment__new_private_story">新私密动态</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">新私密动态</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">我的动态</string>
   <!--Section heading for story visibility-->

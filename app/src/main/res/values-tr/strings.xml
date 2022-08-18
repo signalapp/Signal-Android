@@ -1606,7 +1606,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Kullanıcı adları rakam ile başlayamaz.</string>
   <string name="UsernameEditFragment_username_is_invalid">Kullanıcı adı geçersiz.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Kullanıcı adları %1$d ve %2$d karakter aralığında olmalıdır.</string>
-  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Signal\'de kullanıcı adları tamamen isteğe bağlıdır. Eğer kullanıcı adı oluşturursanız diğer Signal kullanıcıları bu kullanıcı adı ile sizi bulup telefon numaranızı bilmeden size ulaşabileceklerdir.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Signal\'de kullanıcı adları tamamen isteğe bağlıdır. Eğer kullanıcı adı oluşturursanız diğer Signal kullanıcıları bu kullanıcı adı ile sizi bulup telefon numaranızı bilmeden size ulaşabileceklerdir.</string> -->
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d kişi Signal\'e katıldı!</item>
     <item quantity="other">%d kişi Signal\'e katıldı!</item>
@@ -3883,7 +3883,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">Hikayelerim</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <string name="StoriesLandingFragment__add_a_story">Bir hikaye ekle</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">Bir hikaye ekle</string> -->
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">Şu anda gösterilecek yeni güncelleme yok. Hikayenize eklemek için + simgesine dokunun.</string>
   <!--Context menu option to hide a story-->
@@ -3988,13 +3988,13 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Sil</string>
   <!--Story settings page title-->
-  <string name="StorySettingsFragment__story_settings">Hikaye ayarları</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">Hikaye ayarları</string> -->
   <!--Story settings private stories heading-->
-  <string name="StorySettingsFragment__private_stories">Özel hikayeler</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">Özel hikayeler</string> -->
   <!--Note at bottom of story settings regarding who can see private stories.-->
-  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Özel hikayeler yalnızca onlara eklediğiniz kişiler tarafından görüntülenebilir. Hikaye adını yalnızca siz görebilirsiniz.</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Özel hikayeler yalnızca onlara eklediğiniz kişiler tarafından görüntülenebilir. Hikaye adını yalnızca siz görebilirsiniz.</string> -->
   <!--Option label for creating a new private story-->
-  <string name="StorySettingsFragment__new_private_story">Yeni özel hikaye</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">Yeni özel hikaye</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Hikayem</string>
   <!--Section heading for story visibility-->

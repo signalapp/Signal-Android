@@ -1535,7 +1535,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">ชื่อผู้ใช้ไม่สามารถเริ่มต้นด้วยตัวเลข</string>
   <string name="UsernameEditFragment_username_is_invalid">ชื่อผู้ใช้ไม่ถูกต้อง</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">ชื่อผู้ใช้จะต้องมี %1$dถึง %2$d ตัวอักษร</string>
-  <string name="UsernameEditFragment_usernames_on_signal_are_optional">ชื่อผู้ใช้ใน Signal นั้นจะมีหรือไม่ก็ได้ ถ้าคุณเลือกสร้างชื่อผู้ใช้ ผู้ใช้ Signal คนอื่นจะสามารถหาและติดต่อคุณได้จากชื่อผู้ใช้นี้โดยไม่จำเป็นต้องรู้หมายเลขโทรศัพท์ของคุณ</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">ชื่อผู้ใช้ใน Signal นั้นจะมีหรือไม่ก็ได้ ถ้าคุณเลือกสร้างชื่อผู้ใช้ ผู้ใช้ Signal คนอื่นจะสามารถหาและติดต่อคุณได้จากชื่อผู้ใช้นี้โดยไม่จำเป็นต้องรู้หมายเลขโทรศัพท์ของคุณ</string> -->
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="other">มีผู้ติดต่อ %d คนใช้งาน Signal!</item>
   </plurals>
@@ -3782,7 +3782,7 @@
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">สตอรี่ของฉัน</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <string name="StoriesLandingFragment__add_a_story">เพิ่มสตอรี่</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">เพิ่มสตอรี่</string> -->
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">ไม่มีการอัปเดตล่าสุดแสดงในตอนนี้ แตะ + เพื่อเพิ่มสตอรี่ของคุณ</string>
   <!--Context menu option to hide a story-->
@@ -3884,13 +3884,13 @@
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">ลบ</string>
   <!--Story settings page title-->
-  <string name="StorySettingsFragment__story_settings">การตั้งค่าสตอรี่</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">การตั้งค่าสตอรี่</string> -->
   <!--Story settings private stories heading-->
-  <string name="StorySettingsFragment__private_stories">สตอรี่ส่วนตัว</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">สตอรี่ส่วนตัว</string> -->
   <!--Note at bottom of story settings regarding who can see private stories.-->
-  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">สตอรี่ส่วนตัวจะสามารถดูได้เฉพาะคนที่คุณเพิ่มเข้าไปให้เท่านั้น มีเพียงคุณที่เห็นชื่อสตอรี่</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">สตอรี่ส่วนตัวจะสามารถดูได้เฉพาะคนที่คุณเพิ่มเข้าไปให้เท่านั้น มีเพียงคุณที่เห็นชื่อสตอรี่</string> -->
   <!--Option label for creating a new private story-->
-  <string name="StorySettingsFragment__new_private_story">สตอรี่ส่วนตัวใหม่</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">สตอรี่ส่วนตัวใหม่</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">สตอรี่ของฉัน</string>
   <!--Section heading for story visibility-->

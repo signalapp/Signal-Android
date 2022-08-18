@@ -1597,7 +1597,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Nutzernamen dürfen nicht mit einer Ziffer beginnen.</string>
   <string name="UsernameEditFragment_username_is_invalid">Nutzername ist ungültig.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Nutzernamen dürfen aus %1$d bis %2$d Zeichen bestehen.</string>
-  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Nutzernamen sind bei Signal optional. Falls du dich dafür entscheidest, einen Nutzernamen zu erstellen, werden andere Nutzer dich über diesen finden und kontaktieren können, ohne deine Rufnummer zu kennen.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Nutzernamen sind bei Signal optional. Falls du dich dafür entscheidest, einen Nutzernamen zu erstellen, werden andere Nutzer dich über diesen finden und kontaktieren können, ohne deine Rufnummer zu kennen.</string> -->
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d Kontakt ist bei Signal!</item>
     <item quantity="other">%d Kontakte sind bei Signal!</item>
@@ -3874,7 +3874,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">Meine Stories</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <string name="StoriesLandingFragment__add_a_story">Story hinzufügen</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">Story hinzufügen</string> -->
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">Derzeit keine kürzlichen Aktualisierungen. Tippe auf »+«, um deiner Story etwas hinzuzufügen.</string>
   <!--Context menu option to hide a story-->
@@ -3979,13 +3979,13 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Löschen</string>
   <!--Story settings page title-->
-  <string name="StorySettingsFragment__story_settings">Story-Einstellungen</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">Story-Einstellungen</string> -->
   <!--Story settings private stories heading-->
-  <string name="StorySettingsFragment__private_stories">Private Stories</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">Private Stories</string> -->
   <!--Note at bottom of story settings regarding who can see private stories.-->
-  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Private Stories können nur von Personen gesehen werden, die du als Betrachter hinzugefügt hast. Nur du kannst den Namen der Story sehen.</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Private Stories können nur von Personen gesehen werden, die du als Betrachter hinzugefügt hast. Nur du kannst den Namen der Story sehen.</string> -->
   <!--Option label for creating a new private story-->
-  <string name="StorySettingsFragment__new_private_story">Neue private Story</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">Neue private Story</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Mein Story</string>
   <!--Section heading for story visibility-->
@@ -4205,7 +4205,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--Description for sheet shown when opening a redeemed gift-->
   <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">Du hast ein Geschenkabzeichen von %1$s erhalten! Hilf Signal, auf Spenden aufmerksam zu machen, indem du dieses Abzeichen in deinem Profil anzeigst.</string>
   <!--Description for sheet shown when opening a sent gift-->
-  <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">Du hast %1$s ein Abzeichen geschenkt. Wenn der Empfänger es annimmt, kann er auswählen, ob er das das Abzeichen anzeigt oder ausblendet.</string>
+  <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">Du hast %1$s ein Abzeichen geschenkt. Wenn der Empfänger es annimmt, kann er auswählen, ob er das Abzeichen anzeigt oder ausblendet.</string>
   <!--Primary action for pending gift sheet to redeem badge now-->
   <string name="ViewReceivedGiftSheet__redeem">Einlösen</string>
   <!--Primary action for pending gift sheet to redeem badge later-->
@@ -4215,7 +4215,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--Snackbar text when user presses "not now" on redemption sheet-->
   <string name="ConversationFragment__you_can_redeem_your_badge_later">Du kannst dein Geschenk auch später einlösen.</string>
   <!--Description text in gift thanks sheet-->
-  <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">Du hast %1$s ein Abzeichen geschenkt. Wenn der Empfänger es annimmt, kann er auswählen, ob er das das Abzeichen anzeigt oder ausblendet.</string>
+  <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">Du hast %1$s ein Abzeichen geschenkt. Wenn der Empfänger es annimmt, kann er auswählen, ob er das Abzeichen anzeigt oder ausblendet.</string>
   <!--Expired gift sheet title-->
   <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">Dein Geschenkabzeichen ist abgelaufen</string>
   <!--Expired gift sheet top description text-->

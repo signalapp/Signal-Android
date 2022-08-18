@@ -1606,7 +1606,7 @@ ontvang!</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Gebruikersname kan nie met \'n syfer begin nie.</string>
   <string name="UsernameEditFragment_username_is_invalid">Ongeldige gebruikersnaam.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Gebruikersname moet tussen %1$d en %2$d karakters lank wees.</string>
-  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Gebruikersname op Signal is opsioneel. As jy kies om ’n gebruikersaam te skep, sal ander Signal-gebruikers jou d.m.v. hierdie gebruikersnaam kan vind en jou kontak sonder om jou foonnommer te ken.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Gebruikersname op Signal is opsioneel. As jy kies om ’n gebruikersaam te skep, sal ander Signal-gebruikers jou d.m.v. hierdie gebruikersnaam kan vind en jou kontak sonder om jou foonnommer te ken.</string> -->
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d kontak is op Signal!</item>
     <item quantity="other">%d kontakte is op Signal!</item>
@@ -3883,7 +3883,7 @@ ontvang!</string>
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">My Stories</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <string name="StoriesLandingFragment__add_a_story">Voeg \'n storie by</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">Voeg \'n storie by</string> -->
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">Geen onlangse bywerkings om te wys nie.
 Tik op + om iets by jou storie te voeg.</string>
@@ -3989,13 +3989,13 @@ Tik op + om iets by jou storie te voeg.</string>
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Skrap</string>
   <!--Story settings page title-->
-  <string name="StorySettingsFragment__story_settings">Storie-instellings</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">Storie-instellings</string> -->
   <!--Story settings private stories heading-->
-  <string name="StorySettingsFragment__private_stories">Privaatstories</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">Privaatstories</string> -->
   <!--Note at bottom of story settings regarding who can see private stories.-->
-  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Privaatstories kan slegs gesien word deur mense wat jy daar byvoeg. Slegs jy kan die strorie se naam sien.</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Privaatstories kan slegs gesien word deur mense wat jy daar byvoeg. Slegs jy kan die strorie se naam sien.</string> -->
   <!--Option label for creating a new private story-->
-  <string name="StorySettingsFragment__new_private_story">Nuwe privaatstorie</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">Nuwe privaatstorie</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">My Storie</string>
   <!--Section heading for story visibility-->

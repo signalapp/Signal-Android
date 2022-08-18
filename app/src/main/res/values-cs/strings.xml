@@ -1753,7 +1753,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Uživatelská jména nesmí začínat číslicí.</string>
   <string name="UsernameEditFragment_username_is_invalid">Uživatelské jméno je neplatné.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Uživatelská jména musí mít %1$d až %2$d znaků.</string>
-  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Uživatelská jména v Signal jsou volitelná. Pokud si vytvoříte uživatelské jméno, ostatní uživatelé Signal vás budou schopni podle něj najít a kontaktovat bez znalosti vašeho telefonního čísla.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Uživatelská jména v Signal jsou volitelná. Pokud si vytvoříte uživatelské jméno, ostatní uživatelé Signal vás budou schopni podle něj najít a kontaktovat bez znalosti vašeho telefonního čísla.</string> -->
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d kontakt má Signal!</item>
     <item quantity="few">%d kontakty mají Signal!</item>
@@ -4092,7 +4092,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">Mé příběhy</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <string name="StoriesLandingFragment__add_a_story">Přidat příběh</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">Přidat příběh</string> -->
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">Žádné poslední aktualizace k zobrazení. Klepněte na + pro přidání příběhu.</string>
   <!--Context menu option to hide a story-->
@@ -4203,13 +4203,13 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Smazat</string>
   <!--Story settings page title-->
-  <string name="StorySettingsFragment__story_settings">Nastavení příběhu</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">Nastavení příběhu</string> -->
   <!--Story settings private stories heading-->
-  <string name="StorySettingsFragment__private_stories">Soukromé příběhy</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">Soukromé příběhy</string> -->
   <!--Note at bottom of story settings regarding who can see private stories.-->
-  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Soukromé příběhy si mohou prohlížet pouze lidé, které do nich přidáte. Název příběhu můžete vidět pouze vy.</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Soukromé příběhy si mohou prohlížet pouze lidé, které do nich přidáte. Název příběhu můžete vidět pouze vy.</string> -->
   <!--Option label for creating a new private story-->
-  <string name="StorySettingsFragment__new_private_story">Nový soukromý příběh</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">Nový soukromý příběh</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Můj příběh</string>
   <!--Section heading for story visibility-->

@@ -1609,7 +1609,7 @@ grupit dhe s\’do të marrë mesazhe grupi përpara se ta pranojë:</item>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Emrat e përdoruesve s\’mund të fillojnë me një numër.</string>
   <string name="UsernameEditFragment_username_is_invalid">Emri i përdoruesit është i pavlefshëm.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Emrat e përdoruesit duhet të jenë mes %1$d dhe %2$d shenjash.</string>
-  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Emrat e përdoruesve në Signal janë opsionalë. Nëse vendosni të krijoni një emër përdoruesi, përdorues të tjerë të Signal-it do të jenë në gjendje t\’ju gjejnë me këtë emër përdoruesi dhe të lidhen me ju pa ditur numrin tuaj të telefonit.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Emrat e përdoruesve në Signal janë opsionalë. Nëse vendosni të krijoni një emër përdoruesi, përdorues të tjerë të Signal-it do të jenë në gjendje t\’ju gjejnë me këtë emër përdoruesi dhe të lidhen me ju pa ditur numrin tuaj të telefonit.</string> -->
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d kontakt është në Signal!</item>
     <item quantity="other">%d kontakte janë në Signal!</item>
@@ -3890,7 +3890,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">Historitë e Mia</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <string name="StoriesLandingFragment__add_a_story">Shtoni një histori</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">Shtoni një histori</string> -->
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">Hëpërhë s’ka dhurime për t’u shfaqur. Prekni + që të shtoni historinë tuaj.</string>
   <!--Context menu option to hide a story-->
@@ -3995,13 +3995,13 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Fshiji</string>
   <!--Story settings page title-->
-  <string name="StorySettingsFragment__story_settings">Rregullime historie</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">Rregullime historie</string> -->
   <!--Story settings private stories heading-->
-  <string name="StorySettingsFragment__private_stories">Histori private</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">Histori private</string> -->
   <!--Note at bottom of story settings regarding who can see private stories.-->
-  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Historitë private mund të shihen vetëm nga persona që shtoni në to. Emrin e historisë mund ta shihni vetëm ju.</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Historitë private mund të shihen vetëm nga persona që shtoni në to. Emrin e historisë mund ta shihni vetëm ju.</string> -->
   <!--Option label for creating a new private story-->
-  <string name="StorySettingsFragment__new_private_story">Histori e re private</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">Histori e re private</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Historia ime</string>
   <!--Section heading for story visibility-->

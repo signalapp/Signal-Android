@@ -1897,7 +1897,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">اسم المستخدم لا يمكن أن يبدأ برقم.</string>
   <string name="UsernameEditFragment_username_is_invalid">اسم المستخدم غير صالح</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">اسم المستخدم لا بد أن يكون بين %1$d و%2$d رمز.</string>
-  <string name="UsernameEditFragment_usernames_on_signal_are_optional">إن اسم المستخدم اختياري في Signal. إذا اخترت إنشاء اسم المستخدم، سوف يتمكن المستخدمون الآخرون لـ Signal من العثور عليك بواسطة ذلك الاسم و من ثَمَّ التواصل معك بدون معرفتهم لرقم هاتفك.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">إن اسم المستخدم اختياري في Signal. إذا اخترت إنشاء اسم المستخدم، سوف يتمكن المستخدمون الآخرون لـ Signal من العثور عليك بواسطة ذلك الاسم و من ثَمَّ التواصل معك بدون معرفتهم لرقم هاتفك.</string> -->
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="zero">%d جهة اتصال تستخدم Signal !‏</item>
     <item quantity="one">‏‏%d جهة اتصال تستخدم Signal !‏</item>
@@ -4288,7 +4288,7 @@
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">قصصي</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <string name="StoriesLandingFragment__add_a_story">إضافة قصة</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">إضافة قصة</string> -->
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">لا توجد أي تحديثات يمكن إظهارها حاليا. يُرجى لمس + للإضافة إلى قصتك.</string>
   <!--Context menu option to hide a story-->
@@ -4405,13 +4405,13 @@
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">حذف</string>
   <!--Story settings page title-->
-  <string name="StorySettingsFragment__story_settings">إعدادات القصص</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">إعدادات القصص</string> -->
   <!--Story settings private stories heading-->
-  <string name="StorySettingsFragment__private_stories">القصص الخاصة</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">القصص الخاصة</string> -->
   <!--Note at bottom of story settings regarding who can see private stories.-->
-  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">يكمن فقط للأشخاص الذين قمت بإضافتهم مشاهدة القصص الخاصة. وأنت فقط من يُمكنه رؤية اسم القصة.</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">يكمن فقط للأشخاص الذين قمت بإضافتهم مشاهدة القصص الخاصة. وأنت فقط من يُمكنه رؤية اسم القصة.</string> -->
   <!--Option label for creating a new private story-->
-  <string name="StorySettingsFragment__new_private_story">قصة خاصة جديدة</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">قصة خاصة جديدة</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">قصتي</string>
   <!--Section heading for story visibility-->

@@ -1599,7 +1599,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">صارف نام کسی نمبر کے ساتھ شروع نہیں ہوسکتے ہیں۔</string>
   <string name="UsernameEditFragment_username_is_invalid">صارف کا نام غلط ہے.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">صارف نام %1$dاور%2$d حرف کے درمیان ہونا چاہئے۔</string>
-  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Signal پر صارف نام اختیاری ہیں۔ اگر آپ صارف نام بنانے کا انتخاب کرتے ہیں تو ، دوسرے Signal استعمال کنندہ آپ کو اس صارف نام کے ذریعے تلاش کرسکیں گے اور آپ کا فون نمبر جانے بغیر آپ سے رابطہ کریں گے۔</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Signal پر صارف نام اختیاری ہیں۔ اگر آپ صارف نام بنانے کا انتخاب کرتے ہیں تو ، دوسرے Signal استعمال کنندہ آپ کو اس صارف نام کے ذریعے تلاش کرسکیں گے اور آپ کا فون نمبر جانے بغیر آپ سے رابطہ کریں گے۔</string> -->
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d رابطے Signal پر ہیں!</item>
     <item quantity="other">%d رابطے Signal پر ہیں!</item>
@@ -3876,7 +3876,7 @@
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">میری اسٹوریز</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <string name="StoriesLandingFragment__add_a_story">اسٹوری شامل کریں</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">اسٹوری شامل کریں</string> -->
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">فی الوقت دکھانے کے لیے کوئی حالیہ اپ ڈیٹس نہیں ہیں۔ اپنی اسٹوری میں شامل کرنے کے لیے + پر ٹیپ کریں۔</string>
   <!--Context menu option to hide a story-->
@@ -3981,13 +3981,13 @@
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">حذف کریں</string>
   <!--Story settings page title-->
-  <string name="StorySettingsFragment__story_settings">اسٹوری کی ترتیبات</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">اسٹوری کی ترتیبات</string> -->
   <!--Story settings private stories heading-->
-  <string name="StorySettingsFragment__private_stories">نجی اسٹوریز</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">نجی اسٹوریز</string> -->
   <!--Note at bottom of story settings regarding who can see private stories.-->
-  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">نجی اسٹوریز کو صرف آپ کی جانب سے ان میں شامل کردہ افراد کی طرف سے ہی دیکھا جا سکتا ہے۔ صرف آپ اسٹوری کا نام دیکھ سکتے ہیں۔</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">نجی اسٹوریز کو صرف آپ کی جانب سے ان میں شامل کردہ افراد کی طرف سے ہی دیکھا جا سکتا ہے۔ صرف آپ اسٹوری کا نام دیکھ سکتے ہیں۔</string> -->
   <!--Option label for creating a new private story-->
-  <string name="StorySettingsFragment__new_private_story">نئی نجی اسٹوری</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">نئی نجی اسٹوری</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">میری اسٹوری</string>
   <!--Section heading for story visibility-->

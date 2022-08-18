@@ -1608,7 +1608,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">მომხმარებლის სახელი ციფრით ვერ დაიწყება.</string>
   <string name="UsernameEditFragment_username_is_invalid">მომხარებლის სახელი არასწორია.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">მომხმარებლის სახელი უნდა შეიცავდეს %1$d-დან %2$d-მდე სიმბოლოს.</string>
-  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Signal-ზე მომხმარებლის სახელი ნებაყოფლობითია. თუ მომხმარებლის სახელის შექმნას აირჩევ, Signal-ის სხვა მომხმარებლები შეძლებენ გიპოვონ ამ მომხმარებლის სახელით და დაგიკავშირდნენ შენი ტელეფონის ნომრის ცოდნის გარეშე.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Signal-ზე მომხმარებლის სახელი ნებაყოფლობითია. თუ მომხმარებლის სახელის შექმნას აირჩევ, Signal-ის სხვა მომხმარებლები შეძლებენ გიპოვონ ამ მომხმარებლის სახელით და დაგიკავშირდნენ შენი ტელეფონის ნომრის ცოდნის გარეშე.</string> -->
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d კონტაქტი Signal-ზეა!</item>
     <item quantity="other">%d კონტაქტი Signal-ზეა!</item>
@@ -2270,7 +2270,7 @@
   <string name="preferences_storage__custom">პერსონალიზირებული</string>
   <string name="preferences_advanced__use_system_emoji">სისტემის emoji-ის გამოყენება</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Signal-ში ჩაშენებული emoji-ის მხარდაჭერის გამორთვა</string>
-  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">გადაიტანე ყველა ზარის განახორციელება Signal-ის სერვერზე, რათა აირიდო შენი IP მისამართის გამოჩენა შენს კონტაქტთან. ამის ჩართვა შეამცირებს ზარის ხარისხს.</string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">გადაამისამართე ყველა ზარი Signal-ის სერვერზე, რათა აირიდო შენი IP მისამართის გამოჩენა შენს კონტაქტთან. ამის ჩართვა შეამცირებს ზარის ხარისხს.</string>
   <string name="preferences_advanced__always_relay_calls">ყოველთვის გადაიტანე ზარები</string>
   <string name="preferences_app_protection__who_can">ვის შეუძლია…</string>
   <string name="preferences_app_protection__app_access">აპზე წვდომა</string>
@@ -3268,7 +3268,7 @@
   <string name="PrivacySettingsFragment__disappearing_messages">გაქრობადი შეტყობინებები</string>
   <string name="PrivacySettingsFragment__app_security">აპის უსაფრთხოება</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">მიმდინარე სიასა და აპის შიგნით სქრინშოტების დაბლოკვა </string>
-  <string name="PrivacySettingsFragment__signal_message_and_calls">Signal-ის შეტყობინებები და ზარები, ყოველთვის გადამისამართებული ზარები და დაფარული გამომგზავნი</string>
+  <string name="PrivacySettingsFragment__signal_message_and_calls">Signal-ის შეტყობინებები და ზარები, ყოველთვის გადამისამართებული ზარებია და დაფარული გამომგზავნი</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">ნაგულისხმევი ტაიმერი ახალი ჩატებისთვის</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">დააყენე გაქრობადი შეტყობინებებისთვის ნაგულისხმევი ტაიმერი შენს მიერ დაწყებული ყველა ახალი ჩატისთვის.</string>
   <!--AdvancedPrivacySettingsFragment-->
@@ -3885,7 +3885,7 @@
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">ჩემი Story-ები</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <string name="StoriesLandingFragment__add_a_story">Story-ის დამატება</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">Story-ის დამატება</string> -->
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">ბოლო განახლებები ახლა ვერ მოიძებნა. დააჭირე + -ს შენი Story-ის დასამატებლად.</string>
   <!--Context menu option to hide a story-->
@@ -3990,13 +3990,13 @@
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">წაშლა</string>
   <!--Story settings page title-->
-  <string name="StorySettingsFragment__story_settings">Story-ის პარამეტრები</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">Story-ის პარამეტრები</string> -->
   <!--Story settings private stories heading-->
-  <string name="StorySettingsFragment__private_stories">პირადი Stories-ები</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">პირადი Stories-ები</string> -->
   <!--Note at bottom of story settings regarding who can see private stories.-->
-  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">პირადი Story-ების ნახვას შეძლებენ მხოლოდ ისინი, ვისაც შენ დაამატებ. მხოლოდ შენ შეგიძლია ნახო Story-ის სახელი.</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">პირადი Story-ების ნახვას შეძლებენ მხოლოდ ისინი, ვისაც შენ დაამატებ. მხოლოდ შენ შეგიძლია ნახო Story-ის სახელი.</string> -->
   <!--Option label for creating a new private story-->
-  <string name="StorySettingsFragment__new_private_story">ახალი პირადი Story-ი</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">ახალი პირადი Story-ი</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">ჩემი Story-ი</string>
   <!--Section heading for story visibility-->

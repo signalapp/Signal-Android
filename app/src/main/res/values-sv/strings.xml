@@ -1602,7 +1602,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Användarnamn kan inte börja med en siffra.</string>
   <string name="UsernameEditFragment_username_is_invalid">Användarnamnet är ogiltigt.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Användarnamn måste vara mellan %1$d och %2$d tecken.</string>
-  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Användarnamn på Signal är valfria. Om du väljer att skapa ett användarnamn kan andra Signal-användare hitta dig med detta användarnamn och kontakta dig utan att veta ditt telefonnummer.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Användarnamn på Signal är valfria. Om du väljer att skapa ett användarnamn kan andra Signal-användare hitta dig med detta användarnamn och kontakta dig utan att veta ditt telefonnummer.</string> -->
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d kontakt finns på Signal!</item>
     <item quantity="other">%d kontakter finns på Signal!</item>
@@ -3879,7 +3879,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">Mina berättelser</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <string name="StoriesLandingFragment__add_a_story">Lägg till en berättelse</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">Lägg till en berättelse</string> -->
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">Inga senaste uppdateringar att visa just nu. Tryck på + för att lägga till i din berättelse.</string>
   <!--Context menu option to hide a story-->
@@ -3984,13 +3984,13 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Ta bort</string>
   <!--Story settings page title-->
-  <string name="StorySettingsFragment__story_settings">Berättelse inställningar</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">Berättelse inställningar</string> -->
   <!--Story settings private stories heading-->
-  <string name="StorySettingsFragment__private_stories">Privata berättelser</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">Privata berättelser</string> -->
   <!--Note at bottom of story settings regarding who can see private stories.-->
-  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Privata stories kan bara ses av de personer du lägger till i dem. Bara du kan se storyns namn.</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Privata stories kan bara ses av de personer du lägger till i dem. Bara du kan se storyns namn.</string> -->
   <!--Option label for creating a new private story-->
-  <string name="StorySettingsFragment__new_private_story">Ny privat berättelse</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">Ny privat berättelse</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Min berättelse</string>
   <!--Section heading for story visibility-->

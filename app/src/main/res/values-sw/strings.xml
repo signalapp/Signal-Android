@@ -1601,7 +1601,7 @@ nambari yako ya simu</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Majina ya watumiaji hayawezi kuanza kwa nambari.</string>
   <string name="UsernameEditFragment_username_is_invalid">Jina la mtumiaji si halali.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Majina ya watumiaji lazima yawe kati ya vibambo  %1$dna %2$d.</string>
-  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Si lazima uweke jina la mtumiaji kwenye Signal. Ukichagua kuunda jina la mtumiaji, watumiaji wengine wa Signal wataweza kukupata kwa kutafuta jina hili la mtumiaji na kuwasiliana nawe bila kujua nambari yako ya simu.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Si lazima uweke jina la mtumiaji kwenye Signal. Ukichagua kuunda jina la mtumiaji, watumiaji wengine wa Signal wataweza kukupata kwa kutafuta jina hili la mtumiaji na kuwasiliana nawe bila kujua nambari yako ya simu.</string> -->
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">Anwani %diko katika Signal!</item>
     <item quantity="other">Anwani %dziko katika Signal!</item>
@@ -3880,7 +3880,7 @@ Funga ufikiaji wa Signal na ufungaji wa Android au alama za vidole</string>
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">Stori zangu</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <string name="StoriesLandingFragment__add_a_story">Ongeza story</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">Ongeza story</string> -->
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">Hakuna sasisho za hivi karibuni za kuonyesha sasa hivi. Bonyeza + kuongeza kwenye stori yako.</string>
   <!--Context menu option to hide a story-->
@@ -3985,13 +3985,13 @@ Funga ufikiaji wa Signal na ufungaji wa Android au alama za vidole</string>
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Futa</string>
   <!--Story settings page title-->
-  <string name="StorySettingsFragment__story_settings">Mipangilio ya stori</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">Mipangilio ya stori</string> -->
   <!--Story settings private stories heading-->
-  <string name="StorySettingsFragment__private_stories">Stori binafsi</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">Stori binafsi</string> -->
   <!--Note at bottom of story settings regarding who can see private stories.-->
-  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Stori binafsi zinaweza kutazamwa na watu unaowaongeza pekee. Wewe pekee ndiye unaweza kuona jina la stori.</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Stori binafsi zinaweza kutazamwa na watu unaowaongeza pekee. Wewe pekee ndiye unaweza kuona jina la stori.</string> -->
   <!--Option label for creating a new private story-->
-  <string name="StorySettingsFragment__new_private_story">Stori mpya binafsi</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">Stori mpya binafsi</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Stori Yangu</string>
   <!--Section heading for story visibility-->

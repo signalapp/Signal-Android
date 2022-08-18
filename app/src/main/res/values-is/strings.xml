@@ -1589,7 +1589,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Notendanöfn mega ekki byrja á tölustaf.</string>
   <string name="UsernameEditFragment_username_is_invalid">Notandanafnið er ógilt.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Notendanöfn verða að vera á milli %1$d og %2$d stafa löng.</string>
-  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Notendanöfn eru valfrjáls á Signal. Ef þú kýst að útbúa notandanafn munu aðrir notendur Signal geta fundið þig með þessu notandanafni og haft samband við þig án þess að þekkja símanúmerið þitt.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Notendanöfn eru valfrjáls á Signal. Ef þú kýst að útbúa notandanafn munu aðrir notendur Signal geta fundið þig með þessu notandanafni og haft samband við þig án þess að þekkja símanúmerið þitt.</string> -->
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d tengiliður notar Signal!</item>
     <item quantity="other">%d tengiliðir nota Signal!</item>
@@ -3851,7 +3851,7 @@ hegðun þína.</string>
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">Sögurnar mínar</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <string name="StoriesLandingFragment__add_a_story">Bæta við sögu</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">Bæta við sögu</string> -->
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">Engar nýlegar uppfærslur sem hægt er að sýna í augnablikinu. Ýttu á + til að bæta við söguna þína.</string>
   <!--Context menu option to hide a story-->
@@ -3948,13 +3948,13 @@ hegðun þína.</string>
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Eyða</string>
   <!--Story settings page title-->
-  <string name="StorySettingsFragment__story_settings">Stillingar sögu</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">Stillingar sögu</string> -->
   <!--Story settings private stories heading-->
-  <string name="StorySettingsFragment__private_stories">Einkasögur</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">Einkasögur</string> -->
   <!--Note at bottom of story settings regarding who can see private stories.-->
-  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Einkasögur geta aðeins skoðað þeir sem þú bætir við þær. Aðeins þú getur séð heiti sögunnar.</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Einkasögur geta aðeins skoðað þeir sem þú bætir við þær. Aðeins þú getur séð heiti sögunnar.</string> -->
   <!--Option label for creating a new private story-->
-  <string name="StorySettingsFragment__new_private_story">Ný einkasaga</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">Ný einkasaga</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Sagan mín</string>
   <!--Section heading for story visibility-->

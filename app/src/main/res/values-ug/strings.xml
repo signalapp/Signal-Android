@@ -1478,7 +1478,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">ئىشلەتكۈچى ئىسمى ساندىن باشلانمايدۇ.</string>
   <string name="UsernameEditFragment_username_is_invalid">ئىشلەتكۈچى ئىسمى ئىناۋەتسىز</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">ئىشلەتكۈچى ئىسمى%1$d دىن %2$d غىچە ھەرپ ئارىسىدا بولىدۇ.</string>
-  <string name="UsernameEditFragment_usernames_on_signal_are_optional">ئىشلەتكۈچى ئىسمى Signal دىكى تاللاشچان ئىقتىدار. ئەگەر ئىشلەتكۈچى ئاتى قۇرۇشنى تاللىسىڭىز، باشقا Signal ئىشلەتكۈچىلىرى مۇشۇ ئىسىم بىلەن سىزنى ئىزدەپ ئالاقە قىلالايدۇ ھەمدە تېلېفون نومۇرىڭىزنى بىلىش ھاجەتسىز.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">ئىشلەتكۈچى ئىسمى Signal دىكى تاللاشچان ئىقتىدار. ئەگەر ئىشلەتكۈچى ئاتى قۇرۇشنى تاللىسىڭىز، باشقا Signal ئىشلەتكۈچىلىرى مۇشۇ ئىسىم بىلەن سىزنى ئىزدەپ ئالاقە قىلالايدۇ ھەمدە تېلېفون نومۇرىڭىزنى بىلىش ھاجەتسىز.</string> -->
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d ئالاقەداش Signal ئىشلىتىۋاتىدۇ!</item>
     <item quantity="other">%d ئالاقەداش Signal ئىشلىتىۋاتىدۇ!</item>

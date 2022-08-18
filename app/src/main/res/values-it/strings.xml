@@ -1681,7 +1681,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">I nomi utente non possono iniziare con un numero.</string>
   <string name="UsernameEditFragment_username_is_invalid">Il nome utente non è valido.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">I nomi utente devono contenere da %1$d a %2$d caratteri.</string>
-  <string name="UsernameEditFragment_usernames_on_signal_are_optional">I nomi utente su Signal sono facoltativi. Se scegli di creare un nome utente, gli altri utenti di Signal potranno trovarti con questo nome utente e contattarti senza conoscere il tuo numero di telefono.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">I nomi utente su Signal sono facoltativi. Se scegli di creare un nome utente, gli altri utenti di Signal potranno trovarti con questo nome utente e contattarti senza conoscere il tuo numero di telefono.</string> -->
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d contatto è su Signal!</item>
     <item quantity="many">%d contatti sono su Signal!</item>
@@ -3989,7 +3989,7 @@
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">Le mie storie</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <string name="StoriesLandingFragment__add_a_story">Aggiungi una storia</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">Aggiungi una storia</string> -->
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">Non ci sono aggiornamenti recenti da mostrare al momento. Tocca + per aggiungere alla tua storia.</string>
   <!--Context menu option to hide a story-->
@@ -4097,13 +4097,13 @@
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Elimina</string>
   <!--Story settings page title-->
-  <string name="StorySettingsFragment__story_settings">Impostazioni storia</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">Impostazioni storia</string> -->
   <!--Story settings private stories heading-->
-  <string name="StorySettingsFragment__private_stories">Storie private</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">Storie private</string> -->
   <!--Note at bottom of story settings regarding who can see private stories.-->
-  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Le storie private possono essere viste solo dalle persone che aggiungi. Solo tu puoi vedere il nome della storia.</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Le storie private possono essere viste solo dalle persone che aggiungi. Solo tu puoi vedere il nome della storia.</string> -->
   <!--Option label for creating a new private story-->
-  <string name="StorySettingsFragment__new_private_story">Nuova storia privata</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">Nuova storia privata</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">La mia storia</string>
   <!--Section heading for story visibility-->

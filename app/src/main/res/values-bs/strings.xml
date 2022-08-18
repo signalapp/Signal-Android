@@ -1681,7 +1681,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Korisničko ime ne može početi brojem.</string>
   <string name="UsernameEditFragment_username_is_invalid">Korisničko ime nije valjano.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Korisničko ime mora sadržavati najmanje %1$d, a najviše %2$d znakova.</string>
-  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Korisničko ime na Signalu nije obavezno. Ukoliko se odlučite na kreiranje korisničkog imena, drugi korisnici Signala moći će Vas pronaći i kontaktirati putem tog korisničkog imena, bez potrebe da znaju Vaš telefonski broj.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Korisničko ime na Signalu nije obavezno. Ukoliko se odlučite na kreiranje korisničkog imena, drugi korisnici Signala moći će Vas pronaći i kontaktirati putem tog korisničkog imena, bez potrebe da znaju Vaš telefonski broj.</string> -->
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d kontakt je na Signalu!</item>
     <item quantity="few">%d kontakta su na Signalu!</item>
@@ -3994,7 +3994,7 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">Moje priče</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <string name="StoriesLandingFragment__add_a_story">Ispričaj priču</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">Ispričaj priču</string> -->
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">Nema nedavnih novina za prikaz u ovom trenutku. Pritisnite + da dodate sadržaj u svoju priču.</string>
   <!--Context menu option to hide a story-->
@@ -4102,13 +4102,13 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Izbriši</string>
   <!--Story settings page title-->
-  <string name="StorySettingsFragment__story_settings">Podešavanja priče</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">Podešavanja priče</string> -->
   <!--Story settings private stories heading-->
-  <string name="StorySettingsFragment__private_stories">Privatne priče</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">Privatne priče</string> -->
   <!--Note at bottom of story settings regarding who can see private stories.-->
-  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Privatne priče mogu vidjeti samo osobe kojima ih dodijelite. Samo Vi možete vidjeti naziv priče.</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Privatne priče mogu vidjeti samo osobe kojima ih dodijelite. Samo Vi možete vidjeti naziv priče.</string> -->
   <!--Option label for creating a new private story-->
-  <string name="StorySettingsFragment__new_private_story">Nova privatna priča</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">Nova privatna priča</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Moja priča</string>
   <!--Section heading for story visibility-->

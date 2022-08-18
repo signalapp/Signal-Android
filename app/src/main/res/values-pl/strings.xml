@@ -1746,7 +1746,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Nazwy użytkowników nie mogą zaczynać się od cyfry.</string>
   <string name="UsernameEditFragment_username_is_invalid">Nazwa użytkownika jest niepoprawna.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Nazwy użytkowników muszą mieć długość od %1$d do %2$d znaków.</string>
-  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Nazwy użytkowników w Signal są opcjonalne. Jeśli postanowisz dodać nazwę użytkownika, inni użytkownicy Signal będą mogli Cię po niej znaleźć i skontaktować się z Tobą, nie znając Twojego numeru.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Nazwy użytkowników w Signal są opcjonalne. Jeśli postanowisz dodać nazwę użytkownika, inni użytkownicy Signal będą mogli Cię po niej znaleźć i skontaktować się z Tobą, nie znając Twojego numeru.</string> -->
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%dkontakt jest w Signal!</item>
     <item quantity="few">%d kontakty są w Signal!</item>
@@ -4085,7 +4085,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">Moje historie</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <string name="StoriesLandingFragment__add_a_story">Dodaj historię</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">Dodaj historię</string> -->
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">W tej chwili nie ma nic do pokazania. Stuknij +, aby dodać historię.</string>
   <!--Context menu option to hide a story-->
@@ -4196,13 +4196,13 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Usuń</string>
   <!--Story settings page title-->
-  <string name="StorySettingsFragment__story_settings">Ustawienia historii</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">Ustawienia historii</string> -->
   <!--Story settings private stories heading-->
-  <string name="StorySettingsFragment__private_stories">Prywatne historie</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">Prywatne historie</string> -->
   <!--Note at bottom of story settings regarding who can see private stories.-->
-  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Prywatne historie mogą być przeglądane wyłącznie przez osoby, które dodasz. Tylko Ty widzisz nazwę historii.</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Prywatne historie mogą być przeglądane wyłącznie przez osoby, które dodasz. Tylko Ty widzisz nazwę historii.</string> -->
   <!--Option label for creating a new private story-->
-  <string name="StorySettingsFragment__new_private_story">Nowa, prywatna historia</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">Nowa, prywatna historia</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Moja historia</string>
   <!--Section heading for story visibility-->

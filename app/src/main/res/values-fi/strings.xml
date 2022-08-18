@@ -1602,7 +1602,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Käyttäjätunnus ei voi alkaa numerolla.</string>
   <string name="UsernameEditFragment_username_is_invalid">Käyttäjätunnus on virheellinen.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Käyttäjätunnuksen on oltava %1$d–%2$d merkkiä pitkä.</string>
-  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Käyttäjätunnukset ovat valinnaisia Signalissa. Jos päätät luoda käyttäjätunnuksen, muut Signal-käyttäjät voivat löytää sinut käyttäjätunnuksen perusteella ilman puhelinnumeroasi.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Käyttäjätunnukset ovat valinnaisia Signalissa. Jos päätät luoda käyttäjätunnuksen, muut Signal-käyttäjät voivat löytää sinut käyttäjätunnuksen perusteella ilman puhelinnumeroasi.</string> -->
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">Signalissa on %d kontakti!</item>
     <item quantity="other">Signalissa on %d yhteystietoasi!</item>
@@ -3879,7 +3879,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">Omat tarinat</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <string name="StoriesLandingFragment__add_a_story">Lisää tarina</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">Lisää tarina</string> -->
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">Uusia näytettäviä päivityksiä ei ole tällä hetkellä. Napsauta + lisätäksesi tarinasi.</string>
   <!--Context menu option to hide a story-->
@@ -3984,13 +3984,13 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Poista</string>
   <!--Story settings page title-->
-  <string name="StorySettingsFragment__story_settings">Tarinan asetukset</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">Tarinan asetukset</string> -->
   <!--Story settings private stories heading-->
-  <string name="StorySettingsFragment__private_stories">Yksityiset tarinat</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">Yksityiset tarinat</string> -->
   <!--Note at bottom of story settings regarding who can see private stories.-->
-  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Yksityisiä tarinoita voivat tarkastella vain niihin lisäämäsi ihmiset. Vain sinä näet tarinan nimen.</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Yksityisiä tarinoita voivat tarkastella vain niihin lisäämäsi ihmiset. Vain sinä näet tarinan nimen.</string> -->
   <!--Option label for creating a new private story-->
-  <string name="StorySettingsFragment__new_private_story">Uusi yksityinen tarina</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">Uusi yksityinen tarina</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Minun tarinani</string>
   <!--Section heading for story visibility-->

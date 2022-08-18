@@ -1526,7 +1526,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Nama pengguna tidak boleh bermula dengan nombor.</string>
   <string name="UsernameEditFragment_username_is_invalid">Nama pengguna tidak sah.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Nama pengguna mesti antara %1$d sehingga %2$d aksara.</string>
-  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Nama pengguna pada Signal adalah pilihan. Sekiranya anda memilih untuk mencipta nama pengguna, pengguna Signal lain akan dapat mencari anda dengan nama pengguna ini dan menghubungi anda tanpa mengetahui nombor telefon anda.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Nama pengguna pada Signal adalah pilihan. Sekiranya anda memilih untuk mencipta nama pengguna, pengguna Signal lain akan dapat mencari anda dengan nama pengguna ini dan menghubungi anda tanpa mengetahui nombor telefon anda.</string> -->
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="other">%d kenalan menggunakan Signal!</item>
   </plurals>
@@ -3772,7 +3772,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">Cerita Saya</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <string name="StoriesLandingFragment__add_a_story">Tambah cerita</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">Tambah cerita</string> -->
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">Tiada kemas kini terkini untuk ditunjukkan sekarang. Ketik + untuk menambahkan ke cerita anda.</string>
   <!--Context menu option to hide a story-->
@@ -3874,13 +3874,13 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Padam</string>
   <!--Story settings page title-->
-  <string name="StorySettingsFragment__story_settings">Tetapan cerita</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">Tetapan cerita</string> -->
   <!--Story settings private stories heading-->
-  <string name="StorySettingsFragment__private_stories">Cerita peribadi</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">Cerita peribadi</string> -->
   <!--Note at bottom of story settings regarding who can see private stories.-->
-  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Cerita peribadi hanya boleh ditonton oleh orang anda tambahkan kepada ia. Hanya anda yang boleh melihat nama cerita.</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Cerita peribadi hanya boleh ditonton oleh orang anda tambahkan kepada ia. Hanya anda yang boleh melihat nama cerita.</string> -->
   <!--Option label for creating a new private story-->
-  <string name="StorySettingsFragment__new_private_story">Cerita peribadi baru</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">Cerita peribadi baru</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Cerita Saya</string>
   <!--Section heading for story visibility-->

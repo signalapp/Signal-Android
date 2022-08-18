@@ -1605,7 +1605,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">ಬಳಕೆದಾರ ಹೆಸರುಗಳು ಸಂಖ್ಯೆಯಿಂದ ಪ್ರಾರಂಭವಾಗುವುದಿಲ್ಲ.</string>
   <string name="UsernameEditFragment_username_is_invalid">ಬಳಕೆದಾರ ಹೆಸರು ಅಮಾನ್ಯವಾಗಿದೆ.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">ಬಳಕೆದಾರ ಹೆಸರುಗಳ  %1$d ಮತ್ತು %2$d ಅಕ್ಷರಗಳ ನಡುವೆ ಇರಬೇಕು.</string>
-  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Signal ನಲ್ಲಿನ ಬಳಕೆದಾರ ಹೆಸರು ಐಚ್ಛಿಕವಾಗಿರುತ್ತವೆ. ನೀವು ಬಳಕೆದಾರಹೆಸರನ್ನು ರಚಿಸಲು ಆರಿಸಿದರೆ ಇತರ Signal ಬಳಕೆದಾರರು ಈ ಬಳಕೆದಾರ ಹೆಸರಿನಿಂದ ನಿಮ್ಮನ್ನು ಹುಡುಕಲು ಮತ್ತು ನಿಮ್ಮ ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ತಿಳಿಯದೆ ನಿಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸಲು ಸಾಧ್ಯವಾಗುತ್ತದೆ.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Signal ನಲ್ಲಿನ ಬಳಕೆದಾರ ಹೆಸರು ಐಚ್ಛಿಕವಾಗಿರುತ್ತವೆ. ನೀವು ಬಳಕೆದಾರಹೆಸರನ್ನು ರಚಿಸಲು ಆರಿಸಿದರೆ ಇತರ Signal ಬಳಕೆದಾರರು ಈ ಬಳಕೆದಾರ ಹೆಸರಿನಿಂದ ನಿಮ್ಮನ್ನು ಹುಡುಕಲು ಮತ್ತು ನಿಮ್ಮ ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ತಿಳಿಯದೆ ನಿಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸಲು ಸಾಧ್ಯವಾಗುತ್ತದೆ.</string> -->
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d ಸಂಪರ್ಕಗಳು Signal ನಲ್ಲಿವೆ!</item>
     <item quantity="other">%d ಸಂಪರ್ಕಗಳು Signal ನಲ್ಲಿವೆ!</item>
@@ -3882,7 +3882,7 @@
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">ನನ್ನ ಸ್ಟೋರೀಸ್</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <string name="StoriesLandingFragment__add_a_story">ಸ್ಟೋರಿ ಸೇರಿಸಿ</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">ಸ್ಟೋರಿ ಸೇರಿಸಿ</string> -->
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">ಸದ್ಯಕ್ಕೆ ತೋರಿಸಲು ಯಾವುದೇ ಇತ್ತೀಚಿನ ಅಪ್ಡೇಟ್‌ಗಳಿಲ್ಲ. ನಿಮ್ಮ ಸ್ಟೋರಿಯನ್ನು ಸೇರಿಸಲು + ಟ್ಯಾಪ್ ಮಾಡಿ.</string>
   <!--Context menu option to hide a story-->
@@ -3987,13 +3987,13 @@
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">ಅಳಿಸು</string>
   <!--Story settings page title-->
-  <string name="StorySettingsFragment__story_settings">ಸ್ಟೋರಿ ಸೆಟ್ಟಿಂಗ್‌ಗಳು</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">ಸ್ಟೋರಿ ಸೆಟ್ಟಿಂಗ್‌ಗಳು</string> -->
   <!--Story settings private stories heading-->
-  <string name="StorySettingsFragment__private_stories">ಖಾಸಗಿ ಸ್ಟೋರೀಸ್</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">ಖಾಸಗಿ ಸ್ಟೋರೀಸ್</string> -->
   <!--Note at bottom of story settings regarding who can see private stories.-->
-  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">ಗೌಪ್ಯ ಸ್ಟೋರೀಸ್ ಅನ್ನು ನೀವು ಸೇರಿಸುವ ಜನರು ಮಾತ್ರ ನೋಡಬಹುದು. ಸ್ಟೋರಿ ಹೆಸರನ್ನು ನೀವು ಮಾತ್ರ ನೋಡಬಹುದು.</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">ಗೌಪ್ಯ ಸ್ಟೋರೀಸ್ ಅನ್ನು ನೀವು ಸೇರಿಸುವ ಜನರು ಮಾತ್ರ ನೋಡಬಹುದು. ಸ್ಟೋರಿ ಹೆಸರನ್ನು ನೀವು ಮಾತ್ರ ನೋಡಬಹುದು.</string> -->
   <!--Option label for creating a new private story-->
-  <string name="StorySettingsFragment__new_private_story">ಹೊಸ ಖಾಸಗಿ ಸ್ಟೋರಿ</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">ಹೊಸ ಖಾಸಗಿ ಸ್ಟೋರಿ</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">ನನ್ನ ಸ್ಟೋರಿ</string>
   <!--Section heading for story visibility-->

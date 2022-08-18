@@ -1532,7 +1532,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Колдонуучунун аты сандан башталбайт.</string>
   <string name="UsernameEditFragment_username_is_invalid">Колдонуучунун аты туура эмес.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Колдонуучунун аты %1$d баштап %2$d чейин белгиден турушу керек.</string>
-  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Signal\'да колдонуучунун атын койбой деле койсоңуз болот. Колдонуучунун атын коем десеңиз, Signal\'дагы башка колдонуучулар телефон номериңизди билишпесе да, сизди колдонуучу атыңыз аркылуу таба алышат.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Signal\'да колдонуучунун атын койбой деле койсоңуз болот. Колдонуучунун атын коем десеңиз, Signal\'дагы башка колдонуучулар телефон номериңизди билишпесе да, сизди колдонуучу атыңыз аркылуу таба алышат.</string> -->
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="other">Signal\'да %dбайланышыңыз бар!</item>
   </plurals>
@@ -3778,7 +3778,7 @@
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">Менин окуяларым</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <string name="StoriesLandingFragment__add_a_story">Окуя кошуу</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">Окуя кошуу</string> -->
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">Учурда көрсөтүлө турган акыркы жаңыртуулар жок. Окуяңызга кошуу үчүн + баскычын басыңыз.</string>
   <!--Context menu option to hide a story-->
@@ -3880,13 +3880,13 @@
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Өчүрүү</string>
   <!--Story settings page title-->
-  <string name="StorySettingsFragment__story_settings">Окуя орнотуулары</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">Окуя орнотуулары</string> -->
   <!--Story settings private stories heading-->
-  <string name="StorySettingsFragment__private_stories">Жеке окуялар</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">Жеке окуялар</string> -->
   <!--Note at bottom of story settings regarding who can see private stories.-->
-  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Жеке окуяларды сиз тандаган адамдар гана көрө алышат. Окуянын атын сиз гана көрө аласыз.</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Жеке окуяларды сиз тандаган адамдар гана көрө алышат. Окуянын атын сиз гана көрө аласыз.</string> -->
   <!--Option label for creating a new private story-->
-  <string name="StorySettingsFragment__new_private_story">Жаңы жеке окуя</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">Жаңы жеке окуя</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Менин окуям</string>
   <!--Section heading for story visibility-->

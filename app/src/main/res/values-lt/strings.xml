@@ -1754,7 +1754,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Naudotojo vardai negali prasidėti skaitmenimi.</string>
   <string name="UsernameEditFragment_username_is_invalid">Naudotojo vardas yra neteisingas.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Naudotojo varduose privalo būti nuo %1$d iki %2$d simbolių.</string>
-  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Naudotojo vardai Signal programėlėje yra nebūtini. Jei pasirinksite susikurti naudotojo vardą, kiti Signal naudotojai galės jus rasti pagal tą naudotojo vardą ir susisiekti su jumis, nežinant jūsų telefono numerio.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Naudotojo vardai Signal programėlėje yra nebūtini. Jei pasirinksite susikurti naudotojo vardą, kiti Signal naudotojai galės jus rasti pagal tą naudotojo vardą ir susisiekti su jumis, nežinant jūsų telefono numerio.</string> -->
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d adresatas naudoja Signal!</item>
     <item quantity="few">%d adresatai naudoja Signal!</item>
@@ -4093,7 +4093,7 @@
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">Mano istorijos</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <string name="StoriesLandingFragment__add_a_story">Pridėti istoriją</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">Pridėti istoriją</string> -->
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">Nėra jokių paskiausių atnaujinimų, kuriuos rodyti. Bakstelėkite „+“ norėdami pridėti į savo istoriją.</string>
   <!--Context menu option to hide a story-->
@@ -4204,13 +4204,13 @@
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Ištrinti</string>
   <!--Story settings page title-->
-  <string name="StorySettingsFragment__story_settings">Istorijos nustatymai</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">Istorijos nustatymai</string> -->
   <!--Story settings private stories heading-->
-  <string name="StorySettingsFragment__private_stories">Privačios istorijos</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">Privačios istorijos</string> -->
   <!--Note at bottom of story settings regarding who can see private stories.-->
-  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Privačias istorijas gali peržiūrėti tik žmonės, kuriuos pridėsite į istoriją. Istorijos pavadinimą galite matyti tik jūs.</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Privačias istorijas gali peržiūrėti tik žmonės, kuriuos pridėsite į istoriją. Istorijos pavadinimą galite matyti tik jūs.</string> -->
   <!--Option label for creating a new private story-->
-  <string name="StorySettingsFragment__new_private_story">Nauja privati istorija</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">Nauja privati istorija</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Mano istorija</string>
   <!--Section heading for story visibility-->

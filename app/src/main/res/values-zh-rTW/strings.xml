@@ -1531,7 +1531,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">使用者名稱不可以以數字開頭。</string>
   <string name="UsernameEditFragment_username_is_invalid">使用者名稱無效。</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">使用者名稱長度必須介乎 %1$d 和 %2$d個字元。</string>
-  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Signal上的使用者名稱是可選的。 如果你選擇建立使用者名稱，則其他Signal使用者可以透過該用使用者名找到你，並在不知道你的電話號碼的情況下與你聯絡。</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Signal上的使用者名稱是可選的。 如果你選擇建立使用者名稱，則其他Signal使用者可以透過該用使用者名找到你，並在不知道你的電話號碼的情況下與你聯絡。</string> -->
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="other">有%d個聯絡人使用Signal</item>
   </plurals>
@@ -3777,7 +3777,7 @@
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">我的限時動態</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <string name="StoriesLandingFragment__add_a_story">新增一個限時動態</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">新增一個限時動態</string> -->
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">目前沒有可顯示的近況更新。輕觸 + 以新增至你的限時動態。</string>
   <!--Context menu option to hide a story-->
@@ -3879,13 +3879,13 @@
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">刪除</string>
   <!--Story settings page title-->
-  <string name="StorySettingsFragment__story_settings">限時動態設定</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">限時動態設定</string> -->
   <!--Story settings private stories heading-->
-  <string name="StorySettingsFragment__private_stories">個人限時動態</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">個人限時動態</string> -->
   <!--Note at bottom of story settings regarding who can see private stories.-->
-  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">私人限時動態只能由你加入的人能看。 只有你可以看到限時動態名稱。</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">私人限時動態只能由你加入的人能看。 只有你可以看到限時動態名稱。</string> -->
   <!--Option label for creating a new private story-->
-  <string name="StorySettingsFragment__new_private_story">新增個人限時動態</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">新增個人限時動態</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">我的限時動態</string>
   <!--Section heading for story visibility-->

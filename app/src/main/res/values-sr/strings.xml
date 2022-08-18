@@ -1679,7 +1679,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Корисничко име не може започети бројем.</string>
   <string name="UsernameEditFragment_username_is_invalid">Корисничко име је неважеће.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Корисничко име мора садржати између %1$d и %2$d карактера.</string>
-  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Корисничка имена на Signal-у нису обавезна. Ако додате ваше корисничко име, други корисници Signal-а ће моћи да вас по њему пронађу и контактирају, без да знају ваш број телефона.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Корисничка имена на Signal-у нису обавезна. Ако додате ваше корисничко име, други корисници Signal-а ће моћи да вас по њему пронађу и контактирају, без да знају ваш број телефона.</string> -->
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d особа је на Сигналу!</item>
     <item quantity="few">%d особе су на Сигналу!</item>
@@ -3989,7 +3989,7 @@
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">Моје приче</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <string name="StoriesLandingFragment__add_a_story">Додај причу</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">Додај причу</string> -->
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">Тренутно нема недавних ажурирања за приказ. Стисните + да додате својој причи.</string>
   <!--Context menu option to hide a story-->
@@ -4097,13 +4097,13 @@
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Избриши</string>
   <!--Story settings page title-->
-  <string name="StorySettingsFragment__story_settings">Подешавања приче</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">Подешавања приче</string> -->
   <!--Story settings private stories heading-->
-  <string name="StorySettingsFragment__private_stories">Привате приче</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">Привате приче</string> -->
   <!--Note at bottom of story settings regarding who can see private stories.-->
-  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Приватне приче могу да виде само људи које додате. Само ви можете да видите назив приче.</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Приватне приче могу да виде само људи које додате. Само ви можете да видите назив приче.</string> -->
   <!--Option label for creating a new private story-->
-  <string name="StorySettingsFragment__new_private_story">Нова приватна приче</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">Нова приватна приче</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Моја прича</string>
   <!--Section heading for story visibility-->

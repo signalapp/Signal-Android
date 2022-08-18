@@ -1602,7 +1602,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Els noms d\'usuari no poden començar amb un número.</string>
   <string name="UsernameEditFragment_username_is_invalid">El nom d\'usuari no és vàlid.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Els noms d\'usuari han de tenir entre %1$d i %2$d caràcters.</string>
-  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Els noms d’usuari a Signal són opcionals. Si trieu crear un nom d’usuari, altres usuaris del Signal us podran trobar per aquest nom i contactar-vos sense saber el vostre número de telèfon.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Els noms d’usuari a Signal són opcionals. Si trieu crear un nom d’usuari, altres usuaris del Signal us podran trobar per aquest nom i contactar-vos sense saber el vostre número de telèfon.</string> -->
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d contacte és al Signal!</item>
     <item quantity="other">%dcontactes són al Signal!</item>
@@ -3879,7 +3879,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">Les meves històries</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <string name="StoriesLandingFragment__add_a_story">Afegiu-hi una història</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">Afegiu-hi una història</string> -->
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">No hi ha actualitzacions recents per mostrar ara mateix. Toqueu + per afegir coses a la història.</string>
   <!--Context menu option to hide a story-->
@@ -3984,13 +3984,13 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Suprimits</string>
   <!--Story settings page title-->
-  <string name="StorySettingsFragment__story_settings">Configuració de la història</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">Configuració de la història</string> -->
   <!--Story settings private stories heading-->
-  <string name="StorySettingsFragment__private_stories">Històries privades</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">Històries privades</string> -->
   <!--Note at bottom of story settings regarding who can see private stories.-->
-  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Les històries privades només les poden veure les persones que hi afegiu. Només vós podeu veure el nom de la història.</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Les històries privades només les poden veure les persones que hi afegiu. Només vós podeu veure el nom de la història.</string> -->
   <!--Option label for creating a new private story-->
-  <string name="StorySettingsFragment__new_private_story">Història privada nova</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">Història privada nova</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">La meva història</string>
   <!--Section heading for story visibility-->

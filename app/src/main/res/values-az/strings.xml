@@ -1608,7 +1608,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">İstifadəçi adı nömrə ilə başlaya bilməz.</string>
   <string name="UsernameEditFragment_username_is_invalid">İstifadəçi adı etibarsızdır.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">İstifadəçi adları %1$d ilə %2$d simvol aralığında olmalıdır.</string>
-  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Signal-dakı istifadəçi adları ixtiyaridir. Əgər bir istifadəçi adı yaratmağı seçsəniz, digər Signal istifadəçiləri bu istifadəçi adı ilə sizi tapa biləcək və telefon nömrənizi bilmədən sizinlə əlaqə saxlaya biləcək.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Signal-dakı istifadəçi adları ixtiyaridir. Əgər bir istifadəçi adı yaratmağı seçsəniz, digər Signal istifadəçiləri bu istifadəçi adı ilə sizi tapa biləcək və telefon nömrənizi bilmədən sizinlə əlaqə saxlaya biləcək.</string> -->
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d əlaqə Signal-dadır!</item>
     <item quantity="other">%d əlaqə Signal-dadır!</item>
@@ -3885,7 +3885,7 @@
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">Hekayələrim</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <string name="StoriesLandingFragment__add_a_story">Bir hekayə əlavə et</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">Bir hekayə əlavə et</string> -->
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">Hal-hazırda göstəriləcək heç bir yeniləmə yoxdur. Hekayənizə əlavə etmək üçün + nişanına toxunun.</string>
   <!--Context menu option to hide a story-->
@@ -3990,13 +3990,13 @@
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Sil</string>
   <!--Story settings page title-->
-  <string name="StorySettingsFragment__story_settings">Hekayə tənzimləmələri</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">Hekayə tənzimləmələri</string> -->
   <!--Story settings private stories heading-->
-  <string name="StorySettingsFragment__private_stories">Özəl hekayələr</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">Özəl hekayələr</string> -->
   <!--Note at bottom of story settings regarding who can see private stories.-->
-  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Özəl hekayələrə yalnız onlara əlavə etdiyiniz şəxslər baxa bilər. Hekayə adını yalnız siz görə bilərsiniz.</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Özəl hekayələrə yalnız onlara əlavə etdiyiniz şəxslər baxa bilər. Hekayə adını yalnız siz görə bilərsiniz.</string> -->
   <!--Option label for creating a new private story-->
-  <string name="StorySettingsFragment__new_private_story">Yeni özəl hekayə</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">Yeni özəl hekayə</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Hekayəm</string>
   <!--Section heading for story visibility-->

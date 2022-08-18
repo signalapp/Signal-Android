@@ -1681,7 +1681,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">El alias no puede comenzar por un número.</string>
   <string name="UsernameEditFragment_username_is_invalid">Alias no válido.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">El alias debe contener entre %1$d y %2$d caracteres.</string>
-  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Los alias de Signal (o nombre de usuari@) son opcionales. Si decides crear un alias, otras personas podrán encontrarte en Signal por ese nombre y ponerse en contacto contigo sin conocer tu número de teléfono.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Los alias de Signal (o nombre de usuari@) son opcionales. Si decides crear un alias, otras personas podrán encontrarte en Signal por ese nombre y ponerse en contacto contigo sin conocer tu número de teléfono.</string> -->
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">¡%d de tus amistades usan Signal!</item>
     <item quantity="many">¡%d de tus amistades usan Signal!</item>
@@ -3989,7 +3989,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">Mis historias</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <string name="StoriesLandingFragment__add_a_story">Añade una historia</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">Añade una historia</string> -->
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">No hay actualizaciones recientes que mostrar. Toca sobre «+» para añadir tu historia.</string>
   <!--Context menu option to hide a story-->
@@ -4097,13 +4097,13 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Eliminar</string>
   <!--Story settings page title-->
-  <string name="StorySettingsFragment__story_settings">Ajustes de historias</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">Ajustes de historias</string> -->
   <!--Story settings private stories heading-->
-  <string name="StorySettingsFragment__private_stories">Historias privadas</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">Historias privadas</string> -->
   <!--Note at bottom of story settings regarding who can see private stories.-->
-  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Las historias privadas solo son visibles por las personas que has añadido. Solo tú puedes ver el título de la historia.</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Las historias privadas solo son visibles por las personas que has añadido. Solo tú puedes ver el título de la historia.</string> -->
   <!--Option label for creating a new private story-->
-  <string name="StorySettingsFragment__new_private_story">Nueva historia privada</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">Nueva historia privada</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Mi historia</string>
   <!--Section heading for story visibility-->

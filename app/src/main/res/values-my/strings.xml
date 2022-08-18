@@ -1529,7 +1529,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">အသုံးပြုသူအမည်များသည်ည် နံပါတ်နှင့် စတင်၍ မရပါ။</string>
   <string name="UsernameEditFragment_username_is_invalid">အသုံးပြုသူအမည် မမှန်ကန်ပါ</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">အသုံးပြုသူအမည်များသည် %1$d နှင့် %2$d ကြား အက္ခရာလုံး အရေတွက်ရှိရပါမည် ။</string>
-  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Signal ပေါ်တွင် အသုံးပြုသူအမည်များသည် မဖြစ်မနေ သတ်မှတ်ရမည်မဟုတ်ပါ။ သင်မှ​ အသုံးပြုသူအမည်ကို ဖန်တီးရန်ရွေးချယ်ပါက အခြား Signal အသုံးပြုသူများသည် သင့်ကို သင်၏ဖုန်းနံပါတ်မသိဘဲ သင်၏ အသုံးပြုသူအမည်သုံး၍ သင့်ကို ရှာဖွေနိုင်ပါသည်။</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Signal ပေါ်တွင် အသုံးပြုသူအမည်များသည် မဖြစ်မနေ သတ်မှတ်ရမည်မဟုတ်ပါ။ သင်မှ​ အသုံးပြုသူအမည်ကို ဖန်တီးရန်ရွေးချယ်ပါက အခြား Signal အသုံးပြုသူများသည် သင့်ကို သင်၏ဖုန်းနံပါတ်မသိဘဲ သင်၏ အသုံးပြုသူအမည်သုံး၍ သင့်ကို ရှာဖွေနိုင်ပါသည်။</string> -->
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="other">အဆက်အသွယ် %d ဦးသည် Signal ပေါ်ရှိပါသည်!</item>
   </plurals>
@@ -3776,7 +3776,7 @@
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">ကျွန်ုပ်၏ စတိုရီများ</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <string name="StoriesLandingFragment__add_a_story">စတိုရီ ပေါင်းထည့်ရန်</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">စတိုရီ ပေါင်းထည့်ရန်</string> -->
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">ယခု ပြသရန် လတ်တလော အပ်ဒိတ်များ မရှိပါ။ သင့်စတိုရီတွင် ပေါင်းထည့်ရန် + ကို နှိပ်ပါ။</string>
   <!--Context menu option to hide a story-->
@@ -3878,13 +3878,13 @@
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">ဖျက်မယ်</string>
   <!--Story settings page title-->
-  <string name="StorySettingsFragment__story_settings">စတိုရီ ဆက်တင်</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">စတိုရီ ဆက်တင်</string> -->
   <!--Story settings private stories heading-->
-  <string name="StorySettingsFragment__private_stories">သီးသန့် စတိုရီများ</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">သီးသန့် စတိုရီများ</string> -->
   <!--Note at bottom of story settings regarding who can see private stories.-->
-  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">သီးသန့် စတိုရီများကို သင် ပေါင်းထည့်ထားသူများသာ မြင်ရပါမည်။ စတိုရီအမည်ကို သင်တစ်ဦးတည်းသာ မြင်ရပါမည်။</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">သီးသန့် စတိုရီများကို သင် ပေါင်းထည့်ထားသူများသာ မြင်ရပါမည်။ စတိုရီအမည်ကို သင်တစ်ဦးတည်းသာ မြင်ရပါမည်။</string> -->
   <!--Option label for creating a new private story-->
-  <string name="StorySettingsFragment__new_private_story">သီးသန့် စတိုရီ အသစ်</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">သီးသန့် စတိုရီ အသစ်</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">ကျွန်ုပ်၏ စတိုရီ</string>
   <!--Section heading for story visibility-->

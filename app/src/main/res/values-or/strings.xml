@@ -1369,7 +1369,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">ଉପଭୋକ୍ତା ନାମ ସଂଖ୍ୟାରେ ଆରମ୍ଭ ହେଇପାରିବନାହିଁ</string>
   <string name="UsernameEditFragment_username_is_invalid">ଉପଭୋକ୍ତା ନାମ ଅବୈଧ ଅଟେ</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">ଉପଭୋକ୍ତା ନାମ %1$dରୁ %2$d ଲମ୍ଭା ହେଇଥିବା ଆବଶ୍ୟକ।</string>
-  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Signal ରେ ଉପଭୋକ୍ତା ନାମ ବୈକଲ୍ପିକ ଅଟେ। ଯଦି ଆପଣ ଏକ ଉପଭୋକ୍ତା ନାମ ବନାନ୍ତି, ଅନ୍ୟ Signal ଉପଭୋକ୍ତାମାନେ ଆପଣଙ୍କୁ ଏହା ଦ୍ୱାରା ଖୋଜିବାରେ ସକ୍ଷମ ହେବେ ଏବଂ ଆପଣଙ୍କ ନମ୍ବର ନ\'ଜାଣି ଆପଣଙ୍କ ସହ ଯୋଗାଯୋଗ କରିପାରିବେ।</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Signal ରେ ଉପଭୋକ୍ତା ନାମ ବୈକଲ୍ପିକ ଅଟେ। ଯଦି ଆପଣ ଏକ ଉପଭୋକ୍ତା ନାମ ବନାନ୍ତି, ଅନ୍ୟ Signal ଉପଭୋକ୍ତାମାନେ ଆପଣଙ୍କୁ ଏହା ଦ୍ୱାରା ଖୋଜିବାରେ ସକ୍ଷମ ହେବେ ଏବଂ ଆପଣଙ୍କ ନମ୍ବର ନ\'ଜାଣି ଆପଣଙ୍କ ସହ ଯୋଗାଯୋଗ କରିପାରିବେ।</string> -->
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%dଜଣେ ସମ୍ପର୍କ Signal ରେ ଅଛନ୍ତି!</item>
     <item quantity="other">%d ଜଣ ସମ୍ପର୍କ Signal ରେ ଅଛନ୍ତି!</item>

@@ -1602,7 +1602,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Brukernavn kan ikke begynne med et tall.</string>
   <string name="UsernameEditFragment_username_is_invalid">Brukernavnet er ugyldig.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Brukernavn må være mellom %1$d og %2$d tegn.</string>
-  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Brukernavn på Signal er valgfritt. Dersom du velger å opprette et brukernavn, vil andre Signal-brukere kunne finne deg på dette brukernavnet og kontakte deg uten å kunne telefonnummeret ditt.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Brukernavn på Signal er valgfritt. Dersom du velger å opprette et brukernavn, vil andre Signal-brukere kunne finne deg på dette brukernavnet og kontakte deg uten å kunne telefonnummeret ditt.</string> -->
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d kontakt er på Signal!</item>
     <item quantity="other">%d kontakter er på Signal! </item>
@@ -3881,7 +3881,7 @@ Dobbeltsjekk at det nye nummeret ditt kan motta både SMS og anrop før du forts
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">Mine stories</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <string name="StoriesLandingFragment__add_a_story">Legg til en story</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">Legg til en story</string> -->
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">Ingen nylige oppdateringer å vise. Trykk på + for å legge til en ny story.</string>
   <!--Context menu option to hide a story-->
@@ -3986,13 +3986,13 @@ Dobbeltsjekk at det nye nummeret ditt kan motta både SMS og anrop før du forts
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Slett</string>
   <!--Story settings page title-->
-  <string name="StorySettingsFragment__story_settings">Innstillinger for story</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">Innstillinger for story</string> -->
   <!--Story settings private stories heading-->
-  <string name="StorySettingsFragment__private_stories">Private storyer</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">Private storyer</string> -->
   <!--Note at bottom of story settings regarding who can see private stories.-->
-  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Kun personene du velger ut kan se den private storyen din. Navnet på storyen vises bare for deg.</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Kun personene du velger ut kan se den private storyen din. Navnet på storyen vises bare for deg.</string> -->
   <!--Option label for creating a new private story-->
-  <string name="StorySettingsFragment__new_private_story">Ny privat story</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">Ny privat story</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Min story</string>
   <!--Section heading for story visibility-->

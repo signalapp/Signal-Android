@@ -1602,7 +1602,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">વપરાશકર્તાનામ સંખ્યા સાથે શરૂ થઈ શકતા નથી.</string>
   <string name="UsernameEditFragment_username_is_invalid">વપરાશકર્તા નામ અમાન્ય છે.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">વપરાશકર્તાનામો %1$d અને %2$d અક્ષરોની વચ્ચે હોવા જોઈએ.</string>
-  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Signal પરના વપરાશકર્તાનામો વૈકલ્પિક છે. જો તમે વપરાશકર્તાનામ બનાવવાનું પસંદ કરો છો, તો અન્ય Signal ઉપયોગકર્તાઓ તમને આ વપરાશકર્તાનામ દ્વારા શોધી શકશે અને તમારો ફોન નંબર જાણ્યા વગર તમારો સંપર્ક કરી શકશે.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Signal પરના વપરાશકર્તાનામો વૈકલ્પિક છે. જો તમે વપરાશકર્તાનામ બનાવવાનું પસંદ કરો છો, તો અન્ય Signal ઉપયોગકર્તાઓ તમને આ વપરાશકર્તાનામ દ્વારા શોધી શકશે અને તમારો ફોન નંબર જાણ્યા વગર તમારો સંપર્ક કરી શકશે.</string> -->
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%dસંપર્ક Signal પર છે!</item>
     <item quantity="other">%d સંપર્કો Signal પર છે!</item>
@@ -3879,7 +3879,7 @@
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">મારી સ્ટોરી</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <string name="StoriesLandingFragment__add_a_story">સ્ટોરી ઉમેરો</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">સ્ટોરી ઉમેરો</string> -->
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">હાલમાં દર્શાવી શકાય તેવા કોઈ તાજેતરનાં અપડેટ્સ નથી. તમારી સ્ટોરી પર ઉમેરવા માટે + ટૅપ કરો.</string>
   <!--Context menu option to hide a story-->
@@ -3984,13 +3984,13 @@
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">કાઢી નાખો </string>
   <!--Story settings page title-->
-  <string name="StorySettingsFragment__story_settings">સ્ટોરી સેટિંગ્સ</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">સ્ટોરી સેટિંગ્સ</string> -->
   <!--Story settings private stories heading-->
-  <string name="StorySettingsFragment__private_stories">ખાનગી સ્ટોરી</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">ખાનગી સ્ટોરી</string> -->
   <!--Note at bottom of story settings regarding who can see private stories.-->
-  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">ખાનગી સ્ટોરી એ જ લોકો જોઈ શકે છે જેમને તમે ઉમેરો છો. ફક્ત તમે જ સ્ટોરીનું નામ જોઈ શકો છો.</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">ખાનગી સ્ટોરી એ જ લોકો જોઈ શકે છે જેમને તમે ઉમેરો છો. ફક્ત તમે જ સ્ટોરીનું નામ જોઈ શકો છો.</string> -->
   <!--Option label for creating a new private story-->
-  <string name="StorySettingsFragment__new_private_story">નવી ખાનગી સ્ટોરી</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">નવી ખાનગી સ્ટોરી</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">મારી સ્ટોરી</string>
   <!--Section heading for story visibility-->

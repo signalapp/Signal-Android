@@ -1529,7 +1529,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Tên người dùng không thể bắt đầu bằng một số.</string>
   <string name="UsernameEditFragment_username_is_invalid">Tên người dùng không hợp lệ.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Tên người dùng phải nằm trong khoảng từ %1$d đến %2$d kí tự.</string>
-  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Tên người dùng trên Signal là không bắt buộc. Nếu bạn chọn tạo tên người dùng, những người dùng Signal khác có thể tìm thấy và liên lạc với bạn bằng tên người dùng mà không cần biết số điện thoại của bạn.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Tên người dùng trên Signal là không bắt buộc. Nếu bạn chọn tạo tên người dùng, những người dùng Signal khác có thể tìm thấy và liên lạc với bạn bằng tên người dùng mà không cần biết số điện thoại của bạn.</string> -->
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="other">%d liên hệ của bạn đang sử dụng Signal!</item>
   </plurals>
@@ -3765,7 +3765,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">Các Story của tôi</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <string name="StoriesLandingFragment__add_a_story">Thêm một story</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">Thêm một story</string> -->
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">Không có thông tin cập nhật gần đây để hiển thị vào lúc này. Nhấn nút + để thêm vào story của bạn.</string>
   <!--Context menu option to hide a story-->
@@ -3867,13 +3867,13 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Xóa</string>
   <!--Story settings page title-->
-  <string name="StorySettingsFragment__story_settings">Cài đặt story</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">Cài đặt story</string> -->
   <!--Story settings private stories heading-->
-  <string name="StorySettingsFragment__private_stories">Story riêng tư</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">Story riêng tư</string> -->
   <!--Note at bottom of story settings regarding who can see private stories.-->
-  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Các story riêng tư chỉ có thể được xem bởi những người bạn đã thêm vào. Chỉ bạn mới có thể xem tên của story.</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Các story riêng tư chỉ có thể được xem bởi những người bạn đã thêm vào. Chỉ bạn mới có thể xem tên của story.</string> -->
   <!--Option label for creating a new private story-->
-  <string name="StorySettingsFragment__new_private_story">Story riêng tư mới</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">Story riêng tư mới</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Story của tôi</string>
   <!--Section heading for story visibility-->

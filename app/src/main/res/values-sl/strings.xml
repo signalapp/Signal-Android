@@ -1745,7 +1745,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Uporabniška imena se ne smejo začeti s števikami.</string>
   <string name="UsernameEditFragment_username_is_invalid">Uporabniško ime je neveljavno.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Uporabniška imena morajo vsebovati od %1$d in%2$d znakov.</string>
-  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Uporabniška imena v aplikaciji Signal so izbirna. Če si boste ustvarili uporabniško ime, vas bodo lahko drugi_ge uporabniki_ce Signala našli_le po njem in stopili_le v stik z vami tudi brez poznavanja vaše telefonske številke.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Uporabniška imena v aplikaciji Signal so izbirna. Če si boste ustvarili uporabniško ime, vas bodo lahko drugi_ge uporabniki_ce Signala našli_le po njem in stopili_le v stik z vami tudi brez poznavanja vaše telefonske številke.</string> -->
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d stik je na Signalu!</item>
     <item quantity="two">%d stika sta na Signalu!</item>
@@ -4084,7 +4084,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">Moje zgodbe</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <string name="StoriesLandingFragment__add_a_story">Dodaj zgodbo</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">Dodaj zgodbo</string> -->
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">Trenutno ni novih posodobitev. Tapnite + in dodajte svojo zgodbo.</string>
   <!--Context menu option to hide a story-->
@@ -4195,13 +4195,13 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Izbriši</string>
   <!--Story settings page title-->
-  <string name="StorySettingsFragment__story_settings">Nastavitve zgodbe</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">Nastavitve zgodbe</string> -->
   <!--Story settings private stories heading-->
-  <string name="StorySettingsFragment__private_stories">Zasebne zgodbe</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">Zasebne zgodbe</string> -->
   <!--Note at bottom of story settings regarding who can see private stories.-->
-  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Zasebne zgodbe lahko vidijo le ljudje, ki ste jim jih dodali. Samo vi lahko vidite ime zgodbe.</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Zasebne zgodbe lahko vidijo le ljudje, ki ste jim jih dodali. Samo vi lahko vidite ime zgodbe.</string> -->
   <!--Option label for creating a new private story-->
-  <string name="StorySettingsFragment__new_private_story">Nova zasebna zgodba</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">Nova zasebna zgodba</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Moja zgodba</string>
   <!--Section heading for story visibility-->

@@ -1612,7 +1612,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">వినియోగదారు పేర్లు సంఖ్యతో ప్రారంభం కావు.</string>
   <string name="UsernameEditFragment_username_is_invalid">మీ యూసర్ నేమ్ సరైనది కాదు.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">వినియోగదారు పేర్లు %1$dమరియు %2$dఅక్షరాల మధ్య ఉండాలి.</string>
-  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Signal లోని వినియోగదారు పేర్లు ఐచ్ఛికం. మీరు వినియోగదారు పేరును సృష్టించాలని ఎంచుకుంటే ఇతర Signal వినియోగదారులు ఈ వినియోగదారు పేరు ద్వారా మిమ్మల్ని కనుగొని, మీ ఫోన్ నంబర్ తెలియకుండానే మిమ్మల్ని సంప్రదించగలరు.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Signal లోని వినియోగదారు పేర్లు ఐచ్ఛికం. మీరు వినియోగదారు పేరును సృష్టించాలని ఎంచుకుంటే ఇతర Signal వినియోగదారులు ఈ వినియోగదారు పేరు ద్వారా మిమ్మల్ని కనుగొని, మీ ఫోన్ నంబర్ తెలియకుండానే మిమ్మల్ని సంప్రదించగలరు.</string> -->
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d పరిచయం Signal‌లో ఉంది!</item>
     <item quantity="other">%d పరిచయాలు Signal‌లో ఉన్నాయి!</item>
@@ -3890,7 +3890,7 @@
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">నా స్టోరీలు</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <string name="StoriesLandingFragment__add_a_story">ఒక స్టోరీని జోడించండి</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">ఒక స్టోరీని జోడించండి</string> -->
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">ఇప్పుడు చూపించడానికి ఎలాంటి ఇటీవల అప్‌డేట్‌లు లేవు. మీ స్టోరీని జోడించడానికి +ని తట్టండి.</string>
   <!--Context menu option to hide a story-->
@@ -3995,13 +3995,13 @@
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">తొలగించండి</string>
   <!--Story settings page title-->
-  <string name="StorySettingsFragment__story_settings">స్టోరీ సెట్టింగ్‌లు</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">స్టోరీ సెట్టింగ్‌లు</string> -->
   <!--Story settings private stories heading-->
-  <string name="StorySettingsFragment__private_stories">ప్రైవేట్ స్టోరీలు</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">ప్రైవేట్ స్టోరీలు</string> -->
   <!--Note at bottom of story settings regarding who can see private stories.-->
-  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">ప్రైవేట్ స్టోరీలను వాటికి మీరు జోడించిన వ్యక్తులు మాత్రమే చూడవచ్చు. కేవలం మీరు స్టోరీ పేరును చూడవచ్చు.</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">ప్రైవేట్ స్టోరీలను వాటికి మీరు జోడించిన వ్యక్తులు మాత్రమే చూడవచ్చు. కేవలం మీరు స్టోరీ పేరును చూడవచ్చు.</string> -->
   <!--Option label for creating a new private story-->
-  <string name="StorySettingsFragment__new_private_story">కొత్త ప్రైవేట్ స్టోరీ</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">కొత్త ప్రైవేట్ స్టోరీ</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">నా స్టోరీ</string>
   <!--Section heading for story visibility-->

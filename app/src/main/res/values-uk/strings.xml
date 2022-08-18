@@ -1754,7 +1754,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Псевдонім не може починатися з цифри.</string>
   <string name="UsernameEditFragment_username_is_invalid">Псевдонім невірний.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Псевдонім складається з символів кількістю від %1$d до %2$d.</string>
-  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Псевдоніми в Signal необов\'язкові. Якщо ви вирішите створити псевдонім, інші користувачі Signal зможуть знайти вас під цим псевдонімом та зв\'язатися з вами, не знаючи ваш номер телефону.</string>
+  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Псевдоніми в Signal необов\'язкові. Якщо ви вирішите створити псевдонім, інші користувачі Signal зможуть знайти вас під цим псевдонімом та зв\'язатися з вами, не знаючи ваш номер телефону.</string> -->
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d контакт у Signal!</item>
     <item quantity="few">%d контактів у Signal!</item>
@@ -4095,7 +4095,7 @@
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">Мої історії</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <string name="StoriesLandingFragment__add_a_story">Додати історію</string>
+  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">Додати історію</string> -->
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">Немає нещодавніх оновлень. Клацніть + для додання своєї історії.</string>
   <!--Context menu option to hide a story-->
@@ -4206,13 +4206,13 @@
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Видалити</string>
   <!--Story settings page title-->
-  <string name="StorySettingsFragment__story_settings">Налаштування історії</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">Налаштування історії</string> -->
   <!--Story settings private stories heading-->
-  <string name="StorySettingsFragment__private_stories">Приватні історії</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">Приватні історії</string> -->
   <!--Note at bottom of story settings regarding who can see private stories.-->
-  <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Тільки обрані вами користувачі можуть переглядати приватні сторіз. Назву сторіз бачите тільки ви.</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Тільки обрані вами користувачі можуть переглядати приватні сторіз. Назву сторіз бачите тільки ви.</string> -->
   <!--Option label for creating a new private story-->
-  <string name="StorySettingsFragment__new_private_story">Нова приватна історія</string>
+  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">Нова приватна історія</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Моя історія</string>
   <!--Section heading for story visibility-->
