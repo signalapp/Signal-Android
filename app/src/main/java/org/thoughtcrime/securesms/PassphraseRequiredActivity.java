@@ -238,7 +238,8 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
   }
 
   private Intent getCreateProfileNameIntent() {
-    return getRoutedIntent(EditProfileActivity.class, getIntent());
+    Intent intent = EditProfileActivity.getIntentForUserProfile(this);
+    return getRoutedIntent(intent, getIntent());
   }
 
   private Intent getOldDeviceTransferIntent() {
@@ -256,6 +257,11 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
 
   private Intent getChangeNumberLockIntent() {
     return ChangeNumberLockActivity.createIntent(this);
+  }
+
+  private Intent getRoutedIntent(Intent destination, @Nullable Intent nextIntent) {
+    if (nextIntent != null)   destination.putExtra("next_intent", nextIntent);
+    return destination;
   }
 
   private Intent getRoutedIntent(Class<?> destination, @Nullable Intent nextIntent) {
