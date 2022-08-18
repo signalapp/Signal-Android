@@ -10,8 +10,10 @@ import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 
 import org.whispersystems.signalservice.api.push.ACI;
+import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.util.OptionalUtil;
+import org.whispersystems.signalservice.api.util.Preconditions;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Envelope;
 import org.whispersystems.signalservice.internal.serialize.protos.SignalServiceEnvelopeProto;
@@ -60,7 +62,6 @@ public class SignalServiceEnvelope {
                                Optional<SignalServiceAddress> sender,
                                int senderDevice,
                                long timestamp,
-                               byte[] legacyMessage,
                                byte[] content,
                                long serverReceivedTimestamp,
                                long serverDeliveredTimestamp,
@@ -78,18 +79,15 @@ public class SignalServiceEnvelope {
 
     if (sender.isPresent()) {
       builder.setSourceUuid(sender.get().getServiceId().toString());
-
-      if (sender.get().getNumber().isPresent()) {
-        builder.setSourceE164(sender.get().getNumber().get());
-      }
     }
 
     if (uuid != null) {
       builder.setServerGuid(uuid);
     }
 
-    if (legacyMessage != null) builder.setLegacyMessage(ByteString.copyFrom(legacyMessage));
-    if (content != null)       builder.setContent(ByteString.copyFrom(content));
+    if (content != null) {
+      builder.setContent(ByteString.copyFrom(content));
+    }
 
     this.envelope                 = builder.build();
     this.serverDeliveredTimestamp = serverDeliveredTimestamp;
@@ -97,7 +95,6 @@ public class SignalServiceEnvelope {
 
   public SignalServiceEnvelope(int type,
                                long timestamp,
-                               byte[] legacyMessage,
                                byte[] content,
                                long serverReceivedTimestamp,
                                long serverDeliveredTimestamp,
@@ -116,17 +113,12 @@ public class SignalServiceEnvelope {
       builder.setServerGuid(uuid);
     }
 
-    if (legacyMessage != null) builder.setLegacyMessage(ByteString.copyFrom(legacyMessage));
-    if (content != null)       builder.setContent(ByteString.copyFrom(content));
+    if (content != null) {
+      builder.setContent(ByteString.copyFrom(content));
+    }
 
     this.envelope                 = builder.build();
     this.serverDeliveredTimestamp = serverDeliveredTimestamp;
-  }
-
-  public SignalServiceEnvelope withoutE164() {
-    return deserialize(serializeToProto().clearSourceE164()
-                                         .build()
-                                         .toByteArray());
   }
 
   public String getServerGuid() {
@@ -145,13 +137,6 @@ public class SignalServiceEnvelope {
   }
 
   /**
-   * @return The envelope's sender as an E164 number.
-   */
-  public Optional<String> getSourceE164() {
-    return Optional.ofNullable(envelope.getSourceE164());
-  }
-
-  /**
    * @return The envelope's sender as a UUID.
    */
   public Optional<String> getSourceUuid() {
@@ -159,15 +144,11 @@ public class SignalServiceEnvelope {
   }
 
   public String getSourceIdentifier() {
-    return OptionalUtil.or(getSourceUuid(), getSourceE164()).orElse(null);
+    return getSourceUuid().get().toString();
   }
 
   public boolean hasSourceDevice() {
     return envelope.hasSourceDevice();
-  }
-
-  public boolean hasSourceE164() {
-    return envelope.hasSourceE164();
   }
 
   /**
@@ -181,7 +162,7 @@ public class SignalServiceEnvelope {
    * @return The envelope's sender as a SignalServiceAddress.
    */
   public SignalServiceAddress getSourceAddress() {
-    return new SignalServiceAddress(ACI.parseOrNull(envelope.getSourceUuid()), envelope.getSourceE164());
+    return new SignalServiceAddress(ACI.parseOrNull(envelope.getSourceUuid()));
   }
 
   /**
@@ -210,20 +191,6 @@ public class SignalServiceEnvelope {
    */
   public long getServerDeliveredTimestamp() {
     return serverDeliveredTimestamp;
-  }
-
-  /**
-   * @return Whether the envelope contains a SignalServiceDataMessage
-   */
-  public boolean hasLegacyMessage() {
-    return envelope.hasLegacyMessage();
-  }
-
-  /**
-   * @return The envelope's containing SignalService message.
-   */
-  public byte[] getLegacyMessage() {
-    return envelope.getLegacyMessage().toByteArray();
   }
 
   /**
@@ -294,14 +261,6 @@ public class SignalServiceEnvelope {
       builder.setSourceUuid(getSourceUuid().get());
     }
 
-    if (getSourceE164().isPresent()) {
-      builder.setSourceE164(getSourceE164().get());
-    }
-
-    if (hasLegacyMessage()) {
-      builder.setLegacyMessage(ByteString.copyFrom(getLegacyMessage()));
-    }
-
     if (hasContent()) {
       builder.setContent(ByteString.copyFrom(getContent()));
     }
@@ -311,7 +270,7 @@ public class SignalServiceEnvelope {
     }
 
     if (hasDestinationUuid()) {
-      builder.setDestinationUuid(getDestinationUuid().toString());
+      builder.setDestinationUuid(getDestinationUuid());
     }
 
     return builder;
@@ -329,11 +288,14 @@ public class SignalServiceEnvelope {
       e.printStackTrace();
     }
 
+    Preconditions.checkNotNull(proto);
+
+    ServiceId sourceServiceId = proto.hasSourceUuid() ? ServiceId.parseOrNull(proto.getSourceUuid()) : null;
+
     return new SignalServiceEnvelope(proto.getType(),
-                                     SignalServiceAddress.fromRaw(proto.getSourceUuid(), proto.getSourceE164()),
+                                     sourceServiceId != null ? Optional.of(new SignalServiceAddress(sourceServiceId)) : Optional.empty(),
                                      proto.getDeviceId(),
                                      proto.getTimestamp(),
-                                     proto.hasLegacyMessage() ? proto.getLegacyMessage().toByteArray() : null,
                                      proto.hasContent() ? proto.getContent().toByteArray() : null,
                                      proto.getServerReceivedTimestamp(),
                                      proto.getServerDeliveredTimestamp(),

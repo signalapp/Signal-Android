@@ -81,11 +81,6 @@ public class IncomingMessageProcessor {
      *         one was created. Otherwise null.
      */
     public @Nullable String processEnvelope(@NonNull SignalServiceEnvelope envelope) {
-      if (FeatureFlags.phoneNumberPrivacy() && envelope.hasSourceE164()) {
-        Log.w(TAG, "PNP enabled -- mimicking PNP by dropping the E164 from the envelope.");
-        envelope = envelope.withoutE164();
-      }
-
       if (envelope.hasSourceUuid()) {
         Recipient.externalPush(envelope.getSourceAddress());
       }

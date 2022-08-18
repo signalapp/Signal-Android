@@ -23,18 +23,19 @@ message Envelope {
   }
 
   optional Type   type            = 1;
-  optional string sourceE164      = 2;
+  reserved      /*sourceE164*/      2;
   optional string sourceUuid      = 11;
   optional uint32 sourceDevice    = 7;
   optional string destinationUuid = 13;
-  optional string relay           = 3;
+  reserved      /*relay*/           3;
   optional uint64 timestamp       = 5;
-  optional bytes  legacyMessage   = 6; // Contains an encrypted DataMessage
+  reserved      /*legacyMessage*/   6;
   optional bytes  content         = 8; // Contains an encrypted Content
   optional string serverGuid      = 9;
   optional uint64 serverTimestamp = 10;
   optional bool   urgent          = 14 [default = true];
-  // NEXT ID: 15
+  reserved      /*updatedPni*/      15; // Not used presently, may be used in the future
+  // NEXT ID: 16
 }
 
 message Content {

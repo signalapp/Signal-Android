@@ -58,9 +58,7 @@ public class PushDatabase extends Database {
       ContentValues values = new ContentValues();
       values.put(TYPE, envelope.getType());
       values.put(SOURCE_UUID, envelope.getSourceUuid().orElse(null));
-      values.put(SOURCE_E164, envelope.getSourceE164().orElse(null));
       values.put(DEVICE_ID, envelope.getSourceDevice());
-      values.put(LEGACY_MSG, envelope.hasLegacyMessage() ? Base64.encodeBytes(envelope.getLegacyMessage()) : "");
       values.put(CONTENT, envelope.hasContent() ? Base64.encodeBytes(envelope.getContent()) : "");
       values.put(TIMESTAMP, envelope.getTimestamp());
       values.put(SERVER_RECEIVED_TIMESTAMP, envelope.getServerReceivedTimestamp());
@@ -89,7 +87,6 @@ public class PushDatabase extends Database {
                                          SignalServiceAddress.fromRaw(uuid, e164),
                                          cursor.getInt(cursor.getColumnIndexOrThrow(DEVICE_ID)),
                                          cursor.getLong(cursor.getColumnIndexOrThrow(TIMESTAMP)),
-                                         Util.isEmpty(legacyMessage) ? null : Base64.decode(legacyMessage),
                                          Util.isEmpty(content) ? null : Base64.decode(content),
                                          cursor.getLong(cursor.getColumnIndexOrThrow(SERVER_RECEIVED_TIMESTAMP)),
                                          cursor.getLong(cursor.getColumnIndexOrThrow(SERVER_DELIVERED_TIMESTAMP)),
@@ -127,17 +124,13 @@ public class PushDatabase extends Database {
                               LEGACY_MSG + " = ? AND " +
                               CONTENT    + " = ? AND " +
                               TIMESTAMP  + " = ? AND " +
-                              "(" +
-                                "(" + SOURCE_E164 + " NOT NULL AND " + SOURCE_E164 + " = ?) OR " +
-                                "(" + SOURCE_UUID + " NOT NULL AND " + SOURCE_UUID + " = ?)" +
-                              ")";
+                              "(" + SOURCE_UUID + " NOT NULL AND " + SOURCE_UUID + " = ?)";
+
     String[]        args     = new String[] { String.valueOf(envelope.getType()),
                                               String.valueOf(envelope.getSourceDevice()),
-                                              envelope.hasLegacyMessage() ? Base64.encodeBytes(envelope.getLegacyMessage()) : "",
                                               envelope.hasContent() ? Base64.encodeBytes(envelope.getContent()) : "",
                                               String.valueOf(envelope.getTimestamp()),
-                                              String.valueOf(envelope.getSourceUuid().orElse(null)),
-                                              String.valueOf(envelope.getSourceE164().orElse(null)) };
+                                              String.valueOf(envelope.getSourceUuid().orElse(null)) };
 
 
     try (Cursor cursor = database.query(TABLE_NAME, null, query, args, null, null, null)) {
@@ -165,7 +158,6 @@ public class PushDatabase extends Database {
         String sourceUuid               = cursor.getString(cursor.getColumnIndexOrThrow(SOURCE_UUID));
         String sourceE164               = cursor.getString(cursor.getColumnIndexOrThrow(SOURCE_E164));
         int    deviceId                 = cursor.getInt(cursor.getColumnIndexOrThrow(DEVICE_ID));
-        String legacyMessage            = cursor.getString(cursor.getColumnIndexOrThrow(LEGACY_MSG));
         String content                  = cursor.getString(cursor.getColumnIndexOrThrow(CONTENT));
         long   timestamp                = cursor.getLong(cursor.getColumnIndexOrThrow(TIMESTAMP));
         long   serverReceivedTimestamp  = cursor.getLong(cursor.getColumnIndexOrThrow(SERVER_RECEIVED_TIMESTAMP));
@@ -176,7 +168,6 @@ public class PushDatabase extends Database {
                                          SignalServiceAddress.fromRaw(sourceUuid, sourceE164),
                                          deviceId,
                                          timestamp,
-                                         legacyMessage != null ? Base64.decode(legacyMessage) : null,
                                          content != null ? Base64.decode(content) : null,
                                          serverReceivedTimestamp,
                                          serverDeliveredTimestamp,

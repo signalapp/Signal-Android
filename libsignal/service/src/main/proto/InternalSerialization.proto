@@ -24,9 +24,9 @@ message SignalServiceContentProto {
 message SignalServiceEnvelopeProto {
   optional int32  type                     = 1;
   optional string sourceUuid               = 2;
-  optional string sourceE164               = 3;
+  reserved      /*sourceE164*/               3;
   optional int32  deviceId                 = 4;
-  optional bytes  legacyMessage            = 5;
+  reserved      /*legacyMessage*/            5;
   optional bytes  content                  = 6;
   optional int64  timestamp                = 7;
   optional int64  serverReceivedTimestamp  = 8;

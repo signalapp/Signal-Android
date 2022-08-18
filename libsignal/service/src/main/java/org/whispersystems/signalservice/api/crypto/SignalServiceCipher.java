@@ -143,18 +143,7 @@ public class SignalServiceCipher {
       SelfSendException, UnsupportedDataMessageException, InvalidMessageStructureException
   {
     try {
-      if (envelope.hasLegacyMessage()) {
-        Plaintext                       plaintext   = decrypt(envelope, envelope.getLegacyMessage());
-        SignalServiceProtos.DataMessage dataMessage = SignalServiceProtos.DataMessage.parseFrom(plaintext.getData());
-
-        SignalServiceContentProto contentProto = SignalServiceContentProto.newBuilder()
-                                                                          .setLocalAddress(SignalServiceAddressProtobufSerializer.toProtobuf(localAddress))
-                                                                          .setMetadata(SignalServiceMetadataProtobufSerializer.toProtobuf(plaintext.metadata))
-                                                                          .setLegacyDataMessage(dataMessage)
-                                                                          .build();
-
-        return SignalServiceContent.createFromProto(contentProto);
-      } else if (envelope.hasContent()) {
+      if (envelope.hasContent()) {
         Plaintext                   plaintext = decrypt(envelope, envelope.getContent());
         SignalServiceProtos.Content content   = SignalServiceProtos.Content.parseFrom(plaintext.getData());
 
