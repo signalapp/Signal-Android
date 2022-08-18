@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.contacts.paged
 
 import android.database.Cursor
 import org.signal.paging.PagedDataSource
+import org.thoughtcrime.securesms.database.model.DistributionListPrivacyMode
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.keyvalue.StorySend
 import java.util.concurrent.TimeUnit
@@ -157,7 +158,9 @@ class ContactSearchPagedDataSource(
         endIndex = endIndex,
         cursorRowToData = {
           val recipient = contactSearchPagedDataSourceRepository.getRecipientFromDistributionListCursor(it)
-          ContactSearchData.Story(recipient, contactSearchPagedDataSourceRepository.getDistributionListMembershipCount(recipient))
+          val count = contactSearchPagedDataSourceRepository.getDistributionListMembershipCount(recipient)
+          val privacyMode = contactSearchPagedDataSourceRepository.getPrivacyModeFromDistributionListCursor(it)
+          ContactSearchData.Story(recipient, count, privacyMode)
         },
         extraData = getFilteredGroupStories(section, query)
       )
@@ -201,7 +204,7 @@ class ContactSearchPagedDataSource(
         endIndex = endIndex,
         cursorRowToData = {
           if (section.returnAsGroupStories) {
-            ContactSearchData.Story(contactSearchPagedDataSourceRepository.getRecipientFromGroupCursor(cursor), 0)
+            ContactSearchData.Story(contactSearchPagedDataSourceRepository.getRecipientFromGroupCursor(cursor), 0, DistributionListPrivacyMode.ALL)
           } else {
             ContactSearchData.KnownRecipient(contactSearchPagedDataSourceRepository.getRecipientFromGroupCursor(cursor))
           }

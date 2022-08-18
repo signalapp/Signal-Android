@@ -19,7 +19,6 @@ import androidx.preference.PreferenceManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
-import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.configure
@@ -29,6 +28,7 @@ import org.thoughtcrime.securesms.registration.RegistrationNavigationActivity
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.ViewUtil
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 
 class AdvancedPrivacySettingsFragment : DSLSettingsFragment(R.string.preferences__advanced) {
 
@@ -75,7 +75,7 @@ class AdvancedPrivacySettingsFragment : DSLSettingsFragment(R.string.preferences
     unregisterNetworkReceiver()
   }
 
-  override fun bindAdapter(adapter: DSLSettingsAdapter) {
+  override fun bindAdapter(adapter: MappingAdapter) {
     val repository = AdvancedPrivacySettingsRepository(requireContext())
     val preferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
     val factory = AdvancedPrivacySettingsViewModel.Factory(preferences, repository)

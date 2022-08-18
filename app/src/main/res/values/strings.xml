@@ -2597,6 +2597,8 @@
     <!-- Preference label for making one-time donations to Signal -->
     <string name="preferences__one_time_donation">One-time Donation</string>
     <string name="preferences__privacy">Privacy</string>
+    <!-- Preference label for stories -->
+    <string name="preferences__stories">Stories</string>
     <string name="preferences__mms_user_agent">MMS User Agent</string>
     <string name="preferences__advanced_mms_access_point_names">Manual MMS settings</string>
     <string name="preferences__mmsc_url">MMSC URL</string>
@@ -3922,6 +3924,8 @@
     <string name="PrivacySettingsFragment__signal_message_and_calls">Signal messages and calls, always relay calls, and sealed sender</string>
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">Default timer for new chats</string>
     <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Set a default disappearing message timer for all new chats started by you.</string>
+    <!-- Summary for stories preference to launch into story privacy settings -->
+    <string name="PrivacySettingsFragment__manage_your_stories">Manage your stories and who can view them</string>
 
     <!-- AdvancedPrivacySettingsFragment -->
     <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string>
@@ -4610,6 +4614,8 @@
     <string name="ConversationListTabs__stories">Stories</string>
     <!-- String for counts above 99 in conversation list tabs -->
     <string name="ConversationListTabs__99p">99+</string>
+    <!-- Menu item on stories landing page -->
+    <string name="StoriesLandingFragment__story_privacy">Story privacy</string>
     <!-- Title for "My Stories" row item in Stories landing page -->
     <string name="StoriesLandingFragment__my_stories">My Stories</string>
     <!-- Subtitle for "My Stories" row item when user has not added stories -->
@@ -4717,14 +4723,6 @@
     <string name="StoryGroupReplyItem__copy">Copy</string>
     <!-- Context menu item to delete a story response -->
     <string name="StoryGroupReplyItem__delete">Delete</string>
-    <!-- Story settings page title -->
-    <string name="StorySettingsFragment__story_settings">Story settings</string>
-    <!-- Story settings private stories heading -->
-    <string name="StorySettingsFragment__private_stories">Private stories</string>
-    <!-- Note at bottom of story settings regarding who can see private stories. -->
-    <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Private stories can only be viewed by the people you add to them. Only you can see the story name.</string>
-    <!-- Option label for creating a new private story -->
-    <string name="StorySettingsFragment__new_private_story">New private story</string>
     <!-- Page title for My Story options -->
     <string name="MyStorySettingsFragment__my_story">My Story</string>
     <!-- Section heading for story visibility -->
@@ -4979,6 +4977,11 @@
         <item quantity="one">Group Story · %1$d viewer</item>
         <item quantity="other">Group Story · %1$d viewers</item>
     </plurals>
+    <!-- Label under name for my story -->
+    <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
+        <item quantity="one">%1$s · %2$d viewer</item>
+        <item quantity="other">%1$s · %2$d viewers</item>
+    </plurals>
     <!-- Label under name for My Story when first sending to my story -->
     <string name="ContactSearchItems__tap_to_choose_your_viewers">Tap to choose your viewers</string>
     <!-- Label for context menu item to open story settings -->
@@ -5092,6 +5095,35 @@
     <string name="StoryInfoBottomSheetDialogFragment__sent_from">Sent from</string>
     <!-- Story Info context menu label -->
     <string name="StoryInfoBottomSheetDialogFragment__info">Info</string>
+
+    <!-- StoriesPrivacySettingsFragment -->
+    <!-- Explanation about how stories are deleted and managed -->
+    <string name="StoriesPrivacySettingsFragment__stories_automatically_disappear">Stories automatically disappear after 24 hours. Choose who can view your story or create new stories with specific viewers or groups.</string>
+    <!-- Preference title to turn off stories -->
+    <string name="StoriesPrivacySettingsFragment__turn_off_stories">Turn off stories</string>
+    <!-- Preference summary to turn off stories -->
+    <string name="StoriesPrivacySettingsFragment__if_you_opt_out">If you opt out of stories you will no longer be able to share or view stories.</string>
+    <!-- Preference title to turn on stories -->
+    <string name="StoriesPrivacySettingsFragment__turn_on_stories">Turn on stories</string>
+    <!-- Preference summary to turn on stories -->
+    <string name="StoriesPrivacySettingsFragment__share_and_view">Share and view stories from others. Stories automatically disappear after 24 hours.</string>
+    <!-- Dialog title to turn off stories -->
+    <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">Turn off stories?</string>
+    <!-- Dialog message to turn off stories -->
+    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to">You will no longer be able to share or view stories. Any stories you have recently sent will still be visible by others until they expire.</string>
+    <!-- Page title when launched from stories landing screen -->
+    <string name="StoriesPrivacySettingsFragment__story_privacy">Story privacy</string>
+
+    <!-- GroupStorySettingsFragment -->
+    <!-- Section header for who can view a group story -->
+    <string name="GroupStorySettingsFragment__who_can_view_this_story">Who can view this story</string>
+    <!-- Explanation of who can view a group story -->
+    <string name="GroupStorySettingsFragment__members_of_the_group_s">Members of the group "%1$s" can view and reply to this story. You can update the membership for this chat in the group.</string>
+    <!-- Preference label for removing this group story -->
+    <string name="GroupStorySettingsFragment__remove_group_story">Remove group story</string>
+
+    <!-- Generic title for overflow menus -->
+    <string name="OverflowMenu__overflow_menu">Overflow menu</string>
 
     <!-- EOF -->
 

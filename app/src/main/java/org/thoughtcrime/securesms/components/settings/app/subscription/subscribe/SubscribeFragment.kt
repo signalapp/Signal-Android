@@ -16,7 +16,6 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.badges.models.BadgePreview
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
-import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
@@ -37,6 +36,7 @@ import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.subscription.Subscription
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.SpanUtil
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.fragments.requireListener
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.visible
@@ -82,7 +82,7 @@ class SubscribeFragment : DSLSettingsFragment(
     viewModel.refreshActiveSubscription()
   }
 
-  override fun bindAdapter(adapter: DSLSettingsAdapter) {
+  override fun bindAdapter(adapter: MappingAdapter) {
     donationPaymentComponent = requireListener()
     viewModel.refresh()
 

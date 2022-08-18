@@ -25,7 +25,6 @@ import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
-import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.configure
@@ -49,6 +48,7 @@ import org.thoughtcrime.securesms.stories.tabs.ConversationListTab
 import org.thoughtcrime.securesms.stories.tabs.ConversationListTabsViewModel
 import org.thoughtcrime.securesms.stories.viewer.StoryViewerActivity
 import org.thoughtcrime.securesms.util.LifecycleDisposable
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.fragments.requireListener
 import org.thoughtcrime.securesms.util.visible
 import java.util.concurrent.TimeUnit
@@ -75,7 +75,7 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
 
   private val tabsViewModel: ConversationListTabsViewModel by viewModels(ownerProducer = { requireActivity() })
 
-  private lateinit var adapter: DSLSettingsAdapter
+  private lateinit var adapter: MappingAdapter
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -92,7 +92,7 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
     viewModel.isTransitioningToAnotherScreen = false
   }
 
-  override fun bindAdapter(adapter: DSLSettingsAdapter) {
+  override fun bindAdapter(adapter: MappingAdapter) {
     this.adapter = adapter
 
     StoriesLandingItem.register(adapter)

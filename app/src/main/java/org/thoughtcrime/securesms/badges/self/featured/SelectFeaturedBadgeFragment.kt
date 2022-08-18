@@ -13,11 +13,11 @@ import org.thoughtcrime.securesms.badges.Badges.displayBadges
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.badges.models.BadgePreview
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
-import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.Material3OnScrollHelper
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 
 /**
  * Fragment which allows user to select one of their badges to be their "Featured" badge.
@@ -50,7 +50,7 @@ class SelectFeaturedBadgeFragment : DSLSettingsFragment(
     return Material3OnScrollHelper(requireActivity(), scrollShadow)
   }
 
-  override fun bindAdapter(adapter: DSLSettingsAdapter) {
+  override fun bindAdapter(adapter: MappingAdapter) {
     Badge.register(adapter) { badge, isSelected, _ ->
       if (!isSelected) {
         viewModel.setSelectedBadge(badge)

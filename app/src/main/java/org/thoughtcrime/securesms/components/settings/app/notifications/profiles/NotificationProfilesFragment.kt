@@ -8,7 +8,6 @@ import androidx.navigation.fragment.findNavController
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.emoji.EmojiUtil
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
-import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsIcon
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
@@ -20,6 +19,7 @@ import org.thoughtcrime.securesms.components.settings.conversation.preferences.L
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfiles
 import org.thoughtcrime.securesms.util.LifecycleDisposable
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 /**
@@ -48,7 +48,7 @@ class NotificationProfilesFragment : DSLSettingsFragment() {
     toolbar = null
   }
 
-  override fun bindAdapter(adapter: DSLSettingsAdapter) {
+  override fun bindAdapter(adapter: MappingAdapter) {
     NoNotificationProfiles.register(adapter)
     LargeIconClickPreference.register(adapter)
     NotificationProfilePreference.register(adapter)

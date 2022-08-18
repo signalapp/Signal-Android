@@ -47,6 +47,7 @@ class DistributionListDatabase constructor(context: Context?, databaseHelper: Si
     const val RECIPIENT_ID = ListTable.RECIPIENT_ID
     const val DISTRIBUTION_ID = ListTable.DISTRIBUTION_ID
     const val LIST_TABLE_NAME = ListTable.TABLE_NAME
+    const val PRIVACY_MODE = ListTable.PRIVACY_MODE
 
     fun insertInitialDistributionListAtCreationTime(db: net.zetetic.database.sqlcipher.SQLiteDatabase) {
       val recipientId = db.insert(

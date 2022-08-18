@@ -4,10 +4,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
-import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.configure
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 class ChatsSettingsFragment : DSLSettingsFragment(R.string.preferences_chats__chats) {
@@ -19,7 +19,7 @@ class ChatsSettingsFragment : DSLSettingsFragment(R.string.preferences_chats__ch
     viewModel.refresh()
   }
 
-  override fun bindAdapter(adapter: DSLSettingsAdapter) {
+  override fun bindAdapter(adapter: MappingAdapter) {
     val repository = ChatsSettingsRepository()
     val factory = ChatsSettingsViewModel.Factory(repository)
     viewModel = ViewModelProvider(this, factory)[ChatsSettingsViewModel::class.java]

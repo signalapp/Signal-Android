@@ -17,7 +17,6 @@ import org.signal.core.util.BreakIteratorCompat
 import org.signal.core.util.EditTextUtil
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.emoji.EmojiUtil
-import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.EditNotificationProfileViewModel.SaveNotificationProfileResult
 import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.models.NotificationProfileNamePreset
@@ -25,6 +24,7 @@ import org.thoughtcrime.securesms.reactions.any.ReactWithAnyEmojiBottomSheetDial
 import org.thoughtcrime.securesms.util.BottomSheetUtil
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.ViewUtil
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.text.AfterTextChanged
 import org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton
@@ -131,7 +131,7 @@ class EditNotificationProfileFragment : DSLSettingsFragment(layoutId = R.layout.
     this.emojiView = emojiView
   }
 
-  override fun bindAdapter(adapter: DSLSettingsAdapter) {
+  override fun bindAdapter(adapter: MappingAdapter) {
     NotificationProfileNamePreset.register(adapter)
 
     val onClick = { preset: NotificationProfileNamePreset.Model ->

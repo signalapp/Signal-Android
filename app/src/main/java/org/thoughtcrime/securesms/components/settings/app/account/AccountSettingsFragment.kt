@@ -20,7 +20,6 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
-import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.configure
@@ -33,6 +32,7 @@ import org.thoughtcrime.securesms.lock.v2.PinKeyboardType
 import org.thoughtcrime.securesms.pin.RegistrationLockV2Dialog
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.ViewUtil
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 class AccountSettingsFragment : DSLSettingsFragment(R.string.AccountSettingsFragment__account) {
@@ -50,7 +50,7 @@ class AccountSettingsFragment : DSLSettingsFragment(R.string.AccountSettingsFrag
     viewModel.refreshState()
   }
 
-  override fun bindAdapter(adapter: DSLSettingsAdapter) {
+  override fun bindAdapter(adapter: MappingAdapter) {
     viewModel = ViewModelProvider(this)[AccountSettingsViewModel::class.java]
 
     viewModel.state.observe(viewLifecycleOwner) { state ->

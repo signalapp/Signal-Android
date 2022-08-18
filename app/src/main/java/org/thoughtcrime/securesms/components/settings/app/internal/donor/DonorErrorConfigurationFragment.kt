@@ -5,19 +5,19 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import org.signal.donations.StripeDeclineCode
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
-import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.UnexpectedSubscriptionCancellation
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.util.LifecycleDisposable
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 
 class DonorErrorConfigurationFragment : DSLSettingsFragment() {
 
   private val viewModel: DonorErrorConfigurationViewModel by viewModels()
   private val lifecycleDisposable = LifecycleDisposable()
 
-  override fun bindAdapter(adapter: DSLSettingsAdapter) {
+  override fun bindAdapter(adapter: MappingAdapter) {
     lifecycleDisposable += viewModel.state.observeOn(AndroidSchedulers.mainThread()).subscribe { state ->
       adapter.submitList(getConfiguration(state).toMappingModelList())
     }

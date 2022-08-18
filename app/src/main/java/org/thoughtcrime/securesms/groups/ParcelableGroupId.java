@@ -9,7 +9,7 @@ public final class ParcelableGroupId implements Parcelable {
 
   private final GroupId groupId;
 
-  public static Parcelable from(@Nullable GroupId groupId) {
+  public static ParcelableGroupId from(@Nullable GroupId groupId) {
     return new ParcelableGroupId(groupId);
   }
 

@@ -5,12 +5,12 @@ import androidx.annotation.StringRes
 import androidx.fragment.app.viewModels
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
-import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.groups.ParcelableGroupId
 import org.thoughtcrime.securesms.groups.ui.GroupErrors
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 
 class PermissionsSettingsFragment : DSLSettingsFragment(
   titleId = R.string.ConversationSettingsFragment__permissions
@@ -30,7 +30,7 @@ class PermissionsSettingsFragment : DSLSettingsFragment(
     }
   )
 
-  override fun bindAdapter(adapter: DSLSettingsAdapter) {
+  override fun bindAdapter(adapter: MappingAdapter) {
     viewModel.state.observe(viewLifecycleOwner) { state ->
       adapter.submitList(getConfiguration(state).toMappingModelList())
     }

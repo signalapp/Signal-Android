@@ -11,6 +11,7 @@ import org.mockito.kotlin.isNull
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.whenever
 import org.thoughtcrime.securesms.MockCursor
+import org.thoughtcrime.securesms.database.model.DistributionListPrivacyMode
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 
@@ -19,7 +20,7 @@ class ContactSearchPagedDataSourceTest {
 
   private val repository: ContactSearchPagedDataSourceRepository = mock()
   private val cursor: MockCursor = mock()
-  private val groupStoryData = ContactSearchData.Story(Recipient.UNKNOWN, 0)
+  private val groupStoryData = ContactSearchData.Story(Recipient.UNKNOWN, 0, DistributionListPrivacyMode.ALL)
 
   @Before
   fun setUp() {
@@ -27,6 +28,7 @@ class ContactSearchPagedDataSourceTest {
     whenever(repository.getRecipientFromRecipientCursor(cursor)).thenReturn(Recipient.UNKNOWN)
     whenever(repository.getRecipientFromThreadCursor(cursor)).thenReturn(Recipient.UNKNOWN)
     whenever(repository.getRecipientFromDistributionListCursor(cursor)).thenReturn(Recipient.UNKNOWN)
+    whenever(repository.getPrivacyModeFromDistributionListCursor(cursor)).thenReturn(DistributionListPrivacyMode.ALL)
     whenever(repository.getGroupStories()).thenReturn(emptySet())
     whenever(repository.getLatestStorySends(any())).thenReturn(emptyList())
     whenever(cursor.moveToPosition(any())).thenCallRealMethod()

@@ -17,7 +17,6 @@ import org.signal.core.util.concurrent.SimpleTask
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
-import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.configure
@@ -26,6 +25,7 @@ import org.thoughtcrime.securesms.database.model.DonationReceiptRecord
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.util.DateUtils
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import java.io.ByteArrayOutputStream
 import java.util.Locale
 
@@ -42,7 +42,7 @@ class DonationReceiptDetailFragment : DSLSettingsFragment(layoutId = R.layout.do
     }
   )
 
-  override fun bindAdapter(adapter: DSLSettingsAdapter) {
+  override fun bindAdapter(adapter: MappingAdapter) {
     SplashImage.register(adapter)
 
     val sharePngButton: MaterialButton = requireView().findViewById(R.id.share_png)

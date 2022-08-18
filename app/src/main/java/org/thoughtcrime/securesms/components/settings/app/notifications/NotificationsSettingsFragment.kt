@@ -22,7 +22,6 @@ import androidx.preference.PreferenceManager
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
-import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.PreferenceModel
@@ -35,6 +34,7 @@ import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.util.RingtoneUtil
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 private const val MESSAGE_SOUND_SELECT: Int = 1
@@ -70,7 +70,7 @@ class NotificationsSettingsFragment : DSLSettingsFragment(R.string.preferences__
     }
   }
 
-  override fun bindAdapter(adapter: DSLSettingsAdapter) {
+  override fun bindAdapter(adapter: MappingAdapter) {
     adapter.registerFactory(
       LedColorPreference::class.java,
       LayoutFactory(::LedColorPreferenceViewHolder, R.layout.dsl_preference_item)

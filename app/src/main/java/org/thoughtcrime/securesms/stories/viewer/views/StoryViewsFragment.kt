@@ -7,7 +7,6 @@ import androidx.fragment.app.viewModels
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
-import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.components.settings.configure
@@ -15,6 +14,7 @@ import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.stories.viewer.reply.StoryViewsAndRepliesPagerChild
 import org.thoughtcrime.securesms.stories.viewer.reply.StoryViewsAndRepliesPagerParent
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.fragments.findListener
 import org.thoughtcrime.securesms.util.visible
 
@@ -37,7 +37,7 @@ class StoryViewsFragment :
   private val storyId: Long
     get() = requireArguments().getLong(ARG_STORY_ID)
 
-  override fun bindAdapter(adapter: DSLSettingsAdapter) {
+  override fun bindAdapter(adapter: MappingAdapter) {
     StoryViewItem.register(adapter)
 
     val emptyNotice: View = requireView().findViewById(R.id.empty_notice)

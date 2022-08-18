@@ -12,7 +12,6 @@ import org.thoughtcrime.securesms.badges.gifts.ExpiredGiftSheet
 import org.thoughtcrime.securesms.badges.gifts.flow.GiftFlowActivity
 import org.thoughtcrime.securesms.badges.models.BadgePreview
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
-import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsIcon
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
@@ -28,6 +27,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.subscription.Subscription
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.SpanUtil
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 import java.util.Currency
@@ -60,7 +60,7 @@ class ManageDonationsFragment : DSLSettingsFragment(), ExpiredGiftSheet.Callback
     viewModel.refresh()
   }
 
-  override fun bindAdapter(adapter: DSLSettingsAdapter) {
+  override fun bindAdapter(adapter: MappingAdapter) {
     ActiveSubscriptionPreference.register(adapter)
     IndeterminateLoadingCircle.register(adapter)
     BadgePreview.register(adapter)

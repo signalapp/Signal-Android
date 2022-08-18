@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.stories.settings.story
+package org.thoughtcrime.securesms.stories.settings.custom
 
 import android.view.View
 import android.widget.TextView
@@ -15,17 +15,10 @@ import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder
 object PrivateStoryItem {
 
   fun register(mappingAdapter: MappingAdapter) {
-    mappingAdapter.registerFactory(NewModel::class.java, LayoutFactory(::NewViewHolder, R.layout.stories_private_story_new_item))
-    mappingAdapter.registerFactory(AddViewerModel::class.java, LayoutFactory(::AddViewerViewHolder, R.layout.stories_private_story_add_viewer_item))
-    mappingAdapter.registerFactory(RecipientModel::class.java, LayoutFactory(::RecipientViewHolder, R.layout.stories_private_story_recipient_item))
-    mappingAdapter.registerFactory(Model::class.java, LayoutFactory(::ViewHolder, R.layout.stories_private_story_item))
-    mappingAdapter.registerFactory(PartialModel::class.java, LayoutFactory(::PartialViewHolder, R.layout.stories_private_story_item))
-  }
-
-  class NewModel(
-    val onClick: () -> Unit
-  ) : PreferenceModel<NewModel>() {
-    override fun areItemsTheSame(newItem: NewModel): Boolean = true
+    mappingAdapter.registerFactory(AddViewerModel::class.java, LayoutFactory(PrivateStoryItem::AddViewerViewHolder, R.layout.stories_private_story_add_viewer_item))
+    mappingAdapter.registerFactory(RecipientModel::class.java, LayoutFactory(PrivateStoryItem::RecipientViewHolder, R.layout.stories_private_story_recipient_item))
+    mappingAdapter.registerFactory(Model::class.java, LayoutFactory(PrivateStoryItem::ViewHolder, R.layout.stories_private_story_item))
+    mappingAdapter.registerFactory(PartialModel::class.java, LayoutFactory(PrivateStoryItem::PartialViewHolder, R.layout.stories_private_story_item))
   }
 
   class AddViewerModel(
@@ -36,12 +29,14 @@ object PrivateStoryItem {
 
   class RecipientModel(
     val recipient: Recipient,
-    val onClick: (RecipientModel) -> Unit
+    val onClick: ((RecipientModel) -> Unit)? = null
   ) : PreferenceModel<RecipientModel>() {
     override fun areItemsTheSame(newItem: RecipientModel): Boolean = newItem.recipient == recipient
 
     override fun areContentsTheSame(newItem: RecipientModel): Boolean {
-      return newItem.recipient.hasSameContent(recipient) && super.areContentsTheSame(newItem)
+      return newItem.recipient.hasSameContent(recipient) &&
+        (newItem.onClick != null) == (onClick != null) &&
+        super.areContentsTheSame(newItem)
     }
   }
 
@@ -79,7 +74,13 @@ object PrivateStoryItem {
     private val avatar: AvatarImageView = itemView.findViewById(R.id.avatar)
 
     override fun bind(model: RecipientModel) {
-      itemView.setOnClickListener { model.onClick(model) }
+      val onClick = model.onClick
+      if (onClick != null) {
+        itemView.setOnClickListener { onClick(model) }
+      } else {
+        itemView.setOnClickListener(null)
+      }
+
       avatar.setRecipient(model.recipient)
 
       if (model.recipient.isSelf) {
@@ -87,12 +88,6 @@ object PrivateStoryItem {
       } else {
         name.text = model.recipient.getDisplayName(context)
       }
-    }
-  }
-
-  private class NewViewHolder(itemView: View) : MappingViewHolder<NewModel>(itemView) {
-    override fun bind(model: NewModel) {
-      itemView.setOnClickListener { model.onClick() }
     }
   }
 

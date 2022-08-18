@@ -14,7 +14,6 @@ import androidx.fragment.app.viewModels
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
-import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.configure
@@ -22,6 +21,7 @@ import org.thoughtcrime.securesms.database.RecipientDatabase
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.util.ConversationUtil
 import org.thoughtcrime.securesms.util.RingtoneUtil
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 
 private val TAG = Log.tag(CustomNotificationsSettingsFragment::class.java)
 
@@ -48,7 +48,7 @@ class CustomNotificationsSettingsFragment : DSLSettingsFragment(R.string.CustomN
     viewModel.channelConsistencyCheck()
   }
 
-  override fun bindAdapter(adapter: DSLSettingsAdapter) {
+  override fun bindAdapter(adapter: MappingAdapter) {
     messageSoundResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
       handleResult(result, viewModel::setMessageSound)
     }

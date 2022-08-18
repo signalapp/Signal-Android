@@ -15,7 +15,6 @@ import org.signal.ringrtc.CallManager
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
-import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.configure
@@ -42,6 +41,7 @@ import org.thoughtcrime.securesms.payments.DataExportUtil
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.ConversationUtil
 import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import java.util.Optional
 import java.util.concurrent.TimeUnit
@@ -51,7 +51,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
 
   private lateinit var viewModel: InternalSettingsViewModel
 
-  override fun bindAdapter(adapter: DSLSettingsAdapter) {
+  override fun bindAdapter(adapter: MappingAdapter) {
     val repository = InternalSettingsRepository(requireContext())
     val factory = InternalSettingsViewModel.Factory(repository)
     viewModel = ViewModelProvider(this, factory)[InternalSettingsViewModel::class.java]

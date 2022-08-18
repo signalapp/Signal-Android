@@ -27,11 +27,6 @@ class PrivacySettingsViewModel(
       store.update { it.copy(blockedCount = count) }
       refresh()
     }
-
-    repository.getPrivateStories { privateStories ->
-      store.update { it.copy(privateStories = privateStories) }
-      refresh()
-    }
   }
 
   fun setReadReceiptsEnabled(enabled: Boolean) {
@@ -89,11 +84,6 @@ class PrivacySettingsViewModel(
     refresh()
   }
 
-  fun setStoriesEnabled(isStoriesEnabled: Boolean) {
-    SignalStore.storyValues().isFeatureDisabled = !isStoriesEnabled
-    refresh()
-  }
-
   fun refresh() {
     store.update(this::updateState)
   }
@@ -112,14 +102,12 @@ class PrivacySettingsViewModel(
       isObsoletePasswordEnabled = !TextSecurePreferences.isPasswordDisabled(ApplicationDependencies.getApplication()),
       isObsoletePasswordTimeoutEnabled = TextSecurePreferences.isPassphraseTimeoutEnabled(ApplicationDependencies.getApplication()),
       obsoletePasswordTimeout = TextSecurePreferences.getPassphraseTimeoutInterval(ApplicationDependencies.getApplication()),
-      universalExpireTimer = SignalStore.settings().universalExpireTimer,
-      privateStories = emptyList(),
-      isStoriesEnabled = !SignalStore.storyValues().isFeatureDisabled
+      universalExpireTimer = SignalStore.settings().universalExpireTimer
     )
   }
 
   private fun updateState(state: PrivacySettingsState): PrivacySettingsState {
-    return getState().copy(blockedCount = state.blockedCount, privateStories = state.privateStories)
+    return getState().copy(blockedCount = state.blockedCount)
   }
 
   class Factory(

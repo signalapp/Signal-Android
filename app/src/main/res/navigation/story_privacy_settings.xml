@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/story_privacy_settings"
+    app:startDestination="@id/storiesPrivacySettingsFragment">
+
+    <fragment
+        android:id="@+id/storiesPrivacySettingsFragment"
+        android:name="org.thoughtcrime.securesms.stories.settings.story.StoriesPrivacySettingsFragment"
+        android:label="stories_privacy_settings_fragment">
+
+        <argument
+            android:name="title_id"
+            app:argType="integer"
+            app:nullable="false" />
+
+        <action
+            android:id="@+id/action_storyPrivacySettings_to_myStorySettings"
+            app:destination="@id/my_story_settings"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_storyPrivacySettings_to_privateStorySettings"
+            app:destination="@id/private_story_settings"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit">
+
+            <argument
+                android:name="distribution_list_id"
+                app:argType="org.thoughtcrime.securesms.database.model.DistributionListId"
+                app:nullable="false" />
+
+        </action>
+        <action
+            android:id="@+id/action_storyPrivacySettings_to_groupStorySettings"
+            app:destination="@id/groupStorySettingsFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit">
+
+            <argument
+                android:name="group_id"
+                app:argType="org.thoughtcrime.securesms.groups.ParcelableGroupId"
+                app:nullable="false" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/groupStorySettingsFragment"
+        android:name="org.thoughtcrime.securesms.stories.settings.group.GroupStorySettingsFragment"
+        android:label="group_story_settings_fragment">
+
+        <argument
+            android:name="group_id"
+            app:argType="org.thoughtcrime.securesms.groups.ParcelableGroupId"
+            app:nullable="false" />
+
+    </fragment>
+
+    <include app:graph="@navigation/my_story_settings" />
+
+    <include app:graph="@navigation/private_story_settings" />
+</navigation>

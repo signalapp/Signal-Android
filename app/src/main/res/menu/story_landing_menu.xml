@@ -3,6 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/action_settings"
-        android:title="@string/StorySettingsFragment__story_settings"
+        android:title="@string/StoriesLandingFragment__story_privacy"
         app:showAsAction="never" />
 </menu>

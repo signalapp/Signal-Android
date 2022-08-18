@@ -12,7 +12,6 @@ import org.signal.core.util.concurrent.SignalExecutors
 import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
-import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.configure
@@ -27,6 +26,7 @@ import org.thoughtcrime.securesms.subscription.Subscriber
 import org.thoughtcrime.securesms.util.Base64
 import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.Util
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.livedata.Store
 import org.whispersystems.signalservice.api.push.ServiceId
 import java.util.Objects
@@ -45,7 +45,7 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
     }
   )
 
-  override fun bindAdapter(adapter: DSLSettingsAdapter) {
+  override fun bindAdapter(adapter: MappingAdapter) {
     viewModel.state.observe(viewLifecycleOwner) { state ->
       adapter.submitList(getConfiguration(state).toMappingModelList())
     }

@@ -11,6 +11,7 @@ import org.signal.paging.LivePagedData
 import org.signal.paging.PagedData
 import org.signal.paging.PagingConfig
 import org.signal.paging.PagingController
+import org.thoughtcrime.securesms.database.model.DistributionListPrivacyMode
 import org.thoughtcrime.securesms.groups.SelectionLimits
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.livedata.Store
@@ -98,7 +99,7 @@ class ContactSearchViewModel(
       state.copy(
         groupStories = state.groupStories + groupStories.map {
           val recipient = Recipient.resolved(it.recipientId)
-          ContactSearchData.Story(recipient, recipient.participantIds.size)
+          ContactSearchData.Story(recipient, recipient.participantIds.size, DistributionListPrivacyMode.ALL)
         }
       )
     }

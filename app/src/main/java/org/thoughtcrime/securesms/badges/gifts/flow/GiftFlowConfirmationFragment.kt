@@ -18,7 +18,6 @@ import org.thoughtcrime.securesms.components.InputAwareLayout
 import org.thoughtcrime.securesms.components.emoji.EmojiEventListener
 import org.thoughtcrime.securesms.components.emoji.MediaKeyboard
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
-import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationEvent
@@ -36,6 +35,7 @@ import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardPageFragment
 import org.thoughtcrime.securesms.keyboard.emoji.search.EmojiSearchFragment
 import org.thoughtcrime.securesms.util.Debouncer
 import org.thoughtcrime.securesms.util.LifecycleDisposable
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.fragments.requireListener
 
 /**
@@ -75,7 +75,7 @@ class GiftFlowConfirmationFragment :
   private val eventPublisher = PublishSubject.create<TextInput.TextInputEvent>()
   private val debouncer = Debouncer(100L)
 
-  override fun bindAdapter(adapter: DSLSettingsAdapter) {
+  override fun bindAdapter(adapter: MappingAdapter) {
     RecipientPreference.register(adapter)
     GiftRowItem.register(adapter)
 

@@ -7,11 +7,11 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
-import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.fragments.findListener
 import org.thoughtcrime.securesms.util.viewholders.RecipientMappingModel
 import org.thoughtcrime.securesms.util.viewholders.RecipientViewHolder
@@ -38,7 +38,7 @@ class CreateStoryWithViewersFragment : DSLSettingsFragment(
   private val recipientIds: Array<RecipientId>
     get() = CreateStoryWithViewersFragmentArgs.fromBundle(requireArguments()).recipients
 
-  override fun bindAdapter(adapter: DSLSettingsAdapter) {
+  override fun bindAdapter(adapter: MappingAdapter) {
     adapter.registerFactory(RecipientMappingModel.RecipientIdMappingModel::class.java, LayoutFactory({ RecipientViewHolder(it, null) }, R.layout.stories_recipient_item))
     CreateStoryNameFieldItem.register(adapter) {
       viewModel.setLabel(it)

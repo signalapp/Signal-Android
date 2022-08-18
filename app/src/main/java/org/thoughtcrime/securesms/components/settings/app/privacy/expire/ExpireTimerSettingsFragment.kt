@@ -10,7 +10,6 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.RecyclerView
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
-import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.configure
@@ -18,6 +17,7 @@ import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason
 import org.thoughtcrime.securesms.groups.ui.GroupErrors
 import org.thoughtcrime.securesms.util.ExpirationUtil
 import org.thoughtcrime.securesms.util.ViewUtil
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.livedata.ProcessState
 import org.thoughtcrime.securesms.util.livedata.distinctUntilChanged
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
@@ -48,7 +48,7 @@ class ExpireTimerSettingsFragment : DSLSettingsFragment(
     recycler.clipToPadding = false
   }
 
-  override fun bindAdapter(adapter: DSLSettingsAdapter) {
+  override fun bindAdapter(adapter: MappingAdapter) {
     val provider = ViewModelProvider(
       NavHostFragment.findNavController(this).getViewModelStoreOwner(R.id.app_settings_expire_timer),
       ExpireTimerSettingsViewModel.Factory(requireContext(), arguments.toConfig())
