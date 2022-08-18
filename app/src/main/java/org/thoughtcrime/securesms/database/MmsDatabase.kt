@@ -19,7 +19,6 @@ package org.thoughtcrime.securesms.database
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
-import android.text.TextUtils
 import com.annimon.stream.Stream
 import com.google.android.mms.pdu_alt.NotificationInd
 import com.google.android.mms.pdu_alt.PduHeaders
@@ -497,7 +496,7 @@ class MmsDatabase(context: Context, databaseHelper: SQLCipherOpenHelper) : Messa
                 var networkFailures: List<NetworkFailure?>? = LinkedList()
                 var mismatches: List<IdentityKeyMismatch?>? = LinkedList()
                 var quote: QuoteModel? = null
-                if (quoteId > 0 && (!TextUtils.isEmpty(quoteText) || quoteAttachments.isNotEmpty())) {
+                if (quoteId > 0 && (!quoteText.isNullOrEmpty() || quoteAttachments.isNotEmpty())) {
                     quote = QuoteModel(
                         quoteId,
                         fromSerialized(quoteAuthor),
@@ -506,7 +505,7 @@ class MmsDatabase(context: Context, databaseHelper: SQLCipherOpenHelper) : Messa
                         quoteAttachments
                     )
                 }
-                if (!TextUtils.isEmpty(mismatchDocument)) {
+                if (!mismatchDocument.isNullOrEmpty()) {
                     try {
                         mismatches = JsonUtil.fromJson(
                             mismatchDocument,
@@ -516,7 +515,7 @@ class MmsDatabase(context: Context, databaseHelper: SQLCipherOpenHelper) : Messa
                         Log.w(TAG, e)
                     }
                 }
-                if (!TextUtils.isEmpty(networkDocument)) {
+                if (!networkDocument.isNullOrEmpty()) {
                     try {
                         networkFailures =
                             JsonUtil.fromJson(networkDocument, NetworkFailureList::class.java).list
@@ -553,7 +552,7 @@ class MmsDatabase(context: Context, databaseHelper: SQLCipherOpenHelper) : Messa
         attachments: List<DatabaseAttachment>
     ): List<Contact> {
         val serializedContacts = cursor.getString(cursor.getColumnIndexOrThrow(SHARED_CONTACTS))
-        if (TextUtils.isEmpty(serializedContacts)) {
+        if (serializedContacts.isNullOrEmpty()) {
             return emptyList()
         }
         val attachmentIdMap: MutableMap<AttachmentId?, DatabaseAttachment> = HashMap()
@@ -591,7 +590,7 @@ class MmsDatabase(context: Context, databaseHelper: SQLCipherOpenHelper) : Messa
         attachments: List<DatabaseAttachment>
     ): List<LinkPreview> {
         val serializedPreviews = cursor.getString(cursor.getColumnIndexOrThrow(LINK_PREVIEWS))
-        if (TextUtils.isEmpty(serializedPreviews)) {
+        if (serializedPreviews.isNullOrEmpty()) {
             return emptyList()
         }
         val attachmentIdMap: MutableMap<AttachmentId?, DatabaseAttachment> = HashMap()
@@ -898,7 +897,7 @@ class MmsDatabase(context: Context, databaseHelper: SQLCipherOpenHelper) : Messa
             val serializedContacts =
                 getSerializedSharedContacts(insertedAttachments, sharedContacts)
             val serializedPreviews = getSerializedLinkPreviews(insertedAttachments, linkPreviews)
-            if (!TextUtils.isEmpty(serializedContacts)) {
+            if (!serializedContacts.isNullOrEmpty()) {
                 val contactValues = ContentValues()
                 contactValues.put(SHARED_CONTACTS, serializedContacts)
                 val database = databaseHelper.readableDatabase
@@ -912,7 +911,7 @@ class MmsDatabase(context: Context, databaseHelper: SQLCipherOpenHelper) : Messa
                     Log.w(TAG, "Failed to update message with shared contact data.")
                 }
             }
-            if (!TextUtils.isEmpty(serializedPreviews)) {
+            if (!serializedPreviews.isNullOrEmpty()) {
                 val contactValues = ContentValues()
                 contactValues.put(LINK_PREVIEWS, serializedPreviews)
                 val database = databaseHelper.readableDatabase
@@ -1316,11 +1315,11 @@ class MmsDatabase(context: Context, databaseHelper: SQLCipherOpenHelper) : Messa
             }
             var contentLocationBytes: ByteArray? = null
             var transactionIdBytes: ByteArray? = null
-            if (!TextUtils.isEmpty(contentLocation)) contentLocationBytes = toIsoBytes(
-                contentLocation!!
+            if (!contentLocation.isNullOrEmpty()) contentLocationBytes = toIsoBytes(
+                contentLocation
             )
-            if (!TextUtils.isEmpty(transactionId)) transactionIdBytes = toIsoBytes(
-                transactionId!!
+            if (!transactionId.isNullOrEmpty()) transactionIdBytes = toIsoBytes(
+                transactionId
             )
             val slideDeck = SlideDeck(context, MmsNotificationAttachment(status, messageSize))
             return NotificationMmsMessageRecord(
@@ -1402,16 +1401,16 @@ class MmsDatabase(context: Context, databaseHelper: SQLCipherOpenHelper) : Messa
         }
 
         private fun getRecipientFor(serialized: String?): Recipient {
-            val address: Address = if (TextUtils.isEmpty(serialized) || "insert-address-token" == serialized) {
+            val address: Address = if (serialized.isNullOrEmpty() || "insert-address-token" == serialized) {
                 UNKNOWN
             } else {
-                fromSerialized(serialized!!)
+                fromSerialized(serialized)
             }
             return Recipient.from(context, address, true)
         }
 
         private fun getMismatchedIdentities(document: String?): List<IdentityKeyMismatch?>? {
-            if (!TextUtils.isEmpty(document)) {
+            if (!document.isNullOrEmpty()) {
                 try {
                     return JsonUtil.fromJson(document, IdentityKeyMismatchList::class.java).list
                 } catch (e: IOException) {
@@ -1422,7 +1421,7 @@ class MmsDatabase(context: Context, databaseHelper: SQLCipherOpenHelper) : Messa
         }
 
         private fun getFailures(document: String?): List<NetworkFailure?>? {
-            if (!TextUtils.isEmpty(document)) {
+            if (!document.isNullOrEmpty()) {
                 try {
                     return JsonUtil.fromJson(document, NetworkFailureList::class.java).list
                 } catch (ioe: IOException) {
@@ -1442,6 +1441,7 @@ class MmsDatabase(context: Context, databaseHelper: SQLCipherOpenHelper) : Messa
         private fun getQuote(cursor: Cursor): Quote? {
             val quoteId = cursor.getLong(cursor.getColumnIndexOrThrow(QUOTE_ID))
             val quoteAuthor = cursor.getString(cursor.getColumnIndexOrThrow(QUOTE_AUTHOR))
+            if (quoteId == 0L || quoteAuthor.isNullOrBlank()) return null
             val retrievedQuote = get(context).mmsSmsDatabase().getMessageFor(quoteId, quoteAuthor)
             val quoteText = retrievedQuote?.body
             val quoteMissing = retrievedQuote == null
@@ -1450,17 +1450,13 @@ class MmsDatabase(context: Context, databaseHelper: SQLCipherOpenHelper) : Messa
                 Stream.of(attachments).filter { obj: DatabaseAttachment? -> obj!!.isQuote }
                     .toList()
             val quoteDeck = SlideDeck(context, quoteAttachments!!)
-            return if (quoteId > 0 && !TextUtils.isEmpty(quoteAuthor)) {
-                Quote(
-                    quoteId,
-                    fromExternal(context, quoteAuthor),
-                    quoteText,
-                    quoteMissing,
-                    quoteDeck
-                )
-            } else {
-                null
-            }
+            return Quote(
+                quoteId,
+                fromExternal(context, quoteAuthor),
+                quoteText,
+                quoteMissing,
+                quoteDeck
+            )
         }
 
         override fun close() {
