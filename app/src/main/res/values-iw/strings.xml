@@ -4406,7 +4406,7 @@
   <plurals name="GiftRowItem_s_dot_d_day_duration">
     <item quantity="one">%1$s · למשך יום %2$d</item>
     <item quantity="two">%1$s · למשך יומיים %2$d</item>
-    <item quantity="many">%1$s ·  למשך %2$d ימים</item>
+    <item quantity="many">%1$s · למשך %2$d ימים</item>
     <item quantity="other">%1$s · למשך %2$d ימים</item>
   </plurals>
   <!--Tagline for gift row items-->

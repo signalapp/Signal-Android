@@ -4075,7 +4075,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="StoriesLinkPopup__visit_link">Kunjungi tautan</string>
   <!--Gift price and duration, formatted as: {price} dot {n} day duration-->
   <plurals name="GiftRowItem_s_dot_d_day_duration">
-    <item quantity="other">Durasi %1$s · %2$d hari</item>
+    <item quantity="other">%1$s · Durasi %2$d hari</item>
   </plurals>
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">Kirim lencana hadiah</string>

@@ -4403,10 +4403,10 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="StoriesLinkPopup__visit_link">Navštívit odkaz</string>
   <!--Gift price and duration, formatted as: {price} dot {n} day duration-->
   <plurals name="GiftRowItem_s_dot_d_day_duration">
-    <item quantity="one">%1$s · %2$dden trvání</item>
-    <item quantity="few">%1$s · %2$ddny trvání</item>
-    <item quantity="many">%1$s · %2$ddní trvání</item>
-    <item quantity="other">%1$s · %2$ddní trvání</item>
+    <item quantity="one">%1$s · %2$d den trvání</item>
+    <item quantity="few">%1$s · %2$d dny trvání</item>
+    <item quantity="many">%1$s · %2$d dní trvání</item>
+    <item quantity="other">%1$s · %2$d dní trvání</item>
   </plurals>
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">Odeslání dárkového odznaku</string>

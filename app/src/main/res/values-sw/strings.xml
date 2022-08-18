@@ -4179,8 +4179,8 @@ Funga ufikiaji wa Signal na ufungaji wa Android au alama za vidole</string>
   <string name="StoriesLinkPopup__visit_link">Tembelea kiungo</string>
   <!--Gift price and duration, formatted as: {price} dot {n} day duration-->
   <plurals name="GiftRowItem_s_dot_d_day_duration">
-    <item quantity="one">%1$s . kwa siku %2$d</item>
-    <item quantity="other">%1$s . kwa muda wa siku %2$d</item>
+    <item quantity="one">%1$s · kwa siku %2$d</item>
+    <item quantity="other">%1$s · kwa muda wa siku %2$d</item>
   </plurals>
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">Tuma beji ya zawadi</string>

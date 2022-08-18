@@ -4185,8 +4185,8 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="StoriesLinkPopup__visit_link">Ikusi linka</string>
   <!--Gift price and duration, formatted as: {price} dot {n} day duration-->
   <plurals name="GiftRowItem_s_dot_d_day_duration">
-    <item quantity="one">%1$s · %2$deguneko iraupena</item>
-    <item quantity="other">%1$s · %2$deguneko iraupena</item>
+    <item quantity="one">%1$s · %2$d eguneko iraupena</item>
+    <item quantity="other">%1$s · %2$d eguneko iraupena</item>
   </plurals>
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">Opari-berreizgarri bat bidali </string>

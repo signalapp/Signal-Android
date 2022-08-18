@@ -4175,8 +4175,8 @@
   <string name="StoriesLinkPopup__visit_link">لنک ملاحظہ کریں</string>
   <!--Gift price and duration, formatted as: {price} dot {n} day duration-->
   <plurals name="GiftRowItem_s_dot_d_day_duration">
-    <item quantity="one">%1$s   %2$d دن کا دورانیہ</item>
-    <item quantity="other">%1$s   %2$d دن کا دورانیہ</item>
+    <item quantity="one">%1$s · %2$d دن کا دورانیہ</item>
+    <item quantity="other">%1$s · %2$d دن کا دورانیہ</item>
   </plurals>
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">گفٹ بیج بھیجیں</string>

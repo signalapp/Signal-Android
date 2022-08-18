@@ -4179,7 +4179,7 @@
   <string name="StoriesLinkPopup__visit_link">Επίσκεψη συνδέσμου</string>
   <!--Gift price and duration, formatted as: {price} dot {n} day duration-->
   <plurals name="GiftRowItem_s_dot_d_day_duration">
-    <item quantity="one">%1$s %2$d ημερών</item>
+    <item quantity="one">%1$s · %2$d ημερών</item>
     <item quantity="other">διάρκεια %1$s · %2$d ημερών</item>
   </plurals>
   <!--Tagline for gift row items-->

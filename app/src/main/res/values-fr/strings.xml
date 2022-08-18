@@ -4289,9 +4289,9 @@ Nouvelle tentative…</string>
   <string name="StoriesLinkPopup__visit_link">Visitez le lien</string>
   <!--Gift price and duration, formatted as: {price} dot {n} day duration-->
   <plurals name="GiftRowItem_s_dot_d_day_duration">
-    <item quantity="one">Durée de %1$sà %2$d jours</item>
-    <item quantity="many">Durée de %1$s à %2$d jours</item>
-    <item quantity="other">Durée de %1$s à %2$d jours</item>
+    <item quantity="one">%1$s · %2$d jour</item>
+    <item quantity="many">%1$s · %2$d jours</item>
+    <item quantity="other">%1$s · %2$d jours</item>
   </plurals>
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">Envoyer un macaron cadeau</string>

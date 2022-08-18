@@ -4181,7 +4181,7 @@
   <string name="StoriesLinkPopup__visit_link">ಲಿಂಕ್‌ಗೆ ಭೇಟಿ ನೀಡಿ</string>
   <!--Gift price and duration, formatted as: {price} dot {n} day duration-->
   <plurals name="GiftRowItem_s_dot_d_day_duration">
-    <item quantity="one">%1$s · %2$d day duration</item>
+    <item quantity="one">%1$s · %2$d ದಿನ ಕಾಲಾವಧಿ</item>
     <item quantity="other">%1$s · %2$d ದಿನ ಕಾಲಾವಧಿ</item>
   </plurals>
   <!--Tagline for gift row items-->
