@@ -99,7 +99,7 @@ class DeadlockDetector(private val handler: Handler, private val pollingInterval
 
   private fun Array<StackTraceElement>.hasPotentialLock(): Boolean {
     return any {
-      it.methodName.startsWith("lock") || (it.methodName.startsWith("waitForConnection") && it.className.contains("IncomingMessageObserver"))
+      it.methodName.startsWith("lock") || (it.methodName.startsWith("waitForConnection") && !it.className.contains("IncomingMessageObserver"))
     }
   }
 
