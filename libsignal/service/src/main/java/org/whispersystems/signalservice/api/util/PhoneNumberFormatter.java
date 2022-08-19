@@ -110,7 +110,7 @@ public class PhoneNumberFormatter {
       PhoneNumber numberObject      = util.parse(number, localCountryCode);
       return util.format(numberObject, PhoneNumberFormat.E164);
     } catch (NumberParseException e) {
-      Log.w(TAG, e);
+      Log.d(TAG, e.getClass().getSimpleName() + ": " + e.getMessage());
       return impreciseFormatNumber(number, localNumber);
     }
   }
@@ -142,7 +142,7 @@ public class PhoneNumberFormatter {
 
       return util.format(parsedNumber, PhoneNumberUtil.PhoneNumberFormat.E164);
     } catch (NumberParseException | NumberFormatException npe) {
-      Log.w(TAG, npe);
+      Log.d(TAG, npe.getClass().getSimpleName() + ": " + npe.getMessage());
     }
 
     return "+"                                                     +
