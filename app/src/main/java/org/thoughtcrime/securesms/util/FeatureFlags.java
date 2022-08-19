@@ -101,7 +101,7 @@ public final class FeatureFlags {
   private static final String TELECOM_MODEL_BLOCKLIST           = "android.calling.telecomModelBlockList";
   private static final String CAMERAX_MODEL_BLOCKLIST           = "android.cameraXModelBlockList";
   private static final String RECIPIENT_MERGE_V2                = "android.recipientMergeV2";
-  private static final String CDS_V2_LOAD_TEST                  = "android.csdV2LoadTest";
+  private static final String CDS_V2_LOAD_TEST                  = "android.cdsV2LoadTest";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
