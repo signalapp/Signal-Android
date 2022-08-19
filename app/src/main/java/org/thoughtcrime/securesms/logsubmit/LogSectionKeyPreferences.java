@@ -23,6 +23,7 @@ final class LogSectionKeyPreferences implements LogSection {
                               .append("Password Disabled    : ").append(TextSecurePreferences.isPasswordDisabled(context)).append("\n")
                               .append("Prefer Contact Photos: ").append(SignalStore.settings().isPreferSystemContactPhotos()).append("\n")
                               .append("Call Bandwidth Mode  : ").append(SignalStore.settings().getCallBandwidthMode()).append("\n")
+                              .append("Media Quality        : ").append(SignalStore.settings().getSentMediaQuality()).append("\n")
                               .append("Client Deprecated    : ").append(SignalStore.misc().isClientDeprecated()).append("\n")
                               .append("Push Registered      : ").append(SignalStore.account().isRegistered()).append("\n")
                               .append("Unauthorized Received: ").append(TextSecurePreferences.isUnauthorizedRecieved(context)).append("\n")
