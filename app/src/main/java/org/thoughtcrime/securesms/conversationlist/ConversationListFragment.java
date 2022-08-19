@@ -1627,7 +1627,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
       if (itemAnimator == null) {
         return;
       }
-      
+
       ViewCompat.setElevation(viewHolder.itemView, 0);
       lastTouched = null;
 

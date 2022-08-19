@@ -5,6 +5,7 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.pin.PinState;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 public class LogSectionPin implements LogSection {
@@ -16,7 +17,7 @@ public class LogSectionPin implements LogSection {
 
   @Override
   public @NonNull CharSequence getContent(@NonNull Context context) {
-    return new StringBuilder().append("State: ").append(SignalStore.pinValues().getPinState()).append("\n")
+    return new StringBuilder().append("State: ").append(PinState.getState()).append("\n")
                               .append("Last Successful Reminder Entry: ").append(SignalStore.pinValues().getLastSuccessfulEntryTime()).append("\n")
                               .append("Next Reminder Interval: ").append(SignalStore.pinValues().getCurrentInterval()).append("\n")
                               .append("ReglockV1: ").append(TextSecurePreferences.isV1RegistrationLockEnabled(context)).append("\n")
