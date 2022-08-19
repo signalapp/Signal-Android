@@ -4,7 +4,6 @@ import android.media.AudioManager
 import android.os.Bundle
 import android.os.ResultReceiver
 import com.google.android.exoplayer2.C
-import com.google.android.exoplayer2.ControlDispatcher
 import com.google.android.exoplayer2.PlaybackParameters
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.SimpleExoPlayer
@@ -22,8 +21,7 @@ class VoiceNotePlaybackController(
     private val TAG = Log.tag(VoiceNoteMediaController::class.java)
   }
 
-  @Suppress("deprecation")
-  override fun onCommand(p: Player, controlDispatcher: ControlDispatcher, command: String, extras: Bundle?, cb: ResultReceiver?): Boolean {
+  override fun onCommand(p: Player, command: String, extras: Bundle?, cb: ResultReceiver?): Boolean {
     Log.d(TAG, "[onCommand] Received player command $command (extras? ${extras != null})")
 
     if (command == VoiceNotePlaybackService.ACTION_NEXT_PLAYBACK_SPEED) {
@@ -37,8 +35,8 @@ class VoiceNotePlaybackController(
       val currentStreamType = Util.getStreamTypeForAudioUsage(player.audioAttributes.usage)
       if (newStreamType != currentStreamType) {
         val attributes = when (newStreamType) {
-          AudioManager.STREAM_MUSIC -> AudioAttributes.Builder().setContentType(C.CONTENT_TYPE_MUSIC).setUsage(C.USAGE_MEDIA).build()
-          AudioManager.STREAM_VOICE_CALL -> AudioAttributes.Builder().setContentType(C.CONTENT_TYPE_SPEECH).setUsage(C.USAGE_VOICE_COMMUNICATION).build()
+          AudioManager.STREAM_MUSIC -> AudioAttributes.Builder().setContentType(C.AUDIO_CONTENT_TYPE_MUSIC).setUsage(C.USAGE_MEDIA).build()
+          AudioManager.STREAM_VOICE_CALL -> AudioAttributes.Builder().setContentType(C.AUDIO_CONTENT_TYPE_SPEECH).setUsage(C.USAGE_VOICE_COMMUNICATION).build()
           else -> throw AssertionError()
         }
 

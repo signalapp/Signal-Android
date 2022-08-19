@@ -52,28 +52,8 @@ public final class SignalMediaSourceFactory implements MediaSourceFactory {
   }
 
   @Override
-  public MediaSourceFactory setStreamKeys(@Nullable List<StreamKey> streamKeys) {
-    return progressiveMediaSourceFactory.setStreamKeys(streamKeys);
-  }
-
-  @Override
   public MediaSourceFactory setDrmSessionManagerProvider(@Nullable DrmSessionManagerProvider drmSessionManagerProvider) {
     return progressiveMediaSourceFactory.setDrmSessionManagerProvider(drmSessionManagerProvider);
-  }
-
-  @Override
-  public MediaSourceFactory setDrmSessionManager(@Nullable DrmSessionManager drmSessionManager) {
-    return progressiveMediaSourceFactory.setDrmSessionManager(drmSessionManager);
-  }
-
-  @Override
-  public MediaSourceFactory setDrmHttpDataSourceFactory(@Nullable HttpDataSource.Factory drmHttpDataSourceFactory) {
-    return progressiveMediaSourceFactory.setDrmHttpDataSourceFactory(drmHttpDataSourceFactory);
-  }
-
-  @Override
-  public MediaSourceFactory setDrmUserAgent(@Nullable String userAgent) {
-    return progressiveMediaSourceFactory.setDrmUserAgent(userAgent);
   }
 
   @Override
@@ -89,10 +69,5 @@ public final class SignalMediaSourceFactory implements MediaSourceFactory {
   @Override
   public MediaSource createMediaSource(MediaItem mediaItem) {
     return progressiveMediaSourceFactory.createMediaSource(mediaItem);
-  }
-
-  @Override
-  public MediaSource createMediaSource(Uri uri) {
-    return progressiveMediaSourceFactory.createMediaSource(uri);
   }
 }
