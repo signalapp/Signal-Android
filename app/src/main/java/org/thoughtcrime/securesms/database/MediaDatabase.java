@@ -71,7 +71,7 @@ public class MediaDatabase extends Database {
         + "MAX(" + AttachmentDatabase.SIZE + ") as " + AttachmentDatabase.SIZE + ", "
         + AttachmentDatabase.CONTENT_TYPE + " "
         + "FROM " + AttachmentDatabase.TABLE_NAME + " "
-        + "WHERE " + AttachmentDatabase.STICKER_PACK_ID + " IS NULL "
+        + "WHERE " + AttachmentDatabase.STICKER_PACK_ID + " IS NULL AND " + AttachmentDatabase.TRANSFER_STATE + " = " + AttachmentDatabase.TRANSFER_PROGRESS_DONE + " "
         + "GROUP BY " + AttachmentDatabase.DATA;
 
   private static final String GALLERY_MEDIA_QUERY  = String.format(BASE_MEDIA_QUERY, AttachmentDatabase.CONTENT_TYPE + " NOT LIKE 'image/svg%' AND (" +
