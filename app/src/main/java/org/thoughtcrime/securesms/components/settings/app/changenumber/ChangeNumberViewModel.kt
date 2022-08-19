@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.pin.KbsRepository
 import org.thoughtcrime.securesms.pin.TokenData
+import org.thoughtcrime.securesms.registration.SmsRetrieverReceiver
 import org.thoughtcrime.securesms.registration.VerifyAccountRepository
 import org.thoughtcrime.securesms.registration.VerifyAccountResponseProcessor
 import org.thoughtcrime.securesms.registration.VerifyAccountResponseWithoutKbs
@@ -38,6 +39,7 @@ class ChangeNumberViewModel(
   password: String,
   verifyAccountRepository: VerifyAccountRepository,
   kbsRepository: KbsRepository,
+  private val smsRetrieverReceiver: SmsRetrieverReceiver = SmsRetrieverReceiver(ApplicationDependencies.getApplication())
 ) : BaseRegistrationViewModel(savedState, verifyAccountRepository, kbsRepository, password) {
 
   var oldNumberState: NumberViewState = NumberViewState.Builder().build()
@@ -57,6 +59,13 @@ class ChangeNumberViewModel(
     } catch (e: NumberParseException) {
       Log.i(TAG, "Unable to parse number for default country code")
     }
+
+    smsRetrieverReceiver.registerReceiver()
+  }
+
+  override fun onCleared() {
+    super.onCleared()
+    smsRetrieverReceiver.unregisterReceiver()
   }
 
   fun getLiveOldNumber(): LiveData<NumberViewState> {

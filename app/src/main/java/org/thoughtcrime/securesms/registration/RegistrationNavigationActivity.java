@@ -1,9 +1,7 @@
 package org.thoughtcrime.securesms.registration;
 
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,18 +10,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.google.android.gms.auth.api.phone.SmsRetriever;
-import com.google.android.gms.common.api.CommonStatusCodes;
-import com.google.android.gms.common.api.Status;
-
-import org.greenrobot.eventbus.EventBus;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.registration.viewmodel.RegistrationViewModel;
-import org.thoughtcrime.securesms.service.VerificationCodeParser;
 import org.thoughtcrime.securesms.util.CommunicationActions;
-
-import java.util.Optional;
 
 
 public final class RegistrationNavigationActivity extends AppCompatActivity {
@@ -93,49 +83,14 @@ public final class RegistrationNavigationActivity extends AppCompatActivity {
   }
 
   private void initializeChallengeListener() {
-    smsRetrieverReceiver = new SmsRetrieverReceiver();
-
-    registerReceiver(smsRetrieverReceiver, new IntentFilter(SmsRetriever.SMS_RETRIEVED_ACTION));
+    smsRetrieverReceiver = new SmsRetrieverReceiver(getApplication());
+    smsRetrieverReceiver.registerReceiver();
   }
 
   private void shutdownChallengeListener() {
     if (smsRetrieverReceiver != null) {
-      unregisterReceiver(smsRetrieverReceiver);
+      smsRetrieverReceiver.unregisterReceiver();
       smsRetrieverReceiver = null;
     }
-  }
-
-  private class SmsRetrieverReceiver extends BroadcastReceiver {
-
-    @Override
-    public void onReceive(Context context, Intent intent) {
-      Log.i(TAG, "SmsRetrieverReceiver received a broadcast...");
-
-      if (SmsRetriever.SMS_RETRIEVED_ACTION.equals(intent.getAction())) {
-        Bundle extras = intent.getExtras();
-        Status status = (Status) extras.get(SmsRetriever.EXTRA_STATUS);
-
-        switch (status.getStatusCode()) {
-          case CommonStatusCodes.SUCCESS:
-            Optional<String> code = VerificationCodeParser.parse((String) extras.get(SmsRetriever.EXTRA_SMS_MESSAGE));
-            if (code.isPresent()) {
-              Log.i(TAG, "Received verification code.");
-              handleVerificationCodeReceived(code.get());
-            } else {
-              Log.w(TAG, "Could not parse verification code.");
-            }
-            break;
-          case CommonStatusCodes.TIMEOUT:
-            Log.w(TAG, "Hit a timeout waiting for the SMS to arrive.");
-            break;
-        }
-      } else {
-        Log.w(TAG, "SmsRetrieverReceiver received the wrong action?");
-      }
-    }
-  }
-
-  private void handleVerificationCodeReceived(@NonNull String code) {
-    EventBus.getDefault().post(new ReceivedSmsEvent(code));
   }
 }

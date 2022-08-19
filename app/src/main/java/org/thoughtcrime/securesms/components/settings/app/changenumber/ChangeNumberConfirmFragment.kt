@@ -5,8 +5,12 @@ import android.view.View
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.navigation.fragment.findNavController
+import com.google.android.gms.auth.api.phone.SmsRetriever
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.LoggingFragment
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.util.PlayServicesUtil
+import org.thoughtcrime.securesms.util.PlayServicesUtil.PlayServicesStatus
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 class ChangeNumberConfirmFragment : LoggingFragment(R.layout.fragment_change_number_confirm) {
@@ -29,6 +33,35 @@ class ChangeNumberConfirmFragment : LoggingFragment(R.layout.fragment_change_num
     editNumber.setOnClickListener { findNavController().navigateUp() }
 
     val changeNumber: View = view.findViewById(R.id.change_number_confirm_change_number)
-    changeNumber.setOnClickListener { findNavController().safeNavigate(R.id.action_changePhoneNumberConfirmFragment_to_changePhoneNumberVerifyFragment) }
+    changeNumber.setOnClickListener { onConfirm() }
+  }
+
+  private fun onConfirm() {
+    val playServicesAvailable = PlayServicesUtil.getPlayServicesStatus(context) == PlayServicesStatus.SUCCESS
+
+    if (playServicesAvailable) {
+      val client = SmsRetriever.getClient(requireContext())
+      val task = client.startSmsRetriever()
+
+      task.addOnSuccessListener {
+        Log.i(TAG, "Successfully registered SMS listener.")
+        navigateToVerify()
+      }
+
+      task.addOnFailureListener { e ->
+        Log.w(TAG, "Failed to register SMS listener.", e)
+        navigateToVerify()
+      }
+    } else {
+      navigateToVerify()
+    }
+  }
+
+  private fun navigateToVerify() {
+    findNavController().safeNavigate(R.id.action_changePhoneNumberConfirmFragment_to_changePhoneNumberVerifyFragment)
+  }
+
+  companion object {
+    private val TAG = Log.tag(ChangeNumberConfirmFragment::class.java)
   }
 }
