@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.jobs;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.media.Image;
 import android.os.Build;
 import android.text.TextUtils;
 
@@ -41,6 +42,7 @@ import org.thoughtcrime.securesms.keyvalue.CertificateType;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
+import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.QuoteModel;
@@ -53,8 +55,8 @@ import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
-import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.ImageCompressionUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
@@ -63,7 +65,6 @@ import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentRemo
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.messages.SignalServicePreview;
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
-import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.push.exceptions.ProofRequiredException;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
@@ -303,42 +304,42 @@ public abstract class PushSendJob extends SendJob {
   protected Optional<SignalServiceDataMessage.Quote> getQuoteFor(OutgoingMediaMessage message) throws IOException {
     if (message.getOutgoingQuote() == null) return Optional.empty();
 
-    long                                                  quoteId             = message.getOutgoingQuote().getId();
-    String                                                quoteBody           = message.getOutgoingQuote().getText();
-    RecipientId                                           quoteAuthor         = message.getOutgoingQuote().getAuthor();
-    List<SignalServiceDataMessage.Mention>                quoteMentions       = getMentionsFor(message.getOutgoingQuote().getMentions());
-    QuoteModel.Type                                       quoteType           = message.getOutgoingQuote().getType();
-    List<SignalServiceDataMessage.Quote.QuotedAttachment> quoteAttachments    = new LinkedList<>();
-    List<Attachment>                                      filteredAttachments = Stream.of(message.getOutgoingQuote().getAttachments())
-                                                                                      .filterNot(a -> MediaUtil.isViewOnceType(a.getContentType()))
-                                                                                      .toList();
+    long                                                  quoteId              = message.getOutgoingQuote().getId();
+    String                                                quoteBody            = message.getOutgoingQuote().getText();
+    RecipientId                                           quoteAuthor          = message.getOutgoingQuote().getAuthor();
+    List<SignalServiceDataMessage.Mention>                quoteMentions        = getMentionsFor(message.getOutgoingQuote().getMentions());
+    QuoteModel.Type                                       quoteType            = message.getOutgoingQuote().getType();
+    List<SignalServiceDataMessage.Quote.QuotedAttachment> quoteAttachments     = new LinkedList<>();
+    Optional<Attachment>                                  localQuoteAttachment = message.getOutgoingQuote()
+                                                                                        .getAttachments()
+                                                                                        .stream()
+                                                                                        .filter(a -> !MediaUtil.isViewOnceType(a.getContentType()))
+                                                                                        .findFirst();
 
-    for (Attachment attachment : filteredAttachments) {
-      BitmapUtil.ScaleResult  thumbnailData = null;
-      SignalServiceAttachment thumbnail     = null;
-      String                  thumbnailType = MediaUtil.IMAGE_JPEG;
+    if (localQuoteAttachment.isPresent()) {
+      Attachment attachment = localQuoteAttachment.get();
+
+      ImageCompressionUtil.Result thumbnailData = null;
+      SignalServiceAttachment     thumbnail     = null;
 
       try {
         if (MediaUtil.isImageType(attachment.getContentType()) && attachment.getUri() != null) {
-          Bitmap.CompressFormat format = BitmapUtil.getCompressFormatForContentType(attachment.getContentType());
-
-          thumbnailData = BitmapUtil.createScaledBytes(context, new DecryptableStreamUriLoader.DecryptableUri(attachment.getUri()), 100, 100, 500 * 1024, format);
-          thumbnailType = attachment.getContentType();
+          thumbnailData = ImageCompressionUtil.compress(context, attachment.getContentType(), new DecryptableUri(attachment.getUri()), 100, 50);
         } else if (Build.VERSION.SDK_INT >= 23 && MediaUtil.isVideoType(attachment.getContentType()) && attachment.getUri() != null) {
           Bitmap bitmap = MediaUtil.getVideoThumbnail(context, attachment.getUri(), 1000);
 
           if (bitmap != null) {
-            thumbnailData = BitmapUtil.createScaledBytes(context, bitmap, 100, 100, 500 * 1024);
+            thumbnailData = ImageCompressionUtil.compress(context, attachment.getContentType(), new DecryptableUri(attachment.getUri()), 100, 50);
           }
         }
 
         if (thumbnailData != null) {
           SignalServiceAttachment.Builder builder = SignalServiceAttachment.newStreamBuilder()
-                                                                           .withContentType(thumbnailType)
+                                                                           .withContentType(thumbnailData.getMimeType())
                                                                            .withWidth(thumbnailData.getWidth())
                                                                            .withHeight(thumbnailData.getHeight())
-                                                                           .withLength(thumbnailData.getBitmap().length)
-                                                                           .withStream(new ByteArrayInputStream(thumbnailData.getBitmap()))
+                                                                           .withLength(thumbnailData.getData().length)
+                                                                           .withStream(new ByteArrayInputStream(thumbnailData.getData()))
                                                                            .withResumableUploadSpec(ApplicationDependencies.getSignalServiceMessageSender().getResumableUploadSpec());
 
           thumbnail = builder.build();

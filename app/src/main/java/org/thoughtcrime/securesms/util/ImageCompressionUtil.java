@@ -80,7 +80,7 @@ public final class ImageCompressionUtil {
   }
 
   private static @NonNull Bitmap.CompressFormat mimeTypeToCompressFormat(@NonNull String mimeType) {
-    if (MediaUtil.isJpegType(mimeType) || MediaUtil.isHeicType(mimeType) || MediaUtil.isHeifType(mimeType)) {
+    if (MediaUtil.isJpegType(mimeType) || MediaUtil.isHeicType(mimeType) || MediaUtil.isHeifType(mimeType) || MediaUtil.isVideoType(mimeType)) {
       return Bitmap.CompressFormat.JPEG;
     } else {
       return Bitmap.CompressFormat.PNG;
