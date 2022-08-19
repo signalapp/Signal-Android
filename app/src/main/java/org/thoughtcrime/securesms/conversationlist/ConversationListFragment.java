@@ -1623,6 +1623,11 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     @Override
     public void clearView(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
       super.clearView(recyclerView, viewHolder);
+
+      if (itemAnimator == null) {
+        return;
+      }
+      
       ViewCompat.setElevation(viewHolder.itemView, 0);
       lastTouched = null;
 
