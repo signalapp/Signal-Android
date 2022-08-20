@@ -134,12 +134,18 @@ public class MediaDatabase extends Database {
     SQLiteDatabase   database         = databaseHelper.getSignalReadableDatabase();
 
     try (Cursor cursor = database.rawQuery(UNIQUE_MEDIA_QUERY, new String[0])) {
-      int sizeColumn        = cursor.getColumnIndexOrThrow(AttachmentDatabase.SIZE);
-      int contentTypeColumn = cursor.getColumnIndexOrThrow(AttachmentDatabase.CONTENT_TYPE);
+      int sizeColumn          = cursor.getColumnIndexOrThrow(AttachmentDatabase.SIZE);
+      int contentTypeColumn   = cursor.getColumnIndexOrThrow(AttachmentDatabase.CONTENT_TYPE);
+      int transferStateColumn = cursor.getColumnIndexOrThrow(AttachmentDatabase.TRANSFER_STATE);
 
       while (cursor.moveToNext()) {
-        int    size = cursor.getInt(sizeColumn);
-        String type = cursor.getString(contentTypeColumn);
+        int    size          = cursor.getInt(sizeColumn);
+        String type          = cursor.getString(contentTypeColumn);
+        int    transferState = cursor.getInt(transferStateColumn);
+
+        if (transferState != AttachmentDatabase.TRANSFER_PROGRESS_STARTED
+               && transferState != AttachmentDatabase.TRANSFER_PROGRESS_DONE)
+          continue;
 
         switch (MediaUtil.getSlideTypeFromContentType(type)) {
           case GIF:
