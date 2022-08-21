@@ -17,6 +17,7 @@ import org.session.libsession.messaging.messages.control.TypingIndicator
 import org.session.libsession.messaging.messages.control.UnsendRequest
 import org.session.libsession.messaging.messages.visible.Attachment
 import org.session.libsession.messaging.messages.visible.VisibleMessage
+import org.session.libsession.messaging.open_groups.OpenGroupApi
 import org.session.libsession.messaging.sending_receiving.attachments.PointerAttachment
 import org.session.libsession.messaging.sending_receiving.data_extraction.DataExtractionNotificationInfoMessage
 import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview
@@ -157,7 +158,10 @@ private fun handleConfigurationMessage(message: ConfigurationMessage) {
         }
     }
     val allV2OpenGroups = storage.getAllOpenGroups().map { it.value.joinURL }
-    for (openGroup in message.openGroups) {
+    for (openGroup in message.openGroups.map {
+        it.replace(OpenGroupApi.legacyDefaultServer, OpenGroupApi.defaultServer)
+            .replace(OpenGroupApi.httpDefaultServer, OpenGroupApi.defaultServer)
+    }) {
         if (allV2OpenGroups.contains(openGroup)) continue
         Log.d("OpenGroup", "All open groups doesn't contain $openGroup")
         if (!storage.hasBackgroundGroupAddJob(openGroup)) {

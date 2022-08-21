@@ -24,14 +24,14 @@ import kotlinx.coroutines.withContext
 import network.loki.messenger.R
 import network.loki.messenger.databinding.ActivityJoinPublicChatBinding
 import network.loki.messenger.databinding.FragmentEnterChatUrlBinding
-import okhttp3.HttpUrl
 import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.open_groups.OpenGroupApi.DefaultGroup
 import org.session.libsession.utilities.Address
 import org.session.libsession.utilities.GroupUtil
+import org.session.libsession.utilities.OpenGroupUrlParser
+import org.session.libsession.utilities.OpenGroupUrlParser.Error
 import org.session.libsession.utilities.recipients.Recipient
 import org.session.libsignal.utilities.Log
-import org.session.libsignal.utilities.PublicKeyValidation
 import org.thoughtcrime.securesms.BaseActionBarActivity
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2
@@ -83,32 +83,27 @@ class JoinPublicChatActivity : PassphraseRequiredActionBarActivity(), ScanQRCode
 
     fun joinPublicChatIfPossible(url: String) {
         // Add "http" if not entered explicitly
-        val stringWithExplicitScheme = if (!url.startsWith("http")) "http://$url" else url
-        val url = HttpUrl.parse(stringWithExplicitScheme) ?: return Toast.makeText(this,R.string.invalid_url, Toast.LENGTH_SHORT).show()
-        val room = url.pathSegments().firstOrNull()
-        val publicKey = url.queryParameter("public_key")
-        val isV2OpenGroup = !room.isNullOrEmpty()
-        if (isV2OpenGroup && (publicKey == null || !PublicKeyValidation.isValid(publicKey, 64,false))) {
-            return Toast.makeText(this, R.string.invalid_public_key, Toast.LENGTH_SHORT).show()
+        val openGroup = try {
+            OpenGroupUrlParser.parseUrl(url)
+        } catch (e: Error) {
+            when (e) {
+                is Error.MalformedURL -> return Toast.makeText(this, R.string.activity_join_public_chat_error, Toast.LENGTH_SHORT).show()
+                is Error.InvalidPublicKey -> return Toast.makeText(this, R.string.invalid_public_key, Toast.LENGTH_SHORT).show()
+                is Error.NoPublicKey -> return Toast.makeText(this, R.string.invalid_public_key, Toast.LENGTH_SHORT).show()
+                is Error.NoRoom -> return Toast.makeText(this, R.string.activity_join_public_chat_error, Toast.LENGTH_SHORT).show()
+            }
         }
         showLoader()
         lifecycleScope.launch(Dispatchers.IO) {
             try {
-                val (threadID, groupID) = if (isV2OpenGroup) {
-                    val server = HttpUrl.Builder().scheme(url.scheme()).host(url.host()).apply {
-                        if (url.port() != 80 || url.port() != 443) { this.port(url.port()) } // Non-standard port; add to server
-                    }.build()
+                val sanitizedServer = openGroup.server.removeSuffix("/")
+                val openGroupID = "$sanitizedServer.${openGroup.room}"
+                OpenGroupManager.add(sanitizedServer, openGroup.room, openGroup.serverPublicKey, this@JoinPublicChatActivity)
+                val storage = MessagingModuleConfiguration.shared.storage
+                storage.onOpenGroupAdded(sanitizedServer)
+                val threadID = GroupManager.getOpenGroupThreadID(openGroupID, this@JoinPublicChatActivity)
+                val groupID = GroupUtil.getEncodedOpenGroupID(openGroupID.toByteArray())
 
-                    val sanitizedServer = server.toString().removeSuffix("/")
-                    val openGroupID = "$sanitizedServer.${room!!}"
-                    OpenGroupManager.add(sanitizedServer, room, publicKey!!, this@JoinPublicChatActivity)
-                    MessagingModuleConfiguration.shared.storage.onOpenGroupAdded(stringWithExplicitScheme)
-                    val threadID = GroupManager.getOpenGroupThreadID(openGroupID, this@JoinPublicChatActivity)
-                    val groupID = GroupUtil.getEncodedOpenGroupID(openGroupID.toByteArray())
-                    threadID to groupID
-                } else {
-                    throw Exception("No longer supported.")
-                }
                 ConfigurationMessageUtilities.forceSyncConfigurationNowIfNeeded(this@JoinPublicChatActivity)
                 withContext(Dispatchers.Main) {
                     val recipient = Recipient.from(this@JoinPublicChatActivity, Address.fromSerialized(groupID), false)

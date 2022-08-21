@@ -567,9 +567,8 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         OpenGroupManager.addOpenGroup(urlAsString, context)
     }
 
-    override fun onOpenGroupAdded(urlAsString: String) {
-        val server = OpenGroup.getServer(urlAsString)
-        OpenGroupManager.restartPollerForServer(server.toString().removeSuffix("/"))
+    override fun onOpenGroupAdded(server: String) {
+        OpenGroupManager.restartPollerForServer(server.removeSuffix("/"))
     }
 
     override fun hasBackgroundGroupAddJob(groupJoinUrl: String): Boolean {

@@ -7,15 +7,14 @@ import android.text.TextUtils;
 
 import net.sqlcipher.database.SQLiteDatabase;
 
+import org.session.libsession.utilities.Address;
 import org.session.libsession.utilities.Document;
 import org.session.libsession.utilities.IdentityKeyMismatch;
 import org.session.libsession.utilities.IdentityKeyMismatchList;
-import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
-import org.session.libsignal.utilities.Log;
 import org.session.libsignal.crypto.IdentityKey;
-
-import org.session.libsession.utilities.Address;
 import org.session.libsignal.utilities.JsonUtil;
+import org.session.libsignal.utilities.Log;
+import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -157,6 +156,15 @@ public abstract class MessagingDatabase extends Database implements MmsSmsColumn
       if (cursor != null)
         cursor.close();
     }
+  }
+
+  public void migrateThreadId(long oldThreadId, long newThreadId) {
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+    String where = THREAD_ID+" = ?";
+    String[] args = new String[]{oldThreadId+""};
+    ContentValues contentValues = new ContentValues();
+    contentValues.put(THREAD_ID, newThreadId);
+    db.update(getTableName(), contentValues, where, args);
   }
 
   public static class SyncMessageId {

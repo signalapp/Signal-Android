@@ -58,6 +58,7 @@ import org.thoughtcrime.securesms.database.Storage;
 import org.thoughtcrime.securesms.dependencies.DatabaseComponent;
 import org.thoughtcrime.securesms.dependencies.DatabaseModule;
 import org.thoughtcrime.securesms.groups.OpenGroupManager;
+import org.thoughtcrime.securesms.groups.OpenGroupMigrator;
 import org.thoughtcrime.securesms.home.HomeActivity;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.impl.JsonDataSerializer;
@@ -191,6 +192,9 @@ public class ApplicationContext extends Application implements DefaultLifecycleO
                 storage,
                 messageDataProvider,
                 ()-> KeyPairUtilities.INSTANCE.getUserED25519KeyPair(this));
+        // migrate session open group data
+        OpenGroupMigrator.migrate(getDatabaseComponent());
+        // end migration
         callMessageProcessor = new CallMessageProcessor(this, textSecurePreferences, ProcessLifecycleOwner.get().getLifecycle(), storage);
         Log.i(TAG, "onCreate()");
         startKovenant();

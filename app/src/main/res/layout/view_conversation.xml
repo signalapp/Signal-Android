@@ -124,10 +124,10 @@
                         android:id="@+id/snippetTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:maxLines="1"
                         android:ellipsize="end"
-                        android:textSize="@dimen/medium_font_size"
+                        android:maxLines="1"
                         android:textColor="@color/text"
+                        android:textSize="@dimen/medium_font_size"
                         tools:text="Sorry, gotta go fight crime again" />
 
                     <org.thoughtcrime.securesms.conversation.v2.components.TypingIndicatorView
