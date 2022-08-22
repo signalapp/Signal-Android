@@ -207,8 +207,7 @@ public final class SignalWebSocket {
                                              return request(requestMessage);
                                            }
                                            return Single.just(r);
-                                         })
-                                         .onErrorResumeNext(t -> request(requestMessage));
+                                         });
       } catch (IOException e) {
         return Single.error(e);
       }

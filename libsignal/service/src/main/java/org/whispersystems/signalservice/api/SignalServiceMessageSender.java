@@ -1775,8 +1775,11 @@ public class SignalServiceMessageSender {
           } catch (WebSocketUnavailableException e) {
             Log.i(TAG, "[sendMessage][" + timestamp + "] Unidentified pipe unavailable, falling back... (" + e.getClass().getSimpleName() + ": " + e.getMessage() + ")");
           } catch (IOException e) {
-            Log.w(TAG, e);
-            Log.w(TAG, "[sendMessage][" + timestamp + "] Unidentified pipe failed, falling back...");
+            Throwable cause = e;
+            if (e.getCause() != null) {
+              cause = e.getCause();
+            }
+            Log.w(TAG, "[sendMessage][" + timestamp + "] Unidentified pipe failed, falling back... (" + cause.getClass().getSimpleName() + ": " + cause.getMessage() + ")");
           }
         }
 
