@@ -76,7 +76,7 @@ final class VideoThumbnailsExtractor {
           outputHeightRotated = outputHeight;
         }
 
-        Log.i(TAG, "video: " + width + "x" + height + " " + rotation);
+        Log.i(TAG, "video :" + width + "x" + height + " " + rotation);
         Log.i(TAG, "output: " + outputWidthRotated + "x" + outputHeightRotated);
 
         outputSurface = new OutputSurface(outputWidthRotated, outputHeightRotated, true);
@@ -97,8 +97,8 @@ final class VideoThumbnailsExtractor {
 
         doExtract(extractor, decoder, outputSurface, outputWidthRotated, outputHeightRotated, duration, thumbnailCount, callback);
       }
-    } catch (IllegalArgumentException | IOException | TranscodingException | MediaCodec.CodecException e) {
-      Log.w(TAG, e);
+    } catch (Throwable t) {
+      Log.w(TAG, t);
       callback.failed();
     } finally {
       if (outputSurface != null) {
