@@ -36,6 +36,10 @@ object GiftRowItem {
     private val taglineView = itemView.findViewById<TextView>(R.id.tagline)
     private val priceView = itemView.findViewById<TextView>(R.id.price)
 
+    init {
+      itemView.isSelected = true
+    }
+
     override fun bind(model: Model) {
       checkView.visible = false
       badgeView.setBadge(model.giftBadge)
