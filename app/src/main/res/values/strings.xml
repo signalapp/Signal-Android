@@ -4374,13 +4374,13 @@
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Network error. Check your connection and try again.</string>
     <string name="NetworkFailure__retry">Retry</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
-    <string name="DonationsErrors__recipient_verification_failed">Recipient verification failed.</string>
+    <string name="DonationsErrors__cant_send_gift">Can\'t send gift</string>
     <!-- Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting -->
-    <string name="DonationsErrors__target_does_not_support_gifting">Target does not support gifting.</string>
+    <string name="DonationsErrors__target_does_not_support_gifting">This recipient is using a version of Signal that can\'t receive gift badges. They\'ll be able to receive gifts when they update to the latest version.</string>
     <!-- Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet -->
-    <string name="DonationsErrors__could_not_verify_recipient">Could not verify recipient.</string>
+    <string name="DonationsErrors__couldnt_send_gift">Couldn\'t send gift</string>
     <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
-    <string name="DonationsErrors__please_check_your_network_connection">Please check your network connection and try again.</string>
+    <string name="DonationsErrors__please_check_your_network_connection">Your gift could not be sent because of a network error. Check your connection and try again.</string>
 
     <!-- Gift message view title -->
     <string name="GiftMessageView__gift_badge">Gift badge</string>
