@@ -15,6 +15,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.payments.MoneyView;
 import org.thoughtcrime.securesms.util.SpanUtil;
@@ -56,7 +58,7 @@ public class DeactivateWalletFragment extends Fragment {
 
     //noinspection CodeBlock2Expr
     deactivateWithoutTransfer.setOnClickListener(v -> {
-      new AlertDialog.Builder(requireContext())
+      new MaterialAlertDialogBuilder(requireContext())
                      .setTitle(R.string.DeactivateWalletFragment__deactivate_without_transferring_question)
                      .setMessage(R.string.DeactivateWalletFragment__your_balance_will_remain)
                      .setNegativeButton(android.R.string.cancel, (dialog, which) -> dialog.dismiss())

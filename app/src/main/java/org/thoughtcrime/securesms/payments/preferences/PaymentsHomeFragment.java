@@ -143,7 +143,7 @@ public class PaymentsHomeFragment extends LoggingFragment {
     });
 
     viewModel.getPaymentStateEvents().observe(getViewLifecycleOwner(), paymentStateEvent -> {
-      AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+      MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(requireContext());
 
       builder.setTitle(R.string.PaymentsHomeFragment__deactivate_payments_question);
       builder.setMessage(R.string.PaymentsHomeFragment__you_will_not_be_able_to_send);
@@ -168,7 +168,7 @@ public class PaymentsHomeFragment extends LoggingFragment {
         case DEACTIVATE_WITH_BALANCE:
           builder.setPositiveButton(getString(R.string.PaymentsHomeFragment__continue), (dialog, which) -> {
             dialog.dismiss();
-            SafeNavigation.safeNavigate(NavHostFragment.findNavController(this), R.id.deactivateWallet);
+            SafeNavigation.safeNavigate(NavHostFragment.findNavController(this), R.id.action_paymentsHome_to_deactivateWallet);
           });
           break;
         case ACTIVATED:
