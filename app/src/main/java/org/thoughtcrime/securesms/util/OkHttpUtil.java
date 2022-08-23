@@ -6,12 +6,11 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 
 import okhttp3.MediaType;
 import okhttp3.ResponseBody;
-
-import static okhttp3.internal.Util.UTF_8;
 
 public final class OkHttpUtil {
 
@@ -42,7 +41,7 @@ public final class OkHttpUtil {
 
     byte[]    data        = readAsBytes(body.byteStream(), sizeLimit);
     MediaType contentType = body.contentType();
-    Charset   charset     = contentType != null ? contentType.charset(UTF_8) : UTF_8;
+    Charset   charset     = contentType != null ? contentType.charset(StandardCharsets.UTF_8) : StandardCharsets.UTF_8;
 
     return new String(data, Objects.requireNonNull(charset));
   }
