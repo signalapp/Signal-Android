@@ -59,7 +59,7 @@
                     android:layout_marginTop="11dp"
                     android:layout_marginEnd="@dimen/dsl_settings_gutter"
                     android:layout_marginBottom="16dp"
-                    android:text="@string/ProfileCreateFragment__profiles_are_only_visible_to_people_you_message"
+                    android:text="@string/ProfileCreateFragment__profiles_are_visible_to_contacts_and_people_you_message"
                     android:textColor="@color/core_grey_60"
                     app:layout_constraintTop_toBottomOf="@id/title" />
 
