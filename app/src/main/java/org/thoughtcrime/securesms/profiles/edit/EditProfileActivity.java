@@ -6,7 +6,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
 import org.thoughtcrime.securesms.BaseActivity;
@@ -64,6 +66,14 @@ public class EditProfileActivity extends BaseActivity implements EditProfileFrag
                                  .add(R.id.fragment_container, fragment)
                                  .commit();
     }
+
+    getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+      @Override public void handleOnBackPressed() {
+        if (!Navigation.findNavController(EditProfileActivity.this, R.id.fragment_container).popBackStack()) {
+          finish();
+        }
+      }
+    });
   }
 
   @Override
