@@ -4506,7 +4506,7 @@ Nouvelle tentative…</string>
   <!--Explanation about how stories are deleted and managed-->
   <string name="StoriesPrivacySettingsFragment__stories_automatically_disappear">Les stories sont automatiquement détruites après 24 heures. Identifiez les spectateurs autorisés à voir votre story ou créez de nouvelles stories en identifiant des spectateurs ou des groupes spécifiques.</string>
   <!--Preference title to turn off stories-->
-  <string name="StoriesPrivacySettingsFragment__turn_off_stories">Quitter la fonction story</string>
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories">Quitter la fonction stories</string>
   <!--Preference summary to turn off stories-->
   <string name="StoriesPrivacySettingsFragment__if_you_opt_out">Si vous décidez de quitter la fonction Stories, vous ne pourrez plus en partager ni en consulter.</string>
   <!--Preference title to turn on stories-->
@@ -4523,7 +4523,7 @@ Nouvelle tentative…</string>
   <!--Section header for who can view a group story-->
   <string name="GroupStorySettingsFragment__who_can_view_this_story">Qui peut voir cette story ?</string>
   <!--Explanation of who can view a group story-->
-  <string name="GroupStorySettingsFragment__members_of_the_group_s">Les membres de ce groupe \"%1$s\" peuvent consulter et commenter votre story. Vous pouvez modifier les participants du groupe en question.</string>
+  <string name="GroupStorySettingsFragment__members_of_the_group_s">Les membres de ce groupe \" %1$s \" peuvent consulter et commenter votre story. Vous pouvez modifier les participants du groupe en question.</string>
   <!--Preference label for removing this group story-->
   <string name="GroupStorySettingsFragment__remove_group_story">Supprimer la story du groupe</string>
   <!--Generic title for overflow menus-->

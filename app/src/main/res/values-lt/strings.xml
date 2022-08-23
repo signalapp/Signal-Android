@@ -1773,7 +1773,7 @@
   <string name="UsernameEditFragment_username_is_invalid">Naudotojo vardas yra neteisingas.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Naudotojo varduose privalo būti nuo %1$d iki %2$d simbolių.</string>
   <!--Explanation about what usernames provide-->
-  <string name="UsernameEditFragment__usernames_let_others_message">Naudotojo vardas leidžia žmonėms siųsti tau žinutes be tavo telefono numerio. Šis vardas susiejamas su skaitmenų kombinacija, kad būtų išsaugotas tavo adreso privatumas.</string>
+  <string name="UsernameEditFragment__usernames_let_others_message">Turėdami tavo naudotojo vardą žmonės gali siųsti tau žinutes be tavo telefono numerio. Šis vardas susiejamas su skaitmenų kombinacija, kad būtų išsaugotas tavo adreso privatumas.</string>
   <!--Dialog title for explanation about numbers at the end of the username-->
   <string name="UsernameEditFragment__what_is_this_number">Kas tai per skaičius?</string>
   <string name="UsernameEditFragment__these_digits_help_keep">Šie skaitmenys padeda užtikrinti tavo naudotojo vardo privatumą, kad išvengtum nepageidaujamų žinučių. Savo naudotojo vardą pasakyk tik tiems žmonėms ir grupėms, su kuriomis nori bendrauti. Pakeitus naudotojo vardą, suteikiama nauja skaitmenų kombinacija.</string>

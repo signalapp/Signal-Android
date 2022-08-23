@@ -1623,7 +1623,7 @@ nambari yako ya simu</string>
   <string name="UsernameEditFragment__usernames_let_others_message">Majina ya watumiaji yanawawezesha wengine kutuma ujumbe bila kuhitaji nambari yako ya simu. Yameoanishwa na seti ya tarakimu kukusaidia kuiweka siri anuani yako. </string>
   <!--Dialog title for explanation about numbers at the end of the username-->
   <string name="UsernameEditFragment__what_is_this_number">Hii ni nambari gani?</string>
-  <string name="UsernameEditFragment__these_digits_help_keep">Tarakimu hizi zinasaidia kuliweka jina lako la mtumiaji siri ili uweze kuepuka jumbe usizozihitaji. Shiriki jina lako la mtumiaji na watu na makundi unayopenda kuzungumza nayo tu. Ukibadili jina lako la mtumiaji, utapata seti mpya ya tarakimu.</string>
+  <string name="UsernameEditFragment__these_digits_help_keep">Tarakimu hizi ni usaidizi wa kuliweka jina lako la mtumiaji siri ili uweze kuepuka jumbe usizozihitaji. Shiriki jina lako la mtumiaji na watu na makundi unayopenda kuzungumza nayo tu. Ukibadili jina lako la mtumiaji, utapata seti mpya ya tarakimu.</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">Anwani %diko katika Signal!</item>
     <item quantity="other">Anwani %dziko katika Signal!</item>

@@ -415,12 +415,12 @@
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
   <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">메시지를 보내는 사용자에게만 프로필이 표시됩니다.</string>
   <!--Title of clickable row to select phone number privacy settings-->
-  <string name="ProfileCreateFragment__who_can_find_me">누가 내 전화번호로 나를 찾을 수 있나요?</string>
+  <string name="ProfileCreateFragment__who_can_find_me">전화번호로 나를 찾을 수 있는 사람은 누구인가요?</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
   <!--Toolbar title for this screen-->
-  <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">누가 내 전화번호로 나를 찾을 수 있나요?</string>
+  <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">전화번호로 나를 찾을 수 있는 사람은 누구인가요?</string>
   <!--Description for radio item stating anyone can see your phone number-->
-  <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has">연락처에 내 전화번호가 있는 모든 사람이 나를 Signal 연락처로 볼 수 있습니다. 다른 사람들은 내 전화번호로 검색하여 나를 찾을 수 있습니다.</string>
+  <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has">내 전화번호를 저장한 사람은 Signal에 내가 자동으로 표시됩니다. 다른 사람들은 전화번호로 나를 검색할 수 있습니다.</string>
   <!--Description for radio item stating no one will be able to see your phone number-->
   <string name="WhoCanSeeMyPhoneNumberFragment__nobody_on_signal">누구도 Signal에서 내 전화번호로 나를 찾을 수 없습니다.</string>
   <!--ChooseBackupFragment-->
@@ -1556,7 +1556,7 @@
   <!--Explanation about what usernames provide-->
   <string name="UsernameEditFragment__usernames_let_others_message">사용자 이름을 사용하면 다른 사람들이 내 전화번호 없이도 내게 메시지를 보낼 수 있습니다. 사용자 이름은 사용자의 주소를 비공개로 유지할 수 있도록 일련번호와 함께 짝지어 쓰입니다.</string>
   <!--Dialog title for explanation about numbers at the end of the username-->
-  <string name="UsernameEditFragment__what_is_this_number">이 번호는 뭔가요?</string>
+  <string name="UsernameEditFragment__what_is_this_number">이 번호는 무엇인가요?</string>
   <string name="UsernameEditFragment__these_digits_help_keep">이 일련번호는 사용자 이름을 비공개로 유지하여 원치 않는 메시지를 피할 수 있도록 도와줍니다. 채팅을 원하는 사용자 및 그룹과만 사용자 이름을 공유하세요. 사용자 이름을 변경하면 새로운 일련번호가 부여됩니다.</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="other">Signal에 연락처가 %d개 있습니다!</item>
@@ -4277,22 +4277,22 @@
   <!--Preference title to turn off stories-->
   <string name="StoriesPrivacySettingsFragment__turn_off_stories">스토리 끄기</string>
   <!--Preference summary to turn off stories-->
-  <string name="StoriesPrivacySettingsFragment__if_you_opt_out">스토리를 사용하지 않도록 선택하면 더는 스토리를 보거나 공유할 수 없게 됩니다.</string>
+  <string name="StoriesPrivacySettingsFragment__if_you_opt_out">스토리 기능을 끄면 더 이상 스토리를 보거나 공유할 수 없게 됩니다.</string>
   <!--Preference title to turn on stories-->
   <string name="StoriesPrivacySettingsFragment__turn_on_stories">스토리 켜기</string>
   <!--Preference summary to turn on stories-->
-  <string name="StoriesPrivacySettingsFragment__share_and_view">스토리를 공유하고 다른 사람들의 스토리를 보세요. 스토리는 24시간이 지나면 자동으로 사라집니다.</string>
+  <string name="StoriesPrivacySettingsFragment__share_and_view">스토리를 공유하고 다른 사람들의 스토리도 확인하세요. 스토리는 24시간이 지나면 자동으로 사라집니다.</string>
   <!--Dialog title to turn off stories-->
   <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">스토리를 끌까요?</string>
   <!--Dialog message to turn off stories-->
-  <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to">더는 스토리를 공유하거나 볼 수 없게 됩니다. 최근에 보낸 모든 스토리는 만료 기간이 종료될 때까지 스토리를 받은 모든 사람에게 표시됩니다.</string>
+  <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to">더 이상 스토리를 공유하거나 볼 수 없게 됩니다. 최근 공유한 스토리는 24시간 후 자동 삭제될 때까지 스토리를 받은 모든 사람에게 표시됩니다.</string>
   <!--Page title when launched from stories landing screen-->
   <string name="StoriesPrivacySettingsFragment__story_privacy">스토리 개인정보보호</string>
   <!--GroupStorySettingsFragment-->
   <!--Section header for who can view a group story-->
   <string name="GroupStorySettingsFragment__who_can_view_this_story">이 스토리를 볼 수 있는 사람</string>
   <!--Explanation of who can view a group story-->
-  <string name="GroupStorySettingsFragment__members_of_the_group_s">\"%1$s\" 그룹 구성원이 이 스토리를 보고 답장할 수 있습니다. 이 그룹의 이 채팅에 대한 멤버십을 업데이트할 수 있습니다.</string>
+  <string name="GroupStorySettingsFragment__members_of_the_group_s">\"%1$s\" 그룹 멤버는 이 스토리를 보고 답장할 수 있습니다.  그룹에서 이 채팅에 대한 멤버십을 업데이트할 수 있습니다.</string>
   <!--Preference label for removing this group story-->
   <string name="GroupStorySettingsFragment__remove_group_story">그룹 스토리 제거</string>
   <!--Generic title for overflow menus-->

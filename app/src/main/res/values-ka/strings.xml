@@ -3589,7 +3589,7 @@
   <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">ახალი გამოწერის საფასურის სრული თანხა (%1$s) დღეს ჩამოგეჭრება. შენი გამოწერა ყოველთვიურად განახლდება.</string>
   <string name="Subscription__s_per_month">%s/თვეში</string>
   <string name="Subscription__s_per_month_dot_renews_s">%1$s/თვეში · განახლდება %2$s-ს</string>
-  <string name="Subscription__s_per_month_dot_expires_s">%1$s/თვეში · ვადა გაუვა %2$s-ს</string>
+  <string name="Subscription__s_per_month_dot_expires_s">%1$s/თვეში · ვადა ამოეწურება %2$s -ს</string>
   <!--First small text blurb on learn more sheet-->
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal-ი არის არაკომერციული ორგანიზაცია რეკლამის განმთავსებლების ან ინვესტორების გარეშე, რომელსაც მხარს უჭერენ მხოლოდ ის ადამიანები, რომლებიც იყენებენ და აფასებენ მას. განახორციელე განმეორებადი ყოველთვიური დონაციები და მიიღე პროფილის ემბლემა შენი მხარდაჭერის გასაზიარებლად.</string>
   <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">რატომ უნდა გააკეთო დონაცია?</string>
@@ -3642,7 +3642,7 @@
   <!--Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">ყოველთვიური დონაცია გაუქმებულია</string>
   <!--Displayed in the bottom sheet when a boost badge expires-->
-  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">შენი ბუსტის ემბლემას ვადა გაუვიდა და შენს პროფილზე ის აღარ ჩანს.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">შენი ბუსტის ემბლემას ვადა ამოეწურა და შენს პროფილზე ის აღარ ჩანს.</string>
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">ერთჯერადი კონტრიბუციით შეგიძლია ბუსტის ემბლემა დამატებით 30 დღით გააგრძელო.</string>
   <!--Displayed when we do not think the user is a subscriber when their boost expires-->
   <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">შეგიძლია Signal-ის გამოყენება გააგრძელო, მაგრამ  შენთვის შექმნილი ტექნოლოგიის დასახმარებლად, შენ გაქვს შესაძლებლობა მისი მხარდამჭერი გახდე ყოველთვიური დონაციების გაკეთებით.</string>
@@ -4255,9 +4255,9 @@
   <!--Description text in gift thanks sheet-->
   <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">%1$s-ს ემბლემა აჩუქე. როცა ამას დაადასტურებს, მას მიეცემა არჩევანი, აჩვენოს ან დამალოს ემბლემა.</string>
   <!--Expired gift sheet title-->
-  <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">შენს სასაჩუქრე ემბლემას ვადა გაუვიდა</string>
+  <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">შენს სასაჩუქრე ემბლემის ვადა ამოიწურა</string>
   <!--Expired gift sheet top description text-->
-  <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">შენს სასაჩუქრე ემბლემას ვადა გაუვიდა და შენს პროფილზე სხვებისთვის ხილული აღარ იქნება.</string>
+  <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">შენს სასაჩუქრე ემბლემას ვადა ამოეწურა და შენს პროფილზე სხვებისთვის ხილული აღარ იქნება.</string>
   <!--Expired gift sheet bottom description text-->
   <string name="ExpiredGiftSheetConfiguration__to_continue">იმისათვის, რომ გააგრძელო შენთვის შექმნილი ტექნოლოგიის თანადგომა, შენ შეგიძლია ყოველთვიური მხარდამჭერი გახდე.</string>
   <!--Expired gift sheet make a monthly donation button-->
@@ -4315,7 +4315,7 @@
     <item quantity="other">დარჩა %1$d წუთი</item>
   </plurals>
   <!--Gift expiry expired-->
-  <string name="Gifts__expired">ვადა გაუვიდა</string>
+  <string name="Gifts__expired">ვადა ამოიწურა</string>
   <!--Label indicating that a user can tap to advance to the next post in a story-->
   <string name="StoryFirstTimeNavigationView__tap_to_advance">დააჭირე წინსვლისთვის</string>
   <!--Label indicating swipe direction to skip current story-->

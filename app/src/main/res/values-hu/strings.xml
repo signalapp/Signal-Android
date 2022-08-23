@@ -434,7 +434,7 @@
   <string name="CreateProfileActivity_set_avatar_description">Profilkép beállítása</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
-  <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">A profilok kizárólag azok számára láthatók, akik üzenetet írnak neked.</string>
+  <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">A profilok kizárólag azok számára láthatók, akiknek üzenetet írsz.</string>
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">Ki találhat meg a telefonszámom alapján?</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -1628,10 +1628,10 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="UsernameEditFragment_username_is_invalid">A felhasználónév érvénytelen.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">A felhasználóneveknek %1$d és %2$d db karakter közé kell esniük.</string>
   <!--Explanation about what usernames provide-->
-  <string name="UsernameEditFragment__usernames_let_others_message">A felhasználónevek segítségével mások üzenetet küldhetnek neked anélkül, hogy szükségük lenne a telefonszámára. Számjegyekkel vannak párosítva, hogy segítsenek megőrizni a címed privát jellegét.</string>
+  <string name="UsernameEditFragment__usernames_let_others_message">A felhasználónevek segítségével mások üzenetet küldhetnek neked anélkül, hogy szükségük lenne a telefonszámodra. Számjegyekkel vannak párosítva, hogy segítsenek megőrizni a címed privát jellegét.</string>
   <!--Dialog title for explanation about numbers at the end of the username-->
-  <string name="UsernameEditFragment__what_is_this_number">Mi a telefonszámod?</string>
-  <string name="UsernameEditFragment__these_digits_help_keep">Ezek a számok segítenek megőrizni a felhasználóneved, hogy elkerüld a nem kívánt üzeneteket. Csak azokkal az emberekkel és csoportokkal oszd meg a felhasználóneved, akikkel csevegni szeretnél. Ha módosítod a felhasználóneveket, új számjegyeket kapsz.</string>
+  <string name="UsernameEditFragment__what_is_this_number">Mi ez a szám?</string>
+  <string name="UsernameEditFragment__these_digits_help_keep">Ezek a számok segítenek megőrizni a felhasználóneved privát jellegét, hogy elkerüld a nem kívánt üzeneteket. Csak azokkal az emberekkel és csoportokkal oszd meg a felhasználóneved, akikkel csevegni szeretnél. Ha módosítod a felhasználóneved, új számsort kapsz.</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d ismerős már elérhető Signalon!</item>
     <item quantity="other">%d ismerős már elérhető Signalon!</item>
@@ -3075,7 +3075,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ShareActivity__comma_s">, %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">A több beszélgetésbe történő megosztás csak Signal üzenetek esetén támogatott</string>
   <!--Toast when the incoming intent is invalid-->
-  <string name="ShareActivity__could_not_get_share_data_from_intent">Nem sikerült lekérni a megosztási adatokat az Intentről.</string>
+  <string name="ShareActivity__could_not_get_share_data_from_intent">Nem sikerült lekérni a megosztási adatokat.</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Néhány felhasználónak nem sikerült a küldés</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">A megosztás maximum %1$d db beszélgetéssel lehetséges</string>
@@ -4415,6 +4415,6 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--Preference label for removing this group story-->
   <string name="GroupStorySettingsFragment__remove_group_story">Csoport Történet eltávolítása</string>
   <!--Generic title for overflow menus-->
-  <string name="OverflowMenu__overflow_menu">Túlfolyó menü</string>
+  <string name="OverflowMenu__overflow_menu">További opciók menü</string>
   <!--EOF-->
 </resources>

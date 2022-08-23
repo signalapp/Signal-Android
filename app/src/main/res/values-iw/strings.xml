@@ -1775,7 +1775,7 @@
   <!--Explanation about what usernames provide-->
   <string name="UsernameEditFragment__usernames_let_others_message">שמות משתמש מאפשרים לאחרים לשלוח לך הודעה בלי להזדקק למספר הטלפון שלך. הם מוצמדים לסט של ספרות כדי לעזור לשמור על פרטיות הכתובת שלך.</string>
   <!--Dialog title for explanation about numbers at the end of the username-->
-  <string name="UsernameEditFragment__what_is_this_number">מה זה המספר הזה?</string>
+  <string name="UsernameEditFragment__what_is_this_number">מה המספר הזה?</string>
   <string name="UsernameEditFragment__these_digits_help_keep">הספרות האלה עוזרות לשמור על שם המשתמש שלך פרטי, כדי להימנע מהודעות לא רצויות. זה מאפשר לך לשתף את שם המשתמש שלך רק עם אנשים וקבוצות שמתחשק לך לשוחח איתם. אם משנים את שם המשתמש, מקבלים סט חדש של ספרות.</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">איש קשר %d ב־Signal!</item>
@@ -3495,7 +3495,7 @@
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">קוצב זמן ברירת מחדל עבור התכתבויות חדשות</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">הגדר קוצב זמן ברירת מחדל של הודעות נעלמות עבור כל ההתכתבויות החדשות שהותחלו על ידך.</string>
   <!--Summary for stories preference to launch into story privacy settings-->
-  <string name="PrivacySettingsFragment__manage_your_stories">מנהלים הסטוריז שלך ורואים מי צפה בהם</string>
+  <string name="PrivacySettingsFragment__manage_your_stories">ניהול הסטוריז שלך ומי יכול לצפות בהם</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">הראה איקון מעמד</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">הראה איקון בפרטי הודעה כאשר היא נשלחה ע״י שימוש בשולח אטום.</string>
@@ -4646,10 +4646,10 @@
   <!--Section header for who can view a group story-->
   <string name="GroupStorySettingsFragment__who_can_view_this_story">מי יכול לצפות בסטורי הזה</string>
   <!--Explanation of who can view a group story-->
-  <string name="GroupStorySettingsFragment__members_of_the_group_s">חברי הקבוצה ״%1$s״ יכולים לצפות ולהשיב לסטורי הזה. יש לך אפשרות לעדכן את החברות בצ׳אט הזה בתוך הקבוצה.</string>
+  <string name="GroupStorySettingsFragment__members_of_the_group_s">חברי הקבוצה ״%1$s״ יכולים לצפות ולהשיב לסטורי הזה. יש לך אפשרות לעדכן את החברות לצ׳אט הזה בתוך הקבוצה.</string>
   <!--Preference label for removing this group story-->
   <string name="GroupStorySettingsFragment__remove_group_story">הסרת סטורי קבוצתי</string>
   <!--Generic title for overflow menus-->
-  <string name="OverflowMenu__overflow_menu">תפריט overflow</string>
+  <string name="OverflowMenu__overflow_menu">תפריט אפשרויות נוספות</string>
   <!--EOF-->
 </resources>

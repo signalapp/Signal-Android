@@ -4085,7 +4085,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="StoriesLinkPopup__visit_link">Truy cập đường dẫn</string>
   <!--Gift price and duration, formatted as: {price} dot {n} day duration-->
   <plurals name="GiftRowItem_s_dot_d_day_duration">
-    <item quantity="other">Kéo dài %1$s · %2$d ngày</item>
+    <item quantity="other">%1$s · Hạn sử dụng %2$d ngày</item>
   </plurals>
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">Gửi một huy hiệu quà tặng</string>

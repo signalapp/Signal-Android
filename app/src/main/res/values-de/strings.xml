@@ -4399,7 +4399,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--Section header for who can view a group story-->
   <string name="GroupStorySettingsFragment__who_can_view_this_story">Wer diese Story sehen kann</string>
   <!--Explanation of who can view a group story-->
-  <string name="GroupStorySettingsFragment__members_of_the_group_s">Mitglieder der Gruppe \"%1$s\" können diese Story sehen und darauf antworten. Du kannst die Mitgliedschaft für diesen Chat in der Gruppe aktualisieren.</string>
+  <string name="GroupStorySettingsFragment__members_of_the_group_s">Mitglieder der Gruppe „%1$s\" können diese Story sehen und darauf antworten. Du kannst die Mitgliedschaft für diesen Chat in der Gruppe aktualisieren.</string>
   <!--Preference label for removing this group story-->
   <string name="GroupStorySettingsFragment__remove_group_story">Gruppen-Story entfernen</string>
   <!--Generic title for overflow menus-->
