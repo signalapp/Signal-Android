@@ -432,6 +432,18 @@
   <string name="CreateProfileActivity_set_up_your_profile">Anzisha wasifu wako</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Wasifu wako umesimbwa kwa njia fiche ya mwisho hadi mwisho. Wasifu wako na mabadiliko unayoufanyia yataonekana kwa waasiliani wako, na unapoanza au kukubali gumzo mpya, na unapojiunga na vikundi vipya.</string>
   <string name="CreateProfileActivity_set_avatar_description">Weka umbo</string>
+  <!--ProfileCreateFragment-->
+  <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
+  <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">Wasifu unaonekana kwa watu unaowatumia ujumbe tu.</string>
+  <!--Title of clickable row to select phone number privacy settings-->
+  <string name="ProfileCreateFragment__who_can_find_me">Nani anaweza kunipata kupitia kwa nambari?</string>
+  <!--WhoCanSeeMyPhoneNumberFragment-->
+  <!--Toolbar title for this screen-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">Nani anaweza kunipata kupitia kwa nambari?</string>
+  <!--Description for radio item stating anyone can see your phone number-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has">Yeyote mwenye nambari yako ya simu kwenye wawasiliani wake atakuona kama muwasiliani kwenye Signal. Wengine wataweza kukupata kwa nambari yako kwenye \"tafuta\".</string>
+  <!--Description for radio item stating no one will be able to see your phone number-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__nobody_on_signal">Hakuna yeyote kwenye Signal atakayeweza kukupata kupitia nambari yako ya simu.</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">Rejesha kutoka nakalahifadhi?</string>
   <string name="ChooseBackupFragment__restore_your_messages_and_media">Rejesha jumbe zako na media kutoka nakalahifadhi ya ndani. Ikiwa hutarejesha sasa, hutaweza kurejesha baadaye.</string>
@@ -735,6 +747,10 @@
   <string name="ManageProfileFragment_failed_to_set_avatar">Umbo halijawekwa</string>
   <string name="ManageProfileFragment_badges">Beji</string>
   <string name="ManageProfileFragment__edit_photo">Hariri picha</string>
+  <!--Snackbar message after creating username-->
+  <string name="ManageProfileFragment__username_created">Jina la mtumiaji limeundwa</string>
+  <!--Snackbar message after copying username-->
+  <string name="ManageProfileFragment__username_copied">Jina la mtumiaji limenakiliwa</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Hakuna vikundi mnavyoshiriki pamoja</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1590,6 +1606,8 @@ nambari yako ya simu</string>
   <string name="UnverifiedSendDialog_send_message">Tuma ujumbe?</string>
   <string name="UnverifiedSendDialog_send">Tuma</string>
   <!--UsernameEditFragment-->
+  <!--Instructional text at the top of the username edit screen-->
+  <string name="UsernameEditFragment__choose_your_username">Chagua jina lako la mtumiaji</string>
   <string name="UsernameEditFragment_username">Jina la mtumiaji</string>
   <string name="UsernameEditFragment_delete">Futa</string>
   <string name="UsernameEditFragment_successfully_set_username">Jina la mtumiaji limefanikiwa kuwekwa.</string>
@@ -1601,11 +1619,18 @@ nambari yako ya simu</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Majina ya watumiaji hayawezi kuanza kwa nambari.</string>
   <string name="UsernameEditFragment_username_is_invalid">Jina la mtumiaji si halali.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Majina ya watumiaji lazima yawe kati ya vibambo  %1$dna %2$d.</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Si lazima uweke jina la mtumiaji kwenye Signal. Ukichagua kuunda jina la mtumiaji, watumiaji wengine wa Signal wataweza kukupata kwa kutafuta jina hili la mtumiaji na kuwasiliana nawe bila kujua nambari yako ya simu.</string> -->
+  <!--Explanation about what usernames provide-->
+  <string name="UsernameEditFragment__usernames_let_others_message">Majina ya watumiaji yanawawezesha wengine kutuma ujumbe bila kuhitaji nambari yako ya simu. Yameoanishwa na seti ya tarakimu kukusaidia kuiweka siri anuani yako. </string>
+  <!--Dialog title for explanation about numbers at the end of the username-->
+  <string name="UsernameEditFragment__what_is_this_number">Hii ni nambari gani?</string>
+  <string name="UsernameEditFragment__these_digits_help_keep">Tarakimu hizi zinasaidia kuliweka jina lako la mtumiaji siri ili uweze kuepuka jumbe usizozihitaji. Shiriki jina lako la mtumiaji na watu na makundi unayopenda kuzungumza nayo tu. Ukibadili jina lako la mtumiaji, utapata seti mpya ya tarakimu.</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">Anwani %diko katika Signal!</item>
     <item quantity="other">Anwani %dziko katika Signal!</item>
   </plurals>
+  <!--UsernameShareBottomSheet-->
+  <!--Explanation of what the sheet enables the user to do-->
+  <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">Nakili au shiriki kiungo cha jina la mtumiaji</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Mawasiliano yako yanaendesha toleo la zamani la Signal. Tafadhali waombe wasasishe kabla ya kuthibitisha nambari yako ya usalama.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Mawasiliano yako yanaendesha toleo jipya la Signal na muundo wa msimbo wa QR usiopatanisha. Tafadhali sasisha ili upatanishe</string>
@@ -2192,6 +2217,8 @@ nambari yako ya simu</string>
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__one_time_donation">Mchango wa mara moja</string>
   <string name="preferences__privacy">Faragha</string>
+  <!--Preference label for stories-->
+  <string name="preferences__stories">Stori</string>
   <string name="preferences__mms_user_agent">Wakala wa mtumiaji wa MMS</string>
   <string name="preferences__advanced_mms_access_point_names">Mwongozo wa mpangilio wa MMS</string>
   <string name="preferences__mmsc_url">MMSC URL</string>
@@ -3041,6 +3068,8 @@ Funga ufikiaji wa Signal na ufungaji wa Android au alama za vidole</string>
   <string name="ShareActivity__send">Tuma</string>
   <string name="ShareActivity__comma_s">, %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">Kushiriki kwenye gumzo nyingi kunawezekana tu kwa jumbe za Signal</string>
+  <!--Toast when the incoming intent is invalid-->
+  <string name="ShareActivity__could_not_get_share_data_from_intent">Haingeweza kushiriki data kutoka kwa mtandao.</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Baadhi ya watumiaji hawajatumiwa</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Unaweza tu kushiriki hadi gumzo %1$d</string>
@@ -3266,6 +3295,8 @@ Funga ufikiaji wa Signal na ufungaji wa Android au alama za vidole</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Ujumbe na simu za Signal, elekeza simu kila wakati, na kutumia huduma ya kuficha ujumbe</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">Kipima muda chaguo-msingi cha gumzo mpya</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Weka kipima muda cha ujumbe unaotoweka kwa gumzo zote mpya zilizoanzishwa na wewe.</string>
+  <!--Summary for stories preference to launch into story privacy settings-->
+  <string name="PrivacySettingsFragment__manage_your_stories">Dhibiti stori zako na nani anayeweza kuziona</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Onyesha aikoni ya hali</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Onyesha aikoni katika maelezo ya ujumbe wakati uliwasilishwa kwa kutumia huduma ya kuficha ujumbe.</string>
@@ -3375,6 +3406,8 @@ Funga ufikiaji wa Signal na ufungaji wa Android au alama za vidole</string>
   <string name="EmojiSearchFragment__no_results_found">Hakuna matokeo yaliyopatikana</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">Mlio wa simu haujulikani</string>
   <!--ConversationSettingsFragment-->
+  <!--Error toasted when no activity can handle the add contact intent-->
+  <string name="ConversationSettingsFragment__contacts_app_not_found">Programu ya wawasiliani haipatikani</string>
   <string name="ConversationSettingsFragment__send_message">Tuma ujumbe</string>
   <string name="ConversationSettingsFragment__start_video_call">Piga simu ya video</string>
   <string name="ConversationSettingsFragment__start_audio_call">Piga simu ya video</string>
@@ -3877,10 +3910,12 @@ Funga ufikiaji wa Signal na ufungaji wa Android au alama za vidole</string>
   <string name="ConversationListTabs__stories">Stori</string>
   <!--String for counts above 99 in conversation list tabs-->
   <string name="ConversationListTabs__99p">99+</string>
+  <!--Menu item on stories landing page-->
+  <string name="StoriesLandingFragment__story_privacy">Faragha ya stori</string>
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">Stori zangu</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">Ongeza story</string> -->
+  <string name="StoriesLandingFragment__tap_to_add_a_story">Bonyeza kuongeza stori</string>
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">Hakuna sasisho za hivi karibuni za kuonyesha sasa hivi. Bonyeza + kuongeza kwenye stori yako.</string>
   <!--Context menu option to hide a story-->
@@ -3984,14 +4019,6 @@ Funga ufikiaji wa Signal na ufungaji wa Android au alama za vidole</string>
   <string name="StoryGroupReplyItem__copy">Nakili</string>
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Futa</string>
-  <!--Story settings page title-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">Mipangilio ya stori</string> -->
-  <!--Story settings private stories heading-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">Stori binafsi</string> -->
-  <!--Note at bottom of story settings regarding who can see private stories.-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Stori binafsi zinaweza kutazamwa na watu unaowaongeza pekee. Wewe pekee ndiye unaweza kuona jina la stori.</string> -->
-  <!--Option label for creating a new private story-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">Stori mpya binafsi</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Stori Yangu</string>
   <!--Section heading for story visibility-->
@@ -4242,6 +4269,11 @@ Funga ufikiaji wa Signal na ufungaji wa Android au alama za vidole</string>
     <item quantity="one">Stori ya Kikundi . mtazamaji %1$d</item>
     <item quantity="other">Stori ya Kikundi . watazamaji %1$d</item>
   </plurals>
+  <!--Label under name for my story-->
+  <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
+    <item quantity="one">Mtazamaji %1$s . %2$d</item>
+    <item quantity="other">watazamaji %1$s . %2$d</item>
+  </plurals>
   <!--Label under name for My Story when first sending to my story-->
   <string name="ContactSearchItems__tap_to_choose_your_viewers">Bonyeza kuchagua watazamaji wako</string>
   <!--Label for context menu item to open story settings-->
@@ -4352,5 +4384,31 @@ Funga ufikiaji wa Signal na ufungaji wa Android au alama za vidole</string>
   <string name="StoryInfoBottomSheetDialogFragment__sent_from">Imetumwa kutoka kwa</string>
   <!--Story Info context menu label-->
   <string name="StoryInfoBottomSheetDialogFragment__info">Maelezo</string>
+  <!--StoriesPrivacySettingsFragment-->
+  <!--Explanation about how stories are deleted and managed-->
+  <string name="StoriesPrivacySettingsFragment__stories_automatically_disappear">Stori hufutika zenyewe baada ya saa 24. Chagua nani anayeweza kuona stori au tengeneza stori mpya na watazamaji maalum au vikundi.</string>
+  <!--Preference title to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories">Zima stori</string>
+  <!--Preference summary to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__if_you_opt_out">Kama ukichagua kuzima stori hutaweza tena kushiriki au kutazama stori.</string>
+  <!--Preference title to turn on stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_on_stories">Washa stori</string>
+  <!--Preference summary to turn on stories-->
+  <string name="StoriesPrivacySettingsFragment__share_and_view">Shiriki na tazama stori za wengine. Stori hufutika zenyewe baada ya saa 24.</string>
+  <!--Dialog title to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">Zima stori?</string>
+  <!--Dialog message to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to">Hutaweza tena kushiriki au kuangalia stori. Stori zozote ulizotuma hivi karibuni bado zitaonekana na wengine mpaka muda wake utakapoisha.</string>
+  <!--Page title when launched from stories landing screen-->
+  <string name="StoriesPrivacySettingsFragment__story_privacy">Faragha ya stori</string>
+  <!--GroupStorySettingsFragment-->
+  <!--Section header for who can view a group story-->
+  <string name="GroupStorySettingsFragment__who_can_view_this_story">Nani anaweza kuangalia stori hii?</string>
+  <!--Explanation of who can view a group story-->
+  <string name="GroupStorySettingsFragment__members_of_the_group_s">Wanachama wa kikundi cha \"%1$s\" wanaweza kutazama na kujibu kwenye stori hii. Unaweza kusasisha uanachama wa gumzo hili kwenye kikundi.</string>
+  <!--Preference label for removing this group story-->
+  <string name="GroupStorySettingsFragment__remove_group_story">Ondoa stori ya kikundi</string>
+  <!--Generic title for overflow menus-->
+  <string name="OverflowMenu__overflow_menu">Overflow menu</string>
   <!--EOF-->
 </resources>

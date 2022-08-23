@@ -432,6 +432,18 @@
   <string name="CreateProfileActivity_set_up_your_profile">Konfigurer din profil</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Din profil er end-to-end krypteret. Din profil og dens ændringer vil være synlig for dine kontakter, når du indleder eller accepterer nye samtaler, og når du tilslutter dig nye grupper.</string>
   <string name="CreateProfileActivity_set_avatar_description">Vælg avatar</string>
+  <!--ProfileCreateFragment-->
+  <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
+  <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">Profiler er kun synlige for folk, du kontakter.</string>
+  <!--Title of clickable row to select phone number privacy settings-->
+  <string name="ProfileCreateFragment__who_can_find_me">Hvem kan finde mig med mit nummer?</string>
+  <!--WhoCanSeeMyPhoneNumberFragment-->
+  <!--Toolbar title for this screen-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">Hvem kan finde mig med mit nummer?</string>
+  <!--Description for radio item stating anyone can see your phone number-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has">Enhver, der har dit telefonnummer i sine kontakter, vil se dig som en kontakt på Signal. Andre vil kunne finde dig ved at søge efter dit nummer.</string>
+  <!--Description for radio item stating no one will be able to see your phone number-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__nobody_on_signal">Ingen på Signal vil kunne finde dig med dit telefonnummer.</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">Gendan fra sikkerhedskopi?</string>
   <string name="ChooseBackupFragment__restore_your_messages_and_media">Gendan dine beskeder og mediefiler fra en lokal sikkerhedskopi. Hvis du ikke gendanner nu, kan det ikke gøres senere.</string>
@@ -735,6 +747,10 @@
   <string name="ManageProfileFragment_failed_to_set_avatar">Avataren kunne ikke opsættes</string>
   <string name="ManageProfileFragment_badges">Emblemer</string>
   <string name="ManageProfileFragment__edit_photo">Rediger billede</string>
+  <!--Snackbar message after creating username-->
+  <string name="ManageProfileFragment__username_created">Brugernavn oprettet</string>
+  <!--Snackbar message after copying username-->
+  <string name="ManageProfileFragment__username_copied">Brugernavn kopieret</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Ingen grupper tilfælles</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1596,6 +1612,8 @@ nummer (%s) er ugyldigt</string>
   <string name="UnverifiedSendDialog_send_message">Send besked?</string>
   <string name="UnverifiedSendDialog_send">Send</string>
   <!--UsernameEditFragment-->
+  <!--Instructional text at the top of the username edit screen-->
+  <string name="UsernameEditFragment__choose_your_username">Vælg dit brugernavn</string>
   <string name="UsernameEditFragment_username">Brugernavn</string>
   <string name="UsernameEditFragment_delete">Slet</string>
   <string name="UsernameEditFragment_successfully_set_username">Brugernavn gemt.</string>
@@ -1607,11 +1625,18 @@ nummer (%s) er ugyldigt</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Brugernavne kan ikke starte med et tal.</string>
   <string name="UsernameEditFragment_username_is_invalid">Brugernavn er ugyldigt.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Brugernavne skal være på mellem %1$d og %2$d tegn.</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Brugernavne på Signal er valgfrie. Hvis du vælger at oprette et brugernavn, kan andre Signal-brugere finde dig via dette brugernavn, og kontakte dig uden at kende dit telefonnummer</string> -->
+  <!--Explanation about what usernames provide-->
+  <string name="UsernameEditFragment__usernames_let_others_message">Med brugernavne kan andre skrive til dig uden dit telefonnummer. De er tilknyttet et sæt tal, der hjælper med at holde dine adresse hemmelig.</string>
+  <!--Dialog title for explanation about numbers at the end of the username-->
+  <string name="UsernameEditFragment__what_is_this_number">Hvad er dette nummer?</string>
+  <string name="UsernameEditFragment__these_digits_help_keep">Disse tal hjælper dig med at holde dit brugernavn hemmeligt, så du undgår uønskede beskeder. Del dit brugernavn med de mennesker og grupper, du gerne vil snakke med. Hvis du ændrer brugernavn, får du et nyt sæt tal.</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d kontakt anvender Signal!</item>
     <item quantity="other">%d kontakter anvender Signal!</item>
   </plurals>
+  <!--UsernameShareBottomSheet-->
+  <!--Explanation of what the sheet enables the user to do-->
+  <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">Kopiér eller del brugerlink</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Din kontakt bruger en gammel version af Signal. Bed dem om at opdatere før verifikation af dit sikkerhedsnummer.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Din kontakt bruger en nyere version af Signal med en inkompatibel QR-kode. Opdatér venligst for at sammenligne.</string>
@@ -2197,6 +2222,8 @@ nummer (%s) er ugyldigt</string>
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__one_time_donation">Engangsdonation</string>
   <string name="preferences__privacy">Privatliv</string>
+  <!--Preference label for stories-->
+  <string name="preferences__stories">Historier</string>
   <string name="preferences__mms_user_agent">MMS-brugeragent</string>
   <string name="preferences__advanced_mms_access_point_names">Manuelle MMS-indstillinger</string>
   <string name="preferences__mmsc_url">MMSC URL</string>
@@ -3045,6 +3072,8 @@ nummer (%s) er ugyldigt</string>
   <string name="ShareActivity__send">Send</string>
   <string name="ShareActivity__comma_s">. %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">Deling til flere samtaler er kun understøttet i Signal-beskeder</string>
+  <!--Toast when the incoming intent is invalid-->
+  <string name="ShareActivity__could_not_get_share_data_from_intent">Kunne ikke hente data fra den ønskede kilde.</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Det kunne ikke sendes til nogle brugere</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Du kan kun dele med op til %1$d samtaler</string>
@@ -3270,6 +3299,8 @@ nummer (%s) er ugyldigt</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signal-beskeder og opkald, videresend altid opkald og forseglet afsender.</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">Standardudløbstid for nye samtaler</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Indstil en udløbstid for forsvindende beskeder, der skal gælde som standard for alle nye samtaler startet af dig.</string>
+  <!--Summary for stories preference to launch into story privacy settings-->
+  <string name="PrivacySettingsFragment__manage_your_stories">Administrér dine historier og hvem, der kan se dem</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Vis statusikon</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Vis et ikon i beskedoplysninger, når de blev leveret ved hjælp af forseglet afsender.</string>
@@ -3379,6 +3410,8 @@ nummer (%s) er ugyldigt</string>
   <string name="EmojiSearchFragment__no_results_found">Ingen fundne resultater</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">Ukendt ringetone</string>
   <!--ConversationSettingsFragment-->
+  <!--Error toasted when no activity can handle the add contact intent-->
+  <string name="ConversationSettingsFragment__contacts_app_not_found">Appen Kontakter blev ikke fundet</string>
   <string name="ConversationSettingsFragment__send_message">Send besked</string>
   <string name="ConversationSettingsFragment__start_video_call">Start videoopkald</string>
   <string name="ConversationSettingsFragment__start_audio_call">Start lydopkald</string>
@@ -3881,10 +3914,12 @@ nummer (%s) er ugyldigt</string>
   <string name="ConversationListTabs__stories">Historier</string>
   <!--String for counts above 99 in conversation list tabs-->
   <string name="ConversationListTabs__99p">99+</string>
+  <!--Menu item on stories landing page-->
+  <string name="StoriesLandingFragment__story_privacy">Privatlivsindstillinger for historier</string>
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">Mine historier</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">Tilføj en historie</string> -->
+  <string name="StoriesLandingFragment__tap_to_add_a_story">Tryk for at tilføje en historie</string>
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">Der er ingen nye opdateringer at vise lige nu. Tryk på + for at føje til din historie.</string>
   <!--Context menu option to hide a story-->
@@ -3988,14 +4023,6 @@ nummer (%s) er ugyldigt</string>
   <string name="StoryGroupReplyItem__copy">Kopiér</string>
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Slet</string>
-  <!--Story settings page title-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">Indstillinger for historie</string> -->
-  <!--Story settings private stories heading-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">Private historier</string> -->
-  <!--Note at bottom of story settings regarding who can see private stories.-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Private historier kan kun ses af de personer, som du tilføjer til dem. Det er kun dig, der kan se navnet på historien.</string> -->
-  <!--Option label for creating a new private story-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">Ny privat historie</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Min historie</string>
   <!--Section heading for story visibility-->
@@ -4183,8 +4210,8 @@ nummer (%s) er ugyldigt</string>
   <string name="StoriesLinkPopup__visit_link">Besøg link</string>
   <!--Gift price and duration, formatted as: {price} dot {n} day duration-->
   <plurals name="GiftRowItem_s_dot_d_day_duration">
-    <item quantity="one">%1$s · Gælder i %2$d dag</item>
-    <item quantity="other">%1$s · Gælder i %2$d dage</item>
+    <item quantity="one">%1$s · %2$d dags varighed</item>
+    <item quantity="other">%1$s · %2$d dages varighed</item>
   </plurals>
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">Send et gaveemblem</string>
@@ -4245,6 +4272,11 @@ nummer (%s) er ugyldigt</string>
   <plurals name="ContactSearchItems__group_story_d_viewers">
     <item quantity="one">Gruppehistorie · %1$d seer</item>
     <item quantity="other">Gruppehistorie · %1$d seere</item>
+  </plurals>
+  <!--Label under name for my story-->
+  <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
+    <item quantity="one">%1$s · %2$d seer</item>
+    <item quantity="other">%1$s · %2$d seere</item>
   </plurals>
   <!--Label under name for My Story when first sending to my story-->
   <string name="ContactSearchItems__tap_to_choose_your_viewers">Tryk for at vælge dine seere</string>
@@ -4356,5 +4388,31 @@ nummer (%s) er ugyldigt</string>
   <string name="StoryInfoBottomSheetDialogFragment__sent_from">Sendt fra</string>
   <!--Story Info context menu label-->
   <string name="StoryInfoBottomSheetDialogFragment__info">Information</string>
+  <!--StoriesPrivacySettingsFragment-->
+  <!--Explanation about how stories are deleted and managed-->
+  <string name="StoriesPrivacySettingsFragment__stories_automatically_disappear">Historier forsvinder automatisk efter 24 timer. Vælg, hvem der kan se din historie, eller lav nye historier med specifikke seere eller grupper.</string>
+  <!--Preference title to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories">Slå historier fra</string>
+  <!--Preference summary to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__if_you_opt_out">Hvis du slår historier fra, kan du ikke længere dele eller se historier.</string>
+  <!--Preference title to turn on stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_on_stories">Slå historier til</string>
+  <!--Preference summary to turn on stories-->
+  <string name="StoriesPrivacySettingsFragment__share_and_view">Del og se andres historier. Historier forsvinder automatisk efter 24 timer.</string>
+  <!--Dialog title to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">Slå historier fra?</string>
+  <!--Dialog message to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to">Du vil ikke længere kunne dele eller se historier. Alle historier, som du har sendt for nyligt, vil stadig være synlige, indtil de udløber.</string>
+  <!--Page title when launched from stories landing screen-->
+  <string name="StoriesPrivacySettingsFragment__story_privacy">Privatlivsindstillinger for historier</string>
+  <!--GroupStorySettingsFragment-->
+  <!--Section header for who can view a group story-->
+  <string name="GroupStorySettingsFragment__who_can_view_this_story">Personer, der kan se denne historie</string>
+  <!--Explanation of who can view a group story-->
+  <string name="GroupStorySettingsFragment__members_of_the_group_s">Medlemmer af gruppen \"%1$s\" kan se og svare på denne historie. Du kan opdatere medlemmerne i denne chat i gruppen.</string>
+  <!--Preference label for removing this group story-->
+  <string name="GroupStorySettingsFragment__remove_group_story">Fjern gruppehistorie</string>
+  <!--Generic title for overflow menus-->
+  <string name="OverflowMenu__overflow_menu">Overflow-menu</string>
   <!--EOF-->
 </resources>

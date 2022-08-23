@@ -474,6 +474,18 @@
   <string name="CreateProfileActivity_set_up_your_profile">Nusistatykite savo profilį</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Jūsų profilis yra šifruotas ištisiniu būdu. Jūsų profilis ir jam atliekami pakeitimai bus matomi jūsų adresatams, kai inicijuosite ar priimsite naujus pokalbius, arba, kai prisijungsite prie naujų grupių.</string>
   <string name="CreateProfileActivity_set_avatar_description">Nustatyti avatarą</string>
+  <!--ProfileCreateFragment-->
+  <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
+  <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">Profiliai matomi tik žmonėms, kuriems rašai.</string>
+  <!--Title of clickable row to select phone number privacy settings-->
+  <string name="ProfileCreateFragment__who_can_find_me">Kas gali mane rasti pagal numerį?</string>
+  <!--WhoCanSeeMyPhoneNumberFragment-->
+  <!--Toolbar title for this screen-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">Kas gali mane rasti pagal numerį?</string>
+  <!--Description for radio item stating anyone can see your phone number-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has">Bet kas, turintis tavo telefono numerį tarp savo adresatų, matys tave kaip „Signal“ adresatą. Kiti galės tave rasti ieškodami pagal numerį.</string>
+  <!--Description for radio item stating no one will be able to see your phone number-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__nobody_on_signal">„Signal“ naudotojai negalės tavęs rasti ieškodami pagal telefono numerį.</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">Atkurti iš atsarginės kopijos?</string>
   <string name="ChooseBackupFragment__restore_your_messages_and_media">Atkurkite savo žinutes ir mediją iš vietinės atsarginės kopijos. Jeigu neatkursite dabar, vėliau to padaryti nebegalėsite.</string>
@@ -813,6 +825,10 @@
   <string name="ManageProfileFragment_failed_to_set_avatar">Nepavyko nustatyti avataro</string>
   <string name="ManageProfileFragment_badges">Ženkliukai</string>
   <string name="ManageProfileFragment__edit_photo">Taisyti nuotrauką</string>
+  <!--Snackbar message after creating username-->
+  <string name="ManageProfileFragment__username_created">Naudotojo vardas sukurtas</string>
+  <!--Snackbar message after copying username-->
+  <string name="ManageProfileFragment__username_copied">Naudotojo vardas nukopijuotas</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Nėra bendrų grupių</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1743,6 +1759,8 @@
   <string name="UnverifiedSendDialog_send_message">Siųsti žinutę?</string>
   <string name="UnverifiedSendDialog_send">Siųsti</string>
   <!--UsernameEditFragment-->
+  <!--Instructional text at the top of the username edit screen-->
+  <string name="UsernameEditFragment__choose_your_username">Pasirink naudotojo vardą</string>
   <string name="UsernameEditFragment_username">Naudotojo vardas</string>
   <string name="UsernameEditFragment_delete">Ištrinti</string>
   <string name="UsernameEditFragment_successfully_set_username">Naudotojo vardas sėkmingai nustatytas.</string>
@@ -1754,13 +1772,20 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Naudotojo vardai negali prasidėti skaitmenimi.</string>
   <string name="UsernameEditFragment_username_is_invalid">Naudotojo vardas yra neteisingas.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Naudotojo varduose privalo būti nuo %1$d iki %2$d simbolių.</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Naudotojo vardai Signal programėlėje yra nebūtini. Jei pasirinksite susikurti naudotojo vardą, kiti Signal naudotojai galės jus rasti pagal tą naudotojo vardą ir susisiekti su jumis, nežinant jūsų telefono numerio.</string> -->
+  <!--Explanation about what usernames provide-->
+  <string name="UsernameEditFragment__usernames_let_others_message">Naudotojo vardas leidžia žmonėms siųsti tau žinutes be tavo telefono numerio. Šis vardas susiejamas su skaitmenų kombinacija, kad būtų išsaugotas tavo adreso privatumas.</string>
+  <!--Dialog title for explanation about numbers at the end of the username-->
+  <string name="UsernameEditFragment__what_is_this_number">Kas tai per skaičius?</string>
+  <string name="UsernameEditFragment__these_digits_help_keep">Šie skaitmenys padeda užtikrinti tavo naudotojo vardo privatumą, kad išvengtum nepageidaujamų žinučių. Savo naudotojo vardą pasakyk tik tiems žmonėms ir grupėms, su kuriomis nori bendrauti. Pakeitus naudotojo vardą, suteikiama nauja skaitmenų kombinacija.</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d adresatas naudoja Signal!</item>
     <item quantity="few">%d adresatai naudoja Signal!</item>
     <item quantity="many">%d adresatų naudoja Signal!</item>
     <item quantity="other">%d adresatas naudoja Signal!</item>
   </plurals>
+  <!--UsernameShareBottomSheet-->
+  <!--Explanation of what the sheet enables the user to do-->
+  <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">Kopijuoti arba bendrinti naudotojo vardo nuorodą</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Jūsų adresatas naudoja seną Signal versiją. Prieš patvirtindami savo saugumo numerį, paprašykite, kad jis atnaujintų programėlę.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Jūsų adresatas naudoja naujesnę Signal versiją su nesuderinamu QR kodo formatu. Norėdami palyginti, atsinaujinkite programėlę.</string>
@@ -2370,6 +2395,8 @@
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__one_time_donation">Vienkartinis paaukojimas</string>
   <string name="preferences__privacy">Privatumas</string>
+  <!--Preference label for stories-->
+  <string name="preferences__stories">Istorijos</string>
   <string name="preferences__mms_user_agent">MMS naudotojo agentas</string>
   <string name="preferences__advanced_mms_access_point_names">Rankiniai MMS nustatymai</string>
   <string name="preferences__mmsc_url">MMSC URL</string>
@@ -3240,6 +3267,8 @@
   <string name="ShareActivity__send">Siųsti</string>
   <string name="ShareActivity__comma_s">, %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">Bendrinimas su keliais pokalbiais yra palaikomas tik Signal žinutėms</string>
+  <!--Toast when the incoming intent is invalid-->
+  <string name="ShareActivity__could_not_get_share_data_from_intent">Nepavyko gauti bendrinimo duomenų pagal užklausą.</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Nepavyko išsiųsti kai kuriems naudotojams</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Galite bendrinti daugiausiai su %1$d pokalbių</string>
@@ -3465,6 +3494,8 @@
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signal žinutės ir skambučiai, visada retransliuoti skambučius ir užantspauduotas siuntėjas</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">Numatytasis laikmatis naujuose pokalbiuose</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Nustatyti numatytąjį išnykstančių žinučių laikmatį visiems jūsų pradedamiems naujiems pokalbiams.</string>
+  <!--Summary for stories preference to launch into story privacy settings-->
+  <string name="PrivacySettingsFragment__manage_your_stories">Tvarkyk savo Istorijas ir kas gali jas žiūrėti</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Rodyti būsenos piktogramą</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Išsamesnėje žinučių informacijoje rodyti piktogramą tais atvejais, kai jos buvo pristatytos naudojant užantspauduotą siuntėją.</string>
@@ -3578,6 +3609,8 @@
   <string name="EmojiSearchFragment__no_results_found">Nerasta jokių rezultatų</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">Nežinoma skambučio melodija</string>
   <!--ConversationSettingsFragment-->
+  <!--Error toasted when no activity can handle the add contact intent-->
+  <string name="ConversationSettingsFragment__contacts_app_not_found">Kontaktų programėlė nerasta</string>
   <string name="ConversationSettingsFragment__send_message">Siųsti žinutę</string>
   <string name="ConversationSettingsFragment__start_video_call">Pradėti vaizdo skambutį</string>
   <string name="ConversationSettingsFragment__start_audio_call">Pradėti garso skambutį</string>
@@ -4090,10 +4123,12 @@
   <string name="ConversationListTabs__stories">Istorijos</string>
   <!--String for counts above 99 in conversation list tabs-->
   <string name="ConversationListTabs__99p">99+</string>
+  <!--Menu item on stories landing page-->
+  <string name="StoriesLandingFragment__story_privacy">Istorijų privatumas</string>
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">Mano istorijos</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">Pridėti istoriją</string> -->
+  <string name="StoriesLandingFragment__tap_to_add_a_story">Bakstelėk ir pridėk istoriją</string>
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">Nėra jokių paskiausių atnaujinimų, kuriuos rodyti. Bakstelėkite „+“ norėdami pridėti į savo istoriją.</string>
   <!--Context menu option to hide a story-->
@@ -4203,14 +4238,6 @@
   <string name="StoryGroupReplyItem__copy">Kopijuoti</string>
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Ištrinti</string>
-  <!--Story settings page title-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">Istorijos nustatymai</string> -->
-  <!--Story settings private stories heading-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">Privačios istorijos</string> -->
-  <!--Note at bottom of story settings regarding who can see private stories.-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Privačias istorijas gali peržiūrėti tik žmonės, kuriuos pridėsite į istoriją. Istorijos pavadinimą galite matyti tik jūs.</string> -->
-  <!--Option label for creating a new private story-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">Nauja privati istorija</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Mano istorija</string>
   <!--Section heading for story visibility-->
@@ -4473,6 +4500,13 @@
     <item quantity="many">Grupės istorija · %1$d žiūrovų</item>
     <item quantity="other">Grupės istorija · %1$d žiūrovas</item>
   </plurals>
+  <!--Label under name for my story-->
+  <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
+    <item quantity="one">%1$s · Peržiūrėjo: %2$d</item>
+    <item quantity="few">%1$s · Peržiūrėjo: %2$d</item>
+    <item quantity="many">%1$s · Peržiūrėjo: %2$d</item>
+    <item quantity="other">%1$s · Peržiūrėjo: %2$d</item>
+  </plurals>
   <!--Label under name for My Story when first sending to my story-->
   <string name="ContactSearchItems__tap_to_choose_your_viewers">Bakstelėkite ir pasirinkite, kas gali žiūrėti</string>
   <!--Label for context menu item to open story settings-->
@@ -4591,5 +4625,31 @@
   <string name="StoryInfoBottomSheetDialogFragment__sent_from">Išsiuntė</string>
   <!--Story Info context menu label-->
   <string name="StoryInfoBottomSheetDialogFragment__info">Informacija</string>
+  <!--StoriesPrivacySettingsFragment-->
+  <!--Explanation about how stories are deleted and managed-->
+  <string name="StoriesPrivacySettingsFragment__stories_automatically_disappear">Istorijos automatiškai dingsta po 24 val. Pasirink, kas gali žiūrėti tavo istoriją, arba kurk naujas istorijas tam tikriems žiūrovams ar grupėms.</string>
+  <!--Preference title to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories">Išjungti Istorijas</string>
+  <!--Preference summary to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__if_you_opt_out">Jei išjungsi Istorijas, nebegalėsi nei bendrinti, nei žiūrėti istorijų.</string>
+  <!--Preference title to turn on stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_on_stories">Įjungti Istorijas</string>
+  <!--Preference summary to turn on stories-->
+  <string name="StoriesPrivacySettingsFragment__share_and_view">Bendrink ir žiūrėk kitų istorijas. Istorijos automatiškai dingsta po 24 val.</string>
+  <!--Dialog title to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">Išjungti Istorijas?</string>
+  <!--Dialog message to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to">Nebegalėsi nei bendrinti, nei žiūrėti istorijų. Visos neseniai tavo nusiųstos istorijos tebebus matomos kitiems tol, kol galios.</string>
+  <!--Page title when launched from stories landing screen-->
+  <string name="StoriesPrivacySettingsFragment__story_privacy">Istorijų privatumas</string>
+  <!--GroupStorySettingsFragment-->
+  <!--Section header for who can view a group story-->
+  <string name="GroupStorySettingsFragment__who_can_view_this_story">Kas gali žiūrėti šią istoriją.</string>
+  <!--Explanation of who can view a group story-->
+  <string name="GroupStorySettingsFragment__members_of_the_group_s">Grupės „%1$s“ nariai gali žiūrėti ir atsakyti į šią istoriją. Tu gali atnaujinti šio pokalbio narių sąrašą grupėje.</string>
+  <!--Preference label for removing this group story-->
+  <string name="GroupStorySettingsFragment__remove_group_story">Pašalinti grupės istoriją</string>
+  <!--Generic title for overflow menus-->
+  <string name="OverflowMenu__overflow_menu">Išskleidžiamasis meniu</string>
   <!--EOF-->
 </resources>

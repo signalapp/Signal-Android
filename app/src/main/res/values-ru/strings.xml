@@ -474,6 +474,18 @@
   <string name="CreateProfileActivity_set_up_your_profile">Настройте свой профиль</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Ваш профиль защищён сквозным шифрованием. Ваш профиль и его изменения становятся видны вашим контактам, когда вы начинаете или принимаете новые разговоры и когда вы присоединяетесь к новым группам.</string>
   <string name="CreateProfileActivity_set_avatar_description">Установить аватар</string>
+  <!--ProfileCreateFragment-->
+  <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
+  <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">Профили видны только тем людям, которым вы отправляете сообщения.</string>
+  <!--Title of clickable row to select phone number privacy settings-->
+  <string name="ProfileCreateFragment__who_can_find_me">Кто может найти меня по номеру?</string>
+  <!--WhoCanSeeMyPhoneNumberFragment-->
+  <!--Toolbar title for this screen-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">Кто может найти меня по номеру?</string>
+  <!--Description for radio item stating anyone can see your phone number-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has">Любой, у кого есть в контактах ваш номер телефона, будет видеть вас в качестве контакта в Signal. Другие смогут найти вас по вашему номеру в поиске.</string>
+  <!--Description for radio item stating no one will be able to see your phone number-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__nobody_on_signal">Никто не сможет найти вас в Signal по вашему номеру телефона.</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">Восстановить из резервной копии?</string>
   <string name="ChooseBackupFragment__restore_your_messages_and_media">Восстановите сообщения и медиафайлы из локальной резервной копии. Если вы не сделаете этого сейчас, вы не сможете восстановить их позже.</string>
@@ -813,6 +825,10 @@
   <string name="ManageProfileFragment_failed_to_set_avatar">Не удалось установить аватар</string>
   <string name="ManageProfileFragment_badges">Значки</string>
   <string name="ManageProfileFragment__edit_photo">Редактировать фото</string>
+  <!--Snackbar message after creating username-->
+  <string name="ManageProfileFragment__username_created">Имя пользователя создано</string>
+  <!--Snackbar message after copying username-->
+  <string name="ManageProfileFragment__username_copied">Имя пользователя скопировано</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Нет общих групп</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1736,6 +1752,8 @@
   <string name="UnverifiedSendDialog_send_message">Отправить сообщение?</string>
   <string name="UnverifiedSendDialog_send">Отправить</string>
   <!--UsernameEditFragment-->
+  <!--Instructional text at the top of the username edit screen-->
+  <string name="UsernameEditFragment__choose_your_username">Выберите ваше имя пользователя</string>
   <string name="UsernameEditFragment_username">Имя пользователя</string>
   <string name="UsernameEditFragment_delete">Удалить</string>
   <string name="UsernameEditFragment_successfully_set_username">Имя пользователя успешно установлено.</string>
@@ -1747,13 +1765,20 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Имена пользователей не могут начинаться с цифр.</string>
   <string name="UsernameEditFragment_username_is_invalid">Имя пользователя недействительно.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Имена пользователей должны содержать от %1$d до %2$d символов.</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Имена пользователей в Signal необязательны. Если вы решите создать имя пользователя, другие пользователи Signal смогут найти вас по нему и связаться с вами, не зная вашего номера телефона.</string> -->
+  <!--Explanation about what usernames provide-->
+  <string name="UsernameEditFragment__usernames_let_others_message">Имена пользователей позволяют другим пользователям отправлять вам сообщения без вашего номера телефона. Они соединены с набором цифр, чтобы сохранить ваш адрес в тайне.</string>
+  <!--Dialog title for explanation about numbers at the end of the username-->
+  <string name="UsernameEditFragment__what_is_this_number">Что это за число?</string>
+  <string name="UsernameEditFragment__these_digits_help_keep">Эти цифры помогают сохранить ваше имя пользователя в тайне и избежать нежелательных сообщений. Делитесь своим именем пользователя только с теми людьми и группами, с которыми вы хотели бы общаться. Если вы измените имя пользователя, вы получите новый набор цифр.</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d ваш контакт уже в Signal!</item>
     <item quantity="few">%d ваших контакта уже в Signal!</item>
     <item quantity="many">%d ваших контактов уже в Signal!</item>
     <item quantity="other">%d ваших контактов уже в Signal!</item>
   </plurals>
+  <!--UsernameShareBottomSheet-->
+  <!--Explanation of what the sheet enables the user to do-->
+  <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">Копировать или поделиться ссылкой на имя пользователя</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">У вашего контакта старая версия Signal. Пожалуйста, попросите его обновиться, чтобы подтвердить код безопасности.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">У вашего контакта более новая версия Signal с несовместимым форматом QR-кода. Пожалуйста, обновитесь, чтобы сверить код.</string>
@@ -2363,6 +2388,8 @@
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__one_time_donation">Одноразовое пожертвование</string>
   <string name="preferences__privacy">Конфиденциальность</string>
+  <!--Preference label for stories-->
+  <string name="preferences__stories">Истории</string>
   <string name="preferences__mms_user_agent">User Agent для MMS </string>
   <string name="preferences__advanced_mms_access_point_names">Ручные настройки MMS</string>
   <string name="preferences__mmsc_url">Адрес MMSC</string>
@@ -3233,6 +3260,8 @@
   <string name="ShareActivity__send">Отправить</string>
   <string name="ShareActivity__comma_s">, %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">Возможность поделиться с несколькими чатами поддерживается только для сообщений Signal</string>
+  <!--Toast when the incoming intent is invalid-->
+  <string name="ShareActivity__could_not_get_share_data_from_intent">Не удалось получить данные общего доступа из интента.</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Не удалось отправить некоторым пользователям</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Можно поделиться максимум с %1$d чатами</string>
@@ -3458,6 +3487,8 @@
   <string name="PrivacySettingsFragment__signal_message_and_calls">Звонки и сообщения Signal, ретрансляция звонков и запечатанный отправитель</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">Таймер по умолчанию для новых чатов</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Установите таймер исчезающих сообщений по умолчанию для всех новых чатов, создаваемых вами.</string>
+  <!--Summary for stories preference to launch into story privacy settings-->
+  <string name="PrivacySettingsFragment__manage_your_stories">Управляйте своими историями и определяйте, кто может их видеть</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Показывать значок статуса</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Показывать значок в «Подробностях сообщения», если сообщение было доставлено с использованием запечатанного отправителя.</string>
@@ -3571,6 +3602,8 @@
   <string name="EmojiSearchFragment__no_results_found">Поиск не дал результатов</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">Неизвестная мелодия</string>
   <!--ConversationSettingsFragment-->
+  <!--Error toasted when no activity can handle the add contact intent-->
+  <string name="ConversationSettingsFragment__contacts_app_not_found">Приложение для контактов не найдено</string>
   <string name="ConversationSettingsFragment__send_message">Отправить сообщение</string>
   <string name="ConversationSettingsFragment__start_video_call">Начать видеозвонок</string>
   <string name="ConversationSettingsFragment__start_audio_call">Начать аудиозвонок</string>
@@ -4083,10 +4116,12 @@
   <string name="ConversationListTabs__stories">Истории</string>
   <!--String for counts above 99 in conversation list tabs-->
   <string name="ConversationListTabs__99p">99+</string>
+  <!--Menu item on stories landing page-->
+  <string name="StoriesLandingFragment__story_privacy">Настройки приватности историй</string>
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">Мои истории</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">Добавьте историю</string> -->
+  <string name="StoriesLandingFragment__tap_to_add_a_story">Нажмите, чтобы добавить историю</string>
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">Нет недавних историй. Нажмите «+», чтобы добавить в вашу историю.</string>
   <!--Context menu option to hide a story-->
@@ -4196,14 +4231,6 @@
   <string name="StoryGroupReplyItem__copy">Копировать</string>
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Удалить</string>
-  <!--Story settings page title-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">Настройки историй</string> -->
-  <!--Story settings private stories heading-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">Частные истории</string> -->
-  <!--Note at bottom of story settings regarding who can see private stories.-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Частные истории видны только тем людям, которых вы добавили в эти истории. Только вы можете видеть название истории.</string> -->
-  <!--Option label for creating a new private story-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">Новая частная история</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Моя история</string>
   <!--Section heading for story visibility-->
@@ -4466,6 +4493,13 @@
     <item quantity="many">История группы · %1$d зрителей</item>
     <item quantity="other">История группы · %1$d зрителя</item>
   </plurals>
+  <!--Label under name for my story-->
+  <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
+    <item quantity="one">%1$s · %2$d зритель</item>
+    <item quantity="few">%1$s · %2$d зрителя</item>
+    <item quantity="many">%1$s · %2$d зрителей</item>
+    <item quantity="other">%1$s · %2$d зрителя</item>
+  </plurals>
   <!--Label under name for My Story when first sending to my story-->
   <string name="ContactSearchItems__tap_to_choose_your_viewers">Нажмите, чтобы выбрать тех, кто будет просматривать</string>
   <!--Label for context menu item to open story settings-->
@@ -4584,5 +4618,31 @@
   <string name="StoryInfoBottomSheetDialogFragment__sent_from">Отправитель</string>
   <!--Story Info context menu label-->
   <string name="StoryInfoBottomSheetDialogFragment__info">Информация</string>
+  <!--StoriesPrivacySettingsFragment-->
+  <!--Explanation about how stories are deleted and managed-->
+  <string name="StoriesPrivacySettingsFragment__stories_automatically_disappear">Истории автоматически исчезают через 24 часа. Выберите, кто может просматривать вашу историю или создавать новые истории с заданными зрителями или группами.</string>
+  <!--Preference title to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories">Отключить истории</string>
+  <!--Preference summary to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__if_you_opt_out">Если вы откажетесь от историй, вы больше не сможете делиться историями или просматривать их.</string>
+  <!--Preference title to turn on stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_on_stories">Включить истории</string>
+  <!--Preference summary to turn on stories-->
+  <string name="StoriesPrivacySettingsFragment__share_and_view">Делитесь и просматривайте истории других пользователей. Истории автоматически исчезают через 24 часа.</string>
+  <!--Dialog title to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">Отключить истории?</string>
+  <!--Dialog message to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to">Вы больше не сможете делиться историями или просматривать их. Все недавно отправленные вами истории будут по-прежнему видны другим пользователям до истечения срока их действия.</string>
+  <!--Page title when launched from stories landing screen-->
+  <string name="StoriesPrivacySettingsFragment__story_privacy">Настройки приватности историй</string>
+  <!--GroupStorySettingsFragment-->
+  <!--Section header for who can view a group story-->
+  <string name="GroupStorySettingsFragment__who_can_view_this_story">Кто может просматривать эту историю</string>
+  <!--Explanation of who can view a group story-->
+  <string name="GroupStorySettingsFragment__members_of_the_group_s">Члены группы «%1$s» могут просматривать эту историю и отвечать на неё. Вы можете обновить членство в этом чате в группе.</string>
+  <!--Preference label for removing this group story-->
+  <string name="GroupStorySettingsFragment__remove_group_story">Удалить историю группы</string>
+  <!--Generic title for overflow menus-->
+  <string name="OverflowMenu__overflow_menu">Меню переполнения</string>
   <!--EOF-->
 </resources>

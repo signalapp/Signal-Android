@@ -474,6 +474,18 @@
   <string name="CreateProfileActivity_set_up_your_profile">Nastavte si svoj profil</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Váš profil využíva koncové šifrovanie. Váš profil a jeho zmeny budú vidieť vaše kontakty, keď začnete alebo prijmete nové konverzácie a keď sa pridáte do nových skupín.</string>
   <string name="CreateProfileActivity_set_avatar_description">Nastaviť profilový obrázok</string>
+  <!--ProfileCreateFragment-->
+  <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
+  <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">Profily sa zobrazia iba tým ľuďom, ktorým posielate správy.</string>
+  <!--Title of clickable row to select phone number privacy settings-->
+  <string name="ProfileCreateFragment__who_can_find_me">Kto ma môže vyhľadať pomocou telefónneho čísla?</string>
+  <!--WhoCanSeeMyPhoneNumberFragment-->
+  <!--Toolbar title for this screen-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">Kto ma môže vyhľadať pomocou telefónneho čísla?</string>
+  <!--Description for radio item stating anyone can see your phone number-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has">Každému, kto má vo svojich kontaktoch vaše telefónne číslo, sa zobrazíte ako kontakt v aplikácii Signal. Ostatní používatelia vás budú môcť vyhľadať zadaním vášho čísla.</string>
+  <!--Description for radio item stating no one will be able to see your phone number-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__nobody_on_signal">Nikto v aplikácii Signal vás nebude môcť nájsť pomocou vášho telefónneho čísla.</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">Obnoviť zo zálohy?</string>
   <string name="ChooseBackupFragment__restore_your_messages_and_media">Obnovte Vaše správy a médiá z úložiska. Keď nevykonáte obnovu teraz, neskôr nebude možná.</string>
@@ -813,6 +825,10 @@
   <string name="ManageProfileFragment_failed_to_set_avatar">Nepodarilo sa nastaviť profilový obrázok</string>
   <string name="ManageProfileFragment_badges">Odznaky</string>
   <string name="ManageProfileFragment__edit_photo">Upraviť fotografiu</string>
+  <!--Snackbar message after creating username-->
+  <string name="ManageProfileFragment__username_created">Používateľské meno bolo vytvorené</string>
+  <!--Snackbar message after copying username-->
+  <string name="ManageProfileFragment__username_copied">Používateľské meno bolo skopírované</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Žiadne spoločné skupiny</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1742,6 +1758,8 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="UnverifiedSendDialog_send_message">Odoslať správu?</string>
   <string name="UnverifiedSendDialog_send">Odoslať</string>
   <!--UsernameEditFragment-->
+  <!--Instructional text at the top of the username edit screen-->
+  <string name="UsernameEditFragment__choose_your_username">Vyberte si používateľské meno</string>
   <string name="UsernameEditFragment_username">Používateľské meno</string>
   <string name="UsernameEditFragment_delete">Vymazať</string>
   <string name="UsernameEditFragment_successfully_set_username">Používateľské meno bolo úspešne nastavené.</string>
@@ -1753,13 +1771,20 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Používateľské mená nemôžu začínať číslicou.</string>
   <string name="UsernameEditFragment_username_is_invalid">Používateľské meno je neplatné.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Používateľské mená musia obsahovať %1$d až %2$d znakov.</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Používateľské mená sú v aplikácii Signal voliteľné. Ak sa rozhodnete vytvoriť používateľské meno, ostatní používatelia Signalu vás budú môcť podľa neho nájsť a spojiť sa s vami bez toho, aby poznali vaše telefónne číslo.</string> -->
+  <!--Explanation about what usernames provide-->
+  <string name="UsernameEditFragment__usernames_let_others_message">Vytvorením používateľského mena umožníte ostatným, aby vám posielali správy bez nutnosti zadať vaše telefónne číslo. Je spárované so sadou číslic, ktorá zaručuje súkromie vašej adresy.</string>
+  <!--Dialog title for explanation about numbers at the end of the username-->
+  <string name="UsernameEditFragment__what_is_this_number">Čo znamená toto číslo?</string>
+  <string name="UsernameEditFragment__these_digits_help_keep">Tieto číslice pomáhajú zachovať súkromie vášho používateľského mena, vďaka čomu sa vyhnete neželaným správam. Svoje používateľské meno zdieľajte iba s ľuďmi a skupinami, s ktorými chcete četovať. Ak si používateľské meno zmeníte, bude vám priradená nová sada číslic.</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d váš kontakt začal používať Signal!</item>
     <item quantity="few">%d vaše kontakty začali používať Signal!</item>
     <item quantity="many">%d vašich kontaktov začalo používať Signal!</item>
     <item quantity="other">%d vašich kontaktov začalo používať Signal!</item>
   </plurals>
+  <!--UsernameShareBottomSheet-->
+  <!--Explanation of what the sheet enables the user to do-->
+  <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">Skopírujte alebo zdieľajte odkaz na používateľské meno</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Váš kontakt používa starú verziu Signalu. Pred overením bezpečnostného čísla ich požiadajte o aktualizáciu aplikácie.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Váš kontakt používa novšiu verziu Signalu, nekompatibilnú s formátom QR kódu. Prosím aktualizujte pre porovnanie.</string>
@@ -2369,6 +2394,8 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__one_time_donation">Jednorazový dar</string>
   <string name="preferences__privacy">Súkromie</string>
+  <!--Preference label for stories-->
+  <string name="preferences__stories">Príbehy</string>
   <string name="preferences__mms_user_agent">MMS používateľský agent</string>
   <string name="preferences__advanced_mms_access_point_names">Manuálne MMS nastavenia</string>
   <string name="preferences__mmsc_url">MMSC URL</string>
@@ -3239,6 +3266,8 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="ShareActivity__send">Poslať</string>
   <string name="ShareActivity__comma_s">, %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">Zdieľanie do viacerých chatov je možné iba Signal správami.</string>
+  <!--Toast when the incoming intent is invalid-->
+  <string name="ShareActivity__could_not_get_share_data_from_intent">Údaje nie je možné zdieľať.</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Zlyhalo odoslanie niektorým používateľom</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Môžete zdieľať maximálne s %1$d chatmi</string>
@@ -3464,6 +3493,8 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="PrivacySettingsFragment__signal_message_and_calls">Správy a hovory Signal, vždy opakované hovory a zapečatený odosielateľ</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">Predvolený časovač pre nové konverzácie</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Nastavte predvolený časovač miznutia správ pre všetky nové správy ktoré ste poslali.</string>
+  <!--Summary for stories preference to launch into story privacy settings-->
+  <string name="PrivacySettingsFragment__manage_your_stories">Spravujte svoje príbehy a vyberte si, kto ich môže vidieť</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Zobraziť stavovú ikonu</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Keď boli doručené pomocou zapečateného odosielateľa, zobrazí sa ikona v detailoch správy.</string>
@@ -3577,6 +3608,8 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="EmojiSearchFragment__no_results_found">Neboli nájdené žiadne výsledky</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">Neznámy vyzváňací tón</string>
   <!--ConversationSettingsFragment-->
+  <!--Error toasted when no activity can handle the add contact intent-->
+  <string name="ConversationSettingsFragment__contacts_app_not_found">Aplikácia Kontakty sa nenašla</string>
   <string name="ConversationSettingsFragment__send_message">Poslať správu</string>
   <string name="ConversationSettingsFragment__start_video_call">Začať videohovor</string>
   <string name="ConversationSettingsFragment__start_audio_call">Začať audiohovor</string>
@@ -4089,10 +4122,12 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="ConversationListTabs__stories">Príbehy</string>
   <!--String for counts above 99 in conversation list tabs-->
   <string name="ConversationListTabs__99p">99+</string>
+  <!--Menu item on stories landing page-->
+  <string name="StoriesLandingFragment__story_privacy">Súkromie príbehu</string>
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">Moje príbehy</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">Pridajte príbeh</string> -->
+  <string name="StoriesLandingFragment__tap_to_add_a_story">Ťuknutím pridáte príbeh</string>
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">Momentálne nie sú k dispozícii žiadne najnovšie aktualizácie. Klepnutím na + pridáte do svojho príbehu.</string>
   <!--Context menu option to hide a story-->
@@ -4202,14 +4237,6 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="StoryGroupReplyItem__copy">Kopírovať</string>
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Odstrániť</string>
-  <!--Story settings page title-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">Nastavenia príbehu</string> -->
-  <!--Story settings private stories heading-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">Súkromné ​​príbehy</string> -->
-  <!--Note at bottom of story settings regarding who can see private stories.-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Súkromné ​​príbehy môžu zobraziť iba ľudia, ktorých si do nich pridáte. Názov príbehu vidíte iba vy.</string> -->
-  <!--Option label for creating a new private story-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">Nový súkromný príbeh</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Môj príbeh</string>
   <!--Section heading for story visibility-->
@@ -4472,6 +4499,13 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
     <item quantity="many">Príbeh skupiny · %1$d sledujúcich</item>
     <item quantity="other">Príbeh skupiny · %1$d sledujúcich</item>
   </plurals>
+  <!--Label under name for my story-->
+  <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
+    <item quantity="one">%1$s · %2$d sledovateľ</item>
+    <item quantity="few">%1$s · %2$d sledovatelia</item>
+    <item quantity="many">%1$s · %2$d sledovateľov</item>
+    <item quantity="other">%1$s · %2$d sledovateľov</item>
+  </plurals>
   <!--Label under name for My Story when first sending to my story-->
   <string name="ContactSearchItems__tap_to_choose_your_viewers">Ťuknutím vyberte svojich sledovateľov</string>
   <!--Label for context menu item to open story settings-->
@@ -4590,5 +4624,31 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="StoryInfoBottomSheetDialogFragment__sent_from">Odoslané kým</string>
   <!--Story Info context menu label-->
   <string name="StoryInfoBottomSheetDialogFragment__info">Info</string>
+  <!--StoriesPrivacySettingsFragment-->
+  <!--Explanation about how stories are deleted and managed-->
+  <string name="StoriesPrivacySettingsFragment__stories_automatically_disappear">Príbehy automaticky zmiznú po 24 hodinách. Vyberte, komu sa môže zobraziť váš príbeh, alebo vytvorte nové príbehy s konkrétnymi divákmi či skupinami.</string>
+  <!--Preference title to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories">Vypnúť príbehy</string>
+  <!--Preference summary to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__if_you_opt_out">Ak vypnete príbehy, už ich nebudete môcť zdieľať ani prezerať.</string>
+  <!--Preference title to turn on stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_on_stories">Zapnúť príbehy</string>
+  <!--Preference summary to turn on stories-->
+  <string name="StoriesPrivacySettingsFragment__share_and_view">Zdieľajte a prezerajte si príbehy ostatných. Príbehy automaticky zmiznú po 24 hodinách.</string>
+  <!--Dialog title to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">Vypnúť príbehy?</string>
+  <!--Dialog message to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to">Už nebudete môcť zdieľať ani prezerať príbehy. Všetky príbehy, ktoré ste nedávno uverejnili, sa budú naďalej zobrazovať ostatným, až kým nevyprší ich platnosť.</string>
+  <!--Page title when launched from stories landing screen-->
+  <string name="StoriesPrivacySettingsFragment__story_privacy">Súkromie príbehu</string>
+  <!--GroupStorySettingsFragment-->
+  <!--Section header for who can view a group story-->
+  <string name="GroupStorySettingsFragment__who_can_view_this_story">Kto môže vidieť tento príbeh</string>
+  <!--Explanation of who can view a group story-->
+  <string name="GroupStorySettingsFragment__members_of_the_group_s">Členovia skupiny „%1$s“ môžu vidieť tento príbeh a odpovedať naň. Členov tohto četu môžete upraviť v skupine.</string>
+  <!--Preference label for removing this group story-->
+  <string name="GroupStorySettingsFragment__remove_group_story">Odstrániť skupinový príbeh</string>
+  <!--Generic title for overflow menus-->
+  <string name="OverflowMenu__overflow_menu">Rozšírené menu</string>
   <!--EOF-->
 </resources>

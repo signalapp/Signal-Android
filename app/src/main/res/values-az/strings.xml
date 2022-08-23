@@ -432,6 +432,18 @@
   <string name="CreateProfileActivity_set_up_your_profile">Profilinizi quraşdırın</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Profiliniz bir ucdan digərinə kimi şifrələnib. Profiliniz və dəyişiklikləriniz, yeni qruplara qoşulanda, yeni danışıq başladanda və ya qəbul edəndə əlaqələrinizə görünəcək.</string>
   <string name="CreateProfileActivity_set_avatar_description">Avatar tənzimlə</string>
+  <!--ProfileCreateFragment-->
+  <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
+  <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">Profilləri yalnız mesaj göndərdiyiniz şəxslər görə bilər.</string>
+  <!--Title of clickable row to select phone number privacy settings-->
+  <string name="ProfileCreateFragment__who_can_find_me">Kim məni nömrəmlə tapa bilər?</string>
+  <!--WhoCanSeeMyPhoneNumberFragment-->
+  <!--Toolbar title for this screen-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">Kim məni nömrəmlə tapa bilər?</string>
+  <!--Description for radio item stating anyone can see your phone number-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has">Kontaktlarında telefon nömrəniz olan hər kəs sizi Signal-da kontak kimi görə bilər. Digərləri isə sizi nömrənizi axtararaq tapa bilər.</string>
+  <!--Description for radio item stating no one will be able to see your phone number-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__nobody_on_signal">Signal-da heç kəs sizi nömrənizlə tapa bilməyəcək.</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">Nüsxədən geri yüklənilsin?</string>
   <string name="ChooseBackupFragment__restore_your_messages_and_media">Mesajları və medialarınızı yerli bir nüsxədən geri yükləyin. İndi geri yükləməsəniz, daha sonra edə bilməyəcəksiniz.</string>
@@ -735,6 +747,10 @@
   <string name="ManageProfileFragment_failed_to_set_avatar">Avatar tənzimlənmədi</string>
   <string name="ManageProfileFragment_badges">Nişanlar</string>
   <string name="ManageProfileFragment__edit_photo">Fotoya düzəliş et</string>
+  <!--Snackbar message after creating username-->
+  <string name="ManageProfileFragment__username_created">İstifadəçi adı yaradıldı</string>
+  <!--Snackbar message after copying username-->
+  <string name="ManageProfileFragment__username_copied">İstifadəçi adı köcürüldü</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Heç bir ortaq qrup yoxdur</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1597,6 +1613,8 @@
   <string name="UnverifiedSendDialog_send_message">Mesaj göndərilsin?</string>
   <string name="UnverifiedSendDialog_send">Göndər</string>
   <!--UsernameEditFragment-->
+  <!--Instructional text at the top of the username edit screen-->
+  <string name="UsernameEditFragment__choose_your_username">İstifadəçi adınızı seçin</string>
   <string name="UsernameEditFragment_username">istifadəçi adı</string>
   <string name="UsernameEditFragment_delete">Sil</string>
   <string name="UsernameEditFragment_successfully_set_username">İstifadəçi adı uğurla tənzimləndi.</string>
@@ -1608,11 +1626,18 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">İstifadəçi adı nömrə ilə başlaya bilməz.</string>
   <string name="UsernameEditFragment_username_is_invalid">İstifadəçi adı etibarsızdır.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">İstifadəçi adları %1$d ilə %2$d simvol aralığında olmalıdır.</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Signal-dakı istifadəçi adları ixtiyaridir. Əgər bir istifadəçi adı yaratmağı seçsəniz, digər Signal istifadəçiləri bu istifadəçi adı ilə sizi tapa biləcək və telefon nömrənizi bilmədən sizinlə əlaqə saxlaya biləcək.</string> -->
+  <!--Explanation about what usernames provide-->
+  <string name="UsernameEditFragment__usernames_let_others_message">İstifadəçi adları telefon nömrəniz olmadan digərlərinin sizə mesaj göndərməsinə imkan verir. Onlar ünvanınızın məxfiliyini qorumanıza kömək etmək üçün rəqəmlər dəsti ilə əlaqələndirilir.</string>
+  <!--Dialog title for explanation about numbers at the end of the username-->
+  <string name="UsernameEditFragment__what_is_this_number">Bu nömrə nə üçündür?</string>
+  <string name="UsernameEditFragment__these_digits_help_keep">Bu rəqəmlər istifadəçi adınızın məxfiliyini qorumağa kömək etdiyi üçün, istənməyən mesajlardan yayına bilirsiniz. İstifadəçi adınızı yalnız söhbət etmək istədiyiniz insan və  qruplarla paylaşın. İstifadəçi adlarını dəyişsəniz yeni  rəqəmlər dəsti  alacaqsınız.</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d əlaqə Signal-dadır!</item>
     <item quantity="other">%d əlaqə Signal-dadır!</item>
   </plurals>
+  <!--UsernameShareBottomSheet-->
+  <!--Explanation of what the sheet enables the user to do-->
+  <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">İstifadəçi adınızla əlaqəli keçidi köçürün və ya paylaşın</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Əlaqəniz Signal-ın köhnə versiyasını istifadə edir. Zəhmət olmasa güvənlik nömrəsini təsdiqləməzdən əvvəl ondan Signal-ı yeniləməsini xahiş edin.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Əlaqəniz, uyğun olmayan QR kodu formatına sahib daha yeni Signal versiyası işlədir. Zəhmət olmasa müqayisə etmək üçün yeniləyin.</string>
@@ -2198,6 +2223,8 @@
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__one_time_donation">Birdəfəlik ianə</string>
   <string name="preferences__privacy">Gizlilik</string>
+  <!--Preference label for stories-->
+  <string name="preferences__stories">Hekayələr</string>
   <string name="preferences__mms_user_agent">MMS İstifadəçi Agenti</string>
   <string name="preferences__advanced_mms_access_point_names">Manual MMS tənzimləmələri</string>
   <string name="preferences__mmsc_url">MMSC URL-si</string>
@@ -3046,6 +3073,8 @@
   <string name="ShareActivity__send">Göndər</string>
   <string name="ShareActivity__comma_s">, %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">Bir neçə söhbətdə paylaşmaq, yalnız Signal mesajları üçün dəstəklənir</string>
+  <!--Toast when the incoming intent is invalid-->
+  <string name="ShareActivity__could_not_get_share_data_from_intent">Təkliflərdən ümumi verilənlər əldə etmək mümkün olmadı.</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Bəzi istifadəçilərə göndərilmədi</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Yalnız %1$d söhbətə qədər paylaşa bilərsiniz</string>
@@ -3271,6 +3300,8 @@
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signal mesajları və zəngləri, zəng köçürmə və gizli göndərən</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">Yeni söhbətlər üçün ilkin vaxtölçən</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Başlatdığınız bütün yeni söhbətlər üçün ilkin bir yox olan mesaj vaxtölçəni tənzimləyin.</string>
+  <!--Summary for stories preference to launch into story privacy settings-->
+  <string name="PrivacySettingsFragment__manage_your_stories">Hekayələrinizi idarə edin və onlara baxacaq şəxsləri seçin</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Status nişanını göstər</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Gizli göndərən istifadə edərək mesaj çatdırılanda təfsilatlarında bir nişan göstər.</string>
@@ -3380,6 +3411,8 @@
   <string name="EmojiSearchFragment__no_results_found">Heç nə tapılmadı</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">Bilinməyən zəng səsi</string>
   <!--ConversationSettingsFragment-->
+  <!--Error toasted when no activity can handle the add contact intent-->
+  <string name="ConversationSettingsFragment__contacts_app_not_found">Kontaktlar tətbiqi tapılmadı</string>
   <string name="ConversationSettingsFragment__send_message">Mesaj göndər</string>
   <string name="ConversationSettingsFragment__start_video_call">Görüntülü zəng başlat</string>
   <string name="ConversationSettingsFragment__start_audio_call">Səsli zəng başlat</string>
@@ -3882,10 +3915,12 @@
   <string name="ConversationListTabs__stories">Hekayələr</string>
   <!--String for counts above 99 in conversation list tabs-->
   <string name="ConversationListTabs__99p">99+</string>
+  <!--Menu item on stories landing page-->
+  <string name="StoriesLandingFragment__story_privacy">Məxfiliyi dayandır</string>
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">Hekayələrim</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">Bir hekayə əlavə et</string> -->
+  <string name="StoriesLandingFragment__tap_to_add_a_story">Bir hekayə əlavə etmək üçün toxunun</string>
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">Hal-hazırda göstəriləcək heç bir yeniləmə yoxdur. Hekayənizə əlavə etmək üçün + nişanına toxunun.</string>
   <!--Context menu option to hide a story-->
@@ -3989,14 +4024,6 @@
   <string name="StoryGroupReplyItem__copy">Kopyala</string>
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Sil</string>
-  <!--Story settings page title-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">Hekayə tənzimləmələri</string> -->
-  <!--Story settings private stories heading-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">Özəl hekayələr</string> -->
-  <!--Note at bottom of story settings regarding who can see private stories.-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Özəl hekayələrə yalnız onlara əlavə etdiyiniz şəxslər baxa bilər. Hekayə adını yalnız siz görə bilərsiniz.</string> -->
-  <!--Option label for creating a new private story-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">Yeni özəl hekayə</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Hekayəm</string>
   <!--Section heading for story visibility-->
@@ -4247,6 +4274,11 @@
     <item quantity="one">Qrup hekayəsi · %1$d baxış</item>
     <item quantity="other">Qrup hekayəsi · %1$d baxış</item>
   </plurals>
+  <!--Label under name for my story-->
+  <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
+    <item quantity="one">%1$s  · %2$d baxış</item>
+    <item quantity="other">%1$s · %2$d baxış</item>
+  </plurals>
   <!--Label under name for My Story when first sending to my story-->
   <string name="ContactSearchItems__tap_to_choose_your_viewers">İzləyicilərinizi seçmək üçün toxunun</string>
   <!--Label for context menu item to open story settings-->
@@ -4357,5 +4389,31 @@
   <string name="StoryInfoBottomSheetDialogFragment__sent_from">Göndərdi</string>
   <!--Story Info context menu label-->
   <string name="StoryInfoBottomSheetDialogFragment__info">Məlumat</string>
+  <!--StoriesPrivacySettingsFragment-->
+  <!--Explanation about how stories are deleted and managed-->
+  <string name="StoriesPrivacySettingsFragment__stories_automatically_disappear">Hekayələr 24 saat sonra avtomatik yox olur. Hekayənizə baxanları seçin, yaxud da xüsusi istifadəçi və ya qrupa malik yeni hekayələr yaradın.</string>
+  <!--Preference title to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories">Hekayələr xüsusiyyətini söndür</string>
+  <!--Preference summary to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__if_you_opt_out">Hekayələr xüsusiyyətini söndürsəniz artıq hekayələri paylaşa və ya onlara baxa bilməyəcəksiniz.</string>
+  <!--Preference title to turn on stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_on_stories">Hekayələr xüsusiyyətini yandır</string>
+  <!--Preference summary to turn on stories-->
+  <string name="StoriesPrivacySettingsFragment__share_and_view">Digərlərinin hekayələrinə baxın və onları paylaşın. Hekayələr 24  saat sonra avtomatik yox olur.</string>
+  <!--Dialog title to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">Hekayələr xüsusiyyəti söndürülsün?</string>
+  <!--Dialog message to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to">Artıq hekayələrə baxa və ya onları paylaşa bilməyəcəksiniz. İstifadəçilər son göndərdiyiniz bütün hekayələri aktivlik müddəti bitənədək görə bilər.</string>
+  <!--Page title when launched from stories landing screen-->
+  <string name="StoriesPrivacySettingsFragment__story_privacy">Məxfiliyi dayandır</string>
+  <!--GroupStorySettingsFragment-->
+  <!--Section header for who can view a group story-->
+  <string name="GroupStorySettingsFragment__who_can_view_this_story">Bu hekayəni kimlər görə bilər</string>
+  <!--Explanation of who can view a group story-->
+  <string name="GroupStorySettingsFragment__members_of_the_group_s">\"%1$s\" qrupunun üzvləri bu hekayəni görə və cavablandıra bilər. Qrupda bu çat üzvlüyünü yeniləyə bilərsiniz.</string>
+  <!--Preference label for removing this group story-->
+  <string name="GroupStorySettingsFragment__remove_group_story">Qrup hekayəsini sil</string>
+  <!--Generic title for overflow menus-->
+  <string name="OverflowMenu__overflow_menu">Əlavə menyu</string>
   <!--EOF-->
 </resources>

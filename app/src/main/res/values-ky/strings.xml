@@ -411,6 +411,18 @@
   <string name="CreateProfileActivity_set_up_your_profile">Профилиңизди түзүп алыңыз</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Профилиңиз баштан аяк шифрленип корголгон. Жаңы сүйлөшүп баштаганда же жаңы сүйлөшүүнү кабыл алганда же жаңы топторго кошулганда, профилиңиз жана андагы өзгөрүүлөр байланыштарыңызга көрүнөт.</string>
   <string name="CreateProfileActivity_set_avatar_description">Аватар коюу</string>
+  <!--ProfileCreateFragment-->
+  <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
+  <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">Профилдер бири-бири менен жазышкан адамдарга гана көрүнөт.</string>
+  <!--Title of clickable row to select phone number privacy settings-->
+  <string name="ProfileCreateFragment__who_can_find_me">Мени телефон номерим аркылуу кимдер таба алышат?</string>
+  <!--WhoCanSeeMyPhoneNumberFragment-->
+  <!--Toolbar title for this screen-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">Мени телефон номерим аркылуу кимдер таба алышат?</string>
+  <!--Description for radio item stating anyone can see your phone number-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has">Байланыштар тизмесинде номериңиз сакталган адамдардын баарына сиз Signal байланышы катары көрүнөсүз. Калгандар номериңизди издеп табышат.</string>
+  <!--Description for radio item stating no one will be able to see your phone number-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__nobody_on_signal">Сизди эч ким Signal\'да телефон номериңиз аркылуу таба албайт.</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">Резервдик көчүрмөлөрдөн калыбына келтирилсинби?</string>
   <string name="ChooseBackupFragment__restore_your_messages_and_media">Билдирүүлөрүңүздү жана медиаңызды локалдык резервдик көчүрмөдөн калыбына келтириңиз. Азыр калыбына келтирбесеңиз, кийин калыбына келтире албайсыз.</string>
@@ -696,6 +708,10 @@
   <string name="ManageProfileFragment_failed_to_set_avatar">Аватар коюлбай калды</string>
   <string name="ManageProfileFragment_badges">Төшбелгилер</string>
   <string name="ManageProfileFragment__edit_photo">Сүрөттү өзгөртүү</string>
+  <!--Snackbar message after creating username-->
+  <string name="ManageProfileFragment__username_created">Колдонуучу аты түзүлдү</string>
+  <!--Snackbar message after copying username-->
+  <string name="ManageProfileFragment__username_copied">Колдонуучу аты көчүрүлдү</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Жалпы топтор жок</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1521,6 +1537,8 @@
   <string name="UnverifiedSendDialog_send_message">Билдирүү жөнөтөсүзбү?</string>
   <string name="UnverifiedSendDialog_send">Жөнөтүү</string>
   <!--UsernameEditFragment-->
+  <!--Instructional text at the top of the username edit screen-->
+  <string name="UsernameEditFragment__choose_your_username">Колдонуучу атын тандаңыз</string>
   <string name="UsernameEditFragment_username">Колдонуучунун аты</string>
   <string name="UsernameEditFragment_delete">Өчүрүү</string>
   <string name="UsernameEditFragment_successfully_set_username">Колдонуучунун аты коюлду.</string>
@@ -1532,10 +1550,17 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Колдонуучунун аты сандан башталбайт.</string>
   <string name="UsernameEditFragment_username_is_invalid">Колдонуучунун аты туура эмес.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Колдонуучунун аты %1$d баштап %2$d чейин белгиден турушу керек.</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Signal\'да колдонуучунун атын койбой деле койсоңуз болот. Колдонуучунун атын коем десеңиз, Signal\'дагы башка колдонуучулар телефон номериңизди билишпесе да, сизди колдонуучу атыңыз аркылуу таба алышат.</string> -->
+  <!--Explanation about what usernames provide-->
+  <string name="UsernameEditFragment__usernames_let_others_message">Адамдар сиз менен телефон номериңиз эмес, колдонуучу атыңыз аркылуу жазыша алышат. Дарегиңизди купуя сактоо үчүн колдонуучу атыңызга бир нече сан кошулат.</string>
+  <!--Dialog title for explanation about numbers at the end of the username-->
+  <string name="UsernameEditFragment__what_is_this_number">Бул эмне деген сан?</string>
+  <string name="UsernameEditFragment__these_digits_help_keep">Бул сандар колдонуучу атыңызды купуя кылып, сизди кереги жок билдирүүлөрдөн сактайт. Колдонуучу атыңызды сүйлөшкүңүз келген адамдарга жана топторго бериңиз. Колдонуучу атыңызды өзгөртсөңүз, бул сандар да өзгөрөт.</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="other">Signal\'да %dбайланышыңыз бар!</item>
   </plurals>
+  <!--UsernameShareBottomSheet-->
+  <!--Explanation of what the sheet enables the user to do-->
+  <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">Колдонуучу атынын шилтемесин көчүрүңүз же бөлүшүңүз</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Байланышыңыздын Signal версиясы эскирип калган. Коопсуздук кодун ырастоо үчүн аны жаңыртышы керек.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Байланышыңыздын Signal колдонмосунун версиясы жаңыраак болгондуктан, QR кодунун форматы шайкеш болбой жатат. Кодду салыштыруу үчүн колдонмоңузду жаңыртыңыз.</string>
@@ -2109,6 +2134,8 @@
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__one_time_donation">Бир жолу колдоо көрсөтүү</string>
   <string name="preferences__privacy">Купуялык</string>
+  <!--Preference label for stories-->
+  <string name="preferences__stories">Окуялар</string>
   <string name="preferences__mms_user_agent">MMS колдонуучу агенти</string>
   <string name="preferences__advanced_mms_access_point_names">Кол менен MMS тууралоо</string>
   <string name="preferences__mmsc_url">MMSC URL</string>
@@ -2946,6 +2973,8 @@
   <string name="ShareActivity__send">Жөнөтүү</string>
   <string name="ShareActivity__comma_s">, %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">Бир нече маектер менен бөлүшүү мүмкүнчүлүгү Signal билдирүүлөрү үчүн гана колдоого алынат</string>
+  <!--Toast when the incoming intent is invalid-->
+  <string name="ShareActivity__could_not_get_share_data_from_intent">Маалымат алынган жок.</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Кээ бир колдонуучуларга жөнөтүлбөй койду</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Сиз болгону %1$d маектер менен бөлүшө аласыз</string>
@@ -3171,6 +3200,8 @@
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signal билдирүүлөрү жана чалуулар, чалууларды багыттоо жана жашыруун жөнөтүүчү</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">Жаңы маектер үчүн демейки таймер</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Сиз баштаган бардык жаңы маектер үчүн демейки жоголуп кетүүчү билдирүүлөр таймерин коюңуз.</string>
+  <!--Summary for stories preference to launch into story privacy settings-->
+  <string name="PrivacySettingsFragment__manage_your_stories">Окуяларыңызды тескеп, кимдер көрө ала турганын чечиңиз</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Статус сүрөтчөсүн көрсөтүү</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Билдирүүлөр жашыруун жөнөтүүчү аркылуу жөнөтүлгөндө, билдирүүнүн чоо-жайында сүрөтчөсүн көрсөтүү.</string>
@@ -3278,6 +3309,8 @@
   <string name="EmojiSearchFragment__no_results_found">Эч нерсе табылган жок</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">Белгисиз рингтон</string>
   <!--ConversationSettingsFragment-->
+  <!--Error toasted when no activity can handle the add contact intent-->
+  <string name="ConversationSettingsFragment__contacts_app_not_found">Байланыштар колдонмосу табылган жок</string>
   <string name="ConversationSettingsFragment__send_message">Билдирүү жөнөтүү</string>
   <string name="ConversationSettingsFragment__start_video_call">Видео чалууну баштоо</string>
   <string name="ConversationSettingsFragment__start_audio_call">Аудио чалууну баштоо</string>
@@ -3775,10 +3808,12 @@
   <string name="ConversationListTabs__stories">Окуялар</string>
   <!--String for counts above 99 in conversation list tabs-->
   <string name="ConversationListTabs__99p">99+</string>
+  <!--Menu item on stories landing page-->
+  <string name="StoriesLandingFragment__story_privacy">Окуянын купуялыгы</string>
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">Менин окуяларым</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">Окуя кошуу</string> -->
+  <string name="StoriesLandingFragment__tap_to_add_a_story">Окуя кошуу үчүн басыңыз</string>
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">Учурда көрсөтүлө турган акыркы жаңыртуулар жок. Окуяңызга кошуу үчүн + баскычын басыңыз.</string>
   <!--Context menu option to hide a story-->
@@ -3879,14 +3914,6 @@
   <string name="StoryGroupReplyItem__copy">Көчүрүү</string>
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Өчүрүү</string>
-  <!--Story settings page title-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">Окуя орнотуулары</string> -->
-  <!--Story settings private stories heading-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">Жеке окуялар</string> -->
-  <!--Note at bottom of story settings regarding who can see private stories.-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Жеке окуяларды сиз тандаган адамдар гана көрө алышат. Окуянын атын сиз гана көрө аласыз.</string> -->
-  <!--Option label for creating a new private story-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">Жаңы жеке окуя</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Менин окуям</string>
   <!--Section heading for story visibility-->
@@ -4003,7 +4030,7 @@
   <string name="CreateStoryViewerSelectionFragment__next">Кийинки</string>
   <!--New story viewer selection screen title as recipients are selected-->
   <plurals name="SelectViewersFragment__d_viewers">
-    <item quantity="other">%1$d көрүү</item>
+    <item quantity="other">%1$d жолу көрүлдү</item>
   </plurals>
   <!--Name story screen title-->
   <string name="CreateStoryWithViewersFragment__name_story">Окуяны атоо</string>
@@ -4071,7 +4098,7 @@
   <string name="StoriesLinkPopup__visit_link">Шилтемеге өтүү</string>
   <!--Gift price and duration, formatted as: {price} dot {n} day duration-->
   <plurals name="GiftRowItem_s_dot_d_day_duration">
-    <item quantity="other">%1$s · %2$d күн</item>
+    <item quantity="other">%1$s · %2$d күнгө созулат</item>
   </plurals>
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">Белекке төшбелги жөнөтүү</string>
@@ -4130,6 +4157,10 @@
   <!--Label under name for group stories-->
   <plurals name="ContactSearchItems__group_story_d_viewers">
     <item quantity="other">Топтун окуясы · %1$d адам көрдү</item>
+  </plurals>
+  <!--Label under name for my story-->
+  <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
+    <item quantity="other">%1$s · %2$d жолу көрүлдү</item>
   </plurals>
   <!--Label under name for My Story when first sending to my story-->
   <string name="ContactSearchItems__tap_to_choose_your_viewers">Кимдер көрө ала турганын тандоо үчүн басыңыз</string>
@@ -4237,5 +4268,31 @@
   <string name="StoryInfoBottomSheetDialogFragment__sent_from">Ким жөнөттү:</string>
   <!--Story Info context menu label-->
   <string name="StoryInfoBottomSheetDialogFragment__info">Маалымат</string>
+  <!--StoriesPrivacySettingsFragment-->
+  <!--Explanation about how stories are deleted and managed-->
+  <string name="StoriesPrivacySettingsFragment__stories_automatically_disappear">Окуялар 24 сааттан кийин автоматтык түрдө жоголуп кетет. Аларды кимдер көрө ала турганын чечиңиз же көрүүчүлөр менен топторду алдын ала белгилеп жаңы окуяларды түзүңүз.</string>
+  <!--Preference title to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories">Окуяларды өчүрүү</string>
+  <!--Preference summary to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__if_you_opt_out">Окуяларды өчүрсөңүз, окуяларды бөлүшө да, көрө да албай каласыз.</string>
+  <!--Preference title to turn on stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_on_stories">Окуяларды күйгүзүү</string>
+  <!--Preference summary to turn on stories-->
+  <string name="StoriesPrivacySettingsFragment__share_and_view">Башкалардын окуяларын бөлүшүп, көрө аласыз. Окуялар 24 сааттан кийин автоматтык түрдө жоголуп кетет.</string>
+  <!--Dialog title to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">Окуяларды өчүрөсүзбү?</string>
+  <!--Dialog message to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to">Окуяларды бөлүшө да, көрө да албай каласыз. Буга чейин жөнөткөн соңку окуялар мөөнөтү бүткөнгө чейин башкаларга көрүнө берет.</string>
+  <!--Page title when launched from stories landing screen-->
+  <string name="StoriesPrivacySettingsFragment__story_privacy">Окуянын купуялыгы</string>
+  <!--GroupStorySettingsFragment-->
+  <!--Section header for who can view a group story-->
+  <string name="GroupStorySettingsFragment__who_can_view_this_story">Бул окуяны кимдер көрө алат</string>
+  <!--Explanation of who can view a group story-->
+  <string name="GroupStorySettingsFragment__members_of_the_group_s">\"%1$s\" деген топтун мүчөлөрү бул окуяны көрүп, жооп бере алышат. Бул маектеги катышуучуларды топтун ичинде өзгөртө аласыз.</string>
+  <!--Preference label for removing this group story-->
+  <string name="GroupStorySettingsFragment__remove_group_story">Топтук окуяны өчүрүү</string>
+  <!--Generic title for overflow menus-->
+  <string name="OverflowMenu__overflow_menu">Ачылуучу меню</string>
   <!--EOF-->
 </resources>

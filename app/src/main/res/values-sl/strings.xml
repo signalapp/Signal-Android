@@ -474,6 +474,18 @@
   <string name="CreateProfileActivity_set_up_your_profile">Nastavite svoj profil</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Vaš profil je šifriran od-konca-do-konca. Skupaj s spremembami na njem bo viden vašim stikom, kadar boste začeli oziroma sprejeli nov pogovor, in ko se boste pridružili skupini.</string>
   <string name="CreateProfileActivity_set_avatar_description">Določi avatar</string>
+  <!--ProfileCreateFragment-->
+  <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
+  <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">Profili so vidni le ljudem, katerim pošiljate sporočila.</string>
+  <!--Title of clickable row to select phone number privacy settings-->
+  <string name="ProfileCreateFragment__who_can_find_me">Kdo me lahko najde preko telefonske številke?</string>
+  <!--WhoCanSeeMyPhoneNumberFragment-->
+  <!--Toolbar title for this screen-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">Kdo me lahko najde preko telefonske številke?</string>
+  <!--Description for radio item stating anyone can see your phone number-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has">Kdorkoli ima vašo telefonsko številko med svojimi stiki, vas bo videl_a kot stik na Signalu. Drugi_e vas bodo z vašo telefonsko številko lahko našli_le v Iskanju.</string>
+  <!--Description for radio item stating no one will be able to see your phone number-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__nobody_on_signal">Nihče v Signalu vas ne bo mogel najti z vašo telefonsko številko.</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">Obnovim iz varnostne kopije?</string>
   <string name="ChooseBackupFragment__restore_your_messages_and_media">Obnovite svoja sporočila in multimedijske datoteke, shranjene na lokalni varnostni kopiji. Če tega ne boste storili zdaj, kasneje ne bo več mogoče.</string>
@@ -813,6 +825,10 @@
   <string name="ManageProfileFragment_failed_to_set_avatar">Nastavitev avatarja ni uspela</string>
   <string name="ManageProfileFragment_badges">Značke</string>
   <string name="ManageProfileFragment__edit_photo">Uredi fotografijo</string>
+  <!--Snackbar message after creating username-->
+  <string name="ManageProfileFragment__username_created">Uporabniško ime je ustvarjeno</string>
+  <!--Snackbar message after copying username-->
+  <string name="ManageProfileFragment__username_copied">Uporabniško ime je kopirano</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Nobene skupne skupine</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1734,6 +1750,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="UnverifiedSendDialog_send_message">Pošljem sporočilo?</string>
   <string name="UnverifiedSendDialog_send">Pošlji</string>
   <!--UsernameEditFragment-->
+  <!--Instructional text at the top of the username edit screen-->
+  <string name="UsernameEditFragment__choose_your_username">Izberite uporabniško ime</string>
   <string name="UsernameEditFragment_username">Uporabniško ime</string>
   <string name="UsernameEditFragment_delete">Izbriši</string>
   <string name="UsernameEditFragment_successfully_set_username">Uspešno ste določili uporabniško ime.</string>
@@ -1745,13 +1763,20 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Uporabniška imena se ne smejo začeti s števikami.</string>
   <string name="UsernameEditFragment_username_is_invalid">Uporabniško ime je neveljavno.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Uporabniška imena morajo vsebovati od %1$d in%2$d znakov.</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Uporabniška imena v aplikaciji Signal so izbirna. Če si boste ustvarili uporabniško ime, vas bodo lahko drugi_ge uporabniki_ce Signala našli_le po njem in stopili_le v stik z vami tudi brez poznavanja vaše telefonske številke.</string> -->
+  <!--Explanation about what usernames provide-->
+  <string name="UsernameEditFragment__usernames_let_others_message">S pomočjo uporabniških imen vam lahko drugi pošljejo sporočilo, brez da bi potrebovali vašo telefonsko številko. Seznanjeni so z nizom številk, ki pomagajo ohranjati zasebnost vašega naslova.</string>
+  <!--Dialog title for explanation about numbers at the end of the username-->
+  <string name="UsernameEditFragment__what_is_this_number">Kaj je ta številka?</string>
+  <string name="UsernameEditFragment__these_digits_help_keep">Te številke pomagajo ohranjati zasebnost vašega uporabniškega imena, da se lahko izognete neželenim sporočilom. Svoje uporabniško ime delite samo z osebami in skupinami, s katerimi želite klepetati. Če spremenite uporabniška imena, boste prejeli nov nabor številk.</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d stik je na Signalu!</item>
     <item quantity="two">%d stika sta na Signalu!</item>
     <item quantity="few">%d stiki so na Signalu!</item>
     <item quantity="other">%d stikov je na Signalu!</item>
   </plurals>
+  <!--UsernameShareBottomSheet-->
+  <!--Explanation of what the sheet enables the user to do-->
+  <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">Kopirajte ali delite povezavo uporabniškega imena</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Vaš_a partner_ka uporablja zastarelo različico aplikacije Signal. Za pregled in potrditev varnostnega števila jo bo moral_a nadgraditi.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Vaš_a partner_ka uporablja novejšo različico aplikacije Signal z nekompatibilnimi kodami QR. Prosimo, nadgradite svojo aplikacijo.</string>
@@ -2361,6 +2386,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__one_time_donation">Enkratna donacija</string>
   <string name="preferences__privacy">Zasebnost</string>
+  <!--Preference label for stories-->
+  <string name="preferences__stories">Zgodbe</string>
   <string name="preferences__mms_user_agent">Uporabniški posrednik MMS</string>
   <string name="preferences__advanced_mms_access_point_names">Ročne nastavitve MMS</string>
   <string name="preferences__mmsc_url">URL MMSC</string>
@@ -3231,6 +3258,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ShareActivity__send">Pošlji</string>
   <string name="ShareActivity__comma_s">, %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">Deljenje med večimi pogovori je možno samo za sporočila Signal</string>
+  <!--Toast when the incoming intent is invalid-->
+  <string name="ShareActivity__could_not_get_share_data_from_intent">Podatkov o skupni rabi ni bilo mogoče pridobiti iz namena.</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Pošiljanje nekaterim uporabnikom_cam ni uspelo</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Pošljete lahko največ %1$d pogovorom</string>
@@ -3456,6 +3485,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="PrivacySettingsFragment__signal_message_and_calls">Sporočila in klici Signal, posredovanje klicev in zakriti pošiljatelj</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">Privzet odštevalnik za nove pogovore</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Nastavite privzet čas poteka sporočil za vse nove pogovore, ki jih začnete sami.</string>
+  <!--Summary for stories preference to launch into story privacy settings-->
+  <string name="PrivacySettingsFragment__manage_your_stories">Upravljajte svoje Zgodbe in kdo si jih lahko ogleda</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Prikaži statusno ikono</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Prikaz ikone v detajlih sporočil, kadar so ta dostavljena s pomočjo zakritega pošiljatelja.</string>
@@ -3569,6 +3600,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="EmojiSearchFragment__no_results_found">Ni rezultatov</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">Neznano zvonenje</string>
   <!--ConversationSettingsFragment-->
+  <!--Error toasted when no activity can handle the add contact intent-->
+  <string name="ConversationSettingsFragment__contacts_app_not_found">Aplikacije za stike ni mogoče najti</string>
   <string name="ConversationSettingsFragment__send_message">Pošlji sporočilo</string>
   <string name="ConversationSettingsFragment__start_video_call">Začni video klic</string>
   <string name="ConversationSettingsFragment__start_audio_call">Začni zvočni klic</string>
@@ -4081,10 +4114,12 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ConversationListTabs__stories">Zgodbe</string>
   <!--String for counts above 99 in conversation list tabs-->
   <string name="ConversationListTabs__99p">99+</string>
+  <!--Menu item on stories landing page-->
+  <string name="StoriesLandingFragment__story_privacy">Zasebnost Zgodb</string>
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">Moje zgodbe</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">Dodaj zgodbo</string> -->
+  <string name="StoriesLandingFragment__tap_to_add_a_story">Tapnite za dodajanje Zgodbe</string>
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">Trenutno ni novih posodobitev. Tapnite + in dodajte svojo zgodbo.</string>
   <!--Context menu option to hide a story-->
@@ -4194,14 +4229,6 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="StoryGroupReplyItem__copy">Kopiraj</string>
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Izbriši</string>
-  <!--Story settings page title-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">Nastavitve zgodbe</string> -->
-  <!--Story settings private stories heading-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">Zasebne zgodbe</string> -->
-  <!--Note at bottom of story settings regarding who can see private stories.-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Zasebne zgodbe lahko vidijo le ljudje, ki ste jim jih dodali. Samo vi lahko vidite ime zgodbe.</string> -->
-  <!--Option label for creating a new private story-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">Nova zasebna zgodba</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Moja zgodba</string>
   <!--Section heading for story visibility-->
@@ -4464,6 +4491,13 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
     <item quantity="few">Skupinska zgodba · %1$d gledalci_ke</item>
     <item quantity="other">Skupinska zgodba · %1$d gledalcev_k</item>
   </plurals>
+  <!--Label under name for my story-->
+  <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
+    <item quantity="one">%1$s · %2$d gledalec</item>
+    <item quantity="two">%1$s · %2$d gledalca</item>
+    <item quantity="few">%1$s · %2$d gledalci</item>
+    <item quantity="other">%1$s · %2$d gledalcev</item>
+  </plurals>
   <!--Label under name for My Story when first sending to my story-->
   <string name="ContactSearchItems__tap_to_choose_your_viewers">Tapnite za izbiro gledalcev</string>
   <!--Label for context menu item to open story settings-->
@@ -4582,5 +4616,31 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="StoryInfoBottomSheetDialogFragment__sent_from">Poslal_a uporabnik_ca</string>
   <!--Story Info context menu label-->
   <string name="StoryInfoBottomSheetDialogFragment__info">Info</string>
+  <!--StoriesPrivacySettingsFragment-->
+  <!--Explanation about how stories are deleted and managed-->
+  <string name="StoriesPrivacySettingsFragment__stories_automatically_disappear">Zgodbe samodejno izginejo po 24 urah. Izberite, kdo si lahko ogleda vašo Zgodbo, ali ustvarite nove z določenimi gledalci ali skupinami.</string>
+  <!--Preference title to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories">Izklopite Zgodbe</string>
+  <!--Preference summary to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__if_you_opt_out">Če se odjavite od Zgodb, jih ne boste mogli več deliti ali gledati.</string>
+  <!--Preference title to turn on stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_on_stories">Vklopite Zgodbe</string>
+  <!--Preference summary to turn on stories-->
+  <string name="StoriesPrivacySettingsFragment__share_and_view">Delite in si oglejte Zgodbe drugih. Zgodbe samodejno izginejo po 24 urah.</string>
+  <!--Dialog title to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">Želite izklopiti Zgodbe?</string>
+  <!--Dialog message to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to">Zgodb ne boste mogli več deliti ali si jih ogledovati. Vse Zgodbe, ki ste jih nedavno poslali, bodo še vedno vidne drugim, dokler ne potečejo.</string>
+  <!--Page title when launched from stories landing screen-->
+  <string name="StoriesPrivacySettingsFragment__story_privacy">Zasebnost Zgodb</string>
+  <!--GroupStorySettingsFragment-->
+  <!--Section header for who can view a group story-->
+  <string name="GroupStorySettingsFragment__who_can_view_this_story">Kdo lahko vidi to Zgodbo</string>
+  <!--Explanation of who can view a group story-->
+  <string name="GroupStorySettingsFragment__members_of_the_group_s">Člani skupine »%1$s« si lahko ogledajo to Zgodbo in odgovorijo nanjo. Članstvo za ta klepet lahko posodobite v skupini.</string>
+  <!--Preference label for removing this group story-->
+  <string name="GroupStorySettingsFragment__remove_group_story">Odstrani skupinsko Zgodbo</string>
+  <!--Generic title for overflow menus-->
+  <string name="OverflowMenu__overflow_menu">Prelivni meni</string>
   <!--EOF-->
 </resources>

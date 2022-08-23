@@ -432,6 +432,18 @@
   <string name="CreateProfileActivity_set_up_your_profile">Ezarri zure profila</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Zure profila muturretik-muturrera enkriptatuta dago. Ikusgarri egongo da bakarrik zure kontaktuentzat, solasaldi berria sortu edo onartzen duzunean eta talde berrietan sartzen zarenean.</string>
   <string name="CreateProfileActivity_set_avatar_description">Ezarri abatarra</string>
+  <!--ProfileCreateFragment-->
+  <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
+  <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">Zure mezuak jasotzen dituztenek bakarrik ikus ditzakete profilak.</string>
+  <!--Title of clickable row to select phone number privacy settings-->
+  <string name="ProfileCreateFragment__who_can_find_me">Nork topa nazake nire telefono-zenbakia bilatuta?</string>
+  <!--WhoCanSeeMyPhoneNumberFragment-->
+  <!--Toolbar title for this screen-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">Nork topa nazake nire telefono-zenbakia bilatuta?</string>
+  <!--Description for radio item stating anyone can see your phone number-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has">Zure telefono-zenbakia bere kontaktuetan duen edonork Signal-eko kontaktu gisa ikusi ahal izango zaitu. Gainerakoek zure telefono-zenbakia bilatuta topatu ahalko zaituzte.</string>
+  <!--Description for radio item stating no one will be able to see your phone number-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__nobody_on_signal">Signal-eko inork ezingo zaitu topatu zure telefono-zenbakia bilatuta.</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">Babeskopia berreskuratu?</string>
   <string name="ChooseBackupFragment__restore_your_messages_and_media">Berreskuratu babeskopia lokal bateko mezuak eta multimedia elementuak. Orain ez baduzu egiten, gero ezingo duzu.</string>
@@ -736,6 +748,10 @@
   <string name="ManageProfileFragment_failed_to_set_avatar">Huts egin du zure irudia ezartzeak</string>
   <string name="ManageProfileFragment_badges">Bereizgarriak</string>
   <string name="ManageProfileFragment__edit_photo">Editatu argazkia</string>
+  <!--Snackbar message after creating username-->
+  <string name="ManageProfileFragment__username_created">Sortu da erabiltzaile-izena</string>
+  <!--Snackbar message after copying username-->
+  <string name="ManageProfileFragment__username_copied">Kopiatu da erabiltzaile-izena</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Ez dago zuen artean komuna den talderik</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1598,6 +1614,8 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="UnverifiedSendDialog_send_message">Mezua bidali?</string>
   <string name="UnverifiedSendDialog_send">Bidali</string>
   <!--UsernameEditFragment-->
+  <!--Instructional text at the top of the username edit screen-->
+  <string name="UsernameEditFragment__choose_your_username">Aukeratu erabiltzaile-izena</string>
   <string name="UsernameEditFragment_username">Erabiltzailearen izena</string>
   <string name="UsernameEditFragment_delete">Ezabatu</string>
   <string name="UsernameEditFragment_successfully_set_username">Erabiltzaile izena ondo ezarri da.</string>
@@ -1609,11 +1627,18 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Erabiltzaile izenak ezin dira zenbaki batez hasi.</string>
   <string name="UsernameEditFragment_username_is_invalid">Erabiltzaile izena baliogabea da.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Erabiltzaile izenek %1$d eta %2$d karaktere bitartean egon behar dira.</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Erabiltzaile izenak aukerazkoak dira Signal-en. Erabiltzaile bat sortzea erabakitzen baduzu, beste erabiltzaile batzuek topatu ahal izango zaituzte izen hau erabiliz eta zurekin harremanetan jarri ahal izango dira zure telefono zenbakia jakin gabe.</string> -->
+  <!--Explanation about what usernames provide-->
+  <string name="UsernameEditFragment__usernames_let_others_message">Erabiltzaile-izenei esker, beste erabiltzaileek zure telefono-zenbakiaren beharrik gabe bidal diezazkizukete mezuak. Digitu multzo batekin parekatuta daude, zure helbidea pribatu mantentzeko.</string>
+  <!--Dialog title for explanation about numbers at the end of the username-->
+  <string name="UsernameEditFragment__what_is_this_number">Zer da zenbaki hau?</string>
+  <string name="UsernameEditFragment__these_digits_help_keep">Digitu hauen bidez, zure erabiltzaile-izena pribatuan mantentzen da, nahi ez dituzun mezuak jaso ez ditzazun. Partekatu erabiltzaile-izena zurekin txateatzea nahi duzun pertsona eta taldeekin bakarrik. Erabiltzaile-izena aldatzen baduzu, digitu multzo berri bat izango duzu.</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">Kontaktu %d Signalen dago!</item>
     <item quantity="other">%d kontaktu Signalen daude!</item>
   </plurals>
+  <!--UsernameShareBottomSheet-->
+  <!--Explanation of what the sheet enables the user to do-->
+  <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">Kopiatu edo partekatu erabiltzaile-izenaren esteka</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Zure kontaktua Signal-en bertsio zahar bat erabiltzen ari da. Mesedez, eguneratu dezan eskatu iezaiozu zure segurtasun zenbaki berria egiaztatu aurretik.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Zure kontaktua Signal aplikazioaren bertsio berriago bat erabiltzen ari da eta horrek QR kode formatua eguneratu du. Eguneratu konparazioa egiteko.</string>
@@ -2199,6 +2224,8 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__one_time_donation">Aldi bakarreko dohaintza</string>
   <string name="preferences__privacy">Pribatutasuna</string>
+  <!--Preference label for stories-->
+  <string name="preferences__stories">Istorioak</string>
   <string name="preferences__mms_user_agent">MMS erabiltzaile-agentea</string>
   <string name="preferences__advanced_mms_access_point_names">MMS eskuzko ezarpenak</string>
   <string name="preferences__mmsc_url">MMSC URLa</string>
@@ -3047,6 +3074,8 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="ShareActivity__send">Bidali</string>
   <string name="ShareActivity__comma_s">, %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">Hainbat solasalditara partekatzea Singal mezuekin bakarrik egin daiteke</string>
+  <!--Toast when the incoming intent is invalid-->
+  <string name="ShareActivity__could_not_get_share_data_from_intent">Ezin izan dira partekatu datuak.</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Huts egin du erabiltzaile batzuei bidaltzean</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Gehienez ere %1$d elkarrizketarekin parteka dezakezu</string>
@@ -3272,6 +3301,8 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signal mezuak eta deiak, beti deiak transmititu, eta igorle zigilatua</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">Txat berrietarako tenporizadore lehenetsia</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Ezarri lehenetsitako desagerpen mezuen tenporizadore bat zuk hasitako txat berri guztientzat.</string>
+  <!--Summary for stories preference to launch into story privacy settings-->
+  <string name="PrivacySettingsFragment__manage_your_stories">Kudeatu zure istorioak eta nork ikusi ditzakeen</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Erakutsi ikono egoera</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Erakutsi ikono bat mezuen xehetasunetan bidaltzaile itxia erabiliz bidaltzen direnean.</string>
@@ -3381,6 +3412,8 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="EmojiSearchFragment__no_results_found">Ez da emaitzarik aurkitu</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">Dei-tonu ezezaguna</string>
   <!--ConversationSettingsFragment-->
+  <!--Error toasted when no activity can handle the add contact intent-->
+  <string name="ConversationSettingsFragment__contacts_app_not_found">Ez da aurkitu kontaktu-aplikaziorik</string>
   <string name="ConversationSettingsFragment__send_message">Bidali mezua</string>
   <string name="ConversationSettingsFragment__start_video_call">Hasi bideo-deia</string>
   <string name="ConversationSettingsFragment__start_audio_call">Hasi bideo deia</string>
@@ -3883,10 +3916,12 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="ConversationListTabs__stories">Storie-ak</string>
   <!--String for counts above 99 in conversation list tabs-->
   <string name="ConversationListTabs__99p">99+</string>
+  <!--Menu item on stories landing page-->
+  <string name="StoriesLandingFragment__story_privacy">Istorioen pribatutasuna</string>
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">Nire istorioak</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">Gehitu storie bat</string> -->
+  <string name="StoriesLandingFragment__tap_to_add_a_story">Sakatu istorio bat gehitzeko</string>
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">Ez dago eguneratze berririk erakusteko. Sakatu + istorioan gehitzeko.</string>
   <!--Context menu option to hide a story-->
@@ -3990,14 +4025,6 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="StoryGroupReplyItem__copy">Kopiatu</string>
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Ezabatu</string>
-  <!--Story settings page title-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">Story ezarpenak</string> -->
-  <!--Story settings private stories heading-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">Story pribatuak</string> -->
-  <!--Note at bottom of story settings regarding who can see private stories.-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Story pribatuak gehitzen dituzun pertsonek soilik ikus ditzakete. Zuk bakarrik ikus dezakezu storie-aren izena.</string> -->
-  <!--Option label for creating a new private story-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">Story pribatu berria</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Nire istorioa</string>
   <!--Section heading for story visibility-->
@@ -4248,6 +4275,11 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
     <item quantity="one">Tadeko Story - ikusle%1$d</item>
     <item quantity="other">Tadeko Story - %1$d ikusle</item>
   </plurals>
+  <!--Label under name for my story-->
+  <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
+    <item quantity="one">%1$s · %2$dikusle</item>
+    <item quantity="other">%1$s · %2$d ikusle</item>
+  </plurals>
   <!--Label under name for My Story when first sending to my story-->
   <string name="ContactSearchItems__tap_to_choose_your_viewers">Sakatu zure ikusleak aukeratzeko</string>
   <!--Label for context menu item to open story settings-->
@@ -4358,5 +4390,31 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="StoryInfoBottomSheetDialogFragment__sent_from">Honengandik bidalia</string>
   <!--Story Info context menu label-->
   <string name="StoryInfoBottomSheetDialogFragment__info">Info</string>
+  <!--StoriesPrivacySettingsFragment-->
+  <!--Explanation about how stories are deleted and managed-->
+  <string name="StoriesPrivacySettingsFragment__stories_automatically_disappear">Istorioak automatikoki desagertzen dira 24 orduren buruan. Aukeratu nork ikus ditzakeen zure istorioak, edo sortu ikusle edo talde zehatzak dituzten istorioak.</string>
+  <!--Preference title to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories">Desaktibatu istorioak</string>
+  <!--Preference summary to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__if_you_opt_out">Istorioak desaktibatuz gero, ezingo duzu istoriorik partekatu edo ikusi.</string>
+  <!--Preference title to turn on stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_on_stories">Aktibatu istorioak</string>
+  <!--Preference summary to turn on stories-->
+  <string name="StoriesPrivacySettingsFragment__share_and_view">Partekatu eta ikusi besteen istorioak. Istorioak automatikoki desagertzen dira 24 orduren buruan.</string>
+  <!--Dialog title to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">Istorioak desaktibatu nahi dituzu?</string>
+  <!--Dialog message to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to">Aurrerantzean, ezingo duzu istoriorik partekatu edo ikusi. Duela gutxi argitaratutako istorioak iraungi arte ikusi ahalko dituzte beste erabiltzaileek.</string>
+  <!--Page title when launched from stories landing screen-->
+  <string name="StoriesPrivacySettingsFragment__story_privacy">Istorioen pribatutasuna</string>
+  <!--GroupStorySettingsFragment-->
+  <!--Section header for who can view a group story-->
+  <string name="GroupStorySettingsFragment__who_can_view_this_story">Nork ikus dezake istorio hau?</string>
+  <!--Explanation of who can view a group story-->
+  <string name="GroupStorySettingsFragment__members_of_the_group_s">\"%1$s\" taldeko kideek, istorio hau ikusi, eta hari erantzun diezaiokete. Txat honetako kidetza taldean egunera dezakezu.</string>
+  <!--Preference label for removing this group story-->
+  <string name="GroupStorySettingsFragment__remove_group_story">Ezabatu taldeko istorioa</string>
+  <!--Generic title for overflow menus-->
+  <string name="OverflowMenu__overflow_menu">Menuaren luzapena</string>
   <!--EOF-->
 </resources>

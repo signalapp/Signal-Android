@@ -453,6 +453,18 @@
   <string name="CreateProfileActivity_set_up_your_profile">Crie seu perfil</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">O seu perfil é criptografado de ponta a ponta. O seu perfil e as mudanças nele serão visíveis aos seus contatos, quando você iniciar ou aceitar uma nova conversa, e quando você participar em grupos.</string>
   <string name="CreateProfileActivity_set_avatar_description">Definir avatar</string>
+  <!--ProfileCreateFragment-->
+  <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
+  <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">Os perfis são visíveis apenas para as pessoas a quem você envia mensagens.</string>
+  <!--Title of clickable row to select phone number privacy settings-->
+  <string name="ProfileCreateFragment__who_can_find_me">Quem pode me encontrar pelo número?</string>
+  <!--WhoCanSeeMyPhoneNumberFragment-->
+  <!--Toolbar title for this screen-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">Quem pode me encontrar pelo número?</string>
+  <!--Description for radio item stating anyone can see your phone number-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has">Qualquer pessoa que tenha seu número de telefone em seus contatos o verá como um contato no Signal. Outros poderão encontrá-lo com o seu número na busca.</string>
+  <!--Description for radio item stating no one will be able to see your phone number-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__nobody_on_signal">Ninguém no Signal poderá encontrá-lo com seu número de telefone.</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">Restaurar do backup?</string>
   <string name="ChooseBackupFragment__restore_your_messages_and_media">Restaurar suas mensagens e mídias de um backup local. Se você não restaurar agora, você não conseguirá restaurar depois.</string>
@@ -774,6 +786,10 @@
   <string name="ManageProfileFragment_failed_to_set_avatar">Falha ao salvar foto de perfil</string>
   <string name="ManageProfileFragment_badges">Selos</string>
   <string name="ManageProfileFragment__edit_photo">Editar foto</string>
+  <!--Snackbar message after creating username-->
+  <string name="ManageProfileFragment__username_created">Nome de usuário criado</string>
+  <!--Snackbar message after copying username-->
+  <string name="ManageProfileFragment__username_copied">Nome de usuário copiado</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Nenhum grupo em comum</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1670,6 +1686,8 @@
   <string name="UnverifiedSendDialog_send_message">Enviar mensagem?</string>
   <string name="UnverifiedSendDialog_send">Enviar</string>
   <!--UsernameEditFragment-->
+  <!--Instructional text at the top of the username edit screen-->
+  <string name="UsernameEditFragment__choose_your_username">Escolha seu nome de usuário</string>
   <string name="UsernameEditFragment_username">Nome de usuário</string>
   <string name="UsernameEditFragment_delete">Excluir</string>
   <string name="UsernameEditFragment_successfully_set_username">Usuário definido com sucesso.</string>
@@ -1681,12 +1699,19 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Nomes de usuários não podem começar com um número.</string>
   <string name="UsernameEditFragment_username_is_invalid">Nome de usuário inválido.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Nomes de usuário devem conter no mínimo %1$d e no máximo %2$d caracteres.</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Nomes de usuário são opcionais no Signal. Se você decidir criar um, outras pessoas poderão encontrá-lo por meio desse nome de usuário, mesmo que não saibam o seu número de telefone.</string> -->
+  <!--Explanation about what usernames provide-->
+  <string name="UsernameEditFragment__usernames_let_others_message">Os nomes de usuário permitem que outras pessoas enviem mensagens para você sem precisar do seu número de telefone. Eles são pareados com um conjunto de dígitos para ajudar a manter seu endereço privado.</string>
+  <!--Dialog title for explanation about numbers at the end of the username-->
+  <string name="UsernameEditFragment__what_is_this_number">O que é esse número?</string>
+  <string name="UsernameEditFragment__these_digits_help_keep">Esses dígitos ajudam a manter seu nome de usuário privado para evitar mensagens indesejadas. Compartilhe seu nome de usuário apenas com as pessoas e grupos com os quais gostaria de conversar. Se mudar seu nome de usuário, você receberá um novo conjunto de dígitos.</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d contato está no Signal!</item>
     <item quantity="many">%d contatos estão no Signal!</item>
     <item quantity="other">%d contatos estão no Signal!</item>
   </plurals>
+  <!--UsernameShareBottomSheet-->
+  <!--Explanation of what the sheet enables the user to do-->
+  <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">Copiar ou compartilhar um link de nome de usuário</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Seu contato está usando uma versão antiga do Signal. Peça a ele para atualizá-la antes de verificar o seu número de segurança.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Seu contato está usando uma versão mais nova do Signal com um formato de código QR incompatível. Por favor, atualize para poder comparar.</string>
@@ -2284,6 +2309,8 @@
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__one_time_donation">Doação única</string>
   <string name="preferences__privacy">Privacidade</string>
+  <!--Preference label for stories-->
+  <string name="preferences__stories">Stories</string>
   <string name="preferences__mms_user_agent">Agente de usuário MMS</string>
   <string name="preferences__advanced_mms_access_point_names">Configurações de MMS manuais</string>
   <string name="preferences__mmsc_url">URL do MMSC</string>
@@ -3143,6 +3170,8 @@
   <string name="ShareActivity__send">Enviar</string>
   <string name="ShareActivity__comma_s">, %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">Compartilhar com várias conversas só é compatível com contatos no Signal</string>
+  <!--Toast when the incoming intent is invalid-->
+  <string name="ShareActivity__could_not_get_share_data_from_intent">Não foi possível obter dados de compartilhamento desejados.</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Falha ao enviar para algumas pessoas</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Você só pode compartilhar com até %1$d conversas</string>
@@ -3368,6 +3397,8 @@
   <string name="PrivacySettingsFragment__signal_message_and_calls">Mensagens e chamadas no Signal, redirecionar chamadas e remetente oculto</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">Cronômetro padrão para novas conversas</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Defina um cronômetro padrão para o desaparecimento de mensagens em todas as novas conversas iniciadas por você.</string>
+  <!--Summary for stories preference to launch into story privacy settings-->
+  <string name="PrivacySettingsFragment__manage_your_stories">Gerencie seus stories e quem pode visualizá-los</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Exibir indicadores</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Mostrar ícone de status em mensagens que foram entregues usando remetente oculto.</string>
@@ -3479,6 +3510,8 @@
   <string name="EmojiSearchFragment__no_results_found">Nenhum resultado encontrado</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">Toque desconhecido</string>
   <!--ConversationSettingsFragment-->
+  <!--Error toasted when no activity can handle the add contact intent-->
+  <string name="ConversationSettingsFragment__contacts_app_not_found">Aplicativo de contatos não encontrado</string>
   <string name="ConversationSettingsFragment__send_message">Enviar mensagem</string>
   <string name="ConversationSettingsFragment__start_video_call">Iniciar uma chamada de vídeo</string>
   <string name="ConversationSettingsFragment__start_audio_call">Iniciar uma chamada de voz</string>
@@ -3986,10 +4019,12 @@
   <string name="ConversationListTabs__stories">Stories</string>
   <!--String for counts above 99 in conversation list tabs-->
   <string name="ConversationListTabs__99p">99+</string>
+  <!--Menu item on stories landing page-->
+  <string name="StoriesLandingFragment__story_privacy">Privacidade do story</string>
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">Meus Stories</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">Adicionar um story</string> -->
+  <string name="StoriesLandingFragment__tap_to_add_a_story">Toque para adicionar um story</string>
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">Não há atualizações recentes para mostrar. Toque em + para adicionar algo ao seu Story.</string>
   <!--Context menu option to hide a story-->
@@ -4096,14 +4131,6 @@
   <string name="StoryGroupReplyItem__copy">Copiar</string>
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Excluir</string>
-  <!--Story settings page title-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">Configurações do Story</string> -->
-  <!--Story settings private stories heading-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">Stories privados</string> -->
-  <!--Note at bottom of story settings regarding who can see private stories.-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Os Stories privados só podem ser vistos pelas pessoas que você adicionou a eles. Somente você pode ver o nome do Story.</string> -->
-  <!--Option label for creating a new private story-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">Novo story privado</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Meu Story</string>
   <!--Section heading for story visibility-->
@@ -4360,6 +4387,12 @@
     <item quantity="many">Story do grupo · %1$d visualizações</item>
     <item quantity="other">Story do grupo · %1$d visualizações</item>
   </plurals>
+  <!--Label under name for my story-->
+  <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
+    <item quantity="one">%1$s · %2$d visualizador</item>
+    <item quantity="many">%1$s · %2$d visualizadores</item>
+    <item quantity="other"> %1$s · %2$d visualizadores</item>
+  </plurals>
   <!--Label under name for My Story when first sending to my story-->
   <string name="ContactSearchItems__tap_to_choose_your_viewers">Toque para escolher quem pode ver</string>
   <!--Label for context menu item to open story settings-->
@@ -4474,5 +4507,31 @@
   <string name="StoryInfoBottomSheetDialogFragment__sent_from">Enviada de</string>
   <!--Story Info context menu label-->
   <string name="StoryInfoBottomSheetDialogFragment__info">Info</string>
+  <!--StoriesPrivacySettingsFragment-->
+  <!--Explanation about how stories are deleted and managed-->
+  <string name="StoriesPrivacySettingsFragment__stories_automatically_disappear">Os stories desaparecem automaticamente após 24 horas. Escolha quem pode ver seu story ou criar novos stories com visualizadores ou grupos específicos.</string>
+  <!--Preference title to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories">Desativar stories</string>
+  <!--Preference summary to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__if_you_opt_out">Se você desativar os stories, não poderá mais compartilhar ou visualizar stories</string>
+  <!--Preference title to turn on stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_on_stories">Ativar stories</string>
+  <!--Preference summary to turn on stories-->
+  <string name="StoriesPrivacySettingsFragment__share_and_view">Compartilhe e veja stories de outras pessoas. Os stories desaparecem automaticamente após 24 horas.</string>
+  <!--Dialog title to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">Deseja desativar os stories?</string>
+  <!--Dialog message to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to">Você não poderá mais compartilhar ou visualizar stories. Todos os stories que você enviou recentemente ainda estarão visíveis para outras pessoas até que expirem.</string>
+  <!--Page title when launched from stories landing screen-->
+  <string name="StoriesPrivacySettingsFragment__story_privacy">Privacidade do story</string>
+  <!--GroupStorySettingsFragment-->
+  <!--Section header for who can view a group story-->
+  <string name="GroupStorySettingsFragment__who_can_view_this_story">Quem pode visualizar este story?</string>
+  <!--Explanation of who can view a group story-->
+  <string name="GroupStorySettingsFragment__members_of_the_group_s">Os membros do grupo \"%1$s\" podem visualizar e responder a esta story. Você pode atualizar os membros para este chat no grupo.</string>
+  <!--Preference label for removing this group story-->
+  <string name="GroupStorySettingsFragment__remove_group_story">Remover story de grupo</string>
+  <!--Generic title for overflow menus-->
+  <string name="OverflowMenu__overflow_menu">Menu flutuante</string>
   <!--EOF-->
 </resources>

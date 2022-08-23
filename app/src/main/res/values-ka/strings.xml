@@ -432,6 +432,18 @@
   <string name="CreateProfileActivity_set_up_your_profile">შექმენი შენი პროფილი</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">შენი პროფილი ბოლომდე დაშიფრულია. შენი პროფილი და მასში შეტანილი ცვლილებები თვალსაჩინო იქნება შენი კონტაქტებისთვის, როცა წამოიწყებ ან დაეთანხმები ახალ მიმოწერებს და როცა ახალ ჯგუფებს შეუერთდები.</string>
   <string name="CreateProfileActivity_set_avatar_description">ავატარის დაყენება</string>
+  <!--ProfileCreateFragment-->
+  <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
+  <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">პროფილები მხოლოდ მათთვისაა ხილვადი, ვისთანაც მიმოწერა გაქვს.</string>
+  <!--Title of clickable row to select phone number privacy settings-->
+  <string name="ProfileCreateFragment__who_can_find_me">ვის შეუძლია ნომრით მიპოვოს?</string>
+  <!--WhoCanSeeMyPhoneNumberFragment-->
+  <!--Toolbar title for this screen-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">ვის შეუძლია ნომრით მიპოვოს?</string>
+  <!--Description for radio item stating anyone can see your phone number-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has">ნებისმიერს, ვისაც შენი ტელეფონის ნომერი თავის კონტაქტებში აქვს, Signal-ის კონტაქტებში გნახავენ. სხვები შენს მოძებნას შენი ნომრით შეძლებენ  საძიებო ველში.</string>
+  <!--Description for radio item stating no one will be able to see your phone number-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__nobody_on_signal">Signal-ზე ვერავინ შეძლებს შენს მოძებნას მობილურის ნომრით.</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">აღვადგინოთ სარეზერვო კოპიიდან?</string>
   <string name="ChooseBackupFragment__restore_your_messages_and_media">აღადგინე შენი შეტყობინებები და მედია ადგილობრივი სარეზერვო კოპიიდან. თუ ახლა არ აღადგენ, მოგვიანებით ვეღარ შეძლებ აღდგენას.</string>
@@ -735,6 +747,10 @@
   <string name="ManageProfileFragment_failed_to_set_avatar">ავატარის დაყენება ვერ მოხერხდა</string>
   <string name="ManageProfileFragment_badges">ემბლემები</string>
   <string name="ManageProfileFragment__edit_photo">ფოტოს რედაქტირება</string>
+  <!--Snackbar message after creating username-->
+  <string name="ManageProfileFragment__username_created">მომხმარებლის სახელი შეიქმნა</string>
+  <!--Snackbar message after copying username-->
+  <string name="ManageProfileFragment__username_copied">მომხმარებლის სახელი დაკოპირდა</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">საერთო ჯგუფები ვერ მოიძებნა</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1597,6 +1613,8 @@
   <string name="UnverifiedSendDialog_send_message">გავაგზავნოთ შეტყობინება?</string>
   <string name="UnverifiedSendDialog_send">გაგზავნა</string>
   <!--UsernameEditFragment-->
+  <!--Instructional text at the top of the username edit screen-->
+  <string name="UsernameEditFragment__choose_your_username">აირჩიე შენი მომხმარებლის სახელი</string>
   <string name="UsernameEditFragment_username">მომხმარებლის სახელი</string>
   <string name="UsernameEditFragment_delete">წაშლა</string>
   <string name="UsernameEditFragment_successfully_set_username">მომხმარებლის სახელი წარმატებით დაყენდა.</string>
@@ -1608,11 +1626,18 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">მომხმარებლის სახელი ციფრით ვერ დაიწყება.</string>
   <string name="UsernameEditFragment_username_is_invalid">მომხარებლის სახელი არასწორია.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">მომხმარებლის სახელი უნდა შეიცავდეს %1$d-დან %2$d-მდე სიმბოლოს.</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Signal-ზე მომხმარებლის სახელი ნებაყოფლობითია. თუ მომხმარებლის სახელის შექმნას აირჩევ, Signal-ის სხვა მომხმარებლები შეძლებენ გიპოვონ ამ მომხმარებლის სახელით და დაგიკავშირდნენ შენი ტელეფონის ნომრის ცოდნის გარეშე.</string> -->
+  <!--Explanation about what usernames provide-->
+  <string name="UsernameEditFragment__usernames_let_others_message">მომხმარებლის სახელი საშუალებას აძლევს სხვებს გამოგიგზავნონ შეტყობინება შენი ტელეფონის ნომრის გარეშე. ისინი დაკავშირებულია ციფრების ნაკრებით, რათა შევძლოთ შენი მისამართის კონფიდენციალურად შენარჩუნება.</string>
+  <!--Dialog title for explanation about numbers at the end of the username-->
+  <string name="UsernameEditFragment__what_is_this_number">ეს რა ნომერია?</string>
+  <string name="UsernameEditFragment__these_digits_help_keep">ეს ციფრები დაგეხმარება შეინახო შენი მომხმარებლის სახელი კონფიდენციალურად, რათა თავიდან აიცილო არასასურველი შეტყობინებები. შენი მომხმარებლის სახელი მხოლოდ იმ ადამიანებსა და ჯგუფებს გაუზიარე, რომლებთანაც საუბარი გსურს. თუ მომხმარებლის სახელს შეცვლი, ციფრების ახალ კომბინაციას მიიღებ.</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d კონტაქტი Signal-ზეა!</item>
     <item quantity="other">%d კონტაქტი Signal-ზეა!</item>
   </plurals>
+  <!--UsernameShareBottomSheet-->
+  <!--Explanation of what the sheet enables the user to do-->
+  <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">დააკოპირე ან გააზიარე მომხმარებლის სახელის ბმული</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">შენს კონტაქტს Signal-ის ძველი ვერსია აქვს. გთხოვთ, შენი უსაფრთხოების ნომრის დადასტურებამდე სთხოვე მას განაახლოს აპი .</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">შენს კონტაქტს Signal-ის უფრო ახალი, QR კოდის ფორმატთან შეუთავსებელი ვერსია აქვს. გთხოვთ განაახლო დამთხვევისთვის.</string>
@@ -2198,6 +2223,8 @@
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__one_time_donation">ერთჯერადი დონაცია</string>
   <string name="preferences__privacy">კონფიდენციალურობა</string>
+  <!--Preference label for stories-->
+  <string name="preferences__stories">Stories-ები</string>
   <string name="preferences__mms_user_agent">MMS მომხმარებლის აგენტი</string>
   <string name="preferences__advanced_mms_access_point_names">MMS-ის მექანიკური პარამეტრები</string>
   <string name="preferences__mmsc_url">MMSC URL-ი</string>
@@ -2761,7 +2788,7 @@
   <string name="PhoneNumberPrivacy_my_contacts">ჩემი კონტაქტები</string>
   <string name="PhoneNumberPrivacy_nobody">არავინ</string>
   <string name="PhoneNumberPrivacy_everyone_see_description">შენი ტელეფონის ნომერი ხილული იქნება ყველა ადამიანისა და ჯგუფისთვის, რომელთაც სწერ.</string>
-  <string name="PhoneNumberPrivacy_everyone_find_description">ნებისმიერს, ვისაც შენი ტელეფონის ნომერი თავის კონტაქტებში აქვს Signal-ის კონტაქტებში გნახავენ. სხვები კი შენს პოვნას საძიებო ველში შეძლებენ.</string>
+  <string name="PhoneNumberPrivacy_everyone_find_description">ნებისმიერს, ვისაც შენი ტელეფონის ნომერი თავის კონტაქტებში აქვს, Signal-ის კონტაქტებში გნახავენ. სხვები კი შენს პოვნას საძიებო ველში შეძლებენ.</string>
   <string name="preferences_app_protection__screen_lock">Ეკრანის დაბლოკვა</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">შეზღუდე Signal-ზე წვდომა Android-ის ეკრანის დაბლოკვით ან თითის ანაბეჭდით</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">ეკრანის დაბლოკვის უმოქმედობის დრო</string>
@@ -3046,6 +3073,8 @@
   <string name="ShareActivity__send">გაგზავნა</string>
   <string name="ShareActivity__comma_s">, %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">მრავალ ჩატთან გაზიარება მხარდაჭერილია მხოლოდ Signal-ის შეტყობინებებისთვის</string>
+  <!--Toast when the incoming intent is invalid-->
+  <string name="ShareActivity__could_not_get_share_data_from_intent">მონაცემების გაზიარება ვერ მოხერხდა.</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">ზოგიერთ მომხმარებელთან გაგზავნა ვერ მოხერხდა</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">მხოლოდ %1$d-მდე ჩატში შეგიძლია გაზიარება</string>
@@ -3271,6 +3300,8 @@
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signal-ის შეტყობინებები და ზარები, ყოველთვის გადამისამართებული ზარებია და დაფარული გამომგზავნი</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">ნაგულისხმევი ტაიმერი ახალი ჩატებისთვის</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">დააყენე გაქრობადი შეტყობინებებისთვის ნაგულისხმევი ტაიმერი შენს მიერ დაწყებული ყველა ახალი ჩატისთვის.</string>
+  <!--Summary for stories preference to launch into story privacy settings-->
+  <string name="PrivacySettingsFragment__manage_your_stories">მართე შენი Stories-ები და ვის შეუძლია მათი ნახვა</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">სტატუსის ხატულას ჩვენება</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">ხატულას შეტყობინების დეტალებში მაშინ ჩვენება, როცა მათ დაფარული გამომგზავნის გამოყენებით გზავნიან.</string>
@@ -3380,6 +3411,8 @@
   <string name="EmojiSearchFragment__no_results_found">ვერაფერი მოიძებნა</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">ზარის უცნობი მელოდია</string>
   <!--ConversationSettingsFragment-->
+  <!--Error toasted when no activity can handle the add contact intent-->
+  <string name="ConversationSettingsFragment__contacts_app_not_found">კონტაქტების აპი ვერ მოიძებნა</string>
   <string name="ConversationSettingsFragment__send_message">შეტყობინების გაგზავნა</string>
   <string name="ConversationSettingsFragment__start_video_call">ვიდეო ზარის დაწყება</string>
   <string name="ConversationSettingsFragment__start_audio_call">აუდიო ზარის დაწყება</string>
@@ -3882,10 +3915,12 @@
   <string name="ConversationListTabs__stories">Story-ები</string>
   <!--String for counts above 99 in conversation list tabs-->
   <string name="ConversationListTabs__99p">99+</string>
+  <!--Menu item on stories landing page-->
+  <string name="StoriesLandingFragment__story_privacy">Story-ის კონფიდენციალურობა</string>
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">ჩემი Story-ები</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">Story-ის დამატება</string> -->
+  <string name="StoriesLandingFragment__tap_to_add_a_story">დააჭირე Story-ის დასამატებლად</string>
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">ბოლო განახლებები ახლა ვერ მოიძებნა. დააჭირე + -ს შენი Story-ის დასამატებლად.</string>
   <!--Context menu option to hide a story-->
@@ -3989,14 +4024,6 @@
   <string name="StoryGroupReplyItem__copy">დაკოპირება</string>
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">წაშლა</string>
-  <!--Story settings page title-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">Story-ის პარამეტრები</string> -->
-  <!--Story settings private stories heading-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">პირადი Stories-ები</string> -->
-  <!--Note at bottom of story settings regarding who can see private stories.-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">პირადი Story-ების ნახვას შეძლებენ მხოლოდ ისინი, ვისაც შენ დაამატებ. მხოლოდ შენ შეგიძლია ნახო Story-ის სახელი.</string> -->
-  <!--Option label for creating a new private story-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">ახალი პირადი Story-ი</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">ჩემი Story-ი</string>
   <!--Section heading for story visibility-->
@@ -4247,6 +4274,11 @@
     <item quantity="one">ჯგუფური Story-ი · %1$d მნახველი</item>
     <item quantity="other">ჯგუფური Story-ი · %1$d მნახველი</item>
   </plurals>
+  <!--Label under name for my story-->
+  <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
+    <item quantity="one">%1$s · %2$d მნახველი</item>
+    <item quantity="other">%1$s · %2$d მნახველი</item>
+  </plurals>
   <!--Label under name for My Story when first sending to my story-->
   <string name="ContactSearchItems__tap_to_choose_your_viewers">დააჭირე შენი მნახველების ასარჩევად</string>
   <!--Label for context menu item to open story settings-->
@@ -4357,5 +4389,31 @@
   <string name="StoryInfoBottomSheetDialogFragment__sent_from">გამოგზავნილია ჩამოთვლილებისგან</string>
   <!--Story Info context menu label-->
   <string name="StoryInfoBottomSheetDialogFragment__info">ინფორმაცია</string>
+  <!--StoriesPrivacySettingsFragment-->
+  <!--Explanation about how stories are deleted and managed-->
+  <string name="StoriesPrivacySettingsFragment__stories_automatically_disappear">Stories-ები ავტომატურად ქრება 24 საათის შემდეგ. აირჩიე, ვის შეუძლია შენი Story-ის ნახვა ან შექმენი ახალი Stories-ები კონკრეტულ მნახველებისთვის ან ჯგუფებისთვის.</string>
+  <!--Preference title to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories">Stories-ების გამორთვა</string>
+  <!--Preference summary to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__if_you_opt_out">თუ Stories-ებზე უარს იტყვი, მათ გაზიარებას ან ნახვას ვეღარ შეძლებ.</string>
+  <!--Preference title to turn on stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_on_stories">Stories-ების ჩართვა</string>
+  <!--Preference summary to turn on stories-->
+  <string name="StoriesPrivacySettingsFragment__share_and_view">გაუზიარე სხვებს შენი Stories-ები და ნახე მათი. Stories-ები 24 საათის შემდეგ ავტომატურად ქრება.</string>
+  <!--Dialog title to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">გამოვრთოთ Stories-ები?</string>
+  <!--Dialog message to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to">Stories-ების გაზიარებას ან ნახვას ვეღარ შეძლებ. შენ მიერ ახლახან გაგზავნილი ნებისმიერი Story-ი კვლავ ხილული იქნება სხვებისთვის, სანამ ვადა არ ამოიწურება.</string>
+  <!--Page title when launched from stories landing screen-->
+  <string name="StoriesPrivacySettingsFragment__story_privacy">Story-ის კონფიდენციალურობა</string>
+  <!--GroupStorySettingsFragment-->
+  <!--Section header for who can view a group story-->
+  <string name="GroupStorySettingsFragment__who_can_view_this_story">ვის შეუძლია ამ Story-ის ნახვა</string>
+  <!--Explanation of who can view a group story-->
+  <string name="GroupStorySettingsFragment__members_of_the_group_s">\"%1$s“ ჯგუფის წევრებს ამ Story-ის ნახვა და მასზე პასუხის გაცემა შეუძლიათ. ამ ჩატის წევრობის განახლება ჯგუფში შეგიძლია.</string>
+  <!--Preference label for removing this group story-->
+  <string name="GroupStorySettingsFragment__remove_group_story">ჯგუფის Story-ის წაშლა</string>
+  <!--Generic title for overflow menus-->
+  <string name="OverflowMenu__overflow_menu">დამატებითი მენიუ</string>
   <!--EOF-->
 </resources>

@@ -432,6 +432,18 @@
   <string name="CreateProfileActivity_set_up_your_profile">Ujdisni profilin tuaj</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Profili juaj është i fshehtëzuar skaj-më-skaj. Profili juaj dhe ndryshime në të do të jenë të dukshme për kontaktet tuaj, kur nisni ose pranoni biseda të reja, dhe kur merrni pjesë në grupe të rinj.</string>
   <string name="CreateProfileActivity_set_avatar_description">Caktoni avatar</string>
+  <!--ProfileCreateFragment-->
+  <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
+  <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">Profilet janë të dukshëm vetëm ndaj personave që ti u dërgon mesazh.</string>
+  <!--Title of clickable row to select phone number privacy settings-->
+  <string name="ProfileCreateFragment__who_can_find_me">Kush mund të më gjejë nëpërmjet numrit?</string>
+  <!--WhoCanSeeMyPhoneNumberFragment-->
+  <!--Toolbar title for this screen-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">Kush mund të më gjejë nëpërmjet numrit?</string>
+  <!--Description for radio item stating anyone can see your phone number-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has">Kushdo që ka numrin tënd të telefonit në kontaktet e tij, do të të shohë si kontakt në Signal. Të tjerët do të mund të të gjejnë duke ta kërkuar numrin.</string>
+  <!--Description for radio item stating no one will be able to see your phone number-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__nobody_on_signal">Askush në Signal nuk do të të gjejë me numrin e telefonit.</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">Të rikthehet prej kopjeruajtjeje?</string>
   <string name="ChooseBackupFragment__restore_your_messages_and_media">Riktheni mesazhet dhe mediat tuaja që prej një kopjeruajtjeje vendore. Nëse s\’i riktheni tani, s\’do të jeni në gjendje t\’i riktheni më vonë.</string>
@@ -736,6 +748,10 @@ grupit dhe s\’do të marrë mesazhe grupi përpara se ta pranojë:</item>
   <string name="ManageProfileFragment_failed_to_set_avatar">S\’u arrit të caktohej avatar</string>
   <string name="ManageProfileFragment_badges">Distinktiv</string>
   <string name="ManageProfileFragment__edit_photo">Përpunoni foton</string>
+  <!--Snackbar message after creating username-->
+  <string name="ManageProfileFragment__username_created">Emri i përdoruesit u krijua</string>
+  <!--Snackbar message after copying username-->
+  <string name="ManageProfileFragment__username_copied">Emri i përdoruesit u kopjua</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">S\’ka grupe të përbashkët</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1598,6 +1614,8 @@ grupit dhe s\’do të marrë mesazhe grupi përpara se ta pranojë:</item>
   <string name="UnverifiedSendDialog_send_message">Të dërgohet mesazhi?</string>
   <string name="UnverifiedSendDialog_send">Dërgoje</string>
   <!--UsernameEditFragment-->
+  <!--Instructional text at the top of the username edit screen-->
+  <string name="UsernameEditFragment__choose_your_username">Zgjidh emrin tënd të përdoruesit</string>
   <string name="UsernameEditFragment_username">Emër përdoruesi</string>
   <string name="UsernameEditFragment_delete">Fshije</string>
   <string name="UsernameEditFragment_successfully_set_username">Emri i përdoruesit u caktua me sukses.</string>
@@ -1609,11 +1627,18 @@ grupit dhe s\’do të marrë mesazhe grupi përpara se ta pranojë:</item>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Emrat e përdoruesve s\’mund të fillojnë me një numër.</string>
   <string name="UsernameEditFragment_username_is_invalid">Emri i përdoruesit është i pavlefshëm.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Emrat e përdoruesit duhet të jenë mes %1$d dhe %2$d shenjash.</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Emrat e përdoruesve në Signal janë opsionalë. Nëse vendosni të krijoni një emër përdoruesi, përdorues të tjerë të Signal-it do të jenë në gjendje t\’ju gjejnë me këtë emër përdoruesi dhe të lidhen me ju pa ditur numrin tuaj të telefonit.</string> -->
+  <!--Explanation about what usernames provide-->
+  <string name="UsernameEditFragment__usernames_let_others_message">Emrat e përdoruesve lejojnë që të tjerët të të dërgojnë mesazhe, pa pasur nevojë për numrin tënd të telefonit. Ata binjakëzohen me një bashkësi shifrash për ruajtur fshehtësinë e  adresës tënde.</string>
+  <!--Dialog title for explanation about numbers at the end of the username-->
+  <string name="UsernameEditFragment__what_is_this_number">Çfarë është ky numër?</string>
+  <string name="UsernameEditFragment__these_digits_help_keep">Këto shifra ndihmojnë të ruash fshehtësinë e emrit të përdoruesit, që të shmangësh mesazhet e padëshiruara. Ndaj emrin e përdoruesit vetëm me personat dhe grupet me të cilat dëshiron të bisedosh. Nëse ndryshon emrin e përdoruesit, atëherë do të marrësh një bashkësi të re shifrash.</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d kontakt është në Signal!</item>
     <item quantity="other">%d kontakte janë në Signal!</item>
   </plurals>
+  <!--UsernameShareBottomSheet-->
+  <!--Explanation of what the sheet enables the user to do-->
+  <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">Kopjo ose shpërndaj linkun e një emri përdoruesi</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Kontakti juaj xhiron një version të vjetër të Signal-it. Ju lutemi, kërkojini ta përditësojë, para se të verifikohet numri juaj i sigurisë.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Kontakti juaj xhiron një version më të ri të Signal-it, me një format kodi QR të papërputhshëm. Ju lutemi, që të krahasohen, përditësojeni.</string>
@@ -2199,6 +2224,8 @@ grupit dhe s\’do të marrë mesazhe grupi përpara se ta pranojë:</item>
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__one_time_donation">Dhurim Një Herë</string>
   <string name="preferences__privacy">Privatësi</string>
+  <!--Preference label for stories-->
+  <string name="preferences__stories">Postime të përkohshme</string>
   <string name="preferences__mms_user_agent">Agjent Përdoruesi MMS</string>
   <string name="preferences__advanced_mms_access_point_names">Rregullime dorazi për MMS-në</string>
   <string name="preferences__mmsc_url">URL MMSC</string>
@@ -3051,6 +3078,8 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="ShareActivity__send">Dërgoje</string>
   <string name="ShareActivity__comma_s">, %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">Dhënia e diçkaje në shumë fjalosje mbulohet vetëm për mesazhe Signal</string>
+  <!--Toast when the incoming intent is invalid-->
+  <string name="ShareActivity__could_not_get_share_data_from_intent">Nuk mund të merrnim të dhënat e shpërndarjes që dëshiroje.</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">S\’u arrit të dërgoheshin ca përdorues</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Mund të shkëmbeni deri me %1$d fjalosje</string>
@@ -3276,6 +3305,8 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Mesazhe dhe thirrje Signal, thirrjet kaloji përherë përmes relesh, dhe dërgues të vulosur</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">Kohëmatës parazgjedhje për fjalosje të reja</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Ujdisni një kohëmatës tretjeje mesazhesh për krejt fjalosjet e reja të nisura nga ju.</string>
+  <!--Summary for stories preference to launch into story privacy settings-->
+  <string name="PrivacySettingsFragment__manage_your_stories">Menaxho postimet e përkohshme dhe se kush mund t\'i shohë ato</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Shfaq ikonë gjendjesh</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Shfaq një ikonë te hollësi mesazhesh, kur këta janë dorëzuar duke përdorur dërgues të vulosur.</string>
@@ -3385,6 +3416,8 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="EmojiSearchFragment__no_results_found">S\’u gjet përfundim</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">Zile e panjohur</string>
   <!--ConversationSettingsFragment-->
+  <!--Error toasted when no activity can handle the add contact intent-->
+  <string name="ConversationSettingsFragment__contacts_app_not_found">Aplikacioni i kontakteve nuk u gjet</string>
   <string name="ConversationSettingsFragment__send_message">Dërgoni mesazh</string>
   <string name="ConversationSettingsFragment__start_video_call">Nisni thirrje video</string>
   <string name="ConversationSettingsFragment__start_audio_call">Nisni thirrje audio</string>
@@ -3887,10 +3920,12 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="ConversationListTabs__stories">Histori</string>
   <!--String for counts above 99 in conversation list tabs-->
   <string name="ConversationListTabs__99p">99+</string>
+  <!--Menu item on stories landing page-->
+  <string name="StoriesLandingFragment__story_privacy">Privatësia e postimit të përkohshëm</string>
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">Historitë e Mia</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">Shtoni një histori</string> -->
+  <string name="StoriesLandingFragment__tap_to_add_a_story">Kliko për të shtuar një postim të përkohshëm</string>
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">Hëpërhë s’ka dhurime për t’u shfaqur. Prekni + që të shtoni historinë tuaj.</string>
   <!--Context menu option to hide a story-->
@@ -3994,14 +4029,6 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="StoryGroupReplyItem__copy">Kopjoje</string>
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Fshiji</string>
-  <!--Story settings page title-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">Rregullime historie</string> -->
-  <!--Story settings private stories heading-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">Histori private</string> -->
-  <!--Note at bottom of story settings regarding who can see private stories.-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Historitë private mund të shihen vetëm nga persona që shtoni në to. Emrin e historisë mund ta shihni vetëm ju.</string> -->
-  <!--Option label for creating a new private story-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">Histori e re private</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Historia ime</string>
   <!--Section heading for story visibility-->
@@ -4252,6 +4279,11 @@ spastrohet dhe krejt lënda do të fshihet.</item>
     <item quantity="one">Histori Grupi · %1$d parës</item>
     <item quantity="other">Story-t e grupit · %1$d shikues</item>
   </plurals>
+  <!--Label under name for my story-->
+  <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
+    <item quantity="one">%1$s   %2$d shikues</item>
+    <item quantity="other">%1$s   %2$d shikues</item>
+  </plurals>
   <!--Label under name for My Story when first sending to my story-->
   <string name="ContactSearchItems__tap_to_choose_your_viewers">Kliko për të zgjedhur shikuesit</string>
   <!--Label for context menu item to open story settings-->
@@ -4362,5 +4394,31 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="StoryInfoBottomSheetDialogFragment__sent_from">Dërguar nga</string>
   <!--Story Info context menu label-->
   <string name="StoryInfoBottomSheetDialogFragment__info">Info</string>
+  <!--StoriesPrivacySettingsFragment-->
+  <!--Explanation about how stories are deleted and managed-->
+  <string name="StoriesPrivacySettingsFragment__stories_automatically_disappear">Postimet e përkohshme zhduken automatikisht pas 24 orësh. Zgjidh kush mund të shohë postimet e tua të përkohshme ose krijo postime të reja të përkohshme për shikues ose grupe të veçanta.</string>
+  <!--Preference title to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories">Çaktivizo postimet e përkohshme</string>
+  <!--Preference summary to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__if_you_opt_out">Nëse heq dorë nga postimet e përkohshme, nuk do të mund të ndash ose të shikosh postime të përkohshme.</string>
+  <!--Preference title to turn on stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_on_stories">Aktivizo postimet e përkohshme</string>
+  <!--Preference summary to turn on stories-->
+  <string name="StoriesPrivacySettingsFragment__share_and_view">Shpërndaj dhe shiko postimet e përkohshme të të tjerëve. Postimet e përkohshme zhduken automatikisht pas 24 orësh.</string>
+  <!--Dialog title to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">Do t\'i çaktivizosh postimet e përkohshme?</string>
+  <!--Dialog message to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to">Nuk mund të ndash apo shikosh më postimet e përkohshme. Çdo postim i përkohshëm që ke dërguar së fundi do të shihet ende nga të tjerët, derisa t\'i mbarojë koha.</string>
+  <!--Page title when launched from stories landing screen-->
+  <string name="StoriesPrivacySettingsFragment__story_privacy">Privatësia e postimit të përkohshëm</string>
+  <!--GroupStorySettingsFragment-->
+  <!--Section header for who can view a group story-->
+  <string name="GroupStorySettingsFragment__who_can_view_this_story">Kush mund ta shikojë këtë postim të përkohshëm</string>
+  <!--Explanation of who can view a group story-->
+  <string name="GroupStorySettingsFragment__members_of_the_group_s">Anëtarët e grupit \"%1$s\" mund ta shikojnë këtë postim të përkohshëm dhe t\'i përgjigjen. Ti mund të përditësosh anëtarësimin për këtë bisedë në grup.</string>
+  <!--Preference label for removing this group story-->
+  <string name="GroupStorySettingsFragment__remove_group_story">Hiq postimin e përkohshëm të grupit</string>
+  <!--Generic title for overflow menus-->
+  <string name="OverflowMenu__overflow_menu">Menuja e tejkalimeve</string>
   <!--EOF-->
 </resources>

@@ -453,6 +453,18 @@
   <string name="CreateProfileActivity_set_up_your_profile">Completa tu perfil</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Tu perfil está cifrado de extremo a extremo. Solo tus contactos, las personas con las que inicias o aceptas un chat, y quienes participan en los grupos a los que te unes podrán verlo. Nadie más, ni siquiera la gente de Signal.</string>
   <string name="CreateProfileActivity_set_avatar_description">Configurar avatar de perfil</string>
+  <!--ProfileCreateFragment-->
+  <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
+  <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">Los perfiles solo serán visibles a aquellas personas a las que envíes un mensaje.</string>
+  <!--Title of clickable row to select phone number privacy settings-->
+  <string name="ProfileCreateFragment__who_can_find_me">¿Quién puede encontrarme a través de mi número?</string>
+  <!--WhoCanSeeMyPhoneNumberFragment-->
+  <!--Toolbar title for this screen-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">¿Quién puede encontrarme a través de mi número?</string>
+  <!--Description for radio item stating anyone can see your phone number-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has">Cualquier persona que tenga tu número de teléfono guardado en sus contactos podrá verte como contacto en Signal. Las otras personas podrán encontrarte realizando una búsqueda con tu número.</string>
+  <!--Description for radio item stating no one will be able to see your phone number-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__nobody_on_signal">Nadie en Signal podrá encontrarte a través de tu número de teléfono.</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">¿Restaurar desde copia de seguridad?</string>
   <string name="ChooseBackupFragment__restore_your_messages_and_media">Restaura tus mensajes y adjuntos desde una copia de seguridad local. Si no lo haces ahora, no podrás restaurar más tarde.</string>
@@ -774,6 +786,10 @@
   <string name="ManageProfileFragment_failed_to_set_avatar">Fallo al seleccionar foto de perfil</string>
   <string name="ManageProfileFragment_badges">Distintivos</string>
   <string name="ManageProfileFragment__edit_photo">Editar foto</string>
+  <!--Snackbar message after creating username-->
+  <string name="ManageProfileFragment__username_created">Se ha creado el nombre de usuario</string>
+  <!--Snackbar message after copying username-->
+  <string name="ManageProfileFragment__username_copied">Se ha copiado el nombre de usuario</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">No hay grupos en común</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1670,6 +1686,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="UnverifiedSendDialog_send_message">¿Enviar mensaje?</string>
   <string name="UnverifiedSendDialog_send">Enviar</string>
   <!--UsernameEditFragment-->
+  <!--Instructional text at the top of the username edit screen-->
+  <string name="UsernameEditFragment__choose_your_username">Elige tu nombre de usuario</string>
   <string name="UsernameEditFragment_username">Alias (nombre de usuari@)</string>
   <string name="UsernameEditFragment_delete">Eliminar</string>
   <string name="UsernameEditFragment_successfully_set_username">Alias establecido con éxito.</string>
@@ -1681,12 +1699,19 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">El alias no puede comenzar por un número.</string>
   <string name="UsernameEditFragment_username_is_invalid">Alias no válido.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">El alias debe contener entre %1$d y %2$d caracteres.</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Los alias de Signal (o nombre de usuari@) son opcionales. Si decides crear un alias, otras personas podrán encontrarte en Signal por ese nombre y ponerse en contacto contigo sin conocer tu número de teléfono.</string> -->
+  <!--Explanation about what usernames provide-->
+  <string name="UsernameEditFragment__usernames_let_others_message">Los nombres de usuario les permiten a otras personas mandarte un mensaje sin necesidad de tu número de teléfono. Funcionan conjuntamente con una serie de dígitos para ayudarte a mantener tu dirección en privado.</string>
+  <!--Dialog title for explanation about numbers at the end of the username-->
+  <string name="UsernameEditFragment__what_is_this_number">¿Qué es este número?</string>
+  <string name="UsernameEditFragment__these_digits_help_keep">Estos dígitos te ayudarán a mantener tu nombre de usuario en privado para así evitar que recibas mensajes no deseados. Comparte tu nombre de usuario solo con aquellas personas y grupos con los que quieras charlar. Si cambias tu nombre de usuario, recibirás una nueva serie de dígitos.</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">¡%d de tus amistades usan Signal!</item>
     <item quantity="many">¡%d de tus amistades usan Signal!</item>
     <item quantity="other">¡%d de tus amistades usan Signal!</item>
   </plurals>
+  <!--UsernameShareBottomSheet-->
+  <!--Explanation of what the sheet enables the user to do-->
+  <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">Copiar o compartir un enlace de nombre de usuario</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Esta persona usa una versión antigua de Signal. Por favor, pídele que actualice antes de verificar tus cifras de seguridad.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Esta persona usa una versión de Signal con un formato de código QR incompatible. Por favor, pídele que actualice para verificar.</string>
@@ -2284,6 +2309,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__one_time_donation">Donación puntual</string>
   <string name="preferences__privacy">Privacidad</string>
+  <!--Preference label for stories-->
+  <string name="preferences__stories">Historias</string>
   <string name="preferences__mms_user_agent">Agente de usuari@ de MMS</string>
   <string name="preferences__advanced_mms_access_point_names">Configuración manual de MMS</string>
   <string name="preferences__mmsc_url">URL de MMSC</string>
@@ -3143,6 +3170,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ShareActivity__send">Enviar</string>
   <string name="ShareActivity__comma_s">, %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">Compartir en múltiples chats solo funciona con mensajes de Signal.</string>
+  <!--Toast when the incoming intent is invalid-->
+  <string name="ShareActivity__could_not_get_share_data_from_intent">No se han podido compartir los datos.</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Fallo al enviar a algunas personas</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Puedes compartir con un máximo de %1$d chats</string>
@@ -3368,6 +3397,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="PrivacySettingsFragment__signal_message_and_calls">Los mensajes y llamadas de Signal siempre usan remitente confidencial y las llamadas se desvían</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">Tiempo de desaparición de mensajes por defecto en nuevos chats</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Fija la desaparición de mensajes para nuevos chats iniciados por ti.</string>
+  <!--Summary for stories preference to launch into story privacy settings-->
+  <string name="PrivacySettingsFragment__manage_your_stories">Gestiona tus historias y quién puede verlas</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Mostrar el icono de estado</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Con esta opción activa se muestra un icono en los detalles del mensaje, si éste ha sido entregado como «remitente confidencial». El «remitente confidencial» es una función del protocolo de Signal que impide saber a nuestro servidor quién envía el mensaje. La persona que lo recibe sí lo sabrá.</string>
@@ -3479,6 +3510,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="EmojiSearchFragment__no_results_found">No se encontraron resultados</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">Tono de llamada desconocido</string>
   <!--ConversationSettingsFragment-->
+  <!--Error toasted when no activity can handle the add contact intent-->
+  <string name="ConversationSettingsFragment__contacts_app_not_found">No se ha encontrado la app de contactos</string>
   <string name="ConversationSettingsFragment__send_message">Enviar mensaje</string>
   <string name="ConversationSettingsFragment__start_video_call">Iniciar videollamada</string>
   <string name="ConversationSettingsFragment__start_audio_call">Iniciar llamada</string>
@@ -3986,10 +4019,12 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ConversationListTabs__stories">Historias</string>
   <!--String for counts above 99 in conversation list tabs-->
   <string name="ConversationListTabs__99p">99+</string>
+  <!--Menu item on stories landing page-->
+  <string name="StoriesLandingFragment__story_privacy">Privacidad de la historia</string>
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">Mis historias</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">Añade una historia</string> -->
+  <string name="StoriesLandingFragment__tap_to_add_a_story">Toca para añadir una historia</string>
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">No hay actualizaciones recientes que mostrar. Toca sobre «+» para añadir tu historia.</string>
   <!--Context menu option to hide a story-->
@@ -4096,14 +4131,6 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="StoryGroupReplyItem__copy">Copiar</string>
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Eliminar</string>
-  <!--Story settings page title-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">Ajustes de historias</string> -->
-  <!--Story settings private stories heading-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">Historias privadas</string> -->
-  <!--Note at bottom of story settings regarding who can see private stories.-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Las historias privadas solo son visibles por las personas que has añadido. Solo tú puedes ver el título de la historia.</string> -->
-  <!--Option label for creating a new private story-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">Nueva historia privada</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Mi historia</string>
   <!--Section heading for story visibility-->
@@ -4360,6 +4387,12 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
     <item quantity="many">Historia de grupo · %1$d vistas</item>
     <item quantity="other">Historia de grupo · %1$d vistas</item>
   </plurals>
+  <!--Label under name for my story-->
+  <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
+    <item quantity="one">%1$s · %2$d espectador</item>
+    <item quantity="many">%1$s · %2$d espectadores</item>
+    <item quantity="other">%1$s · %2$d espectadores</item>
+  </plurals>
   <!--Label under name for My Story when first sending to my story-->
   <string name="ContactSearchItems__tap_to_choose_your_viewers">Toca para elegir tus espectadores</string>
   <!--Label for context menu item to open story settings-->
@@ -4474,5 +4507,31 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="StoryInfoBottomSheetDialogFragment__sent_from">Recibido de</string>
   <!--Story Info context menu label-->
   <string name="StoryInfoBottomSheetDialogFragment__info">Detalles</string>
+  <!--StoriesPrivacySettingsFragment-->
+  <!--Explanation about how stories are deleted and managed-->
+  <string name="StoriesPrivacySettingsFragment__stories_automatically_disappear">Las historias desaparecerán automáticamente después de 24 horas. Elige quién puede ver tu historia o crea nuevas historias con espectadores o grupos específicos.</string>
+  <!--Preference title to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories">Desactivar historias</string>
+  <!--Preference summary to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__if_you_opt_out">Si decides desactivar las historias, ya no podrás compartir o visualizar historias.</string>
+  <!--Preference title to turn on stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_on_stories">Activar historias</string>
+  <!--Preference summary to turn on stories-->
+  <string name="StoriesPrivacySettingsFragment__share_and_view">Comparte y visualiza las historias de otros. Las historias desparecerán automáticamente después de 24 horas.</string>
+  <!--Dialog title to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">¿Desactivar historias?</string>
+  <!--Dialog message to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to">Ya no podrás compartir o visualizar historias. Cualquier historia que hayas enviado recientemente continuará siendo visible por otros usuarios hasta que expire.</string>
+  <!--Page title when launched from stories landing screen-->
+  <string name="StoriesPrivacySettingsFragment__story_privacy">Privacidad de la historia</string>
+  <!--GroupStorySettingsFragment-->
+  <!--Section header for who can view a group story-->
+  <string name="GroupStorySettingsFragment__who_can_view_this_story">Quién puede ver esta historia</string>
+  <!--Explanation of who can view a group story-->
+  <string name="GroupStorySettingsFragment__members_of_the_group_s">Los miembros del grupo \"%1$s\" pueden ver y responder a esta historia. Puedes actualizar la afiliación a este chat a través del grupo.</string>
+  <!--Preference label for removing this group story-->
+  <string name="GroupStorySettingsFragment__remove_group_story">Eliminar historia de grupo</string>
+  <!--Generic title for overflow menus-->
+  <string name="OverflowMenu__overflow_menu">Menú desplegable</string>
   <!--EOF-->
 </resources>

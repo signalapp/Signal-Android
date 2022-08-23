@@ -432,6 +432,18 @@
   <string name="CreateProfileActivity_set_up_your_profile">Stel jou profiel op</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Jou profiel is eindpunt-tot-eindpunt ge-enkripteer. Jou profiel en veranderinge daaraan sal aan jou kontakte sigbaar wees wanneer jy nuwe gesprekke begin of aanvaar, en wanneer jy by nuwe groepe aansluit.</string>
   <string name="CreateProfileActivity_set_avatar_description">Stel foto op</string>
+  <!--ProfileCreateFragment-->
+  <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
+  <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">Profiele is slegs sigbaar vir mense aan wie jy boodskappe stuur</string>
+  <!--Title of clickable row to select phone number privacy settings-->
+  <string name="ProfileCreateFragment__who_can_find_me">Wie kan my volgens my nommer vind?</string>
+  <!--WhoCanSeeMyPhoneNumberFragment-->
+  <!--Toolbar title for this screen-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">Wie kan my volgens my nommer vind?</string>
+  <!--Description for radio item stating anyone can see your phone number-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has">Eniegiemand wat jy telefoonnommer in hulle kontakte het, sal jou as \'n kontak in Signal sien. Andere sal jou en jou nommer met die soekfunksie kan vind.</string>
+  <!--Description for radio item stating no one will be able to see your phone number-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__nobody_on_signal">Niemand op Sinal sal jou volgens jou telefoonnommer kan vind nie.</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">Herstel van rugsteun af?</string>
   <string name="ChooseBackupFragment__restore_your_messages_and_media">Laai jou boodskappe en media vanaf ’n plaaslike rugsteun terug. As jy dit nie nou teruglaai nie, sal jy dit nie later kan teruglaai nie.</string>
@@ -735,6 +747,10 @@
   <string name="ManageProfileFragment_failed_to_set_avatar">Kon nie avatar stel nie</string>
   <string name="ManageProfileFragment_badges">Wapens</string>
   <string name="ManageProfileFragment__edit_photo">Wysig foto</string>
+  <!--Snackbar message after creating username-->
+  <string name="ManageProfileFragment__username_created">Gebruikersnaam geskep</string>
+  <!--Snackbar message after copying username-->
+  <string name="ManageProfileFragment__username_copied">Gebruikersnaam gekopieer</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Geen groepe gemeen nie</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1595,6 +1611,8 @@ ontvang!</string>
   <string name="UnverifiedSendDialog_send_message">Stuur boodskap?</string>
   <string name="UnverifiedSendDialog_send">Stuur</string>
   <!--UsernameEditFragment-->
+  <!--Instructional text at the top of the username edit screen-->
+  <string name="UsernameEditFragment__choose_your_username">Kies jou gebruikersnaam</string>
   <string name="UsernameEditFragment_username">Gebruikersnaam</string>
   <string name="UsernameEditFragment_delete">Verwyder</string>
   <string name="UsernameEditFragment_successfully_set_username">Gebruikersnaam suksesvol gestel.</string>
@@ -1606,11 +1624,18 @@ ontvang!</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Gebruikersname kan nie met \'n syfer begin nie.</string>
   <string name="UsernameEditFragment_username_is_invalid">Ongeldige gebruikersnaam.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Gebruikersname moet tussen %1$d en %2$d karakters lank wees.</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Gebruikersname op Signal is opsioneel. As jy kies om ’n gebruikersaam te skep, sal ander Signal-gebruikers jou d.m.v. hierdie gebruikersnaam kan vind en jou kontak sonder om jou foonnommer te ken.</string> -->
+  <!--Explanation about what usernames provide-->
+  <string name="UsernameEditFragment__usernames_let_others_message">Gebruikersname laat toe dat andere aan jou boodskappe kan stuur sonder dat hulle jou telefoonnommer nodig het. Hulle word gekoppel aan \'n stel syfers om jou adres privaat te help hou.</string>
+  <!--Dialog title for explanation about numbers at the end of the username-->
+  <string name="UsernameEditFragment__what_is_this_number">Wat beteken hierdie syfers?</string>
+  <string name="UsernameEditFragment__these_digits_help_keep">Hierdie syfers help om jou gebruikersnaam privaat te hou sodat jy ongevraagde boodskappe kan voorkom. Deel jou gebruikersnaam slegs met die mense en groepe met wie jy wil klets. As jy gebruikersname verander, sal jy \'n nuwe stel syfers ontvang.</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d kontak is op Signal!</item>
     <item quantity="other">%d kontakte is op Signal!</item>
   </plurals>
+  <!--UsernameShareBottomSheet-->
+  <!--Explanation of what the sheet enables the user to do-->
+  <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">Kopieer of deel \'n gebruikersnaamskakel</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Jou kontak gebruik \'n ou weergawe van Signal. Vra hulle asseblief om dit by te werk voordat jy jou veiligheidsnommer verifieer.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Jou kontak gebruik \'n nuwer weergawe van Signal met \'n onversoenbare QR-kodeformaat. Werk asb. by om te vergelyk.</string>
@@ -2196,6 +2221,8 @@ ontvang!</string>
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__one_time_donation">Eenmalige Skenking</string>
   <string name="preferences__privacy">Privaatheid</string>
+  <!--Preference label for stories-->
+  <string name="preferences__stories">Stories</string>
   <string name="preferences__mms_user_agent">MMS Gebruikersagent</string>
   <string name="preferences__advanced_mms_access_point_names">Handmatige MMS-instellings</string>
   <string name="preferences__mmsc_url">MMSC URL</string>
@@ -3044,6 +3071,8 @@ ontvang!</string>
   <string name="ShareActivity__send">Stuur</string>
   <string name="ShareActivity__comma_s">, %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">Deel na meerdere kletse word slegs vir Signal-boodskappe ondersteun</string>
+  <!--Toast when the incoming intent is invalid-->
+  <string name="ShareActivity__could_not_get_share_data_from_intent">Kon nie deelbare data uit die versamelpunt vir hierdie data kry nie.</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Kon nie na sommige gebruikers stuur nie</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Jy kan slegs met tot %1$d kletse deel</string>
@@ -3269,6 +3298,8 @@ ontvang!</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signal-boodskappe en oproepe, herlei oproepe altyd, en verseëlde afsender</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">Verstek-tydhouer vir nuwe kletse</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Stel ’n verstek-verdwynboodskap-tydhouer in vir alle kletse wat jy begin.</string>
+  <!--Summary for stories preference to launch into story privacy settings-->
+  <string name="PrivacySettingsFragment__manage_your_stories">Bestuur jou stories en wie dit kan sien</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Toon statusikoon</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Toon ’n ikoon in boodskapdetails wanneer dit d.m.v. verseëlde afsender afgelewer is.</string>
@@ -3378,6 +3409,8 @@ ontvang!</string>
   <string name="EmojiSearchFragment__no_results_found">Geen resultate gevind nie</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">Onbekende luitoon</string>
   <!--ConversationSettingsFragment-->
+  <!--Error toasted when no activity can handle the add contact intent-->
+  <string name="ConversationSettingsFragment__contacts_app_not_found">Kontakte-toepassing nie gevind nie</string>
   <string name="ConversationSettingsFragment__send_message">Stuur boodskap</string>
   <string name="ConversationSettingsFragment__start_video_call">Begin video-oproep</string>
   <string name="ConversationSettingsFragment__start_audio_call">Begin stemoproep</string>
@@ -3880,10 +3913,12 @@ ontvang!</string>
   <string name="ConversationListTabs__stories">Stories</string>
   <!--String for counts above 99 in conversation list tabs-->
   <string name="ConversationListTabs__99p">99+</string>
+  <!--Menu item on stories landing page-->
+  <string name="StoriesLandingFragment__story_privacy">Storieprivaatheid</string>
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">My Stories</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">Voeg \'n storie by</string> -->
+  <string name="StoriesLandingFragment__tap_to_add_a_story">Tik om \'n storie by te voeg</string>
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">Geen onlangse bywerkings om te wys nie.
 Tik op + om iets by jou storie te voeg.</string>
@@ -3988,14 +4023,6 @@ Tik op + om iets by jou storie te voeg.</string>
   <string name="StoryGroupReplyItem__copy">Kopieer</string>
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Skrap</string>
-  <!--Story settings page title-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">Storie-instellings</string> -->
-  <!--Story settings private stories heading-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">Privaatstories</string> -->
-  <!--Note at bottom of story settings regarding who can see private stories.-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Privaatstories kan slegs gesien word deur mense wat jy daar byvoeg. Slegs jy kan die strorie se naam sien.</string> -->
-  <!--Option label for creating a new private story-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">Nuwe privaatstorie</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">My Storie</string>
   <!--Section heading for story visibility-->
@@ -4183,7 +4210,7 @@ Tik op + om iets by jou storie te voeg.</string>
   <string name="StoriesLinkPopup__visit_link">Besoek skakel</string>
   <!--Gift price and duration, formatted as: {price} dot {n} day duration-->
   <plurals name="GiftRowItem_s_dot_d_day_duration">
-    <item quantity="one">%1$s · %2$d dae lank</item>
+    <item quantity="one">%1$s · %2$d dag lank</item>
     <item quantity="other">%1$s · %2$d dae lank</item>
   </plurals>
   <!--Tagline for gift row items-->
@@ -4245,6 +4272,11 @@ Tik op + om iets by jou storie te voeg.</string>
   <plurals name="ContactSearchItems__group_story_d_viewers">
     <item quantity="one">Groepstorie · %1$d kyker</item>
     <item quantity="other">Groepstorie · %1$d kykers</item>
+  </plurals>
+  <!--Label under name for my story-->
+  <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
+    <item quantity="one">%1$s · %2$d kyker</item>
+    <item quantity="other">%1$s · %2$d kykers</item>
   </plurals>
   <!--Label under name for My Story when first sending to my story-->
   <string name="ContactSearchItems__tap_to_choose_your_viewers">Tik om jou kykers te kies</string>
@@ -4356,5 +4388,31 @@ Tik op + om iets by jou storie te voeg.</string>
   <string name="StoryInfoBottomSheetDialogFragment__sent_from">Gestuur van</string>
   <!--Story Info context menu label-->
   <string name="StoryInfoBottomSheetDialogFragment__info">Inligting</string>
+  <!--StoriesPrivacySettingsFragment-->
+  <!--Explanation about how stories are deleted and managed-->
+  <string name="StoriesPrivacySettingsFragment__stories_automatically_disappear">Stories verdwyn outomaties ná 24 uur. Kies wie na jou storie kan kyk of nuwe stories met spesifieke kykers of groepe kan skep.</string>
+  <!--Preference title to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories">Skakel stories af</string>
+  <!--Preference summary to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__if_you_opt_out">As jy stories afskakel, sal jy nie meer stories kan deel of daarna kyk nie.</string>
+  <!--Preference title to turn on stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_on_stories">Skakel stories aan</string>
+  <!--Preference summary to turn on stories-->
+  <string name="StoriesPrivacySettingsFragment__share_and_view">Deel en kyk na stories van andere. Stories verdwyn outomaties ná 24 uur.</string>
+  <!--Dialog title to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">Wil jy stories afskakel?</string>
+  <!--Dialog message to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to">Jy sal nie meer stories kan deel of kyk nie. Enige stories wat jy onlangs gestuur het, sal steeds vir andere sigbaar wees totdat dit verval.</string>
+  <!--Page title when launched from stories landing screen-->
+  <string name="StoriesPrivacySettingsFragment__story_privacy">Storieprivaatheid</string>
+  <!--GroupStorySettingsFragment-->
+  <!--Section header for who can view a group story-->
+  <string name="GroupStorySettingsFragment__who_can_view_this_story">Wie hierdie storie kan sien</string>
+  <!--Explanation of who can view a group story-->
+  <string name="GroupStorySettingsFragment__members_of_the_group_s">Lede van die groep \"%1$s\" kan na hierdie storie kyk en daarop antwoord. Jy kan die lidmaatskap vir hierdie klets in die groep bywerk.</string>
+  <!--Preference label for removing this group story-->
+  <string name="GroupStorySettingsFragment__remove_group_story"> Verwyder groepstorie</string>
+  <!--Generic title for overflow menus-->
+  <string name="OverflowMenu__overflow_menu">Oorvloei-kieslys</string>
   <!--EOF-->
 </resources>

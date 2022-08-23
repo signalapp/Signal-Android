@@ -517,6 +517,18 @@
   <string name="CreateProfileActivity_set_up_your_profile">إعداد الملف الشخصي</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">إن حسابك الشخصي مُعمَّى من طرف لطرف. كما أن أي تغيير سيكون ظاهرا لجهات اتصالك، وذلك بعد قبولك طلب محادثتهم أو بعد انضمامك لمجموعة جديدة.</string>
   <string name="CreateProfileActivity_set_avatar_description">تعيين صورة ملفك الشخصي</string>
+  <!--ProfileCreateFragment-->
+  <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
+  <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">الحسابات الشخصية مرئية فقط للأشخاص الذين تُراسلهم</string>
+  <!--Title of clickable row to select phone number privacy settings-->
+  <string name="ProfileCreateFragment__who_can_find_me">مَن يُمكنه العثور عليَّ باستخدام رقمي الخاص؟</string>
+  <!--WhoCanSeeMyPhoneNumberFragment-->
+  <!--Toolbar title for this screen-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">مَن يُمكنه العثور عليَّ باستخدام رقمي الخاص؟</string>
+  <!--Description for radio item stating anyone can see your phone number-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has">كُل شخص يملك رقم هاتفك في جهات اتصاله سيعثُر عليك كجهة اتصال في Signal. سَيتمكن الآخرون من العثور عليك باستخدام رقم هاتفك في البحث.</string>
+  <!--Description for radio item stating no one will be able to see your phone number-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__nobody_on_signal">لن يتمكّن أي شخص على Signal من العثور عليك باستخدام رقم هاتفك.</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">الاستعادة مِن نسخة احتياطية؟</string>
   <string name="ChooseBackupFragment__restore_your_messages_and_media">استعادة الرسائل والوسائط من نسخة احتياطية محلية. إن لم تتم استعادتها الآن، لن يكون بإمكانك ذلك لاحقا.</string>
@@ -892,6 +904,10 @@
   <string name="ManageProfileFragment_failed_to_set_avatar">فشل ضبط صورة حسابك</string>
   <string name="ManageProfileFragment_badges">الشارات </string>
   <string name="ManageProfileFragment__edit_photo">تحرير الصورة</string>
+  <!--Snackbar message after creating username-->
+  <string name="ManageProfileFragment__username_created">تم إنشاء اسم المستخدم</string>
+  <!--Snackbar message after copying username-->
+  <string name="ManageProfileFragment__username_copied">تم نسخ اسم المستخدم</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">لا توجد مجموعات مشتركة</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1886,6 +1902,8 @@
   <string name="UnverifiedSendDialog_send_message">هل تود إرسال الرسالة ؟</string>
   <string name="UnverifiedSendDialog_send">أرسل</string>
   <!--UsernameEditFragment-->
+  <!--Instructional text at the top of the username edit screen-->
+  <string name="UsernameEditFragment__choose_your_username">يُرجى اختيار اسم المستخدم</string>
   <string name="UsernameEditFragment_username">اسم المستخدم</string>
   <string name="UsernameEditFragment_delete">إحذف  </string>
   <string name="UsernameEditFragment_successfully_set_username">تم ضبط اسم المستخدم بنجاح.</string>
@@ -1897,7 +1915,11 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">اسم المستخدم لا يمكن أن يبدأ برقم.</string>
   <string name="UsernameEditFragment_username_is_invalid">اسم المستخدم غير صالح</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">اسم المستخدم لا بد أن يكون بين %1$d و%2$d رمز.</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">إن اسم المستخدم اختياري في Signal. إذا اخترت إنشاء اسم المستخدم، سوف يتمكن المستخدمون الآخرون لـ Signal من العثور عليك بواسطة ذلك الاسم و من ثَمَّ التواصل معك بدون معرفتهم لرقم هاتفك.</string> -->
+  <!--Explanation about what usernames provide-->
+  <string name="UsernameEditFragment__usernames_let_others_message">تسمح أسماء المُستخدمين للآخرين بمراسلتك دون الحاجة إلى رقم هاتفك. يتم إقرانها بمجموعة من الأرقام للمساعدة في الحفاظ على خصوصية عنوانك.</string>
+  <!--Dialog title for explanation about numbers at the end of the username-->
+  <string name="UsernameEditFragment__what_is_this_number">ماذا يعني هذا الرقم؟</string>
+  <string name="UsernameEditFragment__these_digits_help_keep">تُساعد هذه الأرقام في الحفاظ على خصوصية اسم المستخدم الخاص بك حتى تتجنب الرسائل غير مرغوب فيها. شارك اسم المستخدم الخاص بك مع الأشخاص والمجموعات الذين ترغب في الدردشة معهم. إذا قمت بتغيير أسماء المستخدمين، سَتحصل على مجموعة جديدة من الأرقام.</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="zero">%d جهة اتصال تستخدم Signal !‏</item>
     <item quantity="one">‏‏%d جهة اتصال تستخدم Signal !‏</item>
@@ -1906,6 +1928,9 @@
     <item quantity="many">%d جهة اتصال تستخدم Signal !</item>
     <item quantity="other">%d جهة اتصال تستخدم Signal !</item>
   </plurals>
+  <!--UsernameShareBottomSheet-->
+  <!--Explanation of what the sheet enables the user to do-->
+  <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">نسخ أو مشاركة رابط اسم المستخدم</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">جهة الاتصال هذه تستخدم إصدار قديم من Signal. اطلب منه تحديث التطبيق قبل التحقق من رقم الأمان.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">جهة الاتصال هذه تستخدم نسخة أحدث من تطبيق Signal وصيغة رمز الاستجابة السريع أو QR فيها لا تتوافق مع نسختك. يرجى تحديث النسخة للمقارنة.</string>
@@ -2529,6 +2554,8 @@
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__one_time_donation">التبرع مرة واحدة</string>
   <string name="preferences__privacy">الخصوصية</string>
+  <!--Preference label for stories-->
+  <string name="preferences__stories">القِصَص</string>
   <string name="preferences__mms_user_agent">الوكيل المستخدم لرسائل الوسائط المتعددة</string>
   <string name="preferences__advanced_mms_access_point_names">الإعدادات اليدوية لرسائل الوسائط المتعددة</string>
   <string name="preferences__mmsc_url">رابط MMSC</string>
@@ -3421,6 +3448,8 @@
   <string name="ShareActivity__send">أرسلْ</string>
   <string name="ShareActivity__comma_s">، %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">إن  خيار إعادة التوجيه نحو عدة محادثات مدعوم فقط مع رسائل Signal.</string>
+  <!--Toast when the incoming intent is invalid-->
+  <string name="ShareActivity__could_not_get_share_data_from_intent">تعذّر مشاركة البيانات.</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">فشل اﻹرسال إلى بعض المستخدمين.</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">يمكنك فقط مشاركة ما لا يزيد عن %1$d محادثات.</string>
@@ -3646,6 +3675,8 @@
   <string name="PrivacySettingsFragment__signal_message_and_calls">محادثات ومكالمات Signal، مناوبة الاتصالات دوما، والمُرسِل المختوم</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">المهلة الافتراضية للمحادثات الجديدة</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">تحديد مدة افتراضية لمؤقت اختفاء الرسائل، لجميع المحادثات الجديدة التي قمت ببدئها.</string>
+  <!--Summary for stories preference to launch into story privacy settings-->
+  <string name="PrivacySettingsFragment__manage_your_stories">إدارة قِصصك ومن يُمكنه مشاهدتها</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">إظهار أيقونة الحالة</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">عرض أيقونة في تفاصيل الرسالة للرسائل التي تم إيصالها باستخدام المُرسِل المختوم.</string>
@@ -3763,6 +3794,8 @@
   <string name="EmojiSearchFragment__no_results_found">لم يعثر على أي نتيجة</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">رنة مجهولة</string>
   <!--ConversationSettingsFragment-->
+  <!--Error toasted when no activity can handle the add contact intent-->
+  <string name="ConversationSettingsFragment__contacts_app_not_found">تعذّر العثور على تطبيق جهات الاتصال</string>
   <string name="ConversationSettingsFragment__send_message">إرسال الرسالة</string>
   <string name="ConversationSettingsFragment__start_video_call">بدء مكالمة بالصورة</string>
   <string name="ConversationSettingsFragment__start_audio_call">بدء مكالمة صوتية</string>
@@ -4285,10 +4318,12 @@
   <string name="ConversationListTabs__stories">القِصَص</string>
   <!--String for counts above 99 in conversation list tabs-->
   <string name="ConversationListTabs__99p">99+</string>
+  <!--Menu item on stories landing page-->
+  <string name="StoriesLandingFragment__story_privacy">إعدادات خصوصية القِصة</string>
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">قصصي</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">إضافة قصة</string> -->
+  <string name="StoriesLandingFragment__tap_to_add_a_story">انقر لإضافة قصة</string>
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">لا توجد أي تحديثات يمكن إظهارها حاليا. يُرجى لمس + للإضافة إلى قصتك.</string>
   <!--Context menu option to hide a story-->
@@ -4404,14 +4439,6 @@
   <string name="StoryGroupReplyItem__copy">نسخ</string>
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">حذف</string>
-  <!--Story settings page title-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">إعدادات القصص</string> -->
-  <!--Story settings private stories heading-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">القصص الخاصة</string> -->
-  <!--Note at bottom of story settings regarding who can see private stories.-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">يكمن فقط للأشخاص الذين قمت بإضافتهم مشاهدة القصص الخاصة. وأنت فقط من يُمكنه رؤية اسم القصة.</string> -->
-  <!--Option label for creating a new private story-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">قصة خاصة جديدة</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">قصتي</string>
   <!--Section heading for story visibility-->
@@ -4686,6 +4713,15 @@
     <item quantity="many">قصة جماعية · %1$d مشاهدين</item>
     <item quantity="other">قصة جماعية · %1$d مشاهدين</item>
   </plurals>
+  <!--Label under name for my story-->
+  <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
+    <item quantity="zero">%1$s · %2$d مشاهدين</item>
+    <item quantity="one">%1$s · %2$d مشاهد</item>
+    <item quantity="two">%1$s · %2$d مشاهدين</item>
+    <item quantity="few">%1$s · %2$d  مشاهدين</item>
+    <item quantity="many">%1$s · %2$d مشاهدين</item>
+    <item quantity="other">%1$s · %2$d مشاهدين/مشاهد</item>
+  </plurals>
   <!--Label under name for My Story when first sending to my story-->
   <string name="ContactSearchItems__tap_to_choose_your_viewers">انقر لرؤية مشاهديك</string>
   <!--Label for context menu item to open story settings-->
@@ -4812,5 +4848,31 @@
   <string name="StoryInfoBottomSheetDialogFragment__sent_from">أُرسِلَت مِن قِبَل</string>
   <!--Story Info context menu label-->
   <string name="StoryInfoBottomSheetDialogFragment__info">معلومات</string>
+  <!--StoriesPrivacySettingsFragment-->
+  <!--Explanation about how stories are deleted and managed-->
+  <string name="StoriesPrivacySettingsFragment__stories_automatically_disappear">تختفي القصص تلقائيًا بعد 24 ساعة. اِختر من يمكنه مشاهدة قصتك أو إنشاء قصص جديدة مع مشاهدين أو مجموعات معينة.</string>
+  <!--Preference title to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories">إيقاف تشغيل القِصص</string>
+  <!--Preference summary to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__if_you_opt_out">إذا قمت بإلغاء الاشتراك في القِصص، فلن تتمكن بعد ذلك من مشاركة القِصص أو عرضها.</string>
+  <!--Preference title to turn on stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_on_stories">تفعيل القِصص</string>
+  <!--Preference summary to turn on stories-->
+  <string name="StoriesPrivacySettingsFragment__share_and_view">شارك واعرض قِصص الآخرين. تختفي القصص تلقائيًا بعد 24 ساعة.</string>
+  <!--Dialog title to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">إيقاف تشغيل القِصص؟</string>
+  <!--Dialog message to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to">لن تتمكن بعد الآن من مشاركة القِصص أو عرضها. ستظل أي قِصص أرسلتها مؤخرًا ظاهرة للآخرين حتى تنتهي صلاحيتها.</string>
+  <!--Page title when launched from stories landing screen-->
+  <string name="StoriesPrivacySettingsFragment__story_privacy">إعدادات خصوصية القِصة</string>
+  <!--GroupStorySettingsFragment-->
+  <!--Section header for who can view a group story-->
+  <string name="GroupStorySettingsFragment__who_can_view_this_story">من يُمكنه مشاهدة هذه القصة</string>
+  <!--Explanation of who can view a group story-->
+  <string name="GroupStorySettingsFragment__members_of_the_group_s">يُمكن لعضو في هذه المجموعة \"%1$s\" مشاهدة هذه القصة و الرّد عليها. يمكنك تحديث العضوية لهذه الدردشة في المجموعة.</string>
+  <!--Preference label for removing this group story-->
+  <string name="GroupStorySettingsFragment__remove_group_story">حذف قصة المجموعة</string>
+  <!--Generic title for overflow menus-->
+  <string name="OverflowMenu__overflow_menu">القائمة الكاملة</string>
   <!--EOF-->
 </resources>

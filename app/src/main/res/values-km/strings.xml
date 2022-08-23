@@ -411,6 +411,18 @@
   <string name="CreateProfileActivity_set_up_your_profile">បង្កើតប្រវត្តិរូបរបស់អ្នក</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">ប្រវត្តិរូបរបស់អ្នក ត្រូវបានធ្វើ​​កូដនីយកម្ម​សងខាង​។ ប្រវត្តិរូប និងការផ្លាស់ប្តូរនឹងបង្ហាញសម្រាប់បញ្ជីទំនាក់ទំនងរបស់អ្នក នៅពេលចាប់ផ្តើម ឬទទួលការសន្ទនាថ្មី និងពេលអ្នកចូលរួមក្រុមថ្មី។</string>
   <string name="CreateProfileActivity_set_avatar_description">កំណត់រូបតំណាង</string>
+  <!--ProfileCreateFragment-->
+  <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
+  <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">មានតែមនុស្សដែលអ្នកផ្ញើសារប៉ុណ្ណោះទើបអាចមើលឃើញប្រូហ្វាល់នានាបាន។</string>
+  <!--Title of clickable row to select phone number privacy settings-->
+  <string name="ProfileCreateFragment__who_can_find_me">តើនរណាខ្លះអាចរកខ្ញុំតាមលេខទូរសព្ទបាន?</string>
+  <!--WhoCanSeeMyPhoneNumberFragment-->
+  <!--Toolbar title for this screen-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">តើនរណាខ្លះអាចរកខ្ញុំតាមលេខទូរសព្ទបាន?</string>
+  <!--Description for radio item stating anyone can see your phone number-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has">នរណាម្នាក់ដែលមានលេខទូរសព្ទរបស់អ្នកនៅក្នុងឈ្មោះទំនាក់ទំនងរបស់ពួកគេនឹងឃើញអ្នកជាឈ្មោះទំនាក់ទំនងនៅលើ Signal។ អ្នកផ្សេងទៀតនឹងអាចស្វែងរកអ្នកដោយប្រើលេខរបស់អ្នកក្នុងការស្វែងរក។</string>
+  <!--Description for radio item stating no one will be able to see your phone number-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__nobody_on_signal">គ្មាននរណាម្នាក់នៅលើ Signal នឹងអាចស្វែងរកអ្នកតាមលេខទូរសព្ទរបស់អ្នកទេ។</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">ស្តារចេញពីការបម្រុងទុក?</string>
   <string name="ChooseBackupFragment__restore_your_messages_and_media">ស្តារឡើងវិញសាររបស់អ្នក និងមេឌាចេញពីការបម្រុងទុកខាងក្នុង។ បើអ្នកមិនស្តារឡើងវិញឥឡូវទេ អ្នកនឹងមិនអាចស្តារឡើងវិញបានទេនៅពេលក្រោយ។</string>
@@ -696,6 +708,10 @@
   <string name="ManageProfileFragment_failed_to_set_avatar">បានបរាជ័យក្នុងការកំណត់រូបតំណាង</string>
   <string name="ManageProfileFragment_badges">ស្លាកសម្គាល់</string>
   <string name="ManageProfileFragment__edit_photo">កែប្រែរូបភាព</string>
+  <!--Snackbar message after creating username-->
+  <string name="ManageProfileFragment__username_created">បានបង្កើតឈ្មោះអ្នកប្រើ</string>
+  <!--Snackbar message after copying username-->
+  <string name="ManageProfileFragment__username_copied">បានចម្លងឈ្មោះអ្នកប្រើ</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">គ្មានក្រុមរួម</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1518,6 +1534,8 @@
   <string name="UnverifiedSendDialog_send_message">ផ្ញើសារ?</string>
   <string name="UnverifiedSendDialog_send">ផ្ញើ</string>
   <!--UsernameEditFragment-->
+  <!--Instructional text at the top of the username edit screen-->
+  <string name="UsernameEditFragment__choose_your_username">ជ្រើសរើសឈ្មោះអ្នកប្រើរបស់អ្នក</string>
   <string name="UsernameEditFragment_username">ឈ្មោះអ្នកប្រើប្រាស់</string>
   <string name="UsernameEditFragment_delete">លុប</string>
   <string name="UsernameEditFragment_successfully_set_username">កំណត់ឈ្មោះអ្នកប្រើប្រាស់បានជោគជ័យ។</string>
@@ -1529,10 +1547,17 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">ឈ្មោះអ្នកប្រើប្រាស់មិនអាចចាប់ផ្តើមពីលេខ។</string>
   <string name="UsernameEditFragment_username_is_invalid">ឈ្មោះអ្នកប្រើប្រាស់មិនត្រឹមត្រូវ។</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">ឈ្មោះអ្នកប្រើប្រាស់ត្រូវនៅចន្លោះតួអក្សរ%1$d និង%2$d ។</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">ឈ្មោះអ្នកប្រើប្រាស់ Signal គឺជាជម្រើស។ បើអ្នកជ្រើសរើសបង្កើតឈ្មោះអ្នកប្រើប្រាស់មួយ អ្នកប្រើប្រាស់ Signal ផ្សេងទៀត​ នឹងអាចស្វែងរកអ្នកតាមឈ្មោះអ្នកប្រើប្រាស់នេះ និងទាក់ទងអ្នកដោយមិនចាំបាច់ដឹងលេខទូរស័ព្ទរបស់អ្នកទេ។</string> -->
+  <!--Explanation about what usernames provide-->
+  <string name="UsernameEditFragment__usernames_let_others_message">ឈ្មោះអ្នកប្រើអនុញ្ញាតឱ្យអ្នកដទៃផ្ញើសារមកអ្នកដោយមិនត្រូវការលេខទូរសព្ទរបស់អ្នក។ ពួកវាត្រូវបានផ្គូផ្គងជាមួយនឹងសំណុំលេខដើម្បីជួយរក្សាអាសយដ្ឋានរបស់អ្នកជាឯកជន។</string>
+  <!--Dialog title for explanation about numbers at the end of the username-->
+  <string name="UsernameEditFragment__what_is_this_number">តើលេខនេះគឺជាអ្វីទៅ?</string>
+  <string name="UsernameEditFragment__these_digits_help_keep">លេខទាំងនេះជួយរក្សាឈ្មោះអ្នកប្រើរបស់អ្នកជាឯកជន ដើម្បីឲ្យអ្នកអាចជៀសវាងសារ​ដែលមិនចង់បាន។ សូមចែករំលែកឈ្មោះអ្នកប្រើរបស់អ្នកតែជាមួយមនុស្ស និងក្រុមដែល​អ្នកចង់ជជែកជាមួយប៉ុណ្ណោះ។ ប្រសិនបើអ្នកប្តូរឈ្មោះអ្នកប្រើ អ្នកនឹងទទួលបានសំណុំលេខថ្មី។</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="other">លេខទំនាក់ទំនង%dនៅលើ  Signal!</item>
   </plurals>
+  <!--UsernameShareBottomSheet-->
+  <!--Explanation of what the sheet enables the user to do-->
+  <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">ចម្លង ឬចែករំលែកតំណឈ្មោះអ្នកប្រើ</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">លេខទំនាក់ទំនងអ្នក កំពុងប្រើប្រាស់នៅលើSignal ជំនាន់ចាស់។ សូមប្រាប់គេឲ្យធ្វើបច្ចុប្បន្នភាពកម្មវិធី មុនពេលផ្ទៀងផ្ទាត់លេខសុវត្ថិភាព។ </string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">លេខទំនាក់ទំនងអ្នក កំពុងប្រើប្រាស់ Signalកំណែថ្មីជាង ជាមួយទម្រង់QRកូដ ដែលមិនត្រូវគ្នា។ សូមធ្វើបច្ចុប្បន្នភាព ដើម្បីប្រៀបធៀប។ </string>
@@ -2106,6 +2131,8 @@
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__one_time_donation">ការបរិច្ចាគតែមួយដង</string>
   <string name="preferences__privacy">ឯកជនភាព</string>
+  <!--Preference label for stories-->
+  <string name="preferences__stories">រឿងរ៉ាវ</string>
   <string name="preferences__mms_user_agent">ភ្នាក់ងារអ្នកប្រើប្រាស់ MMS </string>
   <string name="preferences__advanced_mms_access_point_names">កំណត់ MMS ដោយខ្លួនឯង</string>
   <string name="preferences__mmsc_url">MMSC URL</string>
@@ -2943,6 +2970,8 @@
   <string name="ShareActivity__send">ផ្ញើ</string>
   <string name="ShareActivity__comma_s">, %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">ការចែករំលែកទៅកាន់ការសន្ទនាច្រើន គឺអាចធ្វើបានសម្រាប់តែសារក្នុង Signal</string>
+  <!--Toast when the incoming intent is invalid-->
+  <string name="ShareActivity__could_not_get_share_data_from_intent">មិនអាចទទួលបានទិន្នន័យចែករំលែកទេ។</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">បរាជ័យក្នុងការផ្ញើទៅកាន់អ្នកប្រើប្រាស់មួយចំនួន</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">អ្នកអាចចែករំលែកទៅកាន់ការសន្ទនាបានដល់ %1$d</string>
@@ -3168,6 +3197,8 @@
   <string name="PrivacySettingsFragment__signal_message_and_calls">សារ និងការហៅ Signal  តែងតែបញ្ជូនការហៅទូរសព្ទ និងអ្នកផ្ញើដែលបិទជិត</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">ពេលវេលាតាមលំនាំដើមសម្រាប់ការសន្ទនាថ្មីៗ</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">កំណត់ថេរវេលានៃការលុបសារសម្រាប់រាល់ការសន្ទនាថ្មីៗដែលចាប់ផ្ដើមដោយអ្នក</string>
+  <!--Summary for stories preference to launch into story privacy settings-->
+  <string name="PrivacySettingsFragment__manage_your_stories">គ្រប់គ្រងរឿងរ៉ាវរបស់អ្នក និងអ្នកដែលអាចមើលពួកវា</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">បង្ហាញរូបតំណាងស្ថានភាព</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">បង្ហាញរូបតំណាងនៅក្នុងព័ត៌មានលម្អិតនៃសារ នៅពេលដែលត្រូវបានចែកចាយដោយប្រើអ្នកផ្ញើបិទជិត។</string>
@@ -3275,6 +3306,8 @@
   <string name="EmojiSearchFragment__no_results_found">មិនមានលទ្ធផល</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">សម្លេងរោទ៍ដែលមិនស្គាល់</string>
   <!--ConversationSettingsFragment-->
+  <!--Error toasted when no activity can handle the add contact intent-->
+  <string name="ConversationSettingsFragment__contacts_app_not_found">រកមិនឃើញកម្មវិធីឈ្មោះទំនាក់ទំនងទេ</string>
   <string name="ConversationSettingsFragment__send_message">ផ្ញើសារ</string>
   <string name="ConversationSettingsFragment__start_video_call">ចាប់ផ្ដើមការហៅចេញជាវីដេអូ</string>
   <string name="ConversationSettingsFragment__start_audio_call">ចាប់ផ្ដើមការហៅចេញជាសម្លេង</string>
@@ -3772,10 +3805,12 @@
   <string name="ConversationListTabs__stories">រឿងរ៉ាវ</string>
   <!--String for counts above 99 in conversation list tabs-->
   <string name="ConversationListTabs__99p">99+</string>
+  <!--Menu item on stories landing page-->
+  <string name="StoriesLandingFragment__story_privacy">ឯកជនភាពនៃរឿងរ៉ាវ</string>
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">រឿងរ៉ាវរបស់ខ្ញុំ</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">បញ្ចូលរឿងរ៉ាវ</string> -->
+  <string name="StoriesLandingFragment__tap_to_add_a_story">ចុចដើម្បីបញ្ចូលរឿងរ៉ាវ</string>
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">មិនមានព័ត៌មានថ្មីៗសម្រាប់បង្ហាញនៅពេលនេះទេ។ ចុច + ដើម្បីបញ្ចូលទៅរឿងរ៉ាវរបស់អ្នក។</string>
   <!--Context menu option to hide a story-->
@@ -3876,14 +3911,6 @@
   <string name="StoryGroupReplyItem__copy">ចម្លង</string>
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">លុប</string>
-  <!--Story settings page title-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">ការកំណត់រឿងរ៉ាវ</string> -->
-  <!--Story settings private stories heading-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">រឿងរ៉ាវឯកជន</string> -->
-  <!--Note at bottom of story settings regarding who can see private stories.-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">មានតែមនុស្សដែលអ្នកបានបញ្ចូលប៉ុណ្ណោះទើបអាចមើលរឿងរ៉ាវឯកជនបាន។ មានតែអ្នកទេដែលអាចមើលឃើញឈ្មោះរឿងរ៉ាវ។</string> -->
-  <!--Option label for creating a new private story-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">រឿងរ៉ាវឯកជនថ្មី</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">រឿងរ៉ាវរបស់ខ្ញុំ</string>
   <!--Section heading for story visibility-->
@@ -4068,7 +4095,7 @@
   <string name="StoriesLinkPopup__visit_link">ចូលមើលតំណ</string>
   <!--Gift price and duration, formatted as: {price} dot {n} day duration-->
   <plurals name="GiftRowItem_s_dot_d_day_duration">
-    <item quantity="other">%1$s · %2$d រយៈពេលថ្ងៃ</item>
+    <item quantity="other">%1$s · រយៈពេល %2$d ថ្ងៃ</item>
   </plurals>
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">ផ្ញើស្លាកកាដូ</string>
@@ -4127,6 +4154,10 @@
   <!--Label under name for group stories-->
   <plurals name="ContactSearchItems__group_story_d_viewers">
     <item quantity="other">រឿងរ៉ាវក្រុម ·  អ្នកមើល %1$d នាក់</item>
+  </plurals>
+  <!--Label under name for my story-->
+  <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
+    <item quantity="other">%1$s · អ្នកមើល %2$d នាក់</item>
   </plurals>
   <!--Label under name for My Story when first sending to my story-->
   <string name="ContactSearchItems__tap_to_choose_your_viewers">ចុចដើម្បីជ្រើសរើសអ្នកមើលរបស់អ្នក</string>
@@ -4234,5 +4265,31 @@
   <string name="StoryInfoBottomSheetDialogFragment__sent_from">បានផ្ញើពី</string>
   <!--Story Info context menu label-->
   <string name="StoryInfoBottomSheetDialogFragment__info">ព័ត៌មាន</string>
+  <!--StoriesPrivacySettingsFragment-->
+  <!--Explanation about how stories are deleted and managed-->
+  <string name="StoriesPrivacySettingsFragment__stories_automatically_disappear">រឿងរ៉ាវនឹងបាត់ដោយស្វ័យប្រវត្តិបន្ទាប់ពី 24 ម៉ោង។ ជ្រើសរើសអ្នកណាដែលអាចមើលរឿងរ៉ាវរបស់អ្នក ឬបង្កើតរឿងរ៉ាវថ្មីជាមួយអ្នកមើល ឬក្រុមជាក់លាក់។</string>
+  <!--Preference title to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories">បិទរឿងរ៉ាវ</string>
+  <!--Preference summary to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__if_you_opt_out">ប្រសិនបើអ្នកបិទរឿងរ៉ាវ អ្នកនឹងមិនអាចចែករំលែក ឬមើលរឿងរ៉ាវទៀតទេ។</string>
+  <!--Preference title to turn on stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_on_stories">បើករឿងរ៉ាវ</string>
+  <!--Preference summary to turn on stories-->
+  <string name="StoriesPrivacySettingsFragment__share_and_view">ចែករំលែក និងមើលរឿងរ៉ាវពីអ្នកដទៃ។ រឿងរ៉ាវនឹងបាត់ដោយស្វ័យប្រវត្តិបន្ទាប់ពី 24 ម៉ោង។</string>
+  <!--Dialog title to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">បិទរឿងរ៉ាវឬ?</string>
+  <!--Dialog message to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to">អ្នកនឹងមិនអាចចែករំលែក ឬមើលរឿងរ៉ាវទៀតទេ។ រឿងរ៉ាវទាំងឡាយដែលអ្នកបានផ្ញើនាពេលថ្មីៗនេះនឹងនៅតែអាចមើលឃើញដោយអ្នកដទៃ រហូតដល់ពួកវាផុតកំណត់។</string>
+  <!--Page title when launched from stories landing screen-->
+  <string name="StoriesPrivacySettingsFragment__story_privacy">ឯកជនភាពនៃរឿងរ៉ាវ</string>
+  <!--GroupStorySettingsFragment-->
+  <!--Section header for who can view a group story-->
+  <string name="GroupStorySettingsFragment__who_can_view_this_story">អ្នកដែលអាចមើលរឿងរ៉ាវនេះបាន</string>
+  <!--Explanation of who can view a group story-->
+  <string name="GroupStorySettingsFragment__members_of_the_group_s">សមាជិកនៃក្រុម \"%1$s\" អាចមើល និងឆ្លើយតបទៅនឹងរឿងរ៉ាវនេះ។ អ្នកអាចធ្វើបច្ចុប្បន្នភាពសមាជិកភាពសម្រាប់ការជជែកនេះនៅក្នុងក្រុម។</string>
+  <!--Preference label for removing this group story-->
+  <string name="GroupStorySettingsFragment__remove_group_story">ដករឿងរ៉ាវក្រុម</string>
+  <!--Generic title for overflow menus-->
+  <string name="OverflowMenu__overflow_menu">ម៉ឺនុយជម្រើស</string>
   <!--EOF-->
 </resources>

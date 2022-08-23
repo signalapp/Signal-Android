@@ -432,6 +432,18 @@
   <string name="CreateProfileActivity_set_up_your_profile">Seadista oma profiil</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Sinu profiil on otspunktkrüptitud. Sinu profiil ja selle muudatused on nähtavad sinu kontaktidele, kui algatad või nõustud uute vestlustega ja liitud uute gruppidega.</string>
   <string name="CreateProfileActivity_set_avatar_description">Määra profiilipildiks</string>
+  <!--ProfileCreateFragment-->
+  <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
+  <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">Profiile näevad ainult need, kellele sõnumeid oled saatnud.</string>
+  <!--Title of clickable row to select phone number privacy settings-->
+  <string name="ProfileCreateFragment__who_can_find_me">Kes mind numbri järgi leida saavad?</string>
+  <!--WhoCanSeeMyPhoneNumberFragment-->
+  <!--Toolbar title for this screen-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">Kes mind numbri järgi leida saavad?</string>
+  <!--Description for radio item stating anyone can see your phone number-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has">Kõik kellel sinu number telefoni kontaktide all salvestatud on, näevad sind oma Signali kontaktide hulgas. Teised saavad sind numbri järgi otsida.</string>
+  <!--Description for radio item stating no one will be able to see your phone number-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__nobody_on_signal">Mitte keegi Signalis ei leia sind sinu telefoninumbri kaudu.</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">Kas taastada varukoopiast?</string>
   <string name="ChooseBackupFragment__restore_your_messages_and_media">Taasta oma sõnumid ja meedia kohalikust varukoopiast. Kui sa kohe ei taasta, ei saa seda teha ka hiljem.</string>
@@ -735,6 +747,10 @@
   <string name="ManageProfileFragment_failed_to_set_avatar">Profiilipildi määramine ei õnnestunud</string>
   <string name="ManageProfileFragment_badges">Märgid</string>
   <string name="ManageProfileFragment__edit_photo">Muuda fotot</string>
+  <!--Snackbar message after creating username-->
+  <string name="ManageProfileFragment__username_created">Kasutajanimi loodud</string>
+  <!--Snackbar message after copying username-->
+  <string name="ManageProfileFragment__username_copied">Kasutajanimi kopeeritud</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Ühised grupid puuduvad</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1597,6 +1613,8 @@
   <string name="UnverifiedSendDialog_send_message">Saadad sõnumi?</string>
   <string name="UnverifiedSendDialog_send">Saada</string>
   <!--UsernameEditFragment-->
+  <!--Instructional text at the top of the username edit screen-->
+  <string name="UsernameEditFragment__choose_your_username">Vali omale kasutajanimi</string>
   <string name="UsernameEditFragment_username">Kasutajanimi</string>
   <string name="UsernameEditFragment_delete">Kustuta</string>
   <string name="UsernameEditFragment_successfully_set_username">Kasutajanimi edukalt määratud.</string>
@@ -1608,11 +1626,18 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Kasutajanimed ei tohi alata numbriga.</string>
   <string name="UsernameEditFragment_username_is_invalid">Kasutajanimi on sobimatu.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Kasutajanimede pikkus peab olema %1$d ja %2$d tähemärgi vahel.</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Kasutajanimed on Signalis vabatahtlikud. Kui otsustad endale kasutajanime luua, siis saavad teised Signali kasutajad leida sind kasutajanime järgi ja võtta ühendust sinu telefoninumbrit teadmata.</string> -->
+  <!--Explanation about what usernames provide-->
+  <string name="UsernameEditFragment__usernames_let_others_message">Kasutajanime abil saavad teised sulle sõnumeid saata ilma su telefoninumbrit teadmata. Kasutajanimi seotakse numbrilise koodiga, mis aitab sul oma aadressi privaatsena hoida.</string>
+  <!--Dialog title for explanation about numbers at the end of the username-->
+  <string name="UsernameEditFragment__what_is_this_number">Mis number see on?</string>
+  <string name="UsernameEditFragment__these_digits_help_keep">See kood aitab su kasutajanime privaatsena hoida, et saaksid vältida soovimatuid sõnumeid. Jaga oma kasutajanime ainult inimeste ja gruppidega, kellega soovid vestelda. Kui kasutajanime muudad, saadetakse sulle uus kood.</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d kontakt on Signalis!</item>
     <item quantity="other">%d kontakti on Signalis!</item>
   </plurals>
+  <!--UsernameShareBottomSheet-->
+  <!--Explanation of what the sheet enables the user to do-->
+  <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">Kopeeri või jaga kasutajanime linki</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Sinu kontakt kasutab vana Signali versiooni. Palun palu neil uuendada, enne kui kinnitad oma turvanumbrit.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Sinu kontakt kasutab uuemat Signali versiooni ühildumatu QR-koodi vorminguga. Võrdlemiseks palun uuenda.</string>
@@ -1835,7 +1860,7 @@
   <string name="ConversationUpdateItem_loading">Laadimine</string>
   <string name="ConversationUpdateItem_learn_more">Rohkem infot</string>
   <string name="ConversationUpdateItem_join_call">Liitu kõnega</string>
-  <string name="ConversationUpdateItem_return_to_call">Pöördu kõnne tagasi</string>
+  <string name="ConversationUpdateItem_return_to_call">Pöördu kõnesse tagasi</string>
   <string name="ConversationUpdateItem_call_is_full">Kõne on täis</string>
   <string name="ConversationUpdateItem_invite_friends">Kutsu sõpru</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Luba helistamise teavitused</string>
@@ -1881,7 +1906,7 @@
   <string name="safety_number_change_dialog__safety_number_changes">Turvanumbri muudatused</string>
   <string name="safety_number_change_dialog__accept">Nõustun</string>
   <string name="safety_number_change_dialog__send_anyway">Saada siiski</string>
-  <string name="safety_number_change_dialog__call_anyway">Helista siisk</string>
+  <string name="safety_number_change_dialog__call_anyway">Helista siiski</string>
   <string name="safety_number_change_dialog__join_call">Liitu kõnega</string>
   <string name="safety_number_change_dialog__continue_call">Jätka kõnet</string>
   <string name="safety_number_change_dialog__leave_call">Lahku kõnest</string>
@@ -2198,6 +2223,8 @@
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__one_time_donation">Ühekordne annetus</string>
   <string name="preferences__privacy">Privaatsus</string>
+  <!--Preference label for stories-->
+  <string name="preferences__stories">Lood</string>
   <string name="preferences__mms_user_agent">MMS kasutajaagent</string>
   <string name="preferences__advanced_mms_access_point_names">Käsitsi määratud MMS-seaded</string>
   <string name="preferences__mmsc_url">MMSC URL</string>
@@ -3046,6 +3073,8 @@
   <string name="ShareActivity__send">Saada</string>
   <string name="ShareActivity__comma_s">, %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">Mitmesse vestlusse jagamine toetab ainult Signali sõnumeid</string>
+  <!--Toast when the incoming intent is invalid-->
+  <string name="ShareActivity__could_not_get_share_data_from_intent">Andmeid ei õnnestunud jagada.</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Mõnedele kasutajatele saatmine ei õnnestunud.</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Saad jagada ainult kuni %1$d vestlusega</string>
@@ -3271,6 +3300,8 @@
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signali sõnumid ja kõned, alati kõnede suunamine ja turvatud saatja</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">Uute gruppide sõnumite vaikimisi kestus</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Määra kaduvate sõnumite vaikimisi kestus kõigile sinu poolt loodud uutele gruppidele.</string>
+  <!--Summary for stories preference to launch into story privacy settings-->
+  <string name="PrivacySettingsFragment__manage_your_stories">Halda oma lugusid ja seda, kes neid näevad</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Näita olekuikooni</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Kui sõnum saadeti turvatud saatja funktsiooni kasutades, näita sõnumi andmete all vastavat ikooni. </string>
@@ -3380,6 +3411,8 @@
   <string name="EmojiSearchFragment__no_results_found">Tulemusi ei leitud</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">Tundmatu helin</string>
   <!--ConversationSettingsFragment-->
+  <!--Error toasted when no activity can handle the add contact intent-->
+  <string name="ConversationSettingsFragment__contacts_app_not_found">Kontaktide äppi ei leitud</string>
   <string name="ConversationSettingsFragment__send_message">Saada sõnum</string>
   <string name="ConversationSettingsFragment__start_video_call">Alusta videokõnet</string>
   <string name="ConversationSettingsFragment__start_audio_call">Alusta häälkõnet</string>
@@ -3882,10 +3915,12 @@
   <string name="ConversationListTabs__stories">Lood</string>
   <!--String for counts above 99 in conversation list tabs-->
   <string name="ConversationListTabs__99p">99+</string>
+  <!--Menu item on stories landing page-->
+  <string name="StoriesLandingFragment__story_privacy">Loo privaatsus</string>
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">Minu lood</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">Lisa lugu</string> -->
+  <string name="StoriesLandingFragment__tap_to_add_a_story">Toksa loo lisamiseks</string>
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">Hetkel pole kuvamiseks hiljutisi uuendusi. Oma loo lisamiseks toksa +.</string>
   <!--Context menu option to hide a story-->
@@ -3989,14 +4024,6 @@
   <string name="StoryGroupReplyItem__copy">Kopeeri</string>
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Kustuta</string>
-  <!--Story settings page title-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">Loo sätted</string> -->
-  <!--Story settings private stories heading-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">Privaatsed lood</string> -->
-  <!--Note at bottom of story settings regarding who can see private stories.-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Privaatseid lugusid saavad vaadata ainult inimesed, kelle sina oled lugudesse lisanud. Loo nime näed ainult sina.</string> -->
-  <!--Option label for creating a new private story-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">Uus privaatne lugu</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Minu lugu</string>
   <!--Section heading for story visibility-->
@@ -4247,6 +4274,11 @@
     <item quantity="one">Grupi lugu · %1$d vaataja</item>
     <item quantity="other">Grupi lugu · %1$d vaatajat</item>
   </plurals>
+  <!--Label under name for my story-->
+  <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
+    <item quantity="one">%1$s · %2$d vaataja</item>
+    <item quantity="other">%1$s · %2$d vaatajat</item>
+  </plurals>
   <!--Label under name for My Story when first sending to my story-->
   <string name="ContactSearchItems__tap_to_choose_your_viewers">Toksa, et valida, kes su lugu näevad</string>
   <!--Label for context menu item to open story settings-->
@@ -4357,5 +4389,31 @@
   <string name="StoryInfoBottomSheetDialogFragment__sent_from">Saatjalt</string>
   <!--Story Info context menu label-->
   <string name="StoryInfoBottomSheetDialogFragment__info">Teave</string>
+  <!--StoriesPrivacySettingsFragment-->
+  <!--Explanation about how stories are deleted and managed-->
+  <string name="StoriesPrivacySettingsFragment__stories_automatically_disappear">Lood kaovad automaatselt 24 tunni möödudes. Vaata, kellele su lugu nähtav on, või loo uusi lugusid konkreetsete vaatajate või gruppide jaoks.</string>
+  <!--Preference title to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories">Lülita lood välja</string>
+  <!--Preference summary to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__if_you_opt_out">Kui lood välja lülitad, ei ole sul enam võimalik lugusid jagada ega vaadata.</string>
+  <!--Preference title to turn on stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_on_stories">Lülita lood sisse</string>
+  <!--Preference summary to turn on stories-->
+  <string name="StoriesPrivacySettingsFragment__share_and_view">Jaga ja vaata teiste lugusid. Lood kaovad automaatselt 24 tunni möödudes.</string>
+  <!--Dialog title to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">Kas lülitada lood välja?</string>
+  <!--Dialog message to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to">Sa ei saa enam lugusid jagada ega vaadata. Sinu hiljuti jagatud lood on teistele endiselt nähtavad, kuni need aeguvad.</string>
+  <!--Page title when launched from stories landing screen-->
+  <string name="StoriesPrivacySettingsFragment__story_privacy">Loo privaatsus</string>
+  <!--GroupStorySettingsFragment-->
+  <!--Section header for who can view a group story-->
+  <string name="GroupStorySettingsFragment__who_can_view_this_story">Kes seda lugu näevad</string>
+  <!--Explanation of who can view a group story-->
+  <string name="GroupStorySettingsFragment__members_of_the_group_s">Grupi „%1$s“ liikmed saavad seda lugu vaadata ja sellele vastata. Selle vestluse liikmeid saad muuta grupi sätete alt.</string>
+  <!--Preference label for removing this group story-->
+  <string name="GroupStorySettingsFragment__remove_group_story">Eemalda grupi lugu</string>
+  <!--Generic title for overflow menus-->
+  <string name="OverflowMenu__overflow_menu">Ületäitumise menüü</string>
   <!--EOF-->
 </resources>

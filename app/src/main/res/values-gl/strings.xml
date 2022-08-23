@@ -432,6 +432,18 @@
   <string name="CreateProfileActivity_set_up_your_profile">Establece o teu perfil</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">O teu perfil está cifrado de extremo a extremo. Os teus contactos poderán ver o teu perfil e os cambios que fagas nel cando inicies ou aceptes unha nova conversa e tamén cando te unas a un grupo.</string>
   <string name="CreateProfileActivity_set_avatar_description">Establecer avatar</string>
+  <!--ProfileCreateFragment-->
+  <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
+  <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">Os perfís son os poden ver as persoas coas que interactúas.</string>
+  <!--Title of clickable row to select phone number privacy settings-->
+  <string name="ProfileCreateFragment__who_can_find_me">Quen me pode atopar polo meu número?</string>
+  <!--WhoCanSeeMyPhoneNumberFragment-->
+  <!--Toolbar title for this screen-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">Quen me pode atopar polo meu número?</string>
+  <!--Description for radio item stating anyone can see your phone number-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has">Calquera que teña o teu número de teléfono na súa lista de contactos verate como contacto en Signal. O resto poderá atoparte buscando o teu número.</string>
+  <!--Description for radio item stating no one will be able to see your phone number-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__nobody_on_signal">Ninguén en Signal poderá atoparte polo teu número de teléfono.</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">Restaurar desde a copia de seguranza?</string>
   <string name="ChooseBackupFragment__restore_your_messages_and_media">Restaura as túas mensaxes e contido multimedia desde unha copia local. Se non o fas agora, non poderás facelo máis tarde.</string>
@@ -735,6 +747,10 @@
   <string name="ManageProfileFragment_failed_to_set_avatar">Erro ao configurar o avatar</string>
   <string name="ManageProfileFragment_badges">Insignias</string>
   <string name="ManageProfileFragment__edit_photo">Editar foto</string>
+  <!--Snackbar message after creating username-->
+  <string name="ManageProfileFragment__username_created">Nome de usuario creado</string>
+  <!--Snackbar message after copying username-->
+  <string name="ManageProfileFragment__username_copied">Nome de usuario copiado</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Ningún grupo en común</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1597,6 +1613,8 @@
   <string name="UnverifiedSendDialog_send_message">Enviar mensaxe?</string>
   <string name="UnverifiedSendDialog_send">Enviar</string>
   <!--UsernameEditFragment-->
+  <!--Instructional text at the top of the username edit screen-->
+  <string name="UsernameEditFragment__choose_your_username">Elixe un nome de usuario</string>
   <string name="UsernameEditFragment_username">Nome de usuario</string>
   <string name="UsernameEditFragment_delete">Eliminar</string>
   <string name="UsernameEditFragment_successfully_set_username">Nome de usuario establecido satisfactoriamente</string>
@@ -1608,11 +1626,18 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Os nomes de usuario non poden comezar por un número.</string>
   <string name="UsernameEditFragment_username_is_invalid">Nome de usuario non válido.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Os nomes de usuario deben ter entre %1$d e %2$d caracteres.</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">En Signal os nomes de usuario son opcionais. Se elixes crear un, os restantes usuarios de Signal poderante atopar por ese nome de usuario e contactar contigo sen saberen o teu número de teléfono.</string> -->
+  <!--Explanation about what usernames provide-->
+  <string name="UsernameEditFragment__usernames_let_others_message">Un nome de usuario permite que outras persoas che manden mensaxes sen necesitar o teu número de teléfono. Combínanse cunha serie de cifras para manter a túa información privada.</string>
+  <!--Dialog title for explanation about numbers at the end of the username-->
+  <string name="UsernameEditFragment__what_is_this_number">Que é este número?</string>
+  <string name="UsernameEditFragment__these_digits_help_keep">Estas cifras manteñen o teu nome de usuario privado para que non recibas mensaxes non desexadas. Comparte o teu usuario só coas persoas e grupos coas que queiras conversar. Se cambias o teu nome de usuario, terás unha nova serie de cifras.</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%dcontacto está en Signal!</item>
     <item quantity="other">%d contactos están en Signal!</item>
   </plurals>
+  <!--UsernameShareBottomSheet-->
+  <!--Explanation of what the sheet enables the user to do-->
+  <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">Copia ou comparte unha ligazón de nome de usuario</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">O teu contacto ten unha versión antiga de Signal. Pídelle que a actualice antes de verificar o número de seguranza.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">O teu contacto ten unha versión recente de Signal cun formato de código QR incompatible. Actualízate para poder comparalo.</string>
@@ -2198,6 +2223,8 @@
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__one_time_donation">Donativo puntual</string>
   <string name="preferences__privacy">Privacidade</string>
+  <!--Preference label for stories-->
+  <string name="preferences__stories">Historias</string>
   <string name="preferences__mms_user_agent">Axente de usuario MMS</string>
   <string name="preferences__advanced_mms_access_point_names">Configuración manual de MMS</string>
   <string name="preferences__mmsc_url">URL de MMSC</string>
@@ -3046,6 +3073,8 @@
   <string name="ShareActivity__send">Enviar</string>
   <string name="ShareActivity__comma_s">, %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">Compartir con múltiplos chats é algo que só se pode facer coas mensaxes do Signal</string>
+  <!--Toast when the incoming intent is invalid-->
+  <string name="ShareActivity__could_not_get_share_data_from_intent">Erro ao compartir os datos.</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Fallou o envío a algúns usuarios</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Soamente pode compartila con %1$d chat</string>
@@ -3271,6 +3300,8 @@
   <string name="PrivacySettingsFragment__signal_message_and_calls">Mensaxes e chamadas Signal, redirección de chamadas e remitente selado</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">Establecer duración das novas conversas</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Establece a duración das mensaxes temporais nas novas conversas que ti inicies.</string>
+  <!--Summary for stories preference to launch into story privacy settings-->
+  <string name="PrivacySettingsFragment__manage_your_stories">Xestiona as túas historias e quen pode velas</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Mostrar icona de estado</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Mostrar unha icona nos detalles das mensaxes cando se entreguen empregando o remitente oculto.</string>
@@ -3380,6 +3411,8 @@
   <string name="EmojiSearchFragment__no_results_found">Sen resultados</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">Ton de chamada descoñecido</string>
   <!--ConversationSettingsFragment-->
+  <!--Error toasted when no activity can handle the add contact intent-->
+  <string name="ConversationSettingsFragment__contacts_app_not_found">Non se atopou unha aplicación de contactos</string>
   <string name="ConversationSettingsFragment__send_message">Enviar mensaxe</string>
   <string name="ConversationSettingsFragment__start_video_call">Iniciar chamada de vídeo</string>
   <string name="ConversationSettingsFragment__start_audio_call">Iniciar chamada de audio</string>
@@ -3882,10 +3915,12 @@
   <string name="ConversationListTabs__stories">Historias</string>
   <!--String for counts above 99 in conversation list tabs-->
   <string name="ConversationListTabs__99p">99+</string>
+  <!--Menu item on stories landing page-->
+  <string name="StoriesLandingFragment__story_privacy">Privacidade da historia</string>
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">As miñas historias</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">Engadir unha historia</string> -->
+  <string name="StoriesLandingFragment__tap_to_add_a_story">Premer para engadir unha historia</string>
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">Non hai actualizacións recentes. Preme + para engadir unha historia.</string>
   <!--Context menu option to hide a story-->
@@ -3989,14 +4024,6 @@
   <string name="StoryGroupReplyItem__copy">Copiar</string>
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Eliminar</string>
-  <!--Story settings page title-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">Configuración das historias</string> -->
-  <!--Story settings private stories heading-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">Historias privadas</string> -->
-  <!--Note at bottom of story settings regarding who can see private stories.-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">As historias privadas só poden ser vistas polas persoas que agregues. Só ti podes ver o nome da historia.</string> -->
-  <!--Option label for creating a new private story-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">Nova historia privada</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">A miña historia</string>
   <!--Section heading for story visibility-->
@@ -4247,6 +4274,11 @@
     <item quantity="one">Historia grupal · %1$d espectador</item>
     <item quantity="other">Historia grupal · %1$d espectadores</item>
   </plurals>
+  <!--Label under name for my story-->
+  <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
+    <item quantity="one">%1$s · %2$d espectador</item>
+    <item quantity="other">%1$s · %2$d espectadores</item>
+  </plurals>
   <!--Label under name for My Story when first sending to my story-->
   <string name="ContactSearchItems__tap_to_choose_your_viewers">Premer para elixir os teus espectadores</string>
   <!--Label for context menu item to open story settings-->
@@ -4357,5 +4389,31 @@
   <string name="StoryInfoBottomSheetDialogFragment__sent_from">Enviada desde</string>
   <!--Story Info context menu label-->
   <string name="StoryInfoBottomSheetDialogFragment__info">Información</string>
+  <!--StoriesPrivacySettingsFragment-->
+  <!--Explanation about how stories are deleted and managed-->
+  <string name="StoriesPrivacySettingsFragment__stories_automatically_disappear">As historias desaparecen automaticamente despois de 24 horas. Elixe quen pode ver as túas historias ou crea novas historias para persoas ou grupos específicos.</string>
+  <!--Preference title to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories">Desactivar historias</string>
+  <!--Preference summary to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__if_you_opt_out">Se desactivas as historias non poderás velas nin compartilas.</string>
+  <!--Preference title to turn on stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_on_stories">Activar historias</string>
+  <!--Preference summary to turn on stories-->
+  <string name="StoriesPrivacySettingsFragment__share_and_view">Comparte e goza das historias dos demais. Desaparecen automaticamente despois de 24 horas.</string>
+  <!--Dialog title to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">Desactivar historias?</string>
+  <!--Dialog message to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to">Non poderás ver nin compartir as historias. Calquera historia que enviases recentemente seguirá a ser visible ata que caduque.</string>
+  <!--Page title when launched from stories landing screen-->
+  <string name="StoriesPrivacySettingsFragment__story_privacy">Privacidade da historia</string>
+  <!--GroupStorySettingsFragment-->
+  <!--Section header for who can view a group story-->
+  <string name="GroupStorySettingsFragment__who_can_view_this_story">Quen pode ver esta historia</string>
+  <!--Explanation of who can view a group story-->
+  <string name="GroupStorySettingsFragment__members_of_the_group_s">Os membros do grupo «%1$s» poden ver e responder a esta historia. Podes actualizar a lista de membros desta conversa no grupo.</string>
+  <!--Preference label for removing this group story-->
+  <string name="GroupStorySettingsFragment__remove_group_story">Eliminar historia de grupo</string>
+  <!--Generic title for overflow menus-->
+  <string name="OverflowMenu__overflow_menu">Menú emerxente</string>
   <!--EOF-->
 </resources>

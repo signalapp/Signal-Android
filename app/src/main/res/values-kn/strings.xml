@@ -434,6 +434,18 @@
   <string name="CreateProfileActivity_set_up_your_profile">ನಿಮ್ಮ ಪ್ರೊಫೈಲನ್ನು ಸ್ಥಾಪಿಸಿ</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">ನಿಮ್ಮ ಪ್ರೊಫೈಲ್‌ ಎಂಡ್‌-ಟು-ಎಂಡ್ ಎನ್‌ಕ್ರಿಪ್ಟ್  ಆಗಿದೆ. ನೀವು ಹೊಸ ಸಂಭಾಷಣೆಗಳನ್ನು ಪ್ರಾರಂಭಿಸಿದಾಗ ಅಥವಾ ಸ್ವೀಕರಿಸುವಾಗ ಮತ್ತು ನೀವು ಹೊಸ ಗುಂಪುಗಳಿಗೆ ಸೇರಿದಾಗ ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಮತ್ತು ಅದರ ಬದಲಾವಣೆಗಳು ನಿಮ್ಮ ಸಂಪರ್ಕಗಳಿಗೆ ಕಾಣಿಸುತ್ತದೆ. </string>
   <string name="CreateProfileActivity_set_avatar_description">ಅವತಾರ್ ಹೊಂದಿಸಿ</string>
+  <!--ProfileCreateFragment-->
+  <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
+  <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">ಪ್ರೊಫೈಲ್‌ಗಳು ನೀವು ಮೆಸೇಜ್ ಮಾಡುವ ಜನರಿಗೆ ಮಾತ್ರ ಕಾಣಿಸುತ್ತದೆ.</string>
+  <!--Title of clickable row to select phone number privacy settings-->
+  <string name="ProfileCreateFragment__who_can_find_me">ಸಂಖ್ಯೆಯ ಮೂಲಕ ನನ್ನನ್ನು ಯಾರು ನೋಡಬಹುದು?</string>
+  <!--WhoCanSeeMyPhoneNumberFragment-->
+  <!--Toolbar title for this screen-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">ಸಂಖ್ಯೆಯ ಮೂಲಕ ನನ್ನನ್ನು ಯಾರು ನೋಡಬಹುದು?</string>
+  <!--Description for radio item stating anyone can see your phone number-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has">ತಮ್ಮ ಸಂಪರ್ಕಗಳಲ್ಲಿ ನಿಮ್ಮ ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ಹೊಂದಿರುವ ಯಾರಾದರೂ ನಿಮ್ಮನ್ನು Signal ನಲ್ಲಿ ಸಂಪರ್ಕವಾಗಿ ನೋಡುತ್ತಾರೆ. ಇತರರು ನಿಮ್ಮನ್ನು search ಮೂಲಕ‌ ನೋಡಲು ಸಾಧ್ಯವಾಗುತ್ತದೆ.</string>
+  <!--Description for radio item stating no one will be able to see your phone number-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__nobody_on_signal">Signal ನಲ್ಲಿ ಯಾರೂ ಕೂಡಾ ನಿಮ್ಮ ಫೋನ್ ಸಂಖ್ಯೆಯೊಂದಿಗೆ ನಿಮ್ಮನ್ನು ನೋಡಲು ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ.</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">ಬ್ಯಾಕಪ್ ನಿಂದ ಮರುಸ್ಥಾಪಿಸುವುದೇ?</string>
   <string name="ChooseBackupFragment__restore_your_messages_and_media">ಸ್ಥಳೀಯ ಬ್ಯಾಕಪ್‌ನಿಂದ ನಿಮ್ಮ ಸಂದೇಶಗಳು ಮತ್ತು ಮೀಡಿಯಾವನ್ನು ಮರುಸ್ಥಾಪಿಸಿ. ನೀವು ಈಗ ಮರುಸ್ಥಾಪಿಸದಿದ್ದರೆ, ನಂತರ ನೀವು ಇದನ್ನು ಮರುಸ್ಥಾಪಿಸಲು ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ.</string>
@@ -737,6 +749,10 @@
   <string name="ManageProfileFragment_failed_to_set_avatar">ಅವತಾರ್ ನಿಗದಿಪಡಿಸಲು ವಿಫಲವಾಗಿದೆ</string>
   <string name="ManageProfileFragment_badges">ಬ್ಯಾಡ್ಜ್‌ಗಳು</string>
   <string name="ManageProfileFragment__edit_photo">ಫೋಟೋ ಎಡಿಟ್ ಮಾಡಿ</string>
+  <!--Snackbar message after creating username-->
+  <string name="ManageProfileFragment__username_created">Username ರಚಿಸಲಾಗಿದೆ</string>
+  <!--Snackbar message after copying username-->
+  <string name="ManageProfileFragment__username_copied">Username ಅನ್ನು ನಕಲಿಸಲಾಗಿದೆ</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">ನೀವಿಬ್ಬರೂ ಒಂದೇ ಗುಂಪುಗಳಲ್ಲಿಲ್ಲ</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1594,6 +1610,8 @@
   <string name="UnverifiedSendDialog_send_message">ಸಂದೇಶ ಕಳುಹಿಸುವುದೇ?</string>
   <string name="UnverifiedSendDialog_send">ಕಳುಹಿಸು</string>
   <!--UsernameEditFragment-->
+  <!--Instructional text at the top of the username edit screen-->
+  <string name="UsernameEditFragment__choose_your_username">ನಿಮ್ಮ Username ಅನ್ನು ಆಯ್ಕೆ ಮಾಡಿಕೊಳ್ಳಿ</string>
   <string name="UsernameEditFragment_username">ಬಳಕೆದಾರ ಹೆಸರು</string>
   <string name="UsernameEditFragment_delete">ಅಳಿಸಿ</string>
   <string name="UsernameEditFragment_successfully_set_username">ಬಳಕೆದಾರ ಹೆಸರು ಯಶಸ್ವಿಯಾಗಿ ಹೊಂದಿಸಲಾಗಿದೆ.</string>
@@ -1605,11 +1623,18 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">ಬಳಕೆದಾರ ಹೆಸರುಗಳು ಸಂಖ್ಯೆಯಿಂದ ಪ್ರಾರಂಭವಾಗುವುದಿಲ್ಲ.</string>
   <string name="UsernameEditFragment_username_is_invalid">ಬಳಕೆದಾರ ಹೆಸರು ಅಮಾನ್ಯವಾಗಿದೆ.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">ಬಳಕೆದಾರ ಹೆಸರುಗಳ  %1$d ಮತ್ತು %2$d ಅಕ್ಷರಗಳ ನಡುವೆ ಇರಬೇಕು.</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Signal ನಲ್ಲಿನ ಬಳಕೆದಾರ ಹೆಸರು ಐಚ್ಛಿಕವಾಗಿರುತ್ತವೆ. ನೀವು ಬಳಕೆದಾರಹೆಸರನ್ನು ರಚಿಸಲು ಆರಿಸಿದರೆ ಇತರ Signal ಬಳಕೆದಾರರು ಈ ಬಳಕೆದಾರ ಹೆಸರಿನಿಂದ ನಿಮ್ಮನ್ನು ಹುಡುಕಲು ಮತ್ತು ನಿಮ್ಮ ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ತಿಳಿಯದೆ ನಿಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸಲು ಸಾಧ್ಯವಾಗುತ್ತದೆ.</string> -->
+  <!--Explanation about what usernames provide-->
+  <string name="UsernameEditFragment__usernames_let_others_message">Username ಗಳು ಇತರರಿಗೆ ನಿಮ್ಮ ಫೋನ್ ಸಂಖ್ಯೆಯ ಅಗತ್ಯವಿಲ್ಲದೆ ಮೆಸೇಜ್ ಮಾಡಲು ಅನುಮತಿಸುತ್ತದೆ. ನಿಮ್ಮ ವಿಳಾಸವನ್ನು ಗೌಪ್ಯವಾಗಿ ಇರಿಸುವಂತೆ ಅಂಕಿಗಳ ಸೆಟ್‌ನೊಂದಿಗೆ ಅವುಗಳನ್ನು pair ಮಾಡುತ್ತದೆ.</string>
+  <!--Dialog title for explanation about numbers at the end of the username-->
+  <string name="UsernameEditFragment__what_is_this_number">ಈ ಸಂಖ್ಯೆ ಏನು?</string>
+  <string name="UsernameEditFragment__these_digits_help_keep">ಈ ಅಂಕಿಗಳು ನಿಮ್ಮ username ಅನ್ನು ಗೌಪ್ಯವಾಗಿ ಇರಿಸಲು ಸಹಕರಿಸುತ್ತವೆ. ಇದರಿಂದಾಗಿ ನೀವು ಬೇಡದ‌ ಮೆಸೇಜ್‌ಗಳನ್ನು ತಪ್ಪಿಸಬಹುದು. ನಿಮ್ಮ username ಅನ್ನು ನೀವು ಚಾಟ್ ಮಾಡಲು ಬಯಸುವ ಜನರು ಮತ್ತು ಗ್ರೂಪ್‌ಗಳೊಂದಿಗೆ ಮಾತ್ರ ಹಂಚಿಕೊಳ್ಳಿ. ನೀವು username ಬದಲಾಯಿಸಿದರೆ, ನೀವು ಹೊಸ ಅಂಕಿಗಳ ಸೆಟ್ ಅನ್ನು ಪಡೆಯುತ್ತೀರಿ.</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d ಸಂಪರ್ಕಗಳು Signal ನಲ್ಲಿವೆ!</item>
     <item quantity="other">%d ಸಂಪರ್ಕಗಳು Signal ನಲ್ಲಿವೆ!</item>
   </plurals>
+  <!--UsernameShareBottomSheet-->
+  <!--Explanation of what the sheet enables the user to do-->
+  <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">username link ಅನ್ನು ನಕಲಿಸಿ ಅಥವಾ ಹಂಚಿಕೊಳ್ಳಿ</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">ನಿಮ್ಮ ಸಂಪರ್ಕವು ಹಳೆಯ Signal ಆವೃತ್ತಿಯನ್ನು ಚಲಾಯಿಸುತ್ತಿದ್ದಾರೆ. ನಿಮ್ಮ ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆ  ಪರಿಶೀಲಿಸುವ ಮೊದಲು ದಯವಿಟ್ಟು ಅವರನ್ನು ನವೀಕರಿಸಲು ಕೇಳಿ.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">ನಿಮ್ಮ ಸಂಪರ್ಕವು ಕ್ಯುಆರ್‌ ಕೋಡ್ ಫಾರ್ಮ್ಯಾಟ್‌ಗೆ ಹೊಂದಿಕೊಳ್ಳದ Signal ನ ಇತ್ತೀಚಿನ ಆವೃತ್ತಿಯನ್ನು ರನ್ ಮಾಡುತ್ತಿದೆ. ಹೋಲಿಕೆ ಮಾಡಲು ದಯವಿಟ್ಟು ನವೀಕರಿಸಿ.</string>
@@ -2195,6 +2220,8 @@
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__one_time_donation">ಒಂದು ಬಾರಿಯ ದೇಣಿಗೆ</string>
   <string name="preferences__privacy">ಖಾಸಗಿತನ</string>
+  <!--Preference label for stories-->
+  <string name="preferences__stories">ಸ್ಟೋರೀಸ್</string>
   <string name="preferences__mms_user_agent">ಎಂಎಂಎಸ್ ಯೂಸರ್ ಏಜೆಂಟ್</string>
   <string name="preferences__advanced_mms_access_point_names">ಮ್ಯಾನುಯಲ್ ಎಂಎಂಎಸ್ ಸಂಯೋಜನೆಗಳು</string>
   <string name="preferences__mmsc_url">ಎಂಎಂಎಸ್‌ಸಿ URL</string>
@@ -3043,6 +3070,8 @@
   <string name="ShareActivity__send">ಕಳುಹಿಸು</string>
   <string name="ShareActivity__comma_s">, %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">ಹಲವು ಚಾಟ್‌ಗಳಿಗೆ ಹಂಚಿಕೊಳ್ಳುವಿಕೆಯು Signal ಮೆಸೇಜ್‌ಗಳಿಗೆ ಮಾತ್ರ ಬೆಂಬಲಿಸುತ್ತದೆ</string>
+  <!--Toast when the incoming intent is invalid-->
+  <string name="ShareActivity__could_not_get_share_data_from_intent">ಇಂಟರ್ನೆಟ್‌ನಿಂದ ಶೇರ್ ಡೇಟಾ ಪಡೆದುಕೊಳ್ಳಲಾಗಲಿಲ್ಲ.</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">ಕೆಲವು ಬಳಕೆದಾರರಿಗೆ ಕಳುಹಿಸಲು ವಿಫಲವಾಗಿದೆ</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">ಗರಿಷ್ಠ %1$d ಚಾಟ್‌ಗಳಿಗೆ ಮಾತ್ರ ನೀವು ಹಂಚಿಕೊಳ್ಳಬಹುದು</string>
@@ -3268,6 +3297,8 @@
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signal ಮೆಸೇಜ್‌ಗಳು ಮತ್ತು ಕಾಲ್‌ಗಳು, ಎಂದಿಗೂ ಕಾಲ್‌ಗಳನ್ನು ರಿಲೇ ಮಾಡಿ ಮತ್ತು ಸೀಲ್ ಮಾಡಿದ ಕಳುಹಿಸುವವರು</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">ಹೊಸ ಚಾಟ್‌ಗಳಿಗೆ ಡೀಫಾಲ್ಟ್ ಟೈಮರ್</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">ನೀವು ಆರಂಭಿಸಿದ ಎಲ್ಲ ಹೊಸ ಚಾಟ್‌ಗಳಿಗೆ ಡೀಫಾಲ್ಟ್ ಕಣ್ಮರೆಯಾಗುವ ಮೆಸೇಜ್ ಟೈಮರ್ ಅನ್ನು ನಿಗದಿಸಿ.</string>
+  <!--Summary for stories preference to launch into story privacy settings-->
+  <string name="PrivacySettingsFragment__manage_your_stories">ನಿಮ್ಮ ಸ್ಟೋರೀಸ್ ಮತ್ತು ಅವುಗಳನ್ನು ಯಾರು ನೋಡಬಹುದು ಎಂಬುದನ್ನು ನಿರ್ವಹಿಸಿ</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">ಸ್ಟೇಟಸ್ ಐಕಾನ್ ತೋರಿಸಿ</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">ಸೀಲ್ ಮಾಡಿದ ಸೆಂಡರ್ ಬಳಸಿಕೊಂಡು ಡೆಲಿವರಿಯಾದಾಗ ಮೆಸೇಜ್‌ ವಿವರಗಳಲ್ಲಿ ಐಕಾನ್ ಅನ್ನು ತೋರಿಸಿ.</string>
@@ -3377,6 +3408,8 @@
   <string name="EmojiSearchFragment__no_results_found">ಯಾವುದೇ ಫಲಿತಾಂಶ ಕಂಡುಬಂದಿಲ್ಲ</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">ಅನಾಮಿಕ ರಿಂಗ್‌ಟೋನ್</string>
   <!--ConversationSettingsFragment-->
+  <!--Error toasted when no activity can handle the add contact intent-->
+  <string name="ConversationSettingsFragment__contacts_app_not_found">ಸಂಪರ್ಕಗಳ‌ ಆ್ಯಪ್ ಕಂಡುಬಂದಿಲ್ಲ</string>
   <string name="ConversationSettingsFragment__send_message">ಸಂದೇಶ ಕಳುಹಿಸಿ</string>
   <string name="ConversationSettingsFragment__start_video_call">ವೀಡಿಯೊ ಕರೆ ಆರಂಭಿಸಿ</string>
   <string name="ConversationSettingsFragment__start_audio_call">ಆಡಿಯೊ ಕಾಲ್‌ ಆರಂಭಿಸಿ</string>
@@ -3879,10 +3912,12 @@
   <string name="ConversationListTabs__stories">ಸ್ಟೋರೀಸ್</string>
   <!--String for counts above 99 in conversation list tabs-->
   <string name="ConversationListTabs__99p">99+</string>
+  <!--Menu item on stories landing page-->
+  <string name="StoriesLandingFragment__story_privacy">ಸ್ಟೋರಿ ಗೌಪ್ಯತೆ</string>
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">ನನ್ನ ಸ್ಟೋರೀಸ್</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">ಸ್ಟೋರಿ ಸೇರಿಸಿ</string> -->
+  <string name="StoriesLandingFragment__tap_to_add_a_story">ಸ್ಟೋರಿ ಸೇರಿಸಲು ಟ್ಯಾಪ್ ಮಾಡಿ</string>
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">ಸದ್ಯಕ್ಕೆ ತೋರಿಸಲು ಯಾವುದೇ ಇತ್ತೀಚಿನ ಅಪ್ಡೇಟ್‌ಗಳಿಲ್ಲ. ನಿಮ್ಮ ಸ್ಟೋರಿಯನ್ನು ಸೇರಿಸಲು + ಟ್ಯಾಪ್ ಮಾಡಿ.</string>
   <!--Context menu option to hide a story-->
@@ -3986,14 +4021,6 @@
   <string name="StoryGroupReplyItem__copy">ನಕಲಿಸು</string>
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">ಅಳಿಸು</string>
-  <!--Story settings page title-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">ಸ್ಟೋರಿ ಸೆಟ್ಟಿಂಗ್‌ಗಳು</string> -->
-  <!--Story settings private stories heading-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">ಖಾಸಗಿ ಸ್ಟೋರೀಸ್</string> -->
-  <!--Note at bottom of story settings regarding who can see private stories.-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">ಗೌಪ್ಯ ಸ್ಟೋರೀಸ್ ಅನ್ನು ನೀವು ಸೇರಿಸುವ ಜನರು ಮಾತ್ರ ನೋಡಬಹುದು. ಸ್ಟೋರಿ ಹೆಸರನ್ನು ನೀವು ಮಾತ್ರ ನೋಡಬಹುದು.</string> -->
-  <!--Option label for creating a new private story-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">ಹೊಸ ಖಾಸಗಿ ಸ್ಟೋರಿ</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">ನನ್ನ ಸ್ಟೋರಿ</string>
   <!--Section heading for story visibility-->
@@ -4182,7 +4209,7 @@
   <!--Gift price and duration, formatted as: {price} dot {n} day duration-->
   <plurals name="GiftRowItem_s_dot_d_day_duration">
     <item quantity="one">%1$s · %2$d ದಿನ ಕಾಲಾವಧಿ</item>
-    <item quantity="other">%1$s · %2$d ದಿನ ಕಾಲಾವಧಿ</item>
+    <item quantity="other">%1$s · %2$d ದಿನದ‌ ಕಾಲಾವಧಿ</item>
   </plurals>
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">ಒಂದು ಉಡುಗೊರೆ ಬ್ಯಾಡ್ಜ್ ಕಳುಹಿಸಿ</string>
@@ -4243,6 +4270,11 @@
   <plurals name="ContactSearchItems__group_story_d_viewers">
     <item quantity="one">Group Story · %1$d viewer</item>
     <item quantity="other">ಗ್ರೂಪ್ ಸ್ಟೋರಿ · %1$d ವೀಕ್ಷಕರು</item>
+  </plurals>
+  <!--Label under name for my story-->
+  <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
+    <item quantity="one">%1$s · %2$d viewer</item>
+    <item quantity="other">%1$s · %2$d ವೀಕ್ಷಕರು</item>
   </plurals>
   <!--Label under name for My Story when first sending to my story-->
   <string name="ContactSearchItems__tap_to_choose_your_viewers">ನಿಮ್ಮ ವೀಕ್ಷಕರನ್ನು ಆಯ್ಕೆ ಮಾಡಲು ಟ್ಯಾಪ್ ಮಾಡಿ</string>
@@ -4354,5 +4386,31 @@
   <string name="StoryInfoBottomSheetDialogFragment__sent_from">ಇದರಿಂದ ಕಳುಹಿಸಲಾಗಿದೆ</string>
   <!--Story Info context menu label-->
   <string name="StoryInfoBottomSheetDialogFragment__info">ಮಾಹಿತಿ</string>
+  <!--StoriesPrivacySettingsFragment-->
+  <!--Explanation about how stories are deleted and managed-->
+  <string name="StoriesPrivacySettingsFragment__stories_automatically_disappear">24 ಗಂಟೆಗಳ ನಂತರ ಸ್ಟೋರೀಸ್ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಮರೆಯಾಗುತ್ತವೆ. ನಿಮ್ಮ ಸ್ಟೋರಿಯನ್ನು ಯಾರು ವೀಕ್ಷಿಸಬಹುದು ಎಂದು ಆಯ್ಕೆ ಮಾಡಿ ಅಥವಾ ನಿರ್ದಿಷ್ಟ ವೀಕ್ಷಕರು ಅಥವಾ ಗ್ರೂಪ್‌ಗಳೊಂದಿಗೆ ಹೊಸ ಸ್ಟೋರೀಸ್ ರಚಿಸಿ.</string>
+  <!--Preference title to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories">ಸ್ಟೋರೀಸ್ ಆಫ್ ಮಾಡಿ</string>
+  <!--Preference summary to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__if_you_opt_out">ಸ್ಟೋರೀಸ್‌ನಿಂದ ಹೊರಗುಳಿಯಲು ನೀವು ಆಯ್ಕೆ ಮಾಡಿದರೆ, ನಿಮಗೆ ಇನ್ನು ಸ್ಟೋರೀಸ್ ಹಂಚಿಕೊಳ್ಳಲು ಅಥವಾ ವೀಕ್ಷಿಸಲು  ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ.</string>
+  <!--Preference title to turn on stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_on_stories">ಸ್ಟೋರೀಸ್ ಆನ್ ಮಾಡಿ</string>
+  <!--Preference summary to turn on stories-->
+  <string name="StoriesPrivacySettingsFragment__share_and_view">ಇತರರ ಸ್ಟೋರೀಸ್ ಹಂಚಿಕೊಳ್ಳಿ ಮತ್ತು ವೀಕ್ಷಿಸಿ. 24 ಗಂಟೆಗಳ ನಂತರ ಸ್ಟೋರೀಸ್ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಮರೆಯಾಗುತ್ತವೆ.</string>
+  <!--Dialog title to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">ಸ್ಟೋರೀಸ್ ಆಫ್ ಮಾಡಬಹುದೇ?</string>
+  <!--Dialog message to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to">ನಿಮಗಿನ್ನು ಸ್ಟೋರೀಸ್ ಹಂಚಿಕೊಳ್ಳಲು ಅಥವಾ ವೀಕ್ಷಿಸಲು ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ. ನೀವು ಇತ್ತೀಚೆಗೆ ಕಳುಹಿಸಿದ ಯಾವುದೇ ಸ್ಟೋರೀಗಳ‌ ಅವಧಿ ಮುಗಿಯುವ ತನಕ ಇತತರತು ಅದನ್ನು ವೀಕ್ಷಿಸಬಹುದಾಗಿದೆ.</string>
+  <!--Page title when launched from stories landing screen-->
+  <string name="StoriesPrivacySettingsFragment__story_privacy">ಸ್ಟೋರಿ ಗೌಪ್ಯತೆ</string>
+  <!--GroupStorySettingsFragment-->
+  <!--Section header for who can view a group story-->
+  <string name="GroupStorySettingsFragment__who_can_view_this_story">ಈ ಸ್ಟೋರಿಯನ್ನು ಯಾರು ವೀಕ್ಷಿಸಬಹುದು</string>
+  <!--Explanation of who can view a group story-->
+  <string name="GroupStorySettingsFragment__members_of_the_group_s">ಗ್ರೂಪ್ \"%1$s\" ನ ಸದಸ್ಯರು ಈ ಸ್ಟೋರಿಯನ್ನು ವೀಕ್ಷಿಸಬಹುದು ಮತ್ತು ಉತ್ತರಿಸಬಹುದು. ಈ ಗ್ರೂಪ್‌ನಲ್ಲಿನ ಈ ಚಾಟ್‌ಗೆ ನೀವು ಸದಸ್ಯತ್ವವನ್ನು ಅಪ್ಡೇಟ್ ಮಾಡಬಹುದು.</string>
+  <!--Preference label for removing this group story-->
+  <string name="GroupStorySettingsFragment__remove_group_story">ಗ್ರೂಪ್ ಸ್ಟೋರಿ ತೆಗೆದುಹಾಕಿ</string>
+  <!--Generic title for overflow menus-->
+  <string name="OverflowMenu__overflow_menu">ಓವರ್‌ಫ್ಲೋ ಮೆನು</string>
   <!--EOF-->
 </resources>

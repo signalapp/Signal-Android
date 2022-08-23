@@ -432,6 +432,18 @@
   <string name="CreateProfileActivity_set_up_your_profile">پروفایل خود را برپا کنید</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">پروفایل شما سرتاسر رمزگذاری شده است. هنگامی که مکالمه‌های جدید را پذیرفته یا آغاز می‌کنید و زمانی که به گروه‌های جدید می‌پیوندید، پروفایل شما و تغییرات آن، برای مخاطبین‌تان قابل مشاهده خواهند بود.</string>
   <string name="CreateProfileActivity_set_avatar_description">تنظیم عکس پروفایل</string>
+  <!--ProfileCreateFragment-->
+  <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
+  <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">پروفایل‌ها فقط برای افرادی که به آن‌ها پیام می‌فرستید قابل مشاهده هستند.</string>
+  <!--Title of clickable row to select phone number privacy settings-->
+  <string name="ProfileCreateFragment__who_can_find_me">چه کسی می‌تواند من را با شماره‌تلفن پیدا کند؟</string>
+  <!--WhoCanSeeMyPhoneNumberFragment-->
+  <!--Toolbar title for this screen-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">چه کسی می‌تواند من را با شماره‌تلفن پیدا کند؟</string>
+  <!--Description for radio item stating anyone can see your phone number-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has">هرکسی که شماره‌تلفن شما را در مخاطبین خود داشته باشد، شما را به عنوان یک مخاطب در سیگنال خواهد دید. دیگران می‌توانند با جستجوی شماره‌تلفن شما در جستجو، شما را پیدا کنند.</string>
+  <!--Description for radio item stating no one will be able to see your phone number-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__nobody_on_signal">هیچکس در سیگنال نمی‌تواند شما را با جستجوی شماره‌تلفن‌تان بیابد.</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">بازگردانی از پشتیبان؟</string>
   <string name="ChooseBackupFragment__restore_your_messages_and_media">پیام‌ها و رسانه‌های خود را از یک پشتیبان محلی بازگردانی کنید. اگر هم‌اکنون بازگردانی نکنید، بعداً قادر به بازگردانی نخواهید بود. </string>
@@ -735,6 +747,10 @@
   <string name="ManageProfileFragment_failed_to_set_avatar">تنظیم عکس پروفایل ناموفق بود</string>
   <string name="ManageProfileFragment_badges">نشان‌ها</string>
   <string name="ManageProfileFragment__edit_photo">ویرایش عکس</string>
+  <!--Snackbar message after creating username-->
+  <string name="ManageProfileFragment__username_created">نام کاربری ایجاد شد</string>
+  <!--Snackbar message after copying username-->
+  <string name="ManageProfileFragment__username_copied">نام کاربری کپی شد</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">هیچ گروه مشترکی وجود ندارد</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1595,6 +1611,8 @@
   <string name="UnverifiedSendDialog_send_message">ارسال پیام؟</string>
   <string name="UnverifiedSendDialog_send">ارسال</string>
   <!--UsernameEditFragment-->
+  <!--Instructional text at the top of the username edit screen-->
+  <string name="UsernameEditFragment__choose_your_username">نام کاربری خود را انتخاب کنید</string>
   <string name="UsernameEditFragment_username">نام کاربری</string>
   <string name="UsernameEditFragment_delete">حذف</string>
   <string name="UsernameEditFragment_successfully_set_username">نام کاربری با موفقیت تنظیم شد.</string>
@@ -1606,11 +1624,18 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">نام‌های کاربری نمی‌توانند با عدد آغاز شوند.</string>
   <string name="UsernameEditFragment_username_is_invalid">نام کاربری نامعتبر است.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">نام‌های کاربری باید بین %1$d و %2$d نویسه باشند.</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">نام‌های کاربری در سیگنال انتخابی هستند. اگر یک نام کاربری ایجاد کنید، دیگر کاربران سیگنال قادر خواهند بود تا شما را با این نام کاربری پیدا کنند و با شما بدون دانستن شماره‌تلفن شما ارتباط برقرار کنند.</string> -->
+  <!--Explanation about what usernames provide-->
+  <string name="UsernameEditFragment__usernames_let_others_message">نام کاربری به دیگران اجازه می‌دهد بدون نیاز به شماره تلفن‌تان به شما پیام بدهند. نام کاربری با مجموعه‌ای از ارقام ادغام می‌شود تا کمک کند نشانی شما خصوصی بماند.</string>
+  <!--Dialog title for explanation about numbers at the end of the username-->
+  <string name="UsernameEditFragment__what_is_this_number">این عدد چیست؟</string>
+  <string name="UsernameEditFragment__these_digits_help_keep">این ارقام به خصوصی ماندن نام کاربری شما کمک می‌کند تا بتوانید از پیام‌های ناخواسته جلوگیری کنید. نام کاربری خود را فقط با افراد و گروه‌هایی که می‌خواهید با آنها چت کنید به اشتراک بگذارید. اگر نام کاربری را تغییر دهید، مجموعه ارقام جدیدی دریافت خواهید کرد.</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d مخاطب در سیگنال هست!</item>
     <item quantity="other">%d مخاطب در سیگنال هستند!</item>
   </plurals>
+  <!--UsernameShareBottomSheet-->
+  <!--Explanation of what the sheet enables the user to do-->
+  <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">کپی یا اشتراک‌گذاری پیوند نام کاربری</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">مخاطب شما در حال استفاده از یک نسخهٔ قدیمی سیگنال است. لطفاً پیش از اینکه شمارهٔ ایمنی شما را وارسی کند از او بخواهید به‌روزرسانی کند.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">مخاطب شما در حال اجرای نسخهٔ جدیدتر سیگنال با یک کد QR ناسازگار است. لطفاً برای مقایسه به‌روزرسانی کنید.</string>
@@ -2196,6 +2221,8 @@
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__one_time_donation">حمایت مالی یک‌باره</string>
   <string name="preferences__privacy">حریم خصوصی</string>
+  <!--Preference label for stories-->
+  <string name="preferences__stories">استوری‌ها</string>
   <string name="preferences__mms_user_agent">عامل کاربر فراپیام</string>
   <string name="preferences__advanced_mms_access_point_names">تنظیمات دستی فراپیام</string>
   <string name="preferences__mmsc_url">نشانی اینترنتی MMSC</string>
@@ -3044,6 +3071,8 @@
   <string name="ShareActivity__send">ارسال</string>
   <string name="ShareActivity__comma_s">، %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">اشتراک گذاری به چند گفتگو فقط برای پیام های سیگنال پشتیبانی میشود</string>
+  <!--Toast when the incoming intent is invalid-->
+  <string name="ShareActivity__could_not_get_share_data_from_intent">داده‌های اشتراک‌گذاری از حامل دریافت نشد.</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">ارسال به برخی کاربران موفق نبود</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">شما می‌توانید نهایتاً با %1$d گفتگو به اشتراک بگذارید</string>
@@ -3269,6 +3298,8 @@
   <string name="PrivacySettingsFragment__signal_message_and_calls">پیام‌ها و تماس‌های سیگنال، عبور همیشگی تماس‌ها از سرور‌های سیگنال، و فرستندهٔ ناشناس</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">زمان‌سنج پیش‌فرض برای گفتگوهای جدید</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">یک زمان‌سنج پیام ناپدید شونده پیش‌فرض برای همهٔ گفتگوهایی که شما آغاز می‌کنید تنظیم کنید.</string>
+  <!--Summary for stories preference to launch into story privacy settings-->
+  <string name="PrivacySettingsFragment__manage_your_stories">استوری‌های خود و کسانی که می‌توانند آن‌ها را مشاهده کنند را مدیریت کنید</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">نمایش آیکون وضعیت</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">نمایش یک آیکون در جزئیات پیام وقتی که با استفاده از فرستندهٔ ناشناس تحویل داده شده‌اند.</string>
@@ -3378,6 +3409,8 @@
   <string name="EmojiSearchFragment__no_results_found">هیچ نتیجه‌ای پیدا نشد</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">صدای زنگ ناشناخته</string>
   <!--ConversationSettingsFragment-->
+  <!--Error toasted when no activity can handle the add contact intent-->
+  <string name="ConversationSettingsFragment__contacts_app_not_found">برنامه مخاطبین پیدا نشد</string>
   <string name="ConversationSettingsFragment__send_message">ارسال پیام</string>
   <string name="ConversationSettingsFragment__start_video_call">شروع تماس تصویری</string>
   <string name="ConversationSettingsFragment__start_audio_call">شروع تماس صوتی</string>
@@ -3880,10 +3913,12 @@
   <string name="ConversationListTabs__stories">استوری‌ها</string>
   <!--String for counts above 99 in conversation list tabs-->
   <string name="ConversationListTabs__99p">99+</string>
+  <!--Menu item on stories landing page-->
+  <string name="StoriesLandingFragment__story_privacy">حریم شخصی استوری</string>
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">داستان‌های من</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">یک استوری اضافه کنید</string> -->
+  <string name="StoriesLandingFragment__tap_to_add_a_story">برای افزودن استوری ضربه بزنید</string>
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">اکنون به‌روزرسانی جدیدی برای نمایش دادن وجود ندارد. برای افزودن استوری خود، روی + ضربه بزنید.</string>
   <!--Context menu option to hide a story-->
@@ -3987,14 +4022,6 @@
   <string name="StoryGroupReplyItem__copy">کپی</string>
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">حذف</string>
-  <!--Story settings page title-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">تنظیمات استوری</string> -->
-  <!--Story settings private stories heading-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">استوری‌های خصوصی</string> -->
-  <!--Note at bottom of story settings regarding who can see private stories.-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">استوری‌های خصوصی را فقط افرادی می‌توانند مشاهده کنند که آن‌ها را به آن‌ استوری‌ها اضافه می‌کنید. فقط شما می‌توانید نام آن استوری را مشاهده کنید.</string> -->
-  <!--Option label for creating a new private story-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">استوری خصوصی جدید</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">استوری من</string>
   <!--Section heading for story visibility-->
@@ -4245,6 +4272,11 @@
     <item quantity="one">استوری گروهی · %1$d بازدید کننده</item>
     <item quantity="other">استوری گروهی · %1$d بازدید کننده</item>
   </plurals>
+  <!--Label under name for my story-->
+  <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
+    <item quantity="one">%1$s · %2$d بازدیدکننده</item>
+    <item quantity="other">%1$s · %2$d مشاهده‌کننده</item>
+  </plurals>
   <!--Label under name for My Story when first sending to my story-->
   <string name="ContactSearchItems__tap_to_choose_your_viewers">برای انتخاب بازدیدکنندگان خود ضربه بزنید</string>
   <!--Label for context menu item to open story settings-->
@@ -4355,5 +4387,31 @@
   <string name="StoryInfoBottomSheetDialogFragment__sent_from">ارسال شد از</string>
   <!--Story Info context menu label-->
   <string name="StoryInfoBottomSheetDialogFragment__info">اطلاعات</string>
+  <!--StoriesPrivacySettingsFragment-->
+  <!--Explanation about how stories are deleted and managed-->
+  <string name="StoriesPrivacySettingsFragment__stories_automatically_disappear">استوری‌ها به طور خودکار پس از 24 ساعت ناپدید می‌شوند. انتخاب کنید چه کسی می‌تواند استوری شما را مشاهده کند یا استوری‌های جدیدی با مشاهده‌کنندگان یا گروه‌های خاص ایجاد کنید.</string>
+  <!--Preference title to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories">خاموش کردن استوری‌ها</string>
+  <!--Preference summary to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__if_you_opt_out">اگر از استوری‌ها انصراف دهید، دیگر نمی‌توانید استوری‌ها را به اشتراک بگذارید یا مشاهده کنید.</string>
+  <!--Preference title to turn on stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_on_stories">روشن کردن استوری‌ها</string>
+  <!--Preference summary to turn on stories-->
+  <string name="StoriesPrivacySettingsFragment__share_and_view">استوری‌های دیگران را به اشتراک بگذارید و مشاهده کنید. استوری‌ها بعد از 24 ساعت به طور خودکار ناپدید می‌شوند.</string>
+  <!--Dialog title to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">استوری‌ها خاموش شود؟</string>
+  <!--Dialog message to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to">دیگر نخواهید توانست استوری‌ها را به اشتراک بگذارید یا مشاهده کنید. استوری‌هایی که اخیراً ارسال کرده‌اید، تا زمانی که منقضی شوند همچنان توسط دیگران قابل مشاهده خواهند بود.</string>
+  <!--Page title when launched from stories landing screen-->
+  <string name="StoriesPrivacySettingsFragment__story_privacy">حریم شخصی استوری</string>
+  <!--GroupStorySettingsFragment-->
+  <!--Section header for who can view a group story-->
+  <string name="GroupStorySettingsFragment__who_can_view_this_story">کسانی که می‌توانند این استوری را مشاهده کنند</string>
+  <!--Explanation of who can view a group story-->
+  <string name="GroupStorySettingsFragment__members_of_the_group_s">اعضای گروه \"%1$s\" می‌توانند این استوری را مشاهده کنند و به آن پاسخ دهند. می‌توانید عضویت این چت را در گروه به‌روزرسانی کنید.</string>
+  <!--Preference label for removing this group story-->
+  <string name="GroupStorySettingsFragment__remove_group_story">حذف استوری گروهی</string>
+  <!--Generic title for overflow menus-->
+  <string name="OverflowMenu__overflow_menu">منوی سرریز</string>
   <!--EOF-->
 </resources>

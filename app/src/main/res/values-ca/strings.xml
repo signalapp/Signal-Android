@@ -432,6 +432,18 @@
   <string name="CreateProfileActivity_set_up_your_profile">Establiu el perfil</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">El perfil està encriptat d\'extrem a extrem. El perfil i els canvis seran visibles per als vostres contactes quan inicieu o accepteu converses noves i quan us afegiu a grups nous.</string>
   <string name="CreateProfileActivity_set_avatar_description">Estableix l\'avatar</string>
+  <!--ProfileCreateFragment-->
+  <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
+  <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">Els perfils només seran visibles a aquelles persones a les quals enviïs un missatge.</string>
+  <!--Title of clickable row to select phone number privacy settings-->
+  <string name="ProfileCreateFragment__who_can_find_me">Qui pot trobar-me a través del meu número?</string>
+  <!--WhoCanSeeMyPhoneNumberFragment-->
+  <!--Toolbar title for this screen-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">Qui pot trobar-me a través del meu número?</string>
+  <!--Description for radio item stating anyone can see your phone number-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has">Qualsevol persona que tingui el teu número de telèfon guardat als seus contactes podrà veure\'t com a contacte a Signal. Les altres persones podran trobar-te realitzant una cerca amb el teu número.</string>
+  <!--Description for radio item stating no one will be able to see your phone number-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__nobody_on_signal">Ningú a Signal podrà trobar-te a través del teu número de telèfon.</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">Voleu fer una restauració des d\'una còpia de seguretat?</string>
   <string name="ChooseBackupFragment__restore_your_messages_and_media">Restaureu els missatges i els continguts multimèdia des d\'una còpia de seguretat local. Si no ho feu ara, no ho podreu fer més tard.</string>
@@ -735,6 +747,10 @@
   <string name="ManageProfileFragment_failed_to_set_avatar">Ha fallat establir l\'avatar.</string>
   <string name="ManageProfileFragment_badges">Insígnies</string>
   <string name="ManageProfileFragment__edit_photo">Edita la fotografia</string>
+  <!--Snackbar message after creating username-->
+  <string name="ManageProfileFragment__username_created">S\'ha creat el nom d\'usuari</string>
+  <!--Snackbar message after copying username-->
+  <string name="ManageProfileFragment__username_copied">S\'ha copiat el nom d\'usuari</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">No hi ha grups en comú.</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1591,6 +1607,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="UnverifiedSendDialog_send_message">Voleu enviar el missatge?</string>
   <string name="UnverifiedSendDialog_send">Envia</string>
   <!--UsernameEditFragment-->
+  <!--Instructional text at the top of the username edit screen-->
+  <string name="UsernameEditFragment__choose_your_username">Tria un nom d\'usuari</string>
   <string name="UsernameEditFragment_username">Nom d\'usuari</string>
   <string name="UsernameEditFragment_delete">Suprimeix</string>
   <string name="UsernameEditFragment_successfully_set_username">El nom d\'usuari s\'ha establert correctament.</string>
@@ -1602,11 +1620,18 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Els noms d\'usuari no poden començar amb un número.</string>
   <string name="UsernameEditFragment_username_is_invalid">El nom d\'usuari no és vàlid.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Els noms d\'usuari han de tenir entre %1$d i %2$d caràcters.</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Els noms d’usuari a Signal són opcionals. Si trieu crear un nom d’usuari, altres usuaris del Signal us podran trobar per aquest nom i contactar-vos sense saber el vostre número de telèfon.</string> -->
+  <!--Explanation about what usernames provide-->
+  <string name="UsernameEditFragment__usernames_let_others_message">Els noms d\'usuari permeten a altres persones enviar-te un missatge sense necessitat del teu número de telèfon. Funcionen conjuntament amb una sèrie de dígits per ajudar-te a mantenir privada la teva adreça.</string>
+  <!--Dialog title for explanation about numbers at the end of the username-->
+  <string name="UsernameEditFragment__what_is_this_number">Què és aquest número?</string>
+  <string name="UsernameEditFragment__these_digits_help_keep">Aquests dígits ajudaran a mantenir el teu nom d\'usuari en privat per tal d\'evitar rebre missatges no desitjats. Comparteix el teu nom d\'usuari només amb aquelles persones i grups amb les que desitges parlar. Si canvies el teu nom d\'usuari, rebràs una nova sèrie de dígits.</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d contacte és al Signal!</item>
     <item quantity="other">%dcontactes són al Signal!</item>
   </plurals>
+  <!--UsernameShareBottomSheet-->
+  <!--Explanation of what the sheet enables the user to do-->
+  <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">Copiar o compartir un enllaç de nom d\'usuari</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">El vostre contacte està fent servir una versió antiga del Signal. Demaneu-li que l\'actualitzi abans de verificar el número de seguretat.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">El vostre contacte està fent servir una versió nova del Signal amb un format del codi QR no compatible. Actualitzeu-la per comparar-lo.</string>
@@ -2192,6 +2217,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__one_time_donation">Donació única</string>
   <string name="preferences__privacy">Privadesa</string>
+  <!--Preference label for stories-->
+  <string name="preferences__stories">Històries</string>
   <string name="preferences__mms_user_agent">Agent usuari dels MMS</string>
   <string name="preferences__advanced_mms_access_point_names">Configuració manual dels MMS</string>
   <string name="preferences__mmsc_url">URL d\'MMSC</string>
@@ -3040,6 +3067,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ShareActivity__send">Envia</string>
   <string name="ShareActivity__comma_s">, %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">La compartició amb converses múltiples només s\'admet per als missatges del Signal.</string>
+  <!--Toast when the incoming intent is invalid-->
+  <string name="ShareActivity__could_not_get_share_data_from_intent">No s\'han pogut compartir les dades.</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Ha fallat l\'enviament a alguns usuaris.</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Només podeu compartir fins a %1$d converses.</string>
@@ -3265,6 +3294,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="PrivacySettingsFragment__signal_message_and_calls">Missatges i trucades del Signal: sempre retransmissió de trucades i remitent segellat</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">Temporitzador per defecte per a les converses noves</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Establiu un temporitzador per defecte de desaparició de missatges per a totes les converses noves que hàgiu iniciat.</string>
+  <!--Summary for stories preference to launch into story privacy settings-->
+  <string name="PrivacySettingsFragment__manage_your_stories">Gestiona les teves històries i qui les pot veure</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Mostra la icona d\'estat</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Mostra una icona als detalls del missatge quan es lliuri mitjançant un remitent segellat.</string>
@@ -3374,6 +3405,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="EmojiSearchFragment__no_results_found">No s\'ha trobat cap resultat.</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">To desconegut</string>
   <!--ConversationSettingsFragment-->
+  <!--Error toasted when no activity can handle the add contact intent-->
+  <string name="ConversationSettingsFragment__contacts_app_not_found">No s\'ha trobat l\'app de contactes</string>
   <string name="ConversationSettingsFragment__send_message">Envia el missatge</string>
   <string name="ConversationSettingsFragment__start_video_call">Inicia una trucada de vídeo</string>
   <string name="ConversationSettingsFragment__start_audio_call">Inicia una trucada d\'àudio</string>
@@ -3876,10 +3909,12 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ConversationListTabs__stories">Històries</string>
   <!--String for counts above 99 in conversation list tabs-->
   <string name="ConversationListTabs__99p">99 +</string>
+  <!--Menu item on stories landing page-->
+  <string name="StoriesLandingFragment__story_privacy">Privacitat de la història</string>
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">Les meves històries</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">Afegiu-hi una història</string> -->
+  <string name="StoriesLandingFragment__tap_to_add_a_story">Toca per afegir una història</string>
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">No hi ha actualitzacions recents per mostrar ara mateix. Toqueu + per afegir coses a la història.</string>
   <!--Context menu option to hide a story-->
@@ -3983,14 +4018,6 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="StoryGroupReplyItem__copy">Copia</string>
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Suprimits</string>
-  <!--Story settings page title-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">Configuració de la història</string> -->
-  <!--Story settings private stories heading-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">Històries privades</string> -->
-  <!--Note at bottom of story settings regarding who can see private stories.-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Les històries privades només les poden veure les persones que hi afegiu. Només vós podeu veure el nom de la història.</string> -->
-  <!--Option label for creating a new private story-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">Història privada nova</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">La meva història</string>
   <!--Section heading for story visibility-->
@@ -4241,6 +4268,11 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
     <item quantity="one">Història de grup · %1$d espectador</item>
     <item quantity="other">Història de grup · %1$d espectadors</item>
   </plurals>
+  <!--Label under name for my story-->
+  <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
+    <item quantity="one">%1$s · %2$d espectador</item>
+    <item quantity="other">%1$s · %2$d espectadors</item>
+  </plurals>
   <!--Label under name for My Story when first sending to my story-->
   <string name="ContactSearchItems__tap_to_choose_your_viewers">Toca per triar els teus espectadors</string>
   <!--Label for context menu item to open story settings-->
@@ -4351,5 +4383,31 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="StoryInfoBottomSheetDialogFragment__sent_from">Enviat per</string>
   <!--Story Info context menu label-->
   <string name="StoryInfoBottomSheetDialogFragment__info">Informació</string>
+  <!--StoriesPrivacySettingsFragment-->
+  <!--Explanation about how stories are deleted and managed-->
+  <string name="StoriesPrivacySettingsFragment__stories_automatically_disappear">Les històries desapareixeran automàticament després de 24 hores. Tria qui pot veure la teva història o crea noves històries amb espectadors o grups específics.</string>
+  <!--Preference title to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories">Desactivar històries</string>
+  <!--Preference summary to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__if_you_opt_out">Si decideixes desactivar les històries, ja no podràs compartir o visualitzar històries.</string>
+  <!--Preference title to turn on stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_on_stories">Activar històries</string>
+  <!--Preference summary to turn on stories-->
+  <string name="StoriesPrivacySettingsFragment__share_and_view">Comparteix i visualitza històries d\'altres. Les històries desapareixeran automàticament després de 24 hores.</string>
+  <!--Dialog title to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">Desactivar històries?</string>
+  <!--Dialog message to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to">Ja no podràs compartir o visualitzar històries. Qualsevol història que hagis enviat recentment continuarà sent visible per als altres usuaris fins que expiri.</string>
+  <!--Page title when launched from stories landing screen-->
+  <string name="StoriesPrivacySettingsFragment__story_privacy">Privacitat de la història</string>
+  <!--GroupStorySettingsFragment-->
+  <!--Section header for who can view a group story-->
+  <string name="GroupStorySettingsFragment__who_can_view_this_story">Qui pot veure aquesta història</string>
+  <!--Explanation of who can view a group story-->
+  <string name="GroupStorySettingsFragment__members_of_the_group_s">Els membres del grup \"%1$s\" poden veure i respondre a aquesta història. Pots actualitzar l\'afiliació a aquest xat a través del grup.</string>
+  <!--Preference label for removing this group story-->
+  <string name="GroupStorySettingsFragment__remove_group_story">Eliminar història de grup</string>
+  <!--Generic title for overflow menus-->
+  <string name="OverflowMenu__overflow_menu">Menú desplegable</string>
   <!--EOF-->
 </resources>

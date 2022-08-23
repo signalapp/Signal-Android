@@ -434,6 +434,18 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="CreateProfileActivity_set_up_your_profile">Stel je profiel op</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">In Signal worden profielen, net als berichten en oproepen, eind-tot-eind-versleuteld uitgewisseld. Je profielnaam, -foto en -omschrijving zijn alleen zichtbaar voor personen die zijn opgeslagen in jouw contactenlijst, personen naar wie je zelf een nieuw gesprek initieert, personen van wie je een gespreksverzoek aanvaard en alle leden van groepen waarvan jij lid bent. Niemand anders kan jouw profiel zien, zelfs Signal niet.</string>
   <string name="CreateProfileActivity_set_avatar_description">Profielfoto instellen</string>
+  <!--ProfileCreateFragment-->
+  <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
+  <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">Profielen zijn alleen zichtbaar voor de mensen waar je berichten naar stuurt.</string>
+  <!--Title of clickable row to select phone number privacy settings-->
+  <string name="ProfileCreateFragment__who_can_find_me">Wie kan mij via mijn nummer vinden?</string>
+  <!--WhoCanSeeMyPhoneNumberFragment-->
+  <!--Toolbar title for this screen-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">Wie kan mij via mijn nummer vinden?</string>
+  <!--Description for radio item stating anyone can see your phone number-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has">Iedereen die jouw telefoonnummer in zijn contacten heeft staan, zal je kunnen zien als een contact op Signal. Anderen kunnen je vinden via jouw telefoonnummer als ze daarop zoeken.</string>
+  <!--Description for radio item stating no one will be able to see your phone number-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__nobody_on_signal">Niemand op Signal kan je vinden met jou telefoonnummer.</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">Back-upgegevens terugzetten?</string>
   <string name="ChooseBackupFragment__restore_your_messages_and_media">Je hebt nu de gelegenheid om berichten en media uit een back-upbestand terug te zetten. Let op: Herstellen vanuit een back-upbestand kan alleen tijdens de installatie van de Signal-app. Als je deze stap overslaat kun je dit op een later moment niet alsnog doen.</string>
@@ -737,6 +749,10 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="ManageProfileFragment_failed_to_set_avatar">Instellen van profielfoto is mislukt</string>
   <string name="ManageProfileFragment_badges">Badges</string>
   <string name="ManageProfileFragment__edit_photo">Profielfoto aanpassen</string>
+  <!--Snackbar message after creating username-->
+  <string name="ManageProfileFragment__username_created">Gebruikersnaam gecreëerd. </string>
+  <!--Snackbar message after copying username-->
+  <string name="ManageProfileFragment__username_copied">Gebruikersnaam gekopieerd. </string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Geen gemeenschappelijke groepen</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1602,6 +1618,8 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="UnverifiedSendDialog_send_message">Bericht verzenden?</string>
   <string name="UnverifiedSendDialog_send">Verzenden</string>
   <!--UsernameEditFragment-->
+  <!--Instructional text at the top of the username edit screen-->
+  <string name="UsernameEditFragment__choose_your_username">Kies jouw gebruikersnaam.</string>
   <string name="UsernameEditFragment_username">Gebruikersnaam</string>
   <string name="UsernameEditFragment_delete">Wissen</string>
   <string name="UsernameEditFragment_successfully_set_username">Gebruikersnaam succesvol ingesteld.</string>
@@ -1613,11 +1631,18 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Gebruikersnamen mogen niet met een cijfer beginnen.</string>
   <string name="UsernameEditFragment_username_is_invalid">Gebruikersnaam is ongeldig.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Gebruikersnamen moeten uit ten minste %1$d en maximaal %2$d karakters bestaan.</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Gebruikersnamen in Signal zijn optioneel. Als je een gebruikersnaam aanmaakt zullen andere Signal gebruikers je kunnen vinden met deze naam en contact met je kunnen opnemen zonder je telefoonnummer te kennen.</string> -->
+  <!--Explanation about what usernames provide-->
+  <string name="UsernameEditFragment__usernames_let_others_message">Gebruikersnamen zorgen ervoor dat mensen jou berichten kunnen sturen zonder jouw telefoonnummer nodig te hebben. Ze zijn gekoppeld aan een cijferset zodat jouw adres privé blijft.</string>
+  <!--Dialog title for explanation about numbers at the end of the username-->
+  <string name="UsernameEditFragment__what_is_this_number">Wat is dit nummer?</string>
+  <string name="UsernameEditFragment__these_digits_help_keep">Deze cijfers helpen jou je gebruikersnaam privé te houden zodat je ongewenste berichten kunt voorkomen. Deel jouw gebruikersnaam alleen met mensen en groepen waar je mee zou willen chatten. Als je je gebruikersnaam wijzigt, krijg je een nieuwe cijferset.</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d van je contactpersonen is bereikbaar via Signal.</item>
     <item quantity="other">%d van je contactpersonen zijn bereikbaar via Signal.</item>
   </plurals>
+  <!--UsernameShareBottomSheet-->
+  <!--Explanation of what the sheet enables the user to do-->
+  <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">Kopieer of deel een gebruikersnaamlink.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Deze contactpersoon gebruikt een oude versie van Signal. Vraag hem om eerst Signal bij te werken, alvorens je het veiligheidsnummer verifieert.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Je contact gebruikt een nieuwere versie van Signal met een incompatibel QR-codeformaat. Werk Signal bij om te vergelijken.</string>
@@ -2203,6 +2228,8 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__one_time_donation">Eenmalige donatie</string>
   <string name="preferences__privacy">Privacy</string>
+  <!--Preference label for stories-->
+  <string name="preferences__stories">Verhalen</string>
   <string name="preferences__mms_user_agent">Mms-gebruikersagent</string>
   <string name="preferences__advanced_mms_access_point_names">Handmatige mms-instellingen</string>
   <string name="preferences__mmsc_url">MMSC-verwijzing</string>
@@ -3051,6 +3078,8 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="ShareActivity__send">Verzend</string>
   <string name="ShareActivity__comma_s">, %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">Doorsturen naar meerdere gesprekken kan alleen voor Signal-berichten.</string>
+  <!--Toast when the incoming intent is invalid-->
+  <string name="ShareActivity__could_not_get_share_data_from_intent">Kon geen gedeelde data met opzet ontvangen.</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Het verzenden is naar sommige personen mislukt</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Je kunt dit niet naar meer dan %1$d gesprekken tegelijk doorsturen</string>
@@ -3276,6 +3305,8 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signal-berichten en -oproepen, alle omroepen omleiden en verzegelde afzender</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">Standaard-tijdspanne voor toekomstige gesprekken</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Stel in dat berichten in alle toekomstige gesprekken die jij zelf begint een bepaalde tijd nadat ze gezien zijn voor zowel jou als je gesprekspartner vanzelf worden gewist.</string>
+  <!--Summary for stories preference to launch into story privacy settings-->
+  <string name="PrivacySettingsFragment__manage_your_stories">Beheer je verhalen en wie ze kan bekijken.</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Pictogram weergeven</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Laat in de berichtdetails een pictogram zien bij berichten die zijn afgeleverd met een verzegelde afzender</string>
@@ -3385,6 +3416,8 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="EmojiSearchFragment__no_results_found">Geen emoji gevonden</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">Onbekend geluid</string>
   <!--ConversationSettingsFragment-->
+  <!--Error toasted when no activity can handle the add contact intent-->
+  <string name="ConversationSettingsFragment__contacts_app_not_found">Contacten-app kon niet worden gevonden.</string>
   <string name="ConversationSettingsFragment__send_message">Bericht verzenden</string>
   <string name="ConversationSettingsFragment__start_video_call">Video-oproep beginnen</string>
   <string name="ConversationSettingsFragment__start_audio_call">Audio-oproep beginnen</string>
@@ -3887,10 +3920,12 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="ConversationListTabs__stories">Verhalen</string>
   <!--String for counts above 99 in conversation list tabs-->
   <string name="ConversationListTabs__99p">99+</string>
+  <!--Menu item on stories landing page-->
+  <string name="StoriesLandingFragment__story_privacy">Verhaalprivacy</string>
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">Mijn verhalen</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">Een verhaal toevoegen</string> -->
+  <string name="StoriesLandingFragment__tap_to_add_a_story">Tik om een verhaal toe te voegen</string>
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">Er zijn op dit moment geen nieuwe verhaaldelen om weer te geven. Tik op de +-knop om jouw verhaal toe te voegen.</string>
   <!--Context menu option to hide a story-->
@@ -3994,14 +4029,6 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="StoryGroupReplyItem__copy">Tekst kopiëren</string>
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Wissen</string>
-  <!--Story settings page title-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">Verhaalinstellingen</string> -->
-  <!--Story settings private stories heading-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">Privéverhalen</string> -->
-  <!--Note at bottom of story settings regarding who can see private stories.-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Privéverhalen kunnen alleen worden gezien door personen voor wie jij ze zichtbaar maakt. De naam van het verhaal kun je alleen zelf zien.</string> -->
-  <!--Option label for creating a new private story-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">Nieuw privéverhaal</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Mijn verhaal</string>
   <!--Section heading for story visibility-->
@@ -4252,6 +4279,11 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
     <item quantity="one">Groepsverhaal · door %1$d persoon gezien</item>
     <item quantity="other">Groepsverhaal · door %1$d personen gezien</item>
   </plurals>
+  <!--Label under name for my story-->
+  <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
+    <item quantity="one">%1$s · %2$d keer bekeken.</item>
+    <item quantity="other"> %1$s · %2$d keer bekeken.</item>
+  </plurals>
   <!--Label under name for My Story when first sending to my story-->
   <string name="ContactSearchItems__tap_to_choose_your_viewers">Tik om te kiezen wie je verhaal mag bekijken</string>
   <!--Label for context menu item to open story settings-->
@@ -4362,5 +4394,31 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="StoryInfoBottomSheetDialogFragment__sent_from">Verzonden door</string>
   <!--Story Info context menu label-->
   <string name="StoryInfoBottomSheetDialogFragment__info">Bericht­details</string>
+  <!--StoriesPrivacySettingsFragment-->
+  <!--Explanation about how stories are deleted and managed-->
+  <string name="StoriesPrivacySettingsFragment__stories_automatically_disappear">Verhalen verdwijnen automatisch na 24 uur. Kies wie jouw verhalen kan zien of make nieuwe verhalen voor specifieke kijkers of groepen.</string>
+  <!--Preference title to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories">Zet verhalen uit.</string>
+  <!--Preference summary to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__if_you_opt_out">Als je verhalen uitschakelt, kun je niet langer verhalen delen of bekijken.</string>
+  <!--Preference title to turn on stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_on_stories">Zet verhalen aan.</string>
+  <!--Preference summary to turn on stories-->
+  <string name="StoriesPrivacySettingsFragment__share_and_view">Deel en bekijk verhalen van anderen. Verhalen verdwijnen automatisch na 24 uur.</string>
+  <!--Dialog title to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">Verhalen uitzetten?</string>
+  <!--Dialog message to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to">Je zult niet langer verhalen kunnen delen of bekijken. Verhalen die je recent verzonden hebt zullen nog steeds zichtbaar zijn tot deze verlopen.</string>
+  <!--Page title when launched from stories landing screen-->
+  <string name="StoriesPrivacySettingsFragment__story_privacy">Verhaalprivacy</string>
+  <!--GroupStorySettingsFragment-->
+  <!--Section header for who can view a group story-->
+  <string name="GroupStorySettingsFragment__who_can_view_this_story">Wie kan dit verhaal bekijken</string>
+  <!--Explanation of who can view a group story-->
+  <string name="GroupStorySettingsFragment__members_of_the_group_s">Leden van de groep “%1$s” kunnen dit verhaal bekijken en erop antwoorden. Je kunt het lidmaatschap voor deze chat updaten in de groep.</string>
+  <!--Preference label for removing this group story-->
+  <string name="GroupStorySettingsFragment__remove_group_story">Verwijder groepsverhaal</string>
+  <!--Generic title for overflow menus-->
+  <string name="OverflowMenu__overflow_menu">Overflow menu</string>
   <!--EOF-->
 </resources>

@@ -474,6 +474,18 @@
   <string name="CreateProfileActivity_set_up_your_profile">הגדר את הפרופיל שלך</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">הפרופיל שלך מוצפן מקצה־אל־קצה. הפרופיל שלך ושינויים שלו יהיו גלויים אל אנשי הקשר שלך, כאשר תיזום או תאשר שיחות חדשות, וכאשר תצטרף אל קבוצות חדשות.</string>
   <string name="CreateProfileActivity_set_avatar_description">הגדר יצגן</string>
+  <!--ProfileCreateFragment-->
+  <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
+  <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">הפרופילים זמינים לצפיה רק לאנשים ששלחת להם הודעה.</string>
+  <!--Title of clickable row to select phone number privacy settings-->
+  <string name="ProfileCreateFragment__who_can_find_me">מי יכול למצוא אותי לפי המספר שלי?</string>
+  <!--WhoCanSeeMyPhoneNumberFragment-->
+  <!--Toolbar title for this screen-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">מי יכול למצוא אותי לפי המספר שלי?</string>
+  <!--Description for radio item stating anyone can see your phone number-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has">כל אחד שיש לו את המספר שלך ברשימת אנשי הקשר יוכל לראות אותך באנשי הקשר ב-Signal. אחרים יוכלו למצוא אותך באמצעות המספר שלך בחיפוש.</string>
+  <!--Description for radio item stating no one will be able to see your phone number-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__nobody_on_signal">אף אחד ב-Signal לא יוכל למצוא אותך באמצעות מספר הטלפון שלך.</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">לשחזר מגיבוי?</string>
   <string name="ChooseBackupFragment__restore_your_messages_and_media">שחזר את ההודעות והמדיה שלך מגיבוי מקומי. אם לא תשחזר עכשיו, לא תוכל לשחזר מאוחר יותר.</string>
@@ -813,6 +825,10 @@
   <string name="ManageProfileFragment_failed_to_set_avatar">נכשל בהגדרת יצגן</string>
   <string name="ManageProfileFragment_badges">תגים</string>
   <string name="ManageProfileFragment__edit_photo">ערוך תמונה</string>
+  <!--Snackbar message after creating username-->
+  <string name="ManageProfileFragment__username_created">שם משתמש נוצר</string>
+  <!--Snackbar message after copying username-->
+  <string name="ManageProfileFragment__username_copied">שם משתמש הועתק</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">אין קבוצות במשותף</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1743,6 +1759,8 @@
   <string name="UnverifiedSendDialog_send_message">לשלוח הודעה?</string>
   <string name="UnverifiedSendDialog_send">שלח</string>
   <!--UsernameEditFragment-->
+  <!--Instructional text at the top of the username edit screen-->
+  <string name="UsernameEditFragment__choose_your_username">בחירת שם המשתמש שלך</string>
   <string name="UsernameEditFragment_username">שם משתמש</string>
   <string name="UsernameEditFragment_delete">מחק</string>
   <string name="UsernameEditFragment_successfully_set_username">שם משתמש נקבע בהצלחה.</string>
@@ -1754,13 +1772,20 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">שמות משתמש אינם יכולים להתחיל במספר.</string>
   <string name="UsernameEditFragment_username_is_invalid">שם משתמש בלתי תקף.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">שמות משתמש חייבים להיות בין %1$d לבין %2$d תווים.</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">שמות משתמש ב־Signal הם רשותיים. אם אתה בוחר ליצור שם משתמש, משתמשי Signal אחרים יוכלו למצוא אותך לפי שם משתמש זה וליצור איתך קשר בלי לדעת את מספר הטלפון שלך.</string> -->
+  <!--Explanation about what usernames provide-->
+  <string name="UsernameEditFragment__usernames_let_others_message">שמות משתמש מאפשרים לאחרים לשלוח לך הודעה בלי להזדקק למספר הטלפון שלך. הם מוצמדים לסט של ספרות כדי לעזור לשמור על פרטיות הכתובת שלך.</string>
+  <!--Dialog title for explanation about numbers at the end of the username-->
+  <string name="UsernameEditFragment__what_is_this_number">מה זה המספר הזה?</string>
+  <string name="UsernameEditFragment__these_digits_help_keep">הספרות האלה עוזרות לשמור על שם המשתמש שלך פרטי, כדי להימנע מהודעות לא רצויות. זה מאפשר לך לשתף את שם המשתמש שלך רק עם אנשים וקבוצות שמתחשק לך לשוחח איתם. אם משנים את שם המשתמש, מקבלים סט חדש של ספרות.</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">איש קשר %d ב־Signal!</item>
     <item quantity="two">%d אנשי קשר ב־Signal!</item>
     <item quantity="many">%d אנשי קשר ב־Signal!</item>
     <item quantity="other">%d אנשי קשר ב־Signal!</item>
   </plurals>
+  <!--UsernameShareBottomSheet-->
+  <!--Explanation of what the sheet enables the user to do-->
+  <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">העתקה או שיתוף של לינק שם משתמש</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">איש הקשר שלך מריץ גרסה ישנה של Signal. אנא בקש ממנו לעדכן לפני וידוא מספר הביטחון שלך.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">איש הקשר שלך מריץ גרסה חדשה יותר של Signal עם תסדיר בלתי־תואם של קוד QR. אנא עדכן כדי להשוות.</string>
@@ -2370,6 +2395,8 @@
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__one_time_donation">תרומה חד־פעמית</string>
   <string name="preferences__privacy">פרטיות</string>
+  <!--Preference label for stories-->
+  <string name="preferences__stories">סטוריז</string>
   <string name="preferences__mms_user_agent">סוכן משתמש MMS</string>
   <string name="preferences__advanced_mms_access_point_names">הגדרות MMS ידניות</string>
   <string name="preferences__mmsc_url">כתובת MMSC</string>
@@ -3240,6 +3267,8 @@
   <string name="ShareActivity__send">שלח</string>
   <string name="ShareActivity__comma_s">, %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">העברה הלאה אל התכתבויות רבות נתמכת רק עבור הודעות Signal</string>
+  <!--Toast when the incoming intent is invalid-->
+  <string name="ShareActivity__could_not_get_share_data_from_intent">שיתוף המידע נכשל.</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">נכשל בשליחה אל כמה משתמשים</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">אתה יכול לשתף רק עם עד %1$d התכתבויות</string>
@@ -3465,6 +3494,8 @@
   <string name="PrivacySettingsFragment__signal_message_and_calls">הודעות ושיחות של Signal, ממסר שיחות תמיד, ושולח אטום</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">קוצב זמן ברירת מחדל עבור התכתבויות חדשות</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">הגדר קוצב זמן ברירת מחדל של הודעות נעלמות עבור כל ההתכתבויות החדשות שהותחלו על ידך.</string>
+  <!--Summary for stories preference to launch into story privacy settings-->
+  <string name="PrivacySettingsFragment__manage_your_stories">מנהלים הסטוריז שלך ורואים מי צפה בהם</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">הראה איקון מעמד</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">הראה איקון בפרטי הודעה כאשר היא נשלחה ע״י שימוש בשולח אטום.</string>
@@ -3578,6 +3609,8 @@
   <string name="EmojiSearchFragment__no_results_found">תוצאות לא נמצאו</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">צלצול בלתי ידוע</string>
   <!--ConversationSettingsFragment-->
+  <!--Error toasted when no activity can handle the add contact intent-->
+  <string name="ConversationSettingsFragment__contacts_app_not_found">אפליקציית אנשי קשר לא נמצאה.</string>
   <string name="ConversationSettingsFragment__send_message">שלח הודעה</string>
   <string name="ConversationSettingsFragment__start_video_call">התחל שיחת וידאו</string>
   <string name="ConversationSettingsFragment__start_audio_call">התחל שיחת שמע</string>
@@ -4090,10 +4123,12 @@
   <string name="ConversationListTabs__stories">סיפורים</string>
   <!--String for counts above 99 in conversation list tabs-->
   <string name="ConversationListTabs__99p">99+</string>
+  <!--Menu item on stories landing page-->
+  <string name="StoriesLandingFragment__story_privacy">פרטיות של סטורי</string>
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">הסיפורים שלי</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">הוסף סיפור</string> -->
+  <string name="StoriesLandingFragment__tap_to_add_a_story">אפשר ללחוץ כדי להוסיף סטוריז</string>
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">אין עדכונים אחרונים להראות כרגע. הקש על + כדי להוסיף אל הסיפור שלך.</string>
   <!--Context menu option to hide a story-->
@@ -4203,14 +4238,6 @@
   <string name="StoryGroupReplyItem__copy">העתק</string>
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">מחק</string>
-  <!--Story settings page title-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">הגדרות סיפור</string> -->
-  <!--Story settings private stories heading-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">סיפורים פרטיים</string> -->
-  <!--Note at bottom of story settings regarding who can see private stories.-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">סיפורים פרטיים יכולים להיראות רק ע״י האנשים שאתה מוסיף אליהם. רק אתה רואה את שם הסיפור.</string> -->
-  <!--Option label for creating a new private story-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">סיפור פרטי חדש</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">הסיפור שלי</string>
   <!--Section heading for story visibility-->
@@ -4473,6 +4500,13 @@
     <item quantity="many">סיפור קבוצתי · %1$d צופים</item>
     <item quantity="other">סיפור קבוצתי · %1$d צופים</item>
   </plurals>
+  <!--Label under name for my story-->
+  <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
+    <item quantity="one">%1$s· צופה %2$d</item>
+    <item quantity="two">%1$s · %2$d צופים</item>
+    <item quantity="many">%1$s · %2$d צופים</item>
+    <item quantity="other">%1$s · %2$d צופים</item>
+  </plurals>
   <!--Label under name for My Story when first sending to my story-->
   <string name="ContactSearchItems__tap_to_choose_your_viewers">יש ללחוץ כדי לבחור את הצופים שלך</string>
   <!--Label for context menu item to open story settings-->
@@ -4591,5 +4625,31 @@
   <string name="StoryInfoBottomSheetDialogFragment__sent_from">נשלחה מאת</string>
   <!--Story Info context menu label-->
   <string name="StoryInfoBottomSheetDialogFragment__info">מידע</string>
+  <!--StoriesPrivacySettingsFragment-->
+  <!--Explanation about how stories are deleted and managed-->
+  <string name="StoriesPrivacySettingsFragment__stories_automatically_disappear">סטוריז נעלמים אוטומטית אחרי 24 שעות. אפשר לבחור מי יכול לראות את הסטורי שלך או ליצור סטוריז חדשים עם קבוצות או צופים ספציפיים.</string>
+  <!--Preference title to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories">כיבוי סטוריז</string>
+  <!--Preference summary to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__if_you_opt_out">לאחר כיבוי סטוריז, לא תהיה לך אפשרות לשתף או לראות סטוריז יותר.</string>
+  <!--Preference title to turn on stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_on_stories">הפעלת סטוריז</string>
+  <!--Preference summary to turn on stories-->
+  <string name="StoriesPrivacySettingsFragment__share_and_view">משתפים וצופים בסטוריז של אחרים. סטוריז נעלמים אוטומטית אחרי 24 שעות.</string>
+  <!--Dialog title to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">לכבות את סטוריז?</string>
+  <!--Dialog message to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to">לא תהיה לך אפשרות לשתף או לצפות בסטוריז יותר. סטוריז ששלחת לאחרונה עדיין יהיו זמינים לצפיה לאחרים עד שהתוקף שלהם יפוג.</string>
+  <!--Page title when launched from stories landing screen-->
+  <string name="StoriesPrivacySettingsFragment__story_privacy">פרטיות של סטורי</string>
+  <!--GroupStorySettingsFragment-->
+  <!--Section header for who can view a group story-->
+  <string name="GroupStorySettingsFragment__who_can_view_this_story">מי יכול לצפות בסטורי הזה</string>
+  <!--Explanation of who can view a group story-->
+  <string name="GroupStorySettingsFragment__members_of_the_group_s">חברי הקבוצה ״%1$s״ יכולים לצפות ולהשיב לסטורי הזה. יש לך אפשרות לעדכן את החברות בצ׳אט הזה בתוך הקבוצה.</string>
+  <!--Preference label for removing this group story-->
+  <string name="GroupStorySettingsFragment__remove_group_story">הסרת סטורי קבוצתי</string>
+  <!--Generic title for overflow menus-->
+  <string name="OverflowMenu__overflow_menu">תפריט overflow</string>
   <!--EOF-->
 </resources>

@@ -474,6 +474,18 @@
   <string name="CreateProfileActivity_set_up_your_profile">Налаштувати ваш профайл</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Ваш профіль захищено наскрізним шифрованням. Ваш профіль та зміни у ньому будуть доступні для ваших контактів, коли ви розпочинаєте або підтверджуєте нову розмову та коли приєднуєтесь до нових груп.</string>
   <string name="CreateProfileActivity_set_avatar_description">Встановити фото профілю</string>
+  <!--ProfileCreateFragment-->
+  <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
+  <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">Профілі можуть бачити тільки ті користувачі, яким ви надсилаєте повідомлення.</string>
+  <!--Title of clickable row to select phone number privacy settings-->
+  <string name="ProfileCreateFragment__who_can_find_me">Хто може знайти мене за номером телефону?</string>
+  <!--WhoCanSeeMyPhoneNumberFragment-->
+  <!--Toolbar title for this screen-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">Хто може знайти мене за номером телефону?</string>
+  <!--Description for radio item stating anyone can see your phone number-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has">Усі люди, у кого збережено ваш номер телефону, бачитимуть вас у своєму списку контактів Signal. Інші зможуть знайти вас за номером у пошуку.</string>
+  <!--Description for radio item stating no one will be able to see your phone number-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__nobody_on_signal">Ніхто в Signal не зможе знайти вас за вашим номером телефону.</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">Відновити резервну копію?</string>
   <string name="ChooseBackupFragment__restore_your_messages_and_media">Відновити ваші повідомлення та медіа-файли із локальної резервної копії. Якщо Ви не бажаєте цього робити зараз, це можна зробити потім.</string>
@@ -813,6 +825,10 @@
   <string name="ManageProfileFragment_failed_to_set_avatar">Не вдалось встановити фото профілю</string>
   <string name="ManageProfileFragment_badges">Емблеми</string>
   <string name="ManageProfileFragment__edit_photo">Редагувати фото</string>
+  <!--Snackbar message after creating username-->
+  <string name="ManageProfileFragment__username_created">Ім’я користувача створено</string>
+  <!--Snackbar message after copying username-->
+  <string name="ManageProfileFragment__username_copied">Ім’я користувача скопійовано</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Спільних груп немає</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1743,6 +1759,8 @@
   <string name="UnverifiedSendDialog_send_message">Надіслати повідомлення?</string>
   <string name="UnverifiedSendDialog_send">Надіслати</string>
   <!--UsernameEditFragment-->
+  <!--Instructional text at the top of the username edit screen-->
+  <string name="UsernameEditFragment__choose_your_username">Виберіть ім’я користувача</string>
   <string name="UsernameEditFragment_username">Ім\'я користувача</string>
   <string name="UsernameEditFragment_delete">Видалити</string>
   <string name="UsernameEditFragment_successfully_set_username">Псевдонім успішно встановлено.</string>
@@ -1754,13 +1772,20 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Псевдонім не може починатися з цифри.</string>
   <string name="UsernameEditFragment_username_is_invalid">Псевдонім невірний.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Псевдонім складається з символів кількістю від %1$d до %2$d.</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Псевдоніми в Signal необов\'язкові. Якщо ви вирішите створити псевдонім, інші користувачі Signal зможуть знайти вас під цим псевдонімом та зв\'язатися з вами, не знаючи ваш номер телефону.</string> -->
+  <!--Explanation about what usernames provide-->
+  <string name="UsernameEditFragment__usernames_let_others_message">Завдяки імені користувача вам зможуть писати люди, які не знають вашого номеру телефону. Поряд із іменем є кілька цифр, які захищають конфіденційність вашої адреси.</string>
+  <!--Dialog title for explanation about numbers at the end of the username-->
+  <string name="UsernameEditFragment__what_is_this_number">Що означають ці цифри?</string>
+  <string name="UsernameEditFragment__these_digits_help_keep">Ці цифри допомагають захистити вас від небажаних повідомлень. Діліться своїм іменем користувача тільки з тими людьми і групами, з якими ви хочете спілкуватися. Якщо змінити ім\'я користувача, цифри також зміняться.</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d контакт у Signal!</item>
     <item quantity="few">%d контактів у Signal!</item>
     <item quantity="many">%d контактів у Signal!</item>
     <item quantity="other">%d контактів у Signal!</item>
   </plurals>
+  <!--UsernameShareBottomSheet-->
+  <!--Explanation of what the sheet enables the user to do-->
+  <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">Копіювати чи поділитися посиланням на ім\'я користувача</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Ваш контакт працює на давнішій версії Signal. Будь ласка, попросіть його/її оновитися перед перевіркою вашого номера безпеки.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Ваш контакт працює на новішій версії Signal із несумісним форматом QR-коду. Будь ласка, оновіться, щоб порівняти.</string>
@@ -2370,6 +2395,8 @@
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__one_time_donation">Разовий внесок</string>
   <string name="preferences__privacy">Приватність</string>
+  <!--Preference label for stories-->
+  <string name="preferences__stories">Сторіз</string>
   <string name="preferences__mms_user_agent">Агент користувача MMS</string>
   <string name="preferences__advanced_mms_access_point_names">Власні налаштування MMS</string>
   <string name="preferences__mmsc_url">MMSC URL</string>
@@ -3242,6 +3269,8 @@
   <string name="ShareActivity__send">Відправити</string>
   <string name="ShareActivity__comma_s">, %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">Відправлення до декількох чатів підтримується лише для повідомлень Signal</string>
+  <!--Toast when the incoming intent is invalid-->
+  <string name="ShareActivity__could_not_get_share_data_from_intent">Не вдалося поділитися даними.</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Не вдалося відправити деяким користувачам</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Ви можете поділитися до %1$d бесідами</string>
@@ -3467,6 +3496,8 @@
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signal повідомлення та дзвінки, завжди ретранслювати дзвінки та прихований відправник</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">Таймер за умовчанням для нових чатів</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Встановіть таймер зникнення повідомлень за замовчуванням для усіх нових чатів, які ви створите.</string>
+  <!--Summary for stories preference to launch into story privacy settings-->
+  <string name="PrivacySettingsFragment__manage_your_stories">Керуйте своїми сторіз і вибирайте, хто може їх переглядати</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Показати значок статусу</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Показувати піктограму в деталях повідомлення, доставлених за допомогою прихованого відправника.</string>
@@ -3580,6 +3611,8 @@
   <string name="EmojiSearchFragment__no_results_found">Нічого не знайдено</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">Невідомий дзвінок</string>
   <!--ConversationSettingsFragment-->
+  <!--Error toasted when no activity can handle the add contact intent-->
+  <string name="ConversationSettingsFragment__contacts_app_not_found">Програму з контактами не знайдено</string>
   <string name="ConversationSettingsFragment__send_message">Надіслати повідомлення</string>
   <string name="ConversationSettingsFragment__start_video_call">Почати відео дзвінок</string>
   <string name="ConversationSettingsFragment__start_audio_call">Почати аудіо дзвінок</string>
@@ -4092,10 +4125,12 @@
   <string name="ConversationListTabs__stories">Історії</string>
   <!--String for counts above 99 in conversation list tabs-->
   <string name="ConversationListTabs__99p">99+</string>
+  <!--Menu item on stories landing page-->
+  <string name="StoriesLandingFragment__story_privacy">Конфіденційність сторіз</string>
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">Мої історії</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">Додати історію</string> -->
+  <string name="StoriesLandingFragment__tap_to_add_a_story">Торкніться, щоб додати сторі</string>
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">Немає нещодавніх оновлень. Клацніть + для додання своєї історії.</string>
   <!--Context menu option to hide a story-->
@@ -4205,14 +4240,6 @@
   <string name="StoryGroupReplyItem__copy">Копіювати</string>
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Видалити</string>
-  <!--Story settings page title-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">Налаштування історії</string> -->
-  <!--Story settings private stories heading-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">Приватні історії</string> -->
-  <!--Note at bottom of story settings regarding who can see private stories.-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Тільки обрані вами користувачі можуть переглядати приватні сторіз. Назву сторіз бачите тільки ви.</string> -->
-  <!--Option label for creating a new private story-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">Нова приватна історія</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Моя історія</string>
   <!--Section heading for story visibility-->
@@ -4475,6 +4502,13 @@
     <item quantity="many">Групова сторі · %1$d глядачів</item>
     <item quantity="other">Групова сторі · %1$d глядачів(-а)</item>
   </plurals>
+  <!--Label under name for my story-->
+  <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
+    <item quantity="one">%1$s · %2$d глядач</item>
+    <item quantity="few">%1$s · %2$d глядачі</item>
+    <item quantity="many">%1$s · %2$d глядачів</item>
+    <item quantity="other">%1$s · %2$d глядача</item>
+  </plurals>
   <!--Label under name for My Story when first sending to my story-->
   <string name="ContactSearchItems__tap_to_choose_your_viewers">Торкніться, щоби вибрати глядачів</string>
   <!--Label for context menu item to open story settings-->
@@ -4593,5 +4627,31 @@
   <string name="StoryInfoBottomSheetDialogFragment__sent_from">Надіслано від</string>
   <!--Story Info context menu label-->
   <string name="StoryInfoBottomSheetDialogFragment__info">Інформація</string>
+  <!--StoriesPrivacySettingsFragment-->
+  <!--Explanation about how stories are deleted and managed-->
+  <string name="StoriesPrivacySettingsFragment__stories_automatically_disappear">Сторіз автоматично зникають через 24 години. Оберіть, хто може переглядати ваші сторіз, або створюйте нові сторіз для конкретних глядачів чи груп.</string>
+  <!--Preference title to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories">Вимкнути сторіз</string>
+  <!--Preference summary to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__if_you_opt_out">Якщо вимкнути цю функцію, ви не зможете публікувати чи переглядати сторіз.</string>
+  <!--Preference title to turn on stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_on_stories">Увімкнути сторіз</string>
+  <!--Preference summary to turn on stories-->
+  <string name="StoriesPrivacySettingsFragment__share_and_view">Діліться і переглядайте сторіз. Сторіз автоматично зникають через 24 години.</string>
+  <!--Dialog title to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">Вимкнути сторіз?</string>
+  <!--Dialog message to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to">Ви більше не зможете ділитися сторіз чи переглядати їх. Якщо ви нещодавно публікували сторіз, вони будуть видимі, доки не закінчиться їхній термін дії.</string>
+  <!--Page title when launched from stories landing screen-->
+  <string name="StoriesPrivacySettingsFragment__story_privacy">Конфіденційність сторіз</string>
+  <!--GroupStorySettingsFragment-->
+  <!--Section header for who can view a group story-->
+  <string name="GroupStorySettingsFragment__who_can_view_this_story">Хто може бачити цю сторі</string>
+  <!--Explanation of who can view a group story-->
+  <string name="GroupStorySettingsFragment__members_of_the_group_s">Учасники групи «%1$s» можуть переглядати цю сторі та відповідати на неї. Змінити налаштування для цього чату можна у групі.</string>
+  <!--Preference label for removing this group story-->
+  <string name="GroupStorySettingsFragment__remove_group_story">Вилучити групову сторі</string>
+  <!--Generic title for overflow menus-->
+  <string name="OverflowMenu__overflow_menu">Меню переповнення</string>
   <!--EOF-->
 </resources>

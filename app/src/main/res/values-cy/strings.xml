@@ -470,6 +470,13 @@ Anfon neges heb ei diogelu?</string>
   <string name="CreateProfileActivity_set_up_your_profile">Creu eich proffil</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Mae eich proffil wedi\'i amgryptio o ben-i-ben. Bydd eich proffil a’ch newidiadau iddo yn weladwy i\'ch cysylltiadau, pan fyddwch chi’n cychwyn neu\'n derbyn sgyrsiau newydd, a phan fyddwch yn ymuno â grwpiau newydd.</string>
   <string name="CreateProfileActivity_set_avatar_description">Gosod afatar</string>
+  <!--ProfileCreateFragment-->
+  <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
+  <!--Title of clickable row to select phone number privacy settings-->
+  <!--WhoCanSeeMyPhoneNumberFragment-->
+  <!--Toolbar title for this screen-->
+  <!--Description for radio item stating anyone can see your phone number-->
+  <!--Description for radio item stating no one will be able to see your phone number-->
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">Adfer o’r wrth gefn?</string>
   <string name="ChooseBackupFragment__restore_your_messages_and_media">Adfer eich negeseuon a’ch cyfryngau o gefn wrth gefn lleol. Os na fyddwch yn adfer nawr, ni fyddwch yn gallu adfer yn ddiweddarach.</string>
@@ -807,6 +814,8 @@ Anfon neges heb ei diogelu?</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Wedi methu gosod afatar</string>
   <string name="ManageProfileFragment_badges">Bathodynnau</string>
   <string name="ManageProfileFragment__edit_photo">Golygu llun</string>
+  <!--Snackbar message after creating username-->
+  <!--Snackbar message after copying username-->
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Dim grwpiau\'n gyffredin</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1731,6 +1740,7 @@ Anfon neges heb ei diogelu?</string>
   <string name="UnverifiedSendDialog_send_message">Anfon neges?</string>
   <string name="UnverifiedSendDialog_send">Anfon</string>
   <!--UsernameEditFragment-->
+  <!--Instructional text at the top of the username edit screen-->
   <string name="UsernameEditFragment_username">Enw defnyddiwr</string>
   <string name="UsernameEditFragment_delete">Dileu</string>
   <string name="UsernameEditFragment_successfully_set_username">Wedi gosod enw defnyddiwr yn llwyddiannus.</string>
@@ -1742,13 +1752,16 @@ Anfon neges heb ei diogelu?</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Nid yw enw defnyddiwr yn gallu cychwyn gyda rhif.</string>
   <string name="UsernameEditFragment_username_is_invalid">Mae\'r enw defnyddiwr yn annilys.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Rhaid i enwau defnyddwyr fod rhwng %1$d a %2$d nod.</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Mae enwau defnyddwyr ar Signal yn ddewisol. Os dewiswch greu enw defnyddiwr, bydd defnyddwyr Signal eraill yn gallu dod o hyd i chi yn ôl yr enw defnyddiwr hwn a chysylltu â chi heb wybod eich rhif ffôn.</string> -->
+  <!--Explanation about what usernames provide-->
+  <!--Dialog title for explanation about numbers at the end of the username-->
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">Mae %d cysylltiad ar Signal!</item>
     <item quantity="two">Mae %d cysylltiad ar Signal!</item>
     <item quantity="many">Mae %d cysylltiad ar Signal!</item>
     <item quantity="other">Mae %d cysylltiad ar Signal!</item>
   </plurals>
+  <!--UsernameShareBottomSheet-->
+  <!--Explanation of what the sheet enables the user to do-->
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Mae eich cyswllt yn rhedeg hen fersiwn o Signal. Gofynnwch iddyn nhw ddiweddaru cyn gwirio eich rhif diogelwch.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Mae eich cyswllt yn rhedeg fersiwn newydd o Signal gyda fformat cod QR anghydnaws. Diweddarwch i gymharu.</string>
@@ -2348,6 +2361,8 @@ Anfon neges heb ei diogelu?</string>
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__one_time_donation">Rhodd Un-amser</string>
   <string name="preferences__privacy">Preifatrwydd</string>
+  <!--Preference label for stories-->
+  <string name="preferences__stories">Straeon</string>
   <string name="preferences__mms_user_agent">Asiant Defnyddiwr MMS</string>
   <string name="preferences__advanced_mms_access_point_names">Gosodiadau MMS â llaw</string>
   <string name="preferences__mmsc_url">URL MMSC</string>
@@ -3214,6 +3229,7 @@ Anfon neges heb ei diogelu?</string>
   <string name="ShareActivity__send">Anfon</string>
   <string name="ShareActivity__comma_s">, %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">Mae rhannu i sgyrsiau lluosog yn cael ei gynnal ar gyfer negeseuon Signal, yn unig.</string>
+  <!--Toast when the incoming intent is invalid-->
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Wedi methu anfon at rai defnyddwyr</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Dim ond gyda hyd at %1$d o sgyrsiau y gallwch chi eu rhannu</string>
@@ -3439,6 +3455,7 @@ Anfon neges heb ei diogelu?</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Negeseuon a galwadau Signal, trosglwyddo galwadau bob tro, ac anfonwr wedi\'i selio</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">Amserydd rhagosodedig ar gyfer sgyrsiau newydd</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Gosod cyfnod negeseuon byrhoedlog rhagosodedig ar gyfer holl sgyrsiau newydd a sydd wedi\'u dechrau gennych.</string>
+  <!--Summary for stories preference to launch into story privacy settings-->
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Dangos eicon statws</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Dangos eicon ym manylion y neges pan mae nhw\'n cael eu hanfon gan ddefnyddio anfonwr wedi\'i selio.</string>
@@ -3552,6 +3569,7 @@ Anfon neges heb ei diogelu?</string>
   <string name="EmojiSearchFragment__no_results_found">Heb ganfod canlyniadau</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">Tôn canu anhysbys</string>
   <!--ConversationSettingsFragment-->
+  <!--Error toasted when no activity can handle the add contact intent-->
   <string name="ConversationSettingsFragment__send_message">Anfon neges</string>
   <string name="ConversationSettingsFragment__start_video_call">Cychwyn galwad fideo</string>
   <string name="ConversationSettingsFragment__start_audio_call">Cychwyn galwad sain</string>
@@ -4061,10 +4079,10 @@ Anfon neges heb ei diogelu?</string>
   <string name="ConversationListTabs__stories">Straeon</string>
   <!--String for counts above 99 in conversation list tabs-->
   <string name="ConversationListTabs__99p">99+</string>
+  <!--Menu item on stories landing page-->
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">Fy straeon</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">Ychwanegu stori</string> -->
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">Dim diweddariadau diweddar i\'w dangos ar hyn o bryd. Tapiwch + i ychwanegu at eich stori.</string>
   <!--Context menu option to hide a story-->
@@ -4166,14 +4184,6 @@ Anfon neges heb ei diogelu?</string>
   <string name="StoryGroupReplyItem__copy">Copïo</string>
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Dileu</string>
-  <!--Story settings page title-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">Gosodiadau stori</string> -->
-  <!--Story settings private stories heading-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">Straeon preifat</string> -->
-  <!--Note at bottom of story settings regarding who can see private stories.-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Dim ond y bobl rydych chi\'n eu hychwanegu atyn nhw all weld straeon preifat. Dim ond chi all weld enw\'r stori.</string> -->
-  <!--Option label for creating a new private story-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">Stori breifat newydd</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Fy Stori</string>
   <!--Section heading for story visibility-->
@@ -4412,6 +4422,7 @@ Anfon neges heb ei diogelu?</string>
     <item quantity="many">Stori Grŵp · %1$d darllenydd</item>
     <item quantity="other">Stori Grŵp · %1$d darllenydd</item>
   </plurals>
+  <!--Label under name for my story-->
   <!--Label under name for My Story when first sending to my story-->
   <!--Label for context menu item to open story settings-->
   <string name="ContactSearchItems__story_settings">Gosodiadau stori</string>
@@ -4496,5 +4507,19 @@ Anfon neges heb ei diogelu?</string>
   <string name="StoryInfoBottomSheetDialogFragment__sent_from">Anfonwyd gan</string>
   <!--Story Info context menu label-->
   <string name="StoryInfoBottomSheetDialogFragment__info">Gwyb</string>
+  <!--StoriesPrivacySettingsFragment-->
+  <!--Explanation about how stories are deleted and managed-->
+  <!--Preference title to turn off stories-->
+  <!--Preference summary to turn off stories-->
+  <!--Preference title to turn on stories-->
+  <!--Preference summary to turn on stories-->
+  <!--Dialog title to turn off stories-->
+  <!--Dialog message to turn off stories-->
+  <!--Page title when launched from stories landing screen-->
+  <!--GroupStorySettingsFragment-->
+  <!--Section header for who can view a group story-->
+  <!--Explanation of who can view a group story-->
+  <!--Preference label for removing this group story-->
+  <!--Generic title for overflow menus-->
   <!--EOF-->
 </resources>

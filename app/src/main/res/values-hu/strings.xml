@@ -432,6 +432,18 @@
   <string name="CreateProfileActivity_set_up_your_profile">Profilod beállítása</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Profilod adatai végponttól végpontig titkosítva vannak. Profilod adatai, valamint az abban bekövetkező változások csak azután lesznek láthatóak partnereid számára, miután új beszélgetést kezdeményeztél vagy fogadtál el, illetve beléptél egy új csoportba.</string>
   <string name="CreateProfileActivity_set_avatar_description">Profilkép beállítása</string>
+  <!--ProfileCreateFragment-->
+  <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
+  <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">A profilok kizárólag azok számára láthatók, akik üzenetet írnak neked.</string>
+  <!--Title of clickable row to select phone number privacy settings-->
+  <string name="ProfileCreateFragment__who_can_find_me">Ki találhat meg a telefonszámom alapján?</string>
+  <!--WhoCanSeeMyPhoneNumberFragment-->
+  <!--Toolbar title for this screen-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">Ki találhat meg a telefonszámom alapján?</string>
+  <!--Description for radio item stating anyone can see your phone number-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has">Az összes olyan személy számára megjelensz a Signalon, akinek a névjegyei között szerepelsz. A többiek a telefonszámod használatával kereshetnek meg.</string>
+  <!--Description for radio item stating no one will be able to see your phone number-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__nobody_on_signal">A Signalon senki nem fog megtalálni a telefonszámod alapján.</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">Visszaállítás biztonsági mentésből?</string>
   <string name="ChooseBackupFragment__restore_your_messages_and_media">Állítsd vissza elmentett üzeneteid és médiafájljaid egy helyi biztonsági mentésből. Ha most nem állítod vissza, később már nem lesz rá lehetőség.</string>
@@ -735,6 +747,10 @@
   <string name="ManageProfileFragment_failed_to_set_avatar">Nem sikerült beállítani a profilképet</string>
   <string name="ManageProfileFragment_badges">Jelvények</string>
   <string name="ManageProfileFragment__edit_photo">Fotó szerkesztése</string>
+  <!--Snackbar message after creating username-->
+  <string name="ManageProfileFragment__username_created">Felhasználónév létrehozva</string>
+  <!--Snackbar message after copying username-->
+  <string name="ManageProfileFragment__username_copied">Felhasználónév másolva</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Nincsenek közös csoportok</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1598,6 +1614,8 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="UnverifiedSendDialog_send_message">Üzenet küldése?</string>
   <string name="UnverifiedSendDialog_send">Küldés</string>
   <!--UsernameEditFragment-->
+  <!--Instructional text at the top of the username edit screen-->
+  <string name="UsernameEditFragment__choose_your_username">Válaszd ki a felhasználónevet</string>
   <string name="UsernameEditFragment_username">Felhasználónév</string>
   <string name="UsernameEditFragment_delete">Törlés</string>
   <string name="UsernameEditFragment_successfully_set_username">A felhasználónév beállítása sikeres volt.</string>
@@ -1609,11 +1627,18 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">A felhasználónevek nem kezdődhetnek számmal.</string>
   <string name="UsernameEditFragment_username_is_invalid">A felhasználónév érvénytelen.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">A felhasználóneveknek %1$d és %2$d db karakter közé kell esniük.</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">A Signalban nem kötelező felhasználónevet választani. Ha mégis beállítod, akkor más felhasználók a telefonszámod ismerete nélkül, akár név alapján is megtalálhatnak.</string> -->
+  <!--Explanation about what usernames provide-->
+  <string name="UsernameEditFragment__usernames_let_others_message">A felhasználónevek segítségével mások üzenetet küldhetnek neked anélkül, hogy szükségük lenne a telefonszámára. Számjegyekkel vannak párosítva, hogy segítsenek megőrizni a címed privát jellegét.</string>
+  <!--Dialog title for explanation about numbers at the end of the username-->
+  <string name="UsernameEditFragment__what_is_this_number">Mi a telefonszámod?</string>
+  <string name="UsernameEditFragment__these_digits_help_keep">Ezek a számok segítenek megőrizni a felhasználóneved, hogy elkerüld a nem kívánt üzeneteket. Csak azokkal az emberekkel és csoportokkal oszd meg a felhasználóneved, akikkel csevegni szeretnél. Ha módosítod a felhasználóneveket, új számjegyeket kapsz.</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d ismerős már elérhető Signalon!</item>
     <item quantity="other">%d ismerős már elérhető Signalon!</item>
   </plurals>
+  <!--UsernameShareBottomSheet-->
+  <!--Explanation of what the sheet enables the user to do-->
+  <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">Felhasználónév hivatkozás másolása vagy megosztása</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">A kontaktod a Signal egy régebbi verzióját futtatja. Kérd meg, hogy frissítse azt biztonsági számotok ellenőrzése előtt!</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">A kontaktod a Signal egy újabb verzióját futtatja, amelynek QR kód formátuma nem kompatibilis a te verzióddal. Kérlek frissíts az összehasonlításhoz!</string>
@@ -2199,6 +2224,8 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__one_time_donation">Egyszeri adomány</string>
   <string name="preferences__privacy">Adatvédelem</string>
+  <!--Preference label for stories-->
+  <string name="preferences__stories">Történetek</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">Manuális MMS beállítások</string>
   <string name="preferences__mmsc_url">MMSC URL</string>
@@ -3047,6 +3074,8 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ShareActivity__send">Küldés</string>
   <string name="ShareActivity__comma_s">, %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">A több beszélgetésbe történő megosztás csak Signal üzenetek esetén támogatott</string>
+  <!--Toast when the incoming intent is invalid-->
+  <string name="ShareActivity__could_not_get_share_data_from_intent">Nem sikerült lekérni a megosztási adatokat az Intentről.</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Néhány felhasználónak nem sikerült a küldés</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">A megosztás maximum %1$d db beszélgetéssel lehetséges</string>
@@ -3272,6 +3301,8 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signal üzenetek és hívások, átjátszási beállítások, rejtett feladó</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">Alapértelmezett időzítő új beszélgetésekhez</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Állítsd be az alapértelmezett időzítőt újonnan indított csevegéseid eltűnő üzeneteihez.</string>
+  <!--Summary for stories preference to launch into story privacy settings-->
+  <string name="PrivacySettingsFragment__manage_your_stories">Kezeld a Történeteidet, és hogy kik láthatják őket</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Státusz ikon megjelenítése</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Jelenítsen meg egy státuszikont, ha az üzenet rejtett feladóval érkezett.</string>
@@ -3381,6 +3412,8 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="EmojiSearchFragment__no_results_found">Nincs találat</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">Ismeretlen csengőhang</string>
   <!--ConversationSettingsFragment-->
+  <!--Error toasted when no activity can handle the add contact intent-->
+  <string name="ConversationSettingsFragment__contacts_app_not_found">A Névjegyek alkalmazás nem található</string>
   <string name="ConversationSettingsFragment__send_message">Üzenet küldése</string>
   <string name="ConversationSettingsFragment__start_video_call">Videóhívás indítása</string>
   <string name="ConversationSettingsFragment__start_audio_call">Hanghívás indítása</string>
@@ -3883,10 +3916,12 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ConversationListTabs__stories">Történetek</string>
   <!--String for counts above 99 in conversation list tabs-->
   <string name="ConversationListTabs__99p">99+</string>
+  <!--Menu item on stories landing page-->
+  <string name="StoriesLandingFragment__story_privacy">Történet adatvédelmi beállításai</string>
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">Történeteim</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">Történet hozzáadása</string> -->
+  <string name="StoriesLandingFragment__tap_to_add_a_story">Történet hozzáadásához koppints</string>
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">Nem történt mostanában semmi újdonság. Kattints a + gombra új történet hozzáadásához!</string>
   <!--Context menu option to hide a story-->
@@ -3990,14 +4025,6 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="StoryGroupReplyItem__copy">Másolás</string>
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Törlés</string>
-  <!--Story settings page title-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">Történet beállításai</string> -->
-  <!--Story settings private stories heading-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">Privát történetek</string> -->
-  <!--Note at bottom of story settings regarding who can see private stories.-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">A privát történeteket csak azok tekinthetik meg, akiket előzetesen a listához adtál. A történet nevét csak te láthatod.</string> -->
-  <!--Option label for creating a new private story-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">Új privát történet</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Történetem</string>
   <!--Section heading for story visibility-->
@@ -4248,6 +4275,11 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
     <item quantity="one">Csoporttörténet · %1$d megtekintés</item>
     <item quantity="other">Csoporttörténet · %1$d megtekintés</item>
   </plurals>
+  <!--Label under name for my story-->
+  <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
+    <item quantity="one">%1$s · %2$d megtekintő</item>
+    <item quantity="other">%1$s · %2$d megtekintő</item>
+  </plurals>
   <!--Label under name for My Story when first sending to my story-->
   <string name="ContactSearchItems__tap_to_choose_your_viewers">Koppints annak kiválasztásához, kik nézhetik meg a Történeted!</string>
   <!--Label for context menu item to open story settings-->
@@ -4358,5 +4390,31 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="StoryInfoBottomSheetDialogFragment__sent_from">Feladó</string>
   <!--Story Info context menu label-->
   <string name="StoryInfoBottomSheetDialogFragment__info">Részletek</string>
+  <!--StoriesPrivacySettingsFragment-->
+  <!--Explanation about how stories are deleted and managed-->
+  <string name="StoriesPrivacySettingsFragment__stories_automatically_disappear">A Történetek 24 óra elteltével automatikusan eltűnnek. Válaszd ki, hogy ki tekintheti meg a Történeted, vagy hozz létre újakat meghatározott nézőkkel vagy csoportokkal.</string>
+  <!--Preference title to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories">Történetek kikapcsolása</string>
+  <!--Preference summary to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__if_you_opt_out">Ha leiratkozol a Történetekről, többé nem fogsz tudni megosztani vagy megtekinteni Történeteket.</string>
+  <!--Preference title to turn on stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_on_stories">Történetek bekapcsolása</string>
+  <!--Preference summary to turn on stories-->
+  <string name="StoriesPrivacySettingsFragment__share_and_view">Oszd meg és tekintsd meg mások Történeteit. A Történetek 24 óra elteltével automatikusan eltűnnek.</string>
+  <!--Dialog title to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">Történetek kikapcsolása?</string>
+  <!--Dialog message to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to">Többé nem tudsz majd Történeteket megosztani vagy megtekinteni. A közelmúltban elküldött Történeteket mások továbbra is láthatják, amíg le nem járnak.</string>
+  <!--Page title when launched from stories landing screen-->
+  <string name="StoriesPrivacySettingsFragment__story_privacy">Történet adatvédelmi beállításai</string>
+  <!--GroupStorySettingsFragment-->
+  <!--Section header for who can view a group story-->
+  <string name="GroupStorySettingsFragment__who_can_view_this_story">Ki tekintheti meg ezt a Történetet?</string>
+  <!--Explanation of who can view a group story-->
+  <string name="GroupStorySettingsFragment__members_of_the_group_s">A(z) „%1$s”csoport tagjai megtekinthetik ezt a Történetet, és válaszolhatnak rá. A csoportban frissítheted a csevegésre vonatkozó tagságot.</string>
+  <!--Preference label for removing this group story-->
+  <string name="GroupStorySettingsFragment__remove_group_story">Csoport Történet eltávolítása</string>
+  <!--Generic title for overflow menus-->
+  <string name="OverflowMenu__overflow_menu">Túlfolyó menü</string>
   <!--EOF-->
 </resources>

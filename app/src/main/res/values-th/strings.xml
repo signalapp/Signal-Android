@@ -411,6 +411,18 @@
   <string name="CreateProfileActivity_set_up_your_profile">สร้างโปรไฟล์ของคุณ</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">โปรไฟล์ของคุณถูกเข้ารหัสลับจากต้นทางถึงปลายทาง เมื่อคุณเริ่มต้นหรือตอบรับบทสนทนาใหม่ และเมื่อคุณเข้าร่วมกลุ่มใหม่ ผู้ติดต่อของคุณจะมองเห็นโปรไฟล์และความเปลี่ยนแปลงที่เกิดขึ้นกับโปรไฟล์ของคุณ</string>
   <string name="CreateProfileActivity_set_avatar_description">สร้างอวตาร</string>
+  <!--ProfileCreateFragment-->
+  <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
+  <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">คนที่เห็นโปรไฟล์คือผู้ติดต่อที่คุณส่งข้อความหาเท่านั้น</string>
+  <!--Title of clickable row to select phone number privacy settings-->
+  <string name="ProfileCreateFragment__who_can_find_me">ใครบ้างที่สามารถค้นหาฉันด้วยหมายเลขโทรศัพท์ได้</string>
+  <!--WhoCanSeeMyPhoneNumberFragment-->
+  <!--Toolbar title for this screen-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">ใครบ้างที่สามารถค้นหาฉันด้วยหมายเลขโทรศัพท์ได้</string>
+  <!--Description for radio item stating anyone can see your phone number-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has">ใครก็ตามที่มีหมายเลขโทรศัพท์ของคุณอยู่ในรายชื่อผู้ติดต่อ จะเห็นคุณเป็นผู้ติดต่อบน Signal เช่นกัน ส่วนคนอื่นๆ จะสามารถค้นหาคุณได้โดยใช้หมายเลขโทรศัพท์</string>
+  <!--Description for radio item stating no one will be able to see your phone number-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__nobody_on_signal">ไม่มีผู้ใช้ Signal คนใดที่สามารถค้นหาคุณได้โดยใช้หมายเลขโทรศัพท์</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">กู้คืนจากข้อมูลสำรองหรือไม่?</string>
   <string name="ChooseBackupFragment__restore_your_messages_and_media">กู้คืนข้อความและสื่อของคุณจากข้อมูลสำรองในเครื่อง หากคุณไม่กู้คืนตอนนี้ คุณจะไม่สามารถกู้คืนได้อีกในภายหลัง</string>
@@ -696,6 +708,10 @@
   <string name="ManageProfileFragment_failed_to_set_avatar">ล้มเหลวในการสร้างภาพประจำตัว</string>
   <string name="ManageProfileFragment_badges">โล่</string>
   <string name="ManageProfileFragment__edit_photo">แก้ไขรูปภาพ</string>
+  <!--Snackbar message after creating username-->
+  <string name="ManageProfileFragment__username_created">สร้างชื่อผู้ใช้แล้ว</string>
+  <!--Snackbar message after copying username-->
+  <string name="ManageProfileFragment__username_copied">คัดลอกชื่อผู้ใช้แล้ว</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">ไม่มีกลุ่มร่วมกัน</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1524,6 +1540,8 @@
   <string name="UnverifiedSendDialog_send_message">ส่งข้อความหรือไม่?</string>
   <string name="UnverifiedSendDialog_send">ส่ง</string>
   <!--UsernameEditFragment-->
+  <!--Instructional text at the top of the username edit screen-->
+  <string name="UsernameEditFragment__choose_your_username">เลือกชื่อผู้ใช้ของคุณ</string>
   <string name="UsernameEditFragment_username">ชื่อผู้ใช้</string>
   <string name="UsernameEditFragment_delete">ลบ</string>
   <string name="UsernameEditFragment_successfully_set_username">ตั้งชื่อผู้ใช้สำเร็จ</string>
@@ -1535,10 +1553,17 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">ชื่อผู้ใช้ไม่สามารถเริ่มต้นด้วยตัวเลข</string>
   <string name="UsernameEditFragment_username_is_invalid">ชื่อผู้ใช้ไม่ถูกต้อง</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">ชื่อผู้ใช้จะต้องมี %1$dถึง %2$d ตัวอักษร</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">ชื่อผู้ใช้ใน Signal นั้นจะมีหรือไม่ก็ได้ ถ้าคุณเลือกสร้างชื่อผู้ใช้ ผู้ใช้ Signal คนอื่นจะสามารถหาและติดต่อคุณได้จากชื่อผู้ใช้นี้โดยไม่จำเป็นต้องรู้หมายเลขโทรศัพท์ของคุณ</string> -->
+  <!--Explanation about what usernames provide-->
+  <string name="UsernameEditFragment__usernames_let_others_message">ชื่อผู้ใช้จะช่วยให้ผู้ใช้รายอื่นส่งข้อความหาคุณได้โดยไม่จำเป็นต้องมีหมายเลขโทรศัพท์ของคุณ ชื่อผู้ใช้จะถูกผูกเข้ากับกลุ่มตัวเลขเพื่อช่วยรักษาความเป็นส่วนตัวของข้อมูลคุณ</string>
+  <!--Dialog title for explanation about numbers at the end of the username-->
+  <string name="UsernameEditFragment__what_is_this_number">ตัวเลขนี้คืออะไร</string>
+  <string name="UsernameEditFragment__these_digits_help_keep">ตัวเลขนี้จะช่วยรักษาความเป็นส่วนตัวให้ชื่อผู้ใช้ของคุณ ป้องกันไม่ให้คุณได้รับข้อความที่ไม่ต้องการ เราขอแนะนำให้แชร์ชื่อผู้ใช้ของคุณเฉพาะกับคนและกลุ่มที่คุณอยากติดต่อด้วยเท่านั้น โดยหากเปลี่ยนชื่อผู้ใช้ คุณจะได้รับตัวเลขใหม่</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="other">มีผู้ติดต่อ %d คนใช้งาน Signal!</item>
   </plurals>
+  <!--UsernameShareBottomSheet-->
+  <!--Explanation of what the sheet enables the user to do-->
+  <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">คัดลอกหรือแชร์ลิงก์ชื่อผู้ใช้</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">ผู้ติดต่อของคุณใช้ Signal รุ่นเก่า กรุณาขอให้เธอปรับรุ่นก่อนจะตรวจยืนยันหมายเลขความปลอดภัยของคุณ</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">ผู้ติดต่อของคุณใช้ Signal รุ่นใหม่กว่า และมีรูปแบบรหัส QR ที่เข้ากันไม่ได้กับของคุณ กรุณาปรับรุ่นเพื่อให้ใช้งานด้วยกันได้</string>
@@ -2112,6 +2137,8 @@
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__one_time_donation">การบริจาคครั้งเดียว</string>
   <string name="preferences__privacy">ความเป็นส่วนตัว</string>
+  <!--Preference label for stories-->
+  <string name="preferences__stories">สตอรี่</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">ตั้งค่า MMS เอง</string>
   <string name="preferences__mmsc_url">MMSC URL</string>
@@ -2949,6 +2976,8 @@
   <string name="ShareActivity__send">ส่ง</string>
   <string name="ShareActivity__comma_s">, %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">การแบ่งปันแชตหลายแชตพร้อมกันนั้นรองรับเฉพาะแค่ข้อความของ Signal</string>
+  <!--Toast when the incoming intent is invalid-->
+  <string name="ShareActivity__could_not_get_share_data_from_intent">ไม่สามารถดึงข้อมูลที่แชร์ได้จาก Intent</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">การส่งไปยังผู้ใช้อื่นล้มเหลว</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">คุณสามารถแบ่งปันได้สูงสุดแค่ %1$d แชต เท่านั้น</string>
@@ -3175,6 +3204,8 @@
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signal ส่งข้อความและโทร ถ่ายทอดการโทร และผู้ส่งที่ถูกปกปิด</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">ตัวจับเวลาค่าเริ่มต้นสำหรับแชตใหม่</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">ตั้งค่าเริ่มต้นของตัวจับเวลาข้อความหายไปสำหรับแชตใหม่ที่คุณเริ่มต้น</string>
+  <!--Summary for stories preference to launch into story privacy settings-->
+  <string name="PrivacySettingsFragment__manage_your_stories">จัดการและกำหนดผู้ชมของสตอรี่คุณ</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">แสดงไอคอนสถานะ</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">แสดงไอคอนในรายละเอียดข้อความเมื่อเป็นข้อความที่ส่งโดยใช้ผู้ส่งที่ถูกปกปิด</string>
@@ -3282,6 +3313,8 @@
   <string name="EmojiSearchFragment__no_results_found">ไม่พบผลลัพธ์</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">เสียงเรียกเข้าที่ไม่รู้จัก</string>
   <!--ConversationSettingsFragment-->
+  <!--Error toasted when no activity can handle the add contact intent-->
+  <string name="ConversationSettingsFragment__contacts_app_not_found">ไม่พบแอปรายชื่อติดต่อ</string>
   <string name="ConversationSettingsFragment__send_message">ส่งข้อความ</string>
   <string name="ConversationSettingsFragment__start_video_call">เริ่มโทรวิดีโอ</string>
   <string name="ConversationSettingsFragment__start_audio_call">เริ่มโทรเสียง</string>
@@ -3779,10 +3812,12 @@
   <string name="ConversationListTabs__stories">สตอรี่</string>
   <!--String for counts above 99 in conversation list tabs-->
   <string name="ConversationListTabs__99p">99+</string>
+  <!--Menu item on stories landing page-->
+  <string name="StoriesLandingFragment__story_privacy">ความเป็นส่วนตัวของสตอรี่</string>
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">สตอรี่ของฉัน</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">เพิ่มสตอรี่</string> -->
+  <string name="StoriesLandingFragment__tap_to_add_a_story">แตะเพื่อเพิ่มสตอรี่</string>
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">ไม่มีการอัปเดตล่าสุดแสดงในตอนนี้ แตะ + เพื่อเพิ่มสตอรี่ของคุณ</string>
   <!--Context menu option to hide a story-->
@@ -3883,14 +3918,6 @@
   <string name="StoryGroupReplyItem__copy">คัดลอก</string>
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">ลบ</string>
-  <!--Story settings page title-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">การตั้งค่าสตอรี่</string> -->
-  <!--Story settings private stories heading-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">สตอรี่ส่วนตัว</string> -->
-  <!--Note at bottom of story settings regarding who can see private stories.-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">สตอรี่ส่วนตัวจะสามารถดูได้เฉพาะคนที่คุณเพิ่มเข้าไปให้เท่านั้น มีเพียงคุณที่เห็นชื่อสตอรี่</string> -->
-  <!--Option label for creating a new private story-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">สตอรี่ส่วนตัวใหม่</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">สตอรี่ของฉัน</string>
   <!--Section heading for story visibility-->
@@ -4075,7 +4102,7 @@
   <string name="StoriesLinkPopup__visit_link">ไปที่ลิงก์</string>
   <!--Gift price and duration, formatted as: {price} dot {n} day duration-->
   <plurals name="GiftRowItem_s_dot_d_day_duration">
-    <item quantity="other">ช่วงระยะเวลา %1$s · %2$d วัน</item>
+    <item quantity="other">%1$s · %2$d วัน</item>
   </plurals>
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">ส่งโล่ของขวัญ</string>
@@ -4134,6 +4161,10 @@
   <!--Label under name for group stories-->
   <plurals name="ContactSearchItems__group_story_d_viewers">
     <item quantity="other">สตอรี่กลุ่ม · ผู้ชม %1$d </item>
+  </plurals>
+  <!--Label under name for my story-->
+  <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
+    <item quantity="other">%1$s · ผู้ชม %2$d คน</item>
   </plurals>
   <!--Label under name for My Story when first sending to my story-->
   <string name="ContactSearchItems__tap_to_choose_your_viewers">แตะเพื่อเลือกผู้ชมสตอรี่ของคุณ</string>
@@ -4241,5 +4272,31 @@
   <string name="StoryInfoBottomSheetDialogFragment__sent_from">ส่งจาก</string>
   <!--Story Info context menu label-->
   <string name="StoryInfoBottomSheetDialogFragment__info">ข้อมูล</string>
+  <!--StoriesPrivacySettingsFragment-->
+  <!--Explanation about how stories are deleted and managed-->
+  <string name="StoriesPrivacySettingsFragment__stories_automatically_disappear">สตอรี่จะหายไปอัตโนมัติภายใน 24 ชั่วโมง เลือกได้ว่าจะให้ใครเห็นสตอรี่ของคุณ หรือสร้างสตอรี่ใหม่พร้อมกำหนดผู้ชมหรือกลุ่มเฉพาะ</string>
+  <!--Preference title to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories">ปิดสตอรี่</string>
+  <!--Preference summary to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__if_you_opt_out">หากคุณปิดใช้งานสตอรี่ คุณจะไม่สามารถแชร์หรือรับชมสตอรี่ได้อีกต่อไป</string>
+  <!--Preference title to turn on stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_on_stories">เปิดสตอรี่</string>
+  <!--Preference summary to turn on stories-->
+  <string name="StoriesPrivacySettingsFragment__share_and_view">แชร์และดูสตอรี่ของผู้อื่น สตอรี่จะหายไปโดยอัตโนมัติภายใน 24 ชั่วโมง</string>
+  <!--Dialog title to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">ปิดสตอรี่ใช่ไหม</string>
+  <!--Dialog message to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to">คุณจะไม่สามารถแชร์หรือดูสตอรี่ได้อีกต่อไป สตอรี่ที่คุณเพิ่งส่งจะยังปรากฏให้เห็นตามปกติจนกว่าสตอรี่นั้นจะหมดอายุ</string>
+  <!--Page title when launched from stories landing screen-->
+  <string name="StoriesPrivacySettingsFragment__story_privacy">ความเป็นส่วนตัวของสตอรี่</string>
+  <!--GroupStorySettingsFragment-->
+  <!--Section header for who can view a group story-->
+  <string name="GroupStorySettingsFragment__who_can_view_this_story">ใครเห็นสตอรี่นี้บ้าง</string>
+  <!--Explanation of who can view a group story-->
+  <string name="GroupStorySettingsFragment__members_of_the_group_s">สมาชิกในกลุ่ม \"%1$s\" จะดูและตอบกลับสตอรี่นี้ได้ คุณสามารถปรับเปลี่ยนการเป็นสมาชิกของแชทนี้ภายในกลุ่มได้</string>
+  <!--Preference label for removing this group story-->
+  <string name="GroupStorySettingsFragment__remove_group_story">ลบสตอรี่กลุ่ม</string>
+  <!--Generic title for overflow menus-->
+  <string name="OverflowMenu__overflow_menu">เมนูเพิ่มเติม</string>
   <!--EOF-->
 </resources>

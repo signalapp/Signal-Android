@@ -411,6 +411,18 @@
   <string name="CreateProfileActivity_set_up_your_profile">သင့် ပရိုဖိုင်ကိုပြင်ဆင်ပါ</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">သင်၏ပရိုဖိုင်သည် အဆုံးမှအဆုံးသို့ စာဝှက်ထားသည်။ သင်၏ပရိုဖိုင်နှင့် ၎င်းပြောင်းလဲမှုများကို သင်အဆက်အသွယ် အသစ်များ၊ သင်စတင်စကားပြောခြင်း သို့မဟုတ် စကားပြောဆိုမှု အသစ်များကို လက်ခံခြင်းနှင့် အုပ်စုအသစ်များနှင့် ပူးပေါင်းသောအခါ မြင်တွေ့ရလိမ့်မည်။</string>
   <string name="CreateProfileActivity_set_avatar_description">ကိုယ်စားပြုရုပ်ပုံ ကိုသတ်မှတ်ပါ</string>
+  <!--ProfileCreateFragment-->
+  <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
+  <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">ပရိုဖိုင်များကို သင်မက်ဆေ့ချ်ပို့သူများသာ မြင်ရပါမည်။</string>
+  <!--Title of clickable row to select phone number privacy settings-->
+  <string name="ProfileCreateFragment__who_can_find_me">ကျွန်ုပ်ကို မည်သူတို့က ဖုန်းနံပါတ်ဖြင့် ရှာနိုင်သနည်း။</string>
+  <!--WhoCanSeeMyPhoneNumberFragment-->
+  <!--Toolbar title for this screen-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">ကျွန်ုပ်ကို မည်သူတို့က ဖုန်းနံပါတ်ဖြင့် ရှာနိုင်သနည်း။</string>
+  <!--Description for radio item stating anyone can see your phone number-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has">အဆက်အသွယ်ထဲတွင် သင့်ဖုန်းနံပါတ် ရှိသည့် မည်သူမဆို သင့်အား Signal တွင် အဆက်အသွယ်အဖြစ် မြင်ရပါမည်။ အခြားသူများသည် သင့်ဖုန်းနံပါတ်ဖြင့် သင့်ကို ရှာနိုင်ပါမည်။</string>
+  <!--Description for radio item stating no one will be able to see your phone number-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__nobody_on_signal">Signal ရှိ မည်သူကမျှ သင့်ဖုန်းနံပါတ်ဖြင့် သင့်ကို ရှာနိုင်မည် မဟုတ်ပါ။</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">အရံသိမ်းထားသည်များကို ပြန်ရယူမည်လား?</string>
   <string name="ChooseBackupFragment__restore_your_messages_and_media">သင်၏ စာတိုများ၊ ဖုန်းထဲတွင် အရံသိမ်းဆည်းထားသော ရုပ်/သံ/ပုံ ဖိုင်များကို ပြန်လည်ရယူထားပါ။ ယခုမရယူထားပါက နောက်ပိုင်းတွင် ပြန်လည်ရယူနိုင်မည်မဟုတ်ပါ။</string>
@@ -696,6 +708,10 @@
   <string name="ManageProfileFragment_failed_to_set_avatar">ကိုယ်စားပြုရုပ်ပုံ တင်ရန်မအောင်မြင်ပါ</string>
   <string name="ManageProfileFragment_badges">ဘဲ့ဂျ်များ</string>
   <string name="ManageProfileFragment__edit_photo">ဓာတ်ပုံ ပြင်ရန်</string>
+  <!--Snackbar message after creating username-->
+  <string name="ManageProfileFragment__username_created">သုံးစွဲသူအမည် ဖန်တီးပြီး</string>
+  <!--Snackbar message after copying username-->
+  <string name="ManageProfileFragment__username_copied">သုံးစွဲသူအမည် ကူးပြီး</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">တူညီသော အဖွဲ့များ မရှိပါ</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1518,6 +1534,8 @@
   <string name="UnverifiedSendDialog_send_message">စာပို့မလား?</string>
   <string name="UnverifiedSendDialog_send">ပို့ပါ</string>
   <!--UsernameEditFragment-->
+  <!--Instructional text at the top of the username edit screen-->
+  <string name="UsernameEditFragment__choose_your_username">သင်၏ သုံးစွဲသူအမည်ကို ရွေးရန်</string>
   <string name="UsernameEditFragment_username">အသုံးပြုသူအမည်</string>
   <string name="UsernameEditFragment_delete">ဖျက်မည်</string>
   <string name="UsernameEditFragment_successfully_set_username">အသုံးပြုသူအမည်ကို အောင်မြင်စွာသတ်မှတ်ပြီး။</string>
@@ -1529,10 +1547,17 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">အသုံးပြုသူအမည်များသည်ည် နံပါတ်နှင့် စတင်၍ မရပါ။</string>
   <string name="UsernameEditFragment_username_is_invalid">အသုံးပြုသူအမည် မမှန်ကန်ပါ</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">အသုံးပြုသူအမည်များသည် %1$d နှင့် %2$d ကြား အက္ခရာလုံး အရေတွက်ရှိရပါမည် ။</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Signal ပေါ်တွင် အသုံးပြုသူအမည်များသည် မဖြစ်မနေ သတ်မှတ်ရမည်မဟုတ်ပါ။ သင်မှ​ အသုံးပြုသူအမည်ကို ဖန်တီးရန်ရွေးချယ်ပါက အခြား Signal အသုံးပြုသူများသည် သင့်ကို သင်၏ဖုန်းနံပါတ်မသိဘဲ သင်၏ အသုံးပြုသူအမည်သုံး၍ သင့်ကို ရှာဖွေနိုင်ပါသည်။</string> -->
+  <!--Explanation about what usernames provide-->
+  <string name="UsernameEditFragment__usernames_let_others_message">သုံးစွဲသူအမည်များသည် သင့်ဖုန်းနံပါတ် မလိုဘဲ အခြားသူများအား သင့်ထံ မက်ဆေ့ချ်ပို့နိုင်စေပါသည်။ သင့်လိပ်စာကို သီးသန့်လျှို့ဝှက်ထားရာတွင် အကူအညီဖြစ်စေရန် ၎င်းတို့အား ဂဏန်းအစုံလိုက်ဖြင့် တွဲထားပါသည်။</string>
+  <!--Dialog title for explanation about numbers at the end of the username-->
+  <string name="UsernameEditFragment__what_is_this_number">ဤနံပါတ်က ဘာလဲ။</string>
+  <string name="UsernameEditFragment__these_digits_help_keep">ဤဂဏန်းများသည် သင့်သုံးစွဲသူအမည်ကို သီးသန့်လျှို့ဝှက်ပေးထားသောကြောင့် မလိုချင်သည့် မက်ဆေ့ချ်များ ရရှိခြင်းမှ ရှောင်နိုင်ပါသည်။ သင့်သုံးစွဲသူအမည်ကို သင် ချက်(တ်)လိုသည့် လူများ၊ အဖွဲ့များထံသာ ဝေမျှနိုင်ပါသည်။ သုံးစွဲသူအမည်ကို ပြောင်းလိုက်ပါက ဂဏန်းအစုံအသစ် ရရှိပါမည်။</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="other">အဆက်အသွယ် %d ဦးသည် Signal ပေါ်ရှိပါသည်!</item>
   </plurals>
+  <!--UsernameShareBottomSheet-->
+  <!--Explanation of what the sheet enables the user to do-->
+  <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">သုံးစွဲသူအမည်လင့်ခ်ကို ကူးရန် သို့မဟုတ် ဝေမျှရန်</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">သင့်မိတ်ဆွေသည် signal ဗားရှင်းအဟောင်းအသုံးပြုထားပါသည်။ လုံခြုံရေးနံပါတ်များ အတည်မပြုခင် Signal ဗားရှင်းအား မြှင့်တင်ခိုင်းလိုက်ပါ။</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">သင့်မိတ်ဆွေသည်  Signal ဗားရှင်းအသစ်နှင့် သင်နှင့်လိုက်လျောညီထွေမရှိသည့် QR code ပုံစံကိုအသုံးပြုထားပါသည်။ နှိုင်းယှဉ်စစ်ဆေးရန် အဆင့်မြှင့်ပါ။</string>
@@ -2107,6 +2132,8 @@
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__one_time_donation">တစ်ကြိမ် လှူဒါန်းမှု</string>
   <string name="preferences__privacy">ကိုယ်ရေးအချက်အလက်များ လုံခြုံမှု</string>
+  <!--Preference label for stories-->
+  <string name="preferences__stories">စတိုရီများ</string>
   <string name="preferences__mms_user_agent">MMS သုံးသူကိုယ်စားလှယ်</string>
   <string name="preferences__advanced_mms_access_point_names">MMS အပြင်အဆင်များကို ကိုယ်တိုင်လုပ်ပါ</string>
   <string name="preferences__mmsc_url">MMSC URL</string>
@@ -2944,6 +2971,8 @@
   <string name="ShareActivity__send">ပေးပို့မည်</string>
   <string name="ShareActivity__comma_s">၊ %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">စကားပြောဆိုမှုပေါင်းစုံများနှင့် ဝေမျှခြင်းအတွက် Signal မက်ဆေ့ချ်များကိုသာ ပံ့ပိုးပါသည်</string>
+  <!--Toast when the incoming intent is invalid-->
+  <string name="ShareActivity__could_not_get_share_data_from_intent">ဒေတာများကို ရည်ရွယ်ချက်ရှိရှိ ဝေမျှသွားနိုင်မည် မဟုတ်ပါ။</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">အသုံးပြုသူများသို့ပေးပို့ရန်မအောင်မြင်ပါ</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">စကားပြောဆိုမှု %1$d ခုထိသာ မျှဝေနိုင်ပါသည်</string>
@@ -3169,6 +3198,8 @@
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signal မက်ဆေ့ချ်များနှင့် ကောလ်များ၊ အမြဲတမ်း ထပ်ဆင့်ပို့ ကောလ်များနှင့် ချိပ်ပိတ်ပေးပို့သူ</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">ချက်(တ်)အသစ်များအတွက် ပုံသေတိုင်မာ</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">သင် စတင်ခဲ့သည့် ချက်(တ်)အသစ်များ အားလုံးအတွက် ပျောက်သွားမည့် မက်ဆေ့ချ် ပုံသေတိုင်မာကို သတ်မှတ်ပါ။</string>
+  <!--Summary for stories preference to launch into story privacy settings-->
+  <string name="PrivacySettingsFragment__manage_your_stories">သင့်စတိုရီများနှင့် ကြည့်နိုင်မည့်သူများအား စီမံခန့်ခွဲရန်</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">အခြေအနေ အိုင်ကွန်ကို ပြသရန်</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">ချိပ်ပိတ်ပေးပို့သူကို သုံး၍ မက်ဆေ့ချ်များ ပေးပို့သည့်အခါ မက်ဆေ့ချ် အသေးစိတ်တွင် အိုင်ကွန်တစ်ခု ပြသပါ။</string>
@@ -3276,6 +3307,8 @@
   <string name="EmojiSearchFragment__no_results_found">ရလဒ်များ ရှာမတွေ့ပါ</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">မသိသော ဖုန်းမြည်သံ</string>
   <!--ConversationSettingsFragment-->
+  <!--Error toasted when no activity can handle the add contact intent-->
+  <string name="ConversationSettingsFragment__contacts_app_not_found">အဆက်အသွယ် အက်ပ် ရှာမတွေ့ပါ</string>
   <string name="ConversationSettingsFragment__send_message">မက်ဆေ့ချ် ပို့ရန်</string>
   <string name="ConversationSettingsFragment__start_video_call">ဗီဒီယိုကောလ် စတင်ရန်</string>
   <string name="ConversationSettingsFragment__start_audio_call">အော်ဒီယိုကောလ် စတင်ရန်</string>
@@ -3773,10 +3806,12 @@
   <string name="ConversationListTabs__stories">စတိုရီများ</string>
   <!--String for counts above 99 in conversation list tabs-->
   <string name="ConversationListTabs__99p">99+</string>
+  <!--Menu item on stories landing page-->
+  <string name="StoriesLandingFragment__story_privacy">စတိုရီ ကိုယ်ပိုင်အချက်အလက်</string>
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">ကျွန်ုပ်၏ စတိုရီများ</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">စတိုရီ ပေါင်းထည့်ရန်</string> -->
+  <string name="StoriesLandingFragment__tap_to_add_a_story">စတိုရီ ပေါင်းထည့်ရန် နှိပ်ပါ</string>
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">ယခု ပြသရန် လတ်တလော အပ်ဒိတ်များ မရှိပါ။ သင့်စတိုရီတွင် ပေါင်းထည့်ရန် + ကို နှိပ်ပါ။</string>
   <!--Context menu option to hide a story-->
@@ -3877,14 +3912,6 @@
   <string name="StoryGroupReplyItem__copy">ကူးမည်</string>
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">ဖျက်မယ်</string>
-  <!--Story settings page title-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">စတိုရီ ဆက်တင်</string> -->
-  <!--Story settings private stories heading-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">သီးသန့် စတိုရီများ</string> -->
-  <!--Note at bottom of story settings regarding who can see private stories.-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">သီးသန့် စတိုရီများကို သင် ပေါင်းထည့်ထားသူများသာ မြင်ရပါမည်။ စတိုရီအမည်ကို သင်တစ်ဦးတည်းသာ မြင်ရပါမည်။</string> -->
-  <!--Option label for creating a new private story-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">သီးသန့် စတိုရီ အသစ်</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">ကျွန်ုပ်၏ စတိုရီ</string>
   <!--Section heading for story visibility-->
@@ -4129,6 +4156,10 @@
   <plurals name="ContactSearchItems__group_story_d_viewers">
     <item quantity="other">အဖွဲ့ စတိုရီ · ကြည့်ရှုသူ %1$d ဦး</item>
   </plurals>
+  <!--Label under name for my story-->
+  <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
+    <item quantity="other">%1$s · ကြည့်ရှုသူ %2$d ဦး</item>
+  </plurals>
   <!--Label under name for My Story when first sending to my story-->
   <string name="ContactSearchItems__tap_to_choose_your_viewers">သင်၏ ကြည့်ရှုသူများကို ရွေးရန် နှိပ်ပါ</string>
   <!--Label for context menu item to open story settings-->
@@ -4235,5 +4266,31 @@
   <string name="StoryInfoBottomSheetDialogFragment__sent_from">မှပေးပို့သည်</string>
   <!--Story Info context menu label-->
   <string name="StoryInfoBottomSheetDialogFragment__info">အချက်အလက် </string>
+  <!--StoriesPrivacySettingsFragment-->
+  <!--Explanation about how stories are deleted and managed-->
+  <string name="StoriesPrivacySettingsFragment__stories_automatically_disappear">စတိုရီများသည် 24 နာရီ ကြာပြီးနောက် အော်တိုပျောက်သွားပါမည်။ သင့်စတိုရီကို မြင်နိုင်မည့်သူများအား ရွေးချယ်ပါ သို့မဟုတ် အချို့သော ကြည့်ရှုသူများ သို့မဟုတ် အဖွဲ့များဖြင့်သာ စတိုရီအသစ် ဖန်တီးပါ။</string>
+  <!--Preference title to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories">စတိုရီများ ပိတ်ရန်</string>
+  <!--Preference summary to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__if_you_opt_out">သင်သည် စတိုရီများတွင် ပါဝင်ရန် မရွေးထားပါက စတိုရီများ ဝေမျှခြင်း သို့မဟုတ် ကြည့်ခြင်းများ လုပ်နိုင်တော့မည် မဟုတ်ပါ။</string>
+  <!--Preference title to turn on stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_on_stories">စတိုရီများ ဖွင့်ရန်</string>
+  <!--Preference summary to turn on stories-->
+  <string name="StoriesPrivacySettingsFragment__share_and_view">အခြားသူများထံမှ စတိုရီများကို ဝေမျှခြင်း၊ ကြည့်ခြင်းများ ပြုလုပ်နိုင်ပါသည်။ စတိုရီများသည် 24 နာရီ ကြာပြီးနောက် အော်တို ပျောက်သွားပါမည်။</string>
+  <!--Dialog title to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">စတိုရီများကို ပိတ်မည်လား။</string>
+  <!--Dialog message to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to">စတိုရီများ ဝေမျှခြင်း သို့မဟုတ် ကြည့်ခြင်းများ လုပ်နိုင်တော့မည် မဟုတ်ပါ။ မကြာသေးမီက ပို့ထားသော စတိုရီများကို သက်တမ်းမကုန်မချင်း အခြားသူများက ဆက်လက်မြင်နိုင်ပါမည်။</string>
+  <!--Page title when launched from stories landing screen-->
+  <string name="StoriesPrivacySettingsFragment__story_privacy">စတိုရီ ကိုယ်ပိုင်အချက်အလက်</string>
+  <!--GroupStorySettingsFragment-->
+  <!--Section header for who can view a group story-->
+  <string name="GroupStorySettingsFragment__who_can_view_this_story">ဤစတိုရီကို ကြည့်နိုင်မည့်သူများ</string>
+  <!--Explanation of who can view a group story-->
+  <string name="GroupStorySettingsFragment__members_of_the_group_s">\"%1$s\" အဖွဲ့ဝင်များသည် ဤစတိုရီကို ကြည့်ခြင်း၊ အကြောင်းပြန်ခြင်းများ လုပ်နိုင်ပါသည်။ အဖွဲ့အတွင်းရှိ ဤချက်(တ်)အတွက် မန်ဘာပလန်ကို အပ်ဒိတ်လုပ်နိုင်ပါသည်။</string>
+  <!--Preference label for removing this group story-->
+  <string name="GroupStorySettingsFragment__remove_group_story">အဖွဲ့စတိုရီကို ဖယ်ရှားရန်</string>
+  <!--Generic title for overflow menus-->
+  <string name="OverflowMenu__overflow_menu">ပိုလျှံမီနူး</string>
   <!--EOF-->
 </resources>

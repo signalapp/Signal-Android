@@ -411,6 +411,18 @@
   <string name="CreateProfileActivity_set_up_your_profile">プロフィールの設定</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">あなたのプロフィール情報はエンドツーエンドで暗号化され、あなたが新しいチャットを開始したり受け入れた際や、新しいグループに参加した際に相手先で表示されます。</string>
   <string name="CreateProfileActivity_set_avatar_description">アバターを設定</string>
+  <!--ProfileCreateFragment-->
+  <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
+  <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">プロフィールは、あなたがメッセージを送信した相手にのみ表示されます。</string>
+  <!--Title of clickable row to select phone number privacy settings-->
+  <string name="ProfileCreateFragment__who_can_find_me">私を電話番号から検索できる人は？</string>
+  <!--WhoCanSeeMyPhoneNumberFragment-->
+  <!--Toolbar title for this screen-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">私を電話番号から検索できる人は？</string>
+  <!--Description for radio item stating anyone can see your phone number-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has">あなたの電話番号を連絡先に登録している人には、あなたがSignalの連絡先として表示されます。他の人は電話番号を検索することであなたを見つけることができます。</string>
+  <!--Description for radio item stating no one will be able to see your phone number-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__nobody_on_signal">Signal上では誰も電話番号であなたを検索することはできません。</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">バックアップから復元しますか？</string>
   <string name="ChooseBackupFragment__restore_your_messages_and_media">ローカルバックアップからメッセージやメディアを復元します。いま復元しないと、あとから復元することはできません。</string>
@@ -696,6 +708,10 @@
   <string name="ManageProfileFragment_failed_to_set_avatar">アバターの設定に失敗しました</string>
   <string name="ManageProfileFragment_badges">バッジ</string>
   <string name="ManageProfileFragment__edit_photo">画像を編集</string>
+  <!--Snackbar message after creating username-->
+  <string name="ManageProfileFragment__username_created">ユーザー名を作成しました</string>
+  <!--Snackbar message after copying username-->
+  <string name="ManageProfileFragment__username_copied">ユーザー名をコピーしました</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">共通のグループ なし</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1514,6 +1530,8 @@
   <string name="UnverifiedSendDialog_send_message">メッセージを送信しますか？</string>
   <string name="UnverifiedSendDialog_send">送信する</string>
   <!--UsernameEditFragment-->
+  <!--Instructional text at the top of the username edit screen-->
+  <string name="UsernameEditFragment__choose_your_username">ユーザー名を選択してください</string>
   <string name="UsernameEditFragment_username">ユーザー名</string>
   <string name="UsernameEditFragment_delete">削除する</string>
   <string name="UsernameEditFragment_successfully_set_username">ユーザー名を設定しました。</string>
@@ -1525,10 +1543,17 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">ユーザー名の先頭に数字は使用できません。</string>
   <string name="UsernameEditFragment_username_is_invalid">無効なユーザー名です。</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">ユーザー名は%1$dから%2$d文字にしてください。</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Signalのユーザー名設定は任意です。ユーザー名を作成すると、他のSignalユーザーはあなたの電話番号を知らなくても、このユーザー名であなたを検索して連絡できるようになります。</string> -->
+  <!--Explanation about what usernames provide-->
+  <string name="UsernameEditFragment__usernames_let_others_message">ユーザーネームを使用すると、電話番号なしでメッセージを送れます。ユーザーネームは、一連の数字と対になっているのでアドレスを非公開にすることができます。</string>
+  <!--Dialog title for explanation about numbers at the end of the username-->
+  <string name="UsernameEditFragment__what_is_this_number">この数字は何ですか？</string>
+  <string name="UsernameEditFragment__these_digits_help_keep">これらの数字は、ユーザー名を非公開にし、不要なメッセージを避けるのに役立ちます。ユーザーネームは、チャットをしたい人やグループとだけ共有してください。ユーザー名を変更すると、新しい数字と対になります。</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="other">%d件の連絡先がSignalを使用しています！</item>
   </plurals>
+  <!--UsernameShareBottomSheet-->
+  <!--Explanation of what the sheet enables the user to do-->
+  <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">ユーザーネームのリンクをコピーまたは共有する</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">連絡先の相手は古いSignalを使っています。Signalをアップデートしてから安全番号の検証を行うようお願いしてください。</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">連絡先の相手は互換性のないQRコード形式を使った新しいバージョンのSignalを使っています。Signalをアップデートしてから比較してください。</string>
@@ -2102,6 +2127,8 @@
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__one_time_donation">1回限りの寄付</string>
   <string name="preferences__privacy">プライバシー</string>
+  <!--Preference label for stories-->
+  <string name="preferences__stories">ストーリー</string>
   <string name="preferences__mms_user_agent">MMSユーザーエージェント</string>
   <string name="preferences__advanced_mms_access_point_names">手動MMS設定</string>
   <string name="preferences__mmsc_url">MMSC URL</string>
@@ -2939,6 +2966,8 @@
   <string name="ShareActivity__send">送信する</string>
   <string name="ShareActivity__comma_s">, %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">複数チャットの共有は、Signalメッセージでのみサポートしています。</string>
+  <!--Toast when the incoming intent is invalid-->
+  <string name="ShareActivity__could_not_get_share_data_from_intent">インテントから共有データを取得できませんでした。</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">数名のユーザーへの送信に失敗しました</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">共有できるチャットは%1$d件までです</string>
@@ -3164,6 +3193,8 @@
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signalメッセージと通話、通話を常に中継、送信者の秘匿化</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">新規チャットの既定タイマー</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">今後新しく始めるチャットについて、消えるメッセージのタイマーの既定値を設定します。</string>
+  <!--Summary for stories preference to launch into story privacy settings-->
+  <string name="PrivacySettingsFragment__manage_your_stories">ストーリーとそれらを閲覧できるユーザーを管理する</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">ステータスアイコンを表示する</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">送信者を秘匿化して届けられたメッセージの詳細で、アイコンを表示します。</string>
@@ -3272,6 +3303,8 @@
   <string name="EmojiSearchFragment__no_results_found">検索結果はありません</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">不明な着信音</string>
   <!--ConversationSettingsFragment-->
+  <!--Error toasted when no activity can handle the add contact intent-->
+  <string name="ConversationSettingsFragment__contacts_app_not_found">連絡先アプリが見つかりません。</string>
   <string name="ConversationSettingsFragment__send_message">メッセージを送信</string>
   <string name="ConversationSettingsFragment__start_video_call">ビデオ通話を開始</string>
   <string name="ConversationSettingsFragment__start_audio_call">音声通話を開始</string>
@@ -3769,10 +3802,12 @@
   <string name="ConversationListTabs__stories">ストーリー</string>
   <!--String for counts above 99 in conversation list tabs-->
   <string name="ConversationListTabs__99p">99+</string>
+  <!--Menu item on stories landing page-->
+  <string name="StoriesLandingFragment__story_privacy">ストーリープライバシー</string>
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">マイストーリー</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">ストーリーを追加</string> -->
+  <string name="StoriesLandingFragment__tap_to_add_a_story">タップしてストーリーを追加</string>
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">現在表示できる最新のアップデートはありません。+をタップすると、ストーリーに追加されます。</string>
   <!--Context menu option to hide a story-->
@@ -3873,14 +3908,6 @@
   <string name="StoryGroupReplyItem__copy">コピー</string>
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">削除</string>
-  <!--Story settings page title-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">ストーリーの設定</string> -->
-  <!--Story settings private stories heading-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">プライベートストーリー</string> -->
-  <!--Note at bottom of story settings regarding who can see private stories.-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">プライベートストーリーは、あなたが追加した人だけが見ることができます。ストーリー名は自分だけが見ることができます。</string> -->
-  <!--Option label for creating a new private story-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">新規プライベートストーリー</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">マイストーリー</string>
   <!--Section heading for story visibility-->
@@ -4125,6 +4152,10 @@
   <plurals name="ContactSearchItems__group_story_d_viewers">
     <item quantity="other">グループストーリー · 閲覧 %1$d人</item>
   </plurals>
+  <!--Label under name for my story-->
+  <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
+    <item quantity="other">%1$s• %2$d 人の閲覧者</item>
+  </plurals>
   <!--Label under name for My Story when first sending to my story-->
   <string name="ContactSearchItems__tap_to_choose_your_viewers">タップしてビューアーを選択します</string>
   <!--Label for context menu item to open story settings-->
@@ -4231,5 +4262,31 @@
   <string name="StoryInfoBottomSheetDialogFragment__sent_from">送信元</string>
   <!--Story Info context menu label-->
   <string name="StoryInfoBottomSheetDialogFragment__info">詳細</string>
+  <!--StoriesPrivacySettingsFragment-->
+  <!--Explanation about how stories are deleted and managed-->
+  <string name="StoriesPrivacySettingsFragment__stories_automatically_disappear">ストーリーは24時間後に自動的に消えます。ストーリーを閲覧できる人を選択したり、特定の閲覧者やグループと新しいストーリーを作成することができます。</string>
+  <!--Preference title to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories">ストーリーを非表示にします</string>
+  <!--Preference summary to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__if_you_opt_out">ストーリーを非表示にすると、以後はストーリーを共有したり閲覧したりすることができなくなります。</string>
+  <!--Preference title to turn on stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_on_stories">ストーリーを表示します</string>
+  <!--Preference summary to turn on stories-->
+  <string name="StoriesPrivacySettingsFragment__share_and_view">他のユーザーのストーリーを共有して表示します。ストーリーは24時間後に自動的に消えます。</string>
+  <!--Dialog title to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">ストーリーを非表示にしますか？</string>
+  <!--Dialog message to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to">ストーリーの共有や閲覧ができなくなります。最近送信したストーリーは、有効期限が切れるまでは他のユーザーに表示されます。</string>
+  <!--Page title when launched from stories landing screen-->
+  <string name="StoriesPrivacySettingsFragment__story_privacy">ストーリープライバシー</string>
+  <!--GroupStorySettingsFragment-->
+  <!--Section header for who can view a group story-->
+  <string name="GroupStorySettingsFragment__who_can_view_this_story">ストーリーを閲覧できる人</string>
+  <!--Explanation of who can view a group story-->
+  <string name="GroupStorySettingsFragment__members_of_the_group_s">グループ「 %1$s 」のメンバーは、このストーリーを閲覧し、返信することができます。グループ内のこのチャットのメンバーを更新することができます。</string>
+  <!--Preference label for removing this group story-->
+  <string name="GroupStorySettingsFragment__remove_group_story">グループストーリーを削除する</string>
+  <!--Generic title for overflow menus-->
+  <string name="OverflowMenu__overflow_menu">オーバーフローメニュー</string>
   <!--EOF-->
 </resources>

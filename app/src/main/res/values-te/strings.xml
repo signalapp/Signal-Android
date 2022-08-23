@@ -437,6 +437,18 @@
   <string name="CreateProfileActivity_set_up_your_profile">మీ వ్యక్తిత్వవర్ణనను సెటప్ చేయండి</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">మీ ప్రొఫైల్ సంపూర్ణంగా గుప్తీకరించబడింది. మీరు క్రొత్త సంభాషణలను ప్రారంభించినప్పుడు లేదా అంగీకరించినప్పుడు మరియు మీరు క్రొత్త గ్రూపులో చేరినప్పుడు మీ ప్రొఫైల్ మరియు దానికి చేసిన మార్పులు మీ పరిచయాలకు కనిపిస్తాయి.</string>
   <string name="CreateProfileActivity_set_avatar_description">అవతార్ సెట్ చేయండి</string>
+  <!--ProfileCreateFragment-->
+  <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
+  <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">మీరు సందేశం పంపే వ్యక్తులకు మాత్రమే ప్రొఫైల్స్ కనిపిస్తాయి.</string>
+  <!--Title of clickable row to select phone number privacy settings-->
+  <string name="ProfileCreateFragment__who_can_find_me">నంబర్ ద్వారా నన్ను ఎవరు కనుగొనగలరు?</string>
+  <!--WhoCanSeeMyPhoneNumberFragment-->
+  <!--Toolbar title for this screen-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">నంబర్ ద్వారా నన్ను ఎవరు కనుగొనగలరు?</string>
+  <!--Description for radio item stating anyone can see your phone number-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has">వారి కాంటాక్ట్స్‌లో మీ ఫోన్ నంబర్ ఉన్న ఎవరైనా మిమ్మల్ని Signal లో వారి కాంటాక్ట్ లాగా చూస్తారు. ఇతరులు శోధనలో మీ నంబర్‌తో మిమ్మల్ని కనుగొనగలుగుతారు.</string>
+  <!--Description for radio item stating no one will be able to see your phone number-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__nobody_on_signal">Signal లో ఎవరూ కూడా మీ ఫోన్ నంబర్‌తో మిమ్మల్ని కనుగొనలేరు.</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">ప్రత్యామ్నాయ నుండి పునరుద్ధరించాలా?</string>
   <string name="ChooseBackupFragment__restore_your_messages_and_media">స్థానిక ప్రత్యామ్నాయ నుండి మీ సందేశాలు మరియు మీడియాను పునరుద్ధరించండి. మీరు ఇప్పుడు పునరుద్ధరించకపోతే, తర్వాత మీరు పునరుద్ధరించలేరు.</string>
@@ -743,6 +755,10 @@
   <string name="ManageProfileFragment_failed_to_set_avatar">అవతార్ సెట్ చేయడంలో విఫలమైంది</string>
   <string name="ManageProfileFragment_badges">బ్యాడ్జీలు</string>
   <string name="ManageProfileFragment__edit_photo">ఫోటోని ఎడిట్ చేయండి</string>
+  <!--Snackbar message after creating username-->
+  <string name="ManageProfileFragment__username_created">యూజర్‌నేమ్ సృష్టించబడింది</string>
+  <!--Snackbar message after copying username-->
+  <string name="ManageProfileFragment__username_copied">యూజర్‌నేమ్ కాపీ చేయబడింది</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">సాధారణమైన సమూహాలు లేవు</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1601,6 +1617,8 @@
   <string name="UnverifiedSendDialog_send_message">సందేశం పంపాల?</string>
   <string name="UnverifiedSendDialog_send">పంపుము</string>
   <!--UsernameEditFragment-->
+  <!--Instructional text at the top of the username edit screen-->
+  <string name="UsernameEditFragment__choose_your_username">మీ యూజర్‌నేమ్ ఎంచుకోండి</string>
   <string name="UsernameEditFragment_username">వినియోగదారుడు </string>
   <string name="UsernameEditFragment_delete">తొలగించండి</string>
   <string name="UsernameEditFragment_successfully_set_username">వినియోగదారు పేరును విజయవంతంగా సెట్ చేయండి.</string>
@@ -1612,11 +1630,18 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">వినియోగదారు పేర్లు సంఖ్యతో ప్రారంభం కావు.</string>
   <string name="UsernameEditFragment_username_is_invalid">మీ యూసర్ నేమ్ సరైనది కాదు.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">వినియోగదారు పేర్లు %1$dమరియు %2$dఅక్షరాల మధ్య ఉండాలి.</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Signal లోని వినియోగదారు పేర్లు ఐచ్ఛికం. మీరు వినియోగదారు పేరును సృష్టించాలని ఎంచుకుంటే ఇతర Signal వినియోగదారులు ఈ వినియోగదారు పేరు ద్వారా మిమ్మల్ని కనుగొని, మీ ఫోన్ నంబర్ తెలియకుండానే మిమ్మల్ని సంప్రదించగలరు.</string> -->
+  <!--Explanation about what usernames provide-->
+  <string name="UsernameEditFragment__usernames_let_others_message">యూజర్‌నేమ్‌లు మీ ఫోన్ నంబర్ అవసరం లేకుండానే ఇతరులు మీకు సందేశం పంపడానికి అనుమతిస్తాయి. మీ చిరునామాను గోప్యంగా ఉంచడంలో సహాయం చేయడానికి అవి పలు అంకెలతో జతచేయబడతాయి.</string>
+  <!--Dialog title for explanation about numbers at the end of the username-->
+  <string name="UsernameEditFragment__what_is_this_number">ఈ నంబర్ ఏమిటి?</string>
+  <string name="UsernameEditFragment__these_digits_help_keep">ఈ అంకెలు మీ యూజర్‌నేమ్‌ను గోప్యంగా ఉంచడానికి సహాయపడతాయి, కాబట్టి మీరు అవాంఛిత సందేశాలను నివారించవచ్చు. మీరు చాట్ చేయాలని ఇష్టపడే వ్యక్తులు మరియు గ్రూపులతో మాత్రమే మీ యూజర్‌నేమ్‌ను పంచుకోండి. మీరు యూజర్‌నేమ్‌లను మార్చితే, మీరు కొత్త అంకెల జతను పొందుతారు.</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d పరిచయం Signal‌లో ఉంది!</item>
     <item quantity="other">%d పరిచయాలు Signal‌లో ఉన్నాయి!</item>
   </plurals>
+  <!--UsernameShareBottomSheet-->
+  <!--Explanation of what the sheet enables the user to do-->
+  <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">యూజర్‌నేమ్ లింక్‌ను కాపీ చేయండి లేదా పంచుకోండి</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">మీ పరిచయం Signal యొక్క ఒక పాత వెర్షన్ను పై నడుస్థుంది. మీ భద్రత సంఖ్య ధ్రువీకరించే ముందుగా అప్డేట్ కోరండి.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">మీ పరిచయం అననుకూల QR కోడ్ ఫార్మాట్ Signal యొక్క కొత్త సంస్కరణను అమలు చేస్తోంది. దయచేసి పోల్చడానికి అప్డేట్ చెయండీ.</string>
@@ -2202,6 +2227,8 @@
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__one_time_donation">ఒక్కసారి విరాళం</string>
   <string name="preferences__privacy">గోప్యత</string>
+  <!--Preference label for stories-->
+  <string name="preferences__stories">కథలు</string>
   <string name="preferences__mms_user_agent">ఎమ్మెమ్మెస్  వినియోగ ప్రతినిధి</string>
   <string name="preferences__advanced_mms_access_point_names"> కరదీపిక తో ఎమ్మెమ్మెస్ సర్దుబాటు చేయి</string>
   <string name="preferences__mmsc_url">ఎమ్మెమ్మెస్సి యు.అర్.ల్ </string>
@@ -3050,6 +3077,8 @@
   <string name="ShareActivity__send">పంపు</string>
   <string name="ShareActivity__comma_s">, %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">బహుళ మాటామంతీ‌లకు భాగస్వామ్యం చేయడం Signalసందేశాలకు మాత్రమే మద్దతిస్తుంది</string>
+  <!--Toast when the incoming intent is invalid-->
+  <string name="ShareActivity__could_not_get_share_data_from_intent">ఇంటెంట్ నుంచి డేటాను పంచుకో పొందలేకపోయింది.</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">కొంతమంది వినియోగదారులకు పంపడంలో విఫలమైంది</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">మీరు %1$d చాట్‌లతో మాత్రమే భాగస్వామ్యం చేయవచ్చు</string>
@@ -3276,6 +3305,8 @@
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signal సందేశాలు మరియు కాల్స్, ఎల్లప్పుడూ రిలే కాల్స్, మరియు సీల్ చేయబడ్డ సెండర్</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">క్రొత్త మాటామంతిల కోసం అప్రమేయ టైమర్</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">మీరు ప్రారంభించిన అన్ని క్రొత్త మాటామంతిల కోసం అప్రమేయంగా అదృశ్యమయ్యే సందేశ టైమర్‌ను సెట్ చేయండి.</string>
+  <!--Summary for stories preference to launch into story privacy settings-->
+  <string name="PrivacySettingsFragment__manage_your_stories">మీరు కథలను మరియు వాటిని ఎవరు వీక్షించవచ్చు అనేది నిర్వహించండి</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">స్టేటస్ ఐకాన్‌ని చూపించడం</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">సీల్డ్ సెండర్‌ని ఉపయోగించి అవి డెలివరీ చేయబడినప్పుడు సందేశం వివరాల్లో ఐకాన్‌ని చూపించండి.</string>
@@ -3385,6 +3416,8 @@
   <string name="EmojiSearchFragment__no_results_found">ఫలితాలు కనుగొనబడలేదు</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">తెలియని రింగ్‌టోన్</string>
   <!--ConversationSettingsFragment-->
+  <!--Error toasted when no activity can handle the add contact intent-->
+  <string name="ConversationSettingsFragment__contacts_app_not_found">కాంటాక్ట్‌ల యాప్‌ను కనుగొనలేకపోయింది</string>
   <string name="ConversationSettingsFragment__send_message">సందేశం పంపాల</string>
   <string name="ConversationSettingsFragment__start_video_call">వీడియో కాల్ ప్రారంభించాలా</string>
   <string name="ConversationSettingsFragment__start_audio_call">ఆడియో కాల్ ప్రారంభించండి</string>
@@ -3887,10 +3920,12 @@
   <string name="ConversationListTabs__stories">స్టోరీలు</string>
   <!--String for counts above 99 in conversation list tabs-->
   <string name="ConversationListTabs__99p">99+</string>
+  <!--Menu item on stories landing page-->
+  <string name="StoriesLandingFragment__story_privacy">కథ గోప్యత</string>
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">నా స్టోరీలు</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">ఒక స్టోరీని జోడించండి</string> -->
+  <string name="StoriesLandingFragment__tap_to_add_a_story">ఒక కథను జోడించేందుకు తట్టండి</string>
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">ఇప్పుడు చూపించడానికి ఎలాంటి ఇటీవల అప్‌డేట్‌లు లేవు. మీ స్టోరీని జోడించడానికి +ని తట్టండి.</string>
   <!--Context menu option to hide a story-->
@@ -3994,14 +4029,6 @@
   <string name="StoryGroupReplyItem__copy">నకలు</string>
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">తొలగించండి</string>
-  <!--Story settings page title-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">స్టోరీ సెట్టింగ్‌లు</string> -->
-  <!--Story settings private stories heading-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">ప్రైవేట్ స్టోరీలు</string> -->
-  <!--Note at bottom of story settings regarding who can see private stories.-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">ప్రైవేట్ స్టోరీలను వాటికి మీరు జోడించిన వ్యక్తులు మాత్రమే చూడవచ్చు. కేవలం మీరు స్టోరీ పేరును చూడవచ్చు.</string> -->
-  <!--Option label for creating a new private story-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">కొత్త ప్రైవేట్ స్టోరీ</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">నా స్టోరీ</string>
   <!--Section heading for story visibility-->
@@ -4252,6 +4279,11 @@
     <item quantity="one">గ్రూపు స్టోరీ · %1$d వీక్షకుడు</item>
     <item quantity="other">గ్రూపు స్టోరీ · %1$d వీక్షకులు</item>
   </plurals>
+  <!--Label under name for my story-->
+  <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
+    <item quantity="one">%1$s · %2$d వీక్షకుడు</item>
+    <item quantity="other">%1$s · %2$d వీక్షకులు</item>
+  </plurals>
   <!--Label under name for My Story when first sending to my story-->
   <string name="ContactSearchItems__tap_to_choose_your_viewers">మీ వీక్షకులను ఎంచుకోవడానికి తట్టండి</string>
   <!--Label for context menu item to open story settings-->
@@ -4362,5 +4394,31 @@
   <string name="StoryInfoBottomSheetDialogFragment__sent_from">నుండి పంపబడింది</string>
   <!--Story Info context menu label-->
   <string name="StoryInfoBottomSheetDialogFragment__info">సమాచారం</string>
+  <!--StoriesPrivacySettingsFragment-->
+  <!--Explanation about how stories are deleted and managed-->
+  <string name="StoriesPrivacySettingsFragment__stories_automatically_disappear">24 గంటల తరువాత కథలు ఆటోమేటిక్‌గా అదృశ్యమౌతాయి. మీ కథను ఎవరు వీక్షించవచ్చు లేదా నిర్దిష్ట వీక్షకులు లేదా గ్రూప్‌లతో ఎవరు కొత్త కథలను సృష్టించవచ్చు అనేది ఎంచుకోండి.</string>
+  <!--Preference title to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories">కథలను ఆఫ్ చేయండి</string>
+  <!--Preference summary to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__if_you_opt_out">ఒకవేళ మీరు కథలను నిలిపివేస్తే, మీరు ఇక ఏమాత్రం కథలను పంచుకోలేరు లేదా వీక్షించలేరు.</string>
+  <!--Preference title to turn on stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_on_stories">కథలను ఆన్ చేయండి</string>
+  <!--Preference summary to turn on stories-->
+  <string name="StoriesPrivacySettingsFragment__share_and_view">ఇతరుల నుంచి కథలను వీక్షించండి మరియు పంచుకోండి. 24 గంటల తరువాత కథలు ఆటోమేటిక్‌గా అదృశ్యమౌతాయి.</string>
+  <!--Dialog title to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">కథలను ఆఫ్ చేసేదా?</string>
+  <!--Dialog message to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to">మీరు కథలను ఇక ఏమాత్రం వీక్షించలేరు లేదా పంచుకోలేరు. మీరు ఇటీవల పంపిన కథలు ఏవైనా, అవి గడువు ముగిసే వరకు ఇతరులకు ఇంకనూ కనిపిస్తాయి.</string>
+  <!--Page title when launched from stories landing screen-->
+  <string name="StoriesPrivacySettingsFragment__story_privacy">కథ గోప్యత</string>
+  <!--GroupStorySettingsFragment-->
+  <!--Section header for who can view a group story-->
+  <string name="GroupStorySettingsFragment__who_can_view_this_story">ఈ కథను ఎవరు వీక్షించవచ్చు</string>
+  <!--Explanation of who can view a group story-->
+  <string name="GroupStorySettingsFragment__members_of_the_group_s">\"%1$s\" గ్రూప్‌ యొక్క సభ్యులు ఈ కథను వీక్షించవచ్చు మరియు బదులు ఇవ్వవచ్చు. గ్రూప్‌లో ఈ చాట్ కొరకు సభ్యత్వాన్ని మీరు అప్‌డేట్ చేయవచ్చు.</string>
+  <!--Preference label for removing this group story-->
+  <string name="GroupStorySettingsFragment__remove_group_story">గ్రూప్ కథను తొలగించండి</string>
+  <!--Generic title for overflow menus-->
+  <string name="OverflowMenu__overflow_menu">ఓవర్‌ఫ్లో మెనూ</string>
   <!--EOF-->
 </resources>

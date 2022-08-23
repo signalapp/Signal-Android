@@ -411,6 +411,18 @@
   <string name="CreateProfileActivity_set_up_your_profile">設定您的個人資料</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">您的個人資料經端對端加密。您的個人資料（連同您其後所作的變更）將會供您的聯絡人看見，亦會在您開展或接受新的對話，又或加入新的群組時，向別人展示。</string>
   <string name="CreateProfileActivity_set_avatar_description">設定頭像</string>
+  <!--ProfileCreateFragment-->
+  <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
+  <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">只有與你通訊的人可以看到你的個人檔案。</string>
+  <!--Title of clickable row to select phone number privacy settings-->
+  <string name="ProfileCreateFragment__who_can_find_me">誰可以透過電話號碼找到我？</string>
+  <!--WhoCanSeeMyPhoneNumberFragment-->
+  <!--Toolbar title for this screen-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">誰可以透過電話號碼找到我？</string>
+  <!--Description for radio item stating anyone can see your phone number-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has">只要對方在通訊錄內儲存了你的電話號碼，便可在 Signal 的聯絡人中看到你。其他人則可透過搜尋你的電話號碼找到你。</string>
+  <!--Description for radio item stating no one will be able to see your phone number-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__nobody_on_signal">沒有人可以在 Signal 透過你的電話號碼找到你。</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">要從備份還原嗎？</string>
   <string name="ChooseBackupFragment__restore_your_messages_and_media">從本機備份還原您的訊息和媒體。若您現在不還原，之後將無法還原。</string>
@@ -696,6 +708,10 @@
   <string name="ManageProfileFragment_failed_to_set_avatar">設定頭像失敗</string>
   <string name="ManageProfileFragment_badges">徽章</string>
   <string name="ManageProfileFragment__edit_photo">編輯相片</string>
+  <!--Snackbar message after creating username-->
+  <string name="ManageProfileFragment__username_created">已建立用戶名稱</string>
+  <!--Snackbar message after copying username-->
+  <string name="ManageProfileFragment__username_copied">已複製用戶名稱</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">無共同群組</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1523,6 +1539,8 @@
   <string name="UnverifiedSendDialog_send_message">要傳送訊息嗎？</string>
   <string name="UnverifiedSendDialog_send">傳送</string>
   <!--UsernameEditFragment-->
+  <!--Instructional text at the top of the username edit screen-->
+  <string name="UsernameEditFragment__choose_your_username">選擇你的用戶名稱</string>
   <string name="UsernameEditFragment_username">使用者名稱</string>
   <string name="UsernameEditFragment_delete">刪除</string>
   <string name="UsernameEditFragment_successfully_set_username">已成功設定使用者名稱。</string>
@@ -1534,10 +1552,17 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">使用者名稱不得以數字開首。</string>
   <string name="UsernameEditFragment_username_is_invalid">使用者名稱無效。</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">使用者名稱長度必須介乎 %1$d 和 %2$d 個字元。</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Signal 上的使用者名稱為選用。若您選擇建立使用者名稱，其他 Signal 使用者將可使用此使用者名稱找到您並與您聯絡，而不需知道您的電話號碼。</string> -->
+  <!--Explanation about what usernames provide-->
+  <string name="UsernameEditFragment__usernames_let_others_message">用戶名稱讓其他人無需透過你的電話號碼，已可向你傳送訊息。系統會將用戶名稱與一組數字配對，從而為你的地址保密。</string>
+  <!--Dialog title for explanation about numbers at the end of the username-->
+  <string name="UsernameEditFragment__what_is_this_number">這個號碼是什麼？</string>
+  <string name="UsernameEditFragment__these_digits_help_keep">這組數字有助將你的用戶名稱保密，以免你受到無謂的訊息滋擾。請僅向你願意與其通訊的聯絡人和群組分享你的用戶名稱。如要更改用戶名稱，你則會收到一組新的數字。</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="other">%d 個聯絡人現已使用 Signal！</item>
   </plurals>
+  <!--UsernameShareBottomSheet-->
+  <!--Explanation of what the sheet enables the user to do-->
+  <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">複製或分享用戶名稱連結</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">您的聯絡人現正執行舊版本的 Signal。請先著對方更新，然後才驗證您的安全碼。</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">您的聯絡人現正執行較新版本的 Signal，二維碼格式並不相容。請更新以進行比對。</string>
@@ -2111,6 +2136,8 @@
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__one_time_donation">單次捐款</string>
   <string name="preferences__privacy">私隱</string>
+  <!--Preference label for stories-->
+  <string name="preferences__stories">限時動態</string>
   <string name="preferences__mms_user_agent">MMS 使用者代理</string>
   <string name="preferences__advanced_mms_access_point_names">手動 MMS 設定</string>
   <string name="preferences__mmsc_url">MMSC URL</string>
@@ -2948,6 +2975,8 @@
   <string name="ShareActivity__send">傳送</string>
   <string name="ShareActivity__comma_s">、%1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">分享到多個聊天僅限於 Signal 訊息</string>
+  <!--Toast when the incoming intent is invalid-->
+  <string name="ShareActivity__could_not_get_share_data_from_intent">無法取得共享意圖數據。</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">無法傳送給部分使用者</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">您只能分享到最多 %1$d 個聊天</string>
@@ -3173,6 +3202,8 @@
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signal 訊息與通話、一律轉送通話和密封寄件人</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">新聊天的預設計時器</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">為您開展的所有新對話，預設一個限時訊息計時器。</string>
+  <!--Summary for stories preference to launch into story privacy settings-->
+  <string name="PrivacySettingsFragment__manage_your_stories">管理你的限時動態和分享對象</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">顯示狀態圖示</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">當訊息是以密封寄件人送達時，在訊息詳情中標示此圖示。</string>
@@ -3280,6 +3311,8 @@
   <string name="EmojiSearchFragment__no_results_found">查無結果</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">未知的鈴聲</string>
   <!--ConversationSettingsFragment-->
+  <!--Error toasted when no activity can handle the add contact intent-->
+  <string name="ConversationSettingsFragment__contacts_app_not_found">找不到聯絡人應用程式</string>
   <string name="ConversationSettingsFragment__send_message">傳送訊息</string>
   <string name="ConversationSettingsFragment__start_video_call">開始視像通話</string>
   <string name="ConversationSettingsFragment__start_audio_call">開始語音通話</string>
@@ -3777,10 +3810,12 @@
   <string name="ConversationListTabs__stories">限時動態</string>
   <!--String for counts above 99 in conversation list tabs-->
   <string name="ConversationListTabs__99p">99+</string>
+  <!--Menu item on stories landing page-->
+  <string name="StoriesLandingFragment__story_privacy">限時動態私隱</string>
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">我的限時動態</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">新增限時動態</string> -->
+  <string name="StoriesLandingFragment__tap_to_add_a_story">點按以新增限時動態</string>
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">目前沒有可顯示的近況更新。輕觸 + 以新增至您的限時動態。</string>
   <!--Context menu option to hide a story-->
@@ -3881,14 +3916,6 @@
   <string name="StoryGroupReplyItem__copy">複製</string>
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">刪除</string>
-  <!--Story settings page title-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">限時動態設定</string> -->
-  <!--Story settings private stories heading-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">個人限時動態</string> -->
-  <!--Note at bottom of story settings regarding who can see private stories.-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">個人限時動態僅限您新增的人觀看。只有您見到限時動態名稱。</string> -->
-  <!--Option label for creating a new private story-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">新增個人限時動態</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">我的限時動態</string>
   <!--Section heading for story visibility-->
@@ -4133,6 +4160,10 @@
   <plurals name="ContactSearchItems__group_story_d_viewers">
     <item quantity="other">群組限時動態 · %1$d 個瀏覽者</item>
   </plurals>
+  <!--Label under name for my story-->
+  <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
+    <item quantity="other">%1$s · %2$d 位瀏覽者</item>
+  </plurals>
   <!--Label under name for My Story when first sending to my story-->
   <string name="ContactSearchItems__tap_to_choose_your_viewers">點按以選擇你的瀏覽者</string>
   <!--Label for context menu item to open story settings-->
@@ -4239,5 +4270,31 @@
   <string name="StoryInfoBottomSheetDialogFragment__sent_from">已撰寫</string>
   <!--Story Info context menu label-->
   <string name="StoryInfoBottomSheetDialogFragment__info">資訊</string>
+  <!--StoriesPrivacySettingsFragment-->
+  <!--Explanation about how stories are deleted and managed-->
+  <string name="StoriesPrivacySettingsFragment__stories_automatically_disappear">限時動態會在 24 小時後自動消失。你可以選擇限時動態的分享對象，亦可為特定對象或群組建立新的限時動態。</string>
+  <!--Preference title to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories">關閉限時動態</string>
+  <!--Preference summary to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__if_you_opt_out">如果你選擇關閉限時動態，將無法再分享或瀏覽限時動態。</string>
+  <!--Preference title to turn on stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_on_stories">開啟限時動態</string>
+  <!--Preference summary to turn on stories-->
+  <string name="StoriesPrivacySettingsFragment__share_and_view">分享和瀏覽其他人的限時動態。限時動態會在 24 小時後自動消失。</string>
+  <!--Dialog title to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">要關閉限時動態嗎？</string>
+  <!--Dialog message to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to">你將無法再分享或瀏覽限時動態。其他人在限時內仍可看到你最近發佈的限時動態。</string>
+  <!--Page title when launched from stories landing screen-->
+  <string name="StoriesPrivacySettingsFragment__story_privacy">限時動態私隱</string>
+  <!--GroupStorySettingsFragment-->
+  <!--Section header for who can view a group story-->
+  <string name="GroupStorySettingsFragment__who_can_view_this_story">誰可以看到此限時動態</string>
+  <!--Explanation of who can view a group story-->
+  <string name="GroupStorySettingsFragment__members_of_the_group_s">「%1$s」群組的成員均可瀏覽和回覆此限時動態。你可以更新此群組聊天的成員資格。</string>
+  <!--Preference label for removing this group story-->
+  <string name="GroupStorySettingsFragment__remove_group_story">移除群組限時動態</string>
+  <!--Generic title for overflow menus-->
+  <string name="OverflowMenu__overflow_menu">溢位選單</string>
   <!--EOF-->
 </resources>

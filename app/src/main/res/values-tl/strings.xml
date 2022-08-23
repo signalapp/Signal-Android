@@ -432,6 +432,18 @@
   <string name="CreateProfileActivity_set_up_your_profile">I-set up ang iyong profile</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Ang iyong profile ay end-to-end encrypted. Ang profile mo at ang mga changes dito ay magiging visible sa iyong contacts, kapag nag-initiate ka o nag-accept ng bagong conversations, at kapag nag-join ka sa bagong groups.</string>
   <string name="CreateProfileActivity_set_avatar_description">Itakda ang avatar</string>
+  <!--ProfileCreateFragment-->
+  <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
+  <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">Makikita lang ng mga taong pinapadalhan mo ng mensahe ang profiles.</string>
+  <!--Title of clickable row to select phone number privacy settings-->
+  <string name="ProfileCreateFragment__who_can_find_me">Sinong makakahanap sa \'kin gamit ang number ko?</string>
+  <!--WhoCanSeeMyPhoneNumberFragment-->
+  <!--Toolbar title for this screen-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">Sinong makakahanap sa \'kin gamit ang number ko?</string>
+  <!--Description for radio item stating anyone can see your phone number-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has">Makikita ka bilang contact sa Signal ng sinumang taong mayroong number mo sa phonebook nila. Ang iba naman ay mahahanap ka gamit ang number mo sa search.</string>
+  <!--Description for radio item stating no one will be able to see your phone number-->
+  <string name="WhoCanSeeMyPhoneNumberFragment__nobody_on_signal">Walang sinuman sa Signal ang makakahanap sa \'yo gamit ang phone number mo.</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">I-restore mula sa backup?</string>
   <string name="ChooseBackupFragment__restore_your_messages_and_media">I-restore ang iyong mga mensahe at media mula sa isang lokal na backup. Kung hindi ka magre-restore ngayon, hindi ka na makakapag-restore sa hinaharap.</string>
@@ -735,6 +747,10 @@
   <string name="ManageProfileFragment_failed_to_set_avatar">Failed to set avatar</string>
   <string name="ManageProfileFragment_badges">Badges</string>
   <string name="ManageProfileFragment__edit_photo">I-edit ang photo</string>
+  <!--Snackbar message after creating username-->
+  <string name="ManageProfileFragment__username_created">Nagawa na ang username</string>
+  <!--Snackbar message after copying username-->
+  <string name="ManageProfileFragment__username_copied">Nakopya na ang username</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Walang parehong grupo</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -1597,6 +1613,8 @@
   <string name="UnverifiedSendDialog_send_message">Ipadala ang mensahe?</string>
   <string name="UnverifiedSendDialog_send">Ipadala</string>
   <!--UsernameEditFragment-->
+  <!--Instructional text at the top of the username edit screen-->
+  <string name="UsernameEditFragment__choose_your_username">Pumili ng username mo</string>
   <string name="UsernameEditFragment_username">Username</string>
   <string name="UsernameEditFragment_delete">Burahin</string>
   <string name="UsernameEditFragment_successfully_set_username">Matagumpay na naitakda ang username.</string>
@@ -1608,11 +1626,18 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Ang mga username ay hindi puwedeng magsimula sa numero.</string>
   <string name="UsernameEditFragment_username_is_invalid">Ang username ay hindi valid.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Ang mga username ay kailangang nasa pagitan ng %1$d at %2$d ang bilang ng mga character.</string>
-  <!-- Removed by excludeNonTranslatables <string name="UsernameEditFragment_usernames_on_signal_are_optional">Ang usernames sa Signal ay optional. Kung gusto mong gumawa ng username, pwede kang mahanap at ma-contact ng ibang Signal users sa username na ito nang hindi nalalaman ang iyong phone number.</string> -->
+  <!--Explanation about what usernames provide-->
+  <string name="UsernameEditFragment__usernames_let_others_message">Sa pamamagitan ng usernames, pwede kang i-message ng ibang tao nang hindi nalalaman ang phone number mo. Nakakonekta ito sa isang set ng mga number para tulungan kang mapanatiling private ang address mo.</string>
+  <!--Dialog title for explanation about numbers at the end of the username-->
+  <string name="UsernameEditFragment__what_is_this_number">Para saan ang number na ito?</string>
+  <string name="UsernameEditFragment__these_digits_help_keep">Ang mga number na ito\'y nakatutulong para mapanatiling private ang username mo para makaiwas ka sa anumang mensaheng hindi mo gustong matanggap. I-share lang ang iyong username sa mga tao at groups na gusto mong maka-chat. Kung magpapalit ka ng username, magkakaroon ka ng bagong set ng mga number.</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d kontak ay nasa Signal!</item>
     <item quantity="other">%d na mga kontak ay nasa Signal!</item>
   </plurals>
+  <!--UsernameShareBottomSheet-->
+  <!--Explanation of what the sheet enables the user to do-->
+  <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">Kopyahin o i-share ang isang username link</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Gumagamit ng lumang bersyon ng Signal ang iyong kontak. Pakisabi sa kaniyang mag-update bago iberipika ang iyong numerong pangkaligtasan.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Ang iyong kontak ay gumagamit ng mas bagong bersyon ng Signal na may hindi katugma na format ng QR code. Mag-update para tumugma.</string>
@@ -2198,6 +2223,8 @@
   <!--Preference label for making one-time donations to Signal-->
   <string name="preferences__one_time_donation">One-time Donation</string>
   <string name="preferences__privacy">Pagkapribado</string>
+  <!--Preference label for stories-->
+  <string name="preferences__stories">Mga Story</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">Manwal na settings ng MMS</string>
   <string name="preferences__mmsc_url">MMSC URL</string>
@@ -3046,6 +3073,8 @@
   <string name="ShareActivity__send">Ipadala</string>
   <string name="ShareActivity__comma_s">, %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">Ang pag-share sa multiple chats ay supported para sa Signal messages lamang</string>
+  <!--Toast when the incoming intent is invalid-->
+  <string name="ShareActivity__could_not_get_share_data_from_intent">Hindi ma-share ang data.</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Failed to send to some users</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Pwede kang mag-share with up to %1$d chats</string>
@@ -3271,6 +3300,8 @@
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signal messages and calls, always relay calls, and sealed sender</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">Default timer para sa new chats</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Mag-set ng default disappearing message timer para sa lahat ng new chats na sinimulan mo.</string>
+  <!--Summary for stories preference to launch into story privacy settings-->
+  <string name="PrivacySettingsFragment__manage_your_stories">I-manage ang stories mo at kung sinong makakakita nito</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Show status icon</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Magpakita ng icon sa message details when they were delivered gamit ang sealed sender.</string>
@@ -3380,6 +3411,8 @@
   <string name="EmojiSearchFragment__no_results_found">No results found</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">Unknown ringtone</string>
   <!--ConversationSettingsFragment-->
+  <!--Error toasted when no activity can handle the add contact intent-->
+  <string name="ConversationSettingsFragment__contacts_app_not_found">Walang nakitang contacts app</string>
   <string name="ConversationSettingsFragment__send_message">Mag-send ng message</string>
   <string name="ConversationSettingsFragment__start_video_call">Start video call</string>
   <string name="ConversationSettingsFragment__start_audio_call">Start audio call</string>
@@ -3882,10 +3915,12 @@
   <string name="ConversationListTabs__stories">Stories</string>
   <!--String for counts above 99 in conversation list tabs-->
   <string name="ConversationListTabs__99p">99+</string>
+  <!--Menu item on stories landing page-->
+  <string name="StoriesLandingFragment__story_privacy">Pagkapribado ng story</string>
   <!--Title for "My Stories" row item in Stories landing page-->
   <string name="StoriesLandingFragment__my_stories">Stories Ko</string>
   <!--Subtitle for "My Stories" row item when user has not added stories-->
-  <!-- Removed by excludeNonTranslatables <string name="StoriesLandingFragment__add_a_story">Mag-add ng story</string> -->
+  <string name="StoriesLandingFragment__tap_to_add_a_story">I-tap para mag-add ng story</string>
   <!--Displayed when there are no stories to display-->
   <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story">Walang recent updates na maipapakita ngayon. I-tap ang + para mag-add ng iyong story.</string>
   <!--Context menu option to hide a story-->
@@ -3989,14 +4024,6 @@
   <string name="StoryGroupReplyItem__copy">Kopyahin</string>
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Burahin</string>
-  <!--Story settings page title-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__story_settings">Story settings</string> -->
-  <!--Story settings private stories heading-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories">Private stories</string> -->
-  <!--Note at bottom of story settings regarding who can see private stories.-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__private_stories_can_only_be_viewed">Ang mga private story ay makikita lang ng mga taong in-add mo dito. Ikaw lang ang makakakita ng pangalan ng story.</string> -->
-  <!--Option label for creating a new private story-->
-  <!-- Removed by excludeNonTranslatables <string name="StorySettingsFragment__new_private_story">New private story</string> -->
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Story Ko</string>
   <!--Section heading for story visibility-->
@@ -4185,7 +4212,7 @@
   <!--Gift price and duration, formatted as: {price} dot {n} day duration-->
   <plurals name="GiftRowItem_s_dot_d_day_duration">
     <item quantity="one">%1$s · %2$d day duration</item>
-    <item quantity="other">%1$s · %2$d day duration</item>
+    <item quantity="other">%1$s · %2$d araw ang haba</item>
   </plurals>
   <!--Tagline for gift row items-->
   <string name="GiftRowItem__send_a_gift_badge">Magpadala ng gift badge</string>
@@ -4246,6 +4273,11 @@
   <plurals name="ContactSearchItems__group_story_d_viewers">
     <item quantity="one">Group Story · %1$d viewer</item>
     <item quantity="other">Group Story · %1$d viewers</item>
+  </plurals>
+  <!--Label under name for my story-->
+  <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
+    <item quantity="one">%1$s · %2$d viewer</item>
+    <item quantity="other">%1$s · %2$d viewers</item>
   </plurals>
   <!--Label under name for My Story when first sending to my story-->
   <string name="ContactSearchItems__tap_to_choose_your_viewers">I-tap para piliin ang viewers mo</string>
@@ -4357,5 +4389,31 @@
   <string name="StoryInfoBottomSheetDialogFragment__sent_from">Sent from</string>
   <!--Story Info context menu label-->
   <string name="StoryInfoBottomSheetDialogFragment__info">Info</string>
+  <!--StoriesPrivacySettingsFragment-->
+  <!--Explanation about how stories are deleted and managed-->
+  <string name="StoriesPrivacySettingsFragment__stories_automatically_disappear">Automatic na maglalaho ang stories pagkatapos ng 24 oras. Piliin kung sinong makakakita ng iyong story o gumawa ng bagong stories na may partikular na viewers o groups.</string>
+  <!--Preference title to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories">I-off ang stories</string>
+  <!--Preference summary to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__if_you_opt_out">Kung mag-opt out ka sa stories, hindi ka na makakapag-share o makakakita ng stories.</string>
+  <!--Preference title to turn on stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_on_stories">I-on ang stories</string>
+  <!--Preference summary to turn on stories-->
+  <string name="StoriesPrivacySettingsFragment__share_and_view">Mag-share at tingnan ang stories ng iba. Ang stories ay automatic na maglalaho pagkatapos ng 24 oras.</string>
+  <!--Dialog title to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">Gusto mo bang i-off ang stories?</string>
+  <!--Dialog message to turn off stories-->
+  <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to">Hindi ka na makakapag-share o makakakita ng stories. Makikita pa rin ng iba ang anumang stories na na-send mo kamakailan hanggang sa mag-expire ang mga ito.</string>
+  <!--Page title when launched from stories landing screen-->
+  <string name="StoriesPrivacySettingsFragment__story_privacy">Pagkapribado ng story</string>
+  <!--GroupStorySettingsFragment-->
+  <!--Section header for who can view a group story-->
+  <string name="GroupStorySettingsFragment__who_can_view_this_story">Sinong makakakita ng story na ito</string>
+  <!--Explanation of who can view a group story-->
+  <string name="GroupStorySettingsFragment__members_of_the_group_s">Makikita at masasagot ang story na ito ang members ng group na \"%1$s\". Pwede mong i-update sa group ang membership ng chat na ito.</string>
+  <!--Preference label for removing this group story-->
+  <string name="GroupStorySettingsFragment__remove_group_story">Tanggalin ang group story</string>
+  <!--Generic title for overflow menus-->
+  <string name="OverflowMenu__overflow_menu">Overflow menu</string>
   <!--EOF-->
 </resources>
