@@ -7,6 +7,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Observable
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.groups.SelectionLimits
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -80,6 +82,10 @@ class ContactSearchMediator(
 
   fun getSelectionState(): LiveData<Set<ContactSearchKey>> {
     return viewModel.selectionState
+  }
+
+  fun getErrorEvents(): Observable<ContactSearchError> {
+    return viewModel.errorEventsStream.observeOn(AndroidSchedulers.mainThread())
   }
 
   fun addToVisibleGroupStories(groupStories: Set<ContactSearchKey.RecipientSearchKey.Story>) {

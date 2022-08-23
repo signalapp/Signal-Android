@@ -4190,6 +4190,8 @@
         <item quantity="one">Couldn\'t forward message because it\'s no longer available.</item>
         <item quantity="other">Couldn\'t forward messages because they\'re no longer available.</item>
     </plurals>
+    <!-- Error message shown when attempting to select a group to forward/share but it's announcement only and you are not an admin -->
+    <string name="MultiselectForwardFragment__only_admins_can_send_messages_to_this_group">Only admins can send messages to this group.</string>
     <string name="MultiselectForwardFragment__limit_reached">Limit reached</string>
 
     <!-- Media V2 -->

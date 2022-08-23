@@ -34,6 +34,7 @@ import org.thoughtcrime.securesms.components.ContactFilterView
 import org.thoughtcrime.securesms.components.TooltipPopup
 import org.thoughtcrime.securesms.components.WrapperDialogFragment
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchConfiguration
+import org.thoughtcrime.securesms.contacts.paged.ContactSearchError
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchMediator
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchState
@@ -196,6 +197,19 @@ class MultiselectForwardFragment :
         bottomBar.visible = false
       }
     }
+
+    disposables += contactSearchMediator
+      .getErrorEvents()
+      .subscribe {
+        @Suppress("WHEN_ENUM_CAN_BE_NULL_IN_JAVA")
+        val message: Int = when (it) {
+          ContactSearchError.CONTACT_NOT_SELECTABLE -> R.string.MultiselectForwardFragment__only_admins_can_send_messages_to_this_group
+          ContactSearchError.RECOMMENDED_LIMIT_REACHED -> R.string.ContactSelectionListFragment_recommended_member_limit_reached
+          ContactSearchError.HARD_LIMIT_REACHED -> R.string.MultiselectForwardFragment__limit_reached
+        }
+
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+      }
 
     viewModel.state.observe(viewLifecycleOwner) {
       when (it.stage) {

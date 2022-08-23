@@ -5,8 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
+import io.reactivex.rxjava3.subjects.PublishSubject
 import org.signal.paging.LivePagedData
 import org.signal.paging.PagedData
 import org.signal.paging.PagingConfig
@@ -38,11 +40,13 @@ class ContactSearchViewModel(
   private val pagedData = MutableLiveData<LivePagedData<ContactSearchKey, ContactSearchData>>()
   private val configurationStore = Store(ContactSearchState())
   private val selectionStore = Store<Set<ContactSearchKey>>(emptySet())
+  private val errorEvents = PublishSubject.create<ContactSearchError>()
 
   val controller: LiveData<PagingController<ContactSearchKey>> = Transformations.map(pagedData) { it.controller }
   val data: LiveData<List<ContactSearchData>> = Transformations.switchMap(pagedData) { it.data }
   val configurationState: LiveData<ContactSearchState> = configurationStore.stateLiveData
   val selectionState: LiveData<Set<ContactSearchKey>> = selectionStore.stateLiveData
+  val errorEventsStream: Observable<ContactSearchError> = errorEvents
 
   override fun onCleared() {
     disposables.clear()
@@ -64,7 +68,7 @@ class ContactSearchViewModel(
   fun setKeysSelected(contactSearchKeys: Set<ContactSearchKey>) {
     disposables += contactSearchRepository.filterOutUnselectableContactSearchKeys(contactSearchKeys).subscribe { results ->
       if (results.any { !it.isSelectable }) {
-        // TODO [alex] -- Pop an error.
+        errorEvents.onNext(ContactSearchError.CONTACT_NOT_SELECTABLE)
         return@subscribe
       }
 
@@ -72,9 +76,9 @@ class ContactSearchViewModel(
       val newSelectionSize = newSelectionEntries.size + getSelectedContacts().size
 
       if (selectionLimits.hasRecommendedLimit() && getSelectedContacts().size < selectionLimits.recommendedLimit && newSelectionSize >= selectionLimits.recommendedLimit) {
-        // Pop a warning
+        errorEvents.onNext(ContactSearchError.RECOMMENDED_LIMIT_REACHED)
       } else if (selectionLimits.hasHardLimit() && newSelectionSize > selectionLimits.hardLimit) {
-        // Pop an error
+        errorEvents.onNext(ContactSearchError.HARD_LIMIT_REACHED)
         return@subscribe
       }
 
