@@ -125,8 +125,30 @@ public class GroupActionProcessor extends DeviceAwareActionProcessor {
   }
 
   @Override
-  protected @NonNull WebRtcServiceState handleGroupRequestMembershipProof(@NonNull WebRtcServiceState currentState, int groupCallHash, @NonNull byte[] groupMembershipToken) {
+  protected @NonNull WebRtcServiceState handleGroupRequestMembershipProof(@NonNull WebRtcServiceState currentState, int groupCallHashCode) {
     Log.i(tag, "handleGroupRequestMembershipProof():");
+    Recipient recipient = currentState.getCallInfoState().getCallRecipient();
+    if (!recipient.isPushV2Group()) {
+      Log.i(tag, "Request membership proof for non-group");
+      return currentState;
+    }
+
+    GroupCall currentGroupCall = currentState.getCallInfoState().getGroupCall();
+
+    if (currentGroupCall == null || currentGroupCall.hashCode() != groupCallHashCode) {
+      Log.i(tag, "Skipping group membership proof request, requested group call does not match current group call");
+      return currentState;
+    }
+
+    //noinspection OptionalGetWithoutIsPresent
+    webRtcInteractor.requestGroupMembershipProof(recipient.getGroupId().get().requireV2(), groupCallHashCode);
+
+    return currentState;
+  }
+
+  @Override
+  protected @NonNull WebRtcServiceState handleGroupMembershipProofResponse(@NonNull WebRtcServiceState currentState, int groupCallHash, @NonNull byte[] groupMembershipToken) {
+    Log.i(tag, "handleGroupMembershipProofResponse():");
 
     GroupCall groupCall = currentState.getCallInfoState().getGroupCall();
 

@@ -388,6 +388,21 @@ private void processStateless(@NonNull Function1<WebRtcEphemeralState, WebRtcEph
     });
   }
 
+  void requestGroupMembershipToken(@NonNull GroupId.V2 groupId, int groupCallHashCode) {
+    networkExecutor.execute(() -> {
+      try {
+        GroupExternalCredential credential = GroupManager.getGroupExternalCredential(context, groupId);
+        process((s, p) -> p.handleGroupMembershipProofResponse(s, groupCallHashCode, credential.getTokenBytes().toByteArray()));
+      } catch (IOException e) {
+        Log.w(TAG, "Unable to get group membership proof from service", e);
+        process((s, p) -> p.handleGroupCallEnded(s, groupCallHashCode, GroupCall.GroupCallEndReason.SFU_CLIENT_FAILED_TO_JOIN));
+      } catch (VerificationFailedException e) {
+        Log.w(TAG, "Unable to verify group membership proof", e);
+        process((s, p) -> p.handleGroupCallEnded(s, groupCallHashCode, GroupCall.GroupCallEndReason.DEVICE_EXPLICITLY_DISCONNECTED));
+      }
+    });
+  }
+
   public boolean startCallCardActivityIfPossible() {
     if (Build.VERSION.SDK_INT >= 29 && !ApplicationDependencies.getAppForegroundObserver().isForegrounded()) {
       return false;
@@ -744,31 +759,7 @@ private void processStateless(@NonNull Function1<WebRtcEphemeralState, WebRtcEph
   @Override
   public void requestMembershipProof(@NonNull final GroupCall groupCall) {
     Log.i(TAG, "requestMembershipProof():");
-
-    Recipient recipient = serviceState.getCallInfoState().getCallRecipient();
-    if (!recipient.isPushV2Group()) {
-      Log.i(TAG, "Request membership proof for non-group");
-      return;
-    }
-
-    GroupCall currentGroupCall = serviceState.getCallInfoState().getGroupCall();
-    if (currentGroupCall == null || currentGroupCall.hashCode() != groupCall.hashCode()) {
-      Log.i(TAG, "Skipping group membership proof request, requested group call does not match current group call");
-      return;
-    }
-
-    networkExecutor.execute(() -> {
-      try {
-        GroupExternalCredential credential = GroupManager.getGroupExternalCredential(context, recipient.getGroupId().get().requireV2());
-        process((s, p) -> p.handleGroupRequestMembershipProof(s, groupCall.hashCode(), credential.getTokenBytes().toByteArray()));
-      } catch (IOException e) {
-        Log.w(TAG, "Unable to get group membership proof from service", e);
-        onEnded(groupCall, GroupCall.GroupCallEndReason.SFU_CLIENT_FAILED_TO_JOIN);
-      } catch (VerificationFailedException e) {
-        Log.w(TAG, "Unable to verify group membership proof", e);
-        onEnded(groupCall, GroupCall.GroupCallEndReason.DEVICE_EXPLICITLY_DISCONNECTED);
-      }
-    });
+    process((s, p) -> p.handleGroupRequestMembershipProof(s, groupCall.hashCode()));
   }
 
   @Override

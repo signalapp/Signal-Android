@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 
 import org.signal.ringrtc.CallManager;
 import org.signal.ringrtc.GroupCall;
+import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.ringrtc.CameraEventListener;
@@ -181,5 +182,9 @@ public class WebRtcInteractor {
 
   public boolean addNewOutgoingCall(RecipientId recipientId, long callId, boolean isVideoCall) {
     return AndroidTelecomUtil.addOutgoingCall(recipientId, callId, isVideoCall);
+  }
+
+  public void requestGroupMembershipProof(GroupId.V2 groupId, int groupCallHashCode) {
+    signalCallManager.requestGroupMembershipToken(groupId, groupCallHashCode);
   }
 }
