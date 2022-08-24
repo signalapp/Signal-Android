@@ -106,9 +106,10 @@ public class ApplicationMigrations {
     static final int REFRESH_EXPIRING_CREDENTIAL   = 62;
     static final int EMOJI_SEARCH_INDEX_10         = 63;
     static final int REFRESH_PNI_REGISTRATION_ID   = 64;
+    static final int KBS_MIGRATION_2               = 65;
   }
 
-  public static final int CURRENT_VERSION = 64;
+  public static final int CURRENT_VERSION = 65;
 
   /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -464,6 +465,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.REFRESH_PNI_REGISTRATION_ID) {
       jobs.put(Version.REFRESH_PNI_REGISTRATION_ID, new AttributesMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.KBS_MIGRATION_2) {
+      jobs.put(Version.KBS_MIGRATION_2, new KbsEnclaveMigrationJob());
     }
 
     return jobs;
