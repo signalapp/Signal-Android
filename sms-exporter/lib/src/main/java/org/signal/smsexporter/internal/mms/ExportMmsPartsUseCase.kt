@@ -17,10 +17,14 @@ internal object ExportMmsPartsUseCase {
 
   private val TAG = Log.tag(ExportMmsPartsUseCase::class.java)
 
+  internal fun getContentId(part: ExportableMessage.Mms.Part): String {
+    return "<signal:${part.contentId}>"
+  }
+
   fun execute(context: Context, part: ExportableMessage.Mms.Part, output: ExportMmsMessagesUseCase.Output, checkForExistence: Boolean): Try<Output> {
     try {
       val (message, messageId) = output
-      val contentId = "<signal:${part.contentId}>"
+      val contentId = getContentId(part)
       val mmsPartUri = Telephony.Mms.CONTENT_URI.buildUpon().appendPath(messageId.toString()).appendPath("part").build()
 
       if (checkForExistence) {

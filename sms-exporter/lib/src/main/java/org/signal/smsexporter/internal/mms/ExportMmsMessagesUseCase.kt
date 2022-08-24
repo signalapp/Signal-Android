@@ -17,6 +17,10 @@ internal object ExportMmsMessagesUseCase {
 
   private val TAG = Log.tag(ExportMmsMessagesUseCase::class.java)
 
+  internal fun getTransactionId(mms: ExportableMessage.Mms): String {
+    return "signal:T${mms.id}"
+  }
+
   fun execute(
     context: Context,
     getOrCreateThreadOutput: GetOrCreateMmsThreadIdsUseCase.Output,
@@ -24,7 +28,7 @@ internal object ExportMmsMessagesUseCase {
   ): Try<Output> {
     try {
       val (mms, threadId) = getOrCreateThreadOutput
-      val transactionId = "signal:T${mms.id}"
+      val transactionId = getTransactionId(mms)
 
       if (checkForExistence) {
         Log.d(TAG, "Checking if the message is already in the database.")
@@ -47,7 +51,8 @@ internal object ExportMmsMessagesUseCase {
         Telephony.Mms.MESSAGE_CLASS to "personal",
         Telephony.Mms.PRIORITY to PduHeaders.PRIORITY_NORMAL,
         Telephony.Mms.TRANSACTION_ID to transactionId,
-        Telephony.Mms.RESPONSE_STATUS to PduHeaders.RESPONSE_STATUS_OK
+        Telephony.Mms.RESPONSE_STATUS to PduHeaders.RESPONSE_STATUS_OK,
+        Telephony.Mms.SEEN to 1
       )
 
       val uri = context.contentResolver.insert(Telephony.Mms.CONTENT_URI, mmsContentValues)

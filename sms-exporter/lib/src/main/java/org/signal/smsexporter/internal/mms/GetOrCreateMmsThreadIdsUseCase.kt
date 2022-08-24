@@ -43,7 +43,7 @@ internal object GetOrCreateMmsThreadIdsUseCase {
       error("Expected non-empty recipient count.")
     }
 
-    return HashSet(recipients.map { it.toString() })
+    return HashSet(recipients.map { it })
   }
 
   data class Output(val mms: ExportableMessage.Mms, val threadId: Long)
