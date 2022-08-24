@@ -92,8 +92,9 @@ public class ApplicationMigrations {
     static final int DB_REACTIONS_MIGRATION        = 48;
 //    static final int CHANGE_NUMBER_CAPABILITY_3    = 49;
     static final int KBS_MIGRATION                 = 55;
+    static final int KBS_MIGRATION_2               = 65;
   }
-  public static final int CURRENT_VERSION = 58;
+  public static final int CURRENT_VERSION = 65;
 
   /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
