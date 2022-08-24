@@ -294,6 +294,40 @@ public class GroupDatabase extends Database {
     return new Reader(cursor);
   }
 
+  public Reader queryGroupsByMembership(@NonNull Set<RecipientId> recipientIds, boolean includeInactive, boolean excludeV1, boolean excludeMms) {
+    if (recipientIds.isEmpty()) {
+      return new Reader(null);
+    }
+
+    List<String> recipientLikeClauses = recipientIds.stream()
+                                                    .map(RecipientId::toLong)
+                                                    .map(id -> "(" + MEMBERS + " LIKE " + id + " || ',%' OR " + MEMBERS + " LIKE '%,' || " + id + " || ',%' OR " + MEMBERS + " LIKE '%,' || " + id + ")")
+                                                    .collect(Collectors.toList());
+
+    String   query;
+    String[] queryArgs;
+
+    String membershipQuery = "(" + Util.join(recipientLikeClauses, " OR ") + ")";
+
+    if (includeInactive) {
+      query     = membershipQuery + " AND (" + ACTIVE + " = ? OR " + RECIPIENT_ID + " IN (SELECT " + ThreadDatabase.RECIPIENT_ID + " FROM " + ThreadDatabase.TABLE_NAME + "))";
+      queryArgs = SqlUtil.buildArgs(1);
+    } else {
+      query     = membershipQuery + " AND " + ACTIVE + " = ?";
+      queryArgs = SqlUtil.buildArgs(1);
+    }
+
+    if (excludeV1) {
+      query += " AND " + EXPECTED_V2_ID + " IS NULL";
+    }
+
+    if (excludeMms) {
+      query += " AND " + MMS + " = 0";
+    }
+
+    return new Reader(getReadableDatabase().query(TABLE_NAME, null, query, queryArgs, null, null, null));
+  }
+
   public Reader queryGroupsByRecency(@NonNull GroupQuery groupQuery) {
     SqlUtil.Query query = getGroupQueryWhereStatement(groupQuery.searchQuery, groupQuery.includeInactive, !groupQuery.includeV1, !groupQuery.includeMms);
     String sql = "SELECT * FROM " + TABLE_NAME +

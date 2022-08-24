@@ -300,6 +300,11 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
 
   private @Nullable String getHeaderLetterForDisplayName(@NonNull Cursor cursor) {
     String           name              = CursorUtil.requireString(cursor, ContactRepository.NAME_COLUMN);
+
+    if (name == null) {
+      return null;
+    }
+
     Iterator<String> characterIterator = new CharacterIterable(name).iterator();
 
     if (!TextUtils.isEmpty(name) && characterIterator.hasNext()) {

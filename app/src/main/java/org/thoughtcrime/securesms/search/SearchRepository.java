@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 
 import com.annimon.stream.Stream;
 
+import org.signal.core.util.CursorUtil;
 import org.signal.core.util.concurrent.LatestPrioritizedSerialExecutor;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
@@ -29,7 +30,6 @@ import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.signal.core.util.CursorUtil;
 import org.thoughtcrime.securesms.util.FtsUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.SerialExecutor;
@@ -161,14 +161,22 @@ public class SearchRepository {
 
     Set<RecipientId> recipientIds = new LinkedHashSet<>();
 
+    Set<RecipientId> filteredContacts = new LinkedHashSet<>();
     try (Cursor cursor = SignalDatabase.recipients().queryAllContacts(query)) {
       while (cursor != null && cursor.moveToNext()) {
-        recipientIds.add(RecipientId.from(CursorUtil.requireString(cursor, RecipientDatabase.ID)));
+        filteredContacts.add(RecipientId.from(CursorUtil.requireString(cursor, RecipientDatabase.ID)));
       }
     }
+    recipientIds.addAll(filteredContacts);
 
     GroupDatabase.GroupRecord record;
     try (GroupDatabase.Reader reader = SignalDatabase.groups().queryGroupsByTitle(query, true, false, false)) {
+      while ((record = reader.getNext()) != null) {
+        recipientIds.add(record.getRecipientId());
+      }
+    }
+
+    try (GroupDatabase.Reader reader = SignalDatabase.groups().queryGroupsByMembership(filteredContacts, true, false, false)) {
       while ((record = reader.getNext()) != null) {
         recipientIds.add(record.getRecipientId());
       }

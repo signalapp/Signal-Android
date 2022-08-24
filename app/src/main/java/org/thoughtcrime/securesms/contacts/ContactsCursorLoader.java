@@ -22,18 +22,26 @@ import android.database.MatrixCursor;
 
 import androidx.annotation.NonNull;
 
+import org.signal.core.util.CursorUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.phonenumbers.NumberUtil;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.UsernameUtil;
+import org.whispersystems.signalservice.internal.util.Util;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * CursorLoader that initializes a ContactsDatabase instance
@@ -213,13 +221,36 @@ public class ContactsCursorLoader extends AbstractContactsCursorLoader {
   }
 
   private Cursor getGroupsCursor() {
-    MatrixCursor groupContacts = ContactsCursorRows.createMatrixCursor();
+    MatrixCursor                                groupContacts = ContactsCursorRows.createMatrixCursor();
+    Map<RecipientId, GroupDatabase.GroupRecord> groups        = new LinkedHashMap<>();
+
     try (GroupDatabase.Reader reader = SignalDatabase.groups().queryGroupsByTitle(getFilter(), flagSet(mode, DisplayMode.FLAG_INACTIVE_GROUPS), hideGroupsV1(mode), !smsEnabled(mode))) {
       GroupDatabase.GroupRecord groupRecord;
       while ((groupRecord = reader.getNext()) != null) {
-        groupContacts.addRow(ContactsCursorRows.forGroup(groupRecord));
+        groups.put(groupRecord.getRecipientId(), groupRecord);
       }
     }
+
+    if (getFilter() != null && !Util.isEmpty(getFilter())) {
+      Set<RecipientId> filteredContacts = new HashSet<>();
+      try (Cursor cursor = SignalDatabase.recipients().queryAllContacts(getFilter())) {
+        while (cursor != null && cursor.moveToNext()) {
+          filteredContacts.add(RecipientId.from(CursorUtil.requireString(cursor, RecipientDatabase.ID)));
+        }
+      }
+
+      try (GroupDatabase.Reader reader = SignalDatabase.groups().queryGroupsByMembership(filteredContacts, flagSet(mode, DisplayMode.FLAG_INACTIVE_GROUPS), hideGroupsV1(mode), !smsEnabled(mode))) {
+        GroupDatabase.GroupRecord groupRecord;
+        while ((groupRecord = reader.getNext()) != null) {
+          groups.put(groupRecord.getRecipientId(), groupRecord);
+        }
+      }
+    }
+
+    for (GroupDatabase.GroupRecord groupRecord : groups.values()) {
+      groupContacts.addRow(ContactsCursorRows.forGroup(groupRecord));
+    }
+
     return groupContacts;
   }
 
