@@ -11,7 +11,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 /**
  * Hold all state for notifications for all conversations.
  */
-data class NotificationStateV2(val conversations: List<NotificationConversation>, val muteFilteredMessages: List<FilteredMessage>, val profileFilteredMessages: List<FilteredMessage>) {
+data class NotificationState(val conversations: List<NotificationConversation>, val muteFilteredMessages: List<FilteredMessage>, val profileFilteredMessages: List<FilteredMessage>) {
 
   val threadCount: Int = conversations.size
   val isEmpty: Boolean = conversations.isEmpty()
@@ -22,7 +22,7 @@ data class NotificationStateV2(val conversations: List<NotificationConversation>
     }
   }
 
-  val notificationItems: List<NotificationItemV2> by lazy {
+  val notificationItems: List<NotificationItem> by lazy {
     conversations.map { it.notificationItems }
       .flatten()
       .sorted()
@@ -33,7 +33,7 @@ data class NotificationStateV2(val conversations: List<NotificationConversation>
       .toSet()
   }
 
-  val mostRecentNotification: NotificationItemV2?
+  val mostRecentNotification: NotificationItem?
     get() = notificationItems.lastOrNull()
 
   val mostRecentSender: Recipient?
@@ -88,6 +88,6 @@ data class NotificationStateV2(val conversations: List<NotificationConversation>
   data class FilteredMessage(val id: Long, val isMms: Boolean)
 
   companion object {
-    val EMPTY = NotificationStateV2(emptyList(), emptyList(), emptyList())
+    val EMPTY = NotificationState(emptyList(), emptyList(), emptyList())
   }
 }

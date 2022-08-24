@@ -36,9 +36,9 @@ import java.lang.NullPointerException
 data class NotificationConversation(
   val recipient: Recipient,
   val thread: ConversationId,
-  val notificationItems: List<NotificationItemV2>
+  val notificationItems: List<NotificationItem>
 ) {
-  val mostRecentNotification: NotificationItemV2 = notificationItems.last()
+  val mostRecentNotification: NotificationItem = notificationItems.last()
   val notificationId: Int = NotificationIds.getNotificationIdForThread(thread)
   val sortKey: Long = Long.MAX_VALUE - mostRecentNotification.timestamp
   val messageCount: Int = notificationItems.size

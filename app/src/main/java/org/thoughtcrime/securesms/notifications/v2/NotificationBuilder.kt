@@ -65,7 +65,7 @@ sealed class NotificationBuilder(protected val context: Context) {
   abstract fun setOnlyAlertOnce(onlyAlertOnce: Boolean)
   abstract fun setGroupSummary(isGroupSummary: Boolean)
   abstract fun setSubText(subText: String)
-  abstract fun addMarkAsReadActionActual(state: NotificationStateV2)
+  abstract fun addMarkAsReadActionActual(state: NotificationState)
   abstract fun setPriority(priority: Int)
   abstract fun setAlarms(recipient: Recipient?)
   abstract fun setTicker(ticker: CharSequence?)
@@ -79,7 +79,7 @@ sealed class NotificationBuilder(protected val context: Context) {
   protected abstract fun setWhen(timestamp: Long)
   protected abstract fun addActions(replyMethod: ReplyMethod, conversation: NotificationConversation)
   protected abstract fun addMessagesActual(conversation: NotificationConversation, includeShortcut: Boolean)
-  protected abstract fun addMessagesActual(state: NotificationStateV2)
+  protected abstract fun addMessagesActual(state: NotificationState)
   protected abstract fun setBubbleMetadataActual(conversation: NotificationConversation, bubbleState: BubbleUtil.BubbleState)
   protected abstract fun setLights(@ColorInt color: Int, onTime: Int, offTime: Int)
 
@@ -107,7 +107,7 @@ sealed class NotificationBuilder(protected val context: Context) {
     }
   }
 
-  fun setWhen(notificationItem: NotificationItemV2?) {
+  fun setWhen(notificationItem: NotificationItem?) {
     if (notificationItem != null && notificationItem.timestamp != 0L) {
       setWhen(notificationItem.timestamp)
     }
@@ -126,7 +126,7 @@ sealed class NotificationBuilder(protected val context: Context) {
     }
   }
 
-  fun addMarkAsReadAction(state: NotificationStateV2) {
+  fun addMarkAsReadAction(state: NotificationState) {
     if (privacy.isDisplayMessage && isNotLocked) {
       addMarkAsReadActionActual(state)
     }
@@ -136,7 +136,7 @@ sealed class NotificationBuilder(protected val context: Context) {
     addMessagesActual(conversation, privacy.isDisplayContact)
   }
 
-  fun addMessages(state: NotificationStateV2) {
+  fun addMessages(state: NotificationState) {
     if (privacy.isDisplayNothing) {
       return
     }
@@ -207,7 +207,7 @@ sealed class NotificationBuilder(protected val context: Context) {
         val label: String = context.getString(replyMethod.toLongDescription())
         val replyAction: NotificationCompat.Action = if (Build.VERSION.SDK_INT >= 24) {
           NotificationCompat.Action.Builder(R.drawable.ic_reply_white_36dp, actionName, remoteReply)
-            .addRemoteInput(RemoteInput.Builder(MessageNotifierV2.EXTRA_REMOTE_REPLY).setLabel(label).build())
+            .addRemoteInput(RemoteInput.Builder(DefaultMessageNotifier.EXTRA_REMOTE_REPLY).setLabel(label).build())
             .setSemanticAction(NotificationCompat.Action.SEMANTIC_ACTION_REPLY)
             .setShowsUserInterface(false)
             .build()
@@ -216,7 +216,7 @@ sealed class NotificationBuilder(protected val context: Context) {
         }
 
         val wearableReplyAction = NotificationCompat.Action.Builder(R.drawable.ic_reply, actionName, remoteReply)
-          .addRemoteInput(RemoteInput.Builder(MessageNotifierV2.EXTRA_REMOTE_REPLY).setLabel(label).build())
+          .addRemoteInput(RemoteInput.Builder(DefaultMessageNotifier.EXTRA_REMOTE_REPLY).setLabel(label).build())
           .build()
 
         builder.addAction(replyAction)
@@ -226,7 +226,7 @@ sealed class NotificationBuilder(protected val context: Context) {
       builder.extend(extender)
     }
 
-    override fun addMarkAsReadActionActual(state: NotificationStateV2) {
+    override fun addMarkAsReadActionActual(state: NotificationState) {
       val markAllAsReadAction = NotificationCompat.Action(R.drawable.check, context.getString(R.string.MessageNotifier_mark_all_as_read), state.getMarkAsReadIntent(context))
       builder.addAction(markAllAsReadAction)
       builder.extend(NotificationCompat.WearableExtender().addAction(markAllAsReadAction))
@@ -286,14 +286,14 @@ sealed class NotificationBuilder(protected val context: Context) {
       builder.setStyle(messagingStyle)
     }
 
-    override fun addMessagesActual(state: NotificationStateV2) {
+    override fun addMessagesActual(state: NotificationState) {
       if (Build.VERSION.SDK_INT >= 24) {
         return
       }
 
       val style: NotificationCompat.InboxStyle = NotificationCompat.InboxStyle()
 
-      for (notificationItem: NotificationItemV2 in state.notificationItems) {
+      for (notificationItem: NotificationItem in state.notificationItems) {
         val line: CharSequence? = notificationItem.getInboxLine(context)
         if (line != null) {
           style.addLine(line)

@@ -30,14 +30,14 @@ import org.thoughtcrime.securesms.util.hasSharedContact
 import org.thoughtcrime.securesms.util.hasSticker
 import org.thoughtcrime.securesms.util.isMediaMessage
 
-private val TAG: String = Log.tag(NotificationItemV2::class.java)
+private val TAG: String = Log.tag(NotificationItem::class.java)
 private const val EMOJI_REPLACEMENT_STRING = "__EMOJI__"
 private const val MAX_DISPLAY_LENGTH = 500
 
 /**
  * Base for messaged-based notifications. Represents a single notification.
  */
-sealed class NotificationItemV2(val threadRecipient: Recipient, protected val record: MessageRecord) : Comparable<NotificationItemV2> {
+sealed class NotificationItem(val threadRecipient: Recipient, protected val record: MessageRecord) : Comparable<NotificationItem> {
 
   val id: Long = record.id
   val thread = ConversationId.fromMessageRecord(record)
@@ -104,7 +104,7 @@ sealed class NotificationItemV2(val threadRecipient: Recipient, protected val re
     }
   }
 
-  override fun compareTo(other: NotificationItemV2): Int {
+  override fun compareTo(other: NotificationItem): Int {
     return timestamp.compareTo(other.timestamp)
   }
 
@@ -143,7 +143,7 @@ sealed class NotificationItemV2(val threadRecipient: Recipient, protected val re
     }
   }
 
-  fun hasSameContent(other: NotificationItemV2): Boolean {
+  open fun hasSameContent(other: NotificationItem): Boolean {
     return timestamp == other.timestamp &&
       id == other.id &&
       isMms == other.isMms &&
@@ -162,16 +162,22 @@ sealed class NotificationItemV2(val threadRecipient: Recipient, protected val re
     }
   }
 
-  data class ThumbnailInfo(val uri: Uri? = null, val contentType: String? = null)
+  data class ThumbnailInfo(val uri: Uri? = null, val contentType: String? = null) {
+    companion object {
+      val NONE = ThumbnailInfo()
+    }
+  }
 }
 
 /**
  * Represents a notification associated with a new message.
  */
-class MessageNotification(threadRecipient: Recipient, record: MessageRecord) : NotificationItemV2(threadRecipient, record) {
+class MessageNotification(threadRecipient: Recipient, record: MessageRecord) : NotificationItem(threadRecipient, record) {
   override val timestamp: Long = record.timestamp
   override val individualRecipient: Recipient = if (record.isOutgoing) Recipient.self() else record.individualRecipient.resolve()
   override val isNewNotification: Boolean = notifiedTimestamp == 0L
+
+  private var thumbnailInfo: ThumbnailInfo? = null
 
   override fun getPrimaryTextActual(context: Context): CharSequence {
     return if (KeyCachingService.isLocked(context)) {
@@ -221,12 +227,15 @@ class MessageNotification(threadRecipient: Recipient, record: MessageRecord) : N
   }
 
   override fun getThumbnailInfo(context: Context): ThumbnailInfo {
-    return if (SignalStore.settings().messageNotificationsPrivacy.isDisplayMessage && !KeyCachingService.isLocked(context)) {
-      val thumbnailSlide: Slide? = slideDeck?.thumbnailSlide
-      ThumbnailInfo(thumbnailSlide?.publicUri, thumbnailSlide?.contentType)
-    } else {
-      ThumbnailInfo()
+    if (thumbnailInfo == null) {
+      thumbnailInfo = if (SignalStore.settings().messageNotificationsPrivacy.isDisplayMessage && !KeyCachingService.isLocked(context)) {
+        NotificationThumbnails.get(context, this)
+      } else {
+        ThumbnailInfo()
+      }
     }
+
+    return thumbnailInfo!!
   }
 
   override fun canReply(context: Context): Boolean {
@@ -246,6 +255,10 @@ class MessageNotification(threadRecipient: Recipient, record: MessageRecord) : N
     return true
   }
 
+  override fun hasSameContent(other: NotificationItem): Boolean {
+    return super.hasSameContent(other) && thumbnailInfo == (other as? MessageNotification)?.thumbnailInfo
+  }
+
   override fun toString(): String {
     return "MessageNotification(timestamp=$timestamp, isNewNotification=$isNewNotification)"
   }
@@ -254,7 +267,7 @@ class MessageNotification(threadRecipient: Recipient, record: MessageRecord) : N
 /**
  * Represents a notification associated with a new reaction.
  */
-class ReactionNotification(threadRecipient: Recipient, record: MessageRecord, val reaction: ReactionRecord) : NotificationItemV2(threadRecipient, record) {
+class ReactionNotification(threadRecipient: Recipient, record: MessageRecord, val reaction: ReactionRecord) : NotificationItem(threadRecipient, record) {
   override val timestamp: Long = reaction.dateReceived
   override val individualRecipient: Recipient = Recipient.resolved(reaction.author)
   override val isNewNotification: Boolean = timestamp > notifiedTimestamp

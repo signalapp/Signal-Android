@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 
 import org.signal.core.util.ExceptionUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
-import org.thoughtcrime.securesms.notifications.v2.MessageNotifierV2;
+import org.thoughtcrime.securesms.notifications.v2.DefaultMessageNotifier;
 import org.thoughtcrime.securesms.notifications.v2.ConversationId;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.BubbleUtil;
@@ -23,13 +23,13 @@ import java.util.Optional;
  */
 public class OptimizedMessageNotifier implements MessageNotifier {
 
-  private final LeakyBucketLimiter limiter;
-  private final MessageNotifierV2  messageNotifierV2;
+  private final LeakyBucketLimiter     limiter;
+  private final DefaultMessageNotifier defaultMessageNotifier;
 
   @MainThread
   public OptimizedMessageNotifier(@NonNull Application context) {
-    this.limiter           = new LeakyBucketLimiter(5, 1000, new Handler(SignalExecutors.getAndStartHandlerThread("signal-notifier").getLooper()));
-    this.messageNotifierV2 = new MessageNotifierV2(context);
+    this.limiter                = new LeakyBucketLimiter(5, 1000, new Handler(SignalExecutors.getAndStartHandlerThread("signal-notifier").getLooper()));
+    this.defaultMessageNotifier = new DefaultMessageNotifier(context);
   }
 
   @Override
@@ -119,6 +119,6 @@ public class OptimizedMessageNotifier implements MessageNotifier {
   }
 
   private MessageNotifier getNotifier() {
-    return messageNotifierV2;
+    return defaultMessageNotifier;
   }
 }

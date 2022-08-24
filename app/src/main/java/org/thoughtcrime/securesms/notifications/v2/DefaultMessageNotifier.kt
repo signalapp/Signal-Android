@@ -44,14 +44,14 @@ import kotlin.math.max
 /**
  * MessageNotifier implementation using the new system for creating and showing notifications.
  */
-class MessageNotifierV2(context: Application) : MessageNotifier {
+class DefaultMessageNotifier(context: Application) : MessageNotifier {
   @Volatile private var visibleThread: ConversationId? = null
   @Volatile private var lastDesktopActivityTimestamp: Long = -1
   @Volatile private var lastAudibleNotification: Long = -1
   @Volatile private var lastScheduledReminder: Long = 0
   @Volatile private var previousLockedStatus: Boolean = KeyCachingService.isLocked(context)
   @Volatile private var previousPrivacyPreference: NotificationPrivacyPreference = SignalStore.settings().messageNotificationsPrivacy
-  @Volatile private var previousState: NotificationStateV2 = NotificationStateV2.EMPTY
+  @Volatile private var previousState: NotificationState = NotificationState.EMPTY
 
   private val threadReminders: MutableMap<ConversationId, Reminder> = ConcurrentHashMap()
   private val stickyThreads: MutableMap<ConversationId, StickyThread> = mutableMapOf()
@@ -132,7 +132,7 @@ class MessageNotifierV2(context: Application) : MessageNotifier {
     val notificationProfile: NotificationProfile? = NotificationProfiles.getActiveProfile(SignalDatabase.notificationProfiles.getProfiles())
 
     Log.internal().i(TAG, "sticky thread: $stickyThreads active profile: ${notificationProfile?.id ?: "none" }")
-    var state: NotificationStateV2 = NotificationStateProvider.constructNotificationState(stickyThreads, notificationProfile)
+    var state: NotificationState = NotificationStateProvider.constructNotificationState(stickyThreads, notificationProfile)
     Log.internal().i(TAG, "state: $state")
 
     if (state.muteFilteredMessages.isNotEmpty()) {
@@ -208,13 +208,14 @@ class MessageNotifierV2(context: Application) : MessageNotifier {
     lastAudibleNotification = System.currentTimeMillis()
 
     updateReminderTimestamps(context, alertOverrides, threadsThatAlerted)
+    NotificationThumbnails.removeAllExcept(state.notificationItems)
 
     ServiceUtil.getNotificationManager(context).cancelOrphanedNotifications(context, state, stickyThreads.map { it.value.notificationId }.toSet())
     updateBadge(context, state.messageCount)
 
     val smsIds: MutableList<Long> = mutableListOf()
     val mmsIds: MutableList<Long> = mutableListOf()
-    for (item: NotificationItemV2 in state.notificationItems) {
+    for (item: NotificationItem in state.notificationItems) {
       if (item.isMms) {
         mmsIds.add(item.id)
       } else {
@@ -301,7 +302,7 @@ class MessageNotifierV2(context: Application) : MessageNotifier {
   }
 
   companion object {
-    val TAG: String = Log.tag(MessageNotifierV2::class.java)
+    val TAG: String = Log.tag(DefaultMessageNotifier::class.java)
 
     private val REMINDER_TIMEOUT: Long = TimeUnit.MINUTES.toMillis(2)
     val MIN_AUDIBLE_PERIOD_MILLIS = TimeUnit.SECONDS.toMillis(2)
@@ -339,12 +340,12 @@ private fun NotificationManager.getDisplayedNotificationIds(): Result<Set<Int>> 
   return try {
     Result.success(activeNotifications.filter { it.isMessageNotification() }.map { it.id }.toSet())
   } catch (e: Throwable) {
-    Log.w(MessageNotifierV2.TAG, e)
+    Log.w(DefaultMessageNotifier.TAG, e)
     Result.failure(e)
   }
 }
 
-private fun NotificationManager.cancelOrphanedNotifications(context: Context, state: NotificationStateV2, stickyNotifications: Set<Int>) {
+private fun NotificationManager.cancelOrphanedNotifications(context: Context, state: NotificationState, stickyNotifications: Set<Int>) {
   if (Build.VERSION.SDK_INT < 24) {
     return
   }
@@ -354,13 +355,13 @@ private fun NotificationManager.cancelOrphanedNotifications(context: Context, st
       .map { it.id }
       .filterNot { state.notificationIds.contains(it) }
       .forEach { id ->
-        Log.d(MessageNotifierV2.TAG, "Cancelling orphaned notification: $id")
+        Log.d(DefaultMessageNotifier.TAG, "Cancelling orphaned notification: $id")
         NotificationCancellationHelper.cancel(context, id)
       }
 
     NotificationCancellationHelper.cancelMessageSummaryIfSoleNotification(context)
   } catch (e: Throwable) {
-    Log.w(MessageNotifierV2.TAG, e)
+    Log.w(DefaultMessageNotifier.TAG, e)
   }
 }
 

@@ -37,18 +37,18 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences
  */
 object NotificationFactory {
 
-  val TAG = Log.tag(NotificationFactory::class.java)
+  val TAG: String = Log.tag(NotificationFactory::class.java)
 
   fun notify(
     context: Context,
-    state: NotificationStateV2,
+    state: NotificationState,
     visibleThread: ConversationId?,
     targetThread: ConversationId?,
     defaultBubbleState: BubbleUtil.BubbleState,
     lastAudibleNotification: Long,
     notificationConfigurationChanged: Boolean,
     alertOverrides: Set<ConversationId>,
-    previousState: NotificationStateV2
+    previousState: NotificationState
   ): Set<ConversationId> {
     if (state.isEmpty) {
       Log.d(TAG, "State is empty, bailing")
@@ -85,7 +85,7 @@ object NotificationFactory {
 
   private fun notify19(
     context: Context,
-    state: NotificationStateV2,
+    state: NotificationState,
     visibleThread: ConversationId?,
     targetThread: ConversationId?,
     defaultBubbleState: BubbleUtil.BubbleState,
@@ -127,7 +127,7 @@ object NotificationFactory {
   @TargetApi(24)
   private fun notify24(
     context: Context,
-    state: NotificationStateV2,
+    state: NotificationState,
     visibleThread: ConversationId?,
     targetThread: ConversationId?,
     defaultBubbleState: BubbleUtil.BubbleState,
@@ -135,7 +135,7 @@ object NotificationFactory {
     notificationConfigurationChanged: Boolean,
     alertOverrides: Set<ConversationId>,
     nonVisibleThreadCount: Int,
-    previousState: NotificationStateV2
+    previousState: NotificationState
   ): Set<ConversationId> {
     val threadsThatNewlyAlerted: MutableSet<ConversationId> = mutableSetOf()
 
@@ -186,7 +186,7 @@ object NotificationFactory {
       setSmallIcon(R.drawable.ic_notification)
       setColor(ContextCompat.getColor(context, R.color.core_ultramarine))
       setCategory(NotificationCompat.CATEGORY_MESSAGE)
-      setGroup(MessageNotifierV2.NOTIFICATION_GROUP)
+      setGroup(DefaultMessageNotifier.NOTIFICATION_GROUP)
       setGroupAlertBehavior(NotificationCompat.GROUP_ALERT_CHILDREN)
       setChannelId(conversation.getChannelId(context))
       setContentTitle(conversation.getContentTitle(context))
@@ -224,7 +224,7 @@ object NotificationFactory {
     NotificationManagerCompat.from(context).safelyNotify(context, conversation.recipient, notificationId, builder.build())
   }
 
-  private fun notifySummary(context: Context, state: NotificationStateV2) {
+  private fun notifySummary(context: Context, state: NotificationState) {
     if (state.messageCount == 0) {
       return
     }
@@ -235,7 +235,7 @@ object NotificationFactory {
       setSmallIcon(R.drawable.ic_notification)
       setColor(ContextCompat.getColor(context, R.color.core_ultramarine))
       setCategory(NotificationCompat.CATEGORY_MESSAGE)
-      setGroup(MessageNotifierV2.NOTIFICATION_GROUP)
+      setGroup(DefaultMessageNotifier.NOTIFICATION_GROUP)
       setGroupAlertBehavior(NotificationCompat.GROUP_ALERT_CHILDREN)
       setChannelId(NotificationChannels.getMessagesChannel(context))
       setContentTitle(context.getString(R.string.app_name))
@@ -263,7 +263,7 @@ object NotificationFactory {
   private fun notifyInThread(context: Context, recipient: Recipient, lastAudibleNotification: Long) {
     if (!SignalStore.settings().isMessageNotificationsInChatSoundsEnabled ||
       ServiceUtil.getAudioManager(context).ringerMode != AudioManager.RINGER_MODE_NORMAL ||
-      (System.currentTimeMillis() - lastAudibleNotification) < MessageNotifierV2.MIN_AUDIBLE_PERIOD_MILLIS
+      (System.currentTimeMillis() - lastAudibleNotification) < DefaultMessageNotifier.MIN_AUDIBLE_PERIOD_MILLIS
     ) {
       return
     }
@@ -378,7 +378,7 @@ object NotificationFactory {
       setSmallIcon(R.drawable.ic_notification)
       setColor(ContextCompat.getColor(context, R.color.core_ultramarine))
       setCategory(NotificationCompat.CATEGORY_MESSAGE)
-      setGroup(MessageNotifierV2.NOTIFICATION_GROUP)
+      setGroup(DefaultMessageNotifier.NOTIFICATION_GROUP)
       setChannelId(conversation.getChannelId(context))
       setContentTitle(conversation.getContentTitle(context))
       setLargeIcon(conversation.getContactLargeIcon(context).toLargeBitmap(context))

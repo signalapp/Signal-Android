@@ -14,7 +14,7 @@ import com.annimon.stream.Stream;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.notifications.v2.MessageNotifierV2;
+import org.thoughtcrime.securesms.notifications.v2.DefaultMessageNotifier;
 import org.thoughtcrime.securesms.notifications.v2.ConversationId;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.BubbleUtil;
@@ -47,7 +47,7 @@ public final class NotificationCancellationHelper {
 
   /**
    * Cancels all Message-Based notifications. Specifically, this is any notification that is not the
-   * summary notification assigned to the {@link MessageNotifierV2#NOTIFICATION_GROUP} group.
+   * summary notification assigned to the {@link DefaultMessageNotifier#NOTIFICATION_GROUP} group.
    *
    * We utilize our wrapped cancellation methods and a counter to make sure that we do not lose
    * bubble notifications that do not have unread messages in them.
@@ -113,7 +113,7 @@ public final class NotificationCancellationHelper {
   @RequiresApi(23)
   private static boolean isSingleThreadNotification(@NonNull StatusBarNotification statusBarNotification) {
     return statusBarNotification.getId() != NotificationIds.MESSAGE_SUMMARY &&
-           Objects.equals(statusBarNotification.getNotification().getGroup(), MessageNotifierV2.NOTIFICATION_GROUP);
+           Objects.equals(statusBarNotification.getNotification().getGroup(), DefaultMessageNotifier.NOTIFICATION_GROUP);
   }
 
   /**
