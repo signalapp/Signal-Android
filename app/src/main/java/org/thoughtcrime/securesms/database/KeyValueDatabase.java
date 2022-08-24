@@ -54,7 +54,6 @@ public class KeyValueDatabase extends SQLiteOpenHelper implements SignalDatabase
       synchronized (KeyValueDatabase.class) {
         if (instance == null) {
           SqlCipherLibraryLoader.load();
-          SignalDatabase.triggerDatabaseAccess(); // Ensures that our main database is up-to-date before this one is accessed
           instance = new KeyValueDatabase(context, DatabaseSecretProvider.getOrCreateDatabaseSecret(context));
           instance.setWriteAheadLoggingEnabled(true);
         }
