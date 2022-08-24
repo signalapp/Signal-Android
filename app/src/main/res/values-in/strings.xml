@@ -413,7 +413,7 @@
   <string name="CreateProfileActivity_set_avatar_description">Pilih avatar</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
-  <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">Profil hanya terlihat oleh orang yang kamu kirimi pesan.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">Profil hanya terlihat oleh orang yang kamu kirimi pesan.</string> -->
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">Siapa yang bisa menemukan saya dengan nomor telepon?</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -3589,11 +3589,11 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Galat jaringan. Periksa koneksi Anda dan coba lagi.</string>
   <string name="NetworkFailure__retry">Coba lagi</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
-  <string name="DonationsErrors__recipient_verification_failed">Verifikasi penerima gagal.</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__recipient_verification_failed">Verifikasi penerima gagal.</string> -->
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
   <string name="DonationsErrors__target_does_not_support_gifting">Target tidak mendukung pemberian hadiah</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
-  <string name="DonationsErrors__could_not_verify_recipient">Tidak dapat memverifikasi penerima.</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__could_not_verify_recipient">Tidak dapat memverifikasi penerima.</string> -->
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
   <string name="DonationsErrors__please_check_your_network_connection">Mohon untuk mengecek koneksi internet Anda dan coba lagi</string>
   <!--Gift message view title-->

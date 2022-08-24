@@ -476,7 +476,7 @@
   <string name="CreateProfileActivity_set_avatar_description">Установить аватар</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
-  <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">Профили видны только тем людям, которым вы отправляете сообщения.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">Профили видны только тем людям, которым вы отправляете сообщения.</string> -->
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">Кто может найти меня по номеру?</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -3891,11 +3891,11 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Ошибка сети. Проверьте ваше подключение к интернету и попробуйте ещё раз.</string>
   <string name="NetworkFailure__retry">Повторить попытку</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
-  <string name="DonationsErrors__recipient_verification_failed">Не удалось проверить получателя.</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__recipient_verification_failed">Не удалось проверить получателя.</string> -->
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
   <string name="DonationsErrors__target_does_not_support_gifting">Получатель не поддерживает получение подарков.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
-  <string name="DonationsErrors__could_not_verify_recipient">Не удалось проверить получателя.</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__could_not_verify_recipient">Не удалось проверить получателя.</string> -->
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
   <string name="DonationsErrors__please_check_your_network_connection">Пожалуйста, проверьте ваше подключение к интернету и попробуйте ещё раз.</string>
   <!--Gift message view title-->

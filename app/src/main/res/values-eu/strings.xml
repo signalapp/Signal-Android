@@ -434,7 +434,7 @@
   <string name="CreateProfileActivity_set_avatar_description">Ezarri abatarra</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
-  <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">Zure mezuak jasotzen dituztenek bakarrik ikus ditzakete profilak.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">Zure mezuak jasotzen dituztenek bakarrik ikus ditzakete profilak.</string> -->
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">Nork topa nazake nire telefono-zenbakia bilatuta?</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -3693,11 +3693,11 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Sareko errorea. Egiaztatu konexioa eta saiatu berriro.</string>
   <string name="NetworkFailure__retry">Berriro saiatu</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
-  <string name="DonationsErrors__recipient_verification_failed">Hartzailea egiaztatzeak huts egin du.</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__recipient_verification_failed">Hartzailea egiaztatzeak huts egin du.</string> -->
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
   <string name="DonationsErrors__target_does_not_support_gifting">Jasotzaileak ez du oparirik onartzen.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
-  <string name="DonationsErrors__could_not_verify_recipient">Ezin izan da hartzailea egiaztatu.</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__could_not_verify_recipient">Ezin izan da hartzailea egiaztatu.</string> -->
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
   <string name="DonationsErrors__please_check_your_network_connection">Mesedez, egiaztatu sareko konexioa eta saiatu berriro.</string>
   <!--Gift message view title-->

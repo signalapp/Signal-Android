@@ -3648,11 +3648,11 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Netwurkflater. Kontrolearje dat dyn apparaat mei it ynternet ferbûn is en probearje it opnij.</string>
   <string name="NetworkFailure__retry">Opnij probearje</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
-  <string name="DonationsErrors__recipient_verification_failed">Ferifikaasje ûntfanger is mislearre</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__recipient_verification_failed">Ferifikaasje ûntfanger is mislearre</string> -->
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
   <string name="DonationsErrors__target_does_not_support_gifting">De bedoelde persoan stipet it ûntfangen fan kado-badges net.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
-  <string name="DonationsErrors__could_not_verify_recipient">Kin de ûntfanger net ferifiearje.</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__could_not_verify_recipient">Kin de ûntfanger net ferifiearje.</string> -->
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
   <string name="DonationsErrors__please_check_your_network_connection">Kontrolearje dyn netwurkferbining en probearje opnij.</string>
   <!--Gift message view title-->

@@ -434,7 +434,7 @@
   <string name="CreateProfileActivity_set_avatar_description">Sett avatar</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
-  <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">Profilen din er bare synlig for de du sender meldinger til.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">Profilen din er bare synlig for de du sender meldinger til.</string> -->
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">Hvem kan søke meg opp med telefonnummeret mitt?</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -3688,11 +3688,11 @@ Dobbeltsjekk at det nye nummeret ditt kan motta både SMS og anrop før du forts
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Nettverksfeil. Sjekk internettilkoblingen din og prøv igjen.</string>
   <string name="NetworkFailure__retry">Prøv på nytt</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
-  <string name="DonationsErrors__recipient_verification_failed">Mottakeren kunne ikke bekreftes.</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__recipient_verification_failed">Mottakeren kunne ikke bekreftes.</string> -->
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
   <string name="DonationsErrors__target_does_not_support_gifting">Mottakeren støtter ikke gavegiving.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
-  <string name="DonationsErrors__could_not_verify_recipient">Kunne ikke bekrefte mottakeren.</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__could_not_verify_recipient">Kunne ikke bekrefte mottakeren.</string> -->
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
   <string name="DonationsErrors__please_check_your_network_connection">Sjekk internettilkoblingen og prøv igjen.</string>
   <!--Gift message view title-->

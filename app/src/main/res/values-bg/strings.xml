@@ -434,7 +434,7 @@
   <string name="CreateProfileActivity_set_avatar_description">Слагане на аватар</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
-  <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">Профилите са видими само от хора, на които пишете.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">Профилите са видими само от хора, на които пишете.</string> -->
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">Кой може да ме намери с телефонен номер?</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -3689,11 +3689,11 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Грешка в мрежата. Проверете връзката си и опитайте отново.</string>
   <string name="NetworkFailure__retry">Опитай отново</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
-  <string name="DonationsErrors__recipient_verification_failed">Неуспешна проверка на получателя.</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__recipient_verification_failed">Неуспешна проверка на получателя.</string> -->
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
   <string name="DonationsErrors__target_does_not_support_gifting">Целта не поддържа подаръци.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
-  <string name="DonationsErrors__could_not_verify_recipient">Неуспешна проверка на получателя.</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__could_not_verify_recipient">Неуспешна проверка на получателя.</string> -->
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
   <string name="DonationsErrors__please_check_your_network_connection">Моля, проверете мрежовата си връзка и опитайте отново.</string>
   <!--Gift message view title-->

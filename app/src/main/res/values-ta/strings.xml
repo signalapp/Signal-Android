@@ -434,7 +434,7 @@
   <string name="CreateProfileActivity_set_avatar_description">சின்னம் அமைக்கவும்</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
-  <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">நீங்கள் செய்தி அனுப்புபவர்களுக்கு மட்டுமே ப்ரொஃபைல்கள் தெரியும்.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">நீங்கள் செய்தி அனுப்புபவர்களுக்கு மட்டுமே ப்ரொஃபைல்கள் தெரியும்.</string> -->
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">எண் மூலம் என்னை யார் கண்டுபிடிக்க முடியும்?</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -3685,11 +3685,11 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">நெட்வொர்க் பிழை. உங்கள் இணைப்பைச் சரிபார்த்து மீண்டும் முயலவும்.</string>
   <string name="NetworkFailure__retry">மீண்டும் முயற்சி செய்</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
-  <string name="DonationsErrors__recipient_verification_failed">பெறுநர் சரிபார்ப்பு தோல்வியுற்றது.</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__recipient_verification_failed">பெறுநர் சரிபார்ப்பு தோல்வியுற்றது.</string> -->
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
   <string name="DonationsErrors__target_does_not_support_gifting">பரிசு வழங்குவதை இலக்கு ஆதரிக்காது.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
-  <string name="DonationsErrors__could_not_verify_recipient">பெறுநரைச் சரிபார்க்க முடியவில்லை.</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__could_not_verify_recipient">பெறுநரைச் சரிபார்க்க முடியவில்லை.</string> -->
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
   <string name="DonationsErrors__please_check_your_network_connection">உங்கள் நெட்வொர்க் இணைப்பைச் சரிபார்த்து, மீண்டும் முயற்சிக்கவும்.</string>
   <!--Gift message view title-->

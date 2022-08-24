@@ -413,7 +413,7 @@
   <string name="CreateProfileActivity_set_avatar_description">아바타 설정</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
-  <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">메시지를 보내는 사용자에게만 프로필이 표시됩니다.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">메시지를 보내는 사용자에게만 프로필이 표시됩니다.</string> -->
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">전화번호로 나를 찾을 수 있는 사람은 누구인가요?</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -3589,11 +3589,11 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">네트워크 오류. 연결을 확인하고 다시 시도하세요.</string>
   <string name="NetworkFailure__retry">재시도</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
-  <string name="DonationsErrors__recipient_verification_failed">받는 사람을 확인하지 못했습니다.</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__recipient_verification_failed">받는 사람을 확인하지 못했습니다.</string> -->
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
   <string name="DonationsErrors__target_does_not_support_gifting">상대가 선물 기능을 이용할 수 없는 상태입니다.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
-  <string name="DonationsErrors__could_not_verify_recipient">받는 사람을 확인할 수 없습니다.</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__could_not_verify_recipient">받는 사람을 확인할 수 없습니다.</string> -->
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
   <string name="DonationsErrors__please_check_your_network_connection">네트워크 연결을 확인하고 다시 시도하세요.</string>
   <!--Gift message view title-->

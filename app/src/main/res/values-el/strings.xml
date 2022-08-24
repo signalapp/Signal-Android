@@ -434,7 +434,7 @@
   <string name="CreateProfileActivity_set_avatar_description">Ορισμός εικόνας προφίλ</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
-  <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">Τα προφίλ είναι ορατά μόνο στα άτομα που στέλνεις μηνύματα.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">Τα προφίλ είναι ορατά μόνο στα άτομα που στέλνεις μηνύματα.</string> -->
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">Ποιοί μπορούν να με βρουν με τον αριθμό μου;</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -3687,11 +3687,11 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Σφάλμα δικτύου. Έλεγξε τη σύνδεσή σου και ξαναπροσπάθησε.</string>
   <string name="NetworkFailure__retry">Επανάληψη</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
-  <string name="DonationsErrors__recipient_verification_failed">Αποτυχία επιβεβαίωσης παραλήπτη</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__recipient_verification_failed">Αποτυχία επιβεβαίωσης παραλήπτη</string> -->
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
   <string name="DonationsErrors__target_does_not_support_gifting">Ο στόχος δεν υποστηρίζει τα δώρα.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
-  <string name="DonationsErrors__could_not_verify_recipient">Αδυναμία επιβεβαίωσης παραλήπτη.</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__could_not_verify_recipient">Αδυναμία επιβεβαίωσης παραλήπτη.</string> -->
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
   <string name="DonationsErrors__please_check_your_network_connection">Παρακαλούμε έλεγξε τη σύνδεση στο δίκτυο και προσπάθησε ξανά.</string>
   <!--Gift message view title-->

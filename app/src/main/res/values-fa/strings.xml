@@ -434,7 +434,7 @@
   <string name="CreateProfileActivity_set_avatar_description">تنظیم عکس پروفایل</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
-  <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">پروفایل‌ها فقط برای افرادی که به آن‌ها پیام می‌فرستید قابل مشاهده هستند.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">پروفایل‌ها فقط برای افرادی که به آن‌ها پیام می‌فرستید قابل مشاهده هستند.</string> -->
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">چه کسی می‌تواند من را با شماره‌تلفن پیدا کند؟</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -3690,11 +3690,11 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">خطای شبکه. اتصال خود را بررسی و دوباره امتحان کنید.</string>
   <string name="NetworkFailure__retry">تلاش مجدد</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
-  <string name="DonationsErrors__recipient_verification_failed">تایید اعتبار گیرنده ناموفق بود.</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__recipient_verification_failed">تایید اعتبار گیرنده ناموفق بود.</string> -->
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
   <string name="DonationsErrors__target_does_not_support_gifting">هدف از هدیه دادن پشتیبانی نمی‌کند.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
-  <string name="DonationsErrors__could_not_verify_recipient">اعتبار گیرنده تایید نشد.</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__could_not_verify_recipient">اعتبار گیرنده تایید نشد.</string> -->
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
   <string name="DonationsErrors__please_check_your_network_connection">لطفاً اتصال شبکه خود را بررسی کنید و دوباره امتحان کنید.</string>
   <!--Gift message view title-->

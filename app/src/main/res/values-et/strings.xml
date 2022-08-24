@@ -434,7 +434,7 @@
   <string name="CreateProfileActivity_set_avatar_description">Määra profiilipildiks</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
-  <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">Profiile näevad ainult need, kellele sõnumeid oled saatnud.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">Profiile näevad ainult need, kellele sõnumeid oled saatnud.</string> -->
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">Kes mind numbri järgi leida saavad?</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -3692,11 +3692,11 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Võrgu viga. Kontrolli oma ühendust ja proovi uuesti.</string>
   <string name="NetworkFailure__retry">Proovi uuesti</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
-  <string name="DonationsErrors__recipient_verification_failed">Saaja kontrollimine nurjus.</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__recipient_verification_failed">Saaja kontrollimine nurjus.</string> -->
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
   <string name="DonationsErrors__target_does_not_support_gifting">Saaja ei võta kingitusi vastu.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
-  <string name="DonationsErrors__could_not_verify_recipient">Saajat ei olnud võimalik kontrollida.</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__could_not_verify_recipient">Saajat ei olnud võimalik kontrollida.</string> -->
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
   <string name="DonationsErrors__please_check_your_network_connection">Palun kontrolli oma võrguühendust ja proovi uuesti.</string>
   <!--Gift message view title-->

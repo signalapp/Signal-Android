@@ -434,7 +434,7 @@
   <string name="CreateProfileActivity_set_avatar_description">അവതാർ സജ്ജമാക്കുക</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
-  <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">നിങ്ങൾ സന്ദേശമയയ്ക്കുന്ന ആളുകൾക്ക് മാത്രമാണ് പ്രൊഫൈലുകൾ ദൃശ്യമാകുന്നത്.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">നിങ്ങൾ സന്ദേശമയയ്ക്കുന്ന ആളുകൾക്ക് മാത്രമാണ് പ്രൊഫൈലുകൾ ദൃശ്യമാകുന്നത്.</string> -->
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">നമ്പർ ഉപയോഗിച്ച് എന്നെ കണ്ടെത്താൻ കഴിയുന്നത് ആർക്കൊക്കെ?</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -3685,11 +3685,11 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">നെറ്റ്‌വർക്ക് പിശക്. നിങ്ങളുടെ കണക്ഷൻ പരിശോധിച്ച് വീണ്ടും ശ്രമിക്കുക.</string>
   <string name="NetworkFailure__retry">വീണ്ടും ശ്രമിക്കൂ</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
-  <string name="DonationsErrors__recipient_verification_failed">സ്വീകർത്താവിന്‍റെ പരിശോധിച്ചുറപ്പിക്കൽ പരാജയപ്പെട്ടു.</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__recipient_verification_failed">സ്വീകർത്താവിന്‍റെ പരിശോധിച്ചുറപ്പിക്കൽ പരാജയപ്പെട്ടു.</string> -->
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
   <string name="DonationsErrors__target_does_not_support_gifting">ടാർഗറ്റ് ഗിഫ്റ്റിംഗിനെ പിന്തുണയ്ക്കുന്നില്ല.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
-  <string name="DonationsErrors__could_not_verify_recipient">സ്വീകർത്താവിനെ പരിശോധിച്ചുറപ്പിക്കാനായില്ല.</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__could_not_verify_recipient">സ്വീകർത്താവിനെ പരിശോധിച്ചുറപ്പിക്കാനായില്ല.</string> -->
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
   <string name="DonationsErrors__please_check_your_network_connection">നിങ്ങളുടെ നെറ്റ്‌വർക്ക് കണക്ഷൻ പരിശോധിച്ചശേഷം വീണ്ടും ശ്രമിക്കുക.</string>
   <!--Gift message view title-->

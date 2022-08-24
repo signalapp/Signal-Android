@@ -434,7 +434,7 @@
   <string name="CreateProfileActivity_set_avatar_description">Stel foto op</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
-  <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">Profiele is slegs sigbaar vir mense aan wie jy boodskappe stuur</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">Profiele is slegs sigbaar vir mense aan wie jy boodskappe stuur</string> -->
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">Wie kan my volgens my nommer vind?</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -3690,11 +3690,11 @@ ontvang!</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Netwerkfout. Gaan jou verbinding na en probeer weer.</string>
   <string name="NetworkFailure__retry">Probeer weer</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
-  <string name="DonationsErrors__recipient_verification_failed">Verifiëring van ontvanger het misluk.</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__recipient_verification_failed">Verifiëring van ontvanger het misluk.</string> -->
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
   <string name="DonationsErrors__target_does_not_support_gifting">Teiken ondersteun nie gee van geskenke nie.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
-  <string name="DonationsErrors__could_not_verify_recipient">Kon nie ontvanger verifieer nie.</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__could_not_verify_recipient">Kon nie ontvanger verifieer nie.</string> -->
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
   <string name="DonationsErrors__please_check_your_network_connection">Gaan asb. jou netwerkverbinding na en probeer weer.</string>
   <!--Gift message view title-->

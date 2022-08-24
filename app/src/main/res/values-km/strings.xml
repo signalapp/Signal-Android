@@ -413,7 +413,7 @@
   <string name="CreateProfileActivity_set_avatar_description">កំណត់រូបតំណាង</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
-  <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">មានតែមនុស្សដែលអ្នកផ្ញើសារប៉ុណ្ណោះទើបអាចមើលឃើញប្រូហ្វាល់នានាបាន។</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">មានតែមនុស្សដែលអ្នកផ្ញើសារប៉ុណ្ណោះទើបអាចមើលឃើញប្រូហ្វាល់នានាបាន។</string> -->
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">តើនរណាខ្លះអាចរកខ្ញុំតាមលេខទូរសព្ទបាន?</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -3583,11 +3583,11 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">បណ្ដាញមានបញ្ហា។ សូមពិនិត្យការភ្ជាប់របស់អ្នក ហើយសាកល្បងម្ដងទៀត</string>
   <string name="NetworkFailure__retry">ព្យាយាមម្តងទៀត</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
-  <string name="DonationsErrors__recipient_verification_failed">មិនអាចផ្ទៀងផ្ទាត់អ្នកទទួលបានទេ។</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__recipient_verification_failed">មិនអាចផ្ទៀងផ្ទាត់អ្នកទទួលបានទេ។</string> -->
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
   <string name="DonationsErrors__target_does_not_support_gifting">ការផ្តល់កាដូមិនអាចធ្វើបានសម្រាប់គោលដៅ។</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
-  <string name="DonationsErrors__could_not_verify_recipient">មិនអាចផ្ទៀងផ្ទាត់អ្នកទទួលទេ។</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__could_not_verify_recipient">មិនអាចផ្ទៀងផ្ទាត់អ្នកទទួលទេ។</string> -->
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
   <string name="DonationsErrors__please_check_your_network_connection">សូមពិនិត្យមើលការតភ្ជាប់បណ្តាញរបស់អ្នក ហើយព្យាយាមម្តងទៀត។</string>
   <!--Gift message view title-->

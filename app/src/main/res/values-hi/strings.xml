@@ -434,7 +434,7 @@
   <string name="CreateProfileActivity_set_avatar_description">अपने बारे में कुछ लिखें</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
-  <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">प्रोफ़ाइलें केवल उन लोगों को दिखेंगी जिन्हें आप संदेश भेजते हैं।</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">प्रोफ़ाइलें केवल उन लोगों को दिखेंगी जिन्हें आप संदेश भेजते हैं।</string> -->
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">मुझे नंबर द्वारा कौन ढूँढ़ सकता है?   </string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -3685,11 +3685,11 @@ href=\"https://signal.org/redirect/safety-numbers\">ज़्यादा जा
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">नेटवर्क एरर. अपने कनेक्शन को चेक करें और फिर से कोशिश करें.</string>
   <string name="NetworkFailure__retry">दोबारा कोशिश करें</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
-  <string name="DonationsErrors__recipient_verification_failed">प्राप्तकर्ता का सत्यापन नहीं किया जा सका।</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__recipient_verification_failed">प्राप्तकर्ता का सत्यापन नहीं किया जा सका।</string> -->
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
   <string name="DonationsErrors__target_does_not_support_gifting">लक्ष्य द्वारा गिफ़्ट किया जाना सपोर्टेड नहीं है।</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
-  <string name="DonationsErrors__could_not_verify_recipient">प्राप्तकर्ता को सत्यापित नहीं किया जा सका।</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__could_not_verify_recipient">प्राप्तकर्ता को सत्यापित नहीं किया जा सका।</string> -->
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
   <string name="DonationsErrors__please_check_your_network_connection">कृपया अपना नेटवर्क जाँचें और फिर से प्रयास करें।</string>
   <!--Gift message view title-->

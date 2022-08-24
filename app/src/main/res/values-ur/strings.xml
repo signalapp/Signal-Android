@@ -435,7 +435,7 @@
   <string name="CreateProfileActivity_set_avatar_description">اوتار ترتیب دیں</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
-  <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">صرف ان لوگوں کی پروفائل نظر آتی ہیں جنہیں آپ میسج کریں۔</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">صرف ان لوگوں کی پروفائل نظر آتی ہیں جنہیں آپ میسج کریں۔</string> -->
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">کون مجھے نمبر کے ذریعے تلاش کر سکتا ہے؟</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -3683,11 +3683,11 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">نیٹ ورک کا نقص۔ اپنا کنکشن چیک کریں اور دوبارہ کوشش کریں۔</string>
   <string name="NetworkFailure__retry">دوبارہ کوشش کریں</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
-  <string name="DonationsErrors__recipient_verification_failed">وصول کنندہ کی تصدیق ناکام ہو گئی۔</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__recipient_verification_failed">وصول کنندہ کی تصدیق ناکام ہو گئی۔</string> -->
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
   <string name="DonationsErrors__target_does_not_support_gifting">ہدف گفٹنگ کی معاونت نہیں کرتا۔</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
-  <string name="DonationsErrors__could_not_verify_recipient">وصول کنندہ کی تصدیق نہیں کر سکے۔</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__could_not_verify_recipient">وصول کنندہ کی تصدیق نہیں کر سکے۔</string> -->
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
   <string name="DonationsErrors__please_check_your_network_connection">براہ کرم اپنا نیٹ ورک کنکشن چیک کریں اور دوبارہ کوشش کریں۔</string>
   <!--Gift message view title-->

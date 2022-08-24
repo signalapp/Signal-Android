@@ -413,7 +413,7 @@
   <string name="CreateProfileActivity_set_avatar_description">ကိုယ်စားပြုရုပ်ပုံ ကိုသတ်မှတ်ပါ</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
-  <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">ပရိုဖိုင်များကို သင်မက်ဆေ့ချ်ပို့သူများသာ မြင်ရပါမည်။</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">ပရိုဖိုင်များကို သင်မက်ဆေ့ချ်ပို့သူများသာ မြင်ရပါမည်။</string> -->
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">ကျွန်ုပ်ကို မည်သူတို့က ဖုန်းနံပါတ်ဖြင့် ရှာနိုင်သနည်း။</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -3584,11 +3584,11 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">ကွန်ရက် ချို့ယွင်းချက်။ သင့်ချိတ်ဆက်မှုကို စစ်ဆေးပြီး ထပ်ကြိုးစားပါ။</string>
   <string name="NetworkFailure__retry">ထပ်ကြိုးစားပါ</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
-  <string name="DonationsErrors__recipient_verification_failed">လက်ခံသူ အတည်ပြုမှု မအောင်မြင်ပါ။</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__recipient_verification_failed">လက်ခံသူ အတည်ပြုမှု မအောင်မြင်ပါ။</string> -->
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
   <string name="DonationsErrors__target_does_not_support_gifting">ဦးတည်ထားသူက လက်ဆောင်ပေးခြင်းကို မပံ့ပိုးပါ။</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
-  <string name="DonationsErrors__could_not_verify_recipient">လက်ခံသူကို အတည်ပြု၍ မရပါ။</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__could_not_verify_recipient">လက်ခံသူကို အတည်ပြု၍ မရပါ။</string> -->
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
   <string name="DonationsErrors__please_check_your_network_connection">သင့်ကွန်ရက် ချိတ်ဆက်မှုကို စစ်ဆေးပြီး ထပ်ကြိုးစားပါ။</string>
   <!--Gift message view title-->

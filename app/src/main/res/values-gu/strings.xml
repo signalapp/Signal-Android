@@ -434,7 +434,7 @@
   <string name="CreateProfileActivity_set_avatar_description">અવતાર સેટ કરો</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
-  <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">પ્રોફાઇલ ફક્ત એ લોકોને જ દેખાશે જેમને તમે મેસેજ કરો છો.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">પ્રોફાઇલ ફક્ત એ લોકોને જ દેખાશે જેમને તમે મેસેજ કરો છો.</string> -->
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">મને નંબર થી કોણ શોધી શકે?</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -3686,11 +3686,11 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">નેટવર્ક ત્રુટિ. તમારું કનેક્શન તપાસો અને ફરી પ્રયાસ કરો.</string>
   <string name="NetworkFailure__retry">ફરી પ્રયાસ કરો</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
-  <string name="DonationsErrors__recipient_verification_failed">પ્રાપ્તકર્તા ચકાસણી નિષ્ફળ.</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__recipient_verification_failed">પ્રાપ્તકર્તા ચકાસણી નિષ્ફળ.</string> -->
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
   <string name="DonationsErrors__target_does_not_support_gifting">પ્રાપ્તકર્તા ગિફ્ટ પ્રક્રિયાને સપોર્ટ કરતાં નથી.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
-  <string name="DonationsErrors__could_not_verify_recipient">પ્રાપ્તકર્તાને ચકાસી ન શક્યા.</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__could_not_verify_recipient">પ્રાપ્તકર્તાને ચકાસી ન શક્યા.</string> -->
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
   <string name="DonationsErrors__please_check_your_network_connection">કૃપા કરીને તમારું નેટવર્ક કનેક્શન તપાસો અને ફરી પ્રયાસ કરો.</string>
   <!--Gift message view title-->

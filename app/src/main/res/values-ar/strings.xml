@@ -519,7 +519,7 @@
   <string name="CreateProfileActivity_set_avatar_description">تعيين صورة ملفك الشخصي</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
-  <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">الحسابات الشخصية مرئية فقط للأشخاص الذين تُراسلهم</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">الحسابات الشخصية مرئية فقط للأشخاص الذين تُراسلهم</string> -->
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">مَن يُمكنه العثور عليَّ باستخدام رقمي الخاص؟</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -4091,11 +4091,11 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">لقد حدث خطأ في الشبكة. يُرجى التحقق من اتصالك بالانترنت ثم المحاولة مرة أخرى.</string>
   <string name="NetworkFailure__retry">إعادة المُحاولة</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
-  <string name="DonationsErrors__recipient_verification_failed">تعذّر التحقّق من المستلم</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__recipient_verification_failed">تعذّر التحقّق من المستلم</string> -->
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
   <string name="DonationsErrors__target_does_not_support_gifting">لا يدعم المستلم الإهداء.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
-  <string name="DonationsErrors__could_not_verify_recipient">تعذّر التحقّق من المستلم.</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__could_not_verify_recipient">تعذّر التحقّق من المستلم.</string> -->
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
   <string name="DonationsErrors__please_check_your_network_connection">يُرجى التحقّق من اتصالك بالانترنت ثم حاول مرة أُخرى.</string>
   <!--Gift message view title-->

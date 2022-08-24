@@ -413,7 +413,7 @@
   <string name="CreateProfileActivity_set_avatar_description">สร้างอวตาร</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
-  <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">คนที่เห็นโปรไฟล์คือผู้ติดต่อที่คุณส่งข้อความหาเท่านั้น</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">คนที่เห็นโปรไฟล์คือผู้ติดต่อที่คุณส่งข้อความหาเท่านั้น</string> -->
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">ใครบ้างที่สามารถค้นหาฉันด้วยหมายเลขโทรศัพท์ได้</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -3590,11 +3590,11 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">เครือข่ายมีข้อผิดพลาด ตรวจสอบการเชื่อมต่อแล้วลองใหม่อีกครั้ง</string>
   <string name="NetworkFailure__retry">ลองใหม่</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
-  <string name="DonationsErrors__recipient_verification_failed">การตรวจยืนยันผู้รับล้มเหลว</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__recipient_verification_failed">การตรวจยืนยันผู้รับล้มเหลว</string> -->
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
   <string name="DonationsErrors__target_does_not_support_gifting">เป้าหมายไม่รองรับการให้ของขวัญ</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
-  <string name="DonationsErrors__could_not_verify_recipient">ไม่สามารถตรวจยืนยันผู้รับ</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__could_not_verify_recipient">ไม่สามารถตรวจยืนยันผู้รับ</string> -->
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
   <string name="DonationsErrors__please_check_your_network_connection">กรุณาตรวจสอบการเชื่อมต่อเครือข่ายแล้วลองอีกครั้ง</string>
   <!--Gift message view title-->

@@ -476,7 +476,7 @@
   <string name="CreateProfileActivity_set_avatar_description">Ustaw awatar</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
-  <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">Profile widzą tylko te osoby, którym wysyłasz wiadomości.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">Profile widzą tylko te osoby, którym wysyłasz wiadomości.</string> -->
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">Kto może mnie znaleźć po numerze telefonu?</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -3890,11 +3890,11 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Błąd sieci. Sprawdź połączenie z internetem i spróbuj ponownie.</string>
   <string name="NetworkFailure__retry">Ponów</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
-  <string name="DonationsErrors__recipient_verification_failed">Weryfikacja odbiorcy nie powiodła się.</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__recipient_verification_failed">Weryfikacja odbiorcy nie powiodła się.</string> -->
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
   <string name="DonationsErrors__target_does_not_support_gifting">Odbiorca nie obsługuje prezentów.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
-  <string name="DonationsErrors__could_not_verify_recipient">Nie udało się zweryfikować odbiorcy.</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__could_not_verify_recipient">Nie udało się zweryfikować odbiorcy.</string> -->
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
   <string name="DonationsErrors__please_check_your_network_connection">Sprawdź swoje połączenie sieciowe i spróbuj ponownie.</string>
   <!--Gift message view title-->

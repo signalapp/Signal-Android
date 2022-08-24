@@ -439,7 +439,7 @@
   <string name="CreateProfileActivity_set_avatar_description">అవతార్ సెట్ చేయండి</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
-  <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">మీరు సందేశం పంపే వ్యక్తులకు మాత్రమే ప్రొఫైల్స్ కనిపిస్తాయి.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">మీరు సందేశం పంపే వ్యక్తులకు మాత్రమే ప్రొఫైల్స్ కనిపిస్తాయి.</string> -->
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">నంబర్ ద్వారా నన్ను ఎవరు కనుగొనగలరు?</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -3697,11 +3697,11 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">నెట్‌వర్క్ దోషం. మీ కనెక్షన్ చెక్ చేసి, మళ్లీ ప్రయత్నించండి.</string>
   <string name="NetworkFailure__retry">మళ్ళీ ప్రయత్నించు</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
-  <string name="DonationsErrors__recipient_verification_failed">గ్రహీత ధృవీకరణ విఫలమైంది.</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__recipient_verification_failed">గ్రహీత ధృవీకరణ విఫలమైంది.</string> -->
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
   <string name="DonationsErrors__target_does_not_support_gifting">టార్గెట్ గిఫ్టింగ్‌కు మద్దతు ఇవ్వదు.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
-  <string name="DonationsErrors__could_not_verify_recipient">గ్రహీతను ధృవీకరించలేకపోయింది.</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__could_not_verify_recipient">గ్రహీతను ధృవీకరించలేకపోయింది.</string> -->
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
   <string name="DonationsErrors__please_check_your_network_connection">చేసి మీ నెట్‌వర్క్ కనెక్షన్ చెక్ చేసి, మళ్లీ ప్రయత్నించండి.</string>
   <!--Gift message view title-->

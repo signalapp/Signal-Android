@@ -434,7 +434,7 @@
   <string name="CreateProfileActivity_set_avatar_description">Аватар орнату</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
-  <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">Профильдерді сіз хат жазатын адамдар ғана көре алады.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">Профильдерді сіз хат жазатын адамдар ғана көре алады.</string> -->
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">Мені нөмірім арқылы кім таба алады?</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -3692,11 +3692,11 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Желі қатесі. Байланысты тексеріп, қайталап көріңіз.</string>
   <string name="NetworkFailure__retry">Қайтадан байқап көру</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
-  <string name="DonationsErrors__recipient_verification_failed">Алушы верификациядан өтпеді.</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__recipient_verification_failed">Алушы верификациядан өтпеді.</string> -->
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
   <string name="DonationsErrors__target_does_not_support_gifting">Алатын адамның құрылғысы сыйлық ала алмайды.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
-  <string name="DonationsErrors__could_not_verify_recipient">Алушыны верификациядан өткізу мүмкін болмады.</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__could_not_verify_recipient">Алушыны верификациядан өткізу мүмкін болмады.</string> -->
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
   <string name="DonationsErrors__please_check_your_network_connection">Желі байланысын тексеріп, қайталап көріңіз.</string>
   <!--Gift message view title-->

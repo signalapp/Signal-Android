@@ -476,7 +476,7 @@
   <string name="CreateProfileActivity_set_avatar_description">Встановити фото профілю</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
-  <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">Профілі можуть бачити тільки ті користувачі, яким ви надсилаєте повідомлення.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">Профілі можуть бачити тільки ті користувачі, яким ви надсилаєте повідомлення.</string> -->
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">Хто може знайти мене за номером телефону?</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -3900,11 +3900,11 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Помилка мережі. Перевірте з\'єднання та спробуйте ще.</string>
   <string name="NetworkFailure__retry">Повторити</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
-  <string name="DonationsErrors__recipient_verification_failed">Не вдалося надіслати подарунок.</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__recipient_verification_failed">Не вдалося надіслати подарунок.</string> -->
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
   <string name="DonationsErrors__target_does_not_support_gifting">Одержувач не підтримує функцію подарунків.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
-  <string name="DonationsErrors__could_not_verify_recipient">Не вдалося перевірити одержувача.</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__could_not_verify_recipient">Не вдалося перевірити одержувача.</string> -->
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
   <string name="DonationsErrors__please_check_your_network_connection">Будь ласка, перевірте підключення до мережі і спробуйте знову.</string>
   <!--Gift message view title-->

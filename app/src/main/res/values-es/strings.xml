@@ -455,7 +455,7 @@
   <string name="CreateProfileActivity_set_avatar_description">Configurar avatar de perfil</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
-  <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">Los perfiles solo serán visibles a aquellas personas a las que envíes un mensaje.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">Los perfiles solo serán visibles a aquellas personas a las que envíes un mensaje.</string> -->
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">¿Quién puede encontrarme a través de mi número?</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -3795,11 +3795,11 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Fallo en la red. Comprueba tu conexión e inténtalo de nuevo.</string>
   <string name="NetworkFailure__retry">Reintentar</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
-  <string name="DonationsErrors__recipient_verification_failed">Fallo en la verificación del destinatario.</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__recipient_verification_failed">Fallo en la verificación del destinatario.</string> -->
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
   <string name="DonationsErrors__target_does_not_support_gifting">Esta persona no admite regalos.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
-  <string name="DonationsErrors__could_not_verify_recipient">Fallo al verificar la persona de destino.</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__could_not_verify_recipient">Fallo al verificar la persona de destino.</string> -->
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
   <string name="DonationsErrors__please_check_your_network_connection">Por favor, comprueba tu conexión y vuelve a intentarlo.</string>
   <!--Gift message view title-->
