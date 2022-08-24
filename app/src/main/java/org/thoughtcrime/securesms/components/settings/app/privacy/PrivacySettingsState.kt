@@ -12,6 +12,7 @@ data class PrivacySettingsState(
   val screenLockActivityTimeout: Long,
   val screenSecurity: Boolean,
   val incognitoKeyboard: Boolean,
+  val paymentLock: Boolean,
   val isObsoletePasswordEnabled: Boolean,
   val isObsoletePasswordTimeoutEnabled: Boolean,
   val obsoletePasswordTimeout: Int,

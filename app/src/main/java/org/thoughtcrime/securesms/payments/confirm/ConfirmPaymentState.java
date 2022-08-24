@@ -30,7 +30,7 @@ public class ConfirmPaymentState {
          amount,
          note,
          amount.toZero(),
-         FeeStatus.NOT_SET,
+         FeeStatus.STILL_LOADING,
          null,
          Status.CONFIRM,
          null);

@@ -38,7 +38,11 @@ import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.SpanUtil;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 
+import java.util.concurrent.TimeUnit;
+
 public class PaymentsHomeFragment extends LoggingFragment {
+  private static final int DAYS_UNTIL_REPROMPT_PAYMENT_LOCK = 30;
+  private static final int MAX_PAYMENT_LOCK_SKIP_COUNT      = 2;
 
   private static final String TAG = Log.tag(PaymentsHomeFragment.class);
 
@@ -48,6 +52,34 @@ public class PaymentsHomeFragment extends LoggingFragment {
 
   public PaymentsHomeFragment() {
     super(R.layout.payments_home_fragment);
+  }
+
+  @Override
+  public void onCreate(@Nullable Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    long    paymentLockTimestamp = SignalStore.paymentsValues().getPaymentLockTimestamp();
+    boolean enablePaymentLock    = PaymentsHomeFragmentArgs.fromBundle(getArguments()).getEnablePaymentLock();
+    boolean showPaymentLock      = SignalStore.paymentsValues().getPaymentLockSkipCount() < MAX_PAYMENT_LOCK_SKIP_COUNT &&
+                                   (System.currentTimeMillis() >= paymentLockTimestamp);
+
+    if (enablePaymentLock && showPaymentLock) {
+      long waitUntil = System.currentTimeMillis() + TimeUnit.DAYS.toMillis(DAYS_UNTIL_REPROMPT_PAYMENT_LOCK);
+
+      SignalStore.paymentsValues().setPaymentLockTimestamp(waitUntil);
+      new MaterialAlertDialogBuilder(requireContext())
+          .setTitle(getString(R.string.PaymentsHomeFragment__turn_on))
+          .setMessage(getString(R.string.PaymentsHomeFragment__add_an_additional_layer))
+          .setPositiveButton(R.string.PaymentsHomeFragment__enable, (dialog, which) ->
+              SafeNavigation.safeNavigate(NavHostFragment.findNavController(this), PaymentsHomeFragmentDirections.actionPaymentsHomeToPrivacySettings(true)))
+          .setNegativeButton(R.string.PaymentsHomeFragment__not_now, (dialog, which) -> setSkipCount())
+          .setCancelable(false)
+          .show();
+    }
+  }
+
+  private void setSkipCount() {
+      int skipCount = SignalStore.paymentsValues().getPaymentLockSkipCount();
+      SignalStore.paymentsValues().setPaymentLockSkipCount(++skipCount);
   }
 
   @Override

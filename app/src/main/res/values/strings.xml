@@ -2611,6 +2611,8 @@
     <string name="preferences__data_and_storage">Data and storage</string>
     <string name="preferences__storage">Storage</string>
     <string name="preferences__payments">Payments</string>
+    <!-- Privacy settings payments section description -->
+    <string name="preferences__payment_lock">Payment lock</string>
     <string name="preferences__payments_beta">Payments (Beta)</string>
     <string name="preferences__conversation_length_limit">Conversation length limit</string>
     <string name="preferences__keep_messages">Keep messages</string>
@@ -2677,6 +2679,8 @@
     <string name="preferences_app_protection__who_can">Who can…</string>
     <string name="preferences_app_protection__app_access">App access</string>
     <string name="preferences_app_protection__communication">Communication</string>
+    <!-- Privacy settings payments section title -->
+    <string name="preferences_app_protection__payments">Payments</string>
     <string name="preferences_chats__chats">Chats</string>
     <string name="preferences_data_and_storage__manage_storage">Manage storage</string>
     <string name="preferences_data_and_storage__calls">Calls</string>
@@ -2887,6 +2891,14 @@
     <string name="PaymentsHomeFragment__payments_not_available">Payments in Signal is no longer available. You can still transfer funds to an exchange but you can no longer send and receive payments or add funds.</string>
 
     <string name="PaymentsHomeFragment__mobile_coin_terms_url" translatable="false">https://www.mobilecoin.com/terms-of-use.html</string>
+    <!-- Alert dialog title which shows up after a payment to turn on payment lock -->
+    <string name="PaymentsHomeFragment__turn_on">Turn on Payment Lock for future sends?</string>
+    <!-- Alert dialog description for why payment lock should be enabled before sending payments -->
+    <string name="PaymentsHomeFragment__add_an_additional_layer">Add an additional layer of security and require Android screen lock or fingerprint to transfer funds.</string>
+    <!-- Alert dialog button to enable payment lock -->
+    <string name="PaymentsHomeFragment__enable">Turn On</string>
+    <!-- Alert dialog button to not enable payment lock for now -->
+    <string name="PaymentsHomeFragment__not_now">Not Now</string>
 
     <!-- PaymentsAddMoneyFragment -->
     <string name="PaymentsAddMoneyFragment__add_funds">Add funds</string>
@@ -2978,6 +2990,8 @@
     <string name="ConfirmPayment__payment_failed">Payment failed</string>
     <string name="ConfirmPayment__payment_will_continue_processing">Payment will continue processing</string>
     <string name="ConfirmPaymentFragment__invalid_recipient">Invalid recipient</string>
+    <!-- Biometric/Device authentication prompt title which comes up before sending a payment -->
+    <string name="ConfirmPaymentFragment__unlock_to_send_payment">Unlock to Send Payment</string>
     <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">This person has not activated payments</string>
     <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">Unable to request a network fee. To continue this payment tap okay to try again.</string>
 
@@ -3926,6 +3940,15 @@
     <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Set a default disappearing message timer for all new chats started by you.</string>
     <!-- Summary for stories preference to launch into story privacy settings -->
     <string name="PrivacySettingsFragment__manage_your_stories">Manage your stories and who can view them</string>
+    <string name="PrivacySettingsFragment__payment_lock_require_lock">Require Android screen lock or fingerprint to transfer funds</string>
+    <!-- Alert dialog title when payment lock cannot be enabled -->
+    <string name="PrivacySettingsFragment__cant_enable_title">Can\’t enable payment lock</string>
+    <!-- Alert dialog description to setup screen lock or fingerprint in phone settings -->
+    <string name="PrivacySettingsFragment__cant_enable_description">To use Payment Lock, you must first enable a screen lock or fingerprint ID in your phone’s settings.</string>
+    <!-- Alert dialog button to go to phone settings -->
+    <string name="PrivacySettingsFragment__go_to_settings">Go to settings</string>
+    <!-- Alert dialog button to cancel the dialog -->
+    <string name="PrivacySettingsFragment__cancel">Cancel</string>
 
     <!-- AdvancedPrivacySettingsFragment -->
     <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string>

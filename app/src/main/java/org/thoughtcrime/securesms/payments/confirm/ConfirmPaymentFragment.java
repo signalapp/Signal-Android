@@ -14,8 +14,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.biometric.BiometricManager;
+import androidx.biometric.BiometricPrompt;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProviders;
@@ -26,31 +29,42 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import org.signal.core.util.ThreadUtil;
+import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.BiometricDeviceAuthentication;
+import org.thoughtcrime.securesms.BiometricDeviceLockContract;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.payments.CanNotSendPaymentDialog;
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil;
 import org.thoughtcrime.securesms.payments.Payee;
+import org.thoughtcrime.securesms.payments.preferences.PaymentsHomeFragmentDirections;
 import org.thoughtcrime.securesms.payments.preferences.RecipientHasNotEnabledPaymentsDialog;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.BottomSheetUtil;
 import org.signal.core.util.StringUtil;
+import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModelList;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 import org.whispersystems.signalservice.api.payments.FormatterOptions;
 
 import java.util.concurrent.TimeUnit;
 
-public class ConfirmPaymentFragment extends BottomSheetDialogFragment {
+import kotlin.Unit;
 
-  private       ConfirmPaymentViewModel viewModel;
-  private final Runnable                dismiss = () -> {
+public class ConfirmPaymentFragment extends BottomSheetDialogFragment {
+  private static final String                         TAG           = Log.tag(ConfirmPaymentFragment.class);
+  private              ConfirmPaymentViewModel        viewModel;
+  private              ActivityResultLauncher<String> activityResultLauncher;
+  private              BiometricDeviceAuthentication  biometricAuth;
+  private final        Runnable                       dismiss       = () ->
+  {
     dismissAllowingStateLoss();
 
     if (ConfirmPaymentFragmentArgs.fromBundle(requireArguments()).getFinishOnConfirm()) {
       requireActivity().setResult(Activity.RESULT_OK);
       requireActivity().finish();
     } else {
-      SafeNavigation.safeNavigate(NavHostFragment.findNavController(this), R.id.action_directly_to_paymentsHome);
+      SafeNavigation.safeNavigate(NavHostFragment.findNavController(this), PaymentsHomeFragmentDirections.actionDirectlyToPaymentsHome(!isPaymentLockEnabled(requireContext())));
     }
   };
 
@@ -86,6 +100,12 @@ public class ConfirmPaymentFragment extends BottomSheetDialogFragment {
     ConfirmPaymentAdapter adapter = new ConfirmPaymentAdapter(new Callbacks());
     list.setAdapter(adapter);
 
+    activityResultLauncher = registerForActivityResult(new BiometricDeviceLockContract(), result -> {
+      if (result == BiometricDeviceAuthentication.AUTHENTICATED) {
+        viewModel.confirmPayment();
+      }
+    });
+
     viewModel.getState().observe(getViewLifecycleOwner(), state -> adapter.submitList(createList(state)));
     viewModel.isPaymentDone().observe(getViewLifecycleOwner(), isDone -> {
       if (isDone) {
@@ -117,12 +137,28 @@ public class ConfirmPaymentFragment extends BottomSheetDialogFragment {
           break;
       }
     });
+
+    BiometricPrompt.PromptInfo promptInfo = new BiometricPrompt.PromptInfo
+                                                               .Builder()
+                                                               .setAllowedAuthenticators(BiometricDeviceAuthentication.ALLOWED_AUTHENTICATORS)
+                                                               .setTitle(requireContext().getString(R.string.ConfirmPaymentFragment__unlock_to_send_payment))
+                                                               .setConfirmationRequired(false)
+                                                               .build();
+    biometricAuth = new BiometricDeviceAuthentication(BiometricManager.from(requireActivity()),
+                                                      new BiometricPrompt(requireActivity(), new BiometricAuthenticationListener()),
+                                                      promptInfo);
   }
 
   @Override
   public void onDismiss(@NonNull DialogInterface dialog) {
     super.onDismiss(dialog);
     ThreadUtil.cancelRunnableOnMain(dismiss);
+  }
+
+  @Override
+  public void onPause() {
+    super.onPause();
+    biometricAuth.cancelAuthentication();
   }
 
   private @NonNull MappingModelList createList(@NonNull ConfirmPaymentState state) {
@@ -170,11 +206,48 @@ public class ConfirmPaymentFragment extends BottomSheetDialogFragment {
     return spannable;
   }
 
+
+
+  private boolean isPaymentLockEnabled(Context context) {
+    return SignalStore.paymentsValues().getPaymentLock() && ServiceUtil.getKeyguardManager(context).isKeyguardSecure();
+  }
+
   private class Callbacks implements ConfirmPaymentAdapter.Callbacks {
+
     @Override
     public void onConfirmPayment() {
       setCancelable(false);
+      if (isPaymentLockEnabled(requireContext())) {
+        biometricAuth.authenticate(requireContext(), true, this::showConfirmDeviceCredentialIntent);
+      } else {
+        viewModel.confirmPayment();
+      }
+    }
+
+    public Unit showConfirmDeviceCredentialIntent() {
+      activityResultLauncher.launch(getString(R.string.ConfirmPaymentFragment__unlock_to_send_payment));
+      return Unit.INSTANCE;
+    }
+  }
+
+  private class BiometricAuthenticationListener extends BiometricPrompt.AuthenticationCallback {
+    @Override
+    public void onAuthenticationError(int errorCode, @NonNull CharSequence errorString) {
+      Log.w(TAG, "Authentication error: " + errorCode);
+      if (errorCode != BiometricPrompt.ERROR_CANCELED && errorCode != BiometricPrompt.ERROR_USER_CANCELED) {
+        onAuthenticationFailed();
+      }
+    }
+
+    @Override
+    public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
+      Log.i(TAG, "onAuthenticationSucceeded");
       viewModel.confirmPayment();
+    }
+
+    @Override
+    public void onAuthenticationFailed() {
+      Log.w(TAG, "Unable to authenticate payment lock");
     }
   }
 }

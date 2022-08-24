@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/privacy_settings"
+    app:startDestination="@id/privacySettingsFragment">
+
+    <fragment
+        android:id="@+id/privacySettingsFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.privacy.PrivacySettingsFragment"
+        android:label="privacy_settings_fragment">
+
+        <argument
+            android:name="show_payment_lock"
+            android:defaultValue="false"
+            app:argType="boolean" />
+
+        <action
+            android:id="@+id/action_privacySettingsFragment_to_blockedUsersActivity"
+            app:destination="@id/blockedUsersActivity"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_privacySettingsFragment_to_advancedPrivacySettingsFragment"
+            app:destination="@id/advancedPrivacySettingsFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_privacySettingsFragment_to_disappearingMessagesTimerSelectFragment"
+            app:destination="@id/app_settings_expire_timer"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+
+        <action
+            android:id="@+id/action_privacySettingsFragment_to_storyPrivacySettings"
+            app:destination="@+id/story_privacy_settings"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit">
+
+            <argument
+                android:name="title_id"
+                app:argType="integer"
+                app:nullable="false" />
+        </action>
+    </fragment>
+
+    <activity
+        android:id="@+id/blockedUsersActivity"
+        android:name="org.thoughtcrime.securesms.blocked.BlockedUsersActivity"
+        android:label="blocked_users_activity" />
+
+    <fragment
+        android:id="@+id/advancedPrivacySettingsFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.privacy.advanced.AdvancedPrivacySettingsFragment"
+        android:label="advanced_privacy_settings_fragment" />
+
+    <include app:graph="@navigation/app_settings_expire_timer" />
+
+</navigation>

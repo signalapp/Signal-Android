@@ -10,6 +10,11 @@
         android:name="org.thoughtcrime.securesms.payments.preferences.PaymentsHomeFragment"
         tools:layout="@layout/payments_home_fragment">
 
+        <argument
+            android:name="enable_payment_lock"
+            android:defaultValue="false"
+            app:argType="boolean"/>
+
         <action
             android:id="@+id/action_paymentsHome_to_paymentsAllActivity"
             app:destination="@id/paymentsAllActivity"
@@ -69,6 +74,20 @@
             <argument
                 android:name="is_restore"
                 android:defaultValue="false"
+                app:argType="boolean" />
+
+        </action>
+
+        <action
+            android:id="@+id/action_paymentsHome_to_privacySettings"
+            app:destination="@id/privacy_settings"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit">
+
+            <argument
+                android:name="show_payment_lock"
                 app:argType="boolean" />
 
         </action>
@@ -184,7 +203,13 @@
         app:popEnterAnim="@anim/fragment_close_enter"
         app:popExitAnim="@anim/fragment_close_exit"
         app:popUpTo="@id/paymentsHome"
-        app:popUpToInclusive="false" />
+        app:popUpToInclusive="false">
+
+        <argument
+            android:name="enable_payment_lock"
+            app:argType="boolean"/>
+
+    </action>
 
     <action
         android:id="@+id/action_directly_to_paymentDetails"
@@ -215,5 +240,7 @@
     <include app:graph="@navigation/payments_transfer" />
 
     <include app:graph="@navigation/payments_backup" />
+
+    <include app:graph="@navigation/privacy_settings" />
 
 </navigation>

@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.components.settings.app.privacy
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.provider.Settings
 import android.text.SpannableStringBuilder
 import android.text.Spanned
 import android.text.style.TextAppearanceSpan
@@ -16,6 +17,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.preference.PreferenceManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import mobi.upod.timedurationpicker.TimeDurationPicker
@@ -78,9 +80,15 @@ class PrivacySettingsFragment : DSLSettingsFragment(R.string.preferences__privac
     val repository = PrivacySettingsRepository()
     val factory = PrivacySettingsViewModel.Factory(sharedPreferences, repository)
     viewModel = ViewModelProvider(this, factory)[PrivacySettingsViewModel::class.java]
+    val args: PrivacySettingsFragmentArgs by navArgs()
+    var showPaymentLock = true
 
     viewModel.state.observe(viewLifecycleOwner) { state ->
       adapter.submitList(getConfiguration(state).toMappingModelList())
+      if (args.showPaymentLock && showPaymentLock) {
+        showPaymentLock = false
+        recyclerView?.scrollToPosition(adapter.itemCount - 1)
+      }
     }
   }
 
@@ -304,6 +312,23 @@ class PrivacySettingsFragment : DSLSettingsFragment(R.string.preferences__privac
 
       dividerPref()
 
+      sectionHeaderPref(R.string.preferences_app_protection__payments)
+
+      switchPref(
+        title = DSLSettingsText.from(R.string.preferences__payment_lock),
+        summary = DSLSettingsText.from(R.string.PrivacySettingsFragment__payment_lock_require_lock),
+        isChecked = state.paymentLock && ServiceUtil.getKeyguardManager(requireContext()).isKeyguardSecure,
+        onClick = {
+          if (!ServiceUtil.getKeyguardManager(requireContext()).isKeyguardSecure) {
+            showGoToPhoneSettings()
+          } else {
+            viewModel.togglePaymentLock()
+          }
+        }
+      )
+
+      dividerPref()
+
       clickPref(
         title = DSLSettingsText.from(R.string.preferences__advanced),
         summary = DSLSettingsText.from(R.string.PrivacySettingsFragment__signal_message_and_calls),
@@ -311,6 +336,16 @@ class PrivacySettingsFragment : DSLSettingsFragment(R.string.preferences__privac
           Navigation.findNavController(requireView()).safeNavigate(R.id.action_privacySettingsFragment_to_advancedPrivacySettingsFragment)
         }
       )
+    }
+  }
+
+  private fun showGoToPhoneSettings() {
+    MaterialAlertDialogBuilder(requireContext()).apply {
+      setTitle(getString(R.string.PrivacySettingsFragment__cant_enable_title))
+      setMessage(getString(R.string.PrivacySettingsFragment__cant_enable_description))
+      setPositiveButton(R.string.PaymentsHomeFragment__enable) { _, _ -> startActivity(Intent(Settings.ACTION_BIOMETRIC_ENROLL)) }
+      setNegativeButton(R.string.PaymentsHomeFragment__not_now) { _, _ -> }
+      show()
     }
   }
 

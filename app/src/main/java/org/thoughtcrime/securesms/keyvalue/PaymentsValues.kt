@@ -43,12 +43,27 @@ internal class PaymentsValues internal constructor(store: KeyValueStore) : Signa
     private const val SHOW_CASHING_OUT_INFO_CARD = "mob_payments_show_cashing_out_info_card"
     private const val SHOW_RECOVERY_PHRASE_INFO_CARD = "mob_payments_show_recovery_phrase_info_card"
     private const val SHOW_UPDATE_PIN_INFO_CARD = "mob_payments_show_update_pin_info_card"
+    private const val PAYMENT_LOCK_ENABLED = "mob_payments_payment_lock_enabled"
+    private const val PAYMENT_LOCK_TIMESTAMP = "mob_payments_payment_lock_timestamp"
+    private const val PAYMENT_LOCK_SKIP_COUNT = "mob_payments_payment_lock_skip_count"
 
     private val LARGE_BALANCE_THRESHOLD = Money.mobileCoin(BigDecimal.valueOf(500))
 
     @VisibleForTesting
     const val MOB_PAYMENTS_ENABLED = "mob_payments_enabled"
   }
+
+  var paymentLock
+    get() = getBoolean(PAYMENT_LOCK_ENABLED, false)
+    set(enabled) = putBoolean(PAYMENT_LOCK_ENABLED, enabled)
+
+  var paymentLockTimestamp
+    get() = getLong(PAYMENT_LOCK_TIMESTAMP, 0)
+    set(timestamp) = putLong(PAYMENT_LOCK_TIMESTAMP, timestamp)
+
+  var paymentLockSkipCount
+    get() = getInteger(PAYMENT_LOCK_SKIP_COUNT, 0)
+    set(count) = putInteger(PAYMENT_LOCK_SKIP_COUNT, count)
 
   private val liveCurrentCurrency: MutableLiveData<Currency> by lazy { MutableLiveData(currentCurrency()) }
   private val liveMobileCoinLedger: MutableLiveData<MobileCoinLedgerWrapper> by lazy { MutableLiveData(mobileCoinLatestFullLedger()) }

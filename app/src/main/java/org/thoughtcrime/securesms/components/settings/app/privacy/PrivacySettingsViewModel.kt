@@ -74,6 +74,11 @@ class PrivacySettingsViewModel(
     refresh()
   }
 
+  fun togglePaymentLock() {
+    SignalStore.paymentsValues().paymentLock = state.value?.let { !it.paymentLock } ?: false
+    refresh()
+  }
+
   fun setObsoletePasswordTimeoutEnabled(enabled: Boolean) {
     sharedPreferences.edit().putBoolean(TextSecurePreferences.PASSPHRASE_TIMEOUT_PREF, enabled).apply()
     refresh()
@@ -97,6 +102,7 @@ class PrivacySettingsViewModel(
       screenLockActivityTimeout = TextSecurePreferences.getScreenLockTimeout(ApplicationDependencies.getApplication()),
       screenSecurity = TextSecurePreferences.isScreenSecurityEnabled(ApplicationDependencies.getApplication()),
       incognitoKeyboard = TextSecurePreferences.isIncognitoKeyboardEnabled(ApplicationDependencies.getApplication()),
+      paymentLock = SignalStore.paymentsValues().paymentLock,
       seeMyPhoneNumber = SignalStore.phoneNumberPrivacy().phoneNumberSharingMode,
       findMeByPhoneNumber = SignalStore.phoneNumberPrivacy().phoneNumberListingMode,
       isObsoletePasswordEnabled = !TextSecurePreferences.isPasswordDisabled(ApplicationDependencies.getApplication()),

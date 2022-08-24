@@ -54,7 +54,7 @@
             app:popExitAnim="@anim/fragment_close_exit" />
         <action
             android:id="@+id/action_appSettingsFragment_to_privacySettingsFragment"
-            app:destination="@id/privacySettingsFragment"
+            app:destination="@id/privacy_settings"
             app:enterAnim="@anim/fragment_open_enter"
             app:exitAnim="@anim/fragment_open_exit"
             app:popEnterAnim="@anim/fragment_close_enter"
@@ -297,59 +297,8 @@
     </fragment>
 
     <!-- region Privacy -->
-    <fragment
-        android:id="@+id/privacySettingsFragment"
-        android:name="org.thoughtcrime.securesms.components.settings.app.privacy.PrivacySettingsFragment"
-        android:label="privacy_settings_fragment">
-        <action
-            android:id="@+id/action_privacySettingsFragment_to_blockedUsersActivity"
-            app:destination="@id/blockedUsersActivity"
-            app:enterAnim="@anim/fragment_open_enter"
-            app:exitAnim="@anim/fragment_open_exit"
-            app:popEnterAnim="@anim/fragment_close_enter"
-            app:popExitAnim="@anim/fragment_close_exit" />
-        <action
-            android:id="@+id/action_privacySettingsFragment_to_advancedPrivacySettingsFragment"
-            app:destination="@id/advancedPrivacySettingsFragment"
-            app:enterAnim="@anim/fragment_open_enter"
-            app:exitAnim="@anim/fragment_open_exit"
-            app:popEnterAnim="@anim/fragment_close_enter"
-            app:popExitAnim="@anim/fragment_close_exit" />
-        <action
-            android:id="@+id/action_privacySettingsFragment_to_disappearingMessagesTimerSelectFragment"
-            app:destination="@id/app_settings_expire_timer"
-            app:enterAnim="@anim/fragment_open_enter"
-            app:exitAnim="@anim/fragment_open_exit"
-            app:popEnterAnim="@anim/fragment_close_enter"
-            app:popExitAnim="@anim/fragment_close_exit" />
 
-        <action
-            android:id="@+id/action_privacySettingsFragment_to_storyPrivacySettings"
-            app:destination="@+id/story_privacy_settings"
-            app:enterAnim="@anim/fragment_open_enter"
-            app:exitAnim="@anim/fragment_open_exit"
-            app:popEnterAnim="@anim/fragment_close_enter"
-            app:popExitAnim="@anim/fragment_close_exit">
-
-            <argument
-                android:name="title_id"
-                app:argType="integer"
-                app:nullable="false" />
-        </action>
-    </fragment>
-
-    <activity
-        android:id="@+id/blockedUsersActivity"
-        android:name="org.thoughtcrime.securesms.blocked.BlockedUsersActivity"
-        android:label="blocked_users_activity" />
-
-    <fragment
-        android:id="@+id/advancedPrivacySettingsFragment"
-        android:name="org.thoughtcrime.securesms.components.settings.app.privacy.advanced.AdvancedPrivacySettingsFragment"
-        android:label="advanced_privacy_settings_fragment" />
-
-    <include app:graph="@navigation/app_settings_expire_timer" />
-    <!-- endregion -->
+    <include app:graph="@navigation/privacy_settings" />
 
     <!-- region Data and Storage -->
 
@@ -525,7 +474,7 @@
 
     <action
         android:id="@+id/action_direct_to_privacy"
-        app:destination="@id/privacySettingsFragment"
+        app:destination="@id/privacy_settings"
         app:enterAnim="@anim/fragment_open_enter"
         app:exitAnim="@anim/fragment_open_exit"
         app:popEnterAnim="@anim/fragment_close_enter"
