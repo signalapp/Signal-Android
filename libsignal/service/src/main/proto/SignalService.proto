@@ -39,15 +39,16 @@ message Envelope {
 }
 
 message Content {
-  optional DataMessage    dataMessage                  = 1;
-  optional SyncMessage    syncMessage                  = 2;
-  optional CallMessage    callMessage                  = 3;
-  optional NullMessage    nullMessage                  = 4;
-  optional ReceiptMessage receiptMessage               = 5;
-  optional TypingMessage  typingMessage                = 6;
-  optional bytes          senderKeyDistributionMessage = 7;
-  optional bytes          decryptionErrorMessage       = 8;
-  optional StoryMessage   storyMessage                 = 9;
+  optional DataMessage         dataMessage                  = 1;
+  optional SyncMessage         syncMessage                  = 2;
+  optional CallMessage         callMessage                  = 3;
+  optional NullMessage         nullMessage                  = 4;
+  optional ReceiptMessage      receiptMessage               = 5;
+  optional TypingMessage       typingMessage                = 6;
+  optional bytes               senderKeyDistributionMessage = 7;
+  optional bytes               decryptionErrorMessage       = 8;
+  optional StoryMessage        storyMessage                 = 9;
+  optional PniSignatureMessage pniSignatureMessage          = 10;
 }
 
 message CallMessage {
@@ -710,4 +711,9 @@ message DecryptionErrorMessage {
   optional bytes  ratchetKey = 1;
   optional uint64 timestamp  = 2;
   optional uint32 deviceId   = 3;
+}
+
+message PniSignatureMessage {
+  optional bytes pni       = 1;
+  optional bytes signature = 2;
 }

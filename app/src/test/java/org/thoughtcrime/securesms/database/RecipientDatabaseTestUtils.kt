@@ -144,7 +144,8 @@ object RecipientDatabaseTestUtils {
         syncExtras,
         extras,
         hasGroupsInCommon,
-        badges
+        badges,
+        false
       ),
       participants,
       isReleaseChannel

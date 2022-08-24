@@ -14,7 +14,7 @@ import net.zetetic.database.sqlcipher.SQLiteConstraintException
 import org.signal.core.util.Bitmask
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.SqlUtil
-import org.signal.core.util.delete
+import org.signal.core.util.exists
 import org.signal.core.util.logging.Log
 import org.signal.core.util.optionalBlob
 import org.signal.core.util.optionalBoolean
@@ -55,6 +55,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase.Companion.groups
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.identities
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.messageLog
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.notificationProfiles
+import org.thoughtcrime.securesms.database.SignalDatabase.Companion.pendingPniSignatureMessages
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.reactions
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.runPostSuccessfulTransaction
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.sessions
@@ -180,6 +181,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     private const val SORT_NAME = "sort_name"
     private const val IDENTITY_STATUS = "identity_status"
     private const val IDENTITY_KEY = "identity_key"
+    private const val NEEDS_PNI_SIGNATURE = "needs_pni_signature"
 
     @JvmField
     val CREATE_TABLE =
@@ -237,7 +239,8 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
         $CUSTOM_CHAT_COLORS_ID INTEGER DEFAULT 0,
         $BADGES BLOB DEFAULT NULL,
         $PNI_COLUMN TEXT DEFAULT NULL,
-        $DISTRIBUTION_LIST_ID INTEGER DEFAULT NULL
+        $DISTRIBUTION_LIST_ID INTEGER DEFAULT NULL,
+        $NEEDS_PNI_SIGNATURE INTEGER DEFAULT 0
       )
       """.trimIndent()
 
@@ -297,7 +300,8 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       CHAT_COLORS,
       CUSTOM_CHAT_COLORS_ID,
       BADGES,
-      DISTRIBUTION_LIST_ID
+      DISTRIBUTION_LIST_ID,
+      NEEDS_PNI_SIGNATURE
     )
 
     private val ID_PROJECTION = arrayOf(ID)
@@ -418,9 +422,13 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     return getByColumn(USERNAME, username)
   }
 
+  fun isAssociated(serviceId: ServiceId, pni: PNI): Boolean {
+    return readableDatabase.exists(TABLE_NAME, "$SERVICE_ID = ? AND $PNI_COLUMN = ?", serviceId.toString(), pni.toString())
+  }
+
   @JvmOverloads
   fun getAndPossiblyMerge(serviceId: ServiceId?, e164: String?, changeSelf: Boolean = false): RecipientId {
-    return if (FeatureFlags.recipientMergeV2()) {
+    return if (FeatureFlags.recipientMergeV2() || FeatureFlags.phoneNumberPrivacy()) {
       getAndPossiblyMergePnp(serviceId, e164, changeSelf)
     } else {
       getAndPossiblyMergeLegacy(serviceId, e164, changeSelf)
@@ -562,7 +570,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       }
 
       if (result.operations.isNotEmpty()) {
-        Log.i(TAG, "[getAndPossiblyMergePnp] BreadCrumbs: ${result.breadCrumbs}, Operations: ${result.operations}")
+        Log.i(TAG, "[getAndPossiblyMergePnp] ($serviceId, $pni, $e164) BreadCrumbs: ${result.breadCrumbs}, Operations: ${result.operations}")
       }
 
       db.setTransactionSuccessful()
@@ -2038,6 +2046,9 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     }
   }
 
+  /**
+   * Does *not* handle clearing the recipient cache. It is assumed the caller handles this.
+   */
   fun updateSelfPhone(e164: String) {
     val db = writableDatabase
 
@@ -2051,6 +2062,13 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       } else {
         throw AssertionError("[updateSelfPhone] Self recipient id changed when updating phone. old: $id new: $newId")
       }
+
+      db
+        .update(TABLE_NAME)
+        .values(NEEDS_PNI_SIGNATURE to 0)
+        .run()
+
+      SignalDatabase.pendingPniSignatureMessages.deleteAll()
 
       db.setTransactionSuccessful()
     } finally {
@@ -2303,7 +2321,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       }
     }
 
-    val finalId: RecipientId = writePnpChangeSetToDisk(changeSet, pnpEnabled)
+    val finalId: RecipientId = writePnpChangeSetToDisk(changeSet, pnpEnabled, pni)
 
     return ProcessPnpTupleResult(
       finalId = finalId,
@@ -2316,7 +2334,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
   }
 
   @VisibleForTesting
-  fun writePnpChangeSetToDisk(changeSet: PnpChangeSet, pnpEnabled: Boolean): RecipientId {
+  fun writePnpChangeSetToDisk(changeSet: PnpChangeSet, pnpEnabled: Boolean, inputPni: PNI?): RecipientId {
     for (operation in changeSet.operations) {
       @Exhaustive
       when (operation) {
@@ -2378,29 +2396,13 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
           val secondary = getRecord(operation.secondaryId)
 
           if (primary.serviceId != null && !primary.sidIsPni() && secondary.e164 != null) {
-            merge(operation.primaryId, operation.secondaryId)
+            merge(operation.primaryId, operation.secondaryId, inputPni)
           } else {
             if (!pnpEnabled) {
               throw AssertionError("This type of merge is not supported in production!")
             }
 
-            Log.w(TAG, "WARNING: Performing an unfinished PNP merge! This operation currently only has a basic implementation only suitable for basic testing!")
-
-            writableDatabase
-              .delete(TABLE_NAME)
-              .where("$ID = ?", operation.secondaryId)
-              .run()
-
-            writableDatabase
-              .update(TABLE_NAME)
-              .values(
-                PHONE to (primary.e164 ?: secondary.e164),
-                PNI_COLUMN to (primary.pni ?: secondary.pni)?.toString(),
-                SERVICE_ID to (primary.serviceId ?: secondary.serviceId)?.toString(),
-                REGISTERED to RegisteredState.REGISTERED.id
-              )
-              .where("$ID = ?", operation.primaryId)
-              .run()
+            merge(operation.primaryId, operation.secondaryId, inputPni)
           }
         }
         is PnpOperation.SessionSwitchoverInsert -> {
@@ -2435,7 +2437,6 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
   @VisibleForTesting
   fun processPnpTupleToChangeSet(e164: String?, pni: PNI?, aci: ACI?, pniVerified: Boolean, changeSelf: Boolean = false): PnpChangeSet {
     check(e164 != null || pni != null || aci != null) { "Must provide at least one field!" }
-    check(pni == null || e164 != null) { "If a PNI is provided, you must also provide an E164!" }
 
     val breadCrumbs: MutableList<String> = mutableListOf()
 
@@ -3238,6 +3239,25 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     }
   }
 
+  /**
+   * Indicates that the recipient knows our PNI, and therefore needs to be sent PNI signature messages until we know that they have our PNI-ACI association.
+   */
+  fun markNeedsPniSignature(recipientId: RecipientId) {
+    if (update(recipientId, contentValuesOf(NEEDS_PNI_SIGNATURE to 1))) {
+      Log.i(TAG, "Marked $recipientId as needing a PNI signature message.")
+      Recipient.live(recipientId).refresh()
+    }
+  }
+
+  /**
+   * Indicates that we successfully told all of this recipient's devices our PNI-ACI association, and therefore no longer needs us to send it to them.
+   */
+  fun clearNeedsPniSignature(recipientId: RecipientId) {
+    if (update(recipientId, contentValuesOf(NEEDS_PNI_SIGNATURE to 0))) {
+      Recipient.live(recipientId).refresh()
+    }
+  }
+
   fun setHasGroupsInCommon(recipientIds: List<RecipientId?>) {
     if (recipientIds.isEmpty()) {
       return
@@ -3401,26 +3421,28 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
    * Merges one ACI recipient with an E164 recipient. It is assumed that the E164 recipient does
    * *not* have an ACI.
    */
-  private fun merge(byAci: RecipientId, byE164: RecipientId): RecipientId {
+  private fun merge(primaryId: RecipientId, secondaryId: RecipientId, newPni: PNI? = null): RecipientId {
     ensureInTransaction()
     val db = writableDatabase
-    val aciRecord = getRecord(byAci)
-    val e164Record = getRecord(byE164)
+    val primaryRecord = getRecord(primaryId)
+    val secondaryRecord = getRecord(secondaryId)
 
-    // Identities
-    ApplicationDependencies.getProtocolStore().aci().identities().delete(e164Record.e164!!)
+    // Clean up any E164-based identities (legacy stuff)
+    if (secondaryRecord.e164 != null) {
+      ApplicationDependencies.getProtocolStore().aci().identities().delete(secondaryRecord.e164)
+    }
 
     // Group Receipts
     val groupReceiptValues = ContentValues()
-    groupReceiptValues.put(GroupReceiptDatabase.RECIPIENT_ID, byAci.serialize())
-    db.update(GroupReceiptDatabase.TABLE_NAME, groupReceiptValues, GroupReceiptDatabase.RECIPIENT_ID + " = ?", SqlUtil.buildArgs(byE164))
+    groupReceiptValues.put(GroupReceiptDatabase.RECIPIENT_ID, primaryId.serialize())
+    db.update(GroupReceiptDatabase.TABLE_NAME, groupReceiptValues, GroupReceiptDatabase.RECIPIENT_ID + " = ?", SqlUtil.buildArgs(secondaryId))
 
     // Groups
     val groupDatabase = groups
-    for (group in groupDatabase.getGroupsContainingMember(byE164, false, true)) {
+    for (group in groupDatabase.getGroupsContainingMember(secondaryId, false, true)) {
       val newMembers = LinkedHashSet(group.members).apply {
-        remove(byE164)
-        add(byAci)
+        remove(secondaryId)
+        add(primaryId)
       }
 
       val groupValues = ContentValues().apply {
@@ -3429,18 +3451,18 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       db.update(GroupDatabase.TABLE_NAME, groupValues, GroupDatabase.RECIPIENT_ID + " = ?", SqlUtil.buildArgs(group.recipientId))
 
       if (group.isV2Group) {
-        groupDatabase.removeUnmigratedV1Members(group.id.requireV2(), listOf(byE164))
+        groupDatabase.removeUnmigratedV1Members(group.id.requireV2(), listOf(secondaryId))
       }
     }
 
     // Threads
-    val threadMerge = threads.merge(byAci, byE164)
+    val threadMerge = threads.merge(primaryId, secondaryId)
 
     // SMS Messages
     val smsValues = ContentValues().apply {
-      put(SmsDatabase.RECIPIENT_ID, byAci.serialize())
+      put(SmsDatabase.RECIPIENT_ID, primaryId.serialize())
     }
-    db.update(SmsDatabase.TABLE_NAME, smsValues, SmsDatabase.RECIPIENT_ID + " = ?", SqlUtil.buildArgs(byE164))
+    db.update(SmsDatabase.TABLE_NAME, smsValues, SmsDatabase.RECIPIENT_ID + " = ?", SqlUtil.buildArgs(secondaryId))
 
     if (threadMerge.neededMerge) {
       val values = ContentValues().apply {
@@ -3451,9 +3473,9 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
 
     // MMS Messages
     val mmsValues = ContentValues().apply {
-      put(MmsDatabase.RECIPIENT_ID, byAci.serialize())
+      put(MmsDatabase.RECIPIENT_ID, primaryId.serialize())
     }
-    db.update(MmsDatabase.TABLE_NAME, mmsValues, MmsDatabase.RECIPIENT_ID + " = ?", SqlUtil.buildArgs(byE164))
+    db.update(MmsDatabase.TABLE_NAME, mmsValues, MmsDatabase.RECIPIENT_ID + " = ?", SqlUtil.buildArgs(secondaryId))
 
     if (threadMerge.neededMerge) {
       val values = ContentValues()
@@ -3461,35 +3483,14 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       db.update(MmsDatabase.TABLE_NAME, values, MmsDatabase.THREAD_ID + " = ?", SqlUtil.buildArgs(threadMerge.previousThreadId))
     }
 
-    // Sessions
-    val localAci: ACI = SignalStore.account().requireAci()
-    val sessionDatabase = sessions
-    val hasE164Session = sessionDatabase.getAllFor(localAci, e164Record.e164).isNotEmpty()
-    val hasAciSession = sessionDatabase.getAllFor(localAci, aciRecord.serviceId.toString()).isNotEmpty()
-
-    if (hasE164Session && hasAciSession) {
-      Log.w(TAG, "Had a session for both users. Deleting the E164.", true)
-      sessionDatabase.deleteAllFor(localAci, e164Record.e164)
-    } else if (hasE164Session && !hasAciSession) {
-      Log.w(TAG, "Had a session for E164, but not ACI. Re-assigning to the ACI.", true)
-      val values = ContentValues().apply {
-        put(SessionDatabase.ADDRESS, aciRecord.serviceId.toString())
-      }
-      db.update(SessionDatabase.TABLE_NAME, values, "${SessionDatabase.ACCOUNT_ID} = ? AND ${SessionDatabase.ADDRESS} = ?", SqlUtil.buildArgs(localAci, e164Record.e164))
-    } else if (!hasE164Session && hasAciSession) {
-      Log.w(TAG, "Had a session for ACI, but not E164. No action necessary.", true)
-    } else {
-      Log.w(TAG, "Had no sessions. No action necessary.", true)
-    }
-
     // MSL
-    messageLog.remapRecipient(byE164, byAci)
+    messageLog.remapRecipient(secondaryId, primaryId)
 
     // Mentions
     val mentionRecipientValues = ContentValues().apply {
-      put(MentionDatabase.RECIPIENT_ID, byAci.serialize())
+      put(MentionDatabase.RECIPIENT_ID, primaryId.serialize())
     }
-    db.update(MentionDatabase.TABLE_NAME, mentionRecipientValues, MentionDatabase.RECIPIENT_ID + " = ?", SqlUtil.buildArgs(byE164))
+    db.update(MentionDatabase.TABLE_NAME, mentionRecipientValues, MentionDatabase.RECIPIENT_ID + " = ?", SqlUtil.buildArgs(secondaryId))
 
     if (threadMerge.neededMerge) {
       val mentionThreadValues = ContentValues().apply {
@@ -3501,59 +3502,62 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     threads.update(threadMerge.threadId, false, false)
 
     // Reactions
-    reactions.remapRecipient(byE164, byAci)
+    reactions.remapRecipient(secondaryId, primaryId)
 
     // Notification Profiles
-    notificationProfiles.remapRecipient(byE164, byAci)
+    notificationProfiles.remapRecipient(secondaryId, primaryId)
 
     // DistributionLists
-    distributionLists.remapRecipient(byE164, byAci)
+    distributionLists.remapRecipient(secondaryId, primaryId)
 
     // Story Sends
-    storySends.remapRecipient(byE164, byAci)
+    storySends.remapRecipient(secondaryId, primaryId)
+
+    // PendingPniSignatureMessage
+    pendingPniSignatureMessages.remapRecipient(secondaryId, primaryId)
 
     // Recipient
-    Log.w(TAG, "Deleting recipient $byE164", true)
-    db.delete(TABLE_NAME, ID_WHERE, SqlUtil.buildArgs(byE164))
-    RemappedRecords.getInstance().addRecipient(byE164, byAci)
+    Log.w(TAG, "Deleting recipient $secondaryId", true)
+    db.delete(TABLE_NAME, ID_WHERE, SqlUtil.buildArgs(secondaryId))
+    RemappedRecords.getInstance().addRecipient(secondaryId, primaryId)
 
-    // TODO [pnp] We should pass in the PNI involved in the merge and prefer that over either of the ones in the records
     val uuidValues = contentValuesOf(
-      PHONE to e164Record.e164,
-      PNI_COLUMN to (e164Record.pni ?: aciRecord.pni)?.toString(),
-      BLOCKED to (e164Record.isBlocked || aciRecord.isBlocked),
-      MESSAGE_RINGTONE to Optional.ofNullable(aciRecord.messageRingtone).or(Optional.ofNullable(e164Record.messageRingtone)).map { obj: Uri? -> obj.toString() }.orElse(null),
-      MESSAGE_VIBRATE to if (aciRecord.messageVibrateState != VibrateState.DEFAULT) aciRecord.messageVibrateState.id else e164Record.messageVibrateState.id,
-      CALL_RINGTONE to Optional.ofNullable(aciRecord.callRingtone).or(Optional.ofNullable(e164Record.callRingtone)).map { obj: Uri? -> obj.toString() }.orElse(null),
-      CALL_VIBRATE to if (aciRecord.callVibrateState != VibrateState.DEFAULT) aciRecord.callVibrateState.id else e164Record.callVibrateState.id,
-      NOTIFICATION_CHANNEL to (aciRecord.notificationChannel ?: e164Record.notificationChannel),
-      MUTE_UNTIL to if (aciRecord.muteUntil > 0) aciRecord.muteUntil else e164Record.muteUntil,
-      CHAT_COLORS to Optional.ofNullable(aciRecord.chatColors).or(Optional.ofNullable(e164Record.chatColors)).map { colors: ChatColors? -> colors!!.serialize().toByteArray() }.orElse(null),
-      AVATAR_COLOR to aciRecord.avatarColor.serialize(),
-      CUSTOM_CHAT_COLORS_ID to Optional.ofNullable(aciRecord.chatColors).or(Optional.ofNullable(e164Record.chatColors)).map { colors: ChatColors? -> colors!!.id.longValue }.orElse(null),
-      SEEN_INVITE_REMINDER to e164Record.insightsBannerTier.id,
-      DEFAULT_SUBSCRIPTION_ID to e164Record.getDefaultSubscriptionId().orElse(-1),
-      MESSAGE_EXPIRATION_TIME to if (aciRecord.expireMessages > 0) aciRecord.expireMessages else e164Record.expireMessages,
+      PHONE to (secondaryRecord.e164 ?: primaryRecord.e164),
+      SERVICE_ID to (primaryRecord.serviceId ?: secondaryRecord.serviceId)?.toString(),
+      PNI_COLUMN to (newPni ?: secondaryRecord.pni ?: primaryRecord.pni)?.toString(),
+      BLOCKED to (secondaryRecord.isBlocked || primaryRecord.isBlocked),
+      MESSAGE_RINGTONE to Optional.ofNullable(primaryRecord.messageRingtone).or(Optional.ofNullable(secondaryRecord.messageRingtone)).map { obj: Uri? -> obj.toString() }.orElse(null),
+      MESSAGE_VIBRATE to if (primaryRecord.messageVibrateState != VibrateState.DEFAULT) primaryRecord.messageVibrateState.id else secondaryRecord.messageVibrateState.id,
+      CALL_RINGTONE to Optional.ofNullable(primaryRecord.callRingtone).or(Optional.ofNullable(secondaryRecord.callRingtone)).map { obj: Uri? -> obj.toString() }.orElse(null),
+      CALL_VIBRATE to if (primaryRecord.callVibrateState != VibrateState.DEFAULT) primaryRecord.callVibrateState.id else secondaryRecord.callVibrateState.id,
+      NOTIFICATION_CHANNEL to (primaryRecord.notificationChannel ?: secondaryRecord.notificationChannel),
+      MUTE_UNTIL to if (primaryRecord.muteUntil > 0) primaryRecord.muteUntil else secondaryRecord.muteUntil,
+      CHAT_COLORS to Optional.ofNullable(primaryRecord.chatColors).or(Optional.ofNullable(secondaryRecord.chatColors)).map { colors: ChatColors? -> colors!!.serialize().toByteArray() }.orElse(null),
+      AVATAR_COLOR to primaryRecord.avatarColor.serialize(),
+      CUSTOM_CHAT_COLORS_ID to Optional.ofNullable(primaryRecord.chatColors).or(Optional.ofNullable(secondaryRecord.chatColors)).map { colors: ChatColors? -> colors!!.id.longValue }.orElse(null),
+      SEEN_INVITE_REMINDER to secondaryRecord.insightsBannerTier.id,
+      DEFAULT_SUBSCRIPTION_ID to secondaryRecord.getDefaultSubscriptionId().orElse(-1),
+      MESSAGE_EXPIRATION_TIME to if (primaryRecord.expireMessages > 0) primaryRecord.expireMessages else secondaryRecord.expireMessages,
       REGISTERED to RegisteredState.REGISTERED.id,
-      SYSTEM_GIVEN_NAME to e164Record.systemProfileName.givenName,
-      SYSTEM_FAMILY_NAME to e164Record.systemProfileName.familyName,
-      SYSTEM_JOINED_NAME to e164Record.systemProfileName.toString(),
-      SYSTEM_PHOTO_URI to e164Record.systemContactPhotoUri,
-      SYSTEM_PHONE_LABEL to e164Record.systemPhoneLabel,
-      SYSTEM_CONTACT_URI to e164Record.systemContactUri,
-      PROFILE_SHARING to (aciRecord.profileSharing || e164Record.profileSharing),
-      CAPABILITIES to max(aciRecord.rawCapabilities, e164Record.rawCapabilities),
-      MENTION_SETTING to if (aciRecord.mentionSetting != MentionSetting.ALWAYS_NOTIFY) aciRecord.mentionSetting.id else e164Record.mentionSetting.id
+      SYSTEM_GIVEN_NAME to secondaryRecord.systemProfileName.givenName,
+      SYSTEM_FAMILY_NAME to secondaryRecord.systemProfileName.familyName,
+      SYSTEM_JOINED_NAME to secondaryRecord.systemProfileName.toString(),
+      SYSTEM_PHOTO_URI to secondaryRecord.systemContactPhotoUri,
+      SYSTEM_PHONE_LABEL to secondaryRecord.systemPhoneLabel,
+      SYSTEM_CONTACT_URI to secondaryRecord.systemContactUri,
+      PROFILE_SHARING to (primaryRecord.profileSharing || secondaryRecord.profileSharing),
+      CAPABILITIES to max(primaryRecord.rawCapabilities, secondaryRecord.rawCapabilities),
+      MENTION_SETTING to if (primaryRecord.mentionSetting != MentionSetting.ALWAYS_NOTIFY) primaryRecord.mentionSetting.id else secondaryRecord.mentionSetting.id
     )
 
-    if (aciRecord.profileKey != null) {
-      updateProfileValuesForMerge(uuidValues, aciRecord)
-    } else if (e164Record.profileKey != null) {
-      updateProfileValuesForMerge(uuidValues, e164Record)
+    if (primaryRecord.profileKey != null) {
+      updateProfileValuesForMerge(uuidValues, primaryRecord)
+    } else if (secondaryRecord.profileKey != null) {
+      updateProfileValuesForMerge(uuidValues, secondaryRecord)
     }
 
-    db.update(TABLE_NAME, uuidValues, ID_WHERE, SqlUtil.buildArgs(byAci))
-    return byAci
+    db.update(TABLE_NAME, uuidValues, ID_WHERE, SqlUtil.buildArgs(primaryId))
+    return primaryId
   }
 
   private fun ensureInTransaction() {
@@ -3834,7 +3838,8 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       syncExtras = getSyncExtras(cursor),
       extras = getExtras(cursor),
       hasGroupsInCommon = cursor.requireBoolean(GROUPS_IN_COMMON),
-      badges = parseBadgeList(cursor.requireBlob(BADGES))
+      badges = parseBadgeList(cursor.requireBlob(BADGES)),
+      needsPniSignature = cursor.requireBoolean(NEEDS_PNI_SIGNATURE)
     )
   }
 

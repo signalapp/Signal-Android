@@ -35,6 +35,15 @@ fun SupportSQLiteDatabase.getTableRowCount(table: String): Int {
 }
 
 /**
+ * Checks if a row exists that matches the query.
+ */
+fun SupportSQLiteDatabase.exists(table: String, query: String, vararg args: Any): Boolean {
+  return this.query("SELECT EXISTS(SELECT 1 FROM $table WHERE $query)", SqlUtil.buildArgs(*args)).use { cursor ->
+    cursor.moveToFirst() && cursor.getInt(0) == 1
+  }
+}
+
+/**
  * Begins a SELECT statement with a helpful builder pattern.
  */
 fun SupportSQLiteDatabase.select(vararg columns: String): SelectBuilderPart1 {

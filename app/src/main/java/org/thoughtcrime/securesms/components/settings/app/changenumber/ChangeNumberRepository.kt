@@ -110,7 +110,6 @@ class ChangeNumberRepository(private val accountManager: SignalServiceAccountMan
     if (MessageDigest.isEqual(oldStorageId, newStorageId)) {
       Log.w(TAG, "Self storage id was not rotated, attempting to rotate again")
       SignalDatabase.recipients.rotateStorageId(Recipient.self().id)
-      Recipient.self().live().refresh()
       StorageSyncHelper.scheduleSyncForDataChange()
       val secondAttemptStorageId: ByteArray? = Recipient.self().storageServiceId
       if (MessageDigest.isEqual(oldStorageId, secondAttemptStorageId)) {
@@ -119,6 +118,7 @@ class ChangeNumberRepository(private val accountManager: SignalServiceAccountMan
     }
 
     SignalDatabase.recipients.setPni(Recipient.self().id, pni)
+    ApplicationDependencies.getRecipientCache().clear()
 
     SignalStore.account().setE164(e164)
     SignalStore.account().setPni(pni)

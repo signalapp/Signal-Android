@@ -383,6 +383,8 @@ public final class MessageContentProcessor {
         handleRetryReceipt(content, content.getDecryptionErrorMessage().get(), senderRecipient);
       } else if (content.getSenderKeyDistributionMessage().isPresent()) {
         // Already handled, here in order to prevent unrecognized message log
+      } else if (content.getPniSignatureMessage().isPresent()) {
+        // Already handled, here in order to prevent unrecognized message log
       } else {
         warn(String.valueOf(content.getTimestamp()), "Got unrecognized message!");
       }
@@ -2559,6 +2561,7 @@ public final class MessageContentProcessor {
       PushProcessEarlyMessagesJob.enqueue();
     }
 
+    SignalDatabase.pendingPniSignatureMessages().acknowledgeReceipts(senderRecipient.getId(), message.getTimestamps(), content.getSenderDevice());
     SignalDatabase.messageLog().deleteEntriesForRecipient(message.getTimestamps(), senderRecipient.getId(), content.getSenderDevice());
   }
 

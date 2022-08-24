@@ -88,6 +88,7 @@ public class RecipientDetails {
   final boolean                      hasGroupsInCommon;
   final List<Badge>                  badges;
   final boolean                      isReleaseChannel;
+  final boolean                      needsPniSignature;
 
   public RecipientDetails(@Nullable String groupName,
                           @Nullable String systemContactName,
@@ -153,6 +154,7 @@ public class RecipientDetails {
     this.hasGroupsInCommon            = record.hasGroupsInCommon();
     this.badges                       = record.getBadges();
     this.isReleaseChannel             = isReleaseChannel;
+    this.needsPniSignature            = record.needsPniSignature();
   }
 
   private RecipientDetails() {
@@ -210,6 +212,7 @@ public class RecipientDetails {
     this.hasGroupsInCommon            = false;
     this.badges                       = Collections.emptyList();
     this.isReleaseChannel             = false;
+    this.needsPniSignature            = false;
   }
 
   public static @NonNull RecipientDetails forIndividual(@NonNull Context context, @NonNull RecipientRecord settings) {

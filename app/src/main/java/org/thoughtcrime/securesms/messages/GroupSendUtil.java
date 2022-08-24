@@ -77,6 +77,8 @@ public final class GroupSendUtil {
    * {@link SendMessageResult}s just like we're used to.
    *
    * Messages sent this way, if failed to be decrypted by the receiving party, can be requested to be resent.
+   * Note that the ContentHint <em>may not</em> be {@link ContentHint#RESENDABLE} -- it just means that we have an actual record of the message
+   * and we <em>could</em> resend it if asked.
    *
    * @param groupId The groupId of the group you're sending to, or null if you're sending to a collection of recipients not joined by a group.
    * @param isRecipientUpdate True if you've already sent this message to some recipients in the past, otherwise false.
@@ -348,7 +350,7 @@ public final class GroupSendUtil {
       final AtomicLong             entryId             = new AtomicLong(-1);
       final boolean                includeInMessageLog = sendOperation.shouldIncludeInMessageLog();
 
-      List<SendMessageResult> results = sendOperation.sendLegacy(messageSender, targets, access, recipientUpdate, result -> {
+      List<SendMessageResult> results = sendOperation.sendLegacy(messageSender, targets, legacyTargets, access, recipientUpdate, result -> {
         if (!includeInMessageLog) {
           return;
         }
@@ -416,6 +418,7 @@ public final class GroupSendUtil {
 
     @NonNull List<SendMessageResult> sendLegacy(@NonNull SignalServiceMessageSender messageSender,
                                                 @NonNull List<SignalServiceAddress> targets,
+                                                @NonNull List<Recipient> targetRecipients,
                                                 @NonNull List<Optional<UnidentifiedAccessPair>> access,
                                                 boolean isRecipientUpdate,
                                                 @Nullable PartialSendCompleteListener partialListener,
@@ -471,14 +474,26 @@ public final class GroupSendUtil {
     @Override
     public @NonNull List<SendMessageResult> sendLegacy(@NonNull SignalServiceMessageSender messageSender,
                                                        @NonNull List<SignalServiceAddress> targets,
+                                                       @NonNull List<Recipient> targetRecipients,
                                                        @NonNull List<Optional<UnidentifiedAccessPair>> access,
                                                        boolean isRecipientUpdate,
                                                        @Nullable PartialSendCompleteListener partialListener,
                                                        @Nullable CancelationSignal cancelationSignal)
         throws IOException, UntrustedIdentityException
     {
-      LegacyGroupEvents listener = relatedMessageId != null ? new LegacyMetricEventListener(relatedMessageId.getId()) : LegacyGroupEvents.EMPTY;
-      return messageSender.sendDataMessage(targets, access, isRecipientUpdate, contentHint, message, listener, partialListener, cancelationSignal, urgent);
+      if (targets.size() == 1 && relatedMessageId == null) {
+        Recipient            targetRecipient = targetRecipients.get(0);
+        SendMessageResult    result          = messageSender.sendDataMessage(targets.get(0), access.get(0), contentHint, message, SignalServiceMessageSender.IndividualSendEvents.EMPTY, urgent, targetRecipient.needsPniSignature());
+
+        if (targetRecipient.needsPniSignature()) {
+          SignalDatabase.pendingPniSignatureMessages().insertIfNecessary(targetRecipients.get(0).getId(), getSentTimestamp(), result);
+        }
+
+        return Collections.singletonList(result);
+      } else {
+        LegacyGroupEvents listener = relatedMessageId != null ? new LegacyMetricEventListener(relatedMessageId.getId()) : LegacyGroupEvents.EMPTY;
+        return messageSender.sendDataMessage(targets, access, isRecipientUpdate, contentHint, message, listener, partialListener, cancelationSignal, urgent);
+      }
     }
 
     @Override
@@ -534,6 +549,7 @@ public final class GroupSendUtil {
     @Override
     public @NonNull List<SendMessageResult> sendLegacy(@NonNull SignalServiceMessageSender messageSender,
                                                        @NonNull List<SignalServiceAddress> targets,
+                                                       @NonNull List<Recipient> targetRecipients,
                                                        @NonNull List<Optional<UnidentifiedAccessPair>> access,
                                                        boolean isRecipientUpdate,
                                                        @Nullable PartialSendCompleteListener partialListener,
@@ -592,6 +608,7 @@ public final class GroupSendUtil {
     @Override
     public @NonNull List<SendMessageResult> sendLegacy(@NonNull SignalServiceMessageSender messageSender,
                                                        @NonNull List<SignalServiceAddress> targets,
+                                                       @NonNull List<Recipient> targetRecipients,
                                                        @NonNull List<Optional<UnidentifiedAccessPair>> access,
                                                        boolean isRecipientUpdate,
                                                        @Nullable PartialSendCompleteListener partialListener,
@@ -662,6 +679,7 @@ public final class GroupSendUtil {
     @Override
     public @NonNull List<SendMessageResult> sendLegacy(@NonNull SignalServiceMessageSender messageSender,
                                                        @NonNull List<SignalServiceAddress> targets,
+                                                       @NonNull List<Recipient> targetRecipients,
                                                        @NonNull List<Optional<UnidentifiedAccessPair>> access,
                                                        boolean isRecipientUpdate,
                                                        @Nullable PartialSendCompleteListener partialListener,

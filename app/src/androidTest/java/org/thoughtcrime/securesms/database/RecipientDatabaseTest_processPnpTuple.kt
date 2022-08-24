@@ -61,13 +61,6 @@ class RecipientDatabaseTest_processPnpTuple {
   }
 
   @Test(expected = IllegalStateException::class)
-  fun noMatch_pniOnly() {
-    test {
-      process(null, PNI_A, null)
-    }
-  }
-
-  @Test(expected = IllegalStateException::class)
   fun noMatch_noData() {
     test {
       process(null, null, null)

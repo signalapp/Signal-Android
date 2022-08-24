@@ -82,7 +82,9 @@ data class RecipientRecord(
   val extras: Recipient.Extras?,
   @get:JvmName("hasGroupsInCommon")
   val hasGroupsInCommon: Boolean,
-  val badges: List<Badge>
+  val badges: List<Badge>,
+  @get:JvmName("needsPniSignature")
+  val needsPniSignature: Boolean
 ) {
 
   fun getDefaultSubscriptionId(): Optional<Int> {

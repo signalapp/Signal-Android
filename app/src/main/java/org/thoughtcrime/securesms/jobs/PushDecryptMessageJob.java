@@ -8,10 +8,13 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
 import org.signal.core.util.logging.Log;
+import org.signal.libsignal.protocol.IdentityKey;
 import org.signal.libsignal.protocol.SignalProtocolAddress;
 import org.signal.libsignal.protocol.message.SenderKeyDistributionMessage;
 import org.thoughtcrime.securesms.MainActivity;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.crypto.storage.SignalIdentityKeyStore;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -24,6 +27,8 @@ import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
+import org.whispersystems.signalservice.api.messages.SignalServicePniSignatureMessage;
+import org.whispersystems.signalservice.api.push.PNI;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 import java.util.LinkedList;
@@ -100,6 +105,10 @@ public final class PushDecryptMessageJob extends BaseJob {
         handleSenderKeyDistributionMessage(result.getContent().getSender(), result.getContent().getSenderDevice(), result.getContent().getSenderKeyDistributionMessage().get());
       }
 
+      if (result.getContent().getPniSignatureMessage().isPresent()) {
+        handlePniSignatureMessage(result.getContent().getSender(), result.getContent().getSenderDevice(), result.getContent().getPniSignatureMessage().get());
+      }
+
       jobs.add(new PushProcessMessageJob(result.getContent(), smsMessageId, envelope.getTimestamp()));
     } else if (result.getException() != null && result.getState() != MessageState.NOOP) {
       jobs.add(new PushProcessMessageJob(result.getState(), result.getException(), smsMessageId, envelope.getTimestamp()));
@@ -122,9 +131,43 @@ public final class PushDecryptMessageJob extends BaseJob {
   }
 
   private void handleSenderKeyDistributionMessage(@NonNull SignalServiceAddress address, int deviceId, @NonNull SenderKeyDistributionMessage message) {
-    Log.i(TAG, "Processing SenderKeyDistributionMessage.");
+    Log.i(TAG, "Processing SenderKeyDistributionMessage from " + address.getServiceId() + "." + deviceId);
     SignalServiceMessageSender sender = ApplicationDependencies.getSignalServiceMessageSender();
     sender.processSenderKeyDistributionMessage(new SignalProtocolAddress(address.getIdentifier(), deviceId), message);
+  }
+
+  private void handlePniSignatureMessage(@NonNull SignalServiceAddress address, int deviceId, @NonNull SignalServicePniSignatureMessage pniSignatureMessage) {
+    Log.i(TAG, "Processing PniSignatureMessage from " + address.getServiceId() + "." + deviceId);
+
+    PNI pni = pniSignatureMessage.getPni();
+
+    if (SignalDatabase.recipients().isAssociated(address.getServiceId(), pni)) {
+      Log.i(TAG, "[handlePniSignatureMessage] ACI (" + address.getServiceId() + ") and PNI (" + pni + ") are already associated.");
+      return;
+    }
+
+    SignalIdentityKeyStore identityStore = ApplicationDependencies.getProtocolStore().aci().identities();
+    SignalProtocolAddress  aciAddress    = new SignalProtocolAddress(address.getIdentifier(), deviceId);
+    SignalProtocolAddress  pniAddress    = new SignalProtocolAddress(pni.toString(), deviceId);
+    IdentityKey            aciIdentity   = identityStore.getIdentity(aciAddress);
+    IdentityKey            pniIdentity   = identityStore.getIdentity(pniAddress);
+
+    if (aciIdentity == null) {
+      Log.w(TAG, "[validatePniSignature] No identity found for ACI address " + aciAddress);
+      return;
+    }
+
+    if (pniIdentity == null) {
+      Log.w(TAG, "[validatePniSignature] No identity found for PNI address " + pniAddress);
+      return;
+    }
+
+    if (pniIdentity.verifyAlternateIdentity(aciIdentity, pniSignatureMessage.getSignature())) {
+      Log.i(TAG, "[validatePniSignature] PNI signature is valid. Associating ACI (" + address.getServiceId() + ") with PNI (" + pni + ")");
+      SignalDatabase.recipients().getAndPossiblyMergePnpVerified(address.getServiceId(), pni, address.getNumber().orElse(null));
+    } else {
+      Log.w(TAG, "[validatePniSignature] Invalid PNI signature! Cannot associate ACI (" + address.getServiceId() + ") with PNI (" + pni + ")");
+    }
   }
 
   private boolean needsMigration() {

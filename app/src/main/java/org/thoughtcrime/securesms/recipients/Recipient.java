@@ -138,6 +138,7 @@ public class Recipient {
   private final boolean                      hasGroupsInCommon;
   private final List<Badge>                  badges;
   private final boolean                      isReleaseNotesRecipient;
+  private final boolean                      needsPniSignature;
 
   /**
    * Returns a {@link LiveRecipient}, which contains a {@link Recipient} that may or may not be
@@ -213,20 +214,6 @@ public class Recipient {
   @WorkerThread
   public static @NonNull Recipient externalPush(@NonNull SignalServiceAddress signalServiceAddress) {
     return externalPush(signalServiceAddress.getServiceId(), signalServiceAddress.getNumber().orElse(null));
-  }
-
-  /**
-   * Returns a fully-populated {@link Recipient} based off of a {@link SignalServiceAddress},
-   * creating one in the database if necessary. We special-case GV1 members because we want to
-   * prioritize E164 addresses and not use the UUIDs if possible.
-   */
-  @WorkerThread
-  public static @NonNull Recipient externalGV1Member(@NonNull SignalServiceAddress address) {
-    if (address.getNumber().isPresent()) {
-      return externalPush(null, address.getNumber().get());
-    } else {
-      return externalPush(address.getServiceId());
-    }
   }
 
   /**
@@ -452,6 +439,7 @@ public class Recipient {
     this.hasGroupsInCommon            = false;
     this.badges                       = Collections.emptyList();
     this.isReleaseNotesRecipient      = false;
+    this.needsPniSignature            = false;
   }
 
   public Recipient(@NonNull RecipientId id, @NonNull RecipientDetails details, boolean resolved) {
@@ -510,6 +498,7 @@ public class Recipient {
     this.hasGroupsInCommon            = details.hasGroupsInCommon;
     this.badges                       = details.badges;
     this.isReleaseNotesRecipient      = details.isReleaseChannel;
+    this.needsPniSignature            = details.needsPniSignature;
   }
 
   public @NonNull RecipientId getId() {
@@ -1219,6 +1208,10 @@ public class Recipient {
 
   public boolean showVerified() {
     return isReleaseNotesRecipient || isSelf;
+  }
+
+  public boolean needsPniSignature() {
+    return FeatureFlags.phoneNumberPrivacy() && needsPniSignature;
   }
 
   @Override

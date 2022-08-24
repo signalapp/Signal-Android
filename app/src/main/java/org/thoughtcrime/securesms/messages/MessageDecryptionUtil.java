@@ -42,6 +42,7 @@ import org.thoughtcrime.securesms.messages.MessageContentProcessor.MessageState;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.notifications.NotificationIds;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.whispersystems.signalservice.api.InvalidMessageStructureException;
 import org.whispersystems.signalservice.api.SignalServiceAccountDataStore;
@@ -54,6 +55,7 @@ import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 import org.whispersystems.signalservice.internal.push.UnsupportedDataMessageException;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -87,6 +89,16 @@ public final class MessageDecryptionUtil {
     } else {
       Log.w(TAG, "No destinationUuid set! Defaulting to ACI.");
       destination = aci;
+    }
+
+    if (destination.equals(pni)) {
+      if (envelope.hasSourceUuid()) {
+        RecipientId sender = RecipientId.from(envelope.getSourceAddress());
+        SignalDatabase.recipients().markNeedsPniSignature(sender);
+      } else {
+        Log.w(TAG, "[" + envelope.getTimestamp() + "] Got a sealed sender message to our PNI? Invalid message, ignoring.");
+        return DecryptionResult.forNoop(Collections.emptyList());
+      }
     }
 
     if (!destination.equals(aci) && !destination.equals(pni)) {

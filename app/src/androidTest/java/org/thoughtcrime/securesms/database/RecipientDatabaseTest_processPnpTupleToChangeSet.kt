@@ -68,11 +68,6 @@ class RecipientDatabaseTest_processPnpTupleToChangeSet {
   }
 
   @Test(expected = IllegalStateException::class)
-  fun noMatch_pniOnly() {
-    db.processPnpTupleToChangeSet(null, PNI_A, null, pniVerified = false)
-  }
-
-  @Test(expected = IllegalStateException::class)
   fun noMatch_noData() {
     db.processPnpTupleToChangeSet(null, null, null, pniVerified = false)
   }

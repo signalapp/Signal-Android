@@ -23,6 +23,11 @@ public final class PNI extends ServiceId {
     return from(UUID.fromString(raw));
   }
 
+  public static PNI parseOrNull(byte[] raw) {
+    UUID uuid = UuidUtil.parseOrNull(raw);
+    return uuid != null ? from(uuid) : null;
+  }
+
   private PNI(UUID uuid) {
     super(uuid);
   }
