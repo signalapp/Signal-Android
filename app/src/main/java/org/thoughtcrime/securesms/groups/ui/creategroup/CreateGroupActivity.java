@@ -19,9 +19,11 @@ import org.thoughtcrime.securesms.ContactSelectionListFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contacts.ContactsCursorLoader;
 import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery;
+import org.thoughtcrime.securesms.conversation.ConversationIntents;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.SignalDatabase;
+import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.groups.ui.creategroup.details.AddGroupDetailsActivity;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -176,6 +178,19 @@ public class CreateGroupActivity extends ContactSelectionActivity {
       if (existingGroups.isEmpty()) {
         startActivityForResult(AddGroupDetailsActivity.newIntent(this, recipientIds), REQUEST_CODE_ADD_DETAILS);
       } else {
+        //If there is only one group and its an MMS, there is should not be an option to create a new group
+        if (existingGroups.size() == 1 && existingGroups.get(0).isMms()) {
+          GroupDatabase.GroupRecord group = existingGroups.get(0);
+          long threadId = SignalDatabase.threads().getOrCreateThreadIdFor(Recipient.resolved(group.getRecipientId()),
+                                                                          ThreadDatabase.DistributionTypes.CONVERSATION);
+          Intent intent = ConversationIntents.createBuilder(this,
+                                                            group.getRecipientId(),
+                                                            threadId)
+                                             .build();
+          startActivity(intent);
+          finish();
+          return;
+        }
         ExistingGroupChooserDialog existingGroupChooserDialog = new ExistingGroupChooserDialog(existingGroups, recipientIds);
         existingGroupChooserDialog.show(getSupportFragmentManager(), "ExistingGroupChooserFragment");
       }
