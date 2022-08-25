@@ -501,12 +501,12 @@
     <string name="CreateProfileActivity_error_setting_profile_photo">Error setting profile photo</string>
     <string name="CreateProfileActivity_problem_setting_profile">Problem setting profile</string>
     <string name="CreateProfileActivity_set_up_your_profile">Set up your profile</string>
-    <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Your profile is end-to-end encrypted. Your profile and changes to it will be visible to your contacts, when you initiate or accept new conversations, and when you join new groups.</string>
+    <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Your profile and changes to it will be visible to people you message, contacts, and groups.</string>
     <string name="CreateProfileActivity_set_avatar_description">Set avatar</string>
 
     <!-- ProfileCreateFragment -->
     <!-- Displayed at the top of the screen and explains how profiles can be viewed. -->
-    <string name="ProfileCreateFragment__profiles_are_visible_to_contacts_and_people_you_message">Profiles are visible to contacts and people you message.</string>
+    <string name="ProfileCreateFragment__profiles_are_visible_to_contacts_and_people_you_message">Profiles are visible to people you message, contacts, and groups.</string>
     <!-- Title of clickable row to select phone number privacy settings -->
     <string name="ProfileCreateFragment__who_can_find_me">Who can find me by number?</string>
 
