@@ -80,6 +80,10 @@ class Material3SearchToolbar @JvmOverloads constructor(
     }
   }
 
+  fun clearText() {
+    input.setText("");
+  }
+
   interface Listener {
     fun onSearchTextChange(text: String)
     fun onSearchClosed()
