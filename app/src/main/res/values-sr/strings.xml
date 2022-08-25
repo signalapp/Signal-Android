@@ -455,7 +455,6 @@
   <string name="CreateProfileActivity_set_avatar_description">Постави аватар</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">Profili su vidljivi samo ljudima kojima ste poslali poruku.</string> -->
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">Ko može da me pronađe po broju telefona?</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -2322,6 +2321,7 @@
   <string name="preferences__data_and_storage">Подаци и складиште</string>
   <string name="preferences__storage">Складиште</string>
   <string name="preferences__payments">Уплате</string>
+  <!--Privacy settings payments section description-->
   <string name="preferences__payments_beta">Уплате (Beta)</string>
   <string name="preferences__conversation_length_limit">Ограничење дужине преписке</string>
   <string name="preferences__keep_messages">Задржити поруке</string>
@@ -2387,6 +2387,8 @@
   <string name="preferences_app_protection__who_can">Ко може…</string>
   <string name="preferences_app_protection__app_access">Приступ апликацији</string>
   <string name="preferences_app_protection__communication">Комуникација</string>
+  <!--Privacy settings payments section title-->
+  <string name="preferences_app_protection__payments">Уплате</string>
   <string name="preferences_chats__chats">Ћаскања</string>
   <string name="preferences_data_and_storage__manage_storage">Управљати складиште</string>
   <string name="preferences_data_and_storage__calls">Позиви</string>
@@ -2488,6 +2490,12 @@
   <string name="PaymentsHomeFragment__activate">Активирај</string>
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">Погледајте појмове MobileCoin-а</string>
   <string name="PaymentsHomeFragment__payments_not_available">Плаћања у Signal-у више није доступна. И даље можете преносити средства на размену, али више не можете да шаљете и примате уплате или да додате средства.</string>
+  <!--Alert dialog title which shows up after a payment to turn on payment lock-->
+  <!--Alert dialog description for why payment lock should be enabled before sending payments-->
+  <!--Alert dialog button to enable payment lock-->
+  <string name="PaymentsHomeFragment__enable">Укључи</string>
+  <!--Alert dialog button to not enable payment lock for now-->
+  <string name="PaymentsHomeFragment__not_now">Не сада</string>
   <!--PaymentsAddMoneyFragment-->
   <string name="PaymentsAddMoneyFragment__add_funds">Додај средства</string>
   <string name="PaymentsAddMoneyFragment__your_wallet_address">Адреса Вашег новчаника</string>
@@ -2568,6 +2576,7 @@
   <string name="ConfirmPayment__payment_failed">Неуспешна уплата</string>
   <string name="ConfirmPayment__payment_will_continue_processing">Уплата ће наставити прераду</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">Неисправан прималац</string>
+  <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Ова особа није активирала уплате</string>
   <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">Није могуће затражити мрежну накнаду. Да бисте наставили са овом уплатом додирните „у реду“ да бисте покушали поново.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
@@ -3399,6 +3408,12 @@
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Подесите подразумевани тајмер нестајања поруке за све нове преписке које сте започели.</string>
   <!--Summary for stories preference to launch into story privacy settings-->
   <string name="PrivacySettingsFragment__manage_your_stories">Upravljajte pričama i kontrolišite ko može da ih vidi</string>
+  <!--Alert dialog title when payment lock cannot be enabled-->
+  <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <!--Alert dialog button to go to phone settings-->
+  <string name="PrivacySettingsFragment__go_to_settings">Idite na podešavanja</string>
+  <!--Alert dialog button to cancel the dialog-->
+  <string name="PrivacySettingsFragment__cancel">Поништи</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Прикажи статусну икону</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Унутар „Детаљи поруке” ће бити приказан индикатор да је порука послата са запечаћеним пошиљаоцем.</string>
@@ -3636,6 +3651,8 @@
     <item quantity="few">Није могуће да се проследе поруке јер више нису доступне.</item>
     <item quantity="other">Није могуће да се проследе поруке јер више нису доступне.</item>
   </plurals>
+  <!--Error message shown when attempting to select a group to forward/share but it\'s announcement only and you are not an admin-->
+  <string name="MultiselectForwardFragment__only_admins_can_send_messages_to_this_group">Само Админи могу послати поруке овој групи.</string>
   <string name="MultiselectForwardFragment__limit_reached">Достигнут лимит</string>
   <!--Media V2-->
   <string name="MediaReviewFragment__add_a_message">Додати поруку</string>
@@ -3795,13 +3812,9 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Мрежна грешка. Проверите да ли сте повезани и покушајте поново.</string>
   <string name="NetworkFailure__retry">Покушај поново</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__recipient_verification_failed">Верификација примаоца није успела.</string> -->
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
-  <string name="DonationsErrors__target_does_not_support_gifting">Циљ не подржава поклоне.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__could_not_verify_recipient">Није могуће верификовати примаоца.</string> -->
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
-  <string name="DonationsErrors__please_check_your_network_connection">Поверите вашу везу и покушајте поново.</string>
   <!--Gift message view title-->
   <string name="GiftMessageView__gift_badge">Поклон значка</string>
   <!--Gift message view expiry information-->

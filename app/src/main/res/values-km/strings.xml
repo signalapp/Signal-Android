@@ -413,7 +413,6 @@
   <string name="CreateProfileActivity_set_avatar_description">កំណត់រូបតំណាង</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">មានតែមនុស្សដែលអ្នកផ្ញើសារប៉ុណ្ណោះទើបអាចមើលឃើញប្រូហ្វាល់នានាបាន។</string> -->
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">តើនរណាខ្លះអាចរកខ្ញុំតាមលេខទូរសព្ទបាន?</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -2145,6 +2144,7 @@
   <string name="preferences__data_and_storage">ទិន្នន័យ និងការរក្សាទុក</string>
   <string name="preferences__storage">ឧបករណ៍ផ្ទុក</string>
   <string name="preferences__payments">ការទូទាត់</string>
+  <!--Privacy settings payments section description-->
   <string name="preferences__payments_beta">ការទូទាត់ (បេតា)</string>
   <string name="preferences__conversation_length_limit">ប្រវែងការសន្ទនាមានកំណត់</string>
   <string name="preferences__keep_messages">រក្សាសារ</string>
@@ -2210,6 +2210,8 @@
   <string name="preferences_app_protection__who_can">អ្នកអាច…</string>
   <string name="preferences_app_protection__app_access">ចូលប្រើប្រាស់កម្មវិធី</string>
   <string name="preferences_app_protection__communication">ការទំនាក់ទំនង</string>
+  <!--Privacy settings payments section title-->
+  <string name="preferences_app_protection__payments">ការទូទាត់</string>
   <string name="preferences_chats__chats">ការជជែក</string>
   <string name="preferences_data_and_storage__manage_storage">គ្រប់គ្រងការរក្សាទុក</string>
   <string name="preferences_data_and_storage__calls">ការហៅ</string>
@@ -2311,6 +2313,12 @@
   <string name="PaymentsHomeFragment__activate">ធ្វើឱ្យសកម្ម</string>
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">មើលលក្ខខណ្ឌ MobileCoin</string>
   <string name="PaymentsHomeFragment__payments_not_available">ការទូទាត់នៅក្នុង Signal លែងមានហើយ។ អ្នកនៅតែអាចផ្ទេរប្រាក់ទៅកន្លែងប្តូរប្រាក់បាន ប៉ុន្តែអ្នកមិនអាចផ្ញើ និងទទួលការទូទាត់ ឬបន្ថែមថវិកាបានទេ។</string>
+  <!--Alert dialog title which shows up after a payment to turn on payment lock-->
+  <!--Alert dialog description for why payment lock should be enabled before sending payments-->
+  <!--Alert dialog button to enable payment lock-->
+  <string name="PaymentsHomeFragment__enable">បើក</string>
+  <!--Alert dialog button to not enable payment lock for now-->
+  <string name="PaymentsHomeFragment__not_now">មិនមែនឥឡូវនេះ</string>
   <!--PaymentsAddMoneyFragment-->
   <string name="PaymentsAddMoneyFragment__add_funds">បន្ថែមថវិកា</string>
   <string name="PaymentsAddMoneyFragment__your_wallet_address">អាសយដ្ឋានកាបូបរបស់អ្នក</string>
@@ -2391,6 +2399,7 @@
   <string name="ConfirmPayment__payment_failed">ការទូទាត់បរាជ័យ</string>
   <string name="ConfirmPayment__payment_will_continue_processing">ការទូទាត់នឹងបន្តដំណើរការ</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">អ្នកទទួលមិនត្រឹមត្រូវ</string>
+  <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">មនុស្សនេះ មិនទាន់បើកដំណើរការការទូទាត់</string>
   <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">មិនអាចស្នើសុំថ្លៃសេវាបណ្តាញ។ ដើម្បីបន្តការទូទាត់នេះ ចុច យល់ព្រម ដើម្បីសាកល្បងម្តងទៀត។</string>
   <!--CurrencyAmountFormatter_s_at_s-->
@@ -3199,6 +3208,12 @@
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">កំណត់ថេរវេលានៃការលុបសារសម្រាប់រាល់ការសន្ទនាថ្មីៗដែលចាប់ផ្ដើមដោយអ្នក</string>
   <!--Summary for stories preference to launch into story privacy settings-->
   <string name="PrivacySettingsFragment__manage_your_stories">គ្រប់គ្រងរឿងរ៉ាវរបស់អ្នក និងអ្នកដែលអាចមើលពួកវា</string>
+  <!--Alert dialog title when payment lock cannot be enabled-->
+  <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <!--Alert dialog button to go to phone settings-->
+  <string name="PrivacySettingsFragment__go_to_settings">ចូលទៅកាន់ការកំណត់</string>
+  <!--Alert dialog button to cancel the dialog-->
+  <string name="PrivacySettingsFragment__cancel">បោះបង់</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">បង្ហាញរូបតំណាងស្ថានភាព</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">បង្ហាញរូបតំណាងនៅក្នុងព័ត៌មានលម្អិតនៃសារ នៅពេលដែលត្រូវបានចែកចាយដោយប្រើអ្នកផ្ញើបិទជិត។</string>
@@ -3424,6 +3439,8 @@
   <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
     <item quantity="other">មិនអាចបញ្ជូនសារបន្តបាន ព្រោះសារត្រូវបានបាត់បង់</item>
   </plurals>
+  <!--Error message shown when attempting to select a group to forward/share but it\'s announcement only and you are not an admin-->
+  <string name="MultiselectForwardFragment__only_admins_can_send_messages_to_this_group">មានតែអ្នកអភិបាលក្រុមទេដែលអាចផ្ញើសារក្នុងក្រុមនេះ។</string>
   <string name="MultiselectForwardFragment__limit_reached">ដែនកំណត់ការចែកចាយ</string>
   <!--Media V2-->
   <string name="MediaReviewFragment__add_a_message">បន្ថែមសារមួយ</string>
@@ -3583,13 +3600,9 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">បណ្ដាញមានបញ្ហា។ សូមពិនិត្យការភ្ជាប់របស់អ្នក ហើយសាកល្បងម្ដងទៀត</string>
   <string name="NetworkFailure__retry">ព្យាយាមម្តងទៀត</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__recipient_verification_failed">មិនអាចផ្ទៀងផ្ទាត់អ្នកទទួលបានទេ។</string> -->
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
-  <string name="DonationsErrors__target_does_not_support_gifting">ការផ្តល់កាដូមិនអាចធ្វើបានសម្រាប់គោលដៅ។</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__could_not_verify_recipient">មិនអាចផ្ទៀងផ្ទាត់អ្នកទទួលទេ។</string> -->
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
-  <string name="DonationsErrors__please_check_your_network_connection">សូមពិនិត្យមើលការតភ្ជាប់បណ្តាញរបស់អ្នក ហើយព្យាយាមម្តងទៀត។</string>
   <!--Gift message view title-->
   <string name="GiftMessageView__gift_badge">ស្លាកកាដូ</string>
   <!--Gift message view expiry information-->

@@ -2059,6 +2059,7 @@
   <string name="preferences__data_and_storage">ډیټا او زیرمه</string>
   <string name="preferences__storage">زیرمه</string>
   <string name="preferences__payments">پرداختونه</string>
+  <!--Privacy settings payments section description-->
   <string name="preferences__payments_beta">پرداختونه (بیټا)</string>
   <string name="preferences__conversation_length_limit">د محاورې د اوږدوالې اندازه</string>
   <string name="preferences__keep_messages">د پیغامونو ساتل</string>
@@ -2124,6 +2125,8 @@
   <string name="preferences_app_protection__who_can">څوک کولای شي چې…</string>
   <string name="preferences_app_protection__app_access">اپلیکیشن ته لاسرسی</string>
   <string name="preferences_app_protection__communication">مکالمې</string>
+  <!--Privacy settings payments section title-->
+  <string name="preferences_app_protection__payments">پرداختونه</string>
   <string name="preferences_chats__chats">چټونه</string>
   <string name="preferences_data_and_storage__manage_storage">د زیرمې مدیریت</string>
   <string name="preferences_data_and_storage__calls">ټلیفوني اړیکې</string>
@@ -2223,6 +2226,12 @@
   <string name="PaymentsHomeFragment__activate">فعالول</string>
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">د MobileCoin د شرایطو لیدل</string>
   <string name="PaymentsHomeFragment__payments_not_available">په Signal کې پرداخت نور د لاسرسي وړ نه دی. خو تاسې بیا هم کولای شئ چې پیسې یوې صرافۍ ته ولیږئ خو تاسې به نور ونشئ کولای چې پرداختونه ولیږئ یا یې تر لاسه کړئ یا هم پیسې اضافه کړئ.</string>
+  <!--Alert dialog title which shows up after a payment to turn on payment lock-->
+  <!--Alert dialog description for why payment lock should be enabled before sending payments-->
+  <!--Alert dialog button to enable payment lock-->
+  <string name="PaymentsHomeFragment__enable">روښانه يې کړئ</string>
+  <!--Alert dialog button to not enable payment lock for now-->
+  <string name="PaymentsHomeFragment__not_now">اوس نه</string>
   <!--PaymentsAddMoneyFragment-->
   <string name="PaymentsAddMoneyFragment__add_funds">د پیسو اضافه کول</string>
   <string name="PaymentsAddMoneyFragment__your_wallet_address">ستاسې د جیبي بکسک پته</string>
@@ -2303,6 +2312,7 @@
   <string name="ConfirmPayment__payment_failed">پرداخت تر سره نشو</string>
   <string name="ConfirmPayment__payment_will_continue_processing">د پرداختونو تر سره کول به دوام ولري</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">ناسم تر لاسه کوونکی</string>
+  <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">دغه کس پرداختونه نه دي فعال کړي</string>
   <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">د شبکې د فیس غوښتنه ممکن نه دي. د دې پرداخت د مخته وړلو لپاره پر هوکې کلیک وکړئ تر څو بیا هڅه وکړئ.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
@@ -3093,6 +3103,11 @@
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">د نویو چټونو لپاره عادي ټایمر</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">ستاسې له خوا د پیلیدونکو ټولو نویو چټونو لپاره د پیغام د ورک کېدو عادي ټایمر وټاکئ.</string>
   <!--Summary for stories preference to launch into story privacy settings-->
+  <!--Alert dialog title when payment lock cannot be enabled-->
+  <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <!--Alert dialog button to go to phone settings-->
+  <!--Alert dialog button to cancel the dialog-->
+  <string name="PrivacySettingsFragment__cancel">لغوه کول</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">د وضعت د ایکن ښودل</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">د مهر شوي لیږونکی په کارولو سره د پیغام لیږلو په مهال د پیغام په جزئیاتو کې د ایکن ښودل </string>
@@ -3318,6 +3333,8 @@
     <item quantity="one">پیغام فاروارډ نشو ځکه چې هغه نور نشته.</item>
     <item quantity="other">پیغامونه فاروارډ نشول ځکه چې هغوی نور نشته.</item>
   </plurals>
+  <!--Error message shown when attempting to select a group to forward/share but it\'s announcement only and you are not an admin-->
+  <string name="MultiselectForwardFragment__only_admins_can_send_messages_to_this_group">یوازې اډمینان کولای شي دغه ګروپ ته پیغامونه ولیږي.</string>
   <string name="MultiselectForwardFragment__limit_reached">اندازه ډکه شوه</string>
   <!--Media V2-->
   <string name="MediaReviewFragment__add_a_message">د پیغام اضافه کول</string>

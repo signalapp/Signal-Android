@@ -434,7 +434,6 @@
   <string name="CreateProfileActivity_set_avatar_description">Ezarri abatarra</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">Zure mezuak jasotzen dituztenek bakarrik ikus ditzakete profilak.</string> -->
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">Nork topa nazake nire telefono-zenbakia bilatuta?</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -2238,6 +2237,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="preferences__data_and_storage">Datuak eta Biltegiratzea</string>
   <string name="preferences__storage">Biltegia</string>
   <string name="preferences__payments">Ordainketak</string>
+  <!--Privacy settings payments section description-->
   <string name="preferences__payments_beta">Ordainketak (Beta)</string>
   <string name="preferences__conversation_length_limit">Solasaldiaren luzera muga</string>
   <string name="preferences__keep_messages">Mezuak gorde</string>
@@ -2303,6 +2303,8 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="preferences_app_protection__who_can">Nork egin dezake…</string>
   <string name="preferences_app_protection__app_access">App-erako sarrera</string>
   <string name="preferences_app_protection__communication">Komunikazioa</string>
+  <!--Privacy settings payments section title-->
+  <string name="preferences_app_protection__payments">Ordainketak</string>
   <string name="preferences_chats__chats">Txatak</string>
   <string name="preferences_data_and_storage__manage_storage">Kudeatu biltegiratzea</string>
   <string name="preferences_data_and_storage__calls">Deiak</string>
@@ -2404,6 +2406,12 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="PaymentsHomeFragment__activate">Aktibatu</string>
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">Ikusi MobileCoin-en baldintzak</string>
   <string name="PaymentsHomeFragment__payments_not_available">Signal-eko ordainketak jada ez daude erabilgarri. Funtsak truke-plataformetara transferitzen jarrai dezakezu, baina jada ezin dituzu bidali eta jaso ordainketak, ezta funtsak gehitu ere.</string>
+  <!--Alert dialog title which shows up after a payment to turn on payment lock-->
+  <!--Alert dialog description for why payment lock should be enabled before sending payments-->
+  <!--Alert dialog button to enable payment lock-->
+  <string name="PaymentsHomeFragment__enable">Aktibatu</string>
+  <!--Alert dialog button to not enable payment lock for now-->
+  <string name="PaymentsHomeFragment__not_now">Orain ez</string>
   <!--PaymentsAddMoneyFragment-->
   <string name="PaymentsAddMoneyFragment__add_funds">Gehitu funtsak</string>
   <string name="PaymentsAddMoneyFragment__your_wallet_address">Zure diru-zorroaren helbidea</string>
@@ -2484,6 +2492,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="ConfirmPayment__payment_failed">Ezin izan da egin ordainketa</string>
   <string name="ConfirmPayment__payment_will_continue_processing">Ordainketa prozesatzen jarraituko da</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">Hartzaile baliogabea!</string>
+  <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Pertsona honek ez ditu ordainketak aktibatu</string>
   <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">Ezin da eskatu sareko kuotarik. Ordainketa honekin aurrera egiteko, sakatu ados berriro saiatzeko.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
@@ -3303,6 +3312,12 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Ezarri lehenetsitako desagerpen mezuen tenporizadore bat zuk hasitako txat berri guztientzat.</string>
   <!--Summary for stories preference to launch into story privacy settings-->
   <string name="PrivacySettingsFragment__manage_your_stories">Kudeatu zure istorioak eta nork ikusi ditzakeen</string>
+  <!--Alert dialog title when payment lock cannot be enabled-->
+  <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <!--Alert dialog button to go to phone settings-->
+  <string name="PrivacySettingsFragment__go_to_settings">Joan ezarpenetara</string>
+  <!--Alert dialog button to cancel the dialog-->
+  <string name="PrivacySettingsFragment__cancel">Utzi</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Erakutsi ikono egoera</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Erakutsi ikono bat mezuen xehetasunetan bidaltzaile itxia erabiliz bidaltzen direnean.</string>
@@ -3534,6 +3549,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
     <item quantity="one">Ezin izan da mezua birbidali eskuragarri ez dagoelako.</item>
     <item quantity="other">Ezin izan dira mezuak birbidali eskuragarri ez daudelako.</item>
   </plurals>
+  <!--Error message shown when attempting to select a group to forward/share but it\'s announcement only and you are not an admin-->
   <string name="MultiselectForwardFragment__limit_reached">Muga iritsi da</string>
   <!--Media V2-->
   <string name="MediaReviewFragment__add_a_message">Gehitu mezu bat</string>
@@ -3693,13 +3709,9 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Sareko errorea. Egiaztatu konexioa eta saiatu berriro.</string>
   <string name="NetworkFailure__retry">Berriro saiatu</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__recipient_verification_failed">Hartzailea egiaztatzeak huts egin du.</string> -->
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
-  <string name="DonationsErrors__target_does_not_support_gifting">Jasotzaileak ez du oparirik onartzen.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__could_not_verify_recipient">Ezin izan da hartzailea egiaztatu.</string> -->
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
-  <string name="DonationsErrors__please_check_your_network_connection">Mesedez, egiaztatu sareko konexioa eta saiatu berriro.</string>
   <!--Gift message view title-->
   <string name="GiftMessageView__gift_badge">Opari bereizgarria</string>
   <!--Gift message view expiry information-->

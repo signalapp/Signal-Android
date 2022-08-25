@@ -434,7 +434,6 @@
   <string name="CreateProfileActivity_set_avatar_description">প্রোফাইলের ছবি সেট করুন</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">আপনি যাদেরকে ম্যাসেজ করবেন শুধু তারাই আপনার প্রোফাইল দেখতে পাবেন।</string> -->
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">নম্বরের মাধ্যমে কারা আমাকে খুঁজে পাবেন?</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -2231,6 +2230,7 @@
   <string name="preferences__data_and_storage">ডাটা এবং স্টোরেজ</string>
   <string name="preferences__storage">স্টোরেজ</string>
   <string name="preferences__payments">পেমেন্ট</string>
+  <!--Privacy settings payments section description-->
   <string name="preferences__payments_beta">পেমেন্ট (বিটা)</string>
   <string name="preferences__conversation_length_limit">কথোপকথন দৈর্ঘ্য সীমা</string>
   <string name="preferences__keep_messages">মেসেজগুলো রাখুন</string>
@@ -2296,6 +2296,8 @@
   <string name="preferences_app_protection__who_can">যে পারে …</string>
   <string name="preferences_app_protection__app_access">অ্যাপ প্রবেশাধীকার</string>
   <string name="preferences_app_protection__communication">যোগাযোগ</string>
+  <!--Privacy settings payments section title-->
+  <string name="preferences_app_protection__payments">পেমেন্ট</string>
   <string name="preferences_chats__chats">আলাপসমূহ</string>
   <string name="preferences_data_and_storage__manage_storage">স্টোরেজ ব্যাবস্থাপনা</string>
   <string name="preferences_data_and_storage__calls">কল সমূহ</string>
@@ -2397,6 +2399,12 @@
   <string name="PaymentsHomeFragment__activate">সক্রিয় করুন</string>
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">MobileCoin-এর শর্তাবলী দেখুন</string>
   <string name="PaymentsHomeFragment__payments_not_available">Signal-এ পেমেন্ট আর উপলভ্য নেই। আপনি এখনও কোনও এক্সচেঞ্জে আপনার ফান্ডগুলি ট্রান্সফার করতে পারেন তবে আপনি আর পেমেন্টগুলি প্রেরণ এবং গ্রহণ করতে বা ফান্ড যোগ করতে পারবেন না।</string>
+  <!--Alert dialog title which shows up after a payment to turn on payment lock-->
+  <!--Alert dialog description for why payment lock should be enabled before sending payments-->
+  <!--Alert dialog button to enable payment lock-->
+  <string name="PaymentsHomeFragment__enable">চালু করুন</string>
+  <!--Alert dialog button to not enable payment lock for now-->
+  <string name="PaymentsHomeFragment__not_now">এখন নয়</string>
   <!--PaymentsAddMoneyFragment-->
   <string name="PaymentsAddMoneyFragment__add_funds">ফান্ড যোগ করুন</string>
   <string name="PaymentsAddMoneyFragment__your_wallet_address">আপনার ওয়ালেট ঠিকানা</string>
@@ -2477,6 +2485,7 @@
   <string name="ConfirmPayment__payment_failed">পেমেন্ট ব্যর্থ হয়েছে</string>
   <string name="ConfirmPayment__payment_will_continue_processing">অর্থ প্রদান প্রক্রিয়া চালিয়ে যাবে</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">প্রাপক সঠিক নয়</string>
+  <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">এই ব্যক্তি পেমেন্ট সক্রিয় করেনি</string>
   <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">একটি নেটওয়ার্ক ফি-এর অনুরোধ করতে পারেনি। পেমেন্টটি চালিয়ে যাওয়ার জন্য পুনরায় চেষ্টা করতে ‘ঠিক আছে’-তে ট্যাপ করুন।</string>
   <!--CurrencyAmountFormatter_s_at_s-->
@@ -3296,6 +3305,12 @@
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">আপনার শুরু করা সব নতুন চ্যাটের জন্য মেসেজ অদৃশ্য হওয়ার ডিফল্ট সময় সেট করুন।</string>
   <!--Summary for stories preference to launch into story privacy settings-->
   <string name="PrivacySettingsFragment__manage_your_stories">আপনার স্টোরি এবং কারা আপনার স্টোরি দেখতে পারবেন তা নিয়ন্ত্রণ করুন</string>
+  <!--Alert dialog title when payment lock cannot be enabled-->
+  <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <!--Alert dialog button to go to phone settings-->
+  <string name="PrivacySettingsFragment__go_to_settings">সেটিংস-এ যান</string>
+  <!--Alert dialog button to cancel the dialog-->
+  <string name="PrivacySettingsFragment__cancel">বাতিল করুন</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">স্ট্যাটাস আইকন দেখান</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">সিল করা প্রেরকের মাধ্যমে কোন মেসেজ পাঠানো হলে মেসেজের বিস্তারিত বিবরণীতে একটি আইকন দেখান।</string>
@@ -3527,6 +3542,8 @@
     <item quantity="one">বার্তাটি ফরওয়ার্ড করা যায়নি কারণ এটি আর উপলব্ধ নেই।</item>
     <item quantity="other">বার্তাগুলি ফরওয়ার্ড করা যায়নি কারণ সেগুলি আর উপলব্ধ নেই।</item>
   </plurals>
+  <!--Error message shown when attempting to select a group to forward/share but it\'s announcement only and you are not an admin-->
+  <string name="MultiselectForwardFragment__only_admins_can_send_messages_to_this_group">কেবলমাত্র অ্যাডমিনরা এই গ্রুপে মেসেজ পাঠাতে পারবেন।</string>
   <string name="MultiselectForwardFragment__limit_reached">সীমায় পৌঁছেছে</string>
   <!--Media V2-->
   <string name="MediaReviewFragment__add_a_message">একটি বার্তা যোগ করুন</string>
@@ -3687,13 +3704,9 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">নেটওয়ার্ক ত্রুটি। আপনার সংযোগ পরীক্ষা করুন এবং আবার চেষ্টা করুন।</string>
   <string name="NetworkFailure__retry">পুনরায় চেষ্টা করুন</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__recipient_verification_failed">প্রাপক যাচাইকরণ সফল হয়নি।</string> -->
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
-  <string name="DonationsErrors__target_does_not_support_gifting">যাকে পাঠাতে চাচ্ছেন তার জন্য উপহার সমর্থিত নয়।</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__could_not_verify_recipient">প্রাপককে যাচাই করা যায়নি।</string> -->
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
-  <string name="DonationsErrors__please_check_your_network_connection">অনুগ্রহ করে আপনার নেটওয়ার্ক সংযোগ ঠিক আছে কিনা দেখুন এবং আবার চেষ্টা করুন।</string>
   <!--Gift message view title-->
   <string name="GiftMessageView__gift_badge">ব্যাজ উপহার দিন</string>
   <!--Gift message view expiry information-->

@@ -439,7 +439,6 @@
   <string name="CreateProfileActivity_set_avatar_description">అవతార్ సెట్ చేయండి</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">మీరు సందేశం పంపే వ్యక్తులకు మాత్రమే ప్రొఫైల్స్ కనిపిస్తాయి.</string> -->
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">నంబర్ ద్వారా నన్ను ఎవరు కనుగొనగలరు?</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -2241,6 +2240,7 @@
   <string name="preferences__data_and_storage">డేటా మరియు నిల్వ</string>
   <string name="preferences__storage">నిల్వ</string>
   <string name="preferences__payments">చెల్లింపులు</string>
+  <!--Privacy settings payments section description-->
   <string name="preferences__payments_beta">చెల్లింపులు (Beta)</string>
   <string name="preferences__conversation_length_limit">సంభాషణ విస్తృతికి పరిమితి</string>
   <string name="preferences__keep_messages">సందేశాలను ఉంచు</string>
@@ -2306,6 +2306,8 @@
   <string name="preferences_app_protection__who_can">ఎవరు చేయగలరు…</string>
   <string name="preferences_app_protection__app_access">అనువర్తన ప్రాప్యత</string>
   <string name="preferences_app_protection__communication">సమాచారం</string>
+  <!--Privacy settings payments section title-->
+  <string name="preferences_app_protection__payments">చెల్లింపులు</string>
   <string name="preferences_chats__chats">మాటామంతి</string>
   <string name="preferences_data_and_storage__manage_storage">నిల్వను నిర్వహించండి</string>
   <string name="preferences_data_and_storage__calls">కాల్స్</string>
@@ -2407,6 +2409,12 @@
   <string name="PaymentsHomeFragment__activate">సక్రియం చేయండి</string>
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">MobileCoin నిబంధనలను చూడండి.</string>
   <string name="PaymentsHomeFragment__payments_not_available">Signal లో చెల్లింపులు ఇకపై అందుబాటులో లేవు. మీరు ఇప్పటికీ నిధులను ఎక్స్ఛేంజికి బదిలీ చేయవచ్చు, కానీ మీరు ఇకపై చెల్లింపులను పంపలేరు మరియు స్వీకరించలేరు లేదా నిధులను జోడించలేరు.</string>
+  <!--Alert dialog title which shows up after a payment to turn on payment lock-->
+  <!--Alert dialog description for why payment lock should be enabled before sending payments-->
+  <!--Alert dialog button to enable payment lock-->
+  <string name="PaymentsHomeFragment__enable">ఆరంభించండి</string>
+  <!--Alert dialog button to not enable payment lock for now-->
+  <string name="PaymentsHomeFragment__not_now">ఇప్పుడు కాదు</string>
   <!--PaymentsAddMoneyFragment-->
   <string name="PaymentsAddMoneyFragment__add_funds">ఫండ్స్ జోడించండి</string>
   <string name="PaymentsAddMoneyFragment__your_wallet_address">మీ వాలెట్ చిరునామా</string>
@@ -2487,6 +2495,7 @@
   <string name="ConfirmPayment__payment_failed">పేమెంట్ విఫలమైంది</string>
   <string name="ConfirmPayment__payment_will_continue_processing">పేమెంట్ ప్రాసెసింగ్ కొనసాగించబడుతుంది</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">చెల్లుబాటుకాని గ్రహీత</string>
+  <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">ఈ వ్యక్తి పేమెంట్‌లను యాక్టివేట్ చేయలేదు</string>
   <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">నెట్‌వర్క్ ఫీజును అభ్యర్ధించలేకపోయింది. ఈ పమెంట్‌ని కొనసాగించడానికి, మళ్లీ ప్రయత్నించేందుకు ఒకే మీద తట్టండి.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
@@ -3307,6 +3316,12 @@
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">మీరు ప్రారంభించిన అన్ని క్రొత్త మాటామంతిల కోసం అప్రమేయంగా అదృశ్యమయ్యే సందేశ టైమర్‌ను సెట్ చేయండి.</string>
   <!--Summary for stories preference to launch into story privacy settings-->
   <string name="PrivacySettingsFragment__manage_your_stories">మీరు కథలను మరియు వాటిని ఎవరు వీక్షించవచ్చు అనేది నిర్వహించండి</string>
+  <!--Alert dialog title when payment lock cannot be enabled-->
+  <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <!--Alert dialog button to go to phone settings-->
+  <string name="PrivacySettingsFragment__go_to_settings">సెట్టింగ్‌లకు వెళ్లండి</string>
+  <!--Alert dialog button to cancel the dialog-->
+  <string name="PrivacySettingsFragment__cancel">రద్దు</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">స్టేటస్ ఐకాన్‌ని చూపించడం</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">సీల్డ్ సెండర్‌ని ఉపయోగించి అవి డెలివరీ చేయబడినప్పుడు సందేశం వివరాల్లో ఐకాన్‌ని చూపించండి.</string>
@@ -3538,6 +3553,8 @@
     <item quantity="one">అవి ఇక ఏమాత్రం లభ్యం కాకపోవడం వల్ల సందేశాన్ని ఫార్వర్డ్ చేయలేకపోయింది.</item>
     <item quantity="other">అవి ఇక ఏమాత్రం లభ్యం కాకపోవడం వల్ల సందేశాలను ఫార్వర్డ్ చేయలేకపోయింది.</item>
   </plurals>
+  <!--Error message shown when attempting to select a group to forward/share but it\'s announcement only and you are not an admin-->
+  <string name="MultiselectForwardFragment__only_admins_can_send_messages_to_this_group">నిర్వాహకులు మాత్రమే ఈ గుంపుకు సందేశాలను పంపగలరు.</string>
   <string name="MultiselectForwardFragment__limit_reached">పరిమితి చేరుకుంది</string>
   <!--Media V2-->
   <string name="MediaReviewFragment__add_a_message">ఒక సందేశాన్ని జోడించండి</string>
@@ -3697,13 +3714,9 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">నెట్‌వర్క్ దోషం. మీ కనెక్షన్ చెక్ చేసి, మళ్లీ ప్రయత్నించండి.</string>
   <string name="NetworkFailure__retry">మళ్ళీ ప్రయత్నించు</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__recipient_verification_failed">గ్రహీత ధృవీకరణ విఫలమైంది.</string> -->
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
-  <string name="DonationsErrors__target_does_not_support_gifting">టార్గెట్ గిఫ్టింగ్‌కు మద్దతు ఇవ్వదు.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__could_not_verify_recipient">గ్రహీతను ధృవీకరించలేకపోయింది.</string> -->
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
-  <string name="DonationsErrors__please_check_your_network_connection">చేసి మీ నెట్‌వర్క్ కనెక్షన్ చెక్ చేసి, మళ్లీ ప్రయత్నించండి.</string>
   <!--Gift message view title-->
   <string name="GiftMessageView__gift_badge">గిఫ్ట్ బ్యాడ్జీ</string>
   <!--Gift message view expiry information-->

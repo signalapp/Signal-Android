@@ -2203,6 +2203,7 @@
   <string name="preferences__data_and_storage">Gegevensoerdracht en -ûnthâld</string>
   <string name="preferences__storage">Unthâld</string>
   <string name="preferences__payments">Oerskriuwingen</string>
+  <!--Privacy settings payments section description-->
   <string name="preferences__payments_beta">Oerskriuwingen (Bèta)</string>
   <string name="preferences__conversation_length_limit">Oantal te bewarjen berjochten</string>
   <string name="preferences__keep_messages">Bewartermyn foar berjochten</string>
@@ -2268,6 +2269,8 @@
   <string name="preferences_app_protection__who_can">Wa mei…</string>
   <string name="preferences_app_protection__app_access">Tagong ta app</string>
   <string name="preferences_app_protection__communication">Kommunikaasje</string>
+  <!--Privacy settings payments section title-->
+  <string name="preferences_app_protection__payments">Oerskriuwingen</string>
   <string name="preferences_chats__chats">Petearen</string>
   <string name="preferences_data_and_storage__manage_storage">Unthâld beheare</string>
   <string name="preferences_data_and_storage__calls">Oproppen</string>
@@ -2369,6 +2372,10 @@
   <string name="PaymentsHomeFragment__activate">Ynskeakelje</string>
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">De brûksbetingsten fan MobileCoin werjaan</string>
   <string name="PaymentsHomeFragment__payments_not_available">Oerskriuwingen fia Signal binne net langer mooglik. Do kinst noch wol dyn kredyt omsette nei in oare faluta, mar do kinst net langer oerskriuwingen ferstjoere of ûntfange of kredyt tafoegje.</string>
+  <!--Alert dialog title which shows up after a payment to turn on payment lock-->
+  <!--Alert dialog description for why payment lock should be enabled before sending payments-->
+  <!--Alert dialog button to enable payment lock-->
+  <!--Alert dialog button to not enable payment lock for now-->
   <!--PaymentsAddMoneyFragment-->
   <string name="PaymentsAddMoneyFragment__add_funds">Kredyt tafoegje</string>
   <string name="PaymentsAddMoneyFragment__your_wallet_address">It adres fan dyn portemonnee</string>
@@ -2449,6 +2456,7 @@
   <string name="ConfirmPayment__payment_failed">Oerskriuwing is mislearre</string>
   <string name="ConfirmPayment__payment_will_continue_processing">De oerskriuwing wurdt noch ferwurke</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">Untfanger ûnjildich</string>
+  <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Dizze persoan hat oerskriuwingen net ynskeakele.</string>
   <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">Kin de netwurkkosten net ophelje Tik op ‘Ok’ om it nochris te probearjen.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
@@ -3262,6 +3270,11 @@
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">Standert tiidrek foar alle nije petearen</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Stel yn dat berjochten yn alle nije petearen dy’tsto sels begjinst in bepaalde tiid neidat se sjoen binne foar sawol do as dyn petearpartner fansels wiske wurde.</string>
   <!--Summary for stories preference to launch into story privacy settings-->
+  <!--Alert dialog title when payment lock cannot be enabled-->
+  <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <!--Alert dialog button to go to phone settings-->
+  <!--Alert dialog button to cancel the dialog-->
+  <string name="PrivacySettingsFragment__cancel">Annulearje</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Piktogram werjaan</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Lit yn de berjochtdetails in piktogram sjen by berjochten dy’t ôflevere binne mei in fersegele ôfstjoerder</string>
@@ -3490,6 +3503,7 @@
     <item quantity="one">Koe in berjocht net trochstjoere, omdat dy net langer beskikber is.</item>
     <item quantity="other">Koe guon berjochten net trochstjoere, omdat dy net langer beskikber binne.</item>
   </plurals>
+  <!--Error message shown when attempting to select a group to forward/share but it\'s announcement only and you are not an admin-->
   <string name="MultiselectForwardFragment__limit_reached">Limyt berikt</string>
   <!--Media V2-->
   <string name="MediaReviewFragment__add_a_message">In berjocht tafoegje</string>
@@ -3648,13 +3662,9 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Netwurkflater. Kontrolearje dat dyn apparaat mei it ynternet ferbûn is en probearje it opnij.</string>
   <string name="NetworkFailure__retry">Opnij probearje</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__recipient_verification_failed">Ferifikaasje ûntfanger is mislearre</string> -->
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
-  <string name="DonationsErrors__target_does_not_support_gifting">De bedoelde persoan stipet it ûntfangen fan kado-badges net.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__could_not_verify_recipient">Kin de ûntfanger net ferifiearje.</string> -->
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
-  <string name="DonationsErrors__please_check_your_network_connection">Kontrolearje dyn netwurkferbining en probearje opnij.</string>
   <!--Gift message view title-->
   <string name="GiftMessageView__gift_badge">Kado-badge</string>
   <!--Gift message view expiry information-->

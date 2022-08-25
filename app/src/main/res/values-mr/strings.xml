@@ -434,7 +434,6 @@
   <string name="CreateProfileActivity_set_avatar_description">अवतार सेट करा</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">प्रोफाईल हे आपण संदेश करत असलेल्या लोकांनाच दृश्यमान आहे.</string> -->
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">नंबराने माझा शोध कोण घेऊ शकतात?</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -2234,6 +2233,7 @@
   <string name="preferences__data_and_storage">डेटा आणि संचयन</string>
   <string name="preferences__storage">संचयन</string>
   <string name="preferences__payments">पेमेंट</string>
+  <!--Privacy settings payments section description-->
   <string name="preferences__payments_beta">पेमेंट (बीटा)</string>
   <string name="preferences__conversation_length_limit">संभाषण लांबी मर्यादा</string>
   <string name="preferences__keep_messages">संदेश ठेवा</string>
@@ -2299,6 +2299,8 @@
   <string name="preferences_app_protection__who_can">कोण करू शकतो…</string>
   <string name="preferences_app_protection__app_access">अॅप अॅक्सेस</string>
   <string name="preferences_app_protection__communication">परस्परसंवाद</string>
+  <!--Privacy settings payments section title-->
+  <string name="preferences_app_protection__payments">पेमेंट</string>
   <string name="preferences_chats__chats">चॅट</string>
   <string name="preferences_data_and_storage__manage_storage">संचयन व्यवस्थापित करा</string>
   <string name="preferences_data_and_storage__calls">कॉल</string>
@@ -2400,6 +2402,12 @@
   <string name="PaymentsHomeFragment__activate">सक्रिय करा</string>
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">MobileCoin च्या अटी पहा</string>
   <string name="PaymentsHomeFragment__payments_not_available">Signal मध्ये पेमेंट यापुढे उपलब्ध नाही. तरीही आपण फंड एक्सचेंजवर स्थानांतरित करू शकता पण आपण यापुढे पेमेंट पाठवू किंवा प्राप्त करू शकत नाही किंवा फंड जोडू शकत नाही.</string>
+  <!--Alert dialog title which shows up after a payment to turn on payment lock-->
+  <!--Alert dialog description for why payment lock should be enabled before sending payments-->
+  <!--Alert dialog button to enable payment lock-->
+  <string name="PaymentsHomeFragment__enable">चालू करा</string>
+  <!--Alert dialog button to not enable payment lock for now-->
+  <string name="PaymentsHomeFragment__not_now">आता नाही</string>
   <!--PaymentsAddMoneyFragment-->
   <string name="PaymentsAddMoneyFragment__add_funds">फंड जोडा</string>
   <string name="PaymentsAddMoneyFragment__your_wallet_address">आपला वॉलेट पत्ता</string>
@@ -2480,6 +2488,7 @@
   <string name="ConfirmPayment__payment_failed">पेमेंट अयशस्वी झाले</string>
   <string name="ConfirmPayment__payment_will_continue_processing">पेमेंट प्रक्रिया सुरू राहील</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">अवैध प्राप्तकर्ता</string>
+  <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">या व्यक्तीने पेमेंट सक्रिय केलेले नाही</string>
   <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">नेटवर्क फीची विनंती करण्यात अक्षम. हे पेमेंट सुरू ठेवण्यासाठी पुन्हा प्रयत्न करण्यासाठी ठीक आहे वर टॅप करा.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
@@ -3299,6 +3308,12 @@
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">आपल्याद्वारा चालू केलेल्या सर्व नवीन चॅटसाठी पूर्वनिर्धारित हरवणारे संदेश टायमर सेट करा.</string>
   <!--Summary for stories preference to launch into story privacy settings-->
   <string name="PrivacySettingsFragment__manage_your_stories">आपल्या स्टोरीज आणि त्यांना कोण पाहू शकते ते व्यवस्थापित करा</string>
+  <!--Alert dialog title when payment lock cannot be enabled-->
+  <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <!--Alert dialog button to go to phone settings-->
+  <string name="PrivacySettingsFragment__go_to_settings">सेटिंग्ज वर जा</string>
+  <!--Alert dialog button to cancel the dialog-->
+  <string name="PrivacySettingsFragment__cancel">रद्द करा</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">स्टेटस चिन्ह दाखवा</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">सीलबंद प्रेषकद्वारे पोहोचवले गेल्यावर संदेश तपशीलामध्ये चिन्ह दाखवा.</string>
@@ -3530,6 +3545,8 @@
     <item quantity="one">संदेश फॉर्वर्ड करण्यात अयशस्वी कारण ते आता उपलब्ध नाहीत.</item>
     <item quantity="other">संदेश फॉर्वर्ड करण्यात अयशस्वी कारण ते आता उपलब्ध नाहीत.</item>
   </plurals>
+  <!--Error message shown when attempting to select a group to forward/share but it\'s announcement only and you are not an admin-->
+  <string name="MultiselectForwardFragment__only_admins_can_send_messages_to_this_group">या गटात फक्त प्रशासक संदेश पाठवू शकतात.</string>
   <string name="MultiselectForwardFragment__limit_reached">मर्यादा गाठली</string>
   <!--Media V2-->
   <string name="MediaReviewFragment__add_a_message">संदेश जोडा</string>
@@ -3689,13 +3706,9 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">नेटवर्क त्रुटी. आपले कनेक्शन तपासा आणि पुन्हा प्रयत्न करा.</string>
   <string name="NetworkFailure__retry">पुन्हा प्रयत्न करा</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__recipient_verification_failed">प्राप्तकर्त्याची पडताळणी अयशस्वी.</string> -->
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
-  <string name="DonationsErrors__target_does_not_support_gifting">संपर्क भेट देण्यास समर्थ नाही.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__could_not_verify_recipient">प्राप्तकर्त्याची पडताळणी करू शकलो नाही.</string> -->
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
-  <string name="DonationsErrors__please_check_your_network_connection">कृपया आपले नेटवर्क कनेक्शन तपासा आणि पुन्हा प्रयत्न करा.</string>
   <!--Gift message view title-->
   <string name="GiftMessageView__gift_badge">भेट बॅज</string>
   <!--Gift message view expiry information-->

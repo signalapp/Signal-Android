@@ -434,7 +434,6 @@
   <string name="CreateProfileActivity_set_avatar_description">சின்னம் அமைக்கவும்</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">நீங்கள் செய்தி அனுப்புபவர்களுக்கு மட்டுமே ப்ரொஃபைல்கள் தெரியும்.</string> -->
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">எண் மூலம் என்னை யார் கண்டுபிடிக்க முடியும்?</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -2226,6 +2225,7 @@
   <string name="preferences__data_and_storage">தரவு மற்றும் சேமிப்பு</string>
   <string name="preferences__storage">சேமிப்பு</string>
   <string name="preferences__payments">பணம் செலுத்தல்</string>
+  <!--Privacy settings payments section description-->
   <string name="preferences__payments_beta">பணம் செலுத்தல் (பீட்டா)</string>
   <string name="preferences__conversation_length_limit">உரையாடலின் நீள அளவு</string>
   <string name="preferences__keep_messages">செய்திகள் வைப்பு</string>
@@ -2291,6 +2291,8 @@
   <string name="preferences_app_protection__who_can">யாரால் முடியும்…</string>
   <string name="preferences_app_protection__app_access">பயன்பாடு அணுகல்</string>
   <string name="preferences_app_protection__communication">தொடர்பாடல்</string>
+  <!--Privacy settings payments section title-->
+  <string name="preferences_app_protection__payments">பணம் செலுத்தல்</string>
   <string name="preferences_chats__chats">அரட்டைகள்</string>
   <string name="preferences_data_and_storage__manage_storage">சேமிப்பிடத்தை நிர்வகிக்கவும்</string>
   <string name="preferences_data_and_storage__calls">அழைப்புகள்</string>
@@ -2393,6 +2395,12 @@
   <string name="PaymentsHomeFragment__activate">செயல்படுத்த</string>
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">MobileCoin விதிமுறைகளைக் காண்க</string>
   <string name="PaymentsHomeFragment__payments_not_available">கொடுப்பனவுகள் Signal இருக்கிறது இல்லைநீண்ட நேரம் கிடைக்கும். நீங்கள் இன்னும் முடியும்பரிமாற்றம் நிதி ஒரு பரிமாற்றம் ஆனால் உன்னால் முடியும் இல்லை நீண்டது அனுப்பு மற்றும் பணம் பெறுதல் அல்லது கூட்டு நிதி.</string>
+  <!--Alert dialog title which shows up after a payment to turn on payment lock-->
+  <!--Alert dialog description for why payment lock should be enabled before sending payments-->
+  <!--Alert dialog button to enable payment lock-->
+  <string name="PaymentsHomeFragment__enable">இயக்கவும்</string>
+  <!--Alert dialog button to not enable payment lock for now-->
+  <string name="PaymentsHomeFragment__not_now">இப்போது வேண்டாம் </string>
   <!--PaymentsAddMoneyFragment-->
   <string name="PaymentsAddMoneyFragment__add_funds">கூட்டு நிதி</string>
   <string name="PaymentsAddMoneyFragment__your_wallet_address">உங்கள் Wallet முகவரி</string>
@@ -2473,6 +2481,7 @@
   <string name="ConfirmPayment__payment_failed">கட்டணம் தோல்வியடைந்தது</string>
   <string name="ConfirmPayment__payment_will_continue_processing">கட்டணம் தொடர்ந்து செயலாக்கப்படும்</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">தவறானது பெறுநர்</string>
+  <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">இந்த நபர் கொடுப்பனவுகளை செயல்படுத்தவில்லை</string>
   <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">பிணையக் கட்டணத்தைக் கோர முடியவில்லை. இந்த கட்டணத்தைத் தொடரதட்டவும் மீண்டும் முயற்சிக்க சரி.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
@@ -3294,6 +3303,12 @@
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">நீங்கள் தொடங்கும் அனைத்து புதிய அரட்டைகளுக்கும் இயல்புநிலை காணாமல் போகும் செய்திகள் நேரக்குறிப்பானை அமைக்கவும்.</string>
   <!--Summary for stories preference to launch into story privacy settings-->
   <string name="PrivacySettingsFragment__manage_your_stories">உங்கள் ஸ்டோரீக்கள் மற்றும் அவற்றை யார் பார்க்கலாம் என்பதை நிர்வகிக்கவும்</string>
+  <!--Alert dialog title when payment lock cannot be enabled-->
+  <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <!--Alert dialog button to go to phone settings-->
+  <string name="PrivacySettingsFragment__go_to_settings">அமைப்புகளுக்குச் செல்</string>
+  <!--Alert dialog button to cancel the dialog-->
+  <string name="PrivacySettingsFragment__cancel">ரத்து</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">நிலை ஐகானைக் காட்டு</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">செய்தியில் ஒரு ஐகானைக் காட்டு விவரங்கள் அவை பயன்படுத்தி வழங்கப்பட்டபோது சீல் அனுப்பியவர்.</string>
@@ -3525,6 +3540,8 @@
     <item quantity="one">செய்தி கிடைக்காததால் அதை முன்னனுப்ப முடியவில்லை.</item>
     <item quantity="other">செய்திகள் கிடைக்காததால் அவற்றை முன்னனுப்ப முடியவில்லை.</item>
   </plurals>
+  <!--Error message shown when attempting to select a group to forward/share but it\'s announcement only and you are not an admin-->
+  <string name="MultiselectForwardFragment__only_admins_can_send_messages_to_this_group">மட்டும் நிர்வாகிகள் முடியும் அனுப்பு இதற்கு செய்திகள் குழு.</string>
   <string name="MultiselectForwardFragment__limit_reached">வரம்பை எட்டியது</string>
   <!--Media V2-->
   <string name="MediaReviewFragment__add_a_message">கூட்டு ஒரு செய்தி</string>
@@ -3685,13 +3702,9 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">நெட்வொர்க் பிழை. உங்கள் இணைப்பைச் சரிபார்த்து மீண்டும் முயலவும்.</string>
   <string name="NetworkFailure__retry">மீண்டும் முயற்சி செய்</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__recipient_verification_failed">பெறுநர் சரிபார்ப்பு தோல்வியுற்றது.</string> -->
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
-  <string name="DonationsErrors__target_does_not_support_gifting">பரிசு வழங்குவதை இலக்கு ஆதரிக்காது.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__could_not_verify_recipient">பெறுநரைச் சரிபார்க்க முடியவில்லை.</string> -->
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
-  <string name="DonationsErrors__please_check_your_network_connection">உங்கள் நெட்வொர்க் இணைப்பைச் சரிபார்த்து, மீண்டும் முயற்சிக்கவும்.</string>
   <!--Gift message view title-->
   <string name="GiftMessageView__gift_badge">பரிசு பேட்ஜ்</string>
   <!--Gift message view expiry information-->

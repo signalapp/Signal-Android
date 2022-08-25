@@ -434,7 +434,6 @@
   <string name="CreateProfileActivity_set_avatar_description">Ορισμός εικόνας προφίλ</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">Τα προφίλ είναι ορατά μόνο στα άτομα που στέλνεις μηνύματα.</string> -->
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">Ποιοί μπορούν να με βρουν με τον αριθμό μου;</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -2232,6 +2231,7 @@
   <string name="preferences__data_and_storage">Δεδομένα και αποθηκευτικός χώρος</string>
   <string name="preferences__storage">Αποθηκευτικός χώρος</string>
   <string name="preferences__payments">Πληρωμές</string>
+  <!--Privacy settings payments section description-->
   <string name="preferences__payments_beta">Πληρωμές (Beta)</string>
   <string name="preferences__conversation_length_limit">Όριο μεγέθους συνομιλίας</string>
   <string name="preferences__keep_messages">Διατήρηση μηνυμάτων</string>
@@ -2297,6 +2297,8 @@
   <string name="preferences_app_protection__who_can">Ποιοί μπορούν…</string>
   <string name="preferences_app_protection__app_access">Πρόσβαση εφαρμογής</string>
   <string name="preferences_app_protection__communication">Επικοινωνία</string>
+  <!--Privacy settings payments section title-->
+  <string name="preferences_app_protection__payments">Πληρωμές</string>
   <string name="preferences_chats__chats">Συνομιλίες</string>
   <string name="preferences_data_and_storage__manage_storage">Διαχείριση χώρου αποθήκευσης</string>
   <string name="preferences_data_and_storage__calls">Κλήσεις</string>
@@ -2398,6 +2400,12 @@
   <string name="PaymentsHomeFragment__activate">Ενεργοποίηση</string>
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">Προβολή όρων MobileCoin</string>
   <string name="PaymentsHomeFragment__payments_not_available">Οι πληρωμές στο Signal δεν είναι πλέον διαθέσιμες. Μπορείτε ακόμα να μεταφέρετε χρήματα προς ένα ανταλλακτήριο, αλλά δεν μπορείτε πλέον να στέλνετε και να λαμβάνετε πληρωμές ή να προσθέτετε χρήματα.</string>
+  <!--Alert dialog title which shows up after a payment to turn on payment lock-->
+  <!--Alert dialog description for why payment lock should be enabled before sending payments-->
+  <!--Alert dialog button to enable payment lock-->
+  <string name="PaymentsHomeFragment__enable">Ενεργοποίηση</string>
+  <!--Alert dialog button to not enable payment lock for now-->
+  <string name="PaymentsHomeFragment__not_now">Όχι τώρα</string>
   <!--PaymentsAddMoneyFragment-->
   <string name="PaymentsAddMoneyFragment__add_funds">Προσθήκη χρημάτων</string>
   <string name="PaymentsAddMoneyFragment__your_wallet_address">Η διεύθυνση πορτοφολιού σας</string>
@@ -2478,6 +2486,7 @@
   <string name="ConfirmPayment__payment_failed">Η πληρωμή απέτυχε</string>
   <string name="ConfirmPayment__payment_will_continue_processing">Η επεξεργασία της πληρωμής θα συνεχιστεί</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">Μη έγκυρος παραλήπτης</string>
+  <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Αυτό το άτομο δεν έχει ενεργοποιήσει τις πληρωμές</string>
   <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">Δεν είναι δυνατή η αίτηση χρέωσης δικτύου. Για να συνεχίσετε αυτήν την πληρωμή, πατήστε Εντάξει για να προσπαθήσετε ξανά.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
@@ -3297,6 +3306,12 @@
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Ορισμός ενός προκαθορισμένου χρόνου εξαφάνισης μηνυμάτων για όλες τις συνομιλίες που ξεκινάς εσύ.</string>
   <!--Summary for stories preference to launch into story privacy settings-->
   <string name="PrivacySettingsFragment__manage_your_stories">Διαχειρίσου τις ιστορίες σου και ποιους μπορούν να τις δουν</string>
+  <!--Alert dialog title when payment lock cannot be enabled-->
+  <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <!--Alert dialog button to go to phone settings-->
+  <string name="PrivacySettingsFragment__go_to_settings">Πήγαινε στις ρυθμίσεις</string>
+  <!--Alert dialog button to cancel the dialog-->
+  <string name="PrivacySettingsFragment__cancel">Ακύρωση</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Εμφάνιση εικονιδίου κατάστασης</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Εμφάνιση εικονιδίου στις λεπτομέρειες μηνύματος όταν αυτά έχουν παραδοθεί με χρήση του προστατευμένου αποστολέα.</string>
@@ -3528,6 +3543,8 @@
     <item quantity="one">Αδυναμία προώθησης μηνύματος επειδή δεν είναι πλέον διαθέσιμο.</item>
     <item quantity="other">Αδυναμία προώθησης μηνυμάτων επειδή δεν είναι πλέον διαθέσιμα.</item>
   </plurals>
+  <!--Error message shown when attempting to select a group to forward/share but it\'s announcement only and you are not an admin-->
+  <string name="MultiselectForwardFragment__only_admins_can_send_messages_to_this_group">Μόνο οι διαχειριστές μπορούν να στέλνουν μηνύματα σε αυτή την ομάδα.</string>
   <string name="MultiselectForwardFragment__limit_reached">Το όριο ξεπεράστηκε</string>
   <!--Media V2-->
   <string name="MediaReviewFragment__add_a_message">Προσθήκη μηνύματος</string>
@@ -3687,13 +3704,9 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Σφάλμα δικτύου. Έλεγξε τη σύνδεσή σου και ξαναπροσπάθησε.</string>
   <string name="NetworkFailure__retry">Επανάληψη</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__recipient_verification_failed">Αποτυχία επιβεβαίωσης παραλήπτη</string> -->
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
-  <string name="DonationsErrors__target_does_not_support_gifting">Ο στόχος δεν υποστηρίζει τα δώρα.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__could_not_verify_recipient">Αδυναμία επιβεβαίωσης παραλήπτη.</string> -->
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
-  <string name="DonationsErrors__please_check_your_network_connection">Παρακαλούμε έλεγξε τη σύνδεση στο δίκτυο και προσπάθησε ξανά.</string>
   <!--Gift message view title-->
   <string name="GiftMessageView__gift_badge">Έμβλημα δώρο</string>
   <!--Gift message view expiry information-->

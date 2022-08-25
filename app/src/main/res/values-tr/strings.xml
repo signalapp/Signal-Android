@@ -434,7 +434,6 @@
   <string name="CreateProfileActivity_set_avatar_description">Avatar seçin</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileCreateFragment__profiles_are_only_visible_to_people_you_message">Profiller yalnızca mesaj attığın kişiler tarafından görülebilir.</string> -->
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">Beni numaramdan kim bulabilir?</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -2235,6 +2234,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="preferences__data_and_storage">Veri ve depolama</string>
   <string name="preferences__storage">Depolama</string>
   <string name="preferences__payments">Ödemeler</string>
+  <!--Privacy settings payments section description-->
   <string name="preferences__payments_beta">Ödemeler (Beta)</string>
   <string name="preferences__conversation_length_limit">Konuşma uzunluk sınırı</string>
   <string name="preferences__keep_messages">İletileri sakla</string>
@@ -2300,6 +2300,8 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="preferences_app_protection__who_can">Kim…</string>
   <string name="preferences_app_protection__app_access">Uygulama erişimi</string>
   <string name="preferences_app_protection__communication">İletişim</string>
+  <!--Privacy settings payments section title-->
+  <string name="preferences_app_protection__payments">Ödemeler</string>
   <string name="preferences_chats__chats">Konuşmalar</string>
   <string name="preferences_data_and_storage__manage_storage">Depolamayı yönet</string>
   <string name="preferences_data_and_storage__calls">Aramalar</string>
@@ -2401,6 +2403,12 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="PaymentsHomeFragment__activate">Etkinleştir</string>
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">MobileCoin şartlarını görüntüle</string>
   <string name="PaymentsHomeFragment__payments_not_available">Signal\'de Ödemeler artık mevcut değil. Yine de kambiyoya para aktarabilirsiniz ancak ödeme alıp gönderemez veya para ekleyemezsiniz.</string>
+  <!--Alert dialog title which shows up after a payment to turn on payment lock-->
+  <!--Alert dialog description for why payment lock should be enabled before sending payments-->
+  <!--Alert dialog button to enable payment lock-->
+  <string name="PaymentsHomeFragment__enable">Aç</string>
+  <!--Alert dialog button to not enable payment lock for now-->
+  <string name="PaymentsHomeFragment__not_now">Şimdi Değil</string>
   <!--PaymentsAddMoneyFragment-->
   <string name="PaymentsAddMoneyFragment__add_funds">Para ekle</string>
   <string name="PaymentsAddMoneyFragment__your_wallet_address">Cüzdan Adresiniz</string>
@@ -2481,6 +2489,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="ConfirmPayment__payment_failed">Ödeme başarısız oldu</string>
   <string name="ConfirmPayment__payment_will_continue_processing">Ödeme işlemi devam edecek</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">Geçersiz alıcı</string>
+  <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Bu kişi ödemeleri etkinleştirmedi</string>
   <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">Ağ ücreti alınamıyor. Bu ödemeye devam etmek için \"tamam\"a dokunun ve tekrar deneyin.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
@@ -3300,6 +3309,12 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Tarafınızca başlatılan tüm yeni iletiler için varsayılan kaybolan ileti zamanlayıcısı ayarlayın.</string>
   <!--Summary for stories preference to launch into story privacy settings-->
   <string name="PrivacySettingsFragment__manage_your_stories">Hikayelerini ve onları kimlerin görüntüleyebileceğini yönet</string>
+  <!--Alert dialog title when payment lock cannot be enabled-->
+  <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <!--Alert dialog button to go to phone settings-->
+  <string name="PrivacySettingsFragment__go_to_settings">Ayarlara git</string>
+  <!--Alert dialog button to cancel the dialog-->
+  <string name="PrivacySettingsFragment__cancel">İptal</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Durum simgesi göster</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">İletiler gizli gönderici kullanılarak gönderildiğinde ileti detaylarında simge göster.</string>
@@ -3531,6 +3546,8 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
     <item quantity="one">İleti artık mevcut olmadığı için yönlendirilemedi.</item>
     <item quantity="other">İletiler artık mevcut olmadığı için yönlendirilemedi.</item>
   </plurals>
+  <!--Error message shown when attempting to select a group to forward/share but it\'s announcement only and you are not an admin-->
+  <string name="MultiselectForwardFragment__only_admins_can_send_messages_to_this_group">Bu gruba yalnızca yöneticiler ileti gönderebilir.</string>
   <string name="MultiselectForwardFragment__limit_reached">Sınıra ulaşıldı</string>
   <!--Media V2-->
   <string name="MediaReviewFragment__add_a_message">İleti ekle</string>
@@ -3690,13 +3707,9 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Ağ hatası. Bağlantınızı kontrol edip tekrar deneyin.</string>
   <string name="NetworkFailure__retry">Tekrar dene</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__recipient_verification_failed">Alıcı doğrulaması başarısız.</string> -->
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
-  <string name="DonationsErrors__target_does_not_support_gifting">Hedef hediye vermeyi desteklemiyor.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
-  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__could_not_verify_recipient">Alıcı doğrulanamadı.</string> -->
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
-  <string name="DonationsErrors__please_check_your_network_connection">Lütfen ağ bağlantınızı kontrol edip tekrar deneyin.</string>
   <!--Gift message view title-->
   <string name="GiftMessageView__gift_badge">Hediye rozeti</string>
   <!--Gift message view expiry information-->
