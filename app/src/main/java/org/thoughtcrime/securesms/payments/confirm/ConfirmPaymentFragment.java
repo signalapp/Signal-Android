@@ -27,12 +27,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.BiometricDeviceAuthentication;
 import org.thoughtcrime.securesms.BiometricDeviceLockContract;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.payments.CanNotSendPaymentDialog;
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil;
@@ -218,7 +220,19 @@ public class ConfirmPaymentFragment extends BottomSheetDialogFragment {
     public void onConfirmPayment() {
       setCancelable(false);
       if (isPaymentLockEnabled(requireContext())) {
-        biometricAuth.authenticate(requireContext(), true, this::showConfirmDeviceCredentialIntent);
+        boolean success = biometricAuth.authenticate(requireContext(), true, this::showConfirmDeviceCredentialIntent);
+        if (!success) {
+          setCancelable(true);
+          new MaterialAlertDialogBuilder(requireContext())
+              .setTitle(R.string.ConfirmPaymentFragment__failed_to_show_payment_lock)
+              .setMessage(R.string.ConfirmPaymentFragment__you_enabled_payment_lock_in_the_settings)
+              .setNeutralButton(android.R.string.ok, (d, i) -> d.dismiss())
+              .setNegativeButton(R.string.ConfirmPaymentFragment__go_to_settings, (d, i) -> {
+                startActivity(AppSettingsActivity.privacy(requireContext()));
+                d.dismiss();
+              })
+              .show();
+        }
       } else {
         viewModel.confirmPayment();
       }
@@ -234,8 +248,14 @@ public class ConfirmPaymentFragment extends BottomSheetDialogFragment {
     @Override
     public void onAuthenticationError(int errorCode, @NonNull CharSequence errorString) {
       Log.w(TAG, "Authentication error: " + errorCode);
-      if (errorCode != BiometricPrompt.ERROR_CANCELED && errorCode != BiometricPrompt.ERROR_USER_CANCELED) {
-        onAuthenticationFailed();
+      switch (errorCode) {
+        case BiometricPrompt.ERROR_CANCELED:
+        case BiometricPrompt.ERROR_USER_CANCELED:
+          setCancelable(true);
+          break;
+        default:
+          onAuthenticationFailed();
+          break;
       }
     }
 
