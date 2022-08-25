@@ -299,6 +299,11 @@ public class GroupDatabase extends Database {
       return new Reader(null);
     }
 
+    if (recipientIds.size() > 30) {
+      Log.w(TAG, "[queryGroupsByMembership] Large set of recipientIds (" + recipientIds.size() + ")! Using the first 30.");
+      recipientIds = recipientIds.stream().limit(30).collect(Collectors.toSet());
+    }
+
     List<String> recipientLikeClauses = recipientIds.stream()
                                                     .map(RecipientId::toLong)
                                                     .map(id -> "(" + MEMBERS + " LIKE " + id + " || ',%' OR " + MEMBERS + " LIKE '%,' || " + id + " || ',%' OR " + MEMBERS + " LIKE '%,' || " + id + ")")
