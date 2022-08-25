@@ -602,7 +602,7 @@ public class ThreadDatabase extends Database {
         selectionArgs[i++] = recipientId.serialize();
       }
 
-      String query = createQuery(selection, 0);
+      String query = createQuery(selection, DATE + " DESC", 0, 0);
       cursors.add(db.rawQuery(query, selectionArgs));
     }
 

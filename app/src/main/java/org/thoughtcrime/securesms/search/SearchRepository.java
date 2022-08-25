@@ -35,8 +35,12 @@ import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.SerialExecutor;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -159,33 +163,46 @@ public class SearchRepository {
       return Collections.emptyList();
     }
 
-    Set<RecipientId> recipientIds = new LinkedHashSet<>();
-
     Set<RecipientId> filteredContacts = new LinkedHashSet<>();
     try (Cursor cursor = SignalDatabase.recipients().queryAllContacts(query)) {
       while (cursor != null && cursor.moveToNext()) {
         filteredContacts.add(RecipientId.from(CursorUtil.requireString(cursor, RecipientDatabase.ID)));
       }
     }
-    recipientIds.addAll(filteredContacts);
+
+    Set<RecipientId> contactIds = new LinkedHashSet<>(filteredContacts);
+
+    if (noteToSelfTitle.toLowerCase().contains(query.toLowerCase())) {
+      contactIds.add(Recipient.self().getId());
+    }
+
+    Set<RecipientId> groupsByTitleIds = new LinkedHashSet<>();
 
     GroupDatabase.GroupRecord record;
     try (GroupDatabase.Reader reader = SignalDatabase.groups().queryGroupsByTitle(query, true, false, false)) {
       while ((record = reader.getNext()) != null) {
-        recipientIds.add(record.getRecipientId());
+        groupsByTitleIds.add(record.getRecipientId());
       }
     }
+
+    Set<RecipientId> groupsByMemberIds = new LinkedHashSet<>();
 
     try (GroupDatabase.Reader reader = SignalDatabase.groups().queryGroupsByMembership(filteredContacts, true, false, false)) {
       while ((record = reader.getNext()) != null) {
-        recipientIds.add(record.getRecipientId());
+        groupsByMemberIds.add(record.getRecipientId());
       }
     }
 
-    if (noteToSelfTitle.toLowerCase().contains(query.toLowerCase())) {
-      recipientIds.add(Recipient.self().getId());
-    }
+    List<ThreadRecord> output = new ArrayList<>(contactIds.size() + groupsByTitleIds.size() + groupsByMemberIds.size());
 
+    output.addAll(getMatchingThreads(contactIds));
+    output.addAll(getMatchingThreads(groupsByTitleIds));
+    output.addAll(getMatchingThreads(groupsByMemberIds));
+
+    return output;
+  }
+
+  private List<ThreadRecord> getMatchingThreads(@NonNull Collection<RecipientId> recipientIds) {
     try (Cursor cursor = threadDatabase.getFilteredConversationList(new ArrayList<>(recipientIds))) {
       return readToList(cursor, new ThreadModelBuilder(threadDatabase));
     }
