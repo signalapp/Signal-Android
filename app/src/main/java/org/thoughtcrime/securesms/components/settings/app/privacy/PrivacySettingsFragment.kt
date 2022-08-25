@@ -1,8 +1,10 @@
 package org.thoughtcrime.securesms.components.settings.app.privacy
 
+import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.os.Build
 import android.provider.Settings
 import android.text.SpannableStringBuilder
 import android.text.Spanned
@@ -343,7 +345,20 @@ class PrivacySettingsFragment : DSLSettingsFragment(R.string.preferences__privac
     MaterialAlertDialogBuilder(requireContext()).apply {
       setTitle(getString(R.string.PrivacySettingsFragment__cant_enable_title))
       setMessage(getString(R.string.PrivacySettingsFragment__cant_enable_description))
-      setPositiveButton(R.string.PaymentsHomeFragment__enable) { _, _ -> startActivity(Intent(Settings.ACTION_BIOMETRIC_ENROLL)) }
+      setPositiveButton(R.string.PaymentsHomeFragment__enable) { _, _ ->
+        val intent = when {
+          Build.VERSION.SDK_INT >= 30 -> Intent(Settings.ACTION_BIOMETRIC_ENROLL)
+          Build.VERSION.SDK_INT >= 28 -> Intent(Settings.ACTION_FINGERPRINT_ENROLL)
+          else -> Intent(Settings.ACTION_SECURITY_SETTINGS)
+        }
+
+        try {
+          startActivity(intent)
+        } catch (e: ActivityNotFoundException) {
+          Log.w(TAG, "Failed to navigate to system settings.", e)
+          Toast.makeText(requireContext(), R.string.PrivacySettingsFragment__failed_to_navigate_to_system_settings, Toast.LENGTH_SHORT).show()
+        }
+      }
       setNegativeButton(R.string.PaymentsHomeFragment__not_now) { _, _ -> }
       show()
     }
