@@ -3785,6 +3785,8 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
 
     val recipientId = RecipientId.from(cursor.requireLong(idColumnName))
     val capabilities = cursor.requireLong(CAPABILITIES)
+    val distributionListId: DistributionListId? = DistributionListId.fromNullable(cursor.requireLong(DISTRIBUTION_LIST_ID))
+    val avatarColor: AvatarColor = if (distributionListId != null) AvatarColor.UNKNOWN else AvatarColor.deserialize(cursor.requireString(AVATAR_COLOR))
 
     return RecipientRecord(
       id = recipientId,
@@ -3794,7 +3796,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       e164 = cursor.requireString(PHONE),
       email = cursor.requireString(EMAIL),
       groupId = GroupId.parseNullableOrThrow(cursor.requireString(GROUP_ID)),
-      distributionListId = DistributionListId.fromNullable(cursor.requireLong(DISTRIBUTION_LIST_ID)),
+      distributionListId = distributionListId,
       groupType = GroupType.fromId(cursor.requireInt(GROUP_TYPE)),
       isBlocked = cursor.requireBoolean(BLOCKED),
       muteUntil = cursor.requireLong(MUTE_UNTIL),
@@ -3832,7 +3834,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       mentionSetting = MentionSetting.fromId(cursor.requireInt(MENTION_SETTING)),
       wallpaper = chatWallpaper,
       chatColors = chatColors,
-      avatarColor = AvatarColor.deserialize(cursor.requireString(AVATAR_COLOR)),
+      avatarColor = avatarColor,
       about = cursor.requireString(ABOUT),
       aboutEmoji = cursor.requireString(ABOUT_EMOJI),
       syncExtras = getSyncExtras(cursor),

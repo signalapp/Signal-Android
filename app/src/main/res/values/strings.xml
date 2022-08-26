@@ -218,7 +218,7 @@
     <!-- Label for my stories when selecting who to send media to -->
     <string name="ContactsCursorLoader_my_stories">My Stories</string>
     <!-- Action for creating a new story -->
-    <string name="ContactsCursorLoader_new_story">New Story</string>
+    <string name="ContactsCursorLoader_new_story">New story</string>
 
     <!-- ContactsDatabase -->
     <string name="ContactsDatabase_message_s">Message %s</string>
@@ -5002,13 +5002,13 @@
     <string name="ExpiredGiftSheetConfiguration__not_now">Not now</string>
     <!-- Label under name for private stories -->
     <plurals name="ContactSearchItems__private_story_d_viewers">
-        <item quantity="one">Private Story · %1$d viewer</item>
-        <item quantity="other">Private Story · %1$d viewers</item>
+        <item quantity="one">Private story · %1$d viewer</item>
+        <item quantity="other">Private story · %1$d viewers</item>
     </plurals>
     <!-- Label under name for group stories -->
     <plurals name="ContactSearchItems__group_story_d_viewers">
-        <item quantity="one">Group Story · %1$d viewer</item>
-        <item quantity="other">Group Story · %1$d viewers</item>
+        <item quantity="one">Group story · %1$d viewer</item>
+        <item quantity="other">Group story · %1$d viewers</item>
     </plurals>
     <!-- Label under name for my story -->
     <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">

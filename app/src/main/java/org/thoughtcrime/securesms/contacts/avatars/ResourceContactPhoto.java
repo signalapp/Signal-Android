@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.contacts.avatars;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
@@ -63,14 +64,26 @@ public class ResourceContactPhoto implements FallbackContactPhoto {
   }
 
   private @NonNull Drawable buildDrawable(@NonNull Context context, int resourceId, @NonNull AvatarColor color, boolean inverted) {
-    Avatars.ForegroundColor foregroundColor = Avatars.getForegroundColor(color);
-    Drawable                background      = Objects.requireNonNull(ContextCompat.getDrawable(context, R.drawable.circle_tintable));
-    RoundedDrawable         foreground      = (RoundedDrawable) RoundedDrawable.fromDrawable(AppCompatResources.getDrawable(context, resourceId));
+    final int backgroundColor;
+    final int foregroundColor;
+
+    if (color == AvatarColor.UNKNOWN) {
+      backgroundColor = ContextCompat.getColor(context, R.color.signal_colorSurfaceVariant);
+      foregroundColor = ContextCompat.getColor(context, R.color.signal_colorOnSurface);
+    } else {
+      Avatars.ForegroundColor foregroundAvatarColor = Avatars.getForegroundColor(color);
+
+      backgroundColor = color.colorInt();
+      foregroundColor = foregroundAvatarColor.getColorInt();
+    }
+
+    Drawable        background = Objects.requireNonNull(ContextCompat.getDrawable(context, R.drawable.circle_tintable));
+    RoundedDrawable foreground = (RoundedDrawable) RoundedDrawable.fromDrawable(AppCompatResources.getDrawable(context, resourceId));
 
     //noinspection ConstantConditions
     foreground.setScaleType(scaleType);
-    background.setColorFilter(inverted ? foregroundColor.getColorInt() : color.colorInt(), PorterDuff.Mode.SRC_IN);
-    foreground.setColorFilter(inverted ? color.colorInt() : foregroundColor.getColorInt(), PorterDuff.Mode.SRC_ATOP);
+    background.setColorFilter(inverted ? foregroundColor : backgroundColor, PorterDuff.Mode.SRC_IN);
+    foreground.setColorFilter(inverted ? backgroundColor : foregroundColor, PorterDuff.Mode.SRC_ATOP);
 
     return new ExpandingLayerDrawable(new Drawable[] {background, foreground});
   }
