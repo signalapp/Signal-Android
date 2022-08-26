@@ -2804,11 +2804,6 @@
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Signal എൻക്രിപ്റ്റ് ചെയ്ത് സ്റ്റോർ ചെയ്ത വിവരങ്ങൾ PIN കൾ സൂക്ഷിക്കുന്നു, അതിനാൽ നിങ്ങൾക്ക് മാത്രമെ അത് പ്രാപ്യമാവുകയുള്ളു.  നിങ്ങൾ Signal റീഇൻസ്റ്റാൾ ചെയ്യുമ്പോൾ, നിങ്ങളുടെ പ്രൊഫൈൽ, സെറ്റിംഗ്സ്, കോണ്ടാക്റ്റുകൾ എന്നിവ റീസ്റ്റോർ ചെയ്യപ്പെടും.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Signal ഉപയോഗിച്ച് നിങ്ങളുടെ ഫോൺ നമ്പർ വീണ്ടും രജിസ്റ്റർ ചെയ്യുന്നതിന് നിങ്ങളുടെ Signal PIN ആവശ്യപ്പെടുന്നതിലൂടെ അധിക സുരക്ഷ ചേർക്കുക.</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">നിങ്ങളുടെ പിൻ വീണ്ടെടുക്കാൻ പറ്റാത്തതിനാൽ ഓർമ്മിക്കാൻ ഓർമ്മപ്പെടുത്തലുകൾ സഹായിക്കും. പലപ്പോഴായി നിങ്ങളോടു ചോദിക്കും.</string>
-  <string name="preferences_app_protection__turn_off">ഓഫ് ആക്കുക</string>
-  <string name="preferences_app_protection__confirm_pin">PIN ഉറപ്പാക്കു</string>
-  <string name="preferences_app_protection__confirm_your_signal_pin">നിങ്ങളുടെ Signal PIN ഉറപ്പാക്കു</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">നിങ്ങളുടെ PIN വീണ്ടെടുക്കാൻ കഴിയില്ല, നിങ്ങൾ അത് മന:പാഠമാക്കണം അല്ലെങ്കിൽ സുരക്ഷിതമായി സൂക്ഷിക്കണം. നിങ്ങൾ PIN മറന്നാൽ, നിങ്ങളുടെ Signal അക്കൗണ്ട് വീണ്ടും രജിസ്റ്റർ ചെയ്യുമ്പോൾ നിങ്ങൾക്ക് ഡാറ്റ നഷ്‌ടപ്പെടാം.</string>
-  <string name="preferences_app_protection__incorrect_pin_try_again">PIN തെറ്റാണ്. വീണ്ടും ശ്രമിക്കുക.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">രജിസ്ട്രേഷൻ ലോക്ക് പ്രവർത്തനക്ഷമമാക്കുന്നതിൽ പരാജയപ്പെട്ടു.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">രജിസ്ട്രേഷൻ ലോക്ക് അപ്രാപ്തമാക്കുന്നതിൽ പരാജയപ്പെട്ടു.</string>
   <string name="AppProtectionPreferenceFragment_none">ഒന്നുമില്ല</string>

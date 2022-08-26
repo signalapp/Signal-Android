@@ -2999,11 +2999,6 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Kody PIN gwarantują, że informacje przechowywane w Signal są zaszyfrowane i tylko Ty masz do nich dostęp. Twój profil, ustawienia i kontakty zostaną przywrócone, gdy ponownie zainstalujesz Signal.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Zwiększ bezpieczeństwo, wymagając podania Twojego PIN-u Signal przy ponownej rejestracji numeru telefonu w Signal.</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Przypomnienia pomagają Ci zapamiętać Twój kod PIN, gdyż nie da się go odzyskać. Z czasem pytania będą coraz rzadsze.</string>
-  <string name="preferences_app_protection__turn_off">Wyłącz</string>
-  <string name="preferences_app_protection__confirm_pin">Potwierdź PIN</string>
-  <string name="preferences_app_protection__confirm_your_signal_pin">Potwierdź swój PIN Signal</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Upewnij się, że zapamiętałeś(aś) lub zapisałeś(aś) swój PIN w bezpiecznym miejscu, gdyż nie da się go odzyskać. Jeśli zapomnisz swojego PIN-u, możesz stracić dane przy kolejnej rejestracji swojego konta Signal.</string>
-  <string name="preferences_app_protection__incorrect_pin_try_again">Nieprawidłowy PIN. Spróbuj ponownie.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Nie udało się włączyć blokady rejestracji.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Nie udało się wyłączyć blokady rejestracji.</string>
   <string name="AppProtectionPreferenceFragment_none">Brak</string>

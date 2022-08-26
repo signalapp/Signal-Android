@@ -2707,11 +2707,6 @@
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Signal内に保存された情報は、PINにより暗号化を保持されるため、あなたのみアクセスできます。PINを使うことで、Signalの再インストール時にあなたのプロフィール、設定および連絡先が復元されます。</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">電話番号を再度Signalに登録する際にSignal PINを要求することで、セキュリティをさらに強化します。</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">PINは復元できないため、リマインダーがPINを覚える手助けをします。頻度は次第に少なくなります。</string>
-  <string name="preferences_app_protection__turn_off">無効にする</string>
-  <string name="preferences_app_protection__confirm_pin">PINを再入力</string>
-  <string name="preferences_app_protection__confirm_your_signal_pin">Signal PINの確認</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">PINは復元できないため、記憶するか安全に保管してください。PINを忘れると、Signalアカウントの再登録時にデータが失われる可能性があります。</string>
-  <string name="preferences_app_protection__incorrect_pin_try_again">PINが違います。もう一度試してください。</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">登録ロックを有効にすることに失敗しました。</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">登録ロックを無効にすることに失敗しました</string>
   <string name="AppProtectionPreferenceFragment_none">なし</string>

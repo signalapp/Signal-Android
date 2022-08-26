@@ -2808,11 +2808,6 @@
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Signal सोबत संचयित केलेली माहिती PIN एन्क्रिप्टेड ठेवतात जेणेकरून ती फक्त आपण अॅक्सेस करू शकता. आपण Signal पुन्हा स्थापन केल्यावर आपली प्रोफाईल, सेटिंग, आणि संपर्क पुनर्स्थित होईल.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Signal सोबत आपला फोन नंबर पुन्हा नोंदवण्यासाठी आपला Signal PIN आवश्यक करून अतिरिक्त सुरक्षा जोडा.</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">ज्याअर्थी ते पुनर्स्थित केले जाऊ शकत नाहीत स्मरणपत्र आपल्याला PIN लक्षात ठेवण्यास मदत करतात. काही काळानंतर आपल्याला विचारण्याची वारंवारता कमी होईल.</string>
-  <string name="preferences_app_protection__turn_off">बंद करा</string>
-  <string name="preferences_app_protection__confirm_pin">PIN ची पुष्टी करा</string>
-  <string name="preferences_app_protection__confirm_your_signal_pin">आपल्या Signal PIN ची पुष्टी करा</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">ज्याअर्थी ते पुनर्स्थित केले जाऊ शकत नाही त्यामुळे आपला PIN आपण लक्षात ठेवला किंवा सुरक्षितपणे जतन केले असल्याची खात्री करा. जर आपण आपला PIN विसरलात, तर आपण आपले Signal खाते पुन्हा-नोंदवताना आपला डेटा गमवाल.</string>
-  <string name="preferences_app_protection__incorrect_pin_try_again">चुकीचा PIN.पुन्हा प्रयत्न करा.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">नोंदणी लॉक सक्षम करण्यात अयशस्वी.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">नोंदणी लॉक अक्षम करण्यात अयशस्वी.</string>
   <string name="AppProtectionPreferenceFragment_none">कुठलेही नाही</string>

@@ -2805,11 +2805,6 @@
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">পিনগুলি Signal-এ সঞ্চিত তথ্য এনক্রিপ্ট করে রাখে যাতে কেবল আপনি এটি অ্যাক্সেস করতে পারবেন। আপনি যখন Signal পুনরায় ইনস্টল করবেন তখন আপনার প্রোফাইল, সেটিংস এবং পরিচিতিগুলি পুনরুদ্ধার করবে।</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Signal-এ আপনার ফোন নাম্বারটি পুনরায় রেজিস্টার করতে আপনার Signal PIN আবশ্যক করার মাধ্যমে বাড়তি নিরাপত্তা যোগ করুন।</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">পিনটি পুনরুদ্ধার করা যাবে না বিধায় রিমাইন্ডার আপনার পিন মনে রাখতে সহায়তা করে। ধীরে ধীরে আপনাকে পিন কম জিজ্ঞেস করা হবে।</string>
-  <string name="preferences_app_protection__turn_off">বন্ধ করুন</string>
-  <string name="preferences_app_protection__confirm_pin">পিনটি সমর্থন করুন</string>
-  <string name="preferences_app_protection__confirm_your_signal_pin">আপনার Signal পিনটি নিশ্চিত করুন</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">পিনটি পুনরুদ্ধার করা যাবে না বিধায় নিশ্চিত করুন যে আপনি এটি মুখস্ত করেছেন বা সুরক্ষিতভাবে সংরক্ষণ করেছেন। পিনটি ভুলে গেলে, আপনার Signal অ্যাকাউন্ট পুনরায় রেজিস্টার  করার সময় আপনি ডেটা হারাতে পারেন।</string>
-  <string name="preferences_app_protection__incorrect_pin_try_again">ভুল পিন। আবার চেষ্টা করুন|</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">রেজিস্ট্রেশন লক সক্রিয় করতে ব্যার্থ।</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">রেজিস্ট্রেশন লক নিষ্ক্রিয় করতে ব্যার্থ।</string>
   <string name="AppProtectionPreferenceFragment_none">কেউ না</string>

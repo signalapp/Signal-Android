@@ -2368,11 +2368,6 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Tingalin PIN ttaǧǧant talɣut tettukles s Signal yettwawgelhen, ihi ala kečč·kemm i izemren ad tkecmeḍ ɣer-s. Amaɣnu-ik·im, iɣewwaren d yinermisen ad d-uɣalen mi ara talseḍ asebded n Signal.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Rnu taɣellist iǧehden aṭas s usuter n tengalt PIN n Signal i wakken ad tjerrdeḍ uṭṭun-ik·im n tilifun s Signal i tikkelt-nniḍen.</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Ismektiyen ad ak·akem-εawnen ad d-temmektiḍ tangalt-ik·im PIN acku ur tezmireḍ ara ad tt-id-terreḍ. Ad ak·am-d-tettusuter sya ɣer da.</string>
-  <string name="preferences_app_protection__turn_off">Sens</string>
-  <string name="preferences_app_protection__confirm_pin">Sentem PIN</string>
-  <string name="preferences_app_protection__confirm_your_signal_pin">Sentem PIN-inek/inem n Signal</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Ḍmen belli tecfiḍ ɣef tengalt-ik·im PIN neɣ tkelseḍ-tt s wudem aɣellsan acku ur tezmireḍ ara ad tt-id-terreḍ. Ma yella tettuḍ tangalt-ik·im PIN, yezmer ad tesruḥeḍ isefka mi ara talseḍ ajerred n umiḍan-ik·im n Signal.</string>
-  <string name="preferences_app_protection__incorrect_pin_try_again">PIN ur yeɣti ara. Ɛreḍ tikkelt nniḍen.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Tella-d tuccḍa deg urmad n usekkeṛ n ujerred.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Tella-d tuccḍa deg usens n usekkeṛ n ujerred.</string>
   <string name="AppProtectionPreferenceFragment_none">Ulac</string>

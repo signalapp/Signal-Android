@@ -2818,11 +2818,6 @@ nummer (%s) er ugyldigt</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Pinkoder sikrer at information som er lagret hos Signal, er krypteret, så kun du kan få adgang til den. Din profil, indstillinger og kontakter gendannes, når du installerer Signal igen.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Tilføj ekstra sikkerhed ved at kræve din Signal-pinkode for at registrere dit telefonnummer med Signal igen.</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Påmindelser hjælper dig med at huske din pinkode, da den ikke kan gendannes. Over tid vil der gå længere tid imellem at du bliver spurgt.</string>
-  <string name="preferences_app_protection__turn_off">Deaktiver</string>
-  <string name="preferences_app_protection__confirm_pin">Bekræft pinkode</string>
-  <string name="preferences_app_protection__confirm_your_signal_pin">Bekræft din Signal-pinkode</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Vær sikker på at du husker eller opbevarer din pinkode sikkert, da den ikke kan gendannes. Hvis du glemmer din pinkode, kan du miste data når du genregistrerer din Signal-konto.</string>
-  <string name="preferences_app_protection__incorrect_pin_try_again">Forkert pinkode. Prøv igen.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Aktivering af registreringslås mislykkedes</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Deaktivering af registreringslås mislykkedes</string>
   <string name="AppProtectionPreferenceFragment_none">Ingen</string>

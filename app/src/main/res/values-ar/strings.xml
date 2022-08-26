@@ -3182,11 +3182,6 @@
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">يمكِّنك الرقم التعريفي الشخصي من حفظ معلوماتك بشكل مُعمَّى في Signal بحيث يمكنك الوصول إليها وحدك. سوف تتم استعادة حسابك وإعداداتك و جهات اتصالك عند إعادة تثبيت Signal.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">عليك بزيادة الأمان، من خلال إضافة كلمة سر رقمية والتي ستُطلَب عند إعادة تسجيل رقمك مجدداً.</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">تساعدك التذكيرات في تذكر رقم التعريف الشخصي لأنه لا يمكن استرداده. سيُطلب منك مرات أقل بمرور الوقت.</string>
-  <string name="preferences_app_protection__turn_off">أطفىء</string>
-  <string name="preferences_app_protection__confirm_pin">تأكيد الرقم التعريفي الشخصي</string>
-  <string name="preferences_app_protection__confirm_your_signal_pin">عليك بتأكيد رقمك التعريف الشخصي</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">يجب عليك التأكد من حفظ رقمك التعريفي الشخصي أو تخزينه في مكان آمن بحيث لا يمكن استعادته. في حال نسيانك الرقم التعريفي الشخصي، قد تضيع البيانات عند إعادة تسجيل حساب Signal.</string>
-  <string name="preferences_app_protection__incorrect_pin_try_again">الرقم التعريفي الشخصي غير صحيح. يرجى إعادة المحاولة.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">تعذّر تفعيل قفل التسجيل.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">تعذّر تعطيل قفل التسجيل.</string>
   <string name="AppProtectionPreferenceFragment_none">لا شيء </string>

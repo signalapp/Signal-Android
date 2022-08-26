@@ -2721,11 +2721,6 @@
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN коддор Signal менен сакталган маалыматты шифрленген сактайт, андыктан ага сиз гана кире аласыз. Signal\'ды кайра орнотконуңузда профилиңиз, тууралоолоруңуз жана байланыштарыңыз калыбына келтирилет.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Телефон номериңизди Signal менен кайра каттаганда Signal PIN кодун киргизүүнү талап кылуу менен коопсуздукту жакшыртыңыз.</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Эстеткичтер PIN кодуңузду эстеп калууга жардам берет, анткени аны калыбына келтирүү мүмкүн эмес. Убакыттын өтүшү менен сизден азыраак суралат.</string>
-  <string name="preferences_app_protection__turn_off">Өчүрүү</string>
-  <string name="preferences_app_protection__confirm_pin">PIN-кодду тастыктаңыз</string>
-  <string name="preferences_app_protection__confirm_your_signal_pin">Signal\'дын PIN кодун ырастаңыз</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">PIN кодуңузду эстеп же коопсуз сактаганыңызды текшериңиз, аны калыбына келтирүү мүмкүн эмес. Эгер PIN кодуңузду унутуп калсаңыз, Signal аккаунтуңузду кайра каттаганыңызда берилмелериңизди жоготуп алышыңыз мүмкүн.</string>
-  <string name="preferences_app_protection__incorrect_pin_try_again">Туура эмес Пин. Кайра кайталаңыз.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Катталууну кулпулоо ишке ашырылбады.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Катталууну кулпулоо өчурүлгөн жок.</string>
   <string name="AppProtectionPreferenceFragment_none">Эч бир</string>

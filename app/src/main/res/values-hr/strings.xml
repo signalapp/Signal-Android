@@ -2902,11 +2902,6 @@ broj telefona</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN-ovi čuvaju šifrirane podatke spremljenima na Signalu tako da im samo vi možete pristupiti. Vaš profil, postavke i kontakti će biti vraćeni nakon ponovne instalacije.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Dodajte dodatnu sigurnost zahtijevanjem vašeg Signal PIN-a za ponovnu registriraciju vašeg broja telefona na Signal.</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Podsjetnici vam pomažu da zapamtite svoj PIN jer ga nije moguće vratiti. S vremenom ćemo vas rijeđe tražiti. </string>
-  <string name="preferences_app_protection__turn_off">Isključi</string>
-  <string name="preferences_app_protection__confirm_pin">Potvrdite PIN</string>
-  <string name="preferences_app_protection__confirm_your_signal_pin">Potvrdite svoj Signal PIN</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Svakako zapamtite ili sigurno pohranite svoj PIN jer ga nije moguće vratiti. Ako zaboravite svoj PIN, možete izgubiti podatke prilikom ponovne registracije vašeg Signal računa.</string>
-  <string name="preferences_app_protection__incorrect_pin_try_again">Nevažeći PIN. Pokušajte ponovno.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Omogućavanje Zaključavanja registracije nije uspjelo.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Onemogućavanje Zaključavanja registracije nije uspjelo.</string>
   <string name="AppProtectionPreferenceFragment_none">Nijedno</string>

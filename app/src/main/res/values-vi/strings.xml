@@ -2701,11 +2701,6 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Mã PIN mã hoá các thông tin được lưu trữ với Signal để chỉ mình bạn có thể truy cập được. Thông tin người dùng, cài đặt, và các liên hệ sẽ được khôi phục khi bạn cài đặt lại Signal.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Thêm một lớp bảo mật bằng cách yêu cầu điền mã PIN Signal khi ai đó đăng kí lại số điện thoại của bạn với Signal.</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Nhắc nhở giúp bạn ghi nhớ PIN vì PIN không thể được khôi phục. Bạn sẽ được hỏi với tần suất ít hơn theo thời gian.</string>
-  <string name="preferences_app_protection__turn_off">Tắt</string>
-  <string name="preferences_app_protection__confirm_pin">Xác nhận mã PIN</string>
-  <string name="preferences_app_protection__confirm_your_signal_pin">Xác nhận mã PIN Signal</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Hãy chắc rằng bạn nhớ hoặc lưu trữ bảo mật mã PIN vì PIN không thể được khôi phục. Nếu bạn quên mã PIN, bạn có thể mất dữ liệu khi đăng kí lại tài khoản Signal.</string>
-  <string name="preferences_app_protection__incorrect_pin_try_again">PIN không đúng. Hãy thử lại.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Không thể bật khóa đăng kí.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Không thể tắt khóa đăng kí.</string>
   <string name="AppProtectionPreferenceFragment_none">Không</string>

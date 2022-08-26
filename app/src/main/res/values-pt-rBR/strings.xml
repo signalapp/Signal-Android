@@ -2905,11 +2905,6 @@
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">O PIN mantém criptografadas as informações armazenadas no Signal, de modo que somente você possa acessá-las. Seu perfil, configurações e contatos serão restaurados quando você reinstalar o Signal.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Adicione segurança extra exigindo o PIN do Signal para registrar seu número de telefone com o Signal outra vez.</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Os lembretes ajudam você a memorizar seu PIN, já que ele não pode ser recuperado. Você será solicitado com menos frequência ao longo do tempo.</string>
-  <string name="preferences_app_protection__turn_off">Desativar</string>
-  <string name="preferences_app_protection__confirm_pin">Confirme o PIN</string>
-  <string name="preferences_app_protection__confirm_your_signal_pin">Confirme o seu PIN do Signal</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Certifique-se de memorizar ou armazenar seu PIN com segurança, pois ele não pode ser recuperado. Se você esquecer seu PIN, poderá perder dados ao recadastrar sua conta do Signal.</string>
-  <string name="preferences_app_protection__incorrect_pin_try_again">PIN incorreto. Tente novamente.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Falha ao ativar o Desbloqueio de registro.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Falha ao desativar o Desbloqueio de registro.</string>
   <string name="AppProtectionPreferenceFragment_none">Nenhuma</string>

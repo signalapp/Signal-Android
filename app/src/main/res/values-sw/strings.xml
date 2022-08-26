@@ -2806,11 +2806,6 @@ Funga ufikiaji wa Signal na ufungaji wa Android au alama za vidole</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PINI hufanya taarifa iliyohifadhiwa na Signal iliyosimbwa kuweza kufikiwa na wewe tu. Wasifu wako, mipangilio, na wawasiliani vitarejeshwa utakaposakinisha upya Signal.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Ongeza usalama wa ziada kwa kuitisha PIN yako ya Signal ili kusajili tena nambari yako ya simu kwenye Signal.</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Vikumbusho hukusaidia kukumbuka PINI yako kwa sababu haiwezi kunusuriwa. Utaulizwa mara kwa mara baada ya muda.</string>
-  <string name="preferences_app_protection__turn_off">Zima</string>
-  <string name="preferences_app_protection__confirm_pin">Thibitisha PIN</string>
-  <string name="preferences_app_protection__confirm_your_signal_pin">Thibitisha PINI yako ya Signal</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Hakikisha unakumbuka au kuhifadhi PIN yako salama kwani haiwezi kurejeshwa. Ukisahau PIN yako, unaweza kupoteza data unaposajili upya akaunti yako ya Signal.</string>
-  <string name="preferences_app_protection__incorrect_pin_try_again">Nenosiri sio sahihi. Jaribu tena.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Imeshindwa kuwezesha kufuli ya usajili.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Imeshindwa kulemaza kufuli ya usajili.</string>
   <string name="AppProtectionPreferenceFragment_none">Hakuna</string>

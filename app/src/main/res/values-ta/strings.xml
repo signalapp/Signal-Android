@@ -2802,11 +2802,6 @@
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Signal இடம் சேமிக்கப்படும் தகவல்களை மறையாக்கி நீங்கள் மட்டும் அணுகும் வகையில் PIN-கள் வைக்கும். நீங்கள் மீண்டும் நிறுவும்போது உங்கள் சுயவிவரம், அமைப்புகள் மற்றும் தொடர்புகள் மீட்டமைக்கப்படும்.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">உங்கள் தொலைபேசி எண்ணை மீண்டும் சிக்னலுடன் பதிவு செய்ய உங்கள் சிக்னல் பின் தேவைப்படுவதன் மூலம் கூடுதல் பாதுகாப்பைச் சேர்க்கவும்.</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">உங்கள் பின்னை மீட்டெடுக்க முடியாததால் நினைவூட்டல்கள் உங்களுக்கு உதவுகின்றன. காலப்போக்கில் உங்களிடம் குறைவாகவே கேட்கப்படும்.</string>
-  <string name="preferences_app_protection__turn_off">அணைக்க</string>
-  <string name="preferences_app_protection__confirm_pin">பின்னை உறுதிப்படுத்தவும்</string>
-  <string name="preferences_app_protection__confirm_your_signal_pin">உறுதிப்படுத்தவும் உங்கள் Signal பின்</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">உங்கள் PIN ஐ மீட்டெடுக்க முடியாததால் அதை நினைவில் வைத்துக் கொள்ளுங்கள் அல்லது பாதுகாப்பாக சேமித்து வைக்கவும். உங்கள் பின்னை மறந்துவிட்டால், உங்கள் சிக்னல் கணக்கை மீண்டும் பதிவு செய்யும் போது தரவை இழக்க நேரிடும்.</string>
-  <string name="preferences_app_protection__incorrect_pin_try_again">தவறான பின். மீண்டும் முயற்சி செய்க.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">பதிவு பூட்டை இயக்குவதில் தோல்வி.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">பதிவு பூட்டை முடக்குவதில் தோல்வி.</string>
   <string name="AppProtectionPreferenceFragment_none">எதுவும் இல்லை</string>

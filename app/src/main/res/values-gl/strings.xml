@@ -2810,11 +2810,6 @@
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">O PIN cifra a información gardada con Signal para que só ti poidas acceder a ela. O perfil, axustes e contactos restablécense ao reinstalar Signal.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Engadimos seguridade extra ao solicitar o teu PIN Signal para rexistrar o teu número de teléfono en Signal outra vez.</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Estos avisos axúdanche a lembrar o PIN xa que non pode ser recuperado. Os avisos serán cada vez menos frecuentes.</string>
-  <string name="preferences_app_protection__turn_off">Apagar</string>
-  <string name="preferences_app_protection__confirm_pin">Confirmar PIN</string>
-  <string name="preferences_app_protection__confirm_your_signal_pin">Confirma o teu PIN en Signal</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Asegúrate de memorizar ou gardar nun lugar seguro o teu PIN, xa que non se pode recuperar. Se o esqueces, pode que perdas datos cando volvas rexistrar a túa conta en Signal.</string>
-  <string name="preferences_app_protection__incorrect_pin_try_again">PIN incorrecto. Inténtao outra vez.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Erro ao activar o bloqueo de rexistro.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Erro ao desactivar o bloqueo de rexistro.</string>
   <string name="AppProtectionPreferenceFragment_none">Ningunha</string>

@@ -2622,11 +2622,6 @@
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PINs په Signal کې زیرمه شوي معلومات انکریپټ شوي ساتي، چې په دې سره یوازې تاسې ورته لاسرسی لری.  ستاسې پروفایل، تنظیمات او مخاطبین به کله چې بیرته Signal انسټالوئ، بیرته تر لاسه شي.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">د خپل Signal PIN په تر لاسه کولو سره یو ځل بیا له  Signal سره د خپلې ټلیفون شمېرې په ثبتولو سره اضافي امنیت اضافه کړئ.</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">په یاد راوړونکي له تاسې سره مرسته کوي تر څو خپل PIN په یاد راوړئ ځکه چې هغه بیرته نشي تر لاسه کېدای. له تاسې څخه به د وخت په تیریدو ډېر کم دا وپوښتنه وشي.</string>
-  <string name="preferences_app_protection__turn_off">خاموشه یې کړئ</string>
-  <string name="preferences_app_protection__confirm_pin">د PIN تایید</string>
-  <string name="preferences_app_protection__confirm_your_signal_pin">خپل د Signal PIN تایید کړئ</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">ځان ډاډه کړئ چې تاسې خپل PIN په یاد کړی یا هم په خوندي ځای کې مو ساتلی، ځکه چې هغه بیرته نشي تر لاسه کېدای. که مو چیرته خپل PIN هیر شوی وي، نو د Signal د اکاونټ د بیا نوم لیکنې په مهال به خپله ډیټا له لاسه ورکړئ.</string>
-  <string name="preferences_app_protection__incorrect_pin_try_again">ناسم PIN. بیا کوښښ وکړئ.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">د نومليکنې د قفل فعالول ناکام شول.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">د نومليکنې د قفل غیرفعالول ناکام شول.</string>
   <string name="AppProtectionPreferenceFragment_none">هېڅ یو</string>

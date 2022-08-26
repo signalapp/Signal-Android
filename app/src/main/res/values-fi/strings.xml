@@ -2805,11 +2805,6 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Tunnusluvulla salataan Signaliin tallennetut tiedot, jotta vain sinä pääset niihin käsiksi. Profiili, asetukset ja yhteystiedot palautetaan, jos Signal asennetaan uudelleen.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Paranna tietoturvaa vaatimalla Signal-tunnuslukua aina kun puhelinnumerollasi rekisteröidytään Signaliin.</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Muistutukset auttavat sinua muistamaan tunnuslukusi, koska sitä ei voida palauttaa. Kyselyt harvenevat ajan myötä.</string>
-  <string name="preferences_app_protection__turn_off">Poista käytöstä</string>
-  <string name="preferences_app_protection__confirm_pin">Vahvista tunnusluku</string>
-  <string name="preferences_app_protection__confirm_your_signal_pin">Vahvista Signal-tunnuslukusi</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Opettele tunnusluku ulkoa tai tallenna se turvallisesti, sillä sitä ei voi palauttaa. Jos tunnusluku unohtuu ja Signal rekisteröidään uudelleen, tietoja voi kadota.</string>
-  <string name="preferences_app_protection__incorrect_pin_try_again">Väärä tunnusluku, yritä uudelleen.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Rekisteröintiestoa ei voitu ottaa käyttöön.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Rekisteröintiestoa ei voitu poistaa käytöstä.</string>
   <string name="AppProtectionPreferenceFragment_none">Ei mitään</string>

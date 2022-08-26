@@ -2809,11 +2809,6 @@
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN кодовите ги чуваат информациите складирани на Signal шифрирани, така што само Вие можете да им пристапите. Вашиот профил, поставувања и конакти ќе бидат вратени кога ќе го реинсталирате Signal.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Зголемете ја безбедноста преку повторно барање на Signal PIN код за регистрација на Вашиот телефон со Signal.</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Потсетниците помагаат да го запомните Вашиот PIN бидејќи истиот не може да биде вратен ако го изгубите. Со тек на време ќе Ве потсетуваме се поретко.</string>
-  <string name="preferences_app_protection__turn_off">Исклучи</string>
-  <string name="preferences_app_protection__confirm_pin">Потврди PIN</string>
-  <string name="preferences_app_protection__confirm_your_signal_pin">Потврдете го Вашиот Signal PIN</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Осигурајте се дека ќе го запомните или безбедно ќе го зачувате Вашиот PIN бидејќи истиот не може да биде вратен доколку го изгубите. Ако го заборавите Вашиот PIN, може да изгубите податоци кога повторно ќе ја регистрирате Вашата сметка на Signal.</string>
-  <string name="preferences_app_protection__incorrect_pin_try_again">Погрешен PIN. Обидете се повторно.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Не успеа да се вклучи заклучување на регистрацијата.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Не успеа да се исклучи заклучување на регистрацијата.</string>
   <string name="AppProtectionPreferenceFragment_none">Нема</string>

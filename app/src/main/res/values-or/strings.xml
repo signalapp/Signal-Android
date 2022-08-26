@@ -2345,11 +2345,6 @@
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">ପିନ୍ ଗୁଡିକ Signal ସୂଚନା ଏନକ୍ରିପ୍ଟ୍ କରି ଗଚ୍ଛିତ ରଖନ୍ତି ଯାହା ଦ୍ୱାରା କେବଳ ଆପଣ ଏହାକୁ ପ୍ରବେଶ କରିପାରିବେ | ଯେତେବେଳେ ଆପଣ Signal ପୁନଃସଂସ୍ଥାପନ କରିବେ ସେତେବେଳେ ଆପଣଙ୍କର ପ୍ରୋଫାଇଲ୍, ସେଟିଂସମୂହ, ଏବଂ ସମ୍ପର୍କଗୁଡିକ ପୁନଃସ୍ଥାପନ ହେବ</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Signal ସହ ପୁନର୍ବାର ଆପଣଙ୍କର ଫୋନ୍ ନମ୍ବର ପଞ୍ଜିକରଣ କରିବାକୁ ଆପଣଙ୍କର Signal ପିନ୍ ଆବଶ୍ୟକ କରି ଅତିରିକ୍ତ ସୁରକ୍ଷା ଯୋଗ କରନ୍ତୁ</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">ସ୍ମାରକଗୁଡିକ ତୁମ ପିନ୍ ମନେରଖିବାରେ ସାହାଯ୍ୟ କରେ କାରଣ ଏହା ପୁନରୁଦ୍ଧାର ହୋଇପାରିବ ନାହିଁ | ସମୟ ସହିତ ଆପଣଙ୍କୁ କମ୍ ବାରମ୍ବାର ପଚରାଯିବ</string>
-  <string name="preferences_app_protection__turn_off">ବନ୍ଦ କରନ୍ତୁ</string>
-  <string name="preferences_app_protection__confirm_pin">ତୁମର ପିନ୍ ନିଶ୍ଚିତ କର</string>
-  <string name="preferences_app_protection__confirm_your_signal_pin">ଆପଣଙ୍କର Signal ପିନ୍ ସୁନିଶ୍ଚିତ କରନ୍ତୁ</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">ନିଶ୍ଚିତ କରନ୍ତୁ ଯେ ଆପଣ ଆପଣଙ୍କର ପିନକୁ ସ୍ମରଣ କିମ୍ବା ସୁରକ୍ଷିତ ଭାବରେ ସଂରକ୍ଷଣ କରନ୍ତୁ କାରଣ ଏହା ପୁନରୁଦ୍ଧାର ହୋଇପାରିବ ନାହିଁ | ଯଦି ତୁମେ ତୁମର ପିନକୁ ଭୁଲିଯାଅ, ଆପଣଙ୍କର Signal ଖାତାକୁ ପୁନଃପଞ୍ଜିକରଣ କରିବା ସମୟରେ ଆପଣ ତଥ୍ୟ ହରାଇପାରନ୍ତି</string>
-  <string name="preferences_app_protection__incorrect_pin_try_again">ଭୁଲ ପିନ୍ | ପୁଣି ଚେଷ୍ଟା କର</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">ପଞ୍ଜିକରଣ ତାଲା ଚାଲୁ କରିବାରେ ବିଫଳ</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">ପଞ୍ଜିକରଣ ତାଲା ଅକ୍ଷମ କରିବାରେ ବିଫଳ</string>
   <string name="AppProtectionPreferenceFragment_none">କୌଣସିଟି ନୁହେଁ</string>

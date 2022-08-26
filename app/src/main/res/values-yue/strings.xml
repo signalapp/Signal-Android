@@ -2717,11 +2717,6 @@
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">有 PIN 碼，儲存喺 Signal 嘅資訊就安心加密，淨係得您先接觸到。當您重新裝過 Signal 嘅時候，您嘅個人資料、設定同埋聯絡人亦都可以還原。</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">要求講得啱您個 Signal PIN 碼先可以喺 Signal 重新註冊您個電話冧把，從而加多一層保安關卡。</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">溫馨提醒幫您記住您個 PIN 碼，因為無咗就無㗎喇。慢慢就唔會問得您咁密㗎喇。</string>
-  <string name="preferences_app_protection__turn_off">關閉</string>
-  <string name="preferences_app_protection__confirm_pin">確認 PIN 碼</string>
-  <string name="preferences_app_protection__confirm_your_signal_pin">確認您嘅 Signal PIN 碼</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">請確保您記住或妥為保存您嘅 PIN 碼，因為無咗就無㗎喇。若果您唔記得咗您嘅 PIN 碼，當您重新註冊您嘅 Signal 帳戶嘅時候，可能會冇晒您啲資料。</string>
-  <string name="preferences_app_protection__incorrect_pin_try_again">PIN 碼唔啱。請再試一次。</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">啟用唔到註冊鎖。</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">停用唔到註冊鎖。</string>
   <string name="AppProtectionPreferenceFragment_none">無</string>

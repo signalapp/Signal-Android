@@ -2809,11 +2809,6 @@
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">پین‌ها اطلاعات ذخیره شده در سیگنال را رمزگذاری شده نگه می‌دارند تا فقط شما قادر به دسترسی به آن‌ها باشید. پروفایل، تنظیمات و مخاطبین شما هنگام نصب دوبارهٔ سیگنال بازگردانی می‌شوند.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">افزودن لایهٔ امنیتی اضافه با پرسیدن پین سیگنال برای ثبت‌نام دوباره با شماره‌تلفن شما در سیگنال.</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">یادآورها به شما در به خاطرسپاری پین شما کمک می‌کنند، چون پین‌ها قابل بازیابی نیستند. به مرور زمان کمتر از شما پرسیده خواهد شد.</string>
-  <string name="preferences_app_protection__turn_off">خاموش</string>
-  <string name="preferences_app_protection__confirm_pin">پین را تأیید کنید</string>
-  <string name="preferences_app_protection__confirm_your_signal_pin">پین سیگنال خود را تأیید کنید</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">مطمئن شوید که پین خود را بخاطر سپرده یا آن را به صورت امن نگهداری می‌کنید، چون قابل بازیابی نیست. اگر پین‌ خود را فراموش کردید، ممکن است در زمان ثبت‌نام دوبارهٔ حساب کاربری سیگنال خود اطلاعاتی را از دست بدهید.</string>
-  <string name="preferences_app_protection__incorrect_pin_try_again">پین نادرست. دوباره امتحان کنید.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">فعال‌سازی قفل ثبت‌نام ناموفق بود.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">غیرفعال‌سازی قفل ثبت‌نام ناموفق بود.</string>
   <string name="AppProtectionPreferenceFragment_none">هیچ‌کدام</string>

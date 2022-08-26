@@ -2992,11 +2992,6 @@
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN-коды хранят информацию в сервисе Signal зашифрованной, так что только вы можете получить к ней доступ. Ваши настройки, контакты и профиль будут восстановлены, если вы переустановите Signal.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Улучшите безопасность, потребовав вводить ваш PIN-код Signal при повторной регистрации вашего номера телефона в Signal.</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Напоминания помогают вам запомнить свой PIN-код, так как восстановить его невозможно. Напоминания будут появляться реже со временем.</string>
-  <string name="preferences_app_protection__turn_off">Отключить</string>
-  <string name="preferences_app_protection__confirm_pin">Подтвердить PIN-код</string>
-  <string name="preferences_app_protection__confirm_your_signal_pin">Подтвердите свой PIN-код Signal</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Убедитесь, что вы запомнили или надёжно сохранили свой PIN-код, так как восстановить его невозможно. Если вы забудете свой PIN-код, вы можете потерять данные при повторной регистрации своей учётной записи Signal.</string>
-  <string name="preferences_app_protection__incorrect_pin_try_again">Неверный PIN-код. Попробуйте ещё раз.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Не удалось включить блокировку регистрации.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Не удалось отключить блокировку регистрации.</string>
   <string name="AppProtectionPreferenceFragment_none">Нет</string>

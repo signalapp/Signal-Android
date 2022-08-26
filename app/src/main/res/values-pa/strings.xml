@@ -2810,11 +2810,6 @@
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN Signal ਦੇ ਨਾਲ ਸਟੋਰ ਕੀਤੀ ਜਾਣਕਾਰੀ ਨੂੰ ਇਨਕ੍ਰਿਪਟ ਕਰਕੇ ਰੱਖਦੇ ਹਨ ਤਾਂ ਜੋ ਉਸ ਤਾਈਂ ਸਿਰਫ ਤੁਹਾਡੀ ਪਹੁੰਚ ਹੋਵੇ. ਜਦੋਂ ਤੁਸੀਂ Signal ਨੂੰ ਮੁੜ-ਸਥਾਪਤ ਕਰੋਗੇ ਤਾਂ ਤੁਹਾਡੀ ਪ੍ਰੋਫਾਈਲ, ਸੈਟਿੰਗਾਂ, ਅਤੇ ਸੰਪਰਕ ਮੁੜ-ਬਹਾਲ ਹੋ ਜਾਣਗੇ.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Signal ਨਾਲ ਤੁਹਾਡੇ ਫ਼ੋਨ ਨੰਬਰ ਨੂੰ ਰਜਿਸਟਰ ਕਰਨ ਲਈ ਆਪਣੇ Signal PIN ਦੀ ਮੰਗ ਕਰਕੇ ਸੁਰੱਖਿਆ ਵਿੱਚ ਵਾਧਾ ਜੋੜੋ।</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">ਰਿਮਾਈਂਡਰ ਤੁਹਾਨੂੰ ਤੁਹਾਡਾ PIN ਯਾਦ ਕਰਨ ਵਿੱਚ ਮਦਦ ਕਰਦੇ ਹਨ ਕਿਉਂਕਿ ਉਸ ਨੂੰ ਦੁਬਾਰਾ ਨਹੀਂ ਪ੍ਰਾਪਤ ਕੀਤਾ ਜਾ ਸਕਦਾ। ਸਮਾਂ ਪੈਣ ’ਤੇ ਤੁਹਾਨੂੰ ਘੱਟ ਅਕਸਰ ਪੁੱਛਿਆ ਜਾਵੇਗਾ।</string>
-  <string name="preferences_app_protection__turn_off">ਬੰਦ ਕਰੋ</string>
-  <string name="preferences_app_protection__confirm_pin">PIN ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ</string>
-  <string name="preferences_app_protection__confirm_your_signal_pin">ਆਪਣੇ Signal ਦੇ PIN ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">ਆਪਣੇ PIN ਨੂੰ ਯਾਦ ਕਰਨਾ ਜਾਂ ਸੁਰੱਖਿਅਤ ਤਰੀਕੇ ਨਾਲ ਕਿਤੇ ਨੋਟ ਕਰਨਾ ਯਕੀਨੀ ਬਣਾਓ ਕਿਉਂਕਿ ਇਸ ਨੂੰ ਦੁਬਾਰਾ ਨਹੀਂ ਪ੍ਰਾਪਤ ਕੀਤਾ ਜਾ ਸਕਦਾ। ਜੇਕਰ ਤੁਸੀਂ ਆਪਣਾ PIN ਭੁੱਲ ਜਾਂਦੇ ਹੋ, ਤਾਂ ਹੋ ਸਕਦਾ ਹੈ ਕਿ ਤੁਸੀਂ ਆਪਣੇ Signal ਖਾਤੇ ਨਾਲ ਦੁਬਾਰਾ ਰਜਿਸਟਰ ਕਰਨ ਸਮੇਂ ਆਪਣਾ ਡੇਟਾ ਗੁਆ ਬੈਠੋ।</string>
-  <string name="preferences_app_protection__incorrect_pin_try_again">ਗਲਤ PIN। ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">ਰਜਿਸਟਰੇਸ਼ਨ ਲਾਕ ਅਸਮਰੱਥ ਕਰਨਾ ਅਸਫਲ ਰਿਹਾ।</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">ਰਜਿਸਟਰੇਸ਼ਨ ਲਾਕ ਅਸਮਰੱਥ ਕਰਨ ਲਈ ਅਸਫ਼ਲ ਹੈ।</string>
   <string name="AppProtectionPreferenceFragment_none">ਕੋਈ ਨਹੀਂ</string>

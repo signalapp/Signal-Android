@@ -2811,11 +2811,6 @@
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN-koodid hoiavad Signalis salvestatud teabe krüptituna, et ainult sinul on sellele juurdepääs. Kui paigaldad Signali uuesti, siis sinu profiil, sätted ja kontaktid taastatakse.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Lisa turvalisust, nõudes selle telefoninumbri Signalis uuesti registreerimiseks Signali PIN-koodi.</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Meeldetuletused aitavad sul PIN-koodi meelde jätta, kuna seda pole võimalik taastada. Aja möödudes küsitakse sult seda harvemini.</string>
-  <string name="preferences_app_protection__turn_off">Lülita välja</string>
-  <string name="preferences_app_protection__confirm_pin">Kinnita PIN-kood</string>
-  <string name="preferences_app_protection__confirm_your_signal_pin">Kinnita Signali PIN-kood</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Jäta kindlasti meelde või salvesta PIN-kood turvaliselt, kuna seda pole võimalik taastada. Kui unustad PIN-koodi, võid Signali kontot uuesti registreerides enda andmed kaotada.</string>
-  <string name="preferences_app_protection__incorrect_pin_try_again">Lubamatu PIN-kood. Proovi uuesti.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Registreerimisluku lubamine ei õnnestunud.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Registreerimisluku keelamine ei õnnestunud.</string>
   <string name="AppProtectionPreferenceFragment_none">Puudub</string>

@@ -2816,11 +2816,6 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN-et i mbajnë të fshehtëzuara të dhëna e depozituara me Signal, që kështu të mund t\’i përdorni. Profili, rregullimet dhe kontaktet tuaja do të rikthehen, kur të riinstaloni Signal-in.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Shtoni siguri ekstra duke kërkuar doemos që për PIN-in tuaj Signal të regjistrohet sërish numri juaj i telefonit me Signal.</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Kujtuesit ju ndihmojnë të mbani mend PIN-in tuaj, ngaqë ky s\’mund të rimerret. Me kalimin e kohës, do t\’ju kërkohet më rrallë.</string>
-  <string name="preferences_app_protection__turn_off">Çaktivizoje</string>
-  <string name="preferences_app_protection__confirm_pin">Ripohoni PIN-in</string>
-  <string name="preferences_app_protection__confirm_your_signal_pin">Ripohoni PIN-in tuaj për Signal</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Sigurohuni që e mbani mend ose e depozitoni diku në mënyrë të sigurt PIN-in tuaj, ngaqë s\’mund të rimerret. Nëse harroni PIN-in tuaj, mund të humbni të dhëna, kur riregjistroni llogarinë tuaj Signal.</string>
-  <string name="preferences_app_protection__incorrect_pin_try_again">PIN i pasaktë. Riprovoni.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">S\’u arrit të aktivizohej kyçje regjistrimesh.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">S\’u arrit të çaktivizohej kyçje regjistrimesh.</string>
   <string name="AppProtectionPreferenceFragment_none">Asnjë</string>

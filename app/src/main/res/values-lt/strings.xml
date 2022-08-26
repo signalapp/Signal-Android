@@ -2999,11 +2999,6 @@
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN kodai šifruotu pavidalu saugo informaciją, kuri yra laikoma Signal, taigi, tik jūs galite gauti prieigą prie jos. Jums įdiegus Signal iš naujo, jūsų profilis, nustatymai ir adresatai bus atkurti.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Pridėti papildomą saugumą ir, norint vėl registruoti jūsų telefono numerį su Signal, reikalauti jūsų Signal PIN kodo.</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Priminimai padeda jums įsiminti PIN kodą, nes jo neįmanoma atkurti. Bėgant laikui, jūsų bus klausiama vis rečiau.</string>
-  <string name="preferences_app_protection__turn_off">Išjungti</string>
-  <string name="preferences_app_protection__confirm_pin">Patvirtinkite PIN</string>
-  <string name="preferences_app_protection__confirm_your_signal_pin">Patvirtinkite savo Signal PIN kodą</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Įsiminkite arba laikykite savo PIN kodą saugioje vietoje, nes jo neįmanoma atkurti. Jei užmiršite savo PIN kodą, galite prarasti duomenis, kai iš naujo registruosite savo Signal paskyrą.</string>
-  <string name="preferences_app_protection__incorrect_pin_try_again">Neteisingas PIN kodas. Bandykite dar kartą.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Nepavyko įjungti registracijos užrakto.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Nepavyko išjungti registracijos užrakto.</string>
   <string name="AppProtectionPreferenceFragment_none">Nėra</string>

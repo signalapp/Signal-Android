@@ -2810,11 +2810,6 @@
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PINs Signal کے ساتھ ذخیرہ شدہ معلومات کو خفیہ شدہ رکھتا ہے لہذا صرف آپ ہی اس تک رسائی حاصل کرسکتے ہیں۔ جب آپ Signal کو دوبارہ انسٹال کرتے ہیں تو آپ کا پروفائل ، ترتیبات اور رابطے بحال ہوجائیں گے۔</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">اپنے فون نمبر کو دوبارہ Signal کے ساتھ رجسٹر کرنے کیلئے اپنے Signal PIN کی ضرورت کرکے اضافی سیکیورٹی شامل کریں۔</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">یاد دہانیاں آپ کو اپنے PIN کو یاد رکھنے میں مدد کرتی ہیں کیونکہ اسے بازیافت نہیں کیا جاسکتا ہے۔ وقت کے ساتھ آپ سے کم پوچھا جائے گا۔</string>
-  <string name="preferences_app_protection__turn_off">بند کریں</string>
-  <string name="preferences_app_protection__confirm_pin">پن کی تصدیق کریں</string>
-  <string name="preferences_app_protection__confirm_your_signal_pin">اپنے سگنل پن کی تصدیق کریں</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">اس بات کو یقینی بنائیں کہ آپ اپنے PIN کو حفظ یا محفوظ طریقے سے محفوظ کریں کیونکہ اسے بازیافت نہیں کیا جاسکتا ہے۔ اگر آپ اپنا پن بھول جاتے ہیں تو ، اپنے Signal اکاؤنٹ کی دوبارہ رجسٹریشن کرتے وقت آپ ڈیٹا کھو سکتے ہیں۔</string>
-  <string name="preferences_app_protection__incorrect_pin_try_again">غلط پن. دوبارہ کوشش کریں.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">رجسٹریشن لاک کو فعال کرنے میں ناکام۔</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">رجسٹریشن لاک کو غیر فعال کرنے میں ناکام۔</string>
   <string name="AppProtectionPreferenceFragment_none">کوئی نہیں</string>

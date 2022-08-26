@@ -2625,11 +2625,6 @@
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PINلەر Signalدا ساقلانغان ئۇچۇرلارنى مەخپىيلەشتۈرۈپ ساقلايدۇ. شۇڭا سىزلا زىيارەت قىلالايسىز. ئارخىپىڭىز، سەپلىمىلىرىڭىز ۋە ئالاقەداشلىرىڭىز Signal نى قايتا قاچىلىغىنىڭىزدا ئەسلىگە كەلتۈرىلىدۇ.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Signal PIN نى مەجبۇرىي ھالەتكە ئەكىلىپ، Signal نى تېلېفون نومۇرىڭىز بىلەن بىرلىكتە قايتا تىزىملىتىش ئارقىلىق، يەنىمۇ بىخەتەر قىلالايسىز.</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">PIN نى ئەسلىگە كەلتۈرگىلى بولمىغاچقا، ئەسكەرتكۈچ ئۇنى سىزنىڭ پىششىق ئېىسىڭىزدە تۇتىۋېلىشىڭىزغا ياردەم قىلىدۇ. بارا-بارا تېخىمۇ ئاز سورىغۇسى.</string>
-  <string name="preferences_app_protection__turn_off">تاقا</string>
-  <string name="preferences_app_protection__confirm_pin">PIN نى جەزىملەڭ</string>
-  <string name="preferences_app_protection__confirm_your_signal_pin">Signal PIN نىڭىزنى جەزىملەڭ</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">PIN نى ئەسلىگە كەلتۈرگىلى بولمىغاچقا، ئۇنى ئەستە ساقلىۋالغىنىڭىزغا ياكى بىخەتەر بىر يەردە ساقلىغىنىڭىزغا كاپالەتلىك قىلىڭ. ئەگەر Signal ھېسابىڭىزنى قايتىدىن تىزىملاتسىڭىز، مەلۇماتلىرىڭىزنى يوقىتىشىڭىز مۈمكىن.</string>
-  <string name="preferences_app_protection__incorrect_pin_try_again">PIN  خاتا، قايتا سىناڭ</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">تىزىملىتىش قۇلۇپىنى قوزغاتقىلى بولمىدى.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">تىزىملىتىش قۇلۇپىنى ئاكتىپسىزلىغىلى بولمىدى.</string>
   <string name="AppProtectionPreferenceFragment_none">ھېچنېمە</string>

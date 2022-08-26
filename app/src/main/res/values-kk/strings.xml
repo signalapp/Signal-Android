@@ -2819,11 +2819,6 @@
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN кодтарда Signal қолданбасы шифрланған күйде сақталған ақпарат болады, сондықтан оған сіз ғана қол жеткізе аласыз. Signal қолданбасын қайтадан орнатқан кезде, профиліңіз, параметрлеріңіз бен байланыстық тұлғаларыңыз қалпына келітіріледі.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Телефон нөміріңізді Signal-ға қайта тіркеу үшін Signal-дағы PIN-кодыңызды сұрап, қауіпсіздікті арттырыңыз.</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Еске салғыштар PIN-кодты есте сақтауға көмектеседі, себебі оны қалпына келтіру мүмкін емес. Уақыт өте оны сирек сұрайтын боламыз.</string>
-  <string name="preferences_app_protection__turn_off">Өшіру</string>
-  <string name="preferences_app_protection__confirm_pin">PIN кодын растау</string>
-  <string name="preferences_app_protection__confirm_your_signal_pin">Signal PIN кодын растау</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">PIN-кодты есіңізде сақтаңыз немесе қауіпсіз жерде сақтаңыз, себебі оны қалпына келтіру мүмкін емес. PIN-кодыңызды ұмытып қалсаңыз, Signal аккаунтыңызды қайта тіркеу кезінде деректеріңізді жоғалтып алуыңыз мүмкін.</string>
-  <string name="preferences_app_protection__incorrect_pin_try_again">Дұрыс емес PIN. Қайтадан байқап көріңіз.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Тіркеу құлпын іске қосу сәтсіз болды.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Тіркеу құлпын ажырату сәтсіз болды.</string>
   <string name="AppProtectionPreferenceFragment_none">Ешқайсы</string>

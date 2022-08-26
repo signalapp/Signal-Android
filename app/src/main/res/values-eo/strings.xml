@@ -2771,11 +2771,6 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN konservas informojn ĉifritajn ĉe Signal, tiel ke nur vi povas aliri ilin. Via profilo, viaj agordoj kaj kontaktoj revenos, kiam vi reinstalos Signal-on.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Aldonu plian sekurigon postulante, ke via Signal-PIN estu deviga por reregistri vian telefonnumeron al Signal.</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Memorigoj helpas al vi memori vian PIN, ĉar ĝi ne estas rehavebla. Oni demandos al vi malpli ofte iom post iom.</string>
-  <string name="preferences_app_protection__turn_off">Malaktivigi</string>
-  <string name="preferences_app_protection__confirm_pin">Konfirmu personan identigan numeron</string>
-  <string name="preferences_app_protection__confirm_your_signal_pin">Konfirmu vian Signal-PIN</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Memoru vian PIN, aŭ konservu ĝin sekure, ĉar ĝi ne estas rehavebla. Se vi forgesos vian PIN, vi povos perdi datumojn dum reregistriĝo de via Signal-konto.</string>
-  <string name="preferences_app_protection__incorrect_pin_try_again">Malĝusta PIN. Reprovu.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Malsukceso ebligi la blokon de registriĝo</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Malsukceso malebligi la blokon de registriĝo</string>
   <string name="AppProtectionPreferenceFragment_none">Neniu</string>

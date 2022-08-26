@@ -2713,11 +2713,6 @@
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN 碼用於加密在 Signal 中儲存的資訊，以確保只得你可以存取。當你重新安裝 Signal 後，你的個人資料、設定和聯絡人將會還原。</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">透過要求你的Signal PIN碼重新在Signal上註冊你的電話號碼來增加安全性。</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">提醒可以幫助你記住你的PIN碼，因為它無法回復。 隨著時間的過去，你的詢問頻率會降低。</string>
-  <string name="preferences_app_protection__turn_off">關閉</string>
-  <string name="preferences_app_protection__confirm_pin">確認 PIN 碼</string>
-  <string name="preferences_app_protection__confirm_your_signal_pin">確認你的 Signal PIN 碼</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">確保你記住或安全地儲存了PIN碼，因為它無法回復。 如果你忘記了PIN碼，則在重新註冊Signal帳號時可能會遺失資料。</string>
-  <string name="preferences_app_protection__incorrect_pin_try_again">PIN 碼不正確。請再試一次。</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">無法啟用註冊鎖。</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">無法停用註冊鎖。</string>
   <string name="AppProtectionPreferenceFragment_none">無</string>

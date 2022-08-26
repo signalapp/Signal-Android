@@ -2718,11 +2718,6 @@
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN 用于加密 Signal 存储的信息，这样只有你可以访问。重装 Signal 之后，可还原你的个人资料、设置和联系人。</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">再次使用电话号码注册 Signal 时，要求输入 PIN，这样提供了更多安全性。</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">PIN 无法恢复，提醒有助于记住它。提醒频率将逐渐降低。</string>
-  <string name="preferences_app_protection__turn_off">关闭</string>
-  <string name="preferences_app_protection__confirm_pin">确认 PIN</string>
-  <string name="preferences_app_protection__confirm_your_signal_pin">请确认您的 Signal PIN 码</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">请确保你能牢记或安全保存好你的 PIN 码，因为它不能被找回。如果你忘记了 PIN 码，你可能会在重新注册 Signal 账号时丢失一些数据。</string>
-  <string name="preferences_app_protection__incorrect_pin_try_again">PIN 错误，请重试。</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">无法启用注册锁。</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">无法禁用注册锁。</string>
   <string name="AppProtectionPreferenceFragment_none">无</string>

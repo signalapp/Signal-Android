@@ -2962,11 +2962,6 @@ Anfon neges heb ei diogelu?</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Mae PINs yn cadw gwybodaeth wedi\'i storio gyda Signal wedi\'i hamgryptio felly dim ond chi sy\'n cael mynediad ati. Bydd eich proffil, gosodiadau, a chysylltiadau yn cael eu hadfer pan fyddwch yn ailosod Signal.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Ychwanegwch ddiogelwch ychwanegol trwy ei gwneud yn ofynnol i\'ch PIN Signal gofrestru\'ch rhif ffôn gyda Signal eto.</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Mae atgoffwyr yn eich helpu i gofio\'ch PIN gan nad oes modd ei adfer. Byddwn yn gofyn i chi\'n llai aml dros amser.</string>
-  <string name="preferences_app_protection__turn_off">Diffodd</string>
-  <string name="preferences_app_protection__confirm_pin">Cadarnhau eich PIN</string>
-  <string name="preferences_app_protection__confirm_your_signal_pin">Cadarnhewch eich PIN Signal</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Gwnewch yn siŵr eich bod yn cofio neu\'n cadw eich PIN yn ddiogel gan nad oes modd ei adfer. Os fyddwch yn anghofio eich PIN, efallai y byddwch yn colli data wrth ailgofrestru eich cyfrif Signal.</string>
-  <string name="preferences_app_protection__incorrect_pin_try_again">PIN anghywir. Ceisiwch eto.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Wedi methu galluogi clo cofrestru.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Wedi methu analluogi clo cofrestru.</string>
   <string name="AppProtectionPreferenceFragment_none">Dim</string>

@@ -2805,11 +2805,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN-koder holder informasjon lagret med Signal kryptert slik at bare du kan få tilgang til den. Profilen, innstillingene og kontaktene dine vil gjenopprette når du installerer Signal på nytt.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Legg til ekstra sikkerhet ved å kreve at Signal PIN-koden din må benyttes dersom telefonnummeret ditt registreres hos Signal igjen.</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Påminnelser hjelper deg å huske PIN-koden siden den ikke kan gjenopprettes. Du blir spurt mindre ofte over tid.</string>
-  <string name="preferences_app_protection__turn_off">Skru av</string>
-  <string name="preferences_app_protection__confirm_pin">Bekreft PIN-koden</string>
-  <string name="preferences_app_protection__confirm_your_signal_pin">Bekreft Signal PIN-kode</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Pass på at du husker eller lagrer PIN-koden sikkert, da den ikke kan gjenopprettes. Hvis du glemmer PIN-koden, risikerer du å miste data når du registrerer Signal-kontoen på nytt.</string>
-  <string name="preferences_app_protection__incorrect_pin_try_again">Feil PIN-kode. Prøv igjen.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Kunne ikke skru på registreringslås.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Kunne ikke skru av registreringslås.</string>
   <string name="AppProtectionPreferenceFragment_none">Ingen</string>

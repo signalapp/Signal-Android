@@ -2808,11 +2808,6 @@
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">ПИН кодовете пазят информацията, съхранена във вашия Signal, шифрирана, за да имате само вие достъп до нея. Вашите настройки, профил и контакти ще бъдат възстановени, когато преинсталирате Signal.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Добавете допълнителна сигурност, като изисквате вашия Signal ПИН, за да регистрирате отново телефонния си номер със Signal.</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Напомнянията ви помагат да запомните своя ПИН, тъй като той не може да бъде възстановен. С течение на времето ще бъдете питани по-рядко.</string>
-  <string name="preferences_app_protection__turn_off">Отключи</string>
-  <string name="preferences_app_protection__confirm_pin">Потвърдете ПИН</string>
-  <string name="preferences_app_protection__confirm_your_signal_pin">Потвърдете своя ПИН за Signal</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Уверете се, че сте запомнили или запазили сигурно своя ПИН, тъй като той не може да бъде възстановен. Ако забравите своя ПИН, може да загубите данни при повторно регистриране на вашия акаунт в Signal.</string>
-  <string name="preferences_app_protection__incorrect_pin_try_again">Грешен ПИН. Опитайте отново.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Неуспешно активиране на регистрационно заключване.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Неуспешно деактивиране на регистрационно заключване.</string>
   <string name="AppProtectionPreferenceFragment_none">Нищо</string>

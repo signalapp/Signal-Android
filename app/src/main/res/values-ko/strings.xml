@@ -2725,11 +2725,6 @@
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN 번호는 정보를 Signal에서 암호화하여 저장하므로 사용자만 액세스할 수 있습니다. 프로필, 설정과 연락처는 Signal을 다시 설치할 때 복원됩니다.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Signal에 전화번호를 다시 등록하려면 Signal PIN을 요구하여 보안을 강화하세요.</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">PIN을 복구할 수는 없으므로 알림은 PIN을 기억하는 데 도움이 됩니다. 시간이 지남에 따라 질문을 덜 자주 받게 됩니다.</string>
-  <string name="preferences_app_protection__turn_off">끄기</string>
-  <string name="preferences_app_protection__confirm_pin">번호 확인</string>
-  <string name="preferences_app_protection__confirm_your_signal_pin">Signal PIN 번호 확인</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">PIN은 복구할 수 없으므로 외우거나 안전하게 보관하세요. PIN을 잊어버린 경우 Signal 계정을 다시 등록할 때 데이터가 손실될 수 있습니다.</string>
-  <string name="preferences_app_protection__incorrect_pin_try_again">잘못된 번호입니다. 다시 시도해 주세요.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">등록 잠금을 활성화하지 못했습니다.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">등록 잠금을 비활성화하지 못했습니다.</string>
   <string name="AppProtectionPreferenceFragment_none">없음</string>

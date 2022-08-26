@@ -2779,11 +2779,6 @@ Kom i gang ved å senda ei melding til ein venn.</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN-en held informasjonen som signal Signal lagrar kryptert, slik at berre du kan få tilgang til han. Profilen, innstillingane og kontaktane dine blir gjenoppretta når du installerer Signal på nytt.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Få ekstra tryggleik ved å krevja din Signal-PIN for å registrera telefonnummeret ditt med Signal igjen.</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Påminningar hjelper deg med å hugsa PIN-en din, sidan han ikkje kan gjenopprettast. Du får færre påminningar over tid.</string>
-  <string name="preferences_app_protection__turn_off">Skru av</string>
-  <string name="preferences_app_protection__confirm_pin">Stadfest PIN-koden</string>
-  <string name="preferences_app_protection__confirm_your_signal_pin">Stadfest Signal-PIN-en din</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Pass på at du lærer PIN-en din utanat, eller lagrar han trygt, sidan han ikkje kan gjenopprettast. Viss du gløymer PIN-en, kan du mista data viss du må gjenoppretta Signal-kontoen din.</string>
-  <string name="preferences_app_protection__incorrect_pin_try_again">Feil PIN. Prøv igjen.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Klarte ikkje skru på registreringslås.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Klarte ikkje skru av registreringslås.</string>
   <string name="AppProtectionPreferenceFragment_none">Inga</string>

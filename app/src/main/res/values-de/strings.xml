@@ -2800,11 +2800,6 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PINs halten deine bei Signal gespeicherten Informationen verschlüsselt, sodass nur du auf sie zugreifen kannst. Falls du Signal erneut installierst, werden so dein Profil und deine Einstellungen und Kontakte wiederhergestellt.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Als zusätzliches Sicherheitsmerkmal deine Signal-PIN erforderlich machen, sobald du deine Rufnummer erneut bei Signal registrierst.</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Erinnerungen helfen dir beim Merken deiner PIN, da diese nicht wiederhergestellt werden kann. Sie wird mit der Zeit seltener abgefragt.</string>
-  <string name="preferences_app_protection__turn_off">Ausschalten</string>
-  <string name="preferences_app_protection__confirm_pin">PIN bestätigen</string>
-  <string name="preferences_app_protection__confirm_your_signal_pin">Bestätige deine Signal-PIN</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Sorge dafür, dass du dir deine PIN einprägst oder sicher verwahrst, da sie nicht wiederhergestellt werden kann. Falls du deine PIN vergisst, könntest du bei erneutem Registrieren deines Signal-Kontos deine Daten verlieren.</string>
-  <string name="preferences_app_protection__incorrect_pin_try_again">Falsche PIN. Bitte versuche es erneut.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Registrierungssperre konnte nicht aktiviert werden.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Registrierungssperre konnte nicht deaktiviert werden.</string>
   <string name="AppProtectionPreferenceFragment_none">Keine</string>

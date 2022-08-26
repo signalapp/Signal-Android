@@ -2896,11 +2896,6 @@
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Les NIP font en sorte que les informations sont enregistrées chiffrées dans Signal afin que vous seul puissiez y accéder. Votre profil, vos paramètres et vos contacts seront restaurés quand vous réinstallerez Signal.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Pour une sécurité accrue, exigez votre NIP Signal pour réinscrire votre numéro de téléphone auprès de Signal.</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Les rappels vous aident à vous souvenir de votre NIP, car il ne peut pas être récupéré. Il vous sera demandé de moins en moins souvent.</string>
-  <string name="preferences_app_protection__turn_off">Désactiver</string>
-  <string name="preferences_app_protection__confirm_pin">Confirmer le NIP</string>
-  <string name="preferences_app_protection__confirm_your_signal_pin">Confirmer votre NIP Signal</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Assurez-vous de mémoriser votre NIP ou de le conserver à l’abri, car il ne peut pas être récupéré. Si vous oubliez votre NIP, vous risquez de perdre des données lors de la réinscription de votre compte Signal. </string>
-  <string name="preferences_app_protection__incorrect_pin_try_again">Le NIP est erroné. Veuillez réessayer.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Échec d’activation du blocage de l’inscription.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Échec de désactivation du blocage de l’inscription.</string>
   <string name="AppProtectionPreferenceFragment_none">Aucun</string>

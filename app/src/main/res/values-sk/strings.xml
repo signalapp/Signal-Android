@@ -2998,11 +2998,6 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN kódy udržiavajú informácie uložené v Signal zašifrované, aby ste k nim mali prístup iba vy. Váš profil, vaše nastavenia a kontakty sa po opätovnej inštalácii Signalu obnovia.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Zvýšte svoje zabezpečenie tým, že pri opakovanej registrácii svojho telefónneho čísla v Signal budete vyžadovať PIN.</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Pripomienky vám pomôžu zapamätať si váš PIN, keďže ho nie je možné obnoviť. Postupom času vás oň budeme žiadať zriedkavejšie.</string>
-  <string name="preferences_app_protection__turn_off">Vypnúť</string>
-  <string name="preferences_app_protection__confirm_pin">Potvrďte PIN</string>
-  <string name="preferences_app_protection__confirm_your_signal_pin">Overte váš PIN pre Signal</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Uistite sa, že si svoj PIN pamätáte, alebo že ho máte bezpečne uložený, pretože ho nie je možné obnoviť. Ak váš PIN zabudnete, mohli by ste stratiť dáta pri opätovnej registrácii vášho Signal účtu.</string>
-  <string name="preferences_app_protection__incorrect_pin_try_again">Nesprávny PIN kód. Skúste to znova.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Aktivácia registračného zámku zlyhala.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Dektivácia registračného zámku zlyhala.</string>
   <string name="AppProtectionPreferenceFragment_none">Žiadny</string>

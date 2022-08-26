@@ -2712,11 +2712,6 @@
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">ပင်နံပါတ်များသည် အချက်အလက်များကို Signal မှ စာဝှက်ခါ သိမ်းထားသည်။ သင် Signal ကို ပြန်လည်တပ်ဆင်သောအခါ သင်၏ ပရိုဖိုင်း၊ ချိန်ညှိချက်မျာ းနှင့်အဆက်အသွယ်များသည် ပြန်လည်ရရှိပါလိမ့်မည်။</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">သင်၏ ဖုန်းနံပါတ်ကို Signal ပင်နံပါတ်နှင့် ပြန်လည်မှတ်ပုံတင်ရန် လိုအပ်ခြင်းအားဖြင့် ပိုမိုလုံခြုံစေပါ။</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">သင်၏ပင်နံပါတ်ကို ပြန်လည်မဖော်ထုတ်နိုင်သောကြောင့် သတိပေးချက်များက သင့်ကိုကူညီသည်။ အချိန်ကြာလာသည် နှင့်အမျှ သင့်ကိုမကြာခဏ မေးလိမ့်မည်။</string>
-  <string name="preferences_app_protection__turn_off">ပိတ်မည်</string>
-  <string name="preferences_app_protection__confirm_pin">ပင်နံပါတ်အား အတည်ပြုမည်</string>
-  <string name="preferences_app_protection__confirm_your_signal_pin">သင်၏ Signal ပင်နံပါတ်ကိုအတည်ပြုပါ</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">သင်၏ပင်နံပါတ်ကို ပြန်လည်သိမ်းဆည်းမရပါကြောင့် အလွတ်ကျက်ထား သို့မဟုတ် သေချာစွာသိမ်းထားပါ။ သင်၏ပင်နံပါတ်ကိုသင်မေ့သွားပါက သင်၏ Signal အကောင့်ကိုပြန်လည်မှတ်ပုံတင်သောအခါ ဒေတာဆုံးရှုံးနိုင်သည်။</string>
-  <string name="preferences_app_protection__incorrect_pin_try_again">ပင်နံပါတ်မှားနေသည်။ နောက်တစ်ကြိမ် ကြိုးစားပါ။</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">မှတ်ပုံတင်ခြင်းသော့ခတ်ရန် မအောင်မြင်ပါ</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">မှတ်ပုံတင်ခြင်းသော့ခတ်မှုကို ရပ်ခြင်း မအောင်မြင်ပါ</string>
   <string name="AppProtectionPreferenceFragment_none">မည်သည့်အရာမှ မဟုတ်သော</string>

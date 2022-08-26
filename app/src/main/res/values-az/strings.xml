@@ -2811,11 +2811,6 @@
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN-lər, Signal-da saxlanılan məlumatları şifrələnmiş olaraq tutur, beləcə yalnız siz müraciət edə bilirsiniz. Profiliniz, tənzimləmələriniz və əlaqələriniz, Signal yenidən quraşdırılanda geri yüklənəcək.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Telefon nömrənizi Signal-da qeydiyyata salmaq üçün Signal PIN-ini tələb edərək ekstra təhlükəsizlik əlavə edin.</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">PIN, bərpa edilə bilmədiyi üçün xatırladıcılar sizə PIN-inizi xatırlamağınıza kömək edir. Zamanla daha az soruşulacaq.</string>
-  <string name="preferences_app_protection__turn_off">Söndür</string>
-  <string name="preferences_app_protection__confirm_pin">PIN-i təsdiqləyin</string>
-  <string name="preferences_app_protection__confirm_your_signal_pin">Signal PIN-inizi təsdiqləyin</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">PIN-inizi bərpa edə bilməyəcəyiniz üçün əzbərlədiyinizə və güvənli bir yerdə saxladığınıza əmin olun. Əgər PIN-inizi unutsanız, Signal hesabınızla yenidən qeydiyyatdan keçərkən verilənlərinizi itirəcəksiniz.</string>
-  <string name="preferences_app_protection__incorrect_pin_try_again">Yanlış PIN. Yenidən sınayın.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Qeydiyyat kilidi fəallaşdırılmadı.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Qeydiyyat kilidi sıradan çıxarılmadı.</string>
   <string name="AppProtectionPreferenceFragment_none">Heç biri</string>

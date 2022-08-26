@@ -2708,11 +2708,6 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN mengekalkan maklumat yang disimpan dengan Signal disulitkan jadi hanya anda boleh mengaksesnya. Profil, tetapan dan kenalan anda dipulihkan apabila anda memasang semula Signal.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Tambah keselamatan tambahan dengan meminta PIN Signal anda untuk mendaftarkan nombor telefon anda dengan Signal sekali lagi.</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Peringatan membantu anda mengingati PIN anda kerana PIN tidak dapat dipulihkan. Anda akan diminta dengan kurang kerap dari masa ke masa.</string>
-  <string name="preferences_app_protection__turn_off">Matikan</string>
-  <string name="preferences_app_protection__confirm_pin">Sahkan PIN</string>
-  <string name="preferences_app_protection__confirm_your_signal_pin">Sahkan PIN Signal anda</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Pastikan anda menghafal atau menyimpan PIN anda dengan selamat kerana PIN tidak dapat dipulihkan. Sekiranya anda terlupa PIN anda, anda mungkin kehilangan data apabila mendaftar semula akaun Signal anda.</string>
-  <string name="preferences_app_protection__incorrect_pin_try_again">PIN tidak betul. Cuba lagi.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Gagal mendayakan kunci pendaftaran.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Gagal untuk menyahdayakan kunci pendaftaran.</string>
   <string name="AppProtectionPreferenceFragment_none">Tiada</string>

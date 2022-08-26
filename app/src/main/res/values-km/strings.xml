@@ -2719,11 +2719,6 @@
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">លេខ PIN រក្សាទុកព័ត៌មានដែលផ្ទុកជាមួយ Signalដែលបានអ៊ិនគ្រីប​ដូច្នេះមានតែអ្នកប៉ុណ្ណោះដែលអាចចូលប្រើវាបាន។ ប្រវត្តិរូប ការកំណត់ និងទំនាក់ទំនងរបស់អ្នក នឹងស្តារឡើងវិញនៅពេលដែលអ្នកតំឡើង Signal ឡើងវិញ។</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">ដាក់សុវត្ថិភាពបន្ថែម ដោយទាមទារ Signal PIN របស់អ្នក ដើម្បីចុះឈ្មោះលេខទូរស័ព្ទជាមួយ Signal ម្តងទៀត។</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">ការរំលឹកជួយអ្នកឲ្យចងចាំ PIN របស់អ្នក ដោយសារវាមិនអាចស្តារឡើងវិញទេ។ អ្នកនឹងត្រូវបានសួរ ជារើយៗ។</string>
-  <string name="preferences_app_protection__turn_off">បិទ</string>
-  <string name="preferences_app_protection__confirm_pin">ផ្ទៀងផ្ទាត់លេខ PIN</string>
-  <string name="preferences_app_protection__confirm_your_signal_pin">បញ្ជាក់លេខ Signal PIN របស់អ្នក</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">ប្រាកដថាអ្នកចងចាំ ឬរក្សាទុក PIN ដោយសុវត្ថិភាព ដោយសារវាមិនអាចស្តារវិញបានទេ។ បើអ្នកភ្លេច PIN របស់អ្នក អ្នកអាចបាត់បង់ទិន្នន័យនៅពេលគណនី Signal របស់អ្នកសារឡើងវិញ។</string>
-  <string name="preferences_app_protection__incorrect_pin_try_again">លេខកូដ PIN មិនត្រឹមត្រូវ។ សាកល្បងម្តងទៀត។</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">មិនអាចបើកការចាក់សោរចុះឈ្មោះ។</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">មិនអាចបិទការចាក់សោរចុះឈ្មោះ។</string>
   <string name="AppProtectionPreferenceFragment_none">គ្មាន</string>

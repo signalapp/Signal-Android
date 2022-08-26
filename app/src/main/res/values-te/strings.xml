@@ -2815,11 +2815,6 @@
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">పిన్‌లు Signal గుప్తీకరించిన సమాచారాన్ని నిల్వ చేస్తాయి కాబట్టి మీరు మాత్రమే దీన్ని యాక్సెస్ చేయవచ్చు. మీరు Signal ‌ను మళ్లీ ఇన్‌స్టాల్ చేసినప్పుడు మీ ప్రొఫైల్, సెట్టింగ్‌లు మరియు పరిచయాలు పునరుద్ధరించబడతాయి.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">మీ ఫోన్ నంబర్‌ను మళ్లీ Signal‌తో నమోదు చేయడానికి మీ సిగ్నల్ పిన్ అవసరం ద్వారా అదనపు భద్రతను జోడించండి.</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">మీ పిన్ను తిరిగి పొందలేనందున దాన్ని గుర్తుంచుకోవడానికి రిమైండర్‌లు మీకు సహాయపడతాయి. కాలక్రమేణా మిమ్మల్ని తక్కువసార్లు అడుగుతారు.</string>
-  <string name="preferences_app_protection__turn_off">తీసివేయు</string>
-  <string name="preferences_app_protection__confirm_pin">పిన్ ని నిర్ధారించండి</string>
-  <string name="preferences_app_protection__confirm_your_signal_pin">మీ Signal పిన్ను నిర్ధారించండి</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">మీ పిన్ను తిరిగి పొందలేనందున మీరు గుర్తుంచుకున్నారని లేదా సురక్షితంగా నిల్వ చేశారని నిర్ధారించుకోండి. మీరు మీ పిన్‌ను మరచిపోతే, మీ Signal ఖాతాను తిరిగి నమోదు చేసేటప్పుడు మీరు డేటాను కోల్పోవచ్చు.</string>
-  <string name="preferences_app_protection__incorrect_pin_try_again">తప్పు పిన్. మళ్ళీ ప్రయత్నించండి.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">రిజిస్ట్రేషన్ లాక్‌ని ప్రారంభించడంలో విఫలమైంది.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">రిజిస్ట్రేషన్ లాక్‌ను నిలిపివేయడంలో విఫలమైంది.</string>
   <string name="AppProtectionPreferenceFragment_none">ఏదీ కాదు</string>

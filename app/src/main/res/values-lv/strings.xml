@@ -2899,11 +2899,6 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN noglabā Signal informāciju šifrētā veidā tā, ka tikai jūs varat tai piekļūt. Jūsu profils, uzstādījumu un kontakti tiks atjaunoti, ja uzstādīsiet Signal no jauna.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Pievienojiet papildus drošību, pieprasot ievadīt Signal PIN, kad jūsu telefona numurs tiek reģistrēts Signal no jauna.</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Atgādinājumi jums palīdz atcerēties PIN, jo to nevar atgūt. Laika gaitā atgādināšana būs retāka.</string>
-  <string name="preferences_app_protection__turn_off">Izslēgt</string>
-  <string name="preferences_app_protection__confirm_pin">Apstiprināt PIN</string>
-  <string name="preferences_app_protection__confirm_your_signal_pin">Apstipriniet Signal PIN</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Pārliecinieties, ka atceraties PIN un vai uzglabājat to droši, jo PIN nevar atgūt. PIN aizmiršanas gadījumā, iespējams, zaudēsiet datus, atkārtoti reģistrējot Signal kontu.</string>
-  <string name="preferences_app_protection__incorrect_pin_try_again">Nepareizs PIN. Mēģiniet vēlreiz.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Reģistrācijas bloķēšanas iestatīšanas laikā notikusi kļūda.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Reģistrācijas bloķēšanas atiestatīšanas laikā notikusi kļūda.</string>
   <string name="AppProtectionPreferenceFragment_none">Nekas</string>

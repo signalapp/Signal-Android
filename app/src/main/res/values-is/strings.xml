@@ -2770,11 +2770,6 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN-númer halda upplýsingum geymdum í Signal dulrituðum þannig að einungis þú hefur aðgang að þeim. Notandasniðið þitt, stillingar og tengiliðir endurheimtast þegar þú setur Signal upp aftur.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Bættu öryggið með því að krefjast PIN-númers til að geta skráð þetta símanúmer aftur hjá Signal.</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Áminningar hjálpa þér að muna PIN-númerið þitt en það er ekki hægt að endurheimta. Með tímanum ertu spurð/ur sjaldnar.</string>
-  <string name="preferences_app_protection__turn_off">Slökkva</string>
-  <string name="preferences_app_protection__confirm_pin">Staðfestu PIN-númer</string>
-  <string name="preferences_app_protection__confirm_your_signal_pin">Staðfestu PIN-númer þitt á Signal</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Gakktu úr skugga um að þú munir PIN-númerið þitt eða geymir á öruggum stað, en það er ekki hægt að endurheimta. Ef þú gleymir PIN-númerinu er mögulegt að þú tapir gögnum þegar þú skráir þig aftur á Signal-aðganginn þinn.</string>
-  <string name="preferences_app_protection__incorrect_pin_try_again">Rangt PIN-númer. Prófaðu aftur.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Mistókst að virkja skráningarlæsingu.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Mistókst að gera skráningarlæsingu óvirka.</string>
   <string name="AppProtectionPreferenceFragment_none">Ekkert</string>

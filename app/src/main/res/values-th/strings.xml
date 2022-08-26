@@ -2717,11 +2717,6 @@
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">รหัส PIN รักษาข้อมูลที่เก็บไว้ใน Signal ที่เข้ารหัส ดังนั้นจึงมีแต่คุณที่เข้าถึงข้อมูลนี้ได้ โปรไฟล์ของคุณ การตั้งค่า และรายชื่อผู้ติดต่อจะถูกกู้คืนเมื่อคุณติดตั้ง Signal อีกครั้ง</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">เพิ่มความปลอดภัยอีกขั้นด้วยการกำหนดให้ PIN ของ Signal คุณ สมัครหมายเลขโทรศัพท์กับ Signal อีกครั้ง</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">การเตือนความจำจะช่วยให้คุณจำรหัส PIN ได้ เนื่องจากมันไม่สามารถถูกกู้คืนได้ คุณจะถูกเตือนน้อยลงเมื่อเวลาผ่านไป</string>
-  <string name="preferences_app_protection__turn_off">ปิด</string>
-  <string name="preferences_app_protection__confirm_pin">ยืนยันรหัส PIN</string>
-  <string name="preferences_app_protection__confirm_your_signal_pin">ยืนยันรหัส PIN สำหรับ Signal ของคุณ</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">ให้แน่ใจว่าคุณสามารถจำหรือเก็บรักษารหัส PIN ของคุณได้อย่างปลอดภัย เพราะมันไม่สามารถถูกกู้คืนได้ ถ้าคุณลืมรหัส PIN ของคุณ ข้อมูลของคุณอาจสูญหายเมื่อคุณลงทะเบียนบัญชี Signal ของคุณอีกครั้ง</string>
-  <string name="preferences_app_protection__incorrect_pin_try_again">รหัส PIN ไม่ถูกต้อง ลองอีกครั้ง</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">การเปิดใช้งานกุญแจลงทะเบียนล้มเหลว</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">การปิดใช้งานกุญแจลงทะเบียนล้มเหลว</string>
   <string name="AppProtectionPreferenceFragment_none">ไม่มี</string>

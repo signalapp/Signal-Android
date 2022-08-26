@@ -2809,11 +2809,6 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN\'ler Signal\'de depolanan verileri şifreli olarak tutar böylelikle yalnızca siz erişebilirsiniz. Profiliniz, ayarlarınız ve kişileriniz Signal\'i yeniden yüklediğinizde geri yüklenecektir.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Daha fazla güvenlik için, Signal\'i telefon numaranızla tekrar kaydetmek için Signal PIN\'i zorunlu kılın.</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Hatırlatıcılar PIN\'iniz kurtarılamaz olduğu için onu ezberlemenize yardımcı olur. Zaman geçtikçe daha az sorulacaktır.</string>
-  <string name="preferences_app_protection__turn_off">Kapat</string>
-  <string name="preferences_app_protection__confirm_pin">PIN\'i onaylayınız</string>
-  <string name="preferences_app_protection__confirm_your_signal_pin">Signal PIN\'inizi onaylayın</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">PIN\'iniz kurtarılamayacağı için ezberlediğinizden veya güvenli bir şekilde sakladığınızdan emin olun. Eğer PIN\'inizi unutursanız, Signal hesabınızı tekrar kaydederken veri kaybı yaşayabilirsiniz.</string>
-  <string name="preferences_app_protection__incorrect_pin_try_again">Yanlış PIN. Tekrar deneyin.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Kayıt kilidi etkinleştirme başarısız oldu</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Kayıt kilidi devredışı bırakma başarısız oldu</string>
   <string name="AppProtectionPreferenceFragment_none">Hiçbiri</string>

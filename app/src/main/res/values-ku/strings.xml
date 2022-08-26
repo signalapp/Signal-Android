@@ -2184,10 +2184,6 @@
   <string name="preferences_app_protection__create_a_pin">PIN\'ê biafiîne</string>
   <string name="preferences_app_protection__change_your_pin">PIN\'a xwe biguherîne</string>
   <string name="preferences_app_protection__pin_reminders">Bibîrxistinkarên PIN\'ê</string>
-  <string name="preferences_app_protection__turn_off">Bigire</string>
-  <string name="preferences_app_protection__confirm_pin">PIN\'ê bipejirîne</string>
-  <string name="preferences_app_protection__confirm_your_signal_pin">PIN\'a xwe ya Signalê bipejirîne</string>
-  <string name="preferences_app_protection__incorrect_pin_try_again">PIN çewt e. Dîsa biceribîne.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Çalakkirina kilîda tomarbûnê bi ser neket.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Neçalakkirina kilîda tomarbûnê bi ser neket.</string>
   <string name="AppProtectionPreferenceFragment_none">Ne yek jî</string>
