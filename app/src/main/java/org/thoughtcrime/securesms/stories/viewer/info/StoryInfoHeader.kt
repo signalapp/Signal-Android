@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.stories.viewer.info
 
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.Util
@@ -38,8 +39,14 @@ object StoryInfoHeader {
       if (model.sentMillis > 0L) {
         sentView.visible = true
         sentView.text = DateUtils.getTimeString(context, Locale.getDefault(), model.sentMillis)
+        itemView.setOnLongClickListener {
+          Util.copyToClipboard(context, model.sentMillis.toString())
+          Toast.makeText(context, R.string.MyStoriesFragment__copied_sent_timestamp_to_clipboard, Toast.LENGTH_SHORT).show()
+          true
+        }
       } else {
         sentView.visible = false
+        itemView.setOnLongClickListener(null)
       }
 
       if (model.receivedMillis > 0L) {
