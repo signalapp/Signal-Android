@@ -43,7 +43,7 @@ class VoiceNotePlaybackControllerTest {
 
     // THEN
     verify(player).playWhenReady = false
-    verify(player).setAudioAttributes(expected, false)
+    verify(player).setAudioAttributes(expected, true)
     verify(player).playWhenReady = true
   }
 
@@ -61,7 +61,7 @@ class VoiceNotePlaybackControllerTest {
 
     // THEN
     verify(player).playWhenReady = false
-    verify(player).setAudioAttributes(expected, false)
+    verify(player).setAudioAttributes(expected, true)
     verify(player, Mockito.never()).playWhenReady = true
   }
 

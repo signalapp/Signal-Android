@@ -39,7 +39,7 @@ import java.util.stream.Collectors;
 /**
  * ExoPlayer Preparer for Voice Notes. This only supports ACTION_PLAY_FROM_URI
  */
-final class VoiceNotePlaybackPreparer implements MediaSessionConnector.PlaybackPreparer {
+final class   VoiceNotePlaybackPreparer implements MediaSessionConnector.PlaybackPreparer {
 
   private static final String   TAG      = Log.tag(VoiceNotePlaybackPreparer.class);
   private static final Executor EXECUTOR = Executors.newSingleThreadExecutor();

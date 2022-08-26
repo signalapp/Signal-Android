@@ -5,6 +5,7 @@ import com.google.android.exoplayer2.C
 import com.google.android.exoplayer2.DefaultLoadControl
 import com.google.android.exoplayer2.ForwardingPlayer
 import com.google.android.exoplayer2.SimpleExoPlayer
+import com.google.android.exoplayer2.audio.AudioAttributes
 import org.thoughtcrime.securesms.video.exo.SignalMediaSourceFactory
 
 class VoiceNotePlayer @JvmOverloads constructor(
@@ -15,7 +16,9 @@ class VoiceNotePlayer @JvmOverloads constructor(
       DefaultLoadControl.Builder()
         .setBufferDurationsMs(Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE)
         .build()
-    ).build()
+    ).build().apply {
+      setAudioAttributes(AudioAttributes.Builder().setContentType(C.AUDIO_CONTENT_TYPE_MUSIC).setUsage(C.USAGE_MEDIA).build(), true)
+    }
 ) : ForwardingPlayer(internalPlayer) {
 
   override fun seekTo(windowIndex: Int, positionMs: Long) {
