@@ -409,7 +409,6 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">頭像照片設定出現錯誤</string>
   <string name="CreateProfileActivity_problem_setting_profile">個人資訊設定出現問題</string>
   <string name="CreateProfileActivity_set_up_your_profile">設定你的資訊</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">你的個人資料已點對點加密。 在你發起或接受新對話以及在加入新群組後，你的聯絡人可以看到你變更個人資料。</string>
   <string name="CreateProfileActivity_set_avatar_description">設定頭像</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
@@ -2402,6 +2401,10 @@
   <string name="ConfirmPayment__payment_will_continue_processing">付款將繼續處理</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">無效的收件者</string>
   <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
+  <!--Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <!--Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <!--Button in a dialog that will take the user to the privacy settings-->
+  <string name="ConfirmPaymentFragment__go_to_settings">前往「設定」</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">此人尚未啟用付款功能</string>
   <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">無法要求網路費。 要繼續此付款，請點擊確定，然後重試。</string>
   <!--CurrencyAmountFormatter_s_at_s-->
@@ -3212,6 +3215,7 @@
   <string name="PrivacySettingsFragment__manage_your_stories">管理限動及瀏覽對象</string>
   <!--Alert dialog title when payment lock cannot be enabled-->
   <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <!--Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings-->
   <!--Alert dialog button to go to phone settings-->
   <string name="PrivacySettingsFragment__go_to_settings">前往「設定」</string>
   <!--Alert dialog button to cancel the dialog-->

@@ -409,7 +409,6 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">設定個人資料照片時發生錯誤</string>
   <string name="CreateProfileActivity_problem_setting_profile">設定個人資料時發生問題</string>
   <string name="CreateProfileActivity_set_up_your_profile">設定您的個人資料</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">您的個人資料經端對端加密。您的個人資料（連同您其後所作的變更）將會供您的聯絡人看見，亦會在您開展或接受新的對話，又或加入新的群組時，向別人展示。</string>
   <string name="CreateProfileActivity_set_avatar_description">設定頭像</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
@@ -2405,6 +2404,10 @@
   <string name="ConfirmPayment__payment_will_continue_processing">付款將會繼續處理</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">收款人無效</string>
   <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
+  <!--Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <!--Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <!--Button in a dialog that will take the user to the privacy settings-->
+  <string name="ConfirmPaymentFragment__go_to_settings">前往設定</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">此人未啟用付款</string>
   <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">無法請求網絡費用。如要繼續此付款，請輕觸「確定」以重試。</string>
   <!--CurrencyAmountFormatter_s_at_s-->
@@ -3215,6 +3218,7 @@
   <string name="PrivacySettingsFragment__manage_your_stories">管理你的限時動態和分享對象</string>
   <!--Alert dialog title when payment lock cannot be enabled-->
   <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <!--Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings-->
   <!--Alert dialog button to go to phone settings-->
   <string name="PrivacySettingsFragment__go_to_settings">前往設定</string>
   <!--Alert dialog button to cancel the dialog-->

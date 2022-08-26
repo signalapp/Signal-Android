@@ -430,7 +430,6 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">Profiilipildi seadmisel tekkis viga</string>
   <string name="CreateProfileActivity_problem_setting_profile">Profiili seadistamisel tekkis probleem</string>
   <string name="CreateProfileActivity_set_up_your_profile">Seadista oma profiil</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Sinu profiil on otspunktkrüptitud. Sinu profiil ja selle muudatused on nähtavad sinu kontaktidele, kui algatad või nõustud uute vestlustega ja liitud uute gruppidega.</string>
   <string name="CreateProfileActivity_set_avatar_description">Määra profiilipildiks</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
@@ -2492,6 +2491,10 @@
   <string name="ConfirmPayment__payment_will_continue_processing">Makse töötlemine jätkub</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">Kehtetu saaja</string>
   <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
+  <!--Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <!--Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <!--Button in a dialog that will take the user to the privacy settings-->
+  <string name="ConfirmPaymentFragment__go_to_settings">Mine sätetesse</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">See isik pole makseid aktiveerinud</string>
   <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">Võrgutasu ei saa taotleda. Makse jätkamiseks toksa nuppu OK, et uuesti proovida.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
@@ -3313,6 +3316,7 @@
   <string name="PrivacySettingsFragment__manage_your_stories">Halda oma lugusid ja seda, kes neid näevad</string>
   <!--Alert dialog title when payment lock cannot be enabled-->
   <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <!--Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings-->
   <!--Alert dialog button to go to phone settings-->
   <string name="PrivacySettingsFragment__go_to_settings">Mine sätetesse</string>
   <!--Alert dialog button to cancel the dialog-->

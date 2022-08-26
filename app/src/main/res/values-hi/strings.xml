@@ -430,7 +430,6 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">प्रोफाइल फोटो सेट करने में त्रुटि</string>
   <string name="CreateProfileActivity_problem_setting_profile">प्रोफ़ाइल सेट करने में समस्या</string>
   <string name="CreateProfileActivity_set_up_your_profile">अपना प्रोफ़ाइल सेट करें</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">आपकी प्रोफ़ाइल एंट-टू-एंड एनक्रिप्टेड है। जब आप नए संवाद शुरु या स्वीकार करेंगे, और जब आप नए ग्रुप्स के साथ जुड़ेंगे, तो आपकी प्रोफ़ाइल और इसमें किए गए बदलाव आपके संपर्क देख सकेंगे।</string>
   <string name="CreateProfileActivity_set_avatar_description">अपने बारे में कुछ लिखें</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
@@ -2485,6 +2484,10 @@ href=\"https://signal.org/redirect/safety-numbers\">ज़्यादा जा
   <string name="ConfirmPayment__payment_will_continue_processing">भुगतान की प्रोसेसिंग जारी रहेगी</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">अमान्य प्राप्तकर्ता</string>
   <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
+  <!--Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <!--Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <!--Button in a dialog that will take the user to the privacy settings-->
+  <string name="ConfirmPaymentFragment__go_to_settings">सेटिंग्स पर जाएँ</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">इस व्यक्ति ने भुगतान सक्रिय नहीं किया है</string>
   <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">नेटवर्क शुल्क का अनुरोध नहीं कर पा रहे हैं। इस भुगतान को जारी रखने के लिए दोबारा प्रयास करने हेतु \'ठीक है\' पर टैप करें।</string>
   <!--CurrencyAmountFormatter_s_at_s-->
@@ -3306,6 +3309,7 @@ href=\"https://signal.org/redirect/safety-numbers\">ज़्यादा जा
   <string name="PrivacySettingsFragment__manage_your_stories">अपनी स्टोरीज़ और उन्हें कौन देख सकते हैं, इसे मैनेज करें</string>
   <!--Alert dialog title when payment lock cannot be enabled-->
   <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <!--Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings-->
   <!--Alert dialog button to go to phone settings-->
   <string name="PrivacySettingsFragment__go_to_settings">सेटिंग्स पर जाएँ</string>
   <!--Alert dialog button to cancel the dialog-->

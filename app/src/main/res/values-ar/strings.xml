@@ -515,10 +515,11 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">خطأ في اختيار صورة الملف الشخصي</string>
   <string name="CreateProfileActivity_problem_setting_profile">خطأ في إعداد الملف الشخصي</string>
   <string name="CreateProfileActivity_set_up_your_profile">إعداد الملف الشخصي</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">إن حسابك الشخصي مُعمَّى من طرف لطرف. كما أن أي تغيير سيكون ظاهرا لجهات اتصالك، وذلك بعد قبولك طلب محادثتهم أو بعد انضمامك لمجموعة جديدة.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">سيَظهر حسابك الشخصي والتغييرات التي طرأت عليه للأشخاص الذين تُراسلهم وجهات الاتصال والمجموعات.</string>
   <string name="CreateProfileActivity_set_avatar_description">تعيين صورة ملفك الشخصي</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
+  <string name="ProfileCreateFragment__profiles_are_visible_to_contacts_and_people_you_message">تًظهر الحسابات الشخصية للأشخاص الذين تُراسلهم وجهات الاتصال والمجموعات.</string>
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">مَن يُمكنه العثور عليَّ باستخدام رقمي الخاص؟</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -2568,6 +2569,7 @@
   <string name="preferences__storage">التخزين</string>
   <string name="preferences__payments">الدفوعات</string>
   <!--Privacy settings payments section description-->
+  <string name="preferences__payment_lock">قفل عملية الدفع</string>
   <string name="preferences__payments_beta">الدفوعات (الإصدار التجريبي)</string>
   <string name="preferences__conversation_length_limit">حد طول المحادثة</string>
   <string name="preferences__keep_messages">احتفظ بالرسائل</string>
@@ -2737,7 +2739,9 @@
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">إظهار شروط التعامل بـ MobileCoin</string>
   <string name="PaymentsHomeFragment__payments_not_available">لم تعد الدفوعات متاحة في Signal. يمكنك دوما إرسال المبالغ إلى منصة للتداول لكن لم يعد بإمكانك إرسال أو استلام المبالغ أو إضافة مبالغ.</string>
   <!--Alert dialog title which shows up after a payment to turn on payment lock-->
+  <string name="PaymentsHomeFragment__turn_on">هل تريد تفعيل قفل عملية الدفع للعمليات المُستقبلية؟</string>
   <!--Alert dialog description for why payment lock should be enabled before sending payments-->
+  <string name="PaymentsHomeFragment__add_an_additional_layer">أَضف طبقة أمان إضافية واُطلب قفل شاشة هاتفك الأندرويد أو بصمة الإصبع لتحويل المبالغ.</string>
   <!--Alert dialog button to enable payment lock-->
   <string name="PaymentsHomeFragment__enable">تفعيل</string>
   <!--Alert dialog button to not enable payment lock for now-->
@@ -2823,6 +2827,13 @@
   <string name="ConfirmPayment__payment_will_continue_processing">سوف تستمر معالجة الدفع</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">مُستلِم غير صحيح</string>
   <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
+  <string name="ConfirmPaymentFragment__unlock_to_send_payment">اِفتح القفل لإرسال الدفع</string>
+  <!--Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <string name="ConfirmPaymentFragment__failed_to_show_payment_lock">تعذّر إظهار قفل عملية الدفع</string>
+  <!--Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <string name="ConfirmPaymentFragment__you_enabled_payment_lock_in_the_settings">لقد فعّلت قفل عملية الدفع في الإعدادات، لكن لا يُمكن إظهاره.</string>
+  <!--Button in a dialog that will take the user to the privacy settings-->
+  <string name="ConfirmPaymentFragment__go_to_settings">الانتقال إلى الإعدادات</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">لم يقم هذا الشخص بتفعيل الدفوعات</string>
   <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">لقد تعذر طلب رسوم الشبكة. للاستمرار في هذا الدفع يُرجى لمس « حسنا » ثم المحاولة مرة أخرى.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
@@ -3686,8 +3697,13 @@
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">تحديد مدة افتراضية لمؤقت اختفاء الرسائل، لجميع المحادثات الجديدة التي قمت ببدئها.</string>
   <!--Summary for stories preference to launch into story privacy settings-->
   <string name="PrivacySettingsFragment__manage_your_stories">إدارة قِصصك ومن يُمكنه مشاهدتها</string>
+  <string name="PrivacySettingsFragment__payment_lock_require_lock">اُطلب قفل شاشة هاتفك الأندرويد أو بصمة الإصبع لتحويل المبالغ</string>
   <!--Alert dialog title when payment lock cannot be enabled-->
+  <string name="PrivacySettingsFragment__cant_enable_title">لا يُمكن تفعيل قفل عملية الدفع</string>
   <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <string name="PrivacySettingsFragment__cant_enable_description">لاِستخدام قفل عملية الدفع، عليك أولًا تفعيل قفل شاشة الهاتف أو بصمة الإصبع في إعدادات هاتفك.</string>
+  <!--Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings-->
+  <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">تعذّر الانتقال إلى إعدادات النظام</string>
   <!--Alert dialog button to go to phone settings-->
   <string name="PrivacySettingsFragment__go_to_settings">الانتقال إلى الإعدادات</string>
   <!--Alert dialog button to cancel the dialog-->
@@ -3948,7 +3964,7 @@
     <item quantity="other">لقد تعذر إعادة توجيه رسائلك لأنها لم تعد متاحة.</item>
   </plurals>
   <!--Error message shown when attempting to select a group to forward/share but it\'s announcement only and you are not an admin-->
-  <string name="MultiselectForwardFragment__only_admins_can_send_messages_to_this_group">يمكن فقط للمشرفين إرسال الرسائل في هذه المجموعة.</string>
+  <string name="MultiselectForwardFragment__only_admins_can_send_messages_to_this_group">يُمكن فقط للمُشرفين إرسال الرسائل في هذه المجموعة.</string>
   <string name="MultiselectForwardFragment__limit_reached">وصلت للحد الأقصى</string>
   <!--Media V2-->
   <string name="MediaReviewFragment__add_a_message">إضافة نص</string>
@@ -4108,9 +4124,13 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">لقد حدث خطأ في الشبكة. يُرجى التحقق من اتصالك بالانترنت ثم المحاولة مرة أخرى.</string>
   <string name="NetworkFailure__retry">إعادة المُحاولة</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__cant_send_gift">لا يمكن إرسال الهدية</string>
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__target_does_not_support_gifting">يَستخدم هذا المُستلم إصدارًا من Signal لا يمكنه تلقي الشارات المُهداة. سيتمكن من تلقي الهدايا عند التحديث إلى آخَر إصدار.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__couldnt_send_gift">تعذّر إرسال الهدية</string>
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__please_check_your_network_connection">تعذّر إرسال هديتك بسبب خطأ في الشبكة. تحقّق من الاتصال وحاول مرة أخرى.</string>
   <!--Gift message view title-->
   <string name="GiftMessageView__gift_badge">شارة مُهداة</string>
   <!--Gift message view expiry information-->

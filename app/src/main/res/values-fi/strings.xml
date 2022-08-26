@@ -430,7 +430,6 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">Virhe profiilikuvan asettamisessa</string>
   <string name="CreateProfileActivity_problem_setting_profile">Virhe profiilin asettamisessa</string>
   <string name="CreateProfileActivity_set_up_your_profile">Määritä profiilisi</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Profiilisi on päästä päähän salattu. Profiilisi ja tekemäsi muutokset näkyvät yhteystiedoillesi, kun aloitat tai hyväksyt uusia keskusteluja ja kun liityt uusiin ryhmiin.</string>
   <string name="CreateProfileActivity_set_avatar_description">Aseta avatar</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
@@ -2486,6 +2485,10 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ConfirmPayment__payment_will_continue_processing">Maksun käsittelyä jatketaan</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">Virheellinen vastaanottaja</string>
   <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
+  <!--Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <!--Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <!--Button in a dialog that will take the user to the privacy settings-->
+  <string name="ConfirmPaymentFragment__go_to_settings">Siirry asetuksiin</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Käyttäjä ei ole ottanut maksuja käyttöön.</string>
   <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">Verkkomaksua ei voitu pyytää. Yritä maksua uudelleen napauttamalla OK.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
@@ -3307,6 +3310,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="PrivacySettingsFragment__manage_your_stories">Hallinnoi tarinoita ja sitä, kuka voi nähdä tarinasi</string>
   <!--Alert dialog title when payment lock cannot be enabled-->
   <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <!--Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings-->
   <!--Alert dialog button to go to phone settings-->
   <string name="PrivacySettingsFragment__go_to_settings">Siirry asetuksiin</string>
   <!--Alert dialog button to cancel the dialog-->

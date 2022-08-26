@@ -409,7 +409,6 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">Ralat menetapkan foto profil</string>
   <string name="CreateProfileActivity_problem_setting_profile">Masalah menetapkan profil</string>
   <string name="CreateProfileActivity_set_up_your_profile">Tetapkan profil anda</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Profil anda telah disulitkan dari hujung ke hujung. Profil dan perubahannya akan dapat dilihat oleh kenalan anda, semasa anda memulakan atau menerima perbualan baharu, dan apabila anda menyertai kumpulan baharu.</string>
   <string name="CreateProfileActivity_set_avatar_description">Tetapkan avatar</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
@@ -2397,6 +2396,10 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="ConfirmPayment__payment_will_continue_processing">Pembayaran akan terus diproses</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">Penerima tidak sah</string>
   <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
+  <!--Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <!--Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <!--Button in a dialog that will take the user to the privacy settings-->
+  <string name="ConfirmPaymentFragment__go_to_settings">Pergi ke tetapan</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Orang ini belum mengaktifkan pembayaran</string>
   <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">Tidak dapat meminta bayaran rangkaian. Untuk meneruskan pembayaran ini, ketik okey untuk cuba lagi.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
@@ -3207,6 +3210,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="PrivacySettingsFragment__manage_your_stories">Urus cerita anda dan siapa yang boleh menontonnya</string>
   <!--Alert dialog title when payment lock cannot be enabled-->
   <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <!--Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings-->
   <!--Alert dialog button to go to phone settings-->
   <string name="PrivacySettingsFragment__go_to_settings">Pergi ke tetapan</string>
   <!--Alert dialog button to cancel the dialog-->

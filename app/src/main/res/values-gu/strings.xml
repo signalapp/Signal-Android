@@ -430,7 +430,6 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">પ્રોફાઇલ ફોટો સેટ કરવામાં ભૂલ</string>
   <string name="CreateProfileActivity_problem_setting_profile">પ્રોફાઇલ ને સેટ કરવામાં સમસ્યા</string>
   <string name="CreateProfileActivity_set_up_your_profile">તમારી પ્રોફાઇલ સેટ કરો</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">તમારુ પ્રોફાઇલ એન્ડ-ટુ-એન્ડ એન્ક્રિપ્ટ થયેલ છે. જ્યારે તમે નવી વાતચીતનો શરુઆત કરો છો અથવા સ્વીકારો છો અને જ્યારે તમે નવા જૂથોમાં જોડાવો છો ત્યારે તમારી પ્રોફાઇલ અને તેમાંના ફેરફારો તમારા સંપર્કોને દેખાશે.</string>
   <string name="CreateProfileActivity_set_avatar_description">અવતાર સેટ કરો</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
@@ -2486,6 +2485,10 @@
   <string name="ConfirmPayment__payment_will_continue_processing">ચુકવણી પ્રક્રિયા ચાલુ રહેશે</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">અમાન્ય પ્રાપ્તકર્તા</string>
   <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
+  <!--Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <!--Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <!--Button in a dialog that will take the user to the privacy settings-->
+  <string name="ConfirmPaymentFragment__go_to_settings">સેટિંગ્સ પર જાઓ</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">આ વ્યક્તિએ પેમેન્ટ સક્રિય કર્યું નથી.</string>
   <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">નેટવર્ક ફીની વિનંતી કરવામાં અસમર્થ. આ ચુકવણી ચાલુ રાખવા માટે ફરીથી પ્રયાસ કરવા માટે ઓકે ટેપ કરો.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
@@ -3307,6 +3310,7 @@
   <string name="PrivacySettingsFragment__manage_your_stories">તમારી સ્ટોરી અને તેને કોણ જોઈ શકે તે મેનેજ કરો</string>
   <!--Alert dialog title when payment lock cannot be enabled-->
   <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <!--Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings-->
   <!--Alert dialog button to go to phone settings-->
   <string name="PrivacySettingsFragment__go_to_settings">સેટિંગ્સ પર જાઓ</string>
   <!--Alert dialog button to cancel the dialog-->

@@ -430,7 +430,6 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">Fehler beim Festlegen des Profilfotos</string>
   <string name="CreateProfileActivity_problem_setting_profile">Problem beim Festlegen des Profils</string>
   <string name="CreateProfileActivity_set_up_your_profile">Richte dein Profil ein</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Dein Profil ist Ende-zu-Ende-verschlüsselt. Dein Profil und Änderungen daran werden für deine Kontakte sichtbar, sobald du neue Unterhaltungen beginnst oder annimmst, oder wenn du neuen Gruppen beitrittst.</string>
   <string name="CreateProfileActivity_set_avatar_description">Avatar festlegen</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
@@ -2481,6 +2480,10 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ConfirmPayment__payment_will_continue_processing">Verarbeitung der Zahlung wird fortgesetzt</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">Ungültiger Empfänger</string>
   <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
+  <!--Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <!--Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <!--Button in a dialog that will take the user to the privacy settings-->
+  <string name="ConfirmPaymentFragment__go_to_settings">Zu Einstellungen</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Diese Person hat Zahlungen nicht aktiviert</string>
   <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">Netzwerkgebühr konnte nicht abgefragt werden. Zum Fortsetzen dieser Zahlung tippe auf »OK«, um es erneut zu versuchen.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
@@ -3302,6 +3305,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="PrivacySettingsFragment__manage_your_stories">Verwalte deine Storys und wer sie sehen kann</string>
   <!--Alert dialog title when payment lock cannot be enabled-->
   <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <!--Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings-->
   <!--Alert dialog button to go to phone settings-->
   <string name="PrivacySettingsFragment__go_to_settings">Zu Einstellungen</string>
   <!--Alert dialog button to cancel the dialog-->

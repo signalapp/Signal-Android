@@ -423,7 +423,6 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">Villa við að setja auðkennismynd</string>
   <string name="CreateProfileActivity_problem_setting_profile">Vandamál við að stilla notandasnið</string>
   <string name="CreateProfileActivity_set_up_your_profile">Settu upp notandasniðið þitt</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Notandasniðið þitt er enda-í-enda dulritað. Notandasniðið þitt og breytingar á því verður sýnilegt tengiliðunum þínum þegar þú byrjar eða samþykkir ný samtöl og eins þegar þú gengur í nýja hópa.</string>
   <string name="CreateProfileActivity_set_avatar_description">Stilla auðkennismynd</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
@@ -2452,6 +2451,9 @@
   <string name="ConfirmPayment__payment_will_continue_processing">Haldið verður áfram með vinnslu á greiðslu</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">Ógildur viðtakandi</string>
   <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
+  <!--Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <!--Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <!--Button in a dialog that will take the user to the privacy settings-->
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Þessi aðili hefur ekki virkjað greiðslur.</string>
   <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">Tekst ekki að biðja um gjald fyrir netnotkun. Til að halda áfram með þessa greiðslu skaltu ýta aftur á \'Í lagi\'.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
@@ -3270,6 +3272,7 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <!--Summary for stories preference to launch into story privacy settings-->
   <!--Alert dialog title when payment lock cannot be enabled-->
   <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <!--Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings-->
   <!--Alert dialog button to go to phone settings-->
   <!--Alert dialog button to cancel the dialog-->
   <string name="PrivacySettingsFragment__cancel">Hætta við</string>

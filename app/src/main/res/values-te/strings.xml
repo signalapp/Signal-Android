@@ -435,7 +435,6 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">రూపచిత్రం సెట్ చేయడంలో లోపం</string>
   <string name="CreateProfileActivity_problem_setting_profile">రూపాన్ని సెట్ చేయడంలో సమస్య</string>
   <string name="CreateProfileActivity_set_up_your_profile">మీ వ్యక్తిత్వవర్ణనను సెటప్ చేయండి</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">మీ ప్రొఫైల్ సంపూర్ణంగా గుప్తీకరించబడింది. మీరు క్రొత్త సంభాషణలను ప్రారంభించినప్పుడు లేదా అంగీకరించినప్పుడు మరియు మీరు క్రొత్త గ్రూపులో చేరినప్పుడు మీ ప్రొఫైల్ మరియు దానికి చేసిన మార్పులు మీ పరిచయాలకు కనిపిస్తాయి.</string>
   <string name="CreateProfileActivity_set_avatar_description">అవతార్ సెట్ చేయండి</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
@@ -2496,6 +2495,10 @@
   <string name="ConfirmPayment__payment_will_continue_processing">పేమెంట్ ప్రాసెసింగ్ కొనసాగించబడుతుంది</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">చెల్లుబాటుకాని గ్రహీత</string>
   <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
+  <!--Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <!--Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <!--Button in a dialog that will take the user to the privacy settings-->
+  <string name="ConfirmPaymentFragment__go_to_settings">సెట్టింగ్‌లకు వెళ్లండి</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">ఈ వ్యక్తి పేమెంట్‌లను యాక్టివేట్ చేయలేదు</string>
   <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">నెట్‌వర్క్ ఫీజును అభ్యర్ధించలేకపోయింది. ఈ పమెంట్‌ని కొనసాగించడానికి, మళ్లీ ప్రయత్నించేందుకు ఒకే మీద తట్టండి.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
@@ -3318,6 +3321,7 @@
   <string name="PrivacySettingsFragment__manage_your_stories">మీరు కథలను మరియు వాటిని ఎవరు వీక్షించవచ్చు అనేది నిర్వహించండి</string>
   <!--Alert dialog title when payment lock cannot be enabled-->
   <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <!--Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings-->
   <!--Alert dialog button to go to phone settings-->
   <string name="PrivacySettingsFragment__go_to_settings">సెట్టింగ్‌లకు వెళ్లండి</string>
   <!--Alert dialog button to cancel the dialog-->

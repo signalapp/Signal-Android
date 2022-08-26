@@ -409,10 +409,11 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">프로필 사진 설정 중 오류 발생</string>
   <string name="CreateProfileActivity_problem_setting_profile">프로필 설정 중 오류 발생</string>
   <string name="CreateProfileActivity_set_up_your_profile">프로필을 설정하세요.</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">프로필은 종단간 암호화됩니다. 프로필 및 변경 사항은 새 대화를 시작하거나 수락할 때, 새 그룹에 가입할 때 연락처에 표시됩니다.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">프로필과 프로필 변경 사항이 사용자가 메시지를 보내는 사람과 연락처, 그룹에 표시됩니다.</string>
   <string name="CreateProfileActivity_set_avatar_description">아바타 설정</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
+  <string name="ProfileCreateFragment__profiles_are_visible_to_contacts_and_people_you_message">사용자가 메시지를 보내는 사람과 연락처, 그룹에 프로필이 표시됩니다.</string>
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">전화번호로 나를 찾을 수 있는 사람은 누구인가요?</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -2151,6 +2152,7 @@
   <string name="preferences__storage">저장 공간</string>
   <string name="preferences__payments">결제</string>
   <!--Privacy settings payments section description-->
+  <string name="preferences__payment_lock">결제 잠금</string>
   <string name="preferences__payments_beta">결제 (베타)</string>
   <string name="preferences__conversation_length_limit">대화 저장 한도</string>
   <string name="preferences__keep_messages">메시지 보관</string>
@@ -2320,7 +2322,9 @@
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">MobileCoin 용어 보기</string>
   <string name="PaymentsHomeFragment__payments_not_available">Signal 결제는 더 이상 사용할 수 없습니다. 여전히 거래소로 자금을 이체할 수 있지만 더 이상 지불을 주고받거나 자금을 추가할 수 없습니다.</string>
   <!--Alert dialog title which shows up after a payment to turn on payment lock-->
+  <string name="PaymentsHomeFragment__turn_on">앞으로 결제를 보낼 때 결제 잠금을 켤까요?</string>
   <!--Alert dialog description for why payment lock should be enabled before sending payments-->
+  <string name="PaymentsHomeFragment__add_an_additional_layer">자금 이체 시 Android 화면 잠금 또는 지문을 요구하여 보안을 한층 강화하세요.</string>
   <!--Alert dialog button to enable payment lock-->
   <string name="PaymentsHomeFragment__enable">켜기</string>
   <!--Alert dialog button to not enable payment lock for now-->
@@ -2406,6 +2410,13 @@
   <string name="ConfirmPayment__payment_will_continue_processing">결제가 계속 처리됩니다.</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">잘못된 수신자</string>
   <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
+  <string name="ConfirmPaymentFragment__unlock_to_send_payment">잠금 해제하여 결제 보내기</string>
+  <!--Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <string name="ConfirmPaymentFragment__failed_to_show_payment_lock">결제 잠금을 표시하지 못함</string>
+  <!--Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <string name="ConfirmPaymentFragment__you_enabled_payment_lock_in_the_settings">설정에서 결제 잠금을 활성화했으나 표시할 수 없습니다.</string>
+  <!--Button in a dialog that will take the user to the privacy settings-->
+  <string name="ConfirmPaymentFragment__go_to_settings">설정으로 이동</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">해당 사용자는 결제를 활성화하지 않았습니다.</string>
   <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">네트워크 요금을 요청할 수 없습니다. 이 결제를 계속하려면 확인을 눌러 다시 시도하세요.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
@@ -3214,8 +3225,13 @@
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">내가 새로 시작한 모든 채팅에 기본적으로 사라지는 메시지 타이머를 적용합니다.</string>
   <!--Summary for stories preference to launch into story privacy settings-->
   <string name="PrivacySettingsFragment__manage_your_stories">스토리와 스토리를 볼 수 있는 사람을 관리하세요.</string>
+  <string name="PrivacySettingsFragment__payment_lock_require_lock">자금 이체 시 Android 화면 잠금 또는 지문 요구</string>
   <!--Alert dialog title when payment lock cannot be enabled-->
+  <string name="PrivacySettingsFragment__cant_enable_title">결제 잠금을 활성화할 수 없습니다.</string>
   <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <string name="PrivacySettingsFragment__cant_enable_description">결제 잠금을 사용하려면 휴대폰 설정에서 화면 잠금 또는 지문 ID를 활성화해야 합니다.</string>
+  <!--Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings-->
+  <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">시스템 설정으로 이동하지 못했습니다.</string>
   <!--Alert dialog button to go to phone settings-->
   <string name="PrivacySettingsFragment__go_to_settings">설정으로 이동</string>
   <!--Alert dialog button to cancel the dialog-->
@@ -3606,9 +3622,13 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">네트워크 오류. 연결을 확인하고 다시 시도하세요.</string>
   <string name="NetworkFailure__retry">재시도</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__cant_send_gift">선물을 보낼 수 없습니다.</string>
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__target_does_not_support_gifting">이 받는 사람은 선물 배지를 받을 수 없는 Signal 버전을 사용합니다. 최신 버전으로 업데이트하면 선물이 전송됩니다.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__couldnt_send_gift">선물을 받지 못했습니다.</string>
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__please_check_your_network_connection">네트워크 오류로 인해 선물을 보내지 못했습니다. 인터넷 연결을 확인하고 다시 시도하세요.</string>
   <!--Gift message view title-->
   <string name="GiftMessageView__gift_badge">선물 배지</string>
   <!--Gift message view expiry information-->

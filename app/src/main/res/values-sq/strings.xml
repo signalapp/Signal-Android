@@ -430,7 +430,6 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">Gabim në caktim fotoje profili</string>
   <string name="CreateProfileActivity_problem_setting_profile">Problem në rregullim profili</string>
   <string name="CreateProfileActivity_set_up_your_profile">Ujdisni profilin tuaj</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Profili juaj është i fshehtëzuar skaj-më-skaj. Profili juaj dhe ndryshime në të do të jenë të dukshme për kontaktet tuaj, kur nisni ose pranoni biseda të reja, dhe kur merrni pjesë në grupe të rinj.</string>
   <string name="CreateProfileActivity_set_avatar_description">Caktoni avatar</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
@@ -2411,9 +2410,9 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <!--Alert dialog title which shows up after a payment to turn on payment lock-->
   <!--Alert dialog description for why payment lock should be enabled before sending payments-->
   <!--Alert dialog button to enable payment lock-->
-  <string name="PaymentsHomeFragment__enable">Aktivizoje</string>
+  <string name="PaymentsHomeFragment__enable">Aktivizo</string>
   <!--Alert dialog button to not enable payment lock for now-->
-  <string name="PaymentsHomeFragment__not_now">Jo Tani</string>
+  <string name="PaymentsHomeFragment__not_now">Jo tani</string>
   <!--PaymentsAddMoneyFragment-->
   <string name="PaymentsAddMoneyFragment__add_funds">Shtoni fonde</string>
   <string name="PaymentsAddMoneyFragment__your_wallet_address">Portofol</string>
@@ -2495,6 +2494,10 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <string name="ConfirmPayment__payment_will_continue_processing">Pagesa do të vazhdojë të përpunohet</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">Marrës i pavlefshëm</string>
   <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
+  <!--Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <!--Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <!--Button in a dialog that will take the user to the privacy settings-->
+  <string name="ConfirmPaymentFragment__go_to_settings">Shko te cilësimet</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Ky person s\’ka aktivizuar pagesa</string>
   <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">S\’arrihet të kërkohet një tarifë rrjeti. Për të vazhduar këtë pagesë, prekni OK, që të riprovohet.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
@@ -3318,6 +3321,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="PrivacySettingsFragment__manage_your_stories">Menaxho postimet e përkohshme dhe se kush mund t\'i shohë ato</string>
   <!--Alert dialog title when payment lock cannot be enabled-->
   <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <!--Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings-->
   <!--Alert dialog button to go to phone settings-->
   <string name="PrivacySettingsFragment__go_to_settings">Shko te cilësimet</string>
   <!--Alert dialog button to cancel the dialog-->

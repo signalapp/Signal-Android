@@ -368,7 +368,6 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">د پروفایل د انځور په راوستلو کې تیروتنه شوې</string>
   <string name="CreateProfileActivity_problem_setting_profile">د پروفایل په جوړونه کې ستونزه </string>
   <string name="CreateProfileActivity_set_up_your_profile">خپل پروفایل مو ترتیب کړئ</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">ستاسې پروفایل په سرتاسرې بڼه سره انکریپټ شوی دی. کله چې تاسې نوې محاوره پیلوئ یا منئ او کله چې تاسې له نویو ګروپونو سره یو ځای کېږئ، نو ستاسې پروفایل او په هغه کې راغلي بدلونونه به ستاسې مخاطبینو ته د لیدو وړ وي.</string>
   <string name="CreateProfileActivity_set_avatar_description">د اواتار راوستل</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
@@ -2313,6 +2312,9 @@
   <string name="ConfirmPayment__payment_will_continue_processing">د پرداختونو تر سره کول به دوام ولري</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">ناسم تر لاسه کوونکی</string>
   <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
+  <!--Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <!--Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <!--Button in a dialog that will take the user to the privacy settings-->
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">دغه کس پرداختونه نه دي فعال کړي</string>
   <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">د شبکې د فیس غوښتنه ممکن نه دي. د دې پرداخت د مخته وړلو لپاره پر هوکې کلیک وکړئ تر څو بیا هڅه وکړئ.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
@@ -3105,6 +3107,7 @@
   <!--Summary for stories preference to launch into story privacy settings-->
   <!--Alert dialog title when payment lock cannot be enabled-->
   <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <!--Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings-->
   <!--Alert dialog button to go to phone settings-->
   <!--Alert dialog button to cancel the dialog-->
   <string name="PrivacySettingsFragment__cancel">لغوه کول</string>

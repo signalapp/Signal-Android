@@ -430,7 +430,6 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">പ്രൊഫൈൽ ഫോട്ടോ ക്രമീകരിക്കുന്നതിൽ പിശക്</string>
   <string name="CreateProfileActivity_problem_setting_profile">പ്രൊഫൈൽ ക്രമീകരിക്കുന്നതിൽ പ്രശ്‌നമുണ്ട്</string>
   <string name="CreateProfileActivity_set_up_your_profile">നിങ്ങളുടെ പ്രൊഫൈൽ സജ്ജമാക്കുക</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">നിങ്ങളുടെ പ്രൊഫൈൽ  ആദ്യാവസാന എൻക്രിപ്റ്റഡാണ്. നിങ്ങൾ പുതിയ സംഭാഷണങ്ങൾ ആരംഭിക്കുമ്പോഴോ സ്വീകരിക്കുമ്പോഴോ പുതിയ ഗ്രൂപ്പുകളിൽ ചേരുമ്പോഴോ നിങ്ങളുടെ പ്രൊഫൈലും അതിലെ മാറ്റങ്ങളും നിങ്ങളുടെ കോൺടാക്റ്റുകൾക്ക് ദൃശ്യമാകും.</string>
   <string name="CreateProfileActivity_set_avatar_description">അവതാർ സജ്ജമാക്കുക</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
@@ -2484,6 +2483,10 @@
   <string name="ConfirmPayment__payment_will_continue_processing">പേയ്മെന്റ് പ്രോസസ്സിംഗ് തുടരും</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">അസാധുവായ സ്വീകർത്താവ്</string>
   <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
+  <!--Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <!--Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <!--Button in a dialog that will take the user to the privacy settings-->
+  <string name="ConfirmPaymentFragment__go_to_settings">ക്രമീകരണത്തിലേക്ക് പോകുക</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">ഈ വ്യക്തി പേയ്‌മെന്റുകൾ സജീവമാക്കിയിട്ടില്ല</string>
   <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">ഒരു നെറ്റ്‌വർക്ക് ഫീസ് അഭ്യർത്ഥിക്കാൻ കഴിയുന്നില്ല. ഈ പേയ്‌മെന്റ് തുടരുന്നതിന് വീണ്ടും ശ്രമിക്കുന്നതിനായി ശരി തൊടുക.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
@@ -3306,6 +3309,7 @@
   <string name="PrivacySettingsFragment__manage_your_stories">നിങ്ങളുടെ സ്റ്റോറികളും അവ ആർക്കൊക്കെ കാണാനാകുമെന്നും മാനേജ് ചെയ്യുക</string>
   <!--Alert dialog title when payment lock cannot be enabled-->
   <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <!--Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings-->
   <!--Alert dialog button to go to phone settings-->
   <string name="PrivacySettingsFragment__go_to_settings">ക്രമീകരണത്തിലേക്ക് പോകുക</string>
   <!--Alert dialog button to cancel the dialog-->

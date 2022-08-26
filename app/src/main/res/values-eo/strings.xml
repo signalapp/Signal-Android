@@ -424,7 +424,6 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">Eraro dum agordo de profila foto</string>
   <string name="CreateProfileActivity_problem_setting_profile">Problemo dum agordo de profilo</string>
   <string name="CreateProfileActivity_set_up_your_profile">Agordi vian profilon</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Via profilo estas tutvoje ĉifrita. Via profilo kaj ties ŝanĝoj estos videblaj de viaj kontaktoj, kiam vi komencas aŭ akceptas novajn interparolojn, kaj kiam vi aliĝas al novaj grupoj.</string>
   <string name="CreateProfileActivity_set_avatar_description">Difini la avataron</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
@@ -2456,6 +2455,9 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="ConfirmPayment__payment_will_continue_processing">Pagado pluas</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">Nevalida ricevanto</string>
   <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
+  <!--Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <!--Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <!--Button in a dialog that will take the user to the privacy settings-->
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Tiu homo ne aktivigis pagojn</string>
   <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">Peto de peradkosto malsukcesis. Por daŭrigi tiun pagon, tuŝetu „Bone“ por reprovi.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
@@ -3271,6 +3273,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--Summary for stories preference to launch into story privacy settings-->
   <!--Alert dialog title when payment lock cannot be enabled-->
   <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <!--Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings-->
   <!--Alert dialog button to go to phone settings-->
   <!--Alert dialog button to cancel the dialog-->
   <string name="PrivacySettingsFragment__cancel">Nuligi</string>

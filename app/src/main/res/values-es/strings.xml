@@ -451,7 +451,6 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">Fallo al establecer la foto de perfil</string>
   <string name="CreateProfileActivity_problem_setting_profile">Problema al crear el perfil</string>
   <string name="CreateProfileActivity_set_up_your_profile">Completa tu perfil</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Tu perfil está cifrado de extremo a extremo. Solo tus contactos, las personas con las que inicias o aceptas un chat, y quienes participan en los grupos a los que te unes podrán verlo. Nadie más, ni siquiera la gente de Signal.</string>
   <string name="CreateProfileActivity_set_avatar_description">Configurar avatar de perfil</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
@@ -2578,6 +2577,10 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ConfirmPayment__payment_will_continue_processing">Se continuará con el proceso del pago</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">Destinatari@ inválid@</string>
   <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
+  <!--Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <!--Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <!--Button in a dialog that will take the user to the privacy settings-->
+  <string name="ConfirmPaymentFragment__go_to_settings">Ir a ajustes</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Esta persona no ha activado los pagos</string>
   <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">No es posible calcular la tasa de la red. Para continuar con este pago, toca en OK e inténtalo de nuevo.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
@@ -3410,6 +3413,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="PrivacySettingsFragment__manage_your_stories">Gestiona tus historias y quién puede verlas</string>
   <!--Alert dialog title when payment lock cannot be enabled-->
   <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <!--Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings-->
   <!--Alert dialog button to go to phone settings-->
   <string name="PrivacySettingsFragment__go_to_settings">Ir a ajustes</string>
   <!--Alert dialog button to cancel the dialog-->

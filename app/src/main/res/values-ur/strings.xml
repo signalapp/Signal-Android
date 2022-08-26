@@ -431,10 +431,11 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">پروفائل تصویر کو ترتیب دینے میں خرابی </string>
   <string name="CreateProfileActivity_problem_setting_profile">پروفائل ترتیب دینے میں مسئلہ ہو رہا ہے۔</string>
   <string name="CreateProfileActivity_set_up_your_profile">اپنی پروفائل کو ترتیب دیں</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">آپ کا پروفائل آخر سے آخر میں خفیہ ہے۔ آپ کا پروفائل اور اس میں ہونے والی تبدیلیاں آپ کے رابطوں پر مرئی ہوں گی ، جب آپ نئی بات چیت کا آغاز کریں گے یا قبول کریں گے ، اور جب آپ نئے گروپس میں شامل ہوں گے۔</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">آپ کی پروفائل اور اس میں تبدیلیاں آپ کے میسج وصول کرنے والے افراد، روابط، اور گروپس کو نظر آئیں گی۔</string>
   <string name="CreateProfileActivity_set_avatar_description">اوتار ترتیب دیں</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
+  <string name="ProfileCreateFragment__profiles_are_visible_to_contacts_and_people_you_message">پروفائلز آپ کے میسج وصول کرنے والے افراد، روابط، اور گروپس کو نظر آتی ہیں۔</string>
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">کون مجھے نمبر کے ذریعے تلاش کر سکتا ہے؟</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -2228,6 +2229,7 @@
   <string name="preferences__storage">اسٹوریج </string>
   <string name="preferences__payments">ادائیگی</string>
   <!--Privacy settings payments section description-->
+  <string name="preferences__payment_lock">پیمنٹ لاک</string>
   <string name="preferences__payments_beta">ادائیگی (بیٹا)</string>
   <string name="preferences__conversation_length_limit">گفتگو کی لمبائی کی حد</string>
   <string name="preferences__keep_messages">پیغامات رکھیں</string>
@@ -2397,9 +2399,11 @@
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">موبائل کوائن کی شرائط دیکھیں</string>
   <string name="PaymentsHomeFragment__payments_not_available">Signal میں ادائیگی اب دستیاب نہیں ہے۔ آپ اب بھی ایکسچینج میں فنڈز کی منتقلی کرسکتے ہیں لیکن آپ اب ادائیگی بھیجنے اور وصول کرنے یا فنڈز شامل نہیں کرسکتے ہیں۔</string>
   <!--Alert dialog title which shows up after a payment to turn on payment lock-->
+  <string name="PaymentsHomeFragment__turn_on">مستقبل میں بھیجنے کے لیے پیمنٹ لاک آن کریں؟</string>
   <!--Alert dialog description for why payment lock should be enabled before sending payments-->
+  <string name="PaymentsHomeFragment__add_an_additional_layer">سکیورٹی کی ایک اضافی تہہ شامل کریں اور فنڈز ٹرانسفر کرنے کے لیے Android اسکرین لاک یا فنگر پرنٹ درکار ہوتا ہے۔</string>
   <!--Alert dialog button to enable payment lock-->
-  <string name="PaymentsHomeFragment__enable">آن کر دو</string>
+  <string name="PaymentsHomeFragment__enable">آن کریں</string>
   <!--Alert dialog button to not enable payment lock for now-->
   <string name="PaymentsHomeFragment__not_now">ابھی نہیں</string>
   <!--PaymentsAddMoneyFragment-->
@@ -2483,6 +2487,13 @@
   <string name="ConfirmPayment__payment_will_continue_processing">ادائیگی پر کارروائی جاری رہے گی</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">غلط وصول کنندہ</string>
   <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
+  <string name="ConfirmPaymentFragment__unlock_to_send_payment">پیمنٹ بھیجنے کے لیے ان لاک کریں</string>
+  <!--Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <string name="ConfirmPaymentFragment__failed_to_show_payment_lock">پیمنٹ لاک دکھانے میں ناکامی ہوئی</string>
+  <!--Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <string name="ConfirmPaymentFragment__you_enabled_payment_lock_in_the_settings">آپ نے سیٹنگز میں پیمنٹ لاک فعال کر دیا ہے، لیکن اسے دکھایا نہیں کا سکتا۔</string>
+  <!--Button in a dialog that will take the user to the privacy settings-->
+  <string name="ConfirmPaymentFragment__go_to_settings">سیٹنگز پر جائیں</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">اس شخص نے ادائیگی فعال نہیں کی ہے</string>
   <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">نیٹ ورک فیس کی درخواست کرنے سے قاصر۔ اس ادائیگی کو جاری رکھنے کے لئے دوبارہ کوشش کرنے کے لئے ٹھیک ہے پر ٹیپ کریں۔</string>
   <!--CurrencyAmountFormatter_s_at_s-->
@@ -3302,8 +3313,13 @@
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">آپ کے ذریعہ شروع کردہ تمام نئی چیٹس کے لئے ڈیفالٹ غائب میسیج ٹائمر مرتب کریں۔</string>
   <!--Summary for stories preference to launch into story privacy settings-->
   <string name="PrivacySettingsFragment__manage_your_stories">اپنی سٹوریز اور اس بات کا نظم کریں کہ انہیں کون دیکھ سکتا ہے</string>
+  <string name="PrivacySettingsFragment__payment_lock_require_lock">فنڈز ٹرانسفر کرنے کے لیے Android اسکرین لاک یا فنگر پرنٹ درکار ہوتا ہے</string>
   <!--Alert dialog title when payment lock cannot be enabled-->
+  <string name="PrivacySettingsFragment__cant_enable_title">پیمنٹ لاک فعال نہیں کر سکتے</string>
   <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <string name="PrivacySettingsFragment__cant_enable_description">پیمنٹ لاک استعمال کرنے کے لیے، آپ پر پہلے اپنے فون کی سیٹنگز میں اسکرین لاک یا فنگر پرنٹ ID فعال کرنا لازم ہے۔</string>
+  <!--Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings-->
+  <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">سسٹم سیٹنگز میں نیویگیٹ کرنے میں ناکامی ہوئی</string>
   <!--Alert dialog button to go to phone settings-->
   <string name="PrivacySettingsFragment__go_to_settings">سیٹنگز پر جائیں</string>
   <!--Alert dialog button to cancel the dialog-->
@@ -3700,9 +3716,13 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">نیٹ ورک کا نقص۔ اپنا کنکشن چیک کریں اور دوبارہ کوشش کریں۔</string>
   <string name="NetworkFailure__retry">دوبارہ کوشش کریں</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__cant_send_gift">گفٹ نہیں بھیج سکتے</string>
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__target_does_not_support_gifting">وصول کنندہ سگنل کا ایک ایسا ورژن استعمال کر رہا ہے جس پر گفٹ بیجز موصول نہیں ہو سکتے۔ وہ تازہ ترین ورژن پر اپڈیٹ کرنے کے بعد گفٹس وصول کریں گے۔</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__couldnt_send_gift">گفٹ نہیں بھیجا جا سکا</string>
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__please_check_your_network_connection">نیٹ ورک کے نقص کی وجہ سے آپ کا گفٹ نہیں بھیجا جا سکا۔ اپنا کنکشن چیک کریں اور دوبارہ کوشش کریں۔</string>
   <!--Gift message view title-->
   <string name="GiftMessageView__gift_badge">گفٹ بیج</string>
   <!--Gift message view expiry information-->

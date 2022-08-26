@@ -451,7 +451,6 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">Kļūda iestatot profila attēlu</string>
   <string name="CreateProfileActivity_problem_setting_profile">Problēma iestatot profilu</string>
   <string name="CreateProfileActivity_set_up_your_profile">Iestatiet savu profilu</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Jūsu profils ir pilnībā šifrēts. Jūsu profils un tā izmaiņas būs redzamas jūsu kontaktpersonām, kad uzsākat vai piekrītat piedalīties jaunās sarunās, un pievienojaties jaunām grupām.</string>
   <string name="CreateProfileActivity_set_avatar_description">Iestatīt avataru</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
@@ -2572,6 +2571,10 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="ConfirmPayment__payment_will_continue_processing">Maksājumu turpinās apstrādāt</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">Nederīgs saņēmējs</string>
   <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
+  <!--Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <!--Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <!--Button in a dialog that will take the user to the privacy settings-->
+  <string name="ConfirmPaymentFragment__go_to_settings">Atvērt iestatījumus</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Šī persona nav aktivējusi maksājumus</string>
   <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">Nevar pieprasīt tīkla maksu. Lai turpinātu šo maksājumu, pieskarieties pie Labi, lai mēģinātu vēlreiz.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
@@ -3404,6 +3407,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="PrivacySettingsFragment__manage_your_stories">Pārvaldiet stāstus un kontrolējiet skatīšanās piekļuves</string>
   <!--Alert dialog title when payment lock cannot be enabled-->
   <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <!--Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings-->
   <!--Alert dialog button to go to phone settings-->
   <string name="PrivacySettingsFragment__go_to_settings">Atvērt iestatījumus</string>
   <!--Alert dialog button to cancel the dialog-->

@@ -472,10 +472,11 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">Błąd ustawiania zdjęcia profilowego</string>
   <string name="CreateProfileActivity_problem_setting_profile">Problem ustawiania profilu</string>
   <string name="CreateProfileActivity_set_up_your_profile">Ustaw swój profil</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Twój profil jest szyfrowany metodą end-to-end. Twój profil i jego zmiany będą widoczne dla Twoich kontaktów, gdy rozpoczniesz lub zaakceptujesz nowe konwersacje, i gdy dołączysz do nowych grup.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Twój profil i wprowadzane na nim zmiany widzą kontakty, grupy i osoby, z którymi rozmawiasz.</string>
   <string name="CreateProfileActivity_set_avatar_description">Ustaw awatar</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
+  <string name="ProfileCreateFragment__profiles_are_visible_to_contacts_and_people_you_message">Profile są widoczne dla kontaktów, grup i osób, z którymi rozmawiasz</string>
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">Kto może mnie znaleźć po numerze telefonu?</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -2401,6 +2402,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences__storage">Pamięć</string>
   <string name="preferences__payments">Płatności</string>
   <!--Privacy settings payments section description-->
+  <string name="preferences__payment_lock">Zabezpieczenie płatności</string>
   <string name="preferences__payments_beta">Płatności (beta)</string>
   <string name="preferences__conversation_length_limit">Limit długości konwersacji</string>
   <string name="preferences__keep_messages">Zachowuj wiadomości</string>
@@ -2570,7 +2572,9 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">Zobacz warunki użytkowania MobileCoin</string>
   <string name="PaymentsHomeFragment__payments_not_available">Płatności w Signal nie są już dostępne. Wciąż możesz przenieść środki do kantora, ale nie możesz otrzymywać i wysyłać płatności, ani dodawać środków.</string>
   <!--Alert dialog title which shows up after a payment to turn on payment lock-->
+  <string name="PaymentsHomeFragment__turn_on">Włączyć zabezpieczenie płatności dla przyszłych transakcji?</string>
   <!--Alert dialog description for why payment lock should be enabled before sending payments-->
+  <string name="PaymentsHomeFragment__add_an_additional_layer">Dodaj dodatkowe zabezpieczenie — wymagaj blokady ekranu Androida lub odcisku palca do przekazania środków.</string>
   <!--Alert dialog button to enable payment lock-->
   <string name="PaymentsHomeFragment__enable">Włącz</string>
   <!--Alert dialog button to not enable payment lock for now-->
@@ -2656,6 +2660,13 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="ConfirmPayment__payment_will_continue_processing">Płatność będzie nadal przetwarzana.</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">Nieprawidłowy odbiorca</string>
   <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
+  <string name="ConfirmPaymentFragment__unlock_to_send_payment">Odblokuj, aby wysłać środki</string>
+  <!--Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <string name="ConfirmPaymentFragment__failed_to_show_payment_lock">Nie udało się wyświetlić zabezpieczenia płatności</string>
+  <!--Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <string name="ConfirmPaymentFragment__you_enabled_payment_lock_in_the_settings">Włączyłeś(-aś) zabezpieczenie płatności w ustawieniach, ale nie da się go wyświetlić.</string>
+  <!--Button in a dialog that will take the user to the privacy settings-->
+  <string name="ConfirmPaymentFragment__go_to_settings">Przejdź do ustawień</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Ta osoba nie aktywowała płatności</string>
   <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">Nie można zażądać opłaty sieciowej. Aby kontynuować tę płatność, stuknij OK, by spróbować ponownie.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
@@ -3497,8 +3508,13 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Ustaw domyślny czas znikania wiadomości dla wszystkich, nowych, rozpoczętych przez Ciebie rozmów.</string>
   <!--Summary for stories preference to launch into story privacy settings-->
   <string name="PrivacySettingsFragment__manage_your_stories">Zarządzaj relacjami oraz tym, kto może je wyświetlać</string>
+  <string name="PrivacySettingsFragment__payment_lock_require_lock">Wymagaj blokady ekranu Androida lub odcisku palca do przelania środków.</string>
   <!--Alert dialog title when payment lock cannot be enabled-->
+  <string name="PrivacySettingsFragment__cant_enable_title">Nie da się włączyć zabezpieczenia płatności</string>
   <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <string name="PrivacySettingsFragment__cant_enable_description">Aby włączyć zabezpieczenie płatności, musisz wejść w ustawienia i włączyć funkcję blokady ekranu lub identyfikacji za pomocą odcisku palca</string>
+  <!--Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings-->
+  <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">Nie udało się przekierować do ustawień systemowych</string>
   <!--Alert dialog button to go to phone settings-->
   <string name="PrivacySettingsFragment__go_to_settings">Przejdź do ustawień</string>
   <!--Alert dialog button to cancel the dialog-->
@@ -3907,9 +3923,13 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Błąd sieci. Sprawdź połączenie z internetem i spróbuj ponownie.</string>
   <string name="NetworkFailure__retry">Ponów</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__cant_send_gift">Nie da się wysłać prezentu</string>
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__target_does_not_support_gifting">Ten odbiorca korzysta z wersji Signal, która nie pozwala na otrzymywanie odznak w prezencie. Będzie mógł otrzymywać prezenty, gdy zaktualizuje aplikację do najnowszej wersji.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__couldnt_send_gift">Nie udało się wysłać prezentu</string>
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__please_check_your_network_connection">Nie udało się wysłać prezentu z powodu błędu sieci. Sprawdź jakość łącza i spróbuj ponownie.</string>
   <!--Gift message view title-->
   <string name="GiftMessageView__gift_badge">Podaruj odznakę</string>
   <!--Gift message view expiry information-->

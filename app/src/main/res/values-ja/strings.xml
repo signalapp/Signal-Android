@@ -409,7 +409,6 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">プロフィール画像の設定中にエラーが発生しました</string>
   <string name="CreateProfileActivity_problem_setting_profile">プロフィールの設定中に問題が発生しました</string>
   <string name="CreateProfileActivity_set_up_your_profile">プロフィールの設定</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">あなたのプロフィール情報はエンドツーエンドで暗号化され、あなたが新しいチャットを開始したり受け入れた際や、新しいグループに参加した際に相手先で表示されます。</string>
   <string name="CreateProfileActivity_set_avatar_description">アバターを設定</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
@@ -2396,6 +2395,10 @@
   <string name="ConfirmPayment__payment_will_continue_processing">決済処理を続けます</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">無効な宛先です</string>
   <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
+  <!--Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <!--Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <!--Button in a dialog that will take the user to the privacy settings-->
+  <string name="ConfirmPaymentFragment__go_to_settings">設定へ</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">この方は決済機能を有効にしていません。</string>
   <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">ネットワーク手数料を取得できません。この決済を続けるには、OKをタップして再度試してください。</string>
   <!--CurrencyAmountFormatter_s_at_s-->
@@ -3206,6 +3209,7 @@
   <string name="PrivacySettingsFragment__manage_your_stories">ストーリーとそれらを閲覧できるユーザーを管理する</string>
   <!--Alert dialog title when payment lock cannot be enabled-->
   <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <!--Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings-->
   <!--Alert dialog button to go to phone settings-->
   <string name="PrivacySettingsFragment__go_to_settings">設定へ</string>
   <!--Alert dialog button to cancel the dialog-->

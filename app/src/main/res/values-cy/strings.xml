@@ -468,7 +468,6 @@ Anfon neges heb ei diogelu?</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Gwall gosod llun proffil</string>
   <string name="CreateProfileActivity_problem_setting_profile">Anhawster gosod proffil</string>
   <string name="CreateProfileActivity_set_up_your_profile">Creu eich proffil</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Mae eich proffil wedi\'i amgryptio o ben-i-ben. Bydd eich proffil a’ch newidiadau iddo yn weladwy i\'ch cysylltiadau, pan fyddwch chi’n cychwyn neu\'n derbyn sgyrsiau newydd, a phan fyddwch yn ymuno â grwpiau newydd.</string>
   <string name="CreateProfileActivity_set_avatar_description">Gosod afatar</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
@@ -2631,6 +2630,9 @@ Anfon neges heb ei diogelu?</string>
   <string name="ConfirmPayment__payment_will_continue_processing">Bydd y taliad yn parhau i brosesu</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">Derbynnydd annilys</string>
   <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
+  <!--Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <!--Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <!--Button in a dialog that will take the user to the privacy settings-->
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Nid yw\'r person hwn wedi gweithredu taliadau</string>
   <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">Methu gofyn am ffi rhwydwaith. I barhau â\'r taliad hwn, tapiwch Iawn i geisio eto.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
@@ -3468,6 +3470,7 @@ Anfon neges heb ei diogelu?</string>
   <!--Summary for stories preference to launch into story privacy settings-->
   <!--Alert dialog title when payment lock cannot be enabled-->
   <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <!--Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings-->
   <!--Alert dialog button to go to phone settings-->
   <!--Alert dialog button to cancel the dialog-->
   <string name="PrivacySettingsFragment__cancel">Diddymu</string>

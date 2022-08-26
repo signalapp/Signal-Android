@@ -409,7 +409,6 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">ဓါတ်ပုံတင်ရာတွင် အခက်အခဲရှိ </string>
   <string name="CreateProfileActivity_problem_setting_profile">ကိုယ်ပိုင်အကောင့်ပြုလုပ်ရာတွင် ပြဿနာရှိ </string>
   <string name="CreateProfileActivity_set_up_your_profile">သင့် ပရိုဖိုင်ကိုပြင်ဆင်ပါ</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">သင်၏ပရိုဖိုင်သည် အဆုံးမှအဆုံးသို့ စာဝှက်ထားသည်။ သင်၏ပရိုဖိုင်နှင့် ၎င်းပြောင်းလဲမှုများကို သင်အဆက်အသွယ် အသစ်များ၊ သင်စတင်စကားပြောခြင်း သို့မဟုတ် စကားပြောဆိုမှု အသစ်များကို လက်ခံခြင်းနှင့် အုပ်စုအသစ်များနှင့် ပူးပေါင်းသောအခါ မြင်တွေ့ရလိမ့်မည်။</string>
   <string name="CreateProfileActivity_set_avatar_description">ကိုယ်စားပြုရုပ်ပုံ ကိုသတ်မှတ်ပါ</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
@@ -2401,6 +2400,10 @@
   <string name="ConfirmPayment__payment_will_continue_processing">ငွေပေးချေမှုကို ဆက်လက်လုပ်ဆောင်ပါမည်</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">လက်ခံသူ မမှန်ကန်ပါ</string>
   <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
+  <!--Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <!--Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <!--Button in a dialog that will take the user to the privacy settings-->
+  <string name="ConfirmPaymentFragment__go_to_settings">ဆက်တင်သို့ သွားရန်</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">၎င်း ပုဂ္ဂိုလ်မှ ငွေပေးချေမှုများ ဖွင့်ထားခြင်းမရှိပါ</string>
   <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">ကွန်ယက်အခကြေး တောင်းဆိုရန်မရပါ။ ၎င်းငွေပေးချေမှု ဆက်လက်လုပ်ဆောင်ရန် အိုကေနှိပ်၍ ပြန်စမ်းကြည့်ပါ။</string>
   <!--CurrencyAmountFormatter_s_at_s-->
@@ -3211,6 +3214,7 @@
   <string name="PrivacySettingsFragment__manage_your_stories">သင့်စတိုရီများနှင့် ကြည့်နိုင်မည့်သူများအား စီမံခန့်ခွဲရန်</string>
   <!--Alert dialog title when payment lock cannot be enabled-->
   <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <!--Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings-->
   <!--Alert dialog button to go to phone settings-->
   <string name="PrivacySettingsFragment__go_to_settings">ဆက်တင်သို့ သွားရန်</string>
   <!--Alert dialog button to cancel the dialog-->

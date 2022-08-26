@@ -409,7 +409,6 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">Lỗi đặt ảnh đại diện</string>
   <string name="CreateProfileActivity_problem_setting_profile">Lỗi thiết lập hồ sơ</string>
   <string name="CreateProfileActivity_set_up_your_profile">Thiết lập hồ sơ</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Hồ sơ của bạn được mã hóa đầu cuối. Hồ sơ và các thay đổi sẽ hiển thị với liên hệ trong danh bạ của bạn, khi bạn bắt đầu hoặc chấp nhận cuộc trò chuyện mới, hoặc khi bạn tham gia nhóm mới.</string>
   <string name="CreateProfileActivity_set_avatar_description">Đặt ảnh đại diện</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
@@ -2390,6 +2389,10 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="ConfirmPayment__payment_will_continue_processing">Thanh toán sẽ tiếp tục xử lý</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">Người nhận không hợp lệ</string>
   <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
+  <!--Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <!--Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <!--Button in a dialog that will take the user to the privacy settings-->
+  <string name="ConfirmPaymentFragment__go_to_settings">Đến mục cài đặt</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Người này chưa kích hoạt thanh toán</string>
   <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">Không thể yêu cầu phí mạng lưới. Để tiếp tục với thanh toán này nhấn okay để thử lại.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
@@ -3200,6 +3203,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="PrivacySettingsFragment__manage_your_stories">Quản lý các story của bạn và người có thể xem story</string>
   <!--Alert dialog title when payment lock cannot be enabled-->
   <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <!--Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings-->
   <!--Alert dialog button to go to phone settings-->
   <string name="PrivacySettingsFragment__go_to_settings">Đến mục cài đặt</string>
   <!--Alert dialog button to cancel the dialog-->

@@ -409,7 +409,6 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">การตั้งค่ารูปโปรไฟล์ผิดพลาด</string>
   <string name="CreateProfileActivity_problem_setting_profile">ปัญหาการตั้งค่าโปรไฟล์</string>
   <string name="CreateProfileActivity_set_up_your_profile">สร้างโปรไฟล์ของคุณ</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">โปรไฟล์ของคุณถูกเข้ารหัสลับจากต้นทางถึงปลายทาง เมื่อคุณเริ่มต้นหรือตอบรับบทสนทนาใหม่ และเมื่อคุณเข้าร่วมกลุ่มใหม่ ผู้ติดต่อของคุณจะมองเห็นโปรไฟล์และความเปลี่ยนแปลงที่เกิดขึ้นกับโปรไฟล์ของคุณ</string>
   <string name="CreateProfileActivity_set_avatar_description">สร้างอวตาร</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
@@ -2406,6 +2405,10 @@
   <string name="ConfirmPayment__payment_will_continue_processing">การชำระเงินจะดำเนินการต่อไป</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">ผู้รับไม่ถูกต้อง</string>
   <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
+  <!--Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <!--Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <!--Button in a dialog that will take the user to the privacy settings-->
+  <string name="ConfirmPaymentFragment__go_to_settings">ไปที่การตั้งค่า</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">บุคคลนี้ไม่ได้เปิดใช้การชำระเงิน</string>
   <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">ไม่สามารถขอคำธรรมเนียมเครือข่ายได้ เพื่อชำระเงินนี้ต่อ แตะตกลงเพื่อลองอีกครั้ง</string>
   <!--CurrencyAmountFormatter_s_at_s-->
@@ -3217,6 +3220,7 @@
   <string name="PrivacySettingsFragment__manage_your_stories">จัดการและกำหนดผู้ชมของสตอรี่คุณ</string>
   <!--Alert dialog title when payment lock cannot be enabled-->
   <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <!--Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings-->
   <!--Alert dialog button to go to phone settings-->
   <string name="PrivacySettingsFragment__go_to_settings">ไปที่การตั้งค่า</string>
   <!--Alert dialog button to cancel the dialog-->

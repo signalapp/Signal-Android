@@ -425,7 +425,6 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">Flater by ynstellen fan profylfoto</string>
   <string name="CreateProfileActivity_problem_setting_profile">Probleem by ynstellen fan profyl</string>
   <string name="CreateProfileActivity_set_up_your_profile">Stel dyn profyl op</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Dyn profylnamme, -foto en -omskriuwing binne allinnich sichtber foar persoanen dy’t  bewarre binne yn dyn kontaktelist, persoanen nei wa’tsto sels in nij petear inisjearrest, persoanen fan wa’tsto in petearfersyk akseptearrest en alle leden fan in groep wêrfan\'tsto lid bist. Signal-profilen wurde krekt as berjochten ein-ta-ein-fersifere útwiksele, dêrom kinne sels Signals-ûntwikkelers dyn profylnamme, -foto en -omskriuwing nea sjen.</string>
   <string name="CreateProfileActivity_set_avatar_description">Profylfoto ynstelle</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
@@ -2457,6 +2456,9 @@
   <string name="ConfirmPayment__payment_will_continue_processing">De oerskriuwing wurdt noch ferwurke</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">Untfanger ûnjildich</string>
   <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
+  <!--Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <!--Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <!--Button in a dialog that will take the user to the privacy settings-->
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Dizze persoan hat oerskriuwingen net ynskeakele.</string>
   <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">Kin de netwurkkosten net ophelje Tik op ‘Ok’ om it nochris te probearjen.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
@@ -3272,6 +3274,7 @@
   <!--Summary for stories preference to launch into story privacy settings-->
   <!--Alert dialog title when payment lock cannot be enabled-->
   <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <!--Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings-->
   <!--Alert dialog button to go to phone settings-->
   <!--Alert dialog button to cancel the dialog-->
   <string name="PrivacySettingsFragment__cancel">Annulearje</string>

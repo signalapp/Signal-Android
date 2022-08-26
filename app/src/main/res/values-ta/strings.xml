@@ -430,7 +430,6 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">சுயவிவர புகைப்படத்தை அமைப்பதில் பிழை</string>
   <string name="CreateProfileActivity_problem_setting_profile">சுயவிவரம் அமைப்பதில் சிக்கல் </string>
   <string name="CreateProfileActivity_set_up_your_profile">உங்கள் சுயவிவரத்தை அமைக்கவும்</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">உங்கள் சுயவிவரம் முடிவிலிருந்து-முடிவுவரை மறையாக்கப்பட்டது. நீங்கள் புதிய உரையாடல்களைத் தொடங்கும்போது அல்லது ஏற்றுக்கொள்ளும்போது, புதிய குழுக்களில் சேரும்போது உங்கள் சுயவிவரமும் அதற்கான மாற்றங்களும் உங்கள் தொடர்புகளுக்குத் தெரியும்.</string>
   <string name="CreateProfileActivity_set_avatar_description">சின்னம் அமைக்கவும்</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
@@ -2482,6 +2481,10 @@
   <string name="ConfirmPayment__payment_will_continue_processing">கட்டணம் தொடர்ந்து செயலாக்கப்படும்</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">தவறானது பெறுநர்</string>
   <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
+  <!--Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <!--Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <!--Button in a dialog that will take the user to the privacy settings-->
+  <string name="ConfirmPaymentFragment__go_to_settings">அமைப்புகளுக்குச் செல்</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">இந்த நபர் கொடுப்பனவுகளை செயல்படுத்தவில்லை</string>
   <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">பிணையக் கட்டணத்தைக் கோர முடியவில்லை. இந்த கட்டணத்தைத் தொடரதட்டவும் மீண்டும் முயற்சிக்க சரி.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
@@ -3305,6 +3308,7 @@
   <string name="PrivacySettingsFragment__manage_your_stories">உங்கள் ஸ்டோரீக்கள் மற்றும் அவற்றை யார் பார்க்கலாம் என்பதை நிர்வகிக்கவும்</string>
   <!--Alert dialog title when payment lock cannot be enabled-->
   <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <!--Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings-->
   <!--Alert dialog button to go to phone settings-->
   <string name="PrivacySettingsFragment__go_to_settings">அமைப்புகளுக்குச் செல்</string>
   <!--Alert dialog button to cancel the dialog-->

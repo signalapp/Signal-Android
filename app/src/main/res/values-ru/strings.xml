@@ -472,7 +472,6 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">Ошибка при установке фото профиля</string>
   <string name="CreateProfileActivity_problem_setting_profile">Ошибка при установке профиля</string>
   <string name="CreateProfileActivity_set_up_your_profile">Настройте свой профиль</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Ваш профиль защищён сквозным шифрованием. Ваш профиль и его изменения становятся видны вашим контактам, когда вы начинаете или принимаете новые разговоры и когда вы присоединяетесь к новым группам.</string>
   <string name="CreateProfileActivity_set_avatar_description">Установить аватар</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
@@ -2657,6 +2656,10 @@
   <string name="ConfirmPayment__payment_will_continue_processing">Платёж будет продолжать обрабатываться</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">Неверный получатель</string>
   <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
+  <!--Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <!--Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <!--Button in a dialog that will take the user to the privacy settings-->
+  <string name="ConfirmPaymentFragment__go_to_settings">Перейти в настройки</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Этот человек не активировал платежи</string>
   <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">Не удалось запросить комиссию сети. Чтобы продолжить этот платёж, нажмите «ОК», чтобы попробовать ещё раз.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
@@ -3500,6 +3503,7 @@
   <string name="PrivacySettingsFragment__manage_your_stories">Управляйте своими историями и определяйте, кто может их видеть</string>
   <!--Alert dialog title when payment lock cannot be enabled-->
   <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <!--Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings-->
   <!--Alert dialog button to go to phone settings-->
   <string name="PrivacySettingsFragment__go_to_settings">Перейти в настройки</string>
   <!--Alert dialog button to cancel the dialog-->

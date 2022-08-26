@@ -430,7 +430,6 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">प्रोफाईल फोटो सेट करण्यात त्रुटी</string>
   <string name="CreateProfileActivity_problem_setting_profile">प्रोफाईल सेट करण्यात समस्या</string>
   <string name="CreateProfileActivity_set_up_your_profile">आपली प्रोफाईल सेट अप करा</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">आपले प्रोफाइल एंड टू एंड एन्क्रिप्टेड आहे. जेव्हा आपण नवीन संभाषणे प्रारंभ करता किंवा स्वीकार करता आणि आपण नवीन गटांमध्ये सामील होता तेव्हा आपले प्रोफाइल आणि त्यामधील बदल आपल्या संपर्कांना दृश्यमान असतील.</string>
   <string name="CreateProfileActivity_set_avatar_description">अवतार सेट करा</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
@@ -2489,6 +2488,10 @@
   <string name="ConfirmPayment__payment_will_continue_processing">पेमेंट प्रक्रिया सुरू राहील</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">अवैध प्राप्तकर्ता</string>
   <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
+  <!--Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <!--Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <!--Button in a dialog that will take the user to the privacy settings-->
+  <string name="ConfirmPaymentFragment__go_to_settings">सेटिंग्ज वर जा</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">या व्यक्तीने पेमेंट सक्रिय केलेले नाही</string>
   <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">नेटवर्क फीची विनंती करण्यात अक्षम. हे पेमेंट सुरू ठेवण्यासाठी पुन्हा प्रयत्न करण्यासाठी ठीक आहे वर टॅप करा.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
@@ -3310,6 +3313,7 @@
   <string name="PrivacySettingsFragment__manage_your_stories">आपल्या स्टोरीज आणि त्यांना कोण पाहू शकते ते व्यवस्थापित करा</string>
   <!--Alert dialog title when payment lock cannot be enabled-->
   <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <!--Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings-->
   <!--Alert dialog button to go to phone settings-->
   <string name="PrivacySettingsFragment__go_to_settings">सेटिंग्ज वर जा</string>
   <!--Alert dialog button to cancel the dialog-->
