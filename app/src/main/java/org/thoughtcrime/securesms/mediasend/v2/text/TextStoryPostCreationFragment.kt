@@ -153,6 +153,7 @@ class TextStoryPostCreationFragment : Fragment(R.layout.stories_text_post_creati
           launcher.launch(
             StoriesMultiselectForwardActivity.Args(
               MultiselectForwardFragmentArgs(
+                title = R.string.MediaReviewFragment__send_to,
                 canSendToNonPush = false,
                 storySendRequirements = Stories.MediaTransform.SendRequirements.VALID_DURATION,
                 isSearchEnabled = false
