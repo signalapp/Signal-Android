@@ -219,7 +219,7 @@ class PrivacySettingsFragment : DSLSettingsFragment(R.string.preferences__privac
           summary = DSLSettingsText.from(R.string.preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity),
           isChecked = state.isObsoletePasswordTimeoutEnabled,
           onClick = {
-            viewModel.setObsoletePasswordTimeoutEnabled(!state.isObsoletePasswordEnabled)
+            viewModel.setObsoletePasswordTimeoutEnabled(!state.isObsoletePasswordTimeoutEnabled)
           }
         )
 
