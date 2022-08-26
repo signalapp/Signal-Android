@@ -141,74 +141,7 @@ class AccountSettingsFragment : DSLSettingsFragment(R.string.AccountSettingsFrag
   }
 
   private fun setPinRemindersEnabled(enabled: Boolean) {
-    if (!enabled) {
-      val context: Context = requireContext()
-      val metrics: DisplayMetrics = resources.displayMetrics
-
-      val dialog: AlertDialog = MaterialAlertDialogBuilder(context)
-        .setView(R.layout.pin_disable_reminders_dialog)
-        .create()
-
-      dialog.show()
-      dialog.window!!.setLayout((metrics.widthPixels * .80).toInt(), ViewGroup.LayoutParams.WRAP_CONTENT)
-
-      val pinEditText = DialogCompat.requireViewById(dialog, R.id.reminder_disable_pin) as EditText
-      val statusText = DialogCompat.requireViewById(dialog, R.id.reminder_disable_status) as TextView
-      val cancelButton = DialogCompat.requireViewById(dialog, R.id.reminder_disable_cancel)
-      val turnOffButton = DialogCompat.requireViewById(dialog, R.id.reminder_disable_turn_off)
-      val changeKeyboard = DialogCompat.requireViewById(dialog, R.id.reminder_change_keyboard) as Button
-
-      changeKeyboard.setOnClickListener {
-        if (pinEditText.inputType and InputType.TYPE_CLASS_NUMBER == 0) {
-          pinEditText.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD
-          changeKeyboard.setText(R.string.PinRestoreEntryFragment_enter_alphanumeric_pin)
-        } else {
-          pinEditText.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
-          changeKeyboard.setText(R.string.PinRestoreEntryFragment_enter_numeric_pin)
-        }
-        pinEditText.typeface = Typeface.DEFAULT
-      }
-
-      pinEditText.post {
-        ViewUtil.focusAndShowKeyboard(pinEditText)
-      }
-
-      ViewCompat.setAutofillHints(pinEditText, HintConstants.AUTOFILL_HINT_PASSWORD)
-
-      when (SignalStore.pinValues().keyboardType) {
-        PinKeyboardType.NUMERIC -> {
-          pinEditText.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD
-          changeKeyboard.setText(R.string.PinRestoreEntryFragment_enter_alphanumeric_pin)
-        }
-        PinKeyboardType.ALPHA_NUMERIC -> {
-          pinEditText.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
-          changeKeyboard.setText(R.string.PinRestoreEntryFragment_enter_numeric_pin)
-        }
-      }
-
-      pinEditText.addTextChangedListener(object : SimpleTextWatcher() {
-        override fun onTextChanged(text: String) {
-          turnOffButton.isEnabled = text.length >= KbsConstants.MINIMUM_PIN_LENGTH
-        }
-      })
-
-      pinEditText.typeface = Typeface.DEFAULT
-      turnOffButton.setOnClickListener {
-        val pin = pinEditText.text.toString()
-        val correct = PinHashing.verifyLocalPinHash(SignalStore.kbsValues().localPinHash!!, pin)
-        if (correct) {
-          SignalStore.pinValues().setPinRemindersEnabled(false)
-          viewModel.refreshState()
-          dialog.dismiss()
-        } else {
-          statusText.setText(R.string.preferences_app_protection__incorrect_pin_try_again)
-        }
-      }
-
-      cancelButton.setOnClickListener { dialog.dismiss() }
-    } else {
-      SignalStore.pinValues().setPinRemindersEnabled(true)
-      viewModel.refreshState()
-    }
+    SignalStore.pinValues().setPinRemindersEnabled(enabled)
+    viewModel.refreshState()
   }
 }
