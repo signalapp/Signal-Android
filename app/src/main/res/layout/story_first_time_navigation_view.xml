@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:viewBindingIgnore="true"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
+    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout"
+    tools:viewBindingIgnore="true">
 
     <ImageView
         android:id="@+id/edu_blur_hash"
@@ -15,86 +15,104 @@
         android:id="@+id/edu_overlay"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@color/transparent_black_70"
-        android:importantForAccessibility="no" />
-
-    <ImageView
-        android:id="@+id/edu_tap_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
         android:importantForAccessibility="no"
-        app:layout_constraintBottom_toTopOf="@id/edu_swipe_up_icon"
-        app:layout_constraintEnd_toStartOf="@id/edu_tap_label"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_tap_72"
-        app:tint="@color/core_white" />
+        android:src="@color/transparent_black_70" />
 
-    <TextView
-        android:id="@+id/edu_tap_label"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/button_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/StoryFirstTimeNavigationView__tap_to_advance"
-        android:textAppearance="@style/Signal.Text.BodyLarge"
-        android:textColor="@color/core_white"
-        app:layout_constraintBottom_toBottomOf="@id/edu_tap_icon"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/edu_tap_icon"
-        app:layout_constraintTop_toTopOf="@id/edu_tap_icon" />
-
-    <ImageView
-        android:id="@+id/edu_swipe_up_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:importantForAccessibility="no"
-        app:layout_constraintBottom_toTopOf="@id/edu_swipe_right_icon"
-        app:layout_constraintEnd_toStartOf="@id/edu_swipe_up_label"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edu_tap_icon"
-        app:srcCompat="@drawable/ic_swipe_up_72"
-        app:tint="@color/core_white" />
-
-    <TextView
-        android:id="@+id/edu_swipe_up_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/StoryFirstTimeNavigationView__swipe_up_to_skip"
-        android:textAppearance="@style/Signal.Text.BodyLarge"
-        android:textColor="@color/core_white"
-        app:layout_constraintBottom_toBottomOf="@id/edu_swipe_up_icon"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/edu_swipe_up_icon"
-        app:layout_constraintTop_toTopOf="@id/edu_swipe_up_icon" />
-
-    <ImageView
-        android:id="@+id/edu_swipe_right_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:importantForAccessibility="no"
+        android:layout_marginHorizontal="32dp"
+        app:layout_constrainedHeight="true"
+        app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toTopOf="@id/edu_got_it"
-        app:layout_constraintEnd_toStartOf="@id/edu_swipe_right_label"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edu_swipe_up_icon"
-        app:srcCompat="@drawable/ic_swipe_right_72"
-        app:tint="@color/core_white" />
-
-    <TextView
-        android:id="@+id/edu_swipe_right_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/StoryFirstTimeNavigationView__swipe_right_to_exit"
-        android:textAppearance="@style/Signal.Text.BodyLarge"
-        android:textColor="@color/core_white"
-        app:layout_constraintBottom_toBottomOf="@id/edu_swipe_right_icon"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/edu_swipe_right_icon"
-        app:layout_constraintTop_toTopOf="@id/edu_swipe_right_icon" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/edu_tap_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:importantForAccessibility="no"
+            app:layout_constraintBottom_toTopOf="@id/edu_swipe_up_icon"
+            app:layout_constraintEnd_toStartOf="@id/edu_tap_label"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_tap_72"
+            app:tint="@color/core_white" />
+
+        <TextView
+            android:id="@+id/edu_tap_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/StoryFirstTimeNavigationView__tap_to_advance"
+            android:textAppearance="@style/Signal.Text.BodyLarge"
+            android:textColor="@color/core_white"
+            app:layout_constraintBottom_toBottomOf="@id/edu_tap_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/edu_tap_icon"
+            app:layout_constraintTop_toTopOf="@id/edu_tap_icon" />
+
+        <ImageView
+            android:id="@+id/edu_swipe_up_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:layout_marginEnd="16dp"
+            android:importantForAccessibility="no"
+            app:layout_constraintBottom_toTopOf="@id/edu_swipe_right_icon"
+            app:layout_constraintEnd_toStartOf="@id/edu_swipe_up_label"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edu_tap_icon"
+            app:srcCompat="@drawable/ic_swipe_up_72"
+            app:tint="@color/core_white" />
+
+        <TextView
+            android:id="@+id/edu_swipe_up_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/StoryFirstTimeNavigationView__swipe_up_to_skip"
+            android:textAppearance="@style/Signal.Text.BodyLarge"
+            android:textColor="@color/core_white"
+            app:layout_constraintBottom_toBottomOf="@id/edu_swipe_up_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/edu_swipe_up_icon"
+            app:layout_constraintTop_toTopOf="@id/edu_swipe_up_icon" />
+
+        <ImageView
+            android:id="@+id/edu_swipe_right_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:layout_marginEnd="16dp"
+            android:importantForAccessibility="no"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/edu_swipe_right_label"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edu_swipe_up_icon"
+            app:srcCompat="@drawable/ic_swipe_right_72"
+            app:tint="@color/core_white" />
+
+        <TextView
+            android:id="@+id/edu_swipe_right_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/StoryFirstTimeNavigationView__swipe_right_to_exit"
+            android:textAppearance="@style/Signal.Text.BodyLarge"
+            android:textColor="@color/core_white"
+            app:layout_constraintBottom_toBottomOf="@id/edu_swipe_right_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/edu_swipe_right_icon"
+            app:layout_constraintTop_toTopOf="@id/edu_swipe_right_icon" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/edu_got_it"
@@ -107,6 +125,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edu_swipe_right_icon" />
+        app:layout_constraintTop_toBottomOf="@id/button_container" />
 
 </merge>
