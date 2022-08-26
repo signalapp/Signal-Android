@@ -212,7 +212,7 @@ class MainActivityListHostFragment : Fragment(R.layout.main_activity_list_host_f
 
   override fun onSearchOpened() {
     conversationListTabsViewModel.onSearchOpened()
-    _searchToolbar.get().clearText();
+    _searchToolbar.get().clearText()
   }
 
   override fun onSearchClosed() {

@@ -81,7 +81,7 @@ class Material3SearchToolbar @JvmOverloads constructor(
   }
 
   fun clearText() {
-    input.setText("");
+    input.setText("")
   }
 
   interface Listener {

@@ -139,7 +139,7 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
     cameraController.setCameraSelector(CameraXUtil.toCameraSelector(TextSecurePreferences.getDirectCaptureCameraId(requireContext())));
     cameraController.setTapToFocusEnabled(true);
     cameraController.setImageCaptureMode(CameraXUtil.getOptimalCaptureMode());
-    cameraController.setEnabledUseCases(CameraController.IMAGE_CAPTURE);
+    cameraController.setEnabledUseCases(getSupportedUseCases());
 
     previewView.setScaleType(PreviewView.ScaleType.FIT_CENTER);
     previewView.setController(cameraController);
@@ -378,6 +378,15 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
     }
   }
 
+  @CameraController.UseCases
+  private int getSupportedUseCases() {
+    if (isVideoRecordingSupported(requireContext())) {
+      return CameraController.IMAGE_CAPTURE | CameraController.VIDEO_CAPTURE;
+    } else {
+      return CameraController.IMAGE_CAPTURE;
+    }
+  }
+
   private boolean isVideoRecordingSupported(@NonNull Context context) {
     return Build.VERSION.SDK_INT >= 26                           &&
            requireArguments().getBoolean(IS_VIDEO_ENABLED, true) &&
@@ -445,7 +454,6 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
         selfieFlash
     );
 
-    cameraController.setEnabledUseCases(CameraController.IMAGE_CAPTURE);
     cameraController.takePicture(Executors.mainThreadExecutor(), new ImageCapture.OnImageCapturedCallback() {
       @Override
       public void onCaptureSuccess(@NonNull ImageProxy image) {

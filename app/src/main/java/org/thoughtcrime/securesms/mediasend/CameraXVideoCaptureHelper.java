@@ -129,7 +129,6 @@ class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener
 
     OutputFileOptions options = OutputFileOptions.builder(memoryFileDescriptor.getParcelFileDescriptor()).build();
 
-    cameraController.setEnabledUseCases(CameraController.VIDEO_CAPTURE);
     cameraController.startRecording(options, Executors.mainThreadExecutor(), videoSavedListener);
     updateProgressAnimator.start();
     debouncer.publish(this::onVideoCaptureComplete);
@@ -190,7 +189,6 @@ class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener
 
     Log.d(TAG, "onVideoCaptureComplete");
     cameraController.stopRecording();
-    cameraController.setEnabledUseCases(CameraController.IMAGE_CAPTURE);
 
     if (cameraMetricsAnimator != null && cameraMetricsAnimator.isRunning()) {
       cameraMetricsAnimator.reverse();
