@@ -40,7 +40,7 @@ class RetrieveRemoteAnnouncementsJob private constructor(private val force: Bool
 
   companion object {
     const val KEY = "RetrieveReleaseChannelJob"
-    private const val MANIFEST = "${S3.DYNAMIC_PATH}/release-notes/release-notes.json"
+    private const val MANIFEST = "${S3.DYNAMIC_PATH}/release-notes/release-notes-v2.json"
     private const val BASE_RELEASE_NOTE = "${S3.STATIC_PATH}/release-notes"
     private const val KEY_FORCE = "force"
 
