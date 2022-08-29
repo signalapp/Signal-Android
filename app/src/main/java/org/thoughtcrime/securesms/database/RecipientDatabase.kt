@@ -2047,15 +2047,22 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
   }
 
   /**
+   * Associates the provided IDs together. The assumption here is that all of the IDs correspond to the local user and have been verified.
+   */
+  fun linkIdsForSelf(aci: ACI, pni: PNI, e164: String) {
+    getAndPossiblyMergePnp(serviceId = aci, pni = pni, e164 = e164, changeSelf = true, pniVerified = true)
+  }
+
+  /**
    * Does *not* handle clearing the recipient cache. It is assumed the caller handles this.
    */
-  fun updateSelfPhone(e164: String) {
+  fun updateSelfPhone(e164: String, pni: PNI) {
     val db = writableDatabase
 
     db.beginTransaction()
     try {
       val id = Recipient.self().id
-      val newId = getAndPossiblyMerge(SignalStore.account().requireAci(), e164, changeSelf = true)
+      val newId = getAndPossiblyMergePnp(serviceId = SignalStore.account().requireAci(), pni = pni, e164 = e164, pniVerified = true, changeSelf = true)
 
       if (id == newId) {
         Log.i(TAG, "[updateSelfPhone] Phone updated for self")
@@ -2068,7 +2075,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
         .values(NEEDS_PNI_SIGNATURE to 0)
         .run()
 
-      SignalDatabase.pendingPniSignatureMessages.deleteAll()
+      pendingPniSignatureMessages.deleteAll()
 
       db.setTransactionSuccessful()
     } finally {
@@ -2392,18 +2399,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
             .run()
         }
         is PnpOperation.Merge -> {
-          val primary = getRecord(operation.primaryId)
-          val secondary = getRecord(operation.secondaryId)
-
-          if (primary.serviceId != null && !primary.sidIsPni() && secondary.e164 != null) {
-            merge(operation.primaryId, operation.secondaryId, inputPni)
-          } else {
-            if (!pnpEnabled) {
-              throw AssertionError("This type of merge is not supported in production!")
-            }
-
-            merge(operation.primaryId, operation.secondaryId, inputPni)
-          }
+          merge(operation.primaryId, operation.secondaryId, inputPni)
         }
         is PnpOperation.SessionSwitchoverInsert -> {
           // TODO [pnp]

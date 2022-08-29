@@ -28,7 +28,6 @@ import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.livedata.Store
-import org.whispersystems.signalservice.api.push.ServiceId
 import java.util.Objects
 
 /**
@@ -62,27 +61,26 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
       )
 
       if (!recipient.isGroup) {
-        if (recipient.isSelf) {
-          val aci: String = SignalStore.account().aci?.toString() ?: "null"
-          longClickPref(
-            title = DSLSettingsText.from("ACI"),
-            summary = DSLSettingsText.from(aci),
-            onLongClick = { copyToClipboard(aci) }
-          )
-          val pni: String = SignalStore.account().pni?.toString() ?: "null"
-          longClickPref(
-            title = DSLSettingsText.from("PNI"),
-            summary = DSLSettingsText.from(pni),
-            onLongClick = { copyToClipboard(pni) }
-          )
-        } else {
-          val serviceId: String = recipient.serviceId.map(ServiceId::toString).orElse("null")
-          longClickPref(
-            title = DSLSettingsText.from("ServiceId"),
-            summary = DSLSettingsText.from(serviceId),
-            onLongClick = { copyToClipboard(serviceId) }
-          )
-        }
+        val e164: String = recipient.e164.orElse("null")
+        longClickPref(
+          title = DSLSettingsText.from("E164"),
+          summary = DSLSettingsText.from(e164),
+          onLongClick = { copyToClipboard(e164) }
+        )
+
+        val serviceId: String = recipient.serviceId.map { it.toString() }.orElse("null")
+        longClickPref(
+          title = DSLSettingsText.from("ServiceId"),
+          summary = DSLSettingsText.from(serviceId),
+          onLongClick = { copyToClipboard(serviceId) }
+        )
+
+        val pni: String = recipient.pni.map { it.toString() }.orElse("null")
+        longClickPref(
+          title = DSLSettingsText.from("PNI"),
+          summary = DSLSettingsText.from(pni),
+          onLongClick = { copyToClipboard(pni) }
+        )
       }
 
       if (state.groupId != null) {

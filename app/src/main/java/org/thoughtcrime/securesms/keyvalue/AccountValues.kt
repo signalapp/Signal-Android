@@ -24,6 +24,7 @@ import org.whispersystems.signalservice.api.push.ACI
 import org.whispersystems.signalservice.api.push.PNI
 import org.whispersystems.signalservice.api.push.ServiceIds
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
+import java.lang.IllegalStateException
 import java.security.SecureRandom
 
 internal class AccountValues internal constructor(store: KeyValueStore) : SignalStoreValues(store) {
@@ -120,6 +121,12 @@ internal class AccountValues internal constructor(store: KeyValueStore) : Signal
   /** The local user's E164. */
   val e164: String?
     get() = getString(KEY_E164, null)
+
+  /** The local user's e164. Will throw if not present. */
+  fun requireE164(): String {
+    val e164: String? = getString(KEY_E164, null)
+    return e164 ?: throw IllegalStateException("No e164!")
+  }
 
   fun setE164(e164: String) {
     putString(KEY_E164, e164)
