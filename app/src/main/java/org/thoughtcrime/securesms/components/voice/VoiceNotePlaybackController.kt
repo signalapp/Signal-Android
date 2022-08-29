@@ -41,7 +41,7 @@ class VoiceNotePlaybackController(
         }
 
         player.playWhenReady = false
-        player.setAudioAttributes(attributes, true)
+        player.setAudioAttributes(attributes, newStreamType == AudioManager.STREAM_MUSIC)
 
         if (newStreamType == AudioManager.STREAM_VOICE_CALL) {
           player.playWhenReady = true

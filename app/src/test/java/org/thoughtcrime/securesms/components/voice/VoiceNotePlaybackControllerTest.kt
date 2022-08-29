@@ -15,6 +15,7 @@ import org.mockito.Mockito.anyBoolean
 import org.mockito.Mockito.mock
 import org.mockito.Mockito.verify
 import org.mockito.Mockito.`when`
+import org.mockito.kotlin.eq
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 
@@ -24,8 +25,8 @@ class VoiceNotePlaybackControllerTest {
 
   private val mediaSessionCompat = mock(MediaSessionCompat::class.java)
   private val playbackParameters = VoiceNotePlaybackParameters(mediaSessionCompat)
-  private val mediaAudioAttributes = AudioAttributes.Builder().setContentType(C.CONTENT_TYPE_MUSIC).setUsage(C.USAGE_MEDIA).build()
-  private val callAudioAttributes = AudioAttributes.Builder().setContentType(C.CONTENT_TYPE_SPEECH).setUsage(C.USAGE_VOICE_COMMUNICATION).build()
+  private val mediaAudioAttributes = AudioAttributes.Builder().setContentType(C.AUDIO_CONTENT_TYPE_MUSIC).setUsage(C.USAGE_MEDIA).build()
+  private val callAudioAttributes = AudioAttributes.Builder().setContentType(C.AUDIO_CONTENT_TYPE_SPEECH).setUsage(C.USAGE_VOICE_COMMUNICATION).build()
   private val player: SimpleExoPlayer = mock(SimpleExoPlayer::class.java)
   private val testSubject = VoiceNotePlaybackController(player, playbackParameters)
 
@@ -43,7 +44,7 @@ class VoiceNotePlaybackControllerTest {
 
     // THEN
     verify(player).playWhenReady = false
-    verify(player).setAudioAttributes(expected, true)
+    verify(player).setAudioAttributes(expected, false)
     verify(player).playWhenReady = true
   }
 
@@ -78,7 +79,7 @@ class VoiceNotePlaybackControllerTest {
 
     // THEN
     verify(player, Mockito.never()).playWhenReady = anyBoolean()
-    verify(player, Mockito.never()).setAudioAttributes(any(), anyBoolean())
+    verify(player, Mockito.never()).setAudioAttributes(any(), eq(false))
   }
 
   @Test
