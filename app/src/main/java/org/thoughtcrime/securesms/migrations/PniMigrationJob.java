@@ -49,14 +49,13 @@ public class PniMigrationJob extends MigrationJob {
       return;
     }
 
-    RecipientId self = Recipient.self().getId();
-    PNI         pni  = PNI.parseOrNull(ApplicationDependencies.getSignalServiceAccountManager().getWhoAmI().getPni());
+    PNI pni = PNI.parseOrNull(ApplicationDependencies.getSignalServiceAccountManager().getWhoAmI().getPni());
 
     if (pni == null) {
       throw new IOException("Invalid PNI!");
     }
 
-    SignalDatabase.recipients().setPni(self, pni);
+    SignalDatabase.recipients().linkIdsForSelf(SignalStore.account().requireAci(), pni, SignalStore.account().requireE164());
     SignalStore.account().setPni(pni);
   }
 

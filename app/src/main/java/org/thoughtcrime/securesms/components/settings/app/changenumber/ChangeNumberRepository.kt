@@ -104,7 +104,7 @@ class ChangeNumberRepository(private val accountManager: SignalServiceAccountMan
   @WorkerThread
   fun changeLocalNumber(e164: String, pni: PNI): Single<Unit> {
     val oldStorageId: ByteArray? = Recipient.self().storageServiceId
-    SignalDatabase.recipients.updateSelfPhone(e164)
+    SignalDatabase.recipients.updateSelfPhone(e164, pni)
     val newStorageId: ByteArray? = Recipient.self().storageServiceId
 
     if (MessageDigest.isEqual(oldStorageId, newStorageId)) {
@@ -117,7 +117,6 @@ class ChangeNumberRepository(private val accountManager: SignalServiceAccountMan
       }
     }
 
-    SignalDatabase.recipients.setPni(Recipient.self().id, pni)
     ApplicationDependencies.getRecipientCache().clear()
 
     SignalStore.account().setE164(e164)
