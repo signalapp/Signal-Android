@@ -467,6 +467,10 @@
         <item name="android:layoutDirection">ltr</item>
     </style>
 
+    <style name="ThemeOverlay.Signal.TextInputEditText.FilledBox" parent="ThemeOverlay.MaterialComponents.TextInputEditText.FilledBox">
+        <item name="colorControlActivated">@color/signal_colorPrimary</item>
+    </style>
+
     <style name="Widget.Signal.TextInputLayout.FilledBox" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
         <item name="android:paddingStart">@dimen/dsl_settings_gutter</item>
         <item name="android:paddingEnd">@dimen/dsl_settings_gutter</item>
@@ -477,8 +481,9 @@
         <item name="boxCornerRadiusTopStart">10dp</item>
         <item name="boxStrokeWidth">0dp</item>
         <item name="boxStrokeWidthFocused">0dp</item>
-        <item name="hintTextColor">@color/signal_accent_primary</item>
+        <item name="hintTextColor">@color/signal_text_hint</item>
         <item name="android:textColorHint">@color/signal_text_hint</item>
+        <item name="materialThemeOverlay">@style/ThemeOverlay.Signal.TextInputEditText.FilledBox</item>
     </style>
 
     <style name="Widget.Signal.TextInputLayout.FilledBox.ContactNameEditor">
