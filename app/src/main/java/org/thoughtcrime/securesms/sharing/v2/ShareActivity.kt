@@ -168,15 +168,23 @@ class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.C
       intent.action == Intent.ACTION_SEND && intent.hasExtra(Intent.EXTRA_STREAM) -> {
         intent.getParcelableExtra<Uri>(Intent.EXTRA_STREAM)?.let {
           Result.success(UnresolvedShareData.ExternalSingleShare(it, intent.type))
-        } ?: Result.failure(IntentError.SEND_STREAM)
+        } ?: extractSingleExtraTextFromIntent(IntentError.SEND_STREAM)
       }
       intent.action == Intent.ACTION_SEND && intent.hasExtra(Intent.EXTRA_TEXT) -> {
-        intent.getCharSequenceExtra(Intent.EXTRA_TEXT)?.let {
-          Result.success(UnresolvedShareData.ExternalPrimitiveShare(it))
-        } ?: Result.failure(IntentError.SEND_TEXT)
+        extractSingleExtraTextFromIntent()
       }
       else -> null
     } ?: Result.failure(IntentError.UNKNOWN)
+  }
+
+  private fun extractSingleExtraTextFromIntent(fallbackError: IntentError = IntentError.UNKNOWN): Result<UnresolvedShareData, IntentError> {
+    return if (intent.hasExtra(Intent.EXTRA_TEXT)) {
+      intent.getCharSequenceExtra(Intent.EXTRA_TEXT)?.let {
+        Result.success(UnresolvedShareData.ExternalPrimitiveShare(it))
+      } ?: Result.failure(IntentError.SEND_TEXT)
+    } else {
+      Result.failure(fallbackError)
+    }
   }
 
   private fun ensureFragment(resolvedShareData: ResolvedShareData) {
