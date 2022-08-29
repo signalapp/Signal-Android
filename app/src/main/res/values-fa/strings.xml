@@ -171,7 +171,7 @@
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">داستان‌های من</string>
   <!--Action for creating a new story-->
-  <string name="ContactsCursorLoader_new_story">داستان جدید</string>
+  <string name="ContactsCursorLoader_new_story">استوری جدید</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">ارسال پیام به  %s</string>
   <string name="ContactsDatabase_signal_call_s">تماس سیگنال با %s</string>
@@ -430,9 +430,11 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">خطا در ثبت عکس پروفایل</string>
   <string name="CreateProfileActivity_problem_setting_profile">مشکل در ثبت پروفایل</string>
   <string name="CreateProfileActivity_set_up_your_profile">پروفایل خود را برپا کنید</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">نمایه شما و تغییرات آن برای افراد، مخاطبان و گروه‌هایی که به آن‌ها پیام می‌فرستید قابل مشاهده خواهد بود.</string>
   <string name="CreateProfileActivity_set_avatar_description">تنظیم عکس پروفایل</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
+  <string name="ProfileCreateFragment__profiles_are_visible_to_contacts_and_people_you_message">نمایه‌ها برای افراد، مخاطبان و گروه‌هایی که به آن‌ها پیام می‌فرستید قابل مشاهده هستند.</string>
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">چه کسی می‌تواند من را با شماره‌تلفن پیدا کند؟</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -949,7 +951,7 @@
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">اعلان‌ها روشن شوند؟</string>
   <string name="NotificationsMegaphone_never_miss_a_message">هیچوقت پیامی از مخاطب‌ها و گروه‌هایتان از دست ندهید.</string>
-  <string name="NotificationsMegaphone_turn_on">روشن</string>
+  <string name="NotificationsMegaphone_turn_on">روشن کردن</string>
   <string name="NotificationsMegaphone_not_now">حالا نه</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">پیام چندرسانه‌ای</string>
@@ -2234,6 +2236,7 @@
   <string name="preferences__storage">حافظه</string>
   <string name="preferences__payments">پرداخت‌ها</string>
   <!--Privacy settings payments section description-->
+  <string name="preferences__payment_lock">قفل پرداخت</string>
   <string name="preferences__payments_beta">پرداخت‌ها (بتا)</string>
   <string name="preferences__conversation_length_limit">محدودیت طول مکالمه</string>
   <string name="preferences__keep_messages">نگاه داشتن پیام‌ها</string>
@@ -2403,9 +2406,11 @@
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">مشاهدهٔ شرایط MobileCoin</string>
   <string name="PaymentsHomeFragment__payments_not_available">پرداخت‌ها در سیگنال دیگر در دسترس نیستند. شما هنوز می‌توانید به صرافی انتقال اعتبار دهید ولی دیگر نمی‌توانید پرداخت‌ها را دریافت یا اعتبار اضافه کنید.</string>
   <!--Alert dialog title which shows up after a payment to turn on payment lock-->
+  <string name="PaymentsHomeFragment__turn_on">قفل پرداخت برای ارسال‌های آینده فعال شود؟</string>
   <!--Alert dialog description for why payment lock should be enabled before sending payments-->
+  <string name="PaymentsHomeFragment__add_an_additional_layer">یک لایه امنیتی بیشتر اضافه کنید و قفل صفحه اندروید یا اثر انگشت را برای انتقال وجه الزامی کنید.</string>
   <!--Alert dialog button to enable payment lock-->
-  <string name="PaymentsHomeFragment__enable">روشن کن</string>
+  <string name="PaymentsHomeFragment__enable">فعال کردن</string>
   <!--Alert dialog button to not enable payment lock for now-->
   <string name="PaymentsHomeFragment__not_now">حالا نه</string>
   <!--PaymentsAddMoneyFragment-->
@@ -2489,8 +2494,11 @@
   <string name="ConfirmPayment__payment_will_continue_processing">پردازش پرداخت‌ها ادامه خواهد یافت</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">گیرندهٔ نامعتبر</string>
   <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
+  <string name="ConfirmPaymentFragment__unlock_to_send_payment">برای ارسال پرداخت، قفل را باز کنید</string>
   <!--Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <string name="ConfirmPaymentFragment__failed_to_show_payment_lock">قفل پرداخت نمایش داده نشد</string>
   <!--Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <string name="ConfirmPaymentFragment__you_enabled_payment_lock_in_the_settings">شما قفل پرداخت را در تنظیمات فعال کردید، اما نشان داده نمی‌شود.</string>
   <!--Button in a dialog that will take the user to the privacy settings-->
   <string name="ConfirmPaymentFragment__go_to_settings">رفتن به تنظیمات </string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">این شخص پرداخت‌ها را فعال نکرده است</string>
@@ -3312,9 +3320,13 @@
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">یک زمان‌سنج پیام ناپدید شونده پیش‌فرض برای همهٔ گفتگوهایی که شما آغاز می‌کنید تنظیم کنید.</string>
   <!--Summary for stories preference to launch into story privacy settings-->
   <string name="PrivacySettingsFragment__manage_your_stories">استوری‌های خود و کسانی که می‌توانند آن‌ها را مشاهده کنند را مدیریت کنید</string>
+  <string name="PrivacySettingsFragment__payment_lock_require_lock">برای انتقال پول، قفل صفحه اندروید یا اثر انگشت را الزامی کنید</string>
   <!--Alert dialog title when payment lock cannot be enabled-->
+  <string name="PrivacySettingsFragment__cant_enable_title">قفل پرداخت فعال نمی‌شود</string>
   <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <string name="PrivacySettingsFragment__cant_enable_description">برای استفاده از قفل پرداخت، باید ابتدا قفل صفحه یا شناسه اثرانگشت را در تنظیمات تلفن خود فعال کنید.</string>
   <!--Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings-->
+  <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">پیمایش به تنظیمات سیستم انجام نشد</string>
   <!--Alert dialog button to go to phone settings-->
   <string name="PrivacySettingsFragment__go_to_settings">رفتن به تنظیمات </string>
   <!--Alert dialog button to cancel the dialog-->
@@ -3711,9 +3723,13 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">خطای شبکه. اتصال خود را بررسی و دوباره امتحان کنید.</string>
   <string name="NetworkFailure__retry">تلاش مجدد</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__cant_send_gift">ارسال هدیه ممکن نیست</string>
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__target_does_not_support_gifting">این گیرنده از نسخه‌ای از سیگنال استفاده می‌کند که نمی‌تواند نشان‌های هدیه را دریافت کند. وقتی به آخرین نسخه به‌روزرسانی کند، می‌تواند هدیه دریافت کند.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__couldnt_send_gift">ارسال هدیه انجام نشد</string>
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__please_check_your_network_connection">هدیه شما به‌دلیل خطای شبکه ارسال نشد. اتصال خود را بررسی و دوباره تلاش کنید.</string>
   <!--Gift message view title-->
   <string name="GiftMessageView__gift_badge">نشان هدیه</string>
   <!--Gift message view expiry information-->
@@ -4213,7 +4229,7 @@
   <!--Label for a button to dismiss a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->
   <string name="TurnOffCircumventionMegaphone_no_thanks">نه ممنون</string>
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
-  <string name="TurnOffCircumventionMegaphone_turn_off">خاموش</string>
+  <string name="TurnOffCircumventionMegaphone_turn_off">خاموش کردن</string>
   <!--Conversation Item label for when you react to someone else\'s story-->
   <string name="ConversationItem__you_reacted_to_s_story">شما به استوری %1$s واکنش نشان دادید</string>
   <!--Conversation Item label for reactions to your story-->
@@ -4280,15 +4296,7 @@
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">حالا نه</string>
   <!--Label under name for private stories-->
-  <plurals name="ContactSearchItems__private_story_d_viewers">
-    <item quantity="one">استوری خصوصی · %1$d بازدیدکننده</item>
-    <item quantity="other">استوری خصوصی · %1$d بازدیدکننده</item>
-  </plurals>
   <!--Label under name for group stories-->
-  <plurals name="ContactSearchItems__group_story_d_viewers">
-    <item quantity="one">استوری گروهی · %1$d بازدید کننده</item>
-    <item quantity="other">استوری گروهی · %1$d بازدید کننده</item>
-  </plurals>
   <!--Label under name for my story-->
   <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
     <item quantity="one">%1$s · %2$d بازدیدکننده</item>
@@ -4383,7 +4391,7 @@
   <!--Context menu label for 1:1 contacts to remove from send-->
   <string name="SafetyNumberReviewConnectionsFragment__remove">حذف</string>
   <!--Title of initial My Story settings configuration shown when sending to My Story for the first time-->
-  <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">حریم خصوصی استوری من</string>
+  <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">حریم شخصی استوری من</string>
   <!--Subtitle of initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">انتخاب کنید چه کسی می‌تواند پست‌های استوری من را ببیند. همیشه می‌توانید تنظیمات مربوطه را تغییر دهید.</string>
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->

@@ -173,7 +173,7 @@
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Мої історії</string>
   <!--Action for creating a new story-->
-  <string name="ContactsCursorLoader_new_story">Нова історія</string>
+  <string name="ContactsCursorLoader_new_story">Нова сторі</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Повідомлення %s</string>
   <string name="ContactsDatabase_signal_call_s">Виклик Signal %s</string>
@@ -472,9 +472,11 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">Не вдалося встановити фото профілю</string>
   <string name="CreateProfileActivity_problem_setting_profile">Не вдалося встановити профіль</string>
   <string name="CreateProfileActivity_set_up_your_profile">Налаштувати ваш профайл</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Ваш профіль і зміни в ньому бачитимуть ваші співрозмовники, контакти та групи.</string>
   <string name="CreateProfileActivity_set_avatar_description">Встановити фото профілю</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
+  <string name="ProfileCreateFragment__profiles_are_visible_to_contacts_and_people_you_message">Профілі можуть бачити ваші співрозмовники, контакти і групи.</string>
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">Хто може знайти мене за номером телефону?</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -2408,6 +2410,7 @@
   <string name="preferences__storage">Сховище</string>
   <string name="preferences__payments">Платежі</string>
   <!--Privacy settings payments section description-->
+  <string name="preferences__payment_lock">Захист платежів</string>
   <string name="preferences__payments_beta">Платежі (Бета)</string>
   <string name="preferences__conversation_length_limit">Обмеження довжини розмови</string>
   <string name="preferences__keep_messages">Зберігати повідомлення</string>
@@ -2577,7 +2580,9 @@
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">Дивитись умови використання MobileCoin</string>
   <string name="PaymentsHomeFragment__payments_not_available">Платежі у Signal більше недоступні. Ви все ще можете переказати кошти на обмін, але більше не зможете надсилати та отримувати платежі, поповнювати рахунок.</string>
   <!--Alert dialog title which shows up after a payment to turn on payment lock-->
+  <string name="PaymentsHomeFragment__turn_on">Увімкнути Захист платежів для майбутніх операцій?</string>
   <!--Alert dialog description for why payment lock should be enabled before sending payments-->
+  <string name="PaymentsHomeFragment__add_an_additional_layer">Забезпечте додатковий захист платежів, увімкнувши розблокування екрана Android чи розблокування відбитком пальця.</string>
   <!--Alert dialog button to enable payment lock-->
   <string name="PaymentsHomeFragment__enable">Увімкнути</string>
   <!--Alert dialog button to not enable payment lock for now-->
@@ -2663,8 +2668,11 @@
   <string name="ConfirmPayment__payment_will_continue_processing">Обробка оплати продовжуватиметься</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">Неправильний отримувач</string>
   <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
+  <string name="ConfirmPaymentFragment__unlock_to_send_payment">Розблокуйте, щоб надіслати платіж</string>
   <!--Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <string name="ConfirmPaymentFragment__failed_to_show_payment_lock">Не вдалося відобразити захист платежів</string>
   <!--Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <string name="ConfirmPaymentFragment__you_enabled_payment_lock_in_the_settings">Ви увімкнули захист платежів у налаштуваннях, але його не вдалося відобразити.</string>
   <!--Button in a dialog that will take the user to the privacy settings-->
   <string name="ConfirmPaymentFragment__go_to_settings">Перейдіть до налаштувань</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Ця особа не активувала платежі</string>
@@ -3510,9 +3518,13 @@
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Встановіть таймер зникнення повідомлень за замовчуванням для усіх нових чатів, які ви створите.</string>
   <!--Summary for stories preference to launch into story privacy settings-->
   <string name="PrivacySettingsFragment__manage_your_stories">Керуйте своїми сторіз і вибирайте, хто може їх переглядати</string>
+  <string name="PrivacySettingsFragment__payment_lock_require_lock">Увімкніть розблокування екрана Android чи розблокування відбитком пальця для переказу коштів</string>
   <!--Alert dialog title when payment lock cannot be enabled-->
+  <string name="PrivacySettingsFragment__cant_enable_title">Не вдалося увімкнути захист платежів</string>
   <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <string name="PrivacySettingsFragment__cant_enable_description">Щоб активувати захист платежів, потрібно спочатку увімкнути блокування екрана чи розблокування відбитком пальця в налаштуваннях телефону.</string>
   <!--Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings-->
+  <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">Не вдалося перейти до налаштувань системи</string>
   <!--Alert dialog button to go to phone settings-->
   <string name="PrivacySettingsFragment__go_to_settings">Перейдіть до налаштувань</string>
   <!--Alert dialog button to cancel the dialog-->
@@ -3761,7 +3773,7 @@
     <item quantity="other">Не вдалось переслати повідомлення тому що вони більше недоступні.</item>
   </plurals>
   <!--Error message shown when attempting to select a group to forward/share but it\'s announcement only and you are not an admin-->
-  <string name="MultiselectForwardFragment__only_admins_can_send_messages_to_this_group">Лише адміністратори можуть відправити повідомлення у цю групу.</string>
+  <string name="MultiselectForwardFragment__only_admins_can_send_messages_to_this_group">Лише адміністратори можуть відправляти повідомлення у цю групу.</string>
   <string name="MultiselectForwardFragment__limit_reached">Ліміт досягнуто</string>
   <!--Media V2-->
   <string name="MediaReviewFragment__add_a_message">Додати повідомлення</string>
@@ -3921,9 +3933,13 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Помилка мережі. Перевірте з\'єднання та спробуйте ще.</string>
   <string name="NetworkFailure__retry">Повторити</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__cant_send_gift">Не вдається надіслати подарунок</string>
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__target_does_not_support_gifting">Отримувач використовує застарілу версію Signal і зможе отримати подарунковий значок, коли оновить версію Signal до останньої.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__couldnt_send_gift">Не вдалося надіслати подарунок</string>
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__please_check_your_network_connection">Подарунок не вдалося надіслати через помилку мережі. Перевірте підключення і спробуйте ще раз.</string>
   <!--Gift message view title-->
   <string name="GiftMessageView__gift_badge">Емблема у подарунок</string>
   <!--Gift message view expiry information-->
@@ -4506,19 +4522,7 @@
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Не зараз</string>
   <!--Label under name for private stories-->
-  <plurals name="ContactSearchItems__private_story_d_viewers">
-    <item quantity="one">Приватна сторі · %1$d глядач</item>
-    <item quantity="few">Приватна сторі · %1$d глядачі</item>
-    <item quantity="many">Приватна сторі · %1$d глядачів</item>
-    <item quantity="other">Приватна сторі · %1$d глядачів(-а)</item>
-  </plurals>
   <!--Label under name for group stories-->
-  <plurals name="ContactSearchItems__group_story_d_viewers">
-    <item quantity="one">Групова сторі · %1$d глядач</item>
-    <item quantity="few">Групова сторі · %1$d гладачі</item>
-    <item quantity="many">Групова сторі · %1$d глядачів</item>
-    <item quantity="other">Групова сторі · %1$d глядачів(-а)</item>
-  </plurals>
   <!--Label under name for my story-->
   <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
     <item quantity="one">%1$s · %2$d глядач</item>

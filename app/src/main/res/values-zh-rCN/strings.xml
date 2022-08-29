@@ -409,9 +409,11 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">设置头像出错</string>
   <string name="CreateProfileActivity_problem_setting_profile">设置个人资料出错</string>
   <string name="CreateProfileActivity_set_up_your_profile">设置个人资料</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">您的个人资料以及您对其做的更改将会对您发送消息的对象、联系人及群组可见。</string>
   <string name="CreateProfileActivity_set_avatar_description">设置头像</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
+  <string name="ProfileCreateFragment__profiles_are_visible_to_contacts_and_people_you_message">个人资料对您发送消息的对象、联系人及群组可见。</string>
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">谁可以通过电话号码找到我？</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -2151,6 +2153,7 @@
   <string name="preferences__storage">存储</string>
   <string name="preferences__payments">付款</string>
   <!--Privacy settings payments section description-->
+  <string name="preferences__payment_lock">付款锁</string>
   <string name="preferences__payments_beta">付款（Beta 版）</string>
   <string name="preferences__conversation_length_limit">对话长度限制</string>
   <string name="preferences__keep_messages">保留消息</string>
@@ -2320,7 +2323,9 @@
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">查看 MobileCoin 条款</string>
   <string name="PaymentsHomeFragment__payments_not_available">Signal 的付款不再可用，不过您仍可将资金转移至交易平台，但是不再能够收发付款或添加资金。</string>
   <!--Alert dialog title which shows up after a payment to turn on payment lock-->
+  <string name="PaymentsHomeFragment__turn_on">要为以后的付款开启付款锁吗？</string>
   <!--Alert dialog description for why payment lock should be enabled before sending payments-->
+  <string name="PaymentsHomeFragment__add_an_additional_layer">转账时需要 Android 屏幕锁或指纹识别，多加一重安全保障。</string>
   <!--Alert dialog button to enable payment lock-->
   <string name="PaymentsHomeFragment__enable">开启</string>
   <!--Alert dialog button to not enable payment lock for now-->
@@ -2406,8 +2411,11 @@
   <string name="ConfirmPayment__payment_will_continue_processing">付款将继续处理</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">无效接收人</string>
   <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
+  <string name="ConfirmPaymentFragment__unlock_to_send_payment">解锁以付款</string>
   <!--Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <string name="ConfirmPaymentFragment__failed_to_show_payment_lock">无法显示付款锁</string>
   <!--Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <string name="ConfirmPaymentFragment__you_enabled_payment_lock_in_the_settings">您在设置中启用了付款锁，但系统无法显示该锁。</string>
   <!--Button in a dialog that will take the user to the privacy settings-->
   <string name="ConfirmPaymentFragment__go_to_settings">前往设置</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">此人尚未激活付款</string>
@@ -3218,9 +3226,13 @@
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">对于您开启的全部新聊天，设置默认的限时消息计时器。</string>
   <!--Summary for stories preference to launch into story privacy settings-->
   <string name="PrivacySettingsFragment__manage_your_stories">管理您的动态和可见对象</string>
+  <string name="PrivacySettingsFragment__payment_lock_require_lock">转账时需要 Android 屏幕锁或指纹识别</string>
   <!--Alert dialog title when payment lock cannot be enabled-->
+  <string name="PrivacySettingsFragment__cant_enable_title">无法启用付款锁</string>
   <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <string name="PrivacySettingsFragment__cant_enable_description">如要使用付款锁，您必须首先在您的手机设置中启用屏幕锁或指纹 ID 识别。</string>
   <!--Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings-->
+  <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">无法前往系统设置</string>
   <!--Alert dialog button to go to phone settings-->
   <string name="PrivacySettingsFragment__go_to_settings">前往设置</string>
   <!--Alert dialog button to cancel the dialog-->
@@ -3611,9 +3623,13 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">网络出错。请检查您的网络连接并重试。</string>
   <string name="NetworkFailure__retry">重试</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__cant_send_gift">无法发送礼物</string>
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__target_does_not_support_gifting">接收人使用的 Signal 版本无法接收礼品徽章。对方将 Signal 更新到最新版本后即可接收礼物。</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__couldnt_send_gift">无法发送礼物</string>
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__please_check_your_network_connection">由于出现网络错误，您的礼物无法发送。请检查您的互联网连接并重试。</string>
   <!--Gift message view title-->
   <string name="GiftMessageView__gift_badge">礼品徽章</string>
   <!--Gift message view expiry information-->
@@ -4172,13 +4188,7 @@
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">稍后再说</string>
   <!--Label under name for private stories-->
-  <plurals name="ContactSearchItems__private_story_d_viewers">
-    <item quantity="other">私密动态 · %1$d 位访客</item>
-  </plurals>
   <!--Label under name for group stories-->
-  <plurals name="ContactSearchItems__group_story_d_viewers">
-    <item quantity="other">群组动态 · %1$d 位访客</item>
-  </plurals>
   <!--Label under name for my story-->
   <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
     <item quantity="other">%1$s · %2$d 位访客</item>

@@ -170,7 +170,7 @@
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Cerita Saya</string>
   <!--Action for creating a new story-->
-  <string name="ContactsCursorLoader_new_story">Cerita Baru</string>
+  <string name="ContactsCursorLoader_new_story">Cerita baru</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Mesej %s</string>
   <string name="ContactsDatabase_signal_call_s">Panggilan Signal %s</string>
@@ -409,9 +409,11 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">Ralat menetapkan foto profil</string>
   <string name="CreateProfileActivity_problem_setting_profile">Masalah menetapkan profil</string>
   <string name="CreateProfileActivity_set_up_your_profile">Tetapkan profil anda</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Profil dan perubahan anda kepadanya akan boleh dilihat kepada orang yang anda mesej, kenalan dan kumpulan.</string>
   <string name="CreateProfileActivity_set_avatar_description">Tetapkan avatar</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
+  <string name="ProfileCreateFragment__profiles_are_visible_to_contacts_and_people_you_message">Profil anda kepadanya akan boleh dilihat kepada orang yang anda mesej, kenalan dan kumpulan.</string>
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">Siapa yang boleh cari saya melalui nombor?</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -2141,6 +2143,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="preferences__storage">Penyimpanan</string>
   <string name="preferences__payments">Pembayaran</string>
   <!--Privacy settings payments section description-->
+  <string name="preferences__payment_lock">Kunci pembayaran</string>
   <string name="preferences__payments_beta">Pembayaran (Beta)</string>
   <string name="preferences__conversation_length_limit">Had panjang perbualan</string>
   <string name="preferences__keep_messages">Simpan mesej</string>
@@ -2310,7 +2313,9 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">Lihat terma MobileCoin</string>
   <string name="PaymentsHomeFragment__payments_not_available">Pembayaran dalam Signal tidak lagi tersedia. Anda masih boleh memindah dana ke pertukaran tetapi anda tidak lagi dapat menghantar dan menerima pembayaran atau menambah dana.</string>
   <!--Alert dialog title which shows up after a payment to turn on payment lock-->
+  <string name="PaymentsHomeFragment__turn_on">Hidupkan Kunci Pembayaran untuk penghantaran akan datang?</string>
   <!--Alert dialog description for why payment lock should be enabled before sending payments-->
+  <string name="PaymentsHomeFragment__add_an_additional_layer">Tambahkan lapisan keselamatan dan perlukan kunci skrin Android atau cap jari untuk menderma.</string>
   <!--Alert dialog button to enable payment lock-->
   <string name="PaymentsHomeFragment__enable">Hidupkan</string>
   <!--Alert dialog button to not enable payment lock for now-->
@@ -2396,8 +2401,11 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="ConfirmPayment__payment_will_continue_processing">Pembayaran akan terus diproses</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">Penerima tidak sah</string>
   <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
+  <string name="ConfirmPaymentFragment__unlock_to_send_payment">Buka kunci untuk Menghantar Pembayaran</string>
   <!--Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <string name="ConfirmPaymentFragment__failed_to_show_payment_lock">Gagal untuk menunjukkan kunci pembayaran</string>
   <!--Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <string name="ConfirmPaymentFragment__you_enabled_payment_lock_in_the_settings">Anda mendayakan kunci pembayaran dalam tetapan, tapi ia tidak boleh ditunjukkan.</string>
   <!--Button in a dialog that will take the user to the privacy settings-->
   <string name="ConfirmPaymentFragment__go_to_settings">Pergi ke tetapan</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Orang ini belum mengaktifkan pembayaran</string>
@@ -3208,9 +3216,13 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Tetapkan pemasa mesej hilang lalai untuk semua sembang baharu yang anda mulakan.</string>
   <!--Summary for stories preference to launch into story privacy settings-->
   <string name="PrivacySettingsFragment__manage_your_stories">Urus cerita anda dan siapa yang boleh menontonnya</string>
+  <string name="PrivacySettingsFragment__payment_lock_require_lock">Perlukan kunci skrin Android atau cap jari untuk menderma</string>
   <!--Alert dialog title when payment lock cannot be enabled-->
+  <string name="PrivacySettingsFragment__cant_enable_title">Tidak boleh mendayakan kunci pembayaran</string>
   <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <string name="PrivacySettingsFragment__cant_enable_description">Untuk menggunakan Kunci Pembayaran, mula-mula sekali anda perlu mendayakan kunci skrin atau  ID cap jari dalam tetapan telefon anda.</string>
   <!--Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings-->
+  <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">Gagal untuk menavigasi ke tetapan sistem</string>
   <!--Alert dialog button to go to phone settings-->
   <string name="PrivacySettingsFragment__go_to_settings">Pergi ke tetapan</string>
   <!--Alert dialog button to cancel the dialog-->
@@ -3601,9 +3613,13 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Ralat rangkaian. Periksa sambungan anda dan cuba lagi.</string>
   <string name="NetworkFailure__retry">Cuba Semula</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__cant_send_gift">Tidak boleh menghantar hadiah</string>
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__target_does_not_support_gifting">Penerima ini menggunakan Signal versi yang tidak boleh menerima lencana hadiah. Mereka boleh menerima hadiah apabila mereka mengemas kini kepada versi terbaru.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__couldnt_send_gift">Tidak boleh menghantar hadiah</string>
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__please_check_your_network_connection">Hadiah anda tidak boleh dihantar kerana ralat rangkaian. Periksa sambungan anda dan cuba lagi.</string>
   <!--Gift message view title-->
   <string name="GiftMessageView__gift_badge">Lencana hadiah</string>
   <!--Gift message view expiry information-->
@@ -4163,11 +4179,11 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="ExpiredGiftSheetConfiguration__not_now">Bukan sekarang</string>
   <!--Label under name for private stories-->
   <plurals name="ContactSearchItems__private_story_d_viewers">
-    <item quantity="other">Cerita Peribadi . %1$d penonton</item>
+    <item quantity="other">Cerita peribadi . %1$d tontonan</item>
   </plurals>
   <!--Label under name for group stories-->
   <plurals name="ContactSearchItems__group_story_d_viewers">
-    <item quantity="other">Cerita Kumpulan . %1$d penonton</item>
+    <item quantity="other">Cerita kumpulan . %1$d tontonan</item>
   </plurals>
   <!--Label under name for my story-->
   <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">

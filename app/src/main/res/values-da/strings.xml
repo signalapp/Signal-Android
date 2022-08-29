@@ -4297,15 +4297,7 @@ nummer (%s) er ugyldigt</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Ikke nu</string>
   <!--Label under name for private stories-->
-  <plurals name="ContactSearchItems__private_story_d_viewers">
-    <item quantity="one">Privat historie · %1$d seer</item>
-    <item quantity="other">Privat historie · %1$d seere</item>
-  </plurals>
   <!--Label under name for group stories-->
-  <plurals name="ContactSearchItems__group_story_d_viewers">
-    <item quantity="one">Gruppehistorie · %1$d seer</item>
-    <item quantity="other">Gruppehistorie · %1$d seere</item>
-  </plurals>
   <!--Label under name for my story-->
   <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
     <item quantity="one">%1$s · %2$d seer</item>

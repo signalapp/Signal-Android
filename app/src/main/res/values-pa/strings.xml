@@ -171,7 +171,7 @@
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">ਮੇਰੀਆਂ ਕਹਾਣੀਆਂ</string>
   <!--Action for creating a new story-->
-  <string name="ContactsCursorLoader_new_story">ਨਵੀਂ ਕਹਾਣੀ</string>
+  <string name="ContactsCursorLoader_new_story">ਨਵੀਂ ਸਟੋਰੀ</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">ਸੁਨੇਹਾ %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal ਕਾਲ %s</string>
@@ -430,9 +430,11 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">ਪ੍ਰੋਫ਼ਾਈਲ ਫੋਟੋ ਨੂੰ ਸੈੱਟ ਕਰਨ ਵਿੱਚ ਗਲਤੀ</string>
   <string name="CreateProfileActivity_problem_setting_profile">ਪ੍ਰੋਫ਼ਾਈਲ ਬਣਾਉਣ ਵਿੱਚ ਸਮੱਸਿਆ</string>
   <string name="CreateProfileActivity_set_up_your_profile">ਆਪਣੀ ਪ੍ਰੋਫ਼ਾਈਲ ਬਣਾਓ</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">ਤੁਹਾਡੀ ਪ੍ਰੋਫਾਈਲ ਅਤੇ ਇਸ ਵਿੱਚ ਕੀਤੀਆਂ ਤਬਦੀਲੀਆਂ ਨੂੰ ਤੁਹਾਡੇ ਸੰਪਰਕ, ਗਰੁੱਪ ਅਤੇ ਉਹ ਲੋਕ ਦੇਖ ਸਕਣਗੇ ਜਿਹਨਾਂ ਨੂੰ ਤੁਸੀਂ ਸੁਨੇਹੇ ਭੇਜਦੇ ਹੋ।</string>
   <string name="CreateProfileActivity_set_avatar_description">ਅਵਤਾਰ ਤਿਆਰ ਕਰੋ</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
+  <string name="ProfileCreateFragment__profiles_are_visible_to_contacts_and_people_you_message">ਪ੍ਰੋਫਾਈਲਾਂ ਤੁਹਾਡੇ ਸੰਪਰਕਾਂ, ਗਰੁੱਪਾਂ ਅਤੇ ਉਹਨਾਂ ਲੋਕਾਂ ਨੂੰ ਦਿਖਾਈ ਦਿੰਦੀਆਂ ਹਨ ਜਿਹਨਾਂ ਨੂੰ ਤੁਸੀਂ ਸੁਨੇਹੇ ਭੇਜਦੇ ਹੋ।</string>
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">ਮੈਨੂੰ ਮੇਰੇ ਨੰਬਰ ਨਾਲ ਕੌਣ ਲੱਭ ਸਕਦਾ ਹੈ?</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -2235,6 +2237,7 @@
   <string name="preferences__storage">ਸਟੋਰੇਜ਼</string>
   <string name="preferences__payments">ਭੁਗਤਾਨ</string>
   <!--Privacy settings payments section description-->
+  <string name="preferences__payment_lock">ਭੁਗਤਾਨ ਲਾਕ</string>
   <string name="preferences__payments_beta">ਭੁਗਤਾਨ (ਬੀਟਾ)</string>
   <string name="preferences__conversation_length_limit">ਗੱਲਬਾਤ ਦੀ ਲੰਬਾਈ ਸੀਮਾ</string>
   <string name="preferences__keep_messages">ਸੁਨੇਹੇ ਰੱਖੋ</string>
@@ -2404,7 +2407,9 @@
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">MobileCoin ਨਿਯਮ ਦੇਖੋ</string>
   <string name="PaymentsHomeFragment__payments_not_available">Signal ਵਿੱਚ ਭੁਗਤਾਨ ਹੁਣ ਉਪਲਬਧ ਨਹੀਂ ਰਹੇ। ਤੁਸੀਂ ਹਾਲੇ ਵੀ ਕਿਸੇ ਐਕਸਚੇਂਜ ਵਿੱਚ ਫੰਡ ਟ੍ਰਾਂਸਫ਼ਰ ਕਰ ਸਕਦੇ ਹੋ ਪਰ ਤੁਸੀਂ ਹੁਣ ਭੁਗਤਾਨ ਭੇਜ ਅਤੇ ਪ੍ਰਾਪਤ ਨਹੀਂ ਕਰ ਸਕਦੇ ਜਾਂ ਫੰਡ ਸ਼ਾਮਲ ਨਹੀਂ ਕਰ ਸਕਦੇ।</string>
   <!--Alert dialog title which shows up after a payment to turn on payment lock-->
+  <string name="PaymentsHomeFragment__turn_on">ਕੀ ਭਵਿੱਖ ਵਿੱਚ ਭੇਜੇ ਜਾਣ ਵਾਲੇ ਭੁਗਤਾਨਾਂ ਲਈ ਭੁਗਤਾਨ ਲਾਕ ਨੂੰ ਚਾਲੂ ਕਰਨਾ ਹੈ?</string>
   <!--Alert dialog description for why payment lock should be enabled before sending payments-->
+  <string name="PaymentsHomeFragment__add_an_additional_layer">ਸੁਰੱਖਿਆ ਦੀ ਇੱਕ ਵਾਧੂ ਪਰਤ ਸ਼ਾਮਲ ਕਰੋ ਅਤੇ ਫੰਡ ਟ੍ਰਾਂਸਫਰ ਕਰਨ ਲਈ Android ਸਕ੍ਰੀਨ ਲਾਕ ਜਾਂ ਫਿੰਗਰਪ੍ਰਿੰਟ ਨੂੰ ਲਾਜ਼ਮੀ ਬਣਾਓ।</string>
   <!--Alert dialog button to enable payment lock-->
   <string name="PaymentsHomeFragment__enable">ਚਾਲੂ ਕਰੋ</string>
   <!--Alert dialog button to not enable payment lock for now-->
@@ -2490,8 +2495,11 @@
   <string name="ConfirmPayment__payment_will_continue_processing">ਭੁਗਤਾਨ ਤੇ ਕਾਰਵਾਈ ਜਾਰੀ ਰਹੇਗੀ</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">ਗੈਰ-ਵਾਜਬ ਰਸੀਦ</string>
   <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
+  <string name="ConfirmPaymentFragment__unlock_to_send_payment">ਭੁਗਤਾਨ ਕਰਨ ਲਈ ਅਣਲਾਕ ਕਰੋ</string>
   <!--Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <string name="ConfirmPaymentFragment__failed_to_show_payment_lock">ਭੁਗਤਾਨ ਲਾਕ ਦਿਖਾਉਣ ਵਿੱਚ ਅਸਫਲ ਰਹੇ</string>
   <!--Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <string name="ConfirmPaymentFragment__you_enabled_payment_lock_in_the_settings">ਤੁਸੀਂ ਸੈਟਿੰਗਾਂ ਵਿੱਚ ਭੁਗਤਾਨ ਲਾਕ ਨੂੰ ਸਮਰੱਥ ਕੀਤਾ ਹੈ, ਪਰ ਇਸ ਨੂੰ ਦਿਖਾਇਆ ਨਹੀਂ ਜਾ ਸਕਦਾ।</string>
   <!--Button in a dialog that will take the user to the privacy settings-->
   <string name="ConfirmPaymentFragment__go_to_settings">ਸੈਟਿੰਗਾਂ \'ਤੇ ਜਾਓ</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">ਇਸ ਵਿਅਕਤੀ ਕੋਲ ਕੋਈ ਸਰਗਰਮ ਭੁਗਤਾਨ ਨਹੀਂ ਹਨ।</string>
@@ -3313,9 +3321,13 @@
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">ਤੁਹਾਡੇ ਦੁਆਰਾ ਸ਼ੁਰੂ ਕੀਤੀਆਂ ਸਾਰੀਆਂ ਨਵੀਆਂ ਚੈਟਾਂ ਲਈ ਅਲੋਪ ਹੋਣ ਵਾਲੇ ਸੁਨੇਹੇ ਦਾ ਡਿਫੌਲਟ ਟਾਈਮਰ ਤੈਅ ਕਰੋ।</string>
   <!--Summary for stories preference to launch into story privacy settings-->
   <string name="PrivacySettingsFragment__manage_your_stories">ਆਪਣੀਆਂ ਸਟੋਰੀਆਂ ਨੂੰ ਅਤੇ ਉਹਨਾਂ ਨੂੰ ਕੌਣ ਦੇਖ ਸਕਦਾ ਹੈ, ਇਸ ਸੈਟਿੰਗ ਨੂੰ ਪ੍ਰਬੰਧਿਤ ਕਰੋ  </string>
+  <string name="PrivacySettingsFragment__payment_lock_require_lock">ਫੰਡ ਟ੍ਰਾਂਸਫਰ ਕਰਨ ਲਈ Android ਸਕ੍ਰੀਨ ਲਾਕ ਜਾਂ ਫਿੰਗਰਪ੍ਰਿੰਟ ਨੂੰ ਲਾਜ਼ਮੀ ਬਣਾਓ।</string>
   <!--Alert dialog title when payment lock cannot be enabled-->
+  <string name="PrivacySettingsFragment__cant_enable_title">ਭੁਗਤਾਨ ਲਾਕ ਨੂੰ ਸਮਰੱਥ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ</string>
   <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <string name="PrivacySettingsFragment__cant_enable_description">ਭੁਗਤਾਨ ਲਾਕ ਦੀ ਵਰਤੋਂ ਕਰਨ ਲਈ, ਤੁਹਾਨੂੰ ਪਹਿਲਾਂ ਆਪਣੇ ਫ਼ੋਨ ਦੀਆਂ ਸੈਟਿੰਗਾਂ ਵਿੱਚ ਜਾ ਕੇ ਸਕ੍ਰੀਨ ਲਾਕ ਜਾਂ ਫਿੰਗਰਪ੍ਰਿੰਟ ਨੂੰ ਸਮਰੱਥ ਕਰਨਾ ਪਵੇਗਾ।</string>
   <!--Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings-->
+  <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">ਸਿਸਟਮ ਸੈਟਿੰਗਾਂ ਉੱਤੇ ਜਾਣ ਵਿੱਚ ਅਸਫਲ ਰਹੇ</string>
   <!--Alert dialog button to go to phone settings-->
   <string name="PrivacySettingsFragment__go_to_settings">ਸੈਟਿੰਗਾਂ \'ਤੇ ਜਾਓ</string>
   <!--Alert dialog button to cancel the dialog-->
@@ -3552,7 +3564,7 @@
     <item quantity="other">ਸੁਨੇਹੇ ਅੱਗੇ ਨਹੀਂ ਭੇਜੇ ਜਾ ਸਕੇ, ਕਿਉਂਕਿ ਉਹ ਮੌਜੂਦ ਨਹੀਂ ਰਹੇ ਹਨ।</item>
   </plurals>
   <!--Error message shown when attempting to select a group to forward/share but it\'s announcement only and you are not an admin-->
-  <string name="MultiselectForwardFragment__only_admins_can_send_messages_to_this_group">ਸਿਰਫ ਐਡਮਿਨ ਹੀ ਇਸ ਗਰੁੱਪ ਵਿੱਚ ਸੁਨੇਹੇ ਭੇਜ ਸਕਦੇ ਹਨ।</string>
+  <string name="MultiselectForwardFragment__only_admins_can_send_messages_to_this_group">ਸਿਰਫ਼ ਐਡਮਿਨ ਹੀ ਇਸ ਗਰੁੱਪ ਵਿੱਚ ਸੁਨੇਹੇ ਭੇਜ ਸਕਦੇ ਹਨ।</string>
   <string name="MultiselectForwardFragment__limit_reached">ਹੱਦ ਪੁੱਜੀ</string>
   <!--Media V2-->
   <string name="MediaReviewFragment__add_a_message">ਸੁਨੇਹਾ ਜੋੜੋ</string>
@@ -3712,9 +3724,13 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">ਨੈੱਟਵਰਕ ਗਲਤੀ। ਆਪਣੇ ਕਨੈਕਸ਼ਨ ਦੀ ਜਾਂਚ ਕਰਕੇ ਫੇਰ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
   <string name="NetworkFailure__retry">ਮੁੜ-ਕੋਸ਼ਿਸ਼ ਕਰੋ</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__cant_send_gift">ਤੋਹਫ਼ਾ ਭੇਜ ਨਹੀਂ ਸਕਦੇ</string>
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__target_does_not_support_gifting">ਇਹ ਪ੍ਰਾਪਤਕਰਤਾ Signal ਦਾ ਅਜਿਹਾ ਵਰਜ਼ਨ ਵਰਤ ਰਿਹਾ ਹੈ ਜਿਸ ਵਿੱਚ ਬੈਜ ਦਾ ਤੋਹਫ਼ੇ ਪ੍ਰਾਪਤ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ। ਨਵੇਂ ਵਰਜ਼ਨ \'ਤੇ ਅੱਪਡੇਟ ਕਰਨ ਤੋਂ ਬਾਅਦ ਹੀ ਉਹ ਤੋਹਫ਼ੇ ਪ੍ਰਾਪਤ ਕਰ ਸਕਣਗੇ।</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__couldnt_send_gift">ਤੋਹਫ਼ਾ ਭੇਜ ਨਹੀਂ ਸਕੇ</string>
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__please_check_your_network_connection">ਨੈੱਟਵਰਕ ਵਿੱਚ ਗੜਬੜੀ ਆਉਣ ਕਾਰਨ ਤੁਹਾਡਾ ਤੋਹਫ਼ਾ ਭੇਜ ਨਹੀਂ ਸਕੇ। ਆਪਣੇ ਕਨੈਕਸ਼ਨ ਦੀ ਜਾਂਚ ਕਰੋ ਅਤੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
   <!--Gift message view title-->
   <string name="GiftMessageView__gift_badge">ਬੈਜ ਦਾ ਤੋਹਫ਼ੇ ਦਿਓ</string>
   <!--Gift message view expiry information-->
@@ -4281,15 +4297,7 @@
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">ਹੁਣੇ ਨਹੀਂ</string>
   <!--Label under name for private stories-->
-  <plurals name="ContactSearchItems__private_story_d_viewers">
-    <item quantity="one">ਨਿੱਜੀ ਕਹਾਣੀ · %1$d ਦਰਸ਼ਕ</item>
-    <item quantity="other">ਨਿੱਜੀ ਸਟੋਰੀ · %1$d ਦਰਸ਼ਕ</item>
-  </plurals>
   <!--Label under name for group stories-->
-  <plurals name="ContactSearchItems__group_story_d_viewers">
-    <item quantity="one">ਗਰੁੱਪ ਕਹਾਣੀ · %1$d ਦਰਸ਼ਕ</item>
-    <item quantity="other">ਗਰੁੱਪ ਸਟੋਰੀ · %1$d ਦਰਸ਼ਕ</item>
-  </plurals>
   <!--Label under name for my story-->
   <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
     <item quantity="one">%1$s · %2$d ਦਰਸ਼ਕ</item>

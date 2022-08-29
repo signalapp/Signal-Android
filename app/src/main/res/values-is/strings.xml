@@ -171,7 +171,6 @@
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Sögurnar mínar</string>
   <!--Action for creating a new story-->
-  <string name="ContactsCursorLoader_new_story">Ný saga</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Skilaboð til %s</string>
   <string name="ContactsDatabase_signal_call_s">Hringja með Signal í %s </string>

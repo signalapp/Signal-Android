@@ -430,9 +430,11 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">प्रोफाईल फोटो सेट करण्यात त्रुटी</string>
   <string name="CreateProfileActivity_problem_setting_profile">प्रोफाईल सेट करण्यात समस्या</string>
   <string name="CreateProfileActivity_set_up_your_profile">आपली प्रोफाईल सेट अप करा</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">आपले प्रोफाइल आणि त्यामधील बदल आपण संदेश करता असे लोक, संपर्क आणि ग्रुप्स ना दृश्यमान असतील.</string>
   <string name="CreateProfileActivity_set_avatar_description">अवतार सेट करा</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
+  <string name="ProfileCreateFragment__profiles_are_visible_to_contacts_and_people_you_message">आपण संदेश पाठवता असे लोक, संपर्क आणि ग्रुप्स ना प्रोफाइल दृश्यमान असेल.</string>
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">नंबराने माझा शोध कोण घेऊ शकतात?</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -2233,6 +2235,7 @@
   <string name="preferences__storage">संचयन</string>
   <string name="preferences__payments">पेमेंट</string>
   <!--Privacy settings payments section description-->
+  <string name="preferences__payment_lock">पेमेंट लॉक</string>
   <string name="preferences__payments_beta">पेमेंट (बीटा)</string>
   <string name="preferences__conversation_length_limit">संभाषण लांबी मर्यादा</string>
   <string name="preferences__keep_messages">संदेश ठेवा</string>
@@ -2402,7 +2405,9 @@
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">MobileCoin च्या अटी पहा</string>
   <string name="PaymentsHomeFragment__payments_not_available">Signal मध्ये पेमेंट यापुढे उपलब्ध नाही. तरीही आपण फंड एक्सचेंजवर स्थानांतरित करू शकता पण आपण यापुढे पेमेंट पाठवू किंवा प्राप्त करू शकत नाही किंवा फंड जोडू शकत नाही.</string>
   <!--Alert dialog title which shows up after a payment to turn on payment lock-->
+  <string name="PaymentsHomeFragment__turn_on">भविष्यात पाठवण्यासाठी पेमेंट लॉक चालू करायचे?</string>
   <!--Alert dialog description for why payment lock should be enabled before sending payments-->
+  <string name="PaymentsHomeFragment__add_an_additional_layer">सुरक्षेचा अतिरिक्त सुरक्षा स्तर जोडा आणि पैसे ट्रान्सफर करण्यासाठी Android स्क्रिन लॉकची आवश्यकता आहे.</string>
   <!--Alert dialog button to enable payment lock-->
   <string name="PaymentsHomeFragment__enable">चालू करा</string>
   <!--Alert dialog button to not enable payment lock for now-->
@@ -2488,8 +2493,11 @@
   <string name="ConfirmPayment__payment_will_continue_processing">पेमेंट प्रक्रिया सुरू राहील</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">अवैध प्राप्तकर्ता</string>
   <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
+  <string name="ConfirmPaymentFragment__unlock_to_send_payment">पेमेंट पाठवण्यासाठी अनलॉक करा</string>
   <!--Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <string name="ConfirmPaymentFragment__failed_to_show_payment_lock">पेमेंट लॉक दाखवण्यात अयशस्वी</string>
   <!--Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <string name="ConfirmPaymentFragment__you_enabled_payment_lock_in_the_settings">आपण सेटिंग्ज मध्ये पेमेंट लॉक सक्षम केले, परंतु ते दाखवले जाऊ शकत नाही.</string>
   <!--Button in a dialog that will take the user to the privacy settings-->
   <string name="ConfirmPaymentFragment__go_to_settings">सेटिंग्ज वर जा</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">या व्यक्तीने पेमेंट सक्रिय केलेले नाही</string>
@@ -3311,9 +3319,13 @@
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">आपल्याद्वारा चालू केलेल्या सर्व नवीन चॅटसाठी पूर्वनिर्धारित हरवणारे संदेश टायमर सेट करा.</string>
   <!--Summary for stories preference to launch into story privacy settings-->
   <string name="PrivacySettingsFragment__manage_your_stories">आपल्या स्टोरीज आणि त्यांना कोण पाहू शकते ते व्यवस्थापित करा</string>
+  <string name="PrivacySettingsFragment__payment_lock_require_lock">पैसे ट्रान्सफर करण्यासाठी Android स्क्रिन लॉक किंवा फिंगरप्रिंट आवश्यक आहे</string>
   <!--Alert dialog title when payment lock cannot be enabled-->
+  <string name="PrivacySettingsFragment__cant_enable_title">पेमेंट लॉक सक्षम करू शकत नाही</string>
   <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <string name="PrivacySettingsFragment__cant_enable_description">पेमेंट लॉक वापरण्यासाठी, आपणाला आपल्या फोनच्या सेटिंग्ज मध्ये प्रथम स्क्रिन लॉक किंवा फिंगरप्रिंट ID सक्षम करणे आवश्यक आहे.</string>
   <!--Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings-->
+  <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">सिस्टीम सेटिंग्ज मध्ये सुचालन करण्यात अपयशी</string>
   <!--Alert dialog button to go to phone settings-->
   <string name="PrivacySettingsFragment__go_to_settings">सेटिंग्ज वर जा</string>
   <!--Alert dialog button to cancel the dialog-->
@@ -3710,9 +3722,13 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">नेटवर्क त्रुटी. आपले कनेक्शन तपासा आणि पुन्हा प्रयत्न करा.</string>
   <string name="NetworkFailure__retry">पुन्हा प्रयत्न करा</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__cant_send_gift">भेट पाठवू शकत नाही</string>
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__target_does_not_support_gifting">हा प्राप्तकर्ता Signal ची अशी आवृत्ती वापरत आहे जी भेट बॅजेस प्राप्त करु शकत नाही. ते जेव्हा नवीनतम आवृत्तीला अपडेट करतील तेव्हा ते भेटी प्राप्त करु शकतील.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__couldnt_send_gift">भेट पाठवू शकत नाही</string>
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__please_check_your_network_connection">नेटवर्क त्रुटीमुळे आपली भेट पाठविली जाऊ शकत नाही. आपले कनेक्शन तपासा आणि पुन्हा प्रयत्न करा.</string>
   <!--Gift message view title-->
   <string name="GiftMessageView__gift_badge">भेट बॅज</string>
   <!--Gift message view expiry information-->
@@ -4280,13 +4296,13 @@
   <string name="ExpiredGiftSheetConfiguration__not_now">आता नाही</string>
   <!--Label under name for private stories-->
   <plurals name="ContactSearchItems__private_story_d_viewers">
-    <item quantity="one">खाजगी स्टोरी  %1$d दर्शक</item>
+    <item quantity="one">खाजगी स्टोरी · %1$d दर्शक</item>
     <item quantity="other">खाजगी स्टोरी · %1$d दर्शक</item>
   </plurals>
   <!--Label under name for group stories-->
   <plurals name="ContactSearchItems__group_story_d_viewers">
-    <item quantity="one">गट स्टोरी · %1$d दर्शक</item>
-    <item quantity="other">गट स्टोरी· %1$d दर्शक</item>
+    <item quantity="one">ग्रुप स्टोरी · %1$d दर्शक</item>
+    <item quantity="other">ग्रुप स्टोरी · %1$d दर्शक</item>
   </plurals>
   <!--Label under name for my story-->
   <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">

@@ -430,9 +430,11 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">പ്രൊഫൈൽ ഫോട്ടോ ക്രമീകരിക്കുന്നതിൽ പിശക്</string>
   <string name="CreateProfileActivity_problem_setting_profile">പ്രൊഫൈൽ ക്രമീകരിക്കുന്നതിൽ പ്രശ്‌നമുണ്ട്</string>
   <string name="CreateProfileActivity_set_up_your_profile">നിങ്ങളുടെ പ്രൊഫൈൽ സജ്ജമാക്കുക</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">നിങ്ങളുടെ പ്രൊഫൈലും അതിലെ മാറ്റങ്ങളും നിങ്ങൾ സന്ദേശമയയ്ക്കുന്ന ആളുകൾക്കും കോൺടാക്റ്റുകൾക്കും ഗ്രൂപ്പുകൾക്കും ദൃശ്യമാകും.</string>
   <string name="CreateProfileActivity_set_avatar_description">അവതാർ സജ്ജമാക്കുക</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
+  <string name="ProfileCreateFragment__profiles_are_visible_to_contacts_and_people_you_message">നിങ്ങൾ സന്ദേശമയയ്‌ക്കുന്ന ആളുകൾക്കും കോൺടാക്റ്റുകൾക്കും ഗ്രൂപ്പുകൾക്കും പ്രൊഫൈലുകൾ ദൃശ്യമാണ്.</string>
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">നമ്പർ ഉപയോഗിച്ച് എന്നെ കണ്ടെത്താൻ കഴിയുന്നത് ആർക്കൊക്കെ?</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -2228,6 +2230,7 @@
   <string name="preferences__storage">സ്റ്റോറേജ്</string>
   <string name="preferences__payments">പേയ്മെന്റുകൾ</string>
   <!--Privacy settings payments section description-->
+  <string name="preferences__payment_lock">പേയ്‌മെന്റ് ലോക്ക്</string>
   <string name="preferences__payments_beta">പേയ്‌മെന്റുകൾ (ബീറ്റ)</string>
   <string name="preferences__conversation_length_limit">സംഭാഷണ ദൈർഘ്യ പരിധി</string>
   <string name="preferences__keep_messages">സന്ദേശങ്ങൾ സൂക്ഷിക്കുക</string>
@@ -2397,9 +2400,11 @@
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">മൊബൈൽ കോയിൻ നിബന്ധനകൾ കാണുക</string>
   <string name="PaymentsHomeFragment__payments_not_available">Signal-ലെ പേയ്‌മെന്റുകൾ ഇനി ലഭ്യമല്ല. നിങ്ങൾക്ക് ഇപ്പോഴും ഒരു എക്സ്ചേഞ്ചിലേക്ക് ഫണ്ടുകൾ ട്രാൻസ്ഫർ ചെയ്യാൻ കഴിയും, എന്നാൽ നിങ്ങൾക്ക് ഇനി പേയ്മെന്റുകൾ അയയ്ക്കാനും കൂടാതെ സ്വീകരിക്കാനും അല്ലെങ്കിൽ ഫണ്ടുകൾ ചേർക്കാനോ കഴിയില്ല.</string>
   <!--Alert dialog title which shows up after a payment to turn on payment lock-->
+  <string name="PaymentsHomeFragment__turn_on">ഭാവി പേയ്‌മെന്റുകൾക്ക് പേയ്‌മെന്റ് ലോക്ക് ഓണാക്കണോ?</string>
   <!--Alert dialog description for why payment lock should be enabled before sending payments-->
+  <string name="PaymentsHomeFragment__add_an_additional_layer">സുരക്ഷയുടെ ഒരു അധിക തലം ചേർക്കുകയും, പണം കൈമാറുന്നതിന് Android സ്‌ക്രീൻ ലോക്കോ വിരലടയാളമോ നിർബന്ധമാക്കി മാറ്റുകയും ചെയ്യുക.</string>
   <!--Alert dialog button to enable payment lock-->
-  <string name="PaymentsHomeFragment__enable">ഓൺ ചെയ്യുക</string>
+  <string name="PaymentsHomeFragment__enable">ഓണാക്കുക</string>
   <!--Alert dialog button to not enable payment lock for now-->
   <string name="PaymentsHomeFragment__not_now">ഇപ്പോൾ വേണ്ട</string>
   <!--PaymentsAddMoneyFragment-->
@@ -2483,8 +2488,11 @@
   <string name="ConfirmPayment__payment_will_continue_processing">പേയ്മെന്റ് പ്രോസസ്സിംഗ് തുടരും</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">അസാധുവായ സ്വീകർത്താവ്</string>
   <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
+  <string name="ConfirmPaymentFragment__unlock_to_send_payment">പേയ്‌മെന്റ് അയയ്ക്കാൻ അൺലോക്ക് ചെയ്യുക</string>
   <!--Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <string name="ConfirmPaymentFragment__failed_to_show_payment_lock">പേയ്‌മെന്റ് ലോക്ക് കാണിക്കാനായില്ല</string>
   <!--Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <string name="ConfirmPaymentFragment__you_enabled_payment_lock_in_the_settings">നിങ്ങൾ ക്രമീകരണങ്ങളിൽ പേയ്‌മെന്റ് ലോക്ക് പ്രവർത്തനക്ഷമമാക്കി, പക്ഷേ അത് കാണിക്കാൻ കഴിയില്ല.</string>
   <!--Button in a dialog that will take the user to the privacy settings-->
   <string name="ConfirmPaymentFragment__go_to_settings">ക്രമീകരണത്തിലേക്ക് പോകുക</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">ഈ വ്യക്തി പേയ്‌മെന്റുകൾ സജീവമാക്കിയിട്ടില്ല</string>
@@ -3307,9 +3315,13 @@
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">നിങ്ങൾ ആരംഭിച്ച എല്ലാ പുതിയ ചാറ്റുകൾക്കും ഒരു സ്ഥിരസ്ഥിതി അപ്രത്യക്ഷമാകുന്ന സന്ദേശം ടൈമർ ക്രമീകരിക്കുക.</string>
   <!--Summary for stories preference to launch into story privacy settings-->
   <string name="PrivacySettingsFragment__manage_your_stories">നിങ്ങളുടെ സ്റ്റോറികളും അവ ആർക്കൊക്കെ കാണാനാകുമെന്നും മാനേജ് ചെയ്യുക</string>
+  <string name="PrivacySettingsFragment__payment_lock_require_lock">പണം കൈമാറുന്നതിന് Android സ്‌ക്രീൻ ലോക്കോ വിരലടയാളമോ ആവശ്യമാണ്</string>
   <!--Alert dialog title when payment lock cannot be enabled-->
+  <string name="PrivacySettingsFragment__cant_enable_title">പേയ്‌മെന്റ് ലോക്ക് പ്രവർത്തനക്ഷമമാക്കാൻ കഴിയില്ല</string>
   <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <string name="PrivacySettingsFragment__cant_enable_description">പേയ്‌മെന്റ് ലോക്ക് ഉപയോഗിക്കുന്നതിന്, ആദ്യം നിങ്ങളുടെ ഫോണിന്റെ ക്രമീകരണങ്ങളിൽ സ്‌ക്രീൻ ലോക്കോ വിരലടയാള ഐഡിയോ പ്രവർത്തനക്ഷമമാക്കണം.</string>
   <!--Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings-->
+  <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">സിസ്റ്റം ക്രമീകരണങ്ങളിലേക്ക് നാവിഗേറ്റ് ചെയ്യാനായില്ല</string>
   <!--Alert dialog button to go to phone settings-->
   <string name="PrivacySettingsFragment__go_to_settings">ക്രമീകരണത്തിലേക്ക് പോകുക</string>
   <!--Alert dialog button to cancel the dialog-->
@@ -3546,7 +3558,7 @@
     <item quantity="other">സന്ദേശങ്ങള്‍ ഇനി ലഭ്യമല്ലാത്തതിനാൽ ഫോർവേഡ് ചെയ്യാനായില്ല.</item>
   </plurals>
   <!--Error message shown when attempting to select a group to forward/share but it\'s announcement only and you are not an admin-->
-  <string name="MultiselectForwardFragment__only_admins_can_send_messages_to_this_group">അഡ്മിൻമാർക്ക് മാത്രമേ ഈ ഗ്രൂപ്പിലേക്ക് സന്ദേശങ്ങള്‍ അയയ്ക്കാൻ കഴിയൂ.</string>
+  <string name="MultiselectForwardFragment__only_admins_can_send_messages_to_this_group">അഡ്‌മിൻമാർക്ക് മാത്രമേ ഈ ഗ്രൂപ്പിലേക്ക് സന്ദേശങ്ങള്‍ അയയ്‌ക്കാൻ കഴിയൂ.</string>
   <string name="MultiselectForwardFragment__limit_reached">പരിധി എത്തി</string>
   <!--Media V2-->
   <string name="MediaReviewFragment__add_a_message">ഒരു സന്ദേശം ചേര്‍ക്കുക</string>
@@ -3706,9 +3718,13 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">നെറ്റ്‌വർക്ക് പിശക്. നിങ്ങളുടെ കണക്ഷൻ പരിശോധിച്ച് വീണ്ടും ശ്രമിക്കുക.</string>
   <string name="NetworkFailure__retry">വീണ്ടും ശ്രമിക്കൂ</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__cant_send_gift">ഗിഫ്റ്റ് അയയ്ക്കാൻ കഴിയില്ല</string>
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__target_does_not_support_gifting">ഗിഫ്റ്റ് ബാഡ്‌ജുകൾ സ്വീകരിക്കാൻ കഴിയാത്ത Signal പതിപ്പാണ് ഈ സ്വീകർത്താവ് ഉപയോഗിക്കുന്നത്. ഏറ്റവും പുതിയ പതിപ്പിലേക്ക് അപ്‌ഡേറ്റ് ചെയ്യുമ്പോൾ അവർക്ക് ഗിഫ്റ്റുകൾ സ്വീകരിക്കാൻ കഴിയും.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__couldnt_send_gift">ഗിഫ്റ്റ് അയയ്ക്കാൻ കഴിഞ്ഞില്ല</string>
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__please_check_your_network_connection">ഒരു നെറ്റ്‌വർക്ക് പിശക് കാരണം നിങ്ങളുടെ ഗിഫ്റ്റ് അയയ്‌ക്കാൻ കഴിഞ്ഞില്ല. നിങ്ങളുടെ കണക്ഷൻ പരിശോധിച്ച ശേഷം വീണ്ടും ശ്രമിക്കുക.</string>
   <!--Gift message view title-->
   <string name="GiftMessageView__gift_badge">ഗിഫ്റ്റ് ബാഡ്‍ജ്</string>
   <!--Gift message view expiry information-->
@@ -4275,15 +4291,7 @@
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">ഇപ്പോൾ വേണ്ട</string>
   <!--Label under name for private stories-->
-  <plurals name="ContactSearchItems__private_story_d_viewers">
-    <item quantity="one">സ്വകാര്യ സ്റ്റോറി · %1$d ആൾ കണ്ടു</item>
-    <item quantity="other">സ്വകാര്യ സ്റ്റോറി · %1$d കാഴ്‌ചക്കാർ</item>
-  </plurals>
   <!--Label under name for group stories-->
-  <plurals name="ContactSearchItems__group_story_d_viewers">
-    <item quantity="one">ഗ്രൂപ്പ് സ്റ്റോറി · %1$d ആൾ കണ്ടു</item>
-    <item quantity="other">ഗ്രൂപ്പ് സ്റ്റോറി · %1$d കാഴ്‌ചക്കാർ</item>
-  </plurals>
   <!--Label under name for my story-->
   <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
     <item quantity="one">%1$s · %2$d ആൾ കണ്ടു</item>

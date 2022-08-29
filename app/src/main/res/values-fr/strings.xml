@@ -172,7 +172,7 @@
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Mes histoires</string>
   <!--Action for creating a new story-->
-  <string name="ContactsCursorLoader_new_story">Nouvelle histoire</string>
+  <string name="ContactsCursorLoader_new_story">Nouvelle story</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Message %s</string>
   <string name="ContactsDatabase_signal_call_s">Appel Signal %s</string>
@@ -4388,17 +4388,7 @@ Nouvelle tentative…</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Pas maintenant</string>
   <!--Label under name for private stories-->
-  <plurals name="ContactSearchItems__private_story_d_viewers">
-    <item quantity="one">Histoire privée · %1$d spectateur</item>
-    <item quantity="many">Histoire privée · %1$d spectateurs</item>
-    <item quantity="other">Histoire privée · %1$d spectateurs</item>
-  </plurals>
   <!--Label under name for group stories-->
-  <plurals name="ContactSearchItems__group_story_d_viewers">
-    <item quantity="one">Histoire de groupe · %1$d spectateur</item>
-    <item quantity="many">Histoire de groupe · %1$d spectateurs</item>
-    <item quantity="other">Histoire de groupe · %1$d spectateurs</item>
-  </plurals>
   <!--Label under name for my story-->
   <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
     <item quantity="one">%1$s · %2$d spectateur</item>

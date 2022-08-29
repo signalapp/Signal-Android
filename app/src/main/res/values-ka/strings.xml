@@ -430,9 +430,11 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">პროფილის ფოტოს დაყენებისას შეცდომა მოხდა</string>
   <string name="CreateProfileActivity_problem_setting_profile">პროფილის დაყენების პრობლემა</string>
   <string name="CreateProfileActivity_set_up_your_profile">შექმენი შენი პროფილი</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">შენს პროფილსა და მასში შეტანილ ცვლილებებს დაინახავენ შენი კონტაქტები, ჯგუფები და ის ადამიანები, ვისთანაც მიმოწერა გაქვს.</string>
   <string name="CreateProfileActivity_set_avatar_description">ავატარის დაყენება</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
+  <string name="ProfileCreateFragment__profiles_are_visible_to_contacts_and_people_you_message">შენს პროფილს ხედავენ შენი კონტაქტები, ჯგუფები და ის ადამიანები, ვისთანაც მიმოწერა გაქვს.</string>
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">ვის შეუძლია ნომრით მიპოვოს?</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -2012,8 +2014,8 @@
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">მედია-ფაილების და ჯგუფური შეტყობინებების გასაგზავნად, დააჭირე „OK“-ს და შეავსე მოთხოვნილი პარამეტრები. შენი ოპერატორის MMS პარამეტრები, როგროც წესია, შეგიძლიათ მოიძიოთ „შენი ოპერატორის APN“-ის ადგილას. ამის გაკეთება მხოლოდ ერთხელ დაგჭირდება.</string>
   <!--BadDecryptLearnMoreDialog-->
   <string name="BadDecryptLearnMoreDialog_delivery_issue">გაგზავნის პრობლემა</string>
-  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">შეტყობინება, სტიკერი, რეაქცია ან წაკითვის დასტური ვერ გამოგეგზავნება %s-სგან. შესაძლოა მან გამოგზავნა პირდაპირ, ან ჯგუფში სცადა.</string>
-  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">შეტყობინება, სტიკერი, გამოხმაურება ან წაკითხვის ქვითარი ვერ გამოგეგზავნება %s-სგან.</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">შეტყობინება, სტიკერი, რეაქცია ან წაკითვის დასტური ვერ გამოგეგზავნება %s -სგან. შესაძლოა მან გამოგზავნა პირდაპირ, ან ჯგუფში სცადა.</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">შეტყობინება, სტიკერი, რეაქცია ან წაკითხვის დასტური ვერ გამოგეგზავნება %s -სგან.</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">სახელი (სავალდებულო)</string>
   <string name="CreateProfileActivity_last_name_optional">გვარი (არასავალდებულო)</string>
@@ -2030,7 +2032,7 @@
   <string name="EditAboutFragment_encrypted">დაშიფრული</string>
   <string name="EditAboutFragment_be_kind">იყავი თავაზიანი</string>
   <string name="EditAboutFragment_coffee_lover">ყავის მოყვარული</string>
-  <string name="EditAboutFragment_free_to_chat">მიმოწერისთვის თავისუფალი</string>
+  <string name="EditAboutFragment_free_to_chat">სცალია მიმოწერისთვის</string>
   <string name="EditAboutFragment_taking_a_break">Შესვენება</string>
   <string name="EditAboutFragment_working_on_something_new"> რაღაც ახალზე მუშაობა</string>
   <!--EditProfileFragment-->
@@ -2191,7 +2193,7 @@
   <string name="preferences__led_color">LED ფერი</string>
   <string name="preferences__led_color_unknown">უცნობი</string>
   <string name="preferences__pref_led_blink_title">LED ციმციმის სიხშირე</string>
-  <string name="preferences__customize">მორგება</string>
+  <string name="preferences__customize">პერსონალიზირება</string>
   <string name="preferences__change_sound_and_vibration">ხმისა და ვიბრაციის შეცვლა</string>
   <string name="preferences__sound">ხმა</string>
   <string name="preferences__silent">ჩუმი</string>
@@ -2236,6 +2238,7 @@
   <string name="preferences__storage">მეხსიერება</string>
   <string name="preferences__payments">ტრანზაქციები</string>
   <!--Privacy settings payments section description-->
+  <string name="preferences__payment_lock">ტრანზაქციის უზრუნველყოფა</string>
   <string name="preferences__payments_beta">ტრანზაქციები (ბეტა)</string>
   <string name="preferences__conversation_length_limit">მიმოწერის სიგრძის ლიმიტი</string>
   <string name="preferences__keep_messages">შეტყობინებების შენახვა</string>
@@ -2261,8 +2264,8 @@
   <string name="preferences__support_wifi_calling">\"WiFi Calling\" თავსებადობის რეჟიმი</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">ჩართე, თუ შენი მოწყობილობა SMS/MMS-ს WiFi-ით აგზავნის (ჩართე მხოლოდ მაშინ, როცა შენს მოწყობილობაზე ჩართულია „WiFi Calling“)</string>
   <string name="preferences__incognito_keyboard">ინკოგნიტო კლავიატურა</string>
-  <string name="preferences__read_receipts">წაკითხვის დადასტურება</string>
-  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">თუ წაკითხვის დადასტურება გამორთულია, ვერ შეძლებ სხვების წაკითხვის დადასტურების ნახვას.</string>
+  <string name="preferences__read_receipts">წაკითხვის დასტური</string>
+  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">თუ წაკითხვის დასტური გამორთულია, ვერ შეძლებ სხვების წაკითხვის დასტურის ნახვას.</string>
   <string name="preferences__typing_indicators">ბეჭდვის ინდიკატორი</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">თუ ბეჭდვის ინდიკატორი გამორთულია, ვერ ნახავ სხვების ბეჭდვის ინდიკატორს.</string>
   <string name="preferences__request_keyboard_to_disable">მოითხოვე, რომ კლავიატურამ გათიშოს პერსონალიზებული სწავლა.</string>
@@ -2405,9 +2408,13 @@
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">MobileCoin-ის პირობების ნახვა</string>
   <string name="PaymentsHomeFragment__payments_not_available">ტრანზაქციები Signal-ში აღარ არის ხელმისაწვდომი. ისევ შეგიძლია თანხების გადარიცხვა ბირჟაზე, მაგრამ აღარ შეგიძლია ტრანზაქციების გაგზავნა და მიღება, ან თანხის დამატება.</string>
   <!--Alert dialog title which shows up after a payment to turn on payment lock-->
+  <string name="PaymentsHomeFragment__turn_on">ჩავრთოთ ტრანზაქციის უზრუნველყოფა სამომავლო გზავნილებისთვის?</string>
   <!--Alert dialog description for why payment lock should be enabled before sending payments-->
+  <string name="PaymentsHomeFragment__add_an_additional_layer">გააძლიერე უსაფრთხოების დონე და მოითხოვე Android-ის ეკრანის დაბლოკვა ან თითის ანაბეჭდი თანხის გადასარიცხად.</string>
   <!--Alert dialog button to enable payment lock-->
+  <string name="PaymentsHomeFragment__enable">ჩართვა</string>
   <!--Alert dialog button to not enable payment lock for now-->
+  <string name="PaymentsHomeFragment__not_now">ახლა არა</string>
   <!--PaymentsAddMoneyFragment-->
   <string name="PaymentsAddMoneyFragment__add_funds">თანხის დამატება</string>
   <string name="PaymentsAddMoneyFragment__your_wallet_address">შენი საფულის მისამართი</string>
@@ -2489,8 +2496,11 @@
   <string name="ConfirmPayment__payment_will_continue_processing">ტრანზაქციის დამუშავება გაგრძელდება</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">არასწორი მიმღები</string>
   <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
+  <string name="ConfirmPaymentFragment__unlock_to_send_payment">განბლოკე ტრანზაქციის განსახორციელებლად </string>
   <!--Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <string name="ConfirmPaymentFragment__failed_to_show_payment_lock">ტრანზაქციის უზრუნველყოფის ჩვენება ვერ მოხერხდა</string>
   <!--Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <string name="ConfirmPaymentFragment__you_enabled_payment_lock_in_the_settings">ტრანზაქციის უზრუნველყოფა პარამეტრებიდან ჩართე, მაგრამ მისი ჩვენება შეუძლებელია.</string>
   <!--Button in a dialog that will take the user to the privacy settings-->
   <string name="ConfirmPaymentFragment__go_to_settings">შედი პარამეტრებში</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">ამ ადამიანს არ აქვს გააქტიურებული ტრანზაქციები</string>
@@ -3101,7 +3111,7 @@
   <string name="ChatWallpaperFragment__reset">ახლიდან დაყენება</string>
   <string name="ChatWallpaperFragment__clear">გასუფთავება</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">ფონის სურათის წინასწარი ნახვა</string>
-  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">გსურს ჩატის ყველა ფერის გააუქმო?</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">გსურს ყველა ჩატის ფერის გაუქმება?</string>
   <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">გსურს ყველა ფონის სურათის გაუქმება?</string>
   <string name="ChatWallpaperFragment__reset_default_colors">ნაგულისხმევი ფერების გადაყენება</string>
   <string name="ChatWallpaperFragment__reset_all_colors">ყველა ფერის გადაყენება</string>
@@ -3312,9 +3322,13 @@
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">დააყენე გაქრობადი შეტყობინებებისთვის ნაგულისხმევი ტაიმერი შენს მიერ დაწყებული ყველა ახალი ჩატისთვის.</string>
   <!--Summary for stories preference to launch into story privacy settings-->
   <string name="PrivacySettingsFragment__manage_your_stories">მართე შენი Stories-ები და ვის შეუძლია მათი ნახვა</string>
+  <string name="PrivacySettingsFragment__payment_lock_require_lock">მოითხოვე Android-ის ეკრანის დაბლოკვა ან თითის ანაბეჭდი თანხის გადასატანად</string>
   <!--Alert dialog title when payment lock cannot be enabled-->
+  <string name="PrivacySettingsFragment__cant_enable_title">ტრანზაქციის უზრუნველყოფის ჩართვა ვერ მოხერხდა</string>
   <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <string name="PrivacySettingsFragment__cant_enable_description">ტრანზაქციის უზრუნველყოფის გამოსაყენებლად, ჯერ შენი ტელეფონის პარამეტრებში ეკრანის დაბლოკვა ან თითის ანაბეჭდის ID უნდა ჩართო.</string>
   <!--Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings-->
+  <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">სისტემის პარამეტრებში გადასვლა ვერ მოხერხდა</string>
   <!--Alert dialog button to go to phone settings-->
   <string name="PrivacySettingsFragment__go_to_settings">შედი პარამეტრებში</string>
   <!--Alert dialog button to cancel the dialog-->
@@ -3333,7 +3347,7 @@
   <string name="ExpireTimerSettingsFragment__1_hour">1 hour</string>
   <string name="ExpireTimerSettingsFragment__5_minutes">5 წუთით</string>
   <string name="ExpireTimerSettingsFragment__30_seconds">30 seconds</string>
-  <string name="ExpireTimerSettingsFragment__custom_time">შერჩეული დროით</string>
+  <string name="ExpireTimerSettingsFragment__custom_time">არასტანდარტული დროით</string>
   <string name="ExpireTimerSettingsFragment__set">დაყენება</string>
   <string name="ExpireTimerSettingsFragment__save">შენახვა</string>
   <string name="CustomExpireTimerSelectorView__seconds">წამები</string>
@@ -3366,7 +3380,7 @@
   <string name="ChatColorSelectionFragment__delete_color">ფერის წაშლა</string>
   <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
     <item quantity="one">ეს მორგებული ფერი %1$d ჩატშია გამოყენებული. გსურს მისი წაშლა ყველა ჩატისთვის?</item>
-    <item quantity="other">ეს შერჩეული ფერი %1$d ჩატებშია გამოყენებული. გსურს მისი წაშლა ყველა ჩატში?</item>
+    <item quantity="other">ეს არასტანდარტული ფერი %1$d ჩატებშია გამოყენებული. გსურს მისი წაშლა ყველა ჩატისთვის?</item>
   </plurals>
   <string name="ChatColorSelectionFragment__delete_chat_color">წავშალოთ ჩატის ფერი?</string>
   <!--CustomChatColorCreatorFragment-->
@@ -3551,6 +3565,7 @@
     <item quantity="other">შეტყობინებების გადაგზავნა ვერ მოხერხდა, რადგან ისინი აღარაა ხელმისაწვდომი</item>
   </plurals>
   <!--Error message shown when attempting to select a group to forward/share but it\'s announcement only and you are not an admin-->
+  <string name="MultiselectForwardFragment__only_admins_can_send_messages_to_this_group">ამ ჯგუფში შეტყობინებების გამოგზავნა მხოლოდ ადმინებს შეუძლიათ.</string>
   <string name="MultiselectForwardFragment__limit_reached">ლიმიტი მიღწეულია</string>
   <!--Media V2-->
   <string name="MediaReviewFragment__add_a_message">შეტყობინების დამატება</string>
@@ -3710,9 +3725,13 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">ქსელის ხარვეზი. შეამოწმე შენი ინტერნეტ კავშირი და თავიდან სცადე.</string>
   <string name="NetworkFailure__retry">თავიდან ცდა</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__cant_send_gift">საჩუქრის გაგზავნა ვერ მოხერხდა</string>
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__target_does_not_support_gifting">ეს მიმღები იყენებს Signal-ის ვერსიას, რომელიც სასაჩუქრე ემბლემებს ვერ იღებს. საჩუქრების მიღებას ის მაშინ შეძლებს, როცა აპის უახლეს ვერსიას დააყენებს.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__couldnt_send_gift">საჩუქრის გაგზავნა ვერ მოხერხდა</string>
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__please_check_your_network_connection">შენი საჩუქარი ქსელის შეცდომის გამო ვერ გაიგზავნა. შეამოწმე შენი ინტერნეტ კავშირი და თავიდან სცადე.</string>
   <!--Gift message view title-->
   <string name="GiftMessageView__gift_badge">ემბლემის ჩუქება</string>
   <!--Gift message view expiry information-->
@@ -4009,7 +4028,7 @@
   <!--Displayed when a story has no views-->
   <string name="StoryViewsFragment__no_views_yet">ნახვები ჯერ არაა</string>
   <!--Displayed when user has disabled receipts-->
-  <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">ჩართე წაკითხვის დადასტურება, რომ გამოგიჩნდეს ვინ ნახა შენი Story-ები.</string>
+  <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">ჩართე წაკითხვის დასტური, რომ გამოგიჩნდეს ვინ ნახა შენი Stories-ები.</string>
   <!--Button label displayed when user has disabled receipts-->
   <string name="StoryViewsFragment__go_to_settings">შედი პარამეტრებში</string>
   <!--Dialog action to remove viewer from a story-->
@@ -4279,15 +4298,7 @@
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">ახლა არა</string>
   <!--Label under name for private stories-->
-  <plurals name="ContactSearchItems__private_story_d_viewers">
-    <item quantity="one">პირადი Story-ი · %1$d მნახველი</item>
-    <item quantity="other">პირადი Story-ი · %1$d მნახველი</item>
-  </plurals>
   <!--Label under name for group stories-->
-  <plurals name="ContactSearchItems__group_story_d_viewers">
-    <item quantity="one">ჯგუფური Story-ი · %1$d მნახველი</item>
-    <item quantity="other">ჯგუფური Story-ი · %1$d მნახველი</item>
-  </plurals>
   <!--Label under name for my story-->
   <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
     <item quantity="one">%1$s · %2$d მნახველი</item>

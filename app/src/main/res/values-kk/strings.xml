@@ -2410,7 +2410,7 @@
   <!--Alert dialog title which shows up after a payment to turn on payment lock-->
   <string name="PaymentsHomeFragment__turn_on">Болашақта жіберілетін төлемдер үшін Төлем құлпын қосу керек пе?</string>
   <!--Alert dialog description for why payment lock should be enabled before sending payments-->
-  <string name="PaymentsHomeFragment__add_an_additional_layer">Қаражат аудару үшін Android экран құлпын ашуды немесе саусақ ізін енгізуді талап етіңіз, осылайша қауіпсіздік деңгейін күшейтесіз.</string>
+  <string name="PaymentsHomeFragment__add_an_additional_layer">Қаражат аудару үшін Android экран құлпын немесе саусақ ізін енгізуді талап етіңіз, осылайша қауіпсіздік деңгейін күшейтесіз.</string>
   <!--Alert dialog button to enable payment lock-->
   <string name="PaymentsHomeFragment__enable">Іске қосу</string>
   <!--Alert dialog button to not enable payment lock for now-->
@@ -3565,7 +3565,7 @@
     <item quantity="other">Хаттарды басқаға жіберу мүмкін болмады, себебі олар енді жоқ.</item>
   </plurals>
   <!--Error message shown when attempting to select a group to forward/share but it\'s announcement only and you are not an admin-->
-  <string name="MultiselectForwardFragment__only_admins_can_send_messages_to_this_group">Бұл топқа админдер ғана хат жаза алады.</string>
+  <string name="MultiselectForwardFragment__only_admins_can_send_messages_to_this_group">Бұл топқа әкімшілер ғана хат жаза алады.</string>
   <string name="MultiselectForwardFragment__limit_reached">Шекке жетті</string>
   <!--Media V2-->
   <string name="MediaReviewFragment__add_a_message">Хат қосу</string>
@@ -4298,15 +4298,7 @@
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Кейін</string>
   <!--Label under name for private stories-->
-  <plurals name="ContactSearchItems__private_story_d_viewers">
-    <item quantity="one">Жеке сторис · %1$d көрермен</item>
-    <item quantity="other">Жеке стористе· %1$d көрермен</item>
-  </plurals>
   <!--Label under name for group stories-->
-  <plurals name="ContactSearchItems__group_story_d_viewers">
-    <item quantity="one">Топтық сторис · %1$d көрермен</item>
-    <item quantity="other">Топтық стористе · %1$d көрермен</item>
-  </plurals>
   <!--Label under name for my story-->
   <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
     <item quantity="one">%1$s · %2$d көрермен</item>

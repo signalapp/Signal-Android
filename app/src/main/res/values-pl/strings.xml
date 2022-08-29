@@ -173,7 +173,7 @@
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Moje historie</string>
   <!--Action for creating a new story-->
-  <string name="ContactsCursorLoader_new_story">Nowa historia</string>
+  <string name="ContactsCursorLoader_new_story">Nowa relacja</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Wiadomość %s</string>
   <string name="ContactsDatabase_signal_call_s">Połączenie Signal %s</string>
@@ -4512,19 +4512,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Nie teraz</string>
   <!--Label under name for private stories-->
-  <plurals name="ContactSearchItems__private_story_d_viewers">
-    <item quantity="one">Historia prywatna · %1$d widz</item>
-    <item quantity="few">Historia prywatna · %1$d widzów</item>
-    <item quantity="many">Historia prywatna · %1$d widzów</item>
-    <item quantity="other">Historia prywatna · %1$d widzów</item>
-  </plurals>
   <!--Label under name for group stories-->
-  <plurals name="ContactSearchItems__group_story_d_viewers">
-    <item quantity="one">Historia grupowa · %1$d widz</item>
-    <item quantity="few">Historia grupowa · %1$d widzów</item>
-    <item quantity="many">Historia grupowa · %1$d widzów</item>
-    <item quantity="other">Historia grupowa · %1$d widzów</item>
-  </plurals>
   <!--Label under name for my story-->
   <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
     <item quantity="one">%1$s · %2$d widz</item>

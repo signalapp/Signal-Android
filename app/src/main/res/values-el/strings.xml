@@ -430,9 +430,11 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">Σφάλμα κατά τον ορισμό φωτογραφίας προφίλ</string>
   <string name="CreateProfileActivity_problem_setting_profile">Πρόβλημα στον καθορισμό του προφίλ</string>
   <string name="CreateProfileActivity_set_up_your_profile">Δημιούργησε το προφίλ σου</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Το προφίλ σου και οι αλλαγές σε αυτό θα είναι ορατά στα άτομα στα οποία στέλνεις μηνύματα, στις επαφές και στις ομάδες σου.</string>
   <string name="CreateProfileActivity_set_avatar_description">Ορισμός εικόνας προφίλ</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
+  <string name="ProfileCreateFragment__profiles_are_visible_to_contacts_and_people_you_message">Τα προφίλ είναι ορατά σε άτομα στα οποία στέλνεις μηνύματα, στις επαφές και στις ομάδες σου.</string>
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">Ποιοί μπορούν να με βρουν με τον αριθμό μου;</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -2231,6 +2233,7 @@
   <string name="preferences__storage">Αποθηκευτικός χώρος</string>
   <string name="preferences__payments">Πληρωμές</string>
   <!--Privacy settings payments section description-->
+  <string name="preferences__payment_lock">Κλείδωμα πληρωμής</string>
   <string name="preferences__payments_beta">Πληρωμές (Beta)</string>
   <string name="preferences__conversation_length_limit">Όριο μεγέθους συνομιλίας</string>
   <string name="preferences__keep_messages">Διατήρηση μηνυμάτων</string>
@@ -2400,7 +2403,9 @@
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">Προβολή όρων MobileCoin</string>
   <string name="PaymentsHomeFragment__payments_not_available">Οι πληρωμές στο Signal δεν είναι πλέον διαθέσιμες. Μπορείτε ακόμα να μεταφέρετε χρήματα προς ένα ανταλλακτήριο, αλλά δεν μπορείτε πλέον να στέλνετε και να λαμβάνετε πληρωμές ή να προσθέτετε χρήματα.</string>
   <!--Alert dialog title which shows up after a payment to turn on payment lock-->
+  <string name="PaymentsHomeFragment__turn_on">Ενεργοποίηση για το Κλείδωμα πληρωμής για μελλοντικές αποστολές;</string>
   <!--Alert dialog description for why payment lock should be enabled before sending payments-->
+  <string name="PaymentsHomeFragment__add_an_additional_layer">Πρόσθεσε ένα επιπλέον επίπεδο ασφάλειας και απαίτησε κλείδωμα οθόνης Android ή δακτυλικό αποτύπωμα για τη μεταφορά χρημάτων.</string>
   <!--Alert dialog button to enable payment lock-->
   <string name="PaymentsHomeFragment__enable">Ενεργοποίηση</string>
   <!--Alert dialog button to not enable payment lock for now-->
@@ -2486,8 +2491,11 @@
   <string name="ConfirmPayment__payment_will_continue_processing">Η επεξεργασία της πληρωμής θα συνεχιστεί</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">Μη έγκυρος παραλήπτης</string>
   <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
+  <string name="ConfirmPaymentFragment__unlock_to_send_payment">Ξεκλείδωμα για αποστολή πληρωμής</string>
   <!--Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <string name="ConfirmPaymentFragment__failed_to_show_payment_lock">Αποτυχία εμφάνισης κλειδώματος πληρωμής</string>
   <!--Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <string name="ConfirmPaymentFragment__you_enabled_payment_lock_in_the_settings">Ενεργοποίησες το κλείδωμα πληρωμής στις ρυθμίσεις, αλλά δεν μπορεί να εμφανιστεί.</string>
   <!--Button in a dialog that will take the user to the privacy settings-->
   <string name="ConfirmPaymentFragment__go_to_settings">Πήγαινε στις ρυθμίσεις</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Αυτό το άτομο δεν έχει ενεργοποιήσει τις πληρωμές</string>
@@ -3309,9 +3317,13 @@
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Ορισμός ενός προκαθορισμένου χρόνου εξαφάνισης μηνυμάτων για όλες τις συνομιλίες που ξεκινάς εσύ.</string>
   <!--Summary for stories preference to launch into story privacy settings-->
   <string name="PrivacySettingsFragment__manage_your_stories">Διαχειρίσου τις ιστορίες σου και ποιους μπορούν να τις δουν</string>
+  <string name="PrivacySettingsFragment__payment_lock_require_lock">Απαιτείται κλείδωμα οθόνης Android ή δακτυλικό αποτύπωμα για τη μεταφορά χρημάτων</string>
   <!--Alert dialog title when payment lock cannot be enabled-->
+  <string name="PrivacySettingsFragment__cant_enable_title">Δεν μπορώ να ενεργοποιήσω το κλείδωμα πληρωμής </string>
   <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <string name="PrivacySettingsFragment__cant_enable_description">Για να χρησιμοποιήσεις το Κλείδωμα πληρωμής, πρέπει πρώτα να ενεργοποιήσεις το κλείδωμα οθόνης ή το αναγνωριστικό δακτυλικού αποτυπώματος στις ρυθμίσεις του τηλεφώνου σου. </string>
   <!--Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings-->
+  <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">Αποτυχία πλοήγησης στις ρυθμίσεις συστήματος</string>
   <!--Alert dialog button to go to phone settings-->
   <string name="PrivacySettingsFragment__go_to_settings">Πήγαινε στις ρυθμίσεις</string>
   <!--Alert dialog button to cancel the dialog-->
@@ -3708,9 +3720,13 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Σφάλμα δικτύου. Έλεγξε τη σύνδεσή σου και ξαναπροσπάθησε.</string>
   <string name="NetworkFailure__retry">Επανάληψη</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__cant_send_gift">Αδυναμία αποστολής δώρου</string>
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__target_does_not_support_gifting">Αυτός ο παραλήπτης χρησιμοποιεί μια έκδοση του Signal που δεν μπορεί να λάβει σήματα δώρου. Θα μπορέσει να λάβει δώρα όταν κάνει ενημέρωση στην πιο πρόσφατη έκδοση. </string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__couldnt_send_gift">Αδυναμία αποστολής δώρου</string>
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__please_check_your_network_connection">Το δώρο δεν εστάλη λόγω σφάλματος δικτύου. Έλεγξε τη σύνδεσή σου και δοκίμασε ξανά.</string>
   <!--Gift message view title-->
   <string name="GiftMessageView__gift_badge">Έμβλημα δώρο</string>
   <!--Gift message view expiry information-->
@@ -4278,13 +4294,13 @@
   <string name="ExpiredGiftSheetConfiguration__not_now">Όχι τώρα</string>
   <!--Label under name for private stories-->
   <plurals name="ContactSearchItems__private_story_d_viewers">
-    <item quantity="one">Ιδιωτική ιστορία · %1$d θεατής</item>
-    <item quantity="other">Ιδιωτική ιστορία · %1$d θεατές</item>
+    <item quantity="one">Ιδιωτική ιστορία · %1$d προβολή</item>
+    <item quantity="other">Ιδιωτική ιστορία · %1$d προβολές</item>
   </plurals>
   <!--Label under name for group stories-->
   <plurals name="ContactSearchItems__group_story_d_viewers">
-    <item quantity="one">Ιστορία ομάδας · %1$d θεατής</item>
-    <item quantity="other">Ιστορία ομάδας · %1$d θεατές</item>
+    <item quantity="one">Ομαδική ιστορία · %1$d προβολή</item>
+    <item quantity="other">Ομαδική ιστορία · %1$d προβολές</item>
   </plurals>
   <!--Label under name for my story-->
   <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">

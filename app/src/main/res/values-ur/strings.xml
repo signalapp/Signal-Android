@@ -171,7 +171,7 @@
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">میری اسٹوریز</string>
   <!--Action for creating a new story-->
-  <string name="ContactsCursorLoader_new_story">نئی اسٹوری</string>
+  <string name="ContactsCursorLoader_new_story">نئی سٹوری</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">پیغام %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal کال %s</string>
@@ -2491,7 +2491,7 @@
   <!--Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
   <string name="ConfirmPaymentFragment__failed_to_show_payment_lock">پیمنٹ لاک دکھانے میں ناکامی ہوئی</string>
   <!--Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
-  <string name="ConfirmPaymentFragment__you_enabled_payment_lock_in_the_settings">آپ نے سیٹنگز میں پیمنٹ لاک فعال کر دیا ہے، لیکن اسے دکھایا نہیں کا سکتا۔</string>
+  <string name="ConfirmPaymentFragment__you_enabled_payment_lock_in_the_settings">آپ نے سیٹنگز میں پیمنٹ لاک فعال کر دیا ہے، لیکن اسے دکھایا نہیں جا سکتا۔</string>
   <!--Button in a dialog that will take the user to the privacy settings-->
   <string name="ConfirmPaymentFragment__go_to_settings">سیٹنگز پر جائیں</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">اس شخص نے ادائیگی فعال نہیں کی ہے</string>
@@ -3313,7 +3313,7 @@
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">آپ کے ذریعہ شروع کردہ تمام نئی چیٹس کے لئے ڈیفالٹ غائب میسیج ٹائمر مرتب کریں۔</string>
   <!--Summary for stories preference to launch into story privacy settings-->
   <string name="PrivacySettingsFragment__manage_your_stories">اپنی سٹوریز اور اس بات کا نظم کریں کہ انہیں کون دیکھ سکتا ہے</string>
-  <string name="PrivacySettingsFragment__payment_lock_require_lock">فنڈز ٹرانسفر کرنے کے لیے Android اسکرین لاک یا فنگر پرنٹ درکار ہوتا ہے</string>
+  <string name="PrivacySettingsFragment__payment_lock_require_lock">فنڈز ٹرانسفر کرنے کے لیے Android سکرین لاک یا فنگر پرنٹ درکار ہوتا ہے</string>
   <!--Alert dialog title when payment lock cannot be enabled-->
   <string name="PrivacySettingsFragment__cant_enable_title">پیمنٹ لاک فعال نہیں کر سکتے</string>
   <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
@@ -4289,15 +4289,7 @@
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">ابھی نہیں</string>
   <!--Label under name for private stories-->
-  <plurals name="ContactSearchItems__private_story_d_viewers">
-    <item quantity="one">نجی اسٹوری   %1$d ناظر</item>
-    <item quantity="other">نجی اسٹوری   %1$d ناظرین</item>
-  </plurals>
   <!--Label under name for group stories-->
-  <plurals name="ContactSearchItems__group_story_d_viewers">
-    <item quantity="one">گروپ اسٹوری   %1$d ناظر</item>
-    <item quantity="other">گروپ اسٹوری · %1$d ناظرین</item>
-  </plurals>
   <!--Label under name for my story-->
   <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
     <item quantity="one">%1$s   %2$d ناظر</item>

@@ -4729,23 +4729,7 @@
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">ليس الآن</string>
   <!--Label under name for private stories-->
-  <plurals name="ContactSearchItems__private_story_d_viewers">
-    <item quantity="zero">قصة خاصة · %1$d مشاهدين</item>
-    <item quantity="one">قصة خاصة · %1$d مشاهد</item>
-    <item quantity="two">قصة خاصة · %1$d مشاهدين</item>
-    <item quantity="few">قصة خاصة · %1$d مشاهدين</item>
-    <item quantity="many">قصة خاصة · %1$d مشاهدين</item>
-    <item quantity="other">قصة خاصة · %1$d مشاهدين</item>
-  </plurals>
   <!--Label under name for group stories-->
-  <plurals name="ContactSearchItems__group_story_d_viewers">
-    <item quantity="zero">قصة جماعية · %1$d مشاهدين</item>
-    <item quantity="one">قصة جماعية · %1$d مشاهد</item>
-    <item quantity="two">قصة جماعية · %1$d مشاهدين</item>
-    <item quantity="few">قصة جماعية · %1$d مشاهدين</item>
-    <item quantity="many">قصة جماعية · %1$d مشاهدين</item>
-    <item quantity="other">قصة جماعية · %1$d مشاهدين</item>
-  </plurals>
   <!--Label under name for my story-->
   <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
     <item quantity="zero">%1$s · %2$d مشاهدين</item>

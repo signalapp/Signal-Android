@@ -171,7 +171,7 @@
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Hikayelerim</string>
   <!--Action for creating a new story-->
-  <string name="ContactsCursorLoader_new_story">Yeni Hikaye</string>
+  <string name="ContactsCursorLoader_new_story">Yeni hikaye</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">İleti %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal Araması %s</string>
@@ -430,9 +430,11 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">Profil fotoğrafı kaydedilirken hata</string>
   <string name="CreateProfileActivity_problem_setting_profile">Profil ayarlanırken hata</string>
   <string name="CreateProfileActivity_set_up_your_profile">Profilinizi ayarlayın</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Profilin ve profilinde yaptığınız değişiklikler, mesaj gönderdiğin kişiler, kişi listendekiler ve grupların tarafından görüntülenebilir.</string>
   <string name="CreateProfileActivity_set_avatar_description">Avatar seçin</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
+  <string name="ProfileCreateFragment__profiles_are_visible_to_contacts_and_people_you_message">Profiller, mesaj gönderdiğin kişiler, kişi listendekiler ve grupların tarafından görüntülenebilir.</string>
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">Beni numaramdan kim bulabilir?</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -2234,6 +2236,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="preferences__storage">Depolama</string>
   <string name="preferences__payments">Ödemeler</string>
   <!--Privacy settings payments section description-->
+  <string name="preferences__payment_lock">Ödeme kilidi</string>
   <string name="preferences__payments_beta">Ödemeler (Beta)</string>
   <string name="preferences__conversation_length_limit">Konuşma uzunluk sınırı</string>
   <string name="preferences__keep_messages">İletileri sakla</string>
@@ -2403,7 +2406,9 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">MobileCoin şartlarını görüntüle</string>
   <string name="PaymentsHomeFragment__payments_not_available">Signal\'de Ödemeler artık mevcut değil. Yine de kambiyoya para aktarabilirsiniz ancak ödeme alıp gönderemez veya para ekleyemezsiniz.</string>
   <!--Alert dialog title which shows up after a payment to turn on payment lock-->
+  <string name="PaymentsHomeFragment__turn_on">Gelecekteki gönderiler için Ödeme Kilidi açılsın mı?</string>
   <!--Alert dialog description for why payment lock should be enabled before sending payments-->
+  <string name="PaymentsHomeFragment__add_an_additional_layer">Bir güvenlik özelliği daha ekle ve para transferlerini Android ekran kilidi veya parmak izi kullanarak yap.</string>
   <!--Alert dialog button to enable payment lock-->
   <string name="PaymentsHomeFragment__enable">Aç</string>
   <!--Alert dialog button to not enable payment lock for now-->
@@ -2489,8 +2494,11 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="ConfirmPayment__payment_will_continue_processing">Ödeme işlemi devam edecek</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">Geçersiz alıcı</string>
   <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
+  <string name="ConfirmPaymentFragment__unlock_to_send_payment">Ödeme Göndermek için Kilidi Aç</string>
   <!--Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <string name="ConfirmPaymentFragment__failed_to_show_payment_lock">Ödeme kilidi gösterilemedi</string>
   <!--Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <string name="ConfirmPaymentFragment__you_enabled_payment_lock_in_the_settings">Ayarlarda ödeme kilidini etkinleştirdin, fakat ödeme kilidi görüntülenemiyor.</string>
   <!--Button in a dialog that will take the user to the privacy settings-->
   <string name="ConfirmPaymentFragment__go_to_settings">Ayarlara git</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Bu kişi ödemeleri etkinleştirmedi</string>
@@ -3312,9 +3320,13 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Tarafınızca başlatılan tüm yeni iletiler için varsayılan kaybolan ileti zamanlayıcısı ayarlayın.</string>
   <!--Summary for stories preference to launch into story privacy settings-->
   <string name="PrivacySettingsFragment__manage_your_stories">Hikayelerini ve onları kimlerin görüntüleyebileceğini yönet</string>
+  <string name="PrivacySettingsFragment__payment_lock_require_lock">Para transferlerini Android ekran kilidi veya parmak izi kullanarak yap.</string>
   <!--Alert dialog title when payment lock cannot be enabled-->
+  <string name="PrivacySettingsFragment__cant_enable_title">Ödeme kilidi etkinleştirilemiyor</string>
   <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <string name="PrivacySettingsFragment__cant_enable_description">Ödeme Kilidi\'ni kullanmak için önce telefonunun ayarlarında ekran kilidini veya parmak izi özelliğini etkinleştirmen gerekir.</string>
   <!--Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings-->
+  <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">Sistem ayarlarına gidilemedi</string>
   <!--Alert dialog button to go to phone settings-->
   <string name="PrivacySettingsFragment__go_to_settings">Ayarlara git</string>
   <!--Alert dialog button to cancel the dialog-->
@@ -3711,9 +3723,13 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Ağ hatası. Bağlantınızı kontrol edip tekrar deneyin.</string>
   <string name="NetworkFailure__retry">Tekrar dene</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__cant_send_gift">Hediye gönderilemiyor</string>
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__target_does_not_support_gifting">Bu kişi, hediye rozetleri alamayan bir Signal sürümü kullanıyor. Ancak en son sürüme güncelleme yaptığında hediye alabilir.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__couldnt_send_gift">Hediye gönderilemedi</string>
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__please_check_your_network_connection">Bir ağ hatası nedeniyle hediyen gönderilemedi. Bağlantını kontrol et ve tekrar dene.</string>
   <!--Gift message view title-->
   <string name="GiftMessageView__gift_badge">Hediye rozeti</string>
   <!--Gift message view expiry information-->
@@ -4280,15 +4296,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Şimdi değil</string>
   <!--Label under name for private stories-->
-  <plurals name="ContactSearchItems__private_story_d_viewers">
-    <item quantity="one">Özel Hikaye · %1$d görüntüleyen</item>
-    <item quantity="other">Özel Hikaye · %1$d görüntüleyen</item>
-  </plurals>
   <!--Label under name for group stories-->
-  <plurals name="ContactSearchItems__group_story_d_viewers">
-    <item quantity="one">Grup Hikayesi · %1$d görüntüleyen</item>
-    <item quantity="other">Grup Hikayesi · %1$d görüntüleyen</item>
-  </plurals>
   <!--Label under name for my story-->
   <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
     <item quantity="one">%1$s · %2$d görüntüleyen</item>

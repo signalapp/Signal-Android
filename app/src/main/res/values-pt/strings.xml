@@ -451,9 +451,11 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">Erro ao definir a fotografia de perfil</string>
   <string name="CreateProfileActivity_problem_setting_profile">Problema na configuração do perfil</string>
   <string name="CreateProfileActivity_set_up_your_profile">Configurar o seu perfil</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">O seu perfil e as alterações que lhe fizer ficarão visíveis a pessoas a quem enviar mensagem, contactos e grupos.</string>
   <string name="CreateProfileActivity_set_avatar_description">Definir avatar</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
+  <string name="ProfileCreateFragment__profiles_are_visible_to_contacts_and_people_you_message">Os perfis são visíveis a pessoas a quem enviar mensagem, contactos e grupos.</string>
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">Quem é que me pode encontrar através do número?</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -2321,6 +2323,7 @@
   <string name="preferences__storage">Armazenamento</string>
   <string name="preferences__payments">Pagamentos</string>
   <!--Privacy settings payments section description-->
+  <string name="preferences__payment_lock">Bloqueio de pagamento</string>
   <string name="preferences__payments_beta">Pagamentos (Beta)</string>
   <string name="preferences__conversation_length_limit">Limite máximo das conversas</string>
   <string name="preferences__keep_messages">Manter mensagens</string>
@@ -2490,7 +2493,9 @@
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">Ver termos da MobileCoin</string>
   <string name="PaymentsHomeFragment__payments_not_available">Os pagamentos no Signal já não estão disponíveis. Você ainda pode transferir fundos para uma troca, mas deixou de poder enviar e receber pagamentos ou adicionar fundos. </string>
   <!--Alert dialog title which shows up after a payment to turn on payment lock-->
+  <string name="PaymentsHomeFragment__turn_on">Ativar o Bloqueio de Pagamento para envios futuros?</string>
   <!--Alert dialog description for why payment lock should be enabled before sending payments-->
+  <string name="PaymentsHomeFragment__add_an_additional_layer">Adicione uma camada extra de segurança requerendo o bloqueio de ecrã ou impressão digital no seu Android para transferir dinheiro.</string>
   <!--Alert dialog button to enable payment lock-->
   <string name="PaymentsHomeFragment__enable">Ativar</string>
   <!--Alert dialog button to not enable payment lock for now-->
@@ -2576,8 +2581,11 @@
   <string name="ConfirmPayment__payment_will_continue_processing">O pagamento irá continuar a ser processado</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">Destinatário inválido</string>
   <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
+  <string name="ConfirmPaymentFragment__unlock_to_send_payment">Desbloqueie para enviar pagamento</string>
   <!--Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <string name="ConfirmPaymentFragment__failed_to_show_payment_lock">Ocorreu um erro ao mostrar o bloqueio de pagamento</string>
   <!--Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <string name="ConfirmPaymentFragment__you_enabled_payment_lock_in_the_settings">Ativou o bloqueio de pagamento nas definições, mas este não pode ser mostrado.</string>
   <!--Button in a dialog that will take the user to the privacy settings-->
   <string name="ConfirmPaymentFragment__go_to_settings">Vá às definições</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Este utilizador não ativou os pagamentos</string>
@@ -3410,9 +3418,13 @@
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Defina um tempo padrão para a destruição de mensagens de todas as conversas novas iniciadas por si.</string>
   <!--Summary for stories preference to launch into story privacy settings-->
   <string name="PrivacySettingsFragment__manage_your_stories">Controle as suas histórias e quem as pode ver</string>
+  <string name="PrivacySettingsFragment__payment_lock_require_lock">Requerer bloqueio de ecrã Android ou impressão digital para transferir dinheiro</string>
   <!--Alert dialog title when payment lock cannot be enabled-->
+  <string name="PrivacySettingsFragment__cant_enable_title">Não é possível ativar o bloqueio de pagamento</string>
   <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <string name="PrivacySettingsFragment__cant_enable_description">Para usar o Bloqueio de Pagamento, é primeiro necessário ativar o bloqueio de ecrã ou identificação com impressão digital nas definições do seu telemóvel.</string>
   <!--Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings-->
+  <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">Ocorreu um erro ao aceder às definições de sistema</string>
   <!--Alert dialog button to go to phone settings-->
   <string name="PrivacySettingsFragment__go_to_settings">Vá às definições</string>
   <!--Alert dialog button to cancel the dialog-->
@@ -3815,9 +3827,13 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Erro na rede. Verifique a sua ligação e tente novamente.</string>
   <string name="NetworkFailure__retry">Tentar novamente</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__cant_send_gift">Não é possível enviar presente</string>
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__target_does_not_support_gifting">Este destinatário está a usar uma versão do Signal que não pode receber crachás de presente. Poderá receber presentes quando atualizar para a versão mais recente.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__couldnt_send_gift">Não foi possível enviar presente</string>
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__please_check_your_network_connection">O seu presente não foi enviado devido a um erro de rede. Verifique a sua ligação e tente outra vez.</string>
   <!--Gift message view title-->
   <string name="GiftMessageView__gift_badge">Oferta de crachá</string>
   <!--Gift message view expiry information-->
@@ -4392,17 +4408,7 @@
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Agora não</string>
   <!--Label under name for private stories-->
-  <plurals name="ContactSearchItems__private_story_d_viewers">
-    <item quantity="one">História privada · %1$d visualizador</item>
-    <item quantity="many">História privada · %1$d visualizadores</item>
-    <item quantity="other">História privada · %1$d visualizadores</item>
-  </plurals>
   <!--Label under name for group stories-->
-  <plurals name="ContactSearchItems__group_story_d_viewers">
-    <item quantity="one">História de grupo · %1$d visualizador</item>
-    <item quantity="many">História de grupo · %1$d visualizadores</item>
-    <item quantity="other">História de grupo · %1$d visualizadores</item>
-  </plurals>
   <!--Label under name for my story-->
   <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
     <item quantity="one">%1$s · visualizador %2$d </item>

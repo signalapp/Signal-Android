@@ -171,7 +171,6 @@
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Miaj rakontoj</string>
   <!--Action for creating a new story-->
-  <string name="ContactsCursorLoader_new_story">Nova rakonto</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Mesaĝi al %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal-alvoko %s</string>
@@ -4203,15 +4202,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Ne nun</string>
   <!--Label under name for private stories-->
-  <plurals name="ContactSearchItems__private_story_d_viewers">
-    <item quantity="one">Privata rakonto · %1$d vidanto</item>
-    <item quantity="other">Privata rakonto · %1$d vidantoj</item>
-  </plurals>
   <!--Label under name for group stories-->
-  <plurals name="ContactSearchItems__group_story_d_viewers">
-    <item quantity="one">Grupa rakonto · %1$d vidanto</item>
-    <item quantity="other">Grupa rakonto · %1$d vidantoj</item>
-  </plurals>
   <!--Label under name for my story-->
   <!--Label under name for My Story when first sending to my story-->
   <!--Label for context menu item to open story settings-->

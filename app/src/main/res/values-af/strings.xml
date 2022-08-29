@@ -171,7 +171,7 @@
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">My Stories</string>
   <!--Action for creating a new story-->
-  <string name="ContactsCursorLoader_new_story">Nuwe Storie</string>
+  <string name="ContactsCursorLoader_new_story">Nuwe storie</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Boodskap %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal-oproep %s</string>
@@ -430,9 +430,11 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">Fout met die opstel van profielfoto</string>
   <string name="CreateProfileActivity_problem_setting_profile">Probleem met die opstel van profiel</string>
   <string name="CreateProfileActivity_set_up_your_profile">Stel jou profiel op</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Jou profiel en veranderinge sal sigbaar wees vir mense aan wie jy boodskappe stuur, vir jou kontakte en vir groepe.</string>
   <string name="CreateProfileActivity_set_avatar_description">Stel foto op</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
+  <string name="ProfileCreateFragment__profiles_are_visible_to_contacts_and_people_you_message">Profiele is sigbaar vir mense aan wie jy boodskappe stuur, vir jou kontakte en vir groepe.</string>
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">Wie kan my volgens my nommer vind?</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -2234,6 +2236,7 @@ ontvang!</string>
   <string name="preferences__storage">Berging</string>
   <string name="preferences__payments">Betalings</string>
   <!--Privacy settings payments section description-->
+  <string name="preferences__payment_lock">Betalingsluiting</string>
   <string name="preferences__payments_beta">Betalings (beta)</string>
   <string name="preferences__conversation_length_limit">Gesprekslengte-beperking</string>
   <string name="preferences__keep_messages">Hou boodskappe</string>
@@ -2403,7 +2406,9 @@ ontvang!</string>
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">Bekyk MobileCoin-bepalings</string>
   <string name="PaymentsHomeFragment__payments_not_available">Betalings is nie meer in Signal beskikbaar nie. Jy kan nog fondse na ’n beurs oordra maar jy kan nie meer betalings stuur en ontvang of fondse toevoeg nie.</string>
   <!--Alert dialog title which shows up after a payment to turn on payment lock-->
+  <string name="PaymentsHomeFragment__turn_on">Aktiveer Betalingsluiting vir toekomstige versendings?</string>
   <!--Alert dialog description for why payment lock should be enabled before sending payments-->
+  <string name="PaymentsHomeFragment__add_an_additional_layer">Voeg \'n bykomende sekuriteitsvlak by en vereis gebruik van Android-skermslot of vingerafdruk om fondse oor te plaas.</string>
   <!--Alert dialog button to enable payment lock-->
   <string name="PaymentsHomeFragment__enable">Aktiveer</string>
   <!--Alert dialog button to not enable payment lock for now-->
@@ -2489,8 +2494,11 @@ ontvang!</string>
   <string name="ConfirmPayment__payment_will_continue_processing">Betalingsverwerking sal voortgesit word</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">Ongeldige ontvanger</string>
   <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
+  <string name="ConfirmPaymentFragment__unlock_to_send_payment">Ontsluit om Betaling te Stuur</string>
   <!--Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <string name="ConfirmPaymentFragment__failed_to_show_payment_lock">Kon nie betalingsluiting vertoon nie</string>
   <!--Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <string name="ConfirmPaymentFragment__you_enabled_payment_lock_in_the_settings">Jy het betalingsluiting in jou instellings geaktiveer, maar dit kan nie vertoon word nie.</string>
   <!--Button in a dialog that will take the user to the privacy settings-->
   <string name="ConfirmPaymentFragment__go_to_settings">Gaan na instellings</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Hierdie persoon het nie betalings geaktiveer nie.</string>
@@ -3312,9 +3320,13 @@ ontvang!</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Stel ’n verstek-verdwynboodskap-tydhouer in vir alle kletse wat jy begin.</string>
   <!--Summary for stories preference to launch into story privacy settings-->
   <string name="PrivacySettingsFragment__manage_your_stories">Bestuur jou stories en wie dit kan sien</string>
+  <string name="PrivacySettingsFragment__payment_lock_require_lock">Vereis gebruik van Android-skermslot of vingerafdruk om fondse oor te plaas</string>
   <!--Alert dialog title when payment lock cannot be enabled-->
+  <string name="PrivacySettingsFragment__cant_enable_title">Kan nie betalingsluiting aktiveer nie</string>
   <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <string name="PrivacySettingsFragment__cant_enable_description">Om Betalingsluiting te gebruik moet jy eers \'n skermslot of vingerafdruk-ID in jou foon se instellings aktiveer.</string>
   <!--Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings-->
+  <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">Kon nie na stelselinstellings navigeer nie</string>
   <!--Alert dialog button to go to phone settings-->
   <string name="PrivacySettingsFragment__go_to_settings">Gaan na instellings</string>
   <!--Alert dialog button to cancel the dialog-->
@@ -3711,9 +3723,13 @@ ontvang!</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Netwerkfout. Gaan jou verbinding na en probeer weer.</string>
   <string name="NetworkFailure__retry">Probeer weer</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__cant_send_gift">Kan nie geskenk stuur nie</string>
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__target_does_not_support_gifting">Hierdie ontvanger gebruik \'n weergawe van Signal wat nie geskenkwapens kan ontvang nie. Hulle sal geskenke kan ontvang wanneer hulle \'n bywerking na die jongste weergawe doen.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__couldnt_send_gift">Kon nie geskenk stuur nie</string>
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__please_check_your_network_connection">Jou geskenk kon nie gestuur word nie as gevolg van \'n netwerkfout. Kontroleer jou verbinding en probeer weer.</string>
   <!--Gift message view title-->
   <string name="GiftMessageView__gift_badge">Geskenkwapen</string>
   <!--Gift message view expiry information-->
@@ -4281,15 +4297,7 @@ Tik op + om iets by jou storie te voeg.</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Nie nou nie</string>
   <!--Label under name for private stories-->
-  <plurals name="ContactSearchItems__private_story_d_viewers">
-    <item quantity="one">Private Storie · %1$d kyker</item>
-    <item quantity="other">Privaatstorie · %1$d kykers</item>
-  </plurals>
   <!--Label under name for group stories-->
-  <plurals name="ContactSearchItems__group_story_d_viewers">
-    <item quantity="one">Groepstorie · %1$d kyker</item>
-    <item quantity="other">Groepstorie · %1$d kykers</item>
-  </plurals>
   <!--Label under name for my story-->
   <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
     <item quantity="one">%1$s · %2$d kyker</item>

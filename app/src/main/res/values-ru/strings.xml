@@ -472,9 +472,11 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">Ошибка при установке фото профиля</string>
   <string name="CreateProfileActivity_problem_setting_profile">Ошибка при установке профиля</string>
   <string name="CreateProfileActivity_set_up_your_profile">Настройте свой профиль</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Ваш профиль и изменения в нем будут видны людям, которым вы отправляете сообщения, вашим контактам и группам.</string>
   <string name="CreateProfileActivity_set_avatar_description">Установить аватар</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
+  <string name="ProfileCreateFragment__profiles_are_visible_to_contacts_and_people_you_message">Ваш профиль будет виден людям, которым вы отправляете сообщения, вашим контактам и группам.</string>
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">Кто может найти меня по номеру?</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -2401,6 +2403,7 @@
   <string name="preferences__storage">Хранилище</string>
   <string name="preferences__payments">Платежи</string>
   <!--Privacy settings payments section description-->
+  <string name="preferences__payment_lock">Блокировка платежей</string>
   <string name="preferences__payments_beta">Платежи (бета)</string>
   <string name="preferences__conversation_length_limit">Предел длины разговора</string>
   <string name="preferences__keep_messages">Хранить сообщения</string>
@@ -2570,7 +2573,9 @@
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">Просмотреть Условия MobileCoin</string>
   <string name="PaymentsHomeFragment__payments_not_available">Платежи в Signal больше не доступны. Вы можете перевести средства на биржу, но больше не можете отправлять или получать платежи или пополнять баланс.</string>
   <!--Alert dialog title which shows up after a payment to turn on payment lock-->
+  <string name="PaymentsHomeFragment__turn_on">Включить блокировку платежей для будущих отправлений?</string>
   <!--Alert dialog description for why payment lock should be enabled before sending payments-->
+  <string name="PaymentsHomeFragment__add_an_additional_layer">Добавьте дополнительный уровень безопасности и требование блокировки экрана Android или ввод отпечатка пальца для перевода средств.</string>
   <!--Alert dialog button to enable payment lock-->
   <string name="PaymentsHomeFragment__enable">Включить</string>
   <!--Alert dialog button to not enable payment lock for now-->
@@ -2656,8 +2661,11 @@
   <string name="ConfirmPayment__payment_will_continue_processing">Платёж будет продолжать обрабатываться</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">Неверный получатель</string>
   <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
+  <string name="ConfirmPaymentFragment__unlock_to_send_payment">Разблокировка для отправки платежа</string>
   <!--Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <string name="ConfirmPaymentFragment__failed_to_show_payment_lock">Не удалось отобразить блокировку платежа</string>
   <!--Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <string name="ConfirmPaymentFragment__you_enabled_payment_lock_in_the_settings">Вы включили блокировку платежей в настройках, но она не может быть показана.</string>
   <!--Button in a dialog that will take the user to the privacy settings-->
   <string name="ConfirmPaymentFragment__go_to_settings">Перейти в настройки</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Этот человек не активировал платежи</string>
@@ -3501,9 +3509,13 @@
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Установите таймер исчезающих сообщений по умолчанию для всех новых чатов, создаваемых вами.</string>
   <!--Summary for stories preference to launch into story privacy settings-->
   <string name="PrivacySettingsFragment__manage_your_stories">Управляйте своими историями и определяйте, кто может их видеть</string>
+  <string name="PrivacySettingsFragment__payment_lock_require_lock">Для перевода средств требуется блокировка экрана Android или отпечаток пальца</string>
   <!--Alert dialog title when payment lock cannot be enabled-->
+  <string name="PrivacySettingsFragment__cant_enable_title">Не удается включить блокировку платежей</string>
   <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <string name="PrivacySettingsFragment__cant_enable_description">Чтобы использовать блокировку платежей, вы должны сначала включить блокировку экрана или идентификатор отпечатка пальца в настройках вашего телефона.</string>
   <!--Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings-->
+  <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">Не удалось перейти к системным настройкам</string>
   <!--Alert dialog button to go to phone settings-->
   <string name="PrivacySettingsFragment__go_to_settings">Перейти в настройки</string>
   <!--Alert dialog button to cancel the dialog-->
@@ -3912,9 +3924,13 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Ошибка сети. Проверьте ваше подключение к интернету и попробуйте ещё раз.</string>
   <string name="NetworkFailure__retry">Повторить попытку</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__cant_send_gift">Невозможно отправить подарок</string>
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__target_does_not_support_gifting">Этот получатель использует версию Signal, которая не поддерживает функцию получения значков в подарок. Он сможет получать подарки, когда обновит приложение до последней версии.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__couldnt_send_gift">Не удалось отправить подарок</string>
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__please_check_your_network_connection">Ваш подарок не удалось отправить из-за ошибки сети. Проверьте ваше подключение к интернету и попробуйте ещё раз.</string>
   <!--Gift message view title-->
   <string name="GiftMessageView__gift_badge">Значок в подарок</string>
   <!--Gift message view expiry information-->

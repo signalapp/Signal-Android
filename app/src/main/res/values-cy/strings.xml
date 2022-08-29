@@ -173,7 +173,6 @@
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Fy straeon</string>
   <!--Action for creating a new story-->
-  <string name="ContactsCursorLoader_new_story">Stori Newydd</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Neges %s</string>
   <string name="ContactsDatabase_signal_call_s">Galwad Signal %s</string>
@@ -4425,19 +4424,7 @@ Anfon neges heb ei diogelu?</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Nid nawr</string>
   <!--Label under name for private stories-->
-  <plurals name="ContactSearchItems__private_story_d_viewers">
-    <item quantity="one">Stori Breifat · %1$d darllenydd</item>
-    <item quantity="two">Stori Breifat · %1$d darllenydd</item>
-    <item quantity="many">Stori Breifat · %1$d darllenydd</item>
-    <item quantity="other">Stori Breifat · %1$d darllenydd</item>
-  </plurals>
   <!--Label under name for group stories-->
-  <plurals name="ContactSearchItems__group_story_d_viewers">
-    <item quantity="one">Stori Grŵp · %1$d darllenydd</item>
-    <item quantity="two">Stori Grŵp · %1$d darllenydd</item>
-    <item quantity="many">Stori Grŵp · %1$d darllenydd</item>
-    <item quantity="other">Stori Grŵp · %1$d darllenydd</item>
-  </plurals>
   <!--Label under name for my story-->
   <!--Label under name for My Story when first sending to my story-->
   <!--Label for context menu item to open story settings-->

@@ -170,7 +170,7 @@
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">我的限時動態</string>
   <!--Action for creating a new story-->
-  <string name="ContactsCursorLoader_new_story">新限時動態</string>
+  <string name="ContactsCursorLoader_new_story">新的限動</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">傳送訊息給 %s</string>
   <string name="ContactsDatabase_signal_call_s">與 %s 進行 Signal 通話</string>
@@ -409,9 +409,11 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">頭像照片設定出現錯誤</string>
   <string name="CreateProfileActivity_problem_setting_profile">個人資訊設定出現問題</string>
   <string name="CreateProfileActivity_set_up_your_profile">設定你的資訊</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">與你收發訊息的使用者、聯絡人和群組將會看到你的個人檔案及相關的變更內容。</string>
   <string name="CreateProfileActivity_set_avatar_description">設定頭像</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
+  <string name="ProfileCreateFragment__profiles_are_visible_to_contacts_and_people_you_message">與你收發訊息的使用者、聯絡人和群組將會看到你的個人檔案。</string>
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">誰能用手機號碼找到我？</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -2146,6 +2148,7 @@
   <string name="preferences__storage">儲存空間</string>
   <string name="preferences__payments">付款</string>
   <!--Privacy settings payments section description-->
+  <string name="preferences__payment_lock">付款鎖定</string>
   <string name="preferences__payments_beta">付款功能（測試版）</string>
   <string name="preferences__conversation_length_limit">對話群組長度上限</string>
   <string name="preferences__keep_messages">保留訊息</string>
@@ -2315,11 +2318,13 @@
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">查看MobileCoin條款</string>
   <string name="PaymentsHomeFragment__payments_not_available">Signal中的付款不再可用。 你仍然可以將資金轉帳到交易所，但不能再傳送和接收付款或增加資金。</string>
   <!--Alert dialog title which shows up after a payment to turn on payment lock-->
+  <string name="PaymentsHomeFragment__turn_on">要為未來的付款開啟「付款鎖定」嗎？</string>
   <!--Alert dialog description for why payment lock should be enabled before sending payments-->
+  <string name="PaymentsHomeFragment__add_an_additional_layer">增添多一層安全防護，並在付款時需要解開 Android 畫面鎖定或使用指紋解鎖。</string>
   <!--Alert dialog button to enable payment lock-->
   <string name="PaymentsHomeFragment__enable">開啟</string>
   <!--Alert dialog button to not enable payment lock for now-->
-  <string name="PaymentsHomeFragment__not_now">現在不要</string>
+  <string name="PaymentsHomeFragment__not_now">暫時不要</string>
   <!--PaymentsAddMoneyFragment-->
   <string name="PaymentsAddMoneyFragment__add_funds">增加資金</string>
   <string name="PaymentsAddMoneyFragment__your_wallet_address">你的錢包位址</string>
@@ -2401,8 +2406,11 @@
   <string name="ConfirmPayment__payment_will_continue_processing">付款將繼續處理</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">無效的收件者</string>
   <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
+  <string name="ConfirmPaymentFragment__unlock_to_send_payment">解鎖以便付款</string>
   <!--Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <string name="ConfirmPaymentFragment__failed_to_show_payment_lock">無法顯示付款鎖定</string>
   <!--Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <string name="ConfirmPaymentFragment__you_enabled_payment_lock_in_the_settings">你已在設定中啟用付款鎖定，但系統目前無法顯示。</string>
   <!--Button in a dialog that will take the user to the privacy settings-->
   <string name="ConfirmPaymentFragment__go_to_settings">前往「設定」</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">此人尚未啟用付款功能</string>
@@ -3213,9 +3221,13 @@
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">為你發起的所有新聊天設定預設的訊息銷毀計時器。</string>
   <!--Summary for stories preference to launch into story privacy settings-->
   <string name="PrivacySettingsFragment__manage_your_stories">管理限動及瀏覽對象</string>
+  <string name="PrivacySettingsFragment__payment_lock_require_lock">付款時需要解開 Android 畫面鎖定或使用指紋解鎖</string>
   <!--Alert dialog title when payment lock cannot be enabled-->
+  <string name="PrivacySettingsFragment__cant_enable_title">無法啟用付款鎖定</string>
   <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <string name="PrivacySettingsFragment__cant_enable_description">如要使用「付款鎖定」，你必須先在手機的設定中啟用螢幕鎖定或指紋 ID 功能。</string>
   <!--Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings-->
+  <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">無法前往系統設定</string>
   <!--Alert dialog button to go to phone settings-->
   <string name="PrivacySettingsFragment__go_to_settings">前往「設定」</string>
   <!--Alert dialog button to cancel the dialog-->
@@ -3446,7 +3458,7 @@
     <item quantity="other">無法轉寄訊息，因為它們不可再使用。</item>
   </plurals>
   <!--Error message shown when attempting to select a group to forward/share but it\'s announcement only and you are not an admin-->
-  <string name="MultiselectForwardFragment__only_admins_can_send_messages_to_this_group">只有管理員可以向該群組傳送訊息。</string>
+  <string name="MultiselectForwardFragment__only_admins_can_send_messages_to_this_group">只有管理員可以向此群組傳送訊息。</string>
   <string name="MultiselectForwardFragment__limit_reached">已達上限</string>
   <!--Media V2-->
   <string name="MediaReviewFragment__add_a_message">新增訊息</string>
@@ -3606,9 +3618,13 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">網路錯誤。 檢查你的網路連接並重試。</string>
   <string name="NetworkFailure__retry">重試</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__cant_send_gift">無法傳送禮物</string>
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__target_does_not_support_gifting">此接收者目前使用的 Signal 版本無法接收禮物徽章。只有更新到最新版本後，才能收到禮物。</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__couldnt_send_gift">無法傳送禮物</string>
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__please_check_your_network_connection">由於網路出現錯誤，因此我們無法傳送你的禮物。請查看網路連線，並再試一次。</string>
   <!--Gift message view title-->
   <string name="GiftMessageView__gift_badge">禮品徽章</string>
   <!--Gift message view expiry information-->
@@ -4167,13 +4183,7 @@
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">稍後</string>
   <!--Label under name for private stories-->
-  <plurals name="ContactSearchItems__private_story_d_viewers">
-    <item quantity="other">私人限時動態 · %1$d 個觀眾</item>
-  </plurals>
   <!--Label under name for group stories-->
-  <plurals name="ContactSearchItems__group_story_d_viewers">
-    <item quantity="other">群組限時動態 · %1$d 個觀眾</item>
-  </plurals>
   <!--Label under name for my story-->
   <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
     <item quantity="other">%1$s · %2$d 位瀏覽者</item>

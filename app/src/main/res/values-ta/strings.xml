@@ -430,9 +430,11 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">சுயவிவர புகைப்படத்தை அமைப்பதில் பிழை</string>
   <string name="CreateProfileActivity_problem_setting_profile">சுயவிவரம் அமைப்பதில் சிக்கல் </string>
   <string name="CreateProfileActivity_set_up_your_profile">உங்கள் சுயவிவரத்தை அமைக்கவும்</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">உங்கள் ப்ரொஃபைல் மற்றும் அதில் செய்த மாற்றங்கள் நீங்கள் செய்தி அனுப்புபவர்களுக்கு, தொடர்புகளுக்கு மற்றும் குழுக்களுக்குத் தெரிய வரும்.</string>
   <string name="CreateProfileActivity_set_avatar_description">சின்னம் அமைக்கவும்</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
+  <string name="ProfileCreateFragment__profiles_are_visible_to_contacts_and_people_you_message">நீங்கள் செய்தி அனுப்புபவர்களுக்கு, தொடர்புகளுக்கு மற்றும் குழுக்களுக்கு ப்ரொஃபைல்கள் தெரியும்.</string>
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">எண் மூலம் என்னை யார் கண்டுபிடிக்க முடியும்?</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -2225,6 +2227,7 @@
   <string name="preferences__storage">சேமிப்பு</string>
   <string name="preferences__payments">பணம் செலுத்தல்</string>
   <!--Privacy settings payments section description-->
+  <string name="preferences__payment_lock">கட்டண பூட்டு</string>
   <string name="preferences__payments_beta">பணம் செலுத்தல் (பீட்டா)</string>
   <string name="preferences__conversation_length_limit">உரையாடலின் நீள அளவு</string>
   <string name="preferences__keep_messages">செய்திகள் வைப்பு</string>
@@ -2395,7 +2398,9 @@
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">MobileCoin விதிமுறைகளைக் காண்க</string>
   <string name="PaymentsHomeFragment__payments_not_available">கொடுப்பனவுகள் Signal இருக்கிறது இல்லைநீண்ட நேரம் கிடைக்கும். நீங்கள் இன்னும் முடியும்பரிமாற்றம் நிதி ஒரு பரிமாற்றம் ஆனால் உன்னால் முடியும் இல்லை நீண்டது அனுப்பு மற்றும் பணம் பெறுதல் அல்லது கூட்டு நிதி.</string>
   <!--Alert dialog title which shows up after a payment to turn on payment lock-->
+  <string name="PaymentsHomeFragment__turn_on">எதிர்காலத்தில் அனுப்பப்படும் கட்டண பூட்டை இயக்குவதா?</string>
   <!--Alert dialog description for why payment lock should be enabled before sending payments-->
+  <string name="PaymentsHomeFragment__add_an_additional_layer">நிதியை மாற்ற, ஆண்ட்ராய்டு திரைப் பூட்டு அல்லது கைரேகை தேவைப்படும் கூடுதல் பாதுகாப்பு அடுக்கைச் சேர்க்கவும்.</string>
   <!--Alert dialog button to enable payment lock-->
   <string name="PaymentsHomeFragment__enable">இயக்கவும்</string>
   <!--Alert dialog button to not enable payment lock for now-->
@@ -2481,8 +2486,11 @@
   <string name="ConfirmPayment__payment_will_continue_processing">கட்டணம் தொடர்ந்து செயலாக்கப்படும்</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">தவறானது பெறுநர்</string>
   <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
+  <string name="ConfirmPaymentFragment__unlock_to_send_payment">கட்டணத்தை அனுப்ப திறக்கவும்</string>
   <!--Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <string name="ConfirmPaymentFragment__failed_to_show_payment_lock">கட்டண பூட்டைக் காண்பிக்க முடியவில்லை</string>
   <!--Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <string name="ConfirmPaymentFragment__you_enabled_payment_lock_in_the_settings">அமைப்புகளில் கட்டணப் பூட்டை இயக்கியுள்ளீர்கள், ஆனால் அதைக் காண்பிக்க முடியாது.</string>
   <!--Button in a dialog that will take the user to the privacy settings-->
   <string name="ConfirmPaymentFragment__go_to_settings">அமைப்புகளுக்குச் செல்</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">இந்த நபர் கொடுப்பனவுகளை செயல்படுத்தவில்லை</string>
@@ -3306,9 +3314,13 @@
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">நீங்கள் தொடங்கும் அனைத்து புதிய அரட்டைகளுக்கும் இயல்புநிலை காணாமல் போகும் செய்திகள் நேரக்குறிப்பானை அமைக்கவும்.</string>
   <!--Summary for stories preference to launch into story privacy settings-->
   <string name="PrivacySettingsFragment__manage_your_stories">உங்கள் ஸ்டோரீக்கள் மற்றும் அவற்றை யார் பார்க்கலாம் என்பதை நிர்வகிக்கவும்</string>
+  <string name="PrivacySettingsFragment__payment_lock_require_lock">நிதியை மாற்ற ஆண்ட்ராய்டு திரைப் பூட்டு அல்லது கைரேகை தேவை</string>
   <!--Alert dialog title when payment lock cannot be enabled-->
+  <string name="PrivacySettingsFragment__cant_enable_title">கட்டண பூட்டை இயக்க முடியவில்லை</string>
   <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <string name="PrivacySettingsFragment__cant_enable_description">கட்டண பூட்டைப் பயன்படுத்த, முதலில் உங்கள் மொபைலின் அமைப்புகளில் திரைப் பூட்டு அல்லது கைரேகை ஐ.டி.-யை இயக்க வேண்டும்.</string>
   <!--Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings-->
+  <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">சிஸ்டம் அமைப்புகளுக்குச் செல்ல முடியவில்லை</string>
   <!--Alert dialog button to go to phone settings-->
   <string name="PrivacySettingsFragment__go_to_settings">அமைப்புகளுக்குச் செல்</string>
   <!--Alert dialog button to cancel the dialog-->
@@ -3545,7 +3557,7 @@
     <item quantity="other">செய்திகள் கிடைக்காததால் அவற்றை முன்னனுப்ப முடியவில்லை.</item>
   </plurals>
   <!--Error message shown when attempting to select a group to forward/share but it\'s announcement only and you are not an admin-->
-  <string name="MultiselectForwardFragment__only_admins_can_send_messages_to_this_group">மட்டும் நிர்வாகிகள் முடியும் அனுப்பு இதற்கு செய்திகள் குழு.</string>
+  <string name="MultiselectForwardFragment__only_admins_can_send_messages_to_this_group">இந்த குழுவிற்கு நிர்வாகிகள் மட்டுமே செய்திகளை அனுப்ப முடியும். </string>
   <string name="MultiselectForwardFragment__limit_reached">வரம்பை எட்டியது</string>
   <!--Media V2-->
   <string name="MediaReviewFragment__add_a_message">கூட்டு ஒரு செய்தி</string>
@@ -3706,9 +3718,13 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">நெட்வொர்க் பிழை. உங்கள் இணைப்பைச் சரிபார்த்து மீண்டும் முயலவும்.</string>
   <string name="NetworkFailure__retry">மீண்டும் முயற்சி செய்</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__cant_send_gift">பரிசை அனுப்ப முடியாது</string>
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__target_does_not_support_gifting">இந்த பெறுநர் பரிசு பேட்ஜ்களைப் பெற முடியாத ஒரு சிக்னலின் பதிப்பைப் பயன்படுத்துகிறார். சமீபத்திய பதிப்பிற்குப் புதுப்பிக்கும்போது அவர்களால் பரிசுகளைப் பெற முடியும்.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__couldnt_send_gift">பரிசை அனுப்ப முடியவில்லை</string>
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__please_check_your_network_connection">நெட்வொர்க் பிழையின் காரணமாக உங்கள் பரிசை அனுப்ப முடியவில்லை. உங்கள் இணைப்பைச் சரிபார்த்து மீண்டும் முயலவும்.</string>
   <!--Gift message view title-->
   <string name="GiftMessageView__gift_badge">பரிசு பேட்ஜ்</string>
   <!--Gift message view expiry information-->
@@ -4276,15 +4292,7 @@
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">இப்போது இல்லை</string>
   <!--Label under name for private stories-->
-  <plurals name="ContactSearchItems__private_story_d_viewers">
-    <item quantity="one">தனிப்பட்ட ஸ்டோரி · %1$d பார்வையாளர்</item>
-    <item quantity="other">தனிப்பட்ட ஸ்டோரி · %1$d பார்வையாளர்கள்</item>
-  </plurals>
   <!--Label under name for group stories-->
-  <plurals name="ContactSearchItems__group_story_d_viewers">
-    <item quantity="one">குழு ஸ்டோரி · %1$d பார்வையாளர்</item>
-    <item quantity="other">குழு ஸ்டோரி  · %1$d பார்வையாளர்கள்</item>
-  </plurals>
   <!--Label under name for my story-->
   <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
     <item quantity="one">%1$s · %2$d பார்வையாளர்</item>

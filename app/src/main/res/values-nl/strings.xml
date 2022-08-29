@@ -248,7 +248,7 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="ConversationActivity_message_an_admin">Bericht verzenden naar een beheerder</string>
   <string name="ConversationActivity_cant_start_group_call">Je kunt geen groepsoproep beginnen</string>
   <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Alleen beheerders kunnen in deze groep oproepen beginnen.</string>
-  <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Er is geen app beschikbaar op je apparaat om deze verwijzing te openen.</string>
+  <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Er is geen app beschikbaar op je apparaat om deze link te openen.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Je verzoek om lid te worden van de groep is doorgestuurd naar een beheerder. Je krijgt een melding zodra deze een besluit heeft genomen.</string>
   <string name="ConversationActivity_cancel_request">Verzoek annuleren</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Om audioberichten op te nemen, moet je Signal toegang geven tot je microfoon.</string>
@@ -342,7 +342,7 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <!--Dialog title for block group link join requests-->
   <string name="ConversationFragment__block_request">Verzoeken blokkeren?</string>
   <!--Dialog message for block group link join requests-->
-  <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s zal niet langer via de groepsverwijzing lid kunnen worden van deze groep en ook niet kunnen verzoeken om lid te worden van de groep. Hij of zij kan dan nog wel lid worden via een uitnodiging.</string>
+  <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s zal niet langer via de groepslink lid kunnen worden van deze groep en ook niet kunnen verzoeken om lid te worden van de groep. Hij of zij kan dan nog wel lid worden via een uitnodiging.</string>
   <!--Dialog confirm block request button-->
   <string name="ConversationFragment__block_request_button">Verzoeken blokkeren</string>
   <!--Dialog cancel block request button-->
@@ -432,9 +432,11 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="CreateProfileActivity_error_setting_profile_photo">Fout bij instellen van profielfoto</string>
   <string name="CreateProfileActivity_problem_setting_profile">Probleem bij instellen van profiel</string>
   <string name="CreateProfileActivity_set_up_your_profile">Stel je profiel op</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Je profiel en wijzigingen die je maakt zijn zichtbaar voor mensen die je een bericht stuurt, contacten en groepen.</string>
   <string name="CreateProfileActivity_set_avatar_description">Profielfoto instellen</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
+  <string name="ProfileCreateFragment__profiles_are_visible_to_contacts_and_people_you_message">Profielen zijn zichtbaar voor mensen die je een bericht stuurt, contacten en groepen.</string>
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">Wie kan mij via mijn nummer vinden?</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -630,7 +632,7 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="LeaveGroupDialog_choose_admin">Beheerder kiezen</string>
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Geen voorbeeldafbeelding beschikbaar</string>
-  <string name="LinkPreviewView_this_group_link_is_not_active">Deze groepsverwijzing is niet actief</string>
+  <string name="LinkPreviewView_this_group_link_is_not_active">Deze groepslink is niet actief</string>
   <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
   <!--LinkPreviewRepository-->
   <plurals name="LinkPreviewRepository_d_members">
@@ -659,7 +661,7 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <!--RequestingMembersFragment-->
   <string name="RequestingMembersFragment_pending_member_requests">Lidmaatschapsverzoeken in afwachting</string>
   <string name="RequestingMembersFragment_no_member_requests_to_show">Er zijn geen lidmaatschapsverzoeken om weer te geven.</string>
-  <string name="RequestingMembersFragment_explanation">Personen in deze lijst proberen via de groepsverwijzing lid te worden van deze groep.</string>
+  <string name="RequestingMembersFragment_explanation">Personen in deze lijst proberen via de groepslink lid te worden van deze groep.</string>
   <string name="RequestingMembersFragment_added_s">“ %1$s” toegevoegd</string>
   <string name="RequestingMembersFragment_denied_s">“ %1$s” afgewezen</string>
   <!--AddMembersActivity-->
@@ -694,7 +696,7 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="ManageGroupActivity_edit_group_info">Groepsinformatie aanpassen</string>
   <string name="ManageGroupActivity_who_can_add_new_members">Wie mogen nieuwe leden toevoegen?</string>
   <string name="ManageGroupActivity_who_can_edit_this_groups_info">Wie mogen de groepsinformatie aanpassen?</string>
-  <string name="ManageGroupActivity_group_link">Groepsverwijzing</string>
+  <string name="ManageGroupActivity_group_link">Groepslink</string>
   <string name="ManageGroupActivity_block_group">Groep blokkeren en verlaten</string>
   <string name="ManageGroupActivity_unblock_group">Groep deblokkeren</string>
   <string name="ManageGroupActivity_leave_group">Groep verlaten</string>
@@ -712,9 +714,9 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
     <item quantity="one">%d persoon toegevoegd.</item>
     <item quantity="other">%d personen toegevoegd.</item>
   </plurals>
-  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">Uitsluitend beheerders kunnen de groepsverwijzing in- of uitschakelen.</string>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">Uitsluitend beheerders kunnen de groepslink in- of uitschakelen.</string>
   <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Uitsluitend beheerders kunnen de beheerderstoestemming-vereiste om lid te mogen worden van de groep in- of uitschakelen.</string>
-  <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Uitsluitend beheerders kunnen de groepsverwijzing vernieuwen.</string>
+  <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Uitsluitend beheerders kunnen de groepslink vernieuwen.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Je hebt geen recht om dit te doen</string>
   <string name="ManageGroupActivity_not_capable">Één of meer van de door jou toegevoegde personen ondersteunen de vernieuwde groepsgesprekken nog niet. Zij moeten Signal bijwerken.</string>
   <string name="ManageGroupActivity_not_announcement_capable">Tenminste een persoon die je hebt toegevoegd moet eerst Signal bijwerken voordat ze aan mededelingsgroepen kunnen worden toegevoegd.</string>
@@ -777,15 +779,15 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="CustomNotificationsDialogFragment__default">Systeemstandaard</string>
   <string name="CustomNotificationsDialogFragment__unknown">Onbekend</string>
   <!--ShareableGroupLinkDialogFragment-->
-  <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Deelbare groepsverwijzing</string>
+  <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Deelbare groepslink</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Beheren &amp; delen</string>
-  <string name="ShareableGroupLinkDialogFragment__group_link">Groepsverwijzing</string>
+  <string name="ShareableGroupLinkDialogFragment__group_link">Groepslink</string>
   <string name="ShareableGroupLinkDialogFragment__share">Met anderen delen</string>
-  <string name="ShareableGroupLinkDialogFragment__reset_link">Verwijzing vernieuwen</string>
+  <string name="ShareableGroupLinkDialogFragment__reset_link">Link vernieuwen</string>
   <string name="ShareableGroupLinkDialogFragment__member_requests">Lidmaatschapsverzoeken</string>
   <string name="ShareableGroupLinkDialogFragment__approve_new_members">Beheerderstoestemming vereisen</string>
-  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Vereis voor iedere persoon die via de groepsverwijzing lid wil worden eerst toestemming van een beheerder.</string>
-  <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Weet je zeker dat je de groepsverwijzing wilt vernieuwen? Men zal dan niet langer lid van de groep kunnen worden via de huidige verwijzing.</string>
+  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Vereis voor iedere persoon die via de groepslink lid wil worden eerst toestemming van een beheerder.</string>
+  <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Weet je zeker dat je de groepslink wilt vernieuwen? Men zal dan niet langer lid van de groep kunnen worden via de huidige link..</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">QR-code</string>
   <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Personen die deze code scannen zullen in staat zijn lid te worden van je groep. Als de optie ‘Beheerderstoestemming vereisen’ is ingeschakeld moet een beheerder eerst nog toestemming geven voor iemand lid mag worden van de groep.</string>
@@ -802,17 +804,17 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Verzoek om lid te worden</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Kan geen lid worden van de groep, probeer het later nog eens</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Er is een netwerkfout opgetreden.</string>
-  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Deze groepsverwijzing is niet actief</string>
+  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Deze groepslink is niet actief</string>
   <!--Title shown when there was an known issue getting group information from a group link-->
   <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">Kan niet lid worden van de groep</string>
   <!--Message shown when you try to get information for a group via link but an admin has removed you-->
-  <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Je kunt niet door middel van een groepsverwijzing lid worden van deze groep omdat je door een beheerder uit deze groep bent verwijderd. </string>
+  <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Je kunt niet door middel van een groepslink lid worden van deze groep omdat je door een beheerder uit deze groep bent verwijderd. </string>
   <!--Message shown when you try to get information for a group via link but the link is no longer valid-->
-  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">Deze groepsverwijzing is niet langer geldig.</string>
+  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">Deze groepslink is niet langer geldig.</string>
   <!--Title shown when there was an unknown issue getting group information from a group link-->
-  <string name="GroupJoinBottomSheetDialogFragment_link_error">Fout bij groepsverwijzing</string>
+  <string name="GroupJoinBottomSheetDialogFragment_link_error">Fout bij groepslink</string>
   <!--Message shown when you try to get information for a group via link but an unknown issue occurred-->
-  <string name="GroupJoinBottomSheetDialogFragment_joining_via_this_link_failed_try_joining_again_later">Lid worden via deze verwijzing is mislukt. Probeer het later opnieuw.</string>
+  <string name="GroupJoinBottomSheetDialogFragment_joining_via_this_link_failed_try_joining_again_later">Lid worden via deze link is mislukt. Probeer het later opnieuw.</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Wil je lid worden van deze groep en je naam en foto met de andere leden delen?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Een beheerder van deze groep moet eerst je verzoek om lid te worden goedkeuren voordat je lid kunt worden van deze groep. Wanneer je verzoekt om lid te worden zullen je profielnaam, -foto en -omschrijving direct zichtbaar zijn voor de groepsleden.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
@@ -821,24 +823,24 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   </plurals>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Werk Signal bij om groepsverwijzingen te kunnen gebruiken</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">De versie van Signal die je gebruikt ondersteunt deze groepsverwijzing niet. Werk Signal bij naar de meest recente versie om via een verwijzing lid te kunnen worden van een groep.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">De versie van Signal die je gebruikt ondersteunt deze groepslink niet. Werk Signal bij naar de meest recente versie om via een link lid te kunnen worden van een groep.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Signal bijwerken</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Een of meerdere van je gekoppelde apparaten gebruikt een versie van Signal die geen groepsverwijzingen ondersteunt. Werk Signal op die apparaten bij om lid te worden van deze groep.</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Ongeldige groepsverwijzing</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Ongeldige groepslink</string>
   <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">Kennissen uitnodigen</string>
-  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">Je kunt een groepsverwijzing delen met kennissen zodat ze zelf gemakkelijk lid kunnen worden van deze groep.</string>
-  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">Groepsverwijzing inschakelen en delen</string>
-  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">Groepsverwijzing delen</string>
-  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">Kan de groepsverwijzing niet inschakelen, probeer het later opnieuw.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">Je kunt een groepslink delen met kennissen zodat ze zelf gemakkelijk lid kunnen worden van deze groep.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">Groepslink inschakelen en delen</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">Groepslink delen</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">Kan de groepslink niet inschakelen, probeer het later opnieuw.</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">Er is een netwerkfout opgetreden.</string>
-  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">Je hebt geen toestemming om een groepsverwijzing in te schakelen. Vraag een beheerder om dit te doen.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">Je hebt geen toestemming om een groepslink in te schakelen. Vraag een beheerder om dit te doen.</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">Je bent momenteel geen lid van deze groep.</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">“%1$s” toevoegen aan de groep?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">Verzoek van “%1$s” afwijzen?</string>
   <!--Confirm dialog message shown when deny a group link join request and group link is enabled.-->
-  <string name="RequestConfirmationDialog_deny_request_from_s_they_will_not_be_able_to_request">Wil je het lidmaatschapverzoek van “%1$s” afwijzen? Als je dit doet dan kan hij of zij niet opnieuw via de groepsverwijzing verzoeken om lid te worden van de groep.</string>
+  <string name="RequestConfirmationDialog_deny_request_from_s_they_will_not_be_able_to_request">Wil je het lidmaatschapverzoek van “%1$s” afwijzen? Als je dit doet dan kan hij of zij niet opnieuw via de groepslink verzoeken om lid te worden van de groep.</string>
   <string name="RequestConfirmationDialog_add">Toevoegen</string>
   <string name="RequestConfirmationDialog_deny">Afwijzen</string>
   <!--ImageEditorHud-->
@@ -1018,7 +1020,7 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Je hebt de groep aangemaakt.</string>
   <string name="MessageRecord_group_updated">Groep aangepast.</string>
-  <string name="MessageRecord_invite_friends_to_this_group">Je kunt vrienden en kennissen voor deze groep uitnodigen via een groepsverwijzing</string>
+  <string name="MessageRecord_invite_friends_to_this_group">Je kunt vrienden en kennissen voor deze groep uitnodigen via een groepslink</string>
   <!--GV2 member additions-->
   <string name="MessageRecord_you_added_s">Je hebt %1$s aan de groep toegevoegd.</string>
   <string name="MessageRecord_s_added_s">%1$s heeft %2$s toegevoegd aan de groep.</string>
@@ -1106,31 +1108,31 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="MessageRecord_allow_all_members_to_send">De groepsinstellingen zijn aangepast om alle groepsleden de mogelijkheid te geven om berichten te verzenden en oproepen te beginnen.</string>
   <string name="MessageRecord_allow_only_admins_to_send">De groepsinstellingen zijn aangepast om uitsluitend beheerders de mogelijkheid te geven om berichten te verzenden en oproepen te beginnen.</string>
   <!--GV2 group link invite access level change-->
-  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Je hebt de groepsverwijzingen ingeschakeld zonder beheerderstoestemming-vereiste om lid te mogen worden.</string>
-  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Je hebt de groepsverwijzing ingeschakeld met beheerderstoestemming-vereiste om lid te mogen worden ook ingeschakeld.</string>
-  <string name="MessageRecord_you_turned_off_the_group_link">Je hebt de groepsverwijzing uitgeschakeld.</string>
-  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s heeft de groepsverwijzing ingeschakeld zonder beheerderstoestemming-vereiste om lid te mogen worden.</string>
-  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s heeft de groepsverwijzing ingeschakeld met beheerderstoestemming-vereiste om lid te mogen worden ook ingeschakeld.</string>
-  <string name="MessageRecord_s_turned_off_the_group_link">%1$s heeft de groepsverwijzing uitgeschakeld.</string>
-  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">De groepsverwijzing is ingeschakeld zonder beheerderstoestemming-vereiste om lid te mogen worden.</string>
-  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">De groepsverwijzing is ingeschakeld met beheerderstoestemming-vereiste om lid te mogen worden ook ingeschakeld.</string>
-  <string name="MessageRecord_the_group_link_has_been_turned_off">De groepsverwijzing is uitgeschakeld.</string>
-  <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">Je hebt de beheerderstoestemming-vereiste om via de groepsverwijzing lid te mogen worden uitgeschakeld.</string>
-  <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s heeft de beheerderstoestemming-vereiste om via de groepsverwijzing lid te mogen worden van de groep uitgeschakeld.</string>
-  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">De beheerderstoestemming-vereiste om via de groepsverwijzing lid te mogen worden van de groep is uitgeschakeld.</string>
-  <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">Je hebt de beheerderstoestemming-vereiste om via de groepsverwijzing lid te mogen worden van de groep ingeschakeld.</string>
-  <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s heeft de beheerderstoestemming-vereiste voor personen die lid willen worden via de groepsverwijzing ingeschakeld.</string>
-  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">De beheerderstoestemming-vereiste om via de groepsverwijzing lid te worden van de groep is ingeschakeld.</string>
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Je hebt de groepslink ingeschakeld zonder beheerderstoestemming-vereiste om lid te mogen worden.</string>
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Je hebt de groepslink ingeschakeld met beheerderstoestemming-vereiste om lid te mogen worden ook ingeschakeld.</string>
+  <string name="MessageRecord_you_turned_off_the_group_link">Je hebt de groepslink uitgeschakeld.</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s heeft de groepslink ingeschakeld zonder beheerderstoestemming-vereiste om lid te mogen worden.</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s heeft de groepslink ingeschakeld met beheerderstoestemming-vereiste om lid te mogen worden ook ingeschakeld.</string>
+  <string name="MessageRecord_s_turned_off_the_group_link">%1$s heeft de groepslink uitgeschakeld.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">De groepslink is ingeschakeld zonder beheerderstoestemming-vereiste om lid te mogen worden.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">De groepslink is ingeschakeld met beheerderstoestemming-vereiste om lid te mogen worden ook ingeschakeld.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_off">De groepslink is uitgeschakeld.</string>
+  <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">Je hebt de beheerderstoestemming-vereiste om via de groepslink lid te mogen worden uitgeschakeld.</string>
+  <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s heeft de beheerderstoestemming-vereiste om via de groepslink lid te mogen worden van de groep uitgeschakeld.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">De beheerderstoestemming-vereiste om via de groepslink lid te mogen worden van de groep is uitgeschakeld.</string>
+  <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">Je hebt de beheerderstoestemming-vereiste om via de groepslink lid te mogen worden van de groep ingeschakeld.</string>
+  <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s heeft de beheerderstoestemming-vereiste voor personen die lid willen worden via de groepslink ingeschakeld.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">De beheerderstoestemming-vereiste om via de groepslink lid te worden van de groep is ingeschakeld.</string>
   <!--GV2 group link reset-->
-  <string name="MessageRecord_you_reset_the_group_link">Je hebt de groepsverwijzing vernieuwd.</string>
-  <string name="MessageRecord_s_reset_the_group_link">%1$s heeft de groepsverwijzing vernieuwd.</string>
-  <string name="MessageRecord_the_group_link_has_been_reset">De groepsverwijzing is vernieuwd.</string>
+  <string name="MessageRecord_you_reset_the_group_link">Je hebt de groepslink vernieuwd.</string>
+  <string name="MessageRecord_s_reset_the_group_link">%1$s heeft de groepslink vernieuwd.</string>
+  <string name="MessageRecord_the_group_link_has_been_reset">De groepslink is vernieuwd.</string>
   <!--GV2 group link joins-->
-  <string name="MessageRecord_you_joined_the_group_via_the_group_link">Je bent via de groepsverwijzing lid geworden van de groep.</string>
-  <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s is lid geworden via de groepsverwijzing.</string>
+  <string name="MessageRecord_you_joined_the_group_via_the_group_link">Je bent via de groepslink lid geworden van de groep.</string>
+  <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s is lid geworden via de groepslink.</string>
   <!--GV2 group link requests-->
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">Je hebt een verzoek verstuurd om lid te worden van de groep.</string>
-  <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s heeft via de groepsverwijzing verzocht om lid te worden.</string>
+  <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s heeft via de groepslink verzocht om lid te worden.</string>
   <!--Update message shown when someone requests to join via group link and cancels the request back to back-->
   <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
     <item quantity="one">%1$s heeft verzocht om lid te worden van de groep en heeft dat verzoek ingetrokken.</item>
@@ -2180,7 +2182,7 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="preferences__pref_use_address_book_photos">Profielfoto uit systeemcontactenlijst gebruiken</string>
   <string name="preferences__display_contact_photos_from_your_address_book_if_available">Geef indien beschikbaar de profielfoto uit je eigen systeemcontactenlijst weer, in plaats van de profielfoto welke anderen voor henzelf hebben ingesteld.</string>
   <string name="preferences__generate_link_previews">Voorbeeld van website meesturen</string>
-  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Door dit in te schakelen wordt voor elke verwijzing naar een website die je verzendt een voorbeeldafbeelding gegenereerd en met je bericht meegestuurd. Een nadeel is wel dat als je dit inschakelt websites zouden kunnen detecteren dat je hen in je bericht vermeldt en ook welke pagina je vermeldt.</string>
+  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Door dit in te schakelen wordt voor elke link naar een website die je verzendt een voorbeeldafbeelding gegenereerd en met je bericht meegestuurd. Een nadeel is wel dat als je dit inschakelt websites zouden kunnen detecteren dat je hen in je bericht vermeldt en ook welke pagina je vermeldt.</string>
   <string name="preferences__choose_identity">Identiteit kiezen</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Kies je contactgegevens uit de lijst met contactpersonen.</string>
   <string name="preferences__change_passphrase">Wachtwoord wijzigen</string>
@@ -2241,6 +2243,7 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="preferences__storage">Opslag</string>
   <string name="preferences__payments">Overschrijvingen</string>
   <!--Privacy settings payments section description-->
+  <string name="preferences__payment_lock">Betalingsslot</string>
   <string name="preferences__payments_beta">Overschrijvingen (Bèta)</string>
   <string name="preferences__conversation_length_limit">Aantal te bewaren berichten</string>
   <string name="preferences__keep_messages">Bewaartermijn voor berichten</string>
@@ -2410,9 +2413,11 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">De gebruiksvoorwaarden van MobileCoin weergeven</string>
   <string name="PaymentsHomeFragment__payments_not_available">Overschrijvingen via Signal zijn niet langer mogelijk. Je kunt nog wel je krediet omzetten naar een andere valuta maar je kunt niet langer overschrijvingen verzenden of ontvangen of krediet toevoegen.</string>
   <!--Alert dialog title which shows up after a payment to turn on payment lock-->
+  <string name="PaymentsHomeFragment__turn_on">Wil je Betalingsslot aanzetten voor toekomstige betalingen?</string>
   <!--Alert dialog description for why payment lock should be enabled before sending payments-->
+  <string name="PaymentsHomeFragment__add_an_additional_layer">Creëer extra beveiliging en vraag om een Android-schermvergrendeling of vingerafdruk om geld over te maken.</string>
   <!--Alert dialog button to enable payment lock-->
-  <string name="PaymentsHomeFragment__enable">Inschakelen</string>
+  <string name="PaymentsHomeFragment__enable">Aanzetten</string>
   <!--Alert dialog button to not enable payment lock for now-->
   <string name="PaymentsHomeFragment__not_now">Niet nu</string>
   <!--PaymentsAddMoneyFragment-->
@@ -2496,8 +2501,11 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="ConfirmPayment__payment_will_continue_processing">De overschrijving wordt nog verwerkt</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">Ontvanger ongeldig</string>
   <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
+  <string name="ConfirmPaymentFragment__unlock_to_send_payment">Ontgrendelen om geld over te maken</string>
   <!--Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <string name="ConfirmPaymentFragment__failed_to_show_payment_lock">Betalingsslot niet weergegeven</string>
   <!--Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <string name="ConfirmPaymentFragment__you_enabled_payment_lock_in_the_settings">Je hebt het betalingsslot aangezet in je instellingen, maar het is niet zichtbaar.</string>
   <!--Button in a dialog that will take the user to the privacy settings-->
   <string name="ConfirmPaymentFragment__go_to_settings">Ga naar instellingen</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Deze persoon heeft overschrijvingen niet ingeschakeld.</string>
@@ -2974,7 +2982,7 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">“%1$s” zal de groepsinformatie en groepslidmaatschap kunnen aanpassen.</string>
   <string name="RecipientBottomSheet_remove_s_from_the_group">%1$s van deze groep verwijderen?</string>
   <!--Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin-->
-  <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">Wil je “%1$s” van de groep verwijderen? Als je dit doet dan zal hij of zij niet via de groepsverwijzing verzoeken om opnieuw lid te worden van de groep.</string>
+  <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">Wil je “%1$s” van de groep verwijderen? Als je dit doet dan zal hij of zij niet via de groepslink verzoeken om opnieuw lid te worden van de groep.</string>
   <string name="RecipientBottomSheet_remove">Verwijderen</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Gekopieerd naar klembord</string>
   <string name="GroupRecipientListItem_admin">Beheerder</string>
@@ -2988,14 +2996,14 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="GroupsLearnMore_paragraph_2">Verouderde groepen kunnen niet worden omgezet in nieuwe groepen, maar je kunt wel een nieuwe groep aanmaken met dezelfde leden mits ze allemaal de meeste recente versie van Signal gebruiken.</string>
   <string name="GroupsLearnMore_paragraph_3">Signal zal in de toekomst een manier aanbieden om verouderde groepen om te zetten in nieuwe groepen.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
-  <string name="GroupLinkBottomSheet_share_hint_requiring_approval">Ieder die over deze verwijzing beschikt kan de naam, afbeelding en het aantal leden van deze groep zien en kan ook een verzoek indienen om lid te mogen worden. Deel deze verwijzing alleen met personen die je vertrouwt.</string>
-  <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">Ieder die over deze verwijzing beschikt kan de naam, afbeelding en het aantal leden van deze groep zien en kan direct lid worden. Deel deze verwijzing alleen met personen die je vertrouwt.</string>
+  <string name="GroupLinkBottomSheet_share_hint_requiring_approval">Ieder die over deze link beschikt kan de naam, afbeelding en het aantal leden van deze groep zien en kan ook een verzoek indienen om lid te mogen worden. Deel deze link alleen met personen die je vertrouwt.</string>
+  <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">Ieder die over deze link beschikt kan de naam, afbeelding en het aantal leden van deze groep zien en kan direct lid worden. Deel deze link alleen met personen die je vertrouwt.</string>
   <string name="GroupLinkBottomSheet_share_via_signal">Verzenden via Signal</string>
   <string name="GroupLinkBottomSheet_copy">Kopiëren</string>
   <string name="GroupLinkBottomSheet_qr_code">QR-code</string>
   <string name="GroupLinkBottomSheet_share">Verzenden via andere app</string>
   <string name="GroupLinkBottomSheet_copied_to_clipboard">Gekopieerd naar klembord</string>
-  <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">De verwijzing is momenteel niet actief</string>
+  <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">De link is momenteel niet actief</string>
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Het afspelen van het audiobericht is mislukt</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
@@ -3319,9 +3327,13 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Stel in dat berichten in alle toekomstige gesprekken die jij zelf begint een bepaalde tijd nadat ze gezien zijn voor zowel jou als je gesprekspartner vanzelf worden gewist.</string>
   <!--Summary for stories preference to launch into story privacy settings-->
   <string name="PrivacySettingsFragment__manage_your_stories">Beheer je verhalen en wie ze kan bekijken.</string>
+  <string name="PrivacySettingsFragment__payment_lock_require_lock">Vraag om een Android-schermvergrendeling of vingerafdruk om geld over te maken.</string>
   <!--Alert dialog title when payment lock cannot be enabled-->
+  <string name="PrivacySettingsFragment__cant_enable_title">Kan betalingsslot niet aanzetten</string>
   <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <string name="PrivacySettingsFragment__cant_enable_description">Om Betalingsslot aan te zetten, moet je eerst schermvergrendeling of vingerafdrukbeveiliging inschakelen in je telefooninstellingen.</string>
   <!--Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings-->
+  <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">Kon niet naar systeeminstellingen navigeren</string>
   <!--Alert dialog button to go to phone settings-->
   <string name="PrivacySettingsFragment__go_to_settings">Ga naar instellingen</string>
   <!--Alert dialog button to cancel the dialog-->
@@ -3460,7 +3472,7 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="ConversationSettingsFragment__add_members">Groepsleden toevoegen</string>
   <string name="ConversationSettingsFragment__permissions">Machtigingen</string>
   <string name="ConversationSettingsFragment__requests_and_invites">Verzoeken &amp; uitnodiging</string>
-  <string name="ConversationSettingsFragment__group_link">Groepsverwijzing</string>
+  <string name="ConversationSettingsFragment__group_link">Groepslink</string>
   <string name="ConversationSettingsFragment__add_as_a_contact">Als contactpersoon toevoegen</string>
   <string name="ConversationSettingsFragment__unmute">Meldingen niet langer dempen</string>
   <string name="ConversationSettingsFragment__conversation_muted_until_s">Je heb dit gesprek in het verleden tot %1$s gedempt</string>
@@ -3558,7 +3570,7 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
     <item quantity="other">Kon sommige berichten niet doorsturen omdat die inmiddels niet langer beschikbaar zijn.</item>
   </plurals>
   <!--Error message shown when attempting to select a group to forward/share but it\'s announcement only and you are not an admin-->
-  <string name="MultiselectForwardFragment__only_admins_can_send_messages_to_this_group">Alleen beheerders kunnen in deze groep berichten verzenden.</string>
+  <string name="MultiselectForwardFragment__only_admins_can_send_messages_to_this_group">Alleen beheerders kunnen in deze groep berichten sturen.</string>
   <string name="MultiselectForwardFragment__limit_reached">Limiet bereikt</string>
   <!--Media V2-->
   <string name="MediaReviewFragment__add_a_message">Berichttekst toevoegen</string>
@@ -3718,9 +3730,13 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Netwerkfout. Ga na dat je apparaat met het internet is verbonden en probeer het opnieuw.</string>
   <string name="NetworkFailure__retry">Opnieuw proberen</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__cant_send_gift">Kan geschenk niet sturen</string>
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__target_does_not_support_gifting">Deze ontvanger gebruikt een versie van Signal die geen geschenkbadges kan ontvangen. Zodra ze de nieuwste versie gebruiken, kunnen ze geschenken krijgen.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__couldnt_send_gift">Kon geschenk niet sturen</string>
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__please_check_your_network_connection">Jouw geschenk kon niet worden verzonden vanwege een netwerkprobleem. Controleer je verbinding en probeer het opnieuw.</string>
   <!--Gift message view title-->
   <string name="GiftMessageView__gift_badge">Cadeau-badge</string>
   <!--Gift message view expiry information-->
@@ -4131,7 +4147,7 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <!--Hint for entering a URL for a text post-->
   <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">Typ of plak een verwijzing</string>
   <!--Displayed prior to the user entering a URL for a text post-->
-  <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">Een verwijzing delen met de personen die je verhaal bekijken</string>
+  <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">Een link delen met de personen die je verhaal bekijken</string>
   <!--Hint text for searching for a story text post recipient.-->
   <string name="TextStoryPostSendFragment__search">Zoeken</string>
   <!--Toast shown when an unexpected error occurs while sending a text story-->
@@ -4230,7 +4246,7 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <!--endregion-->
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">Meer weergeven</string>
-  <string name="StoriesLinkPopup__visit_link">Verwijzing volgen</string>
+  <string name="StoriesLinkPopup__visit_link">Link volgen</string>
   <!--Gift price and duration, formatted as: {price} dot {n} day duration-->
   <plurals name="GiftRowItem_s_dot_d_day_duration">
     <item quantity="one">%1$s · %2$d dagen geldig</item>
@@ -4287,15 +4303,7 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Niet nu</string>
   <!--Label under name for private stories-->
-  <plurals name="ContactSearchItems__private_story_d_viewers">
-    <item quantity="one">Privéverhaal · door %1$d persoon gezien</item>
-    <item quantity="other">Privéverhaal · door %1$d personen gezien</item>
-  </plurals>
   <!--Label under name for group stories-->
-  <plurals name="ContactSearchItems__group_story_d_viewers">
-    <item quantity="one">Groepsverhaal · door %1$d persoon gezien</item>
-    <item quantity="other">Groepsverhaal · door %1$d personen gezien</item>
-  </plurals>
   <!--Label under name for my story-->
   <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
     <item quantity="one">%1$s · %2$d keer bekeken.</item>

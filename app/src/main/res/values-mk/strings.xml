@@ -430,9 +430,11 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">Грешка при поставување на профилната слика</string>
   <string name="CreateProfileActivity_problem_setting_profile">Проблем со поставување на профилот</string>
   <string name="CreateProfileActivity_set_up_your_profile">Поставете го Вашиот профил</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Вашиот профил и промените на профилот ќе бидат видливи за луѓето со кои се допишувате, вашите контакти и групи.</string>
   <string name="CreateProfileActivity_set_avatar_description">Постави аватар</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
+  <string name="ProfileCreateFragment__profiles_are_visible_to_contacts_and_people_you_message">Профилите се видливи за луѓето со кои се допишувате, вашите контакти и групите.</string>
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">Кој може да ме пронајде со мојот телефонски број?</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -2235,6 +2237,7 @@
   <string name="preferences__storage">Склад</string>
   <string name="preferences__payments">Плаќања</string>
   <!--Privacy settings payments section description-->
+  <string name="preferences__payment_lock">Заклучување за плаќање</string>
   <string name="preferences__payments_beta">Плаќања (Бета)</string>
   <string name="preferences__conversation_length_limit">Максимална должина на разговор</string>
   <string name="preferences__keep_messages">Задржи пораки</string>
@@ -2404,8 +2407,11 @@
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">Погледни ги условите за употреба на MobileCoin</string>
   <string name="PaymentsHomeFragment__payments_not_available">Плаќањата во Signal не се повеќе достапни. Сѐ уште можете да префрлате средства за менување но не можете да испраќате и примате или пак додавате средства.</string>
   <!--Alert dialog title which shows up after a payment to turn on payment lock-->
+  <string name="PaymentsHomeFragment__turn_on">Дали сакате да вклучите заклучување за плаќање за следните плаќања?</string>
   <!--Alert dialog description for why payment lock should be enabled before sending payments-->
+  <string name="PaymentsHomeFragment__add_an_additional_layer">Додајте дополнително ниво на безбедност и барајте заклучување на екранот на Android или отпечаток од прст за префрлање средства.</string>
   <!--Alert dialog button to enable payment lock-->
+  <string name="PaymentsHomeFragment__enable">Вклучи</string>
   <!--Alert dialog button to not enable payment lock for now-->
   <string name="PaymentsHomeFragment__not_now">Не сега</string>
   <!--PaymentsAddMoneyFragment-->
@@ -2489,8 +2495,11 @@
   <string name="ConfirmPayment__payment_will_continue_processing">Плаќањето ќе продолжи да се обработува</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">Невалиден примач</string>
   <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
+  <string name="ConfirmPaymentFragment__unlock_to_send_payment">Отклучи за да платиш</string>
   <!--Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <string name="ConfirmPaymentFragment__failed_to_show_payment_lock">Прикажувањето на заклучување за плаќање е неуспешно</string>
   <!--Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <string name="ConfirmPaymentFragment__you_enabled_payment_lock_in_the_settings">Овозможивте заклучување за плаќање во поставувањата, но не може да се прикаже.</string>
   <!--Button in a dialog that will take the user to the privacy settings-->
   <string name="ConfirmPaymentFragment__go_to_settings">Оди во поставувањата</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Оваа личност нема активирано плаќања</string>
@@ -3312,9 +3321,13 @@
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Поставете стандарден тајмер за пораки што исчезнуваат за сите нови разговори започнати од Вас.</string>
   <!--Summary for stories preference to launch into story privacy settings-->
   <string name="PrivacySettingsFragment__manage_your_stories">Смени ги поставувањата за приказните и одреди кој може да ги види</string>
+  <string name="PrivacySettingsFragment__payment_lock_require_lock">Барајте заклучување на екранот на Android или отпечаток од прст за префрлање средства.</string>
   <!--Alert dialog title when payment lock cannot be enabled-->
+  <string name="PrivacySettingsFragment__cant_enable_title">Не може да се овозможи заклучување за плаќање</string>
   <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <string name="PrivacySettingsFragment__cant_enable_description">За да користите Заклучување за плаќање мора прво да овозможите заклучување на екранот или идентификација со отпечаток од прст во поставувањата на телефонот.</string>
   <!--Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings-->
+  <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">Навигацијата до системските поставувања не е успешна</string>
   <!--Alert dialog button to go to phone settings-->
   <string name="PrivacySettingsFragment__go_to_settings">Оди во поставувањата</string>
   <!--Alert dialog button to cancel the dialog-->
@@ -3711,9 +3724,13 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Грешка во мрежата. Проверете ја Вашата интернет врска и обидете се повторно.</string>
   <string name="NetworkFailure__retry">Обидете се повторно</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__cant_send_gift">Не може да се испрати подарок</string>
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__target_does_not_support_gifting">Овој примач користи верзија на Signal во која не може да се примаат подарок беџови. Ќе може да прима подароци откако ќе ја ажурира апликацијата до последната верзија. </string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__couldnt_send_gift">Не може да се испрати подарок</string>
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__please_check_your_network_connection">Вашиот подарок не можеше да се испрати поради мрежна грешка. Проверете ја интернет врската и обидете се повторно.</string>
   <!--Gift message view title-->
   <string name="GiftMessageView__gift_badge">Подарок беџ</string>
   <!--Gift message view expiry information-->
@@ -4280,15 +4297,7 @@
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Не сега</string>
   <!--Label under name for private stories-->
-  <plurals name="ContactSearchItems__private_story_d_viewers">
-    <item quantity="one">Приватна приказна · %1$d гледач</item>
-    <item quantity="other">Приватна приказна · %1$d гледачи</item>
-  </plurals>
   <!--Label under name for group stories-->
-  <plurals name="ContactSearchItems__group_story_d_viewers">
-    <item quantity="one">Групна приказна · %1$d гледач</item>
-    <item quantity="other">Групна приказна · %1$d гледачи</item>
-  </plurals>
   <!--Label under name for my story-->
   <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
     <item quantity="one">%1$s · %2$d гледач</item>

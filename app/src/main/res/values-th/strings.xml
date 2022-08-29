@@ -409,9 +409,11 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">การตั้งค่ารูปโปรไฟล์ผิดพลาด</string>
   <string name="CreateProfileActivity_problem_setting_profile">ปัญหาการตั้งค่าโปรไฟล์</string>
   <string name="CreateProfileActivity_set_up_your_profile">สร้างโปรไฟล์ของคุณ</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">ผู้ติดต่อ กลุ่ม และคนที่คุณส่งข้อความหาจะเห็นโปรไฟล์และความเปลี่ยนแปลงที่เกิดขึ้นกับโปรไฟล์ของคุณ</string>
   <string name="CreateProfileActivity_set_avatar_description">สร้างอวตาร</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
+  <string name="ProfileCreateFragment__profiles_are_visible_to_contacts_and_people_you_message">ผู้ติดต่อ กลุ่ม และคนที่คุณส่งข้อความหาจะเห็นโปรไฟล์ของคุณ</string>
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">ใครบ้างที่สามารถค้นหาฉันด้วยหมายเลขโทรศัพท์ได้</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -2150,6 +2152,7 @@
   <string name="preferences__storage">พื้นที่จัดเก็บ</string>
   <string name="preferences__payments">การจ่ายเงิน</string>
   <!--Privacy settings payments section description-->
+  <string name="preferences__payment_lock">การล็อกการชำระเงิน</string>
   <string name="preferences__payments_beta">การชำระเงิน (รุ่นทดสอบ)</string>
   <string name="preferences__conversation_length_limit">ขีดจำกัดความยาวของการสนทนา</string>
   <string name="preferences__keep_messages">เก็บข้อความ</string>
@@ -2319,9 +2322,11 @@
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">ดูเงื่อนไข MobileCoin</string>
   <string name="PaymentsHomeFragment__payments_not_available">ไม่สามารถชำระเงินใน Signal ได้อีกต่อไป คุณยังสามารถโอนเงินไปยังตลาดหลักทรัพย์ได้ แต่คุณจะไม่สามารถส่งและรับการชำระเงินหรือเพิ่มเงินได้อีก</string>
   <!--Alert dialog title which shows up after a payment to turn on payment lock-->
+  <string name="PaymentsHomeFragment__turn_on">เปิดใช้ฟีเจอร์ล็อกการชำระเงินสำหรับการชำระในครั้งต่อไปหรือไม่</string>
   <!--Alert dialog description for why payment lock should be enabled before sending payments-->
+  <string name="PaymentsHomeFragment__add_an_additional_layer">ยกระดับการรักษาความปลอดภัยขึ้นอีกขั้น และกำหนดให้ต้องมีการปลดล็อกหน้าจอหรือสแกนลายนิ้วมือในอุปกรณ์ Android เพื่อโอนเงิน</string>
   <!--Alert dialog button to enable payment lock-->
-  <string name="PaymentsHomeFragment__enable">เปิด</string>
+  <string name="PaymentsHomeFragment__enable">เปิดใช้</string>
   <!--Alert dialog button to not enable payment lock for now-->
   <string name="PaymentsHomeFragment__not_now">ไม่ใช่ตอนนี้</string>
   <!--PaymentsAddMoneyFragment-->
@@ -2405,8 +2410,11 @@
   <string name="ConfirmPayment__payment_will_continue_processing">การชำระเงินจะดำเนินการต่อไป</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">ผู้รับไม่ถูกต้อง</string>
   <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
+  <string name="ConfirmPaymentFragment__unlock_to_send_payment">ปลดล็อกเพื่อชำระเงิน</string>
   <!--Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <string name="ConfirmPaymentFragment__failed_to_show_payment_lock">ไม่สามารถแสดงหน้าจอล็อกการชำระเงินได้</string>
   <!--Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <string name="ConfirmPaymentFragment__you_enabled_payment_lock_in_the_settings">คุณได้เปิดใช้งานฟีเจอร์ล็อกการชำระเงินในการตั้งค่าแล้ว แต่ระบบไม่สามารถแสดงหน้าจอได้</string>
   <!--Button in a dialog that will take the user to the privacy settings-->
   <string name="ConfirmPaymentFragment__go_to_settings">ไปที่การตั้งค่า</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">บุคคลนี้ไม่ได้เปิดใช้การชำระเงิน</string>
@@ -3218,9 +3226,13 @@
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">ตั้งค่าเริ่มต้นของตัวจับเวลาข้อความหายไปสำหรับแชตใหม่ที่คุณเริ่มต้น</string>
   <!--Summary for stories preference to launch into story privacy settings-->
   <string name="PrivacySettingsFragment__manage_your_stories">จัดการและกำหนดผู้ชมของสตอรี่คุณ</string>
+  <string name="PrivacySettingsFragment__payment_lock_require_lock">ต้องปลดล็อกหน้าจอหรือสแกนลายนิ้วมือในอุปกรณ์ Android เพื่อโอนเงิน</string>
   <!--Alert dialog title when payment lock cannot be enabled-->
+  <string name="PrivacySettingsFragment__cant_enable_title">ไม่สามารถเปิดใช้การล็อกการชำระเงินได้</string>
   <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <string name="PrivacySettingsFragment__cant_enable_description">หากต้องการใช้งานฟีเจอร์ล็อกการชำระเงิน คุณต้องเปิดใช้การล็อกหน้าจอหรือสแกนลายนิ้วมือในการตั้งค่าของโทรศัพท์ก่อน</string>
   <!--Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings-->
+  <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">ไม่สามารถไปยังการตั้งค่าระบบได้</string>
   <!--Alert dialog button to go to phone settings-->
   <string name="PrivacySettingsFragment__go_to_settings">ไปที่การตั้งค่า</string>
   <!--Alert dialog button to cancel the dialog-->
@@ -3611,9 +3623,13 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">เครือข่ายมีข้อผิดพลาด ตรวจสอบการเชื่อมต่อแล้วลองใหม่อีกครั้ง</string>
   <string name="NetworkFailure__retry">ลองใหม่</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__cant_send_gift">ไม่สามารถส่งของขวัญได้</string>
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__target_does_not_support_gifting">ผู้รับรายนี้ใช้ Signal เวอร์ชันที่ไม่สามารถรับโล่ของขวัญได้ โดยจะสามารถรับของขวัญได้เมื่ออัปเดตเป็นเวอร์ชันล่าสุด</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__couldnt_send_gift">ไม่สามารถส่งของขวัญได้</string>
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__please_check_your_network_connection">ไม่สามารถส่งของขวัญให้คุณได้เนื่องจากข้อผิดพลาดของเครือข่าย กรุณาตรวจสอบการเชื่อมต่อแล้วลองอีกครั้ง</string>
   <!--Gift message view title-->
   <string name="GiftMessageView__gift_badge">โล่ของขวัญ</string>
   <!--Gift message view expiry information-->
@@ -4172,13 +4188,7 @@
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">ไม่ใช่ตอนนี้</string>
   <!--Label under name for private stories-->
-  <plurals name="ContactSearchItems__private_story_d_viewers">
-    <item quantity="other">สตอรี่ส่วนตัว · ผู้ชม %1$d</item>
-  </plurals>
   <!--Label under name for group stories-->
-  <plurals name="ContactSearchItems__group_story_d_viewers">
-    <item quantity="other">สตอรี่กลุ่ม · ผู้ชม %1$d </item>
-  </plurals>
   <!--Label under name for my story-->
   <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
     <item quantity="other">%1$s · ผู้ชม %2$d คน</item>

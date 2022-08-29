@@ -430,9 +430,11 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">Det gick inte att ställa in profilbild</string>
   <string name="CreateProfileActivity_problem_setting_profile">Problem med att ställa in profilen</string>
   <string name="CreateProfileActivity_set_up_your_profile">Ställ in din profil</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Din profil och ändringar till den kommer att vara synliga för personer som du skickar ett meddelande till, samt till dina kontakter och grupper.</string>
   <string name="CreateProfileActivity_set_avatar_description">Ställ in avatar</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
+  <string name="ProfileCreateFragment__profiles_are_visible_to_contacts_and_people_you_message">Profiler är synliga för personer som du skickar ett meddelande till, samt till dina kontakter och grupper.</string>
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">Vem kan hitta mig med nummer?</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -2230,6 +2232,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences__storage">Lagring</string>
   <string name="preferences__payments">Betalningar</string>
   <!--Privacy settings payments section description-->
+  <string name="preferences__payment_lock">Betalningssäkerhet</string>
   <string name="preferences__payments_beta">Betalningar (Beta)</string>
   <string name="preferences__conversation_length_limit">Gräns för konversationslängd</string>
   <string name="preferences__keep_messages">Spara meddelanden</string>
@@ -2399,7 +2402,9 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">Visa MobileCoin-villkor</string>
   <string name="PaymentsHomeFragment__payments_not_available">Betalningar i Signal är inte längre tillgängliga. Du kan fortfarande överföra pengar till en börs men du kan inte längre skicka och ta emot betalningar eller lägga till pengar.</string>
   <!--Alert dialog title which shows up after a payment to turn on payment lock-->
+  <string name="PaymentsHomeFragment__turn_on">Aktivera betalningssäkerhet för framtida överföringar?</string>
   <!--Alert dialog description for why payment lock should be enabled before sending payments-->
+  <string name="PaymentsHomeFragment__add_an_additional_layer">Lägg till ett ytterligare säkerhetslager och kräv ett Android-skärmlås eller fingeravtryck för överföringar.</string>
   <!--Alert dialog button to enable payment lock-->
   <string name="PaymentsHomeFragment__enable">Slå på</string>
   <!--Alert dialog button to not enable payment lock for now-->
@@ -2485,8 +2490,11 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ConfirmPayment__payment_will_continue_processing">Betalningen fortsätter att bearbetas</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">Ogiltig mottagare</string>
   <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
+  <string name="ConfirmPaymentFragment__unlock_to_send_payment">Lås upp för att skicka betalning</string>
   <!--Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <string name="ConfirmPaymentFragment__failed_to_show_payment_lock">Det gick inte att visa betalningssäkerhet</string>
   <!--Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <string name="ConfirmPaymentFragment__you_enabled_payment_lock_in_the_settings">Du aktiverade betalningssäkerhet i inställningarna men den kan inte visas.</string>
   <!--Button in a dialog that will take the user to the privacy settings-->
   <string name="ConfirmPaymentFragment__go_to_settings">Gå till inställningar</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Denna person har inte aktiverat betalningar</string>
@@ -3308,9 +3316,13 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Ställ in en standardtidsgräns för försvinnande meddelanden för alla nya chattar som du startar.</string>
   <!--Summary for stories preference to launch into story privacy settings-->
   <string name="PrivacySettingsFragment__manage_your_stories">Hantera dina berättelser och vilka som kan visa dem</string>
+  <string name="PrivacySettingsFragment__payment_lock_require_lock">Kräv Andriod-skärmlås eller fingeravtryck för överföringar</string>
   <!--Alert dialog title when payment lock cannot be enabled-->
+  <string name="PrivacySettingsFragment__cant_enable_title">Det går inte att aktivera betalningssäkerhet</string>
   <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <string name="PrivacySettingsFragment__cant_enable_description">För att använda betalningssäkerhet måste du först aktivera ett skärmlås eller fingeravtryck i din telefons inställningar.</string>
   <!--Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings-->
+  <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">Det gick inte att navigera till systeminställningarna</string>
   <!--Alert dialog button to go to phone settings-->
   <string name="PrivacySettingsFragment__go_to_settings">Gå till inställningar</string>
   <!--Alert dialog button to cancel the dialog-->
@@ -3547,7 +3559,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
     <item quantity="other">Det gick inte att vidarebefordra meddelanden eftersom de inte längre är tillgängliga.</item>
   </plurals>
   <!--Error message shown when attempting to select a group to forward/share but it\'s announcement only and you are not an admin-->
-  <string name="MultiselectForwardFragment__only_admins_can_send_messages_to_this_group">Endast administratörer kan skicka meddelanden i denna grupp.</string>
+  <string name="MultiselectForwardFragment__only_admins_can_send_messages_to_this_group">Endast administratörer kan skicka meddelanden till denna grupp.</string>
   <string name="MultiselectForwardFragment__limit_reached">Gränsen nådd</string>
   <!--Media V2-->
   <string name="MediaReviewFragment__add_a_message">Lägg till ett meddelande</string>
@@ -3707,9 +3719,13 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Nätverksfel. Kontrollera din anslutning och försök igen.</string>
   <string name="NetworkFailure__retry">Försök igen</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__cant_send_gift">Det går inte att skicka gåva</string>
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__target_does_not_support_gifting">Mottagaren använder en version av Signal som inte kan ta emot gåvomärken. De kommer kunna ta emot gåvor när de uppdaterar till den senaste versionen.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__couldnt_send_gift">Det gick inte att skicka gåva</string>
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__please_check_your_network_connection">Din gåva kunde inte skickas på grund av ett nätverksfel. Kontrollera din anslutning och försök igen.</string>
   <!--Gift message view title-->
   <string name="GiftMessageView__gift_badge">Gåvomärke</string>
   <!--Gift message view expiry information-->
@@ -4276,15 +4292,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Inte nu</string>
   <!--Label under name for private stories-->
-  <plurals name="ContactSearchItems__private_story_d_viewers">
-    <item quantity="one">Privat berättelse · %1$d tittare</item>
-    <item quantity="other">Privat berättelse · %1$d tittare</item>
-  </plurals>
   <!--Label under name for group stories-->
-  <plurals name="ContactSearchItems__group_story_d_viewers">
-    <item quantity="one">Gruppberättelse · %1$d tittare</item>
-    <item quantity="other">Gruppberättelse · %1$d tittare</item>
-  </plurals>
   <!--Label under name for my story-->
   <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
     <item quantity="one">%1$s · %2$d tittare</item>

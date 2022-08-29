@@ -172,7 +172,7 @@
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Meus Stories</string>
   <!--Action for creating a new story-->
-  <string name="ContactsCursorLoader_new_story">Novo Story</string>
+  <string name="ContactsCursorLoader_new_story">Novo story</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Mensagem %s</string>
   <string name="ContactsDatabase_signal_call_s">Chamada Signal %s</string>
@@ -451,9 +451,11 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">Erro ao definir foto do perfil</string>
   <string name="CreateProfileActivity_problem_setting_profile">Problema ao definir perfil</string>
   <string name="CreateProfileActivity_set_up_your_profile">Crie seu perfil</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Seu perfil e alterações ficarão visíveis para seus contatos, grupos e pessoas que você enviar mensagens.</string>
   <string name="CreateProfileActivity_set_avatar_description">Definir avatar</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
+  <string name="ProfileCreateFragment__profiles_are_visible_to_contacts_and_people_you_message">Os perfis ficam visíveis para contatos, grupos e pessoas que você enviar mensagens.</string>
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">Quem pode me encontrar pelo número?</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -2322,6 +2324,7 @@
   <string name="preferences__storage">Armazenamento</string>
   <string name="preferences__payments">Pagamentos</string>
   <!--Privacy settings payments section description-->
+  <string name="preferences__payment_lock">Bloqueio de pagamento</string>
   <string name="preferences__payments_beta">Pagamentos (Beta)</string>
   <string name="preferences__conversation_length_limit">Tamanho máximo de conversa</string>
   <string name="preferences__keep_messages">Manter as mensagens</string>
@@ -2491,9 +2494,11 @@
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">Ver os termos da MobileCoin</string>
   <string name="PaymentsHomeFragment__payments_not_available">O módulo de Pagamentos não está mais disponível no Signal. Você ainda pode transferir fundos para uma intermediação de troca, mas não pode mais enviar e receber pagamentos ou adicionar fundos.</string>
   <!--Alert dialog title which shows up after a payment to turn on payment lock-->
+  <string name="PaymentsHomeFragment__turn_on">Quer ativar o bloqueio de pagamento para envios futuros?</string>
   <!--Alert dialog description for why payment lock should be enabled before sending payments-->
+  <string name="PaymentsHomeFragment__add_an_additional_layer">Adicione uma camada extra de segurança exigindo o bloqueio de tela ou impressão digital no seu Android para transferir dinheiro.</string>
   <!--Alert dialog button to enable payment lock-->
-  <string name="PaymentsHomeFragment__enable">Habilitar</string>
+  <string name="PaymentsHomeFragment__enable">Ativar</string>
   <!--Alert dialog button to not enable payment lock for now-->
   <string name="PaymentsHomeFragment__not_now">Agora não</string>
   <!--PaymentsAddMoneyFragment-->
@@ -2577,8 +2582,11 @@
   <string name="ConfirmPayment__payment_will_continue_processing">O pagamento continuará processando</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">Destinatário inválido</string>
   <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
+  <string name="ConfirmPaymentFragment__unlock_to_send_payment">Desbloquear para enviar pagamento</string>
   <!--Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <string name="ConfirmPaymentFragment__failed_to_show_payment_lock">Ocorreu um erro ao mostrar bloqueio de pagamento</string>
   <!--Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <string name="ConfirmPaymentFragment__you_enabled_payment_lock_in_the_settings">Você ativou o bloqueio de pagamento nas configurações, mas isso não pode ser mostrado no momento.</string>
   <!--Button in a dialog that will take the user to the privacy settings-->
   <string name="ConfirmPaymentFragment__go_to_settings">Acessar configurações</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Essa pessoa não ativou o módulo de pagamentos</string>
@@ -3411,9 +3419,13 @@
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Defina um cronômetro padrão para o desaparecimento de mensagens em todas as novas conversas iniciadas por você.</string>
   <!--Summary for stories preference to launch into story privacy settings-->
   <string name="PrivacySettingsFragment__manage_your_stories">Gerencie seus stories e quem pode visualizá-los</string>
+  <string name="PrivacySettingsFragment__payment_lock_require_lock">Exigir bloqueio de tela ou impressão digital para transferir dinheiro</string>
   <!--Alert dialog title when payment lock cannot be enabled-->
+  <string name="PrivacySettingsFragment__cant_enable_title">Não foi possível ativar o bloqueio de pagamento</string>
   <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <string name="PrivacySettingsFragment__cant_enable_description">Para usar o bloqueio de pagamento, você precisa ativar um bloqueio de tela ou identificação com impressão digital nas configurações do seu telefone.</string>
   <!--Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings-->
+  <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">Ocorreu um erro ao acessar as configurações do sistema</string>
   <!--Alert dialog button to go to phone settings-->
   <string name="PrivacySettingsFragment__go_to_settings">Acessar configurações</string>
   <!--Alert dialog button to cancel the dialog-->
@@ -3656,7 +3668,7 @@
     <item quantity="other">Não foi possível encaminhar as mensagens porque elas não estão mais disponíveis.</item>
   </plurals>
   <!--Error message shown when attempting to select a group to forward/share but it\'s announcement only and you are not an admin-->
-  <string name="MultiselectForwardFragment__only_admins_can_send_messages_to_this_group">Somente admins podem enviar mensagens para esse grupo.</string>
+  <string name="MultiselectForwardFragment__only_admins_can_send_messages_to_this_group">Somente administradores podem enviar mensagens para esse grupo.</string>
   <string name="MultiselectForwardFragment__limit_reached">Limite alcançado</string>
   <!--Media V2-->
   <string name="MediaReviewFragment__add_a_message">Adicionar uma mensagem</string>
@@ -3816,9 +3828,13 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Erro na rede. Verifique a sua conexão e tente novamente.</string>
   <string name="NetworkFailure__retry">Tentar novamente</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__cant_send_gift">Não foi possível enviar o presente</string>
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__target_does_not_support_gifting">O destinatário está usando uma versão do Signal não compatível com selos de presente. Esta pessoa poderá receber presentes após instalar a versão mais recente do app.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__couldnt_send_gift">Não foi possível enviar o presente</string>
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__please_check_your_network_connection">Não foi possível enviar seu presente devido a um erro de rede. Confira sua conexão e tente novamente.</string>
   <!--Gift message view title-->
   <string name="GiftMessageView__gift_badge">Selo de presente</string>
   <!--Gift message view expiry information-->
@@ -4393,17 +4409,7 @@
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Agora não</string>
   <!--Label under name for private stories-->
-  <plurals name="ContactSearchItems__private_story_d_viewers">
-    <item quantity="one">Story privado · %1$d visualização</item>
-    <item quantity="many">Story privado · %1$d visualizações</item>
-    <item quantity="other">Story privado · %1$d visualizações</item>
-  </plurals>
   <!--Label under name for group stories-->
-  <plurals name="ContactSearchItems__group_story_d_viewers">
-    <item quantity="one">Story do grupo · %1$d visualização</item>
-    <item quantity="many">Story do grupo · %1$d visualizações</item>
-    <item quantity="other">Story do grupo · %1$d visualizações</item>
-  </plurals>
   <!--Label under name for my story-->
   <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
     <item quantity="one">%1$s · %2$d visualizador</item>

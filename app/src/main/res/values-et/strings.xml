@@ -430,9 +430,11 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">Profiilipildi seadmisel tekkis viga</string>
   <string name="CreateProfileActivity_problem_setting_profile">Profiili seadistamisel tekkis probleem</string>
   <string name="CreateProfileActivity_set_up_your_profile">Seadista oma profiil</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Sinu profiil ja selle muudatused on nähtavad nendele, kellega sõnumeid oled vahetanud,  kontaktidele ja gruppidele.</string>
   <string name="CreateProfileActivity_set_avatar_description">Määra profiilipildiks</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
+  <string name="ProfileCreateFragment__profiles_are_visible_to_contacts_and_people_you_message">Profiil on nähtav inimestele, kellega sõnumeid oled vahetanud, kontaktidele ja gruppidele. </string>
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">Kes mind numbri järgi leida saavad?</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -2236,6 +2238,7 @@
   <string name="preferences__storage">Mäluruum</string>
   <string name="preferences__payments">Maksed</string>
   <!--Privacy settings payments section description-->
+  <string name="preferences__payment_lock">Makse kinnitus</string>
   <string name="preferences__payments_beta">Maksed (beeta)</string>
   <string name="preferences__conversation_length_limit">Vestluse pikkuse limiit</string>
   <string name="preferences__keep_messages">Säilita sõnumid</string>
@@ -2405,7 +2408,9 @@
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">Näita MobileCoini kasutustingimusi</string>
   <string name="PaymentsHomeFragment__payments_not_available">Maksed pole enam Signalis saadaval. Sul on võimalik kanda vahendid valuutavahetusse, aga sul pole enam võimalik saata või saada makseid ega lisada vahendeid.</string>
   <!--Alert dialog title which shows up after a payment to turn on payment lock-->
+  <string name="PaymentsHomeFragment__turn_on">Kas lülitada järgmiste maksete puhul sisse makse kinnitus?</string>
   <!--Alert dialog description for why payment lock should be enabled before sending payments-->
+  <string name="PaymentsHomeFragment__add_an_additional_layer">Lisa täiendav turvaelement ning küsi raha saatmisel Androidi ekraaniluku mustrit või sõrmejälge.</string>
   <!--Alert dialog button to enable payment lock-->
   <string name="PaymentsHomeFragment__enable">Lülita sisse</string>
   <!--Alert dialog button to not enable payment lock for now-->
@@ -2491,8 +2496,11 @@
   <string name="ConfirmPayment__payment_will_continue_processing">Makse töötlemine jätkub</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">Kehtetu saaja</string>
   <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
+  <string name="ConfirmPaymentFragment__unlock_to_send_payment">Makse saatmiseks ava lukk</string>
   <!--Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <string name="ConfirmPaymentFragment__failed_to_show_payment_lock">Makse kinnituse kuvamine ebaõnnestus</string>
   <!--Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <string name="ConfirmPaymentFragment__you_enabled_payment_lock_in_the_settings">Oled sätete alt makse kinnituse sisse lülitanud, kuid seda ei saa kuvada.</string>
   <!--Button in a dialog that will take the user to the privacy settings-->
   <string name="ConfirmPaymentFragment__go_to_settings">Mine sätetesse</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">See isik pole makseid aktiveerinud</string>
@@ -3314,9 +3322,13 @@
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Määra kaduvate sõnumite vaikimisi kestus kõigile sinu poolt loodud uutele gruppidele.</string>
   <!--Summary for stories preference to launch into story privacy settings-->
   <string name="PrivacySettingsFragment__manage_your_stories">Halda oma lugusid ja seda, kes neid näevad</string>
+  <string name="PrivacySettingsFragment__payment_lock_require_lock">Küsi makse saatmiseks Androidi ekraaniluku mustrit või sõrmejälge</string>
   <!--Alert dialog title when payment lock cannot be enabled-->
+  <string name="PrivacySettingsFragment__cant_enable_title">Makse kinnituse küsimist ei saa lubada</string>
   <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <string name="PrivacySettingsFragment__cant_enable_description">Makse kinnituse kasutamiseks pead kõigepealt lubama oma telefoni sätete alt ekraaniluku või sõrmejälje ID.</string>
   <!--Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings-->
+  <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">Süsteemi sätete avamine ebaõnnestus</string>
   <!--Alert dialog button to go to phone settings-->
   <string name="PrivacySettingsFragment__go_to_settings">Mine sätetesse</string>
   <!--Alert dialog button to cancel the dialog-->
@@ -3713,9 +3725,13 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Võrgu viga. Kontrolli oma ühendust ja proovi uuesti.</string>
   <string name="NetworkFailure__retry">Proovi uuesti</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__cant_send_gift">Kingitust ei saa saata</string>
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__target_does_not_support_gifting">See saatja kasutab Signali versiooni, milles ei ole võimalik kingitusi vastu võtta. Ta saab kingitusi vastu võtta, kui ta uusimale versioonile uuendab.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__couldnt_send_gift">Kingitust ei saanud saata</string>
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__please_check_your_network_connection">Sinu kingitust ei saanud saata võrgu vea tõttu. Kontrolli oma ühendust ja proovi uuesti.</string>
   <!--Gift message view title-->
   <string name="GiftMessageView__gift_badge">Kinkemärk</string>
   <!--Gift message view expiry information-->
@@ -4289,7 +4305,7 @@
   <!--Label under name for group stories-->
   <plurals name="ContactSearchItems__group_story_d_viewers">
     <item quantity="one">Grupi lugu · %1$d vaataja</item>
-    <item quantity="other">Grupi lugu · %1$d vaatajat</item>
+    <item quantity="other">Grupi lugu · %1$d vaataja</item>
   </plurals>
   <!--Label under name for my story-->
   <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">

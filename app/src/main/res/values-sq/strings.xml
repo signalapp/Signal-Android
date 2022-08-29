@@ -171,7 +171,7 @@
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Story-t e mia</string>
   <!--Action for creating a new story-->
-  <string name="ContactsCursorLoader_new_story">Story e re</string>
+  <string name="ContactsCursorLoader_new_story">Postim i përkohshëm i ri</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">%s mesazhi</string>
   <string name="ContactsDatabase_signal_call_s">Telefonatë Signal me %s</string>
@@ -430,9 +430,11 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">Gabim në caktim fotoje profili</string>
   <string name="CreateProfileActivity_problem_setting_profile">Problem në rregullim profili</string>
   <string name="CreateProfileActivity_set_up_your_profile">Ujdisni profilin tuaj</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Profili yt dhe ndryshimet e tij do të shihen nga personat, të cilëve u shkruan, nga kontaktet dhe grupet.</string>
   <string name="CreateProfileActivity_set_avatar_description">Caktoni avatar</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
+  <string name="ProfileCreateFragment__profiles_are_visible_to_contacts_and_people_you_message">Profilet shihen nga personat, të cilëve u shkruan, nga kontaktet dhe grupet.</string>
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">Kush mund të më gjejë nëpërmjet numrit?</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -2237,6 +2239,7 @@ grupit dhe s\’do të marrë mesazhe grupi përpara se ta pranojë:</item>
   <string name="preferences__storage">Hapësirë</string>
   <string name="preferences__payments">Pagesa</string>
   <!--Privacy settings payments section description-->
+  <string name="preferences__payment_lock">Kyçja e pagesës</string>
   <string name="preferences__payments_beta">Pagesa (Beta)</string>
   <string name="preferences__conversation_length_limit">Kufi gjatësie bisedash</string>
   <string name="preferences__keep_messages">Mbaji mesazhet</string>
@@ -2408,7 +2411,9 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">Shihni kushte MobileCoin-i</string>
   <string name="PaymentsHomeFragment__payments_not_available">Pagesat në Signal s\’janë më të përdorshme. Mundeni ende të shpërngulni fonde në një platformë, por s\’mund të dërgoni apo merrni më pagesa, apo të shtoni fonde.</string>
   <!--Alert dialog title which shows up after a payment to turn on payment lock-->
+  <string name="PaymentsHomeFragment__turn_on">Do ta aktivizosh kyçjen e pagesës për dërgesat e ardhshme?</string>
   <!--Alert dialog description for why payment lock should be enabled before sending payments-->
+  <string name="PaymentsHomeFragment__add_an_additional_layer">Shto një shtresë sigurie dhe kërko kyçjen e ekranit nga Android ose gjurmën e gishtit për të transferuar fondet.</string>
   <!--Alert dialog button to enable payment lock-->
   <string name="PaymentsHomeFragment__enable">Aktivizo</string>
   <!--Alert dialog button to not enable payment lock for now-->
@@ -2494,8 +2499,11 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <string name="ConfirmPayment__payment_will_continue_processing">Pagesa do të vazhdojë të përpunohet</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">Marrës i pavlefshëm</string>
   <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
+  <string name="ConfirmPaymentFragment__unlock_to_send_payment">Zhblloko për të dërguar pagesën</string>
   <!--Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <string name="ConfirmPaymentFragment__failed_to_show_payment_lock">Nuk u shfaq kyçja e pagesës</string>
   <!--Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <string name="ConfirmPaymentFragment__you_enabled_payment_lock_in_the_settings">Ke aktivizuar kyçjen e pagesës te parametrat, por nuk mund të shfaqet.</string>
   <!--Button in a dialog that will take the user to the privacy settings-->
   <string name="ConfirmPaymentFragment__go_to_settings">Shko te cilësimet</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Ky person s\’ka aktivizuar pagesa</string>
@@ -3319,9 +3327,13 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Ujdisni një kohëmatës tretjeje mesazhesh për krejt fjalosjet e reja të nisura nga ju.</string>
   <!--Summary for stories preference to launch into story privacy settings-->
   <string name="PrivacySettingsFragment__manage_your_stories">Menaxho postimet e përkohshme dhe se kush mund t\'i shohë ato</string>
+  <string name="PrivacySettingsFragment__payment_lock_require_lock">Kërko kyçje të ekranit nga Android ose gjurmën e gishtit për të transferuar fondet</string>
   <!--Alert dialog title when payment lock cannot be enabled-->
+  <string name="PrivacySettingsFragment__cant_enable_title">Kyçja e pagesës nuk mund të aktivizohet</string>
   <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <string name="PrivacySettingsFragment__cant_enable_description">Për të përdorur kyçjen e pagesës, fillimisht duhet të aktivizosh një kyçje ekrani ose ID të gjurmës së gishtit te parametrat e telefonit.</string>
   <!--Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings-->
+  <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">Nuk shkoi te parametrat e sistemit</string>
   <!--Alert dialog button to go to phone settings-->
   <string name="PrivacySettingsFragment__go_to_settings">Shko te cilësimet</string>
   <!--Alert dialog button to cancel the dialog-->
@@ -3558,7 +3570,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
     <item quantity="other">S\’u përcollën dot mesazhe, ngaqë s\’janë më.</item>
   </plurals>
   <!--Error message shown when attempting to select a group to forward/share but it\'s announcement only and you are not an admin-->
-  <string name="MultiselectForwardFragment__only_admins_can_send_messages_to_this_group">Te ky grup mund të dërgojnë mesazhe vetëm përgjegjësit.</string>
+  <string name="MultiselectForwardFragment__only_admins_can_send_messages_to_this_group">Në këtë grup mund të dërgojnë mesazhe vetëm administratorët.</string>
   <string name="MultiselectForwardFragment__limit_reached">U mbërrit në kufi</string>
   <!--Media V2-->
   <string name="MediaReviewFragment__add_a_message">Shtoni një mesazh</string>
@@ -3718,9 +3730,13 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Gabim rrjeti. Ju lutemi, kontrolloni lidhjen tuaj me rrjetin dhe riprovoni.</string>
   <string name="NetworkFailure__retry">Riprovo</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__cant_send_gift">Dhurata nuk mund të dërgohet</string>
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__target_does_not_support_gifting">Ky marrës përdor një version të Signal që nuk mund të marrë distinktivë dhuratë. Dhuratat do të mund të merren kur të përditësojnë aplikacionin në versionin më të fundit.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__couldnt_send_gift">Dhurata nuk mundi të dërgohej</string>
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__please_check_your_network_connection">Dhurata jote nuk u dërgua dot për shkak të një gabimi në rrjet. Kontrollo internetin dhe provo sërish.</string>
   <!--Gift message view title-->
   <string name="GiftMessageView__gift_badge">Dhuroni stemë</string>
   <!--Gift message view expiry information-->
@@ -4287,15 +4303,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Jo tani</string>
   <!--Label under name for private stories-->
-  <plurals name="ContactSearchItems__private_story_d_viewers">
-    <item quantity="one">Histori Private · %1$d parës</item>
-    <item quantity="other">Story-t  private · %1$d shikues</item>
-  </plurals>
   <!--Label under name for group stories-->
-  <plurals name="ContactSearchItems__group_story_d_viewers">
-    <item quantity="one">Histori Grupi · %1$d parës</item>
-    <item quantity="other">Story-t e grupit · %1$d shikues</item>
-  </plurals>
   <!--Label under name for my story-->
   <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
     <item quantity="one">%1$s   %2$d shikues</item>

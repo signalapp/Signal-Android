@@ -4414,17 +4414,7 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Ne sada</string>
   <!--Label under name for private stories-->
-  <plurals name="ContactSearchItems__private_story_d_viewers">
-    <item quantity="one">Privatna priča · %1$d posmatrač</item>
-    <item quantity="few">Privatna priča · %1$d posmatrača</item>
-    <item quantity="other">Privatna priča · %1$d posmatrača</item>
-  </plurals>
   <!--Label under name for group stories-->
-  <plurals name="ContactSearchItems__group_story_d_viewers">
-    <item quantity="one">Grupna priča · %1$d posmatrač</item>
-    <item quantity="few">Grupna priča · %1$d posmatrača</item>
-    <item quantity="other">Grupna priča · %1$d posmatrača</item>
-  </plurals>
   <!--Label under name for my story-->
   <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
     <item quantity="one">%1$s · %2$d gledalac</item>

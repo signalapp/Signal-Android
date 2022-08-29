@@ -2146,7 +2146,7 @@
   <string name="preferences__storage">ឧបករណ៍ផ្ទុក</string>
   <string name="preferences__payments">ការទូទាត់</string>
   <!--Privacy settings payments section description-->
-  <string name="preferences__payment_lock">មុខងារចាក់សោការទូទាត់</string>
+  <string name="preferences__payment_lock">មុខងារចាក់សោការបង់ប្រាក់</string>
   <string name="preferences__payments_beta">ការទូទាត់ (បេតា)</string>
   <string name="preferences__conversation_length_limit">ប្រវែងការសន្ទនាមានកំណត់</string>
   <string name="preferences__keep_messages">រក្សាសារ</string>
@@ -2316,13 +2316,13 @@
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">មើលលក្ខខណ្ឌ MobileCoin</string>
   <string name="PaymentsHomeFragment__payments_not_available">ការទូទាត់នៅក្នុង Signal លែងមានហើយ។ អ្នកនៅតែអាចផ្ទេរប្រាក់ទៅកន្លែងប្តូរប្រាក់បាន ប៉ុន្តែអ្នកមិនអាចផ្ញើ និងទទួលការទូទាត់ ឬបន្ថែមថវិកាបានទេ។</string>
   <!--Alert dialog title which shows up after a payment to turn on payment lock-->
-  <string name="PaymentsHomeFragment__turn_on">បើកមុខងារចាក់សោការទូទាត់សម្រាប់ការផ្ញើនាពេលអនាគតឬ?</string>
+  <string name="PaymentsHomeFragment__turn_on">បើកមុខងារចាក់សោការបង់ប្រាក់សម្រាប់ការផ្ញើនាពេលអនាគតឬ?</string>
   <!--Alert dialog description for why payment lock should be enabled before sending payments-->
   <string name="PaymentsHomeFragment__add_an_additional_layer">បញ្ចូលស្រទាប់សុវត្ថិភាពបន្ថែម ហើយតម្រូវឲ្យចាក់សោអេក្រង់ Android ឬប្រើស្នាមម្រាមដៃដើម្បីផ្ទេរប្រាក់។</string>
   <!--Alert dialog button to enable payment lock-->
   <string name="PaymentsHomeFragment__enable">បើក</string>
   <!--Alert dialog button to not enable payment lock for now-->
-  <string name="PaymentsHomeFragment__not_now">មិនមែនឥឡូវនេះ</string>
+  <string name="PaymentsHomeFragment__not_now">កុំទាន់</string>
   <!--PaymentsAddMoneyFragment-->
   <string name="PaymentsAddMoneyFragment__add_funds">បន្ថែមថវិកា</string>
   <string name="PaymentsAddMoneyFragment__your_wallet_address">អាសយដ្ឋានកាបូបរបស់អ្នក</string>
@@ -2404,11 +2404,11 @@
   <string name="ConfirmPayment__payment_will_continue_processing">ការទូទាត់នឹងបន្តដំណើរការ</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">អ្នកទទួលមិនត្រឹមត្រូវ</string>
   <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
-  <string name="ConfirmPaymentFragment__unlock_to_send_payment">ដោះសោដើម្បីផ្ញើការទូទាត់</string>
+  <string name="ConfirmPaymentFragment__unlock_to_send_payment">ដោះសោដើម្បីផ្ញើការបង់ប្រាក់</string>
   <!--Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
-  <string name="ConfirmPaymentFragment__failed_to_show_payment_lock">មិនអាចបង្ហាញមុខងារចាក់សោការទូទាត់ទេ</string>
+  <string name="ConfirmPaymentFragment__failed_to_show_payment_lock">មិនអាចបង្ហាញមុខងារចាក់សោការបង់ប្រាក់បានទេ</string>
   <!--Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
-  <string name="ConfirmPaymentFragment__you_enabled_payment_lock_in_the_settings">អ្នកបានបើកមុខងារចាក់សោទូទាត់នៅក្នុងការកំណត់ តែវាមិនអាចបង្ហាញទេ។</string>
+  <string name="ConfirmPaymentFragment__you_enabled_payment_lock_in_the_settings">អ្នកបានបើកមុខងារចាក់សោការបង់ប្រាក់នៅក្នុងការកំណត់ តែវាមិនអាចបង្ហាញបាន។</string>
   <!--Button in a dialog that will take the user to the privacy settings-->
   <string name="ConfirmPaymentFragment__go_to_settings">ចូលទៅកាន់ការកំណត់</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">មនុស្សនេះ មិនទាន់បើកដំណើរការការទូទាត់</string>
@@ -3221,9 +3221,9 @@
   <string name="PrivacySettingsFragment__manage_your_stories">គ្រប់គ្រងរឿងរ៉ាវរបស់អ្នក និងអ្នកដែលអាចមើលពួកវា</string>
   <string name="PrivacySettingsFragment__payment_lock_require_lock">តម្រូវឲ្យចាក់សោអេក្រង់ Android ឬប្រើស្នាមម្រាមដៃដើម្បីផ្ទេរប្រាក់</string>
   <!--Alert dialog title when payment lock cannot be enabled-->
-  <string name="PrivacySettingsFragment__cant_enable_title">មិនអាចបើកមុខងារចាក់សោការទូទាត់</string>
+  <string name="PrivacySettingsFragment__cant_enable_title">មិនអាចបើកមុខងារចាក់សោការបង់ប្រាក់បាន</string>
   <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
-  <string name="PrivacySettingsFragment__cant_enable_description">ដើម្បីប្រើមុខងារចាក់សោទូទាត់ អ្នកត្រូវតែបើកការចាក់សោអេក្រង់ ឬលេខសម្គាល់ស្នាមម្រាមដៃនៅក្នុងការកំណត់ទូរសព្ទរបស់អ្នកជាមុនសិន។</string>
+  <string name="PrivacySettingsFragment__cant_enable_description">ដើម្បីប្រើមុខងារចាក់សោការបង់ប្រាក់ អ្នកត្រូវតែបើកការចាក់សោអេក្រង់ ឬលេខសម្គាល់ស្នាមម្រាមដៃនៅក្នុងការកំណត់ទូរសព្ទរបស់អ្នកជាមុនសិន។</string>
   <!--Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings-->
   <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">មិនអាចរុករកទៅការកំណត់ប្រព័ន្ធ</string>
   <!--Alert dialog button to go to phone settings-->
@@ -3456,7 +3456,7 @@
     <item quantity="other">មិនអាចបញ្ជូនសារបន្តបាន ព្រោះសារត្រូវបានបាត់បង់</item>
   </plurals>
   <!--Error message shown when attempting to select a group to forward/share but it\'s announcement only and you are not an admin-->
-  <string name="MultiselectForwardFragment__only_admins_can_send_messages_to_this_group">មានតែអ្នកអភិបាលក្រុមទេដែលអាចផ្ញើសារក្នុងក្រុមនេះ។</string>
+  <string name="MultiselectForwardFragment__only_admins_can_send_messages_to_this_group">មានតែអ្នកគ្រប់គ្រងប៉ុណ្ណោះទើបអាចផ្ញើសារទៅក្រុមនេះបាន។</string>
   <string name="MultiselectForwardFragment__limit_reached">ដែនកំណត់ការចែកចាយ</string>
   <!--Media V2-->
   <string name="MediaReviewFragment__add_a_message">បន្ថែមសារមួយ</string>
@@ -3616,13 +3616,13 @@
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">បណ្ដាញមានបញ្ហា។ សូមពិនិត្យការភ្ជាប់របស់អ្នក ហើយសាកល្បងម្ដងទៀត</string>
   <string name="NetworkFailure__retry">ព្យាយាមម្តងទៀត</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
-  <string name="DonationsErrors__cant_send_gift">មិនអាចផ្ញើអំណោយ</string>
+  <string name="DonationsErrors__cant_send_gift">មិនអាចផ្ញើកាដូបាន</string>
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
-  <string name="DonationsErrors__target_does_not_support_gifting">អ្នកទទួលនេះកំពុងប្រើកំណែ Signal ដែលមិនអាចទទួលបានស្លាកអំណោយ។ ពួកគេនឹងអាចទទួលបានអំណោយនៅពេលដែលពួកគេដំឡើងទៅកំណែចុងក្រោយបំផុត។</string>
+  <string name="DonationsErrors__target_does_not_support_gifting">អ្នកទទួលនេះកំពុងប្រើកំណែ Signal ដែលមិនអាចទទួលស្លាកកាដូបាន។ គេនឹងអាចទទួលកាដូបាននៅពេលដែលគេដំឡើងទៅកំណែចុងក្រោយបំផុត។</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
-  <string name="DonationsErrors__couldnt_send_gift">មិនអាចផ្ញើអំណោយ</string>
+  <string name="DonationsErrors__couldnt_send_gift">មិនអាចផ្ញើកាដូបាន</string>
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
-  <string name="DonationsErrors__please_check_your_network_connection">អំណោយរបស់អ្នកមិនអាចផ្ញើបានដោយសារតែបញ្ហាបណ្តាញ។ ពិនិត្យការតភ្ជាប់របស់អ្នក ហើយព្យាយាមម្តងទៀត។</string>
+  <string name="DonationsErrors__please_check_your_network_connection">កាដូរបស់អ្នកមិនអាចផ្ញើចេញបានទេ ដោយសារតែបញ្ហាបណ្តាញ។ សូមពិនិត្យមើលសេវាអ៊ីនធឺណិតរបស់អ្នក រួចព្យាយាមម្តងទៀត។</string>
   <!--Gift message view title-->
   <string name="GiftMessageView__gift_badge">ស្លាកកាដូ</string>
   <!--Gift message view expiry information-->
@@ -4186,7 +4186,7 @@
   </plurals>
   <!--Label under name for group stories-->
   <plurals name="ContactSearchItems__group_story_d_viewers">
-    <item quantity="other">រឿងរ៉ាវក្រុម ·  អ្នកមើល %1$d នាក់</item>
+    <item quantity="other">រឿងរ៉ាវក្រុម · អ្នកមើល %1$d នាក់</item>
   </plurals>
   <!--Label under name for my story-->
   <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">

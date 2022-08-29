@@ -173,7 +173,6 @@
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Myn ferhalen</string>
   <!--Action for creating a new story-->
-  <string name="ContactsCursorLoader_new_story">Nij ferhaal</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Berjocht stjoere nei %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal-oprop %s</string>

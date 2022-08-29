@@ -430,9 +430,11 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">Errorea gertatu da profileko argazkia gordetzean</string>
   <string name="CreateProfileActivity_problem_setting_profile">Profila gordetzean errorea</string>
   <string name="CreateProfileActivity_set_up_your_profile">Ezarri zure profila</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Zure kontaktuek, taldeek eta zure mezuak jasotzen dituzten guztiek ikusi ahal izango dituzte zure profila eta egiten dizkiozun aldaketak.</string>
   <string name="CreateProfileActivity_set_avatar_description">Ezarri abatarra</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
+  <string name="ProfileCreateFragment__profiles_are_visible_to_contacts_and_people_you_message">Zure kontaktuek, taldeek eta zure mezuak jasotzen dituzten guztiek ikusi ahal izango dituzte profilak.</string>
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">Nork topa nazake nire telefono-zenbakia bilatuta?</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -2237,6 +2239,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="preferences__storage">Biltegia</string>
   <string name="preferences__payments">Ordainketak</string>
   <!--Privacy settings payments section description-->
+  <string name="preferences__payment_lock">Ordainketen babesa</string>
   <string name="preferences__payments_beta">Ordainketak (Beta)</string>
   <string name="preferences__conversation_length_limit">Solasaldiaren luzera muga</string>
   <string name="preferences__keep_messages">Mezuak gorde</string>
@@ -2406,7 +2409,9 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">Ikusi MobileCoin-en baldintzak</string>
   <string name="PaymentsHomeFragment__payments_not_available">Signal-eko ordainketak jada ez daude erabilgarri. Funtsak truke-plataformetara transferitzen jarrai dezakezu, baina jada ezin dituzu bidali eta jaso ordainketak, ezta funtsak gehitu ere.</string>
   <!--Alert dialog title which shows up after a payment to turn on payment lock-->
+  <string name="PaymentsHomeFragment__turn_on">Ordainketen babesa aktibatu nahi duzu hurrengo bidalketetarako?</string>
   <!--Alert dialog description for why payment lock should be enabled before sending payments-->
+  <string name="PaymentsHomeFragment__add_an_additional_layer">Gehitu segurtasun-maila gehigarri bat eta, funtsak transferitzeko, erabili Android-eko pantaila-blokeoa edo hatz-marka.</string>
   <!--Alert dialog button to enable payment lock-->
   <string name="PaymentsHomeFragment__enable">Aktibatu</string>
   <!--Alert dialog button to not enable payment lock for now-->
@@ -2492,8 +2497,11 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="ConfirmPayment__payment_will_continue_processing">Ordainketa prozesatzen jarraituko da</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">Hartzaile baliogabea!</string>
   <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
+  <string name="ConfirmPaymentFragment__unlock_to_send_payment">Ordainketa bidaltzeko, desblokeatu</string>
   <!--Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <string name="ConfirmPaymentFragment__failed_to_show_payment_lock">Ezin izan da erakutsi ordainketen babesa</string>
   <!--Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <string name="ConfirmPaymentFragment__you_enabled_payment_lock_in_the_settings">Ezarpenetan ordainketen babesa aktibatu duzu, baina ezin da erakutsi.</string>
   <!--Button in a dialog that will take the user to the privacy settings-->
   <string name="ConfirmPaymentFragment__go_to_settings">Joan ezarpenetara</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Pertsona honek ez ditu ordainketak aktibatu</string>
@@ -3315,9 +3323,13 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Ezarri lehenetsitako desagerpen mezuen tenporizadore bat zuk hasitako txat berri guztientzat.</string>
   <!--Summary for stories preference to launch into story privacy settings-->
   <string name="PrivacySettingsFragment__manage_your_stories">Kudeatu zure istorioak eta nork ikusi ditzakeen</string>
+  <string name="PrivacySettingsFragment__payment_lock_require_lock">Funtsak transferitzeko, Android-eko pantaila-blokeoa edo hatz-marka behar da</string>
   <!--Alert dialog title when payment lock cannot be enabled-->
+  <string name="PrivacySettingsFragment__cant_enable_title">Ezin da gaitu ordainketen babesa</string>
   <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <string name="PrivacySettingsFragment__cant_enable_description">Ordainketen babesa erabiltzeko, lehenik eta behin pantaila-blokeoa edo hatz-marken ID bat gaitu behar duzu telefonoaren ezarpenetan.</string>
   <!--Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings-->
+  <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">Ezin da nabigatu sistemaren ezarpenetan</string>
   <!--Alert dialog button to go to phone settings-->
   <string name="PrivacySettingsFragment__go_to_settings">Joan ezarpenetara</string>
   <!--Alert dialog button to cancel the dialog-->
@@ -3554,6 +3566,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
     <item quantity="other">Ezin izan dira mezuak birbidali eskuragarri ez daudelako.</item>
   </plurals>
   <!--Error message shown when attempting to select a group to forward/share but it\'s announcement only and you are not an admin-->
+  <string name="MultiselectForwardFragment__only_admins_can_send_messages_to_this_group">Administratzaileek soilik bidali ditzakete mezuak talde honetara.</string>
   <string name="MultiselectForwardFragment__limit_reached">Muga iritsi da</string>
   <!--Media V2-->
   <string name="MediaReviewFragment__add_a_message">Gehitu mezu bat</string>
@@ -3713,9 +3726,13 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Sareko errorea. Egiaztatu konexioa eta saiatu berriro.</string>
   <string name="NetworkFailure__retry">Berriro saiatu</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__cant_send_gift">Ezin da bidali oparia</string>
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__target_does_not_support_gifting">Opari-bereizgarriak jasotzeko aukera ez duen Signal-en bertsio bat darabil hartzaile honek. Aplikazioaren azken bertsioa eskuratzen duenean jaso ahalko ditu opariak.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__couldnt_send_gift">Ezin izan da bidali oparia</string>
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__please_check_your_network_connection">Sarearen errore bat dela eta, ezin izan da bidali oparia. Egiaztatu konexioa eta saiatu berriro.</string>
   <!--Gift message view title-->
   <string name="GiftMessageView__gift_badge">Opari bereizgarria</string>
   <!--Gift message view expiry information-->
@@ -4283,13 +4300,13 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="ExpiredGiftSheetConfiguration__not_now">Orain ez</string>
   <!--Label under name for private stories-->
   <plurals name="ContactSearchItems__private_story_d_viewers">
-    <item quantity="one">Story pribatua - ikusle %1$d</item>
-    <item quantity="other">Story pribatua - %1$dikusle</item>
+    <item quantity="one">Istorio pribatua - ikusle %1$d</item>
+    <item quantity="other">Istorio pribatua - %1$dikusle</item>
   </plurals>
   <!--Label under name for group stories-->
   <plurals name="ContactSearchItems__group_story_d_viewers">
-    <item quantity="one">Tadeko Story - ikusle%1$d</item>
-    <item quantity="other">Tadeko Story - %1$d ikusle</item>
+    <item quantity="one">Taldeko Istorioa - ikusle %1$d</item>
+    <item quantity="other">Taldeko Istorioa - %1$d ikusle</item>
   </plurals>
   <!--Label under name for my story-->
   <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
