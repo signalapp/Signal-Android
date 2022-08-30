@@ -458,6 +458,7 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
         selfieFlash
     );
 
+    flashHelper.onWillTakePicture();
     cameraController.takePicture(Executors.mainThreadExecutor(), new ImageCapture.OnImageCapturedCallback() {
       @Override
       public void onCaptureSuccess(@NonNull ImageProxy image) {

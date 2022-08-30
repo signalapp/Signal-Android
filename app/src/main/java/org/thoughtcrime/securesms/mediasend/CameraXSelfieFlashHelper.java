@@ -23,6 +23,7 @@ final class CameraXSelfieFlashHelper {
 
   private float   brightnessBeforeFlash;
   private boolean inFlash;
+  private int     flashMode = -1;
 
   CameraXSelfieFlashHelper(@NonNull Window window,
                            @NonNull CameraController camera,
@@ -31,6 +32,13 @@ final class CameraXSelfieFlashHelper {
     this.window      = window;
     this.camera      = camera;
     this.selfieFlash = selfieFlash;
+  }
+
+  void onWillTakePicture() {
+    if (!inFlash && shouldUseViewBasedFlash()) {
+      flashMode = camera.getImageCaptureFlashMode();
+      camera.setImageCaptureFlashMode(ImageCapture.FLASH_MODE_OFF);
+    }
   }
 
   void startFlash() {
@@ -56,6 +64,9 @@ final class CameraXSelfieFlashHelper {
     params.screenBrightness = brightnessBeforeFlash;
     window.setAttributes(params);
 
+    camera.setImageCaptureFlashMode(flashMode);
+    flashMode = -1;
+
     selfieFlash.animate()
                .alpha(0f)
                .setDuration(SELFIE_FLASH_DURATION_MS);
@@ -66,7 +77,7 @@ final class CameraXSelfieFlashHelper {
   private boolean shouldUseViewBasedFlash() {
     CameraSelector cameraSelector = camera.getCameraSelector() ;
 
-    return camera.getImageCaptureFlashMode() == ImageCapture.FLASH_MODE_ON &&
+    return (camera.getImageCaptureFlashMode() == ImageCapture.FLASH_MODE_ON || flashMode == ImageCapture.FLASH_MODE_ON) &&
            cameraSelector == CameraSelector.DEFAULT_FRONT_CAMERA;
   }
 }
