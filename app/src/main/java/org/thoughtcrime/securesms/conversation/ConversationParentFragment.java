@@ -1250,6 +1250,7 @@ public class ConversationParentFragment extends Fragment
     startActivity(StoryViewerActivity.createIntent(
                   requireContext(),
                   new StoryViewerArgs.Builder(recipient.getId(), recipient.get().shouldHideStory())
+                                     .isFromQuote(true)
                                      .build()));
   }
 
