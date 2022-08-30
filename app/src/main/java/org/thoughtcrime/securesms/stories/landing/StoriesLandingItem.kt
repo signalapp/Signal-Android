@@ -197,7 +197,7 @@ object StoriesLandingItem {
         else -> model.data.storyRecipient.getDisplayName(context)
       }
 
-      icon.visible = model.data.hasReplies || model.data.hasRepliesFromSelf
+      icon.visible = (model.data.hasReplies || model.data.hasRepliesFromSelf) && !model.data.storyRecipient.isMyStory
       icon.setImageResource(
         when {
           model.data.hasReplies -> R.drawable.ic_messages_solid_20
