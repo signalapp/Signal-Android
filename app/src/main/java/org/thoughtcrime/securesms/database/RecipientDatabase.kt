@@ -2399,18 +2399,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
             .run()
         }
         is PnpOperation.Merge -> {
-          val primary = getRecord(operation.primaryId)
-          val secondary = getRecord(operation.secondaryId)
-
-          if (primary.serviceId != null && !primary.sidIsPni() && secondary.e164 != null) {
-            merge(operation.primaryId, operation.secondaryId, inputPni)
-          } else {
-            if (!pnpEnabled) {
-              throw AssertionError("This type of merge is not supported in production!")
-            }
-
-            merge(operation.primaryId, operation.secondaryId, inputPni)
-          }
+          merge(operation.primaryId, operation.secondaryId, inputPni)
         }
         is PnpOperation.SessionSwitchoverInsert -> {
           // TODO [pnp]
