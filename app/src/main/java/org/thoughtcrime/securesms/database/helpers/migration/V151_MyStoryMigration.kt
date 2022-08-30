@@ -13,9 +13,9 @@ import org.thoughtcrime.securesms.util.Base64
 /**
  * Performs a check and ensures that MyStory exists at the correct distribution list id and correct distribution id.
  */
-object MyStoryMigration : SignalDatabaseMigration {
+object V151_MyStoryMigration : SignalDatabaseMigration {
 
-  private val TAG = Log.tag(MyStoryMigration::class.java)
+  private val TAG = Log.tag(V151_MyStoryMigration::class.java)
 
   private const val TABLE_NAME = "distribution_list"
   private const val NAME = "name"
