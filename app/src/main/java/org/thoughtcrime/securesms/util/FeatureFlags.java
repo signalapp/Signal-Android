@@ -559,6 +559,9 @@ public final class FeatureFlags {
 
   /**
    * Whether or not we should enable the SMS exporter
+   *
+   * WARNING: This feature is under active development and is off for a reason. The exporter writes messages out to your
+   * system SMS / MMS database, and hasn't been adequately tested for public use. Don't enable this. You've been warned.
    */
   public static boolean smsExporter() {
     return getBoolean(SMS_EXPORTER, false);
