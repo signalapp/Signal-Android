@@ -29,6 +29,7 @@ import org.thoughtcrime.securesms.database.KeyValueDatabase
 import org.thoughtcrime.securesms.database.RecipientDatabase
 import org.thoughtcrime.securesms.database.helpers.migration.MyStoryMigration
 import org.thoughtcrime.securesms.database.helpers.migration.PniSignaturesMigration
+import org.thoughtcrime.securesms.database.helpers.migration.SmsExporterMigration
 import org.thoughtcrime.securesms.database.helpers.migration.UrgentMslFlagMigration
 import org.thoughtcrime.securesms.database.model.databaseprotos.ReactionList
 import org.thoughtcrime.securesms.groups.GroupId
@@ -210,8 +211,9 @@ object SignalDatabaseMigrations {
   private const val STORY_GROUP_TYPES = 152
   private const val MY_STORY_MIGRATION_2 = 153
   private const val PNI_SIGNATURES = 154
+  private const val SMS_EXPORTER = 155
 
-  const val DATABASE_VERSION = 154
+  const val DATABASE_VERSION = 155
 
   @JvmStatic
   fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -2695,6 +2697,10 @@ object SignalDatabaseMigrations {
 
     if (oldVersion < PNI_SIGNATURES) {
       PniSignaturesMigration.migrate(context, db, oldVersion, newVersion)
+    }
+
+    if (oldVersion < SMS_EXPORTER) {
+      SmsExporterMigration.migrate(context, db, oldVersion, newVersion)
     }
   }
 

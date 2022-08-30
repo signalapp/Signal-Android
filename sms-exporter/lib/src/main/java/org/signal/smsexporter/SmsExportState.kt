@@ -10,7 +10,6 @@ data class SmsExportState(
   val completedRecipients: Set<String> = emptySet(),
   val startedAttachments: Set<String> = emptySet(),
   val completedAttachments: Set<String> = emptySet(),
-  val copiedAttachments: Set<String> = emptySet(),
   val progress: Progress = Progress.INIT
 ) {
   enum class Progress {

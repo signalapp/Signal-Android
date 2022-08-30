@@ -470,6 +470,7 @@ dependencies {
     implementation project(':donations')
     implementation project(':contacts')
     implementation project(':qr')
+    implementation project(':sms-exporter')
 
     implementation libs.libsignal.android
     implementation libs.google.protobuf.javalite

@@ -19,6 +19,7 @@ public final class NotificationIds {
   public static final int DEVICE_TRANSFER                = 625420;
   public static final int DONOR_BADGE_FAILURE            = 630001;
   public static final int FCM_FETCH                      = 630002;
+  public static final int SMS_EXPORT_SERVICE             = 630003;
   public static final int STORY_THREAD                   = 700000;
   public static final int MESSAGE_DELIVERY_FAILURE       = 800000;
   public static final int STORY_MESSAGE_DELIVERY_FAILURE = 900000;

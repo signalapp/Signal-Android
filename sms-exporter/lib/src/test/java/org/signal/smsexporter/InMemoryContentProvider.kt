@@ -80,7 +80,8 @@ class InMemoryContentProvider : ContentProvider() {
           ${Telephony.Mms.PRIORITY} INTEGER,
           ${Telephony.Mms.TRANSACTION_ID} TEXT,
           ${Telephony.Mms.RESPONSE_STATUS} INTEGER,
-          ${Telephony.Mms.SEEN} INTEGER
+          ${Telephony.Mms.SEEN} INTEGER,
+          ${Telephony.Mms.TEXT_ONLY} INTEGER
         );
         """.trimIndent()
       )

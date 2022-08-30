@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.database.model.ParentStoryId;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.StoryResult;
 import org.thoughtcrime.securesms.database.model.StoryViewState;
+import org.thoughtcrime.securesms.database.model.databaseprotos.MessageExportState;
 import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange;
 import org.thoughtcrime.securesms.insights.InsightsConstants;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
@@ -94,6 +95,9 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns 
   public abstract boolean isSent(long messageId);
   public abstract List<MessageRecord> getProfileChangeDetailsRecords(long threadId, long afterTimestamp);
   public abstract Set<Long> getAllRateLimitedMessageIds();
+  public abstract Cursor getUnexportedInsecureMessages();
+  public abstract int getInsecureMessageCount();
+  public abstract void deleteExportedMessages();
 
   public abstract void markExpireStarted(long messageId);
   public abstract void markExpireStarted(long messageId, long startTime);
@@ -351,6 +355,14 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns 
     String isSecure   = "(" + getTypeField() + " & " + (Types.SECURE_MESSAGE_BIT | Types.PUSH_MESSAGE_BIT) + ")";
 
     return String.format(Locale.ENGLISH, "(%s OR %s) AND %s", isSent, isReceived, isSecure);
+  }
+
+  protected String getInsecureMessageClause() {
+    String isSent     = "(" + getTypeField() + " & " + Types.BASE_TYPE_MASK + ") = " + Types.BASE_SENT_TYPE;
+    String isReceived = "(" + getTypeField() + " & " + Types.BASE_TYPE_MASK + ") = " + Types.BASE_INBOX_TYPE;
+    String isSecure   = "(" + getTypeField() + " & " + (Types.SECURE_MESSAGE_BIT | Types.PUSH_MESSAGE_BIT) + ")";
+
+    return String.format(Locale.ENGLISH, "(%s OR %s) AND NOT %s", isSent, isReceived, isSecure);
   }
 
   public void setReactionsSeen(long threadId, long sinceTimestamp) {
@@ -802,6 +814,11 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns 
      */
     @Deprecated
     MessageRecord getCurrent();
+
+    /**
+     * Pulls the export state out of the query, if it is present.
+     */
+    @NonNull MessageExportState getMessageExportStateForCurrentRecord();
 
     /**
      * From the {@link Closeable} interface, removing the IOException requirement.

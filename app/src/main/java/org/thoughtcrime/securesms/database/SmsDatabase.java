@@ -29,6 +29,7 @@ import androidx.annotation.VisibleForTesting;
 import com.annimon.stream.Stream;
 import com.google.android.mms.pdu_alt.NotificationInd;
 import com.google.protobuf.ByteString;
+import com.google.protobuf.InvalidProtocolBufferException;
 
 import net.zetetic.database.sqlcipher.SQLiteStatement;
 
@@ -47,6 +48,7 @@ import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.StoryResult;
 import org.thoughtcrime.securesms.database.model.StoryViewState;
 import org.thoughtcrime.securesms.database.model.databaseprotos.GroupCallUpdateDetails;
+import org.thoughtcrime.securesms.database.model.databaseprotos.MessageExportState;
 import org.thoughtcrime.securesms.database.model.databaseprotos.ProfileChangeDetails;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange;
@@ -66,15 +68,16 @@ import org.thoughtcrime.securesms.util.JsonUtils;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 
-import java.io.Closeable;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
@@ -131,7 +134,9 @@ public class SmsDatabase extends MessageDatabase {
                                                                                   REMOTE_DELETED         + " INTEGER DEFAULT 0, " +
                                                                                   NOTIFIED_TIMESTAMP     + " INTEGER DEFAULT 0, " +
                                                                                   SERVER_GUID            + " TEXT DEFAULT NULL, " +
-                                                                                  RECEIPT_TIMESTAMP      + " INTEGER DEFAULT -1);";
+                                                                                  RECEIPT_TIMESTAMP      + " INTEGER DEFAULT -1, " +
+                                                                                  EXPORT_STATE           + " BLOB DEFAULT NULL, " +
+                                                                                  EXPORTED               + " INTEGER DEFAULT 0);";
 
   public static final String[] CREATE_INDEXS = {
     "CREATE INDEX IF NOT EXISTS sms_read_and_notified_and_thread_id_index ON " + TABLE_NAME + "(" + READ + "," + NOTIFIED + ","  + THREAD_ID + ");",
@@ -902,6 +907,51 @@ public class SmsDatabase extends MessageDatabase {
   }
 
   @Override
+  public Cursor getUnexportedInsecureMessages() {
+    return queryMessages(
+        SqlUtil.appendArg(MESSAGE_PROJECTION, EXPORT_STATE),
+        getInsecureMessageClause() + " AND NOT " + EXPORTED,
+        null,
+        false,
+        -1
+    );
+  }
+
+  @Override
+  public int getInsecureMessageCount() {
+    try (Cursor cursor = getWritableDatabase().query(TABLE_NAME, SqlUtil.COUNT, getInsecureMessageClause(), null, null, null, null)) {
+      if (cursor.moveToFirst()) {
+        return cursor.getInt(0);
+      }
+    }
+
+    return 0;
+  }
+
+  @Override
+  public void deleteExportedMessages() {
+    beginTransaction();
+    try {
+      List<Long> threadsToUpdate = new LinkedList<>();
+      try (Cursor cursor = getReadableDatabase().query(TABLE_NAME, THREAD_ID_PROJECTION, EXPORTED + " = ?", SqlUtil.buildArgs(1), THREAD_ID, null, null, null)) {
+        while (cursor.moveToNext()) {
+          threadsToUpdate.add(CursorUtil.requireLong(cursor, THREAD_ID));
+        }
+      }
+
+      getWritableDatabase().delete(TABLE_NAME, EXPORTED + " = ?", SqlUtil.buildArgs(1));
+
+      for (final long threadId : threadsToUpdate) {
+        SignalDatabase.threads().update(threadId, false);
+      }
+
+      setTransactionSuccessful();
+    } finally {
+      endTransaction();
+    }
+  }
+
+  @Override
   public List<MessageRecord> getProfileChangeDetailsRecords(long threadId, long afterTimestamp) {
     String   where = THREAD_ID + " = ? AND " + DATE_RECEIVED + " >= ? AND " + TYPE + " = ?";
     String[] args  = SqlUtil.buildArgs(threadId, afterTimestamp, Types.PROFILE_CHANGE_TYPE);
@@ -1541,11 +1591,15 @@ public class SmsDatabase extends MessageDatabase {
     }
   }
 
-  private Cursor queryMessages(@NonNull String where, @NonNull String[] args, boolean reverse, long limit) {
+  private Cursor queryMessages(@NonNull String where, @Nullable String[] args, boolean reverse, long limit) {
+    return queryMessages(MESSAGE_PROJECTION, where, args, reverse, limit);
+  }
+
+  private Cursor queryMessages(@NonNull String[] projection, @NonNull String where, @Nullable String[] args, boolean reverse, long limit) {
     SQLiteDatabase db = databaseHelper.getSignalReadableDatabase();
 
     return db.query(TABLE_NAME,
-                    MESSAGE_PROJECTION,
+                    projection,
                     where,
                     args,
                     null,
@@ -1776,7 +1830,7 @@ public class SmsDatabase extends MessageDatabase {
     }
   }
 
-  public static class Reader implements Closeable {
+  public static class Reader implements MessageDatabase.Reader {
 
     private final Cursor  cursor;
     private final Context context;
@@ -1796,6 +1850,20 @@ public class SmsDatabase extends MessageDatabase {
     public int getCount() {
       if (cursor == null) return 0;
       else                return cursor.getCount();
+    }
+
+    @Override
+    public @NonNull MessageExportState getMessageExportStateForCurrentRecord() {
+      byte[] messageExportState = CursorUtil.requireBlob(cursor, SmsDatabase.EXPORT_STATE);
+      if (messageExportState == null) {
+        return MessageExportState.getDefaultInstance();
+      }
+
+      try {
+        return MessageExportState.parseFrom(messageExportState);
+      } catch (InvalidProtocolBufferException e) {
+        return MessageExportState.getDefaultInstance();
+      }
     }
 
     public SmsMessageRecord getCurrent() {
@@ -1852,6 +1920,28 @@ public class SmsDatabase extends MessageDatabase {
     @Override
     public void close() {
       cursor.close();
+    }
+
+    @Override
+    public @NonNull Iterator<MessageRecord> iterator() {
+      return new ReaderIterator();
+    }
+
+    private class ReaderIterator implements Iterator<MessageRecord> {
+      @Override
+      public boolean hasNext() {
+        return cursor != null && cursor.getCount() != 0 && !cursor.isLast();
+      }
+
+      @Override
+      public MessageRecord next() {
+        MessageRecord record = getNext();
+        if (record == null) {
+          throw new NoSuchElementException();
+        }
+
+        return record;
+      }
     }
   }
 

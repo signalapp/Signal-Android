@@ -19,7 +19,7 @@ import org.signal.smsexporter.ReleaseSmsAppFailure
 internal object ReleaseDefaultSmsUseCase {
   fun execute(context: Context): Result<Intent, ReleaseSmsAppFailure> {
     return if (!IsDefaultSms.checkIsDefaultSms(context)) {
-      Result.failure(ReleaseSmsAppFailure.APP_IS_INELIGABLE_TO_RELEASE_SMS_SELECTION)
+      Result.failure(ReleaseSmsAppFailure.APP_IS_INELIGIBLE_TO_RELEASE_SMS_SELECTION)
     } else if (Build.VERSION.SDK_INT >= 24) {
       Result.success(
         Intent(Settings.ACTION_MANAGE_DEFAULT_APPS_SETTINGS)

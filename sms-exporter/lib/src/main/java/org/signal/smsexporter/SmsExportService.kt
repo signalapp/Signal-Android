@@ -48,6 +48,7 @@ abstract class SmsExportService : Service() {
 
   private fun startExport() {
     if (isStarted) {
+      Log.d(TAG, "Already running exporter.")
       return
     }
 
@@ -61,7 +62,7 @@ abstract class SmsExportService : Service() {
     executor.execute {
       val totalCount = getUnexportedMessageCount()
       getUnexportedMessages().forEach { message ->
-        val exportState = getExportState(message)
+        val exportState = message.exportState
         if (exportState.progress != SmsExportState.Progress.COMPLETED) {
           when (message) {
             is ExportableMessage.Sms -> exportSms(exportState, message)
@@ -95,13 +96,6 @@ abstract class SmsExportService : Service() {
   protected abstract fun getNotification(progress: Int, total: Int): ExportNotification
 
   /**
-   * Gets the initial export state. This is only called once per message, before any processing
-   * is done. It is used as a "known" state value, and via the onX methods below, it is up to the
-   * application to properly update the underlying data structure when changes occur.
-   */
-  protected abstract fun getExportState(exportableMessage: ExportableMessage): SmsExportState
-
-  /**
    * Gets the total number of messages to process. This is only used for the notification and
    * progress events.
    */
@@ -118,7 +112,9 @@ abstract class SmsExportService : Service() {
   protected abstract fun onMessageExportStarted(exportableMessage: ExportableMessage)
 
   /**
-   * We've completely succeeded exporting a given MMS / SMS message
+   * We've completely succeeded exporting a given MMS / SMS message. This is only
+   * called when all parts of the message (including recipients and attachments) have
+   * been completely exported.
    */
   protected abstract fun onMessageExportSucceeded(exportableMessage: ExportableMessage)
 
@@ -138,7 +134,8 @@ abstract class SmsExportService : Service() {
   protected abstract fun onAttachmentPartExportStarted(exportableMessage: ExportableMessage, part: ExportableMessage.Mms.Part)
 
   /**
-   * We've successfully exported the attachment part for a given message
+   * We've successfully exported the attachment part for a given message and written the
+   * attachment file to the local filesystem.
    */
   protected abstract fun onAttachmentPartExportSucceeded(exportableMessage: ExportableMessage, part: ExportableMessage.Mms.Part)
 
@@ -168,13 +165,10 @@ abstract class SmsExportService : Service() {
   protected abstract fun getInputStream(part: ExportableMessage.Mms.Part): InputStream
 
   /**
-   * Called after the attachment is successfully written to disk.
-   */
-  protected abstract fun onAttachmentWrittenToDisk(exportableMessage: ExportableMessage, part: ExportableMessage.Mms.Part)
-
-  /**
    * Called when an export pass completes. It is up to the implementation to determine whether
-   * there are still messages to export.
+   * there are still messages to export. This is where the system could initiate a multiple-pass
+   * system to ensure all messages are exported, though an approach like this can have data races
+   * and other pitfalls.
    */
   protected abstract fun onExportPassCompleted()
 
@@ -247,7 +241,6 @@ abstract class SmsExportService : Service() {
         onAttachmentPartExportStarted(exportMmsOutput.mms, attachment)
         ExportMmsPartsUseCase.execute(this, attachment, exportMmsOutput, smsExportState.startedAttachments.contains(attachment.contentId)).either(
           onSuccess = {
-            onAttachmentPartExportSucceeded(exportMmsOutput.mms, attachment)
             it
           },
           onFailure = {
@@ -261,7 +254,7 @@ abstract class SmsExportService : Service() {
   }
 
   private fun exportMmsRecipients(smsExportState: SmsExportState, exportMmsOutput: ExportMmsMessagesUseCase.Output): List<Unit?> {
-    val recipients = exportMmsOutput.mms.addresses.map { it.toString() }.toSet()
+    val recipients = exportMmsOutput.mms.addresses.map { it }.toSet()
     return if (recipients.isEmpty()) {
       emptyList()
     } else {
@@ -287,8 +280,8 @@ abstract class SmsExportService : Service() {
     }
 
     if (output.part is ExportableMessage.Mms.Part.Text) {
-      onAttachmentWrittenToDisk(output.message, output.part)
-      Try.success(Unit)
+      onAttachmentPartExportSucceeded(output.message, output.part)
+      return Try.success(Unit)
     }
 
     return try {
@@ -297,7 +290,8 @@ abstract class SmsExportService : Service() {
           it.copyTo(out)
         }
       }
-      onAttachmentWrittenToDisk(output.message, output.part)
+
+      onAttachmentPartExportSucceeded(output.message, output.part)
       Try.success(Unit)
     } catch (e: Exception) {
       Log.d(TAG, "Failed to write attachment to disk.", e)

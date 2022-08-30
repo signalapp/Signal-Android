@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity(R.layout.main_activity) {
       DefaultSmsHelper.releaseDefaultSms(this).either(
         onFailure = {
           when (it) {
-            ReleaseSmsAppFailure.APP_IS_INELIGABLE_TO_RELEASE_SMS_SELECTION -> onAppIsIneligableForReleaseSmsSelection()
+            ReleaseSmsAppFailure.APP_IS_INELIGIBLE_TO_RELEASE_SMS_SELECTION -> onAppIsIneligibleForReleaseSmsSelection()
             ReleaseSmsAppFailure.NO_METHOD_TO_RELEASE_SMS_AVIALABLE -> onNoMethodToReleaseSmsAvailable()
           }
         },
@@ -126,7 +126,7 @@ class MainActivity : AppCompatActivity(R.layout.main_activity) {
     startActivityForResult(intent, 2)
   }
 
-  private fun onAppIsIneligableForReleaseSmsSelection() {
+  private fun onAppIsIneligibleForReleaseSmsSelection() {
     if (!DefaultSmsHelper.isDefaultSms(this)) {
       Toast.makeText(this, "Already not the SMS manager.", Toast.LENGTH_SHORT).show()
     } else {
