@@ -45,7 +45,7 @@ class MyStorySettingsFragment : DSLSettingsFragment(
 
   private fun getConfiguration(state: MyStorySettingsState): DSLConfiguration {
     return configure {
-      sectionHeaderPref(R.string.MyStorySettingsFragment__who_can_see_this_story)
+      sectionHeaderPref(R.string.MyStorySettingsFragment__who_can_view_this_story)
 
       radioPref(
         title = DSLSettingsText.from(R.string.MyStorySettingsFragment__all_signal_connections),
@@ -64,7 +64,7 @@ class MyStorySettingsFragment : DSLSettingsFragment(
       }
 
       radioPref(
-        title = DSLSettingsText.from(R.string.MyStorySettingsFragment__all_signal_connections_except),
+        title = DSLSettingsText.from(R.string.MyStorySettingsFragment__all_except),
         summary = exceptText,
         isChecked = state.myStoryPrivacyState.privacyMode == DistributionListPrivacyMode.ALL_EXCEPT,
         onClick = {
