@@ -56,12 +56,12 @@ final class MobileCoinTestNetConfig extends MobileCoinConfig {
       ClientConfig         config              = new ClientConfig();
       String[]             hardeningAdvisories = { "INTEL-SA-00334", "INTEL-SA-00615" };
       VerifierFactory      verifierFactory     = new VerifierFactory(hardeningAdvisories,
-                                                                     // ~July 15, 2022
+                                                                     // ~August 15, 2022
                                                                      new ServiceConfig(
-                                                                         "4f134dcfd9c0885956f2f9af0f05c2050d8bdee2dc63b468a640670d7adeb7f8",
-                                                                         "8f2f3bf81f24bf493fa6d76e29e0f081815022592b1e854f95bda750aece7452",
-                                                                         "685481b33f2846585f33506ab65649c98a4a6d1244989651fd0fcde904ebd82f",
-                                                                         "719ca43abbe02f507bb91ea11ff8bc900aa86363a7d7e77b8130426fc53d8684"
+                                                                         "01746f4dd25f8623d603534425ed45833687eca2b3ba25bdd87180b9471dac28",
+                                                                         "3e9bf61f3191add7b054f0e591b62f832854606f6594fd63faef1e2aedec4021",
+                                                                         "92fb35d0f603ceb5eaf2988b24a41d4a4a83f8fb9cd72e67c3bc37960d864ad6",
+                                                                         "3d6e528ee0574ae3299915ea608b71ddd17cbe855d4f5e1c46df9b0d22b04cdb"
                                                                      ));
 
       config.logAdapter = new MobileCoinLogAdapter();
