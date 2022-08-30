@@ -29,6 +29,8 @@ public interface MmsSmsColumns {
   public static final String REMOTE_DELETED           = "remote_deleted";
   public static final String SERVER_GUID              = "server_guid";
   public static final String RECEIPT_TIMESTAMP        = "receipt_timestamp";
+  public static final String EXPORT_STATE             = "export_state";
+  public static final String EXPORTED                 = "exported";
 
   /**
    * For storage efficiency, all types are stored within a single 64-bit integer column in the

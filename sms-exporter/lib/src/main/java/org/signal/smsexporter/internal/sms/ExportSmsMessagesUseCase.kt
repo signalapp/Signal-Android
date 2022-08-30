@@ -19,7 +19,7 @@ internal object ExportSmsMessagesUseCase {
           Telephony.Sms.CONTENT_URI,
           arrayOf("_id"),
           "${Telephony.Sms.ADDRESS} = ? AND ${Telephony.Sms.DATE_SENT} = ?",
-          arrayOf(sms.address, sms.dateSent.toString()),
+          arrayOf(sms.address, sms.dateSent.inWholeMilliseconds.toString()),
           null
         )?.use {
           it.count > 0
@@ -33,8 +33,8 @@ internal object ExportSmsMessagesUseCase {
       val contentValues = contentValuesOf(
         Telephony.Sms.ADDRESS to sms.address,
         Telephony.Sms.BODY to sms.body,
-        Telephony.Sms.DATE to sms.dateReceived,
-        Telephony.Sms.DATE_SENT to sms.dateSent,
+        Telephony.Sms.DATE to sms.dateReceived.inWholeMilliseconds,
+        Telephony.Sms.DATE_SENT to sms.dateSent.inWholeMilliseconds,
         Telephony.Sms.READ to if (sms.isRead) 1 else 0,
         Telephony.Sms.TYPE to if (sms.isOutgoing) Telephony.Sms.MESSAGE_TYPE_SENT else Telephony.Sms.MESSAGE_TYPE_INBOX
       )

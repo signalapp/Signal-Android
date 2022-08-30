@@ -8,6 +8,7 @@ import org.signal.smsexporter.ExportableMessage
 import org.signal.smsexporter.SmsExportService
 import org.signal.smsexporter.SmsExportState
 import java.io.InputStream
+import kotlin.time.Duration.Companion.seconds
 
 class TestSmsExportService : SmsExportService() {
 
@@ -30,10 +31,6 @@ class TestSmsExportService : SmsExportService() {
         .setProgress(total, progress, false)
         .build()
     )
-  }
-
-  override fun getExportState(exportableMessage: ExportableMessage): SmsExportState {
-    return SmsExportState()
   }
 
   override fun getUnexportedMessageCount(): Int {
@@ -92,10 +89,6 @@ class TestSmsExportService : SmsExportService() {
     return BitmapGenerator.getStream()
   }
 
-  override fun onAttachmentWrittenToDisk(exportableMessage: ExportableMessage, part: ExportableMessage.Mms.Part) {
-    Log.d(TAG, "onAttachmentWrittenToDisk() called with: exportableMessage = $exportableMessage, attachment = $part")
-  }
-
   override fun onExportPassCompleted() {
     Log.d(TAG, "onExportPassCompleted() called")
   }
@@ -137,9 +130,10 @@ class TestSmsExportService : SmsExportService() {
       val address = addresses.random()
       return ExportableMessage.Mms(
         id = "$it",
+        exportState = SmsExportState(),
         addresses = addresses,
-        dateSent = startTime + it - 1,
-        dateReceived = startTime + it,
+        dateSent = (startTime + it - 1).seconds,
+        dateReceived = (startTime + it).seconds,
         isRead = true,
         isOutgoing = address == me,
         sender = address,
@@ -153,10 +147,11 @@ class TestSmsExportService : SmsExportService() {
     private fun getSmsMessage(it: Int): ExportableMessage.Sms {
       return ExportableMessage.Sms(
         id = it.toString(),
+        exportState = SmsExportState(),
         address = "+15065550102",
         body = "Hello, World! $it",
-        dateSent = startTime + it - 1,
-        dateReceived = startTime + it,
+        dateSent = (startTime + it - 1).seconds,
+        dateReceived = (startTime + it).seconds,
         isRead = true,
         isOutgoing = it % 4 == 0
       )

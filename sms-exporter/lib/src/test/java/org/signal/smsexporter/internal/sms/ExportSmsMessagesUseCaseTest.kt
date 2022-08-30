@@ -110,15 +110,15 @@ class ExportSmsMessagesUseCaseTest {
       baseUri,
       null,
       "${Telephony.Sms.ADDRESS} = ? AND ${Telephony.Sms.DATE_SENT} = ?",
-      arrayOf(sms.address, sms.dateSent.toString()),
+      arrayOf(sms.address, sms.dateSent.inWholeMilliseconds.toString()),
       null,
       null
     )?.use {
       it.moveToFirst()
       assertEquals(expectedRowCount, it.count)
       assertEquals(sms.address, CursorUtil.requireString(it, Telephony.Sms.ADDRESS))
-      assertEquals(sms.dateSent, CursorUtil.requireLong(it, Telephony.Sms.DATE_SENT))
-      assertEquals(sms.dateReceived, CursorUtil.requireLong(it, Telephony.Sms.DATE))
+      assertEquals(sms.dateSent.inWholeMilliseconds, CursorUtil.requireLong(it, Telephony.Sms.DATE_SENT))
+      assertEquals(sms.dateReceived.inWholeMilliseconds, CursorUtil.requireLong(it, Telephony.Sms.DATE))
       assertEquals(sms.isRead, CursorUtil.requireBoolean(it, Telephony.Sms.READ))
       assertEquals(sms.body, CursorUtil.requireString(it, Telephony.Sms.BODY))
       assertEquals(if (sms.isOutgoing) Telephony.Sms.MESSAGE_TYPE_SENT else Telephony.Sms.MESSAGE_TYPE_INBOX, CursorUtil.requireInt(it, Telephony.Sms.TYPE))

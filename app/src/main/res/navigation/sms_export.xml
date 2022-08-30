@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/sms_export"
+    app:startDestination="@id/exportYourSmsMessagesFragment">
+
+    <fragment
+        android:id="@+id/exportYourSmsMessagesFragment"
+        android:name="org.thoughtcrime.securesms.exporter.flow.ExportYourSmsMessagesFragment"
+        android:label="fragment_export_your_sms_messages"
+        tools:layout="@layout/export_your_sms_messages_fragment">
+        <action
+            android:id="@+id/action_exportYourSmsMessagesFragment_to_exportingSmsMessagesFragment"
+            app:destination="@id/exportingSmsMessagesFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/exportingSmsMessagesFragment"
+        android:name="org.thoughtcrime.securesms.exporter.flow.ExportingSmsMessagesFragment"
+        android:label="fragment_exporting_sms_messages"
+        tools:layout="@layout/exporting_sms_messages_fragment">
+        <action
+            android:id="@+id/action_exportingSmsMessagesFragment_to_chooseANewDefaultSmsAppFragment"
+            app:destination="@id/chooseANewDefaultSmsAppFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/chooseANewDefaultSmsAppFragment"
+        android:name="org.thoughtcrime.securesms.exporter.flow.ChooseANewDefaultSmsAppFragment"
+        android:label="fragment_choose_a_new_default_sms_app"
+        tools:layout="@layout/choose_a_new_default_sms_app_fragment" />
+
+</navigation>

@@ -102,6 +102,7 @@ public final class FeatureFlags {
   private static final String CAMERAX_MODEL_BLOCKLIST           = "android.cameraXModelBlockList";
   private static final String RECIPIENT_MERGE_V2                = "android.recipientMergeV2";
   private static final String CDS_V2_LOAD_TEST                  = "android.cdsV2LoadTest";
+  private static final String SMS_EXPORTER                      = "android.sms.exporter";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -156,7 +157,8 @@ public final class FeatureFlags {
       TELECOM_MODEL_BLOCKLIST,
       CAMERAX_MODEL_BLOCKLIST,
       RECIPIENT_MERGE_V2,
-      CDS_V2_LOAD_TEST
+      CDS_V2_LOAD_TEST,
+      SMS_EXPORTER
   );
 
   @VisibleForTesting
@@ -553,6 +555,16 @@ public final class FeatureFlags {
    */
   public static boolean cdsV2LoadTesting() {
     return getBoolean(CDS_V2_LOAD_TEST, false);
+  }
+
+  /**
+   * Whether or not we should enable the SMS exporter
+   *
+   * WARNING: This feature is under active development and is off for a reason. The exporter writes messages out to your
+   * system SMS / MMS database, and hasn't been adequately tested for public use. Don't enable this. You've been warned.
+   */
+  public static boolean smsExporter() {
+    return getBoolean(SMS_EXPORTER, false);
   }
 
   /** Only for rendering debug info. */

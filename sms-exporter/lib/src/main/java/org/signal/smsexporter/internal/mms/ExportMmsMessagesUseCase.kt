@@ -41,8 +41,8 @@ internal object ExportMmsMessagesUseCase {
 
       val mmsContentValues = contentValuesOf(
         Telephony.Mms.THREAD_ID to threadId,
-        Telephony.Mms.DATE to mms.dateReceived,
-        Telephony.Mms.DATE_SENT to mms.dateSent,
+        Telephony.Mms.DATE to mms.dateReceived.inWholeSeconds,
+        Telephony.Mms.DATE_SENT to mms.dateSent.inWholeSeconds,
         Telephony.Mms.MESSAGE_BOX to if (mms.isOutgoing) Telephony.Mms.MESSAGE_BOX_SENT else Telephony.Mms.MESSAGE_BOX_INBOX,
         Telephony.Mms.READ to if (mms.isRead) 1 else 0,
         Telephony.Mms.CONTENT_TYPE to "application/vnd.wap.multipart.related",
@@ -52,7 +52,8 @@ internal object ExportMmsMessagesUseCase {
         Telephony.Mms.PRIORITY to PduHeaders.PRIORITY_NORMAL,
         Telephony.Mms.TRANSACTION_ID to transactionId,
         Telephony.Mms.RESPONSE_STATUS to PduHeaders.RESPONSE_STATUS_OK,
-        Telephony.Mms.SEEN to 1
+        Telephony.Mms.SEEN to 1,
+        Telephony.Mms.TEXT_ONLY to if (mms.parts.all { it is ExportableMessage.Mms.Part.Text }) 1 else 0
       )
 
       val uri = context.contentResolver.insert(Telephony.Mms.CONTENT_URI, mmsContentValues)
@@ -72,8 +73,11 @@ internal object ExportMmsMessagesUseCase {
       arrayOf(transactionId),
       null
     )?.use {
-      it.moveToFirst()
-      it.getLong(0)
+      if (it.moveToFirst()) {
+        it.getLong(0)
+      } else {
+        -1L
+      }
     } ?: -1L
   }
 

@@ -16,6 +16,7 @@
  */
 package org.thoughtcrime.securesms.database;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
@@ -24,21 +25,23 @@ import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 
 import com.annimon.stream.Stream;
+import com.google.protobuf.InvalidProtocolBufferException;
 
 import net.zetetic.database.sqlcipher.SQLiteQueryBuilder;
 
+import org.signal.core.util.CursorUtil;
+import org.signal.core.util.SqlUtil;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.util.Pair;
 import org.thoughtcrime.securesms.database.MessageDatabase.MessageUpdate;
 import org.thoughtcrime.securesms.database.MessageDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.database.model.databaseprotos.MessageExportState;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.notifications.v2.DefaultMessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.signal.core.util.CursorUtil;
-import org.signal.core.util.SqlUtil;
 import org.whispersystems.signalservice.api.messages.multidevice.ReadMessage;
 
 import java.io.Closeable;
@@ -50,6 +53,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import static org.thoughtcrime.securesms.database.MmsSmsColumns.Types.GROUP_V2_LEAVE_BITS;
@@ -611,6 +615,63 @@ public class MmsSmsDatabase extends Database {
 
   public void updateViewedStories(@NonNull Set<SyncMessageId> syncMessageIds) {
     SignalDatabase.mms().updateViewedStories(syncMessageIds);
+  }
+
+  private @NonNull MessageExportState getMessageExportState(@NonNull MessageId messageId) throws NoSuchMessageException {
+    String   table      = messageId.isMms() ? MmsDatabase.TABLE_NAME : SmsDatabase.TABLE_NAME;
+    String[] projection = SqlUtil.buildArgs(MmsSmsColumns.EXPORT_STATE);
+    String[] args       = SqlUtil.buildArgs(messageId.getId());
+
+    try (Cursor cursor = getReadableDatabase().query(table, projection, ID_WHERE, args, null, null, null, null)) {
+      if (cursor.moveToFirst()) {
+        byte[] bytes = CursorUtil.requireBlob(cursor,  MmsSmsColumns.EXPORT_STATE);
+        if (bytes == null) {
+          return MessageExportState.getDefaultInstance();
+        } else {
+          try {
+            return MessageExportState.parseFrom(bytes);
+          } catch (InvalidProtocolBufferException e) {
+            return MessageExportState.getDefaultInstance();
+          }
+        }
+      } else {
+        throw new NoSuchMessageException("The requested message does not exist.");
+      }
+    }
+  }
+
+  public void updateMessageExportState(@NonNull MessageId messageId, @NonNull Function<MessageExportState, MessageExportState> transform) throws NoSuchMessageException {
+    SQLiteDatabase database = getWritableDatabase();
+
+    database.beginTransaction();
+    try {
+      MessageExportState oldState = getMessageExportState(messageId);
+      MessageExportState newState = transform.apply(oldState);
+
+      setMessageExportState(messageId, newState);
+
+      database.setTransactionSuccessful();
+    } finally {
+      database.endTransaction();
+    }
+  }
+
+  public void markMessageExported(@NonNull MessageId messageId) {
+    String        table         = messageId.isMms() ? MmsDatabase.TABLE_NAME : SmsDatabase.TABLE_NAME;
+    ContentValues contentValues = new ContentValues(1);
+
+    contentValues.put(MmsSmsColumns.EXPORTED, 1);
+
+    getWritableDatabase().update(table, contentValues, ID_WHERE, SqlUtil.buildArgs(messageId.getId()));
+  }
+
+  private void setMessageExportState(@NonNull MessageId messageId, @NonNull MessageExportState messageExportState) {
+    String        table         = messageId.isMms() ? MmsDatabase.TABLE_NAME : SmsDatabase.TABLE_NAME;
+    ContentValues contentValues = new ContentValues(1);
+
+    contentValues.put(MmsSmsColumns.EXPORT_STATE, messageExportState.toByteArray());
+
+    getWritableDatabase().update(table, contentValues, ID_WHERE, SqlUtil.buildArgs(messageId.getId()));
   }
 
   /**
