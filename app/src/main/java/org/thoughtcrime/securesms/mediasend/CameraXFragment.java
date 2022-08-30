@@ -25,10 +25,12 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.camera.core.AspectRatio;
 import androidx.camera.core.CameraSelector;
 import androidx.camera.core.ImageCapture;
 import androidx.camera.core.ImageCaptureException;
 import androidx.camera.core.ImageProxy;
+import androidx.camera.core.Preview;
 import androidx.camera.view.CameraController;
 import androidx.camera.view.LifecycleCameraController;
 import androidx.camera.view.PreviewView;
@@ -75,7 +77,8 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
   private static final String IS_VIDEO_ENABLED = "is_video_enabled";
 
 
-  private static final Rational ASPECT_RATIO_16_9 = new Rational(16, 9);
+  private static final Rational              ASPECT_RATIO_16_9  = new Rational(16, 9);
+  private static final PreviewView.ScaleType PREVIEW_SCALE_TYPE = PreviewView.ScaleType.FILL_CENTER;
 
   private PreviewView               previewView;
   private ViewGroup                 controlsContainer;
@@ -141,7 +144,7 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
     cameraController.setImageCaptureMode(CameraXUtil.getOptimalCaptureMode());
     cameraController.setEnabledUseCases(getSupportedUseCases());
 
-    previewView.setScaleType(PreviewView.ScaleType.FIT_CENTER);
+    previewView.setScaleType(PREVIEW_SCALE_TYPE);
     previewView.setController(cameraController);
 
     onOrientationChanged(getResources().getConfiguration().orientation);
@@ -160,6 +163,7 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
         params.height = (int) height;
 
         cameraParent.setLayoutParams(params);
+        cameraController.setPreviewTargetSize(new CameraController.OutputSize(new Size((int) width, (int) height)));
       }
     });
   }
@@ -312,7 +316,7 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
       onCaptureClicked();
     });
 
-    previewView.setScaleType(PreviewView.ScaleType.FILL_CENTER);
+    previewView.setScaleType(PREVIEW_SCALE_TYPE);
 
     cameraController.getInitializationFuture()
                     .addListener(() -> initializeFlipButton(flipButton, flashButton), Executors.mainThreadExecutor());
