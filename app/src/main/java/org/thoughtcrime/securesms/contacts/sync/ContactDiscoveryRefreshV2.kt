@@ -60,6 +60,10 @@ object ContactDiscoveryRefreshV2 {
 
     val newE164s: Set<String> = newRecipientE164s + newSystemE164s
 
+    if (newE164s.isEmpty() && previousE164s.isEmpty()) {
+      return ContactDiscovery.RefreshResult(emptySet(), emptyMap())
+    }
+
     val tokenToUse: ByteArray? = if (previousE164s.isNotEmpty()) {
       SignalStore.misc().cdsToken
     } else {
