@@ -4765,7 +4765,7 @@
     <!-- Page title for My Story options -->
     <string name="MyStorySettingsFragment__my_story">My Story</string>
     <!-- Section heading for story visibility -->
-    <string name="MyStorySettingsFragment__who_can_see_this_story">Who can see this story</string>
+    <string name="MyStorySettingsFragment__who_can_view_this_story">Who can view this story</string>
     <!-- Clickable option for selecting people to hide your story from -->
     <string name="MyStorySettingsFragment__hide_story_from">Hide story from</string>
     <!-- Privacy setting title for sending stories to all your signal connections -->
@@ -4773,7 +4773,7 @@
     <!-- Privacy setting description for sending stories to all your signal connections -->
     <string name="MyStorySettingsFragment__share_with_all_connections">Share with all connections</string>
     <!-- Privacy setting title for sending stories to all except the specified connections -->
-    <string name="MyStorySettingsFragment__all_signal_connections_except">All Signal connections except…</string>
+    <string name="MyStorySettingsFragment__all_except">All except…</string>
     <!-- Privacy setting description for sending stories to all except the specified connections -->
     <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Hide your story from specific people</string>
     <!-- Summary of clickable option displaying how many people you have excluded from your story -->
@@ -5006,6 +5006,8 @@
     <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Make a monthly donation</string>
     <!-- Expired gift sheet not now button -->
     <string name="ExpiredGiftSheetConfiguration__not_now">Not now</string>
+    <!-- My Story label designating that we will only share with the selected viewers. -->
+    <string name="ContactSearchItems__only_share_with">Only share with</string>
     <!-- Label under name for private stories -->
     <plurals name="ContactSearchItems__private_story_d_viewers">
         <item quantity="one">Private story · %1$d viewer</item>
@@ -5118,7 +5120,7 @@
     <!-- All connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">All Signal connections</string>
     <!-- All connections except option for initial My Story settings configuration shown when sending to My Story for the first time -->
-    <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">All Signal connections except…</string>
+    <string name="ChooseInitialMyStoryMembershipFragment__all_except">All except…</string>
     <!-- Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Only share with…</string>
 

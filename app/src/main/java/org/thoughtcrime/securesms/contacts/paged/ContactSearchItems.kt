@@ -195,8 +195,8 @@ object ContactSearchItems {
 
     private fun presentPrivacyMode(privacyMode: DistributionListPrivacyMode): String {
       return when (privacyMode) {
-        DistributionListPrivacyMode.ONLY_WITH -> context.getString(R.string.ChooseInitialMyStoryMembershipFragment__only_share_with)
-        DistributionListPrivacyMode.ALL_EXCEPT -> context.getString(R.string.ChooseInitialMyStoryMembershipFragment__all_signal_connections_except)
+        DistributionListPrivacyMode.ONLY_WITH -> context.getString(R.string.ContactSearchItems__only_share_with)
+        DistributionListPrivacyMode.ALL_EXCEPT -> context.getString(R.string.ChooseInitialMyStoryMembershipFragment__all_except)
         DistributionListPrivacyMode.ALL -> context.getString(R.string.ChooseInitialMyStoryMembershipFragment__all_signal_connections)
       }
     }

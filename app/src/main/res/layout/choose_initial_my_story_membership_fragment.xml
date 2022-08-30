@@ -92,7 +92,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:text="@string/ChooseInitialMyStoryMembershipFragment__all_signal_connections_except"
+                android:text="@string/ChooseInitialMyStoryMembershipFragment__all_except"
                 app:layout_constrainedWidth="true"
                 app:layout_constraintBottom_toTopOf="@+id/choose_initial_my_story_all_signal_connnections_except_count"
                 app:layout_constraintEnd_toEndOf="parent"

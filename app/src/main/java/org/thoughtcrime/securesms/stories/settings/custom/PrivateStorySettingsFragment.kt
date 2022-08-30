@@ -60,7 +60,7 @@ class PrivateStorySettingsFragment : DSLSettingsFragment(
     }
 
     return configure {
-      sectionHeaderPref(R.string.MyStorySettingsFragment__who_can_see_this_story)
+      sectionHeaderPref(R.string.MyStorySettingsFragment__who_can_view_this_story)
       customPref(
         PrivateStoryItem.AddViewerModel(
           onClick = {
