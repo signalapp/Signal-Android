@@ -89,7 +89,9 @@ class ConversationListSearchAdapter extends    RecyclerView.Adapter<Conversation
 
   @Override
   public long getHeaderId(int position) {
-    if (getConversationResult(position) != null) {
+    if (position < 0) {
+      return StickyHeaderDecoration.StickyHeaderAdapter.NO_HEADER_ID;
+    } else if (getConversationResult(position) != null) {
       return TYPE_CONVERSATIONS;
     } else if (getContactResult(position) != null) {
       return TYPE_CONTACTS;
