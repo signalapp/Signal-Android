@@ -4051,7 +4051,7 @@
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">میری اسٹوری</string>
   <!--Section heading for story visibility-->
-  <string name="MyStorySettingsFragment__who_can_see_this_story">کون یہ اسٹوری دیکھ سکتا ہے</string>
+  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__who_can_see_this_story">کون یہ اسٹوری دیکھ سکتا ہے</string> -->
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">اس سے اسٹوری مخفی کریں </string>
   <!--Privacy setting title for sending stories to all your signal connections-->
@@ -4059,7 +4059,7 @@
   <!--Privacy setting description for sending stories to all your signal connections-->
   <string name="MyStorySettingsFragment__share_with_all_connections">تمام کنکشنز کے ساتھ شیئر کریں</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
-  <string name="MyStorySettingsFragment__all_signal_connections_except">تمام Signal کنکشنز سوائے۔ ۔ ۔</string>
+  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__all_signal_connections_except">تمام Signal کنکشنز سوائے۔ ۔ ۔</string> -->
   <!--Privacy setting description for sending stories to all except the specified connections-->
   <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">منتخب لوگوں کو اپنی سٹوری مت دکھائیں</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
@@ -4390,7 +4390,7 @@
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">تمام Signal کنکشنز</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
-  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">تمام Signal کنکشنز ماسوائے</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">تمام Signal کنکشنز ماسوائے</string> -->
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">صرف ان کے ساتھ شیئر کریں…</string>
   <!--Story info header sent heading-->

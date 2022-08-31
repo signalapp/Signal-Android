@@ -4060,7 +4060,7 @@
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Minu lugu</string>
   <!--Section heading for story visibility-->
-  <string name="MyStorySettingsFragment__who_can_see_this_story">Kes seda lugu näevad</string>
+  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__who_can_see_this_story">Kes seda lugu näevad</string> -->
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">Peida lugu kasutaja(te) eest</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
@@ -4068,7 +4068,7 @@
   <!--Privacy setting description for sending stories to all your signal connections-->
   <string name="MyStorySettingsFragment__share_with_all_connections">Jaga kõigi kontaktidega</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
-  <string name="MyStorySettingsFragment__all_signal_connections_except">Kõik Signali kontaktid, välja arvatud …</string>
+  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__all_signal_connections_except">Kõik Signali kontaktid, välja arvatud …</string> -->
   <!--Privacy setting description for sending stories to all except the specified connections-->
   <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Peida oma lugu konkreetsete inimeste eest</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
@@ -4407,7 +4407,7 @@
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Kõik Signali kontaktid</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
-  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Kõik Signali kontaktid, välja arvatud …</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Kõik Signali kontaktid, välja arvatud …</string> -->
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Jaga ainult nendega …</string>
   <!--Story info header sent heading-->

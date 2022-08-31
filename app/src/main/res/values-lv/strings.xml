@@ -4161,7 +4161,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Mans stāsts</string>
   <!--Section heading for story visibility-->
-  <string name="MyStorySettingsFragment__who_can_see_this_story">Kurš var redzēt šo stāstu</string>
+  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__who_can_see_this_story">Kurš var redzēt šo stāstu</string> -->
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">Paslēpt stāstu no</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
@@ -4169,7 +4169,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <!--Privacy setting description for sending stories to all your signal connections-->
   <string name="MyStorySettingsFragment__share_with_all_connections">Kopīgot ar visiem Signal draugiem</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
-  <string name="MyStorySettingsFragment__all_signal_connections_except">Visi Signal draugi, izņemot…</string>
+  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__all_signal_connections_except">Visi Signal draugi, izņemot…</string> -->
   <!--Privacy setting description for sending stories to all except the specified connections-->
   <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Nerādīt stāstu noteiktām personām</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
@@ -4509,7 +4509,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Visi Signal draugi</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
-  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Visi Signal draugi, izņemot…</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Visi Signal draugi, izņemot…</string> -->
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Kopīgot tikai ar…</string>
   <!--Story info header sent heading-->

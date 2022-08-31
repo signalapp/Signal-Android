@@ -2506,7 +2506,7 @@
   <!--Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
   <string name="ConfirmPaymentFragment__you_enabled_payment_lock_in_the_settings">మీరు సెట్టింగ్స్‌లో చెల్లింపు లాక్‌ని ప్రారంభించారు, కానీ ఇది చూపించబడదు.</string>
   <!--Button in a dialog that will take the user to the privacy settings-->
-  <string name="ConfirmPaymentFragment__go_to_settings">సెట్టింగ్‌లకు వెళ్లండి</string>
+  <string name="ConfirmPaymentFragment__go_to_settings">సెట్టింగ్‌లకు వెళ్ళండి</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">ఈ వ్యక్తి పేమెంట్‌లను యాక్టివేట్ చేయలేదు</string>
   <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">నెట్‌వర్క్ ఫీజును అభ్యర్ధించలేకపోయింది. ఈ పమెంట్‌ని కొనసాగించడానికి, మళ్లీ ప్రయత్నించేందుకు ఒకే మీద తట్టండి.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
@@ -3335,7 +3335,7 @@
   <!--Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings-->
   <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">సిస్టమ్ సెట్టింగ్‌లకు నావిగేట్ చేయడం విఫలమైంది</string>
   <!--Alert dialog button to go to phone settings-->
-  <string name="PrivacySettingsFragment__go_to_settings">సెట్టింగ్‌లకు వెళ్లండి</string>
+  <string name="PrivacySettingsFragment__go_to_settings">సెట్టింగ్‌లకు వెళ్ళండి</string>
   <!--Alert dialog button to cancel the dialog-->
   <string name="PrivacySettingsFragment__cancel">రద్దు</string>
   <!--AdvancedPrivacySettingsFragment-->
@@ -4065,7 +4065,7 @@
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">నా స్టోరీ</string>
   <!--Section heading for story visibility-->
-  <string name="MyStorySettingsFragment__who_can_see_this_story">ఈ స్టోరీని ఎవరు చూడవచ్చు</string>
+  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__who_can_see_this_story">ఈ స్టోరీని ఎవరు చూడవచ్చు</string> -->
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">దీని నుంచి స్టోరీని దాచిపెట్టండి</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
@@ -4073,7 +4073,7 @@
   <!--Privacy setting description for sending stories to all your signal connections-->
   <string name="MyStorySettingsFragment__share_with_all_connections">అన్ని కనెక్షన్‌లతో పంచుకోవడం</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
-  <string name="MyStorySettingsFragment__all_signal_connections_except">ఇవి మినహా అన్ని Signal కనెక్షన్‌లు…</string>
+  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__all_signal_connections_except">ఇవి మినహా అన్ని Signal కనెక్షన్‌లు…</string> -->
   <!--Privacy setting description for sending stories to all except the specified connections-->
   <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">నిర్ధిష్ట వ్యక్తి నుంచి మీ స్టోరీని దాచిపెట్టండి</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
@@ -4404,7 +4404,7 @@
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">అన్ని Signal కనెక్షన్‌లు</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
-  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">ఇవి మినహా అన్ని Signal కనెక్షన్‌లు…</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">ఇవి మినహా అన్ని Signal కనెక్షన్‌లు…</string> -->
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">కేవలం వీరితో పంచుకోండి…</string>
   <!--Story info header sent heading-->

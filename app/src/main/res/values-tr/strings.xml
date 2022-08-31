@@ -430,7 +430,7 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">Profil fotoğrafı kaydedilirken hata</string>
   <string name="CreateProfileActivity_problem_setting_profile">Profil ayarlanırken hata</string>
   <string name="CreateProfileActivity_set_up_your_profile">Profilinizi ayarlayın</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Profilin ve profilinde yaptığınız değişiklikler, mesaj gönderdiğin kişiler, kişi listendekiler ve grupların tarafından görüntülenebilir.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Profilin ve profiline yaptığın değişiklikler, mesaj gönderdiğin kişiler, kişi listendekiler ve grupların tarafından görüntülenebilir.</string>
   <string name="CreateProfileActivity_set_avatar_description">Avatar seçin</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
@@ -2498,7 +2498,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
   <string name="ConfirmPaymentFragment__failed_to_show_payment_lock">Ödeme kilidi gösterilemedi</string>
   <!--Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
-  <string name="ConfirmPaymentFragment__you_enabled_payment_lock_in_the_settings">Ayarlarda ödeme kilidini etkinleştirdin, fakat ödeme kilidi görüntülenemiyor.</string>
+  <string name="ConfirmPaymentFragment__you_enabled_payment_lock_in_the_settings">Ayarlarda ödeme kilidini etkinleştirdin fakat ödeme kilidi görüntülenemiyor.</string>
   <!--Button in a dialog that will take the user to the privacy settings-->
   <string name="ConfirmPaymentFragment__go_to_settings">Ayarlara git</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Bu kişi ödemeleri etkinleştirmedi</string>
@@ -4058,7 +4058,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Hikayem</string>
   <!--Section heading for story visibility-->
-  <string name="MyStorySettingsFragment__who_can_see_this_story">Bu hikayeyi kim görebilir</string>
+  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__who_can_see_this_story">Bu hikayeyi kim görebilir</string> -->
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">Hikayeyi gizle</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
@@ -4066,7 +4066,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--Privacy setting description for sending stories to all your signal connections-->
   <string name="MyStorySettingsFragment__share_with_all_connections">Tüm bağlantılarla paylaş</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
-  <string name="MyStorySettingsFragment__all_signal_connections_except">dışındaki tüm Signal bağlantıları</string>
+  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__all_signal_connections_except">dışındaki tüm Signal bağlantıları</string> -->
   <!--Privacy setting description for sending stories to all except the specified connections-->
   <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Hikayeni belirli kişilerden gizle</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
@@ -4397,7 +4397,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Tüm Signal bağlantıları</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
-  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">dışındaki tüm Signal bağlantıları</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">dışındaki tüm Signal bağlantıları</string> -->
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Sadece ….. ile paylaş</string>
   <!--Story info header sent heading-->

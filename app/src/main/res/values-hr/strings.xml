@@ -4164,7 +4164,7 @@ broj telefona</string>
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Moja priča</string>
   <!--Section heading for story visibility-->
-  <string name="MyStorySettingsFragment__who_can_see_this_story">Tko može pogledati ovu priču</string>
+  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__who_can_see_this_story">Tko može pogledati ovu priču</string> -->
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">Sakrij priču od</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
@@ -4172,7 +4172,7 @@ broj telefona</string>
   <!--Privacy setting description for sending stories to all your signal connections-->
   <string name="MyStorySettingsFragment__share_with_all_connections">Podijeli sa svim kontaktima</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
-  <string name="MyStorySettingsFragment__all_signal_connections_except">Svi Signal kontakti osim…</string>
+  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__all_signal_connections_except">Svi Signal kontakti osim…</string> -->
   <!--Privacy setting description for sending stories to all except the specified connections-->
   <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Sakrij svoju priču od određenih osoba</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
@@ -4512,7 +4512,7 @@ broj telefona</string>
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Svi Signal kontakti</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
-  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Svi Signal kontakti osim…</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Svi Signal kontakti osim…</string> -->
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Podijeli samo s…</string>
   <!--Story info header sent heading-->

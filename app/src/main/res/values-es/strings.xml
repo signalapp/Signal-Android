@@ -3,7 +3,7 @@
   <string name="yes">Sí</string>
   <string name="no">No</string>
   <string name="delete">Eliminar</string>
-  <string name="please_wait">Espera, por favor …</string>
+  <string name="please_wait">Espera, por favor…</string>
   <string name="save">Guardar</string>
   <string name="note_to_self">Notas privadas</string>
   <!--AbstractNotificationBuilder-->
@@ -451,11 +451,11 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">Fallo al establecer la foto de perfil</string>
   <string name="CreateProfileActivity_problem_setting_profile">Problema al crear el perfil</string>
   <string name="CreateProfileActivity_set_up_your_profile">Completa tu perfil</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Tu perfil y los cambios que hagas en él seran visibles para la gente a la que mandes mensajes, tus contactos y tus grupos.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Tu perfil y los cambios que hagas en él serán visibles para la gente a la que mandes mensajes, tus contactos y tus grupos.</string>
   <string name="CreateProfileActivity_set_avatar_description">Configurar avatar de perfil</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
-  <string name="ProfileCreateFragment__profiles_are_visible_to_contacts_and_people_you_message">Los perfiles seran visibles para la gente a la que mandes mensajes, tus contactos y tus grupos.</string>
+  <string name="ProfileCreateFragment__profiles_are_visible_to_contacts_and_people_you_message">Los perfiles serán visibles para la gente a la que mandes mensajes, tus contactos y tus grupos.</string>
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">¿Quién puede encontrarme a través de mi número?</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -2494,7 +2494,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">Términos de uso MobileCoin</string>
   <string name="PaymentsHomeFragment__payments_not_available">Los pagos en Signal no están disponibles. Todavía puedes transferir tus fondos a un «exchange» pero no podrás recibir o enviar más pagos a través de Signal.</string>
   <!--Alert dialog title which shows up after a payment to turn on payment lock-->
-  <string name="PaymentsHomeFragment__turn_on">Quieres activar el bloqueo de pago para futuros envíos?</string>
+  <string name="PaymentsHomeFragment__turn_on">¿Quieres activar el bloqueo de pago para futuros envíos?</string>
   <!--Alert dialog description for why payment lock should be enabled before sending payments-->
   <string name="PaymentsHomeFragment__add_an_additional_layer">Añade una capa extra de seguridad y pide el bloqueo de pantalla de Android o la huella dactilar para transferir fondos.</string>
   <!--Alert dialog button to enable payment lock-->
@@ -4167,7 +4167,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Mi historia</string>
   <!--Section heading for story visibility-->
-  <string name="MyStorySettingsFragment__who_can_see_this_story">Quién puede ver esta historia</string>
+  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__who_can_see_this_story">Quién puede ver esta historia</string> -->
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">Ocultar historia para</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
@@ -4175,7 +4175,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--Privacy setting description for sending stories to all your signal connections-->
   <string name="MyStorySettingsFragment__share_with_all_connections">Compartir con todos los contactos</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
-  <string name="MyStorySettingsFragment__all_signal_connections_except">Todos los contactos de Signal menos…</string>
+  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__all_signal_connections_except">Todos los contactos de Signal menos…</string> -->
   <!--Privacy setting description for sending stories to all except the specified connections-->
   <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Oculta tu historia a ciertas personas</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
@@ -4515,7 +4515,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Todos los contactos de Signal</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
-  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Todos los contactos de Signal menos…</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Todos los contactos de Signal menos…</string> -->
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Compartir solo con…</string>
   <!--Story info header sent heading-->

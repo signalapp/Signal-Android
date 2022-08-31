@@ -4065,7 +4065,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Historia ime</string>
   <!--Section heading for story visibility-->
-  <string name="MyStorySettingsFragment__who_can_see_this_story">Kush mund ta shohë këtë histori</string>
+  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__who_can_see_this_story">Kush mund ta shohë këtë histori</string> -->
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">Fshihe historinë nga</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
@@ -4073,7 +4073,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <!--Privacy setting description for sending stories to all your signal connections-->
   <string name="MyStorySettingsFragment__share_with_all_connections">Shpërndaj me të gjitha kontaktet</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
-  <string name="MyStorySettingsFragment__all_signal_connections_except">Të gjitha kontaktet e Signal përveç…</string>
+  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__all_signal_connections_except">Të gjitha kontaktet e Signal përveç…</string> -->
   <!--Privacy setting description for sending stories to all except the specified connections-->
   <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Fshih postimin e përkohshëm nga persona të caktuar</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
@@ -4404,7 +4404,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Të gjitha lidhjet e Signalit</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
-  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Të gjitha lidhjet e Signal përveç…</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Të gjitha lidhjet e Signal përveç…</string> -->
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Shpërndajeni vetëm me…</string>
   <!--Story info header sent heading-->

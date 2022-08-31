@@ -4061,7 +4061,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Történetem</string>
   <!--Section heading for story visibility-->
-  <string name="MyStorySettingsFragment__who_can_see_this_story">Ki tekintheti meg ezt a történetet?</string>
+  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__who_can_see_this_story">Ki tekintheti meg ezt a történetet?</string> -->
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">Történet elrejtése előlük:</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
@@ -4069,7 +4069,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--Privacy setting description for sending stories to all your signal connections-->
   <string name="MyStorySettingsFragment__share_with_all_connections">Megosztás az összes névjeggyel</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
-  <string name="MyStorySettingsFragment__all_signal_connections_except">Minden Signal-névjegy, kivéve…</string>
+  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__all_signal_connections_except">Minden Signal-névjegy, kivéve…</string> -->
   <!--Privacy setting description for sending stories to all except the specified connections-->
   <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Rejtsd el a Történeted bizonyos személyek elől</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
@@ -4400,7 +4400,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Minden Signal-névjegy</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
-  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Minden Signal-névjegy, kivéve…</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Minden Signal-névjegy, kivéve…</string> -->
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Megosztás kizárólag a következőkkel…</string>
   <!--Story info header sent heading-->

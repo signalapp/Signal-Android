@@ -3937,7 +3937,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Story của tôi</string>
   <!--Section heading for story visibility-->
-  <string name="MyStorySettingsFragment__who_can_see_this_story">Ai có thể xem story này</string>
+  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__who_can_see_this_story">Ai có thể xem story này</string> -->
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">Ẩn story với</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
@@ -3945,7 +3945,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--Privacy setting description for sending stories to all your signal connections-->
   <string name="MyStorySettingsFragment__share_with_all_connections">Chia sẻ với tất cả liên hệ</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
-  <string name="MyStorySettingsFragment__all_signal_connections_except">Tất cả liên hệ Signal trừ…</string>
+  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__all_signal_connections_except">Tất cả liên hệ Signal trừ…</string> -->
   <!--Privacy setting description for sending stories to all except the specified connections-->
   <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Ẩn story của bạn với một số người nhất định</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
@@ -4267,7 +4267,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Tất cả liên hệ Signal</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
-  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Tất cả liên hệ Signal trừ…</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Tất cả liên hệ Signal trừ…</string> -->
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Chỉ chia sẻ với…</string>
   <!--Story info header sent heading-->

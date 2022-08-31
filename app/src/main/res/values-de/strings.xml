@@ -430,9 +430,11 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">Fehler beim Festlegen des Profilfotos</string>
   <string name="CreateProfileActivity_problem_setting_profile">Problem beim Festlegen des Profils</string>
   <string name="CreateProfileActivity_set_up_your_profile">Richte dein Profil ein</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Dein Profil und Änderungen daran sind für Personen, an die du Nachrichten verschickst, Kontakte und Gruppen sichtbar.</string>
   <string name="CreateProfileActivity_set_avatar_description">Avatar festlegen</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
+  <string name="ProfileCreateFragment__profiles_are_visible_to_contacts_and_people_you_message">Profile sind für Personen, an die du Nachrichten schickst, Kontakte und Gruppen sichtbar.</string>
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">Wer kann mich anhand der Nummer finden?</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -2225,6 +2227,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences__storage">Speicher</string>
   <string name="preferences__payments">Zahlungen</string>
   <!--Privacy settings payments section description-->
+  <string name="preferences__payment_lock">Zahlungssperre</string>
   <string name="preferences__payments_beta">Zahlungen (Beta)</string>
   <string name="preferences__conversation_length_limit">Höchstzahl an Nachrichten</string>
   <string name="preferences__keep_messages">Nachrichten behalten</string>
@@ -2394,7 +2397,9 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">MobileCoin-Bedingungen anzeigen</string>
   <string name="PaymentsHomeFragment__payments_not_available">Zahlungen in Signal sind nicht mehr verfügbar. Du kannst weiterhin Guthaben an eine Handelsplattform überweisen, aber keine Zahlungen senden und empfangen oder Guthaben hinzufügen.</string>
   <!--Alert dialog title which shows up after a payment to turn on payment lock-->
+  <string name="PaymentsHomeFragment__turn_on">Zahlungssperre für zukünftige Spenden aktivieren?</string>
   <!--Alert dialog description for why payment lock should be enabled before sending payments-->
+  <string name="PaymentsHomeFragment__add_an_additional_layer">Füge eine zusätzliche Sicherheitsebene hinzu und richte eine Android-Bildschirmsperre oder eine Fingerabdruck-ID ein, um Geld zu überweisen.</string>
   <!--Alert dialog button to enable payment lock-->
   <string name="PaymentsHomeFragment__enable">Einschalten</string>
   <!--Alert dialog button to not enable payment lock for now-->
@@ -2480,8 +2485,11 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ConfirmPayment__payment_will_continue_processing">Verarbeitung der Zahlung wird fortgesetzt</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">Ungültiger Empfänger</string>
   <!--Biometric/Device authentication prompt title which comes up before sending a payment-->
+  <string name="ConfirmPaymentFragment__unlock_to_send_payment">Entsperren, um Zahlung zu senden</string>
   <!--Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <string name="ConfirmPaymentFragment__failed_to_show_payment_lock">Zahlungssperre konnte nicht angezeigt werden</string>
   <!--Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
+  <string name="ConfirmPaymentFragment__you_enabled_payment_lock_in_the_settings">Du hast eine Zahlungssperre in den Einstellungen aktiviert, sie kann jedoch nicht angezeigt werden.</string>
   <!--Button in a dialog that will take the user to the privacy settings-->
   <string name="ConfirmPaymentFragment__go_to_settings">Zu Einstellungen</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Diese Person hat Zahlungen nicht aktiviert</string>
@@ -3303,9 +3311,13 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Lege eine Standardablaufzeit für verschwindende Nachrichten aller von dir begonnenen neuen Unterhaltungen fest.</string>
   <!--Summary for stories preference to launch into story privacy settings-->
   <string name="PrivacySettingsFragment__manage_your_stories">Verwalte deine Storys und wer sie sehen kann</string>
+  <string name="PrivacySettingsFragment__payment_lock_require_lock">Richte eine Android-Bildschirmsperre oder eine Fingerabdruck-ID ein, um Geld zu überweisen</string>
   <!--Alert dialog title when payment lock cannot be enabled-->
+  <string name="PrivacySettingsFragment__cant_enable_title">Zahlungssperre kann nicht aktiviert werden</string>
   <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
+  <string name="PrivacySettingsFragment__cant_enable_description">Um die Zahlungssperre zu verwenden, müsst du zuerst eine Bildschirmsperre oder eine Fingerabdruck-ID in deinen Telefoneinstellungen aktivieren.</string>
   <!--Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings-->
+  <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">Systemeinstellungen konnten nicht angezeigt werden</string>
   <!--Alert dialog button to go to phone settings-->
   <string name="PrivacySettingsFragment__go_to_settings">Zu Einstellungen</string>
   <!--Alert dialog button to cancel the dialog-->
@@ -3702,9 +3714,13 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Netzfehler. Überprüfe deine Internetverbindung und versuche es erneut.</string>
   <string name="NetworkFailure__retry">Erneut versuchen</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__cant_send_gift">Geschenk kann nicht gesendet werden</string>
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
+  <string name="DonationsErrors__target_does_not_support_gifting">Diese*r Empfänger*in verwendet eine Version von Signal, die keine Geschenkabzeichen erhalten kann. Geschenke können nur erhalten werden, wenn auf die neueste Version aktualisiert wird.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__couldnt_send_gift">Geschenk konnte nicht gesendet werden</string>
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
+  <string name="DonationsErrors__please_check_your_network_connection">Dein Geschenk konnte aufgrund eines Netzwerkfehlers nicht versendet werden. Überprüfe deine Verbindung und versuche es erneut.</string>
   <!--Gift message view title-->
   <string name="GiftMessageView__gift_badge">Geschenkabzeichen</string>
   <!--Gift message view expiry information-->
@@ -4033,7 +4049,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Mein Story</string>
   <!--Section heading for story visibility-->
-  <string name="MyStorySettingsFragment__who_can_see_this_story">Diese Story kann sehen</string>
+  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__who_can_see_this_story">Diese Story kann sehen</string> -->
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">Story verbergen vor</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
@@ -4041,7 +4057,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--Privacy setting description for sending stories to all your signal connections-->
   <string name="MyStorySettingsFragment__share_with_all_connections">Mit allen Verbindungen teilen.</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
-  <string name="MyStorySettingsFragment__all_signal_connections_except">Mit allen Signal-Verbindungen außer …</string>
+  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__all_signal_connections_except">Mit allen Signal-Verbindungen außer …</string> -->
   <!--Privacy setting description for sending stories to all except the specified connections-->
   <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Deine Story vor bestimmten Personen verbergen</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
@@ -4271,7 +4287,15 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Jetzt nicht</string>
   <!--Label under name for private stories-->
+  <plurals name="ContactSearchItems__private_story_d_viewers">
+    <item quantity="one">Private Story · %1$d Ansichten</item>
+    <item quantity="other">Private Story · %1$d Ansichten</item>
+  </plurals>
   <!--Label under name for group stories-->
+  <plurals name="ContactSearchItems__group_story_d_viewers">
+    <item quantity="one">Gruppen-Story · %1$d Ansichten</item>
+    <item quantity="other">Gruppen-Story · %1$d Ansichten</item>
+  </plurals>
   <!--Label under name for my story-->
   <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
     <item quantity="one">%1$s · %2$d Betrachter</item>
@@ -4372,7 +4396,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Alle Signal-Verbindungen</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
-  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Mit allen Signal-Verbindungen außer…</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Mit allen Signal-Verbindungen außer…</string> -->
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Nur teilen mit…</string>
   <!--Story info header sent heading-->

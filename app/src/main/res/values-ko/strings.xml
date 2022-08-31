@@ -2322,9 +2322,9 @@
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">MobileCoin 용어 보기</string>
   <string name="PaymentsHomeFragment__payments_not_available">Signal 결제는 더 이상 사용할 수 없습니다. 여전히 거래소로 자금을 이체할 수 있지만 더 이상 지불을 주고받거나 자금을 추가할 수 없습니다.</string>
   <!--Alert dialog title which shows up after a payment to turn on payment lock-->
-  <string name="PaymentsHomeFragment__turn_on">앞으로 결제를 보낼 때 결제 잠금을 켤까요?</string>
+  <string name="PaymentsHomeFragment__turn_on">지금부터 결제 잠금을 켤까요?</string>
   <!--Alert dialog description for why payment lock should be enabled before sending payments-->
-  <string name="PaymentsHomeFragment__add_an_additional_layer">자금 이체 시 Android 화면 잠금 또는 지문을 요구하여 보안을 한층 강화하세요.</string>
+  <string name="PaymentsHomeFragment__add_an_additional_layer">자금 이체 시 Android 화면 잠금 또는 지문 인증을 통해 보안을 한층 강화하세요.</string>
   <!--Alert dialog button to enable payment lock-->
   <string name="PaymentsHomeFragment__enable">켜기</string>
   <!--Alert dialog button to not enable payment lock for now-->
@@ -2414,7 +2414,7 @@
   <!--Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
   <string name="ConfirmPaymentFragment__failed_to_show_payment_lock">결제 잠금을 표시하지 못함</string>
   <!--Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
-  <string name="ConfirmPaymentFragment__you_enabled_payment_lock_in_the_settings">설정에서 결제 잠금을 활성화했으나 표시할 수 없습니다.</string>
+  <string name="ConfirmPaymentFragment__you_enabled_payment_lock_in_the_settings">설정에서 결제 잠금 기능을 활성화했으나 표시할 수 없습니다.</string>
   <!--Button in a dialog that will take the user to the privacy settings-->
   <string name="ConfirmPaymentFragment__go_to_settings">설정으로 이동</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">해당 사용자는 결제를 활성화하지 않았습니다.</string>
@@ -3225,9 +3225,9 @@
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">내가 새로 시작한 모든 채팅에 기본적으로 사라지는 메시지 타이머를 적용합니다.</string>
   <!--Summary for stories preference to launch into story privacy settings-->
   <string name="PrivacySettingsFragment__manage_your_stories">스토리와 스토리를 볼 수 있는 사람을 관리하세요.</string>
-  <string name="PrivacySettingsFragment__payment_lock_require_lock">자금 이체 시 Android 화면 잠금 또는 지문 요구</string>
+  <string name="PrivacySettingsFragment__payment_lock_require_lock">자금 이체 시 Android 화면을 잠그거나 지문 인증하기</string>
   <!--Alert dialog title when payment lock cannot be enabled-->
-  <string name="PrivacySettingsFragment__cant_enable_title">결제 잠금을 활성화할 수 없습니다.</string>
+  <string name="PrivacySettingsFragment__cant_enable_title">결제 잠금 기능을 활성화할 수 없습니다.</string>
   <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
   <string name="PrivacySettingsFragment__cant_enable_description">결제 잠금을 사용하려면 휴대폰 설정에서 화면 잠금 또는 지문 ID를 활성화해야 합니다.</string>
   <!--Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings-->
@@ -3462,7 +3462,7 @@
     <item quantity="other">메시지를 더는 사용할 수 없어 전달하지 못했습니다.</item>
   </plurals>
   <!--Error message shown when attempting to select a group to forward/share but it\'s announcement only and you are not an admin-->
-  <string name="MultiselectForwardFragment__only_admins_can_send_messages_to_this_group">관리자만 그룹에 메시지를 전송할 수 있습니다.</string>
+  <string name="MultiselectForwardFragment__only_admins_can_send_messages_to_this_group">관리자만 이 그룹에 메시지를 전송할 수 있습니다.</string>
   <string name="MultiselectForwardFragment__limit_reached">한계에 도달함</string>
   <!--Media V2-->
   <string name="MediaReviewFragment__add_a_message">메시지 추가</string>
@@ -3624,9 +3624,9 @@
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
   <string name="DonationsErrors__cant_send_gift">선물을 보낼 수 없습니다.</string>
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
-  <string name="DonationsErrors__target_does_not_support_gifting">이 받는 사람은 선물 배지를 받을 수 없는 Signal 버전을 사용합니다. 최신 버전으로 업데이트하면 선물이 전송됩니다.</string>
+  <string name="DonationsErrors__target_does_not_support_gifting">선물 배지를 받을 수 없는 Signal 버전 사용자입니다. 최신 버전으로 업데이트하면 선물이 전송됩니다.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
-  <string name="DonationsErrors__couldnt_send_gift">선물을 받지 못했습니다.</string>
+  <string name="DonationsErrors__couldnt_send_gift">선물을 보내지 못했습니다.</string>
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
   <string name="DonationsErrors__please_check_your_network_connection">네트워크 오류로 인해 선물을 보내지 못했습니다. 인터넷 연결을 확인하고 다시 시도하세요.</string>
   <!--Gift message view title-->
@@ -3953,7 +3953,7 @@
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">내 스토리</string>
   <!--Section heading for story visibility-->
-  <string name="MyStorySettingsFragment__who_can_see_this_story">이 스토리를 볼 수 있는 사람</string>
+  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__who_can_see_this_story">이 스토리를 볼 수 있는 사람</string> -->
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">스토리 숨길 대상</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
@@ -3961,7 +3961,7 @@
   <!--Privacy setting description for sending stories to all your signal connections-->
   <string name="MyStorySettingsFragment__share_with_all_connections">모든 커넥션과 공유</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
-  <string name="MyStorySettingsFragment__all_signal_connections_except">다음을 제외한 모든 Signal 커넥션…</string>
+  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__all_signal_connections_except">다음을 제외한 모든 Signal 커넥션…</string> -->
   <!--Privacy setting description for sending stories to all except the specified connections-->
   <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">특정 사용자에게서 스토리 숨기기</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
@@ -4283,7 +4283,7 @@
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">모든 Signal 커넥션</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
-  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">다음을 제외한 모든 Signal 커넥션…</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">다음을 제외한 모든 Signal 커넥션…</string> -->
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">다음 사용자와만 공유…</string>
   <!--Story info header sent heading-->

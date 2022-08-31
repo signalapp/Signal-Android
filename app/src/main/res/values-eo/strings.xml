@@ -3984,7 +3984,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Mia rakonto</string>
   <!--Section heading for story visibility-->
-  <string name="MyStorySettingsFragment__who_can_see_this_story">Kiu povas vidi tiun rakonton</string>
+  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__who_can_see_this_story">Kiu povas vidi tiun rakonton</string> -->
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">Kaŝi la rakonton al</string>
   <!--Privacy setting title for sending stories to all your signal connections-->

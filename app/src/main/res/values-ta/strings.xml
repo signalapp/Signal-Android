@@ -4054,7 +4054,7 @@
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">எனது ஸ்டோரி</string>
   <!--Section heading for story visibility-->
-  <string name="MyStorySettingsFragment__who_can_see_this_story">இந்த ஸ்டோரியை யார் பார்க்கலாம்</string>
+  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__who_can_see_this_story">இந்த ஸ்டோரியை யார் பார்க்கலாம்</string> -->
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">-இடமிருந்து ஸ்டோரியை மறைக்கவும்</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
@@ -4062,7 +4062,7 @@
   <!--Privacy setting description for sending stories to all your signal connections-->
   <string name="MyStorySettingsFragment__share_with_all_connections">அனைத்து இணைப்புகளுடனும் பகிரவும்</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
-  <string name="MyStorySettingsFragment__all_signal_connections_except">அனைத்து சிக்னல் இணைப்புகளும், இதை தவிர…</string>
+  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__all_signal_connections_except">அனைத்து சிக்னல் இணைப்புகளும், இதை தவிர…</string> -->
   <!--Privacy setting description for sending stories to all except the specified connections-->
   <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">குறிப்பிட்ட நபர்களிடமிருந்து உங்கள் ஸ்டோரியை மறைக்கவும்</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
@@ -4393,7 +4393,7 @@
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">அனைத்து சிக்னல் இணைப்புகள்</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
-  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">அனைத்து சிக்னல் இணைப்புகளும், இதை தவிர…</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">அனைத்து சிக்னல் இணைப்புகளும், இதை தவிர…</string> -->
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">இவர்களுடன் மட்டும் பகிரவும்…</string>
   <!--Story info header sent heading-->

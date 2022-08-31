@@ -472,11 +472,11 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">Chyba pri nastavení profilovej fotky</string>
   <string name="CreateProfileActivity_problem_setting_profile">Chyba pri nastavení profilu</string>
   <string name="CreateProfileActivity_set_up_your_profile">Nastavte si svoj profil</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Váš profil a zmeny v ňom sa zobrazia ľuďom, ktorým posielate správy, kontakty a skupiny.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Váš profil a zmeny v ňom sa zobrazia ľuďom, ktorým posielate správy, kontaktom a skupinám.</string>
   <string name="CreateProfileActivity_set_avatar_description">Nastaviť profilový obrázok</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
-  <string name="ProfileCreateFragment__profiles_are_visible_to_contacts_and_people_you_message">Profily sa zobrazia ľuďom, ktorým posielate správy, kontakty a skupiny.</string>
+  <string name="ProfileCreateFragment__profiles_are_visible_to_contacts_and_people_you_message">Profily sa zobrazia ľuďom, ktorým posielate správy, kontaktom a skupinám.</string>
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">Kto ma môže vyhľadať pomocou telefónneho čísla?</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -2579,7 +2579,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">Zobraziť podmienky MobileCoin</string>
   <string name="PaymentsHomeFragment__payments_not_available">Platby v službe Signal už nie sú k dispozícii. Stále môžete prevádzať prostriedky na burzu, ale už nemôžete posielať a prijímať platby ani pridávať prostriedky.</string>
   <!--Alert dialog title which shows up after a payment to turn on payment lock-->
-  <string name="PaymentsHomeFragment__turn_on">Chcete zapnúť platobný zámok pre budúce odosielanie platby?</string>
+  <string name="PaymentsHomeFragment__turn_on">Zapnúť platobný zámok pre budúce platby?</string>
   <!--Alert dialog description for why payment lock should be enabled before sending payments-->
   <string name="PaymentsHomeFragment__add_an_additional_layer">Zvýšte zabezpečenie a na prevod prostriedkov si vyžiadajte zámok obrazovky Android alebo odtlačok prsta.</string>
   <!--Alert dialog button to enable payment lock-->
@@ -3515,7 +3515,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Nastavte predvolený časovač miznutia správ pre všetky nové správy ktoré ste poslali.</string>
   <!--Summary for stories preference to launch into story privacy settings-->
   <string name="PrivacySettingsFragment__manage_your_stories">Spravujte svoje príbehy a vyberte si, kto ich môže vidieť</string>
-  <string name="PrivacySettingsFragment__payment_lock_require_lock">Na prevod prostriedkov si musíte vyžiadať zámok obrazovky Android alebo odtlačok prsta</string>
+  <string name="PrivacySettingsFragment__payment_lock_require_lock">Na prevod prostriedkov vyžadovať zámok obrazovky Android alebo odtlačok prsta</string>
   <!--Alert dialog title when payment lock cannot be enabled-->
   <string name="PrivacySettingsFragment__cant_enable_title">Nie je možné aktivovať platobný zámok</string>
   <!--Alert dialog description to setup screen lock or fingerprint in phone settings-->
@@ -3932,11 +3932,11 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
   <string name="DonationsErrors__cant_send_gift">Nie je možné odoslať darček</string>
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
-  <string name="DonationsErrors__target_does_not_support_gifting">Tento príjemca používa verziu Signal, ktorá nepovoľuje prijímanie darčekových odznakov. Darčeky budú môcť prijímať po aktualizácii na najnovšiu verziu.</string>
+  <string name="DonationsErrors__target_does_not_support_gifting">Tento príjemca používa verziu Signalu, ktorá nepovoľuje prijímanie darčekových odznakov. Darčeky budú môcť prijímať po aktualizácii na najnovšiu verziu.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
   <string name="DonationsErrors__couldnt_send_gift">Nepodarilo sa odoslať darček</string>
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
-  <string name="DonationsErrors__please_check_your_network_connection">Váš darček nebolo možné odoslať z dôvodu chyby siete. Skontrolujte pripojenie a skúste to znova.</string>
+  <string name="DonationsErrors__please_check_your_network_connection">Váš darček nebolo možné odoslať kvôli sieťovej chybe. Skontrolujte pripojenie a skúste to znova.</string>
   <!--Gift message view title-->
   <string name="GiftMessageView__gift_badge">Darčekový odznak</string>
   <!--Gift message view expiry information-->
@@ -4273,7 +4273,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Môj príbeh</string>
   <!--Section heading for story visibility-->
-  <string name="MyStorySettingsFragment__who_can_see_this_story">Kto môže vidieť tento príbeh</string>
+  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__who_can_see_this_story">Kto môže vidieť tento príbeh</string> -->
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">Skryť príbeh od</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
@@ -4281,7 +4281,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--Privacy setting description for sending stories to all your signal connections-->
   <string name="MyStorySettingsFragment__share_with_all_connections">Zdieľať so všetkými spojeniami</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
-  <string name="MyStorySettingsFragment__all_signal_connections_except">Všetky Signal spojenia okrem…</string>
+  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__all_signal_connections_except">Všetky Signal spojenia okrem…</string> -->
   <!--Privacy setting description for sending stories to all except the specified connections-->
   <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Skryte svoj príbeh pred niektorými ľuďmi</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
@@ -4630,7 +4630,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Všetky Signal spojenia</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
-  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Všetky Signal spojenia okrem…</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Všetky Signal spojenia okrem…</string> -->
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Zdieľať iba s…</string>
   <!--Story info header sent heading-->
