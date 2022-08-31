@@ -10,6 +10,7 @@ dependencyResolutionManagement {
             version('androidx-lifecycle', '2.3.1')
             version('mp4parser', '1.9.39')
             version('kotlin', '1.6.21')
+            version('glide', '4.13.2')
 
             // Desugaring
             alias('android-tools-desugar').to('com.android.tools:desugar_jdk_libs:1.1.5')
@@ -31,7 +32,7 @@ dependencyResolutionManagement {
             alias('androidx-cardview').to('androidx.cardview:cardview:1.0.0')
             alias('androidx-preference').to('androidx.preference:preference:1.0.0')
             alias('androidx-gridlayout').to('androidx.gridlayout:gridlayout:1.0.0')
-            alias('androidx-exifinterface').to('androidx.exifinterface:exifinterface:1.0.0')
+            alias('androidx-exifinterface').to('androidx.exifinterface:exifinterface:1.3.3')
             alias('androidx-multidex').to('androidx.multidex:multidex:2.0.1')
             alias('androidx-navigation-fragment-ktx').to('androidx.navigation:navigation-fragment-ktx:2.3.5')
             alias('androidx-navigation-ui-ktx').to('androidx.navigation:navigation-ui-ktx:2.3.5')
@@ -98,8 +99,8 @@ dependencyResolutionManagement {
             alias('emilsjolander-stickylistheaders').to('se.emilsjolander:stickylistheaders:2.7.0')
             alias('jpardogo-materialtabstrip').to('com.jpardogo.materialtabstrip:library:1.0.9')
             alias('apache-httpclient-android').to('org.apache.httpcomponents:httpclient-android:4.3.5')
-            alias('glide-glide').to('com.github.bumptech.glide:glide:4.11.0')
-            alias('glide-compiler').to('com.github.bumptech.glide:compiler:4.11.0')
+            alias('glide-glide').to('com.github.bumptech.glide', 'glide').versionRef('glide')
+            alias('glide-compiler').to('com.github.bumptech.glide', 'compiler').versionRef('glide')
             alias('photoview').to('com.github.chrisbanes:PhotoView:2.3.0')
             alias('roundedimageview').to('com.makeramen:roundedimageview:2.1.0')
             alias('materialish-progress').to('com.pnikosis:materialish-progress:1.5')
