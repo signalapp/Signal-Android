@@ -144,6 +144,7 @@ final class RecipientDialogViewModel extends ViewModel {
       activity.startActivity(StoryViewerActivity.createIntent(
           activity,
           new StoryViewerArgs.Builder(recipientDialogRepository.getRecipientId(), recipient.getValue().shouldHideStory())
+                             .isFromQuote(true)
                              .build()));
     }
   }
@@ -183,6 +184,7 @@ final class RecipientDialogViewModel extends ViewModel {
       activity.startActivity(StoryViewerActivity.createIntent(
           activity,
           new StoryViewerArgs.Builder(recipientDialogRepository.getRecipientId(), recipient.getValue().shouldHideStory())
+                             .isFromQuote(true)
                              .build()));
     }
   }
