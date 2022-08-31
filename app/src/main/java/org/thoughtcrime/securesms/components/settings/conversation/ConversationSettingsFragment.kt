@@ -287,7 +287,8 @@ class ConversationSettingsFragment : DSLSettingsFragment(
                 requireContext(),
                 StoryViewerArgs(
                   recipientId = state.recipient.id,
-                  isInHiddenStoryMode = state.recipient.shouldHideStory()
+                  isInHiddenStoryMode = state.recipient.shouldHideStory(),
+                  isFromQuote = true
                 )
               )
               StoryDialogs.displayStoryOrProfileImage(
