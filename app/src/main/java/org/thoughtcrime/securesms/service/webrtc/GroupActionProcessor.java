@@ -199,7 +199,7 @@ public class GroupActionProcessor extends DeviceAwareActionProcessor {
     }
 
     try {
-      currentState.getCallInfoState().requireGroupCall().requestVideo(resolutionRequests);
+      currentState.getCallInfoState().requireGroupCall().requestVideo(resolutionRequests, 0);
     } catch (CallException e) {
       return groupCallFailure(currentState, "Unable to set rendered resolutions", e);
     }
