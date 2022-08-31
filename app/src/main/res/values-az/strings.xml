@@ -32,7 +32,7 @@
   <string name="ApplicationPreferencesActivity_Off">Bağlı</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">Ekran kilidi %1$s, Qeydiyyat kilidi %2$s</string>
-  <string name="ApplicationPreferencesActivity_appearance_summary">Tema%1$s, Dil %2$s</string>
+  <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Dil %2$s</string>
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN-lər qeydiyyat kilidi üçün tələb olunur. PIN-ləri sıradan çıxartmaq üçün əvvəlcə zəhmət olmasa qeydiyyat kilidini sıradan çıxardın.</string>
   <string name="ApplicationPreferencesActivity_pin_created">PIN yaradıldı.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN sıradan çıxarıldı.</string>
@@ -4060,7 +4060,7 @@
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Hekayəm</string>
   <!--Section heading for story visibility-->
-  <string name="MyStorySettingsFragment__who_can_see_this_story">Bu hekayəni kim görə bilər</string>
+  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__who_can_see_this_story">Bu hekayəni kim görə bilər</string> -->
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">Hekayəni gizlət</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
@@ -4068,7 +4068,7 @@
   <!--Privacy setting description for sending stories to all your signal connections-->
   <string name="MyStorySettingsFragment__share_with_all_connections">Bütün bağlantılarla paylaşın</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
-  <string name="MyStorySettingsFragment__all_signal_connections_except">Aşağıdakılar xaricində bütün Signal bağlantıları…</string>
+  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__all_signal_connections_except">Aşağıdakılar xaricində bütün Signal bağlantıları…</string> -->
   <!--Privacy setting description for sending stories to all except the specified connections-->
   <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Hekayənizi bəzi insanlardan gizlədin</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
@@ -4407,7 +4407,7 @@
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Bütün Signal bağlantıları</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
-  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Aşağıdakılar xaricində bütün Signal bağlantıları…</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Aşağıdakılar xaricində bütün Signal bağlantıları…</string> -->
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Yalnız bunlarla paylaşın…</string>
   <!--Story info header sent heading-->

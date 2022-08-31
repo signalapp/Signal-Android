@@ -3947,7 +3947,7 @@
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">រឿងរ៉ាវរបស់ខ្ញុំ</string>
   <!--Section heading for story visibility-->
-  <string name="MyStorySettingsFragment__who_can_see_this_story">អ្នកដែលអាចមើលឃើញរឿងរ៉ាវនេះ</string>
+  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__who_can_see_this_story">អ្នកដែលអាចមើលឃើញរឿងរ៉ាវនេះ</string> -->
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">លាក់រឿងរ៉ាវពី</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
@@ -3955,7 +3955,7 @@
   <!--Privacy setting description for sending stories to all your signal connections-->
   <string name="MyStorySettingsFragment__share_with_all_connections">ចែករំលែកជាមួយអ្នកភ្ជាប់ទំនាក់ទំនងទាំងអស់</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
-  <string name="MyStorySettingsFragment__all_signal_connections_except">អ្នកភ្ជាប់ទំនាក់ទំនងក្នុង Signal ទាំងអស់លើកលែងតែ…</string>
+  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__all_signal_connections_except">អ្នកភ្ជាប់ទំនាក់ទំនងក្នុង Signal ទាំងអស់លើកលែងតែ…</string> -->
   <!--Privacy setting description for sending stories to all except the specified connections-->
   <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">លាក់រឿងរ៉ាវរបស់អ្នកពីមនុស្សជាក់លាក់</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
@@ -4283,7 +4283,7 @@
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">ទំនាក់ទំនង Signal ទាំងអស់</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
-  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">ទំនាក់ទំនង Signal ទាំងអស់លើកលែងតែ…</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">ទំនាក់ទំនង Signal ទាំងអស់លើកលែងតែ…</string> -->
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">គ្រាន់តែចែករំលែកជាមួយ…</string>
   <!--Story info header sent heading-->

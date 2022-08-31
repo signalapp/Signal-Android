@@ -4056,7 +4056,7 @@ Dobbeltsjekk at det nye nummeret ditt kan motta både SMS og anrop før du forts
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Min story</string>
   <!--Section heading for story visibility-->
-  <string name="MyStorySettingsFragment__who_can_see_this_story">Disse kan se denne storyen</string>
+  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__who_can_see_this_story">Disse kan se denne storyen</string> -->
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">Skjul story for</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
@@ -4064,7 +4064,7 @@ Dobbeltsjekk at det nye nummeret ditt kan motta både SMS og anrop før du forts
   <!--Privacy setting description for sending stories to all your signal connections-->
   <string name="MyStorySettingsFragment__share_with_all_connections">Del med alle på kontaktlisten</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
-  <string name="MyStorySettingsFragment__all_signal_connections_except">Alle kontakter på Signal unntatt …</string>
+  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__all_signal_connections_except">Alle kontakter på Signal unntatt …</string> -->
   <!--Privacy setting description for sending stories to all except the specified connections-->
   <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Skjul storyen din for utvalgte personer</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
@@ -4403,7 +4403,7 @@ Dobbeltsjekk at det nye nummeret ditt kan motta både SMS og anrop før du forts
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Alle kontakter på Signal</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
-  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Alle kontakter på Signal unntatt…</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Alle kontakter på Signal unntatt…</string> -->
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Del kun med…</string>
   <!--Story info header sent heading-->

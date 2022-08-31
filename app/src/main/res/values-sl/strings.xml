@@ -4265,7 +4265,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Moja zgodba</string>
   <!--Section heading for story visibility-->
-  <string name="MyStorySettingsFragment__who_can_see_this_story">Kdo lahko vidi to zgodbo</string>
+  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__who_can_see_this_story">Kdo lahko vidi to zgodbo</string> -->
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">Skrij zgodbo pred</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
@@ -4273,7 +4273,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--Privacy setting description for sending stories to all your signal connections-->
   <string name="MyStorySettingsFragment__share_with_all_connections">Deli s vsemi povezavami</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
-  <string name="MyStorySettingsFragment__all_signal_connections_except">Vse Signal povezave razen …</string>
+  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__all_signal_connections_except">Vse Signal povezave razen …</string> -->
   <!--Privacy setting description for sending stories to all except the specified connections-->
   <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Skrijte svojo zgodbo pred določenimi ljudmi</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
@@ -4622,7 +4622,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Vse Signal povezave</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
-  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Vse Signal povezave razen …</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Vse Signal povezave razen …</string> -->
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Deli le s/z …</string>
   <!--Story info header sent heading-->

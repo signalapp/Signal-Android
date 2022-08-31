@@ -3984,7 +3984,7 @@ hegðun þína.</string>
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Sagan mín</string>
   <!--Section heading for story visibility-->
-  <string name="MyStorySettingsFragment__who_can_see_this_story">Hver getur séð þessa sögu</string>
+  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__who_can_see_this_story">Hver getur séð þessa sögu</string> -->
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">Fela sögu fyrir</string>
   <!--Privacy setting title for sending stories to all your signal connections-->

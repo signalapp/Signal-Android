@@ -4053,7 +4053,7 @@
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">എന്റെ കഥ</string>
   <!--Section heading for story visibility-->
-  <string name="MyStorySettingsFragment__who_can_see_this_story">ആർക്കൊക്കെ ഈ സ്റ്റോറി കാണാനാകും</string>
+  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__who_can_see_this_story">ആർക്കൊക്കെ ഈ സ്റ്റോറി കാണാനാകും</string> -->
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">ഇനിപ്പറയുന്നയാളിൽ നിന്ന് സ്റ്റോറി മറയ്ക്കുക</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
@@ -4061,7 +4061,7 @@
   <!--Privacy setting description for sending stories to all your signal connections-->
   <string name="MyStorySettingsFragment__share_with_all_connections">എല്ലാ കണക്ഷനുകളുമായും പങ്കിടുക</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
-  <string name="MyStorySettingsFragment__all_signal_connections_except">ഇനിപ്പറയുന്നവ ഒഴികെ എല്ലാ Signal കണക്ഷനുകളും…</string>
+  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__all_signal_connections_except">ഇനിപ്പറയുന്നവ ഒഴികെ എല്ലാ Signal കണക്ഷനുകളും…</string> -->
   <!--Privacy setting description for sending stories to all except the specified connections-->
   <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">നിർദ്ദിഷ്‌ട ആളുകളിൽ നിന്ന് നിങ്ങളുടെ സ്റ്റോറി മറയ്ക്കുക</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
@@ -4392,7 +4392,7 @@
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">എല്ലാ Signal കണക്ഷനുകളും</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
-  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">ഇനിപ്പറയുന്നവ ഒഴികെ എല്ലാ Signal കണക്ഷനുകളും…</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">ഇനിപ്പറയുന്നവ ഒഴികെ എല്ലാ Signal കണക്ഷനുകളും…</string> -->
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">ഇനിപ്പറയുന്നവരുമായി മാത്രം പങ്കിടുക…</string>
   <!--Story info header sent heading-->

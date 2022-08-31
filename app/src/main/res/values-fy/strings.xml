@@ -3982,7 +3982,7 @@
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Myn ferhaal</string>
   <!--Section heading for story visibility-->
-  <string name="MyStorySettingsFragment__who_can_see_this_story">Wa meie dit ferhaal sjen</string>
+  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__who_can_see_this_story">Wa meie dit ferhaal sjen</string> -->
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">Ferstopje dit ferhaal fan</string>
   <!--Privacy setting title for sending stories to all your signal connections-->

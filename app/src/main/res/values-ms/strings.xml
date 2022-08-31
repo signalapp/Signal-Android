@@ -413,7 +413,7 @@
   <string name="CreateProfileActivity_set_avatar_description">Tetapkan avatar</string>
   <!--ProfileCreateFragment-->
   <!--Displayed at the top of the screen and explains how profiles can be viewed.-->
-  <string name="ProfileCreateFragment__profiles_are_visible_to_contacts_and_people_you_message">Profil anda kepadanya akan boleh dilihat kepada orang yang anda mesej, kenalan dan kumpulan.</string>
+  <string name="ProfileCreateFragment__profiles_are_visible_to_contacts_and_people_you_message">Profil boleh dilihat oleh orang yang anda mesej, kenalan dan kumpulan.</string>
   <!--Title of clickable row to select phone number privacy settings-->
   <string name="ProfileCreateFragment__who_can_find_me">Siapa yang boleh cari saya melalui nombor?</string>
   <!--WhoCanSeeMyPhoneNumberFragment-->
@@ -2405,7 +2405,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <!--Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
   <string name="ConfirmPaymentFragment__failed_to_show_payment_lock">Gagal untuk menunjukkan kunci pembayaran</string>
   <!--Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment-->
-  <string name="ConfirmPaymentFragment__you_enabled_payment_lock_in_the_settings">Anda mendayakan kunci pembayaran dalam tetapan, tapi ia tidak boleh ditunjukkan.</string>
+  <string name="ConfirmPaymentFragment__you_enabled_payment_lock_in_the_settings">Anda mendayakan kunci pembayaran dalam tetapan, tetapi ia tidak boleh ditunjukkan.</string>
   <!--Button in a dialog that will take the user to the privacy settings-->
   <string name="ConfirmPaymentFragment__go_to_settings">Pergi ke tetapan</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Orang ini belum mengaktifkan pembayaran</string>
@@ -3615,7 +3615,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <!--Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting-->
   <string name="DonationsErrors__cant_send_gift">Tidak boleh menghantar hadiah</string>
   <!--Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting-->
-  <string name="DonationsErrors__target_does_not_support_gifting">Penerima ini menggunakan Signal versi yang tidak boleh menerima lencana hadiah. Mereka boleh menerima hadiah apabila mereka mengemas kini kepada versi terbaru.</string>
+  <string name="DonationsErrors__target_does_not_support_gifting">Penerima ini menggunakan versi Signal yang tidak boleh menerima lencana hadiah. Mereka boleh menerima hadiah setelah mengemas kini kepada versi terbaru.</string>
   <!--Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet-->
   <string name="DonationsErrors__couldnt_send_gift">Tidak boleh menghantar hadiah</string>
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
@@ -3944,7 +3944,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Cerita Saya</string>
   <!--Section heading for story visibility-->
-  <string name="MyStorySettingsFragment__who_can_see_this_story">Siapa boleh melihat cerita ini</string>
+  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__who_can_see_this_story">Siapa boleh melihat cerita ini</string> -->
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">Sembunyikan cerita daripada</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
@@ -3952,7 +3952,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <!--Privacy setting description for sending stories to all your signal connections-->
   <string name="MyStorySettingsFragment__share_with_all_connections">Kongsi dengan semua hubungan</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
-  <string name="MyStorySettingsFragment__all_signal_connections_except">Semua hubungan Signal kecuali…</string>
+  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__all_signal_connections_except">Semua hubungan Signal kecuali…</string> -->
   <!--Privacy setting description for sending stories to all except the specified connections-->
   <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Sembunyikan cerita anda daripada orang tertentu</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
@@ -4280,7 +4280,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Semua hubungan Signal</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
-  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Semua hubungan Signal kecuali…</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Semua hubungan Signal kecuali…</string> -->
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Hanya berkongsi dengan…</string>
   <!--Story info header sent heading-->

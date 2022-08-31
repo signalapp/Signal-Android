@@ -3953,7 +3953,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Cerita saya</string>
   <!--Section heading for story visibility-->
-  <string name="MyStorySettingsFragment__who_can_see_this_story">Siapa yang bisa melihat cerita ini</string>
+  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__who_can_see_this_story">Siapa yang bisa melihat cerita ini</string> -->
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">Sembunyikan serita dari</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
@@ -3961,7 +3961,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--Privacy setting description for sending stories to all your signal connections-->
   <string name="MyStorySettingsFragment__share_with_all_connections">Bagikan dengan semua koneksi</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
-  <string name="MyStorySettingsFragment__all_signal_connections_except">Semua koneksi Signal kecuali…</string>
+  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__all_signal_connections_except">Semua koneksi Signal kecuali…</string> -->
   <!--Privacy setting description for sending stories to all except the specified connections-->
   <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Sembunyikan Cerita dari orang tertentu</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
@@ -4284,7 +4284,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Semua koneksi Signal</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
-  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Semua koneksi Signal kecuali…</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Semua koneksi Signal kecuali…</string> -->
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Hanya bagikan dengan…</string>
   <!--Story info header sent heading-->

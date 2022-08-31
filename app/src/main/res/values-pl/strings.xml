@@ -3931,7 +3931,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet-->
   <string name="DonationsErrors__please_check_your_network_connection">Nie udało się wysłać prezentu z powodu błędu sieci. Sprawdź jakość łącza i spróbuj ponownie.</string>
   <!--Gift message view title-->
-  <string name="GiftMessageView__gift_badge">Podaruj odznakę</string>
+  <string name="GiftMessageView__gift_badge">Podarowana odznaka</string>
   <!--Gift message view expiry information-->
   <plurals name="GiftMessageView__lasts_for_d_months">
     <item quantity="one">Aktywna przez %1$d miesiąc</item>
@@ -4266,7 +4266,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Moja historia</string>
   <!--Section heading for story visibility-->
-  <string name="MyStorySettingsFragment__who_can_see_this_story">Kto może zobaczyć tę historię</string>
+  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__who_can_see_this_story">Kto może zobaczyć tę historię</string> -->
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">Ukryj historię przed</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
@@ -4274,7 +4274,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--Privacy setting description for sending stories to all your signal connections-->
   <string name="MyStorySettingsFragment__share_with_all_connections">Udostępnij wszystkim kontaktom</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
-  <string name="MyStorySettingsFragment__all_signal_connections_except">Wszystkie kontakty Signal za wyjątkiem…</string>
+  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__all_signal_connections_except">Wszystkie kontakty Signal za wyjątkiem…</string> -->
   <!--Privacy setting description for sending stories to all except the specified connections-->
   <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Ukryj relację przed konkretnymi osobami</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
@@ -4623,7 +4623,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Wszystkie kontakty Signal</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
-  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Wszystkie kontakty Signal za wyjątkiem…</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Wszystkie kontakty Signal za wyjątkiem…</string> -->
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Udostępnij tylko…</string>
   <!--Story info header sent heading-->
