@@ -51,8 +51,8 @@ class FuzzyPhoneNumberHelper {
    * these results and our initial input set, we can decide if we need to rewrite which number we
    * have stored locally.
    */
-  static @NonNull OutputResult generateOutput(@NonNull Map<String, ACI> registeredNumbers, @NonNull InputResult inputResult) {
-    Map<String, ACI>    allNumbers = new HashMap<>(registeredNumbers);
+  static @NonNull <E> OutputResult<E> generateOutput(@NonNull Map<String, E> registeredNumbers, @NonNull InputResult inputResult) {
+    Map<String, E>      allNumbers = new HashMap<>(registeredNumbers);
     Map<String, String> rewrites   = new HashMap<>();
 
     for (Map.Entry<String, String> entry : inputResult.getMapOfOriginalToVariant().entrySet()) {
@@ -76,7 +76,7 @@ class FuzzyPhoneNumberHelper {
       }
     }
 
-    return new OutputResult(allNumbers, rewrites);
+    return new OutputResult<>(allNumbers, rewrites);
   }
 
   private interface FuzzyMatcher {
@@ -170,16 +170,16 @@ class FuzzyPhoneNumberHelper {
     }
   }
 
-  public static class OutputResult {
-    private final Map<String, ACI>   numbers;
+  public static class OutputResult<E> {
+    private final Map<String, E>   numbers;
     private final Map<String, String> rewrites;
 
-    private OutputResult(@NonNull Map<String, ACI> numbers, @NonNull Map<String, String> rewrites) {
+    private OutputResult(@NonNull Map<String, E> numbers, @NonNull Map<String, String> rewrites) {
       this.numbers  = numbers;
       this.rewrites = rewrites;
     }
 
-    public @NonNull Map<String, ACI> getNumbers() {
+    public @NonNull Map<String, E> getNumbers() {
       return numbers;
     }
 

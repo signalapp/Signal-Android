@@ -101,7 +101,8 @@ public final class CdsiV2Service {
                                                  .setPrevE164S(toByteString(previousE164s))
                                                  .setNewE164S(toByteString(newE164s))
                                                  .setDiscardE164S(toByteString(removedE164s))
-                                                 .setAciUakPairs(toByteString(request.serviceIds));
+                                                 .setAciUakPairs(toByteString(request.serviceIds))
+                                                 .setReturnAcisWithoutUaks(request.requireAcis);
 
     if (request.token != null) {
       builder.setToken(ByteString.copyFrom(request.token));
@@ -154,9 +155,11 @@ public final class CdsiV2Service {
 
     final Map<ServiceId, ProfileKey> serviceIds;
 
+    final boolean requireAcis;
+
     final byte[] token;
 
-    public Request(Set<String> previousE164s, Set<String> newE164s, Map<ServiceId, ProfileKey> serviceIds, Optional<byte[]> token) {
+    public Request(Set<String> previousE164s, Set<String> newE164s, Map<ServiceId, ProfileKey> serviceIds, boolean requireAcis, Optional<byte[]> token) {
       if (previousE164s.size() > 0 && !token.isPresent()) {
         throw new IllegalArgumentException("You must have a token if you have previousE164s!");
       }
@@ -165,6 +168,7 @@ public final class CdsiV2Service {
       this.newE164s      = newE164s;
       this.removedE164s  = Collections.emptySet();
       this.serviceIds    = serviceIds;
+      this.requireAcis   = requireAcis;
       this.token         = token.orElse(null);
     }
 

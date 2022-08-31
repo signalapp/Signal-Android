@@ -122,7 +122,7 @@ class ContactDiscoveryRefreshV1 {
 
     if (result.getNumberRewrites().size() > 0) {
       Log.i(TAG, "[getDirectoryResult] Need to rewrite some numbers.");
-      recipientDatabase.updatePhoneNumbers(result.getNumberRewrites());
+      recipientDatabase.rewritePhoneNumbers(result.getNumberRewrites());
     }
 
     Map<RecipientId, ACI> aciMap        = recipientDatabase.bulkProcessCdsResult(result.getRegisteredNumbers());
@@ -250,8 +250,8 @@ class ContactDiscoveryRefreshV1 {
     KeyStore                    iasKeyStore    = getIasKeyStore(context);
 
     try {
-      Map<String, ACI>                    results      = accountManager.getRegisteredUsers(iasKeyStore, sanitizedNumbers, BuildConfig.CDS_MRENCLAVE);
-      FuzzyPhoneNumberHelper.OutputResult outputResult = FuzzyPhoneNumberHelper.generateOutput(results, inputResult);
+      Map<String, ACI>                         results      = accountManager.getRegisteredUsers(iasKeyStore, sanitizedNumbers, BuildConfig.CDS_MRENCLAVE);
+      FuzzyPhoneNumberHelper.OutputResult<ACI> outputResult = FuzzyPhoneNumberHelper.generateOutput(results, inputResult);
 
       return new ContactIntersection(outputResult.getNumbers(), outputResult.getRewrites(), ignoredNumbers);
     } catch (SignatureException | UnauthenticatedQuoteException | UnauthenticatedResponseException | Quote.InvalidQuoteFormatException | InvalidKeyException e) {

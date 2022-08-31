@@ -103,6 +103,7 @@ public final class FeatureFlags {
   private static final String RECIPIENT_MERGE_V2                = "android.recipientMergeV2";
   private static final String CDS_V2_LOAD_TEST                  = "android.cdsV2LoadTest";
   private static final String SMS_EXPORTER                      = "android.sms.exporter";
+  private static final String CDS_V2_COMPAT                     = "android.cdsV2Compat";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -158,7 +159,8 @@ public final class FeatureFlags {
       CAMERAX_MODEL_BLOCKLIST,
       RECIPIENT_MERGE_V2,
       CDS_V2_LOAD_TEST,
-      SMS_EXPORTER
+      SMS_EXPORTER,
+      CDS_V2_COMPAT
   );
 
   @VisibleForTesting
@@ -222,7 +224,8 @@ public final class FeatureFlags {
       TELECOM_MODEL_BLOCKLIST,
       CAMERAX_MODEL_BLOCKLIST,
       RECIPIENT_MERGE_V2,
-      CDS_V2_LOAD_TEST
+      CDS_V2_LOAD_TEST,
+      CDS_V2_COMPAT
   );
 
   /**
@@ -565,6 +568,13 @@ public final class FeatureFlags {
    */
   public static boolean smsExporter() {
     return getBoolean(SMS_EXPORTER, false);
+  }
+
+  /**
+   * Whether or not we should use CDSv2 with the compat flag on as our primary CDS.
+   */
+  public static boolean cdsV2Compat() {
+    return getBoolean(CDS_V2_COMPAT, false);
   }
 
   /** Only for rendering debug info. */
