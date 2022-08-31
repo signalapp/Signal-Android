@@ -131,7 +131,7 @@ object Stories {
       ApplicationDependencies.getJobManager().add(job)
     }
 
-    if (record.hasLinkPreview()) {
+    if (record.hasLinkPreview() && record.linkPreviews[0].attachmentId != null) {
       ApplicationDependencies.getJobManager().add(
         AttachmentDownloadJob(record.id, record.linkPreviews[0].attachmentId, true)
       )
