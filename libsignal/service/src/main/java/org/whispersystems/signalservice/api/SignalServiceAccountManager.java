@@ -521,6 +521,7 @@ public class SignalServiceAccountManager {
   public CdsiV2Service.Response getRegisteredUsersWithCdsi(Set<String> previousE164s,
                                                            Set<String> newE164s,
                                                            Map<ServiceId, ProfileKey> serviceIds,
+                                                           boolean requireAcis,
                                                            Optional<byte[]> token,
                                                            String mrEnclave,
                                                            Consumer<byte[]> tokenSaver)
@@ -528,7 +529,7 @@ public class SignalServiceAccountManager {
   {
     CdsiAuthResponse                                auth    = pushServiceSocket.getCdsiAuth();
     CdsiV2Service                                   service = new CdsiV2Service(configuration, mrEnclave);
-    CdsiV2Service.Request                           request = new CdsiV2Service.Request(previousE164s, newE164s, serviceIds, token);
+    CdsiV2Service.Request                           request = new CdsiV2Service.Request(previousE164s, newE164s, serviceIds, requireAcis, token);
     Single<ServiceResponse<CdsiV2Service.Response>> single  = service.getRegisteredUsers(auth.getUsername(), auth.getPassword(), request, tokenSaver);
 
     ServiceResponse<CdsiV2Service.Response> serviceResponse;

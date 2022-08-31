@@ -1141,22 +1141,22 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     Recipient.self().live().refresh()
   }
 
-  fun updatePhoneNumbers(mapping: Map<String?, String?>) {
+  /**
+   * Takes a mapping of old->new phone numbers and updates the table to match.
+   * Intended to be used to handle changing number formats.
+   */
+  fun rewritePhoneNumbers(mapping: Map<String, String>) {
     if (mapping.isEmpty()) return
-    val db = writableDatabase
 
-    db.beginTransaction()
-    try {
-      val query = "$PHONE = ?"
-      for ((key, value) in mapping) {
-        val values = ContentValues().apply {
-          put(PHONE, value)
-        }
-        db.updateWithOnConflict(TABLE_NAME, values, query, arrayOf(key), SQLiteDatabase.CONFLICT_IGNORE)
+    Log.i(TAG, "Rewriting ${mapping.size} phone numbers.")
+
+    writableDatabase.withinTransaction {
+      for ((originalE164, updatedE164) in mapping) {
+        writableDatabase.update(TABLE_NAME)
+          .values(PHONE to updatedE164)
+          .where("$PHONE = ?", originalE164)
+          .run(SQLiteDatabase.CONFLICT_IGNORE)
       }
-      db.setTransactionSuccessful()
-    } finally {
-      db.endTransaction()
     }
   }
 
@@ -2130,6 +2130,27 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     return results
   }
 
+  /**
+   * Gives you all of the recipientIds of possibly-registered users (i.e. REGISTERED or UNKNOWN) that can be found by the set of
+   * provided E164s.
+   */
+  fun getAllPossiblyRegisteredByE164(e164s: Set<String>): Set<RecipientId> {
+    val results: MutableSet<RecipientId> = mutableSetOf()
+    val queries: List<SqlUtil.Query> = SqlUtil.buildCollectionQuery(PHONE, e164s)
+
+    for (query in queries) {
+      readableDatabase.query(TABLE_NAME, arrayOf(ID, REGISTERED), query.where, query.whereArgs, null, null, null).use { cursor ->
+        while (cursor.moveToNext()) {
+          if (RegisteredState.fromId(cursor.requireInt(REGISTERED)) != RegisteredState.NOT_REGISTERED) {
+            results += RecipientId.from(cursor.requireLong(ID))
+          }
+        }
+      }
+    }
+
+    return results
+  }
+
   fun setPni(id: RecipientId, pni: PNI) {
     writableDatabase
       .update(TABLE_NAME)
@@ -2295,6 +2316,32 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     return ids
   }
 
+  fun bulkUpdatedRegisteredStatusV2(registered: Set<RecipientId>, unregistered: Collection<RecipientId>) {
+    writableDatabase.withinTransaction {
+      val registeredValues = contentValuesOf(
+        REGISTERED to RegisteredState.REGISTERED.id
+      )
+
+      for (id in registered) {
+        if (update(id, registeredValues)) {
+          setStorageIdIfNotSet(id)
+          ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
+        }
+      }
+
+      val unregisteredValues = contentValuesOf(
+        REGISTERED to RegisteredState.NOT_REGISTERED.id,
+        STORAGE_SERVICE_ID to null
+      )
+
+      for (id in unregistered) {
+        if (update(id, unregisteredValues)) {
+          ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
+        }
+      }
+    }
+  }
+
   /**
    * Takes a tuple of (e164, pni, aci) and incorporates it into our database.
    * It is assumed that we are in a transaction.
@@ -2302,7 +2349,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
    * @return The [RecipientId] of the resulting recipient.
    */
   @VisibleForTesting
-  fun processPnpTuple(e164: String?, pni: PNI?, aci: ACI?, pniVerified: Boolean, changeSelf: Boolean = false, pnpEnabled: Boolean = FeatureFlags.phoneNumberPrivacy()): ProcessPnpTupleResult {
+  fun processPnpTuple(e164: String?, pni: PNI?, aci: ACI?, pniVerified: Boolean, changeSelf: Boolean = false): ProcessPnpTupleResult {
     val changeSet: PnpChangeSet = processPnpTupleToChangeSet(e164, pni, aci, pniVerified, changeSelf)
 
     val affectedIds: MutableSet<RecipientId> = mutableSetOf()
@@ -2328,7 +2375,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       }
     }
 
-    val finalId: RecipientId = writePnpChangeSetToDisk(changeSet, pnpEnabled, pni)
+    val finalId: RecipientId = writePnpChangeSetToDisk(changeSet, pni)
 
     return ProcessPnpTupleResult(
       finalId = finalId,
@@ -2341,7 +2388,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
   }
 
   @VisibleForTesting
-  fun writePnpChangeSetToDisk(changeSet: PnpChangeSet, pnpEnabled: Boolean, inputPni: PNI?): RecipientId {
+  fun writePnpChangeSetToDisk(changeSet: PnpChangeSet, inputPni: PNI?): RecipientId {
     for (operation in changeSet.operations) {
       @Exhaustive
       when (operation) {
