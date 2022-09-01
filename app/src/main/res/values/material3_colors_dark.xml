@@ -38,7 +38,7 @@
     <color name="signal_dark_colorTransparentInverse2">#14000000</color>
     <color name="signal_dark_colorTransparentInverse3">#29000000</color>
     <color name="signal_dark_colorTransparentInverse4">#B8000000</color>
-    <color name="signal_dark_colorTransparentInverse5">#F5000000</color>
+    <color name="signal_dark_colorTransparentInverse5">#F51B1C1F</color>
     <color name="signal_dark_colorNeutralInverse">#E0FFFFFF</color>
     <color name="signal_dark_colorNeutralVariantInverse">#A3FFFFFF</color>
 
