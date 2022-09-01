@@ -3487,6 +3487,9 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ChatsSettingsFragment__enter_key_sends">Klávesa Enter odesílá</string>
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">Nastavit jako výchozí aplikaci pro SMS</string>
+  <!--Preference title to export sms-->
+  <!--Preference title to delete sms-->
+  <!--Snackbar text to confirm deletion-->
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">Zprávy</string>
   <string name="NotificationsSettingsFragment__calls">Volání</string>
@@ -4273,7 +4276,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Můj příběh</string>
   <!--Section heading for story visibility-->
-  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__who_can_see_this_story">Kdo může zobrazit tento příběh</string> -->
+  <string name="MyStorySettingsFragment__who_can_view_this_story">Kdo může tento příběh zobrazit</string>
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">Skrýt příběhy od</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
@@ -4281,7 +4284,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--Privacy setting description for sending stories to all your signal connections-->
   <string name="MyStorySettingsFragment__share_with_all_connections">Sdílet se všemi spojeními</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
-  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__all_signal_connections_except">Všechna spojení Signal kromě…</string> -->
+  <string name="MyStorySettingsFragment__all_except">Všichni kromě…</string>
   <!--Privacy setting description for sending stories to all except the specified connections-->
   <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Skryjte svůj příběh před konkrétními lidmi</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
@@ -4518,6 +4521,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Poskytnout měsíční příspěvek</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Teď ne</string>
+  <!--My Story label designating that we will only share with the selected viewers.-->
   <!--Label under name for private stories-->
   <plurals name="ContactSearchItems__private_story_d_viewers">
     <item quantity="one">Soukromí příběh · %1$d sledující</item>
@@ -4642,7 +4646,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Všechna spojení Signal</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
-  <!-- Removed by excludeNonTranslatables <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Všechna spojení Signal kromě…</string> -->
+  <string name="ChooseInitialMyStoryMembershipFragment__all_except">Všichni kromě…</string>
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Sdílet jen s…</string>
   <!--Story info header sent heading-->
@@ -4683,5 +4687,24 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="GroupStorySettingsFragment__remove_group_story">Odstranit skupinový příběh</string>
   <!--Generic title for overflow menus-->
   <string name="OverflowMenu__overflow_menu">Nabídka přetečení</string>
+  <!--SMS Export Service-->
+  <!--Displayed in the notification while export is running-->
+  <!--ExportYourSmsMessagesFragment-->
+  <!--Title of the screen-->
+  <!--Button label to begin export-->
+  <string name="ExportYourSmsMessagesFragment__continue">Pokračovat</string>
+  <!--ExportingSmsMessagesFragment-->
+  <!--Title of the screen-->
+  <!--Progress indicator for export-->
+  <!--ChooseANewDefaultSmsAppFragment-->
+  <!--Title of the screen-->
+  <!--Button label to launch picker-->
+  <string name="ChooseANewDefaultSmsAppFragment__continue">Pokračovat</string>
+  <!--RemoveSmsMessagesDialogFragment-->
+  <!--Action button to keep messages-->
+  <string name="RemoveSmsMessagesDialogFragment__keep_messages">Zachovat zprávy</string>
+  <!--Action button to remove messages-->
+  <!--Title of dialog-->
+  <!--Message of dialog-->
   <!--EOF-->
 </resources>

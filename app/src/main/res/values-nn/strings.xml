@@ -3259,6 +3259,9 @@ Sjekkar igjen no …</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Send med linjeskift</string>
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">Bruk som standard SMS-program</string>
+  <!--Preference title to export sms-->
+  <!--Preference title to delete sms-->
+  <!--Snackbar text to confirm deletion-->
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">Meldingar</string>
   <string name="NotificationsSettingsFragment__calls">Samtalar</string>
@@ -4000,7 +4003,6 @@ Sjekkar igjen no …</string>
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Mi historie</string>
   <!--Section heading for story visibility-->
-  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__who_can_see_this_story">Kven kan sjå denne historia</string> -->
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">Gøym historia frå</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
@@ -4217,6 +4219,7 @@ Sjekkar igjen no …</string>
   <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Gi ein månadleg donasjon</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Ikkje no</string>
+  <!--My Story label designating that we will only share with the selected viewers.-->
   <!--Label under name for private stories-->
   <!--Label under name for group stories-->
   <!--Label under name for my story-->
@@ -4312,5 +4315,24 @@ Sjekkar igjen no …</string>
   <!--Explanation of who can view a group story-->
   <!--Preference label for removing this group story-->
   <!--Generic title for overflow menus-->
+  <!--SMS Export Service-->
+  <!--Displayed in the notification while export is running-->
+  <!--ExportYourSmsMessagesFragment-->
+  <!--Title of the screen-->
+  <!--Button label to begin export-->
+  <string name="ExportYourSmsMessagesFragment__continue">Hald fram</string>
+  <!--ExportingSmsMessagesFragment-->
+  <!--Title of the screen-->
+  <!--Progress indicator for export-->
+  <!--ChooseANewDefaultSmsAppFragment-->
+  <!--Title of the screen-->
+  <!--Button label to launch picker-->
+  <string name="ChooseANewDefaultSmsAppFragment__continue">Hald fram</string>
+  <!--RemoveSmsMessagesDialogFragment-->
+  <!--Action button to keep messages-->
+  <string name="RemoveSmsMessagesDialogFragment__keep_messages">Spar på meldingar</string>
+  <!--Action button to remove messages-->
+  <!--Title of dialog-->
+  <!--Message of dialog-->
   <!--EOF-->
 </resources>

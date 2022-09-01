@@ -3195,6 +3195,9 @@
   <string name="ChatsSettingsFragment__enter_key_sends">輸入鍵作發送</string>
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">使用作預設短訊應用程式</string>
+  <!--Preference title to export sms-->
+  <!--Preference title to delete sms-->
+  <!--Snackbar text to confirm deletion-->
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">訊息</string>
   <string name="NotificationsSettingsFragment__calls">通話</string>
@@ -3951,7 +3954,7 @@
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">我的限時動態</string>
   <!--Section heading for story visibility-->
-  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__who_can_see_this_story">誰可以看見此限時動態</string> -->
+  <string name="MyStorySettingsFragment__who_can_view_this_story">誰可以看到此限時動態</string>
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">對這些人隱藏限時動態</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
@@ -3959,7 +3962,7 @@
   <!--Privacy setting description for sending stories to all your signal connections-->
   <string name="MyStorySettingsFragment__share_with_all_connections">與所有人脈分享</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
-  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__all_signal_connections_except">所有 Signal 的人脈，除了…</string> -->
+  <string name="MyStorySettingsFragment__all_except">所有人，除了…</string>
   <!--Privacy setting description for sending stories to all except the specified connections-->
   <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">對特定的人隱藏您的限時動態</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
@@ -4184,6 +4187,7 @@
   <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">每月捐款</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">現在不要</string>
+  <!--My Story label designating that we will only share with the selected viewers.-->
   <!--Label under name for private stories-->
   <!--Label under name for group stories-->
   <!--Label under name for my story-->
@@ -4281,7 +4285,7 @@
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">所有 Signal 的人脈</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
-  <!-- Removed by excludeNonTranslatables <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">所有 Signal 的人脈，除了…</string> -->
+  <string name="ChooseInitialMyStoryMembershipFragment__all_except">所有人，除了…</string>
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">只分享給…</string>
   <!--Story info header sent heading-->
@@ -4322,5 +4326,24 @@
   <string name="GroupStorySettingsFragment__remove_group_story">移除群組限時動態</string>
   <!--Generic title for overflow menus-->
   <string name="OverflowMenu__overflow_menu">溢位選單</string>
+  <!--SMS Export Service-->
+  <!--Displayed in the notification while export is running-->
+  <!--ExportYourSmsMessagesFragment-->
+  <!--Title of the screen-->
+  <!--Button label to begin export-->
+  <string name="ExportYourSmsMessagesFragment__continue">繼續</string>
+  <!--ExportingSmsMessagesFragment-->
+  <!--Title of the screen-->
+  <!--Progress indicator for export-->
+  <!--ChooseANewDefaultSmsAppFragment-->
+  <!--Title of the screen-->
+  <!--Button label to launch picker-->
+  <string name="ChooseANewDefaultSmsAppFragment__continue">繼續</string>
+  <!--RemoveSmsMessagesDialogFragment-->
+  <!--Action button to keep messages-->
+  <string name="RemoveSmsMessagesDialogFragment__keep_messages">保留訊息</string>
+  <!--Action button to remove messages-->
+  <!--Title of dialog-->
+  <!--Message of dialog-->
   <!--EOF-->
 </resources>

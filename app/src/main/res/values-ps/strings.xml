@@ -3083,6 +3083,9 @@
   <string name="ChatsSettingsFragment__enter_key_sends">د لیږلو لپاره د Enter د دکمې کارول</string>
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">د عادي SMS اپلیکیشن په توګه یې وکاروئ</string>
+  <!--Preference title to export sms-->
+  <!--Preference title to delete sms-->
+  <!--Snackbar text to confirm deletion-->
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">پیغامونه</string>
   <string name="NotificationsSettingsFragment__calls">ټلیفوني اړیکې</string>
@@ -3767,6 +3770,7 @@
   <!--Expired gift sheet make a monthly donation button-->
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">اوس نه</string>
+  <!--My Story label designating that we will only share with the selected viewers.-->
   <!--Label under name for private stories-->
   <!--Label under name for group stories-->
   <!--Label under name for my story-->
@@ -3847,5 +3851,24 @@
   <!--Explanation of who can view a group story-->
   <!--Preference label for removing this group story-->
   <!--Generic title for overflow menus-->
+  <!--SMS Export Service-->
+  <!--Displayed in the notification while export is running-->
+  <!--ExportYourSmsMessagesFragment-->
+  <!--Title of the screen-->
+  <!--Button label to begin export-->
+  <string name="ExportYourSmsMessagesFragment__continue">ادامه</string>
+  <!--ExportingSmsMessagesFragment-->
+  <!--Title of the screen-->
+  <!--Progress indicator for export-->
+  <!--ChooseANewDefaultSmsAppFragment-->
+  <!--Title of the screen-->
+  <!--Button label to launch picker-->
+  <string name="ChooseANewDefaultSmsAppFragment__continue">ادامه</string>
+  <!--RemoveSmsMessagesDialogFragment-->
+  <!--Action button to keep messages-->
+  <string name="RemoveSmsMessagesDialogFragment__keep_messages">د پیغامونو ساتل</string>
+  <!--Action button to remove messages-->
+  <!--Title of dialog-->
+  <!--Message of dialog-->
   <!--EOF-->
 </resources>

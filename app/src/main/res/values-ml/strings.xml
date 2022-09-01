@@ -3287,6 +3287,9 @@
   <string name="ChatsSettingsFragment__enter_key_sends">എന്റർ കീ അയയ്ക്കും</string>
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">സ്ഥിരസ്ഥിതി SMS അപ്ലിക്കേഷനായി ഉപയോഗിക്കുക</string>
+  <!--Preference title to export sms-->
+  <!--Preference title to delete sms-->
+  <!--Snackbar text to confirm deletion-->
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">സന്ദേശങ്ങൾ</string>
   <string name="NotificationsSettingsFragment__calls">കോളുകൾ</string>
@@ -4053,7 +4056,7 @@
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">എന്റെ കഥ</string>
   <!--Section heading for story visibility-->
-  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__who_can_see_this_story">ആർക്കൊക്കെ ഈ സ്റ്റോറി കാണാനാകും</string> -->
+  <string name="MyStorySettingsFragment__who_can_view_this_story">ആർക്കൊക്കെ ഈ സ്റ്റോറി കാണാൻ കഴിയും</string>
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">ഇനിപ്പറയുന്നയാളിൽ നിന്ന് സ്റ്റോറി മറയ്ക്കുക</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
@@ -4061,7 +4064,7 @@
   <!--Privacy setting description for sending stories to all your signal connections-->
   <string name="MyStorySettingsFragment__share_with_all_connections">എല്ലാ കണക്ഷനുകളുമായും പങ്കിടുക</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
-  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__all_signal_connections_except">ഇനിപ്പറയുന്നവ ഒഴികെ എല്ലാ Signal കണക്ഷനുകളും…</string> -->
+  <string name="MyStorySettingsFragment__all_except">ഇനിപ്പറയുന്നവര്‍ ഒഴികെ എല്ലാവരും…</string>
   <!--Privacy setting description for sending stories to all except the specified connections-->
   <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">നിർദ്ദിഷ്‌ട ആളുകളിൽ നിന്ന് നിങ്ങളുടെ സ്റ്റോറി മറയ്ക്കുക</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
@@ -4290,6 +4293,7 @@
   <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">എല്ലാ മാസവും ആവർത്തിക്കുന്നൊരു സംഭാവന നൽകൂ</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">ഇപ്പോൾ വേണ്ട</string>
+  <!--My Story label designating that we will only share with the selected viewers.-->
   <!--Label under name for private stories-->
   <!--Label under name for group stories-->
   <!--Label under name for my story-->
@@ -4392,7 +4396,7 @@
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">എല്ലാ Signal കണക്ഷനുകളും</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
-  <!-- Removed by excludeNonTranslatables <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">ഇനിപ്പറയുന്നവ ഒഴികെ എല്ലാ Signal കണക്ഷനുകളും…</string> -->
+  <string name="ChooseInitialMyStoryMembershipFragment__all_except">ഇനിപ്പറയുന്നവര്‍ ഒഴികെ എല്ലാവരും…</string>
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">ഇനിപ്പറയുന്നവരുമായി മാത്രം പങ്കിടുക…</string>
   <!--Story info header sent heading-->
@@ -4433,5 +4437,24 @@
   <string name="GroupStorySettingsFragment__remove_group_story">ഗ്രൂപ്പ് സ്റ്റോറി നീക്കം ചെയ്യുക</string>
   <!--Generic title for overflow menus-->
   <string name="OverflowMenu__overflow_menu">ഓവർഫ്ലോ മെനു</string>
+  <!--SMS Export Service-->
+  <!--Displayed in the notification while export is running-->
+  <!--ExportYourSmsMessagesFragment-->
+  <!--Title of the screen-->
+  <!--Button label to begin export-->
+  <string name="ExportYourSmsMessagesFragment__continue">തുടരുക</string>
+  <!--ExportingSmsMessagesFragment-->
+  <!--Title of the screen-->
+  <!--Progress indicator for export-->
+  <!--ChooseANewDefaultSmsAppFragment-->
+  <!--Title of the screen-->
+  <!--Button label to launch picker-->
+  <string name="ChooseANewDefaultSmsAppFragment__continue">തുടരുക</string>
+  <!--RemoveSmsMessagesDialogFragment-->
+  <!--Action button to keep messages-->
+  <string name="RemoveSmsMessagesDialogFragment__keep_messages">സന്ദേശങ്ങൾ സൂക്ഷിക്കുക</string>
+  <!--Action button to remove messages-->
+  <!--Title of dialog-->
+  <!--Message of dialog-->
   <!--EOF-->
 </resources>

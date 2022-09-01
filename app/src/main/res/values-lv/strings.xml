@@ -3385,6 +3385,9 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="ChatsSettingsFragment__enter_key_sends">Enter poga nosūta ziņu</string>
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">Izmantot kā noklusējuma SMS lietotni</string>
+  <!--Preference title to export sms-->
+  <!--Preference title to delete sms-->
+  <!--Snackbar text to confirm deletion-->
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">Ziņas</string>
   <string name="NotificationsSettingsFragment__calls">Zvani</string>
@@ -4161,7 +4164,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Mans stāsts</string>
   <!--Section heading for story visibility-->
-  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__who_can_see_this_story">Kurš var redzēt šo stāstu</string> -->
+  <string name="MyStorySettingsFragment__who_can_view_this_story">Kas var skatīt šo stāstu</string>
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">Paslēpt stāstu no</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
@@ -4169,7 +4172,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <!--Privacy setting description for sending stories to all your signal connections-->
   <string name="MyStorySettingsFragment__share_with_all_connections">Kopīgot ar visiem Signal draugiem</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
-  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__all_signal_connections_except">Visi Signal draugi, izņemot…</string> -->
+  <string name="MyStorySettingsFragment__all_except">Visi, izņemot…</string>
   <!--Privacy setting description for sending stories to all except the specified connections-->
   <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Nerādīt stāstu noteiktām personām</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
@@ -4402,6 +4405,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Veiciet ikmnēneša ziedojumu</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Ne tagad</string>
+  <!--My Story label designating that we will only share with the selected viewers.-->
   <!--Label under name for private stories-->
   <!--Label under name for group stories-->
   <!--Label under name for my story-->
@@ -4509,7 +4513,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Visi Signal draugi</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
-  <!-- Removed by excludeNonTranslatables <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Visi Signal draugi, izņemot…</string> -->
+  <string name="ChooseInitialMyStoryMembershipFragment__all_except">Visi, izņemot…</string>
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Kopīgot tikai ar…</string>
   <!--Story info header sent heading-->
@@ -4550,5 +4554,24 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="GroupStorySettingsFragment__remove_group_story">Noņemt grupas stāstu</string>
   <!--Generic title for overflow menus-->
   <string name="OverflowMenu__overflow_menu">Pārpildes izvēlne</string>
+  <!--SMS Export Service-->
+  <!--Displayed in the notification while export is running-->
+  <!--ExportYourSmsMessagesFragment-->
+  <!--Title of the screen-->
+  <!--Button label to begin export-->
+  <string name="ExportYourSmsMessagesFragment__continue">Turpināt</string>
+  <!--ExportingSmsMessagesFragment-->
+  <!--Title of the screen-->
+  <!--Progress indicator for export-->
+  <!--ChooseANewDefaultSmsAppFragment-->
+  <!--Title of the screen-->
+  <!--Button label to launch picker-->
+  <string name="ChooseANewDefaultSmsAppFragment__continue">Turpināt</string>
+  <!--RemoveSmsMessagesDialogFragment-->
+  <!--Action button to keep messages-->
+  <string name="RemoveSmsMessagesDialogFragment__keep_messages">Paturēt ziņas</string>
+  <!--Action button to remove messages-->
+  <!--Title of dialog-->
+  <!--Message of dialog-->
   <!--EOF-->
 </resources>

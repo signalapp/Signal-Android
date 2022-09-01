@@ -3391,6 +3391,9 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ChatsSettingsFragment__enter_key_sends">Enviar al tocar «Intro»</string>
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">Usar como aplicación de SMS predeterminada</string>
+  <!--Preference title to export sms-->
+  <!--Preference title to delete sms-->
+  <!--Snackbar text to confirm deletion-->
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">Mensajes</string>
   <string name="NotificationsSettingsFragment__calls">Llamadas</string>
@@ -4167,7 +4170,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Mi historia</string>
   <!--Section heading for story visibility-->
-  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__who_can_see_this_story">Quién puede ver esta historia</string> -->
+  <string name="MyStorySettingsFragment__who_can_view_this_story">Quién puede ver esta historia</string>
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">Ocultar historia para</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
@@ -4175,7 +4178,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--Privacy setting description for sending stories to all your signal connections-->
   <string name="MyStorySettingsFragment__share_with_all_connections">Compartir con todos los contactos</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
-  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__all_signal_connections_except">Todos los contactos de Signal menos…</string> -->
+  <string name="MyStorySettingsFragment__all_except">Todos excepto…</string>
   <!--Privacy setting description for sending stories to all except the specified connections-->
   <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Oculta tu historia a ciertas personas</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
@@ -4408,6 +4411,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Haz una donación mensual</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Ahora no</string>
+  <!--My Story label designating that we will only share with the selected viewers.-->
   <!--Label under name for private stories-->
   <!--Label under name for group stories-->
   <!--Label under name for my story-->
@@ -4515,7 +4519,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Todos los contactos de Signal</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
-  <!-- Removed by excludeNonTranslatables <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Todos los contactos de Signal menos…</string> -->
+  <string name="ChooseInitialMyStoryMembershipFragment__all_except">Todos excepto…</string>
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Compartir solo con…</string>
   <!--Story info header sent heading-->
@@ -4556,5 +4560,24 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="GroupStorySettingsFragment__remove_group_story">Eliminar historia de grupo</string>
   <!--Generic title for overflow menus-->
   <string name="OverflowMenu__overflow_menu">Menú desplegable</string>
+  <!--SMS Export Service-->
+  <!--Displayed in the notification while export is running-->
+  <!--ExportYourSmsMessagesFragment-->
+  <!--Title of the screen-->
+  <!--Button label to begin export-->
+  <string name="ExportYourSmsMessagesFragment__continue">Adelante</string>
+  <!--ExportingSmsMessagesFragment-->
+  <!--Title of the screen-->
+  <!--Progress indicator for export-->
+  <!--ChooseANewDefaultSmsAppFragment-->
+  <!--Title of the screen-->
+  <!--Button label to launch picker-->
+  <string name="ChooseANewDefaultSmsAppFragment__continue">Adelante</string>
+  <!--RemoveSmsMessagesDialogFragment-->
+  <!--Action button to keep messages-->
+  <string name="RemoveSmsMessagesDialogFragment__keep_messages">Preservar mensajes</string>
+  <!--Action button to remove messages-->
+  <!--Title of dialog-->
+  <!--Message of dialog-->
   <!--EOF-->
 </resources>

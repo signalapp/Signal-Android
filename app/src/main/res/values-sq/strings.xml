@@ -3299,6 +3299,12 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="ChatsSettingsFragment__enter_key_sends">Tasti Enter dërgon</string>
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">Përdoresi aplikacionin parazgjedhje për SMS-të</string>
+  <!--Preference title to export sms-->
+  <string name="SmsSettingsFragment__export_sms_messages">Exportoni mesazhe SMS</string>
+  <!--Preference title to delete sms-->
+  <string name="SmsSettingsFragment__remove_sms_messages">Hiqni mesazhe SMS</string>
+  <!--Snackbar text to confirm deletion-->
+  <string name="SmsSettingsFragment__sms_messages_removed">Mesazhet SMS u hoqën</string>
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">Mesazhe</string>
   <string name="NotificationsSettingsFragment__calls">Thirrje</string>
@@ -4065,7 +4071,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Historia ime</string>
   <!--Section heading for story visibility-->
-  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__who_can_see_this_story">Kush mund ta shohë këtë histori</string> -->
+  <string name="MyStorySettingsFragment__who_can_view_this_story">Kush mund ta shikojë këtë postim të përkohshëm</string>
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">Fshihe historinë nga</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
@@ -4073,7 +4079,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <!--Privacy setting description for sending stories to all your signal connections-->
   <string name="MyStorySettingsFragment__share_with_all_connections">Shpërndaj me të gjitha kontaktet</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
-  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__all_signal_connections_except">Të gjitha kontaktet e Signal përveç…</string> -->
+  <string name="MyStorySettingsFragment__all_except">Të gjithë përveç…</string>
   <!--Privacy setting description for sending stories to all except the specified connections-->
   <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Fshih postimin e përkohshëm nga persona të caktuar</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
@@ -4302,8 +4308,18 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Bëni një dhurim të përmuajshëm</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Jo tani</string>
+  <!--My Story label designating that we will only share with the selected viewers.-->
+  <string name="ContactSearchItems__only_share_with">Ndaje vetëm me</string>
   <!--Label under name for private stories-->
+  <plurals name="ContactSearchItems__private_story_d_viewers">
+    <item quantity="one">Histori private · %1$d parës</item>
+    <item quantity="other">Histori private · %1$d parës</item>
+  </plurals>
   <!--Label under name for group stories-->
+  <plurals name="ContactSearchItems__group_story_d_viewers">
+    <item quantity="one">Histori grupi · %1$d parës</item>
+    <item quantity="other">Histori grupi · %1$d parës</item>
+  </plurals>
   <!--Label under name for my story-->
   <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
     <item quantity="one">%1$s   %2$d shikues</item>
@@ -4404,7 +4420,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Të gjitha lidhjet e Signalit</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
-  <!-- Removed by excludeNonTranslatables <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Të gjitha lidhjet e Signal përveç…</string> -->
+  <string name="ChooseInitialMyStoryMembershipFragment__all_except">Të gjithë përveç…</string>
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Shpërndajeni vetëm me…</string>
   <!--Story info header sent heading-->
@@ -4445,5 +4461,32 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="GroupStorySettingsFragment__remove_group_story">Hiq postimin e përkohshëm të grupit</string>
   <!--Generic title for overflow menus-->
   <string name="OverflowMenu__overflow_menu">Menuja e tejkalimeve</string>
+  <!--SMS Export Service-->
+  <!--Displayed in the notification while export is running-->
+  <string name="SignalSmsExportService__exporting_messages">Po eksportohen mesazhe…</string>
+  <!--ExportYourSmsMessagesFragment-->
+  <!--Title of the screen-->
+  <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">Eksportoni mesazhet tuaj SMS</string>
+  <!--Button label to begin export-->
+  <string name="ExportYourSmsMessagesFragment__continue">Vazhdo</string>
+  <!--ExportingSmsMessagesFragment-->
+  <!--Title of the screen-->
+  <string name="ExportingSmsMessagesFragment__exporting_sms_messages">Eksportim mesazhesh SMS</string>
+  <!--Progress indicator for export-->
+  <string name="ExportingSmsMessagesFragment__exporting_d_of_d">Po eksportohet %1$d nga %2$d…</string>
+  <!--ChooseANewDefaultSmsAppFragment-->
+  <!--Title of the screen-->
+  <string name="ChooseANewDefaultSmsAppFragment__choose_a_new">Zgjidhni një aplikacion të ri parazgjedhje për SMS</string>
+  <!--Button label to launch picker-->
+  <string name="ChooseANewDefaultSmsAppFragment__continue">Vazhdo</string>
+  <!--RemoveSmsMessagesDialogFragment-->
+  <!--Action button to keep messages-->
+  <string name="RemoveSmsMessagesDialogFragment__keep_messages">Mbaji mesazhet</string>
+  <!--Action button to remove messages-->
+  <string name="RemoveSmsMessagesDialogFragment__remove_messages">Hiqi mesazhet</string>
+  <!--Title of dialog-->
+  <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Të hiqen mesazhet SMS nga Signal-i?</string>
+  <!--Message of dialog-->
+  <string name="RemoveSmsMessagesDialogFragment__you_have_changed">Keni ndryshuar aplikacionin SMS parazgjedhje, doni të hiqen mesazhet SMS nga Signal-i?</string>
   <!--EOF-->
 </resources>

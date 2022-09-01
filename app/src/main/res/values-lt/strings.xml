@@ -3488,6 +3488,9 @@
   <string name="ChatsSettingsFragment__enter_key_sends">„Enter“ (Įvedimo) klavišas išsiunčia</string>
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">Naudoti kaip numatytąją SMS programėlę</string>
+  <!--Preference title to export sms-->
+  <!--Preference title to delete sms-->
+  <!--Snackbar text to confirm deletion-->
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">Žinutės</string>
   <string name="NotificationsSettingsFragment__calls">Skambučiai</string>
@@ -4274,7 +4277,7 @@
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Mano istorija</string>
   <!--Section heading for story visibility-->
-  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__who_can_see_this_story">Kas gali matyti šią istoriją</string> -->
+  <string name="MyStorySettingsFragment__who_can_view_this_story">Kas gali žiūrėti šią istoriją.</string>
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">Slėpti istoriją nuo</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
@@ -4282,7 +4285,7 @@
   <!--Privacy setting description for sending stories to all your signal connections-->
   <string name="MyStorySettingsFragment__share_with_all_connections">Bendrinti su visais kontaktais</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
-  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__all_signal_connections_except">Visi „Signal“ kontaktai, išskyrus…</string> -->
+  <string name="MyStorySettingsFragment__all_except">Visi, išskyrus…</string>
   <!--Privacy setting description for sending stories to all except the specified connections-->
   <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Slėpti jūsų istoriją nuo tam tikrų žmonių</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
@@ -4519,6 +4522,7 @@
   <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Atlikti mėnesinį paaukojimą</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Ne dabar</string>
+  <!--My Story label designating that we will only share with the selected viewers.-->
   <!--Label under name for private stories-->
   <!--Label under name for group stories-->
   <!--Label under name for my story-->
@@ -4631,7 +4635,7 @@
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Visi „Signal“ kontaktai</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
-  <!-- Removed by excludeNonTranslatables <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Visi „Signal“ kontaktai, išskyrus…</string> -->
+  <string name="ChooseInitialMyStoryMembershipFragment__all_except">Visi, išskyrus…</string>
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Dalintis tik su…</string>
   <!--Story info header sent heading-->
@@ -4672,5 +4676,24 @@
   <string name="GroupStorySettingsFragment__remove_group_story">Pašalinti grupės istoriją</string>
   <!--Generic title for overflow menus-->
   <string name="OverflowMenu__overflow_menu">Išskleidžiamasis meniu</string>
+  <!--SMS Export Service-->
+  <!--Displayed in the notification while export is running-->
+  <!--ExportYourSmsMessagesFragment-->
+  <!--Title of the screen-->
+  <!--Button label to begin export-->
+  <string name="ExportYourSmsMessagesFragment__continue">Tęsti</string>
+  <!--ExportingSmsMessagesFragment-->
+  <!--Title of the screen-->
+  <!--Progress indicator for export-->
+  <!--ChooseANewDefaultSmsAppFragment-->
+  <!--Title of the screen-->
+  <!--Button label to launch picker-->
+  <string name="ChooseANewDefaultSmsAppFragment__continue">Tęsti</string>
+  <!--RemoveSmsMessagesDialogFragment-->
+  <!--Action button to keep messages-->
+  <string name="RemoveSmsMessagesDialogFragment__keep_messages">Saugoti žinutes</string>
+  <!--Action button to remove messages-->
+  <!--Title of dialog-->
+  <!--Message of dialog-->
   <!--EOF-->
 </resources>

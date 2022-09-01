@@ -3288,6 +3288,9 @@
   <string name="ChatsSettingsFragment__enter_key_sends">এন্টার কী পাঠাবে</string>
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">ডিফল্ট এসএমএস অ্যাপ হিসাবে ব্যবহার করুন</string>
+  <!--Preference title to export sms-->
+  <!--Preference title to delete sms-->
+  <!--Snackbar text to confirm deletion-->
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">বার্তাসমূহ</string>
   <string name="NotificationsSettingsFragment__calls">কল সমূহ</string>
@@ -4055,7 +4058,7 @@
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">আমার স্টোরি</string>
   <!--Section heading for story visibility-->
-  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__who_can_see_this_story">যারা স্টোরি দেখতে পাবেন</string> -->
+  <string name="MyStorySettingsFragment__who_can_view_this_story">যারা এই স্টোরি দেখতে পাবেন</string>
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">যাদের কাছ থেকে স্টোরি লুকাবেন</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
@@ -4063,7 +4066,7 @@
   <!--Privacy setting description for sending stories to all your signal connections-->
   <string name="MyStorySettingsFragment__share_with_all_connections">সকল কানেকশনের সাথে শেয়ার করুন</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
-  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__all_signal_connections_except">…ছাড়া সকল Signal কানেকশন</string> -->
+  <string name="MyStorySettingsFragment__all_except">…ছাড়া সব</string>
   <!--Privacy setting description for sending stories to all except the specified connections-->
   <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">কিছু নির্দিষ্ট ব্যক্তির কাছ থেকে আপনার স্টোরি লুকান</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
@@ -4292,6 +4295,7 @@
   <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">মাসিক ডোনেশন দিন</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">এখন না</string>
+  <!--My Story label designating that we will only share with the selected viewers.-->
   <!--Label under name for private stories-->
   <plurals name="ContactSearchItems__private_story_d_viewers">
     <item quantity="one">ব্যক্তিগত স্টোরি · %1$d জন দর্শক</item>
@@ -4402,7 +4406,7 @@
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">সকল Signal কানেকশন</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
-  <!-- Removed by excludeNonTranslatables <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">…ছাড়া সকল Signal কানেকশন</string> -->
+  <string name="ChooseInitialMyStoryMembershipFragment__all_except">…ছাড়া সব</string>
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">শেয়ার করুন শুধু…</string>
   <!--Story info header sent heading-->
@@ -4443,5 +4447,24 @@
   <string name="GroupStorySettingsFragment__remove_group_story">গ্ৰুপ স্টোরি সরিয়ে ফেলুন</string>
   <!--Generic title for overflow menus-->
   <string name="OverflowMenu__overflow_menu">ওভারফ্লো মেন্যু</string>
+  <!--SMS Export Service-->
+  <!--Displayed in the notification while export is running-->
+  <!--ExportYourSmsMessagesFragment-->
+  <!--Title of the screen-->
+  <!--Button label to begin export-->
+  <string name="ExportYourSmsMessagesFragment__continue">চালিয়ে যান</string>
+  <!--ExportingSmsMessagesFragment-->
+  <!--Title of the screen-->
+  <!--Progress indicator for export-->
+  <!--ChooseANewDefaultSmsAppFragment-->
+  <!--Title of the screen-->
+  <!--Button label to launch picker-->
+  <string name="ChooseANewDefaultSmsAppFragment__continue">চালিয়ে যান</string>
+  <!--RemoveSmsMessagesDialogFragment-->
+  <!--Action button to keep messages-->
+  <string name="RemoveSmsMessagesDialogFragment__keep_messages">মেসেজগুলো রাখুন</string>
+  <!--Action button to remove messages-->
+  <!--Title of dialog-->
+  <!--Message of dialog-->
   <!--EOF-->
 </resources>

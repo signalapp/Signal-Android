@@ -3242,6 +3242,9 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="ChatsSettingsFragment__enter_key_sends">Enter-lykill sendir</string>
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">Nota sem sjálfgefið SMS-forrit</string>
+  <!--Preference title to export sms-->
+  <!--Preference title to delete sms-->
+  <!--Snackbar text to confirm deletion-->
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">Skilaboð</string>
   <string name="NotificationsSettingsFragment__calls">Símtöl</string>
@@ -3984,7 +3987,6 @@ hegðun þína.</string>
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Sagan mín</string>
   <!--Section heading for story visibility-->
-  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__who_can_see_this_story">Hver getur séð þessa sögu</string> -->
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">Fela sögu fyrir</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
@@ -4200,6 +4202,7 @@ hegðun þína.</string>
   <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Veita mánaðarlegan styrk</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Ekki núna</string>
+  <!--My Story label designating that we will only share with the selected viewers.-->
   <!--Label under name for private stories-->
   <!--Label under name for group stories-->
   <!--Label under name for my story-->
@@ -4295,5 +4298,24 @@ hegðun þína.</string>
   <!--Explanation of who can view a group story-->
   <!--Preference label for removing this group story-->
   <!--Generic title for overflow menus-->
+  <!--SMS Export Service-->
+  <!--Displayed in the notification while export is running-->
+  <!--ExportYourSmsMessagesFragment-->
+  <!--Title of the screen-->
+  <!--Button label to begin export-->
+  <string name="ExportYourSmsMessagesFragment__continue">Áfram</string>
+  <!--ExportingSmsMessagesFragment-->
+  <!--Title of the screen-->
+  <!--Progress indicator for export-->
+  <!--ChooseANewDefaultSmsAppFragment-->
+  <!--Title of the screen-->
+  <!--Button label to launch picker-->
+  <string name="ChooseANewDefaultSmsAppFragment__continue">Áfram</string>
+  <!--RemoveSmsMessagesDialogFragment-->
+  <!--Action button to keep messages-->
+  <string name="RemoveSmsMessagesDialogFragment__keep_messages">Halda skilaboðum</string>
+  <!--Action button to remove messages-->
+  <!--Title of dialog-->
+  <!--Message of dialog-->
   <!--EOF-->
 </resources>

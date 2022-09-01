@@ -3440,6 +3440,9 @@ Anfon neges heb ei diogelu?</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Pwyso Enter i anfon</string>
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">Defnyddio fel yr ap SMS rhagosodedig</string>
+  <!--Preference title to export sms-->
+  <!--Preference title to delete sms-->
+  <!--Snackbar text to confirm deletion-->
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">Negeseuon</string>
   <string name="NotificationsSettingsFragment__calls">Galwadau</string>
@@ -4202,7 +4205,6 @@ Anfon neges heb ei diogelu?</string>
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Fy Stori</string>
   <!--Section heading for story visibility-->
-  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__who_can_see_this_story">Pwy all weld y stori hon</string> -->
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">Cuddio\'r stori rhag</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
@@ -4423,6 +4425,7 @@ Anfon neges heb ei diogelu?</string>
   <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Rhowch rodd yn fisol</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Nid nawr</string>
+  <!--My Story label designating that we will only share with the selected viewers.-->
   <!--Label under name for private stories-->
   <!--Label under name for group stories-->
   <!--Label under name for my story-->
@@ -4524,5 +4527,24 @@ Anfon neges heb ei diogelu?</string>
   <!--Explanation of who can view a group story-->
   <!--Preference label for removing this group story-->
   <!--Generic title for overflow menus-->
+  <!--SMS Export Service-->
+  <!--Displayed in the notification while export is running-->
+  <!--ExportYourSmsMessagesFragment-->
+  <!--Title of the screen-->
+  <!--Button label to begin export-->
+  <string name="ExportYourSmsMessagesFragment__continue">Parhau</string>
+  <!--ExportingSmsMessagesFragment-->
+  <!--Title of the screen-->
+  <!--Progress indicator for export-->
+  <!--ChooseANewDefaultSmsAppFragment-->
+  <!--Title of the screen-->
+  <!--Button label to launch picker-->
+  <string name="ChooseANewDefaultSmsAppFragment__continue">Parhau</string>
+  <!--RemoveSmsMessagesDialogFragment-->
+  <!--Action button to keep messages-->
+  <string name="RemoveSmsMessagesDialogFragment__keep_messages">Cadw negeseuon</string>
+  <!--Action button to remove messages-->
+  <!--Title of dialog-->
+  <!--Message of dialog-->
   <!--EOF-->
 </resources>

@@ -3391,6 +3391,9 @@
   <string name="ChatsSettingsFragment__enter_key_sends">Spedisci premendo Invio</string>
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">Usa come app SMS predefinita</string>
+  <!--Preference title to export sms-->
+  <!--Preference title to delete sms-->
+  <!--Snackbar text to confirm deletion-->
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">Messaggi</string>
   <string name="NotificationsSettingsFragment__calls">Chiamate</string>
@@ -4167,7 +4170,7 @@
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">La mia storia</string>
   <!--Section heading for story visibility-->
-  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__who_can_see_this_story">Chi può vedere questa storia</string> -->
+  <string name="MyStorySettingsFragment__who_can_view_this_story">Chi può vedere questa Storia</string>
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">Nascondi storia a</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
@@ -4175,7 +4178,7 @@
   <!--Privacy setting description for sending stories to all your signal connections-->
   <string name="MyStorySettingsFragment__share_with_all_connections">Condividi con tutte le tue Amicizie di Signal</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
-  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__all_signal_connections_except">Tutte le Amicizie di Signal eccetto…</string> -->
+  <string name="MyStorySettingsFragment__all_except">Chiunque tranne…</string>
   <!--Privacy setting description for sending stories to all except the specified connections-->
   <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Non mostrare la tua Storia a determinate persone</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
@@ -4408,6 +4411,7 @@
   <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Fai una donazione mensile</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Non ora</string>
+  <!--My Story label designating that we will only share with the selected viewers.-->
   <!--Label under name for private stories-->
   <!--Label under name for group stories-->
   <!--Label under name for my story-->
@@ -4515,7 +4519,7 @@
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Tutte le Amicizie di Signal</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
-  <!-- Removed by excludeNonTranslatables <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Tutte le Amicizie di Signal eccetto…</string> -->
+  <string name="ChooseInitialMyStoryMembershipFragment__all_except">Chiunque tranne…</string>
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Condividi solo con…</string>
   <!--Story info header sent heading-->
@@ -4556,5 +4560,24 @@
   <string name="GroupStorySettingsFragment__remove_group_story">Rimuovi Storia di gruppo</string>
   <!--Generic title for overflow menus-->
   <string name="OverflowMenu__overflow_menu">Menu a tendina</string>
+  <!--SMS Export Service-->
+  <!--Displayed in the notification while export is running-->
+  <!--ExportYourSmsMessagesFragment-->
+  <!--Title of the screen-->
+  <!--Button label to begin export-->
+  <string name="ExportYourSmsMessagesFragment__continue">Continua</string>
+  <!--ExportingSmsMessagesFragment-->
+  <!--Title of the screen-->
+  <!--Progress indicator for export-->
+  <!--ChooseANewDefaultSmsAppFragment-->
+  <!--Title of the screen-->
+  <!--Button label to launch picker-->
+  <string name="ChooseANewDefaultSmsAppFragment__continue">Continua</string>
+  <!--RemoveSmsMessagesDialogFragment-->
+  <!--Action button to keep messages-->
+  <string name="RemoveSmsMessagesDialogFragment__keep_messages">Conserva i messaggi</string>
+  <!--Action button to remove messages-->
+  <!--Title of dialog-->
+  <!--Message of dialog-->
   <!--EOF-->
 </resources>

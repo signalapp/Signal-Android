@@ -3481,6 +3481,9 @@
   <string name="ChatsSettingsFragment__enter_key_sends">Отправка клавишей «Ввод»</string>
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">Использовать для всех SMS</string>
+  <!--Preference title to export sms-->
+  <!--Preference title to delete sms-->
+  <!--Snackbar text to confirm deletion-->
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">Сообщения</string>
   <string name="NotificationsSettingsFragment__calls">Звонки</string>
@@ -4267,7 +4270,7 @@
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Моя история</string>
   <!--Section heading for story visibility-->
-  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__who_can_see_this_story">Кто может видеть эту историю</string> -->
+  <string name="MyStorySettingsFragment__who_can_view_this_story">Кто может просматривать эту историю</string>
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">Скрыть историю от</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
@@ -4275,7 +4278,7 @@
   <!--Privacy setting description for sending stories to all your signal connections-->
   <string name="MyStorySettingsFragment__share_with_all_connections">Поделиться со всеми контактами</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
-  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__all_signal_connections_except">Все контакты Signal, кроме…</string> -->
+  <string name="MyStorySettingsFragment__all_except">Все, кроме…</string>
   <!--Privacy setting description for sending stories to all except the specified connections-->
   <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Скройте свою историю от конкретных людей</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
@@ -4512,6 +4515,7 @@
   <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Сделать ежемесячное пожертвование</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Не сейчас</string>
+  <!--My Story label designating that we will only share with the selected viewers.-->
   <!--Label under name for private stories-->
   <plurals name="ContactSearchItems__private_story_d_viewers">
     <item quantity="one">Частная история · %1$d зритель</item>
@@ -4636,7 +4640,7 @@
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Все контакты Signal</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
-  <!-- Removed by excludeNonTranslatables <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Все контакты Signal, кроме…</string> -->
+  <string name="ChooseInitialMyStoryMembershipFragment__all_except">Все, кроме…</string>
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Поделиться только с…</string>
   <!--Story info header sent heading-->
@@ -4677,5 +4681,24 @@
   <string name="GroupStorySettingsFragment__remove_group_story">Удалить историю группы</string>
   <!--Generic title for overflow menus-->
   <string name="OverflowMenu__overflow_menu">Меню переполнения</string>
+  <!--SMS Export Service-->
+  <!--Displayed in the notification while export is running-->
+  <!--ExportYourSmsMessagesFragment-->
+  <!--Title of the screen-->
+  <!--Button label to begin export-->
+  <string name="ExportYourSmsMessagesFragment__continue">Продолжить</string>
+  <!--ExportingSmsMessagesFragment-->
+  <!--Title of the screen-->
+  <!--Progress indicator for export-->
+  <!--ChooseANewDefaultSmsAppFragment-->
+  <!--Title of the screen-->
+  <!--Button label to launch picker-->
+  <string name="ChooseANewDefaultSmsAppFragment__continue">Продолжить</string>
+  <!--RemoveSmsMessagesDialogFragment-->
+  <!--Action button to keep messages-->
+  <string name="RemoveSmsMessagesDialogFragment__keep_messages">Хранить сообщения</string>
+  <!--Action button to remove messages-->
+  <!--Title of dialog-->
+  <!--Message of dialog-->
   <!--EOF-->
 </resources>

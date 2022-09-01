@@ -3386,6 +3386,9 @@ Nouvelle tentative…</string>
   <string name="ChatsSettingsFragment__enter_key_sends">La touche Entrée envoie</string>
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">Utiliser comme appli de textos par défaut</string>
+  <!--Preference title to export sms-->
+  <!--Preference title to delete sms-->
+  <!--Snackbar text to confirm deletion-->
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">Messages</string>
   <string name="NotificationsSettingsFragment__calls">Appels</string>
@@ -4162,7 +4165,7 @@ Nouvelle tentative…</string>
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Mon histoire</string>
   <!--Section heading for story visibility-->
-  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__who_can_see_this_story">Qui peut voir cette histoire</string> -->
+  <string name="MyStorySettingsFragment__who_can_view_this_story">Qui peut voir cette story ?</string>
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">Cacher l’histoire pour</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
@@ -4170,7 +4173,7 @@ Nouvelle tentative…</string>
   <!--Privacy setting description for sending stories to all your signal connections-->
   <string name="MyStorySettingsFragment__share_with_all_connections">Partager avec toutes les connexions</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
-  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__all_signal_connections_except">Toutes les connexions Signal sauf…</string> -->
+  <string name="MyStorySettingsFragment__all_except">Tout sauf…</string>
   <!--Privacy setting description for sending stories to all except the specified connections-->
   <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Cacher votre histoire de certains contacts</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
@@ -4403,6 +4406,7 @@ Nouvelle tentative…</string>
   <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Faire un don mensuel</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Pas maintenant</string>
+  <!--My Story label designating that we will only share with the selected viewers.-->
   <!--Label under name for private stories-->
   <!--Label under name for group stories-->
   <!--Label under name for my story-->
@@ -4510,7 +4514,7 @@ Nouvelle tentative…</string>
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Toutes les relations Signal</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
-  <!-- Removed by excludeNonTranslatables <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Toutes les relations Signal sauf…</string> -->
+  <string name="ChooseInitialMyStoryMembershipFragment__all_except">Tout sauf…</string>
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Partager uniquement avec…</string>
   <!--Story info header sent heading-->
@@ -4551,5 +4555,24 @@ Nouvelle tentative…</string>
   <string name="GroupStorySettingsFragment__remove_group_story">Supprimer la story du groupe</string>
   <!--Generic title for overflow menus-->
   <string name="OverflowMenu__overflow_menu">Menu de débordement</string>
+  <!--SMS Export Service-->
+  <!--Displayed in the notification while export is running-->
+  <!--ExportYourSmsMessagesFragment-->
+  <!--Title of the screen-->
+  <!--Button label to begin export-->
+  <string name="ExportYourSmsMessagesFragment__continue">Poursuivre</string>
+  <!--ExportingSmsMessagesFragment-->
+  <!--Title of the screen-->
+  <!--Progress indicator for export-->
+  <!--ChooseANewDefaultSmsAppFragment-->
+  <!--Title of the screen-->
+  <!--Button label to launch picker-->
+  <string name="ChooseANewDefaultSmsAppFragment__continue">Poursuivre</string>
+  <!--RemoveSmsMessagesDialogFragment-->
+  <!--Action button to keep messages-->
+  <string name="RemoveSmsMessagesDialogFragment__keep_messages">Conserver les messages</string>
+  <!--Action button to remove messages-->
+  <!--Title of dialog-->
+  <!--Message of dialog-->
   <!--EOF-->
 </resources>

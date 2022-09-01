@@ -3191,6 +3191,9 @@
   <string name="ChatsSettingsFragment__enter_key_sends">ចុច Enter ដើម្បីផ្ញើ</string>
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">ប្រើជាកម្មវិធីផ្ញើសារ</string>
+  <!--Preference title to export sms-->
+  <!--Preference title to delete sms-->
+  <!--Snackbar text to confirm deletion-->
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">សារ</string>
   <string name="NotificationsSettingsFragment__calls">ការហៅ</string>
@@ -3947,7 +3950,7 @@
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">រឿងរ៉ាវរបស់ខ្ញុំ</string>
   <!--Section heading for story visibility-->
-  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__who_can_see_this_story">អ្នកដែលអាចមើលឃើញរឿងរ៉ាវនេះ</string> -->
+  <string name="MyStorySettingsFragment__who_can_view_this_story">អ្នកដែលអាចមើលរឿងរ៉ាវនេះបាន</string>
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">លាក់រឿងរ៉ាវពី</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
@@ -3955,7 +3958,7 @@
   <!--Privacy setting description for sending stories to all your signal connections-->
   <string name="MyStorySettingsFragment__share_with_all_connections">ចែករំលែកជាមួយអ្នកភ្ជាប់ទំនាក់ទំនងទាំងអស់</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
-  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__all_signal_connections_except">អ្នកភ្ជាប់ទំនាក់ទំនងក្នុង Signal ទាំងអស់លើកលែងតែ…</string> -->
+  <string name="MyStorySettingsFragment__all_except">ទាំងអស់លើកលែងតែ…</string>
   <!--Privacy setting description for sending stories to all except the specified connections-->
   <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">លាក់រឿងរ៉ាវរបស់អ្នកពីមនុស្សជាក់លាក់</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
@@ -4180,6 +4183,7 @@
   <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">ធ្វើ​ការ​បរិច្ចាគ​ប្រចាំ​ខែ</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">ពេលក្រោយ</string>
+  <!--My Story label designating that we will only share with the selected viewers.-->
   <!--Label under name for private stories-->
   <plurals name="ContactSearchItems__private_story_d_viewers">
     <item quantity="other">រឿងរ៉ាវឯកជន · អ្នកមើល %1$d នាក់</item>
@@ -4283,7 +4287,7 @@
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">ទំនាក់ទំនង Signal ទាំងអស់</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
-  <!-- Removed by excludeNonTranslatables <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">ទំនាក់ទំនង Signal ទាំងអស់លើកលែងតែ…</string> -->
+  <string name="ChooseInitialMyStoryMembershipFragment__all_except">ទាំងអស់លើកលែងតែ…</string>
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">គ្រាន់តែចែករំលែកជាមួយ…</string>
   <!--Story info header sent heading-->
@@ -4324,5 +4328,24 @@
   <string name="GroupStorySettingsFragment__remove_group_story">ដករឿងរ៉ាវក្រុម</string>
   <!--Generic title for overflow menus-->
   <string name="OverflowMenu__overflow_menu">ម៉ឺនុយជម្រើស</string>
+  <!--SMS Export Service-->
+  <!--Displayed in the notification while export is running-->
+  <!--ExportYourSmsMessagesFragment-->
+  <!--Title of the screen-->
+  <!--Button label to begin export-->
+  <string name="ExportYourSmsMessagesFragment__continue">បន្ត</string>
+  <!--ExportingSmsMessagesFragment-->
+  <!--Title of the screen-->
+  <!--Progress indicator for export-->
+  <!--ChooseANewDefaultSmsAppFragment-->
+  <!--Title of the screen-->
+  <!--Button label to launch picker-->
+  <string name="ChooseANewDefaultSmsAppFragment__continue">បន្ត</string>
+  <!--RemoveSmsMessagesDialogFragment-->
+  <!--Action button to keep messages-->
+  <string name="RemoveSmsMessagesDialogFragment__keep_messages">រក្សាសារ</string>
+  <!--Action button to remove messages-->
+  <!--Title of dialog-->
+  <!--Message of dialog-->
   <!--EOF-->
 </resources>

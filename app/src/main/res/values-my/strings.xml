@@ -3192,6 +3192,9 @@
   <string name="ChatsSettingsFragment__enter_key_sends">ထည့်ထားတဲ့ ကီးပို့ပါ</string>
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">ပုံသေ SMS app အဖြစ် သုံးပါ။</string>
+  <!--Preference title to export sms-->
+  <!--Preference title to delete sms-->
+  <!--Snackbar text to confirm deletion-->
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">မက်ဆေ့ချ်များ</string>
   <string name="NotificationsSettingsFragment__calls">ဖုန်းခေါ်ဆိုမှုများ</string>
@@ -3948,7 +3951,7 @@
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">ကျွန်ုပ်၏ စတိုရီ</string>
   <!--Section heading for story visibility-->
-  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__who_can_see_this_story">ဤစတိုရီကို ကြည့်နိုင်မည့်သူများ</string> -->
+  <string name="MyStorySettingsFragment__who_can_view_this_story">ဤစတိုရီကို ကြည့်နိုင်မည့်သူများ</string>
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">ဖော်ပြပါသူများမှ စတိုရီကို ဝှက်ရန်</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
@@ -3956,7 +3959,7 @@
   <!--Privacy setting description for sending stories to all your signal connections-->
   <string name="MyStorySettingsFragment__share_with_all_connections">အဆက်အသွယ်များ အားလုံးထံ ဝေမျှရန်</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
-  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__all_signal_connections_except">ဖော်ပြထားသူများမှလွဲ၍ Signal အဆက်အသွယ်များအားလုံး…</string> -->
+  <string name="MyStorySettingsFragment__all_except">ဖော်ပြပါမှလွဲ၍…</string>
   <!--Privacy setting description for sending stories to all except the specified connections-->
   <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">သင့်စတိုရီကို အချို့သူများ မမြင်အောင် ဝှက်ရန်</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
@@ -4181,6 +4184,7 @@
   <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">လစဉ် လှူဒါန်းမှု ပြုလုပ်ရန်</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">ယခု မလုပ်ဆောင်သေးပါ။</string>
+  <!--My Story label designating that we will only share with the selected viewers.-->
   <!--Label under name for private stories-->
   <!--Label under name for group stories-->
   <!--Label under name for my story-->
@@ -4278,7 +4282,7 @@
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Signal အဆက်အသွယ်များ အားလုံး</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
-  <!-- Removed by excludeNonTranslatables <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">ဖော်ပြထားသူများမှလွဲ၍ Signal အဆက်အသွယ်များအားလုံး…</string> -->
+  <string name="ChooseInitialMyStoryMembershipFragment__all_except">ဖော်ပြပါမှလွဲ၍…</string>
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">ဖော်ပြထားသူများထံသာ ဝေမျှရန်…</string>
   <!--Story info header sent heading-->
@@ -4319,5 +4323,24 @@
   <string name="GroupStorySettingsFragment__remove_group_story">အဖွဲ့စတိုရီကို ဖယ်ရှားရန်</string>
   <!--Generic title for overflow menus-->
   <string name="OverflowMenu__overflow_menu">ပိုလျှံမီနူး</string>
+  <!--SMS Export Service-->
+  <!--Displayed in the notification while export is running-->
+  <!--ExportYourSmsMessagesFragment-->
+  <!--Title of the screen-->
+  <!--Button label to begin export-->
+  <string name="ExportYourSmsMessagesFragment__continue">ဆက်လက်ရန်</string>
+  <!--ExportingSmsMessagesFragment-->
+  <!--Title of the screen-->
+  <!--Progress indicator for export-->
+  <!--ChooseANewDefaultSmsAppFragment-->
+  <!--Title of the screen-->
+  <!--Button label to launch picker-->
+  <string name="ChooseANewDefaultSmsAppFragment__continue">ဆက်လက်ရန်</string>
+  <!--RemoveSmsMessagesDialogFragment-->
+  <!--Action button to keep messages-->
+  <string name="RemoveSmsMessagesDialogFragment__keep_messages">မက်ဆေ့များကို သိမ်းထားပါ</string>
+  <!--Action button to remove messages-->
+  <!--Title of dialog-->
+  <!--Message of dialog-->
   <!--EOF-->
 </resources>

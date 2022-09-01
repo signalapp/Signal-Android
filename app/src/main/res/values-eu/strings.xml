@@ -3295,6 +3295,9 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="ChatsSettingsFragment__enter_key_sends">Enter tekla sakatutakoan</string>
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">Lehenetsitako SMS aplikazio gisa erabili</string>
+  <!--Preference title to export sms-->
+  <!--Preference title to delete sms-->
+  <!--Snackbar text to confirm deletion-->
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">Mezuak</string>
   <string name="NotificationsSettingsFragment__calls">Deiak</string>
@@ -4061,7 +4064,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Nire istorioa</string>
   <!--Section heading for story visibility-->
-  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__who_can_see_this_story">Nork ikus dezake story hau</string> -->
+  <string name="MyStorySettingsFragment__who_can_view_this_story">Nork ikus dezake istorio hau?</string>
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">Ezkutatu storie-a honi:</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
@@ -4069,7 +4072,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--Privacy setting description for sending stories to all your signal connections-->
   <string name="MyStorySettingsFragment__share_with_all_connections">Partekatu konexio guztiekin</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
-  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__all_signal_connections_except">Signal-eko konexio guztiak hauek izan ezik…</string> -->
+  <string name="MyStorySettingsFragment__all_except">Denak hauek izan ezik…</string>
   <!--Privacy setting description for sending stories to all except the specified connections-->
   <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Ezkutatu zure istorioa pertsona jakinei</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
@@ -4298,6 +4301,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Egin hileroko dohaintza</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Orain ez</string>
+  <!--My Story label designating that we will only share with the selected viewers.-->
   <!--Label under name for private stories-->
   <plurals name="ContactSearchItems__private_story_d_viewers">
     <item quantity="one">Istorio pribatua - ikusle %1$d</item>
@@ -4408,7 +4412,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Signal konexio guztiak</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
-  <!-- Removed by excludeNonTranslatables <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">Signal konexio guztiak… ezik</string> -->
+  <string name="ChooseInitialMyStoryMembershipFragment__all_except">Denak hauek izan ezik…</string>
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">…rekin bakarrik partekatu</string>
   <!--Story info header sent heading-->
@@ -4449,5 +4453,24 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="GroupStorySettingsFragment__remove_group_story">Ezabatu taldeko istorioa</string>
   <!--Generic title for overflow menus-->
   <string name="OverflowMenu__overflow_menu">Menuaren luzapena</string>
+  <!--SMS Export Service-->
+  <!--Displayed in the notification while export is running-->
+  <!--ExportYourSmsMessagesFragment-->
+  <!--Title of the screen-->
+  <!--Button label to begin export-->
+  <string name="ExportYourSmsMessagesFragment__continue">Jarraitu</string>
+  <!--ExportingSmsMessagesFragment-->
+  <!--Title of the screen-->
+  <!--Progress indicator for export-->
+  <!--ChooseANewDefaultSmsAppFragment-->
+  <!--Title of the screen-->
+  <!--Button label to launch picker-->
+  <string name="ChooseANewDefaultSmsAppFragment__continue">Jarraitu</string>
+  <!--RemoveSmsMessagesDialogFragment-->
+  <!--Action button to keep messages-->
+  <string name="RemoveSmsMessagesDialogFragment__keep_messages">Mezuak gorde</string>
+  <!--Action button to remove messages-->
+  <!--Title of dialog-->
+  <!--Message of dialog-->
   <!--EOF-->
 </resources>

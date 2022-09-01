@@ -3669,6 +3669,9 @@
   <string name="ChatsSettingsFragment__enter_key_sends">مفتاح الدخول يقوم بالإرسال</string>
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">اجعله التطبيق الافتراضي للرسائل القصيرة</string>
+  <!--Preference title to export sms-->
+  <!--Preference title to delete sms-->
+  <!--Snackbar text to confirm deletion-->
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">الرسائل</string>
   <string name="NotificationsSettingsFragment__calls">المكالمات</string>
@@ -4475,7 +4478,7 @@
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">قصتي</string>
   <!--Section heading for story visibility-->
-  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__who_can_see_this_story">من يمكنه رؤية هذه القصة</string> -->
+  <string name="MyStorySettingsFragment__who_can_view_this_story">من يُمكنه مشاهدة هذه القصة</string>
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">إخفاء القصة عن</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
@@ -4483,7 +4486,7 @@
   <!--Privacy setting description for sending stories to all your signal connections-->
   <string name="MyStorySettingsFragment__share_with_all_connections">المشاركة مع جميع جهات الاتصال</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
-  <!-- Removed by excludeNonTranslatables <string name="MyStorySettingsFragment__all_signal_connections_except">جميع جهات الاتصال في Signal إلا…</string> -->
+  <string name="MyStorySettingsFragment__all_except">الكل إلا…</string>
   <!--Privacy setting description for sending stories to all except the specified connections-->
   <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">إخفاء قصتك من أناس مُحددين</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
@@ -4728,6 +4731,7 @@
   <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">قدّم تبرعًا شهريًا</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">ليس الآن</string>
+  <!--My Story label designating that we will only share with the selected viewers.-->
   <!--Label under name for private stories-->
   <!--Label under name for group stories-->
   <!--Label under name for my story-->
@@ -4850,7 +4854,7 @@
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">كل معارف ‫Signal‬</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
-  <!-- Removed by excludeNonTranslatables <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections_except">كل ‫معارف Signal‬ إلا…</string> -->
+  <string name="ChooseInitialMyStoryMembershipFragment__all_except">الكل إلا…</string>
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">مشاركة فقط مع…</string>
   <!--Story info header sent heading-->
@@ -4891,5 +4895,24 @@
   <string name="GroupStorySettingsFragment__remove_group_story">حذف قصة المجموعة</string>
   <!--Generic title for overflow menus-->
   <string name="OverflowMenu__overflow_menu">القائمة الكاملة</string>
+  <!--SMS Export Service-->
+  <!--Displayed in the notification while export is running-->
+  <!--ExportYourSmsMessagesFragment-->
+  <!--Title of the screen-->
+  <!--Button label to begin export-->
+  <string name="ExportYourSmsMessagesFragment__continue">الاِستِمرار</string>
+  <!--ExportingSmsMessagesFragment-->
+  <!--Title of the screen-->
+  <!--Progress indicator for export-->
+  <!--ChooseANewDefaultSmsAppFragment-->
+  <!--Title of the screen-->
+  <!--Button label to launch picker-->
+  <string name="ChooseANewDefaultSmsAppFragment__continue">الاِستِمرار</string>
+  <!--RemoveSmsMessagesDialogFragment-->
+  <!--Action button to keep messages-->
+  <string name="RemoveSmsMessagesDialogFragment__keep_messages">احتفظ بالرسائل</string>
+  <!--Action button to remove messages-->
+  <!--Title of dialog-->
+  <!--Message of dialog-->
   <!--EOF-->
 </resources>
