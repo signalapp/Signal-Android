@@ -76,6 +76,17 @@ public class DonationReceiptRedemptionJob extends BaseJob {
             .build());
   }
 
+  public static JobManager.Chain createJobChainForKeepAlive() {
+    DonationReceiptRedemptionJob       redemptionJob                      = createJobForSubscription(DonationErrorSource.KEEP_ALIVE);
+    RefreshOwnProfileJob               refreshOwnProfileJob               = new RefreshOwnProfileJob();
+    MultiDeviceProfileContentUpdateJob multiDeviceProfileContentUpdateJob = new MultiDeviceProfileContentUpdateJob();
+
+    return ApplicationDependencies.getJobManager()
+                                  .startChain(redemptionJob)
+                                  .then(refreshOwnProfileJob)
+                                  .then(multiDeviceProfileContentUpdateJob);
+  }
+
   public static JobManager.Chain createJobChainForGift(long messageId, boolean primary) {
     DonationReceiptRedemptionJob redeemReceiptJob = new DonationReceiptRedemptionJob(
         messageId,
@@ -139,6 +150,16 @@ public class DonationReceiptRedemptionJob extends BaseJob {
 
   @Override
   protected void onRun() throws Exception {
+    if (isForSubscription()) {
+      synchronized (SubscriptionReceiptRequestResponseJob.MUTEX) {
+        doRun();
+      }
+    } else {
+      doRun();
+    }
+  }
+
+  private void doRun() throws Exception {
     ReceiptCredentialPresentation presentation = getPresentation();
     if (presentation == null) {
       Log.d(TAG, "No presentation available. Exiting.", true);
@@ -170,6 +191,11 @@ public class DonationReceiptRedemptionJob extends BaseJob {
     if (isForSubscription()) {
       Log.d(TAG, "Clearing subscription failure", true);
       SignalStore.donationsValues().clearSubscriptionRedemptionFailed();
+      Log.i(TAG, "Recording end of period from active subscription", true);
+      SignalStore.donationsValues()
+                 .setSubscriptionEndOfPeriodRedeemed(SignalStore.donationsValues()
+                                                                .getSubscriptionEndOfPeriodRedemptionStarted());
+      SignalStore.donationsValues().clearSubscriptionReceiptCredential();
     } else if (giftMessageId != NO_ID) {
       Log.d(TAG, "Marking gift redemption completed for " + giftMessageId);
       SignalDatabase.mms().markGiftRedemptionCompleted(giftMessageId);
@@ -182,7 +208,17 @@ public class DonationReceiptRedemptionJob extends BaseJob {
   }
 
   private @Nullable ReceiptCredentialPresentation getPresentation() throws InvalidInputException, NoSuchMessageException {
-    if (giftMessageId == NO_ID) {
+    final ReceiptCredentialPresentation receiptCredentialPresentation;
+
+    if (isForSubscription()) {
+      receiptCredentialPresentation = SignalStore.donationsValues().getSubscriptionReceiptCredential();
+    } else {
+      receiptCredentialPresentation = null;
+    }
+
+    if (receiptCredentialPresentation != null) {
+      return receiptCredentialPresentation;
+    } if (giftMessageId == NO_ID) {
       return getPresentationFromInputData();
     } else {
       return getPresentationFromGiftMessage();

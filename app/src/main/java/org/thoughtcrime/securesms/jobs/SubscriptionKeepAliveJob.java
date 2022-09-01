@@ -4,6 +4,7 @@ package org.thoughtcrime.securesms.jobs;
 import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -116,7 +117,8 @@ public class SubscriptionKeepAliveJob extends BaseJob {
       return;
     }
 
-    if (activeSubscription.getActiveSubscription().getEndOfCurrentPeriod() > SignalStore.donationsValues().getLastEndOfPeriod()) {
+    final long endOfCurrentPeriod = activeSubscription.getActiveSubscription().getEndOfCurrentPeriod();
+    if (endOfCurrentPeriod > SignalStore.donationsValues().getLastEndOfPeriod()) {
       Log.i(TAG,
             String.format(Locale.US,
                           "Last end of period change. Requesting receipt refresh. (old: %d to new: %d)",
@@ -124,11 +126,36 @@ public class SubscriptionKeepAliveJob extends BaseJob {
                           activeSubscription.getActiveSubscription().getEndOfCurrentPeriod()),
             true);
 
-      SubscriptionReceiptRequestResponseJob.createSubscriptionContinuationJobChain(true).enqueue();
-      return;
+      SignalStore.donationsValues().setLastEndOfPeriod(endOfCurrentPeriod);
+      SignalStore.donationsValues().clearSubscriptionRequestCredential();
+      SignalStore.donationsValues().clearSubscriptionReceiptCredential();
+      MultiDeviceSubscriptionSyncRequestJob.enqueue();
     }
 
-    Log.i(TAG, "Subscription is active, and end of current period (remote) is after the latest checked end of period (local). Nothing to do.");
+    if (endOfCurrentPeriod > SignalStore.donationsValues().getSubscriptionEndOfPeriodConversionStarted()) {
+      Log.i(TAG, "Subscription end of period is after the conversion end of period. Storing it, generating a credential, and enqueuing the continuation job chain.", true);
+      SignalStore.donationsValues().setSubscriptionEndOfPeriodConversionStarted(endOfCurrentPeriod);
+      SignalStore.donationsValues().refreshSubscriptionRequestCredential();
+      SubscriptionReceiptRequestResponseJob.createSubscriptionContinuationJobChain(true).enqueue();
+    } else if (endOfCurrentPeriod > SignalStore.donationsValues().getSubscriptionEndOfPeriodRedemptionStarted()) {
+      if (SignalStore.donationsValues().getSubscriptionRequestCredential() == null) {
+        Log.i(TAG, "We have not started a redemption, but do not have a request credential. Possible that the subscription changed.", true);
+        return;
+      }
+
+      Log.i(TAG, "We have a request credential and have not yet turned it into a redeemable token.", true);
+      SubscriptionReceiptRequestResponseJob.createSubscriptionContinuationJobChain(true).enqueue();
+    } else if (endOfCurrentPeriod > SignalStore.donationsValues().getSubscriptionEndOfPeriodRedeemed()) {
+      if (SignalStore.donationsValues().getSubscriptionReceiptCredential() == null) {
+        Log.i(TAG, "We have successfully started redemption but have no stored token. Possible that the subscription changed.", true);
+        return;
+      }
+
+      Log.i(TAG, "We have a receipt credential and have not yet redeemed it.", true);
+      DonationReceiptRedemptionJob.createJobChainForKeepAlive().enqueue();
+    } else {
+      Log.i(TAG, "Subscription is active, and end of current period (remote) is after the latest checked end of period (local). Nothing to do.");
+    }
   }
 
   private <T> void verifyResponse(@NonNull ServiceResponse<T> response) throws Exception {
