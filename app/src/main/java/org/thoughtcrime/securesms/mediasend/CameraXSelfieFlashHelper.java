@@ -14,8 +14,8 @@ import androidx.camera.view.CameraController;
 final class CameraXSelfieFlashHelper {
 
   private static final float MAX_SCREEN_BRIGHTNESS    = 1f;
-  private static final float MAX_SELFIE_FLASH_ALPHA   = 0.75f;
-  private static final long  SELFIE_FLASH_DURATION_MS = 250;
+  private static final float MAX_SELFIE_FLASH_ALPHA   = 0.9f;
+  private static final long  SELFIE_FLASH_DURATION_MS = 175;
 
   private final Window           window;
   private final CameraController camera;
@@ -68,6 +68,7 @@ final class CameraXSelfieFlashHelper {
     flashMode = -1;
 
     selfieFlash.animate()
+               .setStartDelay(SELFIE_FLASH_DURATION_MS)
                .alpha(0f)
                .setDuration(SELFIE_FLASH_DURATION_MS);
 
