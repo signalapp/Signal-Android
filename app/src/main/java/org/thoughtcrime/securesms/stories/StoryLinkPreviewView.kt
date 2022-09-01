@@ -32,9 +32,10 @@ class StoryLinkPreviewView @JvmOverloads constructor(
     inflate(context, R.layout.stories_text_post_link_preview, this)
   }
 
+  private val card: View = findViewById(R.id.link_preview_card)
   private val close: View = findViewById(R.id.link_preview_close)
-  private val smallImage: ThumbnailView = findViewById(R.id.link_preview_image)
-  private val largeImage: ThumbnailView = findViewById(R.id.link_preview_large)
+  private val smallImage: ThumbnailView = findViewById<ThumbnailView>(R.id.link_preview_image).apply { isClickable = false }
+  private val largeImage: ThumbnailView = findViewById<ThumbnailView>(R.id.link_preview_large).apply { isClickable = false }
   private val title: TextView = findViewById(R.id.link_preview_title)
   private val url: TextView = findViewById(R.id.link_preview_url)
   private val description: TextView = findViewById(R.id.link_preview_description)
@@ -63,7 +64,6 @@ class StoryLinkPreviewView @JvmOverloads constructor(
 
     if (linkPreview != null) {
       visibility = View.VISIBLE
-      isClickable = true
 
       val image = getThumbnailTarget(useLargeThumbnail)
       val notImage = getThumbnailTarget(!useLargeThumbnail)
@@ -95,7 +95,6 @@ class StoryLinkPreviewView @JvmOverloads constructor(
       formatUrl(linkPreview)
     } else {
       visibility = hiddenVisibility
-      isClickable = false
     }
 
     return future ?: SettableFuture(false)
@@ -140,6 +139,10 @@ class StoryLinkPreviewView @JvmOverloads constructor(
 
   fun setOnCloseClickListener(onClickListener: OnClickListener?) {
     close.setOnClickListener(onClickListener)
+  }
+
+  fun setOnPreviewClickListener(onClickListener: OnClickListener?) {
+    card.setOnClickListener(onClickListener)
   }
 
   fun setCanClose(canClose: Boolean) {

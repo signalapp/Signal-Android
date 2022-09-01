@@ -184,7 +184,7 @@ class StoryTextPostView @JvmOverloads constructor(
   }
 
   fun setLinkPreviewClickListener(onClickListener: OnClickListener?) {
-    linkPreviewView.setOnClickListener(onClickListener)
+    linkPreviewView.setOnPreviewClickListener(onClickListener)
   }
 
   fun showPostContent() {
