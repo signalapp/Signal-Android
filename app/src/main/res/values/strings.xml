@@ -5198,6 +5198,12 @@
     <!-- Message of dialog -->
     <string name="RemoveSmsMessagesDialogFragment__you_have_changed">You have changed the default SMS app, do you want to remove SMS messages from Signal?</string>
 
+    <!-- SetSignalAsDefaultSmsAppFragment -->
+    <!-- Title of the screen -->
+    <string name="SetSignalAsDefaultSmsAppFragment__first_set_signal_as_the_default_sms_app">First, set Signal as the default SMS app</string>
+    <!-- Button label to start export -->
+    <string name="SetSignalAsDefaultSmsAppFragment__next">Next</string>
+
     <!-- EOF -->
 
 </resources>

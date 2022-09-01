@@ -17,6 +17,24 @@
             app:exitAnim="@anim/fragment_open_exit"
             app:popEnterAnim="@anim/fragment_close_enter"
             app:popExitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_exportYourSmsMessagesFragment_to_setSignalAsDefaultSmsAppFragment"
+            app:destination="@id/setSignalAsDefaultSmsAppFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/setSignalAsDefaultSmsAppFragment"
+        android:name="org.thoughtcrime.securesms.exporter.flow.SetSignalAsDefaultSmsAppFragment"
+        android:label="fragment_set_signal_as_default_sms_app"
+        tools:layout="@layout/choose_a_new_default_sms_app_fragment">
+
+        <action
+            android:id="@+id/action_setSignalAsDefaultSmsAppFragment_to_exportingSmsMessagesFragment"
+            app:destination="@id/exportingSmsMessagesFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
     </fragment>
 
     <fragment
