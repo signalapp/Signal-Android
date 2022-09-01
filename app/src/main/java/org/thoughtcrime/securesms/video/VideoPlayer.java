@@ -196,6 +196,15 @@ public class VideoPlayer extends FrameLayout {
     }
   }
 
+  @Override
+  public void setOnClickListener(@Nullable OnClickListener l) {
+    if (this.exoView != null) {
+      this.exoView.setClickable(false);
+    }
+
+    super.setOnClickListener(l);
+  }
+
   public @Nullable View getControlView() {
     return this.exoControls;
   }
