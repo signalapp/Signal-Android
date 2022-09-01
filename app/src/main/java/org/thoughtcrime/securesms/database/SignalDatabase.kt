@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.database
 
 import android.app.Application
 import android.content.Context
+import androidx.annotation.VisibleForTesting
 import net.zetetic.database.sqlcipher.SQLiteOpenHelper
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.logging.Log
@@ -219,6 +220,12 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
           }
         }
       }
+    }
+
+    @JvmStatic
+    @VisibleForTesting
+    fun setSignalDatabaseInstanceForTesting(signalDatabase: SignalDatabase) {
+      this.instance = signalDatabase
     }
 
     @JvmStatic
