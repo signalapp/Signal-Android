@@ -38,11 +38,6 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     refresh()
   }
 
-  fun setGv2DoNotCreateGv2Groups(enabled: Boolean) {
-    preferenceDataStore.putBoolean(InternalValues.GV2_DO_NOT_CREATE_GV2, enabled)
-    refresh()
-  }
-
   fun setGv2ForceInvites(enabled: Boolean) {
     preferenceDataStore.putBoolean(InternalValues.GV2_FORCE_INVITES, enabled)
     refresh()
@@ -55,16 +50,6 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
 
   fun setGv2IgnoreP2PChanges(enabled: Boolean) {
     preferenceDataStore.putBoolean(InternalValues.GV2_IGNORE_P2P_CHANGES, enabled)
-    refresh()
-  }
-
-  fun setDisableAutoMigrationInitiation(enabled: Boolean) {
-    preferenceDataStore.putBoolean(InternalValues.GV2_DISABLE_AUTOMIGRATE_INITIATION, enabled)
-    refresh()
-  }
-
-  fun setDisableAutoMigrationNotification(enabled: Boolean) {
-    preferenceDataStore.putBoolean(InternalValues.GV2_DISABLE_AUTOMIGRATE_NOTIFICATION, enabled)
     refresh()
   }
 
@@ -125,12 +110,9 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
   private fun getState() = InternalSettingsState(
     seeMoreUserDetails = SignalStore.internalValues().recipientDetails(),
     shakeToReport = SignalStore.internalValues().shakeToReport(),
-    gv2doNotCreateGv2Groups = SignalStore.internalValues().gv2DoNotCreateGv2Groups(),
     gv2forceInvites = SignalStore.internalValues().gv2ForceInvites(),
     gv2ignoreServerChanges = SignalStore.internalValues().gv2IgnoreServerChanges(),
     gv2ignoreP2PChanges = SignalStore.internalValues().gv2IgnoreP2PChanges(),
-    disableAutoMigrationInitiation = SignalStore.internalValues().disableGv1AutoMigrateInitiation(),
-    disableAutoMigrationNotification = SignalStore.internalValues().disableGv1AutoMigrateNotification(),
     allowCensorshipSetting = SignalStore.internalValues().allowChangingCensorshipSetting(),
     callingServer = SignalStore.internalValues().groupCallingServer(),
     callingAudioProcessingMethod = SignalStore.internalValues().callingAudioProcessingMethod(),

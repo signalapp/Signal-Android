@@ -2745,19 +2745,12 @@
     <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories" translatable="false">Clears onboarding flag and triggers download of onboarding stories.</string>
     <string name="preferences__internal_preferences" translatable="false">Internal Preferences</string>
     <string name="preferences__internal_preferences_groups_v2" translatable="false">Groups V2</string>
-    <string name="preferences__internal_preferences_groups_v1_migration" translatable="false">Groups V1 Migration</string>
-    <string name="preferences__internal_do_not_create_gv2" translatable="false">Do not create GV2 groups</string>
-    <string name="preferences__internal_do_not_create_gv2_description" translatable="false">Do not attempt to create GV2 groups, i.e. will force creation of GV1 or MMS groups.</string>
     <string name="preferences__internal_force_gv2_invites" translatable="false">Force Invites</string>
     <string name="preferences__internal_force_gv2_invites_description" translatable="false">Members will not be added directly to a GV2 even if they could be.</string>
     <string name="preferences__internal_ignore_gv2_server_changes" translatable="false">Ignore server changes</string>
     <string name="preferences__internal_ignore_gv2_server_changes_description" translatable="false">Changes in server\'s response will be ignored, causing passive voice update messages if P2P is also ignored.</string>
     <string name="preferences__internal_ignore_gv2_p2p_changes" translatable="false">Ignore P2P changes</string>
     <string name="preferences__internal_ignore_gv2_p2p_changes_description" translatable="false">Changes sent P2P will be ignored. In conjunction with ignoring server changes, will cause passive voice.</string>
-    <string name="preferences__internal_do_not_initiate_automigrate" translatable="false">Disable Auto-Migration Initiation</string>
-    <string name="preferences__internal_do_not_initiate_automigrate_description" translatable="false">Do not attempt to initiate an auto-migration. You will still recognize migrated groups.</string>
-    <string name="preferences__internal_do_not_notify_automigrate" translatable="false">Disable Auto-Migration Notification</string>
-    <string name="preferences__internal_do_not_notify_automigrate_description" translatable="false">Do not attempt to notify other users of an auto-migration. They will have to discover it on their own.</string>
     <string name="preferences__internal_payments" translatable="false">Payments</string>
     <string name="preferences__internal_payment_copy_data" translatable="false">Copy payments data</string>
     <string name="preferences__internal_payment_copy_data_description" translatable="false">Copy all payment records to clipboard.</string>
@@ -2833,7 +2826,7 @@
     <string name="preferences__internal_clear_history" translatable="false">Clear history</string>
     <string name="preferences__internal_clear_history_description" translatable="false">Clears all CDS history, meaning the next sync will consider all numbers to be new.</string>
     <string name="preferences__internal_clear_all_service_ids" translatable="false">Clear all service IDs</string>
-    <string name="preferences__internal_clear_all_service_ids_description" translatable="false">Clears all known service IDs (except your own). Do not use on your personal device!</string>
+    <string name="preferences__internal_clear_all_service_ids_description" translatable="false">Clears all known service IDs (except your own) for people that have phone numbers. Do not use on your personal device!</string>
     <string name="preferences__internal_clear_all_profile_keys" translatable="false">Clear all profile keys</string>
     <string name="preferences__internal_clear_all_profile_keys_description" translatable="false">Clears all known profile keys (except your own). Do not use on your personal device!</string>
     <string name="preferences__internal_donor_error_expired_badge" translatable="false">Expired Badge</string>

@@ -3717,7 +3717,8 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
   }
 
   /**
-   * Should only be used for debugging! A very destructive action that clears all known serviceIds.
+   * Should only be used for debugging! A very destructive action that clears all known serviceIds from people with phone numbers (so that we could eventually
+   * get them back through CDS).
    */
   fun debugClearServiceIds(recipientId: RecipientId? = null) {
     writableDatabase
@@ -3728,9 +3729,9 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       )
       .run {
         if (recipientId == null) {
-          where("$ID != ?", Recipient.self().id)
+          where("$ID != ? AND $PHONE NOT NULL", Recipient.self().id)
         } else {
-          where("$ID = ?", recipientId)
+          where("$ID = ? AND $PHONE NOT NULL", recipientId)
         }
       }
       .run()

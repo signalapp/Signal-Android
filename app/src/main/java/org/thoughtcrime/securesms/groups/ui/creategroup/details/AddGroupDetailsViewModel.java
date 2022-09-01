@@ -50,17 +50,8 @@ public final class AddGroupDetailsViewModel extends ViewModel {
     MutableLiveData<List<GroupMemberEntry.NewGroupCandidate>> initialMembers = new MutableLiveData<>();
     LiveData<Boolean>                                         isValidName    = Transformations.map(name, name -> !TextUtils.isEmpty(name));
 
-    members = LiveDataUtil.combineLatest(initialMembers, deleted, AddGroupDetailsViewModel::filterDeletedMembers);
-    isMms   = Transformations.map(members, AddGroupDetailsViewModel::isAnyForcedSms);
-
-    LiveData<List<GroupMemberEntry.NewGroupCandidate>> membersToCheckGv2CapabilityOf = LiveDataUtil.combineLatest(isMms, members, (forcedMms, memberList) -> {
-      if (SignalStore.internalValues().gv2DoNotCreateGv2Groups() || forcedMms) {
-        return Collections.emptyList();
-      } else {
-        return memberList;
-      }
-    });
-
+    members       = LiveDataUtil.combineLatest(initialMembers, deleted, AddGroupDetailsViewModel::filterDeletedMembers);
+    isMms         = Transformations.map(members, AddGroupDetailsViewModel::isAnyForcedSms);
     canSubmitForm = LiveDataUtil.combineLatest(isMms, isValidName, (mms, validName) -> mms || validName);
 
     repository.resolveMembers(recipientIds, initialMembers::postValue);

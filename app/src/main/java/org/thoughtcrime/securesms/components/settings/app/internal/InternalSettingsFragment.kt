@@ -172,15 +172,6 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       sectionHeaderPref(R.string.preferences__internal_preferences_groups_v2)
 
       switchPref(
-        title = DSLSettingsText.from(R.string.preferences__internal_do_not_create_gv2),
-        summary = DSLSettingsText.from(R.string.preferences__internal_do_not_create_gv2_description),
-        isChecked = state.gv2doNotCreateGv2Groups,
-        onClick = {
-          viewModel.setGv2DoNotCreateGv2Groups(!state.gv2doNotCreateGv2Groups)
-        }
-      )
-
-      switchPref(
         title = DSLSettingsText.from(R.string.preferences__internal_force_gv2_invites),
         summary = DSLSettingsText.from(R.string.preferences__internal_force_gv2_invites_description),
         isChecked = state.gv2forceInvites,
@@ -204,28 +195,6 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         isChecked = state.gv2ignoreP2PChanges,
         onClick = {
           viewModel.setGv2IgnoreP2PChanges(!state.gv2ignoreP2PChanges)
-        }
-      )
-
-      dividerPref()
-
-      sectionHeaderPref(R.string.preferences__internal_preferences_groups_v1_migration)
-
-      switchPref(
-        title = DSLSettingsText.from(R.string.preferences__internal_do_not_initiate_automigrate),
-        summary = DSLSettingsText.from(R.string.preferences__internal_do_not_initiate_automigrate_description),
-        isChecked = state.disableAutoMigrationInitiation,
-        onClick = {
-          viewModel.setDisableAutoMigrationInitiation(!state.disableAutoMigrationInitiation)
-        }
-      )
-
-      switchPref(
-        title = DSLSettingsText.from(R.string.preferences__internal_do_not_notify_automigrate),
-        summary = DSLSettingsText.from(R.string.preferences__internal_do_not_notify_automigrate_description),
-        isChecked = state.disableAutoMigrationNotification,
-        onClick = {
-          viewModel.setDisableAutoMigrationNotification(!state.disableAutoMigrationNotification)
         }
       )
 

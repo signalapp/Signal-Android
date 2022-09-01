@@ -47,7 +47,7 @@ public final class GroupManager {
                                                        int disappearingMessagesTimer)
       throws GroupChangeBusyException, GroupChangeFailedException, IOException
   {
-    boolean          shouldAttemptToCreateV2 = !mms && !SignalStore.internalValues().gv2DoNotCreateGv2Groups();
+    boolean          shouldAttemptToCreateV2 = !mms;
     Set<RecipientId> memberIds               = getMemberIds(members);
 
     if (shouldAttemptToCreateV2) {

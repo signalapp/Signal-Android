@@ -81,11 +81,6 @@ public final class GroupsV1MigrationUtil {
           throw new InvalidMigrationStateException();
         }
 
-        if (!forced && SignalStore.internalValues().disableGv1AutoMigrateInitiation()) {
-          Log.w(TAG, "Auto migration initiation has been disabled! Skipping.");
-          throw new InvalidMigrationStateException();
-        }
-
         List<Recipient> registeredMembers = RecipientUtil.getEligibleForSending(Recipient.resolvedList(groupRecipient.getParticipantIds()));
 
         if (RecipientUtil.ensureUuidsAreAvailable(context, registeredMembers)) {
@@ -136,7 +131,7 @@ public final class GroupsV1MigrationUtil {
 
     DecryptedGroup decryptedGroup = performLocalMigration(context, gv1Id, threadId, groupRecipient);
 
-    if (newlyCreated && decryptedGroup != null && !SignalStore.internalValues().disableGv1AutoMigrateNotification()) {
+    if (newlyCreated && decryptedGroup != null) {
       Log.i(TAG, "Sending no-op update to notify others.");
       GroupManager.sendNoopUpdate(context, gv2MasterKey, decryptedGroup);
     }
