@@ -208,6 +208,7 @@ object ContactDiscoveryRefreshV2 {
   @WorkerThread
   private fun Set<RecipientId>.removeRegisteredButUnlisted(): Set<RecipientId> {
     val futures: List<Future<Pair<RecipientId, Boolean?>>> = Recipient.resolvedList(this)
+      .filter { it.hasServiceId() }
       .filter { hasCommunicatedWith(it) }
       .map {
         SignalExecutors.UNBOUNDED.submit(
