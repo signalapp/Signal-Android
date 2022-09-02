@@ -1,61 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:viewBindingIgnore="true"
-             xmlns:app="http://schemas.android.com/apk/res-auto"
-             android:id="@+id/attachment_editor"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:gravity="center_horizontal"
-             android:visibility="gone">
+    android:id="@+id/attachment_editor"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:visibility="gone"
+    tools:viewBindingIgnore="true">
 
     <org.thoughtcrime.securesms.components.RemovableEditableMediaView
-            android:id="@+id/removable_media_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center">
+        android:id="@+id/removable_media_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
 
         <org.thoughtcrime.securesms.components.location.SignalMapView
-                android:id="@+id/attachment_location"
-                android:layout_width="210dp"
-                android:layout_height="210dp"
-                android:layout_gravity="center_horizontal"
-                android:visibility="gone"/>
+            android:id="@+id/attachment_location"
+            android:layout_width="210dp"
+            android:layout_height="210dp"
+            android:layout_gravity="center_horizontal"
+            android:visibility="gone" />
 
         <org.thoughtcrime.securesms.components.ThumbnailView
-                android:id="@+id/attachment_thumbnail"
-                android:layout_width="230dp"
-                android:layout_height="150dp"
-                android:layout_gravity="center_horizontal"
-                android:visibility="gone"
-                android:contentDescription="@string/conversation_activity__attachment_thumbnail"
-                app:minWidth="100dp"
-                app:maxWidth="300dp"
-                app:minHeight="100dp"
-                app:maxHeight="300dp" />
+            android:id="@+id/attachment_thumbnail"
+            android:layout_width="230dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center_horizontal"
+            android:contentDescription="@string/conversation_activity__attachment_thumbnail"
+            android:visibility="gone"
+            app:maxHeight="300dp"
+            app:maxWidth="300dp"
+            app:minHeight="100dp"
+            app:minWidth="100dp" />
 
         <org.thoughtcrime.securesms.components.AudioView
-                android:id="@+id/attachment_audio"
-                android:layout_width="210dp"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:paddingTop="15dp"
-                android:paddingBottom="15dp"
-                app:foregroundTintColor="@color/grey_500"
-                app:backgroundTintColor="@color/signal_background_secondary"/>
+            android:id="@+id/attachment_audio"
+            android:layout_width="210dp"
+            android:layout_height="wrap_content"
+            android:minHeight="72dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="24dp"
+            android:paddingStart="12dp"
+            android:visibility="gone"
+            android:background="@drawable/rounded_rectangle_secondary_18"
+            app:backgroundTintColor="@color/signal_colorSurface2"
+            app:foregroundTintColor="@color/signal_colorOnSurfaceVariant"
+            app:progressAndPlayTint="@color/audio_play_pause_sent_background_tint"
+            app:waveformPlayedBarsColor="@color/audio_seek_bar_sent_played_color"
+            app:waveformThumbTint="@color/audio_seek_bar_sent_played_color"
+            app:waveformUnplayedBarsColor="@color/audio_seek_bar_sent_unplayed_color" />
 
         <org.thoughtcrime.securesms.components.DocumentView
             android:id="@+id/attachment_document"
             android:layout_width="210dp"
             android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp"
-            android:paddingStart="@dimen/message_bubble_horizontal_padding"
-            android:paddingEnd="@dimen/message_bubble_horizontal_padding"
             android:background="@drawable/message_bubble_background_sent_alone"
-            app:doc_titleColor="@color/signal_text_primary"
-            app:doc_captionColor="@color/signal_text_secondary"/>
+            android:paddingStart="@dimen/message_bubble_horizontal_padding"
+            android:paddingTop="8dp"
+            android:paddingEnd="@dimen/message_bubble_horizontal_padding"
+            android:paddingBottom="8dp"
+            android:visibility="gone"
+            app:doc_captionColor="@color/signal_text_secondary"
+            app:doc_titleColor="@color/signal_text_primary" />
 
     </org.thoughtcrime.securesms.components.RemovableEditableMediaView>
 

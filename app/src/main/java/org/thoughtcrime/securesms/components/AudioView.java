@@ -17,6 +17,7 @@ import android.widget.TextView;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.lifecycle.Observer;
 
 import com.airbnb.lottie.LottieAnimationView;
@@ -125,6 +126,11 @@ public final class AudioView extends FrameLayout {
       this.seekBar.setOnSeekBarChangeListener(new SeekBarModifiedListener());
 
       setTint(typedArray.getColor(R.styleable.AudioView_foregroundTintColor, Color.WHITE));
+
+      int backgroundTintColor = typedArray.getColor(R.styleable.AudioView_backgroundTintColor, Color.TRANSPARENT);
+      if (getBackground() != null && backgroundTintColor != Color.TRANSPARENT) {
+        DrawableCompat.setTint(getBackground(), backgroundTintColor);
+      }
 
       this.waveFormPlayedBarsColor   = typedArray.getColor(R.styleable.AudioView_waveformPlayedBarsColor, Color.WHITE);
       this.waveFormUnplayedBarsColor = typedArray.getColor(R.styleable.AudioView_waveformUnplayedBarsColor, Color.WHITE);
