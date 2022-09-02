@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.messages;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Build;
 import android.text.TextUtils;
 
@@ -49,7 +50,6 @@ import org.thoughtcrime.securesms.database.SentStorySyncManifest;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.StickerDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
-import org.thoughtcrime.securesms.database.model.DistributionListRecord;
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageLogEntry;
@@ -1473,9 +1473,25 @@ public final class MessageContentProcessor {
       ChatColor.LinearGradient.Builder     linearGradientBuilder = ChatColor.LinearGradient.newBuilder();
 
       linearGradientBuilder.setRotation(gradient.getAngle().orElse(0).floatValue());
-      linearGradientBuilder.addColors(gradient.getStartColor().get());
-      linearGradientBuilder.addColors(gradient.getEndColor().get());
-      linearGradientBuilder.addAllPositions(Arrays.asList(0f, 1f));
+
+      if (gradient.getPositions().size() > 1 && gradient.getColors().size() == gradient.getPositions().size()) {
+        ArrayList<Float> positions = new ArrayList<>(gradient.getPositions());
+
+        positions.set(0, 0f);
+        positions.set(positions.size() - 1, 1f);
+
+        linearGradientBuilder.addAllColors(new ArrayList<>(gradient.getColors()));
+        linearGradientBuilder.addAllPositions(positions);
+      } else if (!gradient.getColors().isEmpty()) {
+        Log.w(TAG, "Incoming text story has color / position mismatch. Defaulting to start and end colors.");
+        linearGradientBuilder.addColors(gradient.getColors().get(0));
+        linearGradientBuilder.addColors(gradient.getColors().get(gradient.getColors().size() - 1));
+        linearGradientBuilder.addAllPositions(Arrays.asList(0f, 1f));
+      } else {
+        Log.w(TAG, "Incoming text story did not have a valid linear gradient.");
+        linearGradientBuilder.addAllColors(Arrays.asList(Color.BLACK, Color.BLACK));
+        linearGradientBuilder.addAllPositions(Arrays.asList(0f, 1f));
+      }
 
       chatColorBuilder.setLinearGradient(linearGradientBuilder);
     }

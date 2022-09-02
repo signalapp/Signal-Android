@@ -1,6 +1,7 @@
 package org.whispersystems.signalservice.api.messages;
 
 
+import java.util.List;
 import java.util.Optional;
 
 public class SignalServiceTextAttachment {
@@ -88,26 +89,26 @@ public class SignalServiceTextAttachment {
   }
 
   public static class Gradient {
-    private final Optional<Integer> startColor;
-    private final Optional<Integer> endColor;
     private final Optional<Integer> angle;
+    private final List<Integer>     colors;
+    private final List<Float>       positions;
 
-    public Gradient(Optional<Integer> startColor, Optional<Integer> endColor, Optional<Integer> angle) {
-      this.startColor = startColor;
-      this.endColor   = endColor;
+    public Gradient(Optional<Integer> angle, List<Integer> colors, List<Float> positions) {
       this.angle      = angle;
-    }
-
-    public Optional<Integer> getStartColor() {
-      return startColor;
-    }
-
-    public Optional<Integer> getEndColor() {
-      return endColor;
+      this.colors     = colors;
+      this.positions  = positions;
     }
 
     public Optional<Integer> getAngle() {
       return angle;
+    }
+
+    public List<Integer> getColors() {
+      return colors;
+    }
+
+    public List<Float> getPositions() {
+      return positions;
     }
   }
 

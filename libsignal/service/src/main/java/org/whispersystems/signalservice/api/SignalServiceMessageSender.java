@@ -2116,9 +2116,15 @@ public class SignalServiceMessageSender {
     if (attachment.getBackgroundGradient().isPresent()) {
       SignalServiceTextAttachment.Gradient gradient = attachment.getBackgroundGradient().get();
 
-      if (gradient.getStartColor().isPresent()) gradientBuilder.setStartColor(gradient.getStartColor().get());
-      if (gradient.getEndColor().isPresent())   gradientBuilder.setEndColor(gradient.getEndColor().get());
-      if (gradient.getAngle().isPresent())      gradientBuilder.setAngle(gradient.getAngle().get());
+      if (gradient.getAngle().isPresent()) gradientBuilder.setAngle(gradient.getAngle().get());
+
+      if (!gradient.getColors().isEmpty()) {
+        gradientBuilder.setStartColor(gradient.getColors().get(0));
+        gradientBuilder.setEndColor(gradient.getColors().get(gradient.getColors().size() - 1));
+      }
+
+      gradientBuilder.addAllColors(gradient.getColors());
+      gradientBuilder.addAllPositions(gradient.getPositions());
 
       builder.setGradient(gradientBuilder.build());
     }

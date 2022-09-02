@@ -28,9 +28,9 @@ object StorySendUtil {
         Optional.of(storyTextPost.textBackgroundColor),
         preview,
         SignalServiceTextAttachment.Gradient(
-          Optional.of(storyTextPost.background.linearGradient.getColors(0)),
-          Optional.of(storyTextPost.background.linearGradient.getColors(1)),
-          Optional.of(storyTextPost.background.linearGradient.rotation.roundToInt())
+          Optional.of(storyTextPost.background.linearGradient.rotation.roundToInt()),
+          ArrayList(storyTextPost.background.linearGradient.colorsList),
+          ArrayList(storyTextPost.background.linearGradient.positionsList)
         )
       )
     } else {

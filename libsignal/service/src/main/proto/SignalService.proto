@@ -392,9 +392,11 @@ message TextAttachment {
   }
 
   message Gradient {
-    optional uint32 startColor = 1;
-    optional uint32 endColor   = 2;
+    optional uint32 startColor = 1; // deprecated: this field will be removed in a future release.
+    optional uint32 endColor   = 2; // deprecated: this field will be removed in a future release.
     optional uint32 angle      = 3; // degrees
+    repeated uint32 colors     = 4;
+    repeated float  positions  = 5; // percent from 0 to 1
   }
 
   optional string  text                = 1;

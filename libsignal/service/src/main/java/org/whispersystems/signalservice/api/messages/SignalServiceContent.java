@@ -59,6 +59,7 @@ import org.whispersystems.signalservice.internal.serialize.SignalServiceMetadata
 import org.whispersystems.signalservice.internal.serialize.protos.SignalServiceContentProto;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -1424,9 +1425,23 @@ public final class SignalServiceContent {
       Integer                              startColor         = attachmentGradient.hasStartColor() ? attachmentGradient.getStartColor() : null;
       Integer                              endColor           = attachmentGradient.hasEndColor() ? attachmentGradient.getEndColor() : null;
       Integer                              angle              = attachmentGradient.hasAngle() ? attachmentGradient.getAngle() : null;
-      SignalServiceTextAttachment.Gradient gradient           = new SignalServiceTextAttachment.Gradient(Optional.ofNullable(startColor),
-                                                                                                         Optional.ofNullable(endColor),
-                                                                                                         Optional.ofNullable(angle));
+      List<Integer>                        colors;
+      List<Float>                          positions;
+
+      if (attachmentGradient.getColorsCount() > 0 && attachmentGradient.getColorsCount() == attachmentGradient.getPositionsCount()) {
+        colors = new ArrayList<>(attachmentGradient.getColorsList());
+        positions = new ArrayList<>(attachmentGradient.getPositionsList());
+      } else if (startColor != null && endColor != null) {
+        colors = Arrays.asList(startColor, endColor);
+        positions = Arrays.asList(0f, 1f);
+      } else {
+        colors = Collections.emptyList();
+        positions = Collections.emptyList();
+      }
+
+      SignalServiceTextAttachment.Gradient gradient = new SignalServiceTextAttachment.Gradient(Optional.ofNullable(angle),
+                                                                                               colors,
+                                                                                               positions);
 
       return SignalServiceTextAttachment.forGradientBackground(text, Optional.ofNullable(style), textForegroundColor, textBackgroundColor, preview, gradient);
     } else {
