@@ -906,12 +906,12 @@ class StoryViewerPageFragment :
       viewsAndReplies.text = replies
     } else if (post.group != null) {
       viewsAndReplies.setIconResource(R.drawable.ic_reply_24_outline)
-      viewsAndReplies.iconSize = DimensionUnit.DP.toPixels(24f).toInt()
+      viewsAndReplies.iconSize = DimensionUnit.DP.toPixels(20f).toInt()
       viewsAndReplies.iconGravity = MaterialButton.ICON_GRAVITY_TEXT_START
       viewsAndReplies.setText(R.string.StoryViewerPageFragment__reply_to_group)
     } else {
       viewsAndReplies.setIconResource(R.drawable.ic_reply_24_outline)
-      viewsAndReplies.iconSize = DimensionUnit.DP.toPixels(24f).toInt()
+      viewsAndReplies.iconSize = DimensionUnit.DP.toPixels(20f).toInt()
       viewsAndReplies.iconGravity = MaterialButton.ICON_GRAVITY_TEXT_START
       viewsAndReplies.setText(R.string.StoryViewerPageFragment__reply)
     }
