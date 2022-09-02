@@ -16,13 +16,14 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.TaskStackBuilder;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.signal.core.util.concurrent.SignalExecutors;
+import org.signal.core.util.concurrent.SimpleTask;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.WebRtcCallActivity;
@@ -39,7 +40,6 @@ import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.proxy.ProxyBottomSheetFragment;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.MessageSender;
-import org.signal.core.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 
 import java.io.IOException;
@@ -48,9 +48,23 @@ public class CommunicationActions {
 
   private static final String TAG = Log.tag(CommunicationActions.class);
 
-  public static void startVoiceCall(@NonNull FragmentActivity activity, @NonNull Recipient recipient) {
-    if (TelephonyUtil.isAnyPstnLineBusy(activity)) {
-      Toast.makeText(activity,
+  /**
+   * Start a voice call. Assumes that permission request results will be routed to a handler on the Fragment.
+   */
+  public static void startVoiceCall(@NonNull Fragment fragment, @NonNull Recipient recipient) {
+    startVoiceCall(new FragmentCallContext(fragment), recipient);
+  }
+
+  /**
+   * Start a voice call. Assumes that permission request results will be routed to a handler on the Activity.
+   */
+  public static void startVoiceCall(@NonNull Activity activity, @NonNull Recipient recipient) {
+    startVoiceCall(new ActivityCallContext(activity), recipient);
+  }
+
+  private static void startVoiceCall(@NonNull CallContext callContext, @NonNull Recipient recipient) {
+    if (TelephonyUtil.isAnyPstnLineBusy(callContext.getContext())) {
+      Toast.makeText(callContext.getContext(),
                      R.string.CommunicationActions_a_cellular_call_is_already_in_progress,
                      Toast.LENGTH_SHORT)
            .show();
@@ -62,11 +76,11 @@ public class CommunicationActions {
         @Override
         protected void onReceiveResult(int resultCode, Bundle resultData) {
           if (resultCode == 1) {
-            startCallInternal(activity, recipient, false);
+            startCallInternal(callContext, recipient, false);
           } else {
-            new MaterialAlertDialogBuilder(activity)
+            new MaterialAlertDialogBuilder(callContext.getContext())
                 .setMessage(R.string.CommunicationActions_start_voice_call)
-                .setPositiveButton(R.string.CommunicationActions_call, (d, w) -> startCallInternal(activity, recipient, false))
+                .setPositiveButton(R.string.CommunicationActions_call, (d, w) -> startCallInternal(callContext, recipient, false))
                 .setNegativeButton(R.string.CommunicationActions_cancel, (d, w) -> d.dismiss())
                 .setCancelable(true)
                 .show();
@@ -74,13 +88,27 @@ public class CommunicationActions {
         }
       });
     } else {
-      startInsecureCall(activity, recipient);
+      startInsecureCall(callContext, recipient);
     }
   }
 
-  public static void startVideoCall(@NonNull FragmentActivity activity, @NonNull Recipient recipient) {
-    if (TelephonyUtil.isAnyPstnLineBusy(activity)) {
-      Toast.makeText(activity,
+  /**
+   * Start a video call. Assumes that permission request results will be routed to a handler on the Fragment.
+   */
+  public static void startVideoCall(@NonNull Fragment fragment, @NonNull Recipient recipient) {
+    startVideoCall(new FragmentCallContext(fragment), recipient);
+  }
+
+  /**
+   * Start a video call. Assumes that permission request results will be routed to a handler on the Activity.
+   */
+  public static void startVideoCall(@NonNull Activity activity, @NonNull Recipient recipient) {
+    startVideoCall(new ActivityCallContext(activity), recipient);
+  }
+
+  private static void startVideoCall(@NonNull CallContext callContext, @NonNull Recipient recipient) {
+    if (TelephonyUtil.isAnyPstnLineBusy(callContext.getContext())) {
+      Toast.makeText(callContext.getContext(),
                      R.string.CommunicationActions_a_cellular_call_is_already_in_progress,
                      Toast.LENGTH_SHORT)
            .show();
@@ -90,7 +118,7 @@ public class CommunicationActions {
     ApplicationDependencies.getSignalCallManager().isCallActive(new ResultReceiver(new Handler(Looper.getMainLooper())) {
       @Override
       protected void onReceiveResult(int resultCode, Bundle resultData) {
-        startCallInternal(activity, recipient, resultCode != 1);
+        startCallInternal(callContext, recipient, resultCode != 1);
       }
     });
   }
@@ -129,12 +157,20 @@ public class CommunicationActions {
   }
 
   public static void startInsecureCall(@NonNull Activity activity, @NonNull Recipient recipient) {
-    new AlertDialog.Builder(activity)
+    startInsecureCall(new ActivityCallContext(activity), recipient);
+  }
+
+  public static void startInsecureCall(@NonNull Fragment fragment, @NonNull Recipient recipient) {
+    startInsecureCall(new FragmentCallContext(fragment), recipient);
+  }
+
+  public static void startInsecureCall(@NonNull CallContext callContext, @NonNull Recipient recipient) {
+    new MaterialAlertDialogBuilder(callContext.getContext())
                    .setTitle(R.string.CommunicationActions_insecure_call)
                    .setMessage(R.string.CommunicationActions_carrier_charges_may_apply)
                    .setPositiveButton(R.string.CommunicationActions_call, (d, w) -> {
                      d.dismiss();
-                     startInsecureCallInternal(activity, recipient);
+                     startInsecureCallInternal(callContext, recipient);
                    })
                    .setNegativeButton(R.string.CommunicationActions_cancel, (d, w) -> d.dismiss())
                    .show();
@@ -263,62 +299,114 @@ public class CommunicationActions {
     }
   }
 
-  private static void startInsecureCallInternal(@NonNull Activity activity, @NonNull Recipient recipient) {
+  private static void startInsecureCallInternal(@NonNull CallContext callContext, @NonNull Recipient recipient) {
     try {
       Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + recipient.requireSmsAddress()));
-      activity.startActivity(dialIntent);
+      callContext.startActivity(dialIntent);
     } catch (ActivityNotFoundException anfe) {
       Log.w(TAG, anfe);
-      Dialogs.showAlertDialog(activity,
-                              activity.getString(R.string.ConversationActivity_calls_not_supported),
-                              activity.getString(R.string.ConversationActivity_this_device_does_not_appear_to_support_dial_actions));
+      Dialogs.showAlertDialog(callContext.getContext(),
+                              callContext.getContext().getString(R.string.ConversationActivity_calls_not_supported),
+                              callContext.getContext().getString(R.string.ConversationActivity_this_device_does_not_appear_to_support_dial_actions));
     }
   }
 
-  private static void startCallInternal(@NonNull FragmentActivity activity, @NonNull Recipient recipient, boolean isVideo) {
-    if (isVideo) startVideoCallInternal(activity, recipient);
-    else         startAudioCallInternal(activity, recipient);
+  private static void startCallInternal(@NonNull CallContext callContext, @NonNull Recipient recipient, boolean isVideo) {
+    if (isVideo) startVideoCallInternal(callContext, recipient);
+    else         startAudioCallInternal(callContext, recipient);
   }
 
-  private static void startAudioCallInternal(@NonNull FragmentActivity activity, @NonNull Recipient recipient) {
-    Permissions.with(activity)
+  private static void startAudioCallInternal(@NonNull CallContext callContext, @NonNull Recipient recipient) {
+    callContext.getPermissionsBuilder()
                .request(Manifest.permission.RECORD_AUDIO)
                .ifNecessary()
-               .withRationaleDialog(activity.getString(R.string.ConversationActivity__to_call_s_signal_needs_access_to_your_microphone, recipient.getDisplayName(activity)),
+               .withRationaleDialog(callContext.getContext().getString(R.string.ConversationActivity__to_call_s_signal_needs_access_to_your_microphone, recipient.getDisplayName(callContext.getContext())),
                    R.drawable.ic_mic_solid_24)
-               .withPermanentDenialDialog(activity.getString(R.string.ConversationActivity__to_call_s_signal_needs_access_to_your_microphone, recipient.getDisplayName(activity)))
+               .withPermanentDenialDialog(callContext.getContext().getString(R.string.ConversationActivity__to_call_s_signal_needs_access_to_your_microphone, recipient.getDisplayName(callContext.getContext())))
                .onAllGranted(() -> {
                  ApplicationDependencies.getSignalCallManager().startOutgoingAudioCall(recipient);
 
                  MessageSender.onMessageSent();
 
-                 Intent activityIntent = new Intent(activity, WebRtcCallActivity.class);
+                 Intent activityIntent = new Intent(callContext.getContext(), WebRtcCallActivity.class);
 
                  activityIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-                 activity.startActivity(activityIntent);
+                 callContext.startActivity(activityIntent);
                })
                .execute();
   }
 
-  private static void startVideoCallInternal(@NonNull FragmentActivity activity, @NonNull Recipient recipient) {
-    Permissions.with(activity)
+  private static void startVideoCallInternal(@NonNull CallContext callContext, @NonNull Recipient recipient) {
+    callContext.getPermissionsBuilder()
                .request(Manifest.permission.RECORD_AUDIO, Manifest.permission.CAMERA)
                .ifNecessary()
-               .withRationaleDialog(activity.getString(R.string.ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s, recipient.getDisplayName(activity)),
+               .withRationaleDialog(callContext.getContext().getString(R.string.ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s, recipient.getDisplayName(callContext.getContext())),
                                     R.drawable.ic_mic_solid_24,
                                     R.drawable.ic_video_solid_24_tinted)
-               .withPermanentDenialDialog(activity.getString(R.string.ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s, recipient.getDisplayName(activity)))
+               .withPermanentDenialDialog(callContext.getContext().getString(R.string.ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s, recipient.getDisplayName(callContext.getContext())))
                .onAllGranted(() -> {
                  ApplicationDependencies.getSignalCallManager().startPreJoinCall(recipient);
 
-                 Intent activityIntent = new Intent(activity, WebRtcCallActivity.class);
+                 Intent activityIntent = new Intent(callContext.getContext(), WebRtcCallActivity.class);
 
                  activityIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                      .putExtra(WebRtcCallActivity.EXTRA_ENABLE_VIDEO_IF_AVAILABLE, true);
 
-                 activity.startActivity(activityIntent);
+                 callContext.startActivity(activityIntent);
                })
                .execute();
+  }
+
+  private interface CallContext {
+    @NonNull Permissions.PermissionsBuilder getPermissionsBuilder();
+    void startActivity(@NonNull Intent intent);
+    @NonNull Context getContext();
+  }
+
+  private static class ActivityCallContext implements CallContext {
+    private final Activity activity;
+
+    private ActivityCallContext(Activity activity) {
+      this.activity = activity;
+    }
+
+    @Override
+    public @NonNull Permissions.PermissionsBuilder getPermissionsBuilder() {
+      return Permissions.with(activity);
+    }
+
+    @Override
+    public void startActivity(@NonNull Intent intent) {
+      activity.startActivity(intent);
+    }
+
+    @Override
+    public @NonNull Context getContext() {
+      return activity;
+    }
+  }
+
+  private static class FragmentCallContext implements CallContext {
+    private final Fragment fragment;
+
+    private FragmentCallContext(Fragment fragment) {
+      this.fragment = fragment;
+    }
+
+    @Override
+    public @NonNull Permissions.PermissionsBuilder getPermissionsBuilder() {
+      return Permissions.with(fragment);
+    }
+
+    @Override
+    public void startActivity(@NonNull Intent intent) {
+      fragment.startActivity(intent);
+    }
+
+    @Override
+    public @NonNull Context getContext() {
+      return fragment.requireContext();
+    }
   }
 }

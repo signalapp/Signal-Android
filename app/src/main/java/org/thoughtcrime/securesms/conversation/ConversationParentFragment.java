@@ -1445,9 +1445,9 @@ public class ConversationParentFragment extends Fragment
     if (recipient == null) return;
 
     if (isSecure) {
-      CommunicationActions.startVoiceCall(requireActivity(), recipient);
+      CommunicationActions.startVoiceCall(this, recipient);
     } else {
-      CommunicationActions.startInsecureCall(requireActivity(), recipient);
+      CommunicationActions.startInsecureCall(this, recipient);
     }
   }
 
@@ -1460,7 +1460,7 @@ public class ConversationParentFragment extends Fragment
                                           .setPositiveButton(android.R.string.ok, (d, w) -> d.dismiss())
                                           .show();
     } else {
-      CommunicationActions.startVideoCall(requireActivity(), recipient);
+      CommunicationActions.startVideoCall(this, recipient);
     }
   }
 
@@ -3485,7 +3485,7 @@ public class ConversationParentFragment extends Fragment
   private class QuickCameraToggleListener implements OnClickListener {
     @Override
     public void onClick(View v) {
-      Permissions.with(requireActivity())
+      Permissions.with(ConversationParentFragment.this)
                  .request(Manifest.permission.CAMERA)
                  .ifNecessary()
                  .withRationaleDialog(getString(R.string.ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera), R.drawable.ic_camera_24)
