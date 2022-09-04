@@ -55,6 +55,7 @@ object SodiumUtilities {
     }
 
     /* Constructs a "blinded" key pair (`ka, kA`) based on an open group server `publicKey` and an ed25519 `keyPair` */
+    @JvmStatic
     fun blindedKeyPair(serverPublicKey: String, edKeyPair: KeyPair): KeyPair?  {
         if (edKeyPair.publicKey.asBytes.size != PUBLIC_KEY_LENGTH || edKeyPair.secretKey.asBytes.size != SECRET_KEY_LENGTH) return null
         val kBytes = generateBlindingFactor(serverPublicKey) ?: return null

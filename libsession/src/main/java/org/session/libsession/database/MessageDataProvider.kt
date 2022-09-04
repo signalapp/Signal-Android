@@ -33,7 +33,7 @@ interface MessageDataProvider {
     fun insertAttachment(messageId: Long, attachmentId: AttachmentId, stream : InputStream)
     fun updateAudioAttachmentDuration(attachmentId: AttachmentId, durationMs: Long, threadId: Long)
     fun isMmsOutgoing(mmsMessageId: Long): Boolean
-    fun isOutgoingMessage(mmsId: Long): Boolean
+    fun isOutgoingMessage(timestamp: Long): Boolean
     fun handleSuccessfulAttachmentUpload(attachmentId: Long, attachmentStream: SignalServiceAttachmentStream, attachmentKey: ByteArray, uploadResult: UploadResult)
     fun handleFailedAttachmentUpload(attachmentId: Long)
     fun getMessageForQuote(timestamp: Long, author: Address): Pair<Long, Boolean>?

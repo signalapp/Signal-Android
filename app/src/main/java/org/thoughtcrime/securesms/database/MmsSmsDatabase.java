@@ -74,7 +74,8 @@ public class MmsSmsDatabase extends Database {
                                               MmsDatabase.QUOTE_MISSING,
                                               MmsDatabase.QUOTE_ATTACHMENT,
                                               MmsDatabase.SHARED_CONTACTS,
-                                              MmsDatabase.LINK_PREVIEWS};
+                                              MmsDatabase.LINK_PREVIEWS,
+                                              ReactionDatabase.REACTION_JSON_ALIAS};
 
   public MmsSmsDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
     super(context, databaseHelper);
@@ -145,7 +146,7 @@ public class MmsSmsDatabase extends Database {
 
   public Cursor getUnread() {
     String order           = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " ASC";
-    String selection       = MmsSmsColumns.READ + " = 0 AND " + MmsSmsColumns.NOTIFIED + " = 0";
+    String selection       = "(" + MmsSmsColumns.READ + " = 0 OR " + MmsSmsColumns.REACTIONS_UNREAD + " = 1) AND " + MmsSmsColumns.NOTIFIED + " = 0";
 
     return queryTables(PROJECTION, selection, order, null);
   }
@@ -219,6 +220,18 @@ public class MmsSmsDatabase extends Database {
   }
 
   private Cursor queryTables(String[] projection, String selection, String order, String limit) {
+    String reactionsColumn = "json_group_array(json_object(" +
+            "'" + ReactionDatabase.ROW_ID + "', " + ReactionDatabase.TABLE_NAME + "." + ReactionDatabase.ROW_ID + ", " +
+            "'" + ReactionDatabase.MESSAGE_ID + "', " + ReactionDatabase.TABLE_NAME + "." + ReactionDatabase.MESSAGE_ID + ", " +
+            "'" + ReactionDatabase.IS_MMS + "', " + ReactionDatabase.TABLE_NAME + "." + ReactionDatabase.IS_MMS + ", " +
+            "'" + ReactionDatabase.AUTHOR_ID + "', " + ReactionDatabase.TABLE_NAME + "." + ReactionDatabase.AUTHOR_ID + ", " +
+            "'" + ReactionDatabase.EMOJI + "', " + ReactionDatabase.TABLE_NAME + "." + ReactionDatabase.EMOJI + ", " +
+            "'" + ReactionDatabase.SERVER_ID + "', " + ReactionDatabase.TABLE_NAME + "." + ReactionDatabase.SERVER_ID + ", " +
+            "'" + ReactionDatabase.COUNT + "', " + ReactionDatabase.TABLE_NAME + "." + ReactionDatabase.COUNT + ", " +
+            "'" + ReactionDatabase.SORT_ID + "', " + ReactionDatabase.TABLE_NAME + "." + ReactionDatabase.SORT_ID + ", " +
+            "'" + ReactionDatabase.DATE_SENT + "', " + ReactionDatabase.TABLE_NAME + "." + ReactionDatabase.DATE_SENT + ", " +
+            "'" + ReactionDatabase.DATE_RECEIVED + "', " + ReactionDatabase.TABLE_NAME + "." + ReactionDatabase.DATE_RECEIVED +
+            ")) AS " + ReactionDatabase.REACTION_JSON_ALIAS;
     String[] mmsProjection = {MmsDatabase.DATE_SENT + " AS " + MmsSmsColumns.NORMALIZED_DATE_SENT,
                               MmsDatabase.DATE_RECEIVED + " AS " + MmsSmsColumns.NORMALIZED_DATE_RECEIVED,
                               MmsDatabase.TABLE_NAME + "." + MmsDatabase.ID + " AS " + MmsSmsColumns.ID,
@@ -248,6 +261,7 @@ public class MmsSmsDatabase extends Database {
                                   "'" + AttachmentDatabase.STICKER_PACK_KEY + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.STICKER_PACK_KEY + ", " +
                                   "'" + AttachmentDatabase.STICKER_ID + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.STICKER_ID +
                                   ")) AS " + AttachmentDatabase.ATTACHMENT_JSON_ALIAS,
+                              reactionsColumn,
                               SmsDatabase.BODY, MmsSmsColumns.READ, MmsSmsColumns.THREAD_ID,
                               SmsDatabase.TYPE, SmsDatabase.ADDRESS, SmsDatabase.ADDRESS_DEVICE_ID, SmsDatabase.SUBJECT, MmsDatabase.MESSAGE_TYPE,
                               MmsDatabase.MESSAGE_BOX, SmsDatabase.STATUS, MmsDatabase.PART_COUNT,
@@ -274,6 +288,7 @@ public class MmsSmsDatabase extends Database {
                                   + " || '::' || " + SmsDatabase.DATE_SENT
                                   + " AS " + MmsSmsColumns.UNIQUE_ROW_ID,
                               "NULL AS " + AttachmentDatabase.ATTACHMENT_JSON_ALIAS,
+                              reactionsColumn,
                               SmsDatabase.BODY, MmsSmsColumns.READ, MmsSmsColumns.THREAD_ID,
                               SmsDatabase.TYPE, SmsDatabase.ADDRESS, SmsDatabase.ADDRESS_DEVICE_ID, SmsDatabase.SUBJECT, MmsDatabase.MESSAGE_TYPE,
                               MmsDatabase.MESSAGE_BOX, SmsDatabase.STATUS, MmsDatabase.PART_COUNT,
@@ -299,10 +314,14 @@ public class MmsSmsDatabase extends Database {
     mmsQueryBuilder.setDistinct(true);
     smsQueryBuilder.setDistinct(true);
 
-    smsQueryBuilder.setTables(SmsDatabase.TABLE_NAME);
-    mmsQueryBuilder.setTables(MmsDatabase.TABLE_NAME + " LEFT OUTER JOIN " +
-                              AttachmentDatabase.TABLE_NAME +
-                              " ON " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.MMS_ID + " = " + MmsDatabase.TABLE_NAME + "." + MmsDatabase.ID);
+    smsQueryBuilder.setTables(SmsDatabase.TABLE_NAME +
+                              " LEFT OUTER JOIN " + ReactionDatabase.TABLE_NAME +
+                              " ON " + ReactionDatabase.TABLE_NAME + "." + ReactionDatabase.MESSAGE_ID + " = " + SmsDatabase.TABLE_NAME + "." + SmsDatabase.ID + " AND " + ReactionDatabase.TABLE_NAME + "." + ReactionDatabase.IS_MMS + " = 0");
+    mmsQueryBuilder.setTables(MmsDatabase.TABLE_NAME +
+                              " LEFT OUTER JOIN " + AttachmentDatabase.TABLE_NAME +
+                              " ON " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.MMS_ID + " = " + MmsDatabase.TABLE_NAME + "." + MmsDatabase.ID +
+                              " LEFT OUTER JOIN " + ReactionDatabase.TABLE_NAME +
+                              " ON " + ReactionDatabase.TABLE_NAME + "." + ReactionDatabase.MESSAGE_ID + " = " + MmsDatabase.TABLE_NAME + "." + MmsDatabase.ID + " AND " + ReactionDatabase.TABLE_NAME + "." + ReactionDatabase.IS_MMS + " = 1");
 
 
     Set<String> mmsColumnsPresent = new HashSet<>();
@@ -362,6 +381,16 @@ public class MmsSmsDatabase extends Database {
     mmsColumnsPresent.add(MmsDatabase.QUOTE_ATTACHMENT);
     mmsColumnsPresent.add(MmsDatabase.SHARED_CONTACTS);
     mmsColumnsPresent.add(MmsDatabase.LINK_PREVIEWS);
+    mmsColumnsPresent.add(ReactionDatabase.MESSAGE_ID);
+    mmsColumnsPresent.add(ReactionDatabase.IS_MMS);
+    mmsColumnsPresent.add(ReactionDatabase.AUTHOR_ID);
+    mmsColumnsPresent.add(ReactionDatabase.EMOJI);
+    mmsColumnsPresent.add(ReactionDatabase.SERVER_ID);
+    mmsColumnsPresent.add(ReactionDatabase.COUNT);
+    mmsColumnsPresent.add(ReactionDatabase.SORT_ID);
+    mmsColumnsPresent.add(ReactionDatabase.DATE_SENT);
+    mmsColumnsPresent.add(ReactionDatabase.DATE_RECEIVED);
+    mmsColumnsPresent.add(ReactionDatabase.REACTION_JSON_ALIAS);
 
     Set<String> smsColumnsPresent = new HashSet<>();
     smsColumnsPresent.add(MmsSmsColumns.ID);
@@ -383,11 +412,22 @@ public class MmsSmsDatabase extends Database {
     smsColumnsPresent.add(SmsDatabase.DATE_RECEIVED);
     smsColumnsPresent.add(SmsDatabase.STATUS);
     smsColumnsPresent.add(SmsDatabase.UNIDENTIFIED);
+    smsColumnsPresent.add(ReactionDatabase.ROW_ID);
+    smsColumnsPresent.add(ReactionDatabase.MESSAGE_ID);
+    smsColumnsPresent.add(ReactionDatabase.IS_MMS);
+    smsColumnsPresent.add(ReactionDatabase.AUTHOR_ID);
+    smsColumnsPresent.add(ReactionDatabase.EMOJI);
+    smsColumnsPresent.add(ReactionDatabase.SERVER_ID);
+    smsColumnsPresent.add(ReactionDatabase.COUNT);
+    smsColumnsPresent.add(ReactionDatabase.SORT_ID);
+    smsColumnsPresent.add(ReactionDatabase.DATE_SENT);
+    smsColumnsPresent.add(ReactionDatabase.DATE_RECEIVED);
+    smsColumnsPresent.add(ReactionDatabase.REACTION_JSON_ALIAS);
 
     @SuppressWarnings("deprecation")
-    String mmsSubQuery = mmsQueryBuilder.buildUnionSubQuery(TRANSPORT, mmsProjection, mmsColumnsPresent, 4, MMS_TRANSPORT, selection, null, MmsDatabase.TABLE_NAME + "." + MmsDatabase.ID, null);
+    String mmsSubQuery = mmsQueryBuilder.buildUnionSubQuery(TRANSPORT, mmsProjection, mmsColumnsPresent, 5, MMS_TRANSPORT, selection, null, MmsDatabase.TABLE_NAME + "." + MmsDatabase.ID, null);
     @SuppressWarnings("deprecation")
-    String smsSubQuery = smsQueryBuilder.buildUnionSubQuery(TRANSPORT, smsProjection, smsColumnsPresent, 4, SMS_TRANSPORT, selection, null, null, null);
+    String smsSubQuery = smsQueryBuilder.buildUnionSubQuery(TRANSPORT, smsProjection, smsColumnsPresent, 5, SMS_TRANSPORT, selection, null, SmsDatabase.TABLE_NAME + "." + SmsDatabase.ID, null);
 
     SQLiteQueryBuilder unionQueryBuilder = new SQLiteQueryBuilder();
     String unionQuery = unionQueryBuilder.buildUnionQuery(new String[] {smsSubQuery, mmsSubQuery}, order, limit);

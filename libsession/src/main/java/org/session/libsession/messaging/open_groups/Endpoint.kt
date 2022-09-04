@@ -33,6 +33,15 @@ sealed class Endpoint(val value: String) {
     data class RoomDeleteMessages(val roomToken: String, val sessionId: String) :
         Endpoint("room/$roomToken/all/$sessionId")
 
+    data class Reactors(val roomToken: String, val messageId: Long, val emoji: String):
+        Endpoint("room/$roomToken/reactors/$messageId/$emoji")
+
+    data class Reaction(val roomToken: String, val messageId: Long, val emoji: String):
+        Endpoint("room/$roomToken/reaction/$messageId/$emoji")
+
+    data class ReactionDelete(val roomToken: String, val messageId: Long, val emoji: String):
+        Endpoint("room/$roomToken/reactions/$messageId/$emoji")
+
     // Pinning
 
     data class RoomPinMessage(val roomToken: String, val messageId: Long) :

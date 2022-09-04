@@ -10,7 +10,6 @@ import org.session.libsession.messaging.utilities.SessionId
 import org.session.libsession.messaging.utilities.SodiumUtilities
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.utilities.IdPrefix
-import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2
 import org.thoughtcrime.securesms.conversation.v2.ConversationAdapter
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.database.model.MessageRecord
@@ -43,14 +42,6 @@ class ConversationActionModeCallback(private val adapter: ConversationAdapter, p
             ?.let { SessionId(IdPrefix.BLINDED, it) }?.hexString
         fun userCanDeleteSelectedItems(): Boolean {
             val allSentByCurrentUser = selectedItems.all { it.isOutgoing }
-
-            // Remove this after the unsend request is enabled
-            if (!ConversationActivityV2.IS_UNSEND_REQUESTS_ENABLED) {
-                if (openGroup == null) { return true }
-                if (allSentByCurrentUser) { return true }
-                return OpenGroupManager.isUserModerator(context, openGroup.groupId, userPublicKey, blindedPublicKey)
-            }
-
             val allReceivedByCurrentUser = selectedItems.all { !it.isOutgoing }
             if (openGroup == null) { return allSentByCurrentUser || allReceivedByCurrentUser }
             if (allSentByCurrentUser) { return true }
@@ -115,6 +106,7 @@ class ConversationActionModeCallback(private val adapter: ConversationAdapter, p
 
 interface ConversationActionModeCallbackDelegate {
 
+    fun selectMessages(messages: Set<MessageRecord>)
     fun deleteMessages(messages: Set<MessageRecord>)
     fun banUser(messages: Set<MessageRecord>)
     fun banAndDeleteAll(messages: Set<MessageRecord>)

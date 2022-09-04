@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.crypto.DatabaseSecret;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.BlindedIdMappingDatabase;
 import org.thoughtcrime.securesms.database.DraftDatabase;
+import org.thoughtcrime.securesms.database.EmojiSearchDatabase;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.GroupMemberDatabase;
 import org.thoughtcrime.securesms.database.GroupReceiptDatabase;
@@ -27,6 +28,7 @@ import org.thoughtcrime.securesms.database.LokiThreadDatabase;
 import org.thoughtcrime.securesms.database.LokiUserDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.PushDatabase;
+import org.thoughtcrime.securesms.database.ReactionDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.SearchDatabase;
 import org.thoughtcrime.securesms.database.SessionContactDatabase;
@@ -71,9 +73,11 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int lokiV34                          = 55;
   private static final int lokiV35                          = 56;
   private static final int lokiV36                          = 57;
+  private static final int lokiV37                          = 58;
+  private static final int lokiV38                          = 59;
 
   // Loki - onUpgrade(...) must be updated to use Loki version numbers if Signal makes any database changes
-  private static final int    DATABASE_VERSION = lokiV36;
+  private static final int    DATABASE_VERSION = lokiV38;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -159,7 +163,10 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     db.execSQL(GroupDatabase.getCreateUpdatedTimestampCommand());
     db.execSQL(RecipientDatabase.getCreateApprovedCommand());
     db.execSQL(RecipientDatabase.getCreateApprovedMeCommand());
-    db.execSQL(MmsDatabase.createMessageRequestResponseCommand);
+    db.execSQL(MmsDatabase.CREATE_MESSAGE_REQUEST_RESPONSE_COMMAND);
+    db.execSQL(MmsDatabase.CREATE_REACTIONS_UNREAD_COMMAND);
+    db.execSQL(SmsDatabase.CREATE_REACTIONS_UNREAD_COMMAND);
+    db.execSQL(MmsDatabase.CREATE_REACTIONS_LAST_SEEN_COMMAND);
     db.execSQL(LokiAPIDatabase.CREATE_FORK_INFO_TABLE_COMMAND);
     db.execSQL(LokiAPIDatabase.CREATE_DEFAULT_FORK_INFO_COMMAND);
     db.execSQL(LokiAPIDatabase.UPDATE_HASHES_INCLUDE_NAMESPACE_COMMAND);
@@ -171,6 +178,8 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     db.execSQL(BlindedIdMappingDatabase.CREATE_BLINDED_ID_MAPPING_TABLE_COMMAND);
     db.execSQL(GroupMemberDatabase.CREATE_GROUP_MEMBER_TABLE_COMMAND);
     db.execSQL(LokiAPIDatabase.RESET_SEQ_NO); // probably not needed but consistent with all migrations
+    db.execSQL(EmojiSearchDatabase.CREATE_EMOJI_SEARCH_TABLE_COMMAND);
+    db.execSQL(ReactionDatabase.CREATE_REACTION_TABLE_COMMAND);
 
     executeStatements(db, SmsDatabase.CREATE_INDEXS);
     executeStatements(db, MmsDatabase.CREATE_INDEXS);
@@ -179,6 +188,8 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     executeStatements(db, DraftDatabase.CREATE_INDEXS);
     executeStatements(db, GroupDatabase.CREATE_INDEXS);
     executeStatements(db, GroupReceiptDatabase.CREATE_INDEXES);
+
+    executeStatements(db, ReactionDatabase.CREATE_REACTION_TRIGGERS);
   }
 
   @Override
@@ -357,7 +368,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
         db.execSQL(RecipientDatabase.getCreateApprovedCommand());
         db.execSQL(RecipientDatabase.getCreateApprovedMeCommand());
         db.execSQL(RecipientDatabase.getUpdateApprovedCommand());
-        db.execSQL(MmsDatabase.createMessageRequestResponseCommand);
+        db.execSQL(MmsDatabase.CREATE_MESSAGE_REQUEST_RESPONSE_COMMAND);
       }
 
       if (oldVersion < lokiV32) {
@@ -389,6 +400,18 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
       if (oldVersion < lokiV36) {
         db.execSQL(LokiAPIDatabase.RESET_SEQ_NO);
+      }
+
+      if (oldVersion < lokiV37) {
+        db.execSQL(MmsDatabase.CREATE_REACTIONS_UNREAD_COMMAND);
+        db.execSQL(SmsDatabase.CREATE_REACTIONS_UNREAD_COMMAND);
+        db.execSQL(MmsDatabase.CREATE_REACTIONS_LAST_SEEN_COMMAND);
+        db.execSQL(ReactionDatabase.CREATE_REACTION_TABLE_COMMAND);
+        executeStatements(db, ReactionDatabase.CREATE_REACTION_TRIGGERS);
+      }
+
+      if (oldVersion < lokiV38) {
+        db.execSQL(EmojiSearchDatabase.CREATE_EMOJI_SEARCH_TABLE_COMMAND);
       }
 
       db.setTransactionSuccessful();

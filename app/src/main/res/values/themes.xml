@@ -3,6 +3,7 @@
 
     <!-- The base theme is dark and the light one is implemented using "notnight" resources. -->
     <style name="Base.Theme.Session" parent="@style/Theme.AppCompat.DayNight.DarkActionBar">
+        <item name="theme_type">dark</item>
         <item name="colorPrimary">@color/action_bar_background</item>
         <item name="colorPrimaryDark">@color/action_bar_background</item>
         <item name="searchBackgroundColor">#1B1B1B</item>
@@ -75,6 +76,7 @@
         <item name="menu_delete_icon">@drawable/ic_baseline_delete_24</item>
         <item name="menu_copy_icon">@drawable/ic_baseline_file_copy_24</item>
         <item name="menu_reply_icon">@drawable/ic_baseline_reply_24</item>
+        <item name="menu_select_icon">@drawable/ic_baseline_check_circle_outline_24</item>
         <item name="menu_selectall_icon">@drawable/ic_baseline_select_all_24</item>
         <item name="menu_split_icon">@drawable/ic_baseline_call_split_24</item>
         <item name="menu_popup_expand">@drawable/ic_baseline_launch_24</item>
@@ -97,6 +99,7 @@
 
         <item name="conversation_pinned_background_color">@color/conversation_pinned_background</item>
         <item name="conversation_pinned_icon_color">@color/conversation_pinned_icon</item>
+        <item name="emoji_show_less_icon">@drawable/ic_chevron_up_light</item>
     </style>
 
     <!-- This should be the default theme for the application. -->
@@ -294,6 +297,59 @@
     <style name="Theme.TextSecure.Dialog.MediaSendProgress" parent="@android:style/Theme.Dialog">
         <item name="android:background">@drawable/default_dialog_background</item>
         <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.TextSecure.Light.BottomSheetDialog" parent="Theme.Design.Light.BottomSheetDialog">
+    </style>
+
+    <style name="Theme.TextSecure.Light.BottomSheetDialog.Fixed">
+        <item name="android:windowIsFloating">false</item>
+    </style>
+
+    <style name="Theme.TextSecure.BottomSheetDialog.Fixed" parent="Theme.Design.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+    </style>
+
+    <style name="Theme.TextSecure.BottomSheetDialog.Fixed.ReactWithAny">
+        <item name="bottomSheetStyle">@style/Widget.TextSecure.BottomSheet.ReactWithAny</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+    <style name="Theme.TextSecure.BottomSheetDialog.Fixed.ReactWithAny.Shadowless">
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+    <style name="Widget.TextSecure.BottomSheet.ReactWithAny" parent="Widget.MaterialComponents.BottomSheet">
+        <item name="backgroundTint">@color/core_grey_95</item>
+        <item name="behavior_peekHeight">@dimen/react_with_any_emoji_bottom_sheet_dialog_fragment_min_height</item>
+    </style>
+
+    <style name="Theme.TextSecure.Light.BottomSheetDialog.Fixed.ReactWithAny">
+        <item name="bottomSheetStyle">@style/Widget.TextSecure.BottomSheet.ReactWithAny.Light</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+    <style name="Widget.TextSecure.BottomSheet.ReactWithAny.Light">
+        <item name="backgroundTint">@color/white</item>
+    </style>
+
+    <style name="Widget.TextSecure.ReactWithAny" parent="ThemeOverlay.MaterialComponents.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+        <item name="bottomSheetStyle">@style/Widget.TextSecure.ReactWithAny.BottomSheet</item>
+    </style>
+
+    <style name="Widget.TextSecure.ReactWithAny.BottomSheet" parent="Widget.MaterialComponents.BottomSheet">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.TextSecure.BottomSheet.Rounded</item>
+        <item name="backgroundTint">@color/react_with_any_background</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.TextSecure.BottomSheet.Rounded" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">18dp</item>
+        <item name="cornerSizeTopLeft">18dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
     </style>
 
 </resources>

@@ -8,6 +8,18 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?colorPrimary"
+        app:contentInsetStart="0dp">
+
+        <include android:id="@+id/toolbarContent"
+            layout="@layout/activity_conversation_v2_action_bar" />
+
+    </androidx.appcompat.widget.Toolbar>
+
     <org.thoughtcrime.securesms.conversation.v2.components.OpenGroupGuidelinesView
         android:id="@+id/openGroupGuidelinesView"
         android:layout_width="match_parent"
@@ -18,6 +30,7 @@
         android:id="@+id/conversationRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/toolbar"
         android:layout_above="@+id/typingIndicatorViewContainer" />
 
     <org.thoughtcrime.securesms.conversation.v2.components.TypingIndicatorViewContainer
@@ -40,6 +53,22 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:visibility="gone"/>
+
+    <FrameLayout
+        android:id="@+id/reactions_shade"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/reactions_screen_light_shade_color"
+        android:foreground="@color/reactions_screen_dark_shade_color"
+        android:visibility="gone"
+        tools:visibility="visible"/>
+
+    <ViewStub
+        android:id="@+id/conversation_reaction_scrubber_stub"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:inflatedId="@+id/conversation_reaction_scrubber"
+        android:layout="@layout/conversation_reaction_scrubber"/>
 
     <FrameLayout
         android:id="@+id/additionalContentContainer"

@@ -11,48 +11,50 @@
         android:id="@+id/dateBreakTextView"
         android:layout_width="match_parent"
         android:layout_height="@dimen/large_spacing"
-        tools:text="@tools:sample/date/hhmmss"
         android:gravity="center"
         android:textColor="@color/text"
         android:textSize="@dimen/very_small_font_size"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        tools:text="@tools:sample/date/hhmmss" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/mainContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="bottom">
+        android:gravity="bottom"
+        android:paddingBottom="@dimen/small_spacing">
 
         <View
             android:id="@+id/startSpacing"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             android:layout_width="8dp"
-            android:layout_height="1dp"/>
+            android:layout_height="1dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <include
-            tools:visibility="gone"
             android:id="@+id/profilePictureView"
             layout="@layout/view_profile_picture"
             android:layout_marginBottom="@dimen/small_spacing"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/startSpacing"
-            app:layout_constraintEnd_toStartOf="@+id/expirationTimerViewContainer"
             android:layout_marginEnd="@dimen/small_spacing"
             android:layout_width="@dimen/very_small_profile_picture_size"
             android:layout_height="@dimen/very_small_profile_picture_size"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            app:layout_constraintEnd_toStartOf="@+id/messageInnerContainer"
+            app:layout_constraintBottom_toBottomOf="@id/messageInnerContainer"
+            app:layout_constraintStart_toEndOf="@+id/startSpacing"
+            tools:visibility="visible" />
 
         <ImageView
-            android:visibility="gone"
             android:id="@+id/moderatorIconImageView"
             android:layout_width="16dp"
             android:layout_height="16dp"
-            app:layout_constraintBottom_toBottomOf="@+id/profilePictureView"
-            app:layout_constraintEnd_toEndOf="@+id/profilePictureView"
             android:layout_marginEnd="-4dp"
             android:layout_marginBottom="-4dp"
-            android:src="@drawable/ic_crown" />
+            android:src="@drawable/ic_crown"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/profilePictureView"
+            app:layout_constraintEnd_toEndOf="@+id/profilePictureView"
+            tools:visibility="visible" />
 
         <TextView
             android:id="@+id/senderNameTextView"
@@ -62,15 +64,15 @@
             android:layout_marginEnd="12dp"
             android:ellipsize="end"
             android:maxLines="1"
+            android:paddingBottom="4dp"
             android:textColor="@color/text"
             android:textStyle="bold"
-            tools:text="@tools:sample/full_names"
-            android:paddingBottom="4dp"
-            app:layout_constraintStart_toStartOf="@+id/expirationTimerViewContainer"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintStart_toStartOf="@+id/messageInnerContainer"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@tools:sample/full_names" />
 
         <LinearLayout
-            android:id="@+id/expirationTimerViewContainer"
+            android:id="@+id/messageInnerContainer"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -82,33 +84,41 @@
             <org.thoughtcrime.securesms.conversation.v2.messages.VisibleMessageContentView
                 android:id="@+id/messageContentView"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                />
+                android:layout_height="wrap_content" />
 
             <org.thoughtcrime.securesms.conversation.v2.components.ExpirationTimerView
-                tools:visibility="visible"
-                android:visibility="gone"
                 android:id="@+id/expirationTimerView"
                 android:layout_width="12dp"
                 android:layout_height="12dp"
                 android:layout_gravity="center_vertical"
-                android:layout_marginHorizontal="@dimen/small_spacing" />
+                android:layout_marginHorizontal="@dimen/small_spacing"
+                android:visibility="invisible"
+                tools:visibility="visible" />
 
             <View
                 android:id="@+id/messageContentSpacing"
-                android:minWidth="@dimen/very_large_spacing"
-                android:layout_weight="1"
                 android:layout_width="0dp"
-                android:layout_height="0dp"/>
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:minWidth="@dimen/very_large_spacing" />
 
         </LinearLayout>
+
+        <org.thoughtcrime.securesms.conversation.v2.messages.EmojiReactionsView
+            android:id="@+id/emojiReactionsView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintEnd_toStartOf="@+id/messageTimestampContainer"
+            app:layout_constraintStart_toStartOf="@+id/messageInnerContainer"
+            app:layout_constraintTop_toBottomOf="@id/messageInnerContainer" />
 
         <RelativeLayout
             android:id="@+id/messageTimestampContainer"
             android:layout_width="@dimen/medium_spacing"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="@+id/expirationTimerViewContainer">
+            app:layout_constraintBottom_toBottomOf="@+id/messageInnerContainer">
 
             <ImageView
                 android:id="@+id/messageStatusImageView"

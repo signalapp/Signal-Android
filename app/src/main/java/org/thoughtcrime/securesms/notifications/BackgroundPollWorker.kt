@@ -37,7 +37,7 @@ class BackgroundPollWorker(val context: Context, params: WorkerParameters) : Wor
             val workRequest = builder.build()
             WorkManager.getInstance(context).enqueueUniquePeriodicWork(
                 TAG,
-                ExistingPeriodicWorkPolicy.KEEP,
+                ExistingPeriodicWorkPolicy.REPLACE,
                 workRequest
             )
         }

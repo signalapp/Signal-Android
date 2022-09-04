@@ -13,8 +13,10 @@ import org.session.libsession.messaging.messages.Message
 import org.session.libsession.messaging.messages.control.ExpirationTimerUpdate
 import org.session.libsession.messaging.messages.visible.ParsedMessage
 import org.session.libsession.messaging.messages.visible.VisibleMessage
+import org.session.libsession.messaging.open_groups.OpenGroupApi
 import org.session.libsession.messaging.sending_receiving.MessageReceiver
 import org.session.libsession.messaging.sending_receiving.handle
+import org.session.libsession.messaging.sending_receiving.handleOpenGroupReactions
 import org.session.libsession.messaging.sending_receiving.handleVisibleMessage
 import org.session.libsession.messaging.utilities.Data
 import org.session.libsession.messaging.utilities.SessionId
@@ -27,7 +29,8 @@ import org.session.libsignal.utilities.Log
 data class MessageReceiveParameters(
     val data: ByteArray,
     val serverHash: String? = null,
-    val openGroupMessageServerID: Long? = null
+    val openGroupMessageServerID: Long? = null,
+    val reactions: Map<String, OpenGroupApi.Reaction>? = null
 )
 
 class BatchMessageReceiveJob(
@@ -114,10 +117,13 @@ class BatchMessageReceiveJob(
                                         runThreadUpdate = false,
                                         runProfileUpdate = true
                                     )
-                                    if (messageId != null) {
+                                    if (messageId != null && message.reaction == null) {
                                         val isUserBlindedSender = message.sender == serverPublicKey?.let { SodiumUtilities.blindedKeyPair(it, MessagingModuleConfiguration.shared.getUserED25519KeyPair()!!) }?.let { SessionId(
                                             IdPrefix.BLINDED, it.publicKey.asBytes).hexString }
                                         messageIds += messageId to (message.sender == localUserPublicKey || isUserBlindedSender)
+                                    }
+                                    parameters.openGroupMessageServerID?.let {
+                                        MessageReceiver.handleOpenGroupReactions(threadId, it, parameters.reactions)
                                     }
                                 } else {
                                     MessageReceiver.handle(message, proto, openGroupID)

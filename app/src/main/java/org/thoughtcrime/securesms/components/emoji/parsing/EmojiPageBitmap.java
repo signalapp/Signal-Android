@@ -48,7 +48,7 @@ public class EmojiPageBitmap {
     } else {
       Callable<Bitmap> callable = () -> {
         try {
-          Log.i(TAG, "loading page " + model.getSprite());
+          Log.i(TAG, "loading page " + model.getSpriteUri().toString());
           return loadPage();
         } catch (IOException ioe) {
           Log.w(TAG, ioe);
@@ -76,7 +76,7 @@ public class EmojiPageBitmap {
 
     float                 scale        = decodeScale;
     AssetManager          assetManager = context.getAssets();
-    InputStream           assetStream  = assetManager.open(model.getSprite());
+    InputStream           assetStream  = assetManager.open(model.getSpriteUri().toString());
     BitmapFactory.Options options      = new BitmapFactory.Options();
 
     if (org.thoughtcrime.securesms.util.Util.isLowMemory(context)) {
@@ -85,7 +85,7 @@ public class EmojiPageBitmap {
       scale = decodeScale * 2;
     }
 
-    Stopwatch stopwatch = new Stopwatch(model.getSprite());
+    Stopwatch stopwatch = new Stopwatch(model.getSpriteUri().toString());
     Bitmap    bitmap    = BitmapFactory.decodeStream(assetStream, null, options);
     stopwatch.split("decode");
 
@@ -94,7 +94,7 @@ public class EmojiPageBitmap {
     stopwatch.stop(TAG);
 
     bitmapReference = new SoftReference<>(scaledBitmap);
-    Log.i(TAG, "onPageLoaded(" + model.getSprite() + ")  originalByteCount: " + bitmap.getByteCount()
+    Log.i(TAG, "onPageLoaded(" + model.getSpriteUri().toString() + ")  originalByteCount: " + bitmap.getByteCount()
                                                     + "  scaledByteCount: "   + scaledBitmap.getByteCount()
                                                     + "  scaledSize: "        + scaledBitmap.getWidth() + "x" + scaledBitmap.getHeight());
     return scaledBitmap;
@@ -102,6 +102,6 @@ public class EmojiPageBitmap {
 
   @Override
   public @NonNull String toString() {
-    return model.getSprite();
+    return model.getSpriteUri().toString();
   }
 }

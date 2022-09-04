@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/reactions_bottom_view_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:minHeight="340dp"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/react_with_any_emoji_bottom_sheet_dialog_fragment_tabs_height">
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/emoji_tabs"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/react_with_any_emoji_bottom_sheet_dialog_fragment_tabs_height"
+        android:layout_gravity="bottom"
+        app:tabIndicator="@null"
+        app:tabMinWidth="48dp"
+        app:tabMode="scrollable"
+        app:tabPaddingEnd="5dp"
+        app:tabPaddingStart="5dp"
+        />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/reactions_bottom_view_recipient_pager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+</LinearLayout>

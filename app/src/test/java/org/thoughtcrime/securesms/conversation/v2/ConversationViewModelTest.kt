@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.conversation.v2
 
+import com.goterl.lazysodium.utils.KeyPair
 import kotlinx.coroutines.flow.first
 import org.hamcrest.CoreMatchers.endsWith
 import org.hamcrest.CoreMatchers.equalTo
@@ -14,6 +15,7 @@ import org.mockito.Mockito.verify
 import org.mockito.kotlin.any
 import org.session.libsession.utilities.recipients.Recipient
 import org.thoughtcrime.securesms.BaseViewModelTest
+import org.thoughtcrime.securesms.database.Storage
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.repository.ConversationRepository
 import org.thoughtcrime.securesms.repository.ResultOf
@@ -22,12 +24,14 @@ import org.mockito.Mockito.`when` as whenever
 class ConversationViewModelTest: BaseViewModelTest() {
 
     private val repository = mock(ConversationRepository::class.java)
+    private val storage = mock(Storage::class.java)
 
     private val threadId = 123L
+    private val edKeyPair = mock(KeyPair::class.java)
     private lateinit var recipient: Recipient
 
     private val viewModel: ConversationViewModel by lazy {
-        ConversationViewModel(threadId, repository)
+        ConversationViewModel(threadId, edKeyPair, repository, storage)
     }
 
     @Before

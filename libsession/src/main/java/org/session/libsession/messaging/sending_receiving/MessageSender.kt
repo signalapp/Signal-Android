@@ -18,6 +18,7 @@ import org.session.libsession.messaging.messages.visible.Profile
 import org.session.libsession.messaging.messages.visible.Quote
 import org.session.libsession.messaging.messages.visible.VisibleMessage
 import org.session.libsession.messaging.open_groups.OpenGroupApi
+import org.session.libsession.messaging.open_groups.OpenGroupApi.Capability
 import org.session.libsession.messaging.open_groups.OpenGroupMessage
 import org.session.libsession.messaging.utilities.MessageWrapper
 import org.session.libsession.messaging.utilities.SessionId
@@ -242,7 +243,7 @@ object MessageSender {
             }
             else -> {}
         }
-        val messageSender = if (serverCapabilities.contains("blind") && blindedPublicKey != null) {
+        val messageSender = if (serverCapabilities.contains(Capability.BLIND.name.lowercase()) && blindedPublicKey != null) {
             SessionId(IdPrefix.BLINDED, blindedPublicKey!!).hexString
         } else {
             SessionId(IdPrefix.UN_BLINDED, userEdKeyPair.publicKey.asBytes).hexString
@@ -366,6 +367,8 @@ object MessageSender {
             if (message is VisibleMessage && !isSyncMessage) {
                 SSKEnvironment.shared.messageExpirationManager.startAnyExpiration(message.sentTimestamp!!, userPublicKey)
             }
+        } ?: run {
+            storage.updateReactionIfNeeded(message, message.sender?:userPublicKey, openGroupSentTimestamp)
         }
         // Sync the message if:
         // • it's a visible message
@@ -446,4 +449,5 @@ object MessageSender {
     fun explicitLeave(groupPublicKey: String, notifyUser: Boolean): Promise<Unit, Exception> {
         return leave(groupPublicKey, notifyUser)
     }
+
 }

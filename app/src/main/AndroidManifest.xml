@@ -221,7 +221,7 @@
             android:name="org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2"
             android:screenOrientation="portrait"
             android:parentActivityName="org.thoughtcrime.securesms.home.HomeActivity"
-            android:theme="@style/Theme.Session.DayNight.FlatActionBar">
+            android:theme="@style/Theme.Session.DayNight.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.thoughtcrime.securesms.home.HomeActivity" />

@@ -33,6 +33,7 @@ import org.thoughtcrime.securesms.components.ComposeText;
 import org.thoughtcrime.securesms.components.ControllableViewPager;
 import org.thoughtcrime.securesms.components.InputAwareLayout;
 import org.thoughtcrime.securesms.components.emoji.EmojiEditText;
+import org.thoughtcrime.securesms.components.emoji.EmojiEventListener;
 import org.thoughtcrime.securesms.components.emoji.EmojiKeyboardProvider;
 import org.thoughtcrime.securesms.components.emoji.EmojiToggle;
 import org.thoughtcrime.securesms.components.emoji.MediaKeyboard;
@@ -382,7 +383,7 @@ public class MediaSendFragment extends Fragment implements ViewTreeObserver.OnGl
 
   private void onEmojiToggleClicked(View v) {
     if (!emojiDrawer.resolved()) {
-      emojiDrawer.get().setProviders(0, new EmojiKeyboardProvider(requireContext(), new EmojiKeyboardProvider.EmojiEventListener() {
+      emojiDrawer.get().setProviders(0, new EmojiKeyboardProvider(requireContext(), new EmojiEventListener() {
         @Override
         public void onKeyEvent(KeyEvent keyEvent) {
           getActiveInputField().dispatchKeyEvent(keyEvent);

@@ -7,9 +7,11 @@ import org.session.libsession.messaging.contacts.Contact
 import org.session.libsession.messaging.jobs.AttachmentUploadJob
 import org.session.libsession.messaging.jobs.Job
 import org.session.libsession.messaging.jobs.MessageSendJob
+import org.session.libsession.messaging.messages.Message
 import org.session.libsession.messaging.messages.control.ConfigurationMessage
 import org.session.libsession.messaging.messages.control.MessageRequestResponse
 import org.session.libsession.messaging.messages.visible.Attachment
+import org.session.libsession.messaging.messages.visible.Reaction
 import org.session.libsession.messaging.messages.visible.VisibleMessage
 import org.session.libsession.messaging.open_groups.OpenGroup
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentId
@@ -188,4 +190,8 @@ interface StorageProtocol {
     fun removeLastOutboxMessageId(server: String)
     fun getOrCreateBlindedIdMapping(blindedId: String, server: String, serverPublicKey: String, fromOutbox: Boolean = false): BlindedIdMapping
 
+    fun addReaction(reaction: Reaction)
+    fun removeReaction(emoji: String, messageTimestamp: Long, author: String)
+    fun updateReactionIfNeeded(message: Message, sender: String, openGroupSentTimestamp: Long)
+    fun deleteReactions(messageId: Long, mms: Boolean)
 }

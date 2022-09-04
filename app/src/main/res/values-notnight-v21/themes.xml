@@ -2,6 +2,7 @@
 <resources>
 
     <style name="Theme.Session.Light" parent="Base.Theme.Session">
+        <item name="theme_type">light</item>
         <item name="android:navigationBarColor">?android:navigationBarColor</item>
         <item name="android:textColorHint">@color/gray50</item>
 
@@ -34,6 +35,7 @@
 
         <item name="conversation_item_audio_seek_bar_color_incoming">@color/accent</item>
         <item name="conversation_item_audio_seek_bar_color_outgoing">@color/white</item>
+        <item name="emoji_show_less_icon">@drawable/ic_chevron_up</item>
     </style>
 
     <style name="Theme.Session.DayNight" parent="Theme.Session.Light">

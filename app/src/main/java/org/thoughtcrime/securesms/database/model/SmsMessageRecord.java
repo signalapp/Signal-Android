@@ -43,12 +43,12 @@ public class SmsMessageRecord extends MessageRecord {
     long type, long threadId,
     int status, List<IdentityKeyMismatch> mismatches,
     long expiresIn, long expireStarted,
-    int readReceiptCount, boolean unidentified)
+    int readReceiptCount, boolean unidentified, List<ReactionRecord> reactions)
   {
     super(id, body, recipient, individualRecipient,
       dateSent, dateReceived, threadId, status, deliveryReceiptCount, type,
       mismatches, new LinkedList<>(),
-      expiresIn, expireStarted, readReceiptCount, unidentified);
+      expiresIn, expireStarted, readReceiptCount, unidentified, reactions);
   }
 
   public long getType() {

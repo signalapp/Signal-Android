@@ -264,4 +264,8 @@
         <item name="android:foreground">?attr/selectableItemBackground</item>
     </style>
 
+    <style name="PopupMenu.ConversationItem" parent="@style/Widget.AppCompat.PopupMenu">
+        <item name="android:dropDownHorizontalOffset">@dimen/medium_spacing</item>
+    </style>
+
 </resources>

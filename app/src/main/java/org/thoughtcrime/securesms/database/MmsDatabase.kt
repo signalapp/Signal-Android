@@ -19,7 +19,6 @@ package org.thoughtcrime.securesms.database
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
-import android.text.TextUtils
 import com.annimon.stream.Stream
 import com.google.android.mms.pdu_alt.NotificationInd
 import com.google.android.mms.pdu_alt.PduHeaders
@@ -56,13 +55,10 @@ import org.session.libsignal.utilities.Log
 import org.session.libsignal.utilities.ThreadUtils.queue
 import org.session.libsignal.utilities.guava.Optional
 import org.thoughtcrime.securesms.attachments.MmsNotificationAttachment
-import org.thoughtcrime.securesms.database.MmsDatabase
-import org.thoughtcrime.securesms.database.NoSuchMessageException
 import org.thoughtcrime.securesms.database.SmsDatabase.InsertListener
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.database.model.MessageRecord
-import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.NotificationMmsMessageRecord
 import org.thoughtcrime.securesms.database.model.Quote
 import org.thoughtcrime.securesms.dependencies.DatabaseComponent.Companion.get
@@ -269,9 +265,9 @@ class MmsDatabase(context: Context, databaseHelper: SQLCipherOpenHelper) : Messa
     private fun rawQuery(where: String, arguments: Array<String>?): Cursor {
         val database = databaseHelper.readableDatabase
         return database.rawQuery(
-            "SELECT " + MMS_PROJECTION.joinToString(",")+
-                    " FROM " + TABLE_NAME + " LEFT OUTER JOIN " + AttachmentDatabase.TABLE_NAME +
-                    " ON (" + TABLE_NAME + "." + ID + " = " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.MMS_ID + ")" +
+            "SELECT " + MMS_PROJECTION.joinToString(",") + " FROM " + TABLE_NAME +
+                    " LEFT OUTER JOIN " + AttachmentDatabase.TABLE_NAME + " ON (" + TABLE_NAME + "." + ID + " = " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.MMS_ID + ")" +
+                    " LEFT OUTER JOIN " + ReactionDatabase.TABLE_NAME + " ON (" + TABLE_NAME + "." + ID + " = " + ReactionDatabase.TABLE_NAME + "." + ReactionDatabase.MESSAGE_ID + " AND " + ReactionDatabase.TABLE_NAME + "." + ReactionDatabase.IS_MMS + " = 1)" +
                     " WHERE " + where + " GROUP BY " + TABLE_NAME + "." + ID, arguments
         )
     }
@@ -403,7 +399,7 @@ class MmsDatabase(context: Context, databaseHelper: SQLCipherOpenHelper) : Messa
 
     fun setMessagesRead(threadId: Long): List<MarkedMessageInfo> {
         return setMessagesRead(
-            THREAD_ID + " = ? AND " + READ + " = 0",
+            THREAD_ID + " = ? AND (" + READ + " = 0 OR " + REACTIONS_UNREAD + " = 1)",
             arrayOf(threadId.toString())
         )
     }
@@ -442,6 +438,7 @@ class MmsDatabase(context: Context, databaseHelper: SQLCipherOpenHelper) : Messa
             }
             val contentValues = ContentValues()
             contentValues.put(READ, 1)
+            contentValues.put(REACTIONS_UNREAD, 0)
             database.update(TABLE_NAME, contentValues, where, arguments)
             database.setTransactionSuccessful()
         } finally {
@@ -479,7 +476,7 @@ class MmsDatabase(context: Context, databaseHelper: SQLCipherOpenHelper) : Messa
                 )
                 val quoteId = cursor.getLong(cursor.getColumnIndexOrThrow(QUOTE_ID))
                 val quoteAuthor = cursor.getString(cursor.getColumnIndexOrThrow(QUOTE_AUTHOR))
-                val quoteText = cursor.getString(cursor.getColumnIndexOrThrow(QUOTE_BODY))
+                val quoteText = cursor.getString(cursor.getColumnIndexOrThrow(QUOTE_BODY)) // TODO: this should be the referenced quote
                 val quoteMissing = cursor.getInt(cursor.getColumnIndexOrThrow(QUOTE_MISSING)) == 1
                 val quoteAttachments = associatedAttachments
                     .filter { obj: DatabaseAttachment -> obj.isQuote }
@@ -498,16 +495,16 @@ class MmsDatabase(context: Context, databaseHelper: SQLCipherOpenHelper) : Messa
                 var networkFailures: List<NetworkFailure?>? = LinkedList()
                 var mismatches: List<IdentityKeyMismatch?>? = LinkedList()
                 var quote: QuoteModel? = null
-                if (quoteId > 0 && (!TextUtils.isEmpty(quoteText) || quoteAttachments.isNotEmpty())) {
+                if (quoteId > 0 && (!quoteText.isNullOrEmpty() || quoteAttachments.isNotEmpty())) {
                     quote = QuoteModel(
                         quoteId,
                         fromSerialized(quoteAuthor),
-                        quoteText,
+                        quoteText, // TODO: refactor this to use referenced quote
                         quoteMissing,
                         quoteAttachments
                     )
                 }
-                if (!TextUtils.isEmpty(mismatchDocument)) {
+                if (!mismatchDocument.isNullOrEmpty()) {
                     try {
                         mismatches = JsonUtil.fromJson(
                             mismatchDocument,
@@ -517,7 +514,7 @@ class MmsDatabase(context: Context, databaseHelper: SQLCipherOpenHelper) : Messa
                         Log.w(TAG, e)
                     }
                 }
-                if (!TextUtils.isEmpty(networkDocument)) {
+                if (!networkDocument.isNullOrEmpty()) {
                     try {
                         networkFailures =
                             JsonUtil.fromJson(networkDocument, NetworkFailureList::class.java).list
@@ -554,7 +551,7 @@ class MmsDatabase(context: Context, databaseHelper: SQLCipherOpenHelper) : Messa
         attachments: List<DatabaseAttachment>
     ): List<Contact> {
         val serializedContacts = cursor.getString(cursor.getColumnIndexOrThrow(SHARED_CONTACTS))
-        if (TextUtils.isEmpty(serializedContacts)) {
+        if (serializedContacts.isNullOrEmpty()) {
             return emptyList()
         }
         val attachmentIdMap: MutableMap<AttachmentId?, DatabaseAttachment> = HashMap()
@@ -592,7 +589,7 @@ class MmsDatabase(context: Context, databaseHelper: SQLCipherOpenHelper) : Messa
         attachments: List<DatabaseAttachment>
     ): List<LinkPreview> {
         val serializedPreviews = cursor.getString(cursor.getColumnIndexOrThrow(LINK_PREVIEWS))
-        if (TextUtils.isEmpty(serializedPreviews)) {
+        if (serializedPreviews.isNullOrEmpty()) {
             return emptyList()
         }
         val attachmentIdMap: MutableMap<AttachmentId?, DatabaseAttachment> = HashMap()
@@ -669,7 +666,6 @@ class MmsDatabase(context: Context, databaseHelper: SQLCipherOpenHelper) : Messa
         var quoteAttachments: List<Attachment?>? = LinkedList()
         if (retrieved.quote != null) {
             contentValues.put(QUOTE_ID, retrieved.quote.id)
-            contentValues.put(QUOTE_BODY, retrieved.quote.text)
             contentValues.put(QUOTE_AUTHOR, retrieved.quote.author.serialize())
             contentValues.put(QUOTE_MISSING, if (retrieved.quote.missing) 1 else 0)
             quoteAttachments = retrieved.quote.attachments
@@ -816,7 +812,6 @@ class MmsDatabase(context: Context, databaseHelper: SQLCipherOpenHelper) : Messa
         if (message.outgoingQuote != null) {
             contentValues.put(QUOTE_ID, message.outgoingQuote!!.id)
             contentValues.put(QUOTE_AUTHOR, message.outgoingQuote!!.author.serialize())
-            contentValues.put(QUOTE_BODY, message.outgoingQuote!!.text)
             contentValues.put(QUOTE_MISSING, if (message.outgoingQuote!!.missing) 1 else 0)
             quoteAttachments.addAll(message.outgoingQuote!!.attachments!!)
         }
@@ -901,7 +896,7 @@ class MmsDatabase(context: Context, databaseHelper: SQLCipherOpenHelper) : Messa
             val serializedContacts =
                 getSerializedSharedContacts(insertedAttachments, sharedContacts)
             val serializedPreviews = getSerializedLinkPreviews(insertedAttachments, linkPreviews)
-            if (!TextUtils.isEmpty(serializedContacts)) {
+            if (!serializedContacts.isNullOrEmpty()) {
                 val contactValues = ContentValues()
                 contactValues.put(SHARED_CONTACTS, serializedContacts)
                 val database = databaseHelper.readableDatabase
@@ -915,7 +910,7 @@ class MmsDatabase(context: Context, databaseHelper: SQLCipherOpenHelper) : Messa
                     Log.w(TAG, "Failed to update message with shared contact data.")
                 }
             }
-            if (!TextUtils.isEmpty(serializedPreviews)) {
+            if (!serializedPreviews.isNullOrEmpty()) {
                 val contactValues = ContentValues()
                 contactValues.put(LINK_PREVIEWS, serializedPreviews)
                 val database = databaseHelper.readableDatabase
@@ -949,29 +944,10 @@ class MmsDatabase(context: Context, databaseHelper: SQLCipherOpenHelper) : Messa
         }
         val query = queryBuilder.toString()
         val db = databaseHelper.writableDatabase
-        val values = ContentValues(3)
+        val values = ContentValues(2)
         values.put(QUOTE_MISSING, 1)
-        values.put(QUOTE_BODY, "")
         values.put(QUOTE_AUTHOR, "")
         db!!.update(TABLE_NAME, values, query, null)
-    }
-
-    fun deleteQuotedFromMessages(toDeleteRecord: MessageRecord?) {
-        if (toDeleteRecord == null) {
-            return
-        }
-        val query = "$THREAD_ID = ?"
-        rawQuery(query, arrayOf(toDeleteRecord.threadId.toString())).use { threadMmsCursor ->
-            val reader = readerFor(threadMmsCursor)
-            var messageRecord: MmsMessageRecord? = reader.next as MmsMessageRecord?
-            while (messageRecord != null) {
-                if (messageRecord.quote != null && toDeleteRecord.dateSent == messageRecord.quote?.id) {
-                    setQuoteMissing(messageRecord.id)
-                }
-                messageRecord = reader.next as MmsMessageRecord?
-            }
-            reader.close()
-        }
     }
 
     /**
@@ -997,13 +973,6 @@ class MmsDatabase(context: Context, databaseHelper: SQLCipherOpenHelper) : Messa
         queue(Runnable { attachmentDatabase.deleteAttachmentsForMessages(messageIds) })
         val groupReceiptDatabase = get(context).groupReceiptDatabase()
         groupReceiptDatabase.deleteRowsForMessages(messageIds)
-        val toDeleteList: MutableList<MessageRecord> = ArrayList()
-        getMessages(idsAsString).use { messageCursor ->
-            while (messageCursor.moveToNext()) {
-                toDeleteList.add(readerFor(messageCursor).current)
-            }
-        }
-        deleteQuotedFromMessages(toDeleteList)
         val database = databaseHelper.writableDatabase
         database.delete(TABLE_NAME, idsAsString, null)
         notifyConversationListListeners()
@@ -1017,13 +986,8 @@ class MmsDatabase(context: Context, databaseHelper: SQLCipherOpenHelper) : Messa
         queue(Runnable { attachmentDatabase.deleteAttachmentsForMessage(messageId) })
         val groupReceiptDatabase = get(context).groupReceiptDatabase()
         groupReceiptDatabase.deleteRowsForMessage(messageId)
-        var toDelete: MessageRecord?
-        getMessage(messageId).use { messageCursor ->
-            toDelete = readerFor(messageCursor).next
-        }
-        deleteQuotedFromMessages(toDelete)
         val database = databaseHelper.writableDatabase
-        database!!.delete(TABLE_NAME, ID_WHERE, arrayOf<String>(messageId.toString()))
+        database!!.delete(TABLE_NAME, ID_WHERE, arrayOf(messageId.toString()))
         val threadDeleted = get(context).threadDatabase().update(threadId, false)
         notifyConversationListeners(threadId)
         notifyStickerListeners()
@@ -1039,6 +1003,13 @@ class MmsDatabase(context: Context, databaseHelper: SQLCipherOpenHelper) : Messa
         db.update(SmsDatabase.TABLE_NAME, contentValues, "$THREAD_ID = ?", arrayOf("$fromId"))
         notifyConversationListeners(toId)
         notifyConversationListListeners()
+    }
+
+    @Throws(NoSuchMessageException::class)
+    override fun getMessageRecord(messageId: Long): MessageRecord {
+        rawQuery(RAW_ID_WHERE, arrayOf("$messageId")).use { cursor ->
+            return Reader(cursor).next ?: throw NoSuchMessageException("No message for ID: $messageId")
+        }
     }
 
     fun deleteThread(threadId: Long) {
@@ -1297,11 +1268,11 @@ class MmsDatabase(context: Context, databaseHelper: SQLCipherOpenHelper) : Messa
                     if (message.outgoingQuote != null) Quote(
                         message.outgoingQuote!!.id,
                         message.outgoingQuote!!.author,
-                        message.outgoingQuote!!.text,
+                        message.outgoingQuote!!.text, // TODO: use the referenced message's content
                         message.outgoingQuote!!.missing,
                         SlideDeck(context, message.outgoingQuote!!.attachments!!)
                     ) else null,
-                    message.sharedContacts, message.linkPreviews, false
+                    message.sharedContacts, message.linkPreviews, listOf(), false
                 )
             }
 
@@ -1350,11 +1321,11 @@ class MmsDatabase(context: Context, databaseHelper: SQLCipherOpenHelper) : Messa
             }
             var contentLocationBytes: ByteArray? = null
             var transactionIdBytes: ByteArray? = null
-            if (!TextUtils.isEmpty(contentLocation)) contentLocationBytes = toIsoBytes(
-                contentLocation!!
+            if (!contentLocation.isNullOrEmpty()) contentLocationBytes = toIsoBytes(
+                contentLocation
             )
-            if (!TextUtils.isEmpty(transactionId)) transactionIdBytes = toIsoBytes(
-                transactionId!!
+            if (!transactionId.isNullOrEmpty()) transactionIdBytes = toIsoBytes(
+                transactionId
             )
             val slideDeck = SlideDeck(context, MmsNotificationAttachment(status, messageSize))
             return NotificationMmsMessageRecord(
@@ -1426,26 +1397,27 @@ class MmsDatabase(context: Context, databaseHelper: SQLCipherOpenHelper) : Messa
                     .toList()
             )
             val quote = getQuote(cursor)
+            val reactions = get(context).reactionDatabase().getReactions(cursor)
             return MediaMmsMessageRecord(
                 id, recipient, recipient,
                 addressDeviceId, dateSent, dateReceived, deliveryReceiptCount,
                 threadId, body, slideDeck!!, partCount, box, mismatches,
                 networkFailures, subscriptionId, expiresIn, expireStarted,
-                readReceiptCount, quote, contacts, previews, unidentified
+                readReceiptCount, quote, contacts, previews, reactions, unidentified
             )
         }
 
         private fun getRecipientFor(serialized: String?): Recipient {
-            val address: Address = if (TextUtils.isEmpty(serialized) || "insert-address-token" == serialized) {
+            val address: Address = if (serialized.isNullOrEmpty() || "insert-address-token" == serialized) {
                 UNKNOWN
             } else {
-                fromSerialized(serialized!!)
+                fromSerialized(serialized)
             }
             return Recipient.from(context, address, true)
         }
 
         private fun getMismatchedIdentities(document: String?): List<IdentityKeyMismatch?>? {
-            if (!TextUtils.isEmpty(document)) {
+            if (!document.isNullOrEmpty()) {
                 try {
                     return JsonUtil.fromJson(document, IdentityKeyMismatchList::class.java).list
                 } catch (e: IOException) {
@@ -1456,7 +1428,7 @@ class MmsDatabase(context: Context, databaseHelper: SQLCipherOpenHelper) : Messa
         }
 
         private fun getFailures(document: String?): List<NetworkFailure?>? {
-            if (!TextUtils.isEmpty(document)) {
+            if (!document.isNullOrEmpty()) {
                 try {
                     return JsonUtil.fromJson(document, NetworkFailureList::class.java).list
                 } catch (ioe: IOException) {
@@ -1476,24 +1448,22 @@ class MmsDatabase(context: Context, databaseHelper: SQLCipherOpenHelper) : Messa
         private fun getQuote(cursor: Cursor): Quote? {
             val quoteId = cursor.getLong(cursor.getColumnIndexOrThrow(QUOTE_ID))
             val quoteAuthor = cursor.getString(cursor.getColumnIndexOrThrow(QUOTE_AUTHOR))
-            val quoteText = cursor.getString(cursor.getColumnIndexOrThrow(QUOTE_BODY))
-            val quoteMissing = cursor.getInt(cursor.getColumnIndexOrThrow(QUOTE_MISSING)) == 1
+            if (quoteId == 0L || quoteAuthor.isNullOrBlank()) return null
+            val retrievedQuote = get(context).mmsSmsDatabase().getMessageFor(quoteId, quoteAuthor)
+            val quoteText = retrievedQuote?.body
+            val quoteMissing = retrievedQuote == null
             val attachments = get(context).attachmentDatabase().getAttachment(cursor)
             val quoteAttachments: List<Attachment?>? =
                 Stream.of(attachments).filter { obj: DatabaseAttachment? -> obj!!.isQuote }
                     .toList()
             val quoteDeck = SlideDeck(context, quoteAttachments!!)
-            return if (quoteId > 0 && !TextUtils.isEmpty(quoteAuthor)) {
-                Quote(
-                    quoteId,
-                    fromExternal(context, quoteAuthor),
-                    quoteText,
-                    quoteMissing,
-                    quoteDeck
-                )
-            } else {
-                null
-            }
+            return Quote(
+                quoteId,
+                fromExternal(context, quoteAuthor),
+                quoteText,
+                quoteMissing,
+                quoteDeck
+            )
         }
 
         override fun close() {
@@ -1608,10 +1578,23 @@ class MmsDatabase(context: Context, databaseHelper: SQLCipherOpenHelper) : Messa
                     "'" + AttachmentDatabase.STICKER_PACK_ID + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.STICKER_PACK_ID + ", " +
                     "'" + AttachmentDatabase.STICKER_PACK_KEY + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.STICKER_PACK_KEY + ", " +
                     "'" + AttachmentDatabase.STICKER_ID + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.STICKER_ID +
-                    ")) AS " + AttachmentDatabase.ATTACHMENT_JSON_ALIAS
+                    ")) AS " + AttachmentDatabase.ATTACHMENT_JSON_ALIAS,
+            "json_group_array(json_object(" +
+                    "'" + ReactionDatabase.ROW_ID + "', " + ReactionDatabase.TABLE_NAME + "." + ReactionDatabase.ROW_ID + ", " +
+                    "'" + ReactionDatabase.MESSAGE_ID + "', " + ReactionDatabase.TABLE_NAME + "." + ReactionDatabase.MESSAGE_ID + ", " +
+                    "'" + ReactionDatabase.IS_MMS + "', " + ReactionDatabase.TABLE_NAME + "." + ReactionDatabase.IS_MMS + ", " +
+                    "'" + ReactionDatabase.AUTHOR_ID + "', " + ReactionDatabase.TABLE_NAME + "." + ReactionDatabase.AUTHOR_ID + ", " +
+                    "'" + ReactionDatabase.EMOJI + "', " + ReactionDatabase.TABLE_NAME + "." + ReactionDatabase.EMOJI + ", " +
+                    "'" + ReactionDatabase.SERVER_ID + "', " + ReactionDatabase.TABLE_NAME + "." + ReactionDatabase.SERVER_ID + ", " +
+                    "'" + ReactionDatabase.COUNT + "', " + ReactionDatabase.TABLE_NAME + "." + ReactionDatabase.COUNT + ", " +
+                    "'" + ReactionDatabase.SORT_ID + "', " + ReactionDatabase.TABLE_NAME + "." + ReactionDatabase.SORT_ID + ", " +
+                    "'" + ReactionDatabase.DATE_SENT + "', " + ReactionDatabase.TABLE_NAME + "." + ReactionDatabase.DATE_SENT + ", " +
+                    "'" + ReactionDatabase.DATE_RECEIVED + "', " + ReactionDatabase.TABLE_NAME + "." + ReactionDatabase.DATE_RECEIVED +
+                    ")) AS " + ReactionDatabase.REACTION_JSON_ALIAS
         )
         private const val RAW_ID_WHERE: String = "$TABLE_NAME._id = ?"
-        private const val RAW_ID_IN: String = "$TABLE_NAME._id IN (?)"
-        const val createMessageRequestResponseCommand: String = "ALTER TABLE $TABLE_NAME ADD COLUMN $MESSAGE_REQUEST_RESPONSE INTEGER DEFAULT 0;"
+        const val CREATE_MESSAGE_REQUEST_RESPONSE_COMMAND = "ALTER TABLE $TABLE_NAME ADD COLUMN $MESSAGE_REQUEST_RESPONSE INTEGER DEFAULT 0;"
+        const val CREATE_REACTIONS_UNREAD_COMMAND = "ALTER TABLE $TABLE_NAME ADD COLUMN $REACTIONS_UNREAD INTEGER DEFAULT 0;"
+        const val CREATE_REACTIONS_LAST_SEEN_COMMAND = "ALTER TABLE $TABLE_NAME ADD COLUMN $REACTIONS_LAST_SEEN INTEGER DEFAULT 0;"
     }
 }

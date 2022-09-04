@@ -41,7 +41,8 @@ class BackgroundGroupAddJob(val joinUrl: String): Job {
             }
             // get image
             storage.setOpenGroupPublicKey(openGroup.server, openGroup.serverPublicKey)
-            val info = OpenGroupApi.getRoomInfo(openGroup.room, openGroup.server).get()
+            val (capabilities, info) = OpenGroupApi.getCapabilitiesAndRoomInfo(openGroup.room, openGroup.server, false).get()
+            storage.setServerCapabilities(openGroup.server, capabilities.capabilities)
             val imageId = info.imageId
             storage.addOpenGroup(openGroup.joinUrl())
             if (imageId != null) {
