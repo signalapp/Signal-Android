@@ -74,6 +74,8 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -674,7 +676,7 @@ public class AttachmentDatabase extends Database {
           return new LinkedList<>();
         }
 
-        List<DatabaseAttachment> result = new LinkedList<>();
+        Set<DatabaseAttachment> result = new TreeSet<>((o1, o2) -> o1.getAttachmentId().equals(o2.getAttachmentId()) ? 0 : 1);
         JSONArray                array  = new JSONArray(cursor.getString(cursor.getColumnIndexOrThrow(ATTACHMENT_JSON_ALIAS)));
 
         for (int i=0;i<array.length();i++) {
@@ -703,7 +705,7 @@ public class AttachmentDatabase extends Database {
           }
         }
 
-        return result;
+        return new ArrayList<>(result);
       } else {
         int urlIndex = cursor.getColumnIndex(URL);
         return Collections.singletonList(new DatabaseAttachment(new AttachmentId(cursor.getLong(cursor.getColumnIndexOrThrow(ROW_ID)),

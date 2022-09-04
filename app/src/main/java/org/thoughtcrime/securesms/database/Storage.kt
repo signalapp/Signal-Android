@@ -12,6 +12,7 @@ import org.session.libsession.messaging.jobs.Job
 import org.session.libsession.messaging.jobs.JobQueue
 import org.session.libsession.messaging.jobs.MessageReceiveJob
 import org.session.libsession.messaging.jobs.MessageSendJob
+import org.session.libsession.messaging.messages.Message
 import org.session.libsession.messaging.messages.control.ConfigurationMessage
 import org.session.libsession.messaging.messages.control.MessageRequestResponse
 import org.session.libsession.messaging.messages.signal.IncomingEncryptedMessage
@@ -22,6 +23,7 @@ import org.session.libsession.messaging.messages.signal.OutgoingGroupMediaMessag
 import org.session.libsession.messaging.messages.signal.OutgoingMediaMessage
 import org.session.libsession.messaging.messages.signal.OutgoingTextMessage
 import org.session.libsession.messaging.messages.visible.Attachment
+import org.session.libsession.messaging.messages.visible.Reaction
 import org.session.libsession.messaging.messages.visible.VisibleMessage
 import org.session.libsession.messaging.open_groups.GroupMember
 import org.session.libsession.messaging.open_groups.OpenGroup
@@ -49,6 +51,8 @@ import org.session.libsignal.utilities.KeyHelper
 import org.session.libsignal.utilities.guava.Optional
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
+import org.thoughtcrime.securesms.database.model.MessageId
+import org.thoughtcrime.securesms.database.model.ReactionRecord
 import org.thoughtcrime.securesms.dependencies.DatabaseComponent
 import org.thoughtcrime.securesms.groups.OpenGroupManager
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob
@@ -567,9 +571,8 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         OpenGroupManager.addOpenGroup(urlAsString, context)
     }
 
-    override fun onOpenGroupAdded(urlAsString: String) {
-        val server = OpenGroup.getServer(urlAsString)
-        OpenGroupManager.restartPollerForServer(server.toString().removeSuffix("/"))
+    override fun onOpenGroupAdded(server: String) {
+        OpenGroupManager.restartPollerForServer(server.removeSuffix("/"))
     }
 
     override fun hasBackgroundGroupAddJob(groupJoinUrl: String): Boolean {
@@ -888,4 +891,57 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         db.addBlindedIdMapping(mapping)
         return mapping
     }
+
+    override fun addReaction(reaction: Reaction) {
+        val timestamp = reaction.timestamp
+        val localId = reaction.localId
+        val isMms = reaction.isMms
+        val messageId = if (localId != null && localId > 0 && isMms != null) {
+            MessageId(localId, isMms)
+        } else if (timestamp != null && timestamp > 0) {
+            val messageRecord = DatabaseComponent.get(context).mmsSmsDatabase().getMessageForTimestamp(timestamp) ?: return
+            MessageId(messageRecord.id, messageRecord.isMms)
+        } else return
+        DatabaseComponent.get(context).reactionDatabase().addReaction(
+            messageId,
+            ReactionRecord(
+                messageId = messageId.id,
+                isMms = messageId.mms,
+                author = reaction.publicKey!!,
+                emoji = reaction.emoji!!,
+                serverId = reaction.serverId!!,
+                count = reaction.count!!,
+                sortId = reaction.index!!,
+                dateSent = reaction.dateSent!!,
+                dateReceived = reaction.dateReceived!!
+            )
+        )
+    }
+
+    override fun removeReaction(emoji: String, messageTimestamp: Long, author: String) {
+        val messageRecord = DatabaseComponent.get(context).mmsSmsDatabase().getMessageForTimestamp(messageTimestamp) ?: return
+        val messageId = MessageId(messageRecord.id, messageRecord.isMms)
+        DatabaseComponent.get(context).reactionDatabase().deleteReaction(emoji, messageId, author)
+    }
+
+    override fun updateReactionIfNeeded(message: Message, sender: String, openGroupSentTimestamp: Long) {
+        val database = DatabaseComponent.get(context).reactionDatabase()
+        var reaction = database.getReactionFor(message.sentTimestamp!!, sender) ?: return
+        if (openGroupSentTimestamp != -1L) {
+            addReceivedMessageTimestamp(openGroupSentTimestamp)
+            reaction = reaction.copy(dateSent = openGroupSentTimestamp)
+        }
+        message.serverHash?.let {
+            reaction = reaction.copy(serverId = it)
+        }
+        message.openGroupServerMessageID?.let {
+            reaction = reaction.copy(serverId = "$it")
+        }
+        database.updateReaction(reaction)
+    }
+
+    override fun deleteReactions(messageId: Long, mms: Boolean) {
+        DatabaseComponent.get(context).reactionDatabase().deleteMessageReactions(MessageId(messageId, mms))
+    }
+
 }

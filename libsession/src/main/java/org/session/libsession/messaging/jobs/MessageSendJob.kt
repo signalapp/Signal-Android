@@ -44,7 +44,7 @@ class MessageSendJob(val message: Message, val destination: Destination) : Job {
         }
 
         if (message != null) {
-            if (!messageDataProvider.isOutgoingMessage(message.sentTimestamp!!)) return // The message has been deleted
+            if (!messageDataProvider.isOutgoingMessage(message.sentTimestamp!!) && message.reaction == null) return // The message has been deleted
             val attachmentIDs = mutableListOf<Long>()
             attachmentIDs.addAll(message.attachmentIDs)
             message.quote?.let { it.attachmentID?.let { attachmentID -> attachmentIDs.add(attachmentID) } }

@@ -74,10 +74,10 @@ public class EmojiTree {
     }
   }
 
-  public @Nullable EmojiDrawInfo getEmoji(CharSequence unicode, int startPosition, int endPostiion) {
+  public @Nullable EmojiDrawInfo getEmoji(CharSequence unicode, int startPosition, int endPosition) {
     EmojiTreeNode tree = root;
 
-    for (int i=startPosition; i<endPostiion; i++) {
+    for (int i=startPosition; i<endPosition; i++) {
       char character = unicode.charAt(i);
 
       if (!tree.hasChild(character)) {
@@ -88,7 +88,7 @@ public class EmojiTree {
     }
 
     if      (tree.getEmoji() != null)                                                  return tree.getEmoji();
-    else if (unicode.charAt(endPostiion-1) != TERMINATOR && tree.hasChild(TERMINATOR)) return tree.getChild(TERMINATOR).getEmoji();
+    else if (unicode.charAt(endPosition-1) != TERMINATOR && tree.hasChild(TERMINATOR)) return tree.getChild(TERMINATOR).getEmoji();
     else    return null;
   }
 

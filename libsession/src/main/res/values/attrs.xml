@@ -69,6 +69,7 @@
     <attr name="emoji_category_flags" format="reference"/>
     <attr name="emoji_category_emoticons" format="reference"/>
     <attr name="emoji_variation_selector_background" format="reference|color" />
+    <attr name="emoji_show_less_icon" format="reference|color" />
 
     <attr name="quick_camera_icon" format="reference"/>
     <attr name="quick_mic_icon" format="reference"/>
@@ -108,6 +109,7 @@
 
     <attr name="menu_popup_expand" format="reference"/>
     <attr name="menu_trash_icon" format="reference" />
+    <attr name="menu_select_icon" format="reference" />
     <attr name="menu_selectall_icon" format="reference" />
     <attr name="menu_split_icon" format="reference" />
     <attr name="menu_accept_icon" format="reference" />
@@ -303,4 +305,13 @@
             <enum name="bottom" value="3" />
         </attr>
     </declare-styleable>
+
+    <declare-styleable name="KeyboardPageSearchView">
+        <attr name="show_always" format="boolean" />
+        <attr name="search_bar_tint" format="color|reference" />
+        <attr name="search_icon_tint" format="color|reference" />
+        <attr name="search_hint" format="string|reference" />
+        <attr name="click_only" format="boolean" />
+    </declare-styleable>
+
 </resources>

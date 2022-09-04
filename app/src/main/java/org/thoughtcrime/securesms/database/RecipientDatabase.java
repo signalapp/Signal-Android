@@ -34,7 +34,7 @@ public class RecipientDatabase extends Database {
   private static final String TAG = RecipientDatabase.class.getSimpleName();
 
           static final String TABLE_NAME               = "recipient_preferences";
-  private static final String ID                       = "_id";
+          static final String ID                       = "_id";
   public  static final String ADDRESS                  = "recipient_ids";
           static final String BLOCK                    = "block";
           static final String APPROVED                 = "approved";

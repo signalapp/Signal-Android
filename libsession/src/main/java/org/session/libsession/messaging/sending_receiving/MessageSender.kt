@@ -1,6 +1,5 @@
 package org.session.libsession.messaging.sending_receiving
 
-import com.goterl.lazysodium.utils.KeyPair
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.deferred
 import org.session.libsession.messaging.MessagingModuleConfiguration
@@ -19,6 +18,7 @@ import org.session.libsession.messaging.messages.visible.Profile
 import org.session.libsession.messaging.messages.visible.Quote
 import org.session.libsession.messaging.messages.visible.VisibleMessage
 import org.session.libsession.messaging.open_groups.OpenGroupApi
+import org.session.libsession.messaging.open_groups.OpenGroupApi.Capability
 import org.session.libsession.messaging.open_groups.OpenGroupMessage
 import org.session.libsession.messaging.utilities.MessageWrapper
 import org.session.libsession.messaging.utilities.SessionId
@@ -243,7 +243,7 @@ object MessageSender {
             }
             else -> {}
         }
-        val messageSender = if (serverCapabilities.contains("blind") && blindedPublicKey != null) {
+        val messageSender = if (serverCapabilities.contains(Capability.BLIND.name.lowercase()) && blindedPublicKey != null) {
             SessionId(IdPrefix.BLINDED, blindedPublicKey!!).hexString
         } else {
             SessionId(IdPrefix.UN_BLINDED, userEdKeyPair.publicKey.asBytes).hexString
@@ -338,8 +338,23 @@ object MessageSender {
                 storage.setMessageServerHash(messageID, it)
             }
             // Track the open group server message ID
-            if (message.openGroupServerMessageID != null && destination is Destination.LegacyOpenGroup) {
-                val encoded = GroupUtil.getEncodedOpenGroupID("${destination.server}.${destination.roomToken}".toByteArray())
+            if (message.openGroupServerMessageID != null && (destination is Destination.LegacyOpenGroup || destination is Destination.OpenGroup)) {
+                val server: String
+                val room: String
+                when (destination) {
+                    is Destination.LegacyOpenGroup -> {
+                        server = destination.server
+                        room = destination.roomToken
+                    }
+                    is Destination.OpenGroup -> {
+                        server = destination.server
+                        room = destination.roomToken
+                    }
+                    else -> {
+                        throw Exception("Destination was a different destination than we were expecting")
+                    }
+                }
+                val encoded = GroupUtil.getEncodedOpenGroupID("$server.$room".toByteArray())
                 val threadID = storage.getThreadId(Address.fromSerialized(encoded))
                 if (threadID != null && threadID >= 0) {
                     storage.setOpenGroupServerMessageID(messageID, message.openGroupServerMessageID!!, threadID, !(message as VisibleMessage).isMediaMessage())
@@ -352,6 +367,8 @@ object MessageSender {
             if (message is VisibleMessage && !isSyncMessage) {
                 SSKEnvironment.shared.messageExpirationManager.startAnyExpiration(message.sentTimestamp!!, userPublicKey)
             }
+        } ?: run {
+            storage.updateReactionIfNeeded(message, message.sender?:userPublicKey, openGroupSentTimestamp)
         }
         // Sync the message if:
         // • it's a visible message
@@ -432,4 +449,5 @@ object MessageSender {
     fun explicitLeave(groupPublicKey: String, notifyUser: Boolean): Promise<Unit, Exception> {
         return leave(groupPublicKey, notifyUser)
     }
+
 }

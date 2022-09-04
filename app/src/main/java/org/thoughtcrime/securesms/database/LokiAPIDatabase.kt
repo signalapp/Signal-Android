@@ -59,9 +59,9 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         private val token = "token"
         @JvmStatic val createOpenGroupAuthTokenTableCommand = "CREATE TABLE $openGroupAuthTokenTable ($server TEXT PRIMARY KEY, $token TEXT);"
         // Last message server IDs
-        private val lastMessageServerIDTable = "loki_api_last_message_server_id_cache"
+        private const val lastMessageServerIDTable = "loki_api_last_message_server_id_cache"
         private val lastMessageServerIDTableIndex = "loki_api_last_message_server_id_cache_index"
-        private val lastMessageServerID = "last_message_server_id"
+        private const val lastMessageServerID = "last_message_server_id"
         @JvmStatic val createLastMessageServerIDTableCommand = "CREATE TABLE $lastMessageServerIDTable ($lastMessageServerIDTableIndex STRING PRIMARY KEY, $lastMessageServerID INTEGER DEFAULT 0);"
         // Last deletion server IDs
         private val lastDeletionServerIDTable = "loki_api_last_deletion_server_id_cache"
@@ -153,6 +153,9 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
             "$requestSignature STRING NULLABLE DEFAULT NULL, $authorizationSignature STRING NULLABLE DEFAULT NULL, PRIMARY KEY ($masterPublicKey, $slavePublicKey));"
         private val sessionRequestTimestampCache = "session_request_timestamp_cache"
         @JvmStatic val createSessionRequestTimestampCacheCommand = "CREATE TABLE $sessionRequestTimestampCache ($publicKey STRING PRIMARY KEY, $timestamp STRING);"
+
+        const val RESET_SEQ_NO = "UPDATE $lastMessageServerIDTable SET $lastMessageServerID = 0;"
+
         // endregion
     }
 
@@ -377,18 +380,29 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         database.delete(lastDeletionServerIDTable, "$lastDeletionServerIDTableIndex = ?", wrap(index))
     }
 
-    fun removeLastDeletionServerID(group: Long, server: String) {
+    override fun migrateLegacyOpenGroup(legacyServerId: String, newServerId: String) {
         val database = databaseHelper.writableDatabase
-        val index = "$server.$group"
-        database.delete(lastDeletionServerIDTable,"$lastDeletionServerIDTableIndex = ?", wrap(index))
-    }
-
-    fun getUserCount(group: Long, server: String): Int? {
-        val database = databaseHelper.readableDatabase
-        val index = "$server.$group"
-        return database.get(userCountTable, "$publicChatID = ?", wrap(index)) { cursor ->
-            cursor.getInt(userCount)
-        }?.toInt()
+        database.beginTransaction()
+        val authRow = wrap(mapOf(server to newServerId))
+        database.update(openGroupAuthTokenTable, authRow, "$server = ?", wrap(legacyServerId))
+        val lastMessageRow = wrap(mapOf(lastMessageServerIDTableIndex to newServerId))
+        database.update(lastMessageServerIDTable, lastMessageRow,
+            "$lastMessageServerIDTableIndex = ?", wrap(legacyServerId))
+        val lastDeletionRow = wrap(mapOf(lastDeletionServerIDTableIndex to newServerId))
+        database.update(
+            lastDeletionServerIDTable, lastDeletionRow,
+            "$lastDeletionServerIDTableIndex = ?", wrap(legacyServerId))
+        val userCountRow = wrap(mapOf(publicChatID to newServerId))
+        database.update(
+            userCountTable, userCountRow,
+            "$publicChatID = ?", wrap(legacyServerId)
+        )
+        val publicKeyRow = wrap(mapOf(server to newServerId))
+        database.update(
+            openGroupPublicKeyTable, publicKeyRow,
+            "$server = ?", wrap(legacyServerId)
+        )
+        database.endTransaction()
     }
 
     fun getUserCount(room: String, server: String): Int? {
@@ -397,13 +411,6 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         return database.get(userCountTable, "$publicChatID = ?", wrap(index)) { cursor ->
             cursor.getInt(userCount)
         }?.toInt()
-    }
-
-    override fun setUserCount(group: Long, server: String, newValue: Int) {
-        val database = databaseHelper.writableDatabase
-        val index = "$server.$group"
-        val row = wrap(mapOf( publicChatID to index, Companion.userCount to newValue.toString() ))
-        database.insertOrUpdate(userCountTable, row, "$publicChatID = ?", wrap(index))
     }
 
     override fun setUserCount(room: String, server: String, newValue: Int) {

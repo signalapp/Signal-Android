@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.components.emoji;
 
-import android.annotation.TargetApi;
+import static org.session.libsession.utilities.Util.runOnMain;
+
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -9,145 +10,156 @@ import android.graphics.Paint;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import android.os.Build.VERSION;
-import android.os.Build.VERSION_CODES;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
 import android.widget.TextView;
 
-import network.loki.messenger.R;
-import org.thoughtcrime.securesms.components.emoji.parsing.EmojiDrawInfo;
-import org.thoughtcrime.securesms.components.emoji.parsing.EmojiPageBitmap;
-import org.thoughtcrime.securesms.components.emoji.parsing.EmojiParser;
-import org.thoughtcrime.securesms.components.emoji.parsing.EmojiTree;
-import org.session.libsignal.utilities.Log;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.session.libsession.utilities.FutureTaskListener;
-import org.session.libsession.utilities.Util;
-import org.session.libsignal.utilities.Pair;
+import org.session.libsignal.utilities.Log;
+import org.thoughtcrime.securesms.components.emoji.parsing.EmojiDrawInfo;
+import org.thoughtcrime.securesms.components.emoji.parsing.EmojiParser;
+import org.thoughtcrime.securesms.emoji.EmojiPageCache;
+import org.thoughtcrime.securesms.emoji.EmojiSource;
+import org.thoughtcrime.securesms.util.Util;
 
-import java.util.List;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.atomic.AtomicBoolean;
 
-class EmojiProvider {
+public class EmojiProvider {
 
-  private static final    String        TAG      = EmojiProvider.class.getSimpleName();
-  private static volatile EmojiProvider instance = null;
-  private static final    Paint         paint    = new Paint(Paint.FILTER_BITMAP_FLAG | Paint.ANTI_ALIAS_FLAG);
+  private static final    String TAG   = Log.tag(EmojiProvider.class);
+  private static final    Paint  PAINT = new Paint(Paint.FILTER_BITMAP_FLAG | Paint.ANTI_ALIAS_FLAG);
 
-  private final EmojiTree emojiTree = new EmojiTree();
-
-  private static final int EMOJI_RAW_HEIGHT = 64;
-  private static final int EMOJI_RAW_WIDTH  = 64;
-  private static final int EMOJI_VERT_PAD   = 0;
-  private static final int EMOJI_PER_ROW    = 32;
-
-  private final float decodeScale;
-  private final float verticalPad;
-
-  public static EmojiProvider getInstance(Context context) {
-    if (instance == null) {
-      synchronized (EmojiProvider.class) {
-        if (instance == null) {
-          instance = new EmojiProvider(context);
-        }
-      }
-    }
-    return instance;
-  }
-
-  private EmojiProvider(Context context) {
-    this.decodeScale = Math.min(1f, context.getResources().getDimension(R.dimen.emoji_drawer_size) / EMOJI_RAW_HEIGHT);
-    this.verticalPad = EMOJI_VERT_PAD * this.decodeScale;
-
-    for (EmojiPageModel page : EmojiPages.DATA_PAGES) {
-      if (page.hasSpriteMap()) {
-        EmojiPageBitmap pageBitmap = new EmojiPageBitmap(context, page, decodeScale);
-
-        List<String> emojis = page.getEmoji();
-        for (int i = 0; i < emojis.size(); i++) {
-          emojiTree.add(emojis.get(i), new EmojiDrawInfo(pageBitmap, i));
-        }
-      }
-    }
-
-    for (Pair<String,String> obsolete : EmojiPages.OBSOLETE) {
-      emojiTree.add(obsolete.first(), emojiTree.getEmoji(obsolete.second(), 0, obsolete.second().length()));
-    }
-  }
-
-  @Nullable EmojiParser.CandidateList getCandidates(@Nullable CharSequence text) {
+  public static @Nullable EmojiParser.CandidateList getCandidates(@Nullable CharSequence text) {
     if (text == null) return null;
-    return new EmojiParser(emojiTree).findCandidates(text);
+    return new EmojiParser(EmojiSource.getLatest().getEmojiTree()).findCandidates(text);
   }
 
-  @Nullable Spannable emojify(@Nullable CharSequence text, @NonNull TextView tv) {
-    return emojify(getCandidates(text), text, tv);
+  static  @Nullable Spannable emojify(@Nullable CharSequence text, @NonNull TextView tv, boolean jumboEmoji) {
+    if (tv.isInEditMode()) {
+      return null;
+    } else {
+      return emojify(getCandidates(text), text, tv, jumboEmoji);
+    }
   }
 
-  @Nullable Spannable emojify(@Nullable EmojiParser.CandidateList matches,
-                              @Nullable CharSequence text,
-                              @NonNull TextView tv) {
-    if (matches == null || text == null) return null;
-    SpannableStringBuilder      builder = new SpannableStringBuilder(text);
+  static @Nullable Spannable emojify(@Nullable EmojiParser.CandidateList matches,
+                                     @Nullable CharSequence text,
+                                     @NonNull TextView tv,
+                                     boolean jumboEmoji)
+  {
+    if (matches == null || text == null || tv.isInEditMode()) return null;
+    SpannableStringBuilder builder = new SpannableStringBuilder(text);
 
     for (EmojiParser.Candidate candidate : matches) {
-      Drawable drawable = getEmojiDrawable(candidate.getDrawInfo());
+      Drawable drawable = getEmojiDrawable(tv.getContext(), candidate.getDrawInfo(), tv::requestLayout, jumboEmoji);
 
       if (drawable != null) {
         builder.setSpan(new EmojiSpan(drawable, tv), candidate.getStartIndex(), candidate.getEndIndex(),
-                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
       }
     }
 
     return builder;
   }
 
-  @Nullable Drawable getEmojiDrawable(CharSequence emoji) {
-    EmojiDrawInfo drawInfo = emojiTree.getEmoji(emoji, 0, emoji.length());
-    return getEmojiDrawable(drawInfo);
+  static @Nullable Drawable getEmojiDrawable(@NonNull Context context, @Nullable CharSequence emoji) {
+    return getEmojiDrawable(context, emoji, false);
   }
 
-  private @Nullable Drawable getEmojiDrawable(@Nullable EmojiDrawInfo drawInfo) {
-    if (drawInfo == null)  {
+  static @Nullable Drawable getEmojiDrawable(@NonNull Context context, @Nullable CharSequence emoji, boolean jumboEmoji) {
+    if (TextUtils.isEmpty(emoji)) {
       return null;
     }
 
-    final EmojiDrawable drawable = new EmojiDrawable(drawInfo, decodeScale);
-    drawInfo.getPage().get().addListener(new FutureTaskListener<Bitmap>() {
-      @Override public void onSuccess(final Bitmap result) {
-        Util.runOnMain(() -> drawable.setBitmap(result));
-      }
+    EmojiDrawInfo drawInfo = EmojiSource.getLatest().getEmojiTree().getEmoji(emoji, 0, emoji.length());
+    return getEmojiDrawable(context, drawInfo, null, jumboEmoji);
+  }
 
-      @Override public void onFailure(ExecutionException error) {
-        Log.w(TAG, error);
-      }
-    });
+  /**
+   * Gets an EmojiDrawable from the Page Cache
+   *
+   * @param context         Context object used in reading and writing from disk
+   * @param drawInfo        Information about the emoji being displayed
+   * @param onEmojiLoaded   Runnable which will trigger when an emoji is loaded from disk
+   */
+  private static @Nullable Drawable getEmojiDrawable(@NonNull Context context, @Nullable EmojiDrawInfo drawInfo, @Nullable Runnable onEmojiLoaded, boolean jumboEmoji) {
+    if (drawInfo == null) {
+      return null;
+    }
+
+    final int           lowMemoryDecodeScale = Util.isLowMemory(context) ? 2 : 1;
+    final EmojiSource   source               = EmojiSource.getLatest();
+    final EmojiDrawable drawable             = new EmojiDrawable(source, drawInfo, lowMemoryDecodeScale);
+    final AtomicBoolean jumboLoaded          = new AtomicBoolean(false);
+
+    EmojiPageCache.LoadResult loadResult = EmojiPageCache.INSTANCE.load(context, drawInfo.getPage(), lowMemoryDecodeScale);
+
+    if (loadResult instanceof EmojiPageCache.LoadResult.Immediate) {
+      runOnMain(() -> drawable.setBitmap(((EmojiPageCache.LoadResult.Immediate) loadResult).getBitmap()));
+    } else if (loadResult instanceof EmojiPageCache.LoadResult.Async) {
+      ((EmojiPageCache.LoadResult.Async) loadResult).getTask().addListener(new FutureTaskListener<Bitmap>() {
+        @Override
+        public void onSuccess(Bitmap result) {
+          runOnMain(() -> {
+            if (!jumboLoaded.get()) {
+              drawable.setBitmap(result);
+              if (onEmojiLoaded != null) {
+                onEmojiLoaded.run();
+              }
+            }
+          });
+        }
+
+        @Override
+        public void onFailure(ExecutionException exception) {
+          Log.d(TAG, "Failed to load emoji bitmap resource", exception);
+        }
+      });
+    } else {
+      throw new IllegalStateException("Unexpected subclass " + loadResult.getClass());
+    }
+
     return drawable;
   }
 
-  class EmojiDrawable extends Drawable {
-    private final EmojiDrawInfo info;
-    private       Bitmap        bmp;
-    private       float         intrinsicWidth;
-    private       float         intrinsicHeight;
+  static final class EmojiDrawable extends Drawable {
+    private final float intrinsicWidth;
+    private final float intrinsicHeight;
+    private final Rect  emojiBounds;
+
+    private Bitmap  bmp;
+    private boolean isSingleBitmap;
 
     @Override
     public int getIntrinsicWidth() {
-      return (int)intrinsicWidth;
+      return (int) intrinsicWidth;
     }
 
     @Override
     public int getIntrinsicHeight() {
-      return (int)intrinsicHeight;
+      return (int) intrinsicHeight;
     }
 
-    EmojiDrawable(EmojiDrawInfo info, float decodeScale) {
-      this.info            = info;
-      this.intrinsicWidth  = EMOJI_RAW_WIDTH  * decodeScale;
-      this.intrinsicHeight = EMOJI_RAW_HEIGHT * decodeScale;
+    EmojiDrawable(@NonNull EmojiSource source, @NonNull EmojiDrawInfo info, int lowMemoryDecodeScale) {
+      this.intrinsicWidth  = (source.getMetrics().getRawWidth() * source.getDecodeScale()) / lowMemoryDecodeScale;
+      this.intrinsicHeight = (source.getMetrics().getRawHeight() * source.getDecodeScale()) / lowMemoryDecodeScale;
+
+      final int glyphWidth  = (int) (intrinsicWidth);
+      final int glyphHeight = (int) (intrinsicHeight);
+      final int index       = info.getIndex();
+      final int emojiPerRow = source.getMetrics().getPerRow();
+      final int xStart      = (index % emojiPerRow) * glyphWidth;
+      final int yStart      = (index / emojiPerRow) * glyphHeight;
+
+      this.emojiBounds = new Rect(xStart + 1,
+              yStart + 1,
+              xStart + glyphWidth - 1,
+              yStart + glyphHeight - 1);
     }
 
     @Override
@@ -156,22 +168,23 @@ class EmojiProvider {
         return;
       }
 
-      final int row = info.getIndex() / EMOJI_PER_ROW;
-      final int row_index = info.getIndex() % EMOJI_PER_ROW;
-
       canvas.drawBitmap(bmp,
-                        new Rect((int)(row_index * intrinsicWidth),
-                                 (int)(row * intrinsicHeight + row * verticalPad)+1,
-                                 (int)(((row_index + 1) * intrinsicWidth)-1),
-                                 (int)((row + 1) * intrinsicHeight + row * verticalPad)-1),
-                        getBounds(),
-                        paint);
+              isSingleBitmap ? null : emojiBounds,
+              getBounds(),
+              PAINT);
     }
 
-    @TargetApi(VERSION_CODES.HONEYCOMB_MR1)
     public void setBitmap(Bitmap bitmap) {
-      Util.assertMainThread();
-      if (VERSION.SDK_INT < VERSION_CODES.HONEYCOMB_MR1 || bmp == null || !bmp.sameAs(bitmap)) {
+      setBitmap(bitmap, false);
+    }
+
+    public void setSingleBitmap(Bitmap bitmap) {
+      setBitmap(bitmap, true);
+    }
+
+    private void setBitmap(Bitmap bitmap, boolean isSingleBitmap) {
+      this.isSingleBitmap = isSingleBitmap;
+      if (bmp == null || !bmp.sameAs(bitmap)) {
         bmp = bitmap;
         invalidateSelf();
       }

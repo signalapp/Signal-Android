@@ -35,7 +35,7 @@ class VoiceMessageView : RelativeLayout, AudioSlidePlayer.Listener {
     private var progress = 0.0
     private var duration = 0L
     private var player: AudioSlidePlayer? = null
-    var delegate: VoiceMessageViewDelegate? = null
+    var delegate: VisibleMessageViewDelegate? = null
     var indexInAdapter = -1
 
     // region Lifecycle
@@ -140,9 +140,4 @@ class VoiceMessageView : RelativeLayout, AudioSlidePlayer.Listener {
         player.playbackSpeed = if (player.playbackSpeed == 1.0f) 1.5f else 1.0f
     }
     // endregion
-}
-
-interface VoiceMessageViewDelegate {
-
-    fun playVoiceMessageAtIndexIfPossible(indexInAdapter: Int)
 }

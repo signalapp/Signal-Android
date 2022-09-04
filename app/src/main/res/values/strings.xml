@@ -562,8 +562,10 @@
     <string name="conversation_context__menu_ban_user">Ban user</string>
     <string name="conversation_context__menu_ban_and_delete_all">Ban and delete all</string>
     <string name="conversation_context__menu_resend_message">Resend message</string>
+    <string name="conversation_context__menu_reply">Reply</string>
     <string name="conversation_context__menu_reply_to_message">Reply to message</string>
     <string name="conversation_context__menu_call">Call</string>
+    <string name="conversation_context__menu_select">Select</string>
 
     <!-- conversation_context_image -->
     <string name="conversation_context_image__save_attachment">Save attachment</string>
@@ -925,4 +927,36 @@
     <string name="CallNotificationBuilder_system_notification_message">Having notifications disabled will prevent you from receiving calls, go to Session notification settings?</string>
     <string name="dismiss">Dismiss</string>
 
+
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">This Message</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Recently Used</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Smileys &amp; People</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Nature</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Food</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Activities</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">Places</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Objects</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Symbols</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Flags</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Emoticons</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">No results found</string>
+
+    <!-- ReactionsBottomSheetDialogFragment -->
+    <string name="ReactionsBottomSheetDialogFragment_all">All &#183; %1$d</string>
+
+    <!-- ReactionsConversationView -->
+    <string name="ReactionsConversationView_plus">+%1$d</string>
+
+    <!-- ReactionsRecipientAdapter -->
+    <string name="ReactionsRecipientAdapter_you">You</string>
+    <string name="reaction_notification">%1$s reacted to a message %2$s</string>
+    <string name="ReactionsConversationView_show_less">Show less</string>
+    <string name="KeyboardPagerFragment_search_emoji">Search emoji</string>
+    <string name="KeyboardPagerfragment_back_to_emoji">Back to emoji</string>
+    <string name="KeyboardPagerfragment_clear_search_entry">Clear search entry</string>
+
+    <plurals name="ReactionsRecipientAdapter_other_reactors">
+        <item quantity="one">And %1$d other has reacted %2$s to this message</item>
+        <item quantity="other">And %1$d others have reacted %2$s to this message</item>
+    </plurals>
 </resources>

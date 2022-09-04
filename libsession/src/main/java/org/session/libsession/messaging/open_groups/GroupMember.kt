@@ -7,5 +7,5 @@ data class GroupMember(
 )
 
 enum class GroupMemberRole {
-    STANDARD, ZOOMBIE, MODERATOR, ADMIN
+    STANDARD, ZOOMBIE, MODERATOR, ADMIN, HIDDEN_MODERATOR, HIDDEN_ADMIN
 }

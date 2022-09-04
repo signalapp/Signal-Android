@@ -177,4 +177,12 @@ class LokiMessageDatabase(context: Context, helper: SQLCipherOpenHelper) : Datab
         val database = databaseHelper.writableDatabase
         database.delete(messageHashTable, "${Companion.messageID} = ?", arrayOf(messageID.toString()))
     }
+
+    fun migrateThreadId(legacyThreadId: Long, newThreadId: Long) {
+        val database = databaseHelper.writableDatabase
+        val contentValues = ContentValues(1)
+        contentValues.put(threadID, newThreadId)
+        database.update(messageThreadMappingTable, contentValues, "$threadID = ?", arrayOf(legacyThreadId.toString()))
+    }
+
 }

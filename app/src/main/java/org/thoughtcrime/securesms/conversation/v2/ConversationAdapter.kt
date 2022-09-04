@@ -24,23 +24,30 @@ import network.loki.messenger.R
 import network.loki.messenger.databinding.ViewVisibleMessageBinding
 import org.session.libsession.messaging.contacts.Contact
 import org.thoughtcrime.securesms.conversation.v2.messages.ControlMessageView
-import org.thoughtcrime.securesms.conversation.v2.messages.VisibleMessageContentViewDelegate
 import org.thoughtcrime.securesms.conversation.v2.messages.VisibleMessageView
+import org.thoughtcrime.securesms.conversation.v2.messages.VisibleMessageViewDelegate
 import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.dependencies.DatabaseComponent
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.preferences.PrivacySettingsActivity
 
-class ConversationAdapter(context: Context, cursor: Cursor, private val onItemPress: (MessageRecord, Int, VisibleMessageView, MotionEvent) -> Unit,
-    private val onItemSwipeToReply: (MessageRecord, Int) -> Unit, private val onItemLongPress: (MessageRecord, Int) -> Unit,
-    private val glide: GlideRequests, private val onDeselect: (MessageRecord, Int) -> Unit, lifecycleCoroutineScope: LifecycleCoroutineScope)
+class ConversationAdapter(
+    context: Context,
+    cursor: Cursor,
+    private val onItemPress: (MessageRecord, Int, VisibleMessageView, MotionEvent) -> Unit,
+    private val onItemSwipeToReply: (MessageRecord, Int) -> Unit,
+    private val onItemLongPress: (MessageRecord, Int, VisibleMessageView) -> Unit,
+    private val onDeselect: (MessageRecord, Int) -> Unit,
+    private val glide: GlideRequests,
+    lifecycleCoroutineScope: LifecycleCoroutineScope
+)
     : CursorRecyclerViewAdapter<ViewHolder>(context, cursor) {
     private val messageDB by lazy { DatabaseComponent.get(context).mmsSmsDatabase() }
     private val contactDB by lazy { DatabaseComponent.get(context).sessionContactDatabase() }
     var selectedItems = mutableSetOf<MessageRecord>()
     private var searchQuery: String? = null
-    var visibleMessageContentViewDelegate: VisibleMessageContentViewDelegate? = null
+    var visibleMessageViewDelegate: VisibleMessageViewDelegate? = null
 
     private val updateQueue = Channel<String>(1024, onBufferOverflow = BufferOverflow.DROP_OLDEST)
     private val contactCache = SparseArray<Contact>(100)
@@ -99,7 +106,6 @@ class ConversationAdapter(context: Context, cursor: Cursor, private val onItemPr
         val messageBefore = getMessageBefore(position, cursor)
         when (viewHolder) {
             is VisibleMessageViewHolder -> {
-                val view = viewHolder.view
                 val visibleMessageView = ViewVisibleMessageBinding.bind(viewHolder.view).visibleMessageView
                 val isSelected = selectedItems.contains(message)
                 visibleMessageView.snIsSelected = isSelected
@@ -114,17 +120,16 @@ class ConversationAdapter(context: Context, cursor: Cursor, private val onItemPr
                 }
                 val contact = contactCache[senderIdHash]
 
-                visibleMessageView.bind(message, messageBefore, getMessageAfter(position, cursor), glide, searchQuery, contact, senderId)
+                visibleMessageView.bind(message, messageBefore, getMessageAfter(position, cursor), glide, searchQuery, contact, senderId, visibleMessageViewDelegate)
                 if (!message.isDeleted) {
                     visibleMessageView.onPress = { event -> onItemPress(message, viewHolder.adapterPosition, visibleMessageView, event) }
                     visibleMessageView.onSwipeToReply = { onItemSwipeToReply(message, viewHolder.adapterPosition) }
-                    visibleMessageView.onLongPress = { onItemLongPress(message, viewHolder.adapterPosition) }
+                    visibleMessageView.onLongPress = { onItemLongPress(message, viewHolder.adapterPosition, visibleMessageView) }
                 } else {
                     visibleMessageView.onPress = null
                     visibleMessageView.onSwipeToReply = null
                     visibleMessageView.onLongPress = null
                 }
-                visibleMessageView.contentViewDelegate = visibleMessageContentViewDelegate
             }
             is ControlMessageViewHolder -> {
                 viewHolder.view.bind(message, messageBefore)
@@ -147,6 +152,11 @@ class ConversationAdapter(context: Context, cursor: Cursor, private val onItemPr
                 }
             }
         }
+    }
+
+    fun toggleSelection(message: MessageRecord, position: Int) {
+        if (selectedItems.contains(message)) selectedItems.remove(message) else selectedItems.add(message)
+        notifyItemChanged(position)
     }
 
     override fun onItemViewRecycled(viewHolder: ViewHolder?) {
@@ -194,11 +204,6 @@ class ConversationAdapter(context: Context, cursor: Cursor, private val onItemPr
         toDeselect.iterator().forEach { (pos, record) ->
             onDeselect(record, pos)
         }
-    }
-
-    fun toggleSelection(message: MessageRecord, position: Int) {
-        if (selectedItems.contains(message)) selectedItems.remove(message) else selectedItems.add(message)
-        notifyItemChanged(position)
     }
 
     fun findLastSeenItemPosition(lastSeenTimestamp: Long): Int? {

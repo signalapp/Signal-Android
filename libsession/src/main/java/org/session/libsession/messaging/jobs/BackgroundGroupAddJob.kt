@@ -6,6 +6,7 @@ import org.session.libsession.messaging.open_groups.OpenGroup
 import org.session.libsession.messaging.open_groups.OpenGroupApi
 import org.session.libsession.messaging.utilities.Data
 import org.session.libsession.utilities.GroupUtil
+import org.session.libsession.utilities.OpenGroupUrlParser
 import org.session.libsignal.utilities.Log
 
 class BackgroundGroupAddJob(val joinUrl: String): Job {
@@ -30,31 +31,28 @@ class BackgroundGroupAddJob(val joinUrl: String): Job {
 
     override fun execute() {
         try {
+            val openGroup = OpenGroupUrlParser.parseUrl(joinUrl)
             val storage = MessagingModuleConfiguration.shared.storage
             val allOpenGroups = storage.getAllOpenGroups().map { it.value.joinURL }
-            if (allOpenGroups.contains(joinUrl)) {
+            if (allOpenGroups.contains(openGroup.joinUrl())) {
                 Log.e("OpenGroupDispatcher", "Failed to add group because", DuplicateGroupException())
                 delegate?.handleJobFailed(this, DuplicateGroupException())
                 return
             }
             // get image
-            val url = HttpUrl.parse(joinUrl) ?: throw Exception("Group joinUrl isn't valid")
-            val server = OpenGroup.getServer(joinUrl)
-            val serverString = server.toString().removeSuffix("/")
-            val publicKey = url.queryParameter("public_key") ?: throw Exception("Group public key isn't valid")
-            val room = url.pathSegments().firstOrNull() ?: throw Exception("Group room isn't valid")
-            storage.setOpenGroupPublicKey(serverString, publicKey)
-            // get info and auth token
-            storage.addOpenGroup(joinUrl)
-            val info = OpenGroupApi.getRoomInfo(room, serverString).get()
+            storage.setOpenGroupPublicKey(openGroup.server, openGroup.serverPublicKey)
+            val (capabilities, info) = OpenGroupApi.getCapabilitiesAndRoomInfo(openGroup.room, openGroup.server, false).get()
+            storage.setServerCapabilities(openGroup.server, capabilities.capabilities)
             val imageId = info.imageId
+            storage.addOpenGroup(openGroup.joinUrl())
             if (imageId != null) {
-                val bytes = OpenGroupApi.downloadOpenGroupProfilePicture(serverString, room, imageId).get()
-                val groupId = GroupUtil.getEncodedOpenGroupID("$server.$room".toByteArray())
+                val bytes = OpenGroupApi.downloadOpenGroupProfilePicture(openGroup.server, openGroup.room, imageId).get()
+                val groupId = GroupUtil.getEncodedOpenGroupID("${openGroup.server}.${openGroup.room}".toByteArray())
                 storage.updateProfilePicture(groupId, bytes)
                 storage.updateTimestampUpdated(groupId, System.currentTimeMillis())
             }
-            storage.onOpenGroupAdded(joinUrl)
+            Log.d(KEY, "onOpenGroupAdded(${openGroup.server})")
+            storage.onOpenGroupAdded(openGroup.server)
         } catch (e: Exception) {
             Log.e("OpenGroupDispatcher", "Failed to add group because",e)
             delegate?.handleJobFailed(this, e)

@@ -148,6 +148,20 @@ message DataMessage {
     optional uint32         expirationTimer   = 8;
   }
 
+  message Reaction {
+    enum Action {
+      REACT = 0;
+      REMOVE = 1;
+    }
+    // @required
+    required uint64 id        = 1;
+    // @required
+    required string author    = 2;
+    optional string emoji     = 3;
+    // @required
+    required Action action    = 4;
+  }
+
   optional string                    body                      = 1;
   repeated AttachmentPointer         attachments               = 2;
   optional GroupContext              group                     = 3;
@@ -157,6 +171,7 @@ message DataMessage {
   optional uint64                    timestamp                 = 7;
   optional Quote                     quote                     = 8;
   repeated Preview                   preview                   = 10;
+  optional Reaction                  reaction                  = 11;
   optional LokiProfile               profile                   = 101;
   optional OpenGroupInvitation       openGroupInvitation       = 102;
   optional ClosedGroupControlMessage closedGroupControlMessage = 104;

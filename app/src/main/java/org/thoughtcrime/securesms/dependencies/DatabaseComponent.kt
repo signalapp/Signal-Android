@@ -40,6 +40,8 @@ interface DatabaseComponent {
     fun lokiBackupFilesDatabase(): LokiBackupFilesDatabase
     fun sessionJobDatabase(): SessionJobDatabase
     fun sessionContactDatabase(): SessionContactDatabase
+    fun reactionDatabase(): ReactionDatabase
+    fun emojiSearchDatabase(): EmojiSearchDatabase
     fun storage(): Storage
     fun attachmentProvider(): MessageDataProvider
     fun blindedIdMappingDatabase(): BlindedIdMappingDatabase

@@ -127,6 +127,14 @@ object DatabaseModule {
 
     @Provides
     @Singleton
+    fun provideReactionDatabase(@ApplicationContext context: Context, openHelper: SQLCipherOpenHelper) = ReactionDatabase(context, openHelper)
+
+    @Provides
+    @Singleton
+    fun provideEmojiSearchDatabase(@ApplicationContext context: Context, openHelper: SQLCipherOpenHelper) = EmojiSearchDatabase(context, openHelper)
+
+    @Provides
+    @Singleton
     fun provideStorage(@ApplicationContext context: Context, openHelper: SQLCipherOpenHelper) = Storage(context,openHelper)
 
     @Provides

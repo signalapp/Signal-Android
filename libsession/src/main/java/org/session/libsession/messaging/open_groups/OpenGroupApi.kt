@@ -55,9 +55,16 @@ object OpenGroupApi {
         now - lastOpenDate
     }
 
-    const val defaultServerPublicKey =
-        "a03c383cf63c3c4efe67acc52112a6dd734b3a946b9545f488aaa93da7991238"
-    const val defaultServer = "http://116.203.70.33"
+    const val defaultServerPublicKey = "a03c383cf63c3c4efe67acc52112a6dd734b3a946b9545f488aaa93da7991238"
+    const val legacyServerIP = "116.203.70.33"
+    const val legacyDefaultServer = "http://116.203.70.33" // TODO: migrate all references to use new value
+
+    /** For migration purposes only, don't use this value in joining groups */
+    const val httpDefaultServer = "http://open.getsession.org"
+
+    const val defaultServer = "https://open.getsession.org"
+
+    val pendingReactions = mutableListOf<PendingReaction>()
 
     sealed class Error(message: String) : Exception(message) {
         object Generic : Error("An error occurred.")
@@ -114,6 +121,7 @@ object OpenGroupApi {
     data class BatchRequestInfo<T>(
         val request: BatchRequest,
         val endpoint: Endpoint,
+        val queryParameters: Map<String, String> = mapOf(),
         val responseType: TypeReference<T>
     )
 
@@ -138,6 +146,10 @@ object OpenGroupApi {
         val capabilities: List<String> = emptyList(),
         val missing: List<String> = emptyList()
     )
+
+    enum class Capability {
+        BLIND, REACTIONS
+    }
 
     @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy::class)
     data class RoomPollInfo(
@@ -179,7 +191,39 @@ object OpenGroupApi {
         val whisperMods: String = "",
         val whisperTo: String = "",
         val data: String? = null,
-        val signature: String? = null
+        val signature: String? = null,
+        val reactions: Map<String, Reaction>? = null,
+    )
+
+    data class Reaction(
+        val count: Long = 0,
+        val reactors: List<String> = emptyList(),
+        val you: Boolean = false,
+        val index: Long = 0
+    )
+
+    data class AddReactionResponse(
+        val seqNo: Long,
+        val added: Boolean
+    )
+
+    data class DeleteReactionResponse(
+        val seqNo: Long,
+        val removed: Boolean
+    )
+
+    data class DeleteAllReactionsResponse(
+        val seqNo: Long,
+        val removed: Boolean
+    )
+
+    data class PendingReaction(
+        val server: String,
+        val room: String,
+        val messageId: Long,
+        val emoji: String,
+        val add: Boolean,
+        var seqNo: Long? = null
     )
 
     @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy::class)
@@ -240,15 +284,12 @@ object OpenGroupApi {
     }
 
     private fun send(request: Request): Promise<OnionResponse, Exception> {
-        val url = HttpUrl.parse(request.server) ?: return Promise.ofFail(Error.InvalidURL)
-        val urlBuilder = HttpUrl.Builder()
-            .scheme(url.scheme())
-            .host(url.host())
-            .port(url.port())
-            .addPathSegments(request.endpoint.value)
-        if (request.verb == GET) {
+        HttpUrl.parse(request.server) ?: return Promise.ofFail(Error.InvalidURL)
+        val urlBuilder = StringBuilder("${request.server}/${request.endpoint.value}")
+        if (request.verb == GET && request.queryParameters.isNotEmpty()) {
+            urlBuilder.append("?")
             for ((key, value) in request.queryParameters) {
-                urlBuilder.addQueryParameter(key, value)
+                urlBuilder.append("$key=$value")
             }
         }
         fun execute(): Promise<OnionResponse, Exception> {
@@ -258,7 +299,7 @@ object OpenGroupApi {
                     ?: return Promise.ofFail(Error.NoPublicKey)
             val ed25519KeyPair = MessagingModuleConfiguration.shared.getUserED25519KeyPair()
                 ?: return Promise.ofFail(Error.NoEd25519KeyPair)
-            val urlRequest = urlBuilder.build()
+            val urlRequest = urlBuilder.toString()
             val headers = request.headers.toMutableMap()
             if (request.isAuthRequired) {
                 val nonce = sodium.nonce(16)
@@ -294,9 +335,9 @@ object OpenGroupApi {
                     .plus(nonce)
                     .plus("$timestamp".toByteArray(Charsets.US_ASCII))
                     .plus(request.verb.rawValue.toByteArray())
-                    .plus(urlRequest.encodedPath().toByteArray())
+                    .plus("/${request.endpoint.value}".toByteArray())
                     .plus(bodyHash)
-                if (serverCapabilities.contains("blind")) {
+                if (serverCapabilities.contains(Capability.BLIND.name.lowercase())) {
                     SodiumUtilities.blindedKeyPair(publicKey, ed25519KeyPair)?.let { keyPair ->
                         pubKey = SessionId(
                             IdPrefix.BLINDED,
@@ -404,12 +445,19 @@ object OpenGroupApi {
         fileIds: List<String>? = null
     ): Promise<OpenGroupMessage, Exception> {
         val signedMessage = message.sign(room, server, fallbackSigningType = IdPrefix.STANDARD) ?: return Promise.ofFail(Error.SigningFailed)
+        val parameters = signedMessage.toJSON().toMutableMap()
+
+        // add file IDs if there are any (from attachments)
+        if (!fileIds.isNullOrEmpty()) {
+            parameters += "files" to fileIds
+        }
+
         val request = Request(
             verb = POST,
             room = room,
             server = server,
             endpoint = Endpoint.RoomMessage(room),
-            parameters = signedMessage.toJSON()
+            parameters = parameters
         )
         return getResponseBodyJson(request).map { json ->
             @Suppress("UNCHECKED_CAST") val rawMessage = json as? Map<String, Any>
@@ -469,6 +517,63 @@ object OpenGroupApi {
             }
         }
         return messages
+    }
+
+    fun getReactors(room: String, server: String, messageId: Long, emoji: String): Promise<Map<*, *>, Exception> {
+        val request = Request(
+            verb = GET,
+            room = room,
+            server = server,
+            endpoint = Endpoint.Reactors(room, messageId, emoji)
+        )
+        return getResponseBody(request).map { response ->
+            JsonUtil.fromJson(response, Map::class.java)
+        }
+    }
+
+    fun addReaction(room: String, server: String, messageId: Long, emoji: String): Promise<AddReactionResponse, Exception> {
+        val request = Request(
+            verb = PUT,
+            room = room,
+            server = server,
+            endpoint = Endpoint.Reaction(room, messageId, emoji),
+            parameters = emptyMap<String, String>()
+        )
+        val pendingReaction = PendingReaction(server, room, messageId, emoji, true)
+        return getResponseBody(request).map { response ->
+            JsonUtil.fromJson(response, AddReactionResponse::class.java).also {
+                val index = pendingReactions.indexOf(pendingReaction)
+                pendingReactions[index].seqNo = it.seqNo
+            }
+        }
+    }
+
+    fun deleteReaction(room: String, server: String, messageId: Long, emoji: String): Promise<DeleteReactionResponse, Exception> {
+        val request = Request(
+            verb = DELETE,
+            room = room,
+            server = server,
+            endpoint = Endpoint.Reaction(room, messageId, emoji)
+        )
+        val pendingReaction = PendingReaction(server, room, messageId, emoji, true)
+        return getResponseBody(request).map { response ->
+            JsonUtil.fromJson(response, DeleteReactionResponse::class.java).also {
+                val index = pendingReactions.indexOf(pendingReaction)
+                pendingReactions[index].seqNo = it.seqNo
+            }
+        }
+    }
+
+    fun deleteAllReactions(room: String, server: String, messageId: Long, emoji: String): Promise<DeleteAllReactionsResponse, Exception> {
+        val request = Request(
+            verb = DELETE,
+            room = room,
+            server = server,
+            endpoint = Endpoint.ReactionDelete(room, messageId, emoji)
+        )
+        return getResponseBody(request).map { response ->
+            JsonUtil.fromJson(response, DeleteAllReactionsResponse::class.java)
+        }
     }
     // endregion
 
@@ -608,7 +713,7 @@ object OpenGroupApi {
                     BatchRequestInfo(
                         request = BatchRequest(
                             method = GET,
-                            path = "/room/$room/messages/recent"
+                            path = "/room/$room/messages/recent?t=r&reactors=5"
                         ),
                         endpoint = Endpoint.RoomMessagesRecent(room),
                         responseType = object : TypeReference<List<Message>>(){}
@@ -617,7 +722,7 @@ object OpenGroupApi {
                     BatchRequestInfo(
                         request = BatchRequest(
                             method = GET,
-                            path = "/room/$room/messages/since/$lastMessageServerId"
+                            path = "/room/$room/messages/since/$lastMessageServerId?t=r&reactors=5"
                         ),
                         endpoint = Endpoint.RoomMessagesSince(room, lastMessageServerId),
                         responseType = object : TypeReference<List<Message>>(){}
@@ -626,7 +731,7 @@ object OpenGroupApi {
             )
         }
         val serverCapabilities = storage.getServerCapabilities(server)
-        if (serverCapabilities.contains("blind")) {
+        if (serverCapabilities.contains(Capability.BLIND.name.lowercase())) {
             requests.add(
                 if (lastInboxMessageId == null) {
                     BatchRequestInfo(
@@ -689,14 +794,16 @@ object OpenGroupApi {
 
     private fun sequentialBatch(
         server: String,
-        requests: MutableList<BatchRequestInfo<*>>
+        requests: MutableList<BatchRequestInfo<*>>,
+        authRequired: Boolean = true
     ): Promise<List<BatchResponse<*>>, Exception> {
         val request = Request(
             verb = POST,
             room = null,
             server = server,
             endpoint = Endpoint.Sequence,
-            parameters = requests.map { it.request }
+            parameters = requests.map { it.request },
+            isAuthRequired = authRequired
         )
         return getBatchResponseJson(request, requests)
     }
@@ -803,7 +910,11 @@ object OpenGroupApi {
         }
     }
 
-    fun getCapabilitiesAndRoomInfo(room: String, server: String): Promise<Pair<Capabilities, RoomInfo>, Exception> {
+    fun getCapabilitiesAndRoomInfo(
+        room: String,
+        server: String,
+        authRequired: Boolean = true
+    ): Promise<Pair<Capabilities, RoomInfo>, Exception> {
         val requests = mutableListOf<BatchRequestInfo<*>>(
             BatchRequestInfo(
                 request = BatchRequest(
@@ -822,7 +933,7 @@ object OpenGroupApi {
                 responseType = object : TypeReference<RoomInfo>(){}
             )
         )
-        return sequentialBatch(server, requests).map {
+        return sequentialBatch(server, requests, authRequired).map {
             val capabilities = it.firstOrNull()?.body as? Capabilities ?: throw Error.ParsingFailed
             val roomInfo = it.lastOrNull()?.body as? RoomInfo ?: throw Error.ParsingFailed
             capabilities to roomInfo

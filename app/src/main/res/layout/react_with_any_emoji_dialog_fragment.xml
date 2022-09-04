@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/react_with_any_emoji_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/react_with_any_emoji_pull_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/bottom_sheet_handle"
+        tools:ignore="ContentDescription" />
+
+    <org.thoughtcrime.securesms.keyboard.emoji.KeyboardPageSearchView
+        android:id="@+id/react_with_any_emoji_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingTop="12dp"
+        android:paddingBottom="8dp"
+        app:search_bar_tint="@color/react_with_any_search_background"
+        app:search_hint="@string/KeyboardPagerFragment_search_emoji"
+        app:search_icon_tint="@color/react_with_any_search_hint"
+        app:show_always="true" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:minHeight="1000dp">
+
+        <org.thoughtcrime.securesms.components.emoji.EmojiPageView
+            android:id="@+id/react_with_any_emoji_page_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="-2dp"
+            android:clipToPadding="false"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:paddingBottom="64dp" />
+
+        <View
+            android:id="@+id/react_with_any_emoji_top_shadow"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:alpha="0"
+            android:background="@drawable/toolbar_shadow" />
+    </FrameLayout>
+
+</LinearLayout>

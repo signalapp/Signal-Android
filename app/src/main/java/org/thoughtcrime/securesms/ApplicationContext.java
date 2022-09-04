@@ -47,17 +47,22 @@ import org.session.libsession.utilities.Util;
 import org.session.libsession.utilities.WindowDebouncer;
 import org.session.libsession.utilities.dynamiclanguage.DynamicLanguageContextWrapper;
 import org.session.libsession.utilities.dynamiclanguage.LocaleParser;
+import org.session.libsignal.utilities.JsonUtil;
 import org.session.libsignal.utilities.Log;
 import org.session.libsignal.utilities.ThreadUtils;
 import org.signal.aesgcmprovider.AesGcmProvider;
 import org.thoughtcrime.securesms.components.TypingStatusSender;
 import org.thoughtcrime.securesms.crypto.KeyPairUtilities;
+import org.thoughtcrime.securesms.database.EmojiSearchDatabase;
 import org.thoughtcrime.securesms.database.JobDatabase;
 import org.thoughtcrime.securesms.database.LokiAPIDatabase;
 import org.thoughtcrime.securesms.database.Storage;
+import org.thoughtcrime.securesms.database.model.EmojiSearchData;
 import org.thoughtcrime.securesms.dependencies.DatabaseComponent;
 import org.thoughtcrime.securesms.dependencies.DatabaseModule;
+import org.thoughtcrime.securesms.emoji.EmojiSource;
 import org.thoughtcrime.securesms.groups.OpenGroupManager;
+import org.thoughtcrime.securesms.groups.OpenGroupMigrator;
 import org.thoughtcrime.securesms.home.HomeActivity;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.impl.JsonDataSerializer;
@@ -89,12 +94,16 @@ import org.webrtc.voiceengine.WebRtcAudioManager;
 import org.webrtc.voiceengine.WebRtcAudioUtils;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.security.Security;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.Timer;
+import java.util.concurrent.Executors;
 
 import javax.inject.Inject;
 
@@ -191,6 +200,9 @@ public class ApplicationContext extends Application implements DefaultLifecycleO
                 storage,
                 messageDataProvider,
                 ()-> KeyPairUtilities.INSTANCE.getUserED25519KeyPair(this));
+        // migrate session open group data
+        OpenGroupMigrator.migrate(getDatabaseComponent());
+        // end migration
         callMessageProcessor = new CallMessageProcessor(this, textSecurePreferences, ProcessLifecycleOwner.get().getLifecycle(), storage);
         Log.i(TAG, "onCreate()");
         startKovenant();
@@ -220,6 +232,8 @@ public class ApplicationContext extends Application implements DefaultLifecycleO
         initializeWebRtc();
         initializeBlobProvider();
         resubmitProfilePictureIfNeeded();
+        loadEmojiSearchIndexIfNeeded();
+        EmojiSource.refresh();
     }
 
     @Override
@@ -485,6 +499,20 @@ public class ApplicationContext extends Application implements DefaultLifecycleO
                 });
             } catch (Exception exception) {
                 // Do nothing
+            }
+        });
+    }
+
+    private void loadEmojiSearchIndexIfNeeded() {
+        Executors.newSingleThreadExecutor().execute(() -> {
+            EmojiSearchDatabase emojiSearchDb = getDatabaseComponent().emojiSearchDatabase();
+            if (emojiSearchDb.query("face", 1).isEmpty()) {
+                try (InputStream inputStream = getAssets().open("emoji/emoji_search_index.json")) {
+                    List<EmojiSearchData> searchIndex = Arrays.asList(JsonUtil.fromJson(inputStream, EmojiSearchData[].class));
+                    emojiSearchDb.setSearchIndex(searchIndex);
+                } catch (IOException e) {
+                    Log.e("Loki", "Failed to load emoji search index");
+                }
             }
         });
     }

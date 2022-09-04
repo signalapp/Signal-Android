@@ -16,17 +16,18 @@
  */
 package org.thoughtcrime.securesms.database.model;
 
+import static java.util.Collections.emptyList;
+
 import android.content.Context;
 import android.text.SpannableString;
+
 import androidx.annotation.NonNull;
-import org.session.libsession.utilities.IdentityKeyMismatch;
-import org.session.libsession.utilities.NetworkFailure;
+
 import org.session.libsession.utilities.recipients.Recipient;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase.Status;
 import org.thoughtcrime.securesms.mms.SlideDeck;
-import java.util.Collections;
-import java.util.LinkedList;
+
 import network.loki.messenger.R;
 
 /**
@@ -53,8 +54,8 @@ public class NotificationMmsMessageRecord extends MmsMessageRecord {
   {
     super(id, "", conversationRecipient, individualRecipient,
       dateSent, dateReceived, threadId, Status.STATUS_NONE, deliveryReceiptCount, mailbox,
-      new LinkedList<IdentityKeyMismatch>(), new LinkedList<NetworkFailure>(),
-      0, 0, slideDeck, readReceiptCount, null, Collections.emptyList(), Collections.emptyList(), false);
+            emptyList(), emptyList(),
+      0, 0, slideDeck, readReceiptCount, null, emptyList(), emptyList(), false, emptyList());
 
     this.contentLocation = contentLocation;
     this.messageSize     = messageSize;

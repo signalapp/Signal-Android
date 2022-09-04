@@ -8,6 +8,7 @@ import org.session.libsession.messaging.open_groups.GroupMemberRole
 import org.session.libsession.messaging.open_groups.OpenGroup
 import org.session.libsession.messaging.open_groups.OpenGroupApi
 import org.session.libsession.messaging.sending_receiving.pollers.OpenGroupPoller
+import org.session.libsignal.utilities.Log
 import org.session.libsignal.utilities.ThreadUtils
 import org.thoughtcrime.securesms.dependencies.DatabaseComponent
 import java.util.concurrent.Executors
@@ -71,7 +72,7 @@ object OpenGroupManager {
         storage.removeLastInboxMessageId(server)
         storage.removeLastOutboxMessageId(server)
         // Store the public key
-        storage.setOpenGroupPublicKey(server,publicKey)
+        storage.setOpenGroupPublicKey(server, publicKey)
         // Get capabilities
         val capabilities = OpenGroupApi.getCapabilities(server).get()
         storage.setServerCapabilities(server, capabilities.capabilities)
@@ -92,6 +93,7 @@ object OpenGroupManager {
             pollers[server]?.stop()
             pollers[server]?.startIfNeeded() ?: run {
                 val poller = OpenGroupPoller(server, executorService)
+                Log.d("Loki", "Starting poller for open group: $server")
                 pollers[server] = poller
                 poller.startIfNeeded()
             }
@@ -133,7 +135,7 @@ object OpenGroupManager {
         val server = OpenGroup.getServer(urlAsString)
         val room = url.pathSegments().firstOrNull() ?: return
         val publicKey = url.queryParameter("public_key") ?: return
-        add(server.toString().removeSuffix("/"), room, publicKey, context)
+        add(server.toString().removeSuffix("/"), room, publicKey, context) // assume migrated from calling function
     }
 
     fun updateOpenGroup(openGroup: OpenGroup, context: Context) {
@@ -148,8 +150,12 @@ object OpenGroupManager {
         val standardRoles = memberDatabase.getGroupMemberRoles(groupId, standardPublicKey)
         val blindedRoles = blindedPublicKey?.let { memberDatabase.getGroupMemberRoles(groupId, it) } ?: emptyList()
 
-        return GroupMemberRole.ADMIN in standardRoles || GroupMemberRole.MODERATOR in standardRoles ||
-                GroupMemberRole.ADMIN in blindedRoles || GroupMemberRole.MODERATOR in blindedRoles
+        // roles to check against
+        val moderatorRoles = listOf(
+            GroupMemberRole.MODERATOR, GroupMemberRole.ADMIN,
+            GroupMemberRole.HIDDEN_MODERATOR, GroupMemberRole.HIDDEN_ADMIN
+        )
+        return standardRoles.any { it in moderatorRoles } || blindedRoles.any { it in moderatorRoles }
     }
 
 }

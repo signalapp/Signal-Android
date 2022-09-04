@@ -128,4 +128,21 @@
     <dimen name="action_item_height">56dp</dimen>
     <dimen name="conversation_item_quote_width">120dp</dimen>
 
+    <dimen name="context_menu_corner_radius">18dp</dimen>
+
+    <dimen name="conversation_reaction_scrubber_height">136dp</dimen>
+    <dimen name="conversation_reaction_touch_deadzone_size">40dp</dimen>
+    <dimen name="conversation_reaction_scrub_deadzone_distance_from_touch_bottom">30dp</dimen>
+    <dimen name="conversation_reaction_scrub_vertical_translation">25dp</dimen>
+    <dimen name="conversation_reaction_scrub_horizontal_margin">16dp</dimen>
+
+    <dimen name="reaction_scrubber_anim_start_translation_y">25dp</dimen>
+    <dimen name="reaction_scrubber_anim_end_translation_y">0dp</dimen>
+    <dimen name="reaction_scrubber_width">320dp</dimen>
+
+    <dimen name="keyboard_toolbar_height">44dp</dimen>
+
+    <dimen name="react_with_any_emoji_bottom_sheet_dialog_fragment_min_height">390dp</dimen>
+    <dimen name="react_with_any_emoji_bottom_sheet_dialog_fragment_tabs_height">40dp</dimen>
+
 </resources>

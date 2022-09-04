@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="@dimen/small_spacing"
+    android:gravity="center">
+
+    <FrameLayout
+        android:id="@+id/layout_flex_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_max="240dp"
+        app:layout_constraintEnd_toEndOf="parent">
+        <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/layout_emoji_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:flexDirection="row"
+            app:flexWrap="wrap"
+            app:alignItems="center"
+            android:layout_gravity="center"
+            />
+    </FrameLayout>
+    <ImageView
+        android:id="@+id/image_view_show_less"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginVertical="@dimen/small_spacing"
+        android:layout_marginEnd="1dp"
+        android:scaleType="centerInside"
+        android:src="?emoji_show_less_icon"
+        tools:visibility="visible"
+        app:layout_constraintTop_toTopOf="@+id/text_view_show_less"
+        app:layout_constraintBottom_toBottomOf="@+id/text_view_show_less"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/text_view_show_less"/>
+
+    <TextView
+        android:id="@+id/text_view_show_less"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/small_spacing"
+        android:layout_marginStart="1dp"
+        android:text="@string/ReactionsConversationView_show_less"
+        android:textSize="@dimen/very_small_font_size"
+        android:textColor="@color/text"
+        tools:visibility="visible"
+        app:layout_constraintStart_toEndOf="@id/image_view_show_less"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_flex_container"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group_show_less"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:constraint_referenced_ids="image_view_show_less, text_view_show_less"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
