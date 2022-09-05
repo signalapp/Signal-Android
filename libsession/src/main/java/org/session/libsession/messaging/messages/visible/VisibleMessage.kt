@@ -71,7 +71,7 @@ class VisibleMessage : Message()  {
                 val reaction = Reaction.fromProto(reactionProto)
                 result.reaction = reaction
             }
-            return  result
+            return result
         }
     }
 

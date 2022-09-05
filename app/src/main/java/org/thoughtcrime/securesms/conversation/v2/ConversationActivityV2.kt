@@ -1064,8 +1064,11 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
             dateReceived = emojiTimestamp
         )
         reactionDb.addReaction(MessageId(originalMessage.id, originalMessage.isMms), reaction)
+        val originalAuthor = if (originalMessage.isOutgoing) {
+            fromSerialized(viewModel.blindedPublicKey ?: textSecurePreferences.getLocalNumber()!!)
+        } else originalMessage.individualRecipient.address
         // Send it
-        reactionMessage.reaction = Reaction.from(originalMessage.timestamp, originalMessage.recipient.address.serialize(), emoji, true)
+        reactionMessage.reaction = Reaction.from(originalMessage.timestamp, originalAuthor.serialize(), emoji, true)
         if (recipient.isOpenGroupRecipient) {
             val messageServerId = lokiMessageDb.getServerID(originalMessage.id, !originalMessage.isMms) ?: return
             viewModel.openGroup?.let {
@@ -1084,7 +1087,12 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         message.sentTimestamp = emojiTimestamp
         val author = textSecurePreferences.getLocalNumber()!!
         reactionDb.deleteReaction(emoji, MessageId(originalMessage.id, originalMessage.isMms), author)
-        message.reaction = Reaction.from(originalMessage.timestamp, author, emoji, false)
+
+        val originalAuthor = if (originalMessage.isOutgoing) {
+            fromSerialized(viewModel.blindedPublicKey ?: textSecurePreferences.getLocalNumber()!!)
+        } else originalMessage.individualRecipient.address
+
+        message.reaction = Reaction.from(originalMessage.timestamp, originalAuthor.serialize(), emoji, false)
         if (recipient.isOpenGroupRecipient) {
             val messageServerId = lokiMessageDb.getServerID(originalMessage.id, !originalMessage.isMms) ?: return
             viewModel.openGroup?.let {
@@ -1330,7 +1338,9 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         message.text = body
         val quote = quotedMessage?.let {
             val quotedAttachments = (it as? MmsMessageRecord)?.slideDeck?.asAttachments() ?: listOf()
-            val sender = if (it.isOutgoing) fromSerialized(textSecurePreferences.getLocalNumber()!!) else it.individualRecipient.address
+            val sender = if (it.isOutgoing) {
+                fromSerialized(viewModel.blindedPublicKey ?: textSecurePreferences.getLocalNumber()!!)
+            } else it.individualRecipient.address
             QuoteModel(it.dateSent, sender, it.body, false, quotedAttachments)
         }
         val outgoingTextMessage = OutgoingMediaMessage.from(message, recipient, attachments, quote, linkPreview)
