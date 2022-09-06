@@ -15,7 +15,6 @@ final class CameraXSelfieFlashHelper {
 
   private static final float MAX_SCREEN_BRIGHTNESS    = 1f;
   private static final float MAX_SELFIE_FLASH_ALPHA   = 0.9f;
-  private static final long  SELFIE_FLASH_DURATION_MS = 175;
 
   private final Window           window;
   private final CameraController camera;
@@ -51,9 +50,7 @@ final class CameraXSelfieFlashHelper {
     params.screenBrightness = MAX_SCREEN_BRIGHTNESS;
     window.setAttributes(params);
 
-    selfieFlash.animate()
-               .alpha(MAX_SELFIE_FLASH_ALPHA)
-               .setDuration(SELFIE_FLASH_DURATION_MS);
+    selfieFlash.setAlpha(MAX_SELFIE_FLASH_ALPHA);
   }
 
   void endFlash() {
@@ -67,10 +64,7 @@ final class CameraXSelfieFlashHelper {
     camera.setImageCaptureFlashMode(flashMode);
     flashMode = -1;
 
-    selfieFlash.animate()
-               .setStartDelay(SELFIE_FLASH_DURATION_MS)
-               .alpha(0f)
-               .setDuration(SELFIE_FLASH_DURATION_MS);
+    selfieFlash.setAlpha(MAX_SELFIE_FLASH_ALPHA);
 
     inFlash = false;
   }
