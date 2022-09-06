@@ -49,6 +49,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.IdentityKey;
@@ -185,6 +186,20 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
 
     if (!EventBus.getDefault().isRegistered(this)) {
       EventBus.getDefault().register(this);
+    }
+
+    WebRtcViewModel rtcViewModel = EventBus.getDefault().getStickyEvent(WebRtcViewModel.class);
+    if (rtcViewModel == null) {
+      Log.w(TAG, "Activity resumed without service event, perform delay destroy");
+      ThreadUtil.runOnMainDelayed(() -> {
+        WebRtcViewModel delayRtcViewModel = EventBus.getDefault().getStickyEvent(WebRtcViewModel.class);
+        if (delayRtcViewModel == null) {
+          Log.w(TAG, "Activity still without service event, finishing activity");
+          finish();
+        } else {
+          Log.i(TAG, "Event found after delay");
+        }
+      }, TimeUnit.SECONDS.toMillis(1));
     }
   }
 
