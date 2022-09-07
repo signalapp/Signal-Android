@@ -8,7 +8,7 @@ import org.signal.core.util.delete
 import org.signal.core.util.logging.Log
 import org.signal.core.util.requireNonNullString
 import org.signal.core.util.select
-import org.signal.core.util.update
+import org.signal.core.util.withinTransaction
 
 /**
  * Keeps track of the numbers we've previously queried CDS for.
@@ -53,32 +53,58 @@ class CdsDatabase(context: Context, databaseHelper: SignalDatabase) : Database(c
   }
 
   /**
-   * @param newE164s The newly-added E164s that we hadn't previously queried for.
-   * @param seenE164s The E164s that were seen in either the system contacts or recipients table.
-   *                  This should be a superset of [newE164s]
-   *
+   * Saves the set of e164s used after a full refresh.
+   * @param fullE164s All of the e164s used in the last CDS query (previous and new).
+   * @param seenE164s The E164s that were seen in either the system contacts or recipients table. This is different from [fullE164s] in that [fullE164s]
+   *                  includes every number we've ever seen, even if it's not in our contacts anymore.
    */
-  fun updateAfterCdsQuery(newE164s: Set<String>, seenE164s: Set<String>) {
+  fun updateAfterFullCdsQuery(fullE164s: Set<String>, seenE164s: Set<String>) {
     val lastSeen = System.currentTimeMillis()
 
-    writableDatabase.beginTransaction()
-    try {
-      val insertValues: List<ContentValues> = newE164s.map { contentValuesOf(E164 to it) }
+    writableDatabase.withinTransaction { db ->
+      val existingE164s: Set<String> = getAllE164s()
+      val removedE164s: Set<String> = existingE164s - fullE164s
+      val addedE164s: Set<String> = fullE164s - existingE164s
 
-      SqlUtil.buildBulkInsert(TABLE_NAME, arrayOf(E164), insertValues)
-        .forEach { writableDatabase.execSQL(it.where, it.whereArgs) }
+      if (removedE164s.isNotEmpty()) {
+        SqlUtil.buildCollectionQuery(E164, removedE164s)
+          .forEach { db.delete(TABLE_NAME, it.where, it.whereArgs) }
+      }
 
-      val contentValues = contentValuesOf(LAST_SEEN_AT to lastSeen)
+      if (addedE164s.isNotEmpty()) {
+        val insertValues: List<ContentValues> = addedE164s.map { contentValuesOf(E164 to it) }
 
-      SqlUtil.buildCollectionQuery(E164, seenE164s)
-        .forEach { query -> writableDatabase.update(TABLE_NAME, contentValues, query.where, query.whereArgs) }
+        SqlUtil.buildBulkInsert(TABLE_NAME, arrayOf(E164), insertValues)
+          .forEach { db.execSQL(it.where, it.whereArgs) }
+      }
 
-      writableDatabase.setTransactionSuccessful()
-    } finally {
-      writableDatabase.endTransaction()
+      if (seenE164s.isNotEmpty()) {
+        val contentValues = contentValuesOf(LAST_SEEN_AT to lastSeen)
+
+        SqlUtil.buildCollectionQuery(E164, seenE164s)
+          .forEach { query -> db.update(TABLE_NAME, contentValues, query.where, query.whereArgs) }
+      }
     }
   }
 
+  /**
+   * Updates after a partial CDS query. Will not insert new entries. Instead, this will simply update the lastSeen timestamp of any entry we already have.
+   * @param seenE164s The newly-added E164s that we hadn't previously queried for.
+   */
+  fun updateAfterPartialCdsQuery(seenE164s: Set<String>) {
+    val lastSeen = System.currentTimeMillis()
+
+    writableDatabase.withinTransaction { db ->
+      val contentValues = contentValuesOf(LAST_SEEN_AT to lastSeen)
+
+      SqlUtil.buildCollectionQuery(E164, seenE164s)
+        .forEach { query -> db.update(TABLE_NAME, contentValues, query.where, query.whereArgs) }
+    }
+  }
+
+  /**
+   * Wipes the entire table.
+   */
   fun clearAll() {
     writableDatabase
       .delete(TABLE_NAME)

@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.push.ACI
+import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
 import org.whispersystems.signalservice.api.services.CdsiV2Service
 import java.io.IOException
 import java.util.Optional
@@ -44,7 +45,7 @@ object ContactDiscoveryRefreshV2 {
   @WorkerThread
   @Synchronized
   @JvmStatic
-  fun refreshAll(context: Context, useCompat: Boolean, ignoreResults: Boolean = false): ContactDiscovery.RefreshResult {
+  fun refreshAll(context: Context, useCompat: Boolean, ignoreResults: Boolean): ContactDiscovery.RefreshResult {
     val recipientE164s: Set<String> = SignalDatabase.recipients.getAllE164s().sanitize()
     val systemE164s: Set<String> = SystemContactsRepository.getAllDisplayNumbers(context).toE164s(context).sanitize()
 
@@ -52,7 +53,7 @@ object ContactDiscoveryRefreshV2 {
       recipientE164s = recipientE164s,
       systemE164s = systemE164s,
       inputPreviousE164s = SignalDatabase.cds.getAllE164s(),
-      saveToken = true,
+      isPartialRefresh = false,
       useCompat = useCompat,
       ignoreResults = ignoreResults
     )
@@ -62,14 +63,14 @@ object ContactDiscoveryRefreshV2 {
   @WorkerThread
   @Synchronized
   @JvmStatic
-  fun refresh(context: Context, inputRecipients: List<Recipient>, useCompat: Boolean, ignoreResults: Boolean = false): ContactDiscovery.RefreshResult {
+  fun refresh(context: Context, inputRecipients: List<Recipient>, useCompat: Boolean, ignoreResults: Boolean): ContactDiscovery.RefreshResult {
     val recipients: List<Recipient> = inputRecipients.map { it.resolve() }
     val inputE164s: Set<String> = recipients.mapNotNull { it.e164.orElse(null) }.toSet()
 
     return if (inputE164s.size > MAXIMUM_ONE_OFF_REQUEST_SIZE) {
       Log.i(TAG, "List of specific recipients to refresh is too large! (Size: ${recipients.size}). Doing a full refresh instead.")
 
-      val fullResult: ContactDiscovery.RefreshResult = refreshAll(context, ignoreResults)
+      val fullResult: ContactDiscovery.RefreshResult = refreshAll(context, useCompat = useCompat, ignoreResults = ignoreResults)
       val inputIds: Set<RecipientId> = recipients.map { it.id }.toSet()
 
       ContactDiscovery.RefreshResult(
@@ -81,7 +82,7 @@ object ContactDiscoveryRefreshV2 {
         recipientE164s = inputE164s,
         systemE164s = inputE164s,
         inputPreviousE164s = emptySet(),
-        saveToken = false,
+        isPartialRefresh = true,
         useCompat = useCompat,
         ignoreResults = ignoreResults
       )
@@ -93,13 +94,14 @@ object ContactDiscoveryRefreshV2 {
     recipientE164s: Set<String>,
     systemE164s: Set<String>,
     inputPreviousE164s: Set<String>,
-    saveToken: Boolean,
+    isPartialRefresh: Boolean,
     useCompat: Boolean,
     ignoreResults: Boolean
   ): ContactDiscovery.RefreshResult {
-    val stopwatch = Stopwatch("refreshInternal-${if (useCompat) "compat" else "v2"}")
+    val tag = "refreshInternal-${if (useCompat) "compat" else "v2"}"
+    val stopwatch = Stopwatch(tag)
 
-    val previousE164s: Set<String> = if (SignalStore.misc().cdsToken != null) inputPreviousE164s else emptySet()
+    val previousE164s: Set<String> = if (SignalStore.misc().cdsToken != null && !isPartialRefresh) inputPreviousE164s else emptySet()
 
     val allE164s: Set<String> = recipientE164s + systemE164s
     val newRawE164s: Set<String> = allE164s - previousE164s
@@ -107,40 +109,50 @@ object ContactDiscoveryRefreshV2 {
     val newE164s: Set<String> = fuzzyInput.numbers
 
     if (newE164s.isEmpty() && previousE164s.isEmpty()) {
-      Log.w(TAG, "[refreshInternal] No data to send! Ignoring.")
+      Log.w(TAG, "[$tag] No data to send! Ignoring.")
       return ContactDiscovery.RefreshResult(emptySet(), emptyMap())
     }
 
-    val token: ByteArray? = if (previousE164s.isNotEmpty()) SignalStore.misc().cdsToken else null
+    val token: ByteArray? = if (previousE164s.isNotEmpty() && !isPartialRefresh) SignalStore.misc().cdsToken else null
 
     stopwatch.split("preamble")
 
-    val response: CdsiV2Service.Response = ApplicationDependencies.getSignalServiceAccountManager().getRegisteredUsersWithCdsi(
-      previousE164s,
-      newE164s,
-      SignalDatabase.recipients.getAllServiceIdProfileKeyPairs(),
-      useCompat,
-      Optional.ofNullable(token),
-      BuildConfig.CDSI_MRENCLAVE
-    ) { tokenToSave ->
-      if (saveToken) {
-        SignalStore.misc().cdsToken = tokenToSave
-        Log.d(TAG, "Token saved!")
-      } else {
-        Log.d(TAG, "Ignoring token.")
+    val response: CdsiV2Service.Response = try {
+      ApplicationDependencies.getSignalServiceAccountManager().getRegisteredUsersWithCdsi(
+        previousE164s,
+        newE164s,
+        SignalDatabase.recipients.getAllServiceIdProfileKeyPairs(),
+        useCompat,
+        Optional.ofNullable(token),
+        BuildConfig.CDSI_MRENCLAVE
+      ) { tokenToSave ->
+        stopwatch.split("network-pre-token")
+        if (!isPartialRefresh) {
+          SignalStore.misc().cdsToken = tokenToSave
+          SignalDatabase.cds.updateAfterFullCdsQuery(previousE164s + newE164s, allE164s + newE164s)
+          Log.d(TAG, "Token saved!")
+        } else {
+          SignalDatabase.cds.updateAfterPartialCdsQuery(newE164s)
+          Log.d(TAG, "Ignoring token.")
+        }
+        stopwatch.split("cds-db")
       }
+    } catch (e: NonSuccessfulResponseCodeException) {
+      if (e.code == 4101) {
+        Log.w(TAG, "Our token was invalid! Only thing we can do now is clear our local state :(")
+        SignalStore.misc().cdsToken = null
+        SignalDatabase.cds.clearAll()
+      }
+      throw e
     }
-    Log.d(TAG, "[refreshInternal] Used ${response.quotaUsedDebugOnly} quota.")
-    stopwatch.split("network")
-
-    SignalDatabase.cds.updateAfterCdsQuery(newE164s, allE164s + newE164s)
-    stopwatch.split("cds-db")
+    Log.d(TAG, "[$tag] Used ${response.quotaUsedDebugOnly} quota.")
+    stopwatch.split("network-post-token")
 
     val registeredIds: MutableSet<RecipientId> = mutableSetOf()
     val rewrites: MutableMap<String, String> = mutableMapOf()
 
     if (ignoreResults) {
-      Log.w(TAG, "[refreshInternal] Ignoring CDSv2 results.")
+      Log.w(TAG, "[$tag] Ignoring CDSv2 results.")
     } else {
       if (useCompat) {
         val transformed: Map<String, ACI?> = response.results.mapValues { entry -> entry.value.aci.orElse(null) }

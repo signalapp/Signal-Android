@@ -549,7 +549,11 @@ public class SignalServiceAccountManager {
     if (serviceResponse.getResult().isPresent()) {
       return serviceResponse.getResult().get();
     } else if (serviceResponse.getApplicationError().isPresent()) {
-      throw new IOException(serviceResponse.getApplicationError().get());
+      if (serviceResponse.getApplicationError().get() instanceof IOException) {
+        throw (IOException) serviceResponse.getApplicationError().get();
+      } else {
+        throw new IOException(serviceResponse.getApplicationError().get());
+      }
     } else if (serviceResponse.getExecutionError().isPresent()) {
       throw new IOException(serviceResponse.getExecutionError().get());
     } else {
