@@ -6,15 +6,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-  <androidx.cardview.widget.CardView
+  <com.google.android.material.card.MaterialCardView
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_margin="8dp"
       android:clipChildren="false"
       android:clipToPadding="false"
-      app:cardBackgroundColor="@color/megaphone_background_color"
-      app:cardCornerRadius="8dp"
-      app:cardElevation="6dp"
+      app:strokeColor="@color/signal_colorOutline_38"
+      app:strokeWidth="1dp"
+      app:cardBackgroundColor="@color/signal_colorBackground"
+      app:cardCornerRadius="12dp"
+      app:cardElevation="2dp"
       app:cardPreventCornerOverlap="false"
       app:cardUseCompatPadding="true"
       app:contentPadding="0dp">
@@ -27,6 +29,7 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:clickable="true"
+          android:focusable="true"
           android:paddingStart="8dp"
           android:paddingTop="16dp"
           android:paddingEnd="8dp"
@@ -77,33 +80,41 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/basic_megaphone_action"
             style="@style/Signal.Widget.Button.Large.Secondary"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:textAllCaps="false"
+            app:layout_constrainedWidth="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/basic_megaphone_secondary"
             app:layout_constraintTop_toBottomOf="@id/basic_megaphone_content_barrier"
+            app:layout_constraintWidth_max="wrap"
+            app:layout_constraintWidth_percent="0.5"
             tools:text="*sigh*"
             tools:visibility="visible" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/basic_megaphone_secondary"
             style="@style/Signal.Widget.Button.Large.Secondary"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:text="@string/Megaphones_remind_me_later"
             android:textAllCaps="false"
+            app:layout_constrainedWidth="true"
             app:layout_constraintEnd_toStartOf="@id/basic_megaphone_action"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/basic_megaphone_content_barrier"
+            app:layout_constraintWidth_max="wrap"
+            app:layout_constraintWidth_percent="0.5"
             tools:visibility="visible" />
 
       </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
 
-  </androidx.cardview.widget.CardView>
+  </com.google.android.material.card.MaterialCardView>
 
 </merge>
