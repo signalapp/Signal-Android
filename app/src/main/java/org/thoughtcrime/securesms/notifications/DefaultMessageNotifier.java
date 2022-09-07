@@ -25,10 +25,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.media.AudioAttributes;
-import android.media.AudioManager;
-import android.media.Ringtone;
-import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -40,13 +36,12 @@ import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
+import com.annimon.stream.Optional;
+import com.annimon.stream.Stream;
 import com.goterl.lazysodium.utils.KeyPair;
 
 import org.session.libsession.messaging.MessagingModuleConfiguration;
 import org.session.libsession.messaging.open_groups.OpenGroup;
-import com.annimon.stream.Optional;
-import com.annimon.stream.Stream;
-
 import org.session.libsession.messaging.sending_receiving.notifications.MessageNotifier;
 import org.session.libsession.messaging.utilities.SessionId;
 import org.session.libsession.messaging.utilities.SodiumUtilities;
@@ -139,9 +134,7 @@ public class DefaultMessageNotifier implements MessageNotifier {
 
   @Override
   public void notifyMessageDeliveryFailed(Context context, Recipient recipient, long threadId) {
-    if (visibleThread == threadId) {
-      sendInThreadNotification(context, recipient);
-    } else {
+    if (visibleThread != threadId) {
       Intent intent = new Intent(context, ConversationActivityV2.class);
       intent.putExtra(ConversationActivityV2.ADDRESS, recipient.getAddress());
       intent.putExtra(ConversationActivityV2.THREAD_ID, threadId);
@@ -258,9 +251,7 @@ public class DefaultMessageNotifier implements MessageNotifier {
       return;
     }
 
-    if (isVisible) {
-      sendInThreadNotification(context, threads.getRecipientForThreadId(threadId));
-    } else if (!homeScreenVisible) {
+    if (!isVisible && !homeScreenVisible) {
       updateNotification(context, signal, 0);
     }
   }
@@ -454,44 +445,6 @@ public class DefaultMessageNotifier implements MessageNotifier {
     Notification notification = builder.build();
     NotificationManagerCompat.from(context).notify(SUMMARY_NOTIFICATION_ID, notification);
     Log.i(TAG, "Posted notification. " + notification);
-  }
-
-  private void sendInThreadNotification(Context context, Recipient recipient) {
-    if (!TextSecurePreferences.isInThreadNotifications(context) ||
-            ServiceUtil.getAudioManager(context).getRingerMode() != AudioManager.RINGER_MODE_NORMAL ||
-            (System.currentTimeMillis() - lastAudibleNotification) < MIN_AUDIBLE_PERIOD_MILLIS)
-    {
-      return;
-    } else {
-      lastAudibleNotification = System.currentTimeMillis();
-    }
-
-    Uri uri = null;
-    if (recipient != null) {
-      uri = NotificationChannels.supported() ? NotificationChannels.getMessageRingtone(context, recipient) : recipient.getMessageRingtone();
-    }
-
-    if (uri == null) {
-      uri = NotificationChannels.supported() ? NotificationChannels.getMessageRingtone(context) : TextSecurePreferences.getNotificationRingtone(context);
-    }
-
-    if (uri.toString().isEmpty()) {
-      Log.d(TAG, "ringtone uri is empty");
-      return;
-    }
-
-    Ringtone ringtone = RingtoneManager.getRingtone(context, uri);
-
-    if (ringtone == null) {
-      Log.w(TAG, "ringtone is null");
-      return;
-    }
-
-    ringtone.setAudioAttributes(new AudioAttributes.Builder().setContentType(AudioAttributes.CONTENT_TYPE_UNKNOWN)
-                                                             .setUsage(AudioAttributes.USAGE_NOTIFICATION_COMMUNICATION_INSTANT)
-                                                             .build());
-
-    ringtone.play();
   }
 
   private NotificationState constructNotificationState(@NonNull  Context context,
