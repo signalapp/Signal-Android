@@ -82,6 +82,8 @@ public class LongClickMovementMethod extends LinkMovementMethod {
         this.currentSpan = aSingleSpan;
         this.widget = widget;
         return gestureDetector.onTouchEvent(event);
+      } else if (action == MotionEvent.ACTION_UP && Selection.getSelectionEnd(buffer) > 0){
+        Selection.setSelection(buffer, 0);
       }
     } else if (action == MotionEvent.ACTION_CANCEL) {
       // Remove Selections.
