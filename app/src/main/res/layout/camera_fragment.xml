@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         app:cardCornerRadius="18dp"
         app:cardElevation="0dp"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <TextureView
             android:id="@+id/camera_preview"
@@ -25,7 +25,7 @@
         android:id="@+id/camera_controls_container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@id/camera_preview_parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="@id/camera_preview_parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

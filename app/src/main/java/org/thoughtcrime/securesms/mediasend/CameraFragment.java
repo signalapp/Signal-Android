@@ -2,6 +2,8 @@ package org.thoughtcrime.securesms.mediasend;
 
 import android.annotation.SuppressLint;
 import android.content.res.Configuration;
+import android.view.Window;
+import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
 import androidx.camera.view.video.ExperimentalVideo;

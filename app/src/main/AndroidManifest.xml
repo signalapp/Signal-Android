@@ -554,7 +554,7 @@
     </activity>
 
     <activity android:name=".mediasend.AvatarSelectionActivity"
-              android:theme="@style/TextSecure.FullScreenMedia"
+              android:theme="@style/TextSecure.DarkNoActionBar"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".blocked.BlockedUsersActivity"
@@ -659,7 +659,7 @@
 
     <activity android:name=".wallpaper.crop.WallpaperImageSelectionActivity"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-              android:theme="@style/TextSecure.FullScreenMedia" />
+              android:theme="@style/TextSecure.DarkNoActionBar" />
 
     <activity android:name=".wallpaper.crop.WallpaperCropActivity"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"

@@ -8,11 +8,11 @@
 
     <org.thoughtcrime.securesms.mediasend.CameraButtonView
         android:id="@+id/camera_capture_button"
-        android:layout_width="124dp"
-        android:layout_height="124dp"
+        android:layout_width="@dimen/camera_capture_button_size"
+        android:layout_height="@dimen/camera_capture_button_size"
         android:contentDescription="@string/CameraXFragment_capture_description"
-        app:imageCaptureSize="76dp"
-        app:layout_constraintBottom_toTopOf="@id/toggle_spacer"
+        app:imageCaptureSize="@dimen/camera_capture_image_button_size"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:recordSize="54dp" />
@@ -40,7 +40,7 @@
         android:contentDescription="@string/CameraXFragment_change_camera_description"
         android:scaleType="centerInside"
         android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@id/toggle_spacer"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_switch_camera_28"
         tools:visibility="visible" />
@@ -52,7 +52,7 @@
         android:layout_marginEnd="40dp"
         android:layout_marginBottom="36dp"
         android:background="@drawable/circle_tintable"
-        app:layout_constraintBottom_toTopOf="@id/toggle_spacer"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
         <com.google.android.material.imageview.ShapeableImageView
@@ -90,15 +90,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <View
-        android:id="@+id/toggle_spacer"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

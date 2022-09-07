@@ -31,6 +31,8 @@
     <dimen name="album_5_cell_size_small">69dp</dimen>
 
     <dimen name="camera_contacts_horizontal_margin">16dp</dimen>
+    <dimen name="camera_capture_button_size">124dp</dimen>
+    <dimen name="camera_capture_image_button_size">76dp</dimen>
 
     <dimen name="message_corner_radius">18dp</dimen>
     <dimen name="message_corner_collapse_radius">4dp</dimen>

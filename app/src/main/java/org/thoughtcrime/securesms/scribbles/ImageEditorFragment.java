@@ -224,6 +224,15 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
 
     Mode mode = Mode.getByCode(requireArguments().getString(KEY_MODE));
 
+    if (mode == Mode.AVATAR_CAPTURE || mode == Mode.AVATAR_EDIT) {
+      view.setPadding(
+          0,
+          ViewUtil.getStatusBarHeight(view),
+          0,
+          ViewUtil.getNavigationBarHeight(view)
+      );
+    }
+
     imageEditorHud  = view.findViewById(R.id.scribble_hud);
     imageEditorView = view.findViewById(R.id.image_editor_view);
 
