@@ -513,14 +513,6 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         }
     }
 
-    private fun addOpenGroupGuidelinesIfNeeded(isOxenHostedOpenGroup: Boolean) {
-        if (!isOxenHostedOpenGroup) { return }
-        binding?.openGroupGuidelinesView?.visibility = View.VISIBLE
-        val recyclerViewLayoutParams = binding?.conversationRecyclerView?.layoutParams as RelativeLayout.LayoutParams? ?: return
-        recyclerViewLayoutParams.topMargin = toPx(57, resources) // The height of the open group guidelines view is hardcoded to this
-        binding?.conversationRecyclerView?.layoutParams = recyclerViewLayoutParams
-    }
-
     // called from onCreate
     private fun setUpTypingObserver() {
         ApplicationContext.getInstance(this).typingStatusRepository.getTypists(viewModel.threadId).observe(this) { state ->
@@ -594,7 +586,6 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
                     Toast.makeText(this@ConversationActivityV2, it.message, Toast.LENGTH_LONG).show()
                     viewModel.messageShown(it.id)
                 }
-                addOpenGroupGuidelinesIfNeeded(uiState.isOxenHostedOpenGroup)
                 if (uiState.isMessageRequestAccepted == true) {
                     binding?.messageRequestBar?.visibility = View.GONE
                 }

@@ -20,18 +20,12 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-    <org.thoughtcrime.securesms.conversation.v2.components.OpenGroupGuidelinesView
-        android:id="@+id/openGroupGuidelinesView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone" />
-
     <org.thoughtcrime.securesms.conversation.v2.ConversationRecyclerView
         android:id="@+id/conversationRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/toolbar"
-        android:layout_above="@+id/typingIndicatorViewContainer" />
+        android:layout_above="@+id/typingIndicatorViewContainer"
+        android:layout_below="@id/toolbar" />
 
     <org.thoughtcrime.securesms.conversation.v2.components.TypingIndicatorViewContainer
         android:id="@+id/typingIndicatorViewContainer"
@@ -60,8 +54,7 @@
         android:layout_height="match_parent"
         android:background="@color/reactions_screen_light_shade_color"
         android:foreground="@color/reactions_screen_dark_shade_color"
-        android:visibility="gone"
-        tools:visibility="visible"/>
+        android:visibility="gone"/>
 
     <ViewStub
         android:id="@+id/conversation_reaction_scrubber_stub"
@@ -180,8 +173,8 @@
         android:id="@+id/blockedBanner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
         android:background="@color/destructive"
-        android:layout_alignParentTop="true"
         android:visibility="gone"
         tools:visibility="visible">
 
@@ -191,8 +184,8 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:layout_margin="@dimen/medium_spacing"
-            android:textSize="@dimen/small_font_size"
             android:textColor="@color/white"
+            android:textSize="@dimen/small_font_size"
             android:textStyle="bold"
             tools:text="Elon is blocked. Unblock them?" />
 
@@ -212,11 +205,11 @@
             android:id="@+id/sendAcceptsTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
             android:layout_margin="@dimen/medium_spacing"
+            android:alpha="0.6"
+            android:gravity="center_horizontal"
             android:text="@string/message_requests_send_notice"
             android:textColor="@color/text"
-            android:alpha="0.6"
             android:textSize="@dimen/small_font_size" />
 
         <LinearLayout
