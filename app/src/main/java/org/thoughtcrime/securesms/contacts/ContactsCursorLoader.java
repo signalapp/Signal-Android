@@ -259,7 +259,7 @@ public class ContactsCursorLoader extends AbstractContactsCursorLoader {
   }
 
   private Cursor getUsernameSearchCursor() {
-    return ContactsCursorRows.forUsernameSearch(getUnknownContactTitle(), getFilter());
+    return ContactsCursorRows.forUsernameSearch(getFilter());
   }
 
   private String getUnknownContactTitle() {

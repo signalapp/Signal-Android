@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.contacts.avatars;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
@@ -17,8 +16,8 @@ import com.makeramen.roundedimageview.RoundedDrawable;
 
 import org.jetbrains.annotations.NotNull;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.avatar.Avatars;
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
+import org.thoughtcrime.securesms.conversation.colors.AvatarColorPair;
 
 import java.util.Objects;
 
@@ -64,18 +63,10 @@ public class ResourceContactPhoto implements FallbackContactPhoto {
   }
 
   private @NonNull Drawable buildDrawable(@NonNull Context context, int resourceId, @NonNull AvatarColor color, boolean inverted) {
-    final int backgroundColor;
-    final int foregroundColor;
+    AvatarColorPair avatarColorPair = AvatarColorPair.create(context, color);
 
-    if (color == AvatarColor.UNKNOWN) {
-      backgroundColor = ContextCompat.getColor(context, R.color.signal_colorSurfaceVariant);
-      foregroundColor = ContextCompat.getColor(context, R.color.signal_colorOnSurface);
-    } else {
-      Avatars.ForegroundColor foregroundAvatarColor = Avatars.getForegroundColor(color);
-
-      backgroundColor = color.colorInt();
-      foregroundColor = foregroundAvatarColor.getColorInt();
-    }
+    final int backgroundColor = avatarColorPair.getBackgroundColor();
+    final int foregroundColor = avatarColorPair.getForegroundColor();
 
     Drawable        background = Objects.requireNonNull(ContextCompat.getDrawable(context, R.drawable.circle_tintable));
     RoundedDrawable foreground = (RoundedDrawable) RoundedDrawable.fromDrawable(AppCompatResources.getDrawable(context, resourceId));

@@ -64,6 +64,7 @@ public final class AvatarImageView extends AppCompatImageView {
 
   private @Nullable RecipientContactPhoto recipientContactPhoto;
   private @NonNull  Drawable              unknownRecipientDrawable;
+  private @Nullable AvatarColor           fallbackPhotoColor;
 
   public AvatarImageView(Context context) {
     super(context);
@@ -103,6 +104,10 @@ public final class AvatarImageView extends AppCompatImageView {
 
   public void setFallbackPhotoProvider(Recipient.FallbackPhotoProvider fallbackPhotoProvider) {
     this.fallbackPhotoProvider = fallbackPhotoProvider;
+  }
+
+  public void setFallbackPhotoColor(@Nullable AvatarColor fallbackPhotoColor) {
+    this.fallbackPhotoColor = fallbackPhotoColor;
   }
 
   /**
@@ -213,7 +218,7 @@ public final class AvatarImageView extends AppCompatImageView {
       requestManager.clear(this);
       if (fallbackPhotoProvider != null) {
         setImageDrawable(fallbackPhotoProvider.getPhotoForRecipientWithoutName()
-                                              .asDrawable(getContext(), AvatarColor.UNKNOWN, inverted));
+                                              .asDrawable(getContext(), Util.firstNonNull(fallbackPhotoColor, AvatarColor.UNKNOWN), inverted));
       } else {
         setImageDrawable(unknownRecipientDrawable);
       }

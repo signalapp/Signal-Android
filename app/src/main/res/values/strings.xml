@@ -214,7 +214,8 @@
     <string name="ContactsCursorLoader_contacts">Contacts</string>
     <string name="ContactsCursorLoader_groups">Groups</string>
     <string name="ContactsCursorLoader_phone_number_search">Phone number search</string>
-    <string name="ContactsCursorLoader_username_search">Username search</string>
+    <!-- Header for username search -->
+    <string name="ContactsCursorLoader_find_by_username">Find by username</string>
     <!-- Label for my stories when selecting who to send media to -->
     <string name="ContactsCursorLoader_my_stories">My Stories</string>
     <!-- Action for creating a new story -->

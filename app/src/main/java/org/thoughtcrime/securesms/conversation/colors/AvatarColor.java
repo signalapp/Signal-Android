@@ -24,7 +24,8 @@ public enum AvatarColor {
   A190("A190", 0xFFEAE6D5),
   A200("A200", 0xFFD2D2DC),
   A210("A210", 0xFFD7D7D9),
-  UNKNOWN("UNKNOWN", 0x00000000);
+  UNKNOWN("UNKNOWN", 0x00000000),
+  ON_SURFACE_VARIANT("ON_SURFACE_VARIANT", 0x00000000);
 
   /** Fast map of name to enum, while also giving us a location to map old colors to new ones. */
   private static final Map<String, AvatarColor> NAME_MAP = new HashMap<>();
