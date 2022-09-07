@@ -3295,8 +3295,11 @@
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">Gamitin bilang default na app na pang-SMS</string>
   <!--Preference title to export sms-->
+  <string name="SmsSettingsFragment__export_sms_messages">I-export ang SMS messages</string>
   <!--Preference title to delete sms-->
+  <string name="SmsSettingsFragment__remove_sms_messages">Tanggalin ang SMS messages</string>
   <!--Snackbar text to confirm deletion-->
+  <string name="SmsSettingsFragment__sms_messages_removed">Natanggal na ang SMS messages</string>
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">Mga Mensahe</string>
   <string name="NotificationsSettingsFragment__calls">Mga Tawag</string>
@@ -4063,7 +4066,7 @@
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Story Ko</string>
   <!--Section heading for story visibility-->
-  <string name="MyStorySettingsFragment__who_can_view_this_story">Sinong makakakita ng story na ito</string>
+  <string name="MyStorySettingsFragment__who_can_view_this_story">Sinong pwedeng makakita ng story na ito</string>
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">I-hide ang story kay</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
@@ -4071,7 +4074,7 @@
   <!--Privacy setting description for sending stories to all your signal connections-->
   <string name="MyStorySettingsFragment__share_with_all_connections">I-share sa lahat ng connections</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
-  <string name="MyStorySettingsFragment__all_except">All except…</string>
+  <string name="MyStorySettingsFragment__all_except">Lahat maliban kay…</string>
   <!--Privacy setting description for sending stories to all except the specified connections-->
   <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">I-hide ang iyong story mula sa specific na tao</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
@@ -4301,8 +4304,17 @@
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Hindi ngayon</string>
   <!--My Story label designating that we will only share with the selected viewers.-->
+  <string name="ContactSearchItems__only_share_with">I-share lang sa…</string>
   <!--Label under name for private stories-->
+  <plurals name="ContactSearchItems__private_story_d_viewers">
+    <item quantity="one">Private story · %1$d viewer</item>
+    <item quantity="other">Private story · %1$d viewers</item>
+  </plurals>
   <!--Label under name for group stories-->
+  <plurals name="ContactSearchItems__group_story_d_viewers">
+    <item quantity="one">Group story · %1$d viewer</item>
+    <item quantity="other">Group story · %1$d viewers</item>
+  </plurals>
   <!--Label under name for my story-->
   <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
     <item quantity="one">%1$s · %2$d viewer</item>
@@ -4403,7 +4415,7 @@
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">All Signal connections</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
-  <string name="ChooseInitialMyStoryMembershipFragment__all_except">All except…</string>
+  <string name="ChooseInitialMyStoryMembershipFragment__all_except">Lahat maliban kay…</string>
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Only share with…</string>
   <!--Story info header sent heading-->
@@ -4446,22 +4458,35 @@
   <string name="OverflowMenu__overflow_menu">Overflow menu</string>
   <!--SMS Export Service-->
   <!--Displayed in the notification while export is running-->
+  <string name="SignalSmsExportService__exporting_messages">Nag-e-export ng messages…</string>
   <!--ExportYourSmsMessagesFragment-->
   <!--Title of the screen-->
+  <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">I-export ang iyong SMS messages</string>
   <!--Button label to begin export-->
   <string name="ExportYourSmsMessagesFragment__continue">Magpatuloy</string>
   <!--ExportingSmsMessagesFragment-->
   <!--Title of the screen-->
+  <string name="ExportingSmsMessagesFragment__exporting_sms_messages">Nag-e-export ng SMS messages</string>
   <!--Progress indicator for export-->
+  <string name="ExportingSmsMessagesFragment__exporting_d_of_d">Nag-e-export ng %1$d sa %2$d…</string>
   <!--ChooseANewDefaultSmsAppFragment-->
   <!--Title of the screen-->
+  <string name="ChooseANewDefaultSmsAppFragment__choose_a_new">Pumili ng bagong default SMS app</string>
   <!--Button label to launch picker-->
   <string name="ChooseANewDefaultSmsAppFragment__continue">Magpatuloy</string>
   <!--RemoveSmsMessagesDialogFragment-->
   <!--Action button to keep messages-->
-  <string name="RemoveSmsMessagesDialogFragment__keep_messages">Keep messages</string>
+  <string name="RemoveSmsMessagesDialogFragment__keep_messages">Panatilihin ang messages</string>
   <!--Action button to remove messages-->
+  <string name="RemoveSmsMessagesDialogFragment__remove_messages">Tanggalin ang messages</string>
   <!--Title of dialog-->
+  <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Gusto mo bang tanggalin ang SMS messages mula sa Signal?</string>
   <!--Message of dialog-->
+  <string name="RemoveSmsMessagesDialogFragment__you_have_changed">Pinalitan mo ang default SMS app, gusto mo bang tanggalin ang SMS messages mula sa Signal?</string>
+  <!--SetSignalAsDefaultSmsAppFragment-->
+  <!--Title of the screen-->
+  <string name="SetSignalAsDefaultSmsAppFragment__first_set_signal_as_the_default_sms_app">Una, i-set ang Signal bilang default SMS app</string>
+  <!--Button label to start export-->
+  <string name="SetSignalAsDefaultSmsAppFragment__next">Susunod</string>
   <!--EOF-->
 </resources>

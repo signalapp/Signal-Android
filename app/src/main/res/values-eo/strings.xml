@@ -4318,5 +4318,9 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--Action button to remove messages-->
   <!--Title of dialog-->
   <!--Message of dialog-->
+  <!--SetSignalAsDefaultSmsAppFragment-->
+  <!--Title of the screen-->
+  <!--Button label to start export-->
+  <string name="SetSignalAsDefaultSmsAppFragment__next">Sekva</string>
   <!--EOF-->
 </resources>

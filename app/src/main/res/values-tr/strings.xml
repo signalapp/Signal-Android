@@ -3293,8 +3293,11 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">Varsayılan SMS uygulaması olarak ayarla</string>
   <!--Preference title to export sms-->
+  <string name="SmsSettingsFragment__export_sms_messages">SMS mesajlarını dışa aktar</string>
   <!--Preference title to delete sms-->
+  <string name="SmsSettingsFragment__remove_sms_messages">SMS mesajlarını kaldır</string>
   <!--Snackbar text to confirm deletion-->
+  <string name="SmsSettingsFragment__sms_messages_removed">SMS mesajların kaldırıldı</string>
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">İletiler</string>
   <string name="NotificationsSettingsFragment__calls">Aramalar</string>
@@ -4299,8 +4302,17 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Şimdi değil</string>
   <!--My Story label designating that we will only share with the selected viewers.-->
+  <string name="ContactSearchItems__only_share_with">Yalnızca şu kişilerle paylaş</string>
   <!--Label under name for private stories-->
+  <plurals name="ContactSearchItems__private_story_d_viewers">
+    <item quantity="one">Gizli hikaye · %1$d görüntüleyen</item>
+    <item quantity="other">Gizli hikaye · %1$d görüntüleyen</item>
+  </plurals>
   <!--Label under name for group stories-->
+  <plurals name="ContactSearchItems__group_story_d_viewers">
+    <item quantity="one">Grup hikayesi · %1$d görüntüleyen</item>
+    <item quantity="other">Grup hikayesi · %1$d görüntüleyen</item>
+  </plurals>
   <!--Label under name for my story-->
   <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
     <item quantity="one">%1$s · %2$d görüntüleyen</item>
@@ -4444,22 +4456,35 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="OverflowMenu__overflow_menu">İlave menü</string>
   <!--SMS Export Service-->
   <!--Displayed in the notification while export is running-->
+  <string name="SignalSmsExportService__exporting_messages">Mesajlar dışa aktarılıyor…</string>
   <!--ExportYourSmsMessagesFragment-->
   <!--Title of the screen-->
+  <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">Mesajları dışa aktar</string>
   <!--Button label to begin export-->
   <string name="ExportYourSmsMessagesFragment__continue">Devam Et</string>
   <!--ExportingSmsMessagesFragment-->
   <!--Title of the screen-->
+  <string name="ExportingSmsMessagesFragment__exporting_sms_messages">SMS mesajları dışa aktarılıyor</string>
   <!--Progress indicator for export-->
+  <string name="ExportingSmsMessagesFragment__exporting_d_of_d">%2$d mesajdan %1$d mesaj dışa aktarılıyor…</string>
   <!--ChooseANewDefaultSmsAppFragment-->
   <!--Title of the screen-->
+  <string name="ChooseANewDefaultSmsAppFragment__choose_a_new">Yeni bir varsayılan SMS uygulaması seç</string>
   <!--Button label to launch picker-->
   <string name="ChooseANewDefaultSmsAppFragment__continue">Devam Et</string>
   <!--RemoveSmsMessagesDialogFragment-->
   <!--Action button to keep messages-->
-  <string name="RemoveSmsMessagesDialogFragment__keep_messages">İletileri sakla</string>
+  <string name="RemoveSmsMessagesDialogFragment__keep_messages">Mesajları sakla</string>
   <!--Action button to remove messages-->
+  <string name="RemoveSmsMessagesDialogFragment__remove_messages">Mesajları kaldır</string>
   <!--Title of dialog-->
+  <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">SMS mesajları Signal\'dan kaldırılsın mı?</string>
   <!--Message of dialog-->
+  <string name="RemoveSmsMessagesDialogFragment__you_have_changed">Varsayılan SMS uygulamasını değiştirdin. SMS mesajlarını Signal\'dan kaldırmak istiyor musun?</string>
+  <!--SetSignalAsDefaultSmsAppFragment-->
+  <!--Title of the screen-->
+  <string name="SetSignalAsDefaultSmsAppFragment__first_set_signal_as_the_default_sms_app">Önce, Signal\'ı varsayılan SMS uygulaması olarak ayarla</string>
+  <!--Button label to start export-->
+  <string name="SetSignalAsDefaultSmsAppFragment__next">İleri</string>
   <!--EOF-->
 </resources>

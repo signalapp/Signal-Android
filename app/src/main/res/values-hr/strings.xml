@@ -3389,8 +3389,11 @@ broj telefona</string>
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">Koristi kao zadanu SMS aplikaciju</string>
   <!--Preference title to export sms-->
+  <string name="SmsSettingsFragment__export_sms_messages">Izvoz SMS poruka</string>
   <!--Preference title to delete sms-->
+  <string name="SmsSettingsFragment__remove_sms_messages">Brisanje SMS poruka</string>
   <!--Snackbar text to confirm deletion-->
+  <string name="SmsSettingsFragment__sms_messages_removed">SMS poruke su izbrisane</string>
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">Poruke</string>
   <string name="NotificationsSettingsFragment__calls">Pozivi</string>
@@ -4409,8 +4412,19 @@ broj telefona</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Ne sada</string>
   <!--My Story label designating that we will only share with the selected viewers.-->
+  <string name="ContactSearchItems__only_share_with">Podijeli samo s</string>
   <!--Label under name for private stories-->
+  <plurals name="ContactSearchItems__private_story_d_viewers">
+    <item quantity="one">Privatna priča · %1$d gledatelj</item>
+    <item quantity="few">Privatna priča · %1$d gledatelja</item>
+    <item quantity="other">Privatna priča · %1$d gledatelja</item>
+  </plurals>
   <!--Label under name for group stories-->
+  <plurals name="ContactSearchItems__group_story_d_viewers">
+    <item quantity="one">Grupna priča · %1$d gledatelj</item>
+    <item quantity="few">Grupna priča · %1$d gledatelja</item>
+    <item quantity="other">Grupna priča · %1$d gledatelja</item>
+  </plurals>
   <!--Label under name for my story-->
   <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
     <item quantity="one">%1$s · %2$d gledatelj</item>
@@ -4559,22 +4573,35 @@ broj telefona</string>
   <string name="OverflowMenu__overflow_menu">Padajući izbornik</string>
   <!--SMS Export Service-->
   <!--Displayed in the notification while export is running-->
+  <string name="SignalSmsExportService__exporting_messages">Izvoz poruka…</string>
   <!--ExportYourSmsMessagesFragment-->
   <!--Title of the screen-->
+  <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">Izvoz vaših SMS poruka</string>
   <!--Button label to begin export-->
   <string name="ExportYourSmsMessagesFragment__continue">Nastavi</string>
   <!--ExportingSmsMessagesFragment-->
   <!--Title of the screen-->
+  <string name="ExportingSmsMessagesFragment__exporting_sms_messages">Izvoz SMS poruka</string>
   <!--Progress indicator for export-->
+  <string name="ExportingSmsMessagesFragment__exporting_d_of_d">Izvoz poruka: %1$d od %2$d…</string>
   <!--ChooseANewDefaultSmsAppFragment-->
   <!--Title of the screen-->
+  <string name="ChooseANewDefaultSmsAppFragment__choose_a_new">Odaberite novu zadanu SMS aplikaciju</string>
   <!--Button label to launch picker-->
   <string name="ChooseANewDefaultSmsAppFragment__continue">Nastavi</string>
   <!--RemoveSmsMessagesDialogFragment-->
   <!--Action button to keep messages-->
   <string name="RemoveSmsMessagesDialogFragment__keep_messages">Zadrži poruke</string>
   <!--Action button to remove messages-->
+  <string name="RemoveSmsMessagesDialogFragment__remove_messages">Izbriši poruke</string>
   <!--Title of dialog-->
+  <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Izbrisati SMS poruke sa Signala?</string>
   <!--Message of dialog-->
+  <string name="RemoveSmsMessagesDialogFragment__you_have_changed">Promijenili ste zadanu SMS aplikaciju. Želite li izbrisati SMS poruke sa Signala?</string>
+  <!--SetSignalAsDefaultSmsAppFragment-->
+  <!--Title of the screen-->
+  <string name="SetSignalAsDefaultSmsAppFragment__first_set_signal_as_the_default_sms_app">Najprije postavite Signal kao zadanu aplikaciju za SMS</string>
+  <!--Button label to start export-->
+  <string name="SetSignalAsDefaultSmsAppFragment__next">Sljedeće</string>
   <!--EOF-->
 </resources>

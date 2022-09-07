@@ -3198,8 +3198,11 @@
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">用嚟做預設嘅短訊 app</string>
   <!--Preference title to export sms-->
+  <string name="SmsSettingsFragment__export_sms_messages">匯出短訊</string>
   <!--Preference title to delete sms-->
+  <string name="SmsSettingsFragment__remove_sms_messages">移除短訊</string>
   <!--Snackbar text to confirm deletion-->
+  <string name="SmsSettingsFragment__sms_messages_removed">短訊已經剷咗</string>
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">訊息</string>
   <string name="NotificationsSettingsFragment__calls">通話</string>
@@ -4190,8 +4193,15 @@
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">遲啲先啦</string>
   <!--My Story label designating that we will only share with the selected viewers.-->
+  <string name="ContactSearchItems__only_share_with">只係分享俾</string>
   <!--Label under name for private stories-->
+  <plurals name="ContactSearchItems__private_story_d_viewers">
+    <item quantity="other">個人限時動態 · %1$d 個瀏覽者</item>
+  </plurals>
   <!--Label under name for group stories-->
+  <plurals name="ContactSearchItems__group_story_d_viewers">
+    <item quantity="other">群組限時動態 · %1$d 個瀏覽者</item>
+  </plurals>
   <!--Label under name for my story-->
   <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
     <item quantity="other">%1$s · %2$d 個瀏覽者</item>
@@ -4330,22 +4340,35 @@
   <string name="OverflowMenu__overflow_menu">溢位選單</string>
   <!--SMS Export Service-->
   <!--Displayed in the notification while export is running-->
+  <string name="SignalSmsExportService__exporting_messages">匯出緊訊息…</string>
   <!--ExportYourSmsMessagesFragment-->
   <!--Title of the screen-->
+  <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">匯出你嘅短訊</string>
   <!--Button label to begin export-->
   <string name="ExportYourSmsMessagesFragment__continue">繼續</string>
   <!--ExportingSmsMessagesFragment-->
   <!--Title of the screen-->
+  <string name="ExportingSmsMessagesFragment__exporting_sms_messages">匯出緊短訊</string>
   <!--Progress indicator for export-->
+  <string name="ExportingSmsMessagesFragment__exporting_d_of_d">匯出緊 %1$d / %2$d…</string>
   <!--ChooseANewDefaultSmsAppFragment-->
   <!--Title of the screen-->
+  <string name="ChooseANewDefaultSmsAppFragment__choose_a_new">請選擇新嘅預設短訊應用程式</string>
   <!--Button label to launch picker-->
   <string name="ChooseANewDefaultSmsAppFragment__continue">繼續</string>
   <!--RemoveSmsMessagesDialogFragment-->
   <!--Action button to keep messages-->
   <string name="RemoveSmsMessagesDialogFragment__keep_messages">保留訊息</string>
   <!--Action button to remove messages-->
+  <string name="RemoveSmsMessagesDialogFragment__remove_messages">移除訊息</string>
   <!--Title of dialog-->
+  <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">係咪要剷走嚟自 Signal 嘅短訊？</string>
   <!--Message of dialog-->
+  <string name="RemoveSmsMessagesDialogFragment__you_have_changed">你已經改咗預設嘅短訊應用程式，係咪要剷走嚟自 Signal 嘅短訊呀？</string>
+  <!--SetSignalAsDefaultSmsAppFragment-->
+  <!--Title of the screen-->
+  <string name="SetSignalAsDefaultSmsAppFragment__first_set_signal_as_the_default_sms_app">請先將 Signal 設定做預設嘅短訊應用程式</string>
+  <!--Button label to start export-->
+  <string name="SetSignalAsDefaultSmsAppFragment__next">下一步</string>
   <!--EOF-->
 </resources>

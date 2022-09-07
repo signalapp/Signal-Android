@@ -3198,8 +3198,11 @@
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">기본 SMS 앱으로 사용</string>
   <!--Preference title to export sms-->
+  <string name="SmsSettingsFragment__export_sms_messages">SMS 메시지 내보내기</string>
   <!--Preference title to delete sms-->
+  <string name="SmsSettingsFragment__remove_sms_messages">SMS 메시지 제거</string>
   <!--Snackbar text to confirm deletion-->
+  <string name="SmsSettingsFragment__sms_messages_removed">SMS 메시지를 제거함</string>
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">메시지</string>
   <string name="NotificationsSettingsFragment__calls">전화</string>
@@ -4190,8 +4193,15 @@
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">나중에</string>
   <!--My Story label designating that we will only share with the selected viewers.-->
+  <string name="ContactSearchItems__only_share_with">다음 사용자와만 공유</string>
   <!--Label under name for private stories-->
+  <plurals name="ContactSearchItems__private_story_d_viewers">
+    <item quantity="other">비공개 스토리 · 볼 수 있는 사람 %1$d명</item>
+  </plurals>
   <!--Label under name for group stories-->
+  <plurals name="ContactSearchItems__group_story_d_viewers">
+    <item quantity="other">그룹 스토리 · 볼 수 있는 사람 %1$d명</item>
+  </plurals>
   <!--Label under name for my story-->
   <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
     <item quantity="other">%1$s · 볼 수 있는 사람 %2$d명 </item>
@@ -4330,22 +4340,35 @@
   <string name="OverflowMenu__overflow_menu">확장 메뉴</string>
   <!--SMS Export Service-->
   <!--Displayed in the notification while export is running-->
+  <string name="SignalSmsExportService__exporting_messages">메시지를 내보내는 중…</string>
   <!--ExportYourSmsMessagesFragment-->
   <!--Title of the screen-->
+  <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">SMS 메시지 내보내기</string>
   <!--Button label to begin export-->
   <string name="ExportYourSmsMessagesFragment__continue">계속</string>
   <!--ExportingSmsMessagesFragment-->
   <!--Title of the screen-->
+  <string name="ExportingSmsMessagesFragment__exporting_sms_messages">SMS 메시지 내보내기</string>
   <!--Progress indicator for export-->
+  <string name="ExportingSmsMessagesFragment__exporting_d_of_d">%1$d/%2$d개 내보내는 중…</string>
   <!--ChooseANewDefaultSmsAppFragment-->
   <!--Title of the screen-->
+  <string name="ChooseANewDefaultSmsAppFragment__choose_a_new">새 기본 SMS 앱 선택</string>
   <!--Button label to launch picker-->
   <string name="ChooseANewDefaultSmsAppFragment__continue">계속</string>
   <!--RemoveSmsMessagesDialogFragment-->
   <!--Action button to keep messages-->
   <string name="RemoveSmsMessagesDialogFragment__keep_messages">메시지 보관</string>
   <!--Action button to remove messages-->
+  <string name="RemoveSmsMessagesDialogFragment__remove_messages">메시지 제거</string>
   <!--Title of dialog-->
+  <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Signal에서 SMS 메시지를 제거할까요?</string>
   <!--Message of dialog-->
+  <string name="RemoveSmsMessagesDialogFragment__you_have_changed">기본 SMS 앱을 변경했습니다. Signal에서 SMS 메시지를 제거할까요?</string>
+  <!--SetSignalAsDefaultSmsAppFragment-->
+  <!--Title of the screen-->
+  <string name="SetSignalAsDefaultSmsAppFragment__first_set_signal_as_the_default_sms_app">첫째, Signal을 기본 SMS 앱으로 설정</string>
+  <!--Button label to start export-->
+  <string name="SetSignalAsDefaultSmsAppFragment__next">다음</string>
   <!--EOF-->
 </resources>

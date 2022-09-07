@@ -3294,8 +3294,11 @@ nummer (%s) er ugyldigt</string>
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">Anvend som standard SMS-app</string>
   <!--Preference title to export sms-->
+  <string name="SmsSettingsFragment__export_sms_messages">Eksportér sms\'er</string>
   <!--Preference title to delete sms-->
+  <string name="SmsSettingsFragment__remove_sms_messages">Fjern sms\'er</string>
   <!--Snackbar text to confirm deletion-->
+  <string name="SmsSettingsFragment__sms_messages_removed">Sms\'er er blevet slettet</string>
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">Beskeder</string>
   <string name="NotificationsSettingsFragment__calls">Opkald</string>
@@ -4062,7 +4065,7 @@ nummer (%s) er ugyldigt</string>
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Min historie</string>
   <!--Section heading for story visibility-->
-  <string name="MyStorySettingsFragment__who_can_view_this_story">Personer, der kan se denne historie</string>
+  <string name="MyStorySettingsFragment__who_can_view_this_story">Hvem kan se denne historie?</string>
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">Skjul historie for</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
@@ -4300,8 +4303,17 @@ nummer (%s) er ugyldigt</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Ikke nu</string>
   <!--My Story label designating that we will only share with the selected viewers.-->
+  <string name="ContactSearchItems__only_share_with">Del kun med</string>
   <!--Label under name for private stories-->
+  <plurals name="ContactSearchItems__private_story_d_viewers">
+    <item quantity="one">Privat historie · %1$d seer</item>
+    <item quantity="other">Privat historie · %1$d seere</item>
+  </plurals>
   <!--Label under name for group stories-->
+  <plurals name="ContactSearchItems__group_story_d_viewers">
+    <item quantity="one">Gruppehistorie · %1$d seer</item>
+    <item quantity="other">Gruppehistorie · %1$d seere</item>
+  </plurals>
   <!--Label under name for my story-->
   <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
     <item quantity="one">%1$s · %2$d seer</item>
@@ -4445,22 +4457,35 @@ nummer (%s) er ugyldigt</string>
   <string name="OverflowMenu__overflow_menu">Overflow-menu</string>
   <!--SMS Export Service-->
   <!--Displayed in the notification while export is running-->
+  <string name="SignalSmsExportService__exporting_messages">Eksportér beskeder…</string>
   <!--ExportYourSmsMessagesFragment-->
   <!--Title of the screen-->
+  <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">Eksportér dine sms\'er</string>
   <!--Button label to begin export-->
   <string name="ExportYourSmsMessagesFragment__continue">Fortsæt</string>
   <!--ExportingSmsMessagesFragment-->
   <!--Title of the screen-->
+  <string name="ExportingSmsMessagesFragment__exporting_sms_messages">Eksporterer sms\'er</string>
   <!--Progress indicator for export-->
+  <string name="ExportingSmsMessagesFragment__exporting_d_of_d">Eksporterer %1$d af %2$d…</string>
   <!--ChooseANewDefaultSmsAppFragment-->
   <!--Title of the screen-->
+  <string name="ChooseANewDefaultSmsAppFragment__choose_a_new">Vælg en ny standardapp for sms\'er</string>
   <!--Button label to launch picker-->
   <string name="ChooseANewDefaultSmsAppFragment__continue">Fortsæt</string>
   <!--RemoveSmsMessagesDialogFragment-->
   <!--Action button to keep messages-->
-  <string name="RemoveSmsMessagesDialogFragment__keep_messages">Bevar beskeder</string>
+  <string name="RemoveSmsMessagesDialogFragment__keep_messages">Gem beskeder</string>
   <!--Action button to remove messages-->
+  <string name="RemoveSmsMessagesDialogFragment__remove_messages">Fjern beskeder</string>
   <!--Title of dialog-->
+  <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Fjern sms fra Signal?</string>
   <!--Message of dialog-->
+  <string name="RemoveSmsMessagesDialogFragment__you_have_changed">Du har ændret din standardapp for sms\'er, vil du fjerne sms\'er fra Signal?</string>
+  <!--SetSignalAsDefaultSmsAppFragment-->
+  <!--Title of the screen-->
+  <string name="SetSignalAsDefaultSmsAppFragment__first_set_signal_as_the_default_sms_app">Indstil Signal som din normale SMS-app først.</string>
+  <!--Button label to start export-->
+  <string name="SetSignalAsDefaultSmsAppFragment__next">Næste</string>
   <!--EOF-->
 </resources>

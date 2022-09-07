@@ -3290,8 +3290,11 @@ Funga ufikiaji wa Signal na ufungaji wa Android au alama za vidole</string>
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">Tumia kama chaguo msingi programu ya meseji</string>
   <!--Preference title to export sms-->
+  <string name="SmsSettingsFragment__export_sms_messages">Hamisha jumbe za SMS</string>
   <!--Preference title to delete sms-->
+  <string name="SmsSettingsFragment__remove_sms_messages">Ondoa jumbe za SMS</string>
   <!--Snackbar text to confirm deletion-->
+  <string name="SmsSettingsFragment__sms_messages_removed">Jumbe za SMS zimeondolewa</string>
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">Jumbe</string>
   <string name="NotificationsSettingsFragment__calls">Simu</string>
@@ -4058,7 +4061,7 @@ Funga ufikiaji wa Signal na ufungaji wa Android au alama za vidole</string>
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Stori Yangu</string>
   <!--Section heading for story visibility-->
-  <string name="MyStorySettingsFragment__who_can_view_this_story">Nani anaweza kuangalia stori hii?</string>
+  <string name="MyStorySettingsFragment__who_can_view_this_story">Nani anaweza tazama stori hii</string>
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">Ficha stori kutoka kwa </string>
   <!--Privacy setting title for sending stories to all your signal connections-->
@@ -4296,8 +4299,17 @@ Funga ufikiaji wa Signal na ufungaji wa Android au alama za vidole</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Sio sasa</string>
   <!--My Story label designating that we will only share with the selected viewers.-->
+  <string name="ContactSearchItems__only_share_with">Shiriki peke yake na </string>
   <!--Label under name for private stories-->
+  <plurals name="ContactSearchItems__private_story_d_viewers">
+    <item quantity="one">Stori binafsi · mtazamaji %1$d </item>
+    <item quantity="other">Stori binafsi · watazamaji %1$d </item>
+  </plurals>
   <!--Label under name for group stories-->
+  <plurals name="ContactSearchItems__group_story_d_viewers">
+    <item quantity="one">Stori ya kikundi · mtazamaji %1$d </item>
+    <item quantity="other">Stori ya kikundi · watazamaji %1$d </item>
+  </plurals>
   <!--Label under name for my story-->
   <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
     <item quantity="one">Mtazamaji %1$s . %2$d</item>
@@ -4441,22 +4453,35 @@ Funga ufikiaji wa Signal na ufungaji wa Android au alama za vidole</string>
   <string name="OverflowMenu__overflow_menu">Overflow menu</string>
   <!--SMS Export Service-->
   <!--Displayed in the notification while export is running-->
+  <string name="SignalSmsExportService__exporting_messages">Kuhamisha jumbe…</string>
   <!--ExportYourSmsMessagesFragment-->
   <!--Title of the screen-->
+  <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">Hamisha jumbe zako za SMS</string>
   <!--Button label to begin export-->
   <string name="ExportYourSmsMessagesFragment__continue">Endelea</string>
   <!--ExportingSmsMessagesFragment-->
   <!--Title of the screen-->
+  <string name="ExportingSmsMessagesFragment__exporting_sms_messages">Kuhamisha jumbe za SMS</string>
   <!--Progress indicator for export-->
+  <string name="ExportingSmsMessagesFragment__exporting_d_of_d">Kuhamisha %1$d ya %2$d…</string>
   <!--ChooseANewDefaultSmsAppFragment-->
   <!--Title of the screen-->
+  <string name="ChooseANewDefaultSmsAppFragment__choose_a_new">Chagua programu mpya ya msingi ya SMS</string>
   <!--Button label to launch picker-->
   <string name="ChooseANewDefaultSmsAppFragment__continue">Endelea</string>
   <!--RemoveSmsMessagesDialogFragment-->
   <!--Action button to keep messages-->
   <string name="RemoveSmsMessagesDialogFragment__keep_messages">Hifadhi ujumbe</string>
   <!--Action button to remove messages-->
+  <string name="RemoveSmsMessagesDialogFragment__remove_messages">Ondoa jumbe</string>
   <!--Title of dialog-->
+  <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Ondoa jumbe za SMS kutoka Signal?</string>
   <!--Message of dialog-->
+  <string name="RemoveSmsMessagesDialogFragment__you_have_changed">Umebadili programu ya msingi ya SMS, je ungetaka kuondoa jumbe za SMS kutoka kwenye Signal?</string>
+  <!--SetSignalAsDefaultSmsAppFragment-->
+  <!--Title of the screen-->
+  <string name="SetSignalAsDefaultSmsAppFragment__first_set_signal_as_the_default_sms_app">Kwanza, ifanye Signal kuwa programu yako ya msingi ya SMS</string>
+  <!--Button label to start export-->
+  <string name="SetSignalAsDefaultSmsAppFragment__next">Inayofuata</string>
   <!--EOF-->
 </resources>

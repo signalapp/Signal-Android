@@ -3290,8 +3290,11 @@
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">Χρήση ως προκαθορισμένη εφαρμογή για τα SMS</string>
   <!--Preference title to export sms-->
+  <string name="SmsSettingsFragment__export_sms_messages">Εξαγωγή μηνυμάτων SMS</string>
   <!--Preference title to delete sms-->
+  <string name="SmsSettingsFragment__remove_sms_messages">Αφαίρεση μηνυμάτων SMS</string>
   <!--Snackbar text to confirm deletion-->
+  <string name="SmsSettingsFragment__sms_messages_removed">Το μήνυμα SMS αφαιρέθηκε</string>
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">Μηνύματα</string>
   <string name="NotificationsSettingsFragment__calls">Κλήσεις</string>
@@ -4058,7 +4061,7 @@
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Η ιστορία μου</string>
   <!--Section heading for story visibility-->
-  <string name="MyStorySettingsFragment__who_can_view_this_story">Ποιοι μπορούν να δουν αυτή την ιστορία</string>
+  <string name="MyStorySettingsFragment__who_can_view_this_story">Ποιοι μπορούν να δουν αυτήν την ιστορία</string>
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">Απόκρυψη ιστορίας από</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
@@ -4066,7 +4069,7 @@
   <!--Privacy setting description for sending stories to all your signal connections-->
   <string name="MyStorySettingsFragment__share_with_all_connections">Κοινοποίηση σε όλες τις επαφές</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
-  <string name="MyStorySettingsFragment__all_except">Όλες εκτός από…</string>
+  <string name="MyStorySettingsFragment__all_except">Όλοι εκτός από…</string>
   <!--Privacy setting description for sending stories to all except the specified connections-->
   <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Κρύψε την ιστορία σου από συγκεκριμένα άτομα</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
@@ -4296,6 +4299,7 @@
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Όχι τώρα</string>
   <!--My Story label designating that we will only share with the selected viewers.-->
+  <string name="ContactSearchItems__only_share_with">Κοινοποίηση μόνο σε</string>
   <!--Label under name for private stories-->
   <plurals name="ContactSearchItems__private_story_d_viewers">
     <item quantity="one">Ιδιωτική ιστορία · %1$d προβολή</item>
@@ -4406,7 +4410,7 @@
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Όλες οι επαφές Signal</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
-  <string name="ChooseInitialMyStoryMembershipFragment__all_except">Όλες εκτός από…</string>
+  <string name="ChooseInitialMyStoryMembershipFragment__all_except">Όλοι εκτός από…</string>
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Κοινοποίηση μόνο σε…</string>
   <!--Story info header sent heading-->
@@ -4449,22 +4453,35 @@
   <string name="OverflowMenu__overflow_menu">Μενού υπερχείλισης</string>
   <!--SMS Export Service-->
   <!--Displayed in the notification while export is running-->
+  <string name="SignalSmsExportService__exporting_messages">Εξαγωγή μηνυμάτων…</string>
   <!--ExportYourSmsMessagesFragment-->
   <!--Title of the screen-->
+  <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">Εξαγωγή μηνυμάτων SMS</string>
   <!--Button label to begin export-->
   <string name="ExportYourSmsMessagesFragment__continue">Συνέχεια</string>
   <!--ExportingSmsMessagesFragment-->
   <!--Title of the screen-->
+  <string name="ExportingSmsMessagesFragment__exporting_sms_messages">Εξαγωγή μηνυμάτων SMS</string>
   <!--Progress indicator for export-->
+  <string name="ExportingSmsMessagesFragment__exporting_d_of_d">Εξαγωγή %1$d από %2$d…</string>
   <!--ChooseANewDefaultSmsAppFragment-->
   <!--Title of the screen-->
+  <string name="ChooseANewDefaultSmsAppFragment__choose_a_new">Επιλογή ως νέα προκαθορισμένη εφαρμογή για τα SMS</string>
   <!--Button label to launch picker-->
   <string name="ChooseANewDefaultSmsAppFragment__continue">Συνέχεια</string>
   <!--RemoveSmsMessagesDialogFragment-->
   <!--Action button to keep messages-->
   <string name="RemoveSmsMessagesDialogFragment__keep_messages">Διατήρηση μηνυμάτων</string>
   <!--Action button to remove messages-->
+  <string name="RemoveSmsMessagesDialogFragment__remove_messages">Αφαίρεση μηνυμάτων</string>
   <!--Title of dialog-->
+  <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Αφαίρεση μηνυμάτων από το Signal;</string>
   <!--Message of dialog-->
+  <string name="RemoveSmsMessagesDialogFragment__you_have_changed">Έχεις αλλάξει την προκαθορισμένη εφαρμογή SMS. Θέλεις να αφαιρέσεις τα μηνύματα SMS από το Signal;</string>
+  <!--SetSignalAsDefaultSmsAppFragment-->
+  <!--Title of the screen-->
+  <string name="SetSignalAsDefaultSmsAppFragment__first_set_signal_as_the_default_sms_app">Αρχικά, όρισε το Signal ως την προκαθορισμένη εφαρμογή SMS</string>
+  <!--Button label to start export-->
+  <string name="SetSignalAsDefaultSmsAppFragment__next">Επόμενο</string>
   <!--EOF-->
 </resources>

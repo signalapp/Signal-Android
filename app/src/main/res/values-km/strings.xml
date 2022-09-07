@@ -3192,8 +3192,11 @@
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">ប្រើជាកម្មវិធីផ្ញើសារ</string>
   <!--Preference title to export sms-->
+  <string name="SmsSettingsFragment__export_sms_messages">នាំចេញសារជាអក្សរ</string>
   <!--Preference title to delete sms-->
+  <string name="SmsSettingsFragment__remove_sms_messages">ដកសារជាអក្សរចេញ</string>
   <!--Snackbar text to confirm deletion-->
+  <string name="SmsSettingsFragment__sms_messages_removed">បានដកសារជាអក្សរចេញ</string>
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">សារ</string>
   <string name="NotificationsSettingsFragment__calls">ការហៅ</string>
@@ -4184,6 +4187,7 @@
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">ពេលក្រោយ</string>
   <!--My Story label designating that we will only share with the selected viewers.-->
+  <string name="ContactSearchItems__only_share_with">ចែករំលកតែជាមួយ</string>
   <!--Label under name for private stories-->
   <plurals name="ContactSearchItems__private_story_d_viewers">
     <item quantity="other">រឿងរ៉ាវឯកជន · អ្នកមើល %1$d នាក់</item>
@@ -4330,22 +4334,35 @@
   <string name="OverflowMenu__overflow_menu">ម៉ឺនុយជម្រើស</string>
   <!--SMS Export Service-->
   <!--Displayed in the notification while export is running-->
+  <string name="SignalSmsExportService__exporting_messages">កំពុង​នាំចេញ​សារ…</string>
   <!--ExportYourSmsMessagesFragment-->
   <!--Title of the screen-->
+  <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">នាំចេញសារជាអក្សររបស់អ្នក</string>
   <!--Button label to begin export-->
   <string name="ExportYourSmsMessagesFragment__continue">បន្ត</string>
   <!--ExportingSmsMessagesFragment-->
   <!--Title of the screen-->
+  <string name="ExportingSmsMessagesFragment__exporting_sms_messages">ការនាំចេញសារជាអក្សរ</string>
   <!--Progress indicator for export-->
+  <string name="ExportingSmsMessagesFragment__exporting_d_of_d">កំពុងនាំចេញ %1$d នៃ %2$d …</string>
   <!--ChooseANewDefaultSmsAppFragment-->
   <!--Title of the screen-->
+  <string name="ChooseANewDefaultSmsAppFragment__choose_a_new">ជ្រើសរើសកម្មវិធីសារជាអក្សរលំនាំដើមថ្មី</string>
   <!--Button label to launch picker-->
   <string name="ChooseANewDefaultSmsAppFragment__continue">បន្ត</string>
   <!--RemoveSmsMessagesDialogFragment-->
   <!--Action button to keep messages-->
   <string name="RemoveSmsMessagesDialogFragment__keep_messages">រក្សាសារ</string>
   <!--Action button to remove messages-->
+  <string name="RemoveSmsMessagesDialogFragment__remove_messages">ដកសារចេញ</string>
   <!--Title of dialog-->
+  <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">ដកសារជាអក្សរចេញពី Signal ឬ?</string>
   <!--Message of dialog-->
+  <string name="RemoveSmsMessagesDialogFragment__you_have_changed">អ្នកបានផ្លាស់ប្តូរកម្មវិធីសារជាអក្សរលំនាំដើម។ តើអ្នកចង់លុបសារជាអក្សរចេញពី Signal ទេ?</string>
+  <!--SetSignalAsDefaultSmsAppFragment-->
+  <!--Title of the screen-->
+  <string name="SetSignalAsDefaultSmsAppFragment__first_set_signal_as_the_default_sms_app">ជាដំបូង កំណត់ Signal ជាកម្មវិធីសារជាអក្សរលំនាំដើម</string>
+  <!--Button label to start export-->
+  <string name="SetSignalAsDefaultSmsAppFragment__next">បន្ទាប់</string>
   <!--EOF-->
 </resources>

@@ -3286,8 +3286,11 @@
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">پہلے سے طے شدہ ایس ایم ایس ایپ استعمال کریں</string>
   <!--Preference title to export sms-->
+  <string name="SmsSettingsFragment__export_sms_messages">SMS میسجز برآمد کریں</string>
   <!--Preference title to delete sms-->
+  <string name="SmsSettingsFragment__remove_sms_messages">SMS میسجز ہٹائیں</string>
   <!--Snackbar text to confirm deletion-->
+  <string name="SmsSettingsFragment__sms_messages_removed">SMS میسجز ہٹا دیے گئے</string>
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">پیغامات</string>
   <string name="NotificationsSettingsFragment__calls">کالز</string>
@@ -4062,7 +4065,7 @@
   <!--Privacy setting description for sending stories to all your signal connections-->
   <string name="MyStorySettingsFragment__share_with_all_connections">تمام کنکشنز کے ساتھ شیئر کریں</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
-  <string name="MyStorySettingsFragment__all_except">تمام ماسوائے</string>
+  <string name="MyStorySettingsFragment__all_except">تمام ماسوائے…</string>
   <!--Privacy setting description for sending stories to all except the specified connections-->
   <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">منتخب لوگوں کو اپنی سٹوری مت دکھائیں</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
@@ -4292,8 +4295,17 @@
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">ابھی نہیں</string>
   <!--My Story label designating that we will only share with the selected viewers.-->
+  <string name="ContactSearchItems__only_share_with">صرف ان کے ساتھ شیئر کریں</string>
   <!--Label under name for private stories-->
+  <plurals name="ContactSearchItems__private_story_d_viewers">
+    <item quantity="one">نجی اسٹوری · %1$d ویور</item>
+    <item quantity="other">نجی سٹوری · %1$d ویورز</item>
+  </plurals>
   <!--Label under name for group stories-->
+  <plurals name="ContactSearchItems__group_story_d_viewers">
+    <item quantity="one">گروپ اسٹوری · %1$d ویور</item>
+    <item quantity="other">گروپ سٹوری · %1$d ویورز</item>
+  </plurals>
   <!--Label under name for my story-->
   <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
     <item quantity="one">%1$s   %2$d ناظر</item>
@@ -4394,7 +4406,7 @@
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">تمام Signal کنکشنز</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
-  <string name="ChooseInitialMyStoryMembershipFragment__all_except">تمام ماسوائے</string>
+  <string name="ChooseInitialMyStoryMembershipFragment__all_except">تمام ماسوائے…</string>
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">صرف ان کے ساتھ شیئر کریں…</string>
   <!--Story info header sent heading-->
@@ -4437,22 +4449,35 @@
   <string name="OverflowMenu__overflow_menu">اوور فلو مینو</string>
   <!--SMS Export Service-->
   <!--Displayed in the notification while export is running-->
+  <string name="SignalSmsExportService__exporting_messages">میسجز برآمد ہو رہے ہیں…</string>
   <!--ExportYourSmsMessagesFragment-->
   <!--Title of the screen-->
+  <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">اپنے SMS میسجز برآمد کریں</string>
   <!--Button label to begin export-->
   <string name="ExportYourSmsMessagesFragment__continue">جاری رکھیں</string>
   <!--ExportingSmsMessagesFragment-->
   <!--Title of the screen-->
+  <string name="ExportingSmsMessagesFragment__exporting_sms_messages">SMS میسجز برآمد ہو رہے ہیں</string>
   <!--Progress indicator for export-->
+  <string name="ExportingSmsMessagesFragment__exporting_d_of_d">%2$d کے %1$d برآمد ہو رہے ہیں…</string>
   <!--ChooseANewDefaultSmsAppFragment-->
   <!--Title of the screen-->
+  <string name="ChooseANewDefaultSmsAppFragment__choose_a_new">نئی ڈیفالٹ SMS ایپ منتخب کریں</string>
   <!--Button label to launch picker-->
   <string name="ChooseANewDefaultSmsAppFragment__continue">جاری رکھیں</string>
   <!--RemoveSmsMessagesDialogFragment-->
   <!--Action button to keep messages-->
-  <string name="RemoveSmsMessagesDialogFragment__keep_messages">پیغامات رکھیں</string>
+  <string name="RemoveSmsMessagesDialogFragment__keep_messages">میسجز رکھیں</string>
   <!--Action button to remove messages-->
+  <string name="RemoveSmsMessagesDialogFragment__remove_messages">میسجز ہٹائیں</string>
   <!--Title of dialog-->
+  <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Signal سے SMS میسجز ہٹائیں؟</string>
   <!--Message of dialog-->
+  <string name="RemoveSmsMessagesDialogFragment__you_have_changed">آپ نے ڈیفالٹ SMS ایپ تبدیل کر دی ہے، کیا آپ Signal سے SMS میسجز ہٹانا چاہتے ہیں؟</string>
+  <!--SetSignalAsDefaultSmsAppFragment-->
+  <!--Title of the screen-->
+  <string name="SetSignalAsDefaultSmsAppFragment__first_set_signal_as_the_default_sms_app">پہلے، Signal کو بطور ڈیفالٹ SMS ایپ سیٹ کریں</string>
+  <!--Button label to start export-->
+  <string name="SetSignalAsDefaultSmsAppFragment__next">اگلا</string>
   <!--EOF-->
 </resources>

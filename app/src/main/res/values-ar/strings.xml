@@ -3670,8 +3670,11 @@
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">اجعله التطبيق الافتراضي للرسائل القصيرة</string>
   <!--Preference title to export sms-->
+  <string name="SmsSettingsFragment__export_sms_messages">تصدير الرسائل القصيرة</string>
   <!--Preference title to delete sms-->
+  <string name="SmsSettingsFragment__remove_sms_messages">إزالة الرسائل القصيرة</string>
   <!--Snackbar text to confirm deletion-->
+  <string name="SmsSettingsFragment__sms_messages_removed">تمّت إزالة الرسائل القصيرة</string>
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">الرسائل</string>
   <string name="NotificationsSettingsFragment__calls">المكالمات</string>
@@ -4478,7 +4481,7 @@
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">قصتي</string>
   <!--Section heading for story visibility-->
-  <string name="MyStorySettingsFragment__who_can_view_this_story">من يُمكنه مشاهدة هذه القصة</string>
+  <string name="MyStorySettingsFragment__who_can_view_this_story">من يُمكنه مُشاهدة هذه القصة</string>
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">إخفاء القصة عن</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
@@ -4732,8 +4735,25 @@
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">ليس الآن</string>
   <!--My Story label designating that we will only share with the selected viewers.-->
+  <string name="ContactSearchItems__only_share_with">مشاركة فقط مع</string>
   <!--Label under name for private stories-->
+  <plurals name="ContactSearchItems__private_story_d_viewers">
+    <item quantity="zero">قصة خاصة · %1$d مشاهد</item>
+    <item quantity="one">قصة خاصة · %1$d مشاهد</item>
+    <item quantity="two">قصة خاصة · %1$d مشاهدين</item>
+    <item quantity="few">قصة خاصة · %1$d مشاهدين</item>
+    <item quantity="many">قصة خاصة · %1$d مشاهدين</item>
+    <item quantity="other">قصة خاصة · %1$d مشاهدين / مشاهد</item>
+  </plurals>
   <!--Label under name for group stories-->
+  <plurals name="ContactSearchItems__group_story_d_viewers">
+    <item quantity="zero">قصة جماعية · %1$d مشاهد</item>
+    <item quantity="one">قصة جماعية · %1$d مشاهد</item>
+    <item quantity="two">قصة جماعية · %1$d مشاهدين</item>
+    <item quantity="few">قصة جماعية · %1$d مشاهدين</item>
+    <item quantity="many">قصة جماعية · %1$d مشاهدين</item>
+    <item quantity="other">قصة جماعية · %1$d مشاهدين / مشاهد</item>
+  </plurals>
   <!--Label under name for my story-->
   <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
     <item quantity="zero">%1$s · %2$d مشاهدين</item>
@@ -4897,22 +4917,35 @@
   <string name="OverflowMenu__overflow_menu">القائمة الكاملة</string>
   <!--SMS Export Service-->
   <!--Displayed in the notification while export is running-->
+  <string name="SignalSmsExportService__exporting_messages">يتم تصدير الرسائل…</string>
   <!--ExportYourSmsMessagesFragment-->
   <!--Title of the screen-->
+  <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">قم بتصدير رسائلك القصيرة</string>
   <!--Button label to begin export-->
-  <string name="ExportYourSmsMessagesFragment__continue">الاِستِمرار</string>
+  <string name="ExportYourSmsMessagesFragment__continue">واصل</string>
   <!--ExportingSmsMessagesFragment-->
   <!--Title of the screen-->
+  <string name="ExportingSmsMessagesFragment__exporting_sms_messages">يتم تصدير الرسائل القصيرة</string>
   <!--Progress indicator for export-->
+  <string name="ExportingSmsMessagesFragment__exporting_d_of_d">يتم تصدير %1$d من %2$d…</string>
   <!--ChooseANewDefaultSmsAppFragment-->
   <!--Title of the screen-->
+  <string name="ChooseANewDefaultSmsAppFragment__choose_a_new">اختر تطبيق رسائل قصيرة افتراضي جديد</string>
   <!--Button label to launch picker-->
-  <string name="ChooseANewDefaultSmsAppFragment__continue">الاِستِمرار</string>
+  <string name="ChooseANewDefaultSmsAppFragment__continue">واصل</string>
   <!--RemoveSmsMessagesDialogFragment-->
   <!--Action button to keep messages-->
   <string name="RemoveSmsMessagesDialogFragment__keep_messages">احتفظ بالرسائل</string>
   <!--Action button to remove messages-->
+  <string name="RemoveSmsMessagesDialogFragment__remove_messages">إزالة الرسائل</string>
   <!--Title of dialog-->
+  <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">إزالة الرسائل القصيرة من Signal؟</string>
   <!--Message of dialog-->
+  <string name="RemoveSmsMessagesDialogFragment__you_have_changed">لقد غيّرت تطبيق الرسائل القصيرة الافتراضي، هل تريد إزالة الرسائل القصيرة من Signal؟</string>
+  <!--SetSignalAsDefaultSmsAppFragment-->
+  <!--Title of the screen-->
+  <string name="SetSignalAsDefaultSmsAppFragment__first_set_signal_as_the_default_sms_app">أولًا، عيّن Signal التطبيق الافتراضي لِرسائل SMS</string>
+  <!--Button label to start export-->
+  <string name="SetSignalAsDefaultSmsAppFragment__next">التالي</string>
   <!--EOF-->
 </resources>

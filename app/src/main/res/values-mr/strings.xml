@@ -3292,8 +3292,11 @@
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">पूर्वनिर्धारित SMS अॅप म्हणून वापरा</string>
   <!--Preference title to export sms-->
+  <string name="SmsSettingsFragment__export_sms_messages">SMS संदेश एक्सपोर्ट करा</string>
   <!--Preference title to delete sms-->
+  <string name="SmsSettingsFragment__remove_sms_messages">SMS संदेश हटवा</string>
   <!--Snackbar text to confirm deletion-->
+  <string name="SmsSettingsFragment__sms_messages_removed">SMS संदेश हटवले</string>
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">संदेश</string>
   <string name="NotificationsSettingsFragment__calls">कॉल</string>
@@ -4298,6 +4301,7 @@
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">आता नाही</string>
   <!--My Story label designating that we will only share with the selected viewers.-->
+  <string name="ContactSearchItems__only_share_with">फक्त सह शेअर करा</string>
   <!--Label under name for private stories-->
   <plurals name="ContactSearchItems__private_story_d_viewers">
     <item quantity="one">खाजगी स्टोरी · %1$d दर्शक</item>
@@ -4451,22 +4455,35 @@
   <string name="OverflowMenu__overflow_menu">ओव्हरफ्लो मेनू</string>
   <!--SMS Export Service-->
   <!--Displayed in the notification while export is running-->
+  <string name="SignalSmsExportService__exporting_messages">संदेश एक्सपोर्ट करत आहे…</string>
   <!--ExportYourSmsMessagesFragment-->
   <!--Title of the screen-->
+  <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">आपले SMS संदेश एक्सपोर्ट करा</string>
   <!--Button label to begin export-->
   <string name="ExportYourSmsMessagesFragment__continue">सुरू ठेवा</string>
   <!--ExportingSmsMessagesFragment-->
   <!--Title of the screen-->
+  <string name="ExportingSmsMessagesFragment__exporting_sms_messages">SMS संदेश एक्सपोर्ट करत आहे</string>
   <!--Progress indicator for export-->
+  <string name="ExportingSmsMessagesFragment__exporting_d_of_d">%1$d पैकी %2$dएक्सपोर्ट करत आहे…</string>
   <!--ChooseANewDefaultSmsAppFragment-->
   <!--Title of the screen-->
+  <string name="ChooseANewDefaultSmsAppFragment__choose_a_new">नवीन डिफॉल्ट SMS ॲपची निवड करा</string>
   <!--Button label to launch picker-->
   <string name="ChooseANewDefaultSmsAppFragment__continue">सुरू ठेवा</string>
   <!--RemoveSmsMessagesDialogFragment-->
   <!--Action button to keep messages-->
   <string name="RemoveSmsMessagesDialogFragment__keep_messages">संदेश ठेवा</string>
   <!--Action button to remove messages-->
+  <string name="RemoveSmsMessagesDialogFragment__remove_messages">संदेश हटवा</string>
   <!--Title of dialog-->
+  <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Signal मधून SMS संदेश हटवायचे?</string>
   <!--Message of dialog-->
+  <string name="RemoveSmsMessagesDialogFragment__you_have_changed">आपण डिफॉल्ट SMS ॲप बदलले आहे, आपणाला Signal मधून SMS संदेश हटवायची इच्छा आहे काय?</string>
+  <!--SetSignalAsDefaultSmsAppFragment-->
+  <!--Title of the screen-->
+  <string name="SetSignalAsDefaultSmsAppFragment__first_set_signal_as_the_default_sms_app">प्रथम, Signal ला डिफॉल्ट SMS अॅप म्हणून सेट करा</string>
+  <!--Button label to start export-->
+  <string name="SetSignalAsDefaultSmsAppFragment__next">पुढे</string>
   <!--EOF-->
 </resources>

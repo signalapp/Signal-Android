@@ -3182,8 +3182,11 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">Đặt làm ứng dụng SMS mặc định</string>
   <!--Preference title to export sms-->
+  <string name="SmsSettingsFragment__export_sms_messages">Xuất tin nhắn SMS</string>
   <!--Preference title to delete sms-->
+  <string name="SmsSettingsFragment__remove_sms_messages">Xóa tin nhắn SMS</string>
   <!--Snackbar text to confirm deletion-->
+  <string name="SmsSettingsFragment__sms_messages_removed">Đã xóa tin nhắn SMS</string>
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">Tin nhắn</string>
   <string name="NotificationsSettingsFragment__calls">Cuộc gọi</string>
@@ -4174,8 +4177,15 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Để sau</string>
   <!--My Story label designating that we will only share with the selected viewers.-->
+  <string name="ContactSearchItems__only_share_with">Chỉ chia sẻ với</string>
   <!--Label under name for private stories-->
+  <plurals name="ContactSearchItems__private_story_d_viewers">
+    <item quantity="other">Story riêng tư · %1$d người xem</item>
+  </plurals>
   <!--Label under name for group stories-->
+  <plurals name="ContactSearchItems__group_story_d_viewers">
+    <item quantity="other">Story nhóm · %1$d người xem</item>
+  </plurals>
   <!--Label under name for my story-->
   <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
     <item quantity="other">%1$s · %2$d người xem</item>
@@ -4314,22 +4324,35 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="OverflowMenu__overflow_menu">Menu tràn</string>
   <!--SMS Export Service-->
   <!--Displayed in the notification while export is running-->
+  <string name="SignalSmsExportService__exporting_messages">Đang xuất tin nhắn…</string>
   <!--ExportYourSmsMessagesFragment-->
   <!--Title of the screen-->
+  <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">Xuất tin nhắn SMS của bạn</string>
   <!--Button label to begin export-->
   <string name="ExportYourSmsMessagesFragment__continue">Tiếp tục</string>
   <!--ExportingSmsMessagesFragment-->
   <!--Title of the screen-->
+  <string name="ExportingSmsMessagesFragment__exporting_sms_messages">Đang xuất tin nhắn SMS</string>
   <!--Progress indicator for export-->
+  <string name="ExportingSmsMessagesFragment__exporting_d_of_d">Đang xuất %1$d trong tổng số %2$d…</string>
   <!--ChooseANewDefaultSmsAppFragment-->
   <!--Title of the screen-->
+  <string name="ChooseANewDefaultSmsAppFragment__choose_a_new">Chọn ứng dụng tin nhắn SMS mặc định mới</string>
   <!--Button label to launch picker-->
   <string name="ChooseANewDefaultSmsAppFragment__continue">Tiếp tục</string>
   <!--RemoveSmsMessagesDialogFragment-->
   <!--Action button to keep messages-->
   <string name="RemoveSmsMessagesDialogFragment__keep_messages">Giữ tin nhắn</string>
   <!--Action button to remove messages-->
+  <string name="RemoveSmsMessagesDialogFragment__remove_messages">Xóa tin nhắn</string>
   <!--Title of dialog-->
+  <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Xóa tin nhắn SMS khỏi Signal?</string>
   <!--Message of dialog-->
+  <string name="RemoveSmsMessagesDialogFragment__you_have_changed">Bạn đã thay đổi ứng dụng tin nhắn SMS mặc định, bạn có muốn xóa các tin nhắn SMS khỏi Signal?</string>
+  <!--SetSignalAsDefaultSmsAppFragment-->
+  <!--Title of the screen-->
+  <string name="SetSignalAsDefaultSmsAppFragment__first_set_signal_as_the_default_sms_app">Trước tiên, hãy đặt Signal làm ứng dụng tin nhắn SMS mặc định</string>
+  <!--Button label to start export-->
+  <string name="SetSignalAsDefaultSmsAppFragment__next">Tiếp</string>
   <!--EOF-->
 </resources>

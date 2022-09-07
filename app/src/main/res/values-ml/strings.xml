@@ -3288,8 +3288,11 @@
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">സ്ഥിരസ്ഥിതി SMS അപ്ലിക്കേഷനായി ഉപയോഗിക്കുക</string>
   <!--Preference title to export sms-->
+  <string name="SmsSettingsFragment__export_sms_messages">SMS സന്ദേശങ്ങൾ എക്‌സ്‌പോർട്ട് ചെയ്യുക</string>
   <!--Preference title to delete sms-->
+  <string name="SmsSettingsFragment__remove_sms_messages">SMS സന്ദേശങ്ങൾ നീക്കം ചെയ്യുക</string>
   <!--Snackbar text to confirm deletion-->
+  <string name="SmsSettingsFragment__sms_messages_removed">SMS സന്ദേശങ്ങൾ നീക്കം ചെയ്യുക</string>
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">സന്ദേശങ്ങൾ</string>
   <string name="NotificationsSettingsFragment__calls">കോളുകൾ</string>
@@ -4056,7 +4059,7 @@
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">എന്റെ കഥ</string>
   <!--Section heading for story visibility-->
-  <string name="MyStorySettingsFragment__who_can_view_this_story">ആർക്കൊക്കെ ഈ സ്റ്റോറി കാണാൻ കഴിയും</string>
+  <string name="MyStorySettingsFragment__who_can_view_this_story">ആർക്കൊക്കെ ഈ സ്റ്റോറി കാണാനാകും</string>
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">ഇനിപ്പറയുന്നയാളിൽ നിന്ന് സ്റ്റോറി മറയ്ക്കുക</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
@@ -4294,8 +4297,17 @@
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">ഇപ്പോൾ വേണ്ട</string>
   <!--My Story label designating that we will only share with the selected viewers.-->
+  <string name="ContactSearchItems__only_share_with">ഇനിപ്പറയുന്നവരുമായി മാത്രം പങ്കിടുക</string>
   <!--Label under name for private stories-->
+  <plurals name="ContactSearchItems__private_story_d_viewers">
+    <item quantity="one">സ്വകാര്യ സ്റ്റോറി · %1$d ആൾ കണ്ടു</item>
+    <item quantity="other">സ്വകാര്യ സ്റ്റോറി · %1$d കാഴ്‌ചക്കാർ</item>
+  </plurals>
   <!--Label under name for group stories-->
+  <plurals name="ContactSearchItems__group_story_d_viewers">
+    <item quantity="one">ഗ്രൂപ്പ് സ്റ്റോറി · %1$d ആൾ കണ്ടു</item>
+    <item quantity="other">ഗ്രൂപ്പ് സ്റ്റോറി · %1$d കാഴ്‌ചക്കാർ</item>
+  </plurals>
   <!--Label under name for my story-->
   <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
     <item quantity="one">%1$s · %2$d ആൾ കണ്ടു</item>
@@ -4439,22 +4451,35 @@
   <string name="OverflowMenu__overflow_menu">ഓവർഫ്ലോ മെനു</string>
   <!--SMS Export Service-->
   <!--Displayed in the notification while export is running-->
+  <string name="SignalSmsExportService__exporting_messages">സന്ദേശങ്ങൾ എക്‌സ്‌പോർട്ട് ചെയ്യുന്നു…</string>
   <!--ExportYourSmsMessagesFragment-->
   <!--Title of the screen-->
+  <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">നിങ്ങളുടെ SMS സന്ദേശങ്ങൾ എക്‌സ്‌പോർട്ട് ചെയ്യുക</string>
   <!--Button label to begin export-->
   <string name="ExportYourSmsMessagesFragment__continue">തുടരുക</string>
   <!--ExportingSmsMessagesFragment-->
   <!--Title of the screen-->
+  <string name="ExportingSmsMessagesFragment__exporting_sms_messages">SMS സന്ദേശങ്ങൾ എക്‌സ്‌പോർട്ട് ചെയ്യുന്നു</string>
   <!--Progress indicator for export-->
+  <string name="ExportingSmsMessagesFragment__exporting_d_of_d">%2$d-ൽ/%1$d എണ്ണം എക്‌സ്‌പോർട്ട് ചെയ്യുന്നു…</string>
   <!--ChooseANewDefaultSmsAppFragment-->
   <!--Title of the screen-->
+  <string name="ChooseANewDefaultSmsAppFragment__choose_a_new">ഒരു പുതിയ ഡിഫോൾട്ട് SMS ആപ്പ് തിരഞ്ഞെടുക്കുക</string>
   <!--Button label to launch picker-->
   <string name="ChooseANewDefaultSmsAppFragment__continue">തുടരുക</string>
   <!--RemoveSmsMessagesDialogFragment-->
   <!--Action button to keep messages-->
   <string name="RemoveSmsMessagesDialogFragment__keep_messages">സന്ദേശങ്ങൾ സൂക്ഷിക്കുക</string>
   <!--Action button to remove messages-->
+  <string name="RemoveSmsMessagesDialogFragment__remove_messages">സന്ദേശങ്ങൾ നീക്കം ചെയ്യുക</string>
   <!--Title of dialog-->
+  <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Signal-ൽ നിന്ന് SMS സന്ദേശങ്ങൾ നീക്കം ചെയ്യണോ?</string>
   <!--Message of dialog-->
+  <string name="RemoveSmsMessagesDialogFragment__you_have_changed">നിങ്ങൾ ഡിഫോൾട്ട് SMS ആപ്പ് മാറ്റി, Signal-ൽ നിന്ന് SMS സന്ദേശങ്ങൾ നീക്കം ചെയ്യണോ?</string>
+  <!--SetSignalAsDefaultSmsAppFragment-->
+  <!--Title of the screen-->
+  <string name="SetSignalAsDefaultSmsAppFragment__first_set_signal_as_the_default_sms_app">ആദ്യം, Signal ഡിഫോൾട്ട് SMS ആപ്പായി സജ്ജീകരിക്കുക</string>
+  <!--Button label to start export-->
+  <string name="SetSignalAsDefaultSmsAppFragment__next">അടുത്തത്</string>
   <!--EOF-->
 </resources>

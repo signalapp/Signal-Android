@@ -3293,8 +3293,11 @@ ontvang!</string>
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">Gebruik as verstek-SMS-toep</string>
   <!--Preference title to export sms-->
+  <string name="SmsSettingsFragment__export_sms_messages">Voer SMS-boodskappe uit</string>
   <!--Preference title to delete sms-->
+  <string name="SmsSettingsFragment__remove_sms_messages">Verwyder SMS-boodskappe</string>
   <!--Snackbar text to confirm deletion-->
+  <string name="SmsSettingsFragment__sms_messages_removed">SMS-boodskappe is verwyder</string>
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">Boodskappe</string>
   <string name="NotificationsSettingsFragment__calls">Oproepe</string>
@@ -4300,8 +4303,17 @@ Tik op + om iets by jou storie te voeg.</string>
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Nie nou nie</string>
   <!--My Story label designating that we will only share with the selected viewers.-->
+  <string name="ContactSearchItems__only_share_with">Deel slegs met</string>
   <!--Label under name for private stories-->
+  <plurals name="ContactSearchItems__private_story_d_viewers">
+    <item quantity="one">Private storie · %1$d kyker</item>
+    <item quantity="other">Privaatstorie · %1$d kykers</item>
+  </plurals>
   <!--Label under name for group stories-->
+  <plurals name="ContactSearchItems__group_story_d_viewers">
+    <item quantity="one">Groepstorie · %1$d kyker</item>
+    <item quantity="other">Groepstorie · %1$d kykers</item>
+  </plurals>
   <!--Label under name for my story-->
   <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
     <item quantity="one">%1$s · %2$d kyker</item>
@@ -4445,22 +4457,35 @@ Tik op + om iets by jou storie te voeg.</string>
   <string name="OverflowMenu__overflow_menu">Oorvloei-kieslys</string>
   <!--SMS Export Service-->
   <!--Displayed in the notification while export is running-->
+  <string name="SignalSmsExportService__exporting_messages">Besig om boodskappe uit te voer…</string>
   <!--ExportYourSmsMessagesFragment-->
   <!--Title of the screen-->
+  <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">Voer jou SMS-boodskappe uit</string>
   <!--Button label to begin export-->
   <string name="ExportYourSmsMessagesFragment__continue">Gaan voort</string>
   <!--ExportingSmsMessagesFragment-->
   <!--Title of the screen-->
+  <string name="ExportingSmsMessagesFragment__exporting_sms_messages">Besig om SMS-boodskappe uit te voer</string>
   <!--Progress indicator for export-->
+  <string name="ExportingSmsMessagesFragment__exporting_d_of_d">Besig om %1$d van %2$d uit te voer…</string>
   <!--ChooseANewDefaultSmsAppFragment-->
   <!--Title of the screen-->
+  <string name="ChooseANewDefaultSmsAppFragment__choose_a_new">Kies nuwe verstek-SMS-toepassing</string>
   <!--Button label to launch picker-->
   <string name="ChooseANewDefaultSmsAppFragment__continue">Gaan voort</string>
   <!--RemoveSmsMessagesDialogFragment-->
   <!--Action button to keep messages-->
   <string name="RemoveSmsMessagesDialogFragment__keep_messages">Hou boodskappe</string>
   <!--Action button to remove messages-->
+  <string name="RemoveSmsMessagesDialogFragment__remove_messages">Verwyder boodskappe</string>
   <!--Title of dialog-->
+  <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Verwyder SMS-boodskappe uit Signal?</string>
   <!--Message of dialog-->
+  <string name="RemoveSmsMessagesDialogFragment__you_have_changed">Jy het die verstek-SMS-toepassing verander, wil jy SMS-boodskappe uit Signal verwyder?</string>
+  <!--SetSignalAsDefaultSmsAppFragment-->
+  <!--Title of the screen-->
+  <string name="SetSignalAsDefaultSmsAppFragment__first_set_signal_as_the_default_sms_app">Stel eerstens Signal as die verstek-SMS-toepassing</string>
+  <!--Button label to start export-->
+  <string name="SetSignalAsDefaultSmsAppFragment__next">Volgende</string>
   <!--EOF-->
 </resources>

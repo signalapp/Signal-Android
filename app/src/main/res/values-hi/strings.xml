@@ -3288,8 +3288,11 @@ href=\"https://signal.org/redirect/safety-numbers\">ज़्यादा जा
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">डिफ़ॉल्ट SMS ऐप के रूप में उपयोग करें</string>
   <!--Preference title to export sms-->
+  <string name="SmsSettingsFragment__export_sms_messages">एसएमएस मेसेज एक्सपोर्ट करें</string>
   <!--Preference title to delete sms-->
+  <string name="SmsSettingsFragment__remove_sms_messages">एसएमएस मेसेज हटाएँ</string>
   <!--Snackbar text to confirm deletion-->
+  <string name="SmsSettingsFragment__sms_messages_removed">एसएमएस मेसेज हटाए गए</string>
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">मेसेज</string>
   <string name="NotificationsSettingsFragment__calls">कॉल</string>
@@ -4056,7 +4059,7 @@ href=\"https://signal.org/redirect/safety-numbers\">ज़्यादा जा
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">मेरी स्टोरी</string>
   <!--Section heading for story visibility-->
-  <string name="MyStorySettingsFragment__who_can_view_this_story">इस स्टोरी को कौन देख सकता है</string>
+  <string name="MyStorySettingsFragment__who_can_view_this_story">यह स्टोरी कौन देख सकता है</string>
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">इनसे स्टोरी छिपाएँ</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
@@ -4294,6 +4297,7 @@ href=\"https://signal.org/redirect/safety-numbers\">ज़्यादा जा
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">अभी नहीं</string>
   <!--My Story label designating that we will only share with the selected viewers.-->
+  <string name="ContactSearchItems__only_share_with">केवल इनके साथ साझा करें</string>
   <!--Label under name for private stories-->
   <plurals name="ContactSearchItems__private_story_d_viewers">
     <item quantity="one">निजी स्टोरी · %1$d व्यूअर </item>
@@ -4447,22 +4451,35 @@ href=\"https://signal.org/redirect/safety-numbers\">ज़्यादा जा
   <string name="OverflowMenu__overflow_menu">ओवरफ़्लो मेनू</string>
   <!--SMS Export Service-->
   <!--Displayed in the notification while export is running-->
+  <string name="SignalSmsExportService__exporting_messages">मेसेज एक्सपोर्ट किए जा रहे हैं…</string>
   <!--ExportYourSmsMessagesFragment-->
   <!--Title of the screen-->
+  <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">अपने एसएमएस मेसेज एक्सपोर्ट कर दें</string>
   <!--Button label to begin export-->
-  <string name="ExportYourSmsMessagesFragment__continue">आगे </string>
+  <string name="ExportYourSmsMessagesFragment__continue">जारी रखें</string>
   <!--ExportingSmsMessagesFragment-->
   <!--Title of the screen-->
+  <string name="ExportingSmsMessagesFragment__exporting_sms_messages">एसएमएस मेसेज एक्सपोर्ट किए जा रहे हैं</string>
   <!--Progress indicator for export-->
+  <string name="ExportingSmsMessagesFragment__exporting_d_of_d">%2$d में से %1$d एक्सपोर्ट कर रहा है…</string>
   <!--ChooseANewDefaultSmsAppFragment-->
   <!--Title of the screen-->
+  <string name="ChooseANewDefaultSmsAppFragment__choose_a_new">एक नया डीफॉल्ट एसएमएस ऐप चुनें</string>
   <!--Button label to launch picker-->
-  <string name="ChooseANewDefaultSmsAppFragment__continue">आगे </string>
+  <string name="ChooseANewDefaultSmsAppFragment__continue">जारी रखें</string>
   <!--RemoveSmsMessagesDialogFragment-->
   <!--Action button to keep messages-->
   <string name="RemoveSmsMessagesDialogFragment__keep_messages">मेसेज रखें</string>
   <!--Action button to remove messages-->
+  <string name="RemoveSmsMessagesDialogFragment__remove_messages">मेसेज हटाएँ</string>
   <!--Title of dialog-->
+  <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Signal से मेसेज हटाने हैं?</string>
   <!--Message of dialog-->
+  <string name="RemoveSmsMessagesDialogFragment__you_have_changed">आपने डीफॉल्ट एसएमएस ऐप बदल दिया है, क्या आप Signal से एसएमएस मेसेज हटाना चाहते हैं?</string>
+  <!--SetSignalAsDefaultSmsAppFragment-->
+  <!--Title of the screen-->
+  <string name="SetSignalAsDefaultSmsAppFragment__first_set_signal_as_the_default_sms_app">सबसे पहले, Signal को डीफॉल्ट एसएमएस ऐप के तौर पर सेट करें</string>
+  <!--Button label to start export-->
+  <string name="SetSignalAsDefaultSmsAppFragment__next">अगला</string>
   <!--EOF-->
 </resources>

@@ -3392,8 +3392,11 @@
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">Usa come app SMS predefinita</string>
   <!--Preference title to export sms-->
+  <string name="SmsSettingsFragment__export_sms_messages">Esporta messaggi SMS</string>
   <!--Preference title to delete sms-->
+  <string name="SmsSettingsFragment__remove_sms_messages">Rimuovi messaggi SMS</string>
   <!--Snackbar text to confirm deletion-->
+  <string name="SmsSettingsFragment__sms_messages_removed">Messaggi SMS rimossi</string>
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">Messaggi</string>
   <string name="NotificationsSettingsFragment__calls">Chiamate</string>
@@ -4412,8 +4415,19 @@
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Non ora</string>
   <!--My Story label designating that we will only share with the selected viewers.-->
+  <string name="ContactSearchItems__only_share_with">Condividi solo con…</string>
   <!--Label under name for private stories-->
+  <plurals name="ContactSearchItems__private_story_d_viewers">
+    <item quantity="one">Storia privata · %1$d persona l’ha vista</item>
+    <item quantity="many">Storia privata · %1$d persone l’hanno vista</item>
+    <item quantity="other">Storia privata · %1$d persone l’hanno vista</item>
+  </plurals>
   <!--Label under name for group stories-->
+  <plurals name="ContactSearchItems__group_story_d_viewers">
+    <item quantity="one">Storia di gruppo · %1$d persona l’ha vista</item>
+    <item quantity="many">Storia di gruppo · %1$d persone l’hanno vista</item>
+    <item quantity="other">Storia di gruppo · %1$d persone l’hanno vista</item>
+  </plurals>
   <!--Label under name for my story-->
   <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
     <item quantity="one">%1$s · %2$d persona</item>
@@ -4562,22 +4576,35 @@
   <string name="OverflowMenu__overflow_menu">Menu a tendina</string>
   <!--SMS Export Service-->
   <!--Displayed in the notification while export is running-->
+  <string name="SignalSmsExportService__exporting_messages">Esportazione messaggi in corso…</string>
   <!--ExportYourSmsMessagesFragment-->
   <!--Title of the screen-->
+  <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">Esporta i tuoi messaggi SMS</string>
   <!--Button label to begin export-->
   <string name="ExportYourSmsMessagesFragment__continue">Continua</string>
   <!--ExportingSmsMessagesFragment-->
   <!--Title of the screen-->
+  <string name="ExportingSmsMessagesFragment__exporting_sms_messages">Esportare i messaggi SMS</string>
   <!--Progress indicator for export-->
+  <string name="ExportingSmsMessagesFragment__exporting_d_of_d">Esportati %1$d messaggi di %2$d…</string>
   <!--ChooseANewDefaultSmsAppFragment-->
   <!--Title of the screen-->
+  <string name="ChooseANewDefaultSmsAppFragment__choose_a_new">Scegli una nuova app predefinita per gli SMS</string>
   <!--Button label to launch picker-->
   <string name="ChooseANewDefaultSmsAppFragment__continue">Continua</string>
   <!--RemoveSmsMessagesDialogFragment-->
   <!--Action button to keep messages-->
   <string name="RemoveSmsMessagesDialogFragment__keep_messages">Conserva i messaggi</string>
   <!--Action button to remove messages-->
+  <string name="RemoveSmsMessagesDialogFragment__remove_messages">Rimuovi i messaggi</string>
   <!--Title of dialog-->
+  <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Vuoi rimuovere i messaggi SMS da Signal?</string>
   <!--Message of dialog-->
+  <string name="RemoveSmsMessagesDialogFragment__you_have_changed">Hai cambiato l\'app predefinita per gli SMS: vuoi rimuovere i messaggi SMS da Signal?</string>
+  <!--SetSignalAsDefaultSmsAppFragment-->
+  <!--Title of the screen-->
+  <string name="SetSignalAsDefaultSmsAppFragment__first_set_signal_as_the_default_sms_app">Come prima cosa, imposta Signal come l\'app predefinita per gli SMS</string>
+  <!--Button label to start export-->
+  <string name="SetSignalAsDefaultSmsAppFragment__next">Avanti</string>
   <!--EOF-->
 </resources>

@@ -3188,8 +3188,11 @@
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">既定のSMSアプリにする</string>
   <!--Preference title to export sms-->
+  <string name="SmsSettingsFragment__export_sms_messages">SMSメッセージをエクスポートする</string>
   <!--Preference title to delete sms-->
+  <string name="SmsSettingsFragment__remove_sms_messages">SMSメッセージを削除する</string>
   <!--Snackbar text to confirm deletion-->
+  <string name="SmsSettingsFragment__sms_messages_removed">SMSメッセージが削除されました</string>
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">メッセージ</string>
   <string name="NotificationsSettingsFragment__calls">通話</string>
@@ -3955,7 +3958,7 @@
   <!--Privacy setting description for sending stories to all your signal connections-->
   <string name="MyStorySettingsFragment__share_with_all_connections">すべてのコネクションと共有</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
-  <string name="MyStorySettingsFragment__all_except">下記以外はすべて… </string>
+  <string name="MyStorySettingsFragment__all_except">共有しない人を指定</string>
   <!--Privacy setting description for sending stories to all except the specified connections-->
   <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">特定の人に自分のストーリーを隠す</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
@@ -4181,8 +4184,15 @@
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">今はしない</string>
   <!--My Story label designating that we will only share with the selected viewers.-->
+  <string name="ContactSearchItems__only_share_with">共有する人を指定</string>
   <!--Label under name for private stories-->
+  <plurals name="ContactSearchItems__private_story_d_viewers">
+    <item quantity="other">プライベートストーリー · 閲覧 %1$d人</item>
+  </plurals>
   <!--Label under name for group stories-->
+  <plurals name="ContactSearchItems__group_story_d_viewers">
+    <item quantity="other">グループストーリー · 閲覧 %1$d人</item>
+  </plurals>
   <!--Label under name for my story-->
   <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
     <item quantity="other">%1$s• %2$d 人の閲覧者</item>
@@ -4278,7 +4288,7 @@
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">すべてのSignalコネクション</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
-  <string name="ChooseInitialMyStoryMembershipFragment__all_except">下記以外はすべて… </string>
+  <string name="ChooseInitialMyStoryMembershipFragment__all_except">共有しない人を指定</string>
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">共有するのは…</string>
   <!--Story info header sent heading-->
@@ -4321,22 +4331,35 @@
   <string name="OverflowMenu__overflow_menu">オーバーフローメニュー</string>
   <!--SMS Export Service-->
   <!--Displayed in the notification while export is running-->
+  <string name="SignalSmsExportService__exporting_messages">メッセージをエクスポートしています…</string>
   <!--ExportYourSmsMessagesFragment-->
   <!--Title of the screen-->
+  <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">SMSメッセージをエクスポートする</string>
   <!--Button label to begin export-->
   <string name="ExportYourSmsMessagesFragment__continue">続ける</string>
   <!--ExportingSmsMessagesFragment-->
   <!--Title of the screen-->
+  <string name="ExportingSmsMessagesFragment__exporting_sms_messages">SMSメッセージをエクスポートしています</string>
   <!--Progress indicator for export-->
+  <string name="ExportingSmsMessagesFragment__exporting_d_of_d">%2$d 件中 %1$d 件をエクスポートしています…</string>
   <!--ChooseANewDefaultSmsAppFragment-->
   <!--Title of the screen-->
+  <string name="ChooseANewDefaultSmsAppFragment__choose_a_new">既定のSMSアプリを選択する</string>
   <!--Button label to launch picker-->
   <string name="ChooseANewDefaultSmsAppFragment__continue">続ける</string>
   <!--RemoveSmsMessagesDialogFragment-->
   <!--Action button to keep messages-->
-  <string name="RemoveSmsMessagesDialogFragment__keep_messages">メッセージの保存期間</string>
+  <string name="RemoveSmsMessagesDialogFragment__keep_messages">メッセージを保存する</string>
   <!--Action button to remove messages-->
+  <string name="RemoveSmsMessagesDialogFragment__remove_messages">メッセージを削除する</string>
   <!--Title of dialog-->
+  <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">SignalからSMSメッセージを削除しますか？</string>
   <!--Message of dialog-->
+  <string name="RemoveSmsMessagesDialogFragment__you_have_changed">既定のSMSアプリを変更しましたが、SignalからSMSメッセージを削除しますか？</string>
+  <!--SetSignalAsDefaultSmsAppFragment-->
+  <!--Title of the screen-->
+  <string name="SetSignalAsDefaultSmsAppFragment__first_set_signal_as_the_default_sms_app">まず、Signalを規程のSMSアプリとして設定します</string>
+  <!--Button label to start export-->
+  <string name="SetSignalAsDefaultSmsAppFragment__next">次へ</string>
   <!--EOF-->
 </resources>

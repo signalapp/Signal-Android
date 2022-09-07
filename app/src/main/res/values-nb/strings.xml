@@ -3291,8 +3291,11 @@ Dobbeltsjekk at det nye nummeret ditt kan motta både SMS og anrop før du forts
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">Bruk som forvalgt SMS-program</string>
   <!--Preference title to export sms-->
+  <string name="SmsSettingsFragment__export_sms_messages">Overfør SMS-meldingene</string>
   <!--Preference title to delete sms-->
+  <string name="SmsSettingsFragment__remove_sms_messages">Fjern SMS-meldingene</string>
   <!--Snackbar text to confirm deletion-->
+  <string name="SmsSettingsFragment__sms_messages_removed">SMS-meldingene er fjernet</string>
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">Meldinger</string>
   <string name="NotificationsSettingsFragment__calls">Samtaler</string>
@@ -4297,6 +4300,7 @@ Dobbeltsjekk at det nye nummeret ditt kan motta både SMS og anrop før du forts
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Ikke nå</string>
   <!--My Story label designating that we will only share with the selected viewers.-->
+  <string name="ContactSearchItems__only_share_with">Del storyen kun med</string>
   <!--Label under name for private stories-->
   <plurals name="ContactSearchItems__private_story_d_viewers">
     <item quantity="one">Privat story · Sett av %1$d</item>
@@ -4450,22 +4454,35 @@ Dobbeltsjekk at det nye nummeret ditt kan motta både SMS og anrop før du forts
   <string name="OverflowMenu__overflow_menu">Overflow-meny</string>
   <!--SMS Export Service-->
   <!--Displayed in the notification while export is running-->
+  <string name="SignalSmsExportService__exporting_messages">Overfører meldingene …</string>
   <!--ExportYourSmsMessagesFragment-->
   <!--Title of the screen-->
+  <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">Overfør SMS-meldingene dine</string>
   <!--Button label to begin export-->
   <string name="ExportYourSmsMessagesFragment__continue">Fortsett</string>
   <!--ExportingSmsMessagesFragment-->
   <!--Title of the screen-->
+  <string name="ExportingSmsMessagesFragment__exporting_sms_messages">Overfører SMS-meldingene</string>
   <!--Progress indicator for export-->
+  <string name="ExportingSmsMessagesFragment__exporting_d_of_d">Overfører %1$d av %2$d …</string>
   <!--ChooseANewDefaultSmsAppFragment-->
   <!--Title of the screen-->
+  <string name="ChooseANewDefaultSmsAppFragment__choose_a_new">Velg en ny standardapp for SMS</string>
   <!--Button label to launch picker-->
   <string name="ChooseANewDefaultSmsAppFragment__continue">Fortsett</string>
   <!--RemoveSmsMessagesDialogFragment-->
   <!--Action button to keep messages-->
-  <string name="RemoveSmsMessagesDialogFragment__keep_messages">Behold meldinger</string>
+  <string name="RemoveSmsMessagesDialogFragment__keep_messages">Behold meldingene</string>
   <!--Action button to remove messages-->
+  <string name="RemoveSmsMessagesDialogFragment__remove_messages">Fjern meldingene</string>
   <!--Title of dialog-->
+  <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Vil du fjerne disse SMS-meldingene fra Signal?</string>
   <!--Message of dialog-->
+  <string name="RemoveSmsMessagesDialogFragment__you_have_changed">Du har endret standardappen for SMS. Vil du fjerne SMS-meldingene dine fra Signal?</string>
+  <!--SetSignalAsDefaultSmsAppFragment-->
+  <!--Title of the screen-->
+  <string name="SetSignalAsDefaultSmsAppFragment__first_set_signal_as_the_default_sms_app">Du må først velge Signal som standardapp for SMS</string>
+  <!--Button label to start export-->
+  <string name="SetSignalAsDefaultSmsAppFragment__next">Neste</string>
   <!--EOF-->
 </resources>

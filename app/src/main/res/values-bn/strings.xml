@@ -3289,8 +3289,11 @@
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">ডিফল্ট এসএমএস অ্যাপ হিসাবে ব্যবহার করুন</string>
   <!--Preference title to export sms-->
+  <string name="SmsSettingsFragment__export_sms_messages">এসএমএস ম্যাসেজ এক্সপোর্ট করুন</string>
   <!--Preference title to delete sms-->
+  <string name="SmsSettingsFragment__remove_sms_messages">এসএমএস ম্যাসেজ মুছে ফেলুন</string>
   <!--Snackbar text to confirm deletion-->
+  <string name="SmsSettingsFragment__sms_messages_removed">এসএমএস ম্যাসেজ সরিয়ে ফেলা হয়েছে</string>
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">বার্তাসমূহ</string>
   <string name="NotificationsSettingsFragment__calls">কল সমূহ</string>
@@ -4066,7 +4069,7 @@
   <!--Privacy setting description for sending stories to all your signal connections-->
   <string name="MyStorySettingsFragment__share_with_all_connections">সকল কানেকশনের সাথে শেয়ার করুন</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
-  <string name="MyStorySettingsFragment__all_except">…ছাড়া সব</string>
+  <string name="MyStorySettingsFragment__all_except">…ছাড়া সকলে</string>
   <!--Privacy setting description for sending stories to all except the specified connections-->
   <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">কিছু নির্দিষ্ট ব্যক্তির কাছ থেকে আপনার স্টোরি লুকান</string>
   <!--Summary of clickable option displaying how many people you have excluded from your story-->
@@ -4296,6 +4299,7 @@
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">এখন না</string>
   <!--My Story label designating that we will only share with the selected viewers.-->
+  <string name="ContactSearchItems__only_share_with">শেয়ার করুন শুধুমাত্র</string>
   <!--Label under name for private stories-->
   <plurals name="ContactSearchItems__private_story_d_viewers">
     <item quantity="one">ব্যক্তিগত স্টোরি · %1$d জন দর্শক</item>
@@ -4406,7 +4410,7 @@
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">সকল Signal কানেকশন</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
-  <string name="ChooseInitialMyStoryMembershipFragment__all_except">…ছাড়া সব</string>
+  <string name="ChooseInitialMyStoryMembershipFragment__all_except">…ছাড়া সকলের সাথে</string>
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">শেয়ার করুন শুধু…</string>
   <!--Story info header sent heading-->
@@ -4449,22 +4453,35 @@
   <string name="OverflowMenu__overflow_menu">ওভারফ্লো মেন্যু</string>
   <!--SMS Export Service-->
   <!--Displayed in the notification while export is running-->
+  <string name="SignalSmsExportService__exporting_messages">ম্যাসেজ এক্সপোর্ট করা হচ্ছে…</string>
   <!--ExportYourSmsMessagesFragment-->
   <!--Title of the screen-->
+  <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">আপনার এসএমএস ম্যাসেজ এক্সপোর্ট করুন</string>
   <!--Button label to begin export-->
   <string name="ExportYourSmsMessagesFragment__continue">চালিয়ে যান</string>
   <!--ExportingSmsMessagesFragment-->
   <!--Title of the screen-->
+  <string name="ExportingSmsMessagesFragment__exporting_sms_messages">এসএমএস ম্যাসেজ এক্সপোর্ট করা হচ্ছে</string>
   <!--Progress indicator for export-->
+  <string name="ExportingSmsMessagesFragment__exporting_d_of_d">%2$d-এর %1$dএক্সপোর্ট করা হচ্ছে…</string>
   <!--ChooseANewDefaultSmsAppFragment-->
   <!--Title of the screen-->
+  <string name="ChooseANewDefaultSmsAppFragment__choose_a_new">একটি নতুন ডিফল্ট এসএমএস অ্যাপ বেছে নিন</string>
   <!--Button label to launch picker-->
   <string name="ChooseANewDefaultSmsAppFragment__continue">চালিয়ে যান</string>
   <!--RemoveSmsMessagesDialogFragment-->
   <!--Action button to keep messages-->
-  <string name="RemoveSmsMessagesDialogFragment__keep_messages">মেসেজগুলো রাখুন</string>
+  <string name="RemoveSmsMessagesDialogFragment__keep_messages">ম্যাসেজগুলো রাখুন</string>
   <!--Action button to remove messages-->
+  <string name="RemoveSmsMessagesDialogFragment__remove_messages">ম্যাসেজগুলো সরিয়ে ফেলুন</string>
   <!--Title of dialog-->
+  <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Signal থেকে এসএমএস ম্যাসেজ সরিয়ে ফেলুন</string>
   <!--Message of dialog-->
+  <string name="RemoveSmsMessagesDialogFragment__you_have_changed">আপনি ডিফল্ট এসএমএস অ্যাপ পরিবর্তন করেছেন, আপনি কি Signal থেকে এসএমএস ম্যাসেজগুলো সরাতে চান?</string>
+  <!--SetSignalAsDefaultSmsAppFragment-->
+  <!--Title of the screen-->
+  <string name="SetSignalAsDefaultSmsAppFragment__first_set_signal_as_the_default_sms_app">প্রথমে, Signal-কে ডিফল্ট এসএমএস অ্যাপ হিসেবে নির্ধারণ করুন</string>
+  <!--Button label to start export-->
+  <string name="SetSignalAsDefaultSmsAppFragment__next">পরবর্তী</string>
   <!--EOF-->
 </resources>

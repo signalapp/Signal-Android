@@ -3388,8 +3388,11 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">Utilizează ca aplicație SMS implicită</string>
   <!--Preference title to export sms-->
+  <string name="SmsSettingsFragment__export_sms_messages">Exportă mesaje SMS</string>
   <!--Preference title to delete sms-->
+  <string name="SmsSettingsFragment__remove_sms_messages">Elimină mesajele SMS</string>
   <!--Snackbar text to confirm deletion-->
+  <string name="SmsSettingsFragment__sms_messages_removed">Mesajele SMS au fost eliminate</string>
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">Mesaje</string>
   <string name="NotificationsSettingsFragment__calls">Apeluri</string>
@@ -4408,6 +4411,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Nu acum</string>
   <!--My Story label designating that we will only share with the selected viewers.-->
+  <string name="ContactSearchItems__only_share_with">Distribuie doar către</string>
   <!--Label under name for private stories-->
   <!--Label under name for group stories-->
   <!--Label under name for my story-->
@@ -4558,22 +4562,34 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="OverflowMenu__overflow_menu">Meniu suplimentar</string>
   <!--SMS Export Service-->
   <!--Displayed in the notification while export is running-->
+  <string name="SignalSmsExportService__exporting_messages">Se exportă mesajele…</string>
   <!--ExportYourSmsMessagesFragment-->
   <!--Title of the screen-->
+  <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">Exportă mesajele SMS</string>
   <!--Button label to begin export-->
-  <string name="ExportYourSmsMessagesFragment__continue">Continuare</string>
+  <string name="ExportYourSmsMessagesFragment__continue">Continuă</string>
   <!--ExportingSmsMessagesFragment-->
   <!--Title of the screen-->
+  <string name="ExportingSmsMessagesFragment__exporting_sms_messages">Se exportă mesajele</string>
   <!--Progress indicator for export-->
+  <string name="ExportingSmsMessagesFragment__exporting_d_of_d">Se exportă %1$d din %2$d …</string>
   <!--ChooseANewDefaultSmsAppFragment-->
   <!--Title of the screen-->
+  <string name="ChooseANewDefaultSmsAppFragment__choose_a_new">Alege o nouă aplicație standard SMS</string>
   <!--Button label to launch picker-->
-  <string name="ChooseANewDefaultSmsAppFragment__continue">Continuare</string>
+  <string name="ChooseANewDefaultSmsAppFragment__continue">Continuă</string>
   <!--RemoveSmsMessagesDialogFragment-->
   <!--Action button to keep messages-->
-  <string name="RemoveSmsMessagesDialogFragment__keep_messages">Păstrare mesaje</string>
+  <string name="RemoveSmsMessagesDialogFragment__keep_messages">Păstrează mesajele</string>
   <!--Action button to remove messages-->
+  <string name="RemoveSmsMessagesDialogFragment__remove_messages">Elimină mesajele</string>
   <!--Title of dialog-->
+  <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Elimini mesajele SMS din partea Signal?</string>
   <!--Message of dialog-->
+  <string name="RemoveSmsMessagesDialogFragment__you_have_changed">Ai schimbat aplicația standard SMS, vrei să elimini mesajele SMS de la Signal?</string>
+  <!--SetSignalAsDefaultSmsAppFragment-->
+  <!--Title of the screen-->
+  <!--Button label to start export-->
+  <string name="SetSignalAsDefaultSmsAppFragment__next">Următorul</string>
   <!--EOF-->
 </resources>

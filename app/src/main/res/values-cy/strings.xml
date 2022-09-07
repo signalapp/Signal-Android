@@ -4546,5 +4546,9 @@ Anfon neges heb ei diogelu?</string>
   <!--Action button to remove messages-->
   <!--Title of dialog-->
   <!--Message of dialog-->
+  <!--SetSignalAsDefaultSmsAppFragment-->
+  <!--Title of the screen-->
+  <!--Button label to start export-->
+  <string name="SetSignalAsDefaultSmsAppFragment__next">Nesaf</string>
   <!--EOF-->
 </resources>

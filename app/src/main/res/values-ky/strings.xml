@@ -3195,8 +3195,11 @@
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">Демейки SMS колдонмосу катары колдонуңуз</string>
   <!--Preference title to export sms-->
+  <string name="SmsSettingsFragment__export_sms_messages">SMS билдирүүлөрүн өткөрүп берүү</string>
   <!--Preference title to delete sms-->
+  <string name="SmsSettingsFragment__remove_sms_messages">SMS билдирүүлөрүн өчүрүү</string>
   <!--Snackbar text to confirm deletion-->
+  <string name="SmsSettingsFragment__sms_messages_removed">SMS билдирүүлөрү өчүрүлдү</string>
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">Билдирүүлөр</string>
   <string name="NotificationsSettingsFragment__calls">Чалуулар</string>
@@ -4187,8 +4190,15 @@
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Азыр эмес</string>
   <!--My Story label designating that we will only share with the selected viewers.-->
+  <string name="ContactSearchItems__only_share_with">Ушул адамдар менен гана бөлүшүү:</string>
   <!--Label under name for private stories-->
+  <plurals name="ContactSearchItems__private_story_d_viewers">
+    <item quantity="other">Жеке окуя · %1$d жолу көрүлдү</item>
+  </plurals>
   <!--Label under name for group stories-->
+  <plurals name="ContactSearchItems__group_story_d_viewers">
+    <item quantity="other">Топтук окуя · %1$d жолу көрүлдү</item>
+  </plurals>
   <!--Label under name for my story-->
   <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
     <item quantity="other">%1$s · %2$d жолу көрүлдү</item>
@@ -4327,22 +4337,35 @@
   <string name="OverflowMenu__overflow_menu">Ачылуучу меню</string>
   <!--SMS Export Service-->
   <!--Displayed in the notification while export is running-->
+  <string name="SignalSmsExportService__exporting_messages">Билдирүүлөр өткөрүлүп берилүүдө…</string>
   <!--ExportYourSmsMessagesFragment-->
   <!--Title of the screen-->
+  <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">SMS билдирүүлөрүңүздү өткөрүп бериңиз</string>
   <!--Button label to begin export-->
   <string name="ExportYourSmsMessagesFragment__continue">Улантуу</string>
   <!--ExportingSmsMessagesFragment-->
   <!--Title of the screen-->
+  <string name="ExportingSmsMessagesFragment__exporting_sms_messages">SMS билдирүүлөрдү өткөрүп берүү</string>
   <!--Progress indicator for export-->
+  <string name="ExportingSmsMessagesFragment__exporting_d_of_d">%2$d ичинен %1$d өткөрүлүүдө …</string>
   <!--ChooseANewDefaultSmsAppFragment-->
   <!--Title of the screen-->
+  <string name="ChooseANewDefaultSmsAppFragment__choose_a_new">Жаңы демейки SMS колдонмосун тандоо</string>
   <!--Button label to launch picker-->
   <string name="ChooseANewDefaultSmsAppFragment__continue">Улантуу</string>
   <!--RemoveSmsMessagesDialogFragment-->
   <!--Action button to keep messages-->
   <string name="RemoveSmsMessagesDialogFragment__keep_messages">Билдирүүлөрдү сактоо</string>
   <!--Action button to remove messages-->
+  <string name="RemoveSmsMessagesDialogFragment__remove_messages">Билдирүүлөрдү өчүрүү</string>
   <!--Title of dialog-->
+  <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">SMS билдирүүлөрүн Signal колдонмосунан өчүрөсүзбү?</string>
   <!--Message of dialog-->
+  <string name="RemoveSmsMessagesDialogFragment__you_have_changed">Демейки SMS колдонмосун өзгөрттүңүз. Signal колдонмосундагы SMS билдирүүлөрдү өчүрөсүзбү?</string>
+  <!--SetSignalAsDefaultSmsAppFragment-->
+  <!--Title of the screen-->
+  <string name="SetSignalAsDefaultSmsAppFragment__first_set_signal_as_the_default_sms_app">Алгач, Signal\'ды демейки SMS колдонмосу кылыңыз</string>
+  <!--Button label to start export-->
+  <string name="SetSignalAsDefaultSmsAppFragment__next">Кийинки</string>
   <!--EOF-->
 </resources>

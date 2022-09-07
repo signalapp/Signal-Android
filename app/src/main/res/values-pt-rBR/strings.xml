@@ -3392,8 +3392,11 @@
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">Usar como aplicativo padrão de SMS</string>
   <!--Preference title to export sms-->
+  <string name="SmsSettingsFragment__export_sms_messages">Exportar mensagens SMS</string>
   <!--Preference title to delete sms-->
+  <string name="SmsSettingsFragment__remove_sms_messages">Remover mensagens SMS</string>
   <!--Snackbar text to confirm deletion-->
+  <string name="SmsSettingsFragment__sms_messages_removed">Mensagens SMS removidas</string>
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">Mensagens</string>
   <string name="NotificationsSettingsFragment__calls">Chamadas</string>
@@ -4170,7 +4173,7 @@
   <!--Page title for My Story options-->
   <string name="MyStorySettingsFragment__my_story">Meu Story</string>
   <!--Section heading for story visibility-->
-  <string name="MyStorySettingsFragment__who_can_view_this_story">Quem pode visualizar este story?</string>
+  <string name="MyStorySettingsFragment__who_can_view_this_story">Quem pode ver esse story?</string>
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">Ocultar story de</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
@@ -4412,8 +4415,19 @@
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Agora não</string>
   <!--My Story label designating that we will only share with the selected viewers.-->
+  <string name="ContactSearchItems__only_share_with">Compartilhar apenas com…</string>
   <!--Label under name for private stories-->
+  <plurals name="ContactSearchItems__private_story_d_viewers">
+    <item quantity="one">Story privado · %1$d visualizador</item>
+    <item quantity="many">Story privado · %1$d visualizadores</item>
+    <item quantity="other">Story privado · %1$d visualizadores</item>
+  </plurals>
   <!--Label under name for group stories-->
+  <plurals name="ContactSearchItems__group_story_d_viewers">
+    <item quantity="one">Story do grupo · %1$d visualizador</item>
+    <item quantity="many">Story do grupo · %1$d visualizadores</item>
+    <item quantity="other">Story do grupo · %1$d visualizadores</item>
+  </plurals>
   <!--Label under name for my story-->
   <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
     <item quantity="one">%1$s · %2$d visualizador</item>
@@ -4562,22 +4576,35 @@
   <string name="OverflowMenu__overflow_menu">Menu flutuante</string>
   <!--SMS Export Service-->
   <!--Displayed in the notification while export is running-->
+  <string name="SignalSmsExportService__exporting_messages">Exportando mensagens…</string>
   <!--ExportYourSmsMessagesFragment-->
   <!--Title of the screen-->
+  <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">Exportar suas mensagens SMS</string>
   <!--Button label to begin export-->
   <string name="ExportYourSmsMessagesFragment__continue">Continuar</string>
   <!--ExportingSmsMessagesFragment-->
   <!--Title of the screen-->
+  <string name="ExportingSmsMessagesFragment__exporting_sms_messages">Exportando mensagens SMS</string>
   <!--Progress indicator for export-->
+  <string name="ExportingSmsMessagesFragment__exporting_d_of_d">Exportando %1$d de %2$d…</string>
   <!--ChooseANewDefaultSmsAppFragment-->
   <!--Title of the screen-->
+  <string name="ChooseANewDefaultSmsAppFragment__choose_a_new">Escolha um novo app padrão de SMS</string>
   <!--Button label to launch picker-->
   <string name="ChooseANewDefaultSmsAppFragment__continue">Continuar</string>
   <!--RemoveSmsMessagesDialogFragment-->
   <!--Action button to keep messages-->
-  <string name="RemoveSmsMessagesDialogFragment__keep_messages">Manter as mensagens</string>
+  <string name="RemoveSmsMessagesDialogFragment__keep_messages">Manter mensagens</string>
   <!--Action button to remove messages-->
+  <string name="RemoveSmsMessagesDialogFragment__remove_messages">Remover mensagens</string>
   <!--Title of dialog-->
+  <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Remover mensagens SMS do Signal?</string>
   <!--Message of dialog-->
+  <string name="RemoveSmsMessagesDialogFragment__you_have_changed">Você alterou o app padrão de SMS, quer remover as mensagens SMS do Signal?</string>
+  <!--SetSignalAsDefaultSmsAppFragment-->
+  <!--Title of the screen-->
+  <string name="SetSignalAsDefaultSmsAppFragment__first_set_signal_as_the_default_sms_app">Primeiro, defina o Signal como app padrão para SMS</string>
+  <!--Button label to start export-->
+  <string name="SetSignalAsDefaultSmsAppFragment__next">Próximo</string>
   <!--EOF-->
 </resources>

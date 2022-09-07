@@ -3199,8 +3199,11 @@
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">ใช้เป็นแอป SMS หลัก</string>
   <!--Preference title to export sms-->
+  <string name="SmsSettingsFragment__export_sms_messages">ส่งออกข้อความ SMS</string>
   <!--Preference title to delete sms-->
+  <string name="SmsSettingsFragment__remove_sms_messages">ลบข้อความ SMS</string>
   <!--Snackbar text to confirm deletion-->
+  <string name="SmsSettingsFragment__sms_messages_removed">ลบข้อความ SMS เรียบร้อยแล้ว</string>
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">ข้อความ</string>
   <string name="NotificationsSettingsFragment__calls">การโทร</string>
@@ -4191,8 +4194,15 @@
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">ไม่ใช่ตอนนี้</string>
   <!--My Story label designating that we will only share with the selected viewers.-->
+  <string name="ContactSearchItems__only_share_with">แชร์ให้เฉพาะ</string>
   <!--Label under name for private stories-->
+  <plurals name="ContactSearchItems__private_story_d_viewers">
+    <item quantity="other">สตอรี่ส่วนตัว · ผู้ชม %1$d คน</item>
+  </plurals>
   <!--Label under name for group stories-->
+  <plurals name="ContactSearchItems__group_story_d_viewers">
+    <item quantity="other">สตอรี่กลุ่ม · ผู้ชม %1$d คน</item>
+  </plurals>
   <!--Label under name for my story-->
   <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
     <item quantity="other">%1$s · ผู้ชม %2$d คน</item>
@@ -4331,22 +4341,35 @@
   <string name="OverflowMenu__overflow_menu">เมนูเพิ่มเติม</string>
   <!--SMS Export Service-->
   <!--Displayed in the notification while export is running-->
+  <string name="SignalSmsExportService__exporting_messages">กำลังส่งออกข้อความ…</string>
   <!--ExportYourSmsMessagesFragment-->
   <!--Title of the screen-->
+  <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">ส่งออกข้อความ SMS ของคุณ</string>
   <!--Button label to begin export-->
-  <string name="ExportYourSmsMessagesFragment__continue">ทำต่อ</string>
+  <string name="ExportYourSmsMessagesFragment__continue">ดำเนินการต่อ</string>
   <!--ExportingSmsMessagesFragment-->
   <!--Title of the screen-->
+  <string name="ExportingSmsMessagesFragment__exporting_sms_messages">กำลังส่งออกข้อความ SMS</string>
   <!--Progress indicator for export-->
+  <string name="ExportingSmsMessagesFragment__exporting_d_of_d">กำลังส่งออก %1$d จาก %2$d…</string>
   <!--ChooseANewDefaultSmsAppFragment-->
   <!--Title of the screen-->
+  <string name="ChooseANewDefaultSmsAppFragment__choose_a_new">เลือกแอปใหม่ที่จะใช้เป็นแอป SMS เริ่มต้น</string>
   <!--Button label to launch picker-->
-  <string name="ChooseANewDefaultSmsAppFragment__continue">ทำต่อ</string>
+  <string name="ChooseANewDefaultSmsAppFragment__continue">ดำเนินการต่อ</string>
   <!--RemoveSmsMessagesDialogFragment-->
   <!--Action button to keep messages-->
   <string name="RemoveSmsMessagesDialogFragment__keep_messages">เก็บข้อความ</string>
   <!--Action button to remove messages-->
+  <string name="RemoveSmsMessagesDialogFragment__remove_messages">ลบข้อความ</string>
   <!--Title of dialog-->
+  <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">ลบข้อความ SMS ออกจาก Signal หรือไม่</string>
   <!--Message of dialog-->
+  <string name="RemoveSmsMessagesDialogFragment__you_have_changed">คุณได้เปลี่ยนแอป SMS เริ่มต้นเรียบร้อยแล้ว ต้องการลบข้อความ SMS ออกจาก Signal หรือไม่</string>
+  <!--SetSignalAsDefaultSmsAppFragment-->
+  <!--Title of the screen-->
+  <string name="SetSignalAsDefaultSmsAppFragment__first_set_signal_as_the_default_sms_app">อันดับแรก ให้ตั้ง Signal เป็นแอป SMS เริ่มต้น</string>
+  <!--Button label to start export-->
+  <string name="SetSignalAsDefaultSmsAppFragment__next">ถัดไป</string>
   <!--EOF-->
 </resources>

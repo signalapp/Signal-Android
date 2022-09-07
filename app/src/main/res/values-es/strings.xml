@@ -3392,8 +3392,11 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">Usar como aplicación de SMS predeterminada</string>
   <!--Preference title to export sms-->
+  <string name="SmsSettingsFragment__export_sms_messages">Exportar mensajes SMS</string>
   <!--Preference title to delete sms-->
+  <string name="SmsSettingsFragment__remove_sms_messages">Eliminar mensajes SMS</string>
   <!--Snackbar text to confirm deletion-->
+  <string name="SmsSettingsFragment__sms_messages_removed">Se han eliminado los mensajes SMS</string>
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">Mensajes</string>
   <string name="NotificationsSettingsFragment__calls">Llamadas</string>
@@ -4412,8 +4415,19 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">Ahora no</string>
   <!--My Story label designating that we will only share with the selected viewers.-->
+  <string name="ContactSearchItems__only_share_with">Compartir solo con</string>
   <!--Label under name for private stories-->
+  <plurals name="ContactSearchItems__private_story_d_viewers">
+    <item quantity="one">Historia privada · %1$d espectador</item>
+    <item quantity="many">Historia privada · %1$d espectadores</item>
+    <item quantity="other">Historia privada · %1$d espectadores</item>
+  </plurals>
   <!--Label under name for group stories-->
+  <plurals name="ContactSearchItems__group_story_d_viewers">
+    <item quantity="one">Historia de grupo · %1$d espectador</item>
+    <item quantity="many">Historia de grupo · %1$d espectadores</item>
+    <item quantity="other">Historia de grupo · %1$d espectadores</item>
+  </plurals>
   <!--Label under name for my story-->
   <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
     <item quantity="one">%1$s · %2$d espectador</item>
@@ -4562,22 +4576,35 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="OverflowMenu__overflow_menu">Menú desplegable</string>
   <!--SMS Export Service-->
   <!--Displayed in the notification while export is running-->
+  <string name="SignalSmsExportService__exporting_messages">Exportando mensajes…</string>
   <!--ExportYourSmsMessagesFragment-->
   <!--Title of the screen-->
+  <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">Exportar tus mensajes SMS</string>
   <!--Button label to begin export-->
-  <string name="ExportYourSmsMessagesFragment__continue">Adelante</string>
+  <string name="ExportYourSmsMessagesFragment__continue">Continuar</string>
   <!--ExportingSmsMessagesFragment-->
   <!--Title of the screen-->
+  <string name="ExportingSmsMessagesFragment__exporting_sms_messages">Exportando mensajes SMS</string>
   <!--Progress indicator for export-->
+  <string name="ExportingSmsMessagesFragment__exporting_d_of_d">Exportar %1$d de %2$d…</string>
   <!--ChooseANewDefaultSmsAppFragment-->
   <!--Title of the screen-->
+  <string name="ChooseANewDefaultSmsAppFragment__choose_a_new">Elegir una nueva app de SMS por defecto</string>
   <!--Button label to launch picker-->
-  <string name="ChooseANewDefaultSmsAppFragment__continue">Adelante</string>
+  <string name="ChooseANewDefaultSmsAppFragment__continue">Continuar</string>
   <!--RemoveSmsMessagesDialogFragment-->
   <!--Action button to keep messages-->
   <string name="RemoveSmsMessagesDialogFragment__keep_messages">Preservar mensajes</string>
   <!--Action button to remove messages-->
+  <string name="RemoveSmsMessagesDialogFragment__remove_messages">Eliminar mensajes</string>
   <!--Title of dialog-->
+  <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">¿Eliminar mensajes SMS de Signal?</string>
   <!--Message of dialog-->
+  <string name="RemoveSmsMessagesDialogFragment__you_have_changed">Has cambiado la app de SMS por defecto. ¿Quieres eliminar los mensajes SMS de Signal?</string>
+  <!--SetSignalAsDefaultSmsAppFragment-->
+  <!--Title of the screen-->
+  <string name="SetSignalAsDefaultSmsAppFragment__first_set_signal_as_the_default_sms_app">En primer lugar, convierte a Signal en tu app de SMS por defecto</string>
+  <!--Button label to start export-->
+  <string name="SetSignalAsDefaultSmsAppFragment__next">Siguiente</string>
   <!--EOF-->
 </resources>

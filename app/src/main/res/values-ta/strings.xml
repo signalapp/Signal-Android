@@ -3287,8 +3287,11 @@
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">இயல்புநிலை SMS பயன்பாடாக பயன்படுத்தவும்</string>
   <!--Preference title to export sms-->
+  <string name="SmsSettingsFragment__export_sms_messages">எஸ்.எம்.எஸ் செய்திகளை ஏற்றுமதி செய்</string>
   <!--Preference title to delete sms-->
+  <string name="SmsSettingsFragment__remove_sms_messages">எஸ்.எம்.எஸ் செய்திகளை அகற்று </string>
   <!--Snackbar text to confirm deletion-->
+  <string name="SmsSettingsFragment__sms_messages_removed">எஸ்.எம்.எஸ் செய்திகள் அகற்றப்பட்டது </string>
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">செய்திகள்</string>
   <string name="NotificationsSettingsFragment__calls">அழைப்புகள்</string>
@@ -4295,8 +4298,17 @@
   <!--Expired gift sheet not now button-->
   <string name="ExpiredGiftSheetConfiguration__not_now">இப்போது இல்லை</string>
   <!--My Story label designating that we will only share with the selected viewers.-->
+  <string name="ContactSearchItems__only_share_with">- உடன் மட்டும் பகிரவும்</string>
   <!--Label under name for private stories-->
+  <plurals name="ContactSearchItems__private_story_d_viewers">
+    <item quantity="one">தனிப்பட்ட ஸ்டோரி · %1$d பார்வையாளர்</item>
+    <item quantity="other">தனிப்பட்ட ஸ்டோரி · %1$d பார்வையாளர்கள்</item>
+  </plurals>
   <!--Label under name for group stories-->
+  <plurals name="ContactSearchItems__group_story_d_viewers">
+    <item quantity="one">குழு ஸ்டோரி · %1$d பார்வையாளர் </item>
+    <item quantity="other">குழு ஸ்டோரி · %1$d பார்வையாளர்கள் </item>
+  </plurals>
   <!--Label under name for my story-->
   <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
     <item quantity="one">%1$s · %2$d பார்வையாளர்</item>
@@ -4440,22 +4452,36 @@
   <string name="OverflowMenu__overflow_menu">ஓவர்ஃப்ளோ மெனு</string>
   <!--SMS Export Service-->
   <!--Displayed in the notification while export is running-->
+  <string name="SignalSmsExportService__exporting_messages">செய்திகளை ஏற்றுமதி செய்கிறது…</string>
   <!--ExportYourSmsMessagesFragment-->
   <!--Title of the screen-->
+  <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">உங்கள் எஸ்.எம்.எஸ் செய்திகளை ஏற்றுமதி செய்யுங்கள்</string>
   <!--Button label to begin export-->
-  <string name="ExportYourSmsMessagesFragment__continue">தொடர்ந்து செல் </string>
+  <string name="ExportYourSmsMessagesFragment__continue">தொடரவும்</string>
   <!--ExportingSmsMessagesFragment-->
   <!--Title of the screen-->
+  <string name="ExportingSmsMessagesFragment__exporting_sms_messages">எஸ்.எம்.எஸ் செய்திகளை ஏற்றுமதி செய்கிறது</string>
   <!--Progress indicator for export-->
+  <string name="ExportingSmsMessagesFragment__exporting_d_of_d">%2$d இல் %1$d- ஐ ஏற்றுமதி செய்கிறது…</string>
   <!--ChooseANewDefaultSmsAppFragment-->
   <!--Title of the screen-->
+  <string name="ChooseANewDefaultSmsAppFragment__choose_a_new">புதிய இயல்புநிலை எஸ்.எம்.எஸ் ஆப்பை தேர்வுசெய்யவும்</string>
   <!--Button label to launch picker-->
-  <string name="ChooseANewDefaultSmsAppFragment__continue">தொடர்ந்து செல் </string>
+  <string name="ChooseANewDefaultSmsAppFragment__continue">தொடரவும்
+</string>
   <!--RemoveSmsMessagesDialogFragment-->
   <!--Action button to keep messages-->
-  <string name="RemoveSmsMessagesDialogFragment__keep_messages">செய்திகள் வைப்பு</string>
+  <string name="RemoveSmsMessagesDialogFragment__keep_messages">செய்திகளை வைத்திருங்கள்</string>
   <!--Action button to remove messages-->
+  <string name="RemoveSmsMessagesDialogFragment__remove_messages">செய்திகளை அகற்று </string>
   <!--Title of dialog-->
+  <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">சிக்னலில் இருந்து எஸ்.எம்.எஸ் செய்திகளை அகற்றுவதா?</string>
   <!--Message of dialog-->
+  <string name="RemoveSmsMessagesDialogFragment__you_have_changed">இயல்புநிலை எஸ்.எம்.எஸ் ஆப்பை மாற்றிவிட்டீர்கள், சிக்னலில் இருந்து எஸ்.எம்.எஸ் செய்திகளை அகற்ற விரும்புகிறீர்களா?</string>
+  <!--SetSignalAsDefaultSmsAppFragment-->
+  <!--Title of the screen-->
+  <string name="SetSignalAsDefaultSmsAppFragment__first_set_signal_as_the_default_sms_app">முதலில், சிக்னலை இயல்புநிலை எஸ்.எம்.எஸ் ஆப்பாக அமைக்கவும்</string>
+  <!--Button label to start export-->
+  <string name="SetSignalAsDefaultSmsAppFragment__next">அடுத்தது</string>
   <!--EOF-->
 </resources>
