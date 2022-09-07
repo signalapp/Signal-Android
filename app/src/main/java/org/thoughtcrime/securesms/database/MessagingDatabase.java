@@ -13,10 +13,10 @@ import org.session.libsession.utilities.IdentityKeyMismatch;
 import org.session.libsession.utilities.IdentityKeyMismatchList;
 import org.session.libsignal.crypto.IdentityKey;
 import org.session.libsignal.utilities.JsonUtil;
-import org.thoughtcrime.securesms.database.model.MessageRecord;
-import org.thoughtcrime.securesms.util.SqlUtil;
 import org.session.libsignal.utilities.Log;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
+import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.util.SqlUtil;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -67,15 +67,19 @@ public abstract class MessagingDatabase extends Database implements MmsSmsColumn
     }
   }
 
-  void updateReactionsUnread(SQLiteDatabase db, long messageId, boolean hasReactions, boolean isRemoval) {
+  void updateReactionsUnread(SQLiteDatabase db, long messageId, boolean hasReactions, boolean isRemoval, boolean notifyUnread) {
     try {
       MessageRecord message    = getMessageRecord(messageId);
       ContentValues values     = new ContentValues();
 
-      if (!hasReactions) {
+      if (notifyUnread) {
+        if (!hasReactions) {
+          values.put(REACTIONS_UNREAD, 0);
+        } else if (!isRemoval) {
+          values.put(REACTIONS_UNREAD, 1);
+        }
+      } else {
         values.put(REACTIONS_UNREAD, 0);
-      } else if (!isRemoval) {
-        values.put(REACTIONS_UNREAD, 1);
       }
 
       if (message.isOutgoing() && hasReactions) {

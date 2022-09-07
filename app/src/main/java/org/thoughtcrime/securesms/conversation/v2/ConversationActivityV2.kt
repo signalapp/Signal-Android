@@ -1054,7 +1054,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
             dateSent = emojiTimestamp,
             dateReceived = emojiTimestamp
         )
-        reactionDb.addReaction(MessageId(originalMessage.id, originalMessage.isMms), reaction)
+        reactionDb.addReaction(MessageId(originalMessage.id, originalMessage.isMms), reaction, false)
         val originalAuthor = if (originalMessage.isOutgoing) {
             fromSerialized(viewModel.blindedPublicKey ?: textSecurePreferences.getLocalNumber()!!)
         } else originalMessage.individualRecipient.address
@@ -1077,7 +1077,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         val emojiTimestamp = System.currentTimeMillis()
         message.sentTimestamp = emojiTimestamp
         val author = textSecurePreferences.getLocalNumber()!!
-        reactionDb.deleteReaction(emoji, MessageId(originalMessage.id, originalMessage.isMms), author)
+        reactionDb.deleteReaction(emoji, MessageId(originalMessage.id, originalMessage.isMms), author, false)
 
         val originalAuthor = if (originalMessage.isOutgoing) {
             fromSerialized(viewModel.blindedPublicKey ?: textSecurePreferences.getLocalNumber()!!)

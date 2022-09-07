@@ -94,7 +94,7 @@ class ReactionDatabase(context: Context, helper: SQLCipherOpenHelper) : Database
     return reactions
   }
 
-  fun addReaction(messageId: MessageId, reaction: ReactionRecord) {
+  fun addReaction(messageId: MessageId, reaction: ReactionRecord, notifyUnread: Boolean) {
 
     writableDatabase.beginTransaction()
     try {
@@ -113,9 +113,9 @@ class ReactionDatabase(context: Context, helper: SQLCipherOpenHelper) : Database
       writableDatabase.insert(TABLE_NAME, null, values)
 
       if (messageId.mms) {
-        DatabaseComponent.get(context).mmsDatabase().updateReactionsUnread(writableDatabase, messageId.id, hasReactions(messageId), false)
+        DatabaseComponent.get(context).mmsDatabase().updateReactionsUnread(writableDatabase, messageId.id, hasReactions(messageId), false, notifyUnread)
       } else {
-        DatabaseComponent.get(context).smsDatabase().updateReactionsUnread(writableDatabase, messageId.id, hasReactions(messageId), false)
+        DatabaseComponent.get(context).smsDatabase().updateReactionsUnread(writableDatabase, messageId.id, hasReactions(messageId), false, notifyUnread)
       }
 
       writableDatabase.setTransactionSuccessful()
@@ -124,11 +124,12 @@ class ReactionDatabase(context: Context, helper: SQLCipherOpenHelper) : Database
     }
   }
 
-  fun deleteReaction(emoji: String, messageId: MessageId, author: String) {
+  fun deleteReaction(emoji: String, messageId: MessageId, author: String, notifyUnread: Boolean) {
     deleteReactions(
       messageId = messageId,
       query = "$MESSAGE_ID = ? AND $IS_MMS = ? AND $EMOJI = ? AND $AUTHOR_ID = ?",
-      args = arrayOf("${messageId.id}", "${if (messageId.mms)  1 else 0}", emoji, author)
+      args = arrayOf("${messageId.id}", "${if (messageId.mms)  1 else 0}", emoji, author),
+      notifyUnread
     )
   }
 
@@ -136,7 +137,8 @@ class ReactionDatabase(context: Context, helper: SQLCipherOpenHelper) : Database
     deleteReactions(
       messageId = messageId,
       query = "$MESSAGE_ID = ? AND $IS_MMS = ? AND $EMOJI = ?",
-      args = arrayOf("${messageId.id}", "${if (messageId.mms)  1 else 0}", emoji)
+      args = arrayOf("${messageId.id}", "${if (messageId.mms)  1 else 0}", emoji),
+      false
     )
   }
 
@@ -144,19 +146,20 @@ class ReactionDatabase(context: Context, helper: SQLCipherOpenHelper) : Database
     deleteReactions(
       messageId = messageId,
       query = "$MESSAGE_ID = ? AND $IS_MMS = ?",
-      args = arrayOf("${messageId.id}", "${if (messageId.mms)  1 else 0}")
+      args = arrayOf("${messageId.id}", "${if (messageId.mms)  1 else 0}"),
+      false
     )
   }
 
-  private fun deleteReactions(messageId: MessageId, query: String, args: Array<String>) {
+  private fun deleteReactions(messageId: MessageId, query: String, args: Array<String>, notifyUnread: Boolean) {
     writableDatabase.beginTransaction()
     try {
       writableDatabase.delete(TABLE_NAME, query, args)
 
       if (messageId.mms) {
-        DatabaseComponent.get(context).mmsDatabase().updateReactionsUnread(writableDatabase, messageId.id, hasReactions(messageId), true)
+        DatabaseComponent.get(context).mmsDatabase().updateReactionsUnread(writableDatabase, messageId.id, hasReactions(messageId), true, notifyUnread)
       } else {
-        DatabaseComponent.get(context).smsDatabase().updateReactionsUnread(writableDatabase, messageId.id, hasReactions(messageId), true)
+        DatabaseComponent.get(context).smsDatabase().updateReactionsUnread(writableDatabase, messageId.id, hasReactions(messageId), true, notifyUnread)
       }
 
       writableDatabase.setTransactionSuccessful()

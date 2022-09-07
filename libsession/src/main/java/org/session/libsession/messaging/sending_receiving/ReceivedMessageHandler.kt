@@ -230,6 +230,7 @@ fun MessageReceiver.handleVisibleMessage(message: VisibleMessage,
         // Thread doesn't exist; should only be reached in a case where we are processing open group messages for a no longer existent thread
         throw MessageReceiver.Error.NoThread
     }
+    val threadRecipient = storage.getRecipientForThread(threadID)
     // Update profile if needed
     val recipient = Recipient.from(context, Address.fromSerialized(messageSender!!), false)
     if (runProfileUpdate) {
@@ -295,14 +296,15 @@ fun MessageReceiver.handleVisibleMessage(message: VisibleMessage,
         }
     }
     // Parse reaction if needed
+    val threadIsGroup = threadRecipient?.isGroupRecipient == true
     message.reaction?.let { reaction ->
         if (reaction.react == true) {
             reaction.serverId = message.openGroupServerMessageID?.toString() ?: message.serverHash.orEmpty()
             reaction.dateSent = message.sentTimestamp ?: 0
             reaction.dateReceived = message.receivedTimestamp ?: 0
-            storage.addReaction(reaction, messageSender)
+            storage.addReaction(reaction, messageSender, !threadIsGroup)
         } else {
-            storage.removeReaction(reaction.emoji!!, reaction.timestamp!!, reaction.publicKey!!)
+            storage.removeReaction(reaction.emoji!!, reaction.timestamp!!, reaction.publicKey!!, threadIsGroup)
         }
     } ?: run {
         // Persist the message
@@ -357,7 +359,7 @@ fun MessageReceiver.handleOpenGroupReactions(
                 serverId = "$openGroupMessageServerID",
                 count = count,
                 index = reaction.index
-            ), reactor)
+            ), reactor, false)
         }
 
         // Add all other reactions
@@ -373,7 +375,7 @@ fun MessageReceiver.handleOpenGroupReactions(
                 serverId = "$openGroupMessageServerID",
                 count = 0,  // Only want this on the first reaction
                 index = reaction.index
-            ), reactor)
+            ), reactor, false)
         }
 
         // Add the current user reaction (if applicable and not already included)
@@ -387,7 +389,7 @@ fun MessageReceiver.handleOpenGroupReactions(
                 serverId = "$openGroupMessageServerID",
                 count = 1,
                 index = reaction.index
-            ), userPublicKey)
+            ), userPublicKey, false)
         }
     }
 }
