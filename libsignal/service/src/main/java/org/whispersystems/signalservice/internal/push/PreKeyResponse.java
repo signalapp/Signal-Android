@@ -20,10 +20,10 @@ public class PreKeyResponse {
   @JsonProperty
   @JsonSerialize(using = JsonUtil.IdentityKeySerializer.class)
   @JsonDeserialize(using = JsonUtil.IdentityKeyDeserializer.class)
-  private IdentityKey identityKey;
+  public IdentityKey identityKey;
 
   @JsonProperty
-  private List<PreKeyResponseItem> devices;
+  public List<PreKeyResponseItem> devices;
 
   public IdentityKey getIdentityKey() {
     return identityKey;

@@ -13,16 +13,16 @@ import org.whispersystems.signalservice.api.push.SignedPreKeyEntity;
 public class PreKeyResponseItem {
 
   @JsonProperty
-  private int                deviceId;
+  public int                deviceId;
 
   @JsonProperty
-  private int                registrationId;
+  public int                registrationId;
 
   @JsonProperty
-  private SignedPreKeyEntity signedPreKey;
+  public SignedPreKeyEntity signedPreKey;
 
   @JsonProperty
-  private PreKeyEntity       preKey;
+  public PreKeyEntity       preKey;
 
   public int getDeviceId() {
     return deviceId;

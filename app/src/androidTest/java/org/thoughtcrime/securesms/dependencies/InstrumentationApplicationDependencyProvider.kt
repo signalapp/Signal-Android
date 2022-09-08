@@ -77,6 +77,7 @@ class InstrumentationApplicationDependencyProvider(application: Application, def
     serviceNetworkAccessMock = mock {
       on { getConfiguration() } doReturn uncensoredConfiguration
       on { getConfiguration(any()) } doReturn uncensoredConfiguration
+      on { uncensoredConfiguration } doReturn uncensoredConfiguration
     }
 
     keyBackupService = mock()

@@ -2235,6 +2235,12 @@ public class SignalServiceMessageSender {
     archiveSessions(recipient, staleDevices.getStaleDevices());
   }
 
+  public void handleChangeNumberMismatchDevices(@Nonnull MismatchedDevices mismatchedDevices)
+      throws IOException, UntrustedIdentityException
+  {
+    handleMismatchedDevices(socket, localAddress, mismatchedDevices);
+  }
+
   private void archiveSessions(SignalServiceAddress recipient, List<Integer> devices) {
     List<SignalProtocolAddress> addressesToClear = convertToProtocolAddresses(recipient, devices);
 

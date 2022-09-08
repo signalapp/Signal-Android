@@ -109,7 +109,7 @@ class MyStoryMigrationTest {
   }
 
   private fun runMigration() {
-    MyStoryMigration.migrate(
+    V151_MyStoryMigration.migrate(
       InstrumentationRegistry.getInstrumentation().targetContext.applicationContext as Application,
       SignalDatabase.rawDatabase,
       0,
