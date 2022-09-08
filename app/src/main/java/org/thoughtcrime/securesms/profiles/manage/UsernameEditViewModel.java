@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import org.signal.core.util.ThreadUtil;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
 import org.thoughtcrime.securesms.util.UsernameUtil;
@@ -45,13 +46,15 @@ class UsernameEditViewModel extends ViewModel {
   private final RxStore<State>           uiState;
   private final PublishProcessor<String> nicknamePublisher;
   private final CompositeDisposable      disposables;
+  private final boolean                  isInRegistration;
 
-  private UsernameEditViewModel() {
+  private UsernameEditViewModel(boolean isInRegistration) {
     this.repo              = new UsernameEditRepository();
     this.uiState           = new RxStore<>(new State(ButtonState.SUBMIT_DISABLED, UsernameStatus.NONE, Recipient.self().getUsername().<UsernameState>map(UsernameState.Set::new).orElse(UsernameState.NoUsername.INSTANCE)), Schedulers.computation());
     this.events            = new SingleLiveEvent<>();
     this.nicknamePublisher = PublishProcessor.create();
     this.disposables       = new CompositeDisposable();
+    this.isInRegistration  = isInRegistration;
 
     Disposable disposable = nicknamePublisher.debounce(NICKNAME_PUBLISHER_DEBOUNCE_TIMEOUT_MILLIS, TimeUnit.MILLISECONDS)
                                              .subscribe(this::onNicknameChanged);
@@ -67,7 +70,7 @@ class UsernameEditViewModel extends ViewModel {
   void onNicknameUpdated(@NonNull String nickname) {
     uiState.update(state -> {
       if (TextUtils.isEmpty(nickname) && Recipient.self().getUsername().isPresent()) {
-        return new State(ButtonState.DELETE, UsernameStatus.NONE, UsernameState.NoUsername.INSTANCE);
+        return new State(isInRegistration ? ButtonState.SUBMIT_DISABLED : ButtonState.DELETE, UsernameStatus.NONE, UsernameState.NoUsername.INSTANCE);
       }
 
       Optional<InvalidReason> invalidReason = UsernameUtil.checkUsername(nickname);
@@ -77,6 +80,11 @@ class UsernameEditViewModel extends ViewModel {
     });
 
     nicknamePublisher.onNext(nickname);
+  }
+
+  void onUsernameSkipped() {
+    SignalStore.uiHints().markHasSetOrSkippedUsernameCreation();
+    events.setValue(Event.SKIPPED);
   }
 
   void onUsernameSubmitted() {
@@ -107,6 +115,7 @@ class UsernameEditViewModel extends ViewModel {
 
         switch (result) {
           case SUCCESS:
+            SignalStore.uiHints().markHasSetOrSkippedUsernameCreation();
             uiState.update(state -> new State(ButtonState.SUBMIT_DISABLED, UsernameStatus.NONE, state.usernameState));
             events.postValue(Event.SUBMIT_SUCCESS);
             break;
@@ -248,14 +257,21 @@ class UsernameEditViewModel extends ViewModel {
   }
 
   enum Event {
-    NETWORK_FAILURE, SUBMIT_SUCCESS, DELETE_SUCCESS, SUBMIT_FAIL_INVALID, SUBMIT_FAIL_TAKEN
+    NETWORK_FAILURE, SUBMIT_SUCCESS, DELETE_SUCCESS, SUBMIT_FAIL_INVALID, SUBMIT_FAIL_TAKEN, SKIPPED
   }
 
   static class Factory extends ViewModelProvider.NewInstanceFactory {
+
+    private final boolean isInRegistration;
+
+    Factory(boolean isInRegistration) {
+      this.isInRegistration = isInRegistration;
+    }
+
     @Override
     public @NonNull <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
       //noinspection ConstantConditions
-      return modelClass.cast(new UsernameEditViewModel());
+      return modelClass.cast(new UsernameEditViewModel(isInRegistration));
     }
   }
 }

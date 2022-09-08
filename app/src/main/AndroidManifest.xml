@@ -570,6 +570,10 @@
               android:theme="@style/TextSecure.LightRegistrationTheme"
               android:windowSoftInputMode="stateVisible|adjustResize" />
 
+    <activity android:name=".profiles.username.AddAUsernameActivity"
+              android:theme="@style/Signal.DayNight.NoActionBar"
+              android:windowSoftInputMode="stateVisible|adjustResize" />
+
     <activity android:name=".profiles.manage.ManageProfileActivity"
               android:theme="@style/TextSecure.LightTheme"
               android:windowSoftInputMode="stateVisible|adjustResize" />

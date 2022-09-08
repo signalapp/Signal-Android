@@ -1873,6 +1873,8 @@
     <string name="UnverifiedSendDialog_send">Send</string>
 
     <!-- UsernameEditFragment -->
+    <!-- Toolbar title when entering from registration -->
+    <string name="UsernameEditFragment__add_a_username">Add a username</string>
     <!-- Instructional text at the top of the username edit screen -->
     <string name="UsernameEditFragment__choose_your_username">Choose your username</string>
     <string name="UsernameEditFragment_username">Username</string>
@@ -1891,6 +1893,10 @@
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">What is this number?</string>
     <string name="UsernameEditFragment__these_digits_help_keep">These digits help keep your username private so you can avoid unwanted messages. Share your username with only the people and groups you\'d like to chat with. If you change usernames you\'ll get a new set of digits.</string>
+    <!-- Button to allow user to skip -->
+    <string name="UsernameEditFragment__skip">Skip</string>
+    <!-- Content description for done button -->
+    <string name="UsernameEditFragment__done">Done</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="one">%d contact is on Signal!</item>

@@ -18,6 +18,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 
@@ -91,7 +92,7 @@ public class EditProfileFragment extends LoggingFragment {
     GroupId groupId = GroupId.parseNullableOrThrow(requireArguments().getString(GROUP_ID, null));
 
     initializeViewModel(requireArguments().getBoolean(EXCLUDE_SYSTEM, false), groupId, savedInstanceState != null);
-    initializeResources(view, groupId);
+    initializeResources(groupId);
     initializeProfileAvatar();
     initializeProfileName();
 
@@ -151,11 +152,10 @@ public class EditProfileFragment extends LoggingFragment {
 
     EditProfileViewModel.Factory factory = new EditProfileViewModel.Factory(repository, hasSavedInstanceState, groupId);
 
-    viewModel = ViewModelProviders.of(requireActivity(), factory)
-                                  .get(EditProfileViewModel.class);
+    viewModel = new ViewModelProvider(requireActivity(), factory).get(EditProfileViewModel.class);
   }
 
-  private void initializeResources(@NonNull View view, @Nullable GroupId groupId) {
+  private void initializeResources(@Nullable GroupId groupId) {
     Bundle  arguments      = requireArguments();
     boolean isEditingGroup = groupId != null;
 
