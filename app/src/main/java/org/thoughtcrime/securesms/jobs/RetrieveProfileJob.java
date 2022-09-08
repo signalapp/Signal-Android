@@ -34,6 +34,7 @@ import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.profiles.ProfileName;
+import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
@@ -341,17 +342,21 @@ public class RetrieveProfileJob extends BaseJob {
     SignalServiceProfile profile             = profileAndCredential.getProfile();
     ProfileKey           recipientProfileKey = ProfileKeyUtil.profileKeyOrNull(recipient.getProfileKey());
 
-    setProfileName(recipient, profile.getName());
+    boolean wroteNewProfileName = setProfileName(recipient, profile.getName());
+
     setProfileAbout(recipient, profile.getAbout(), profile.getAboutEmoji());
     setProfileAvatar(recipient, profile.getAvatar());
     setProfileBadges(recipient, profile.getBadges());
-    clearUsername(recipient);
     setProfileCapabilities(recipient, profile.getCapabilities());
     setUnidentifiedAccessMode(recipient, profile.getUnidentifiedAccess(), profile.isUnrestrictedUnidentifiedAccess());
 
     if (recipientProfileKey != null) {
       profileAndCredential.getExpiringProfileKeyCredential()
                           .ifPresent(profileKeyCredential -> setExpiringProfileKeyCredential(recipient, recipientProfileKey, profileKeyCredential));
+    }
+
+    if (recipient.hasNonUsernameDisplayName(context) || wroteNewProfileName) {
+      clearUsername(recipient);
     }
   }
 
@@ -436,16 +441,16 @@ public class RetrieveProfileJob extends BaseJob {
     }
   }
 
-  private void setProfileName(Recipient recipient, String profileName) {
+  private boolean setProfileName(Recipient recipient, String profileName) {
     try {
       ProfileKey profileKey = ProfileKeyUtil.profileKeyOrNull(recipient.getProfileKey());
-      if (profileKey == null) return;
+      if (profileKey == null) return false;
 
       String plaintextProfileName = Util.emptyIfNull(ProfileUtil.decryptString(profileKey, profileName));
 
       if (TextUtils.isEmpty(plaintextProfileName)) {
         Log.w(TAG, "No name set on the profile for " + recipient.getId() + " -- Leaving it alone");
-        return;
+        return false;
       }
 
       ProfileName remoteProfileName = ProfileName.fromSerialized(plaintextProfileName);
@@ -470,12 +475,16 @@ public class RetrieveProfileJob extends BaseJob {
           Log.i(TAG, String.format(Locale.US, "Name changed, but wasn't relevant to write an event. blocked: %s, group: %s, self: %s, firstSet: %s, displayChange: %s",
                                    recipient.isBlocked(), recipient.isGroup(), recipient.isSelf(), localDisplayName.isEmpty(), !remoteDisplayName.equals(localDisplayName)));
         }
+
+        return true;
       }
     } catch (InvalidCiphertextException e) {
       Log.w(TAG, "Bad profile key for " + recipient.getId());
     } catch (IOException e) {
       Log.w(TAG, e);
     }
+
+    return false;
   }
 
   private void setProfileAbout(@NonNull Recipient recipient, @Nullable String encryptedAbout, @Nullable String encryptedEmoji) {

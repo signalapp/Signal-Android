@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.profiles.manage;
 
 import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,16 +16,15 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.google.android.material.button.MaterialButton;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.progressindicator.CircularProgressIndicatorSpec;
+import com.google.android.material.progressindicator.IndeterminateDrawable;
 import com.google.android.material.textfield.TextInputLayout;
 
 import org.signal.core.util.DimensionUnit;
@@ -38,10 +38,8 @@ import org.thoughtcrime.securesms.util.LifecycleDisposable;
 import org.thoughtcrime.securesms.util.UsernameUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton;
-import org.thoughtcrime.securesms.util.views.LearnMoreTextView;
 
 import java.util.Objects;
-import java.util.function.Consumer;
 
 public class UsernameEditFragment extends LoggingFragment {
 
@@ -76,19 +74,20 @@ public class UsernameEditFragment extends LoggingFragment {
     lifecycleDisposable.add(viewModel.getUiState().subscribe(this::onUiStateChanged));
     viewModel.getEvents().observe(getViewLifecycleOwner(), this::onEvent);
 
-    binding.usernameSubmitButton.setOnClickListener(v -> viewModel.onUsernameSubmitted(binding.usernameText.getText().toString()));
+    binding.usernameSubmitButton.setOnClickListener(v -> viewModel.onUsernameSubmitted());
     binding.usernameDeleteButton.setOnClickListener(v -> viewModel.onUsernameDeleted());
 
-    binding.usernameText.setText(Recipient.self().getUsername().orElse(null));
+    UsernameState usernameState = Recipient.self().getUsername().<UsernameState>map(UsernameState.Set::new).orElse(UsernameState.NoUsername.INSTANCE);
+    binding.usernameText.setText(usernameState.getNickname());
     binding.usernameText.addTextChangedListener(new SimpleTextWatcher() {
       @Override
-      public void onTextChanged(String text) {
-        viewModel.onUsernameUpdated(text);
+      public void onTextChanged(@NonNull String text) {
+        viewModel.onNicknameUpdated(text);
       }
     });
     binding.usernameText.setOnEditorActionListener((v, actionId, event) -> {
       if (actionId == EditorInfo.IME_ACTION_DONE) {
-        viewModel.onUsernameSubmitted(binding.usernameText.getText().toString());
+        viewModel.onUsernameSubmitted();
         return true;
       }
       return false;
@@ -118,9 +117,10 @@ public class UsernameEditFragment extends LoggingFragment {
 
     layoutParams.topMargin    = suffixTextView.getPaddingTop();
     layoutParams.bottomMargin = suffixTextView.getPaddingBottom();
+    layoutParams.setMarginEnd(suffixTextView.getPaddingEnd());
 
     suffixProgress = new ImageView(requireContext());
-    suffixProgress.setImageDrawable(UsernameSuffix.getInProgressDrawable(requireContext()));
+    suffixProgress.setImageDrawable(getInProgressDrawable());
     suffixParent.addView(suffixProgress, 0, layoutParams);
 
     suffixTextView.setOnClickListener(this::onLearnMore);
@@ -148,7 +148,7 @@ public class UsernameEditFragment extends LoggingFragment {
     TextInputLayout                usernameInputWrapper = binding.usernameTextWrapper;
 
     usernameInput.setEnabled(true);
-    presentSuffix(state.getUsernameSuffix());
+    presentSuffix(state.getUsername());
 
     switch (state.getButtonState()) {
       case SUBMIT:
@@ -225,17 +225,13 @@ public class UsernameEditFragment extends LoggingFragment {
         usernameInputWrapper.setErrorTextColor(ColorStateList.valueOf(getResources().getColor(R.color.signal_colorError)));
 
         break;
-      case AVAILABLE:
-        usernameInputWrapper.setError(getResources().getString(R.string.UsernameEditFragment_this_username_is_available));
-        usernameInputWrapper.setErrorTextColor(ColorStateList.valueOf(getResources().getColor(R.color.signal_accent_green)));
-        break;
     }
   }
 
-  private void presentSuffix(@NonNull UsernameSuffix usernameSuffix) {
-    binding.usernameTextWrapper.setSuffixText(usernameSuffix.getCharSequence());
+  private void presentSuffix(@NonNull UsernameState usernameState) {
+    binding.usernameTextWrapper.setSuffixText(usernameState.getDiscriminator());
 
-    boolean isInProgress = usernameSuffix.isInProgress();
+    boolean isInProgress = usernameState.isInProgress();
 
     if (isInProgress) {
       suffixProgress.setVisibility(View.VISIBLE);
@@ -244,11 +240,23 @@ public class UsernameEditFragment extends LoggingFragment {
     }
   }
 
+  private IndeterminateDrawable<CircularProgressIndicatorSpec> getInProgressDrawable() {
+    CircularProgressIndicatorSpec spec = new CircularProgressIndicatorSpec(requireContext(), null);
+    spec.indicatorInset = 0;
+    spec.indicatorSize = (int) DimensionUnit.DP.toPixels(16f);
+    spec.trackColor = ContextCompat.getColor(requireContext(), R.color.signal_colorOnSurfaceVariant);
+    spec.trackThickness = (int) DimensionUnit.DP.toPixels(1f);
+
+    IndeterminateDrawable<CircularProgressIndicatorSpec> drawable = IndeterminateDrawable.createCircularDrawable(requireContext(), spec);
+    drawable.setBounds(0, 0, spec.indicatorSize, spec.indicatorSize);
+
+    return drawable;
+  }
+
   private void onEvent(@NonNull UsernameEditViewModel.Event event) {
     switch (event) {
       case SUBMIT_SUCCESS:
         ResultContract.setUsernameCreated(getParentFragmentManager());
-        Toast.makeText(requireContext(), R.string.UsernameEditFragment_successfully_set_username, Toast.LENGTH_SHORT).show();
         NavHostFragment.findNavController(this).popBackStack();
         break;
       case SUBMIT_FAIL_TAKEN:

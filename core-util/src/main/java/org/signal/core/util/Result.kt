@@ -9,7 +9,10 @@ sealed class Result<out S, out F> {
   data class Success<out S>(val success: S) : Result<S, Nothing>()
 
   companion object {
+    @JvmStatic
     fun <S> success(value: S) = Success(value)
+
+    @JvmStatic
     fun <F> failure(value: F) = Failure(value)
   }
 

@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
+import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.push.ServiceId;
 
 import java.io.IOException;
@@ -67,8 +68,8 @@ public class UsernameUtil {
 
     try {
       Log.d(TAG, "No local user with this username. Searching remotely.");
-      SignalServiceProfile profile = ApplicationDependencies.getSignalServiceMessageReceiver().retrieveProfileByUsername(username, Optional.empty(), Locale.getDefault());
-      return Optional.ofNullable(profile.getServiceId());
+      ACI aci = ApplicationDependencies.getSignalServiceAccountManager().getAciByUsername(username);
+      return Optional.ofNullable(aci);
     } catch (IOException e) {
       return Optional.empty();
     }

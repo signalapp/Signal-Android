@@ -53,6 +53,7 @@ import org.whispersystems.signalservice.api.payments.CurrencyConversions;
 import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfileWrite;
+import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.ServiceIdType;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
@@ -79,6 +80,8 @@ import org.whispersystems.signalservice.api.push.exceptions.RemoteAttestationRes
 import org.whispersystems.signalservice.api.push.exceptions.ResumeLocationInvalidException;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
+import org.whispersystems.signalservice.api.push.exceptions.UsernameIsNotAssociatedWithAnAccountException;
+import org.whispersystems.signalservice.api.push.exceptions.UsernameIsNotReservedException;
 import org.whispersystems.signalservice.api.push.exceptions.UsernameMalformedException;
 import org.whispersystems.signalservice.api.push.exceptions.UsernameTakenException;
 import org.whispersystems.signalservice.api.storage.StorageAuthResponse;
@@ -139,6 +142,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -156,10 +161,12 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
+import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import okhttp3.Call;
@@ -195,8 +202,10 @@ public class PushServiceSocket {
   private static final String REGISTRATION_LOCK_PATH     = "/v1/accounts/registration_lock";
   private static final String REQUEST_PUSH_CHALLENGE     = "/v1/accounts/fcm/preauth/%s/%s";
   private static final String WHO_AM_I                   = "/v1/accounts/whoami";
-  private static final String SET_USERNAME_PATH          = "/v1/accounts/username/%s";
-  private static final String DELETE_USERNAME_PATH       = "/v1/accounts/username";
+  private static final String GET_USERNAME_PATH          = "/v1/accounts/username/%s";
+  private static final String MODIFY_USERNAME_PATH       = "/v1/accounts/username";
+  private static final String RESERVE_USERNAME_PATH      = "/v1/accounts/username/reserved";
+  private static final String CONFIRM_USERNAME_PATH      = "/v1/accounts/username/confirm";
   private static final String DELETE_ACCOUNT_PATH        = "/v1/accounts/me";
   private static final String CHANGE_NUMBER_PATH         = "/v1/accounts/number";
   private static final String IDENTIFIER_REGISTERED_PATH = "/v1/accounts/account/%s";
@@ -221,7 +230,6 @@ public class PushServiceSocket {
   private static final String PAYMENTS_AUTH_PATH        = "/v1/payments/auth";
 
   private static final String PROFILE_PATH              = "/v1/profile/%s";
-  private static final String PROFILE_USERNAME_PATH     = "/v1/profile/username/%s";
   private static final String PROFILE_BATCH_CHECK_PATH  = "/v1/profile/identity_check/batch";
 
   private static final String SENDER_CERTIFICATE_PATH         = "/v1/certificate/delivery";
@@ -770,19 +778,6 @@ public class PushServiceSocket {
     });
   }
 
-  public SignalServiceProfile retrieveProfileByUsername(String username, Optional<UnidentifiedAccess> unidentifiedAccess, Locale locale)
-      throws NonSuccessfulResponseCodeException, PushNetworkException, MalformedResponseException
-  {
-    String response = makeServiceRequest(String.format(PROFILE_USERNAME_PATH, username), "GET", null, AcceptLanguagesUtil.getHeadersWithAcceptLanguage(locale), unidentifiedAccess);
-
-    try {
-      return JsonUtil.fromJson(response, SignalServiceProfile.class);
-    } catch (IOException e) {
-      Log.w(TAG, e);
-      throw new MalformedResponseException("Unable to parse entity", e);
-    }
-  }
-
   public ListenableFuture<ProfileAndCredential> retrieveVersionedProfileAndCredential(UUID target, ProfileKey profileKey, Optional<UnidentifiedAccess> unidentifiedAccess, Locale locale) {
     ProfileKeyVersion                  profileKeyIdentifier = profileKey.getProfileKeyVersion(target);
     ProfileKeyCredentialRequestContext requestContext       = clientZkProfileOperations.createProfileKeyCredentialRequestContext(random, target, profileKey);
@@ -899,17 +894,102 @@ public class PushServiceSocket {
         .onErrorReturn(ServiceResponse::forUnknownError);
   }
 
-  public void setUsername(String username) throws IOException {
-    makeServiceRequest(String.format(SET_USERNAME_PATH, username), "PUT", "", NO_HEADERS, (responseCode, body) -> {
+  /**
+   * Gets the ACI for the given username, if it exists. This is an unauthenticated request.
+   *
+   * This network request can have the following error responses:
+   * <ul>
+   *   <li>404 - The username given is not associated with an account</li>
+   *   <li>428 - Rate-limited, retry is available in the Retry-After header</li>
+   *   <li>400 - Bad Request. The request included authentication.</li>
+   * </ul>
+   *
+   * @param username The username to look up.
+   * @return The ACI for the given username if it exists.
+   * @throws IOException if a network exception occurs.
+   */
+  public @NonNull ACI getAciByUsername(String username) throws IOException {
+    String response = makeServiceRequestWithoutAuthentication(
+        String.format(GET_USERNAME_PATH, URLEncoder.encode(username, StandardCharsets.UTF_8.toString())),
+        "GET",
+        null,
+        (responseCode, body) -> {
+          if (responseCode == 404) {
+            throw new UsernameIsNotAssociatedWithAnAccountException();
+          }
+        }
+    );
+
+    GetAciByUsernameResponse getAciByUsernameResponse = JsonUtil.fromJsonResponse(response, GetAciByUsernameResponse.class);
+    return ACI.from(UUID.fromString(getAciByUsernameResponse.getUuid()));
+  }
+
+  /**
+   * Set the username for the account without seeing the discriminator first.
+   *
+   * @param nickname          The user-supplied nickname, which must meet the requirements for usernames.
+   * @param existingUsername  (Optional) If the account has a current username, indicates what the client thinks the current username is. Allows the server to
+   *                          deduplicate repeated requests.
+   * @return                  The username as set by the server, which includes both the nickname and discriminator.
+   * @throws IOException      Thrown when the username is invalid or taken, or when another network error occurs.
+   */
+  public @NonNull String setUsername(@NonNull String nickname, @Nullable String existingUsername) throws IOException {
+    SetUsernameRequest setUsernameRequest = new SetUsernameRequest(nickname, existingUsername);
+
+    String responseString = makeServiceRequest(MODIFY_USERNAME_PATH, "PUT", JsonUtil.toJson(setUsernameRequest), NO_HEADERS, (responseCode, body) -> {
       switch (responseCode) {
-        case 400: throw new UsernameMalformedException();
+        case 422: throw new UsernameMalformedException();
         case 409: throw new UsernameTakenException();
+      }
+    }, Optional.empty());
+
+    SetUsernameResponse response = JsonUtil.fromJsonResponse(responseString, SetUsernameResponse.class);
+    return response.getUsername();
+  }
+
+  /**
+   * Reserve a username for the account. This replaces an existing reservation if one exists. The username is guaranteed to be available for 5 minutes and can
+   * be confirmed with confirmUsername.
+   *
+   * @param nickname          The user-supplied nickname, which must meet the requirements for usernames.
+   * @return                  The reserved username. It is available for confirmation for 5 minutes.
+   * @throws IOException      Thrown when the username is invalid or taken, or when another network error occurs.
+   */
+  public @NonNull ReserveUsernameResponse reserveUsername(@NonNull String nickname) throws IOException {
+    ReserveUsernameRequest reserveUsernameRequest = new ReserveUsernameRequest(nickname);
+
+    String responseString = makeServiceRequest(RESERVE_USERNAME_PATH, "PUT", JsonUtil.toJson(reserveUsernameRequest), NO_HEADERS, (responseCode, body) -> {
+      switch (responseCode) {
+        case 422: throw new UsernameMalformedException();
+        case 409: throw new UsernameTakenException();
+      }
+    }, Optional.empty());
+
+    return JsonUtil.fromJsonResponse(responseString, ReserveUsernameResponse.class);
+  }
+
+  /**
+   * Set a previously reserved username for the account.
+   *
+   * @param reserveUsernameResponse The response object from the reservation
+   * @throws IOException                Thrown when the username is invalid or taken, or when another network error occurs.
+   */
+  public void confirmUsername(ReserveUsernameResponse reserveUsernameResponse) throws IOException {
+    ConfirmUsernameRequest confirmUsernameRequest = new ConfirmUsernameRequest(reserveUsernameResponse.getUsername(), reserveUsernameResponse.getReservationToken());
+
+    makeServiceRequest(CONFIRM_USERNAME_PATH, "PUT", JsonUtil.toJson(confirmUsernameRequest), NO_HEADERS, (responseCode, body) -> {
+      switch (responseCode) {
+        case 409: throw new UsernameIsNotReservedException();
+        case 410: throw new UsernameTakenException();
       }
     }, Optional.empty());
   }
 
+  /**
+   * Remove the username associated with the account.
+   */
   public void deleteUsername() throws IOException {
-    makeServiceRequest(DELETE_USERNAME_PATH, "DELETE", null);
+    makeServiceRequest(MODIFY_USERNAME_PATH, "DELETE", null);
   }
 
   public void deleteAccount() throws IOException {

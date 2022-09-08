@@ -118,12 +118,6 @@ public class SignalServiceMessageReceiver {
     }
   }
 
-  public SignalServiceProfile retrieveProfileByUsername(String username, Optional<UnidentifiedAccess> unidentifiedAccess, Locale locale)
-      throws IOException
-  {
-    return socket.retrieveProfileByUsername(username, unidentifiedAccess, locale);
-  }
-
   public InputStream retrieveProfileAvatar(String path, File destination, ProfileKey profileKey, long maxSizeBytes)
       throws IOException
   {

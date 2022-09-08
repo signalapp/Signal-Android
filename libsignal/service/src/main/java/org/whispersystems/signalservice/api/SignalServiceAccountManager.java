@@ -70,6 +70,7 @@ import org.whispersystems.signalservice.internal.push.PushServiceSocket;
 import org.whispersystems.signalservice.internal.push.RemoteAttestationUtil;
 import org.whispersystems.signalservice.internal.push.RemoteConfigResponse;
 import org.whispersystems.signalservice.internal.push.RequestVerificationCodeResponse;
+import org.whispersystems.signalservice.internal.push.ReserveUsernameResponse;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 import org.whispersystems.signalservice.internal.push.VerifyAccountResponse;
 import org.whispersystems.signalservice.internal.push.WhoAmIResponse;
@@ -866,8 +867,20 @@ public class SignalServiceAccountManager {
     }
   }
 
-  public void setUsername(String username) throws IOException {
-    this.pushServiceSocket.setUsername(username);
+  public ACI getAciByUsername(String username) throws IOException {
+    return this.pushServiceSocket.getAciByUsername(username);
+  }
+
+  public void setUsername(String nickname, String existingUsername) throws IOException {
+    this.pushServiceSocket.setUsername(nickname, existingUsername);
+  }
+
+  public ReserveUsernameResponse reserveUsername(String nickname) throws IOException {
+    return this.pushServiceSocket.reserveUsername(nickname);
+  }
+
+  public void confirmUsername(ReserveUsernameResponse reserveUsernameResponse) throws IOException {
+    this.pushServiceSocket.confirmUsername(reserveUsernameResponse);
   }
 
   public void deleteUsername() throws IOException {
