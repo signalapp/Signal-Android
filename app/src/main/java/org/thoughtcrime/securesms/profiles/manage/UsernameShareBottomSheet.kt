@@ -19,6 +19,8 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.FragmentResultContract
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.Util
+import java.net.URLEncoder
+import java.nio.charset.StandardCharsets
 
 /**
  * Allows the user to either share their username directly or to copy it to their clipboard.
@@ -69,7 +71,7 @@ class UsernameShareBottomSheet : DSLSettingsBottomSheetFragment() {
 
       customPref(
         CopyButton.Model(
-          text = getString(R.string.signal_me_url, username),
+          text = getString(R.string.signal_me_username_url, URLEncoder.encode(username, StandardCharsets.UTF_8.toString())),
           onClick = {
             copyToClipboard(it)
           }
@@ -80,7 +82,7 @@ class UsernameShareBottomSheet : DSLSettingsBottomSheetFragment() {
 
       customPref(
         ShareButton.Model(
-          text = getString(R.string.signal_me_url, username),
+          text = getString(R.string.signal_me_username_url, URLEncoder.encode(username, StandardCharsets.UTF_8.toString())),
           onClick = {
             openShareSheet(it.text)
           }

@@ -22,6 +22,7 @@ import com.airbnb.lottie.SimpleColorFilter;
 import com.bumptech.glide.Glide;
 import com.google.android.material.snackbar.Snackbar;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.AvatarPreviewActivity;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
@@ -42,10 +43,15 @@ import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Optional;
 
 public class ManageProfileFragment extends LoggingFragment {
+
+  private static final String TAG = Log.tag(ManageProfileFragment.class);
 
   private AlertDialog                  avatarProgress;
   private ManageProfileViewModel       viewModel;
@@ -214,6 +220,14 @@ public class ManageProfileFragment extends LoggingFragment {
       binding.manageProfileUsernameShare.setVisibility(View.GONE);
     } else {
       binding.manageProfileUsername.setText(username);
+
+      try {
+        binding.manageProfileUsernameSubtitle.setText(getString(R.string.signal_me_username_url_no_scheme, URLEncoder.encode(username, StandardCharsets.UTF_8.toString())));
+      } catch (UnsupportedEncodingException e) {
+        Log.w(TAG, "Could not format username link", e);
+        binding.manageProfileUsernameSubtitle.setText(R.string.ManageProfileFragment_your_username);
+      }
+
       binding.manageProfileUsernameShare.setVisibility(View.VISIBLE);
     }
   }
