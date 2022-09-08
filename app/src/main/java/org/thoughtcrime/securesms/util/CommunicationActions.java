@@ -41,8 +41,10 @@ import org.thoughtcrime.securesms.proxy.ProxyBottomSheetFragment;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
+import org.whispersystems.signalservice.api.push.ServiceId;
 
 import java.io.IOException;
+import java.util.Optional;
 
 public class CommunicationActions {
 
@@ -266,36 +268,49 @@ public class CommunicationActions {
   }
 
   /**
-   * If the url is a proxy link it will handle it.
-   * Otherwise returns false, indicating was not a proxy link.
+   * If the url is a signal.me link it will handle it.
    */
-  public static boolean handlePotentialSignalMeUrl(@NonNull FragmentActivity activity, @NonNull String potentialUrl) {
-    String e164 = SignalMeUtil.parseE164FromLink(activity, potentialUrl);
+  public static void handlePotentialSignalMeUrl(@NonNull FragmentActivity activity, @NonNull String potentialUrl) {
+    String e164     = SignalMeUtil.parseE164FromLink(activity, potentialUrl);
+    String username = SignalMeUtil.parseUsernameFromLink(potentialUrl);
 
-    if (e164 != null) {
+    if (e164 != null || username != null) {
       SimpleProgressDialog.DismissibleDialog dialog = SimpleProgressDialog.showDelayed(activity, 500, 500);
 
       SimpleTask.run(() -> {
-        Recipient recipient = Recipient.external(activity, e164);
+        Recipient recipient = Recipient.UNKNOWN;
+        if (e164 != null) {
+           recipient = Recipient.external(activity, e164);
 
-        if (!recipient.isRegistered() || !recipient.hasServiceId()) {
-          try {
-            ContactDiscovery.refresh(activity, recipient, false);
-            recipient = Recipient.resolved(recipient.getId());
-          } catch (IOException e) {
-            Log.w(TAG, "[handlePotentialMeUrl] Failed to refresh directory for new contact.");
+          if (!recipient.isRegistered() || !recipient.hasServiceId()) {
+            try {
+              ContactDiscovery.refresh(activity, recipient, false);
+              recipient = Recipient.resolved(recipient.getId());
+            } catch (IOException e) {
+              Log.w(TAG, "[handlePotentialSignalMeUrl] Failed to refresh directory for new contact.");
+            }
+          }
+        } else {
+          Optional<ServiceId> serviceId = UsernameUtil.fetchAciForUsername(username);
+          if (serviceId.isPresent()) {
+            recipient = Recipient.externalUsername(serviceId.get(), username);
           }
         }
 
         return recipient;
       }, recipient -> {
         dialog.dismiss();
-        startConversation(activity, recipient, null);
-      });
 
-      return true;
-    } else {
-      return false;
+        if (recipient != Recipient.UNKNOWN) {
+          startConversation(activity, recipient, null);
+        } else if (username != null) {
+          new MaterialAlertDialogBuilder(activity)
+              .setTitle(R.string.ContactSelectionListFragment_username_not_found)
+              .setMessage(activity.getString(R.string.ContactSelectionListFragment_s_is_not_a_signal_user, username))
+              .setPositiveButton(android.R.string.ok, null)
+              .show();
+        }
+      });
     }
   }
 
