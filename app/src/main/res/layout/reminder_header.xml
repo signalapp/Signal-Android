@@ -1,129 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:viewBindingIgnore="true"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:focusable="true"
-    android:nextFocusRight="@+id/cancel"
+    android:layout_margin="12dp"
     android:visibility="gone"
+    android:focusable="true"
+    app:cardBackgroundColor="@color/signal_colorSurface"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="0dp"
+    app:strokeColor="@color/signal_colorOutline_38"
+    app:strokeWidth="1dp"
+    tools:viewBindingIgnore="true"
     tools:visibility="visible">
 
-    <View
-        android:id="@+id/background"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@drawable/reminder_background_normal"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/reminder_actions" />
-
-    <ProgressBar
-        android:id="@+id/reminder_progress"
-        style="@style/Widget.ProgressBar.Horizontal"
-        android:layout_width="52dp"
-        android:layout_height="52dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="12dp"
-        android:progressDrawable="@drawable/reminder_progress_ring"
-        android:rotation="90"
-        android:visibility="gone"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:progress="10" />
-
-    <TextView
-        android:id="@+id/reminder_progress_text"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@id/reminder_progress"
-        app:layout_constraintEnd_toEndOf="@id/reminder_progress"
-        app:layout_constraintStart_toStartOf="@id/reminder_progress"
-        app:layout_constraintTop_toTopOf="@id/reminder_progress"
-        tools:text="100%" />
+        android:nextFocusRight="@+id/cancel">
 
-    <TextView
-        android:id="@+id/reminder_title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="6dp"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:fontFamily="sans-serif-medium"
-        app:layout_constraintBottom_toTopOf="@id/reminder_text"
-        app:layout_constraintEnd_toStartOf="@id/cancel"
-        app:layout_constraintStart_toEndOf="@id/reminder_progress"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_goneMarginStart="16dp"
-        tools:text="Invite to Signal" />
+        <ProgressBar
+            android:id="@+id/reminder_progress"
+            style="@style/Widget.ProgressBar.Horizontal"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:progressDrawable="@drawable/reminder_progress_ring"
+            android:rotation="90"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:progress="10" />
 
-    <TextView
-        android:id="@+id/reminder_text"
-        android:layout_width="0dip"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="12dp"
-        style="@style/Signal.Text.Preview"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@id/reminder_actions"
-        app:layout_constraintEnd_toStartOf="@id/reminder_space"
-        app:layout_constraintStart_toEndOf="@id/reminder_progress"
-        app:layout_constraintTop_toBottomOf="@id/reminder_title"
-        app:layout_goneMarginBottom="16dp"
-        app:layout_goneMarginEnd="16dp"
-        app:layout_goneMarginStart="16dp"
-        app:layout_goneMarginTop="16dp"
-        tools:text="Take your conversation with Otto Octavius to the next level." />
+        <TextView
+            android:id="@+id/reminder_progress_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/reminder_progress"
+            app:layout_constraintEnd_toEndOf="@id/reminder_progress"
+            app:layout_constraintStart_toStartOf="@id/reminder_progress"
+            app:layout_constraintTop_toTopOf="@id/reminder_progress"
+            tools:text="100%" />
 
-    <Space
-        android:id="@+id/reminder_space"
-        android:layout_width="48dp"
-        android:layout_height="0dp"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/reminder_title"
+            style="@style/Signal.Text.BodyLarge"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="6dp"
+            android:textColor="@color/signal_colorOnSurface"
+            app:layout_constraintBottom_toTopOf="@id/reminder_text"
+            app:layout_constraintEnd_toStartOf="@id/cancel"
+            app:layout_constraintStart_toEndOf="@id/reminder_progress"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_goneMarginStart="16dp"
+            tools:text="Invite to Signal" />
 
-    <ImageButton
-        android:id="@+id/cancel"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="2dp"
-        android:background="?selectableItemBackgroundBorderless"
-        android:contentDescription="@string/InviteActivity_cancel"
-        android:focusable="true"
-        android:nextFocusLeft="@+id/container"
-        android:nextFocusRight="@+id/container"
-        android:src="@drawable/ic_close_white_24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/reminder_text"
+            style="@style/Signal.Text.BodyMedium"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:textColor="@color/signal_colorOnSurfaceVariant"
+            app:layout_constraintBottom_toTopOf="@id/reminder_actions"
+            app:layout_constraintEnd_toStartOf="@id/reminder_space"
+            app:layout_constraintStart_toEndOf="@id/reminder_progress"
+            app:layout_constraintTop_toBottomOf="@id/reminder_title"
+            app:layout_goneMarginBottom="16dp"
+            app:layout_goneMarginEnd="16dp"
+            app:layout_goneMarginStart="16dp"
+            app:layout_goneMarginTop="16dp"
+            tools:text="Take your conversation with Otto Octavius to the next level!" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/reminder_actions"
-        android:layout_width="0dip"
-        android:layout_height="46dp"
-        android:orientation="horizontal"
-        android:overScrollMode="never"
-        android:visibility="gone"
-        tools:visibility="visible"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintTop_toBottomOf="@id/reminder_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:reverseLayout="true"
-        tools:itemCount="2"
-        tools:listitem="@layout/reminder_action_button" />
+        <Space
+            android:id="@+id/reminder_space"
+            android:layout_width="48dp"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="5dp"
-        android:background="@drawable/toolbar_shadow"
-        app:layout_constraintTop_toBottomOf="@id/background" />
+        <ImageButton
+            android:id="@+id/cancel"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="2dp"
+            android:background="?selectableItemBackgroundBorderless"
+            android:contentDescription="@string/InviteActivity_cancel"
+            android:focusable="true"
+            android:nextFocusLeft="@+id/container"
+            android:nextFocusRight="@+id/container"
+            android:src="@drawable/ic_close_white_24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/reminder_actions"
+            android:layout_width="0dp"
+            android:layout_height="46dp"
+            android:orientation="horizontal"
+            android:overScrollMode="never"
+            android:visibility="gone"
+            android:layout_marginEnd="16dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/reminder_text"
+            app:reverseLayout="true"
+            tools:itemCount="2"
+            tools:listitem="@layout/reminder_action_button"
+            tools:visibility="visible" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

@@ -35,7 +35,9 @@ final class ReminderActionsAdapter extends RecyclerView.Adapter<ReminderActionsA
     TextView button  = ((TextView) LayoutInflater.from(context).inflate(R.layout.reminder_action_button, parent, false));
 
     if (importance == Reminder.Importance.NORMAL) {
-      button.setTextColor(ContextCompat.getColor(context, R.color.signal_accent_primary));
+      button.setTextColor(ContextCompat.getColor(context, R.color.signal_colorPrimary));
+    } else if (importance == Reminder.Importance.ERROR || importance == Reminder.Importance.TERMINAL) {
+      button.setTextColor(ContextCompat.getColor(context, R.color.signal_light_colorOnSurface));
     }
 
     return new ActionViewHolder(button);

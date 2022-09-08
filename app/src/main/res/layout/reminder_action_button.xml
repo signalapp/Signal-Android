@@ -6,9 +6,9 @@
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:textAllCaps="false"
-    android:textColor="@color/white"
+    android:textColor="@color/signal_colorPrimary"
     android:textSize="14sp"
-    android:paddingStart="16dp"
-    android:paddingEnd="16dp"
+    android:paddingStart="12dp"
+    android:paddingEnd="12dp"
     android:layout_marginStart="3dp"
     tools:text="Action" />

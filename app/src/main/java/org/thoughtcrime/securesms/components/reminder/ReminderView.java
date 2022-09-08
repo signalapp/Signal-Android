@@ -17,6 +17,8 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.card.MaterialCardView;
+
 import org.signal.core.util.DimensionUnit;
 import org.thoughtcrime.securesms.R;
 
@@ -28,8 +30,7 @@ import java.util.List;
 public final class ReminderView extends FrameLayout {
   private ProgressBar           progressBar;
   private TextView              progressText;
-  private ViewGroup             container;
-  private View                  background;
+  private MaterialCardView      container;
   private ImageButton           closeButton;
   private TextView              title;
   private TextView              text;
@@ -58,7 +59,6 @@ public final class ReminderView extends FrameLayout {
     progressBar     = findViewById(R.id.reminder_progress);
     progressText    = findViewById(R.id.reminder_progress_text);
     container       = findViewById(R.id.container);
-    background      = findViewById(R.id.background);
     closeButton     = findViewById(R.id.cancel);
     title           = findViewById(R.id.reminder_title);
     text            = findViewById(R.id.reminder_text);
@@ -75,6 +75,7 @@ public final class ReminderView extends FrameLayout {
       title.setText("");
       title.setVisibility(GONE);
       space.setVisibility(VISIBLE);
+      text.setTextColor(ContextCompat.getColor(getContext(), R.color.signal_colorOnSurface));
     }
 
     if (!reminder.isDismissable()) {
@@ -82,22 +83,17 @@ public final class ReminderView extends FrameLayout {
     }
 
     text.setText(reminder.getText());
-
     switch (reminder.getImportance()) {
       case NORMAL:
-        background.setBackgroundResource(R.drawable.reminder_background_normal);
-        title.setTextColor(ContextCompat.getColor(getContext(), R.color.signal_text_primary));
-        text.setTextColor(ContextCompat.getColor(getContext(), R.color.signal_text_primary));
+        title.setTextColor(ContextCompat.getColor(getContext(), R.color.signal_colorOnSurface));
+        text.setTextColor(ContextCompat.getColor(getContext(), R.color.signal_colorOnSurfaceVariant));
         break;
       case ERROR:
-        background.setBackgroundResource(R.drawable.reminder_background_error);
-        title.setTextColor(ContextCompat.getColor(getContext(), R.color.core_black));
-        text.setTextColor(ContextCompat.getColor(getContext(), R.color.core_black));
-        break;
       case TERMINAL:
-        background.setBackgroundResource(R.drawable.reminder_background_terminal);
-        title.setTextColor(ContextCompat.getColor(getContext(), R.color.signal_button_primary_text));
-        text.setTextColor(ContextCompat.getColor(getContext(), R.color.signal_button_primary_text));
+        container.setStrokeWidth(0);
+        container.setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.reminder_background));
+        title.setTextColor(ContextCompat.getColor(getContext(), R.color.signal_light_colorOnSurface));
+        text.setTextColor(ContextCompat.getColor(getContext(), R.color.signal_light_colorOnSurface));
         break;
       default:
         throw new IllegalStateException();
@@ -118,7 +114,7 @@ public final class ReminderView extends FrameLayout {
     });
 
     if (reminder.getImportance() == Reminder.Importance.NORMAL) {
-      closeButton.setColorFilter(ContextCompat.getColor(getContext(), R.color.signal_text_primary));
+      closeButton.setColorFilter(ContextCompat.getColor(getContext(), R.color.signal_colorOnSurfaceVariant));
     }
 
     int progress = reminder.getProgress();
