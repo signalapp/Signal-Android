@@ -19,7 +19,6 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 
 import com.airbnb.lottie.SimpleColorFilter;
@@ -36,8 +35,11 @@ import org.thoughtcrime.securesms.avatar.picker.AvatarPickerFragment;
 import org.thoughtcrime.securesms.databinding.ProfileCreateFragmentBinding;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.ParcelableGroupId;
+import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mms.GlideApp;
+import org.thoughtcrime.securesms.profiles.edit.pnp.WhoCanSeeMyPhoneNumberFragment;
 import org.thoughtcrime.securesms.profiles.manage.EditProfileNameFragment;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.util.CommunicationActions;
@@ -59,9 +61,9 @@ import static org.thoughtcrime.securesms.profiles.edit.EditProfileActivity.SHOW_
  */
 public class EditProfileFragment extends LoggingFragment {
 
-  private static final String TAG                        = Log.tag(EditProfileFragment.class);
-  private static final int    MAX_DESCRIPTION_GLYPHS     = 480;
-  private static final int    MAX_DESCRIPTION_BYTES      = 8192;
+  private static final String TAG                    = Log.tag(EditProfileFragment.class);
+  private static final int    MAX_DESCRIPTION_GLYPHS = 480;
+  private static final int    MAX_DESCRIPTION_BYTES  = 8192;
 
   private Intent nextIntent;
 
@@ -209,10 +211,15 @@ public class EditProfileFragment extends LoggingFragment {
       binding.profileDescriptionText.setOnLinkClickListener(v -> CommunicationActions.openBrowserLink(requireContext(), getString(R.string.EditProfileFragment__support_link)));
 
       if (FeatureFlags.phoneNumberPrivacy()) {
+        getParentFragmentManager().setFragmentResultListener(WhoCanSeeMyPhoneNumberFragment.REQUEST_KEY, getViewLifecycleOwner(), (requestKey, result) -> {
+          if (WhoCanSeeMyPhoneNumberFragment.REQUEST_KEY.equals(requestKey)) {
+            presentWhoCanFindMeDescription(SignalStore.phoneNumberPrivacy().getPhoneNumberListingMode());
+          }
+        });
+
         binding.whoCanFindMeContainer.setVisibility(View.VISIBLE);
         binding.whoCanFindMeContainer.setOnClickListener(v -> SafeNavigation.safeNavigate(Navigation.findNavController(v), EditProfileFragmentDirections.actionCreateProfileFragmentToPhoneNumberPrivacy()));
-        // TODO [alex] -- Where does this value come from?
-        binding.whoCanFindMeDescription.setText(R.string.PhoneNumberPrivacy_everyone);
+        presentWhoCanFindMeDescription(SignalStore.phoneNumberPrivacy().getPhoneNumberListingMode());
       }
     }
 
@@ -276,6 +283,17 @@ public class EditProfileFragment extends LoggingFragment {
       if (setSelectionToEnd) {
         field.setSelection(field.getText().length());
       }
+    }
+  }
+
+  private void presentWhoCanFindMeDescription(PhoneNumberPrivacyValues.PhoneNumberListingMode phoneNumberListingMode) {
+    switch (phoneNumberListingMode) {
+      case LISTED:
+        binding.whoCanFindMeDescription.setText(R.string.PhoneNumberPrivacy_everyone);
+        break;
+      case UNLISTED:
+        binding.whoCanFindMeDescription.setText(R.string.PhoneNumberPrivacy_nobody);
+        break;
     }
   }
 
