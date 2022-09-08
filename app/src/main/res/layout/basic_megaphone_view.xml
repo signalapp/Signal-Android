@@ -16,7 +16,7 @@
       app:strokeWidth="1dp"
       app:cardBackgroundColor="@color/signal_colorBackground"
       app:cardCornerRadius="12dp"
-      app:cardElevation="2dp"
+      app:cardElevation="0dp"
       app:cardPreventCornerOverlap="false"
       app:cardUseCompatPadding="true"
       app:contentPadding="0dp">
@@ -47,7 +47,8 @@
 
         <org.thoughtcrime.securesms.components.emoji.EmojiTextView
             android:id="@+id/basic_megaphone_title"
-            style="@style/Signal.Text.Body"
+            style="@style/Signal.Text.BodyLarge"
+            android:textColor="@color/signal_colorOnSurface"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
@@ -60,7 +61,7 @@
 
         <org.thoughtcrime.securesms.components.emoji.EmojiTextView
             android:id="@+id/basic_megaphone_body"
-            style="@style/Signal.Text.Preview"
+            style="@style/Signal.Text.BodyMedium"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -84,6 +85,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:textAllCaps="false"
+            android:textColor="@color/signal_colorPrimary"
             app:layout_constrainedWidth="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/basic_megaphone_secondary"
@@ -101,6 +103,7 @@
             android:layout_marginTop="4dp"
             android:text="@string/Megaphones_remind_me_later"
             android:textAllCaps="false"
+            android:textColor="@color/signal_colorPrimary"
             app:layout_constrainedWidth="true"
             app:layout_constraintEnd_toStartOf="@id/basic_megaphone_action"
             app:layout_constraintHorizontal_bias="1.0"
