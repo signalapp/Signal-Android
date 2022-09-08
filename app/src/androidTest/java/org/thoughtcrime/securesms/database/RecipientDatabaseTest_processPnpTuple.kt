@@ -410,7 +410,7 @@ class RecipientDatabaseTest_processPnpTuple {
     fun process(e164: String?, pni: PNI?, aci: ACI?) {
       SignalDatabase.rawDatabase.beginTransaction()
       try {
-        generatedIds += recipientDatabase.processPnpTuple(e164, pni, aci, pniVerified = false, pnpEnabled = true).finalId
+        generatedIds += recipientDatabase.processPnpTuple(e164, pni, aci, pniVerified = false).finalId
         SignalDatabase.rawDatabase.setTransactionSuccessful()
       } finally {
         SignalDatabase.rawDatabase.endTransaction()

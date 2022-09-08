@@ -20,6 +20,8 @@ public class OutgoingPushMessage {
   @JsonProperty
   private String content;
 
+  public OutgoingPushMessage() {}
+
   public OutgoingPushMessage(int type,
                              int destinationDeviceId,
                              int destinationRegistrationId,

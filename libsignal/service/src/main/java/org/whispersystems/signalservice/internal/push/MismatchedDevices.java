@@ -12,10 +12,10 @@ import java.util.List;
 
 public class MismatchedDevices {
   @JsonProperty
-  private List<Integer> missingDevices;
+  public List<Integer> missingDevices;
 
   @JsonProperty
-  private List<Integer> extraDevices;
+  public List<Integer> extraDevices;
 
   public List<Integer> getMissingDevices() {
     return missingDevices;

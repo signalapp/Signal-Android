@@ -34,6 +34,7 @@ import org.thoughtcrime.securesms.testing.success
 import org.thoughtcrime.securesms.testing.timeout
 import org.whispersystems.signalservice.api.account.ChangePhoneNumberRequest
 import org.whispersystems.signalservice.api.push.ServiceId
+import org.whispersystems.signalservice.internal.push.MismatchedDevices
 import org.whispersystems.signalservice.internal.push.PreKeyState
 import java.util.UUID
 
@@ -228,6 +229,109 @@ class ChangeNumberViewModelTest {
         } else {
           MockResponse().success(MockProvider.createVerifyAccountResponse(aci, newPni))
         }
+      },
+      Put("/v2/keys") { r ->
+        setPreKeysRequest = r.parsedRequestBody()
+        MockResponse().success()
+      },
+      Get("/v1/certificate/delivery") { MockResponse().success(MockProvider.senderCertificate) }
+    )
+
+    // WHEN
+    viewModel.verifyCodeWithoutRegistrationLock("123456").blockingGet().also { processor ->
+      processor.registrationLock() assertIs true
+      Recipient.self().requirePni() assertIsNot newPni
+      SignalStore.misc().pendingChangeNumberMetadata.assertIsNull()
+    }
+
+    viewModel.verifyCodeAndRegisterAccountWithRegistrationLock("pin").blockingGet().resultOrThrow
+
+    // THEN
+    assertSuccess(newPni, changeNumberRequest, setPreKeysRequest)
+  }
+
+  @Test
+  fun testChangeNumber_givenMismatchedDevicesOnFirstCall() {
+    // GIVEN
+    val aci = Recipient.self().requireServiceId()
+    val newPni = ServiceId.from(UUID.randomUUID())
+    lateinit var changeNumberRequest: ChangePhoneNumberRequest
+    lateinit var setPreKeysRequest: PreKeyState
+
+    InstrumentationApplicationDependencyProvider.addMockWebRequestHandlers(
+      Get("/v1/devices") { MockResponse().success(MockProvider.primaryOnlyDeviceList) },
+      Put("/v1/accounts/number") { r ->
+        changeNumberRequest = r.parsedRequestBody()
+        if (changeNumberRequest.deviceMessages.isEmpty()) {
+          MockResponse().failure(
+            409,
+            MismatchedDevices().apply {
+              missingDevices = listOf(2)
+              extraDevices = emptyList()
+            }
+          )
+        } else {
+          MockResponse().success(MockProvider.createVerifyAccountResponse(aci, newPni))
+        }
+      },
+      Get("/v2/keys/$aci/2") {
+        MockResponse().success(MockProvider.createPreKeyResponse(deviceId = 2))
+      },
+      Put("/v2/keys") { r ->
+        setPreKeysRequest = r.parsedRequestBody()
+        MockResponse().success()
+      },
+      Get("/v1/certificate/delivery") { MockResponse().success(MockProvider.senderCertificate) }
+    )
+
+    // WHEN
+    viewModel.verifyCodeWithoutRegistrationLock("123456").blockingGet().resultOrThrow
+
+    // THEN
+    assertSuccess(newPni, changeNumberRequest, setPreKeysRequest)
+  }
+
+  @Test
+  fun testChangeNumber_givenRegLockAndMismatchedDevicesOnFirstTwoCalls() {
+    // GIVEN
+    val aci = Recipient.self().requireServiceId()
+    val newPni = ServiceId.from(UUID.randomUUID())
+
+    lateinit var changeNumberRequest: ChangePhoneNumberRequest
+    lateinit var setPreKeysRequest: PreKeyState
+
+    MockProvider.mockGetRegistrationLockStringFlow(kbsRepository)
+
+    InstrumentationApplicationDependencyProvider.addMockWebRequestHandlers(
+      Put("/v1/accounts/number") { r ->
+        changeNumberRequest = r.parsedRequestBody()
+        if (changeNumberRequest.registrationLock.isNullOrEmpty()) {
+          MockResponse().failure(423, MockProvider.lockedFailure)
+        } else if (changeNumberRequest.deviceMessages.isEmpty()) {
+          MockResponse().failure(
+            409,
+            MismatchedDevices().apply {
+              missingDevices = listOf(2)
+              extraDevices = emptyList()
+            }
+          )
+        } else if (changeNumberRequest.deviceMessages.size == 1) {
+          MockResponse().failure(
+            409,
+            MismatchedDevices().apply {
+              missingDevices = listOf(2, 3)
+              extraDevices = emptyList()
+            }
+          )
+        } else {
+          MockResponse().success(MockProvider.createVerifyAccountResponse(aci, newPni))
+        }
+      },
+      Get("/v2/keys/$aci/2") {
+        MockResponse().success(MockProvider.createPreKeyResponse(deviceId = 2))
+      },
+      Get("/v2/keys/$aci/3") {
+        MockResponse().success(MockProvider.createPreKeyResponse(deviceId = 3))
       },
       Put("/v2/keys") { r ->
         setPreKeysRequest = r.parsedRequestBody()
