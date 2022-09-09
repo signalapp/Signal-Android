@@ -90,6 +90,12 @@ public final class VideoMediaPreviewFragment extends MediaPreviewFragment {
   }
 
   @Override
+  public void onDestroyView() {
+    super.onDestroyView();
+    cleanUp();
+  }
+
+  @Override
   public void cleanUp() {
     if (videoView != null) {
       videoView.cleanup();
