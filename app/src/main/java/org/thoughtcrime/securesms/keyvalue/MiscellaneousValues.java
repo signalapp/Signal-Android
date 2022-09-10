@@ -26,6 +26,7 @@ public final class MiscellaneousValues extends SignalStoreValues {
   private static final String CDS_TOKEN                       = "misc.cds_token";
   private static final String LAST_FCM_FOREGROUND_TIME        = "misc.last_fcm_foreground_time";
   private static final String LAST_FOREGROUND_TIME            = "misc.last_foreground_time";
+  private static final String PNI_INITIALIZED_DEVICES         = "misc.pni_initialized_devices";
 
   MiscellaneousValues(@NonNull KeyValueStore store) {
     super(store);
@@ -183,5 +184,13 @@ public final class MiscellaneousValues extends SignalStoreValues {
 
   public void setLastForegroundTime(long time) {
     putLong(LAST_FOREGROUND_TIME, time);
+  }
+
+  public boolean hasPniInitializedDevices() {
+    return getBoolean(PNI_INITIALIZED_DEVICES, false);
+  }
+
+  public void setPniInitializedDevices(boolean value) {
+    putBoolean(PNI_INITIALIZED_DEVICES, value);
   }
 }

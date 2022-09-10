@@ -123,13 +123,13 @@ class ChangeNumberViewModel(
 
   override fun verifyCodeWithoutRegistrationLock(code: String): Single<VerifyAccountResponseProcessor> {
     return super.verifyCodeWithoutRegistrationLock(code)
-      .doOnSubscribe { SignalStore.misc().lockChangeNumber() }
+      .compose(ChangeNumberRepository::acquireReleaseChangeNumberLock)
       .flatMap(this::attemptToUnlockChangeNumber)
   }
 
   override fun verifyCodeAndRegisterAccountWithRegistrationLock(pin: String): Single<VerifyCodeWithRegistrationLockResponseProcessor> {
     return super.verifyCodeAndRegisterAccountWithRegistrationLock(pin)
-      .doOnSubscribe { SignalStore.misc().lockChangeNumber() }
+      .compose(ChangeNumberRepository::acquireReleaseChangeNumberLock)
       .flatMap(this::attemptToUnlockChangeNumber)
   }
 

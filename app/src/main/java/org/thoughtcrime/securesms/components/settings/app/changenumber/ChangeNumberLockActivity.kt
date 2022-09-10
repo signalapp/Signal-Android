@@ -58,7 +58,10 @@ class ChangeNumberLockActivity : PassphraseRequiredActivity() {
           Single.just(false)
         } else {
           Log.i(TAG, "Local (${SignalStore.account().e164}) and remote (${whoAmI.number}) numbers do not match, updating local.")
-          changeNumberRepository.changeLocalNumber(whoAmI.number, PNI.parseOrThrow(whoAmI.pni))
+          Single
+            .just(true)
+            .flatMap { changeNumberRepository.changeLocalNumber(whoAmI.number, PNI.parseOrThrow(whoAmI.pni)) }
+            .compose(ChangeNumberRepository::acquireReleaseChangeNumberLock)
             .map { true }
         }
       }

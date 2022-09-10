@@ -117,6 +117,7 @@ public class RefreshAttributesJob extends BaseJob {
                "\n    Change Number? " + capabilities.isChangeNumber() +
                "\n    Stories? " + capabilities.isStories() +
                "\n    Gift Badges? " + capabilities.isGiftBadges() +
+               "\n    PNP? " + capabilities.isPnp() +
                "\n    UUID? " + capabilities.isUuid());
 
     SignalServiceAccountManager signalAccountManager = ApplicationDependencies.getSignalServiceAccountManager();

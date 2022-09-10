@@ -124,6 +124,7 @@ public class Recipient {
   private final Capability                   changeNumberCapability;
   private final Capability                   storiesCapability;
   private final Capability                   giftBadgesCapability;
+  private final Capability                   pnpCapability;
   private final InsightsBannerTier           insightsBannerTier;
   private final byte[]                       storageId;
   private final MentionSetting               mentionSetting;
@@ -426,6 +427,7 @@ public class Recipient {
     this.changeNumberCapability       = Capability.UNKNOWN;
     this.storiesCapability            = Capability.UNKNOWN;
     this.giftBadgesCapability         = Capability.UNKNOWN;
+    this.pnpCapability                = Capability.UNKNOWN;
     this.storageId                    = null;
     this.mentionSetting               = MentionSetting.ALWAYS_NOTIFY;
     this.wallpaper                    = null;
@@ -485,6 +487,7 @@ public class Recipient {
     this.changeNumberCapability       = details.changeNumberCapability;
     this.storiesCapability            = details.storiesCapability;
     this.giftBadgesCapability         = details.giftBadgesCapability;
+    this.pnpCapability                = details.pnpCapability;
     this.storageId                    = details.storageId;
     this.mentionSetting               = details.mentionSetting;
     this.wallpaper                    = details.wallpaper;
@@ -1041,6 +1044,10 @@ public class Recipient {
 
   public @NonNull Capability getGiftBadgesCapability() {
     return giftBadgesCapability;
+  }
+
+  public @NonNull Capability getPnpCapability() {
+    return pnpCapability;
   }
 
   /**

@@ -203,10 +203,13 @@ public class SignalServiceProfile {
     @JsonProperty
     private boolean giftBadges;
 
+    @JsonProperty
+    private boolean pnp;
+
     @JsonCreator
     public Capabilities() {}
 
-    public Capabilities(boolean storage, boolean gv1Migration, boolean senderKey, boolean announcementGroup, boolean changeNumber, boolean stories, boolean giftBadges) {
+    public Capabilities(boolean storage, boolean gv1Migration, boolean senderKey, boolean announcementGroup, boolean changeNumber, boolean stories, boolean giftBadges, boolean pnp) {
       this.storage           = storage;
       this.gv1Migration      = gv1Migration;
       this.senderKey         = senderKey;
@@ -214,6 +217,7 @@ public class SignalServiceProfile {
       this.changeNumber      = changeNumber;
       this.stories           = stories;
       this.giftBadges        = giftBadges;
+      this.pnp               = pnp;
     }
 
     public boolean isStorage() {
@@ -242,6 +246,10 @@ public class SignalServiceProfile {
 
     public boolean isGiftBadges() {
       return giftBadges;
+    }
+
+    public boolean isPnp() {
+      return pnp;
     }
   }
 
