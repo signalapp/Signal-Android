@@ -253,7 +253,9 @@ class MultiselectForwardFragment :
     val expiringMessages = args.multiShareArgs.filter { it.expiresAt > 0L }
     val firstToExpire = expiringMessages.minByOrNull { it.expiresAt }
     val earliestExpiration = firstToExpire?.expiresAt ?: -1L
-
+    if (viewModel.state.value?.stage is MultiselectForwardState.Stage.SelectionConfirmed && contactSearchMediator.getSelectedContacts().isNotEmpty()) {
+      onCanceled()
+    }
     if (earliestExpiration > 0) {
       if (earliestExpiration <= now) {
         handleMessageExpired()
