@@ -122,7 +122,6 @@ class ContactFieldAdapter extends RecyclerView.Adapter<ContactFieldAdapter.Conta
           field.setSelected(!field.isSelected());
           checkBox.setChecked(field.isSelected());
         });
-        super.itemView.setOnClickListener(v -> checkBox.toggle());
       } else {
         checkBox.setVisibility(View.GONE);
         itemView.setOnClickListener(null);
