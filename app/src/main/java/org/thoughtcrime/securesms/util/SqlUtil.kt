@@ -1,7 +1,8 @@
 package org.thoughtcrime.securesms.util
 
 import androidx.annotation.VisibleForTesting
-import java.util.stream.Collectors
+import com.annimon.stream.Collectors
+import com.annimon.stream.Stream
 
 object SqlUtil {
   /** The maximum number of arguments (i.e. question marks) allowed in a SQL statement.  */
@@ -73,8 +74,7 @@ object SqlUtil {
   @VisibleForTesting
   fun buildCustomCollectionQuery(query: String, argList: List<Array<String>>, maxQueryArgs: Int): List<Query> {
     val batchSize: Int = maxQueryArgs / argList[0].size
-    return ListUtil.chunk(argList, batchSize)
-      .stream()
+    return Stream.of(ListUtil.chunk(argList, batchSize))
       .map { argBatch -> buildSingleCustomCollectionQuery(query, argBatch) }
       .collect(Collectors.toList())
   }

@@ -5,6 +5,8 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.annimon.stream.Stream;
+
 import org.session.libsession.messaging.MessagingModuleConfiguration;
 import org.thoughtcrime.securesms.components.emoji.EmojiPageModel;
 import org.thoughtcrime.securesms.components.emoji.EmojiPageViewGridAdapter;
@@ -79,8 +81,7 @@ public final class ReactWithAnyEmojiViewModel extends ViewModel {
   }
 
   private static @NonNull MappingModelList toMappingModels(@NonNull EmojiPageModel model) {
-    return model.getDisplayEmoji()
-                .stream()
+    return Stream.of(model.getDisplayEmoji())
                 .map(e -> new EmojiPageViewGridAdapter.EmojiModel(model.getKey(), e))
                 .collect(MappingModelList.collect());
   }

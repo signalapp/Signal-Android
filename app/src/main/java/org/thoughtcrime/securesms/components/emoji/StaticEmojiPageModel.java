@@ -5,13 +5,14 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.annimon.stream.Collectors;
+import com.annimon.stream.Stream;
+
 import org.thoughtcrime.securesms.emoji.EmojiCategory;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class StaticEmojiPageModel implements EmojiPageModel {
   private final @NonNull  EmojiCategory category;
@@ -19,7 +20,7 @@ public class StaticEmojiPageModel implements EmojiPageModel {
   private final @Nullable Uri           sprite;
 
   public StaticEmojiPageModel(@NonNull EmojiCategory category, @NonNull String[] strings, @Nullable Uri sprite) {
-    this(category, Arrays.stream(strings).map(s -> new Emoji(Collections.singletonList(s))).collect(Collectors.toList()), sprite);
+    this(category, Stream.of(strings).map(s -> new Emoji(Collections.singletonList(s))).collect(Collectors.toList()), sprite);
   }
 
   public StaticEmojiPageModel(@NonNull EmojiCategory category, @NonNull List<Emoji> emoji, @Nullable Uri sprite) {

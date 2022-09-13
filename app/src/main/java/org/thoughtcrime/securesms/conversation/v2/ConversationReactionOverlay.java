@@ -46,6 +46,7 @@ import org.thoughtcrime.securesms.util.AnimationCompleteListener;
 import org.thoughtcrime.securesms.util.DateUtils;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
@@ -655,6 +656,8 @@ public final class ConversationReactionOverlay extends FrameLayout {
     boolean hasText = !message.getBody().isEmpty();
     OpenGroup openGroup = DatabaseComponent.get(getContext()).lokiThreadDatabase().getOpenGroupChat(message.getThreadId());
     Recipient recipient = DatabaseComponent.get(getContext()).threadDatabase().getRecipientForThreadId(message.getThreadId());
+    if (recipient == null) return Collections.emptyList();
+
     String userPublicKey = TextSecurePreferences.getLocalNumber(getContext());
     // Select message
     items.add(new ActionItem(R.attr.menu_select_icon, getContext().getResources().getString(R.string.conversation_context__menu_select), () -> handleActionItemClicked(Action.SELECT)));
