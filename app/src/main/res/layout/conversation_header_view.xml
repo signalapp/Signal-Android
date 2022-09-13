@@ -81,7 +81,6 @@
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
         android:textAppearance="@style/Signal.Text.MessageRequest.Subtitle"
-        app:emoji_forceCustom="true"
         app:layout_constraintBottom_toTopOf="@id/message_request_divider"
         app:layout_constraintTop_toBottomOf="@id/message_request_title"
         tools:text="Hangin' on the web" />

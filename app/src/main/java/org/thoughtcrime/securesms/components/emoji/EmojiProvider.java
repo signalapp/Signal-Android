@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.components.emoji.parsing.EmojiParser;
 import org.thoughtcrime.securesms.emoji.EmojiPageCache;
 import org.thoughtcrime.securesms.emoji.EmojiSource;
 import org.thoughtcrime.securesms.emoji.JumboEmoji;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.DeviceProperties;
 import org.thoughtcrime.securesms.util.FutureTaskListener;
 
@@ -121,6 +122,10 @@ public class EmojiProvider {
       return null;
     }
 
+    if (SignalStore.settings().isPreferSystemEmoji()) {
+      return new SystemEmojiDrawable(drawInfo.getEmoji());
+    }
+
     final int           lowMemoryDecodeScale = DeviceProperties.isLowMemoryDevice(context) ? 2 : 1;
     final EmojiSource   source               = EmojiSource.getLatest();
     final EmojiDrawable drawable             = new EmojiDrawable(source, drawInfo, lowMemoryDecodeScale);
@@ -200,6 +205,10 @@ public class EmojiProvider {
     ThreadUtil.assertNotMainThread();
     if (drawInfo == null) {
       return null;
+    }
+
+    if (SignalStore.settings().isPreferSystemEmoji()) {
+      return new SystemEmojiDrawable(drawInfo.getEmoji());
     }
 
     final int           lowMemoryDecodeScale = DeviceProperties.isLowMemoryDevice(context) ? 2 : 1;

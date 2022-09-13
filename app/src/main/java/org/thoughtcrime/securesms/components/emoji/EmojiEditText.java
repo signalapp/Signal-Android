@@ -42,11 +42,10 @@ public class EmojiEditText extends AppCompatEditText {
     super(context, attrs, defStyleAttr);
 
     TypedArray a           = context.getTheme().obtainStyledAttributes(attrs, R.styleable.EmojiTextView, 0, 0);
-    boolean    forceCustom = a.getBoolean(R.styleable.EmojiTextView_emoji_forceCustom, false);
     boolean    jumboEmoji  = a.getBoolean(R.styleable.EmojiTextView_emoji_forceJumbo, false);
     a.recycle();
 
-    if (!isInEditMode() && (forceCustom || !SignalStore.settings().isPreferSystemEmoji())) {
+    if (!isInEditMode() && !SignalStore.settings().isPreferSystemEmoji()) {
       setFilters(appendEmojiFilter(this.getFilters(), jumboEmoji));
       setEmojiCompatEnabled(false);
     }

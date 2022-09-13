@@ -41,7 +41,6 @@
             app:layout_constraintEnd_toEndOf="@id/avatar_picker_item_image"
             app:layout_constraintStart_toStartOf="@id/avatar_picker_item_image"
             app:layout_constraintTop_toTopOf="@id/avatar_picker_item_image"
-            app:emoji_forceCustom="true"
             tools:ignore="SpUsage"
             tools:text="AF" />
     </androidx.constraintlayout.widget.ConstraintLayout>
