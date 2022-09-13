@@ -281,6 +281,14 @@ public class ThreadDatabase extends Database {
     }
   }
 
+  public void trimThreadBefore(long threadId, long timestamp) {
+    Log.i("ThreadDatabase", "Trimming thread: " + threadId + " before :"+timestamp);
+    DatabaseComponent.get(context).smsDatabase().deleteMessagesInThreadBeforeDate(threadId, timestamp);
+    DatabaseComponent.get(context).mmsDatabase().deleteMessagesInThreadBeforeDate(threadId, timestamp);
+    update(threadId, false);
+    notifyConversationListeners(threadId);
+  }
+
   public List<MarkedMessageInfo> setRead(long threadId, boolean lastSeen) {
     ContentValues contentValues = new ContentValues(1);
     contentValues.put(READ, 1);

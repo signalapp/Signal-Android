@@ -31,7 +31,6 @@ class JobQueue : JobDelegate {
     private val scope = CoroutineScope(Dispatchers.Default) + SupervisorJob()
     private val queue = Channel<Job>(UNLIMITED)
     private val pendingJobIds = mutableSetOf<String>()
-    private val pendingTrimThreadIds = mutableSetOf<Long>()
 
     private val openGroupChannels = mutableMapOf<String, Channel<Job>>()
 
@@ -115,15 +114,6 @@ class JobQueue : JobDelegate {
             val openGroupJob = processWithOpenGroupDispatcher(openGroupQueue, openGroupDispatcher, "openGroup")
 
             while (isActive) {
-                if (queue.isEmpty && pendingTrimThreadIds.isNotEmpty()) {
-                    // process trim thread jobs
-                    val pendingThreads = pendingTrimThreadIds.toList()
-                    pendingTrimThreadIds.clear()
-                    for (thread in pendingThreads) {
-                        Log.d("Loki", "Trimming thread $thread")
-                        queue.trySend(TrimThreadJob(thread, null))
-                    }
-                }
                 when (val job = queue.receive()) {
                     is NotifyPNServerJob, is AttachmentUploadJob, is MessageSendJob -> {
                         txQueue.send(job)
@@ -163,10 +153,6 @@ class JobQueue : JobDelegate {
 
         @JvmStatic
         val shared: JobQueue by lazy { JobQueue() }
-    }
-
-    fun queueThreadForTrim(threadId: Long) {
-        pendingTrimThreadIds += threadId
     }
 
     fun add(job: Job) {

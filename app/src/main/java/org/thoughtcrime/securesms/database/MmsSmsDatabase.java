@@ -162,8 +162,8 @@ public class MmsSmsDatabase extends Database {
     }
   }
 
-  public int getConversationCount(long threadId) {
-    int count = DatabaseComponent.get(context).smsDatabase().getMessageCountForThread(threadId);
+  public long getConversationCount(long threadId) {
+    long count = DatabaseComponent.get(context).smsDatabase().getMessageCountForThread(threadId);
     count    += DatabaseComponent.get(context).mmsDatabase().getMessageCountForThread(threadId);
 
     return count;

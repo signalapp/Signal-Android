@@ -151,6 +151,8 @@ interface StorageProtocol {
     fun getThreadIdForMms(mmsId: Long): Long
     fun getLastUpdated(threadID: Long): Long
     fun trimThread(threadID: Long, threadLimit: Int)
+    fun trimThreadBefore(threadID: Long, timestamp: Long)
+    fun getMessageCount(threadID: Long): Long
 
     // Contacts
     fun getContactWithSessionID(sessionID: String): Contact?
