@@ -4413,7 +4413,17 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--My Story label designating that we will only share with the selected viewers.-->
   <string name="ContactSearchItems__only_share_with">Distribuie doar către</string>
   <!--Label under name for private stories-->
+  <plurals name="ContactSearchItems__private_story_d_viewers">
+    <item quantity="one">Poveste privată · %1$d vizualizator</item>
+    <item quantity="few">Poveste privată · %1$d vizualizatori</item>
+    <item quantity="other">Poveste privată · %1$d de vizualizatori</item>
+  </plurals>
   <!--Label under name for group stories-->
+  <plurals name="ContactSearchItems__group_story_d_viewers">
+    <item quantity="one">Poveste de grup  · %1$d vizualizator</item>
+    <item quantity="few">Poveste de grup · %1$d vizualizatori </item>
+    <item quantity="other">Poveste de grup · %1$d de vizualizatori</item>
+  </plurals>
   <!--Label under name for my story-->
   <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
     <item quantity="one">%1$s · %2$d vizualizator</item>
@@ -4589,6 +4599,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="RemoveSmsMessagesDialogFragment__you_have_changed">Ai schimbat aplicația standard SMS, vrei să elimini mesajele SMS de la Signal?</string>
   <!--SetSignalAsDefaultSmsAppFragment-->
   <!--Title of the screen-->
+  <string name="SetSignalAsDefaultSmsAppFragment__first_set_signal_as_the_default_sms_app">Mai întâi, setează Signal ca aplicația SMS standard</string>
   <!--Button label to start export-->
   <string name="SetSignalAsDefaultSmsAppFragment__next">Următorul</string>
   <!--EOF-->

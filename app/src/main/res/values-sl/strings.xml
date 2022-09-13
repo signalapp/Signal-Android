@@ -173,7 +173,7 @@
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Moje zgodbe</string>
   <!--Action for creating a new story-->
-  <string name="ContactsCursorLoader_new_story">Nova Zgodba</string>
+  <string name="ContactsCursorLoader_new_story">Nova zgodba</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Sporočilo %s</string>
   <string name="ContactsDatabase_signal_call_s">Klic Signal: %s</string>

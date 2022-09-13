@@ -4485,6 +4485,7 @@
   <string name="RemoveSmsMessagesDialogFragment__you_have_changed">Muutsid vaikimisi SMSi-äppi. Kas tahad SMS-sõnumeid Signalist eemaldada?</string>
   <!--SetSignalAsDefaultSmsAppFragment-->
   <!--Title of the screen-->
+  <string name="SetSignalAsDefaultSmsAppFragment__first_set_signal_as_the_default_sms_app">Kõigepealt muuda Signal SMSi vaikerakenduseks.</string>
   <!--Button label to start export-->
   <string name="SetSignalAsDefaultSmsAppFragment__next">Edasi</string>
   <!--EOF-->

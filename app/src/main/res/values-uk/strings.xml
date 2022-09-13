@@ -2044,7 +2044,7 @@
   <!--Author formatting for group stories-->
   <string name="QuoteView_s_story">%1$s · Історія</string>
   <!--Label indicating that a quote is for a reply to a story you created-->
-  <string name="QuoteView_your_story">Ви · Історія</string>
+  <string name="QuoteView_your_story">Ви · Сторі</string>
   <!--Label indicating that the story being replied to no longer exists-->
   <string name="QuoteView_no_longer_available">Більше недоступна</string>
   <!--Label for quoted gift-->
@@ -4407,27 +4407,27 @@
     <item quantity="other">%1$d глядачів</item>
   </plurals>
   <!--Name story screen title-->
-  <string name="CreateStoryWithViewersFragment__name_story">Назва історії</string>
+  <string name="CreateStoryWithViewersFragment__name_story">Назва сторі</string>
   <!--Name story screen label hint-->
-  <string name="CreateStoryWithViewersFragment__story_name_required">Назва історії (обов\'язкова)</string>
+  <string name="CreateStoryWithViewersFragment__story_name_required">Назва сторі (обов\'язкова)</string>
   <!--Name story screen viewers subheading-->
   <string name="CreateStoryWithViewersFragment__viewers">Глядачі</string>
   <!--Name story screen create button label-->
   <string name="CreateStoryWithViewersFragment__create">Створити</string>
   <!--Name story screen error when save attempted with no label-->
-  <string name="CreateStoryWithViewersFragment__this_field_is_required">Це обов\'язкове поле.</string>
+  <string name="CreateStoryWithViewersFragment__this_field_is_required">Це необхідне поле.</string>
   <!--Name story screen error when save attempted but label is duplicate-->
-  <string name="CreateStoryWithViewersFragment__there_is_already_a_story_with_this_name">Історія з такою назвою вже існує.</string>
+  <string name="CreateStoryWithViewersFragment__there_is_already_a_story_with_this_name">Сторі з такою назвою вже існує.</string>
   <!--Text for select all action when editing recipients for a story-->
   <string name="BaseStoryRecipientSelectionFragment__select_all">Обрати все</string>
   <!--Choose story type bottom sheet title-->
-  <string name="ChooseStoryTypeBottomSheet__choose_your_story_type">Обрати тип історії</string>
+  <string name="ChooseStoryTypeBottomSheet__choose_your_story_type">Обрати тип сторі</string>
   <!--Choose story type bottom sheet new story row title-->
-  <string name="ChooseStoryTypeBottomSheet__new_private_story">Нова приватна історія</string>
+  <string name="ChooseStoryTypeBottomSheet__new_private_story">Нова приватна сторі</string>
   <!--Choose story type bottom sheet new story row summary-->
   <string name="ChooseStoryTypeBottomSheet__visible_only_to">Можуть побачити лише окремі особи</string>
   <!--Choose story type bottom sheet group story title-->
-  <string name="ChooseStoryTypeBottomSheet__group_story">Історія групи</string>
+  <string name="ChooseStoryTypeBottomSheet__group_story">Групова сторі</string>
   <!--Choose story type bottom sheet group story summary-->
   <string name="ChooseStoryTypeBottomSheet__share_to_an_existing_group">Поділитись у групі</string>
   <!--Choose groups bottom sheet title-->
@@ -4439,7 +4439,7 @@
   <!--Displayed in toast after sending a direct reply-->
   <string name="StoryDirectReplyDialogFragment__sending_reply">Надсилаємо відповідь…</string>
   <!--Displayed in the viewer when a story is no longer available-->
-  <string name="StorySlateView__this_story_is_no_longer_available">Ця історія вже недоступна.</string>
+  <string name="StorySlateView__this_story_is_no_longer_available">Ця сторі вже недоступна.</string>
   <!--Displayed in the viewer when the network is not available-->
   <string name="StorySlateView__no_internet_connection">Немає з\'єднання з інтернетом</string>
   <!--Displayed in the viewer when network is available but content could not be downloaded-->
@@ -4461,11 +4461,11 @@
   <!--Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention-->
   <string name="TurnOffCircumventionMegaphone_turn_off">Відключити</string>
   <!--Conversation Item label for when you react to someone else\'s story-->
-  <string name="ConversationItem__you_reacted_to_s_story">Ви відреагували на історію %1$s</string>
+  <string name="ConversationItem__you_reacted_to_s_story">Ви відреагували на сторі %1$s</string>
   <!--Conversation Item label for reactions to your story-->
-  <string name="ConversationItem__reacted_to_your_story">Відреагували на вашу історію</string>
+  <string name="ConversationItem__reacted_to_your_story">Реакції на вашу сторі</string>
   <!--Conversation Item label for reactions to an unavailable story-->
-  <string name="ConversationItem__reacted_to_a_story">Реакції на історію</string>
+  <string name="ConversationItem__reacted_to_a_story">Реакції на сторі</string>
   <!--endregion-->
   <!--Content description for expand contacts chevron-->
   <string name="ExpandModel__view_more">Дивитись далі</string>
@@ -4565,7 +4565,7 @@
   <!--Dialog action item for removing a group story-->
   <string name="ContactSearchMediator__remove">Видалити</string>
   <!--Dialog title for deleting a private story-->
-  <string name="ContactSearchMediator__delete_story">Видалити історію?</string>
+  <string name="ContactSearchMediator__delete_story">Видалити сторі?</string>
   <!--Dialog message for deleting a private story-->
   <string name="ContactSearchMediator__delete_the_private">Видалити приватну сторі «%1$s»?</string>
   <!--Dialog action item for deleting a private story-->

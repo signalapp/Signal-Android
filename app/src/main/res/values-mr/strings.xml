@@ -4482,7 +4482,7 @@
   <string name="RemoveSmsMessagesDialogFragment__you_have_changed">आपण डिफॉल्ट SMS ॲप बदलले आहे, आपणाला Signal मधून SMS संदेश हटवायची इच्छा आहे काय?</string>
   <!--SetSignalAsDefaultSmsAppFragment-->
   <!--Title of the screen-->
-  <string name="SetSignalAsDefaultSmsAppFragment__first_set_signal_as_the_default_sms_app">प्रथम, Signal ला डिफॉल्ट SMS अॅप म्हणून सेट करा</string>
+  <string name="SetSignalAsDefaultSmsAppFragment__first_set_signal_as_the_default_sms_app">प्रथम, Signal ला डिफॉल्ट SMS ॲप म्हणून सेट करा</string>
   <!--Button label to start export-->
   <string name="SetSignalAsDefaultSmsAppFragment__next">पुढे</string>
   <!--EOF-->
