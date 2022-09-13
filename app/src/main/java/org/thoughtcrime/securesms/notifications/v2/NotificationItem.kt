@@ -44,6 +44,8 @@ sealed class NotificationItem(val threadRecipient: Recipient, protected val reco
   val isMms: Boolean = record.isMms
   val slideDeck: SlideDeck? = if (record.isViewOnce) null else (record as? MmsMessageRecord)?.slideDeck
   val isJoined: Boolean = record.isJoined
+  val isPersonSelf: Boolean
+    get() = individualRecipient.isSelf
 
   protected val notifiedTimestamp: Long = record.notifiedTimestamp
 

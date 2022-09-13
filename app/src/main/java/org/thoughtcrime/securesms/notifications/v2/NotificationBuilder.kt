@@ -268,19 +268,25 @@ sealed class NotificationBuilder(protected val context: Context) {
       messagingStyle.isGroupConversation = conversation.isGroup
 
       conversation.notificationItems.forEach { notificationItem ->
-        val personBuilder: PersonCompat.Builder = PersonCompat.Builder()
-          .setBot(false)
-          .setName(notificationItem.getPersonName(context))
-          .setUri(notificationItem.getPersonUri())
-          .setIcon(notificationItem.getPersonIcon(context).toIconCompat())
+        var person: PersonCompat? = null
 
-        if (includeShortcut) {
-          personBuilder.setKey(ConversationUtil.getShortcutId(notificationItem.individualRecipient))
+        if (!notificationItem.isPersonSelf) {
+          val personBuilder: PersonCompat.Builder = PersonCompat.Builder()
+            .setBot(false)
+            .setName(notificationItem.getPersonName(context))
+            .setUri(notificationItem.getPersonUri())
+            .setIcon(notificationItem.getPersonIcon(context).toIconCompat())
+
+          if (includeShortcut) {
+            personBuilder.setKey(ConversationUtil.getShortcutId(notificationItem.individualRecipient))
+          }
+
+          person = personBuilder.build()
         }
 
         val (dataUri: Uri?, mimeType: String?) = notificationItem.getThumbnailInfo(context)
 
-        messagingStyle.addMessage(NotificationCompat.MessagingStyle.Message(notificationItem.getPrimaryText(context), notificationItem.timestamp, personBuilder.build()).setData(mimeType, dataUri))
+        messagingStyle.addMessage(NotificationCompat.MessagingStyle.Message(notificationItem.getPrimaryText(context), notificationItem.timestamp, person).setData(mimeType, dataUri))
       }
 
       builder.setStyle(messagingStyle)
