@@ -436,10 +436,14 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     private fun setUpToolBar() {
         setSupportActionBar(binding?.toolbar)
         val actionBar = supportActionBar ?: return
+        val recipient = viewModel.recipient ?: return
         actionBar.title = ""
         actionBar.setDisplayHomeAsUpEnabled(true)
         actionBar.setHomeButtonEnabled(true)
-        binding!!.toolbarContent.conversationTitleView.text = viewModel.recipient?.toShortString()
+        binding!!.toolbarContent.conversationTitleView.text = when {
+            recipient.isLocalNumber -> getString(R.string.note_to_self)
+            else -> recipient.toShortString()
+        }
         @DimenRes val sizeID: Int = if (viewModel.recipient?.isClosedGroupRecipient == true) {
             R.dimen.medium_profile_picture_size
         } else {
@@ -629,18 +633,19 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     // region Animation & Updating
     override fun onModified(recipient: Recipient) {
         runOnUiThread {
-            val recipient = viewModel.recipient
-            if (recipient != null && recipient.isContactRecipient) {
-                binding?.blockedBanner?.isVisible = recipient.isBlocked
+            val threadRecipient = viewModel.recipient ?: return@runOnUiThread
+            if (threadRecipient.isContactRecipient) {
+                binding?.blockedBanner?.isVisible = threadRecipient.isBlocked
             }
             setUpMessageRequestsBar()
             invalidateOptionsMenu()
             updateSubtitle()
             showOrHideInputIfNeeded()
-            if (recipient != null) {
-                binding?.toolbarContent?.profilePictureView?.root?.update(recipient)
+            binding?.toolbarContent?.profilePictureView?.root?.update(threadRecipient)
+            binding!!.toolbarContent.conversationTitleView.text = when {
+                threadRecipient.isLocalNumber -> getString(R.string.note_to_self)
+                else -> threadRecipient.toShortString()
             }
-            binding?.toolbarContent?.conversationTitleView?.text = recipient?.toShortString()
         }
     }
 
