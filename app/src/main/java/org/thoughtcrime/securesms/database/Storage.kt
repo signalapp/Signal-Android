@@ -319,7 +319,11 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         return getAllOpenGroups().values.firstOrNull { it.server == server && it.room == room }
     }
 
-    override fun addGroupMember(member: GroupMember) {
+    override fun clearGroupMemberRoles(groupId: String) {
+        DatabaseComponent.get(context).groupMemberDatabase().clearGroupMemberRoles(groupId)
+    }
+
+    override fun addGroupMemberRole(member: GroupMember) {
         DatabaseComponent.get(context).groupMemberDatabase().addGroupMember(member)
     }
 

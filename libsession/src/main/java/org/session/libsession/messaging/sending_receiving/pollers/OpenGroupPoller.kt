@@ -134,18 +134,20 @@ class OpenGroupPoller(private val server: String, private val executorService: S
         storage.setUserCount(roomToken, server, pollInfo.activeUsers)
 
         // - Moderators
+        storage.clearGroupMemberRoles(groupId)
+
         pollInfo.details?.moderators?.forEach {
-            storage.addGroupMember(GroupMember(groupId, it, GroupMemberRole.MODERATOR))
+            storage.addGroupMemberRole(GroupMember(groupId, it, GroupMemberRole.MODERATOR))
         }
         pollInfo.details?.hiddenModerators?.forEach {
-            storage.addGroupMember(GroupMember(groupId, it, GroupMemberRole.HIDDEN_MODERATOR))
+            storage.addGroupMemberRole(GroupMember(groupId, it, GroupMemberRole.HIDDEN_MODERATOR))
         }
         // - Admins
         pollInfo.details?.admins?.forEach {
-            storage.addGroupMember(GroupMember(groupId, it, GroupMemberRole.ADMIN))
+            storage.addGroupMemberRole(GroupMember(groupId, it, GroupMemberRole.ADMIN))
         }
         pollInfo.details?.hiddenAdmins?.forEach {
-            storage.addGroupMember(GroupMember(groupId, it, GroupMemberRole.HIDDEN_ADMIN))
+            storage.addGroupMemberRole(GroupMember(groupId, it, GroupMemberRole.HIDDEN_ADMIN))
         }
     }
 
