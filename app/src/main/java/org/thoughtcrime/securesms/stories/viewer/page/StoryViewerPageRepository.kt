@@ -175,6 +175,7 @@ open class StoryViewerPageRepository(context: Context) {
 
           if (storyPost.sender.isReleaseNotes) {
             SignalStore.storyValues().userHasSeenOnboardingStory = true
+            Stories.onStorySettingsChanged(Recipient.self().id)
           } else {
             ApplicationDependencies.getJobManager().add(
               SendViewedReceiptJob(

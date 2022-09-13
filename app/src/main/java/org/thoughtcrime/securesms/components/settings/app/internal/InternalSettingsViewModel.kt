@@ -7,6 +7,7 @@ import org.signal.ringrtc.CallManager
 import org.thoughtcrime.securesms.jobs.StoryOnboardingDownloadJob
 import org.thoughtcrime.securesms.keyvalue.InternalValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.livedata.Store
 
@@ -130,6 +131,7 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
   fun onClearOnboardingState() {
     SignalStore.storyValues().hasDownloadedOnboardingStory = false
     SignalStore.storyValues().userHasSeenOnboardingStory = false
+    Stories.onStorySettingsChanged(Recipient.self().id)
     refresh()
     StoryOnboardingDownloadJob.enqueueIfNeeded()
   }

@@ -166,6 +166,22 @@ public final class SignalAccountRecord implements SignalRecord {
         diff.add("SubscriptionManuallyCancelled");
       }
 
+      if (isKeepMutedChatsArchived() != that.isKeepMutedChatsArchived()) {
+        diff.add("KeepMutedChatsArchived");
+      }
+
+      if (hasSetMyStoriesPrivacy() != that.hasSetMyStoriesPrivacy()) {
+        diff.add("HasSetMyStoryPrivacy");
+      }
+
+      if (hasViewedOnboardingStory() != that.hasViewedOnboardingStory()) {
+        diff.add("HasViewedOnboardingStory");
+      }
+
+      if (isStoriesDisabled() != that.isStoriesDisabled()) {
+        diff.add("StoriesDisabled");
+      }
+
       return diff.toString();
     } else {
       return "Different class. " + getClass().getSimpleName() + " | " + other.getClass().getSimpleName();
@@ -266,6 +282,22 @@ public final class SignalAccountRecord implements SignalRecord {
 
   public boolean isSubscriptionManuallyCancelled() {
     return proto.getSubscriptionManuallyCancelled();
+  }
+
+  public boolean isKeepMutedChatsArchived() {
+    return proto.getKeepMutedChatsArchived();
+  }
+
+  public boolean hasSetMyStoriesPrivacy() {
+    return proto.getHasSetMyStoriesPrivacy();
+  }
+
+  public boolean hasViewedOnboardingStory() {
+    return proto.getHasViewedOnboardingStory();
+  }
+
+  public boolean isStoriesDisabled() {
+    return proto.getStoriesDisabled();
   }
 
   public AccountRecord toProto() {
@@ -602,6 +634,26 @@ public final class SignalAccountRecord implements SignalRecord {
 
     public Builder setSubscriptionManuallyCancelled(boolean subscriptionManuallyCancelled) {
       builder.setSubscriptionManuallyCancelled(subscriptionManuallyCancelled);
+      return this;
+    }
+
+    public Builder setKeepMutedChatsArchived(boolean keepMutedChatsArchived) {
+      builder.setKeepMutedChatsArchived(keepMutedChatsArchived);
+      return this;
+    }
+
+    public Builder setHasSetMyStoriesPrivacy(boolean hasSetMyStoriesPrivacy) {
+      builder.setHasSetMyStoriesPrivacy(hasSetMyStoriesPrivacy);
+      return this;
+    }
+
+    public Builder setHasViewedOnboardingStory(boolean hasViewedOnboardingStory) {
+      builder.setHasViewedOnboardingStory(hasViewedOnboardingStory);
+      return this;
+    }
+
+    public Builder setStoriesDisabled(boolean storiesDisabled) {
+      builder.setStoriesDisabled(storiesDisabled);
       return this;
     }
 

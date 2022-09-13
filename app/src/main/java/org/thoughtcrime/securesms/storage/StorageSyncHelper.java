@@ -134,6 +134,10 @@ public final class StorageSyncHelper {
                                                          .setSubscriber(StorageSyncModels.localToRemoteSubscriber(SignalStore.donationsValues().getSubscriber()))
                                                          .setDisplayBadgesOnProfile(SignalStore.donationsValues().getDisplayBadgesOnProfile())
                                                          .setSubscriptionManuallyCancelled(SignalStore.donationsValues().isUserManuallyCancelled())
+                                                         .setKeepMutedChatsArchived(SignalStore.settings().shouldKeepMutedChatsArchived())
+                                                         .setHasSetMyStoriesPrivacy(SignalStore.storyValues().getUserHasBeenNotifiedAboutStories())
+                                                         .setHasViewedOnboardingStory(SignalStore.storyValues().getUserHasSeenOnboardingStory())
+                                                         .setStoriesDisabled(SignalStore.storyValues().isFeatureDisabled())
                                                          .build();
 
     return SignalStorageRecord.forAccount(account);
@@ -158,6 +162,10 @@ public final class StorageSyncHelper {
     SignalStore.settings().setUniversalExpireTimer(update.getNew().getUniversalExpireTimer());
     SignalStore.emojiValues().setReactions(update.getNew().getDefaultReactions());
     SignalStore.donationsValues().setDisplayBadgesOnProfile(update.getNew().isDisplayBadgesOnProfile());
+    SignalStore.settings().setKeepMutedChatsArchived(update.getNew().isKeepMutedChatsArchived());
+    SignalStore.storyValues().setUserHasBeenNotifiedAboutStories(update.getNew().hasSetMyStoriesPrivacy());
+    SignalStore.storyValues().setUserHasSeenOnboardingStory(update.getNew().hasViewedOnboardingStory());
+    SignalStore.storyValues().setFeatureDisabled(update.getNew().isStoriesDisabled());
 
     if (update.getNew().isSubscriptionManuallyCancelled()) {
       SignalStore.donationsValues().updateLocalStateForManualCancellation();

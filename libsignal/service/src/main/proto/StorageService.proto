@@ -158,6 +158,10 @@ message AccountRecord {
            string                 subscriberCurrencyCode        = 22;
            bool                   displayBadgesOnProfile        = 23;
            bool                   subscriptionManuallyCancelled = 24;
+           bool                   keepMutedChatsArchived        = 25;
+           bool                   hasSetMyStoriesPrivacy        = 26;
+           bool                   hasViewedOnboardingStory      = 27;
+           bool                   storiesDisabled               = 28;
 }
 
 message StoryDistributionListRecord {

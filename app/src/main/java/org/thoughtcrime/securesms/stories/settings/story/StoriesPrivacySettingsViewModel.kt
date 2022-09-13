@@ -14,7 +14,6 @@ import org.signal.paging.ProxyPagingController
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchConfiguration
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchPagedDataSource
-import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.rx.RxStore
@@ -70,8 +69,15 @@ class StoriesPrivacySettingsViewModel : ViewModel() {
   }
 
   fun setStoriesEnabled(isEnabled: Boolean) {
-    SignalStore.storyValues().isFeatureDisabled = !isEnabled
-    store.update { it.copy(areStoriesEnabled = Stories.isFeatureEnabled()) }
+    store.update { it.copy(isUpdatingEnabledState = true) }
+    disposables += repository.setStoriesEnabled(isEnabled).subscribe {
+      store.update {
+        it.copy(
+          isUpdatingEnabledState = false,
+          areStoriesEnabled = Stories.isFeatureEnabled()
+        )
+      }
+    }
   }
 
   fun displayGroupsAsStories(recipientIds: List<RecipientId>) {

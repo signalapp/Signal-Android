@@ -68,6 +68,7 @@ public final class SettingsValues extends SignalStoreValues {
   private static final String UNIVERSAL_EXPIRE_TIMER                  = "settings.universal.expire.timer";
   private static final String SENT_MEDIA_QUALITY                      = "settings.sentMediaQuality";
   private static final String CENSORSHIP_CIRCUMVENTION_ENABLED        = "settings.censorshipCircumventionEnabled";
+  private static final String KEEP_MUTED_CHATS_ARCHIVED               = "settings.keepMutedChatsArchived";
 
   private final SingleLiveEvent<String> onConfigurationSettingChanged = new SingleLiveEvent<>();
 
@@ -111,7 +112,8 @@ public final class SettingsValues extends SignalStoreValues {
                          CALL_VIBRATE_ENABLED,
                          NOTIFY_WHEN_CONTACT_JOINS_SIGNAL,
                          UNIVERSAL_EXPIRE_TIMER,
-                         SENT_MEDIA_QUALITY);
+                         SENT_MEDIA_QUALITY,
+                         KEEP_MUTED_CHATS_ARCHIVED);
   }
 
   public @NonNull LiveData<String> getOnConfigurationSettingChanged() {
@@ -428,6 +430,14 @@ public final class SettingsValues extends SignalStoreValues {
   public void setCensorshipCircumventionEnabled(boolean enabled) {
     Log.i(TAG, "Changing censorship circumvention state to: " + enabled, new Throwable());
     putInteger(CENSORSHIP_CIRCUMVENTION_ENABLED, enabled ? CensorshipCircumventionEnabled.ENABLED.serialize() : CensorshipCircumventionEnabled.DISABLED.serialize());
+  }
+
+  public void setKeepMutedChatsArchived(boolean enabled) {
+   putBoolean(KEEP_MUTED_CHATS_ARCHIVED, enabled);
+  }
+
+  public boolean shouldKeepMutedChatsArchived() {
+    return getBoolean(KEEP_MUTED_CHATS_ARCHIVED, false);
   }
 
   private @Nullable Uri getUri(@NonNull String key) {
