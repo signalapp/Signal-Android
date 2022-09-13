@@ -224,6 +224,7 @@ public class Recipient implements RecipientModifiedListener {
             Recipient.this.profileSharing         = result.profileSharing;
             Recipient.this.unidentifiedAccessMode = result.unidentifiedAccessMode;
             Recipient.this.forceSmsSelection      = result.forceSmsSelection;
+            Recipient.this.notifyType             = result.notifyType;
 
             Recipient.this.participants.clear();
             Recipient.this.participants.addAll(result.participants);

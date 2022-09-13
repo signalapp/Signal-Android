@@ -3,9 +3,9 @@ package org.thoughtcrime.securesms.database
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
-import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.session.libsession.messaging.open_groups.GroupMember
 import org.session.libsession.messaging.open_groups.GroupMemberRole
+import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 
 class GroupMemberDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper) {
 
@@ -63,6 +63,18 @@ class GroupMemberDatabase(context: Context, helper: SQLCipherOpenHelper) : Datab
             val args = arrayOf(member.groupId, member.profileId)
 
             writableDatabase.insertOrUpdate(TABLE_NAME, values, query, args)
+            writableDatabase.setTransactionSuccessful()
+        } finally {
+            writableDatabase.endTransaction()
+        }
+    }
+
+    fun clearGroupMemberRoles(groupId: String) {
+        writableDatabase.beginTransaction()
+        try {
+            val query = "$GROUP_ID = ?"
+            val args = arrayOf(groupId)
+            writableDatabase.delete(TABLE_NAME, query, args)
             writableDatabase.setTransactionSuccessful()
         } finally {
             writableDatabase.endTransaction()
