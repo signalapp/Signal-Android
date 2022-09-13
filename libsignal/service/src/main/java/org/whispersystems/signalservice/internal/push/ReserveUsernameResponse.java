@@ -11,6 +11,14 @@ public class ReserveUsernameResponse {
 
   ReserveUsernameResponse() {}
 
+  /**
+   * Visible for testing.
+   */
+  public ReserveUsernameResponse(String username, String reservationToken) {
+    this.username         = username;
+    this.reservationToken = reservationToken;
+  }
+
   public String getUsername() {
     return username;
   }

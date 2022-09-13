@@ -35,7 +35,6 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher;
 import org.thoughtcrime.securesms.databinding.UsernameEditFragmentBinding;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.AccessibilityUtil;
 import org.thoughtcrime.securesms.util.FragmentResultContract;
 import org.thoughtcrime.securesms.util.LifecycleDisposable;
 import org.thoughtcrime.securesms.util.UsernameUtil;
@@ -91,7 +90,7 @@ public class UsernameEditFragment extends LoggingFragment {
     viewModel = new ViewModelProvider(this, new UsernameEditViewModel.Factory(args.getIsInRegistration())).get(UsernameEditViewModel.class);
 
     lifecycleDisposable.add(viewModel.getUiState().subscribe(this::onUiStateChanged));
-    viewModel.getEvents().observe(getViewLifecycleOwner(), this::onEvent);
+    lifecycleDisposable.add(viewModel.getEvents().subscribe(this::onEvent));
 
     binding.usernameSubmitButton.setOnClickListener(v -> viewModel.onUsernameSubmitted());
     binding.usernameDeleteButton.setOnClickListener(v -> viewModel.onUsernameDeleted());
@@ -142,6 +141,8 @@ public class UsernameEditFragment extends LoggingFragment {
 
     suffixProgress = new ImageView(requireContext());
     suffixProgress.setImageDrawable(getInProgressDrawable());
+    suffixProgress.setContentDescription(getString(R.string.load_more_header__loading));
+    suffixProgress.setVisibility(View.GONE);
     suffixParent.addView(suffixProgress, 0, layoutParams);
 
     suffixTextView.setOnClickListener(this::onLearnMore);

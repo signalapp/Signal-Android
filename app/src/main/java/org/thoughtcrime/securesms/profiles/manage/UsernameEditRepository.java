@@ -18,28 +18,29 @@ import org.whispersystems.signalservice.internal.push.ReserveUsernameResponse;
 import java.io.IOException;
 import java.util.concurrent.Executor;
 
+import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+
 class UsernameEditRepository {
 
   private static final String TAG = Log.tag(UsernameEditRepository.class);
 
   private final SignalServiceAccountManager accountManager;
-  private final Executor                    executor;
 
   UsernameEditRepository() {
     this.accountManager = ApplicationDependencies.getSignalServiceAccountManager();
-    this.executor       = SignalExecutors.UNBOUNDED;
   }
 
-  void reserveUsername(@NonNull String nickname, @NonNull Callback<Result<ReserveUsernameResponse, UsernameSetResult>> callback) {
-    executor.execute(() -> callback.onComplete(reserveUsernameInternal(nickname)));
+  @NonNull Single<Result<ReserveUsernameResponse, UsernameSetResult>> reserveUsername(@NonNull String nickname) {
+    return Single.fromCallable(() -> reserveUsernameInternal(nickname)).subscribeOn(Schedulers.io());
   }
 
-  void confirmUsername(@NonNull ReserveUsernameResponse reserveUsernameResponse, @NonNull Callback<UsernameSetResult> callback) {
-    executor.execute(() -> callback.onComplete(confirmUsernameInternal(reserveUsernameResponse)));
+  @NonNull Single<UsernameSetResult> confirmUsername(@NonNull ReserveUsernameResponse reserveUsernameResponse) {
+    return Single.fromCallable(() -> confirmUsernameInternal(reserveUsernameResponse)).subscribeOn(Schedulers.io());
   }
 
-  void deleteUsername(@NonNull Callback<UsernameDeleteResult> callback) {
-    executor.execute(() -> callback.onComplete(deleteUsernameInternal()));
+  @NonNull Single<UsernameDeleteResult> deleteUsername() {
+    return Single.fromCallable(this::deleteUsernameInternal).subscribeOn(Schedulers.io());
   }
 
   @WorkerThread

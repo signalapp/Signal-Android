@@ -561,6 +561,10 @@ dependencies {
     androidTestImplementation testLibs.mockito.kotlin
     androidTestImplementation testLibs.square.okhttp.mockserver
 
+    instrumentationImplementation (testLibs.androidx.fragment.testing) {
+        exclude group: 'androidx.test', module: 'core'
+    }
+
     testImplementation testLibs.espresso.core
 
     implementation libs.kotlin.stdlib.jdk8

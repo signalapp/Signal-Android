@@ -9,6 +9,7 @@ import android.util.AttributeSet
 import android.view.ViewAnimationUtils
 import android.widget.FrameLayout
 import androidx.annotation.StringRes
+import androidx.annotation.VisibleForTesting
 import androidx.core.animation.doOnEnd
 import androidx.core.content.withStyledAttributes
 import com.google.android.material.button.MaterialButton
@@ -86,6 +87,11 @@ class CircularProgressMaterialButton @JvmOverloads constructor(
 
   override fun setOnClickListener(onClickListener: OnClickListener?) {
     materialButton.setOnClickListener(onClickListener)
+  }
+
+  @VisibleForTesting
+  fun getRequestedState(): State {
+    return requestedState
   }
 
   fun setSpinning() {
