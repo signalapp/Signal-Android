@@ -27,13 +27,15 @@ internal class ConversationReactionDelegate(private val overlayStub: Stub<Conver
     fun show(
         activity: Activity,
         messageRecord: MessageRecord,
-        selectedConversationModel: SelectedConversationModel
+        selectedConversationModel: SelectedConversationModel,
+        blindedPublicKey: String?
     ) {
         resolveOverlay().show(
             activity,
             messageRecord,
             lastSeenDownPoint,
-            selectedConversationModel
+            selectedConversationModel,
+            blindedPublicKey
         )
     }
 
