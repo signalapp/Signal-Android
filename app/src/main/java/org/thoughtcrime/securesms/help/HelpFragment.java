@@ -18,7 +18,7 @@ import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.annimon.stream.Stream;
 
@@ -74,7 +74,7 @@ public class HelpFragment extends LoggingFragment {
   }
 
   private void initializeViewModels() {
-    helpViewModel = ViewModelProviders.of(this).get(HelpViewModel.class);
+    helpViewModel = new ViewModelProvider(this).get(HelpViewModel.class);
   }
 
   private void initializeViews(@NonNull View view) {

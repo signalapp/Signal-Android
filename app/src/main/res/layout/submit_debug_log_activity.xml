@@ -61,7 +61,7 @@
       android:layout_marginTop="16dp"
       android:padding="5dp"
       android:background="@drawable/circle_tintable"
-      android:tint="@color/grey_600"
+      app:tint="@color/grey_600"
       android:elevation="1dp"
       app:srcCompat="@drawable/ic_chevron_down_20"
       android:scaleY="-1"
@@ -76,8 +76,8 @@
       android:layout_marginBottom="16dp"
       android:padding="5dp"
       android:background="@drawable/circle_tintable"
-      android:tint="@color/grey_600"
       android:elevation="1dp"
+      app:tint="@color/grey_600"
       app:srcCompat="@drawable/ic_chevron_down_20"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintBottom_toTopOf="@id/debug_log_submit_button"/>

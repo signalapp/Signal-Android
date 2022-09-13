@@ -15,7 +15,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.google.android.material.textfield.TextInputLayout;
@@ -57,7 +57,7 @@ public class PaymentsRecoveryPhraseConfirmFragment extends Fragment {
     DrawableCompat.setTint(validWordCheckMark, ContextCompat.getColor(requireContext(), R.color.signal_accent_green));
     DrawableCompat.setTint(invalidWordX, ContextCompat.getColor(requireContext(), R.color.signal_alert_primary));
 
-    PaymentsRecoveryPhraseConfirmViewModel viewModel = ViewModelProviders.of(requireActivity()).get(PaymentsRecoveryPhraseConfirmViewModel.class);
+    PaymentsRecoveryPhraseConfirmViewModel viewModel = new ViewModelProvider(requireActivity()).get(PaymentsRecoveryPhraseConfirmViewModel.class);
 
     toolbar.setNavigationOnClickListener(v -> Navigation.findNavController(requireView()).popBackStack());
 

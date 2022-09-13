@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.R;
@@ -37,7 +37,7 @@ public final class ImageEditorStickerSelectActivity extends AppCompatActivity im
     super.onCreate(savedInstanceState);
     setContentView(R.layout.scribble_select_new_sticker_activity);
 
-    KeyboardPagerViewModel keyboardPagerViewModel = ViewModelProviders.of(this).get(KeyboardPagerViewModel.class);
+    KeyboardPagerViewModel keyboardPagerViewModel = new ViewModelProvider(this).get(KeyboardPagerViewModel.class);
     keyboardPagerViewModel.setOnlyPage(KeyboardPage.STICKER);
 
     MediaKeyboard mediaKeyboard = findViewById(R.id.emoji_drawer);

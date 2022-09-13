@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:viewBindingIgnore="true"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:viewBindingIgnore="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -32,8 +33,8 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="@string/ContactShareEditActivity__edit_name"
             android:scaleType="centerInside"
-            android:src="@drawable/ic_compose_24"
-            android:tint="@color/signal_colorOnSurface" />
+            app:srcCompat="@drawable/ic_compose_24"
+            app:tint="@color/signal_colorOnSurface" />
 
     </LinearLayout>
 

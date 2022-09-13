@@ -9,7 +9,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
@@ -101,7 +101,7 @@ public final class ChooseNewAdminActivity extends PassphraseRequiredActivity {
   }
 
   private void initializeViewModel() {
-    viewModel = ViewModelProviders.of(this, new ChooseNewAdminViewModel.Factory(groupId)).get(ChooseNewAdminViewModel.class);
+    viewModel = new ViewModelProvider(this, new ChooseNewAdminViewModel.Factory(groupId)).get(ChooseNewAdminViewModel.class);
 
     viewModel.getNonAdminFullMembers().observe(this, groupList::setMembers);
     viewModel.getSelection().observe(this, selection -> done.setVisibility(selection.isEmpty() ? View.GONE : View.VISIBLE));

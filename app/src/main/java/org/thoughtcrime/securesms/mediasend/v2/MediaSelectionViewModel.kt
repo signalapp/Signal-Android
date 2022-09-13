@@ -25,7 +25,6 @@ import org.thoughtcrime.securesms.mms.SentMediaQuality
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.scribbles.ImageEditorFragment
 import org.thoughtcrime.securesms.stories.Stories
-import org.thoughtcrime.securesms.util.SingleLiveEvent
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.livedata.Store
 import java.util.Collections
@@ -60,7 +59,7 @@ class MediaSelectionViewModel(
 
   private val internalHudCommands = PublishSubject.create<HudCommand>()
 
-  val mediaErrors: SingleLiveEvent<MediaValidator.FilterError> = SingleLiveEvent()
+  val mediaErrors: PublishSubject<MediaValidator.FilterError> = PublishSubject.create()
   val hudCommands: Observable<HudCommand> = internalHudCommands
 
   private val disposables = CompositeDisposable()
@@ -154,7 +153,7 @@ class MediaSelectionViewModel(
           }
 
           if (filterResult.filterError != null) {
-            mediaErrors.postValue(filterResult.filterError)
+            mediaErrors.onNext(filterResult.filterError)
           }
         }
     )
@@ -230,7 +229,7 @@ class MediaSelectionViewModel(
     }
 
     if (newMediaList.isEmpty() && !suppressEmptyError) {
-      mediaErrors.postValue(MediaValidator.FilterError.NoItems())
+      mediaErrors.onNext(MediaValidator.FilterError.NoItems())
     }
 
     selectedMediaSubject.onNext(newMediaList)

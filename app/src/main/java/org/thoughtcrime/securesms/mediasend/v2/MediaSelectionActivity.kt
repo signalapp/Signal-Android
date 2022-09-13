@@ -97,7 +97,7 @@ class MediaSelectionActivity :
     viewModel = ViewModelProvider(this, factory)[MediaSelectionViewModel::class.java]
 
     val textStoryToggle: ConstraintLayout = findViewById(R.id.switch_widget)
-    val cameraDisplay = CameraDisplay.getDisplay(textStoryToggle)
+    val cameraDisplay = CameraDisplay.getDisplay(this)
 
     textStoryToggle.updateLayoutParams<FrameLayout.LayoutParams> {
       bottomMargin = cameraDisplay.getToggleBottomMargin()

@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -78,7 +78,7 @@ public final class ProxyBottomSheetFragment extends BottomSheetDialogFragment {
   }
 
   private void initViewModel() {
-    this.viewModel = ViewModelProviders.of(this).get(EditProxyViewModel.class);
+    this.viewModel = new ViewModelProvider(this).get(EditProxyViewModel.class);
 
     viewModel.getSaveState().observe(getViewLifecycleOwner(), this::presentSaveState);
     viewModel.getEvents().observe(getViewLifecycleOwner(), this::presentEvents);

@@ -20,7 +20,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import org.signal.core.util.logging.Log;
 import org.signal.imageeditor.core.ImageEditorView;
@@ -84,7 +84,7 @@ public final class WallpaperCropActivity extends BaseActivity {
     Log.i(TAG, "Cropping wallpaper for " + (recipientId == null ? "default wallpaper" : recipientId));
 
     WallpaperCropViewModel.Factory factory = new WallpaperCropViewModel.Factory(recipientId);
-    viewModel = ViewModelProviders.of(this, factory).get(WallpaperCropViewModel.class);
+    viewModel = new ViewModelProvider(this, factory).get(WallpaperCropViewModel.class);
 
     imageEditor = findViewById(R.id.image_editor);
     View          sentBubble     = findViewById(R.id.preview_bubble_2);

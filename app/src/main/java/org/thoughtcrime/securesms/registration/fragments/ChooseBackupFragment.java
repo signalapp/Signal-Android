@@ -15,7 +15,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.core.text.HtmlCompat;
 import androidx.navigation.Navigation;
 
@@ -60,7 +59,6 @@ public class ChooseBackupFragment extends LoggingFragment {
     }
   }
 
-  @RequiresApi(21)
   private void onChooseBackupSelected(@NonNull View view) {
     Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
 

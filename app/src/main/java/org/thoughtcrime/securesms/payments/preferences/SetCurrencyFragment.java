@@ -6,7 +6,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -31,7 +31,7 @@ public final class SetCurrencyFragment extends LoggingFragment {
 
     toolbar.setNavigationOnClickListener(v -> Navigation.findNavController(v).popBackStack());
 
-    SetCurrencyViewModel viewModel = ViewModelProviders.of(this, new SetCurrencyViewModel.Factory()).get(SetCurrencyViewModel.class);
+    SetCurrencyViewModel viewModel = new ViewModelProvider(this, new SetCurrencyViewModel.Factory()).get(SetCurrencyViewModel.class);
 
     BaseSettingsAdapter adapter = new BaseSettingsAdapter();
     adapter.configureSingleSelect(selection -> viewModel.select((Currency) selection));

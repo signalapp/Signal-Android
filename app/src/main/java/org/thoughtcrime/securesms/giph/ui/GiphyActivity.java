@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
@@ -65,7 +65,7 @@ public class GiphyActivity extends PassphraseRequiredActivity implements Keyboar
     sendType    = getIntent().getParcelableExtra(EXTRA_TRANSPORT);
     text        = getIntent().getCharSequenceExtra(EXTRA_TEXT);
 
-    giphyMp4ViewModel = ViewModelProviders.of(this, new GiphyMp4ViewModel.Factory(forMms)).get(GiphyMp4ViewModel.class);
+    giphyMp4ViewModel = new ViewModelProvider(this, new GiphyMp4ViewModel.Factory(forMms)).get(GiphyMp4ViewModel.class);
     giphyMp4ViewModel.getSaveResultEvents().observe(this, this::handleGiphyMp4SaveResult);
 
     initializeToolbar();

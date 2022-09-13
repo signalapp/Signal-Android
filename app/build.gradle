@@ -417,10 +417,11 @@ dependencies {
 
     implementation (libs.androidx.appcompat) {
         version {
-            strictly '1.2.0'
+            strictly '1.5.1'
         }
     }
-    implementation libs.androidx.window
+    implementation libs.androidx.window.window
+    implementation libs.androidx.window.java
     implementation libs.androidx.recyclerview
     implementation libs.material.material
     implementation libs.androidx.legacy.support
@@ -433,7 +434,9 @@ dependencies {
     implementation libs.androidx.multidex
     implementation libs.androidx.navigation.fragment.ktx
     implementation libs.androidx.navigation.ui.ktx
-    implementation libs.androidx.lifecycle.extensions
+    implementation libs.androidx.lifecycle.viewmodel.ktx
+    implementation libs.androidx.lifecycle.livedata.ktx
+    implementation libs.androidx.lifecycle.process
     implementation libs.androidx.lifecycle.viewmodel.savedstate
     implementation libs.androidx.lifecycle.common.java8
     implementation libs.androidx.lifecycle.reactivestreams.ktx
@@ -561,7 +564,7 @@ dependencies {
     androidTestImplementation testLibs.mockito.kotlin
     androidTestImplementation testLibs.square.okhttp.mockserver
 
-    instrumentationImplementation (testLibs.androidx.fragment.testing) {
+    instrumentationImplementation (libs.androidx.fragment.testing) {
         exclude group: 'androidx.test', module: 'core'
     }
 

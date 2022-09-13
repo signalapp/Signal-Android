@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import app.cash.exhaustive.Exhaustive
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionNavigator
@@ -17,12 +18,15 @@ import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionViewModel
 import org.thoughtcrime.securesms.mediasend.v2.MediaValidator
 import org.thoughtcrime.securesms.mediasend.v2.review.MediaSelectionItemTouchHelper
 import org.thoughtcrime.securesms.permissions.Permissions
+import org.thoughtcrime.securesms.util.LifecycleDisposable
 
 private const val MEDIA_GALLERY_TAG = "MEDIA_GALLERY"
 
 class MediaSelectionGalleryFragment : Fragment(R.layout.fragment_container), MediaGalleryFragment.Callbacks {
 
   private lateinit var mediaGalleryFragment: MediaGalleryFragment
+
+  private val lifecycleDisposable = LifecycleDisposable()
 
   private val navigator = MediaSelectionNavigator(
     toCamera = R.id.action_mediaGalleryFragment_to_mediaCaptureFragment
@@ -52,7 +56,10 @@ class MediaSelectionGalleryFragment : Fragment(R.layout.fragment_container), Med
       )
     }
 
-    sharedViewModel.mediaErrors.observe(viewLifecycleOwner, this::handleError)
+    lifecycleDisposable.bindTo(viewLifecycleOwner)
+    lifecycleDisposable += sharedViewModel.mediaErrors
+      .observeOn(AndroidSchedulers.mainThread())
+      .subscribe(this::handleError)
   }
 
   private fun handleError(error: MediaValidator.FilterError) {

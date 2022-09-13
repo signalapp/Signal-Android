@@ -15,7 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
@@ -97,7 +97,7 @@ public final class GroupJoinBottomSheetDialogFragment extends BottomSheetDialogF
 
     GroupJoinViewModel.Factory factory = new GroupJoinViewModel.Factory(requireContext().getApplicationContext(), getGroupInviteLinkUrl());
 
-    GroupJoinViewModel viewModel = ViewModelProviders.of(this, factory).get(GroupJoinViewModel.class);
+    GroupJoinViewModel viewModel = new ViewModelProvider(this, factory).get(GroupJoinViewModel.class);
 
     viewModel.getGroupDetails().observe(getViewLifecycleOwner(), details -> {
       groupName.setText(details.getGroupName());

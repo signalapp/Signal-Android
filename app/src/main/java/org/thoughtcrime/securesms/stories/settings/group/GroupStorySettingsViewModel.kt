@@ -38,7 +38,7 @@ class GroupStorySettingsViewModel(private val groupId: GroupId) : ViewModel() {
   }
 
   class Factory(private val parcelableGroupId: ParcelableGroupId) : ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
       return modelClass.cast(GroupStorySettingsViewModel(ParcelableGroupId.get(parcelableGroupId)!!)) as T
     }
   }

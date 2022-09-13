@@ -8,7 +8,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.R;
@@ -27,7 +27,7 @@ public class ApplicationPreferencesViewModel extends ViewModel {
   }
 
   static ApplicationPreferencesViewModel getApplicationPreferencesViewModel(@NonNull FragmentActivity activity) {
-    return ViewModelProviders.of(activity).get(ApplicationPreferencesViewModel.class);
+    return new ViewModelProvider(activity).get(ApplicationPreferencesViewModel.class);
   }
 
   void refreshStorageBreakdown(@NonNull Context context) {

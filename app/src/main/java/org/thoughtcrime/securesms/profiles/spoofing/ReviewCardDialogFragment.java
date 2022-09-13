@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.PluralsRes;
 import androidx.annotation.StringRes;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.thoughtcrime.securesms.R;
@@ -99,7 +99,7 @@ public class ReviewCardDialogFragment extends FullScreenDialogFragment {
     ReviewCardRepository        repository = getRepository();
     ReviewCardViewModel.Factory factory    = new ReviewCardViewModel.Factory(repository, getGroupId());
 
-    viewModel = ViewModelProviders.of(this, factory).get(ReviewCardViewModel.class);
+    viewModel = new ViewModelProvider(this, factory).get(ReviewCardViewModel.class);
   }
 
   private @StringRes int getDescriptionResId() {

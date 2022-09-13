@@ -181,7 +181,7 @@ class TextStoryPostCreationFragment : Fragment(R.layout.stories_text_post_creati
   }
 
   private fun initializeScenePositioning() {
-    val cameraDisplay = CameraDisplay.getDisplay(requireView())
+    val cameraDisplay = CameraDisplay.getDisplay(requireActivity())
 
     if (!cameraDisplay.roundViewFinderCorners) {
       binding.storyTextPostCard.radius = 0f

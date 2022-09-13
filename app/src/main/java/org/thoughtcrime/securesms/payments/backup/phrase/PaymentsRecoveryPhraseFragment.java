@@ -15,7 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -110,7 +110,7 @@ public class PaymentsRecoveryPhraseFragment extends Fragment {
     edit.setVisibility(View.VISIBLE);
     copy.setVisibility(View.GONE);
 
-    PaymentsRecoveryPhraseViewModel viewModel = ViewModelProviders.of(this).get(PaymentsRecoveryPhraseViewModel.class);
+    PaymentsRecoveryPhraseViewModel viewModel = new ViewModelProvider(this).get(PaymentsRecoveryPhraseViewModel.class);
 
     next.setOnClickListener(v -> viewModel.onSubmit(words));
     edit.setOnClickListener(v -> Navigation.findNavController(v).popBackStack());

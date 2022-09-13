@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.registration.fragments;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
@@ -24,7 +24,7 @@ public final class EnterSmsCodeFragment extends BaseEnterSmsCodeFragment<Registr
 
   @Override
   protected @NonNull RegistrationViewModel getViewModel() {
-    return ViewModelProviders.of(requireActivity()).get(RegistrationViewModel.class);
+    return new ViewModelProvider(requireActivity()).get(RegistrationViewModel.class);
   }
 
   @Override

@@ -359,7 +359,7 @@ public class Camera1Fragment extends LoggingFragment implements CameraFragment,
   private void initializeViewFinderAndControlsPositioning() {
     CardView      cameraCard    = requireView().findViewById(R.id.camera_preview_parent);
     View          controls      = requireView().findViewById(R.id.camera_controls_container);
-    CameraDisplay cameraDisplay = CameraDisplay.getDisplay(requireView());
+    CameraDisplay cameraDisplay = CameraDisplay.getDisplay(requireActivity());
 
     if (!cameraDisplay.getRoundViewFinderCorners()) {
       cameraCard.setRadius(0f);

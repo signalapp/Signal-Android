@@ -8,7 +8,7 @@ import android.widget.FrameLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.thoughtcrime.securesms.R;
@@ -106,7 +106,7 @@ public final class MessageDetailsFragment extends FullScreenDialogFragment {
     final Long        messageId   = requireArguments().getLong(MESSAGE_ID_EXTRA, -1);
     final Factory     factory     = new Factory(recipientId, type, messageId);
 
-    viewModel = ViewModelProviders.of(this, factory).get(MessageDetailsViewModel.class);
+    viewModel = new ViewModelProvider(this, factory).get(MessageDetailsViewModel.class);
     viewModel.getMessageDetails().observe(this, details -> {
       if (details == null) {
         dismissAllowingStateLoss();

@@ -4,13 +4,16 @@
 dependencyResolutionManagement {
     versionCatalogs {
         libs {
-            version('libsignal-client', '0.20.0')
-            version('exoplayer', '2.18.1')
             version('androidx-camera', '1.1.0')
-            version('androidx-lifecycle', '2.3.1')
-            version('mp4parser', '1.9.39')
-            version('kotlin', '1.6.21')
+            version('androidx-fragment', '1.5.2')
+            version('androidx-lifecycle', '2.5.1')
+            version('androidx-navigation', '2.5.2')
+            version('androidx-window', '1.0.0')
+            version('exoplayer', '2.18.1')
             version('glide', '4.13.2')
+            version('kotlin', '1.6.21')
+            version('libsignal-client', '0.20.0')
+            version('mp4parser', '1.9.39')
 
             // Desugaring
             alias('android-tools-desugar').to('com.android.tools:desugar_jdk_libs:1.1.5')
@@ -20,12 +23,15 @@ dependencyResolutionManagement {
             alias('kotlin-reflect').to('org.jetbrains.kotlin', 'kotlin-reflect').versionRef('kotlin')
 
             // Android X
+            alias('androidx-activity-ktx').to('androidx.activity:activity-ktx:1.5.1')
             alias('androidx-core-ktx').to('androidx.core:core-ktx:1.5.0')
-            alias('androidx-fragment-ktx').to('androidx.fragment:fragment-ktx:1.3.5')
-            alias('androidx-annotation').to('androidx.annotation:annotation:1.2.0')
-            alias('androidx-appcompat').to('androidx.appcompat:appcompat:1.2.0')
+            alias('androidx-fragment-ktx').to('androidx.fragment', 'fragment-ktx').versionRef('androidx-fragment')
+            alias('androidx-fragment-testing').to('androidx.fragment', 'fragment-testing').versionRef('androidx-fragment')
+            alias('androidx-annotation').to('androidx.annotation:annotation:1.4.0')
+            alias('androidx-appcompat').to('androidx.appcompat:appcompat:1.5.1')
             alias('androidx-constraintlayout').to('androidx.constraintlayout:constraintlayout:2.0.4')
-            alias('androidx-window').to('androidx.window:window:1.0.0-alpha09')
+            alias('androidx-window-window').to('androidx.window', 'window').versionRef('androidx-window')
+            alias('androidx-window-java').to('androidx.window', 'window-java').versionRef('androidx-window')
             alias('androidx-recyclerview').to('androidx.recyclerview:recyclerview:1.2.1')
             alias('androidx-legacy-support').to('androidx.legacy:legacy-support-v13:1.0.0')
             alias('androidx-legacy-preference').to('androidx.legacy:legacy-preference-v14:1.0.0')
@@ -34,9 +40,11 @@ dependencyResolutionManagement {
             alias('androidx-gridlayout').to('androidx.gridlayout:gridlayout:1.0.0')
             alias('androidx-exifinterface').to('androidx.exifinterface:exifinterface:1.3.3')
             alias('androidx-multidex').to('androidx.multidex:multidex:2.0.1')
-            alias('androidx-navigation-fragment-ktx').to('androidx.navigation:navigation-fragment-ktx:2.3.5')
-            alias('androidx-navigation-ui-ktx').to('androidx.navigation:navigation-ui-ktx:2.3.5')
-            alias('androidx-lifecycle-extensions').to('androidx.lifecycle:lifecycle-extensions:2.2.0')
+            alias('androidx-navigation-fragment-ktx').to('androidx.navigation', 'navigation-fragment-ktx').versionRef('androidx-navigation')
+            alias('androidx-navigation-ui-ktx').to('androidx.navigation', 'navigation-ui-ktx').versionRef('androidx-navigation')
+            alias('androidx-lifecycle-viewmodel-ktx').to('androidx.lifecycle', 'lifecycle-viewmodel-ktx').versionRef('androidx-lifecycle')
+            alias('androidx-lifecycle-livedata-ktx').to('androidx.lifecycle', 'lifecycle-livedata-ktx').versionRef('androidx-lifecycle')
+            alias('androidx-lifecycle-process').to('androidx.lifecycle', 'lifecycle-process').versionRef('androidx-lifecycle')
             alias('androidx-lifecycle-viewmodel-savedstate').to('androidx.lifecycle', 'lifecycle-viewmodel-savedstate').versionRef('androidx-lifecycle')
             alias('androidx-lifecycle-common-java8').to('androidx.lifecycle', 'lifecycle-common-java8').versionRef('androidx-lifecycle')
             alias('androidx-lifecycle-reactivestreams-ktx').to('androidx.lifecycle', 'lifecycle-reactivestreams-ktx').versionRef('androidx-lifecycle')
@@ -124,15 +132,15 @@ dependencyResolutionManagement {
         }
 
         testLibs {
-            version('robolectric', '4.8.1')
             version('androidx-test', '1.4.0')
+            version('androidx-test-ext-junit', '1.1.1')
+            version('robolectric', '4.8.1')
 
             alias('junit-junit').to('junit:junit:4.13.2')
             alias('androidx-test-core').to('androidx.test', 'core').versionRef('androidx-test')
             alias('androidx-test-core-ktx').to('androidx.test', 'core-ktx').versionRef('androidx-test')
-            alias('androidx-test-ext-junit').to('androidx.test.ext:junit:1.1.1')
-            alias('androidx-test-ext-junit-ktx').to('androidx.test.ext:junit-ktx:1.1.1')
-            alias('androidx-fragment-testing').to('androidx.fragment:fragment-testing:1.3.2')
+            alias('androidx-test-ext-junit').to('androidx.test.ext', 'junit').versionRef('androidx-test-ext-junit')
+            alias('androidx-test-ext-junit-ktx').to('androidx.test.ext', 'junit-ktx').versionRef('androidx-test-ext-junit')
             alias('espresso-core').to('androidx.test.espresso:espresso-core:3.4.0')
             alias('mockito-core').to('org.mockito:mockito-inline:4.6.1')
             alias('mockito-kotlin').to('org.mockito.kotlin:mockito-kotlin:4.0.0')
@@ -148,7 +156,7 @@ dependencyResolutionManagement {
         }
 
         lintLibs {
-            version('lint', '26.6.3')
+            version('lint', '30.2.2')
 
             alias('lint-api').to('com.android.tools.lint', 'lint-api').versionRef('lint')
             alias('lint-checks').to('com.android.tools.lint', 'lint-checks').versionRef('lint')

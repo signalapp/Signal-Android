@@ -91,7 +91,7 @@
                             android:contentDescription="@string/conversation_activity__emoji_toggle_description"
                             android:paddingStart="12dp"
                             android:paddingEnd="12dp"
-                            android:tint="@color/signal_colorOnSurfaceVariant" />
+                            app:tint="@color/signal_colorOnSurfaceVariant" />
 
                         <Space
                             android:layout_width="0dp"
@@ -135,7 +135,7 @@
                                     android:background="?selectableItemBackgroundBorderless"
                                     android:contentDescription="@string/conversation_activity__quick_attachment_drawer_toggle_camera_description"
                                     android:scaleType="fitCenter"
-                                    android:tint="@color/signal_colorOnSurfaceVariant"
+                                    app:tint="@color/signal_colorOnSurfaceVariant"
                                     app:srcCompat="@drawable/ic_camera_24" />
 
                                 <org.thoughtcrime.securesms.components.MicrophoneRecorderView
@@ -169,7 +169,7 @@
                                     android:background="?selectableItemBackgroundBorderless"
                                     android:contentDescription="@string/ConversationActivity_add_attachment"
                                     android:scaleType="fitCenter"
-                                    android:tint="@color/signal_colorOnSurface"
+                                    app:tint="@color/signal_colorOnSurface"
                                     app:srcCompat="@drawable/ic_plus_24" />
 
                             </org.thoughtcrime.securesms.components.HidingLinearLayout>
@@ -213,7 +213,7 @@
                 android:nextFocusLeft="@+id/embedded_text_editor"
                 android:padding="9dp"
                 android:scaleType="fitCenter"
-                android:tint="@color/conversation_send_button_tint"
+                app:tint="@color/conversation_send_button_tint"
                 app:srcCompat="@drawable/ic_plus_24" />
 
             <org.thoughtcrime.securesms.components.SendButton
@@ -225,7 +225,7 @@
                 android:nextFocusLeft="@+id/embedded_text_editor"
                 android:padding="9dp"
                 android:scaleType="fitCenter"
-                android:tint="@color/conversation_send_button_tint"
+                app:tint="@color/conversation_send_button_tint"
                 app:srcCompat="@drawable/ic_send_unlock_24" />
 
         </org.thoughtcrime.securesms.components.AnimatingToggle>

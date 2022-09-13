@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
@@ -63,7 +63,7 @@ public final class QualitySelectorBottomSheetDialog extends BottomSheetDialogFra
     standard.setOnClickListener(listener);
     high.setOnClickListener(listener);
 
-    viewModel = ViewModelProviders.of(requireActivity()).get(MediaSelectionViewModel.class);
+    viewModel = new ViewModelProvider(requireActivity()).get(MediaSelectionViewModel.class);
     viewModel.getState().observe(getViewLifecycleOwner(), this::updateQuality);
   }
 

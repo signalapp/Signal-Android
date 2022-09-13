@@ -14,7 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.app.ShareCompat;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher;
@@ -89,7 +89,7 @@ public class EditProxyFragment extends Fragment {
   }
 
   private void initViewModel() {
-    viewModel = ViewModelProviders.of(this).get(EditProxyViewModel.class);
+    viewModel = new ViewModelProvider(this).get(EditProxyViewModel.class);
 
     viewModel.getUiState().observe(getViewLifecycleOwner(), this::presentUiState);
     viewModel.getProxyState().observe(getViewLifecycleOwner(), this::presentProxyState);

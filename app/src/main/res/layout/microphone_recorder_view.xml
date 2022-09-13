@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:viewBindingIgnore="true"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn="@layout/conversation_input_panel">
+    tools:showIn="@layout/conversation_input_panel"
+    tools:viewBindingIgnore="true">
 
     <ImageButton
         android:id="@+id/quick_audio_toggle"
@@ -14,8 +14,8 @@
         android:background="@null"
         android:contentDescription="@string/conversation_activity__quick_attachment_drawer_record_and_send_audio_description"
         android:scaleType="fitCenter"
-        android:tint="@color/signal_colorOnSurfaceVariant"
-        app:srcCompat="@drawable/ic_mic_24" />
+        app:srcCompat="@drawable/ic_mic_24"
+        app:tint="@color/signal_colorOnSurfaceVariant" />
 
     <LinearLayout
         android:id="@+id/lock_drop_target"
@@ -55,11 +55,11 @@
         android:layout_height="74dp"
         android:layout_marginStart="-18dp"
         android:layout_marginTop="-18dp"
-        android:padding="18dp"
         android:background="@drawable/circle_tintable"
         android:clickable="false"
-        android:visibility="gone"
+        android:padding="18dp"
         android:tint="@color/core_white"
+        android:visibility="gone"
         app:srcCompat="@drawable/ic_mic_24"
         tools:ignore="ContentDescription"
         tools:visibility="visible" />

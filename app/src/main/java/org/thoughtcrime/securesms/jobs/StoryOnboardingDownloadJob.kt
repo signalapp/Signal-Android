@@ -174,7 +174,7 @@ class StoryOnboardingDownloadJob private constructor(parameters: Parameters) : B
     }
 
     for (index in 0 until localeList.size()) {
-      val locale: Locale = localeList.get(index)
+      val locale: Locale = localeList.get(index) ?: continue
       if (locale.language.isNotEmpty()) {
         if (locale.country.isNotEmpty()) {
           potentialOnboardingUrlLanguages += "${locale.language}_${locale.country}"

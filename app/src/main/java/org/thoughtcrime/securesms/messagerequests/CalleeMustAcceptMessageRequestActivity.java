@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import org.thoughtcrime.securesms.BaseActivity;
 import org.thoughtcrime.securesms.R;
@@ -66,7 +66,7 @@ public class CalleeMustAcceptMessageRequestActivity extends BaseActivity {
 
     RecipientId                                     recipientId = getIntent().getParcelableExtra(RECIPIENT_ID_EXTRA);
     CalleeMustAcceptMessageRequestViewModel.Factory factory     = new CalleeMustAcceptMessageRequestViewModel.Factory(recipientId);
-    CalleeMustAcceptMessageRequestViewModel         viewModel   = ViewModelProviders.of(this, factory).get(CalleeMustAcceptMessageRequestViewModel.class);
+    CalleeMustAcceptMessageRequestViewModel         viewModel   = new ViewModelProvider(this, factory).get(CalleeMustAcceptMessageRequestViewModel.class);
 
     viewModel.getRecipient().observe(this, recipient -> {
       description.setText(getString(R.string.CalleeMustAcceptMessageRequestDialogFragment__s_will_get_a_message_request_from_you, recipient.getDisplayName(this)));

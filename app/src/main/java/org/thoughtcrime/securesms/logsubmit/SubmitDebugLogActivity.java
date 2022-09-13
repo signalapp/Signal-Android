@@ -21,7 +21,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.app.ShareCompat;
 import androidx.core.text.util.LinkifyCompat;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -69,7 +69,7 @@ public class SubmitDebugLogActivity extends BaseActivity implements SubmitDebugL
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     getSupportActionBar().setTitle(R.string.HelpSettingsFragment__debug_log);
 
-    this.viewModel = ViewModelProviders.of(this, new SubmitDebugLogViewModel.Factory()).get(SubmitDebugLogViewModel.class);
+    this.viewModel = new ViewModelProvider(this, new SubmitDebugLogViewModel.Factory()).get(SubmitDebugLogViewModel.class);
 
     initView();
     initViewModel();

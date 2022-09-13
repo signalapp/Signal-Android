@@ -1,10 +1,10 @@
 package org.thoughtcrime.securesms.mediasend
 
+import android.app.Activity
 import android.content.res.Resources
-import android.view.View
 import androidx.annotation.Dimension
 import androidx.annotation.Px
-import androidx.window.WindowManager
+import androidx.window.layout.WindowMetricsCalculator
 import org.signal.core.util.dp
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.stories.Stories
@@ -110,9 +110,9 @@ enum class CameraDisplay(
     }
 
     @JvmStatic
-    fun getDisplay(view: View): CameraDisplay {
-      val windowManager = WindowManager(view.context)
-      val windowMetrics = windowManager.getCurrentWindowMetrics()
+    fun getDisplay(activity: Activity): CameraDisplay {
+      val windowMetricsCalculator = WindowMetricsCalculator.getOrCreate()
+      val windowMetrics = windowMetricsCalculator.computeCurrentWindowMetrics(activity)
       val width = windowMetrics.bounds.width()
       val height = windowMetrics.bounds.height()
       val aspectRatio = width.toFloat() / height

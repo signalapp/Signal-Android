@@ -345,7 +345,7 @@ class RetrieveRemoteAnnouncementsJob private constructor(private val force: Bool
     }
 
     for (index in 0 until localeList.size()) {
-      val locale: Locale = localeList.get(index)
+      val locale: Locale = localeList.get(index) ?: continue
       if (locale.language.isNotEmpty()) {
         if (locale.country.isNotEmpty()) {
           potentialNoteUrls += "$this/${locale.language}_${locale.country}.json"

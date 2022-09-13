@@ -19,7 +19,7 @@ import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
 import androidx.constraintlayout.widget.Group;
 import androidx.core.content.ContextCompat;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.google.android.material.button.MaterialButton;
@@ -83,7 +83,7 @@ public abstract class DeviceTransferSetupFragment extends LoggingFragment {
     MaterialButton verifyNo        = view.findViewById(R.id.device_transfer_setup_fragment_sas_verify_no);
     MaterialButton verifyYes       = view.findViewById(R.id.device_transfer_setup_fragment_sas_verify_yes);
 
-    viewModel = ViewModelProviders.of(this).get(DeviceTransferSetupViewModel.class);
+    viewModel = new ViewModelProvider(this).get(DeviceTransferSetupViewModel.class);
 
     viewModel.getState().observe(getViewLifecycleOwner(), state -> {
       SetupStep step = state.getCurrentSetupStep();

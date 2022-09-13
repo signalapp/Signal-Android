@@ -12,7 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
@@ -86,7 +86,7 @@ public final class GroupsV1MigrationInitiationBottomSheetDialogFragment extends 
     RecipientId groupRecipientId = getArguments().getParcelable(KEY_GROUP_RECIPIENT_ID);
 
     //noinspection ConstantConditions
-    viewModel = ViewModelProviders.of(this, new GroupsV1MigrationInitiationViewModel.Factory(groupRecipientId)).get(GroupsV1MigrationInitiationViewModel.class);
+    viewModel = new ViewModelProvider(this, new GroupsV1MigrationInitiationViewModel.Factory(groupRecipientId)).get(GroupsV1MigrationInitiationViewModel.class);
     viewModel.getMigrationState().observe(getViewLifecycleOwner(), this::onMigrationStateChanged);
 
     upgradeButton.setEnabled(false);

@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.annimon.stream.Stream;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -73,8 +73,7 @@ public final class AddToGroupsActivity extends ContactSelectionActivity {
     next.setOnClickListener(v -> handleNextPressed());
 
     AddToGroupViewModel.Factory factory = new AddToGroupViewModel.Factory(getRecipientId());
-    viewModel = ViewModelProviders.of(this, factory)
-                                  .get(AddToGroupViewModel.class);
+    viewModel = new ViewModelProvider(this, factory).get(AddToGroupViewModel.class);
 
 
     viewModel.getEvents().observe(this, event -> {

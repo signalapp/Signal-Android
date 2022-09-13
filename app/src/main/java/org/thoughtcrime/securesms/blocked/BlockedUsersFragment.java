@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.thoughtcrime.securesms.BlockUnblockDialog;
@@ -59,7 +59,7 @@ public class BlockedUsersFragment extends Fragment {
       }
     });
 
-    viewModel = ViewModelProviders.of(requireActivity()).get(BlockedUsersViewModel.class);
+    viewModel = new ViewModelProvider(requireActivity()).get(BlockedUsersViewModel.class);
     viewModel.getRecipients().observe(getViewLifecycleOwner(), list -> {
       if (list.isEmpty()) {
         empty.setVisibility(View.VISIBLE);

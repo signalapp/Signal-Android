@@ -9,7 +9,7 @@ import androidx.annotation.PluralsRes;
 import androidx.autofill.HintConstants;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import org.thoughtcrime.securesms.R;
@@ -48,7 +48,7 @@ public class CreateKbsPinFragment extends BaseKbsPinFragment<CreateKbsPinViewMod
 
   @Override
   protected CreateKbsPinViewModel initializeViewModel() {
-    CreateKbsPinViewModel    viewModel = ViewModelProviders.of(this).get(CreateKbsPinViewModel.class);
+    CreateKbsPinViewModel    viewModel = new ViewModelProvider(this).get(CreateKbsPinViewModel.class);
     CreateKbsPinFragmentArgs args      = CreateKbsPinFragmentArgs.fromBundle(requireArguments());
 
     viewModel.getNavigationEvents().observe(getViewLifecycleOwner(), e -> onConfirmPin(e.getUserEntry(), e.getKeyboard(), args.getIsPinChange()));

@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.google.android.material.textfield.MaterialAutoCompleteTextView;
@@ -35,7 +35,7 @@ public class PaymentsRecoveryEntryFragment extends Fragment {
     TextInputLayout                wrapper   = view.findViewById(R.id.payments_recovery_entry_fragment_word_wrapper);
     MaterialAutoCompleteTextView   word      = view.findViewById(R.id.payments_recovery_entry_fragment_word);
     View                           next      = view.findViewById(R.id.payments_recovery_entry_fragment_next);
-    PaymentsRecoveryEntryViewModel viewModel = ViewModelProviders.of(this).get(PaymentsRecoveryEntryViewModel.class);
+    PaymentsRecoveryEntryViewModel viewModel = new ViewModelProvider(this).get(PaymentsRecoveryEntryViewModel.class);
 
     toolbar.setNavigationOnClickListener(t -> Navigation.findNavController(view).popBackStack(R.id.paymentsHome, false));
 

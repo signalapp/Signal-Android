@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -124,7 +124,7 @@ public final class StickerManagementActivity extends PassphraseRequiredActivity 
 
   private void initViewModel() {
     StickerManagementRepository repository = new StickerManagementRepository(this);
-    viewModel = ViewModelProviders.of(this, new StickerManagementViewModel.Factory(getApplication(), repository)).get(StickerManagementViewModel.class);
+    viewModel = new ViewModelProvider(this, new StickerManagementViewModel.Factory(getApplication(), repository)).get(StickerManagementViewModel.class);
 
     viewModel.init();
     viewModel.getStickerPacks().observe(this, packResult -> {

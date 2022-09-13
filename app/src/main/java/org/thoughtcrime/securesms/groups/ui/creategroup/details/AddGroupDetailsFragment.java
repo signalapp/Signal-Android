@@ -20,7 +20,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
 
@@ -200,7 +200,7 @@ public class AddGroupDetailsFragment extends LoggingFragment {
     AddGroupDetailsRepository        repository = new AddGroupDetailsRepository(requireContext());
     AddGroupDetailsViewModel.Factory factory    = new AddGroupDetailsViewModel.Factory(Arrays.asList(args.getRecipientIds()), repository);
 
-    viewModel = ViewModelProviders.of(this, factory).get(AddGroupDetailsViewModel.class);
+    viewModel = new ViewModelProvider(this, factory).get(AddGroupDetailsViewModel.class);
 
     viewModel.getGroupCreateResult().observe(getViewLifecycleOwner(), this::handleGroupCreateResult);
   }

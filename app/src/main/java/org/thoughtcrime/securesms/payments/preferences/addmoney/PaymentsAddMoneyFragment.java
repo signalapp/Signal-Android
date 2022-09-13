@@ -11,7 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import org.thoughtcrime.securesms.LoggingFragment;
@@ -28,7 +28,7 @@ public final class PaymentsAddMoneyFragment extends LoggingFragment {
   @Override public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
 
-    PaymentsAddMoneyViewModel viewModel = ViewModelProviders.of(this, new PaymentsAddMoneyViewModel.Factory()).get(PaymentsAddMoneyViewModel.class);
+    PaymentsAddMoneyViewModel viewModel = new ViewModelProvider(this, new PaymentsAddMoneyViewModel.Factory()).get(PaymentsAddMoneyViewModel.class);
 
     Toolbar           toolbar                  = view.findViewById(R.id.payments_add_money_toolbar);
     QrView            qrImageView              = view.findViewById(R.id.payments_add_money_qr_image);

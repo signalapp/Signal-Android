@@ -16,7 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.ViewCompat;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -94,7 +94,7 @@ public class ContactShareEditActivity extends PassphraseRequiredActivity impleme
 
     SharedContactRepository contactRepository = new SharedContactRepository(this, AsyncTask.THREAD_POOL_EXECUTOR);
 
-    viewModel = ViewModelProviders.of(this, new Factory(contactUris, contactRepository)).get(ContactShareEditViewModel.class);
+    viewModel = new ViewModelProvider(this, new Factory(contactUris, contactRepository)).get(ContactShareEditViewModel.class);
     viewModel.getContacts().observe(this, contacts -> {
       contactAdapter.setContacts(contacts);
       contactList.post(() -> contactList.scrollToPosition(0));

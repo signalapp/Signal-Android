@@ -10,7 +10,7 @@ import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
@@ -48,7 +48,7 @@ public class BlockedUsersActivity extends PassphraseRequiredActivity implements 
     BlockedUsersRepository        repository = new BlockedUsersRepository(this);
     BlockedUsersViewModel.Factory factory    = new BlockedUsersViewModel.Factory(repository);
 
-    viewModel = ViewModelProviders.of(this, factory).get(BlockedUsersViewModel.class);
+    viewModel = new ViewModelProvider(this, factory).get(BlockedUsersViewModel.class);
 
     Toolbar           toolbar           = findViewById(R.id.toolbar);
     ContactFilterView contactFilterView = findViewById(R.id.contact_filter_edit_text);

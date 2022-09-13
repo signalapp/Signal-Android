@@ -18,7 +18,7 @@ import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.Group;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -59,8 +59,9 @@ public class CameraContactSelectionFragment extends LoggingFragment implements C
     super.onCreate(savedInstanceState);
     setHasOptionsMenu(true);
 
-    this.contactViewModel   = ViewModelProviders.of(requireActivity(), new CameraContactSelectionViewModel.Factory(new CameraContactsRepository(requireContext())))
-                                                .get(CameraContactSelectionViewModel.class);
+    CameraContactSelectionViewModel.Factory factory = new CameraContactSelectionViewModel.Factory(new CameraContactsRepository(requireContext()));
+
+    this.contactViewModel = new ViewModelProvider(requireActivity(), factory).get(CameraContactSelectionViewModel.class);
   }
 
   @Override

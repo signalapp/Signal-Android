@@ -10,7 +10,7 @@ import android.webkit.WebViewClient;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
 import org.thoughtcrime.securesms.BuildConfig;
@@ -64,7 +64,8 @@ public final class CaptchaFragment extends LoggingFragment {
     }
 
     if (provider == null) {
-      viewModel = ViewModelProviders.of(requireActivity()).get(RegistrationViewModel.class);
+      viewModel = new ViewModelProvider(
+          requireActivity()).get(RegistrationViewModel.class);
     } else {
       viewModel = provider.get(this);
     }

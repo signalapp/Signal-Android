@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
@@ -78,7 +78,7 @@ public final class GroupsV1MigrationInfoBottomSheetDialogFragment extends Bottom
     //noinspection ConstantConditions
     GroupMigrationMembershipChange membershipChange = GroupMigrationMembershipChange.deserialize(getArguments().getString(KEY_MEMBERSHIP_CHANGE));
 
-    this.viewModel = ViewModelProviders.of(this, new GroupsV1MigrationInfoViewModel.Factory(membershipChange)).get(GroupsV1MigrationInfoViewModel.class);
+    this.viewModel = new ViewModelProvider(this, new GroupsV1MigrationInfoViewModel.Factory(membershipChange)).get(GroupsV1MigrationInfoViewModel.class);
     viewModel.getPendingMembers().observe(getViewLifecycleOwner(), this::onPendingMembersChanged);
     viewModel.getDroppedMembers().observe(getViewLifecycleOwner(), this::onDroppedMembersChanged);
 

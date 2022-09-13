@@ -20,7 +20,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.widget.ImageViewCompat;
 import androidx.core.widget.TextViewCompat;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -50,7 +50,7 @@ public class ChatWallpaperFragment extends Fragment {
 
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-    viewModel = ViewModelProviders.of(requireActivity()).get(ChatWallpaperViewModel.class);
+    viewModel = new ViewModelProvider(requireActivity()).get(ChatWallpaperViewModel.class);
 
     AvatarImageView    portrait             = view.findViewById(R.id.chat_wallpaper_preview_top_bar_portrait);
     Toolbar            toolbar              = view.findViewById(R.id.toolbar);

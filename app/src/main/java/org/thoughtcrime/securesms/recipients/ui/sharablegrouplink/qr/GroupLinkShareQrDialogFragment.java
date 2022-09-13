@@ -16,7 +16,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ShareCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
@@ -78,7 +78,7 @@ public class GroupLinkShareQrDialogFragment extends DialogFragment {
     GroupId.V2                        groupId   = GroupId.parseOrThrow(Objects.requireNonNull(arguments.getString(ARG_GROUP_ID))).requireV2();
     GroupLinkShareQrViewModel.Factory factory   = new GroupLinkShareQrViewModel.Factory(groupId);
 
-    viewModel = ViewModelProviders.of(this, factory).get(GroupLinkShareQrViewModel.class);
+    viewModel = new ViewModelProvider(this, factory).get(GroupLinkShareQrViewModel.class);
   }
 
   private void initializeViews(@NonNull View view) {

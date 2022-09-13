@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -48,7 +48,7 @@ public class MentionsPickerFragment extends LoggingFragment {
   @Override
   public void onActivityCreated(@Nullable Bundle savedInstanceState) {
     super.onActivityCreated(savedInstanceState);
-    viewModel = ViewModelProviders.of(requireActivity()).get(MentionsPickerViewModel.class);
+    viewModel = new ViewModelProvider(requireActivity()).get(MentionsPickerViewModel.class);
 
     initializeList();
 

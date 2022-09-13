@@ -21,7 +21,7 @@ import androidx.biometric.BiometricManager;
 import androidx.biometric.BiometricPrompt;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -96,7 +96,7 @@ public class ConfirmPaymentFragment extends BottomSheetDialogFragment {
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     ConfirmPaymentViewModel.Factory factory = new ConfirmPaymentViewModel.Factory(ConfirmPaymentFragmentArgs.fromBundle(requireArguments()).getCreatePaymentDetails());
-    viewModel = ViewModelProviders.of(this, factory).get(ConfirmPaymentViewModel.class);
+    viewModel = new ViewModelProvider(this, factory).get(ConfirmPaymentViewModel.class);
 
     RecyclerView          list    = view.findViewById(R.id.confirm_payment_fragment_list);
     ConfirmPaymentAdapter adapter = new ConfirmPaymentAdapter(new Callbacks());

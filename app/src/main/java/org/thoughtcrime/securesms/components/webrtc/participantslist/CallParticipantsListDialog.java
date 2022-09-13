@@ -11,7 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -72,7 +72,7 @@ public class CallParticipantsListDialog extends BottomSheetDialogFragment {
   public void onActivityCreated(@Nullable Bundle savedInstanceState) {
     super.onActivityCreated(savedInstanceState);
 
-    final WebRtcCallViewModel viewModel = ViewModelProviders.of(requireActivity()).get(WebRtcCallViewModel.class);
+    final WebRtcCallViewModel viewModel = new ViewModelProvider(requireActivity()).get(WebRtcCallViewModel.class);
 
     initializeList();
 

@@ -16,7 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.ListAdapter;
@@ -144,7 +144,7 @@ public class EditAboutFragment extends Fragment implements ManageProfileActivity
   }
 
   private void initializeViewModel() {
-    this.viewModel = ViewModelProviders.of(this).get(EditAboutViewModel.class);
+    this.viewModel = new ViewModelProvider(this).get(EditAboutViewModel.class);
 
     viewModel.getSaveState().observe(getViewLifecycleOwner(), this::presentSaveState);
     viewModel.getEvents().observe(getViewLifecycleOwner(), this::presentEvent);

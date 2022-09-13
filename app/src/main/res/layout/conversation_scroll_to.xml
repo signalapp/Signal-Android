@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:viewBindingIgnore="true"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    tools:parentTag="android.widget.FrameLayout">
+    tools:parentTag="android.widget.FrameLayout"
+    tools:viewBindingIgnore="true">
 
     <ImageButton
         android:id="@+id/conversation_scroll_to_button"
@@ -16,7 +17,7 @@
         android:contentDescription="@string/conversation_fragment__scroll_to_the_bottom_content_description"
         android:elevation="1dp"
         android:scaleType="center"
-        android:tint="@color/conversation_scroll_to_bottom_foreground_color"
+        app:tint="@color/conversation_scroll_to_bottom_foreground_color"
         tools:src="@drawable/ic_chevron_down_20" />
 
     <TextView

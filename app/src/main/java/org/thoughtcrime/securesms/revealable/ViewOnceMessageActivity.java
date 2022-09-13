@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.PassphraseRequiredActivity;
@@ -99,8 +99,7 @@ public class ViewOnceMessageActivity extends PassphraseRequiredActivity implemen
   private void initViewModel(long messageId, @NonNull Uri uri) {
     ViewOnceMessageRepository repository = new ViewOnceMessageRepository(this);
 
-    viewModel = ViewModelProviders.of(this, new ViewOnceMessageViewModel.Factory(messageId, repository))
-                                  .get(ViewOnceMessageViewModel.class);
+    viewModel = new ViewModelProvider(this, new ViewOnceMessageViewModel.Factory(messageId, repository)).get(ViewOnceMessageViewModel.class);
 
     viewModel.getMessage().observe(this, (message) -> {
       if (message == null) return;

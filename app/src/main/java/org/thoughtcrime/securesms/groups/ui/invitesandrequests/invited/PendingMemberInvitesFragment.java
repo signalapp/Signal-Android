@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.groups.GroupId;
@@ -113,7 +113,7 @@ public class PendingMemberInvitesFragment extends Fragment {
 
     PendingMemberInvitesViewModel.Factory factory = new PendingMemberInvitesViewModel.Factory(requireContext(), groupId);
 
-    viewModel = ViewModelProviders.of(requireActivity(), factory).get(PendingMemberInvitesViewModel.class);
+    viewModel = new ViewModelProvider(requireActivity(), factory).get(PendingMemberInvitesViewModel.class);
 
     viewModel.getWhoYouInvited().observe(getViewLifecycleOwner(), invitees -> {
       youInvited.setMembers(invitees);

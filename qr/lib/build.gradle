@@ -13,6 +13,6 @@ dependencies {
     implementation libs.rxjava3.rxjava
 
     // Included to force proper versions for verification and match main app
-    implementation 'androidx.lifecycle:lifecycle-livedata:2.3.1'
+    implementation 'androidx.lifecycle:lifecycle-livedata:2.5.1'
     implementation 'com.google.guava:guava:30.0-android'
 }

@@ -10,7 +10,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.autofill.HintConstants;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.airbnb.lottie.LottieDrawable;
@@ -50,7 +50,7 @@ public class ConfirmKbsPinFragment extends BaseKbsPinFragment<ConfirmKbsPinViewM
     ConfirmKbsPinRepository        repository = new ConfirmKbsPinRepository();
     ConfirmKbsPinViewModel.Factory factory    = new ConfirmKbsPinViewModel.Factory(userEntry, keyboard, repository);
 
-    viewModel = ViewModelProviders.of(this, factory).get(ConfirmKbsPinViewModel.class);
+    viewModel = new ViewModelProvider(this, factory).get(ConfirmKbsPinViewModel.class);
 
     viewModel.getLabel().observe(getViewLifecycleOwner(), this::updateLabel);
     viewModel.getSaveAnimation().observe(getViewLifecycleOwner(), this::updateSaveAnimation);

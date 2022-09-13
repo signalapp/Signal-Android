@@ -16,7 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.DialogFragment;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.LottieAnimationView;
@@ -125,7 +125,7 @@ public final class InsightsDashboardDialogFragment extends DialogFragment {
     final InsightsDashboardViewModel.Repository repository = new InsightsRepository(requireContext());
     final InsightsDashboardViewModel.Factory    factory    = new InsightsDashboardViewModel.Factory(repository);
 
-    viewModel  = ViewModelProviders.of(this, factory).get(InsightsDashboardViewModel.class);
+    viewModel  = new ViewModelProvider(this, factory).get(InsightsDashboardViewModel.class);
 
     viewModel.getState().observe(getViewLifecycleOwner(), state -> {
       updateInsecurePercent(state.getData());

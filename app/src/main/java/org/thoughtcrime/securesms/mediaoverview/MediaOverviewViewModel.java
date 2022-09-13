@@ -7,7 +7,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.SavedStateHandle;
 import androidx.lifecycle.SavedStateViewModelFactory;
 import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import org.thoughtcrime.securesms.database.MediaDatabase.Sorting;
 
@@ -40,6 +40,6 @@ public class MediaOverviewViewModel extends ViewModel {
   static MediaOverviewViewModel getMediaOverviewViewModel(@NonNull FragmentActivity activity) {
     SavedStateViewModelFactory savedStateViewModelFactory = new SavedStateViewModelFactory(activity.getApplication(), activity);
 
-    return ViewModelProviders.of(activity, savedStateViewModelFactory).get(MediaOverviewViewModel.class);
+    return new ViewModelProvider(activity, savedStateViewModelFactory).get(MediaOverviewViewModel.class);
   }
 }

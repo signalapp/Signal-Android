@@ -12,7 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -41,7 +41,7 @@ public class DeactivateWalletFragment extends Fragment {
     notice.setLearnMoreVisible(true);
     notice.setLink(getString(R.string.DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds));
 
-    DeactivateWalletViewModel viewModel = ViewModelProviders.of(this).get(DeactivateWalletViewModel.class);
+    DeactivateWalletViewModel viewModel = new ViewModelProvider(this).get(DeactivateWalletViewModel.class);
 
     viewModel.getBalance().observe(getViewLifecycleOwner(), balance::setMoney);
     viewModel.getDeactivationResults().observe(getViewLifecycleOwner(), r -> {

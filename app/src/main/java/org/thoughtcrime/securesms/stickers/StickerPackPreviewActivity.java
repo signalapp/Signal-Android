@@ -12,7 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -175,10 +175,10 @@ public final class StickerPackPreviewActivity extends PassphraseRequiredActivity
   }
 
   private void initViewModel(@NonNull String packId, @NonNull String packKey) {
-    viewModel = ViewModelProviders.of(this, new StickerPackPreviewViewModel.Factory(getApplication(),
+    viewModel = new ViewModelProvider(this, new StickerPackPreviewViewModel.Factory(getApplication(),
                                                                                     new StickerPackPreviewRepository(this),
-                                                                                    new StickerManagementRepository(this)))
-                                  .get(StickerPackPreviewViewModel.class);
+                                                                                    new StickerManagementRepository(this))
+    ).get(StickerPackPreviewViewModel.class);
 
     viewModel.getStickerManifest(packId, packKey).observe(this, manifest -> {
       if (manifest == null) return;

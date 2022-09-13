@@ -39,7 +39,7 @@
             android:nextFocusLeft="@+id/container"
             android:nextFocusRight="@+id/container"
             android:src="@drawable/ic_close_white_24dp"
-            android:tint="@color/signal_icon_tint_primary"
+            app:tint="@color/signal_icon_tint_primary"
             android:contentDescription="@string/InviteActivity_cancel"/>
 
 </LinearLayout>

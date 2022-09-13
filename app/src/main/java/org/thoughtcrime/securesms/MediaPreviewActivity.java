@@ -44,7 +44,7 @@ import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.Loader;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -168,7 +168,7 @@ public final class MediaPreviewActivity extends PassphraseRequiredActivity
     setSupportActionBar(findViewById(R.id.toolbar));
 
     voiceNoteMediaController = new VoiceNoteMediaController(this);
-    viewModel = ViewModelProviders.of(this).get(MediaPreviewViewModel.class);
+    viewModel = new ViewModelProvider(this).get(MediaPreviewViewModel.class);
 
     fullscreenHelper = new FullscreenHelper(this);
 

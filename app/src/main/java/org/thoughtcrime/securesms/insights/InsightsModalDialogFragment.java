@@ -14,7 +14,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.ArcProgressBar;
@@ -77,7 +77,7 @@ public final class InsightsModalDialogFragment extends DialogFragment {
   private void initializeViewModel() {
     final InsightsModalViewModel.Repository repository = new InsightsRepository(requireContext());
     final InsightsModalViewModel.Factory    factory    = new InsightsModalViewModel.Factory(repository);
-    final InsightsModalViewModel            viewModel  = ViewModelProviders.of(this, factory).get(InsightsModalViewModel.class);
+    final InsightsModalViewModel            viewModel  = new ViewModelProvider(this, factory).get(InsightsModalViewModel.class);
 
     viewModel.getState().observe(getViewLifecycleOwner(), state -> {
       updateInsecurePercent(state.getData());

@@ -18,7 +18,7 @@ import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
 import androidx.autofill.HintConstants;
 import androidx.core.view.ViewCompat;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import org.signal.core.util.logging.Log;
@@ -111,7 +111,7 @@ public class PinRestoreEntryFragment extends LoggingFragment {
   }
 
   private void initViewModel() {
-    viewModel = ViewModelProviders.of(this).get(PinRestoreViewModel.class);
+    viewModel = new ViewModelProvider(this).get(PinRestoreViewModel.class);
 
     viewModel.getTriesRemaining().observe(getViewLifecycleOwner(), this::presentTriesRemaining);
     viewModel.getEvent().observe(getViewLifecycleOwner(), this::presentEvent);

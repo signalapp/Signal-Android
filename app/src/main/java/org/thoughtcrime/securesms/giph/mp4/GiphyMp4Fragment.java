@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.widget.ContentLoadingProgressBar;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
@@ -45,7 +45,7 @@ public class GiphyMp4Fragment extends Fragment {
     RecyclerView                              recycler           = view.findViewById(R.id.giphy_recycler);
     ContentLoadingProgressBar                 progressBar        = view.findViewById(R.id.content_loading);
     TextView                                  nothingFound       = view.findViewById(R.id.nothing_found);
-    GiphyMp4ViewModel                         viewModel          = ViewModelProviders.of(requireActivity(), new GiphyMp4ViewModel.Factory(isForMms)).get(GiphyMp4ViewModel.class);
+    GiphyMp4ViewModel                         viewModel          = new ViewModelProvider(requireActivity(), new GiphyMp4ViewModel.Factory(isForMms)).get(GiphyMp4ViewModel.class);
     GiphyMp4Adapter                           adapter            = new GiphyMp4Adapter(viewModel::saveToBlob);
     List<GiphyMp4ProjectionPlayerHolder>      holders            = GiphyMp4ProjectionPlayerHolder.injectVideoViews(requireContext(),
                                                                                                                    getViewLifecycleOwner().getLifecycle(),

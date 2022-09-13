@@ -13,7 +13,7 @@ import androidx.appcompat.widget.SwitchCompat;
 import androidx.constraintlayout.widget.Group;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
@@ -85,7 +85,7 @@ public final class GroupLinkInviteFriendsBottomSheetDialogFragment extends Botto
     GroupId.V2 groupId = getGroupId();
 
     GroupLinkInviteFriendsViewModel.Factory factory   = new GroupLinkInviteFriendsViewModel.Factory(requireContext().getApplicationContext(), groupId);
-    GroupLinkInviteFriendsViewModel         viewModel = ViewModelProviders.of(this, factory).get(GroupLinkInviteFriendsViewModel.class);
+    GroupLinkInviteFriendsViewModel         viewModel = new ViewModelProvider(this, factory).get(GroupLinkInviteFriendsViewModel.class);
 
     viewModel.getGroupInviteLinkAndStatus()
              .observe(getViewLifecycleOwner(), groupLinkUrlAndStatus -> {

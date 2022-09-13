@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
@@ -60,8 +60,7 @@ public class AddMembersActivity extends PushContactSelectionActivity {
     AddMembersViewModel.Factory factory = new AddMembersViewModel.Factory(getGroupId());
 
     done      = findViewById(R.id.done);
-    viewModel = ViewModelProviders.of(this, factory)
-                                  .get(AddMembersViewModel.class);
+    viewModel = new ViewModelProvider(this, factory).get(AddMembersViewModel.class);
 
     done.setOnClickListener(v ->
       viewModel.getDialogStateForSelectedContacts(contactsFragment.getSelectedContacts(), this::displayAlertMessage)

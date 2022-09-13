@@ -25,7 +25,7 @@ object LocaleUtil {
     }
 
     for (index in 0 until localeList.size()) {
-      locales += localeList.get(index)
+      locales += localeList.get(index) ?: continue
     }
 
     return locales
