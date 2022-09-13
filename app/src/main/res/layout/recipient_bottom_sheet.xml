@@ -82,7 +82,6 @@
             android:layout_marginEnd="@dimen/dsl_settings_gutter"
             android:gravity="center"
             android:textColor="@color/signal_text_secondary"
-            app:emoji_forceCustom="true"
             app:layout_constraintTop_toBottomOf="@id/rbs_full_name"
             tools:text="🕷🕷🕷 Hangin' on the web 🕷🕷🕷" />
 

@@ -34,7 +34,6 @@
                 android:layout_height="0dp"
                 android:fontFamily="sans-serif-medium"
                 android:gravity="center"
-                app:emoji_forceCustom="true"
                 app:emoji_forceJumbo="true"
                 app:layout_constraintBottom_toBottomOf="@id/avatar_picker_item_image"
                 app:layout_constraintEnd_toEndOf="@id/avatar_picker_item_image"

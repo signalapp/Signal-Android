@@ -74,7 +74,6 @@
         android:textAlignment="viewStart"
         android:textAppearance="@style/Signal.Text.BodyMedium"
         android:textColor="@color/signal_text_secondary"
-        app:emoji_forceCustom="true"
         app:layout_constraintBottom_toBottomOf="@+id/recipient_avatar"
         app:layout_constraintEnd_toStartOf="@+id/admin"
         app:layout_constraintHorizontal_bias="0"
