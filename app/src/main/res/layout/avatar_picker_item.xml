@@ -24,8 +24,7 @@
         android:fontFamily="sans-serif-medium"
         android:gravity="center"
         tools:text="AF"
-        app:emoji_forceJumbo="true"
-        app:emoji_forceCustom="true"/>
+        app:emoji_forceJumbo="true"/>
 
     <View
         android:id="@+id/avatar_picker_item_fader"
