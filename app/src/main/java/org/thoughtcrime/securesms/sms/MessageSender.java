@@ -289,7 +289,7 @@ public class MessageSender {
                                                   final long threadId,
                                                   final SmsDatabase.InsertListener insertListener)
   {
-    Log.i(TAG, "Sending media message with pre-uploads to " + message.getRecipient().getId() + ", thread: " + threadId);
+    Log.i(TAG, "Sending media message with pre-uploads to " + message.getRecipient().getId() + ", thread: " + threadId + ", pre-uploads: " +  preUploadResults);
     Preconditions.checkArgument(message.getAttachments().isEmpty(), "If the media is pre-uploaded, there should be no attachments on the message.");
 
     try {
@@ -806,6 +806,11 @@ public class MessageSender {
       dest.writeParcelable(attachmentId, flags);
       ParcelUtil.writeStringCollection(dest, jobIds);
       dest.writeParcelable(media, flags);
+    }
+
+    @Override
+    public @NonNull String toString() {
+      return "{ID: " + attachmentId.getRowId() + ", URI: " + media.getUri() + ", Jobs: " + jobIds.stream().map(j -> "JOB::" + j).collect(Collectors.toList()) + "}";
     }
   }
 

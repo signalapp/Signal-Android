@@ -9,13 +9,17 @@ import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.engine.GlideException;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.mms.GlideApp;
 
 import java.io.ByteArrayOutputStream;
 import java.util.concurrent.ExecutionException;
 
 public final class ImageCompressionUtil {
+
+  private static final String TAG = Log.tag(ImageCompressionUtil.class);
 
   private ImageCompressionUtil () {}
 
@@ -63,6 +67,9 @@ public final class ImageCompressionUtil {
                              .submit(maxDimension, maxDimension)
                              .get();
     } catch (ExecutionException | InterruptedException e) {
+      if (e.getCause() instanceof GlideException) {
+        ((GlideException) e.getCause()).logRootCauses(TAG);
+      }
       throw new BitmapDecodingException(e);
     }
 
