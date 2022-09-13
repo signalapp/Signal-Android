@@ -1,21 +1,13 @@
 package org.thoughtcrime.securesms.conversation.v2.utilities
 
-import android.animation.ValueAnimator
 import android.content.Context
 import android.graphics.Canvas
-import android.graphics.Interpolator
 import android.graphics.Paint
 import android.graphics.Rect
 import android.os.SystemClock
 import android.util.AttributeSet
-import android.util.Log
 import android.view.View
-import android.view.animation.AccelerateDecelerateInterpolator
-import android.view.animation.Animation
-import android.view.animation.AnimationSet
-import android.view.animation.AnimationUtils
 import androidx.core.content.res.ResourcesCompat
-import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
 import network.loki.messenger.R
 import kotlin.math.sin
 

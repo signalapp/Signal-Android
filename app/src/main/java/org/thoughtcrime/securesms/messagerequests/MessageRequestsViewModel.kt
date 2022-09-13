@@ -13,6 +13,14 @@ class MessageRequestsViewModel @Inject constructor(
     private val repository: ConversationRepository
 ) : ViewModel() {
 
+    fun blockMessageRequest(thread: ThreadRecord) = viewModelScope.launch {
+        val recipient = thread.recipient
+        if (recipient.isContactRecipient) {
+            repository.setBlocked(recipient, true)
+            deleteMessageRequest(thread)
+        }
+    }
+
     fun deleteMessageRequest(thread: ThreadRecord) = viewModelScope.launch {
         repository.deleteMessageRequest(thread)
     }

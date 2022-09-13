@@ -41,6 +41,7 @@
     <dimen name="input_bar_button_expanded_size">48dp</dimen>
 
     <!-- Distances -->
+    <dimen name="very_small_spacing">4dp</dimen>
     <dimen name="small_spacing">8dp</dimen>
     <dimen name="medium_spacing">16dp</dimen>
     <dimen name="large_spacing">24dp</dimen>

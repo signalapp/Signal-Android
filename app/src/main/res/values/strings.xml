@@ -865,6 +865,7 @@
     <string name="dialog_download_button_title">Download</string>
 
     <string name="activity_conversation_blocked_banner_text">%s is blocked. Unblock them?</string>
+    <string name="activity_conversation_block_user">Block User</string>
 
     <string name="activity_conversation_attachment_prep_failed">Failed to prepare attachment for sending.</string>
     <string name="media">Media</string>
@@ -894,7 +895,8 @@
     <string name="accept">Accept</string>
     <string name="decline">Decline</string>
     <string name="message_requests_clear_all">Clear All</string>
-    <string name="message_requests_delete_message">Are you sure you want to delete this message request?</string>
+    <string name="message_requests_decline_message">Are you sure you want to decline this message request?</string>
+    <string name="message_requests_block_message">Are you sure you want to block this message request?</string>
     <string name="message_requests_deleted">Message request deleted</string>
     <string name="message_requests_clear_all_message">Are you sure you want to clear all message requests?</string>
     <string name="message_requests_cleared">Message requests deleted</string>

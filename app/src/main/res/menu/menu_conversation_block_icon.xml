@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        app:actionLayout="@layout/layout_conversation_block_icon"
+        app:showAsAction="always"
+        android:title="@string/recipient_preferences__block"
+        android:id="@+id/menu_block_delete" />
+
+</menu>

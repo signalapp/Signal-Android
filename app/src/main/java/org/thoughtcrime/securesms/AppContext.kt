@@ -1,8 +1,8 @@
 package org.thoughtcrime.securesms
 
-import android.util.Log
 import nl.komponents.kovenant.Kovenant
 import nl.komponents.kovenant.jvm.asDispatcher
+import org.session.libsignal.utilities.Log
 import org.session.libsignal.utilities.ThreadUtils
 import java.util.concurrent.Executors
 

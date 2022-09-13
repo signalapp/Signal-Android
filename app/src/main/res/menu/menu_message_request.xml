@@ -4,6 +4,11 @@
     <item
         android:id="@+id/menu_delete_message_request"
         android:icon="@drawable/ic_delete_24"
-        android:title="@string/delete"/>
+        android:title="@string/decline"/>
+
+    <item
+        android:id="@+id/menu_block_message_request"
+        android:icon="@drawable/ic_baseline_block_24"
+        android:title="@string/RecipientPreferenceActivity_block"/>
 
 </menu>

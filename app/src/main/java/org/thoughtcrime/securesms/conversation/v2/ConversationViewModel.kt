@@ -64,11 +64,22 @@ class ConversationViewModel(
         repository.inviteContacts(threadId, contacts)
     }
 
+    fun block() {
+        val recipient = recipient ?: return Log.w("Loki", "Recipient was null for block action")
+        if (recipient.isContactRecipient) {
+            repository.setBlocked(recipient, true)
+        }
+    }
+
     fun unblock() {
         val recipient = recipient ?: return Log.w("Loki", "Recipient was null for unblock action")
         if (recipient.isContactRecipient) {
-            repository.unblock(recipient)
+            repository.setBlocked(recipient, false)
         }
+    }
+
+    fun deleteThread() = viewModelScope.launch {
+        repository.deleteThread(threadId)
     }
 
     fun deleteLocally(message: MessageRecord) {
@@ -130,8 +141,7 @@ class ConversationViewModel(
     }
 
     fun declineMessageRequest() {
-        val recipient = recipient ?: return Log.w("Loki", "Recipient was null for decline message request action")
-        repository.declineMessageRequest(threadId, recipient)
+        repository.declineMessageRequest(threadId)
     }
 
     private fun showMessage(message: String) {

@@ -202,6 +202,17 @@
         tools:visibility="visible">
 
         <TextView
+            android:id="@+id/messageRequestBlock"
+            android:layout_gravity="center"
+            android:textColor="@color/destructive"
+            android:paddingHorizontal="@dimen/massive_spacing"
+            android:paddingVertical="@dimen/small_spacing"
+            android:textSize="@dimen/text_size"
+            android:text="@string/activity_conversation_block_user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
             android:id="@+id/sendAcceptsTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
