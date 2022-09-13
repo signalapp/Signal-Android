@@ -32,7 +32,6 @@ import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 
 interface ConversationRepository {
-    fun isOxenHostedOpenGroup(threadId: Long): Boolean
     fun maybeGetRecipientForThreadId(threadId: Long): Recipient?
     fun saveDraft(threadId: Long, text: String)
     fun getDraft(threadId: Long): String?
@@ -85,11 +84,6 @@ class DefaultConversationRepository @Inject constructor(
     private val lokiMessageDb: LokiMessageDatabase,
     private val sessionJobDb: SessionJobDatabase
 ) : ConversationRepository {
-
-    override fun isOxenHostedOpenGroup(threadId: Long): Boolean {
-        val openGroup = lokiThreadDb.getOpenGroupChat(threadId)
-        return openGroup?.publicKey == OpenGroupApi.defaultServerPublicKey
-    }
 
     override fun maybeGetRecipientForThreadId(threadId: Long): Recipient? {
         return threadDb.getRecipientForThreadId(threadId)
