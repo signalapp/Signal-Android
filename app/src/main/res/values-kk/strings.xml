@@ -167,7 +167,7 @@
   <string name="ContactsCursorLoader_contacts">Байланыстағы тұлғалар</string>
   <string name="ContactsCursorLoader_groups">Топтар</string>
   <string name="ContactsCursorLoader_phone_number_search">Телефон нөмірі бойынша іздеу</string>
-  <string name="ContactsCursorLoader_username_search">Пайдаланушы аты бойынша іздеу</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Пайдаланушы аты бойынша іздеу</string> -->
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Менің сторилерім</string>
   <!--Action for creating a new story-->

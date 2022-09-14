@@ -161,7 +161,7 @@
   <string name="ContactsCursorLoader_contacts">مخاطبین</string>
   <string name="ContactsCursorLoader_groups">ګروپونه </string>
   <string name="ContactsCursorLoader_phone_number_search">د موبایل شمېرې پلټنه</string>
-  <string name="ContactsCursorLoader_username_search">د کارن د نوم پلټنه</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">د کارن د نوم پلټنه</string> -->
   <!--Label for my stories when selecting who to send media to-->
   <!--Action for creating a new story-->
   <!--ContactsDatabase-->

@@ -167,7 +167,7 @@
   <string name="ContactsCursorLoader_contacts">കോൺ‌ടാക്റ്റുകൾ</string>
   <string name="ContactsCursorLoader_groups">ഗ്രൂപ്പുകൾ</string>
   <string name="ContactsCursorLoader_phone_number_search">ഫോൺ നമ്പർ തിരയൽ</string>
-  <string name="ContactsCursorLoader_username_search">ഉപയോക്തൃനാമം തിരയൽ</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">ഉപയോക്തൃനാമം തിരയൽ</string> -->
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">എന്റെ സ്റ്റോറീസ്</string>
   <!--Action for creating a new story-->

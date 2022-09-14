@@ -169,7 +169,7 @@
   <string name="ContactsCursorLoader_contacts">אנשי קשר</string>
   <string name="ContactsCursorLoader_groups">קבוצות</string>
   <string name="ContactsCursorLoader_phone_number_search">חיפוש מספר טלפון</string>
-  <string name="ContactsCursorLoader_username_search">חיפוש שם משתמש</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">חיפוש שם משתמש</string> -->
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">הסיפורים שלי</string>
   <!--Action for creating a new story-->

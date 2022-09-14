@@ -168,7 +168,7 @@
   <string name="ContactsCursorLoader_contacts">Контакти</string>
   <string name="ContactsCursorLoader_groups">Групе</string>
   <string name="ContactsCursorLoader_phone_number_search">Претрага броја телефона</string>
-  <string name="ContactsCursorLoader_username_search">Претрага корисничког имена</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Претрага корисничког имена</string> -->
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Моје приче</string>
   <!--Action for creating a new story-->

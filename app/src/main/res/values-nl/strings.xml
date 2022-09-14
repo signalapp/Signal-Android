@@ -169,7 +169,7 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="ContactsCursorLoader_contacts">Contacten</string>
   <string name="ContactsCursorLoader_groups">Groepen</string>
   <string name="ContactsCursorLoader_phone_number_search">Zoeken op telefoonnummer</string>
-  <string name="ContactsCursorLoader_username_search">Zoeken op gebruikersnaam</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Zoeken op gebruikersnaam</string> -->
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Mijn verhalen</string>
   <!--Action for creating a new story-->
@@ -750,9 +750,9 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="ManageProfileFragment_badges">Badges</string>
   <string name="ManageProfileFragment__edit_photo">Profielfoto aanpassen</string>
   <!--Snackbar message after creating username-->
-  <string name="ManageProfileFragment__username_created">Gebruikersnaam gecreëerd. </string>
+  <string name="ManageProfileFragment__username_created">Gebruikersnaam gecreëerd.</string>
   <!--Snackbar message after copying username-->
-  <string name="ManageProfileFragment__username_copied">Gebruikersnaam gekopieerd. </string>
+  <string name="ManageProfileFragment__username_copied">Gebruikersnaam gekopieerd.</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Geen gemeenschappelijke groepen</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">

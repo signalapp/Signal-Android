@@ -129,7 +129,7 @@
   <string name="ContactsCursorLoader_contacts">رابطے</string>
   <string name="ContactsCursorLoader_groups">گروپس</string>
   <string name="ContactsCursorLoader_phone_number_search">فون نمبر لبھنا</string>
-  <string name="ContactsCursorLoader_username_search">صارف ناں دی تلاش</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">صارف ناں دی تلاش</string> -->
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s"> سنیہا %s</string>
   <string name="ContactsDatabase_signal_call_s"> Signal کال %s</string>

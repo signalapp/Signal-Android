@@ -169,7 +169,7 @@
   <string name="ContactsCursorLoader_contacts">Cysylltiadau</string>
   <string name="ContactsCursorLoader_groups">Grwpiau</string>
   <string name="ContactsCursorLoader_phone_number_search">Chwiliad rhif ffôn</string>
-  <string name="ContactsCursorLoader_username_search">Chwiliad enw defnyddiwr</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Chwiliad enw defnyddiwr</string> -->
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Fy straeon</string>
   <!--Action for creating a new story-->

@@ -169,7 +169,7 @@
   <string name="ContactsCursorLoader_contacts">Kontakten</string>
   <string name="ContactsCursorLoader_groups">Groepen</string>
   <string name="ContactsCursorLoader_phone_number_search">Sykje op telefoannûmer</string>
-  <string name="ContactsCursorLoader_username_search">Sykje op brûkersnamme</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Sykje op brûkersnamme</string> -->
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Myn ferhalen</string>
   <!--Action for creating a new story-->

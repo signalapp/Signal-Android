@@ -168,7 +168,7 @@
   <string name="ContactsCursorLoader_contacts">Kontakti</string>
   <string name="ContactsCursorLoader_groups">Grupas</string>
   <string name="ContactsCursorLoader_phone_number_search">Tālruņa numura meklēšana</string>
-  <string name="ContactsCursorLoader_username_search">Lietotājvārda meklēšana</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Lietotājvārda meklēšana</string> -->
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Mani stāsti</string>
   <!--Action for creating a new story-->

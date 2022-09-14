@@ -167,7 +167,7 @@
   <string name="ContactsCursorLoader_contacts">Kontaktet</string>
   <string name="ContactsCursorLoader_groups">Grupet</string>
   <string name="ContactsCursorLoader_phone_number_search">Kërkimi i numrit të telefonit</string>
-  <string name="ContactsCursorLoader_username_search">Kërkim i emrit të përdoruesit</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Kërkim i emrit të përdoruesit</string> -->
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Story-t e mia</string>
   <!--Action for creating a new story-->

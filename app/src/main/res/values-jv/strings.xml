@@ -123,7 +123,7 @@
   <string name="ContactsCursorLoader_contacts">Kontak</string>
   <string name="ContactsCursorLoader_groups">Grup</string>
   <string name="ContactsCursorLoader_phone_number_search">Padosan nomer telepon</string>
-  <string name="ContactsCursorLoader_username_search">Padosan nami panggina</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Padosan nami panggina</string> -->
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Pesen %s</string>
   <string name="ContactsDatabase_signal_call_s">Telepon Signal %s</string>

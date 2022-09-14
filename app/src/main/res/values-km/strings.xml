@@ -166,7 +166,7 @@
   <string name="ContactsCursorLoader_contacts">បញ្ជីទំនាក់ទំនង</string>
   <string name="ContactsCursorLoader_groups">ក្រុម</string>
   <string name="ContactsCursorLoader_phone_number_search">ស្វែងរកលេខទូរស័ព្ទ</string>
-  <string name="ContactsCursorLoader_username_search">ស្វែងរកឈ្មោះអ្នកប្រើប្រាស់</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">ស្វែងរកឈ្មោះអ្នកប្រើប្រាស់</string> -->
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">រឿងរ៉ាវរបស់ខ្ញុំ</string>
   <!--Action for creating a new story-->

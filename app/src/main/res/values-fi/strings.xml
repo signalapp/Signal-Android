@@ -167,7 +167,7 @@
   <string name="ContactsCursorLoader_contacts">Yhteystiedot</string>
   <string name="ContactsCursorLoader_groups">Ryhmät</string>
   <string name="ContactsCursorLoader_phone_number_search">Puhelinnumerohaku</string>
-  <string name="ContactsCursorLoader_username_search">Käyttäjätunnushaku</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Käyttäjätunnushaku</string> -->
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Omat tarinat</string>
   <!--Action for creating a new story-->

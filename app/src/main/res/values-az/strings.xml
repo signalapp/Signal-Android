@@ -167,7 +167,7 @@
   <string name="ContactsCursorLoader_contacts">Əlaqələr</string>
   <string name="ContactsCursorLoader_groups">Qruplar</string>
   <string name="ContactsCursorLoader_phone_number_search">Telefon nömrəsi ilə axtar</string>
-  <string name="ContactsCursorLoader_username_search">İstifadəçi adı ilə axtar</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">İstifadəçi adı ilə axtar</string> -->
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Hekayələrim</string>
   <!--Action for creating a new story-->

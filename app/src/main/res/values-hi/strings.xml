@@ -167,7 +167,7 @@
   <string name="ContactsCursorLoader_contacts">संपर्क</string>
   <string name="ContactsCursorLoader_groups">समूह </string>
   <string name="ContactsCursorLoader_phone_number_search">फ़ोन नंबर खोजें</string>
-  <string name="ContactsCursorLoader_username_search">उपयोगकर्ता का नाम खोजें</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">उपयोगकर्ता का नाम खोजें</string> -->
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">मेरी स्टोरीज़</string>
   <!--Action for creating a new story-->

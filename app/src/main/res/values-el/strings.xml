@@ -167,7 +167,7 @@
   <string name="ContactsCursorLoader_contacts">Επαφές</string>
   <string name="ContactsCursorLoader_groups">Ομάδες</string>
   <string name="ContactsCursorLoader_phone_number_search">Εύρεση τηλεφωνικού αριθμού</string>
-  <string name="ContactsCursorLoader_username_search">Εύρεση ονόματος χρήστη</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Εύρεση ονόματος χρήστη</string> -->
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Οι ιστορίες μου</string>
   <!--Action for creating a new story-->

@@ -166,7 +166,7 @@
   <string name="ContactsCursorLoader_contacts">ผู้ติดต่อ</string>
   <string name="ContactsCursorLoader_groups">กลุ่ม</string>
   <string name="ContactsCursorLoader_phone_number_search">ค้นด้วยหมายเลขโทรศัพท์</string>
-  <string name="ContactsCursorLoader_username_search">ค้นหาด้วยชื่อผู้ใช้</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">ค้นหาด้วยชื่อผู้ใช้</string> -->
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">สตอรี่ของฉัน</string>
   <!--Action for creating a new story-->

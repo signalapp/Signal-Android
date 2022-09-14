@@ -167,7 +167,7 @@
   <string name="ContactsCursorLoader_contacts">Kontaktar</string>
   <string name="ContactsCursorLoader_groups">Grupper</string>
   <string name="ContactsCursorLoader_phone_number_search">Søk etter telefonnummer</string>
-  <string name="ContactsCursorLoader_username_search">Søk etter brukarnamn</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Søk etter brukarnamn</string> -->
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Mine historier</string>
   <!--Action for creating a new story-->

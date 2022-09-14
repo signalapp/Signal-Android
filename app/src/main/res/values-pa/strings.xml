@@ -167,7 +167,7 @@
   <string name="ContactsCursorLoader_contacts">ਸੰਪਰਕ</string>
   <string name="ContactsCursorLoader_groups">ਗਰੁੱਪ</string>
   <string name="ContactsCursorLoader_phone_number_search">ਫੋਨ ਨੰਬਰ ਖੋਜੋ</string>
-  <string name="ContactsCursorLoader_username_search">ਵਰਤੋਂਕਾਰ-ਨਾਂ ਖੋਜੋ</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">ਵਰਤੋਂਕਾਰ-ਨਾਂ ਖੋਜੋ</string> -->
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">ਮੇਰੀਆਂ ਕਹਾਣੀਆਂ</string>
   <!--Action for creating a new story-->

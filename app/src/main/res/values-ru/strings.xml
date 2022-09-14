@@ -169,7 +169,7 @@
   <string name="ContactsCursorLoader_contacts">Контакты</string>
   <string name="ContactsCursorLoader_groups">Группы</string>
   <string name="ContactsCursorLoader_phone_number_search">Поиск по номеру телефона</string>
-  <string name="ContactsCursorLoader_username_search">Поиск по имени пользователя</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Поиск по имени пользователя</string> -->
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Мои истории</string>
   <!--Action for creating a new story-->

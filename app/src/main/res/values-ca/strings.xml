@@ -167,7 +167,7 @@
   <string name="ContactsCursorLoader_contacts">Contactes</string>
   <string name="ContactsCursorLoader_groups">Grups</string>
   <string name="ContactsCursorLoader_phone_number_search">Cerca de número de telèfon</string>
-  <string name="ContactsCursorLoader_username_search">Cerca de nom d\'usuari</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Cerca de nom d\'usuari</string> -->
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Les meves històries</string>
   <!--Action for creating a new story-->

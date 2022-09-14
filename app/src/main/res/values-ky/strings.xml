@@ -166,7 +166,7 @@
   <string name="ContactsCursorLoader_contacts">Байланыштар</string>
   <string name="ContactsCursorLoader_groups">Топтор</string>
   <string name="ContactsCursorLoader_phone_number_search">Телефон номерин издөө</string>
-  <string name="ContactsCursorLoader_username_search">Колдонуучунун аты боюнча издөө</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Колдонуучунун аты боюнча издөө</string> -->
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Менин окуяларым</string>
   <!--Action for creating a new story-->

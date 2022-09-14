@@ -126,7 +126,7 @@
   <string name="ContactsCursorLoader_contacts">Lambobin sadarwa</string>
   <string name="ContactsCursorLoader_groups">Rukunoni.</string>
   <string name="ContactsCursorLoader_phone_number_search">Binciko lambar waya</string>
-  <string name="ContactsCursorLoader_username_search">Duba sunan maiamfani</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Duba sunan maiamfani</string> -->
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Sako %s</string>
   <string name="ContactsDatabase_signal_call_s">Kiran Signal %s</string>

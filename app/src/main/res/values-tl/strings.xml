@@ -167,7 +167,7 @@
   <string name="ContactsCursorLoader_contacts">Mga Kontak</string>
   <string name="ContactsCursorLoader_groups">Mga Grupo</string>
   <string name="ContactsCursorLoader_phone_number_search">Maghanap ng numero ng telepono</string>
-  <string name="ContactsCursorLoader_username_search">Maghanap ng Username</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Maghanap ng Username</string> -->
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Stories Ko</string>
   <!--Action for creating a new story-->

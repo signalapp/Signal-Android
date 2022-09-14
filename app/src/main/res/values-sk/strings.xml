@@ -169,7 +169,7 @@
   <string name="ContactsCursorLoader_contacts">Kontakty</string>
   <string name="ContactsCursorLoader_groups">Skupiny</string>
   <string name="ContactsCursorLoader_phone_number_search">Vyhľadávanie telefónneho čísla</string>
-  <string name="ContactsCursorLoader_username_search">Vyhľadávanie používateľského mena</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Vyhľadávanie používateľského mena</string> -->
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Moje príbehy</string>
   <!--Action for creating a new story-->

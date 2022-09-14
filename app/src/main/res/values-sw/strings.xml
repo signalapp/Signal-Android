@@ -167,7 +167,7 @@
   <string name="ContactsCursorLoader_contacts">Mawasiliano</string>
   <string name="ContactsCursorLoader_groups">Makundi</string>
   <string name="ContactsCursorLoader_phone_number_search">Utafutaji wa nambari ya simu</string>
-  <string name="ContactsCursorLoader_username_search">Utafutaji wa jina la mtumizi</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Utafutaji wa jina la mtumizi</string> -->
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Stori Zangu</string>
   <!--Action for creating a new story-->

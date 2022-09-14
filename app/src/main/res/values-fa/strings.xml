@@ -167,7 +167,7 @@
   <string name="ContactsCursorLoader_contacts">مخاطبین</string>
   <string name="ContactsCursorLoader_groups">گروه‌ها‌</string>
   <string name="ContactsCursorLoader_phone_number_search">جستجوی شماره‌تلفن</string>
-  <string name="ContactsCursorLoader_username_search">جستجوی نام کاربری</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">جستجوی نام کاربری</string> -->
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">داستان‌های من</string>
   <!--Action for creating a new story-->

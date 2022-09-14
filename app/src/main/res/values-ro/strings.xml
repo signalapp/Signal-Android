@@ -168,7 +168,7 @@
   <string name="ContactsCursorLoader_contacts">Contacte</string>
   <string name="ContactsCursorLoader_groups">Grupuri</string>
   <string name="ContactsCursorLoader_phone_number_search">Căutare număr de telefon</string>
-  <string name="ContactsCursorLoader_username_search">Căutare nume de utilizator</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Căutare nume de utilizator</string> -->
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Poveștile Mele</string>
   <!--Action for creating a new story-->

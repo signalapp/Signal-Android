@@ -166,7 +166,7 @@
   <string name="ContactsCursorLoader_contacts">အဆက်အသွယ်များ</string>
   <string name="ContactsCursorLoader_groups">အဖွဲ့များ</string>
   <string name="ContactsCursorLoader_phone_number_search">ဖုန်းနံပါတ်ရှာဖွေခြင်း</string>
-  <string name="ContactsCursorLoader_username_search">အသုံးပြုသူအမည်ရှာဖွေခြင်း</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">အသုံးပြုသူအမည်ရှာဖွေခြင်း</string> -->
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">ကျွန်ုပ်၏ စတိုရီများ</string>
   <!--Action for creating a new story-->

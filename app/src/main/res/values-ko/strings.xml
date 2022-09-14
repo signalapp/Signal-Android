@@ -166,7 +166,7 @@
   <string name="ContactsCursorLoader_contacts">연락처</string>
   <string name="ContactsCursorLoader_groups">그룹</string>
   <string name="ContactsCursorLoader_phone_number_search">전화번호 검색</string>
-  <string name="ContactsCursorLoader_username_search">사용자 이름 검색</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">사용자 이름 검색</string> -->
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">내 스토리</string>
   <!--Action for creating a new story-->

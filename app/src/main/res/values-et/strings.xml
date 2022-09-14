@@ -167,7 +167,7 @@
   <string name="ContactsCursorLoader_contacts">Kontaktid</string>
   <string name="ContactsCursorLoader_groups">Grupid</string>
   <string name="ContactsCursorLoader_phone_number_search">Telefoninumbri otsing</string>
-  <string name="ContactsCursorLoader_username_search">Kasutajanime otsing</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Kasutajanime otsing</string> -->
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Minu lood</string>
   <!--Action for creating a new story-->

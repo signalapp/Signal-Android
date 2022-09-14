@@ -167,7 +167,7 @@
   <string name="ContactsCursorLoader_contacts">Tengiliðir</string>
   <string name="ContactsCursorLoader_groups">Hópar</string>
   <string name="ContactsCursorLoader_phone_number_search">Leita að símanúmeri</string>
-  <string name="ContactsCursorLoader_username_search">Leita að notandanafni</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Leita að notandanafni</string> -->
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Sögurnar mínar</string>
   <!--Action for creating a new story-->

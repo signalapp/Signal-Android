@@ -166,7 +166,7 @@
   <string name="ContactsCursorLoader_contacts">聯絡人</string>
   <string name="ContactsCursorLoader_groups">谷</string>
   <string name="ContactsCursorLoader_phone_number_search">查電話冧把</string>
-  <string name="ContactsCursorLoader_username_search">查使用者名稱</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">查使用者名稱</string> -->
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">我嘅是日花生</string>
   <!--Action for creating a new story-->

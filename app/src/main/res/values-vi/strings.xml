@@ -166,7 +166,7 @@
   <string name="ContactsCursorLoader_contacts">Danh bạ</string>
   <string name="ContactsCursorLoader_groups">Nhóm</string>
   <string name="ContactsCursorLoader_phone_number_search">Tìm kiếm số điện thoại</string>
-  <string name="ContactsCursorLoader_username_search">Tìm kiếm tên người dùng</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Tìm kiếm tên người dùng</string> -->
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Các Story của tôi</string>
   <!--Action for creating a new story-->

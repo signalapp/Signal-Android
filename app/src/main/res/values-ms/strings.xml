@@ -166,7 +166,7 @@
   <string name="ContactsCursorLoader_contacts">Kenalan</string>
   <string name="ContactsCursorLoader_groups">Kumpulan</string>
   <string name="ContactsCursorLoader_phone_number_search">Pencarian nombor telefon</string>
-  <string name="ContactsCursorLoader_username_search">Pencarian nama pengguna</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Pencarian nama pengguna</string> -->
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Cerita Saya</string>
   <!--Action for creating a new story-->

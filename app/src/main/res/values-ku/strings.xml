@@ -141,7 +141,7 @@
   <string name="ContactsCursorLoader_contacts">Navnivîsk</string>
   <string name="ContactsCursorLoader_groups">Kom</string>
   <string name="ContactsCursorLoader_phone_number_search">Li nimreya telefonê bigere</string>
-  <string name="ContactsCursorLoader_username_search">Li navê bikarhêner bigere</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Li navê bikarhêner bigere</string> -->
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Peyama %s</string>
   <string name="ContactsDatabase_signal_call_s">Gerîna Signalê %s</string>

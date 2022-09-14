@@ -144,7 +144,7 @@
   <string name="ContactsCursorLoader_contacts">Inermisen</string>
   <string name="ContactsCursorLoader_groups">Igrawen</string>
   <string name="ContactsCursorLoader_phone_number_search">Anadi n wuṭṭun n tilifun</string>
-  <string name="ContactsCursorLoader_username_search">Anadi n yisem n useqdac</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Anadi n yisem n useqdac</string> -->
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Izen %s</string>
   <string name="ContactsDatabase_signal_call_s">Asiwel Signal %s</string>

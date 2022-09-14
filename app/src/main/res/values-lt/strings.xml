@@ -169,7 +169,7 @@
   <string name="ContactsCursorLoader_contacts">Adresatai</string>
   <string name="ContactsCursorLoader_groups">Grupės</string>
   <string name="ContactsCursorLoader_phone_number_search">Ieškoti telefono numerio</string>
-  <string name="ContactsCursorLoader_username_search">Ieškoti naudotojo vardo</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Ieškoti naudotojo vardo</string> -->
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Mano istorijos</string>
   <!--Action for creating a new story-->

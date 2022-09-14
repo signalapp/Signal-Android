@@ -166,7 +166,7 @@
   <string name="ContactsCursorLoader_contacts">联系人</string>
   <string name="ContactsCursorLoader_groups">群组</string>
   <string name="ContactsCursorLoader_phone_number_search">手机号码搜索</string>
-  <string name="ContactsCursorLoader_username_search">用户名搜索</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">用户名搜索</string> -->
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">我的动态</string>
   <!--Action for creating a new story-->

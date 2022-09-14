@@ -145,7 +145,7 @@
   <string name="ContactsCursorLoader_contacts">ଯୋଗାଯୋଗ</string>
   <string name="ContactsCursorLoader_groups">ଗୋଷ୍ଠୀଗୁଡ଼ିକ</string>
   <string name="ContactsCursorLoader_phone_number_search">ଫୋନ୍ ନମ୍ବର୍ ସନ୍ଧାନ</string>
-  <string name="ContactsCursorLoader_username_search">ଉପଭୋକ୍ତା ନାମ ସନ୍ଧାନ</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">ଉପଭୋକ୍ତା ନାମ ସନ୍ଧାନ</string> -->
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">ବାର୍ତ୍ତା %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal କଲ୍ କରନ୍ତୁ %s</string>

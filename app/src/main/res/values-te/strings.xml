@@ -167,7 +167,7 @@
   <string name="ContactsCursorLoader_contacts">కాంటాక్ట్స్</string>
   <string name="ContactsCursorLoader_groups">సమూహాలు</string>
   <string name="ContactsCursorLoader_phone_number_search">ఫోన్ నంబర్ శోధన</string>
-  <string name="ContactsCursorLoader_username_search">వినియోగదారు పేరు శోధన</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">వినియోగదారు పేరు శోధన</string> -->
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">నా స్టోరీలు</string>
   <!--Action for creating a new story-->

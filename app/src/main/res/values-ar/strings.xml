@@ -171,7 +171,7 @@
   <string name="ContactsCursorLoader_contacts">جهات الاتصال</string>
   <string name="ContactsCursorLoader_groups">المجموعات</string>
   <string name="ContactsCursorLoader_phone_number_search">البحث عن طريق رقم الهاتف</string>
-  <string name="ContactsCursorLoader_username_search">البحث عن طريق اسم المستخدم</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">البحث عن طريق اسم المستخدم</string> -->
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">قصصي</string>
   <!--Action for creating a new story-->

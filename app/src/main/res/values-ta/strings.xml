@@ -167,7 +167,7 @@
   <string name="ContactsCursorLoader_contacts">தொடர்புகள்</string>
   <string name="ContactsCursorLoader_groups">குழுக்கள்</string>
   <string name="ContactsCursorLoader_phone_number_search">தொலைபேசி எண் தேடல்</string>
-  <string name="ContactsCursorLoader_username_search">பயனர்பெயர் தேடல்</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">பயனர்பெயர் தேடல்</string> -->
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">எனது ஸ்டோரீஸ்</string>
   <!--Action for creating a new story-->

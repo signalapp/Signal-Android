@@ -167,7 +167,7 @@
   <string name="ContactsCursorLoader_contacts">Kontaktuak</string>
   <string name="ContactsCursorLoader_groups">Taldeak</string>
   <string name="ContactsCursorLoader_phone_number_search">Telefono zenbakia bilatu</string>
-  <string name="ContactsCursorLoader_username_search">Erabiltzaile izena bilatu</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Erabiltzaile izena bilatu</string> -->
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Nire istorioak</string>
   <!--Action for creating a new story-->

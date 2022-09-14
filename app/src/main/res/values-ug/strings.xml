@@ -164,7 +164,7 @@
   <string name="ContactsCursorLoader_contacts">ئالاقەداشلار</string>
   <string name="ContactsCursorLoader_groups">گۇرۇپپا</string>
   <string name="ContactsCursorLoader_phone_number_search">تېلېفون نومۇر ئىزدەش</string>
-  <string name="ContactsCursorLoader_username_search">ئىشلەتكۈچى ئىسمى  ئىزدەش</string>
+  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">ئىشلەتكۈچى ئىسمى  ئىزدەش</string> -->
   <!--Label for my stories when selecting who to send media to-->
   <!--Action for creating a new story-->
   <!--ContactsDatabase-->
