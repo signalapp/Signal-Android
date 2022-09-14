@@ -25,19 +25,14 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.InstrumentationApplicationDependencyProvider
-import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.testing.Put
 import org.thoughtcrime.securesms.testing.RxTestSchedulerRule
 import org.thoughtcrime.securesms.testing.SignalActivityRule
-import org.thoughtcrime.securesms.testing.SignalDatabaseRule
-import org.thoughtcrime.securesms.testing.assertIs
 import org.thoughtcrime.securesms.testing.assertIsNotNull
 import org.thoughtcrime.securesms.testing.assertIsNull
 import org.thoughtcrime.securesms.testing.success
 import org.whispersystems.signalservice.internal.push.ReserveUsernameResponse
-import java.util.Optional
 import java.util.concurrent.TimeUnit
 
 @RunWith(AndroidJUnit4::class)
