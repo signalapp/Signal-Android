@@ -226,7 +226,8 @@ public final class FeatureFlags {
       CAMERAX_MODEL_BLOCKLIST,
       RECIPIENT_MERGE_V2,
       CDS_V2_LOAD_TEST,
-      CDS_V2_COMPAT
+      CDS_V2_COMPAT,
+      STORIES
   );
 
   /**
