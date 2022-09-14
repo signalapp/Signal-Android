@@ -46,9 +46,8 @@ android {
 dependencies {
     coreLibraryDesugaring libs.android.tools.desugar
 
-    implementation "androidx.activity:activity-ktx:1.2.2"
-
     implementation libs.androidx.core.ktx
+    implementation libs.androidx.activity.ktx
     implementation libs.androidx.appcompat
     implementation libs.material.material
     implementation libs.androidx.constraintlayout

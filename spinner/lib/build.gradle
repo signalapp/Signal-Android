@@ -29,8 +29,7 @@ ktlint {
 }
 
 dependencies {
-    // Can't use the newest version because it hits some weird NoClassDefFoundException
-    implementation 'com.github.jknack:handlebars:4.0.7'
+    implementation libs.jknack.handlebars
 
     implementation libs.androidx.appcompat
     implementation libs.material.material
@@ -38,5 +37,5 @@ dependencies {
     implementation project(':core-util')
     testImplementation testLibs.junit.junit
 
-    implementation 'org.nanohttpd:nanohttpd-webserver:2.3.1'
+    implementation libs.nanohttpd.webserver
 }
