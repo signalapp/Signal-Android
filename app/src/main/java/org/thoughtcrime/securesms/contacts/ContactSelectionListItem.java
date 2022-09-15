@@ -24,6 +24,7 @@ import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
+import org.thoughtcrime.securesms.profiles.manage.UsernameState;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver;
@@ -241,10 +242,10 @@ public class ContactSelectionListItem extends ConstraintLayout implements Recipi
   }
   
   private CharSequence presentUsername(@NonNull String username) {
-    if (username.contains("#")) {
+    if (username.contains(UsernameState.DELIMITER)) {
       return username;
     } else {
-      return new SpannableStringBuilder(username).append(SpanUtil.color(ContextCompat.getColor(getContext(), R.color.signal_colorOutline), "#"));
+      return new SpannableStringBuilder(username).append(SpanUtil.color(ContextCompat.getColor(getContext(), R.color.signal_colorOutline), UsernameState.DELIMITER));
     }
   }
 

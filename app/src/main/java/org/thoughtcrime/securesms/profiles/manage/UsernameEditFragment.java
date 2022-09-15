@@ -168,6 +168,7 @@ public class UsernameEditFragment extends LoggingFragment {
 
     presentSuffix(state.getUsername());
     presentButtonState(state.getButtonState());
+    presentSummary(state.getUsername());
 
     switch (state.getUsernameStatus()) {
       case NONE:
@@ -207,6 +208,14 @@ public class UsernameEditFragment extends LoggingFragment {
       presentRegistrationButtonState(buttonState);
     } else {
       presentProfileUpdateButtonState(buttonState);
+    }
+  }
+
+  private void presentSummary(@NonNull UsernameState usernameState) {
+    if (usernameState.getUsername() != null) {
+      binding.summary.setText(usernameState.getUsername());
+    } else {
+      binding.summary.setText(R.string.UsernameEditFragment__choose_your_username);
     }
   }
 

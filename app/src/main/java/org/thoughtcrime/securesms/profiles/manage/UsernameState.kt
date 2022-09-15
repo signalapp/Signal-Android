@@ -27,10 +27,14 @@ sealed class UsernameState {
   ) : UsernameState()
 
   fun getNickname(): String? {
-    return username?.split('#')?.firstOrNull()
+    return username?.split(DELIMITER)?.firstOrNull()
   }
 
   fun getDiscriminator(): String? {
-    return username?.split('#')?.lastOrNull()
+    return username?.split(DELIMITER)?.lastOrNull()
+  }
+
+  companion object {
+    const val DELIMITER = "."
   }
 }
