@@ -10,12 +10,13 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/deactivate_wallet_fragment_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="@dimen/signal_m3_toolbar_height"
+        android:minHeight="@dimen/signal_m3_toolbar_height"
         android:theme="?actionBarStyle"
         app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="@drawable/ic_arrow_left_24"
         app:title="@string/DeactivateWalletFragment__deactivate_wallet"
-        app:titleTextAppearance="@style/TextAppearance.Signal.Body1.Bold" />
+        app:titleTextAppearance="@style/Signal.Text.TitleLarge" />
 
     <ScrollView
         android:layout_width="match_parent"

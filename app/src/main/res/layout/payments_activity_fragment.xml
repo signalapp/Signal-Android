@@ -15,10 +15,11 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/payments_all_activity_fragment_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/signal_m3_toolbar_height"
+            android:minHeight="@dimen/signal_m3_toolbar_height"
             app:navigationIcon="@drawable/ic_arrow_left_24"
             app:title="@string/PaymentsActivityFragment__all_activity"
-            app:titleTextAppearance="@style/TextAppearance.Signal.Body1.Bold" />
+            app:titleTextAppearance="@style/Signal.Text.TitleLarge" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/payments_all_activity_fragment_tabs"

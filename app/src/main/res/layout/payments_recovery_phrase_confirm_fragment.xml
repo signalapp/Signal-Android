@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:viewBindingIgnore="true"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:viewBindingIgnore="true">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/payments_recovery_phrase_confirm_fragment_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="@dimen/signal_m3_toolbar_height"
+        android:minHeight="@dimen/signal_m3_toolbar_height"
         android:theme="?actionBarStyle"
         app:navigationIcon="@drawable/ic_arrow_left_24"
         app:title="@string/PaymentsRecoveryStartFragment__recovery_phrase"
-        app:titleTextAppearance="@style/TextAppearance.Signal.Body1.Bold" />
+        app:titleTextAppearance="@style/Signal.Text.TitleLarge" />
 
     <ScrollView
         android:layout_width="match_parent"
