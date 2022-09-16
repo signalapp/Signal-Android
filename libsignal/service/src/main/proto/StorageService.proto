@@ -71,21 +71,23 @@ message ContactRecord {
     UNVERIFIED = 2;
   }
 
-  string        serviceId           = 1;
-  string        serviceE164         = 2;
-  string        servicePni          = 15;
-  bytes         profileKey          = 3;
-  bytes         identityKey         = 4;
-  IdentityState identityState       = 5;
-  string        givenName           = 6;
-  string        familyName          = 7;
-  string        username            = 8;
-  bool          blocked             = 9;
-  bool          whitelisted         = 10;
-  bool          archived            = 11;
-  bool          markedUnread        = 12;
-  uint64        mutedUntilTimestamp = 13;
-  bool          hideStory           = 14;
+  string        serviceId               = 1;
+  string        serviceE164             = 2;
+  string        servicePni              = 15;
+  bytes         profileKey              = 3;
+  bytes         identityKey             = 4;
+  IdentityState identityState           = 5;
+  string        givenName               = 6;
+  string        familyName              = 7;
+  string        username                = 8;
+  bool          blocked                 = 9;
+  bool          whitelisted             = 10;
+  bool          archived                = 11;
+  bool          markedUnread            = 12;
+  uint64        mutedUntilTimestamp     = 13;
+  bool          hideStory               = 14;
+  uint64        unregisteredAtTimestamp = 16;
+  // NEXT ID: 17
 }
 
 message GroupV1Record {

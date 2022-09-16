@@ -118,6 +118,7 @@ data class RecipientRecord(
     val identityKey: ByteArray?,
     val identityStatus: VerifiedStatus,
     val isArchived: Boolean,
-    val isForcedUnread: Boolean
+    val isForcedUnread: Boolean,
+    val unregisteredTimestamp: Long
   )
 }

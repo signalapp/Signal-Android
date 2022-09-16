@@ -186,18 +186,19 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
       e164 = OptionalUtil.or(remote.getNumber(), local.getNumber()).orElse(null);
     }
 
-    byte[]               unknownFields  = remote.serializeUnknownFields();
-    ServiceId            serviceId      = local.getServiceId() == ServiceId.UNKNOWN ? remote.getServiceId() : local.getServiceId();
-    byte[]               profileKey     = OptionalUtil.or(remote.getProfileKey(), local.getProfileKey()).orElse(null);
-    String               username       = OptionalUtil.or(remote.getUsername(), local.getUsername()).orElse("");
-    boolean              blocked        = remote.isBlocked();
-    boolean              profileSharing = remote.isProfileSharingEnabled();
-    boolean              archived       = remote.isArchived();
-    boolean              forcedUnread   = remote.isForcedUnread();
-    long                 muteUntil      = remote.getMuteUntil();
-    boolean              hideStory      = remote.shouldHideStory();
-    boolean              matchesRemote  = doParamsMatch(remote, unknownFields, serviceId, pni, e164, givenName, familyName, profileKey, username, identityState, identityKey, blocked, profileSharing, archived, forcedUnread, muteUntil, hideStory);
-    boolean              matchesLocal   = doParamsMatch(local, unknownFields, serviceId, pni, e164, givenName, familyName, profileKey, username, identityState, identityKey, blocked, profileSharing, archived, forcedUnread, muteUntil, hideStory);
+    byte[]               unknownFields         = remote.serializeUnknownFields();
+    ServiceId            serviceId             = local.getServiceId() == ServiceId.UNKNOWN ? remote.getServiceId() : local.getServiceId();
+    byte[]               profileKey            = OptionalUtil.or(remote.getProfileKey(), local.getProfileKey()).orElse(null);
+    String               username              = OptionalUtil.or(remote.getUsername(), local.getUsername()).orElse("");
+    boolean              blocked               = remote.isBlocked();
+    boolean              profileSharing        = remote.isProfileSharingEnabled();
+    boolean              archived              = remote.isArchived();
+    boolean              forcedUnread          = remote.isForcedUnread();
+    long                 muteUntil             = remote.getMuteUntil();
+    boolean              hideStory             = remote.shouldHideStory();
+    long                 unregisteredTimestamp = remote.getUnregisteredTimestamp();
+    boolean              matchesRemote         = doParamsMatch(remote, unknownFields, serviceId, pni, e164, givenName, familyName, profileKey, username, identityState, identityKey, blocked, profileSharing, archived, forcedUnread, muteUntil, hideStory, unregisteredTimestamp);
+    boolean              matchesLocal          = doParamsMatch(local, unknownFields, serviceId, pni, e164, givenName, familyName, profileKey, username, identityState, identityKey, blocked, profileSharing, archived, forcedUnread, muteUntil, hideStory, unregisteredTimestamp);
 
     if (matchesRemote) {
       return remote;
@@ -219,6 +220,7 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
                                     .setForcedUnread(forcedUnread)
                                     .setMuteUntil(muteUntil)
                                     .setHideStory(hideStory)
+                                    .setUnregisteredTimestamp(unregisteredTimestamp)
                                     .build();
     }
   }
@@ -261,7 +263,8 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
                                        boolean archived,
                                        boolean forcedUnread,
                                        long muteUntil,
-                                       boolean hideStory)
+                                       boolean hideStory,
+                                       long unregisteredTimestamp)
   {
     return Arrays.equals(contact.serializeUnknownFields(), unknownFields)     &&
            Objects.equals(contact.getServiceId(), serviceId)                  &&
@@ -278,6 +281,7 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
            contact.isArchived() == archived                                   &&
            contact.isForcedUnread() == forcedUnread                           &&
            contact.getMuteUntil() == muteUntil                                &&
-           contact.shouldHideStory() == hideStory;
+           contact.shouldHideStory() == hideStory                             &&
+           contact.getUnregisteredTimestamp() == unregisteredTimestamp;
   }
 }

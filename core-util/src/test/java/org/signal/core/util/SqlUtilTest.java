@@ -125,6 +125,15 @@ public final class SqlUtilTest {
   }
 
   @Test
+  public void buildCollectionQuery_single_withPrefix() {
+    List<SqlUtil.Query> updateQuery = SqlUtil.buildCollectionQuery("a", Arrays.asList(1), "b = 1 AND");
+
+    assertEquals(1, updateQuery.size());
+    assertEquals("b = 1 AND a IN (?)", updateQuery.get(0).getWhere());
+    assertArrayEquals(new String[] { "1" }, updateQuery.get(0).getWhereArgs());
+  }
+
+  @Test
   public void buildCollectionQuery_multiple() {
     List<SqlUtil.Query> updateQuery = SqlUtil.buildCollectionQuery("a", Arrays.asList(1, 2, 3));
 
@@ -135,7 +144,7 @@ public final class SqlUtilTest {
 
   @Test
   public void buildCollectionQuery_multiple_twoBatches() {
-    List<SqlUtil.Query> updateQuery = SqlUtil.buildCollectionQuery("a", Arrays.asList(1, 2, 3), 2);
+    List<SqlUtil.Query> updateQuery = SqlUtil.buildCollectionQuery("a", Arrays.asList(1, 2, 3), "", 2);
 
     assertEquals(2, updateQuery.size());
 

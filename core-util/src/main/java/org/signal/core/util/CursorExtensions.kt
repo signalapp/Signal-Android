@@ -31,6 +31,10 @@ fun Cursor.requireLong(column: String): Long {
   return CursorUtil.requireLong(this, column)
 }
 
+fun Cursor.optionalLong(column: String): Optional<Long> {
+  return CursorUtil.getLong(this, column)
+}
+
 fun Cursor.requireBoolean(column: String): Boolean {
   return CursorUtil.requireInt(this, column) != 0
 }

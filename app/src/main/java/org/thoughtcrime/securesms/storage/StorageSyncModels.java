@@ -124,6 +124,7 @@ public final class StorageSyncModels {
                                   .setForcedUnread(recipient.getSyncExtras().isForcedUnread())
                                   .setMuteUntil(recipient.getMuteUntil())
                                   .setHideStory(hideStory)
+                                  .setUnregisteredTimestamp(recipient.getSyncExtras().getUnregisteredTimestamp())
                                   .build();
   }
 

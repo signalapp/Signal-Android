@@ -19,6 +19,7 @@ import org.signal.core.util.logging.Log
 import org.signal.core.util.optionalBlob
 import org.signal.core.util.optionalBoolean
 import org.signal.core.util.optionalInt
+import org.signal.core.util.optionalLong
 import org.signal.core.util.optionalString
 import org.signal.core.util.or
 import org.signal.core.util.requireBlob
@@ -122,6 +123,8 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
   companion object {
     private val TAG = Log.tag(RecipientDatabase::class.java)
 
+    private val UNREGISTERED_LIFESPAN: Long = TimeUnit.DAYS.toMillis(30)
+
     const val TABLE_NAME = "recipient"
 
     const val ID = "_id"
@@ -182,6 +185,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     private const val IDENTITY_STATUS = "identity_status"
     private const val IDENTITY_KEY = "identity_key"
     private const val NEEDS_PNI_SIGNATURE = "needs_pni_signature"
+    private const val UNREGISTERED_TIMESTAMP = "unregistered_timestamp"
 
     @JvmField
     val CREATE_TABLE =
@@ -240,7 +244,8 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
         $BADGES BLOB DEFAULT NULL,
         $PNI_COLUMN TEXT DEFAULT NULL,
         $DISTRIBUTION_LIST_ID INTEGER DEFAULT NULL,
-        $NEEDS_PNI_SIGNATURE INTEGER DEFAULT 0
+        $NEEDS_PNI_SIGNATURE INTEGER DEFAULT 0,
+        $UNREGISTERED_TIMESTAMP INTEGER DEFAULT 0
       )
       """.trimIndent()
 
@@ -1142,6 +1147,34 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
   }
 
   /**
+   * Removes storageIds from unregistered recipients who were unregistered more than [UNREGISTERED_LIFESPAN] ago.
+   * @return The number of rows affected.
+   */
+  fun removeStorageIdsFromOldUnregisteredRecipients(now: Long): Int {
+    return writableDatabase
+      .update(TABLE_NAME)
+      .values(STORAGE_SERVICE_ID to null)
+      .where("$STORAGE_SERVICE_ID NOT NULL AND $UNREGISTERED_TIMESTAMP > 0 AND $UNREGISTERED_TIMESTAMP < ?", now - UNREGISTERED_LIFESPAN)
+      .run()
+  }
+
+  /**
+   * Removes storageIds from unregistered contacts that have storageIds in the provided collection.
+   * @return The number of updated rows.
+   */
+  fun removeStorageIdsFromLocalOnlyUnregisteredRecipients(storageIds: Collection<StorageId>): Int {
+    val values = contentValuesOf(STORAGE_SERVICE_ID to null)
+    var updated = 0
+
+    SqlUtil.buildCollectionQuery(STORAGE_SERVICE_ID, storageIds.map { Base64.encodeBytes(it.raw) }, "$UNREGISTERED_TIMESTAMP > 0 AND")
+      .forEach {
+        updated += writableDatabase.update(TABLE_NAME, values, it.where, it.whereArgs)
+      }
+
+    return updated
+  }
+
+  /**
    * Takes a mapping of old->new phone numbers and updates the table to match.
    * Intended to be used to handle changing number formats.
    */
@@ -1184,6 +1217,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     val out: MutableList<RecipientRecord> = ArrayList()
     val columns: Array<String> = TYPED_RECIPIENT_PROJECTION + arrayOf(
       "$TABLE_NAME.$STORAGE_PROTO",
+      "$TABLE_NAME.$UNREGISTERED_TIMESTAMP",
       "${GroupDatabase.TABLE_NAME}.${GroupDatabase.V2_MASTER_KEY}",
       "${ThreadDatabase.TABLE_NAME}.${ThreadDatabase.ARCHIVED}",
       "${ThreadDatabase.TABLE_NAME}.${ThreadDatabase.READ}",
@@ -2195,10 +2229,11 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
    * Should only use if you are confident that this shouldn't result in any contact merging.
    */
   fun markRegisteredOrThrow(id: RecipientId, serviceId: ServiceId) {
-    val contentValues = ContentValues(2).apply {
-      put(REGISTERED, RegisteredState.REGISTERED.id)
-      put(SERVICE_ID, serviceId.toString().lowercase())
-    }
+    val contentValues = contentValuesOf(
+      REGISTERED to RegisteredState.REGISTERED.id,
+      SERVICE_ID to serviceId.toString().lowercase(),
+      UNREGISTERED_TIMESTAMP to 0
+    )
     if (update(id, contentValues)) {
       setStorageIdIfNotSet(id)
       ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
@@ -2206,10 +2241,12 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
   }
 
   fun markUnregistered(id: RecipientId) {
-    val contentValues = ContentValues(2).apply {
-      put(REGISTERED, RegisteredState.NOT_REGISTERED.id)
-      putNull(STORAGE_SERVICE_ID)
-    }
+    val contentValues = contentValuesOf(
+      REGISTERED to RegisteredState.NOT_REGISTERED.id,
+      STORAGE_SERVICE_ID to null,
+      UNREGISTERED_TIMESTAMP to System.currentTimeMillis()
+    )
+
     if (update(id, contentValues)) {
       ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
     }
@@ -2223,6 +2260,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       for ((recipientId, serviceId) in registered) {
         val values = ContentValues(2).apply {
           put(REGISTERED, RegisteredState.REGISTERED.id)
+          put(UNREGISTERED_TIMESTAMP, 0)
           if (serviceId != null) {
             put(SERVICE_ID, serviceId.toString().lowercase())
           }
@@ -2242,10 +2280,10 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       }
 
       for (id in unregistered) {
-        val values = ContentValues(2).apply {
-          put(REGISTERED, RegisteredState.NOT_REGISTERED.id)
-          putNull(STORAGE_SERVICE_ID)
-        }
+        val values = contentValuesOf(
+          REGISTERED to RegisteredState.NOT_REGISTERED.id,
+          UNREGISTERED_TIMESTAMP to System.currentTimeMillis()
+        )
         if (update(id, values)) {
           ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
         }
@@ -2320,7 +2358,8 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
   fun bulkUpdatedRegisteredStatusV2(registered: Set<RecipientId>, unregistered: Collection<RecipientId>) {
     writableDatabase.withinTransaction {
       val registeredValues = contentValuesOf(
-        REGISTERED to RegisteredState.REGISTERED.id
+        REGISTERED to RegisteredState.REGISTERED.id,
+        UNREGISTERED_TIMESTAMP to 0
       )
 
       for (id in registered) {
@@ -2332,7 +2371,8 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
 
       val unregisteredValues = contentValuesOf(
         REGISTERED to RegisteredState.NOT_REGISTERED.id,
-        STORAGE_SERVICE_ID to null
+        STORAGE_SERVICE_ID to null,
+        UNREGISTERED_TIMESTAMP to System.currentTimeMillis()
       )
 
       for (id in unregistered) {
@@ -2418,7 +2458,8 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
             .update(TABLE_NAME)
             .values(
               SERVICE_ID to operation.aci.toString(),
-              REGISTERED to RegisteredState.REGISTERED.id
+              REGISTERED to RegisteredState.REGISTERED.id,
+              UNREGISTERED_TIMESTAMP to 0
             )
             .where("$ID = ?", operation.recipientId)
             .run()
@@ -2441,7 +2482,8 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
             .update(TABLE_NAME)
             .values(
               PNI_COLUMN to operation.pni.toString(),
-              REGISTERED to RegisteredState.REGISTERED.id
+              REGISTERED to RegisteredState.REGISTERED.id,
+              UNREGISTERED_TIMESTAMP to 0
             )
             .where("$ID = ?", operation.recipientId)
             .run()
@@ -3614,6 +3656,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     if (serviceId != null) {
       values.put(SERVICE_ID, serviceId.toString().lowercase())
       values.put(REGISTERED, RegisteredState.REGISTERED.id)
+      values.put(UNREGISTERED_TIMESTAMP, 0)
       values.put(STORAGE_SERVICE_ID, Base64.encodeBytes(StorageSyncHelper.generateKey()))
       values.put(AVATAR_COLOR, AvatarColor.random().serialize())
     }
@@ -3633,6 +3676,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
 
     if (pni != null || aci != null) {
       values.put(REGISTERED, RegisteredState.REGISTERED.id)
+      values.put(UNREGISTERED_TIMESTAMP, 0)
     }
 
     return values
@@ -3641,7 +3685,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
   private fun getValuesForStorageContact(contact: SignalContactRecord, isInsert: Boolean): ContentValues {
     return ContentValues().apply {
       val profileName = ProfileName.fromParts(contact.givenName.orElse(null), contact.familyName.orElse(null))
-      val username = contact.username.orElse(null)
+      val username: String? = contact.username.orElse(null)
 
       if (contact.serviceId.isValid) {
         put(SERVICE_ID, contact.serviceId.toString())
@@ -3666,6 +3710,15 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
         put(STORAGE_PROTO, Base64.encodeBytes(Objects.requireNonNull(contact.serializeUnknownFields())))
       } else {
         putNull(STORAGE_PROTO)
+      }
+
+      put(UNREGISTERED_TIMESTAMP, contact.unregisteredTimestamp)
+      if (contact.unregisteredTimestamp > 0L) {
+        put(REGISTERED, RegisteredState.NOT_REGISTERED.id)
+      } else if (contact.serviceId.isValid) {
+        put(REGISTERED, RegisteredState.REGISTERED.id)
+      } else {
+        Log.w(TAG, "Contact is marked as registered, but has no serviceId! Can't locally mark registered. (Phone: ${contact.number.orElse("null")}, Username: ${username?.isNotEmpty()})")
       }
 
       if (isInsert) {
@@ -3923,8 +3976,17 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     val groupMasterKey = cursor.optionalBlob(GroupDatabase.V2_MASTER_KEY).map { GroupUtil.requireMasterKey(it) }.orElse(null)
     val identityKey = cursor.optionalString(IDENTITY_KEY).map { Base64.decodeOrThrow(it) }.orElse(null)
     val identityStatus = cursor.optionalInt(IDENTITY_STATUS).map { VerifiedStatus.forState(it) }.orElse(VerifiedStatus.DEFAULT)
+    val unregisteredTimestamp = cursor.optionalLong(UNREGISTERED_TIMESTAMP).orElse(0)
 
-    return RecipientRecord.SyncExtras(storageProto, groupMasterKey, identityKey, identityStatus, archived, forcedUnread)
+    return RecipientRecord.SyncExtras(
+      storageProto = storageProto,
+      groupMasterKey = groupMasterKey,
+      identityKey = identityKey,
+      identityStatus = identityStatus,
+      isArchived = archived,
+      isForcedUnread = forcedUnread,
+      unregisteredTimestamp = unregisteredTimestamp
+    )
   }
 
   private fun getExtras(cursor: Cursor): Recipient.Extras? {

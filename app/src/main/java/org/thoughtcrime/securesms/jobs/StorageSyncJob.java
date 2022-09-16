@@ -260,6 +260,17 @@ public class StorageSyncJob extends BaseJob {
 
       Log.i(TAG, "[Remote Sync] Pre-Merge ID Difference :: " + idDifference);
 
+      if (idDifference.getLocalOnlyIds().size() > 0) {
+        int updated = SignalDatabase.recipients().removeStorageIdsFromLocalOnlyUnregisteredRecipients(idDifference.getLocalOnlyIds());
+
+        if (updated > 0) {
+          Log.w(TAG, "Found " + updated + " records that were deleted remotely but only marked unregistered locally. Removed those from local store. Recalculating diff.");
+
+          localStorageIdsBeforeMerge = getAllLocalStorageIds(self);
+          idDifference               = StorageSyncHelper.findIdDifference(remoteManifest.getStorageIds(), localStorageIdsBeforeMerge);
+        }
+      }
+
       stopwatch.split("remote-id-diff");
 
       if (!idDifference.isEmpty()) {
@@ -314,6 +325,11 @@ public class StorageSyncJob extends BaseJob {
     db.beginTransaction();
     try {
       self = freshSelf();
+
+      int removedUnregistered = SignalDatabase.recipients().removeStorageIdsFromOldUnregisteredRecipients(System.currentTimeMillis());
+      if (removedUnregistered > 0) {
+        Log.i(TAG, "Removed " + removedUnregistered + " recipients from storage service that have been unregistered for longer than 30 days.");
+      }
 
       List<StorageId>           localStorageIds = getAllLocalStorageIds(self);
       IdDifferenceResult        idDifference    = StorageSyncHelper.findIdDifference(remoteManifest.getStorageIds(), localStorageIds);

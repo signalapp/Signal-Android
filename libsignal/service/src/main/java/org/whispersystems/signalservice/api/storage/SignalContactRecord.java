@@ -6,7 +6,6 @@ import com.google.protobuf.InvalidProtocolBufferException;
 import org.signal.libsignal.protocol.logging.Log;
 import org.whispersystems.signalservice.api.push.PNI;
 import org.whispersystems.signalservice.api.push.ServiceId;
-import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.util.OptionalUtil;
 import org.whispersystems.signalservice.api.util.ProtoUtil;
 import org.whispersystems.signalservice.internal.storage.protos.ContactRecord;
@@ -130,6 +129,10 @@ public final class SignalContactRecord implements SignalRecord {
         diff.add("HideStory");
       }
 
+      if (getUnregisteredTimestamp() != that.getUnregisteredTimestamp()) {
+        diff.add("UnregisteredTimestamp");
+      }
+
       if (!Objects.equals(this.hasUnknownFields(), that.hasUnknownFields())) {
         diff.add("UnknownFields");
       }
@@ -206,6 +209,10 @@ public final class SignalContactRecord implements SignalRecord {
 
   public boolean shouldHideStory() {
     return proto.getHideStory();
+  }
+
+  public long getUnregisteredTimestamp() {
+    return proto.getUnregisteredAtTimestamp();
   }
 
   /**
@@ -316,6 +323,11 @@ public final class SignalContactRecord implements SignalRecord {
 
     public Builder setHideStory(boolean hideStory) {
       builder.setHideStory(hideStory);
+      return this;
+    }
+
+    public Builder setUnregisteredTimestamp(long timestamp) {
+      builder.setUnregisteredAtTimestamp(timestamp);
       return this;
     }
 

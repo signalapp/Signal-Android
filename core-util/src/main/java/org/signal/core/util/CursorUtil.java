@@ -65,6 +65,14 @@ public final class CursorUtil {
     }
   }
 
+  public static Optional<Long> getLong(@NonNull Cursor cursor, @NonNull String column) {
+    if (cursor.getColumnIndex(column) < 0) {
+      return Optional.empty();
+    } else {
+      return Optional.of(requireLong(cursor, column));
+    }
+  }
+
   public static Optional<Boolean> getBoolean(@NonNull Cursor cursor, @NonNull String column) {
     if (cursor.getColumnIndex(column) < 0) {
       return Optional.empty();
