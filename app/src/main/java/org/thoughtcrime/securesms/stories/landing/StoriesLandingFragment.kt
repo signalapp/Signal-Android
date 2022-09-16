@@ -273,7 +273,7 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
             storyThumbTextModel = text,
             storyThumbUri = image,
             storyThumbBlur = blur,
-            recipientIds = viewModel.getRecipientIds(model.data.isHidden, model.data.storyViewState == StoryViewState.UNVIEWED),
+            recipientIds = viewModel.getRecipientIds(model.data.isHidden, true),
             isUnviewedOnly = model.data.storyViewState == StoryViewState.UNVIEWED,
             isFromInfoContextMenuAction = isFromInfoContextMenuAction
           )
