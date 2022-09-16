@@ -66,6 +66,10 @@ class StoryViewerFragment :
 
     lifecycleDisposable.bindTo(viewLifecycleOwner)
     lifecycleDisposable += viewModel.state.observeOn(AndroidSchedulers.mainThread()).subscribe { state ->
+      if (state.noPosts) {
+        requireActivity().finish()
+      }
+
       adapter.setPages(state.pages)
       if (state.pages.isNotEmpty() && storyPager.currentItem != state.page) {
         pagerOnPageSelectedLock = true
@@ -96,6 +100,17 @@ class StoryViewerFragment :
         storyCrossfader.alpha = 0f
       }
     }
+
+    if (savedInstanceState != null && savedInstanceState.containsKey(HIDDEN)) {
+      val ids: List<RecipientId> = savedInstanceState.getParcelableArrayList(HIDDEN)!!
+      viewModel.addHiddenAndRefresh(ids.toSet())
+    } else {
+      viewModel.refresh()
+    }
+  }
+
+  override fun onSaveInstanceState(outState: Bundle) {
+    outState.putParcelableArrayList(HIDDEN, ArrayList(viewModel.getHidden()))
   }
 
   override fun onResume() {
@@ -119,7 +134,7 @@ class StoryViewerFragment :
   }
 
   override fun onStoryHidden(recipientId: RecipientId) {
-    viewModel.onRecipientHidden()
+    viewModel.addHiddenAndRefresh(setOf(recipientId))
   }
 
   override fun onReadyToAnimate() {
@@ -150,6 +165,7 @@ class StoryViewerFragment :
 
   companion object {
     private const val ARGS = "args"
+    private const val HIDDEN = "hidden"
 
     fun create(storyViewerArgs: StoryViewerArgs): Fragment {
       return StoryViewerFragment().apply {

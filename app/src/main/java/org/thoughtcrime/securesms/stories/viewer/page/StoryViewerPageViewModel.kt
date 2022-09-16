@@ -222,6 +222,10 @@ class StoryViewerPageViewModel(
     storyViewerPlaybackStore.update { it.copy(isDisplayingDeleteDialog = isDisplayingDeleteDialog) }
   }
 
+  fun setIsDisplayingHideDialog(isDisplayingHideDialog: Boolean) {
+    storyViewerPlaybackStore.update { it.copy(isDisplayingHideDialog = isDisplayingHideDialog) }
+  }
+
   fun setIsDisplayingViewsAndRepliesDialog(isDisplayingViewsAndRepliesDialog: Boolean) {
     storyViewerPlaybackStore.update { it.copy(isDisplayingViewsAndRepliesDialog = isDisplayingViewsAndRepliesDialog) }
   }

@@ -13,7 +13,8 @@ data class StoryViewerState(
   val crossfadeSource: CrossfadeSource,
   val crossfadeTarget: CrossfadeTarget? = null,
   val loadState: LoadState = LoadState(),
-  val skipCrossfade: Boolean = false
+  val skipCrossfade: Boolean = false,
+  val noPosts: Boolean = false
 ) {
   sealed class CrossfadeSource {
     object None : CrossfadeSource()

@@ -16,7 +16,6 @@ import androidx.core.app.SharedElementCallback
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
@@ -33,7 +32,6 @@ import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectFor
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
-import org.thoughtcrime.securesms.database.model.StoryViewState
 import org.thoughtcrime.securesms.main.Material3OnScrollHelperBinder
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity
 import org.thoughtcrime.securesms.permissions.Permissions
@@ -273,8 +271,8 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
             storyThumbTextModel = text,
             storyThumbUri = image,
             storyThumbBlur = blur,
-            recipientIds = viewModel.getRecipientIds(model.data.isHidden, true),
-            isUnviewedOnly = model.data.storyViewState == StoryViewState.UNVIEWED,
+            recipientIds = viewModel.getRecipientIds(model.data.isHidden, false),
+            isUnviewedOnly = false,
             isFromInfoContextMenuAction = isFromInfoContextMenuAction
           )
         ),
@@ -288,19 +286,14 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
   }
 
   private fun handleHideStory(model: StoriesLandingItem.Model) {
-    MaterialAlertDialogBuilder(requireContext(), R.style.ThemeOverlay_Signal_MaterialAlertDialog)
-      .setTitle(R.string.StoriesLandingFragment__hide_story)
-      .setMessage(getString(R.string.StoriesLandingFragment__new_story_updates, model.data.storyRecipient.getShortDisplayName(requireContext())))
-      .setPositiveButton(R.string.StoriesLandingFragment__hide) { _, _ ->
-        viewModel.setHideStory(model.data.storyRecipient, true).subscribe {
-          Snackbar.make(cameraFab, R.string.StoriesLandingFragment__story_hidden, Snackbar.LENGTH_SHORT)
-            .setAnchorView(cameraFab)
-            .setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_FADE)
-            .show()
-        }
+    StoryDialogs.hideStory(requireContext(), model.data.storyRecipient.getShortDisplayName(requireContext())) {
+      viewModel.setHideStory(model.data.storyRecipient, true).subscribe {
+        Snackbar.make(cameraFab, R.string.StoriesLandingFragment__story_hidden, Snackbar.LENGTH_SHORT)
+          .setAnchorView(cameraFab)
+          .setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_FADE)
+          .show()
       }
-      .setNegativeButton(android.R.string.cancel) { _, _ -> }
-      .show()
+    }
   }
 
   override fun onOptionsItemSelected(item: MenuItem): Boolean {

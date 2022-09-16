@@ -63,6 +63,7 @@ class StoryViewerViewModelTest {
       ),
       repository
     )
+    testSubject.refresh()
     testScheduler.triggerActions()
 
     // THEN
@@ -107,6 +108,7 @@ class StoryViewerViewModelTest {
       ),
       repository
     )
+    testSubject.refresh()
     testScheduler.triggerActions()
 
     // WHEN
@@ -133,6 +135,7 @@ class StoryViewerViewModelTest {
       ),
       repository
     )
+    testSubject.refresh()
     testScheduler.triggerActions()
 
     // WHEN
@@ -159,6 +162,7 @@ class StoryViewerViewModelTest {
       ),
       repository
     )
+    testSubject.refresh()
     testScheduler.triggerActions()
 
     // WHEN
@@ -185,6 +189,7 @@ class StoryViewerViewModelTest {
       ),
       repository
     )
+    testSubject.refresh()
     testScheduler.triggerActions()
 
     // WHEN

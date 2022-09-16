@@ -17,11 +17,12 @@ class StoryViewerPagerAdapter(
   private val isFromInfoContextMenuAction: Boolean
 ) : FragmentStateAdapter(fragment) {
 
-  private var pages: List<RecipientId> = emptyList()
+  private val pages: MutableList<RecipientId> = mutableListOf()
 
   fun setPages(newPages: List<RecipientId>) {
-    val oldPages = pages
-    pages = newPages
+    val oldPages = ArrayList(pages)
+    pages.clear()
+    pages.addAll(newPages)
 
     val callback = Callback(oldPages, pages)
     DiffUtil.calculateDiff(callback).dispatchUpdatesTo(this)
@@ -33,6 +34,10 @@ class StoryViewerPagerAdapter(
   }
 
   override fun getItemCount(): Int = pages.size
+
+  override fun getItemId(position: Int): Long {
+    return pages[position].toLong()
+  }
 
   override fun createFragment(position: Int): Fragment {
     return StoryViewerPageFragment.create(pages[position], initialStoryId, isFromNotification, groupReplyStartPosition, isUnviewedOnly, isOutgoingOnly, isFromInfoContextMenuAction)

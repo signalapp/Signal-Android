@@ -41,4 +41,21 @@ object StoryDialogs {
       }
       .show()
   }
+
+  fun hideStory(
+    context: Context,
+    recipientName: String,
+    onCancelled: () -> Unit = {},
+    onHideStoryConfirmed: () -> Unit,
+  ) {
+    MaterialAlertDialogBuilder(context, R.style.ThemeOverlay_Signal_MaterialAlertDialog)
+      .setTitle(R.string.StoriesLandingFragment__hide_story)
+      .setMessage(context.getString(R.string.StoriesLandingFragment__new_story_updates, recipientName))
+      .setPositiveButton(R.string.StoriesLandingFragment__hide) { _, _ ->
+        onHideStoryConfirmed()
+      }
+      .setNegativeButton(android.R.string.cancel) { _, _ -> onCancelled() }
+      .setOnCancelListener { onCancelled() }
+      .show()
+  }
 }

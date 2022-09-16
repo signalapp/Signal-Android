@@ -59,6 +59,7 @@ import org.thoughtcrime.securesms.stories.StoryFirstTimeNavigationView
 import org.thoughtcrime.securesms.stories.StorySlateView
 import org.thoughtcrime.securesms.stories.StoryVolumeOverlayView
 import org.thoughtcrime.securesms.stories.dialogs.StoryContextMenu
+import org.thoughtcrime.securesms.stories.dialogs.StoryDialogs
 import org.thoughtcrime.securesms.stories.viewer.StoryViewerViewModel
 import org.thoughtcrime.securesms.stories.viewer.StoryVolumeViewModel
 import org.thoughtcrime.securesms.stories.viewer.info.StoryInfoBottomSheetDialogFragment
@@ -979,8 +980,11 @@ class StoryViewerPageFragment :
         startActivity(ConversationIntents.createBuilder(requireContext(), storyRecipientId, -1L).build())
       },
       onHide = {
-        lifecycleDisposable += viewModel.hideStory().subscribe {
-          callback.onStoryHidden(storyRecipientId)
+        viewModel.setIsDisplayingHideDialog(true)
+        StoryDialogs.hideStory(requireContext(), Recipient.resolved(storyRecipientId).getDisplayName(requireContext()), { viewModel.setIsDisplayingHideDialog(true) }) {
+          lifecycleDisposable += viewModel.hideStory().subscribe {
+            callback.onStoryHidden(storyRecipientId)
+          }
         }
       },
       onShare = {

@@ -5,6 +5,7 @@ data class StoryViewerPlaybackState(
   val isUserTouching: Boolean = false,
   val isDisplayingForwardDialog: Boolean = false,
   val isDisplayingDeleteDialog: Boolean = false,
+  val isDisplayingHideDialog: Boolean = false,
   val isDisplayingContextMenu: Boolean = false,
   val isDisplayingViewsAndRepliesDialog: Boolean = false,
   val isDisplayingDirectReplyDialog: Boolean = false,
@@ -44,5 +45,6 @@ data class StoryViewerPlaybackState(
     isRunningSharedElementAnimation ||
     isDisplayingFirstTimeNavigation ||
     isDisplayingInfoDialog ||
-    isUserScaling
+    isUserScaling ||
+    isDisplayingHideDialog
 }
