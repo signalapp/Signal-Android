@@ -22,7 +22,7 @@ class TextStoryPostLinkEntryFragment : KeyboardEntryDialogFragment(
   private lateinit var input: EditText
 
   private val linkPreviewViewModel: LinkPreviewViewModel by viewModels(
-    factoryProducer = { LinkPreviewViewModel.Factory(LinkPreviewRepository()) }
+    factoryProducer = { LinkPreviewViewModel.Factory(LinkPreviewRepository(), true) }
   )
 
   private val viewModel: TextStoryPostCreationViewModel by viewModels(

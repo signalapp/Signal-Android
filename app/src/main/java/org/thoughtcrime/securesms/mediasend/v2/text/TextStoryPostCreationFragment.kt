@@ -56,7 +56,7 @@ class TextStoryPostCreationFragment : Fragment(R.layout.stories_text_post_creati
       requireActivity()
     },
     factoryProducer = {
-      LinkPreviewViewModel.Factory(LinkPreviewRepository())
+      LinkPreviewViewModel.Factory(LinkPreviewRepository(), true)
     }
   )
 

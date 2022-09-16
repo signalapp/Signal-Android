@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:background="@color/signal_dark_colorBackground"
-    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout"
-    tools:viewBindingIgnore="true">
+    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
 
     <org.thoughtcrime.securesms.components.ClippedCardView
         android:id="@+id/link_preview_card"
@@ -140,6 +139,43 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </org.thoughtcrime.securesms.components.ClippedCardView>
 
+    <org.thoughtcrime.securesms.components.ClippedCardView
+        android:id="@+id/link_preview_placeholder_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="24dp"
+        android:visibility="gone"
+        app:cardBackgroundColor="#F6F8FB"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/link_preview_placeholder_title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:drawablePadding="12dp"
+            android:padding="16dp"
+            android:textAppearance="@style/Signal.Text.TitleSmall"
+            android:textColor="@color/signal_light_colorOnSurface"
+            app:drawableStartCompat="@drawable/ic_link_24"
+            app:drawableTint="@color/signal_light_colorOnSurface"
+            tools:text="apple.com" />
+
+    </org.thoughtcrime.securesms.components.ClippedCardView>
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/card_barrier_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="end"
+        app:constraint_referenced_ids="link_preview_placeholder_card,link_preview_card" />
+
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/link_preview_close"
         android:layout_width="48dp"
@@ -148,7 +184,8 @@
         android:padding="6dp"
         android:scaleType="centerInside"
         android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/card_barrier_end"
+        app:layout_constraintStart_toEndOf="@id/card_barrier_end"
         app:layout_constraintTop_toTopOf="parent"
         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Signal.Circle"
         app:srcCompat="@drawable/ic_x_24"

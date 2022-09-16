@@ -2,13 +2,15 @@ package org.thoughtcrime.securesms.stories
 
 import android.content.Context
 import android.graphics.drawable.Drawable
+import android.net.Uri
+import android.text.TextUtils
 import android.util.AttributeSet
 import android.view.View
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import org.signal.core.util.isAbsent
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ThumbnailView
+import org.thoughtcrime.securesms.databinding.StoriesTextPostLinkPreviewBinding
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel
@@ -32,18 +34,11 @@ class StoryLinkPreviewView @JvmOverloads constructor(
     inflate(context, R.layout.stories_text_post_link_preview, this)
   }
 
-  private val card: View = findViewById(R.id.link_preview_card)
-  private val close: View = findViewById(R.id.link_preview_close)
-  private val smallImage: ThumbnailView = findViewById<ThumbnailView>(R.id.link_preview_image).apply { isClickable = false }
-  private val largeImage: ThumbnailView = findViewById<ThumbnailView>(R.id.link_preview_large).apply { isClickable = false }
-  private val title: TextView = findViewById(R.id.link_preview_title)
-  private val url: TextView = findViewById(R.id.link_preview_url)
-  private val description: TextView = findViewById(R.id.link_preview_description)
-  private val fallbackIcon: ImageView = findViewById(R.id.link_preview_fallback_icon)
-  private val loadingSpinner: Stub<View> = Stub(findViewById(R.id.loading_spinner))
+  private val binding = StoriesTextPostLinkPreviewBinding.bind(this)
+  private val spinnerStub = Stub<View>(binding.loadingSpinner)
 
   private fun getThumbnailTarget(useLargeThumbnail: Boolean): ThumbnailView {
-    return if (useLargeThumbnail) largeImage else smallImage
+    return if (useLargeThumbnail) binding.linkPreviewLarge else binding.linkPreviewImage
   }
 
   fun getThumbnailViewWidth(useLargeThumbnail: Boolean): Int {
@@ -62,37 +57,10 @@ class StoryLinkPreviewView @JvmOverloads constructor(
   fun bind(linkPreview: LinkPreview?, hiddenVisibility: Int = View.INVISIBLE, useLargeThumbnail: Boolean, loadThumbnail: Boolean = true): ListenableFuture<Boolean> {
     var future: ListenableFuture<Boolean>? = null
 
-    if (linkPreview != null) {
-      visibility = View.VISIBLE
-
-      val image = getThumbnailTarget(useLargeThumbnail)
-      val notImage = getThumbnailTarget(!useLargeThumbnail)
-
-      notImage.visible = false
-
-      val imageSlide: Slide? = linkPreview.thumbnail.map { ImageSlide(context, it) }.orElse(null)
-      if (imageSlide != null) {
-        if (loadThumbnail) {
-          future = image.setImageResource(
-            GlideApp.with(this),
-            imageSlide,
-            false,
-            false
-          )
-        }
-
-        image.visible = true
-        fallbackIcon.visible = false
-      } else {
-        image.visible = false
-        fallbackIcon.visible = true
-      }
-
-      title.text = linkPreview.title
-      description.text = linkPreview.description
-      description.visible = linkPreview.description.isNotEmpty()
-
-      formatUrl(linkPreview)
+    if (isPartialLinkPreview(linkPreview)) {
+      future = bindPartialLinkPreview(linkPreview!!)
+    } else if (linkPreview != null) {
+      future = bindFullLinkPreview(linkPreview, useLargeThumbnail, loadThumbnail)
     } else {
       visibility = hiddenVisibility
     }
@@ -109,44 +77,100 @@ class StoryLinkPreviewView @JvmOverloads constructor(
 
     bind(linkPreview, hiddenVisibility, useLargeThumbnail)
 
-    loadingSpinner.get().visible = linkPreviewState.isLoading
+    spinnerStub.get().visible = linkPreviewState.isLoading
     if (linkPreviewState.isLoading) {
       visible = true
     }
+  }
+
+  private fun isPartialLinkPreview(linkPreview: LinkPreview?): Boolean {
+    return linkPreview != null &&
+      TextUtils.isEmpty(linkPreview.description) &&
+      linkPreview.thumbnail.isAbsent() &&
+      linkPreview.attachmentId == null
+  }
+
+  private fun bindPartialLinkPreview(linkPreview: LinkPreview): ListenableFuture<Boolean> {
+    visibility = View.VISIBLE
+    binding.linkPreviewCard.visible = false
+    binding.linkPreviewPlaceholderCard.visible = true
+
+    binding.linkPreviewPlaceholderTitle.text = Uri.parse(linkPreview.url).host
+
+    return SettableFuture(false)
+  }
+
+  private fun bindFullLinkPreview(linkPreview: LinkPreview, useLargeThumbnail: Boolean, loadThumbnail: Boolean): ListenableFuture<Boolean> {
+    visibility = View.VISIBLE
+    binding.linkPreviewCard.visible = true
+    binding.linkPreviewPlaceholderCard.visible = false
+
+    val image = getThumbnailTarget(useLargeThumbnail)
+    val notImage = getThumbnailTarget(!useLargeThumbnail)
+    var future: ListenableFuture<Boolean>? = null
+
+    notImage.visible = false
+
+    val imageSlide: Slide? = linkPreview.thumbnail.map { ImageSlide(context, it) }.orElse(null)
+    if (imageSlide != null) {
+      if (loadThumbnail) {
+        future = image.setImageResource(
+          GlideApp.with(this),
+          imageSlide,
+          false,
+          false
+        )
+      }
+
+      image.visible = true
+      binding.linkPreviewFallbackIcon.visible = false
+    } else {
+      image.visible = false
+      binding.linkPreviewFallbackIcon.visible = true
+    }
+
+    binding.linkPreviewTitle.text = linkPreview.title
+    binding.linkPreviewDescription.text = linkPreview.description
+    binding.linkPreviewDescription.visible = linkPreview.description.isNotEmpty()
+
+    formatUrl(linkPreview)
+
+    return future ?: SettableFuture(false)
   }
 
   private fun formatUrl(linkPreview: LinkPreview) {
     val domain: String? = LinkPreviewUtil.getTopLevelDomain(linkPreview.url)
 
     if (linkPreview.title == domain) {
-      url.visibility = View.GONE
+      binding.linkPreviewUrl.visibility = View.GONE
       return
     }
 
     if (domain != null && linkPreview.date > 0) {
-      url.text = url.context.getString(R.string.LinkPreviewView_domain_date, domain, formatDate(linkPreview.date))
-      url.visibility = View.VISIBLE
+      binding.linkPreviewUrl.text = context.getString(R.string.LinkPreviewView_domain_date, domain, formatDate(linkPreview.date))
+      binding.linkPreviewUrl.visibility = View.VISIBLE
     } else if (domain != null) {
-      url.text = domain
-      url.visibility = View.VISIBLE
+      binding.linkPreviewUrl.text = domain
+      binding.linkPreviewUrl.visibility = View.VISIBLE
     } else if (linkPreview.date > 0) {
-      url.text = formatDate(linkPreview.date)
-      url.visibility = View.VISIBLE
+      binding.linkPreviewUrl.text = formatDate(linkPreview.date)
+      binding.linkPreviewUrl.visibility = View.VISIBLE
     } else {
-      url.visibility = View.GONE
+      binding.linkPreviewUrl.visibility = View.GONE
     }
   }
 
   fun setOnCloseClickListener(onClickListener: OnClickListener?) {
-    close.setOnClickListener(onClickListener)
+    binding.linkPreviewClose.setOnClickListener(onClickListener)
   }
 
   fun setOnPreviewClickListener(onClickListener: OnClickListener?) {
-    card.setOnClickListener(onClickListener)
+    binding.linkPreviewCard.setOnClickListener(onClickListener)
+    binding.linkPreviewPlaceholderCard.setOnClickListener(onClickListener)
   }
 
   fun setCanClose(canClose: Boolean) {
-    close.visible = canClose
+    binding.linkPreviewClose.visible = canClose
   }
 
   private fun formatDate(date: Long): String? {
