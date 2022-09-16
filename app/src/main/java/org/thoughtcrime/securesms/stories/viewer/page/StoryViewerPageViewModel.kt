@@ -259,6 +259,10 @@ class StoryViewerPageViewModel(
     storyViewerPlaybackStore.update { it.copy(isDisplayingInfoDialog = isDisplayingInfoDialog) }
   }
 
+  fun setIsUserScaling(isUserScaling: Boolean) {
+    storyViewerPlaybackStore.update { it.copy(isUserScaling = isUserScaling) }
+  }
+
   private fun resolveSwipeToReplyState(state: StoryViewerPageState, index: Int): StoryViewerPageState.ReplyState {
     if (index !in state.posts.indices) {
       return StoryViewerPageState.ReplyState.NONE

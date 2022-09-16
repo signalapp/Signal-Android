@@ -14,6 +14,7 @@ import android.os.Build
 import android.os.Bundle
 import android.view.GestureDetector
 import android.view.MotionEvent
+import android.view.ScaleGestureDetector
 import android.view.View
 import android.view.animation.Interpolator
 import android.widget.FrameLayout
@@ -34,6 +35,7 @@ import io.reactivex.rxjava3.core.Observable
 import org.signal.core.util.DimensionUnit
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.animation.AnimationCompleteListener
 import org.thoughtcrime.securesms.components.AvatarImageView
 import org.thoughtcrime.securesms.components.segmentedprogressbar.SegmentedProgressBar
 import org.thoughtcrime.securesms.components.segmentedprogressbar.SegmentedProgressBarListener
@@ -226,9 +228,24 @@ class StoryViewerPageFragment :
       )
     )
 
+    val scaleListener = StoryScaleListener(
+      viewModel, sharedViewModel, card
+    )
+
+    val scaleDetector = ScaleGestureDetector(
+      requireContext(),
+      scaleListener
+    )
+
     cardWrapper.setOnInterceptTouchEventListener { !storySlate.state.hasClickableContent && childFragmentManager.findFragmentById(R.id.story_content_container) !is StoryTextPostPreviewFragment }
     cardWrapper.setOnTouchListener { _, event ->
-      val result = gestureDetector.onTouchEvent(event)
+      scaleDetector.onTouchEvent(event)
+      val result = if (scaleDetector.isInProgress || scaleListener.isPerformingEndAnimation) {
+        true
+      } else {
+        gestureDetector.onTouchEvent(event)
+      }
+
       if (event.actionMasked == MotionEvent.ACTION_DOWN) {
         viewModel.setIsUserTouching(true)
       } else if (event.actionMasked == MotionEvent.ACTION_UP || event.actionMasked == MotionEvent.ACTION_CANCEL) {
@@ -1026,6 +1043,53 @@ class StoryViewerPageFragment :
     }
   }
 
+  private class StoryScaleListener(
+    val viewModel: StoryViewerPageViewModel,
+    val sharedViewModel: StoryViewerViewModel,
+    val card: View
+  ) : ScaleGestureDetector.SimpleOnScaleGestureListener() {
+
+    private var scaleFactor = 1f
+
+    var isPerformingEndAnimation: Boolean = false
+      private set
+
+    override fun onScaleBegin(detector: ScaleGestureDetector): Boolean {
+      viewModel.setIsUserScaling(true)
+      sharedViewModel.setIsChildScrolling(true)
+      card.animate().cancel()
+      card.apply {
+        pivotX = detector.focusX
+        pivotY = detector.focusY
+      }
+
+      return true
+    }
+
+    override fun onScale(detector: ScaleGestureDetector): Boolean {
+      scaleFactor *= detector.scaleFactor
+
+      card.apply {
+        scaleX = max(scaleFactor, 1f)
+        scaleY = max(scaleFactor, 1f)
+      }
+
+      return true
+    }
+
+    override fun onScaleEnd(detector: ScaleGestureDetector) {
+      scaleFactor = 1f
+      isPerformingEndAnimation = true
+      card.animate().scaleX(1f).scaleY(1f).setListener(object : AnimationCompleteListener() {
+        override fun onAnimationEnd(animation: Animator?) {
+          isPerformingEndAnimation = false
+          viewModel.setIsUserScaling(false)
+          sharedViewModel.setIsChildScrolling(false)
+        }
+      })
+    }
+  }
+
   private class StoryGestureListener(
     private val container: View,
     private val onGoToNext: () -> Unit,
@@ -1044,7 +1108,7 @@ class StoryViewerPageFragment :
 
     private val maxSlide = DimensionUnit.DP.toPixels(56f * 2)
 
-    override fun onDown(e: MotionEvent?): Boolean {
+    override fun onDown(e: MotionEvent): Boolean {
       return true
     }
 
