@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:viewBindingIgnore="true"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:layoutDirection="ltr">
+    android:layoutDirection="ltr"
+    tools:viewBindingIgnore="true">
 
     <FrameLayout
         android:id="@+id/container_zero"
@@ -14,6 +14,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/labeled_edit_text_background_inactive"
         app:layout_constraintDimensionRatio="w,1:1"
+        app:layout_constraintEnd_toStartOf="@+id/container_one"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -37,6 +38,7 @@
         android:layout_marginStart="4dp"
         android:background="@drawable/labeled_edit_text_background_inactive"
         app:layout_constraintDimensionRatio="w,1:1"
+        app:layout_constraintEnd_toStartOf="@+id/container_two"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/container_zero"
         app:layout_constraintTop_toTopOf="parent">
@@ -60,6 +62,7 @@
         android:layout_marginStart="4dp"
         android:background="@drawable/labeled_edit_text_background_inactive"
         app:layout_constraintDimensionRatio="w,1:1"
+        app:layout_constraintEnd_toStartOf="@+id/separator"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/container_one"
         app:layout_constraintTop_toTopOf="parent">
@@ -86,6 +89,8 @@
         android:text="-"
         android:textColor="@color/signal_inverse_primary"
         android:textSize="28sp"
+        app:layout_constraintEnd_toStartOf="@+id/container_three"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/container_two"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="HardcodedText" />
@@ -97,6 +102,7 @@
         android:layout_marginStart="4dp"
         android:background="@drawable/labeled_edit_text_background_inactive"
         app:layout_constraintDimensionRatio="w,1:1"
+        app:layout_constraintEnd_toStartOf="@+id/container_four"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/separator"
         app:layout_constraintTop_toTopOf="parent">
@@ -120,6 +126,7 @@
         android:layout_marginStart="4dp"
         android:background="@drawable/labeled_edit_text_background_inactive"
         app:layout_constraintDimensionRatio="w,1:1"
+        app:layout_constraintEnd_toStartOf="@+id/container_five"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/container_three"
         app:layout_constraintTop_toTopOf="parent">
@@ -143,6 +150,7 @@
         android:layout_marginStart="4dp"
         android:background="@drawable/labeled_edit_text_background_inactive"
         app:layout_constraintDimensionRatio="w,1:1"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/container_four"
         app:layout_constraintTop_toTopOf="parent">
