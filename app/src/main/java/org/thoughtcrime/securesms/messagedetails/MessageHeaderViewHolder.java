@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.conversation.ConversationItem;
 import org.thoughtcrime.securesms.conversation.ConversationMessage;
 import org.thoughtcrime.securesms.conversation.colors.Colorizable;
 import org.thoughtcrime.securesms.conversation.colors.Colorizer;
+import org.thoughtcrime.securesms.conversation.ConversationItemDisplayMode;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4Playable;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicyEnforcer;
@@ -110,7 +111,7 @@ final class MessageHeaderViewHolder extends RecyclerView.ViewHolder implements G
                           false,
                           true,
                           colorizer,
-                          false);
+                          ConversationItemDisplayMode.DETAILED);
   }
 
   private void bindErrorState(MessageRecord messageRecord) {

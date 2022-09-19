@@ -280,6 +280,8 @@ public class ConversationAdapter
         ConversationMessage previousMessage = adapterPosition < getItemCount() - 1  && !isFooterPosition(adapterPosition + 1) ? getItem(adapterPosition + 1) : null;
         ConversationMessage nextMessage     = adapterPosition > 0                   && !isHeaderPosition(adapterPosition - 1) ? getItem(adapterPosition - 1) : null;
 
+        ConversationItemDisplayMode displayMode = condensedMode ? ConversationItemDisplayMode.CONDENSED : ConversationItemDisplayMode.STANDARD;
+
         conversationViewHolder.getBindable().bind(lifecycleOwner,
                                                   conversationMessage,
                                                   Optional.ofNullable(previousMessage != null ? previousMessage.getMessageRecord() : null),
@@ -294,7 +296,7 @@ public class ConversationAdapter
                                                   isMessageRequestAccepted,
                                                   conversationMessage == inlineContent,
                                                   colorizer,
-                                                  condensedMode);
+                                                  displayMode);
 
         if (conversationMessage == recordToPulse) {
           recordToPulse = null;
