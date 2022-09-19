@@ -2560,7 +2560,7 @@ public final class MessageContentProcessor {
                                      @NonNull SignalServiceReceiptMessage message,
                                      @NonNull Recipient senderRecipient)
   {
-    log(TAG, "Processing delivery receipts. Sender: " +  senderRecipient.getId() + ", Device: " + content.getSenderDevice() + ", Timestamps: " + Util.join(message.getTimestamps(), ", "));
+    log(content.getTimestamp(), "Processing delivery receipts. Sender: " +  senderRecipient.getId() + ", Device: " + content.getSenderDevice() + ", Timestamps: " + Util.join(message.getTimestamps(), ", "));
 
     List<SyncMessageId> ids = Stream.of(message.getTimestamps())
                                     .map(t -> new SyncMessageId(senderRecipient.getId(), t))
