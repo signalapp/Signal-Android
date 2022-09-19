@@ -39,15 +39,13 @@ open class StoryViewerPageRepository(context: Context) {
 
   fun isReadReceiptsEnabled(): Boolean = TextSecurePreferences.isReadReceiptsEnabled(context)
 
-  private fun getStoryRecords(recipientId: RecipientId, isUnviewedOnly: Boolean, isOutgoingOnly: Boolean): Observable<List<MessageRecord>> {
+  private fun getStoryRecords(recipientId: RecipientId, isOutgoingOnly: Boolean): Observable<List<MessageRecord>> {
     return Observable.create { emitter ->
       val recipient = Recipient.resolved(recipientId)
 
       fun refresh() {
         val stories = if (recipient.isMyStory) {
           SignalDatabase.mms.getAllOutgoingStories(false, 100)
-        } else if (isUnviewedOnly) {
-          SignalDatabase.mms.getUnreadStories(recipientId, 100)
         } else if (isOutgoingOnly) {
           SignalDatabase.mms.getOutgoingStoriesTo(recipientId)
         } else {
@@ -148,8 +146,8 @@ open class StoryViewerPageRepository(context: Context) {
     return Stories.enqueueAttachmentsFromStoryForDownload(post.conversationMessage.messageRecord as MmsMessageRecord, true)
   }
 
-  fun getStoryPostsFor(recipientId: RecipientId, isUnviewedOnly: Boolean, isOutgoingOnly: Boolean): Observable<List<StoryPost>> {
-    return getStoryRecords(recipientId, isUnviewedOnly, isOutgoingOnly)
+  fun getStoryPostsFor(recipientId: RecipientId, isOutgoingOnly: Boolean): Observable<List<StoryPost>> {
+    return getStoryRecords(recipientId, isOutgoingOnly)
       .switchMap { records ->
         val posts = records.map { getStoryPostFromRecord(recipientId, it) }
         if (posts.isEmpty()) {

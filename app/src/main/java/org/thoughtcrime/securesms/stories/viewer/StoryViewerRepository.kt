@@ -6,7 +6,6 @@ import org.thoughtcrime.securesms.database.MessageDatabase
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
-import org.thoughtcrime.securesms.database.model.StoryViewState
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -15,7 +14,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId
  * Open for testing
  */
 open class StoryViewerRepository {
-  fun getFirstStory(recipientId: RecipientId, unviewedOnly: Boolean, storyId: Long): Single<MmsMessageRecord> {
+  fun getFirstStory(recipientId: RecipientId, storyId: Long): Single<MmsMessageRecord> {
     return if (storyId > 0) {
       Single.fromCallable {
         SignalDatabase.mms.getMessageRecord(storyId) as MmsMessageRecord
@@ -25,18 +24,20 @@ open class StoryViewerRepository {
         val recipient = Recipient.resolved(recipientId)
         val reader: MessageDatabase.Reader = if (recipient.isMyStory || recipient.isSelf) {
           SignalDatabase.mms.getAllOutgoingStories(false, 1)
-        } else if (unviewedOnly) {
-          SignalDatabase.mms.getUnreadStories(recipientId, 1)
         } else {
-          SignalDatabase.mms.getAllStoriesFor(recipientId, 1)
+          val unread = SignalDatabase.mms.getUnreadStories(recipientId, 1)
+          if (unread.iterator().hasNext()) {
+            unread
+          } else {
+            SignalDatabase.mms.getAllStoriesFor(recipientId, 1)
+          }
         }
-
-        reader.use { it.next } as MmsMessageRecord
+        reader.use { it.iterator().next() } as MmsMessageRecord
       }
     }
   }
 
-  fun getStories(hiddenStories: Boolean, unviewedOnly: Boolean, isOutgoingOnly: Boolean): Single<List<RecipientId>> {
+  fun getStories(hiddenStories: Boolean, isOutgoingOnly: Boolean): Single<List<RecipientId>> {
     return Single.create<List<RecipientId>> { emitter ->
       val myStoriesId = SignalDatabase.recipients.getOrInsertFromDistributionListId(DistributionListId.MY_STORY)
       val myStories = Recipient.resolved(myStoriesId)
@@ -53,16 +54,6 @@ open class StoryViewerRepository {
           it.shouldHideStory()
         } else {
           !it.shouldHideStory()
-        }
-      }.filter {
-        if (unviewedOnly) {
-          if (it.isSelf || it.isMyStory) {
-            false
-          } else {
-            SignalDatabase.mms.getStoryViewState(it.id) == StoryViewState.UNVIEWED
-          }
-        } else {
-          true
         }
       }.map { it.id }
 

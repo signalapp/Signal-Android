@@ -117,7 +117,6 @@ class StoryViewerPageFragment :
       StoryViewerPageViewModel.Factory(
         storyRecipientId,
         initialStoryId,
-        isUnviewedOnly,
         isOutgoingOnly,
         StoryViewerPageRepository(
           requireContext()
@@ -150,9 +149,6 @@ class StoryViewerPageFragment :
 
   private val groupReplyStartPosition: Int
     get() = requireArguments().getInt(ARG_GROUP_REPLY_START_POSITION, -1)
-
-  private val isUnviewedOnly: Boolean
-    get() = requireArguments().getBoolean(ARG_IS_UNVIEWED_ONLY, false)
 
   private val isOutgoingOnly: Boolean
     get() = requireArguments().getBoolean(ARG_IS_OUTGOING_ONLY, false)
@@ -1020,7 +1016,6 @@ class StoryViewerPageFragment :
     private const val ARG_STORY_ID = "arg.story.id"
     private const val ARG_IS_FROM_NOTIFICATION = "is_from_notification"
     private const val ARG_GROUP_REPLY_START_POSITION = "group_reply_start_position"
-    private const val ARG_IS_UNVIEWED_ONLY = "is_unviewed_only"
     private const val ARG_IS_OUTGOING_ONLY = "is_outgoing_only"
     private const val ARG_IS_FROM_INFO_CONTEXT_MENU_ACTION = "is_from_info_context_menu_action"
 
@@ -1029,7 +1024,6 @@ class StoryViewerPageFragment :
       initialStoryId: Long,
       isFromNotification: Boolean,
       groupReplyStartPosition: Int,
-      isUnviewedOnly: Boolean,
       isOutgoingOnly: Boolean,
       isFromInfoContextMenuAction: Boolean
     ): Fragment {
@@ -1039,7 +1033,6 @@ class StoryViewerPageFragment :
           ARG_STORY_ID to initialStoryId,
           ARG_IS_FROM_NOTIFICATION to isFromNotification,
           ARG_GROUP_REPLY_START_POSITION to groupReplyStartPosition,
-          ARG_IS_UNVIEWED_ONLY to isUnviewedOnly,
           ARG_IS_OUTGOING_ONLY to isOutgoingOnly,
           ARG_IS_FROM_INFO_CONTEXT_MENU_ACTION to isFromInfoContextMenuAction,
         )

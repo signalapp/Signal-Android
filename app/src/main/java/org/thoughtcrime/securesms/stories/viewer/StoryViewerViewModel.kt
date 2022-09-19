@@ -94,7 +94,6 @@ class StoryViewerViewModel(
     } else {
       repository.getStories(
         hiddenStories = storyViewerArgs.isInHiddenStoryMode,
-        unviewedOnly = storyViewerArgs.isUnviewedOnly,
         isOutgoingOnly = storyViewerArgs.isFromMyStories
       )
     }
@@ -102,7 +101,7 @@ class StoryViewerViewModel(
 
   fun refresh() {
     disposables.clear()
-    disposables += repository.getFirstStory(storyViewerArgs.recipientId, storyViewerArgs.isUnviewedOnly, storyViewerArgs.storyId).subscribe { record ->
+    disposables += repository.getFirstStory(storyViewerArgs.recipientId, storyViewerArgs.storyId).subscribe { record ->
       store.update {
         it.copy(
           crossfadeTarget = StoryViewerState.CrossfadeTarget.Record(record)

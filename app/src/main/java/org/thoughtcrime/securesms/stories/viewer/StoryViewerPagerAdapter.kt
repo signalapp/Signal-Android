@@ -12,7 +12,6 @@ class StoryViewerPagerAdapter(
   private val initialStoryId: Long,
   private val isFromNotification: Boolean,
   private val groupReplyStartPosition: Int,
-  private val isUnviewedOnly: Boolean,
   private val isOutgoingOnly: Boolean,
   private val isFromInfoContextMenuAction: Boolean
 ) : FragmentStateAdapter(fragment) {
@@ -40,7 +39,7 @@ class StoryViewerPagerAdapter(
   }
 
   override fun createFragment(position: Int): Fragment {
-    return StoryViewerPageFragment.create(pages[position], initialStoryId, isFromNotification, groupReplyStartPosition, isUnviewedOnly, isOutgoingOnly, isFromInfoContextMenuAction)
+    return StoryViewerPageFragment.create(pages[position], initialStoryId, isFromNotification, groupReplyStartPosition, isOutgoingOnly, isFromInfoContextMenuAction)
   }
 
   private class Callback(
