@@ -42,6 +42,8 @@ import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 import kotlin.math.max
 import kotlin.math.min
+import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.Duration.Companion.seconds
 
 object Stories {
 
@@ -51,7 +53,7 @@ object Stories {
   const val MAX_CAPTION_SIZE = 1500
 
   @JvmField
-  val MAX_VIDEO_DURATION_MILLIS = TimeUnit.SECONDS.toMillis(30)
+  val MAX_VIDEO_DURATION_MILLIS: Long = (31.seconds - 1.milliseconds).inWholeMilliseconds
 
   @JvmStatic
   fun isFeatureAvailable(): Boolean {
