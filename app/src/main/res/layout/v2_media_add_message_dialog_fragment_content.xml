@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:viewBindingIgnore="true"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -26,7 +25,7 @@
         android:layout_height="0dp"
         android:background="@drawable/rounded_rectangle_secondary_dark"
         app:layout_constraintBottom_toBottomOf="@id/add_a_message_input"
-        app:layout_constraintEnd_toEndOf="@id/add_a_message_input"
+        app:layout_constraintEnd_toEndOf="@id/add_a_message_limit"
         app:layout_constraintStart_toStartOf="@id/emoji_toggle"
         app:layout_constraintTop_toTopOf="@id/add_a_message_input" />
 
@@ -49,7 +48,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="6dp"
+        app:layout_goneMarginEnd="6dp"
         android:layout_marginBottom="8dp"
         android:background="@null"
         android:hint="@string/MediaReviewFragment__add_a_message"
@@ -61,10 +60,24 @@
         android:paddingEnd="10dp"
         android:textAppearance="@style/Signal.Text.Body"
         app:layout_constraintBottom_toTopOf="@id/emoji_drawer_stub"
-        app:layout_constraintEnd_toStartOf="@id/confirm_button"
+        app:layout_constraintEnd_toStartOf="@id/add_a_message_limit"
         app:layout_constraintStart_toEndOf="@id/emoji_toggle"
         app:layout_constraintTop_toTopOf="@id/input_barrier"
         app:layout_goneMarginStart="12dp" />
+
+    <TextView
+        android:id="@+id/add_a_message_limit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="6dp"
+        android:paddingEnd="12dp"
+        android:textAppearance="@style/Signal.Text.BodySmall"
+        android:textColor="@color/signal_colorOnSurfaceVariant"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/add_a_message_input"
+        app:layout_constraintEnd_toStartOf="@id/confirm_button"
+        tools:text="50"
+        tools:visibility="visible" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/confirm_button"

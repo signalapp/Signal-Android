@@ -47,7 +47,8 @@ object Stories {
 
   private val TAG = Log.tag(Stories::class.java)
 
-  const val MAX_BODY_SIZE = 700
+  const val MAX_TEXT_STORY_SIZE = 700
+  const val MAX_CAPTION_SIZE = 1500
 
   @JvmField
   val MAX_VIDEO_DURATION_MILLIS = TimeUnit.SECONDS.toMillis(30)

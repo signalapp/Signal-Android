@@ -164,7 +164,7 @@ class MediaSelectionRepository(context: Context) {
     } else {
       val iterator = BreakIteratorCompat.getInstance()
       iterator.setText(body)
-      iterator.take(Stories.MAX_BODY_SIZE).toString()
+      iterator.take(Stories.MAX_CAPTION_SIZE).toString()
     }
   }
 

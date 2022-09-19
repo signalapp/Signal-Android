@@ -432,7 +432,7 @@ public final class MultiShareSender {
     BreakIteratorCompat breakIteratorCompat = BreakIteratorCompat.getInstance();
     breakIteratorCompat.setText(draftText);
 
-    String trimmed = breakIteratorCompat.take(Stories.MAX_BODY_SIZE).toString();
+    String trimmed = breakIteratorCompat.take(Stories.MAX_TEXT_STORY_SIZE).toString();
     if (linkPreview == null) {
       return trimmed;
     }

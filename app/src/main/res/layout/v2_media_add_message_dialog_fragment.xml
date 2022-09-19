@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <org.thoughtcrime.securesms.components.InputAwareLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:viewBindingIgnore="true"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/hud"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include layout="@layout/v2_media_add_message_dialog_fragment_content" />
+    <include android:id="@+id/content" layout="@layout/v2_media_add_message_dialog_fragment_content" />
 </org.thoughtcrime.securesms.components.InputAwareLayout>

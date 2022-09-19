@@ -25,7 +25,10 @@ data class StoryViewerPlaybackState(
 ) {
   val hideChromeImmediate: Boolean = isRunningSharedElementAnimation
 
-  val hideChrome: Boolean = isRunningSharedElementAnimation || isUserLongTouching || isUserScrollingChild || isUserScaling
+  val hideChrome: Boolean = isRunningSharedElementAnimation ||
+    isUserLongTouching ||
+    (isUserScrollingChild && !isDisplayingCaptionOverlay) ||
+    isUserScaling
 
   val isPaused: Boolean = !areSegmentsInitialized ||
     isUserTouching ||

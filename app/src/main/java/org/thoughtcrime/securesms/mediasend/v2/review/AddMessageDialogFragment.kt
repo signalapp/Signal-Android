@@ -7,6 +7,7 @@ import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -14,10 +15,8 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import org.signal.core.util.EditTextUtil
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.components.ComposeText
-import org.thoughtcrime.securesms.components.InputAwareLayout
 import org.thoughtcrime.securesms.components.KeyboardEntryDialogFragment
-import org.thoughtcrime.securesms.components.emoji.EmojiToggle
+import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.components.emoji.MediaKeyboard
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation
 import org.thoughtcrime.securesms.conversation.ui.inlinequery.InlineQuery
@@ -27,6 +26,7 @@ import org.thoughtcrime.securesms.conversation.ui.inlinequery.InlineQueryResults
 import org.thoughtcrime.securesms.conversation.ui.inlinequery.InlineQueryViewModel
 import org.thoughtcrime.securesms.conversation.ui.mentions.MentionsPickerFragment
 import org.thoughtcrime.securesms.conversation.ui.mentions.MentionsPickerViewModel
+import org.thoughtcrime.securesms.databinding.V2MediaAddMessageDialogFragmentBinding
 import org.thoughtcrime.securesms.keyboard.KeyboardPage
 import org.thoughtcrime.securesms.keyboard.KeyboardPagerViewModel
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -58,11 +58,8 @@ class AddMessageDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_a
     ownerProducer = { requireActivity() }
   )
 
-  private lateinit var input: ComposeText
-  private lateinit var emojiDrawerToggle: EmojiToggle
+  private val binding by ViewBinderDelegate(V2MediaAddMessageDialogFragmentBinding::bind)
   private lateinit var emojiDrawerStub: Stub<MediaKeyboard>
-  private lateinit var hud: InputAwareLayout
-  private lateinit var mentionsContainer: ViewGroup
   private lateinit var inlineQueryResultsController: InlineQueryResultsController
 
   private var requestedEmojiDrawer: Boolean = false
@@ -79,27 +76,33 @@ class AddMessageDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_a
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    input = view.findViewById(R.id.add_a_message_input)
+    emojiDrawerStub = Stub(binding.content.emojiDrawerStub)
 
     if (Stories.isFeatureEnabled()) {
-      EditTextUtil.addGraphemeClusterLimitFilter(input, Stories.MAX_BODY_SIZE)
+      EditTextUtil.addGraphemeClusterLimitFilter(binding.content.addAMessageInput, Stories.MAX_CAPTION_SIZE)
     }
 
-    input.setText(requireArguments().getCharSequence(ARG_INITIAL_TEXT))
+    binding.content.addAMessageInput.addTextChangedListener(afterTextChanged = {
+      viewModel.updateAddAMessageCount(it)
+    })
 
-    emojiDrawerToggle = view.findViewById(R.id.emoji_toggle)
-    emojiDrawerStub = Stub(view.findViewById(R.id.emoji_drawer_stub))
+    binding.content.addAMessageInput.setText(requireArguments().getCharSequence(ARG_INITIAL_TEXT))
+
     if (SignalStore.settings().isPreferSystemEmoji) {
-      emojiDrawerToggle.visible = false
+      binding.content.emojiToggle.visible = false
     } else {
-      emojiDrawerToggle.setOnClickListener { onEmojiToggleClicked() }
+      binding.content.emojiToggle.setOnClickListener { onEmojiToggleClicked() }
     }
 
-    hud = view.findViewById(R.id.hud)
-    hud.setOnClickListener { dismissAllowingStateLoss() }
+    binding.hud.setOnClickListener { dismissAllowingStateLoss() }
 
     val confirm: View = view.findViewById(R.id.confirm_button)
     confirm.setOnClickListener { dismissAllowingStateLoss() }
+
+    disposables += viewModel.watchAddAMessageCount().subscribe { count ->
+      binding.content.addAMessageLimit.visible = count.shouldDisplayCount()
+      binding.content.addAMessageLimit.text = count.getRemaining().toString()
+    }
 
     disposables.add(
       viewModel.hudCommands.observeOn(AndroidSchedulers.mainThread()).subscribe {
@@ -120,18 +123,18 @@ class AddMessageDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_a
     super.onResume()
 
     requestedEmojiDrawer = false
-    ViewUtil.focusAndShowKeyboard(input)
+    ViewUtil.focusAndShowKeyboard(binding.content.addAMessageInput)
   }
 
   override fun onPause() {
     super.onPause()
 
-    ViewUtil.hideKeyboard(requireContext(), input)
+    ViewUtil.hideKeyboard(requireContext(), binding.content.addAMessageInput)
   }
 
   override fun onDismiss(dialog: DialogInterface) {
     super.onDismiss(dialog)
-    viewModel.setMessage(input.text)
+    viewModel.setMessage(binding.content.addAMessageInput.text)
   }
 
   override fun onKeyboardHidden() {
@@ -151,23 +154,21 @@ class AddMessageDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_a
     super.onDestroyView()
     disposables.dispose()
 
-    input.setInlineQueryChangedListener(null)
-    input.setMentionValidator(null)
+    binding.content.addAMessageInput.setInlineQueryChangedListener(null)
+    binding.content.addAMessageInput.setMentionValidator(null)
   }
 
   private fun initializeMentions() {
-    mentionsContainer = requireView().findViewById(R.id.mentions_picker_container)
-
     inlineQueryResultsController = InlineQueryResultsController(
       requireContext(),
       inlineQueryViewModel,
       requireView().findViewById(R.id.background_holder),
       (requireView() as ViewGroup),
-      input,
+      binding.content.addAMessageInput,
       viewLifecycleOwner
     )
 
-    input.setInlineQueryChangedListener(object : InlineQueryChangedListener {
+    binding.content.addAMessageInput.setInlineQueryChangedListener(object : InlineQueryChangedListener {
       override fun onQueryChanged(inlineQuery: InlineQuery) {
         when (inlineQuery) {
           is InlineQuery.Mention -> {
@@ -196,7 +197,7 @@ class AddMessageDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_a
     disposables += inlineQueryViewModel
       .selection
       .observeOn(AndroidSchedulers.mainThread())
-      .subscribe { r -> input.replaceText(r) }
+      .subscribe { r -> binding.content.addAMessageInput.replaceText(r) }
 
     val recipientId: RecipientId = viewModel.destination.getRecipientSearchKey()?.recipientId ?: return
 
@@ -204,7 +205,7 @@ class AddMessageDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_a
       this.recipient = recipient
       mentionsViewModel.onRecipientChange(recipient)
 
-      input.setMentionValidator { annotations ->
+      binding.content.addAMessageInput.setMentionValidator { annotations ->
         if (!recipient.isPushV2Group) {
           annotations
         } else {
@@ -221,7 +222,7 @@ class AddMessageDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_a
     }
 
     mentionsViewModel.selectedRecipient.observe(viewLifecycleOwner) { recipient ->
-      input.replaceTextWithMention(recipient.getDisplayName(requireContext()), recipient.id)
+      binding.content.addAMessageInput.replaceTextWithMention(recipient.getDisplayName(requireContext()), recipient.id)
     }
   }
 
@@ -239,17 +240,17 @@ class AddMessageDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_a
     if (!emojiDrawerStub.resolved()) {
       keyboardPagerViewModel.setOnlyPage(KeyboardPage.EMOJI)
       emojiDrawerStub.get().setFragmentManager(childFragmentManager)
-      emojiDrawerToggle.attach(emojiDrawerStub.get())
+      binding.content.emojiToggle.attach(emojiDrawerStub.get())
     }
 
-    if (hud.currentInput == emojiDrawerStub.get()) {
+    if (binding.hud.currentInput == emojiDrawerStub.get()) {
       requestedEmojiDrawer = false
-      hud.showSoftkey(input)
+      binding.hud.showSoftkey(binding.content.addAMessageInput)
     } else {
       requestedEmojiDrawer = true
-      hud.hideSoftkey(input) {
-        hud.post {
-          hud.show(input, emojiDrawerStub.get())
+      binding.hud.hideSoftkey(binding.content.addAMessageInput) {
+        binding.hud.post {
+          binding.hud.show(binding.content.addAMessageInput, emojiDrawerStub.get())
         }
       }
     }
@@ -268,11 +269,11 @@ class AddMessageDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_a
   }
 
   private fun onEmojiSelected(emoji: String?) {
-    input.insertEmoji(emoji)
+    binding.content.addAMessageInput.insertEmoji(emoji)
   }
 
   private fun onKeyEvent(keyEvent: KeyEvent?) {
-    input.dispatchKeyEvent(keyEvent)
+    binding.content.addAMessageInput.dispatchKeyEvent(keyEvent)
   }
 
   companion object {

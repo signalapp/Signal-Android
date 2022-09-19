@@ -12,7 +12,9 @@ import android.media.AudioManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
 import android.view.GestureDetector
+import android.view.GestureDetector.SimpleOnGestureListener
 import android.view.MotionEvent
 import android.view.ScaleGestureDetector
 import android.view.View
@@ -826,9 +828,16 @@ class StoryViewerPageFragment :
   }
 
   private fun onShowCaptionOverlay(caption: TextView, largeCaption: TextView, largeCaptionOverlay: View) {
+    sharedViewModel.setIsChildScrolling(true)
+
     caption.visible = false
     largeCaption.visible = true
     largeCaptionOverlay.visible = true
+    largeCaption.movementMethod = ScrollingMovementMethod()
+    largeCaption.scrollY = 0
+    largeCaption.setOnClickListener {
+      onHideCaptionOverlay(caption, largeCaption, largeCaptionOverlay)
+    }
     largeCaptionOverlay.setOnClickListener {
       onHideCaptionOverlay(caption, largeCaption, largeCaptionOverlay)
     }
@@ -839,8 +848,10 @@ class StoryViewerPageFragment :
     caption.visible = true
     largeCaption.visible = false
     largeCaptionOverlay.visible = false
+    largeCaption.setOnClickListener(null)
     largeCaptionOverlay.setOnClickListener(null)
     viewModel.setIsDisplayingCaptionOverlay(false)
+    sharedViewModel.setIsChildScrolling(false)
   }
 
   private fun presentFrom(from: TextView, storyPost: StoryPost) {
