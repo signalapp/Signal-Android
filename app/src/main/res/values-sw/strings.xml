@@ -167,7 +167,8 @@
   <string name="ContactsCursorLoader_contacts">Mawasiliano</string>
   <string name="ContactsCursorLoader_groups">Makundi</string>
   <string name="ContactsCursorLoader_phone_number_search">Utafutaji wa nambari ya simu</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Utafutaji wa jina la mtumizi</string> -->
+  <!--Header for username search-->
+  <string name="ContactsCursorLoader_find_by_username">Tafuta kwa jina la mtumiaji </string>
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Stori Zangu</string>
   <!--Action for creating a new story-->
@@ -1606,6 +1607,8 @@ nambari yako ya simu</string>
   <string name="UnverifiedSendDialog_send_message">Tuma ujumbe?</string>
   <string name="UnverifiedSendDialog_send">Tuma</string>
   <!--UsernameEditFragment-->
+  <!--Toolbar title when entering from registration-->
+  <string name="UsernameEditFragment__add_a_username">Ongeza jina la mtumiaji</string>
   <!--Instructional text at the top of the username edit screen-->
   <string name="UsernameEditFragment__choose_your_username">Chagua jina lako la mtumiaji</string>
   <string name="UsernameEditFragment_username">Jina la mtumiaji</string>
@@ -1624,6 +1627,10 @@ nambari yako ya simu</string>
   <!--Dialog title for explanation about numbers at the end of the username-->
   <string name="UsernameEditFragment__what_is_this_number">Hii ni nambari gani?</string>
   <string name="UsernameEditFragment__these_digits_help_keep">Tarakimu hizi ni usaidizi wa kuliweka jina lako la mtumiaji siri ili uweze kuepuka jumbe usizozihitaji. Shiriki jina lako la mtumiaji na watu na makundi unayopenda kuzungumza nayo tu. Ukibadili jina lako la mtumiaji, utapata seti mpya ya tarakimu.</string>
+  <!--Button to allow user to skip-->
+  <string name="UsernameEditFragment__skip">Ruka</string>
+  <!--Content description for done button-->
+  <string name="UsernameEditFragment__done">Imekamilika</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">Anwani %diko katika Signal!</item>
     <item quantity="other">Anwani %dziko katika Signal!</item>

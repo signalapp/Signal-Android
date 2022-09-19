@@ -167,7 +167,8 @@
   <string name="ContactsCursorLoader_contacts">Kişiler</string>
   <string name="ContactsCursorLoader_groups">Gruplar</string>
   <string name="ContactsCursorLoader_phone_number_search">Telefon numarasıyla arama</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Kullanıcı adıyla arama</string> -->
+  <!--Header for username search-->
+  <string name="ContactsCursorLoader_find_by_username">Kullanıcı adına göre bul</string>
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Hikayelerim</string>
   <!--Action for creating a new story-->
@@ -1611,6 +1612,8 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="UnverifiedSendDialog_send_message">İleti gönderilsin mi?</string>
   <string name="UnverifiedSendDialog_send">Gönder</string>
   <!--UsernameEditFragment-->
+  <!--Toolbar title when entering from registration-->
+  <string name="UsernameEditFragment__add_a_username">Kullanıcı adı ekle</string>
   <!--Instructional text at the top of the username edit screen-->
   <string name="UsernameEditFragment__choose_your_username">Kullanıcı adını seç</string>
   <string name="UsernameEditFragment_username">Kullanıcı adı</string>
@@ -1629,6 +1632,10 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--Dialog title for explanation about numbers at the end of the username-->
   <string name="UsernameEditFragment__what_is_this_number">Bu numara kimin?</string>
   <string name="UsernameEditFragment__these_digits_help_keep">Bu rakamlar, istenmeyen mesajlar almaman için kullanıcı adının gizli kalmasına yardımcı olur. Kullanıcı adını yalnızca sohbet etmek istediğin kişi ve gruplarla paylaş. Kullanıcı adını değiştirdiğinde, yeni bir rakam setiyle eşleştirilirsin.</string>
+  <!--Button to allow user to skip-->
+  <string name="UsernameEditFragment__skip">Atla</string>
+  <!--Content description for done button-->
+  <string name="UsernameEditFragment__done">Tamam</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d kişi Signal\'e katıldı!</item>
     <item quantity="other">%d kişi Signal\'e katıldı!</item>

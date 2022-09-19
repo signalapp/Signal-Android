@@ -167,7 +167,8 @@
   <string name="ContactsCursorLoader_contacts">தொடர்புகள்</string>
   <string name="ContactsCursorLoader_groups">குழுக்கள்</string>
   <string name="ContactsCursorLoader_phone_number_search">தொலைபேசி எண் தேடல்</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">பயனர்பெயர் தேடல்</string> -->
+  <!--Header for username search-->
+  <string name="ContactsCursorLoader_find_by_username">பயனர் பெயர் மூலம் கண்டறியவும்</string>
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">எனது ஸ்டோரீஸ்</string>
   <!--Action for creating a new story-->
@@ -1610,6 +1611,8 @@
   <string name="UnverifiedSendDialog_send_message">செய்தி அனுப்ப?</string>
   <string name="UnverifiedSendDialog_send">அனுப்புக</string>
   <!--UsernameEditFragment-->
+  <!--Toolbar title when entering from registration-->
+  <string name="UsernameEditFragment__add_a_username">பயனர் பெயரைச் சேர்க்கவும்</string>
   <!--Instructional text at the top of the username edit screen-->
   <string name="UsernameEditFragment__choose_your_username">உங்கள் பயனர்பெயரைத் தேர்வு செய்யவும்</string>
   <string name="UsernameEditFragment_username">பயனர்பெயர்</string>
@@ -1628,6 +1631,10 @@
   <!--Dialog title for explanation about numbers at the end of the username-->
   <string name="UsernameEditFragment__what_is_this_number">இந்த எண் என்ன?</string>
   <string name="UsernameEditFragment__these_digits_help_keep">இந்த இலக்கங்கள் உங்கள் பயனர்பெயரை தனிப்பட்டதாக வைத்திருக்க உதவுவதால் நீங்கள் தேவையற்ற செய்திகளைத் தவிர்க்கலாம். நீங்கள் சாட் செய்ய விரும்பும் நபர்கள் மற்றும் குழுக்களுடன் மட்டும் உங்கள் பயனர்பெயரைப் பகிரவும். நீங்கள் பயனர்பெயர்களை மாற்றினால், புதிய இலக்கங்களின் ஒரு தொகுப்பைப் பெறுவீர்கள்.</string>
+  <!--Button to allow user to skip-->
+  <string name="UsernameEditFragment__skip">தவிர்க்கவும்</string>
+  <!--Content description for done button-->
+  <string name="UsernameEditFragment__done">முடிந்தது</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d தொடர்பு Signal-இல் உள்ளார்!</item>
     <item quantity="other">%d தொடர்புகள் Signal-இல் உள்ளார்கள்!</item>

@@ -167,7 +167,8 @@
   <string name="ContactsCursorLoader_contacts">Kontakter</string>
   <string name="ContactsCursorLoader_groups">Grupper</string>
   <string name="ContactsCursorLoader_phone_number_search">Søg telefonnummer</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Søg brugernavn</string> -->
+  <!--Header for username search-->
+  <string name="ContactsCursorLoader_find_by_username">Find ud fra brugernavn</string>
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Mine historier</string>
   <!--Action for creating a new story-->
@@ -1612,6 +1613,8 @@ nummer (%s) er ugyldigt</string>
   <string name="UnverifiedSendDialog_send_message">Send besked?</string>
   <string name="UnverifiedSendDialog_send">Send</string>
   <!--UsernameEditFragment-->
+  <!--Toolbar title when entering from registration-->
+  <string name="UsernameEditFragment__add_a_username">Tilføj et brugernavn</string>
   <!--Instructional text at the top of the username edit screen-->
   <string name="UsernameEditFragment__choose_your_username">Vælg dit brugernavn</string>
   <string name="UsernameEditFragment_username">Brugernavn</string>
@@ -1630,6 +1633,10 @@ nummer (%s) er ugyldigt</string>
   <!--Dialog title for explanation about numbers at the end of the username-->
   <string name="UsernameEditFragment__what_is_this_number">Hvad er dette nummer?</string>
   <string name="UsernameEditFragment__these_digits_help_keep">Disse tal hjælper dig med at holde dit brugernavn hemmeligt, så du undgår uønskede beskeder. Del dit brugernavn med de mennesker og grupper, du gerne vil snakke med. Hvis du ændrer brugernavn, får du et nyt sæt tal.</string>
+  <!--Button to allow user to skip-->
+  <string name="UsernameEditFragment__skip">Spring over</string>
+  <!--Content description for done button-->
+  <string name="UsernameEditFragment__done">Udført</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d kontakt anvender Signal!</item>
     <item quantity="other">%d kontakter anvender Signal!</item>

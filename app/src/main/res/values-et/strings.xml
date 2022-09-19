@@ -167,7 +167,8 @@
   <string name="ContactsCursorLoader_contacts">Kontaktid</string>
   <string name="ContactsCursorLoader_groups">Grupid</string>
   <string name="ContactsCursorLoader_phone_number_search">Telefoninumbri otsing</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Kasutajanime otsing</string> -->
+  <!--Header for username search-->
+  <string name="ContactsCursorLoader_find_by_username">Otsi kasutajanime järgi</string>
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Minu lood</string>
   <!--Action for creating a new story-->
@@ -1613,6 +1614,8 @@
   <string name="UnverifiedSendDialog_send_message">Saadad sõnumi?</string>
   <string name="UnverifiedSendDialog_send">Saada</string>
   <!--UsernameEditFragment-->
+  <!--Toolbar title when entering from registration-->
+  <string name="UsernameEditFragment__add_a_username">Lisa kasutajanimi</string>
   <!--Instructional text at the top of the username edit screen-->
   <string name="UsernameEditFragment__choose_your_username">Vali omale kasutajanimi</string>
   <string name="UsernameEditFragment_username">Kasutajanimi</string>
@@ -1631,6 +1634,10 @@
   <!--Dialog title for explanation about numbers at the end of the username-->
   <string name="UsernameEditFragment__what_is_this_number">Mis number see on?</string>
   <string name="UsernameEditFragment__these_digits_help_keep">See kood aitab su kasutajanime privaatsena hoida, et saaksid vältida soovimatuid sõnumeid. Jaga oma kasutajanime ainult inimeste ja gruppidega, kellega soovid vestelda. Kui kasutajanime muudad, saadetakse sulle uus kood.</string>
+  <!--Button to allow user to skip-->
+  <string name="UsernameEditFragment__skip">Jäta vahele</string>
+  <!--Content description for done button-->
+  <string name="UsernameEditFragment__done">Tehtud</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d kontakt on Signalis!</item>
     <item quantity="other">%d kontakti on Signalis!</item>

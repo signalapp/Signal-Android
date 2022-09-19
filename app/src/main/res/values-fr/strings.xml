@@ -168,7 +168,8 @@
   <string name="ContactsCursorLoader_contacts">Contacts</string>
   <string name="ContactsCursorLoader_groups">Groupes</string>
   <string name="ContactsCursorLoader_phone_number_search">Recherche par numéro de téléphone</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Recherche par nom d’utilisateur</string> -->
+  <!--Header for username search-->
+  <string name="ContactsCursorLoader_find_by_username">Trouver par nom d’utilisateur</string>
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Mes histoires</string>
   <!--Action for creating a new story-->
@@ -1677,6 +1678,8 @@
   <string name="UnverifiedSendDialog_send_message">Envoyer le message ?</string>
   <string name="UnverifiedSendDialog_send">Envoyer</string>
   <!--UsernameEditFragment-->
+  <!--Toolbar title when entering from registration-->
+  <string name="UsernameEditFragment__add_a_username">Ajouter un nom d\'utilisateur</string>
   <!--Instructional text at the top of the username edit screen-->
   <string name="UsernameEditFragment__choose_your_username">Choisissez votre pseudo</string>
   <string name="UsernameEditFragment_username">Nom d’utilisateur</string>
@@ -1695,6 +1698,10 @@
   <!--Dialog title for explanation about numbers at the end of the username-->
   <string name="UsernameEditFragment__what_is_this_number">Qu\'est-ce que ce numéro ?</string>
   <string name="UsernameEditFragment__these_digits_help_keep">Ces chiffres servent à préserver la confidentialité de votre identité correspondant au pseudo choisi et ainsi d\'éviter les messages indésirables. Ne partagez votre pseudo qu\'avec les personnes et les groupes avec lesquels vous souhaitez échanger. Si vous changez votre pseudo, un nouvel ensemble de chiffres vous sera attribué.</string>
+  <!--Button to allow user to skip-->
+  <string name="UsernameEditFragment__skip">Ignorer</string>
+  <!--Content description for done button-->
+  <string name="UsernameEditFragment__done">Terminé</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d contact est sur Signal</item>
     <item quantity="many">%d contacts sont sur Signal</item>

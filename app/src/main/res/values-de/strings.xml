@@ -167,7 +167,8 @@
   <string name="ContactsCursorLoader_contacts">Kontakte</string>
   <string name="ContactsCursorLoader_groups">Gruppen</string>
   <string name="ContactsCursorLoader_phone_number_search">Rufnummernsuche</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Nutzernamensuche</string> -->
+  <!--Header for username search-->
+  <string name="ContactsCursorLoader_find_by_username">Nach Nutzernamen suchen</string>
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Meine Stories</string>
   <!--Action for creating a new story-->
@@ -1602,6 +1603,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="UnverifiedSendDialog_send_message">Nachricht senden?</string>
   <string name="UnverifiedSendDialog_send">Senden</string>
   <!--UsernameEditFragment-->
+  <!--Toolbar title when entering from registration-->
+  <string name="UsernameEditFragment__add_a_username">Einen Nutzernamen hinzufügen</string>
   <!--Instructional text at the top of the username edit screen-->
   <string name="UsernameEditFragment__choose_your_username">Wähle deinen Usernamen</string>
   <string name="UsernameEditFragment_username">Nutzername</string>
@@ -1620,6 +1623,10 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--Dialog title for explanation about numbers at the end of the username-->
   <string name="UsernameEditFragment__what_is_this_number">Was ist das für eine Nummer?</string>
   <string name="UsernameEditFragment__these_digits_help_keep">Diese Ziffern helfen, deinen Usernamen privat zu halten, damit du keine unerwünschten Nachrichten erhältst. Teile deinen Usernamen nur mit den Personen und Gruppen, mit denen du chatten möchtest. Wenn du deinen Usernamen änderst, bekommst du einen neuen Zifferncode.</string>
+  <!--Button to allow user to skip-->
+  <string name="UsernameEditFragment__skip">Überspringen</string>
+  <!--Content description for done button-->
+  <string name="UsernameEditFragment__done">Fertig</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d Kontakt ist bei Signal!</item>
     <item quantity="other">%d Kontakte sind bei Signal!</item>

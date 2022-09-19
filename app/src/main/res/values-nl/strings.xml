@@ -169,7 +169,8 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="ContactsCursorLoader_contacts">Contacten</string>
   <string name="ContactsCursorLoader_groups">Groepen</string>
   <string name="ContactsCursorLoader_phone_number_search">Zoeken op telefoonnummer</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Zoeken op gebruikersnaam</string> -->
+  <!--Header for username search-->
+  <string name="ContactsCursorLoader_find_by_username">Zoeken op gebruikersnaam</string>
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Mijn verhalen</string>
   <!--Action for creating a new story-->
@@ -1618,6 +1619,8 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <string name="UnverifiedSendDialog_send_message">Bericht verzenden?</string>
   <string name="UnverifiedSendDialog_send">Verzenden</string>
   <!--UsernameEditFragment-->
+  <!--Toolbar title when entering from registration-->
+  <string name="UsernameEditFragment__add_a_username">Gebruikersnaam toevoegen</string>
   <!--Instructional text at the top of the username edit screen-->
   <string name="UsernameEditFragment__choose_your_username">Kies jouw gebruikersnaam.</string>
   <string name="UsernameEditFragment_username">Gebruikersnaam</string>
@@ -1636,6 +1639,10 @@ Geblokkeerde personen kunnen in groepsgesprekken de berichten die jij stuurt nie
   <!--Dialog title for explanation about numbers at the end of the username-->
   <string name="UsernameEditFragment__what_is_this_number">Wat is dit nummer?</string>
   <string name="UsernameEditFragment__these_digits_help_keep">Deze cijfers helpen jou je gebruikersnaam privé te houden zodat je ongewenste berichten kunt voorkomen. Deel jouw gebruikersnaam alleen met mensen en groepen waar je mee zou willen chatten. Als je je gebruikersnaam wijzigt, krijg je een nieuwe cijferset.</string>
+  <!--Button to allow user to skip-->
+  <string name="UsernameEditFragment__skip">Overslaan</string>
+  <!--Content description for done button-->
+  <string name="UsernameEditFragment__done">Klaar</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d van je contactpersonen is bereikbaar via Signal.</item>
     <item quantity="other">%d van je contactpersonen zijn bereikbaar via Signal.</item>

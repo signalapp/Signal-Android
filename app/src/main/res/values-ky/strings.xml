@@ -166,7 +166,8 @@
   <string name="ContactsCursorLoader_contacts">Байланыштар</string>
   <string name="ContactsCursorLoader_groups">Топтор</string>
   <string name="ContactsCursorLoader_phone_number_search">Телефон номерин издөө</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Колдонуучунун аты боюнча издөө</string> -->
+  <!--Header for username search-->
+  <string name="ContactsCursorLoader_find_by_username">Колдонуучунун аты боюнча издөө</string>
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Менин окуяларым</string>
   <!--Action for creating a new story-->
@@ -1537,6 +1538,8 @@
   <string name="UnverifiedSendDialog_send_message">Билдирүү жөнөтөсүзбү?</string>
   <string name="UnverifiedSendDialog_send">Жөнөтүү</string>
   <!--UsernameEditFragment-->
+  <!--Toolbar title when entering from registration-->
+  <string name="UsernameEditFragment__add_a_username">Колдонуучунун атын кошуу</string>
   <!--Instructional text at the top of the username edit screen-->
   <string name="UsernameEditFragment__choose_your_username">Колдонуучу атын тандаңыз</string>
   <string name="UsernameEditFragment_username">Колдонуучунун аты</string>
@@ -1555,6 +1558,10 @@
   <!--Dialog title for explanation about numbers at the end of the username-->
   <string name="UsernameEditFragment__what_is_this_number">Бул эмне деген сан?</string>
   <string name="UsernameEditFragment__these_digits_help_keep">Бул сандар колдонуучу атыңызды купуя кылып, сизди кереги жок билдирүүлөрдөн сактайт. Колдонуучу атыңызды сүйлөшкүңүз келген адамдарга жана топторго бериңиз. Колдонуучу атыңызды өзгөртсөңүз, бул сандар да өзгөрөт.</string>
+  <!--Button to allow user to skip-->
+  <string name="UsernameEditFragment__skip">Өткөрүп жиберүү</string>
+  <!--Content description for done button-->
+  <string name="UsernameEditFragment__done">Бүттү</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="other">Signal\'да %dбайланышыңыз бар!</item>
   </plurals>

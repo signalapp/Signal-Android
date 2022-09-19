@@ -169,7 +169,8 @@
   <string name="ContactsCursorLoader_contacts">Cysylltiadau</string>
   <string name="ContactsCursorLoader_groups">Grwpiau</string>
   <string name="ContactsCursorLoader_phone_number_search">Chwiliad rhif ffôn</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Chwiliad enw defnyddiwr</string> -->
+  <!--Header for username search-->
+  <string name="ContactsCursorLoader_find_by_username">Canfod yn ôl Enw Defnyddiwr</string>
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Fy straeon</string>
   <!--Action for creating a new story-->
@@ -1738,6 +1739,7 @@ Anfon neges heb ei diogelu?</string>
   <string name="UnverifiedSendDialog_send_message">Anfon neges?</string>
   <string name="UnverifiedSendDialog_send">Anfon</string>
   <!--UsernameEditFragment-->
+  <!--Toolbar title when entering from registration-->
   <!--Instructional text at the top of the username edit screen-->
   <string name="UsernameEditFragment_username">Enw defnyddiwr</string>
   <string name="UsernameEditFragment_delete">Dileu</string>
@@ -1752,6 +1754,10 @@ Anfon neges heb ei diogelu?</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Rhaid i enwau defnyddwyr fod rhwng %1$d a %2$d nod.</string>
   <!--Explanation about what usernames provide-->
   <!--Dialog title for explanation about numbers at the end of the username-->
+  <!--Button to allow user to skip-->
+  <string name="UsernameEditFragment__skip">Hepgor</string>
+  <!--Content description for done button-->
+  <string name="UsernameEditFragment__done">Wedi Gorffen</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">Mae %d cysylltiad ar Signal!</item>
     <item quantity="two">Mae %d cysylltiad ar Signal!</item>

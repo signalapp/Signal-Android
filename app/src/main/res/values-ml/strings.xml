@@ -167,7 +167,8 @@
   <string name="ContactsCursorLoader_contacts">കോൺ‌ടാക്റ്റുകൾ</string>
   <string name="ContactsCursorLoader_groups">ഗ്രൂപ്പുകൾ</string>
   <string name="ContactsCursorLoader_phone_number_search">ഫോൺ നമ്പർ തിരയൽ</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">ഉപയോക്തൃനാമം തിരയൽ</string> -->
+  <!--Header for username search-->
+  <string name="ContactsCursorLoader_find_by_username">ഉപയോക്തൃനാമം ഉപയോഗിച്ച് കണ്ടെത്തുക</string>
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">എന്റെ സ്റ്റോറീസ്</string>
   <!--Action for creating a new story-->
@@ -1605,6 +1606,8 @@
   <string name="UnverifiedSendDialog_send_message">സന്ദേശം അയക്കണോ?</string>
   <string name="UnverifiedSendDialog_send">അയയ്‌ക്കുക</string>
   <!--UsernameEditFragment-->
+  <!--Toolbar title when entering from registration-->
+  <string name="UsernameEditFragment__add_a_username">ഒരു ഉപയോക്തൃനാമം ചേർക്കുക</string>
   <!--Instructional text at the top of the username edit screen-->
   <string name="UsernameEditFragment__choose_your_username">നിങ്ങളുടെ ഉപയോക്തൃനാമം തിരഞ്ഞെടുക്കുക</string>
   <string name="UsernameEditFragment_username">ഉപയോക്തൃനാമം</string>
@@ -1623,6 +1626,10 @@
   <!--Dialog title for explanation about numbers at the end of the username-->
   <string name="UsernameEditFragment__what_is_this_number">ഈ നമ്പർ എന്താണ്?</string>
   <string name="UsernameEditFragment__these_digits_help_keep">അനാവശ്യ സന്ദേശങ്ങൾ ഒഴിവാക്കാൻ നിങ്ങളെ സഹായിക്കുന്നതിന്, ഈ അക്കങ്ങൾ നിങ്ങളുടെ ഉപയോക്തൃനാമം സ്വകാര്യമായി സൂക്ഷിക്കുന്നു. നിങ്ങൾ ചാറ്റ് ചെയ്യാൻ ആഗ്രഹിക്കുന്ന ആളുകളുമായും ഗ്രൂപ്പുകളുമായും മാത്രം നിങ്ങളുടെ ഉപയോക്തൃനാമം പങ്കിടുക. നിങ്ങൾ ഉപയോക്തൃനാമം മാറ്റുകയാണെങ്കിൽ, നിങ്ങൾക്ക് പുതിയ ഒരു കൂട്ടം അക്കങ്ങൾ ലഭിക്കുന്നതാണ്.</string>
+  <!--Button to allow user to skip-->
+  <string name="UsernameEditFragment__skip">ഒഴിവാക്കുക</string>
+  <!--Content description for done button-->
+  <string name="UsernameEditFragment__done">പൂർത്തിയാക്കൂ</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">Signal-ൽ‌ %d കോൺ‌ടാക്റ്റ് ഉണ്ട്!</item>
     <item quantity="other">Signal-ൽ‌ %d കോൺ‌ടാക്റ്റുകൾ‌ ഉണ്ട്!</item>

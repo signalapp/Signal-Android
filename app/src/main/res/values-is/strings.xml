@@ -167,7 +167,8 @@
   <string name="ContactsCursorLoader_contacts">Tengiliðir</string>
   <string name="ContactsCursorLoader_groups">Hópar</string>
   <string name="ContactsCursorLoader_phone_number_search">Leita að símanúmeri</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Leita að notandanafni</string> -->
+  <!--Header for username search-->
+  <string name="ContactsCursorLoader_find_by_username">Finna eftir notandanafni</string>
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Sögurnar mínar</string>
   <!--Action for creating a new story-->
@@ -1585,6 +1586,7 @@
   <string name="UnverifiedSendDialog_send_message">Senda skilaboð?</string>
   <string name="UnverifiedSendDialog_send">Senda</string>
   <!--UsernameEditFragment-->
+  <!--Toolbar title when entering from registration-->
   <!--Instructional text at the top of the username edit screen-->
   <string name="UsernameEditFragment_username">Notandanafn</string>
   <string name="UsernameEditFragment_delete">Eyða</string>
@@ -1599,6 +1601,10 @@
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Notendanöfn verða að vera á milli %1$d og %2$d stafa löng.</string>
   <!--Explanation about what usernames provide-->
   <!--Dialog title for explanation about numbers at the end of the username-->
+  <!--Button to allow user to skip-->
+  <string name="UsernameEditFragment__skip">Sleppa</string>
+  <!--Content description for done button-->
+  <string name="UsernameEditFragment__done">Lokið</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d tengiliður notar Signal!</item>
     <item quantity="other">%d tengiliðir nota Signal!</item>

@@ -167,7 +167,8 @@
   <string name="ContactsCursorLoader_contacts">संपर्क</string>
   <string name="ContactsCursorLoader_groups">समूह </string>
   <string name="ContactsCursorLoader_phone_number_search">फ़ोन नंबर खोजें</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">उपयोगकर्ता का नाम खोजें</string> -->
+  <!--Header for username search-->
+  <string name="ContactsCursorLoader_find_by_username">यूज़रनेम द्वारा खोजें</string>
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">मेरी स्टोरीज़</string>
   <!--Action for creating a new story-->
@@ -1605,6 +1606,8 @@
   <string name="UnverifiedSendDialog_send_message">मेसेज भेजें?</string>
   <string name="UnverifiedSendDialog_send">भेजें</string>
   <!--UsernameEditFragment-->
+  <!--Toolbar title when entering from registration-->
+  <string name="UsernameEditFragment__add_a_username">कोई यूज़रनेम जोड़ें</string>
   <!--Instructional text at the top of the username edit screen-->
   <string name="UsernameEditFragment__choose_your_username">अपना यूज़रनेम चुनें</string>
   <string name="UsernameEditFragment_username">उपयोगकर्ता नाम</string>
@@ -1623,6 +1626,10 @@
   <!--Dialog title for explanation about numbers at the end of the username-->
   <string name="UsernameEditFragment__what_is_this_number">यह नंबर क्या है?</string>
   <string name="UsernameEditFragment__these_digits_help_keep">यह अंक आपको अपना यूज़रनेम निजी रखने में मदद करते हैं ताकि आप अवांछित संदेशों से बच सकें। अपना यूज़रनेम केवल उन लोगों और ग्रुप्स के साथ शेयर करें जिनके साथ आप चैट करना चाहते हैं। यदि आप अपना यूज़रनेम बदलते हैं तो आपको अंकों का एक नया सेट मिलेगा।</string>
+  <!--Button to allow user to skip-->
+  <string name="UsernameEditFragment__skip">छोड़ दे </string>
+  <!--Content description for done button-->
+  <string name="UsernameEditFragment__done">पूर्ण</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d संपर्क सिग्नल पर है!</item>
     <item quantity="other">%d संपर्क Signal पर उपलब्ध हैं!</item>

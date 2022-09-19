@@ -167,7 +167,8 @@
   <string name="ContactsCursorLoader_contacts">Əlaqələr</string>
   <string name="ContactsCursorLoader_groups">Qruplar</string>
   <string name="ContactsCursorLoader_phone_number_search">Telefon nömrəsi ilə axtar</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">İstifadəçi adı ilə axtar</string> -->
+  <!--Header for username search-->
+  <string name="ContactsCursorLoader_find_by_username">İstifadəçi adına görə tap</string>
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Hekayələrim</string>
   <!--Action for creating a new story-->
@@ -1613,6 +1614,8 @@
   <string name="UnverifiedSendDialog_send_message">Mesaj göndərilsin?</string>
   <string name="UnverifiedSendDialog_send">Göndər</string>
   <!--UsernameEditFragment-->
+  <!--Toolbar title when entering from registration-->
+  <string name="UsernameEditFragment__add_a_username">Bir istifadəçi adı əlavə et</string>
   <!--Instructional text at the top of the username edit screen-->
   <string name="UsernameEditFragment__choose_your_username">İstifadəçi adınızı seçin</string>
   <string name="UsernameEditFragment_username">istifadəçi adı</string>
@@ -1631,6 +1634,10 @@
   <!--Dialog title for explanation about numbers at the end of the username-->
   <string name="UsernameEditFragment__what_is_this_number">Bu nömrə nə üçündür?</string>
   <string name="UsernameEditFragment__these_digits_help_keep">Bu rəqəmlər istifadəçi adınızın məxfiliyini qorumağa kömək etdiyi üçün, arzuolunmaz mesajlardan qurtula bilirsiniz. İstifadəçi adınızı yalnız söhbət etmək istədiyiniz insan və qruplarla paylaşın. İstifadəçi adlarını dəyişdirsəniz, yeni rəqəmlər toplusu alacaqsınız.</string>
+  <!--Button to allow user to skip-->
+  <string name="UsernameEditFragment__skip">Ötür</string>
+  <!--Content description for done button-->
+  <string name="UsernameEditFragment__done">Hazırdır</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d əlaqə Signal-dadır!</item>
     <item quantity="other">%d əlaqə Signal-dadır!</item>

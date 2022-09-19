@@ -169,7 +169,8 @@
   <string name="ContactsCursorLoader_contacts">Kontakty</string>
   <string name="ContactsCursorLoader_groups">Skupiny</string>
   <string name="ContactsCursorLoader_phone_number_search">Vyhľadávanie telefónneho čísla</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Vyhľadávanie používateľského mena</string> -->
+  <!--Header for username search-->
+  <string name="ContactsCursorLoader_find_by_username">Nájsť podľa používateľského mena</string>
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Moje príbehy</string>
   <!--Action for creating a new story-->
@@ -1758,6 +1759,8 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="UnverifiedSendDialog_send_message">Odoslať správu?</string>
   <string name="UnverifiedSendDialog_send">Odoslať</string>
   <!--UsernameEditFragment-->
+  <!--Toolbar title when entering from registration-->
+  <string name="UsernameEditFragment__add_a_username">Pridať používateľské meno</string>
   <!--Instructional text at the top of the username edit screen-->
   <string name="UsernameEditFragment__choose_your_username">Vyberte si používateľské meno</string>
   <string name="UsernameEditFragment_username">Používateľské meno</string>
@@ -1776,6 +1779,10 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--Dialog title for explanation about numbers at the end of the username-->
   <string name="UsernameEditFragment__what_is_this_number">Čo znamená toto číslo?</string>
   <string name="UsernameEditFragment__these_digits_help_keep">Tieto číslice pomáhajú zachovať súkromie vášho používateľského mena, vďaka čomu sa vyhnete neželaným správam. Svoje používateľské meno zdieľajte iba s ľuďmi a skupinami, s ktorými chcete četovať. Ak si používateľské meno zmeníte, bude vám priradená nová sada číslic.</string>
+  <!--Button to allow user to skip-->
+  <string name="UsernameEditFragment__skip">Preskočiť</string>
+  <!--Content description for done button-->
+  <string name="UsernameEditFragment__done">Hotovo</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d váš kontakt začal používať Signal!</item>
     <item quantity="few">%d vaše kontakty začali používať Signal!</item>

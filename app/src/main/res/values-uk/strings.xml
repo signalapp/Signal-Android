@@ -169,7 +169,8 @@
   <string name="ContactsCursorLoader_contacts">Контакти</string>
   <string name="ContactsCursorLoader_groups">Групи</string>
   <string name="ContactsCursorLoader_phone_number_search">Пошук за номером</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Пошук за іменем користувача</string> -->
+  <!--Header for username search-->
+  <string name="ContactsCursorLoader_find_by_username">Пошук за іменем користувача</string>
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Мої історії</string>
   <!--Action for creating a new story-->
@@ -1759,6 +1760,8 @@
   <string name="UnverifiedSendDialog_send_message">Надіслати повідомлення?</string>
   <string name="UnverifiedSendDialog_send">Надіслати</string>
   <!--UsernameEditFragment-->
+  <!--Toolbar title when entering from registration-->
+  <string name="UsernameEditFragment__add_a_username">Додати ім\'я користувача</string>
   <!--Instructional text at the top of the username edit screen-->
   <string name="UsernameEditFragment__choose_your_username">Виберіть ім’я користувача</string>
   <string name="UsernameEditFragment_username">Ім\'я користувача</string>
@@ -1777,6 +1780,10 @@
   <!--Dialog title for explanation about numbers at the end of the username-->
   <string name="UsernameEditFragment__what_is_this_number">Що означають ці цифри?</string>
   <string name="UsernameEditFragment__these_digits_help_keep">Ці цифри допомагають захистити вас від небажаних повідомлень. Діліться своїм іменем користувача тільки з тими людьми і групами, з якими ви хочете спілкуватися. Якщо змінити ім\'я користувача, цифри також зміняться.</string>
+  <!--Button to allow user to skip-->
+  <string name="UsernameEditFragment__skip">Пропустити</string>
+  <!--Content description for done button-->
+  <string name="UsernameEditFragment__done">Готово</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d контакт у Signal!</item>
     <item quantity="few">%d контактів у Signal!</item>
@@ -4280,13 +4287,13 @@
   <!--Context menu item to delete a story response-->
   <string name="StoryGroupReplyItem__delete">Видалити</string>
   <!--Page title for My Story options-->
-  <string name="MyStorySettingsFragment__my_story">Моя історія</string>
+  <string name="MyStorySettingsFragment__my_story">Моя сторі</string>
   <!--Section heading for story visibility-->
   <string name="MyStorySettingsFragment__who_can_view_this_story">Хто може бачити цю сторі</string>
   <!--Clickable option for selecting people to hide your story from-->
   <string name="MyStorySettingsFragment__hide_story_from">Сховати історію від</string>
   <!--Privacy setting title for sending stories to all your signal connections-->
-  <string name="MyStorySettingsFragment__all_signal_connections">Усі контакти в Signal</string>
+  <string name="MyStorySettingsFragment__all_signal_connections">Усі контакти Signal</string>
   <!--Privacy setting description for sending stories to all your signal connections-->
   <string name="MyStorySettingsFragment__share_with_all_connections">Ділитися з усіма контактами</string>
   <!--Privacy setting title for sending stories to all except the specified connections-->
@@ -4322,9 +4329,9 @@
   <!--Note about default sharing-->
   <string name="MyStorySettingsFragment__hide_your_story_from">Приховати історію від певних осіб. За замовчуванням вашу історію побачать %1$s</string>
   <!--Signal connections bolded text in the Signal Connections sheet-->
-  <string name="SignalConnectionsBottomSheet___signal_connections">Контакти в Signal</string>
+  <string name="SignalConnectionsBottomSheet___signal_connections">Контакти Signal</string>
   <!--Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required.-->
-  <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Контакти в Signal — це люди, яким ви вирішили довіряти одним із таких способів:</string>
+  <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Контакти Signal — це люди, яким ви вирішили довіряти одним із таких способів:</string>
   <!--Signal connections sheet bullet point 1-->
   <string name="SignalConnectionsBottomSheet__starting_a_conversation">Почали з ними розмову</string>
   <!--Signal connections sheet bullet point 2-->
@@ -4332,15 +4339,15 @@
   <!--Signal connections sheet bullet point 3-->
   <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Вони є у ваших контактах</string>
   <!--Note at the bottom of the Signal connections sheet-->
-  <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">Ваші знайомі можуть бачити ваше ім\'я та фото, а також публікації у розділі «Мої історії», якщо ви не сховаєте їх від них.</string>
+  <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">Ваші контакти можуть бачити ваше ім\'я та фото, а також публікації у розділі «Мої сторіз», якщо ви не сховаєте їх від них.</string>
   <!--Clickable option to add a viewer to a private story-->
   <string name="PrivateStorySettingsFragment__add_viewer">Додати глядача</string>
   <!--Clickable option to delete a custom story-->
-  <string name="PrivateStorySettingsFragment__delete_private_story">Видалити приватну історію</string>
+  <string name="PrivateStorySettingsFragment__delete_private_story">Видалити приватну сторі</string>
   <!--Dialog title when attempting to remove someone from a private story-->
   <string name="PrivateStorySettingsFragment__remove_s">Видалити %1$s?</string>
   <!--Dialog message when attempting to remove someone from a private story-->
-  <string name="PrivateStorySettingsFragment__this_person_will_no_longer">Ця особа більше не бачитиме ваших історій.</string>
+  <string name="PrivateStorySettingsFragment__this_person_will_no_longer">Ця особа більше не бачитиме ваших сторіз.</string>
   <!--Positive action label when attempting to remove someone from a private story-->
   <string name="PrivateStorySettingsFragment__remove">Видалити</string>
   <!--Dialog title when deleting a private story-->
@@ -4348,9 +4355,9 @@
   <!--Dialog message when deleting a private story-->
   <string name="PrivateStorySettingsFragment__this_action_cannot">Цю дію не можна скасувати.</string>
   <!--Page title for editing a private story name-->
-  <string name="EditPrivateStoryNameFragment__edit_story_name">Редагувати назву історії</string>
+  <string name="EditPrivateStoryNameFragment__edit_story_name">Редагувати назву сторі</string>
   <!--Input field hint when editing a private story name-->
-  <string name="EditPrivateStoryNameFragment__story_name">Назва історії</string>
+  <string name="EditPrivateStoryNameFragment__story_name">Назва сторі</string>
   <!--Save button label when editing a private story name-->
   <string name="EditPrivateStoryNameFragment__save">Зберегти</string>
   <!--Displayed in text post creator before user enters text-->
@@ -4368,7 +4375,7 @@
   <!--Hint for entering a URL for a text post-->
   <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">Надрукувати або вставити URL</string>
   <!--Displayed prior to the user entering a URL for a text post-->
-  <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">Поділитись посиланням з глядачами вашої історії</string>
+  <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">Поділитись посиланням з глядачами вашої сторі</string>
   <!--Hint text for searching for a story text post recipient.-->
   <string name="TextStoryPostSendFragment__search">Пошук</string>
   <!--Toast shown when an unexpected error occurs while sending a text story-->
@@ -4380,11 +4387,11 @@
   <!--Done button label for hide story from screen-->
   <string name="HideStoryFromFragment__done">Готово</string>
   <!--Dialog title for first time adding something to a story-->
-  <string name="StoryDialogs__add_to_story_q">Додати до історії?</string>
+  <string name="StoryDialogs__add_to_story_q">Додати до сторі?</string>
   <!--Dialog message for first time adding something to a story-->
-  <string name="StoryDialogs__adding_content">Додання вмісту до вашої історії дозволить вашим знайомим Signal переглядати її упродовж 24 годин. У налаштуваннях можна змінити, хто зможе переглядати вашу історію.</string>
+  <string name="StoryDialogs__adding_content">Додання вмісту до вашої сторі дозволить вашим контактам Signal переглядати її упродовж 24 годин. У налаштуваннях можна змінити, хто зможе переглядати вашу сторі.</string>
   <!--First time share to story dialog: Positive action to go ahead and add to story-->
-  <string name="StoryDialogs__add_to_story">Додати до історії</string>
+  <string name="StoryDialogs__add_to_story">Додати до сторі</string>
   <!--First time share to story dialog: Neutral action to edit who can view "My Story"-->
   <string name="StoryDialogs__edit_viewers">Редагувати список глядачів</string>
   <!--Error message shown when a failure occurs during story send-->
@@ -4651,7 +4658,7 @@
   <!--Subtitle of initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">Оберіть, хто може переглядати пости в розділі «Мої сторі». Вибір можна змінити в налаштуваннях у будь-який час.</string>
   <!--All connections option for initial My Story settings configuration shown when sending to My Story for the first time-->
-  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Усі знайомі в Signal</string>
+  <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Усі контакти Signal</string>
   <!--All connections except option for initial My Story settings configuration shown when sending to My Story for the first time-->
   <string name="ChooseInitialMyStoryMembershipFragment__all_except">Усі, крім…</string>
   <!--Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time-->

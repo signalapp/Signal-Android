@@ -167,7 +167,8 @@
   <string name="ContactsCursorLoader_contacts">Kontaktuak</string>
   <string name="ContactsCursorLoader_groups">Taldeak</string>
   <string name="ContactsCursorLoader_phone_number_search">Telefono zenbakia bilatu</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Erabiltzaile izena bilatu</string> -->
+  <!--Header for username search-->
+  <string name="ContactsCursorLoader_find_by_username">Bilatu erabiltzaile-izenaren arabera</string>
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Nire istorioak</string>
   <!--Action for creating a new story-->
@@ -1614,6 +1615,8 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="UnverifiedSendDialog_send_message">Mezua bidali?</string>
   <string name="UnverifiedSendDialog_send">Bidali</string>
   <!--UsernameEditFragment-->
+  <!--Toolbar title when entering from registration-->
+  <string name="UsernameEditFragment__add_a_username">Gehitu erabiltzaile-izena</string>
   <!--Instructional text at the top of the username edit screen-->
   <string name="UsernameEditFragment__choose_your_username">Aukeratu erabiltzaile-izena</string>
   <string name="UsernameEditFragment_username">Erabiltzailearen izena</string>
@@ -1632,6 +1635,10 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--Dialog title for explanation about numbers at the end of the username-->
   <string name="UsernameEditFragment__what_is_this_number">Zer da zenbaki hau?</string>
   <string name="UsernameEditFragment__these_digits_help_keep">Digitu hauen bidez, zure erabiltzaile-izena pribatuan mantentzen da, nahi ez dituzun mezuak jaso ez ditzazun. Partekatu erabiltzaile-izena zurekin txateatzea nahi duzun pertsona eta taldeekin bakarrik. Erabiltzaile-izena aldatzen baduzu, digitu multzo berri bat izango duzu.</string>
+  <!--Button to allow user to skip-->
+  <string name="UsernameEditFragment__skip">Saltatu</string>
+  <!--Content description for done button-->
+  <string name="UsernameEditFragment__done">Eginda</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">Kontaktu %d Signalen dago!</item>
     <item quantity="other">%d kontaktu Signalen daude!</item>

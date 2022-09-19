@@ -167,7 +167,8 @@
   <string name="ContactsCursorLoader_contacts">مخاطبین</string>
   <string name="ContactsCursorLoader_groups">گروه‌ها‌</string>
   <string name="ContactsCursorLoader_phone_number_search">جستجوی شماره‌تلفن</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">جستجوی نام کاربری</string> -->
+  <!--Header for username search-->
+  <string name="ContactsCursorLoader_find_by_username">جستجو با نام کاربری</string>
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">داستان‌های من</string>
   <!--Action for creating a new story-->
@@ -1611,6 +1612,8 @@
   <string name="UnverifiedSendDialog_send_message">ارسال پیام؟</string>
   <string name="UnverifiedSendDialog_send">ارسال</string>
   <!--UsernameEditFragment-->
+  <!--Toolbar title when entering from registration-->
+  <string name="UsernameEditFragment__add_a_username">افزودن یک نام کاربری</string>
   <!--Instructional text at the top of the username edit screen-->
   <string name="UsernameEditFragment__choose_your_username">نام کاربری خود را انتخاب کنید</string>
   <string name="UsernameEditFragment_username">نام کاربری</string>
@@ -1629,6 +1632,10 @@
   <!--Dialog title for explanation about numbers at the end of the username-->
   <string name="UsernameEditFragment__what_is_this_number">این عدد چیست؟</string>
   <string name="UsernameEditFragment__these_digits_help_keep">این ارقام به خصوصی ماندن نام کاربری شما کمک می‌کند تا بتوانید از پیام‌های ناخواسته جلوگیری کنید. نام کاربری خود را فقط با افراد و گروه‌هایی که می‌خواهید با آنها چت کنید به اشتراک بگذارید. اگر نام کاربری را تغییر دهید، مجموعه ارقام جدیدی دریافت خواهید کرد.</string>
+  <!--Button to allow user to skip-->
+  <string name="UsernameEditFragment__skip">رد کردن</string>
+  <!--Content description for done button-->
+  <string name="UsernameEditFragment__done">تمام</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d مخاطب در سیگنال هست!</item>
     <item quantity="other">%d مخاطب در سیگنال هستند!</item>
@@ -4225,7 +4232,7 @@
   <!--Toasted when the user external share to a text story fails-->
   <string name="TextStoryPostCreationFragment__failed_to_send_story">ارسال استوری ناموفق بود</string>
   <!--Displayed in a dialog to let the user select a given users story-->
-  <string name="StoryDialogs__view_story">نمایش استوری</string>
+  <string name="StoryDialogs__view_story">مشاهدۀ استوری</string>
   <!--Displayed in a dialog to let the user select a given users profile photo-->
   <string name="StoryDialogs__view_profile_photo">نمایش عکس پروفایل</string>
   <!--Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable-->

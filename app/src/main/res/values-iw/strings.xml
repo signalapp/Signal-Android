@@ -169,7 +169,8 @@
   <string name="ContactsCursorLoader_contacts">אנשי קשר</string>
   <string name="ContactsCursorLoader_groups">קבוצות</string>
   <string name="ContactsCursorLoader_phone_number_search">חיפוש מספר טלפון</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">חיפוש שם משתמש</string> -->
+  <!--Header for username search-->
+  <string name="ContactsCursorLoader_find_by_username">חיפוש לפי שם משתמש</string>
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">הסיפורים שלי</string>
   <!--Action for creating a new story-->
@@ -1759,6 +1760,8 @@
   <string name="UnverifiedSendDialog_send_message">לשלוח הודעה?</string>
   <string name="UnverifiedSendDialog_send">שלח</string>
   <!--UsernameEditFragment-->
+  <!--Toolbar title when entering from registration-->
+  <string name="UsernameEditFragment__add_a_username">הוספת שם משתמש</string>
   <!--Instructional text at the top of the username edit screen-->
   <string name="UsernameEditFragment__choose_your_username">בחירת שם המשתמש שלך</string>
   <string name="UsernameEditFragment_username">שם משתמש</string>
@@ -1777,6 +1780,10 @@
   <!--Dialog title for explanation about numbers at the end of the username-->
   <string name="UsernameEditFragment__what_is_this_number">מה המספר הזה?</string>
   <string name="UsernameEditFragment__these_digits_help_keep">הספרות האלה עוזרות לשמור על שם המשתמש שלך פרטי, כדי להימנע מהודעות לא רצויות. זה מאפשר לך לשתף את שם המשתמש שלך רק עם אנשים וקבוצות שמתחשק לך לשוחח איתם. אם משנים את שם המשתמש, מקבלים סט חדש של ספרות.</string>
+  <!--Button to allow user to skip-->
+  <string name="UsernameEditFragment__skip">דילוג</string>
+  <!--Content description for done button-->
+  <string name="UsernameEditFragment__done">סיום</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">איש קשר %d ב־Signal!</item>
     <item quantity="two">%d אנשי קשר ב־Signal!</item>

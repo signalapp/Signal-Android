@@ -167,7 +167,8 @@
   <string name="ContactsCursorLoader_contacts">Kontaktet</string>
   <string name="ContactsCursorLoader_groups">Grupet</string>
   <string name="ContactsCursorLoader_phone_number_search">Kërkimi i numrit të telefonit</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Kërkim i emrit të përdoruesit</string> -->
+  <!--Header for username search-->
+  <string name="ContactsCursorLoader_find_by_username">Gjej sipas emrit të përdoruesit</string>
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Story-t e mia</string>
   <!--Action for creating a new story-->
@@ -1614,6 +1615,8 @@ grupit dhe s\’do të marrë mesazhe grupi përpara se ta pranojë:</item>
   <string name="UnverifiedSendDialog_send_message">Të dërgohet mesazhi?</string>
   <string name="UnverifiedSendDialog_send">Dërgoje</string>
   <!--UsernameEditFragment-->
+  <!--Toolbar title when entering from registration-->
+  <string name="UsernameEditFragment__add_a_username">Shto një emër përdoruesi</string>
   <!--Instructional text at the top of the username edit screen-->
   <string name="UsernameEditFragment__choose_your_username">Zgjidh emrin tënd të përdoruesit</string>
   <string name="UsernameEditFragment_username">Emër përdoruesi</string>
@@ -1632,6 +1635,10 @@ grupit dhe s\’do të marrë mesazhe grupi përpara se ta pranojë:</item>
   <!--Dialog title for explanation about numbers at the end of the username-->
   <string name="UsernameEditFragment__what_is_this_number">Çfarë është ky numër?</string>
   <string name="UsernameEditFragment__these_digits_help_keep">Këto shifra ndihmojnë të ruash fshehtësinë e emrit të përdoruesit, që të shmangësh mesazhet e padëshiruara. Ndaj emrin e përdoruesit vetëm me personat dhe grupet me të cilat dëshiron të bisedosh. Nëse ndryshon emrin e përdoruesit, atëherë do të marrësh një bashkësi të re shifrash.</string>
+  <!--Button to allow user to skip-->
+  <string name="UsernameEditFragment__skip">Kalo</string>
+  <!--Content description for done button-->
+  <string name="UsernameEditFragment__done">Përfundoi</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d kontakt është në Signal!</item>
     <item quantity="other">%d kontakte janë në Signal!</item>

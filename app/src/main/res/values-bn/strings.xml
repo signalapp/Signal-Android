@@ -167,7 +167,8 @@
   <string name="ContactsCursorLoader_contacts">পরিচিতিসমূহ</string>
   <string name="ContactsCursorLoader_groups">গ্রুপসমূহ</string>
   <string name="ContactsCursorLoader_phone_number_search">ফোন নাম্বার খুঁজুন</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">ইউজারনেম খুঁজুন</string> -->
+  <!--Header for username search-->
+  <string name="ContactsCursorLoader_find_by_username">ইউজারনেম দিয়ে খুঁজুন</string>
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">আমার স্টোরি</string>
   <!--Action for creating a new story-->
@@ -1607,6 +1608,8 @@
   <string name="UnverifiedSendDialog_send_message">বার্তা পাঠান?</string>
   <string name="UnverifiedSendDialog_send">পাঠান</string>
   <!--UsernameEditFragment-->
+  <!--Toolbar title when entering from registration-->
+  <string name="UsernameEditFragment__add_a_username">ইউজারনেম যোগ করুন</string>
   <!--Instructional text at the top of the username edit screen-->
   <string name="UsernameEditFragment__choose_your_username">আপনার ইউজারনেম বেছে নিন</string>
   <string name="UsernameEditFragment_username">ব্যবহারকারীর নাম</string>
@@ -1625,6 +1628,10 @@
   <!--Dialog title for explanation about numbers at the end of the username-->
   <string name="UsernameEditFragment__what_is_this_number">এই নম্বরটি কী?</string>
   <string name="UsernameEditFragment__these_digits_help_keep">এই সংখ্যাগুলো আপনার ইউজারনেমটি গোপন রাখতে সাহায্য করে, যাতে আপনি অবাঞ্ছিত ম্যাসেজ এড়িয়ে যেতে পারেন৷ আপনি যে ব্যক্তি ও গ্রুপের সাথে চ্যাট করতে চান শুধুমাত্র তাদের সাথে আপনার ইউজারনেমটি শেয়ার করুন। ব্যবহারকারীর নামটি পরিবর্তন করলে আপনি একগুচ্ছ নতুন সংখ্যা পাবেন।</string>
+  <!--Button to allow user to skip-->
+  <string name="UsernameEditFragment__skip">এড়িয়ে যান</string>
+  <!--Content description for done button-->
+  <string name="UsernameEditFragment__done">শেষ</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d টি কন্ট্যাক্ট Signal ব্যবহার করছে!</item>
     <item quantity="other">%d জন কন্ট্যাক্ট Signal ব্যবহার করছেন!</item>

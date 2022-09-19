@@ -167,7 +167,8 @@
   <string name="ContactsCursorLoader_contacts">Kontaktaro</string>
   <string name="ContactsCursorLoader_groups">Grupoj</string>
   <string name="ContactsCursorLoader_phone_number_search">Serĉo de telefonnumero</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Serĉo de uzantnomo</string> -->
+  <!--Header for username search-->
+  <string name="ContactsCursorLoader_find_by_username">Trovi per uzantnomo</string>
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Miaj rakontoj</string>
   <!--Action for creating a new story-->
@@ -1590,6 +1591,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="UnverifiedSendDialog_send_message">Ĉu sendi la mesaĝon?</string>
   <string name="UnverifiedSendDialog_send">Sendi</string>
   <!--UsernameEditFragment-->
+  <!--Toolbar title when entering from registration-->
   <!--Instructional text at the top of the username edit screen-->
   <string name="UsernameEditFragment_username">Uzantnomo</string>
   <string name="UsernameEditFragment_delete">Forigi</string>
@@ -1604,6 +1606,10 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Uzantnomoj estu inter %1$d kaj %2$d signoj.</string>
   <!--Explanation about what usernames provide-->
   <!--Dialog title for explanation about numbers at the end of the username-->
+  <!--Button to allow user to skip-->
+  <string name="UsernameEditFragment__skip">Preterpasi</string>
+  <!--Content description for done button-->
+  <string name="UsernameEditFragment__done">Farita</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d kontakto estas ĉe Signal!</item>
     <item quantity="other">%d kontaktoj estas ĉe Signal!</item>

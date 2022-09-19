@@ -168,7 +168,8 @@
   <string name="ContactsCursorLoader_contacts">Kontakti</string>
   <string name="ContactsCursorLoader_groups">Grupe</string>
   <string name="ContactsCursorLoader_phone_number_search">Pretraživanje po broju</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Pretraživanje po korisničkom imenu</string> -->
+  <!--Header for username search-->
+  <string name="ContactsCursorLoader_find_by_username">Pronađi po korisničkom imenu</string>
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Moje priče</string>
   <!--Action for creating a new story-->
@@ -1686,6 +1687,8 @@
   <string name="UnverifiedSendDialog_send_message">Poslati poruku?</string>
   <string name="UnverifiedSendDialog_send">Šalji</string>
   <!--UsernameEditFragment-->
+  <!--Toolbar title when entering from registration-->
+  <string name="UsernameEditFragment__add_a_username">Dodaj korisničko ime</string>
   <!--Instructional text at the top of the username edit screen-->
   <string name="UsernameEditFragment__choose_your_username">Odaberite korisničko ime</string>
   <string name="UsernameEditFragment_username">Korisničko ime</string>
@@ -1704,6 +1707,10 @@
   <!--Dialog title for explanation about numbers at the end of the username-->
   <string name="UsernameEditFragment__what_is_this_number">Kakav je ovo broj?</string>
   <string name="UsernameEditFragment__these_digits_help_keep">Ti brojevi pomažu održati vaše korisničko ime privatnim da možete izbjeći neželjene poruke. Dijelite korisničko ime samo s osobama i grupama s kojim se želite dopisivati. Ako promijenite korisničko ime, dobit ćete novi komplet brojeva.</string>
+  <!--Button to allow user to skip-->
+  <string name="UsernameEditFragment__skip">Preskoči</string>
+  <!--Content description for done button-->
+  <string name="UsernameEditFragment__done">Završeno</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d kontakt je na Signalu!</item>
     <item quantity="few">%d kontakta su na Signalu!</item>

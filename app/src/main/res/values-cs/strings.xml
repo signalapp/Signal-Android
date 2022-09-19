@@ -169,7 +169,8 @@
   <string name="ContactsCursorLoader_contacts">Kontakty</string>
   <string name="ContactsCursorLoader_groups">Skupiny</string>
   <string name="ContactsCursorLoader_phone_number_search">Vyhledání telefonního čísla</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Vyhledání uživatelského jména</string> -->
+  <!--Header for username search-->
+  <string name="ContactsCursorLoader_find_by_username">Najít podle uživatelského jména</string>
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Mé příběhy</string>
   <!--Action for creating a new story-->
@@ -1758,6 +1759,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="UnverifiedSendDialog_send_message">Odeslat zprávu?</string>
   <string name="UnverifiedSendDialog_send">Odeslat</string>
   <!--UsernameEditFragment-->
+  <!--Toolbar title when entering from registration-->
+  <string name="UsernameEditFragment__add_a_username">Přidat uživatelské jméno</string>
   <!--Instructional text at the top of the username edit screen-->
   <string name="UsernameEditFragment__choose_your_username">Vyberte si své uživatelské jméno</string>
   <string name="UsernameEditFragment_username">Uživatelské jméno</string>
@@ -1776,6 +1779,10 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--Dialog title for explanation about numbers at the end of the username-->
   <string name="UsernameEditFragment__what_is_this_number">O jakou sadu číslic se jedná?</string>
   <string name="UsernameEditFragment__these_digits_help_keep">Tyto číslice pomáhají udržet vaše uživatelské jméno v soukromí, abyste se vyhnuli nechtěným zprávám. Uživatelské jméno sdílejte pouze s lidmi a skupinami, se kterými chcete konverzovat. Pokud uživatelské jméno změníte, dostanete novou sadu číslic.</string>
+  <!--Button to allow user to skip-->
+  <string name="UsernameEditFragment__skip">Přeskočit</string>
+  <!--Content description for done button-->
+  <string name="UsernameEditFragment__done">Hotovo</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d kontakt má Signal!</item>
     <item quantity="few">%d kontakty mají Signal!</item>

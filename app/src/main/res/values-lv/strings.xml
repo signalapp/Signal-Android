@@ -168,7 +168,8 @@
   <string name="ContactsCursorLoader_contacts">Kontakti</string>
   <string name="ContactsCursorLoader_groups">Grupas</string>
   <string name="ContactsCursorLoader_phone_number_search">Tālruņa numura meklēšana</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Lietotājvārda meklēšana</string> -->
+  <!--Header for username search-->
+  <string name="ContactsCursorLoader_find_by_username">Meklēt pēc lietotājvārda</string>
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Mani stāsti</string>
   <!--Action for creating a new story-->
@@ -1680,6 +1681,8 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="UnverifiedSendDialog_send_message">Sūtīt ziņu?</string>
   <string name="UnverifiedSendDialog_send">Sūtīt</string>
   <!--UsernameEditFragment-->
+  <!--Toolbar title when entering from registration-->
+  <string name="UsernameEditFragment__add_a_username">Pievienojiet lietotājvārdu</string>
   <!--Instructional text at the top of the username edit screen-->
   <string name="UsernameEditFragment__choose_your_username">Izvēlieties lietotājvārdu</string>
   <string name="UsernameEditFragment_username">Lietotājvārds</string>
@@ -1698,6 +1701,10 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <!--Dialog title for explanation about numbers at the end of the username-->
   <string name="UsernameEditFragment__what_is_this_number">Ko nozīmē šis numurs?</string>
   <string name="UsernameEditFragment__these_digits_help_keep">Šie cipari palīdz saglabāt jūsu lietotājvārdu slepenībā un izvairīties no nevēlamām ziņām. Izpaudiet savu lietotājvārdu tikai lietotājiem un grupām, ar kurām vēlaties čatot. Ja mainīsiet lietotājvārdu, saņemsiet jaunu ciparu virkni.</string>
+  <!--Button to allow user to skip-->
+  <string name="UsernameEditFragment__skip">Izlaist</string>
+  <!--Content description for done button-->
+  <string name="UsernameEditFragment__done">Gatavs</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="zero">%d kontaktpersona lieto Signal!</item>
     <item quantity="one">%d kontaktpersona lieto Signal!</item>

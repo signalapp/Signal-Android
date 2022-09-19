@@ -167,7 +167,8 @@
   <string name="ContactsCursorLoader_contacts">Контакти</string>
   <string name="ContactsCursorLoader_groups">Групи</string>
   <string name="ContactsCursorLoader_phone_number_search">Търсене по телефонен номер</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Търсене по потребителско име</string> -->
+  <!--Header for username search-->
+  <string name="ContactsCursorLoader_find_by_username">Намиране по потребителско име</string>
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Моите истории</string>
   <!--Action for creating a new story-->
@@ -1610,6 +1611,8 @@
   <string name="UnverifiedSendDialog_send_message">Изпращане на съобщение?</string>
   <string name="UnverifiedSendDialog_send">Изпращане</string>
   <!--UsernameEditFragment-->
+  <!--Toolbar title when entering from registration-->
+  <string name="UsernameEditFragment__add_a_username">Добавяне на потребителско име</string>
   <!--Instructional text at the top of the username edit screen-->
   <string name="UsernameEditFragment__choose_your_username">Изберете потребителското ви име</string>
   <string name="UsernameEditFragment_username">Потребителско име</string>
@@ -1628,6 +1631,10 @@
   <!--Dialog title for explanation about numbers at the end of the username-->
   <string name="UsernameEditFragment__what_is_this_number">Какъв е този номер?</string>
   <string name="UsernameEditFragment__these_digits_help_keep">Тези цифри ни помагат да запазим поверителността на вашето потребителско име, за да избегнете нежелани съобщения. Споделяйте потребителското си име само с хората и групите, с които искате да чатите. При промяна на потребителски имена, ще получите нова комбинация от цифри.</string>
+  <!--Button to allow user to skip-->
+  <string name="UsernameEditFragment__skip">Пропуснете</string>
+  <!--Content description for done button-->
+  <string name="UsernameEditFragment__done">Готово</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d контакт е в Signal!</item>
     <item quantity="other">%d контакта са в Signal!</item>

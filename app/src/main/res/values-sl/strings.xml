@@ -169,7 +169,8 @@
   <string name="ContactsCursorLoader_contacts">Stiki</string>
   <string name="ContactsCursorLoader_groups">Skupine</string>
   <string name="ContactsCursorLoader_phone_number_search">Iskanje po telefonskih številkah</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Iskanje po uporabniških imenih</string> -->
+  <!--Header for username search-->
+  <string name="ContactsCursorLoader_find_by_username">Iskanje po uporabniškem imenu</string>
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Moje zgodbe</string>
   <!--Action for creating a new story-->
@@ -1750,6 +1751,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="UnverifiedSendDialog_send_message">Pošljem sporočilo?</string>
   <string name="UnverifiedSendDialog_send">Pošlji</string>
   <!--UsernameEditFragment-->
+  <!--Toolbar title when entering from registration-->
+  <string name="UsernameEditFragment__add_a_username">Dodaj uporabniško ime</string>
   <!--Instructional text at the top of the username edit screen-->
   <string name="UsernameEditFragment__choose_your_username">Izberite uporabniško ime</string>
   <string name="UsernameEditFragment_username">Uporabniško ime</string>
@@ -1768,6 +1771,10 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--Dialog title for explanation about numbers at the end of the username-->
   <string name="UsernameEditFragment__what_is_this_number">Kaj je ta številka?</string>
   <string name="UsernameEditFragment__these_digits_help_keep">Te številke pomagajo ohranjati zasebnost vašega uporabniškega imena, da se lahko izognete neželenim sporočilom. Svoje uporabniško ime delite samo z osebami in skupinami, s katerimi želite klepetati. Če spremenite uporabniška imena, boste prejeli nov nabor številk.</string>
+  <!--Button to allow user to skip-->
+  <string name="UsernameEditFragment__skip">Preskoči</string>
+  <!--Content description for done button-->
+  <string name="UsernameEditFragment__done">OK</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d stik je na Signalu!</item>
     <item quantity="two">%d stika sta na Signalu!</item>

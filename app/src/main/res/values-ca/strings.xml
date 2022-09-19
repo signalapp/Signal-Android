@@ -167,7 +167,8 @@
   <string name="ContactsCursorLoader_contacts">Contactes</string>
   <string name="ContactsCursorLoader_groups">Grups</string>
   <string name="ContactsCursorLoader_phone_number_search">Cerca de número de telèfon</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Cerca de nom d\'usuari</string> -->
+  <!--Header for username search-->
+  <string name="ContactsCursorLoader_find_by_username">Cerca per nom d\'usuari</string>
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Les meves històries</string>
   <!--Action for creating a new story-->
@@ -1607,6 +1608,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="UnverifiedSendDialog_send_message">Voleu enviar el missatge?</string>
   <string name="UnverifiedSendDialog_send">Envia</string>
   <!--UsernameEditFragment-->
+  <!--Toolbar title when entering from registration-->
+  <string name="UsernameEditFragment__add_a_username">Afegeix un nom d\'usuari</string>
   <!--Instructional text at the top of the username edit screen-->
   <string name="UsernameEditFragment__choose_your_username">Tria un nom d\'usuari</string>
   <string name="UsernameEditFragment_username">Nom d\'usuari</string>
@@ -1625,6 +1628,10 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--Dialog title for explanation about numbers at the end of the username-->
   <string name="UsernameEditFragment__what_is_this_number">Què és aquest número?</string>
   <string name="UsernameEditFragment__these_digits_help_keep">Aquests dígits ajudaran a mantenir el teu nom d\'usuari en privat per tal d\'evitar rebre missatges no desitjats. Comparteix el teu nom d\'usuari només amb aquelles persones i grups amb les que desitges parlar. Si canvies el teu nom d\'usuari, rebràs una nova sèrie de dígits.</string>
+  <!--Button to allow user to skip-->
+  <string name="UsernameEditFragment__skip">Ometre</string>
+  <!--Content description for done button-->
+  <string name="UsernameEditFragment__done">Fet</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d contacte és al Signal!</item>
     <item quantity="other">%dcontactes són al Signal!</item>

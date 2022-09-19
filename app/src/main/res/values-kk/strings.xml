@@ -167,7 +167,8 @@
   <string name="ContactsCursorLoader_contacts">Байланыстағы тұлғалар</string>
   <string name="ContactsCursorLoader_groups">Топтар</string>
   <string name="ContactsCursorLoader_phone_number_search">Телефон нөмірі бойынша іздеу</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Пайдаланушы аты бойынша іздеу</string> -->
+  <!--Header for username search-->
+  <string name="ContactsCursorLoader_find_by_username">Пайдаланушы аты бойынша іздеу</string>
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Менің сторилерім</string>
   <!--Action for creating a new story-->
@@ -1613,6 +1614,8 @@
   <string name="UnverifiedSendDialog_send_message">Хатты жіберу керек пе?</string>
   <string name="UnverifiedSendDialog_send">Жіберу</string>
   <!--UsernameEditFragment-->
+  <!--Toolbar title when entering from registration-->
+  <string name="UsernameEditFragment__add_a_username">Пайдаланушы атын қосу</string>
   <!--Instructional text at the top of the username edit screen-->
   <string name="UsernameEditFragment__choose_your_username">Пайдаланушы атын таңдау</string>
   <string name="UsernameEditFragment_username">Пайдаланушы аты</string>
@@ -1631,6 +1634,10 @@
   <!--Dialog title for explanation about numbers at the end of the username-->
   <string name="UsernameEditFragment__what_is_this_number">Бұл қандай нөмір?</string>
   <string name="UsernameEditFragment__these_digits_help_keep">Бұл цифрлар пайдаланушы атыңызды құпия сақтайды, соның арқасында қажетсіз хаттар алмайсыз. Пайдаланушы атыңызды тек сөйлескіңіз келетін адамдармен және топтармен бөлісіңіз. Пайдаланушы атыңызды өзгертсеңіз, сізге жаңа цифрлар жинағы беріледі.</string>
+  <!--Button to allow user to skip-->
+  <string name="UsernameEditFragment__skip">Өткізіп жіберу</string>
+  <!--Content description for done button-->
+  <string name="UsernameEditFragment__done">Дайын</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">Signal-да %d контакт бар!</item>
     <item quantity="other">Signal-да %d контакт бар!</item>

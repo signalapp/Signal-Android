@@ -169,7 +169,8 @@
   <string name="ContactsCursorLoader_contacts">Контакты</string>
   <string name="ContactsCursorLoader_groups">Группы</string>
   <string name="ContactsCursorLoader_phone_number_search">Поиск по номеру телефона</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Поиск по имени пользователя</string> -->
+  <!--Header for username search-->
+  <string name="ContactsCursorLoader_find_by_username">Поиск по имени пользователя</string>
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Мои истории</string>
   <!--Action for creating a new story-->
@@ -1752,6 +1753,8 @@
   <string name="UnverifiedSendDialog_send_message">Отправить сообщение?</string>
   <string name="UnverifiedSendDialog_send">Отправить</string>
   <!--UsernameEditFragment-->
+  <!--Toolbar title when entering from registration-->
+  <string name="UsernameEditFragment__add_a_username">Добавить имя пользователя</string>
   <!--Instructional text at the top of the username edit screen-->
   <string name="UsernameEditFragment__choose_your_username">Выберите ваше имя пользователя</string>
   <string name="UsernameEditFragment_username">Имя пользователя</string>
@@ -1770,6 +1773,10 @@
   <!--Dialog title for explanation about numbers at the end of the username-->
   <string name="UsernameEditFragment__what_is_this_number">Что это за число?</string>
   <string name="UsernameEditFragment__these_digits_help_keep">Эти цифры помогают сохранить ваше имя пользователя в тайне и избежать нежелательных сообщений. Делитесь своим именем пользователя только с теми людьми и группами, с которыми вы хотели бы общаться. Если вы измените имя пользователя, вы получите новый набор цифр.</string>
+  <!--Button to allow user to skip-->
+  <string name="UsernameEditFragment__skip">Пропустить</string>
+  <!--Content description for done button-->
+  <string name="UsernameEditFragment__done">Готово</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d ваш контакт уже в Signal!</item>
     <item quantity="few">%d ваших контакта уже в Signal!</item>

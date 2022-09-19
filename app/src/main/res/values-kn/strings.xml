@@ -167,7 +167,8 @@
   <string name="ContactsCursorLoader_contacts">ಸಂಪರ್ಕಗಳು</string>
   <string name="ContactsCursorLoader_groups">ಗುಂಪುಗಳು</string>
   <string name="ContactsCursorLoader_phone_number_search">ದೂರವಾಣಿ ಸಂಖ್ಯೆ ಹುಡುಕಾಟ</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">ಬಳಕೆದಾರಹೆಸರು ಹುಡುಕಾಟ</string> -->
+  <!--Header for username search-->
+  <string name="ContactsCursorLoader_find_by_username">username ನಿಂದ ಹುಡುಕಿ</string>
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">ನನ್ನ ಸ್ಟೋರೀಸ್</string>
   <!--Action for creating a new story-->
@@ -1610,6 +1611,8 @@
   <string name="UnverifiedSendDialog_send_message">ಸಂದೇಶ ಕಳುಹಿಸುವುದೇ?</string>
   <string name="UnverifiedSendDialog_send">ಕಳುಹಿಸು</string>
   <!--UsernameEditFragment-->
+  <!--Toolbar title when entering from registration-->
+  <string name="UsernameEditFragment__add_a_username">ಒಂದು username ಸೇರಿಸಿ</string>
   <!--Instructional text at the top of the username edit screen-->
   <string name="UsernameEditFragment__choose_your_username">ನಿಮ್ಮ Username ಅನ್ನು ಆಯ್ಕೆ ಮಾಡಿಕೊಳ್ಳಿ</string>
   <string name="UsernameEditFragment_username">ಬಳಕೆದಾರ ಹೆಸರು</string>
@@ -1628,6 +1631,10 @@
   <!--Dialog title for explanation about numbers at the end of the username-->
   <string name="UsernameEditFragment__what_is_this_number">ಈ ಸಂಖ್ಯೆ ಏನು?</string>
   <string name="UsernameEditFragment__these_digits_help_keep">ಈ ಅಂಕಿಗಳು ನಿಮ್ಮ username ಅನ್ನು ಗೌಪ್ಯವಾಗಿ ಇರಿಸಲು ಸಹಕರಿಸುತ್ತವೆ. ಇದರಿಂದಾಗಿ ನೀವು ಬೇಡದ‌ ಮೆಸೇಜ್‌ಗಳನ್ನು ತಪ್ಪಿಸಬಹುದು. ನಿಮ್ಮ username ಅನ್ನು ನೀವು ಚಾಟ್ ಮಾಡಲು ಬಯಸುವ ಜನರು ಮತ್ತು ಗ್ರೂಪ್‌ಗಳೊಂದಿಗೆ ಮಾತ್ರ ಹಂಚಿಕೊಳ್ಳಿ. ನೀವು username ಬದಲಾಯಿಸಿದರೆ, ನೀವು ಹೊಸ ಅಂಕಿಗಳ ಸೆಟ್ ಅನ್ನು ಪಡೆಯುತ್ತೀರಿ.</string>
+  <!--Button to allow user to skip-->
+  <string name="UsernameEditFragment__skip">ಬಿಟ್ಟು ಮುಂದುವರಿಯಿರಿ</string>
+  <!--Content description for done button-->
+  <string name="UsernameEditFragment__done">ಆಗಿದೆ</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d ಸಂಪರ್ಕಗಳು Signal ನಲ್ಲಿವೆ!</item>
     <item quantity="other">%d ಸಂಪರ್ಕಗಳು Signal ನಲ್ಲಿವೆ!</item>

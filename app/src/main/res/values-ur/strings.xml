@@ -167,7 +167,8 @@
   <string name="ContactsCursorLoader_contacts">رابطے</string>
   <string name="ContactsCursorLoader_groups">گروپس</string>
   <string name="ContactsCursorLoader_phone_number_search">فون نمبر تلاش کریں</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">صارف کا نام تلاش کریں</string> -->
+  <!--Header for username search-->
+  <string name="ContactsCursorLoader_find_by_username">صارفی نام سے تلاش کریں</string>
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">میری اسٹوریز</string>
   <!--Action for creating a new story-->
@@ -1604,6 +1605,8 @@
   <string name="UnverifiedSendDialog_send_message">پیغام بھیجیں؟</string>
   <string name="UnverifiedSendDialog_send">بھیجیں</string>
   <!--UsernameEditFragment-->
+  <!--Toolbar title when entering from registration-->
+  <string name="UsernameEditFragment__add_a_username">صارفی نام شامل کریں</string>
   <!--Instructional text at the top of the username edit screen-->
   <string name="UsernameEditFragment__choose_your_username">اپنا صارفی نام منتخب کریں</string>
   <string name="UsernameEditFragment_username">صارف کا نام</string>
@@ -1622,6 +1625,10 @@
   <!--Dialog title for explanation about numbers at the end of the username-->
   <string name="UsernameEditFragment__what_is_this_number">یہ نمبر کیا ہے؟</string>
   <string name="UsernameEditFragment__these_digits_help_keep">یہ اعداد آپ کا صارفی نام نجی رکھنے میں مدد کرتے ہیں تاکہ آپ غیر مطلوبہ میسجز سے بچ سکیں۔ اپنا صارفی نام صرف ان لوگوں اور گروپس کے ساتھ شیئر کریں جن کے ساتھ آپ چیٹ کرنا چاہتے ہیں۔ اگر آپ صارفی نام تبدیل کرتے ہیں تو آپ کو اعداد کا نیا مجموعہ ملے گا۔</string>
+  <!--Button to allow user to skip-->
+  <string name="UsernameEditFragment__skip">چھوڑ دیں</string>
+  <!--Content description for done button-->
+  <string name="UsernameEditFragment__done">ہو گیا</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d رابطے Signal پر ہیں!</item>
     <item quantity="other">%d رابطے Signal پر ہیں!</item>

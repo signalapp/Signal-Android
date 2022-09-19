@@ -168,7 +168,8 @@
   <string name="ContactsCursorLoader_contacts">Contatti</string>
   <string name="ContactsCursorLoader_groups">Gruppi</string>
   <string name="ContactsCursorLoader_phone_number_search">Ricerca numero di telefono</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Ricerca nome utente</string> -->
+  <!--Header for username search-->
+  <string name="ContactsCursorLoader_find_by_username">Cerca tramite nome utente</string>
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Le mie storie</string>
   <!--Action for creating a new story-->
@@ -1686,6 +1687,8 @@
   <string name="UnverifiedSendDialog_send_message">Inviare messaggio?</string>
   <string name="UnverifiedSendDialog_send">Invia</string>
   <!--UsernameEditFragment-->
+  <!--Toolbar title when entering from registration-->
+  <string name="UsernameEditFragment__add_a_username">Aggiungi un nome utente</string>
   <!--Instructional text at the top of the username edit screen-->
   <string name="UsernameEditFragment__choose_your_username">Scegli il tuo nome utente</string>
   <string name="UsernameEditFragment_username">Nome utente</string>
@@ -1704,6 +1707,10 @@
   <!--Dialog title for explanation about numbers at the end of the username-->
   <string name="UsernameEditFragment__what_is_this_number">Cosa rappresenta questo numero?</string>
   <string name="UsernameEditFragment__these_digits_help_keep">Questi numeri aiutano a proteggere la privacy del tuo nome utente, così puoi evitare di ricevere messaggi non desiderati. Ti consigliamo di condividere il tuo nome utente solamente con le persone e i gruppi con cui vuoi chattare su Signal. Se cambi il nome utente, riceverai una nuova serie di numeri.</string>
+  <!--Button to allow user to skip-->
+  <string name="UsernameEditFragment__skip">Salta</string>
+  <!--Content description for done button-->
+  <string name="UsernameEditFragment__done">Fatto</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d contatto è su Signal!</item>
     <item quantity="many">%d contatti sono su Signal!</item>

@@ -166,7 +166,8 @@
   <string name="ContactsCursorLoader_contacts">연락처</string>
   <string name="ContactsCursorLoader_groups">그룹</string>
   <string name="ContactsCursorLoader_phone_number_search">전화번호 검색</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">사용자 이름 검색</string> -->
+  <!--Header for username search-->
+  <string name="ContactsCursorLoader_find_by_username">사용자 이름으로 검색</string>
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">내 스토리</string>
   <!--Action for creating a new story-->
@@ -1540,6 +1541,8 @@
   <string name="UnverifiedSendDialog_send_message">메시지를 보내시겠습니까?</string>
   <string name="UnverifiedSendDialog_send">보내기</string>
   <!--UsernameEditFragment-->
+  <!--Toolbar title when entering from registration-->
+  <string name="UsernameEditFragment__add_a_username">사용자 이름 추가</string>
   <!--Instructional text at the top of the username edit screen-->
   <string name="UsernameEditFragment__choose_your_username">사용자 이름을 선택하세요.</string>
   <string name="UsernameEditFragment_username">사용자 이름</string>
@@ -1558,6 +1561,10 @@
   <!--Dialog title for explanation about numbers at the end of the username-->
   <string name="UsernameEditFragment__what_is_this_number">이 번호는 무엇인가요?</string>
   <string name="UsernameEditFragment__these_digits_help_keep">이 일련번호는 사용자 이름을 비공개로 유지하여 원치 않는 메시지를 피할 수 있도록 도와줍니다. 채팅을 원하는 사용자 및 그룹과만 사용자 이름을 공유하세요. 사용자 이름을 변경하면 새로운 일련번호가 부여됩니다.</string>
+  <!--Button to allow user to skip-->
+  <string name="UsernameEditFragment__skip">건너뛰기</string>
+  <!--Content description for done button-->
+  <string name="UsernameEditFragment__done">확인</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="other">Signal에 연락처가 %d개 있습니다!</item>
   </plurals>

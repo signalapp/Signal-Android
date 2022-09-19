@@ -167,7 +167,8 @@
   <string name="ContactsCursorLoader_contacts">კონტაქტები</string>
   <string name="ContactsCursorLoader_groups">ჯგუფები</string>
   <string name="ContactsCursorLoader_phone_number_search">ტელეფონის ნომრის ძიება</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">მომხმარებლის სახელის ძიება</string> -->
+  <!--Header for username search-->
+  <string name="ContactsCursorLoader_find_by_username">ძებნა მომხმარებლის სახელით</string>
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">ჩემი Story-ები</string>
   <!--Action for creating a new story-->
@@ -1613,6 +1614,8 @@
   <string name="UnverifiedSendDialog_send_message">გავაგზავნოთ შეტყობინება?</string>
   <string name="UnverifiedSendDialog_send">გაგზავნა</string>
   <!--UsernameEditFragment-->
+  <!--Toolbar title when entering from registration-->
+  <string name="UsernameEditFragment__add_a_username">მომხამრებლის სახელის დამატება</string>
   <!--Instructional text at the top of the username edit screen-->
   <string name="UsernameEditFragment__choose_your_username">აირჩიე შენი მომხმარებლის სახელი</string>
   <string name="UsernameEditFragment_username">მომხმარებლის სახელი</string>
@@ -1631,6 +1634,10 @@
   <!--Dialog title for explanation about numbers at the end of the username-->
   <string name="UsernameEditFragment__what_is_this_number">ეს რა ნომერია?</string>
   <string name="UsernameEditFragment__these_digits_help_keep">ეს ციფრები დაგეხმარება შეინახო შენი მომხმარებლის სახელი კონფიდენციალურად, რათა თავიდან აიცილო არასასურველი შეტყობინებები. შენი მომხმარებლის სახელი მხოლოდ იმ ადამიანებსა და ჯგუფებს გაუზიარე, რომლებთანაც საუბარი გსურს. თუ მომხმარებლის სახელს შეცვლი, ციფრების ახალ კომბინაციას მიიღებ.</string>
+  <!--Button to allow user to skip-->
+  <string name="UsernameEditFragment__skip">გამოტოვება</string>
+  <!--Content description for done button-->
+  <string name="UsernameEditFragment__done">შესრულებულია</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d კონტაქტი Signal-ზეა!</item>
     <item quantity="other">%d კონტაქტი Signal-ზეა!</item>

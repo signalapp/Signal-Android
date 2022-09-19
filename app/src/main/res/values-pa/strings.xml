@@ -167,7 +167,8 @@
   <string name="ContactsCursorLoader_contacts">ਸੰਪਰਕ</string>
   <string name="ContactsCursorLoader_groups">ਗਰੁੱਪ</string>
   <string name="ContactsCursorLoader_phone_number_search">ਫੋਨ ਨੰਬਰ ਖੋਜੋ</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">ਵਰਤੋਂਕਾਰ-ਨਾਂ ਖੋਜੋ</string> -->
+  <!--Header for username search-->
+  <string name="ContactsCursorLoader_find_by_username">ਵਰਤੋਂਕਾਰ ਦੇ ਨਾਂ ਨਾਲ ਲੱਭੋ</string>
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">ਮੇਰੀਆਂ ਕਹਾਣੀਆਂ</string>
   <!--Action for creating a new story-->
@@ -1612,6 +1613,8 @@
   <string name="UnverifiedSendDialog_send_message">ਸੁਨੇਹਾ ਭੇਜਣਾ ਹੈ?</string>
   <string name="UnverifiedSendDialog_send">ਭੇਜੋ</string>
   <!--UsernameEditFragment-->
+  <!--Toolbar title when entering from registration-->
+  <string name="UsernameEditFragment__add_a_username">ਵਰਤੋਂਕਾਰ ਨਾਂ ਸ਼ਾਮਲ ਕਰੋ</string>
   <!--Instructional text at the top of the username edit screen-->
   <string name="UsernameEditFragment__choose_your_username">ਆਪਣਾ ਵਰਤੋਂਕਾਰ ਨਾਮ ਚੁਣੋ</string>
   <string name="UsernameEditFragment_username">ਵਰਤੋਂਕਾਰ-ਨਾਂ</string>
@@ -1630,6 +1633,10 @@
   <!--Dialog title for explanation about numbers at the end of the username-->
   <string name="UsernameEditFragment__what_is_this_number">ਇਹ ਨੰਬਰ ਕੀ ਹੈ?</string>
   <string name="UsernameEditFragment__these_digits_help_keep">ਇਹ ਅੰਕ ਤੁਹਾਡੇ ਵਰਤੋਂਕਾਰ ਨਾਮ ਨੂੰ ਪ੍ਰਾਈਵੇਟ ਰੱਖਣ ਵਿੱਚ ਮਦਦ ਕਰਦੇ ਹਨ ਤਾਂ ਜੋ ਤੁਸੀਂ ਅਣਚਾਹੇ ਸੁਨੇਹਿਆਂ ਤੋਂ ਬਚ ਸਕੋ। ਆਪਣਾ ਵਰਤੋਂਕਾਰ ਨਾਮ ਸਿਰਫ਼ ਉਹਨਾਂ ਲੋਕਾਂ ਅਤੇ ਗਰੁੱਪਾਂ ਨਾਲ ਸਾਂਝਾ ਕਰੋ ਜਿਹਨਾਂ ਨਾਲ ਤੁਸੀਂ ਚੈਟ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ। ਜੇਕਰ ਤੁਸੀਂ ਵਰਤੋਂਕਾਰ ਨਾਮ ਬਦਲਦੇ ਹੋ ਤਾਂ ਅੰਕਾਂ ਨੂੰ ਵੀ ਬਦਲ ਦਿੱਤਾ ਜਾਵੇਗਾ।</string>
+  <!--Button to allow user to skip-->
+  <string name="UsernameEditFragment__skip">ਛੱਡੋ</string>
+  <!--Content description for done button-->
+  <string name="UsernameEditFragment__done">ਮੁਕੰਮਲ</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d ਸੰਪਰਕ Signal ਉੱਤੇ ਹੈ!</item>
     <item quantity="other">%d ਸੰਪਰਕ Signal ਉੱਤੇ ਹਨ!</item>

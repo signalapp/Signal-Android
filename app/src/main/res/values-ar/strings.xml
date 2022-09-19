@@ -171,7 +171,8 @@
   <string name="ContactsCursorLoader_contacts">جهات الاتصال</string>
   <string name="ContactsCursorLoader_groups">المجموعات</string>
   <string name="ContactsCursorLoader_phone_number_search">البحث عن طريق رقم الهاتف</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">البحث عن طريق اسم المستخدم</string> -->
+  <!--Header for username search-->
+  <string name="ContactsCursorLoader_find_by_username">البحث باستخدام اِسمُ المُستخدِم</string>
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">قصصي</string>
   <!--Action for creating a new story-->
@@ -1902,6 +1903,8 @@
   <string name="UnverifiedSendDialog_send_message">هل تود إرسال الرسالة ؟</string>
   <string name="UnverifiedSendDialog_send">أرسل</string>
   <!--UsernameEditFragment-->
+  <!--Toolbar title when entering from registration-->
+  <string name="UsernameEditFragment__add_a_username">إضافة اِسمُ المُستخدِم</string>
   <!--Instructional text at the top of the username edit screen-->
   <string name="UsernameEditFragment__choose_your_username">يُرجى اختيار اسم المستخدم</string>
   <string name="UsernameEditFragment_username">اسم المستخدم</string>
@@ -1920,6 +1923,10 @@
   <!--Dialog title for explanation about numbers at the end of the username-->
   <string name="UsernameEditFragment__what_is_this_number">ماذا يعني هذا الرقم؟</string>
   <string name="UsernameEditFragment__these_digits_help_keep">تُساعد هذه الأرقام في الحفاظ على خصوصية اسم المستخدم الخاص بك حتى تتجنب الرسائل غير مرغوب فيها. شارك اسم المستخدم الخاص بك مع الأشخاص والمجموعات الذين ترغب في الدردشة معهم. إذا قمت بتغيير أسماء المستخدمين، سَتحصل على مجموعة جديدة من الأرقام.</string>
+  <!--Button to allow user to skip-->
+  <string name="UsernameEditFragment__skip">تخطّى</string>
+  <!--Content description for done button-->
+  <string name="UsernameEditFragment__done">تمّ</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="zero">%d جهة اتصال تستخدم Signal !‏</item>
     <item quantity="one">‏‏%d جهة اتصال تستخدم Signal !‏</item>

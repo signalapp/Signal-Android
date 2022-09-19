@@ -168,7 +168,8 @@
   <string name="ContactsCursorLoader_contacts">Contactos</string>
   <string name="ContactsCursorLoader_groups">Grupos</string>
   <string name="ContactsCursorLoader_phone_number_search">Procurar número de telefone</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Procurar nome de utilizador</string> -->
+  <!--Header for username search-->
+  <string name="ContactsCursorLoader_find_by_username">Procurar por nome de utilizador</string>
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">As minhas histórias</string>
   <!--Action for creating a new story-->
@@ -1685,6 +1686,8 @@
   <string name="UnverifiedSendDialog_send_message">Enviar mensagem?</string>
   <string name="UnverifiedSendDialog_send">Enviar</string>
   <!--UsernameEditFragment-->
+  <!--Toolbar title when entering from registration-->
+  <string name="UsernameEditFragment__add_a_username">Adicionar um nome de utilizador</string>
   <!--Instructional text at the top of the username edit screen-->
   <string name="UsernameEditFragment__choose_your_username">Escolha o seu nome de utilizador</string>
   <string name="UsernameEditFragment_username">Nome de utilizador</string>
@@ -1703,6 +1706,10 @@
   <!--Dialog title for explanation about numbers at the end of the username-->
   <string name="UsernameEditFragment__what_is_this_number">Que número é este?</string>
   <string name="UsernameEditFragment__these_digits_help_keep">Estes dígitos ajudam a manter o seu nome de utilizador privado, para que possa evitar mensagens indesejadas. Partilhe o seu nome de utilizador apenas com as pessoas e grupos com quem gostaria de conversar. Se mudar de nome de utilizador, receberá um novo conjunto de dígitos.</string>
+  <!--Button to allow user to skip-->
+  <string name="UsernameEditFragment__skip">Saltar</string>
+  <!--Content description for done button-->
+  <string name="UsernameEditFragment__done">Concluir</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d contacto está no Signal!</item>
     <item quantity="many">%d contactos estão no Signal!</item>

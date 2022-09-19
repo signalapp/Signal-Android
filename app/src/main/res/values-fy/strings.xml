@@ -169,7 +169,7 @@
   <string name="ContactsCursorLoader_contacts">Kontakten</string>
   <string name="ContactsCursorLoader_groups">Groepen</string>
   <string name="ContactsCursorLoader_phone_number_search">Sykje op telefoannûmer</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Sykje op brûkersnamme</string> -->
+  <!--Header for username search-->
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Myn ferhalen</string>
   <!--Action for creating a new story-->
@@ -1594,6 +1594,7 @@
   <string name="UnverifiedSendDialog_send_message">Berjocht ferstjoere?</string>
   <string name="UnverifiedSendDialog_send">Ferstjoere</string>
   <!--UsernameEditFragment-->
+  <!--Toolbar title when entering from registration-->
   <!--Instructional text at the top of the username edit screen-->
   <string name="UsernameEditFragment_username">Brûkersnamme</string>
   <string name="UsernameEditFragment_delete">Ferwiderje</string>
@@ -1608,6 +1609,10 @@
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Brûkersnammen moatte op syn minst út %1$d en maksimaal %2$d karakters bestean.</string>
   <!--Explanation about what usernames provide-->
   <!--Dialog title for explanation about numbers at the end of the username-->
+  <!--Button to allow user to skip-->
+  <string name="UsernameEditFragment__skip">Oerslaan</string>
+  <!--Content description for done button-->
+  <string name="UsernameEditFragment__done">Klear</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d fan dyn kontaktpersoanen is berikber fia Signal.</item>
     <item quantity="other">%d fan dyn kontaktpersoanen binne berikber fia Signal.</item>

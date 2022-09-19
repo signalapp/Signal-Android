@@ -167,7 +167,8 @@
   <string name="ContactsCursorLoader_contacts">కాంటాక్ట్స్</string>
   <string name="ContactsCursorLoader_groups">సమూహాలు</string>
   <string name="ContactsCursorLoader_phone_number_search">ఫోన్ నంబర్ శోధన</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">వినియోగదారు పేరు శోధన</string> -->
+  <!--Header for username search-->
+  <string name="ContactsCursorLoader_find_by_username">యూజర్‌నేమ్ ద్వారా కనుగొనండి</string>
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">నా స్టోరీలు</string>
   <!--Action for creating a new story-->
@@ -1617,6 +1618,8 @@
   <string name="UnverifiedSendDialog_send_message">సందేశం పంపాల?</string>
   <string name="UnverifiedSendDialog_send">పంపుము</string>
   <!--UsernameEditFragment-->
+  <!--Toolbar title when entering from registration-->
+  <string name="UsernameEditFragment__add_a_username">యూజర్‌నేమ్‌ను జోడించండి</string>
   <!--Instructional text at the top of the username edit screen-->
   <string name="UsernameEditFragment__choose_your_username">మీ యూజర్‌నేమ్ ఎంచుకోండి</string>
   <string name="UsernameEditFragment_username">వినియోగదారుడు </string>
@@ -1635,6 +1638,10 @@
   <!--Dialog title for explanation about numbers at the end of the username-->
   <string name="UsernameEditFragment__what_is_this_number">ఈ నంబర్ ఏమిటి?</string>
   <string name="UsernameEditFragment__these_digits_help_keep">ఈ అంకెలు మీ యూజర్‌నేమ్‌ను గోప్యంగా ఉంచడానికి సహాయపడతాయి, కాబట్టి మీరు అవాంఛిత సందేశాలను నివారించవచ్చు. మీరు చాట్ చేయాలని ఇష్టపడే వ్యక్తులు మరియు గ్రూపులతో మాత్రమే మీ యూజర్‌నేమ్‌ను పంచుకోండి. మీరు యూజర్‌నేమ్‌లను మార్చితే, మీరు కొత్త అంకెల సమూహాన్ని పొందుతారు.</string>
+  <!--Button to allow user to skip-->
+  <string name="UsernameEditFragment__skip">దాటవేయండి</string>
+  <!--Content description for done button-->
+  <string name="UsernameEditFragment__done">పూర్తయింది</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d పరిచయం Signal‌లో ఉంది!</item>
     <item quantity="other">%d పరిచయాలు Signal‌లో ఉన్నాయి!</item>

@@ -168,7 +168,8 @@
   <string name="ContactsCursorLoader_contacts">Контакти</string>
   <string name="ContactsCursorLoader_groups">Групе</string>
   <string name="ContactsCursorLoader_phone_number_search">Претрага броја телефона</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Претрага корисничког имена</string> -->
+  <!--Header for username search-->
+  <string name="ContactsCursorLoader_find_by_username">Pronađite po korisničkom imenu</string>
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Моје приче</string>
   <!--Action for creating a new story-->
@@ -1671,7 +1672,7 @@
   <!--Displayed in the notification when the user has opened a received gift-->
   <string name="ThreadRecord__you_redeemed_a_gift_badge">Искористили сте поклон значку</string>
   <!--Displayed in the conversation list when someone reacted to your story-->
-  <string name="ThreadRecord__reacted_s_to_your_story">Dobili ste reakciju %1$s na priču.</string>
+  <string name="ThreadRecord__reacted_s_to_your_story">Poslao/la je reakciju %1$s na vašu priču.</string>
   <!--Displayed in the conversation list when you reacted to someone\'s story-->
   <string name="ThreadRecord__reacted_s_to_their_story">Poslali ste reakciju %1$s na priču.</string>
   <!--UpdateApkReadyListener-->
@@ -1684,6 +1685,8 @@
   <string name="UnverifiedSendDialog_send_message">Да пошаљем поруку?</string>
   <string name="UnverifiedSendDialog_send">Пошаљи</string>
   <!--UsernameEditFragment-->
+  <!--Toolbar title when entering from registration-->
+  <string name="UsernameEditFragment__add_a_username">Unesite korisničko ime</string>
   <!--Instructional text at the top of the username edit screen-->
   <string name="UsernameEditFragment__choose_your_username">Izaberite korisničko ime</string>
   <string name="UsernameEditFragment_username">Корисничко име</string>
@@ -1702,6 +1705,10 @@
   <!--Dialog title for explanation about numbers at the end of the username-->
   <string name="UsernameEditFragment__what_is_this_number">Šta znači ovaj broj?</string>
   <string name="UsernameEditFragment__these_digits_help_keep">Ovaj broj omogućava da vaše korisničko ime ostane privatno kako biste izbegli neželjene poruke. Podelite svoje korisničko ime samo sa ljudima i grupama sa kojima biste želeli da ćaskate. Ako promenite korisničko ime, biće vam dodeljen novi broj.</string>
+  <!--Button to allow user to skip-->
+  <string name="UsernameEditFragment__skip">Preskoči</string>
+  <!--Content description for done button-->
+  <string name="UsernameEditFragment__done">Gotovo</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d особа је на Сигналу!</item>
     <item quantity="few">%d особе су на Сигналу!</item>
@@ -4562,7 +4569,7 @@
   <!--Dialog title to turn off stories-->
   <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">Želite li da isključite priče?</string>
   <!--Dialog message to turn off stories-->
-  <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to">Više nećete moći da delite ili vidite priče. Priče koje ste nedavno poslali će i dalje biti vidljive drugima sve dok ne isteknu.</string>
+  <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to">Više nećete moći da delite ili vidite priče. Priče koje ste nedavno podelili i dalje će biti vidljive drugima sve dok ne isteknu.</string>
   <!--Page title when launched from stories landing screen-->
   <string name="StoriesPrivacySettingsFragment__story_privacy">Privatnost priča</string>
   <!--GroupStorySettingsFragment-->

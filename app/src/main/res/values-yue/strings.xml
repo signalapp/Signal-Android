@@ -166,7 +166,8 @@
   <string name="ContactsCursorLoader_contacts">聯絡人</string>
   <string name="ContactsCursorLoader_groups">谷</string>
   <string name="ContactsCursorLoader_phone_number_search">查電話冧把</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">查使用者名稱</string> -->
+  <!--Header for username search-->
+  <string name="ContactsCursorLoader_find_by_username">以用戶名稱嚟搜尋</string>
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">我嘅是日花生</string>
   <!--Action for creating a new story-->
@@ -1540,6 +1541,8 @@
   <string name="UnverifiedSendDialog_send_message">係咪要傳送訊息？</string>
   <string name="UnverifiedSendDialog_send">傳送</string>
   <!--UsernameEditFragment-->
+  <!--Toolbar title when entering from registration-->
+  <string name="UsernameEditFragment__add_a_username">新增用戶名稱</string>
   <!--Instructional text at the top of the username edit screen-->
   <string name="UsernameEditFragment__choose_your_username">選擇你嘅用戶名稱</string>
   <string name="UsernameEditFragment_username">使用者名稱</string>
@@ -1558,6 +1561,10 @@
   <!--Dialog title for explanation about numbers at the end of the username-->
   <string name="UsernameEditFragment__what_is_this_number">呢個號碼係咩嚟？</string>
   <string name="UsernameEditFragment__these_digits_help_keep">呢組數字可以將你嘅用戶名稱保密，以免你受到無謂嘅訊息滋擾。請你淨係同你想同佢通訊嘅聯絡人同埋群組分享你嘅用戶名稱。如果你改咗個用戶名稱，就會收到一組新嘅數字。</string>
+  <!--Button to allow user to skip-->
+  <string name="UsernameEditFragment__skip">略過</string>
+  <!--Content description for done button-->
+  <string name="UsernameEditFragment__done">完成</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="other">%d 位聯絡人開咗 Signal 喇！</item>
   </plurals>

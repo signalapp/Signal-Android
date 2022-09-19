@@ -164,7 +164,7 @@
   <string name="ContactsCursorLoader_contacts">ئالاقەداشلار</string>
   <string name="ContactsCursorLoader_groups">گۇرۇپپا</string>
   <string name="ContactsCursorLoader_phone_number_search">تېلېفون نومۇر ئىزدەش</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">ئىشلەتكۈچى ئىسمى  ئىزدەش</string> -->
+  <!--Header for username search-->
   <!--Label for my stories when selecting who to send media to-->
   <!--Action for creating a new story-->
   <!--ContactsDatabase-->
@@ -1475,6 +1475,7 @@
   <string name="UnverifiedSendDialog_send_message">ئۇچۇر ئەۋەتەمسىز؟</string>
   <string name="UnverifiedSendDialog_send">ئەۋەت</string>
   <!--UsernameEditFragment-->
+  <!--Toolbar title when entering from registration-->
   <!--Instructional text at the top of the username edit screen-->
   <string name="UsernameEditFragment_username">ئىشلەتكۈچى ئىسمى</string>
   <string name="UsernameEditFragment_delete">ئۆچۈرۈش</string>
@@ -1489,6 +1490,10 @@
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">ئىشلەتكۈچى ئىسمى%1$d دىن %2$d غىچە ھەرپ ئارىسىدا بولىدۇ.</string>
   <!--Explanation about what usernames provide-->
   <!--Dialog title for explanation about numbers at the end of the username-->
+  <!--Button to allow user to skip-->
+  <string name="UsernameEditFragment__skip">ئاتلا</string>
+  <!--Content description for done button-->
+  <string name="UsernameEditFragment__done">بولدى</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d ئالاقەداش Signal ئىشلىتىۋاتىدۇ!</item>
     <item quantity="other">%d ئالاقەداش Signal ئىشلىتىۋاتىدۇ!</item>

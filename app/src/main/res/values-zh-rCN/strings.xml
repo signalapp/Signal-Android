@@ -166,7 +166,8 @@
   <string name="ContactsCursorLoader_contacts">联系人</string>
   <string name="ContactsCursorLoader_groups">群组</string>
   <string name="ContactsCursorLoader_phone_number_search">手机号码搜索</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">用户名搜索</string> -->
+  <!--Header for username search-->
+  <string name="ContactsCursorLoader_find_by_username">按用户名查找</string>
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">我的动态</string>
   <!--Action for creating a new story-->
@@ -1541,6 +1542,8 @@
   <string name="UnverifiedSendDialog_send_message">发送消息？</string>
   <string name="UnverifiedSendDialog_send">发送</string>
   <!--UsernameEditFragment-->
+  <!--Toolbar title when entering from registration-->
+  <string name="UsernameEditFragment__add_a_username">添加用户名</string>
   <!--Instructional text at the top of the username edit screen-->
   <string name="UsernameEditFragment__choose_your_username">选择您的用户名</string>
   <string name="UsernameEditFragment_username">用户名</string>
@@ -1559,6 +1562,10 @@
   <!--Dialog title for explanation about numbers at the end of the username-->
   <string name="UsernameEditFragment__what_is_this_number">这个号码是什么？</string>
   <string name="UsernameEditFragment__these_digits_help_keep">这些数字可以将您的用户名保密，以免您收到骚扰消息。请仅将您的用户名分享给您想要聊天的对象和群组。如果您更改用户名，您将会收到一组新的数字。</string>
+  <!--Button to allow user to skip-->
+  <string name="UsernameEditFragment__skip">跳过</string>
+  <!--Content description for done button-->
+  <string name="UsernameEditFragment__done">完成</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="other">%d 个联系人在使用 Signal！</item>
   </plurals>

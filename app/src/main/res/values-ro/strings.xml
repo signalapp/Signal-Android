@@ -168,7 +168,8 @@
   <string name="ContactsCursorLoader_contacts">Contacte</string>
   <string name="ContactsCursorLoader_groups">Grupuri</string>
   <string name="ContactsCursorLoader_phone_number_search">Căutare număr de telefon</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Căutare nume de utilizator</string> -->
+  <!--Header for username search-->
+  <string name="ContactsCursorLoader_find_by_username">Caută după nume de utilizator</string>
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Poveștile Mele</string>
   <!--Action for creating a new story-->
@@ -1682,6 +1683,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="UnverifiedSendDialog_send_message">Trimit mesajul?</string>
   <string name="UnverifiedSendDialog_send">Trimite</string>
   <!--UsernameEditFragment-->
+  <!--Toolbar title when entering from registration-->
+  <string name="UsernameEditFragment__add_a_username">Adaugă un nume de utilizator</string>
   <!--Instructional text at the top of the username edit screen-->
   <string name="UsernameEditFragment__choose_your_username">Alegeți numele de utilizator</string>
   <string name="UsernameEditFragment_username">Nume utilizator</string>
@@ -1700,6 +1703,10 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--Dialog title for explanation about numbers at the end of the username-->
   <string name="UsernameEditFragment__what_is_this_number">Ce este acest număr?</string>
   <string name="UsernameEditFragment__these_digits_help_keep">Aceste cifre ajută la menținerea confidențialității numelui de utilizator ca să tu să eviți mesajele nedorite. Dă-ți numele de utilizator doar persoanelor și grupurilor cu care vrei să conversezi. Dacă schimbi numele de utilizator vei primi un nou set de cifre.</string>
+  <!--Button to allow user to skip-->
+  <string name="UsernameEditFragment__skip">Omite</string>
+  <!--Content description for done button-->
+  <string name="UsernameEditFragment__done">Gata</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d contact este pe Signal!</item>
     <item quantity="few">%d contacte sunt pe Signal!</item>

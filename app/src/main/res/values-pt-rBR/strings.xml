@@ -168,7 +168,8 @@
   <string name="ContactsCursorLoader_contacts">Contatos</string>
   <string name="ContactsCursorLoader_groups">Grupos</string>
   <string name="ContactsCursorLoader_phone_number_search">Pesquisa por número de telefone</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Pesquisa por usuário</string> -->
+  <!--Header for username search-->
+  <string name="ContactsCursorLoader_find_by_username">Encontrar pelo nome de usuário</string>
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Meus Stories</string>
   <!--Action for creating a new story-->
@@ -1686,6 +1687,8 @@
   <string name="UnverifiedSendDialog_send_message">Enviar mensagem?</string>
   <string name="UnverifiedSendDialog_send">Enviar</string>
   <!--UsernameEditFragment-->
+  <!--Toolbar title when entering from registration-->
+  <string name="UsernameEditFragment__add_a_username">Adicionar um nome de usuário</string>
   <!--Instructional text at the top of the username edit screen-->
   <string name="UsernameEditFragment__choose_your_username">Escolha seu nome de usuário</string>
   <string name="UsernameEditFragment_username">Nome de usuário</string>
@@ -1704,6 +1707,10 @@
   <!--Dialog title for explanation about numbers at the end of the username-->
   <string name="UsernameEditFragment__what_is_this_number">O que é esse número?</string>
   <string name="UsernameEditFragment__these_digits_help_keep">Esses dígitos ajudam a manter seu nome de usuário privado para evitar mensagens indesejadas. Compartilhe seu nome de usuário apenas com as pessoas e grupos com os quais gostaria de conversar. Se mudar seu nome de usuário, você receberá um novo conjunto de dígitos.</string>
+  <!--Button to allow user to skip-->
+  <string name="UsernameEditFragment__skip">Ignorar</string>
+  <!--Content description for done button-->
+  <string name="UsernameEditFragment__done">Concluir</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d contato está no Signal!</item>
     <item quantity="many">%d contatos estão no Signal!</item>

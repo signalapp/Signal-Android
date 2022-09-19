@@ -167,7 +167,8 @@
   <string name="ContactsCursorLoader_contacts">Contactos</string>
   <string name="ContactsCursorLoader_groups">Grupos</string>
   <string name="ContactsCursorLoader_phone_number_search">Buscar número de teléfono</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Buscar nome de usuario</string> -->
+  <!--Header for username search-->
+  <string name="ContactsCursorLoader_find_by_username">Buscar por nome de usuario</string>
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">As miñas historias</string>
   <!--Action for creating a new story-->
@@ -1613,6 +1614,8 @@
   <string name="UnverifiedSendDialog_send_message">Enviar mensaxe?</string>
   <string name="UnverifiedSendDialog_send">Enviar</string>
   <!--UsernameEditFragment-->
+  <!--Toolbar title when entering from registration-->
+  <string name="UsernameEditFragment__add_a_username">Engadir un nome de usuario</string>
   <!--Instructional text at the top of the username edit screen-->
   <string name="UsernameEditFragment__choose_your_username">Elixe un nome de usuario</string>
   <string name="UsernameEditFragment_username">Nome de usuario</string>
@@ -1631,6 +1634,10 @@
   <!--Dialog title for explanation about numbers at the end of the username-->
   <string name="UsernameEditFragment__what_is_this_number">Que é este número?</string>
   <string name="UsernameEditFragment__these_digits_help_keep">Estas cifras manteñen o teu nome de usuario privado para que non recibas mensaxes non desexadas. Comparte o teu usuario só coas persoas e grupos coas que queiras conversar. Se cambias o teu nome de usuario, terás unha nova serie de cifras.</string>
+  <!--Button to allow user to skip-->
+  <string name="UsernameEditFragment__skip">Omitir</string>
+  <!--Content description for done button-->
+  <string name="UsernameEditFragment__done">Feito</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%dcontacto está en Signal!</item>
     <item quantity="other">%d contactos están en Signal!</item>

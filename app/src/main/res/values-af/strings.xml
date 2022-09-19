@@ -18,8 +18,8 @@
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Hierdie sal Signal- en boodskapkennisgewings permanent ontsluit</string>
   <string name="ApplicationPreferencesActivity_disable">Deaktiveer</string>
   <string name="ApplicationPreferencesActivity_unregistering">Besig om te deregistreer</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Deregistreer uit Signal-boodskappe en oproepe…</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Deaktiveer Signal-boodskappe en oproepe?</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Deregistreer uit Signal-boodskappe en -oproepe…</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Deaktiveer Signal-boodskappe en -oproepe?</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Deaktiveer Signal-boodskappe en -oproepe deur by die bediener te deregistreer. Jy moet jou telefoonnommer weer registreer om dit in die toekoms weer te gebruik.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Kon nie aan die bediener konnekteer nie!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS geaktiveer</string>
@@ -167,7 +167,8 @@
   <string name="ContactsCursorLoader_contacts">Kontakte</string>
   <string name="ContactsCursorLoader_groups">Groepe</string>
   <string name="ContactsCursorLoader_phone_number_search">Foonnommer-soek</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Gebruikersnaam-soek</string> -->
+  <!--Header for username search-->
+  <string name="ContactsCursorLoader_find_by_username">Vind volgens gebruikersnaam</string>
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">My Stories</string>
   <!--Action for creating a new story-->
@@ -441,7 +442,7 @@
   <!--Toolbar title for this screen-->
   <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">Wie kan my volgens my nommer vind?</string>
   <!--Description for radio item stating anyone can see your phone number-->
-  <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has">Eniegiemand wat jy telefoonnommer in hulle kontakte het, sal jou as \'n kontak in Signal sien. Andere sal jou en jou nommer met die soekfunksie kan vind.</string>
+  <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has">Enige iemand wat jou telefoonnommer in hulle kontakte het, sal jou as \'n kontak in Signal sien. Andere sal jou en jou nommer met die soekfunksie kan vind.</string>
   <!--Description for radio item stating no one will be able to see your phone number-->
   <string name="WhoCanSeeMyPhoneNumberFragment__nobody_on_signal">Niemand op Sinal sal jou volgens jou telefoonnommer kan vind nie.</string>
   <!--ChooseBackupFragment-->
@@ -502,7 +503,7 @@
   <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal gebruik end-tot-end-enkriptering en gaan dalk soms van jou kletssessies moet verfris. Dit beïnvloed nie die sekuriteit van jou kletssessie nie, maar jy kon dalk ’n boodskap van hierdie kontak gemis het; jy kan hulle vra om dit weer te stuur.</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Ontkoppel \'%s\'?</string>
-  <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">As u hierdie toestel ontkoppel, kan dit nie meer boodskappe stuur of ontvang nie.</string>
+  <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">As jy hierdie toestel ontkoppel, kan dit nie meer boodskappe stuur of ontvang nie.</string>
   <string name="DeviceListActivity_network_connection_failed">Netwerkverbinding misluk</string>
   <string name="DeviceListActivity_try_again">Probeer weer</string>
   <string name="DeviceListActivity_unlinking_device">Ontkoppel toestel…</string>
@@ -551,7 +552,7 @@
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">Jy</string>
   <!--GV2 access levels-->
-  <string name="GroupManagement_access_level_anyone">Enigiemand</string>
+  <string name="GroupManagement_access_level_anyone">Enige iemand</string>
   <string name="GroupManagement_access_level_all_members">Alle lede</string>
   <string name="GroupManagement_access_level_only_admins">Slegs admins</string>
   <string name="GroupManagement_access_level_no_one">Niemand</string>
@@ -713,7 +714,7 @@
     <item quantity="other">%d lede bygevoeg.</item>
   </plurals>
   <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">Slegs admins kan die deelbare groepskakel aktiveer of deaktiveer.</string>
-  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Slegs admins kan die opsie om nuwe lede goed te keur aktiveer of deaktiveer.</string>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Slegs admins kan die opsie om nuwe lede goed te keur, aktiveer of deaktiveer.</string>
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Slegs admins kan die deelbare groepskakel terugstel.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Jy het nie die regte om dit te doen nie</string>
   <string name="ManageGroupActivity_not_capable">Iemand wat jy toegevoeg het, ondersteun nie nuwe groepe nie en moet Signal bywerk</string>
@@ -1514,7 +1515,7 @@ ontvang!</string>
     </string>
   <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Boodskap met nuwe veiligheidsnommer ontvang. Tik om te verwerk en te vertoon.</string>
   <string name="SmsMessageRecord_secure_session_reset">Jy het die veilige sessie teruggestel.</string>
-  <string name="SmsMessageRecord_secure_session_reset_s">%s het die veilige sessie herstel.</string>
+  <string name="SmsMessageRecord_secure_session_reset_s">%s het die veilige sessie teruggestel.</string>
   <string name="SmsMessageRecord_duplicate_message">Duplikaatboodskap.</string>
   <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Hierdie boodskap kon nie verwerk word nie, want dit is deur \'n nuwer weergawe van Signal gestuur. Jy kan jou kontak vra om hierdie boodskap weer te stuur nadat jy bygewerk het.</string>
   <string name="SmsMessageRecord_error_handling_incoming_message">Fout met die hantering van inkomende boodskap,</string>
@@ -1611,6 +1612,8 @@ ontvang!</string>
   <string name="UnverifiedSendDialog_send_message">Stuur boodskap?</string>
   <string name="UnverifiedSendDialog_send">Stuur</string>
   <!--UsernameEditFragment-->
+  <!--Toolbar title when entering from registration-->
+  <string name="UsernameEditFragment__add_a_username">Voeg \'n gebruikersnaam by</string>
   <!--Instructional text at the top of the username edit screen-->
   <string name="UsernameEditFragment__choose_your_username">Kies jou gebruikersnaam</string>
   <string name="UsernameEditFragment_username">Gebruikersnaam</string>
@@ -1625,10 +1628,14 @@ ontvang!</string>
   <string name="UsernameEditFragment_username_is_invalid">Ongeldige gebruikersnaam.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Gebruikersname moet tussen %1$d en %2$d karakters lank wees.</string>
   <!--Explanation about what usernames provide-->
-  <string name="UsernameEditFragment__usernames_let_others_message">Gebruikersname laat toe dat andere aan jou boodskappe kan stuur sonder dat hulle jou telefoonnommer nodig het. Hulle word gekoppel aan \'n stel syfers om jou adres privaat te help hou.</string>
+  <string name="UsernameEditFragment__usernames_let_others_message">Gebruikersname laat toe dat ander aan jou boodskappe kan stuur sonder dat hulle jou telefoonnommer nodig het. Hulle word gekoppel aan \'n stel syfers om jou adres privaat te help hou.</string>
   <!--Dialog title for explanation about numbers at the end of the username-->
   <string name="UsernameEditFragment__what_is_this_number">Wat beteken hierdie syfers?</string>
   <string name="UsernameEditFragment__these_digits_help_keep">Hierdie syfers help om jou gebruikersnaam privaat te hou sodat jy ongevraagde boodskappe kan voorkom. Deel jou gebruikersnaam slegs met die mense en groepe met wie jy wil klets. As jy gebruikersname verander, sal jy \'n nuwe stel syfers ontvang.</string>
+  <!--Button to allow user to skip-->
+  <string name="UsernameEditFragment__skip">Slaan oor</string>
+  <!--Content description for done button-->
+  <string name="UsernameEditFragment__done">Klaar</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d kontak is op Signal!</item>
     <item quantity="other">%d kontakte is op Signal!</item>

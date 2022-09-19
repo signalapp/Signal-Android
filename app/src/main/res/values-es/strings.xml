@@ -168,7 +168,8 @@
   <string name="ContactsCursorLoader_contacts">Personas</string>
   <string name="ContactsCursorLoader_groups">Grupos</string>
   <string name="ContactsCursorLoader_phone_number_search">Buscar número de teléfono</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Buscar por alias (nombre de usuari@)</string> -->
+  <!--Header for username search-->
+  <string name="ContactsCursorLoader_find_by_username">Buscar por alias</string>
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Mis historias</string>
   <!--Action for creating a new story-->
@@ -1686,6 +1687,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="UnverifiedSendDialog_send_message">¿Enviar mensaje?</string>
   <string name="UnverifiedSendDialog_send">Enviar</string>
   <!--UsernameEditFragment-->
+  <!--Toolbar title when entering from registration-->
+  <string name="UsernameEditFragment__add_a_username">Añadir alias</string>
   <!--Instructional text at the top of the username edit screen-->
   <string name="UsernameEditFragment__choose_your_username">Elige tu nombre de usuario</string>
   <string name="UsernameEditFragment_username">Alias (nombre de usuari@)</string>
@@ -1704,6 +1707,10 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--Dialog title for explanation about numbers at the end of the username-->
   <string name="UsernameEditFragment__what_is_this_number">¿Qué es este número?</string>
   <string name="UsernameEditFragment__these_digits_help_keep">Estos dígitos te ayudarán a mantener tu nombre de usuario en privado para así evitar que recibas mensajes no deseados. Comparte tu nombre de usuario solo con aquellas personas y grupos con los que quieras charlar. Si cambias tu nombre de usuario, recibirás una nueva serie de dígitos.</string>
+  <!--Button to allow user to skip-->
+  <string name="UsernameEditFragment__skip">Omitir</string>
+  <!--Content description for done button-->
+  <string name="UsernameEditFragment__done">Hecho</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">¡%d de tus amistades usan Signal!</item>
     <item quantity="many">¡%d de tus amistades usan Signal!</item>

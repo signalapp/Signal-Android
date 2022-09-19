@@ -166,7 +166,8 @@
   <string name="ContactsCursorLoader_contacts">အဆက်အသွယ်များ</string>
   <string name="ContactsCursorLoader_groups">အဖွဲ့များ</string>
   <string name="ContactsCursorLoader_phone_number_search">ဖုန်းနံပါတ်ရှာဖွေခြင်း</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">အသုံးပြုသူအမည်ရှာဖွေခြင်း</string> -->
+  <!--Header for username search-->
+  <string name="ContactsCursorLoader_find_by_username">သုံးစွဲသူအမည်ဖြင့် ရှာရန်</string>
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">ကျွန်ုပ်၏ စတိုရီများ</string>
   <!--Action for creating a new story-->
@@ -1534,6 +1535,8 @@
   <string name="UnverifiedSendDialog_send_message">စာပို့မလား?</string>
   <string name="UnverifiedSendDialog_send">ပို့ပါ</string>
   <!--UsernameEditFragment-->
+  <!--Toolbar title when entering from registration-->
+  <string name="UsernameEditFragment__add_a_username">သုံးစွဲသူအမည် ပေါင်းထည့်ရန်</string>
   <!--Instructional text at the top of the username edit screen-->
   <string name="UsernameEditFragment__choose_your_username">သင်၏ သုံးစွဲသူအမည်ကို ရွေးရန်</string>
   <string name="UsernameEditFragment_username">အသုံးပြုသူအမည်</string>
@@ -1552,6 +1555,10 @@
   <!--Dialog title for explanation about numbers at the end of the username-->
   <string name="UsernameEditFragment__what_is_this_number">ဤနံပါတ်က ဘာလဲ။</string>
   <string name="UsernameEditFragment__these_digits_help_keep">ဤဂဏန်းများသည် သင့်သုံးစွဲသူအမည်ကို သီးသန့်လျှို့ဝှက်ပေးထားသောကြောင့် မလိုချင်သည့် မက်ဆေ့ချ်များ ရရှိခြင်းမှ ရှောင်နိုင်ပါသည်။ သင့်သုံးစွဲသူအမည်ကို သင် ချက်(တ်)လိုသည့် လူများ၊ အဖွဲ့များထံသာ ဝေမျှနိုင်ပါသည်။ သုံးစွဲသူအမည်ကို ပြောင်းလိုက်ပါက ဂဏန်းအစုံအသစ် ရရှိပါမည်။</string>
+  <!--Button to allow user to skip-->
+  <string name="UsernameEditFragment__skip">ကျော်ရန်</string>
+  <!--Content description for done button-->
+  <string name="UsernameEditFragment__done">ပြီးပါပြီ</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="other">အဆက်အသွယ် %d ဦးသည် Signal ပေါ်ရှိပါသည်!</item>
   </plurals>

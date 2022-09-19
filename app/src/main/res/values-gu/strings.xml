@@ -167,7 +167,8 @@
   <string name="ContactsCursorLoader_contacts">સંપર્કો</string>
   <string name="ContactsCursorLoader_groups">ગ્રુપ</string>
   <string name="ContactsCursorLoader_phone_number_search">ફોન નંબર શોધો</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">વપરાશકર્તા નામ શોધો</string> -->
+  <!--Header for username search-->
+  <string name="ContactsCursorLoader_find_by_username">ઉપયોગકર્તા નામ દ્વારા શોધો</string>
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">મારી સ્ટોરી</string>
   <!--Action for creating a new story-->
@@ -1607,6 +1608,8 @@
   <string name="UnverifiedSendDialog_send_message">મેસેજ મોકલો છે?</string>
   <string name="UnverifiedSendDialog_send">મોકલો</string>
   <!--UsernameEditFragment-->
+  <!--Toolbar title when entering from registration-->
+  <string name="UsernameEditFragment__add_a_username">ઉપયોગકર્તા નામ ઉમેરો</string>
   <!--Instructional text at the top of the username edit screen-->
   <string name="UsernameEditFragment__choose_your_username">તમારું યુઝરનેમ પસંદ કરો</string>
   <string name="UsernameEditFragment_username">વપરાશકર્તા નામ</string>
@@ -1625,6 +1628,10 @@
   <!--Dialog title for explanation about numbers at the end of the username-->
   <string name="UsernameEditFragment__what_is_this_number">આ નંબર શું છે?</string>
   <string name="UsernameEditFragment__these_digits_help_keep">આ અંકો તમારા યુઝરનેમને ખાનગી રાખવામાં મદદ કરે છે જેથી તમે અનિચ્છનીય મેસેજને ટાળી શકો. તમારું યુઝરનેમ ફક્ત એ લોકો અને ગ્રૂપ સાથે જ શેર કરો જેમની સાથે તમે ચેટ કરવું ગમે છે. જો તમે યુઝરનેમ બદલો છો તો તમને નવા અંકો મળશે.</string>
+  <!--Button to allow user to skip-->
+  <string name="UsernameEditFragment__skip">સ્કિપ</string>
+  <!--Content description for done button-->
+  <string name="UsernameEditFragment__done">થઈ ગયું</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%dસંપર્ક Signal પર છે!</item>
     <item quantity="other">%d સંપર્કો Signal પર છે!</item>

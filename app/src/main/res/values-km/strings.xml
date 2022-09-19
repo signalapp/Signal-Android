@@ -166,7 +166,8 @@
   <string name="ContactsCursorLoader_contacts">បញ្ជីទំនាក់ទំនង</string>
   <string name="ContactsCursorLoader_groups">ក្រុម</string>
   <string name="ContactsCursorLoader_phone_number_search">ស្វែងរកលេខទូរស័ព្ទ</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">ស្វែងរកឈ្មោះអ្នកប្រើប្រាស់</string> -->
+  <!--Header for username search-->
+  <string name="ContactsCursorLoader_find_by_username">ស្វែងរកតាមឈ្មោះអ្នកប្រើ</string>
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">រឿងរ៉ាវរបស់ខ្ញុំ</string>
   <!--Action for creating a new story-->
@@ -1534,6 +1535,8 @@
   <string name="UnverifiedSendDialog_send_message">ផ្ញើសារ?</string>
   <string name="UnverifiedSendDialog_send">ផ្ញើ</string>
   <!--UsernameEditFragment-->
+  <!--Toolbar title when entering from registration-->
+  <string name="UsernameEditFragment__add_a_username">បញ្ចូលឈ្មោះអ្នកប្រើ</string>
   <!--Instructional text at the top of the username edit screen-->
   <string name="UsernameEditFragment__choose_your_username">ជ្រើសរើសឈ្មោះអ្នកប្រើរបស់អ្នក</string>
   <string name="UsernameEditFragment_username">ឈ្មោះអ្នកប្រើប្រាស់</string>
@@ -1552,6 +1555,10 @@
   <!--Dialog title for explanation about numbers at the end of the username-->
   <string name="UsernameEditFragment__what_is_this_number">តើលេខនេះគឺជាអ្វីទៅ?</string>
   <string name="UsernameEditFragment__these_digits_help_keep">លេខទាំងនេះជួយរក្សាឈ្មោះអ្នកប្រើរបស់អ្នកជាឯកជន ដើម្បីឲ្យអ្នកអាចជៀសវាងសារ​ដែលមិនចង់បាន។ សូមចែករំលែកឈ្មោះអ្នកប្រើរបស់អ្នកតែជាមួយមនុស្ស និងក្រុមដែល​អ្នកចង់ជជែកជាមួយប៉ុណ្ណោះ។ ប្រសិនបើអ្នកប្តូរឈ្មោះអ្នកប្រើ អ្នកនឹងទទួលបានសំណុំលេខថ្មី។</string>
+  <!--Button to allow user to skip-->
+  <string name="UsernameEditFragment__skip">រំលង</string>
+  <!--Content description for done button-->
+  <string name="UsernameEditFragment__done">រួចរាល់</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="other">លេខទំនាក់ទំនង%dនៅលើ  Signal!</item>
   </plurals>

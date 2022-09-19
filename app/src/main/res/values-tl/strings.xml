@@ -167,7 +167,8 @@
   <string name="ContactsCursorLoader_contacts">Mga Kontak</string>
   <string name="ContactsCursorLoader_groups">Mga Grupo</string>
   <string name="ContactsCursorLoader_phone_number_search">Maghanap ng numero ng telepono</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Maghanap ng Username</string> -->
+  <!--Header for username search-->
+  <string name="ContactsCursorLoader_find_by_username">Hanapin gamit ang username</string>
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Stories Ko</string>
   <!--Action for creating a new story-->
@@ -1613,6 +1614,8 @@
   <string name="UnverifiedSendDialog_send_message">Ipadala ang mensahe?</string>
   <string name="UnverifiedSendDialog_send">Ipadala</string>
   <!--UsernameEditFragment-->
+  <!--Toolbar title when entering from registration-->
+  <string name="UsernameEditFragment__add_a_username">Mag-add ng username</string>
   <!--Instructional text at the top of the username edit screen-->
   <string name="UsernameEditFragment__choose_your_username">Pumili ng username mo</string>
   <string name="UsernameEditFragment_username">Username</string>
@@ -1631,6 +1634,10 @@
   <!--Dialog title for explanation about numbers at the end of the username-->
   <string name="UsernameEditFragment__what_is_this_number">Para saan ang number na ito?</string>
   <string name="UsernameEditFragment__these_digits_help_keep">Ang mga number na ito\'y nakatutulong para mapanatiling private ang username mo para makaiwas ka sa anumang mensaheng hindi mo gustong matanggap. I-share lang ang iyong username sa mga tao at groups na gusto mong maka-chat. Kung magpapalit ka ng username, magkakaroon ka ng bagong set ng mga number.</string>
+  <!--Button to allow user to skip-->
+  <string name="UsernameEditFragment__skip">Laktawan</string>
+  <!--Content description for done button-->
+  <string name="UsernameEditFragment__done">Tapos Na</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d kontak ay nasa Signal!</item>
     <item quantity="other">%d na mga kontak ay nasa Signal!</item>

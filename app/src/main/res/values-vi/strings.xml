@@ -166,7 +166,8 @@
   <string name="ContactsCursorLoader_contacts">Danh bạ</string>
   <string name="ContactsCursorLoader_groups">Nhóm</string>
   <string name="ContactsCursorLoader_phone_number_search">Tìm kiếm số điện thoại</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Tìm kiếm tên người dùng</string> -->
+  <!--Header for username search-->
+  <string name="ContactsCursorLoader_find_by_username">Tìm theo tên người dùng</string>
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Các Story của tôi</string>
   <!--Action for creating a new story-->
@@ -1534,6 +1535,8 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="UnverifiedSendDialog_send_message">Gửi tin nhắn?</string>
   <string name="UnverifiedSendDialog_send">Gửi</string>
   <!--UsernameEditFragment-->
+  <!--Toolbar title when entering from registration-->
+  <string name="UsernameEditFragment__add_a_username">Nhập tên người dùng</string>
   <!--Instructional text at the top of the username edit screen-->
   <string name="UsernameEditFragment__choose_your_username">Chọn tên người dùng của bạn</string>
   <string name="UsernameEditFragment_username">Tên người dùng</string>
@@ -1552,6 +1555,10 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--Dialog title for explanation about numbers at the end of the username-->
   <string name="UsernameEditFragment__what_is_this_number">Số này là gì?</string>
   <string name="UsernameEditFragment__these_digits_help_keep">Các ký tự này giúp giữ bí mật tên người dùng của bạn giúp bạn tránh các tin nhắn ngoài ý muốn. Chỉ chia sẻ tên người dùng của bạn với những người hoặc nhóm bạn muốn trò chuyện. Nếu bạn đổi tên người dùng, bạn sẽ nhận được một dãy ký tự mới.</string>
+  <!--Button to allow user to skip-->
+  <string name="UsernameEditFragment__skip">Bỏ qua</string>
+  <!--Content description for done button-->
+  <string name="UsernameEditFragment__done">Xong</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="other">%d liên hệ của bạn đang sử dụng Signal!</item>
   </plurals>

@@ -167,7 +167,8 @@
   <string name="ContactsCursorLoader_contacts">Επαφές</string>
   <string name="ContactsCursorLoader_groups">Ομάδες</string>
   <string name="ContactsCursorLoader_phone_number_search">Εύρεση τηλεφωνικού αριθμού</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Εύρεση ονόματος χρήστη</string> -->
+  <!--Header for username search-->
+  <string name="ContactsCursorLoader_find_by_username">Αναζήτηση ως όνομα χρήστη</string>
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Οι ιστορίες μου</string>
   <!--Action for creating a new story-->
@@ -1608,6 +1609,8 @@
   <string name="UnverifiedSendDialog_send_message">Αποστολή μηνύματος;</string>
   <string name="UnverifiedSendDialog_send">Αποστολή</string>
   <!--UsernameEditFragment-->
+  <!--Toolbar title when entering from registration-->
+  <string name="UsernameEditFragment__add_a_username">Προσθήκη ονόματος χρήστη</string>
   <!--Instructional text at the top of the username edit screen-->
   <string name="UsernameEditFragment__choose_your_username">Διάλεξε όνομα χρήστη</string>
   <string name="UsernameEditFragment_username">Όνομα χρήστη</string>
@@ -1626,6 +1629,10 @@
   <!--Dialog title for explanation about numbers at the end of the username-->
   <string name="UsernameEditFragment__what_is_this_number">Τι είναι αυτός ο αριθμός;</string>
   <string name="UsernameEditFragment__these_digits_help_keep">Αυτά τα ψηφία διατηρούν απόρρητο το δικό σου όνομα χρήστη ώστε να μη λαμβάνεις ανεπιθύμητα μηνύματα. Να μοιράζεσαι το δικό σου όνομα χρήστη μόνο με άτομα και ομάδες που θέλεις να συνομιλείς. Εάν θέλεις να αλλάξεις όνομα χρήστη, θα λάβεις έναν νέο σετ ψηφίων.</string>
+  <!--Button to allow user to skip-->
+  <string name="UsernameEditFragment__skip">Παράλειψη</string>
+  <!--Content description for done button-->
+  <string name="UsernameEditFragment__done">Τέλος</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d επαφή είναι στο Signal!</item>
     <item quantity="other">%d επαφές είναι στο Signal!</item>

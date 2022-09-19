@@ -168,7 +168,8 @@
   <string name="ContactsCursorLoader_contacts">Kontakti</string>
   <string name="ContactsCursorLoader_groups">Grupe</string>
   <string name="ContactsCursorLoader_phone_number_search">Pretraga po broju</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Pretraga po korisničkom imenu</string> -->
+  <!--Header for username search-->
+  <string name="ContactsCursorLoader_find_by_username">Traži po korisničkom imenu</string>
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Moje priče</string>
   <!--Action for creating a new story-->
@@ -1683,6 +1684,8 @@ broj telefona</string>
   <string name="UnverifiedSendDialog_send_message">Pošalji poruku?</string>
   <string name="UnverifiedSendDialog_send">Pošalji</string>
   <!--UsernameEditFragment-->
+  <!--Toolbar title when entering from registration-->
+  <string name="UsernameEditFragment__add_a_username">Dodaj korisničko ime</string>
   <!--Instructional text at the top of the username edit screen-->
   <string name="UsernameEditFragment__choose_your_username">Odaberite vaše korisničko ime</string>
   <string name="UsernameEditFragment_username">Korisničko ime</string>
@@ -1701,6 +1704,10 @@ broj telefona</string>
   <!--Dialog title for explanation about numbers at the end of the username-->
   <string name="UsernameEditFragment__what_is_this_number">Čemu služi ovaj broj?</string>
   <string name="UsernameEditFragment__these_digits_help_keep">Ove znamenke čuvaju privatnost vašeg korisničkog imena kako bi se izbjeglo primanje neželjenih poruka. Podijelite svoje korisničko ime samo s osobama i grupama s kojima želite razgovarati. Ako promijenite korisničko ime, dobit ćete novi skup znamenki.</string>
+  <!--Button to allow user to skip-->
+  <string name="UsernameEditFragment__skip">Preskoči</string>
+  <!--Content description for done button-->
+  <string name="UsernameEditFragment__done">Gotovo</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d kontakt je na Signalu!</item>
     <item quantity="few">%d kontakta su na Signalu!</item>

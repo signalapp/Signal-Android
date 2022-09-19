@@ -167,7 +167,7 @@
   <string name="ContactsCursorLoader_contacts">Kontaktar</string>
   <string name="ContactsCursorLoader_groups">Grupper</string>
   <string name="ContactsCursorLoader_phone_number_search">Søk etter telefonnummer</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Søk etter brukarnamn</string> -->
+  <!--Header for username search-->
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Mine historier</string>
   <!--Action for creating a new story-->
@@ -1596,6 +1596,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="UnverifiedSendDialog_send_message">Send melding?</string>
   <string name="UnverifiedSendDialog_send">Send</string>
   <!--UsernameEditFragment-->
+  <!--Toolbar title when entering from registration-->
   <!--Instructional text at the top of the username edit screen-->
   <string name="UsernameEditFragment_username">Brukarnamn</string>
   <string name="UsernameEditFragment_delete">Slett</string>
@@ -1610,6 +1611,10 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Brukarnamn må vera mellom %1$d og %2$d teikn lange.</string>
   <!--Explanation about what usernames provide-->
   <!--Dialog title for explanation about numbers at the end of the username-->
+  <!--Button to allow user to skip-->
+  <string name="UsernameEditFragment__skip">Hopp over</string>
+  <!--Content description for done button-->
+  <string name="UsernameEditFragment__done">Ferdig</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d kontakt er på Signal!</item>
     <item quantity="other">%d kontaktar er på Signal!</item>

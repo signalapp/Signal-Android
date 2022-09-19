@@ -167,7 +167,8 @@
   <string name="ContactsCursorLoader_contacts">Kontakter</string>
   <string name="ContactsCursorLoader_groups">Grupper</string>
   <string name="ContactsCursorLoader_phone_number_search">Telefonnummer-sökning</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">Användarnamn-sökning</string> -->
+  <!--Header for username search-->
+  <string name="ContactsCursorLoader_find_by_username">Hitta via användarnamn</string>
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">Mina berättelser</string>
   <!--Action for creating a new story-->
@@ -1607,6 +1608,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="UnverifiedSendDialog_send_message">Skicka meddelande?</string>
   <string name="UnverifiedSendDialog_send">Skicka</string>
   <!--UsernameEditFragment-->
+  <!--Toolbar title when entering from registration-->
+  <string name="UsernameEditFragment__add_a_username">Lägg till ett användarnamn</string>
   <!--Instructional text at the top of the username edit screen-->
   <string name="UsernameEditFragment__choose_your_username">Välj ditt användarnamn</string>
   <string name="UsernameEditFragment_username">Användarnamn</string>
@@ -1625,6 +1628,10 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--Dialog title for explanation about numbers at the end of the username-->
   <string name="UsernameEditFragment__what_is_this_number">Vad är det här för nummer?</string>
   <string name="UsernameEditFragment__these_digits_help_keep">De här siffrorna håller ditt användarnamn privat, så du slipper få oönskade meddelanden. Dela endast ditt användarnamn med personer och grupper som du vill ha kontakt med. Du får nya siffror om du byter användarnamn.</string>
+  <!--Button to allow user to skip-->
+  <string name="UsernameEditFragment__skip">Hoppa över</string>
+  <!--Content description for done button-->
+  <string name="UsernameEditFragment__done">Klar</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d kontakt finns på Signal!</item>
     <item quantity="other">%d kontakter finns på Signal!</item>

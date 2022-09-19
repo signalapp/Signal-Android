@@ -166,7 +166,8 @@
   <string name="ContactsCursorLoader_contacts">ผู้ติดต่อ</string>
   <string name="ContactsCursorLoader_groups">กลุ่ม</string>
   <string name="ContactsCursorLoader_phone_number_search">ค้นด้วยหมายเลขโทรศัพท์</string>
-  <!-- Removed by excludeNonTranslatables <string name="ContactsCursorLoader_username_search">ค้นหาด้วยชื่อผู้ใช้</string> -->
+  <!--Header for username search-->
+  <string name="ContactsCursorLoader_find_by_username">ค้นหาด้วยชื่อผู้ใช้</string>
   <!--Label for my stories when selecting who to send media to-->
   <string name="ContactsCursorLoader_my_stories">สตอรี่ของฉัน</string>
   <!--Action for creating a new story-->
@@ -1540,6 +1541,8 @@
   <string name="UnverifiedSendDialog_send_message">ส่งข้อความหรือไม่?</string>
   <string name="UnverifiedSendDialog_send">ส่ง</string>
   <!--UsernameEditFragment-->
+  <!--Toolbar title when entering from registration-->
+  <string name="UsernameEditFragment__add_a_username">เพิ่มชื่อผู้ใช้</string>
   <!--Instructional text at the top of the username edit screen-->
   <string name="UsernameEditFragment__choose_your_username">เลือกชื่อผู้ใช้ของคุณ</string>
   <string name="UsernameEditFragment_username">ชื่อผู้ใช้</string>
@@ -1558,6 +1561,10 @@
   <!--Dialog title for explanation about numbers at the end of the username-->
   <string name="UsernameEditFragment__what_is_this_number">ตัวเลขนี้คืออะไร</string>
   <string name="UsernameEditFragment__these_digits_help_keep">ตัวเลขนี้จะช่วยรักษาความเป็นส่วนตัวให้ชื่อผู้ใช้ของคุณ ป้องกันไม่ให้คุณได้รับข้อความที่ไม่ต้องการ เราขอแนะนำให้แชร์ชื่อผู้ใช้ของคุณเฉพาะกับคนและกลุ่มที่คุณอยากติดต่อด้วยเท่านั้น โดยหากเปลี่ยนชื่อผู้ใช้ คุณจะได้รับตัวเลขใหม่</string>
+  <!--Button to allow user to skip-->
+  <string name="UsernameEditFragment__skip">ข้าม</string>
+  <!--Content description for done button-->
+  <string name="UsernameEditFragment__done">เสร็จสิ้น</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="other">มีผู้ติดต่อ %d คนใช้งาน Signal!</item>
   </plurals>
