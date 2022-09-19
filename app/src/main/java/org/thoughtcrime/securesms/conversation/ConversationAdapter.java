@@ -45,6 +45,7 @@ import org.thoughtcrime.securesms.BindableConversationItem;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.conversation.colors.Colorizable;
 import org.thoughtcrime.securesms.conversation.colors.Colorizer;
+import org.thoughtcrime.securesms.conversation.displaymode.ConversationItemDisplayMode;
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4Playable;
@@ -280,6 +281,8 @@ public class ConversationAdapter
         ConversationMessage previousMessage = adapterPosition < getItemCount() - 1  && !isFooterPosition(adapterPosition + 1) ? getItem(adapterPosition + 1) : null;
         ConversationMessage nextMessage     = adapterPosition > 0                   && !isHeaderPosition(adapterPosition - 1) ? getItem(adapterPosition - 1) : null;
 
+        ConversationItemDisplayMode displayMode = condensedMode ? ConversationItemDisplayMode.CONDENSED : ConversationItemDisplayMode.STANDARD;
+
         conversationViewHolder.getBindable().bind(lifecycleOwner,
                                                   conversationMessage,
                                                   Optional.ofNullable(previousMessage != null ? previousMessage.getMessageRecord() : null),
@@ -294,7 +297,7 @@ public class ConversationAdapter
                                                   isMessageRequestAccepted,
                                                   conversationMessage == inlineContent,
                                                   colorizer,
-                                                  condensedMode);
+                                                  displayMode);
 
         if (conversationMessage == recordToPulse) {
           recordToPulse = null;

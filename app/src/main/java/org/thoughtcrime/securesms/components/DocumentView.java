@@ -90,7 +90,8 @@ public class DocumentView extends FrameLayout {
   }
 
   public void setDocument(final @NonNull Slide documentSlide,
-                          final boolean showControls)
+                          final boolean showControls,
+                          final boolean showSingleLineFilename)
   {
     if (showControls && documentSlide.isPendingDownload()) {
       controlToggle.displayQuick(downloadButton);
@@ -106,12 +107,23 @@ public class DocumentView extends FrameLayout {
 
     this.documentSlide = documentSlide;
 
+    // Android OS filenames are limited to 256 characters, so
+    // we don't need an additional max characters/lines constraint when
+    // [showSingleLineFilename] is false.
+    this.fileName.setSingleLine(showSingleLineFilename);
+
     this.fileName.setText(OptionalUtil.or(documentSlide.getFileName(),
                                           documentSlide.getCaption())
                                       .orElse(getContext().getString(R.string.DocumentView_unnamed_file)));
     this.fileSize.setText(Util.getPrettyFileSize(documentSlide.getFileSize()));
     this.document.setText(documentSlide.getFileType(getContext()).orElse("").toLowerCase());
     this.setOnClickListener(new OpenClickedListener(documentSlide));
+  }
+
+  public void setDocument(final @NonNull Slide documentSlide,
+                          final boolean showControls)
+  {
+    setDocument(documentSlide, showControls, true);
   }
 
   @Override

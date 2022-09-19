@@ -93,6 +93,7 @@ import org.thoughtcrime.securesms.components.mention.MentionAnnotation;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.conversation.colors.ChatColors;
 import org.thoughtcrime.securesms.conversation.colors.Colorizer;
+import org.thoughtcrime.securesms.conversation.displaymode.ConversationItemDisplayMode;
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectCollection;
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
@@ -186,13 +187,8 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   private LiveRecipient           recipient;
   private GlideRequests           glideRequests;
   private ValueAnimator           pulseOutlinerAlphaAnimator;
-  private Optional<MessageRecord> previousMessage;
-
-  /**
-   * Whether or not we're rendering this item in a constrained space.
-   * Today this is only {@link org.thoughtcrime.securesms.conversation.quotes.MessageQuotesBottomSheet}.
-   */
-  private boolean isCondensedMode;
+  private Optional<MessageRecord>     previousMessage;
+  private ConversationItemDisplayMode displayMode;
 
             protected ConversationItemBodyBubble bodyBubble;
             protected View                       reply;
@@ -350,7 +346,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
                    boolean isMessageRequestAccepted,
                    boolean allowedToPlayInline,
                    @NonNull Colorizer colorizer,
-                   boolean isCondensedMode)
+                   ConversationItemDisplayMode displayMode)
   {
     if (this.recipient != null) this.recipient.removeForeverObserver(this);
     if (this.conversationRecipient != null) this.conversationRecipient.removeForeverObserver(this);
@@ -371,7 +367,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     this.canPlayContent         = false;
     this.mediaItem              = null;
     this.colorizer              = colorizer;
-    this.isCondensedMode        = isCondensedMode;
+    this.displayMode            = displayMode;
     this.previousMessage        = previousMessageRecord;
 
     this.recipient.observeForever(this);
@@ -417,7 +413,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
   @Override
   public boolean dispatchTouchEvent(MotionEvent ev) {
-    if (isCondensedMode) return super.dispatchTouchEvent(ev);
+    if (isCondensedMode()) return super.dispatchTouchEvent(ev);
 
     switch (ev.getAction()) {
       case MotionEvent.ACTION_DOWN:
@@ -902,11 +898,19 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   }
 
   /**
+   * Whether or not we're rendering this item in a constrained space.
+   * Today this is only {@link org.thoughtcrime.securesms.conversation.quotes.MessageQuotesBottomSheet}.
+   */
+  private boolean isCondensedMode() {
+    return displayMode == ConversationItemDisplayMode.CONDENSED;
+  }
+
+  /**
    * Whether or not we want to condense the actual content of the bubble. e.g. shorten image height, text content, etc.
    * Today, we only want to do this for the first message when we're in condensed mode.
    */
   private boolean isContentCondensed() {
-    return isCondensedMode && !previousMessage.isPresent();
+    return isCondensedMode() && !previousMessage.isPresent();
   }
 
   private boolean isStoryReaction(MessageRecord messageRecord) {
@@ -1182,7 +1186,11 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       if (giftViewStub.resolved())       giftViewStub.get().setVisibility(View.GONE);
 
       //noinspection ConstantConditions
-      documentViewStub.get().setDocument(((MediaMmsMessageRecord) messageRecord).getSlideDeck().getDocumentSlide(), showControls);
+      documentViewStub.get().setDocument(
+          ((MediaMmsMessageRecord) messageRecord).getSlideDeck().getDocumentSlide(),
+          showControls,
+          displayMode != ConversationItemDisplayMode.DETAILED
+      );
       documentViewStub.get().setDocumentClickListener(new ThumbnailClickListener());
       documentViewStub.get().setDownloadClickListener(singleDownloadClickListener);
       documentViewStub.get().setOnLongClickListener(passthroughClickListener);
@@ -1685,7 +1693,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   }
 
   private void setHasBeenQuoted(@NonNull ConversationMessage message) {
-    if (message.hasBeenQuoted() && !isCondensedMode && quotedIndicator != null && batchSelected.isEmpty()) {
+    if (message.hasBeenQuoted() && !isCondensedMode() && quotedIndicator != null && batchSelected.isEmpty()) {
       quotedIndicator.setVisibility(VISIBLE);
       quotedIndicator.setOnClickListener(quotedIndicatorClickListener);
     } else if (quotedIndicator != null) {
@@ -2307,7 +2315,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
   private class ThumbnailClickListener implements SlideClickListener {
     public void onClick(final View v, final Slide slide) {
-      if (shouldInterceptClicks(messageRecord) || !batchSelected.isEmpty() || isCondensedMode) {
+      if (shouldInterceptClicks(messageRecord) || !batchSelected.isEmpty() || isCondensedMode()) {
         performClick();
       } else if (!canPlayContent && mediaItem != null && eventListener != null) {
         eventListener.onPlayInlineContent(conversationMessage);
