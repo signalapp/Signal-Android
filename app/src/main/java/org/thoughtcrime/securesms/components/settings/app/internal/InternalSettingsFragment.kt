@@ -463,20 +463,19 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
 
       sectionHeaderPref(R.string.ConversationListTabs__stories)
 
-      switchPref(
-        title = DSLSettingsText.from(R.string.preferences__internal_disable_stories),
-        isChecked = state.disableStories,
-        onClick = {
-          viewModel.toggleStories()
-        }
-      )
-
       clickPref(
         title = DSLSettingsText.from(R.string.preferences__internal_clear_onboarding_state),
         summary = DSLSettingsText.from(R.string.preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories),
         isEnabled = state.canClearOnboardingState,
         onClick = {
           viewModel.onClearOnboardingState()
+        }
+      )
+
+      clickPref(
+        title = DSLSettingsText.from(R.string.preferences__internal_stories_dialog_launcher),
+        onClick = {
+          findNavController().safeNavigate(InternalSettingsFragmentDirections.actionInternalSettingsFragmentToStoryDialogsLauncherFragment())
         }
       )
     }

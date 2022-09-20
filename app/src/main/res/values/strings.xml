@@ -2749,6 +2749,10 @@
     <string name="configurable_single_select__customize_option">Customize option</string>
 
     <!-- Internal only preferences -->
+    <string name="preferences__internal_hide_story" translatable="false">Hide story</string>
+    <string name="preferences__internal_story_or_profile_selector" translatable="false">Story or profile selector</string>
+    <string name="preferences__internal_stories_dialog_launcher" translatable="false">Stories dialog launcher</string>
+    <string name="preferences__internal_retry_send" translatable="false">Retry send</string>
     <string name="preferences__internal_clear_onboarding_state" translatable="false">Clear onboarding state</string>
     <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories" translatable="false">Clears onboarding flag and triggers download of onboarding stories.</string>
     <string name="preferences__internal_preferences" translatable="false">Internal Preferences</string>

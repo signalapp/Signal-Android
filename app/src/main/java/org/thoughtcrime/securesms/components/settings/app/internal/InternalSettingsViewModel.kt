@@ -94,12 +94,6 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     refresh()
   }
 
-  fun toggleStories() {
-    val newState = !SignalStore.storyValues().isFeatureDisabled
-    SignalStore.storyValues().isFeatureDisabled = newState
-    store.update { getState().copy(disableStories = newState) }
-  }
-
   fun addSampleReleaseNote() {
     repository.addSampleReleaseNote()
   }
@@ -124,7 +118,6 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     removeSenderKeyMinimium = SignalStore.internalValues().removeSenderKeyMinimum(),
     delayResends = SignalStore.internalValues().delayResends(),
     disableStorageService = SignalStore.internalValues().storageServiceDisabled(),
-    disableStories = SignalStore.storyValues().isFeatureDisabled,
     canClearOnboardingState = SignalStore.storyValues().hasDownloadedOnboardingStory && Stories.isFeatureEnabled()
   )
 

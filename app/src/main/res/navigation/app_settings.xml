@@ -493,12 +493,20 @@
         <action
             android:id="@+id/action_internalSettingsFragment_to_donorErrorConfigurationFragment"
             app:destination="@id/donorErrorConfigurationFragment" />
+        <action
+            android:id="@+id/action_internalSettingsFragment_to_storyDialogsLauncherFragment"
+            app:destination="@id/storyDialogsLauncherFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/donorErrorConfigurationFragment"
         android:name="org.thoughtcrime.securesms.components.settings.app.internal.donor.DonorErrorConfigurationFragment"
         android:label="donor_error_configuration_fragment" />
+
+    <fragment
+        android:id="@+id/storyDialogsLauncherFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.internal.StoryDialogLauncherFragment"
+        android:label="story_dialogs_launcher_fragment" />
 
     <!-- endregion -->
 
