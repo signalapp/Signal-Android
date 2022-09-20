@@ -40,6 +40,9 @@ public class SignalServiceEnvelopeEntity {
   @JsonProperty
   private Boolean urgent;
 
+  @JsonProperty
+  private Boolean story;
+
   public SignalServiceEnvelopeEntity() {}
 
   public int getType() {
@@ -92,5 +95,9 @@ public class SignalServiceEnvelopeEntity {
 
   public boolean isUrgent() {
     return urgent == null || urgent;
+  }
+
+  public boolean isStory() {
+    return story != null && story;
   }
 }

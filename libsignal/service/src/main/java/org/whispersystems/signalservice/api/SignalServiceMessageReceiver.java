@@ -219,7 +219,8 @@ public class SignalServiceMessageReceiver {
                                              messageResult.getServerDeliveredTimestamp(),
                                              entity.getServerUuid(),
                                              entity.getDestinationUuid(),
-                                             entity.isUrgent());
+                                             entity.isUrgent(),
+                                             entity.isStory());
       } else {
         envelope = new SignalServiceEnvelope(entity.getType(),
                                              entity.getTimestamp(),
@@ -228,7 +229,8 @@ public class SignalServiceMessageReceiver {
                                              messageResult.getServerDeliveredTimestamp(),
                                              entity.getServerUuid(),
                                              entity.getDestinationUuid(),
-                                             entity.isUrgent());
+                                             entity.isUrgent(),
+                                             entity.isStory());
       }
 
       callback.onMessage(envelope);

@@ -34,6 +34,7 @@ message SignalServiceEnvelopeProto {
   optional string serverGuid               = 10;
   optional string destinationUuid          = 11;
   optional bool   urgent                   = 12 [default = true];
+  optional bool   story                    = 13;
 }
 
 message MetadataProto {

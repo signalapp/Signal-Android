@@ -35,7 +35,8 @@ message Envelope {
   optional uint64 serverTimestamp = 10;
   optional bool   urgent          = 14 [default = true];
   reserved      /*updatedPni*/      15; // Not used presently, may be used in the future
-  // NEXT ID: 16
+  optional bool   story           = 16;
+  // NEXT ID: 17
 }
 
 message Content {
