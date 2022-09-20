@@ -202,4 +202,7 @@
     <color name="message_request_bar_background_wallpaper">@color/signal_light_colorTransparent2</color>
     <color name="message_request_bar_denyForeground_wallpaper">@color/signal_colorError</color>
     <color name="message_request_bar_acceptForeground_wallpaper">@color/signal_colorNeutralInverse</color>
+
+    <color name="num_pad_key_background">@color/transparent_white_20</color>
+
 </resources>

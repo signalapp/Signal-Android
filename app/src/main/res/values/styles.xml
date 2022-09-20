@@ -505,4 +505,14 @@
         <item name="android:layout_gravity">end</item>
         <item name="android:gravity">end|center_vertical</item>
     </style>
+
+    <style name="NumPadKeyTextView" parent="@android:style/TextAppearance.Widget.TextView">
+        <item name="android:layout_width">@dimen/create_payment_key_width</item>
+        <item name="android:layout_height">@dimen/create_payment_key_height</item>
+        <item name="android:background">@drawable/rounded_rectangle_num_pad_key</item>
+        <item name="android:textColor">@color/signal_text_primary</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:gravity">center</item>
+    </style>
 </resources>

@@ -68,152 +68,102 @@
 
             <TextView
                 android:id="@+id/create_payment_fragment_keyboard_decimal"
-                android:layout_width="@dimen/create_payment_key_size"
-                android:layout_height="@dimen/create_payment_key_size"
+                style="@style/NumPadKeyTextView"
                 android:layout_marginBottom="@dimen/create_payment_key_bottom_row_margin_bottom"
-                android:background="?attr/selectableItemBackground"
-                android:gravity="center"
                 android:text="@string/CreatePaymentFragment__decimal"
-                android:textColor="@color/signal_text_primary"
-                android:textSize="24sp"
                 app:layout_constraintBottom_toTopOf="@id/create_payment_fragment_bottom_controls"
                 app:layout_constraintEnd_toStartOf="@id/create_payment_fragment_keyboard_0"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/create_payment_fragment_keyboard_0"
-                android:layout_width="@dimen/create_payment_key_size"
-                android:layout_height="@dimen/create_payment_key_size"
+                style="@style/NumPadKeyTextView"
                 android:layout_marginBottom="@dimen/create_payment_key_bottom_row_margin_bottom"
-                android:background="?attr/selectableItemBackground"
-                android:gravity="center"
                 android:text="@string/CreatePaymentFragment__0"
-                android:textColor="@color/signal_text_primary"
-                android:textSize="24sp"
                 app:layout_constraintBottom_toTopOf="@id/create_payment_fragment_bottom_controls"
                 app:layout_constraintEnd_toStartOf="@id/create_payment_fragment_keyboard_lt"
                 app:layout_constraintStart_toEndOf="@id/create_payment_fragment_keyboard_decimal" />
 
             <ImageView
                 android:id="@+id/create_payment_fragment_keyboard_lt"
-                android:layout_width="@dimen/create_payment_key_size"
-                android:layout_height="@dimen/create_payment_key_size"
+                style="@style/NumPadKeyTextView"
                 android:layout_marginBottom="@dimen/create_payment_key_bottom_row_margin_bottom"
-                android:background="?attr/selectableItemBackground"
                 android:contentDescription="@string/CreatePaymentFragment__backspace"
-                android:gravity="center"
-                android:padding="14dp"
                 android:scaleType="centerInside"
-                android:textColor="@color/signal_text_primary"
-                android:textSize="24sp"
                 app:layout_constraintBottom_toTopOf="@id/create_payment_fragment_bottom_controls"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/create_payment_fragment_keyboard_0"
-                app:srcCompat="@drawable/ic_arrow_left_20" />
+                app:srcCompat="@drawable/ic_delete_button" />
 
             <TextView
                 android:id="@+id/create_payment_fragment_keyboard_7"
-                android:layout_width="@dimen/create_payment_key_size"
-                android:layout_height="@dimen/create_payment_key_size"
-                android:background="?attr/selectableItemBackground"
-                android:gravity="center"
+                style="@style/NumPadKeyTextView"
+                android:layout_marginBottom="@dimen/create_payment_key_bottom_padding"
                 android:text="@string/CreatePaymentFragment__7"
-                android:textColor="@color/signal_text_primary"
-                android:textSize="24sp"
                 app:layout_constraintBottom_toTopOf="@id/create_payment_fragment_keyboard_decimal"
                 app:layout_constraintEnd_toStartOf="@id/create_payment_fragment_keyboard_8"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/create_payment_fragment_keyboard_8"
-                android:layout_width="@dimen/create_payment_key_size"
-                android:layout_height="@dimen/create_payment_key_size"
-                android:background="?attr/selectableItemBackground"
-                android:gravity="center"
+                style="@style/NumPadKeyTextView"
+                android:layout_marginBottom="@dimen/create_payment_key_bottom_padding"
                 android:text="@string/CreatePaymentFragment__8"
-                android:textColor="@color/signal_text_primary"
-                android:textSize="24sp"
                 app:layout_constraintBottom_toTopOf="@id/create_payment_fragment_keyboard_decimal"
                 app:layout_constraintEnd_toStartOf="@id/create_payment_fragment_keyboard_9"
                 app:layout_constraintStart_toEndOf="@id/create_payment_fragment_keyboard_7" />
 
             <TextView
                 android:id="@+id/create_payment_fragment_keyboard_9"
-                android:layout_width="@dimen/create_payment_key_size"
-                android:layout_height="@dimen/create_payment_key_size"
-                android:background="?attr/selectableItemBackground"
-                android:gravity="center"
+                style="@style/NumPadKeyTextView"
+                android:layout_marginBottom="@dimen/create_payment_key_bottom_padding"
                 android:text="@string/CreatePaymentFragment__9"
-                android:textColor="@color/signal_text_primary"
-                android:textSize="24sp"
                 app:layout_constraintBottom_toTopOf="@id/create_payment_fragment_keyboard_decimal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/create_payment_fragment_keyboard_8" />
 
             <TextView
                 android:id="@+id/create_payment_fragment_keyboard_4"
-                android:layout_width="@dimen/create_payment_key_size"
-                android:layout_height="@dimen/create_payment_key_size"
-                android:background="?attr/selectableItemBackground"
-                android:gravity="center"
+                style="@style/NumPadKeyTextView"
+                android:layout_marginBottom="@dimen/create_payment_key_bottom_padding"
                 android:text="@string/CreatePaymentFragment__4"
-                android:textColor="@color/signal_text_primary"
-                android:textSize="24sp"
                 app:layout_constraintBottom_toTopOf="@id/create_payment_fragment_keyboard_7"
                 app:layout_constraintEnd_toStartOf="@id/create_payment_fragment_keyboard_5"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/create_payment_fragment_keyboard_5"
-                android:layout_width="@dimen/create_payment_key_size"
-                android:layout_height="@dimen/create_payment_key_size"
-                android:background="?attr/selectableItemBackground"
-                android:gravity="center"
+                style="@style/NumPadKeyTextView"
+                android:layout_marginBottom="@dimen/create_payment_key_bottom_padding"
                 android:text="@string/CreatePaymentFragment__5"
-                android:textColor="@color/signal_text_primary"
-                android:textSize="24sp"
-                app:layout_constraintBottom_toTopOf="@id/create_payment_fragment_keyboard_7"
+                app:layout_constraintBottom_toTopOf="@+id/create_payment_fragment_keyboard_8"
                 app:layout_constraintEnd_toStartOf="@id/create_payment_fragment_keyboard_6"
                 app:layout_constraintStart_toEndOf="@id/create_payment_fragment_keyboard_4" />
 
             <TextView
                 android:id="@+id/create_payment_fragment_keyboard_6"
-                android:layout_width="@dimen/create_payment_key_size"
-                android:layout_height="@dimen/create_payment_key_size"
-                android:background="?attr/selectableItemBackground"
-                android:gravity="center"
+                style="@style/NumPadKeyTextView"
+                android:layout_marginBottom="@dimen/create_payment_key_bottom_padding"
                 android:text="@string/CreatePaymentFragment__6"
-                android:textColor="@color/signal_text_primary"
-                android:textSize="24sp"
                 app:layout_constraintBottom_toTopOf="@id/create_payment_fragment_keyboard_7"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/create_payment_fragment_keyboard_5" />
 
             <TextView
                 android:id="@+id/create_payment_fragment_keyboard_1"
-                android:layout_width="@dimen/create_payment_key_size"
-                android:layout_height="@dimen/create_payment_key_size"
-                android:layout_marginTop="@dimen/create_payment_key_top_row_margin_top"
-                android:background="?attr/selectableItemBackground"
-                android:gravity="center"
+                style="@style/NumPadKeyTextView"
+                android:layout_marginBottom="@dimen/create_payment_key_bottom_padding"
                 android:text="@string/CreatePaymentFragment__1"
-                android:textColor="@color/signal_text_primary"
-                android:textSize="24sp"
                 app:layout_constraintBottom_toTopOf="@id/create_payment_fragment_keyboard_4"
                 app:layout_constraintEnd_toStartOf="@id/create_payment_fragment_keyboard_2"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintVertical_bias="1" />
+                app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/create_payment_fragment_keyboard_2"
-                android:layout_width="@dimen/create_payment_key_size"
-                android:layout_height="@dimen/create_payment_key_size"
+                style="@style/NumPadKeyTextView"
                 android:layout_marginTop="@dimen/create_payment_key_top_row_margin_top"
-                android:background="?attr/selectableItemBackground"
-                android:gravity="center"
+                android:layout_marginBottom="@dimen/create_payment_key_bottom_padding"
                 android:text="@string/CreatePaymentFragment__2"
-                android:textColor="@color/signal_text_primary"
-                android:textSize="24sp"
                 app:layout_constraintBottom_toTopOf="@id/create_payment_fragment_keyboard_4"
                 app:layout_constraintEnd_toStartOf="@id/create_payment_fragment_keyboard_3"
                 app:layout_constraintStart_toEndOf="@id/create_payment_fragment_keyboard_1"
@@ -222,14 +172,10 @@
 
             <TextView
                 android:id="@+id/create_payment_fragment_keyboard_3"
-                android:layout_width="@dimen/create_payment_key_size"
-                android:layout_height="@dimen/create_payment_key_size"
+                style="@style/NumPadKeyTextView"
                 android:layout_marginTop="@dimen/create_payment_key_top_row_margin_top"
-                android:background="?attr/selectableItemBackground"
-                android:gravity="center"
+                android:layout_marginBottom="@dimen/create_payment_key_bottom_padding"
                 android:text="@string/CreatePaymentFragment__3"
-                android:textColor="@color/signal_text_primary"
-                android:textSize="24sp"
                 app:layout_constraintBottom_toTopOf="@id/create_payment_fragment_keyboard_4"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/create_payment_fragment_keyboard_2"

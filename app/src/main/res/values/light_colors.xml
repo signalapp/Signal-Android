@@ -199,6 +199,8 @@
 
     <color name="notification_profile_moon_tint">#5151F6</color>
 
+    <color name="num_pad_key_background">#dce5f9</color>
+
     <color name="top_toast_background_color">@color/core_white</color>
 
     <color name="sent_gift_button_tint">@color/transparent_white_70</color>
