@@ -12,6 +12,7 @@ import android.os.SystemClock;
 
 import androidx.annotation.NonNull;
 
+import org.signal.core.util.PendingIntentFlags;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -71,7 +72,7 @@ public final class MessageProcessReceiver extends BroadcastReceiver {
 
     alarmIntent.setAction(MessageProcessReceiver.BROADCAST_ACTION);
 
-    PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 123, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+    PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 123, alarmIntent, PendingIntentFlags.updateCurrent());
     AlarmManager  alarmManager  = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 
     long interval = FeatureFlags.getBackgroundMessageProcessInterval();

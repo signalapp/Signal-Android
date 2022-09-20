@@ -15,6 +15,7 @@ import android.os.TransactionTooLargeException
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
+import org.signal.core.util.PendingIntentFlags
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.MainActivity
@@ -239,7 +240,7 @@ object NotificationFactory {
       setGroupAlertBehavior(NotificationCompat.GROUP_ALERT_CHILDREN)
       setChannelId(NotificationChannels.getMessagesChannel(context))
       setContentTitle(context.getString(R.string.app_name))
-      setContentIntent(PendingIntent.getActivity(context, 0, MainActivity.clearTop(context), 0))
+      setContentIntent(PendingIntent.getActivity(context, 0, MainActivity.clearTop(context), PendingIntentFlags.mutable()))
       setGroupSummary(true)
       setSubText(context.getString(R.string.MessageNotifier_d_new_messages_in_d_conversations, state.messageCount, state.threadCount))
       setContentInfo(state.messageCount.toString())
@@ -320,7 +321,7 @@ object NotificationFactory {
       setContentTitle(context.getString(R.string.MessageNotifier_message_delivery_failed))
       setContentText(context.getString(R.string.MessageNotifier_failed_to_deliver_message))
       setTicker(context.getString(R.string.MessageNotifier_error_delivering_message))
-      setContentIntent(PendingIntent.getActivity(context, 0, intent, 0))
+      setContentIntent(PendingIntent.getActivity(context, 0, intent, PendingIntentFlags.mutable()))
       setAutoCancel(true)
       setAlarms(recipient)
       setChannelId(NotificationChannels.FAILURES)
@@ -349,7 +350,7 @@ object NotificationFactory {
       setLargeIcon(BitmapFactory.decodeResource(context.resources, R.drawable.ic_info_outline))
       setContentTitle(context.getString(R.string.MessageNotifier_message_delivery_paused))
       setContentText(context.getString(R.string.MessageNotifier_verify_to_continue_messaging_on_signal))
-      setContentIntent(PendingIntent.getActivity(context, 0, intent, 0))
+      setContentIntent(PendingIntent.getActivity(context, 0, intent, PendingIntentFlags.mutable()))
       setOnlyAlertOnce(true)
       setAutoCancel(true)
       setAlarms(recipient)

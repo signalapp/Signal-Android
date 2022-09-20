@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
+import org.signal.core.util.PendingIntentFlags;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 
 /**
@@ -84,7 +85,7 @@ public abstract class TimedEventManager<E> {
    */
   protected static void setAlarm(@NonNull Context context, long delay, @NonNull Class alarmClass) {
     Intent        intent        = new Intent(context, alarmClass);
-    PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
+    PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntentFlags.mutable());
     AlarmManager  alarmManager  = ServiceUtil.getAlarmManager(context);
 
     alarmManager.cancel(pendingIntent);

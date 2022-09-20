@@ -6,6 +6,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
+import org.signal.core.util.PendingIntentFlags;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 
 public class ExpirationListener extends BroadcastReceiver {
@@ -17,7 +18,7 @@ public class ExpirationListener extends BroadcastReceiver {
 
   public static void setAlarm(Context context, long waitTimeMillis) {
     Intent        intent        = new Intent(context, ExpirationListener.class);
-    PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
+    PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntentFlags.mutable());
     AlarmManager  alarmManager  = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
 
     alarmManager.cancel(pendingIntent);

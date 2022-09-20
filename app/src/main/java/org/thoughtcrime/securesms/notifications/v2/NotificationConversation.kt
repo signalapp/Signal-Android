@@ -136,7 +136,7 @@ data class NotificationConversation(
     return try {
       TaskStackBuilder.create(context)
         .addNextIntentWithParentStack(intent)
-        .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT)
+        .getPendingIntent(0, PendingIntentFlags.updateCurrent())
     } catch (e: NullPointerException) {
       Log.w(NotificationFactory.TAG, "Vivo device quirk sometimes throws NPE", e)
       intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)

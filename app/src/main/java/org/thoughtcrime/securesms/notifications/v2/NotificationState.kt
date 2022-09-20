@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.notifications.v2
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import org.signal.core.util.PendingIntentFlags
 import org.thoughtcrime.securesms.notifications.DeleteNotificationReceiver
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver
 import org.thoughtcrime.securesms.notifications.NotificationIds
@@ -67,7 +68,7 @@ data class NotificationState(val conversations: List<NotificationConversation>, 
       .putParcelableArrayListExtra(DeleteNotificationReceiver.EXTRA_THREADS, ArrayList(threads))
       .makeUniqueToPreventMerging()
 
-    return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+    return PendingIntent.getBroadcast(context, 0, intent, PendingIntentFlags.updateCurrent())
   }
 
   fun getMarkAsReadIntent(context: Context): PendingIntent? {
@@ -76,7 +77,7 @@ data class NotificationState(val conversations: List<NotificationConversation>, 
       .putExtra(MarkReadReceiver.NOTIFICATION_ID_EXTRA, NotificationIds.MESSAGE_SUMMARY)
       .makeUniqueToPreventMerging()
 
-    return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+    return PendingIntent.getBroadcast(context, 0, intent, PendingIntentFlags.updateCurrent())
   }
 
   fun getThreadsWithMostRecentNotificationFromSelf(): Set<ConversationId> {

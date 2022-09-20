@@ -56,7 +56,7 @@ dependencyResolutionManagement {
             alias('androidx-concurrent-futures').to('androidx.concurrent:concurrent-futures:1.0.0')
             alias('androidx-autofill').to('androidx.autofill:autofill:1.0.0')
             alias('androidx-biometric').to('androidx.biometric:biometric:1.1.0')
-            alias('androidx-sharetarget').to('androidx.sharetarget:sharetarget:1.1.0')
+            alias('androidx-sharetarget').to('androidx.sharetarget:sharetarget:1.2.0-rc02')
             alias('androidx-sqlite').to('androidx.sqlite:sqlite:2.1.0')
             alias('androidx-core-role').to('androidx.core:core-role:1.0.0')
 

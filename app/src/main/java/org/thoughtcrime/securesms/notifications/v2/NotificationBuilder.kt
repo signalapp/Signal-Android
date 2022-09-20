@@ -15,6 +15,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.RemoteInput
 import androidx.core.content.LocusIdCompat
 import androidx.core.graphics.drawable.IconCompat
+import org.signal.core.util.PendingIntentFlags.mutable
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.database.GroupDatabase
@@ -341,7 +342,7 @@ sealed class NotificationBuilder(protected val context: Context) {
         context,
         0,
         ConversationIntents.createBubbleIntent(context, conversation.recipient.id, conversation.thread.threadId),
-        0
+        mutable()
       )
 
       val bubbleMetadata = NotificationCompat.BubbleMetadata.Builder(intent, AvatarUtil.getIconCompatForShortcut(context, conversation.recipient))

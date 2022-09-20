@@ -12,7 +12,7 @@ RUN docker/print-versions.sh docker/dependencies.txt
 
 ENV ANDROID_COMMAND_LINE_TOOLS_FILENAME commandlinetools-linux-7583922_latest.zip
 ENV ANDROID_API_LEVELS                  android-32
-ENV ANDROID_BUILD_TOOLS_VERSION         31.0.0
+ENV ANDROID_BUILD_TOOLS_VERSION         32.0.0
 
 ENV ANDROID_HOME /usr/local/android-sdk-linux
 ENV PATH         ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools:${ANDROID_HOME}/cmdline-tools/bin

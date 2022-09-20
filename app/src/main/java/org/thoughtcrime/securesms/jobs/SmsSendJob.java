@@ -10,6 +10,7 @@ import android.telephony.SmsManager;
 
 import androidx.annotation.NonNull;
 
+import org.signal.core.util.PendingIntentFlags;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.MessageDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
@@ -182,7 +183,7 @@ public class SmsSendJob extends SendJob {
     for (String ignored : messages) {
       sentIntents.add(PendingIntent.getBroadcast(context, 0,
                                                  constructSentIntent(context, messageId, type, isMultipart),
-                                                 0));
+                                                 PendingIntentFlags.mutable()));
     }
 
     return sentIntents;
@@ -199,7 +200,7 @@ public class SmsSendJob extends SendJob {
     for (String ignored : messages) {
       deliveredIntents.add(PendingIntent.getBroadcast(context, 0,
                                                       constructDeliveredIntent(context, messageId, type, isMultipart),
-                                                      0));
+                                                      PendingIntentFlags.mutable()));
     }
 
     return deliveredIntents;

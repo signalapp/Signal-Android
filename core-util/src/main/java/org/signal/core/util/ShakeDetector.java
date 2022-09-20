@@ -50,7 +50,7 @@ public class ShakeDetector implements SensorEventListener {
 
     if (accelerometer != null) {
       this.sensorManager = sensorManager;
-      sensorManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_FASTEST);
+      sensorManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_NORMAL);
     }
 
     return accelerometer != null;

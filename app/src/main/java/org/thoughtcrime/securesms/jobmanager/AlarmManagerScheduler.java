@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 
 import com.annimon.stream.Stream;
 
+import org.signal.core.util.PendingIntentFlags;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -52,7 +53,7 @@ public class AlarmManagerScheduler implements Scheduler {
     Intent       intent       = new Intent(context, RetryReceiver.class);
 
     intent.setAction(BuildConfig.APPLICATION_ID + UUID.randomUUID().toString());
-    alarmManager.set(AlarmManager.RTC_WAKEUP, time, PendingIntent.getBroadcast(context, 0, intent, 0));
+    alarmManager.set(AlarmManager.RTC_WAKEUP, time, PendingIntent.getBroadcast(context, 0, intent, PendingIntentFlags.mutable()));
 
     Log.i(TAG, "Set an alarm to retry a job in " + (time - System.currentTimeMillis()) + " ms.");
   }

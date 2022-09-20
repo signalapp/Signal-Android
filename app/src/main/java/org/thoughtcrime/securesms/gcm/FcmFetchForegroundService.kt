@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.IBinder
 import androidx.core.app.NotificationCompat
+import org.signal.core.util.PendingIntentFlags
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
@@ -42,7 +43,7 @@ class FcmFetchForegroundService : Service() {
         .setContentTitle(getString(R.string.BackgroundMessageRetriever_checking_for_messages))
         .setCategory(NotificationCompat.CATEGORY_SERVICE)
         .setProgress(0, 0, true)
-        .setContentIntent(PendingIntent.getActivity(this, 0, MainActivity.clearTop(this), 0))
+        .setContentIntent(PendingIntent.getActivity(this, 0, MainActivity.clearTop(this), PendingIntentFlags.mutable()))
         .setVibrate(longArrayOf(0))
         .build()
     )

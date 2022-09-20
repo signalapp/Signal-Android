@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.navigation.fragment.NavHostFragment;
 
+import org.signal.core.util.PendingIntentFlags;
 import org.signal.devicetransfer.DeviceToDeviceTransferService;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity;
@@ -55,7 +56,7 @@ public final class OldDeviceTransferSetupFragment extends DeviceTransferSetupFra
   protected void startTransfer() {
     Intent intent = new Intent(requireContext(), OldDeviceTransferActivity.class);
     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-    PendingIntent pendingIntent = PendingIntent.getActivity(requireContext(), 0, intent, 0);
+    PendingIntent pendingIntent = PendingIntent.getActivity(requireContext(), 0, intent, PendingIntentFlags.mutable());
 
     DeviceToDeviceTransferService.TransferNotificationData notificationData = new DeviceToDeviceTransferService.TransferNotificationData(NotificationIds.DEVICE_TRANSFER, NotificationChannels.BACKUPS, R.drawable.ic_signal_backup);
     DeviceToDeviceTransferService.startClient(requireContext(), new OldDeviceClientTask(), notificationData, pendingIntent);

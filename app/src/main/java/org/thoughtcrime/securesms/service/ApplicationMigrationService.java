@@ -17,6 +17,7 @@ import android.os.PowerManager.WakeLock;
 
 import androidx.core.app.NotificationCompat;
 
+import org.signal.core.util.PendingIntentFlags;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.MainActivity;
 import org.thoughtcrime.securesms.R;
@@ -137,7 +138,7 @@ public class ApplicationMigrationService extends Service
     builder.setOngoing(true);
     builder.setProgress(100, 0, false);
     // TODO [greyson] Navigation
-    builder.setContentIntent(PendingIntent.getActivity(this, 0, MainActivity.clearTop(this), 0));
+    builder.setContentIntent(PendingIntent.getActivity(this, 0, MainActivity.clearTop(this), PendingIntentFlags.mutable()));
 
     stopForeground(true);
     startForeground(NotificationIds.APPLICATION_MIGRATION, builder.build());
@@ -189,7 +190,7 @@ public class ApplicationMigrationService extends Service
       builder.setContentTitle(context.getString(R.string.ApplicationMigrationService_import_complete));
       builder.setContentText(context.getString(R.string.ApplicationMigrationService_system_database_import_is_complete));
       // TODO [greyson] Navigation
-      builder.setContentIntent(PendingIntent.getActivity(context, 0, MainActivity.clearTop(context), 0));
+      builder.setContentIntent(PendingIntent.getActivity(context, 0, MainActivity.clearTop(context), PendingIntentFlags.mutable()));
       builder.setWhen(System.currentTimeMillis());
       builder.setDefaults(Notification.DEFAULT_VIBRATE);
       builder.setAutoCancel(true);

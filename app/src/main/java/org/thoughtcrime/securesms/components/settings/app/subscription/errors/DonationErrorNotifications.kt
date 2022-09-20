@@ -7,6 +7,7 @@ import android.net.Uri
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import org.signal.core.util.PendingIntentFlags
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.help.HelpFragment
@@ -90,7 +91,7 @@ object DonationErrorNotifications {
             context,
             0,
             actionIntent,
-            if (Build.VERSION.SDK_INT >= 23) PendingIntent.FLAG_ONE_SHOT else 0
+            if (Build.VERSION.SDK_INT >= 23) PendingIntentFlags.oneShot() else PendingIntentFlags.mutable()
           )
         }
       )
