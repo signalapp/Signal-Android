@@ -41,7 +41,7 @@ class StoryViewerViewModelTest {
     RxJavaPlugins.setInitComputationSchedulerHandler { testScheduler }
     RxJavaPlugins.setComputationSchedulerHandler { testScheduler }
 
-    whenever(repository.getFirstStory(any(), any(), any())).doReturn(Single.just(mock()))
+    whenever(repository.getFirstStory(any(), any())).doReturn(Single.just(mock()))
   }
 
   @After
@@ -67,7 +67,7 @@ class StoryViewerViewModelTest {
     testScheduler.triggerActions()
 
     // THEN
-    verify(repository, never()).getStories(any(), any(), any())
+    verify(repository, never()).getStories(any(), any())
     assertEquals(injectedStories, testSubject.stateSnapshot.pages)
   }
 
@@ -76,7 +76,7 @@ class StoryViewerViewModelTest {
     // GIVEN
     val stories: List<RecipientId> = (1L..5L).map(RecipientId::from)
     val startStory = RecipientId.from(2L)
-    whenever(repository.getStories(any(), any(), any())).doReturn(Single.just(stories))
+    whenever(repository.getStories(any(), any())).doReturn(Single.just(stories))
 
     // WHEN
     val testSubject = StoryViewerViewModel(
@@ -100,7 +100,7 @@ class StoryViewerViewModelTest {
     // GIVEN
     val stories: List<RecipientId> = (1L..5L).map(RecipientId::from)
     val startStory = RecipientId.from(1L)
-    whenever(repository.getStories(any(), any(), any())).doReturn(Single.just(stories))
+    whenever(repository.getStories(any(), any())).doReturn(Single.just(stories))
     val testSubject = StoryViewerViewModel(
       StoryViewerArgs(
         recipientId = startStory,
@@ -127,7 +127,7 @@ class StoryViewerViewModelTest {
     // GIVEN
     val stories: List<RecipientId> = (1L..5L).map(RecipientId::from)
     val startStory = stories.last()
-    whenever(repository.getStories(any(), any(), any())).doReturn(Single.just(stories))
+    whenever(repository.getStories(any(), any())).doReturn(Single.just(stories))
     val testSubject = StoryViewerViewModel(
       StoryViewerArgs(
         recipientId = startStory,
@@ -154,7 +154,7 @@ class StoryViewerViewModelTest {
     // GIVEN
     val stories: List<RecipientId> = (1L..5L).map(RecipientId::from)
     val startStory = stories.last()
-    whenever(repository.getStories(any(), any(), any())).doReturn(Single.just(stories))
+    whenever(repository.getStories(any(), any())).doReturn(Single.just(stories))
     val testSubject = StoryViewerViewModel(
       StoryViewerArgs(
         recipientId = startStory,
@@ -181,7 +181,7 @@ class StoryViewerViewModelTest {
     // GIVEN
     val stories: List<RecipientId> = (1L..5L).map(RecipientId::from)
     val startStory = stories.first()
-    whenever(repository.getStories(any(), any(), any())).doReturn(Single.just(stories))
+    whenever(repository.getStories(any(), any())).doReturn(Single.just(stories))
     val testSubject = StoryViewerViewModel(
       StoryViewerArgs(
         recipientId = startStory,
@@ -208,7 +208,7 @@ class StoryViewerViewModelTest {
     // GIVEN
     val stories: List<RecipientId> = (1L..5L).map(RecipientId::from)
     val startStory = stories.first()
-    whenever(repository.getStories(any(), any(), any())).doReturn(Single.just(stories))
+    whenever(repository.getStories(any(), any())).doReturn(Single.just(stories))
     val testSubject = StoryViewerViewModel(
       StoryViewerArgs(
         recipientId = startStory,
