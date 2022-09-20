@@ -39,6 +39,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.ContextThemeWrapper;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import androidx.lifecycle.Lifecycle;
 
@@ -326,21 +328,31 @@ public final class ViewUtil {
   }
 
   public static int getStatusBarHeight(@NonNull View view) {
-    int result = 0;
-    int resourceId = view.getResources().getIdentifier("status_bar_height", "dimen", "android");
-    if (resourceId > 0) {
-      result = view.getResources().getDimensionPixelSize(resourceId);
+    final WindowInsetsCompat rootWindowInsets = ViewCompat.getRootWindowInsets(view);
+    if (rootWindowInsets != null) {
+      return rootWindowInsets.getInsets(WindowInsetsCompat.Type.statusBars()).top;
+    } else {
+      int result     = 0;
+      int resourceId = view.getResources().getIdentifier("status_bar_height", "dimen", "android");
+      if (resourceId > 0) {
+        result = view.getResources().getDimensionPixelSize(resourceId);
+      }
+      return result;
     }
-    return result;
   }
 
   public static int getNavigationBarHeight(@NonNull View view) {
-    int result = 0;
-    int resourceId = view.getResources().getIdentifier("navigation_bar_height", "dimen", "android");
-    if (resourceId > 0) {
-      result = view.getResources().getDimensionPixelSize(resourceId);
+    final WindowInsetsCompat rootWindowInsets = ViewCompat.getRootWindowInsets(view);
+    if (rootWindowInsets != null) {
+      return rootWindowInsets.getInsets(WindowInsetsCompat.Type.navigationBars()).bottom;
+    } else {
+      int result     = 0;
+      int resourceId = view.getResources().getIdentifier("navigation_bar_height", "dimen", "android");
+      if (resourceId > 0) {
+        result = view.getResources().getDimensionPixelSize(resourceId);
+      }
+      return result;
     }
-    return result;
   }
 
   public static void hideKeyboard(@NonNull Context context, @NonNull View view) {
