@@ -32,7 +32,15 @@ open class MultiselectForwardActivity : FragmentWrapperActivity(), MultiselectFo
   }
 
   override fun getFragment(): Fragment {
-    return MultiselectForwardFragment.create(args)
+    return MultiselectForwardFragment.create(
+      args.let {
+        if (it.sendButtonTint == -1) {
+          args.withSendButtonTint(ContextCompat.getColor(this, R.color.signal_colorPrimary))
+        } else {
+          args
+        }
+      }
+    )
   }
 
   override fun onFinishForwardAction() = Unit
