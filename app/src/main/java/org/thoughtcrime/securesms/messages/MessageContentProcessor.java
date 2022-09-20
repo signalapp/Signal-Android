@@ -2518,7 +2518,7 @@ public final class MessageContentProcessor {
                                    @NonNull SignalServiceReceiptMessage message,
                                    @NonNull Recipient senderRecipient)
   {
-    boolean shouldOnlyProcessStories = FeatureFlags.stories() && !SignalStore.storyValues().isFeatureDisabled() && !TextSecurePreferences.isReadReceiptsEnabled(context);
+    boolean shouldOnlyProcessStories = Stories.isFeatureFlagEnabled() && !SignalStore.storyValues().isFeatureDisabled() && !TextSecurePreferences.isReadReceiptsEnabled(context);
 
     if (!TextSecurePreferences.isReadReceiptsEnabled(context) && !shouldOnlyProcessStories) {
       log("Ignoring viewed receipts for IDs: " + Util.join(message.getTimestamps(), ", "));

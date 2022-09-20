@@ -35,6 +35,7 @@ import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.BottomSheetUtil
 import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.LocaleFeatureFlags
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.hasLinkPreview
 import java.util.Optional
@@ -45,6 +46,9 @@ import kotlin.math.min
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
 
+/**
+ * Collection of helper methods and constants for dealing with the stories feature.
+ */
 object Stories {
 
   private val TAG = Log.tag(Stories::class.java)
@@ -55,11 +59,34 @@ object Stories {
   @JvmField
   val MAX_VIDEO_DURATION_MILLIS: Long = (31.seconds - 1.milliseconds).inWholeMilliseconds
 
+  /**
+   * Whether the feature is enabled at the flag level.
+   *
+   * `stories` will override `isInStoriesCountry` so as to not disable stories for those with
+   * that flag already enabled.
+   *
+   * Note: In general, you should prefer `isFeatureAvailable`.
+   */
   @JvmStatic
-  fun isFeatureAvailable(): Boolean {
-    return SignalStore.account().isRegistered && FeatureFlags.stories() && Recipient.self().storiesCapability == Recipient.Capability.SUPPORTED
+  fun isFeatureFlagEnabled(): Boolean {
+    return FeatureFlags.stories() || LocaleFeatureFlags.isInStoriesCountry()
   }
 
+  /**
+   * Whether or not the user has access to stories. This checks:
+   *
+   * - Registration status
+   * - Flag status
+   * - Capabilities
+   */
+  @JvmStatic
+  fun isFeatureAvailable(): Boolean {
+    return SignalStore.account().isRegistered && isFeatureFlagEnabled() && Recipient.self().storiesCapability == Recipient.Capability.SUPPORTED
+  }
+
+  /**
+   * Whether or not the user has the Stories feature enabled.
+   */
   @JvmStatic
   fun isFeatureEnabled(): Boolean {
     return isFeatureAvailable() && !SignalStore.storyValues().isFeatureDisabled

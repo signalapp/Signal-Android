@@ -45,6 +45,13 @@ public final class LocaleFeatureFlags {
   }
 
   /**
+   * In story group for given country code
+   */
+  public static boolean isInStoriesCountry() {
+    return isEnabled(FeatureFlags.STORIES_LOCALE, FeatureFlags.storiesLocale());
+  }
+
+  /**
    * Whether or not you should suggest SMS during onboarding.
    */
   public static boolean shouldSuggestSms() {

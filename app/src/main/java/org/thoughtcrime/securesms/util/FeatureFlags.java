@@ -105,6 +105,7 @@ public final class FeatureFlags {
   private static final String CDS_V2_LOAD_TEST                  = "android.cdsV2LoadTest";
   private static final String SMS_EXPORTER                      = "android.sms.exporter";
   private static final String CDS_V2_COMPAT                     = "android.cdsV2Compat.3";
+  public  static final String STORIES_LOCALE                    = "android.stories.locale";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -161,7 +162,8 @@ public final class FeatureFlags {
       RECIPIENT_MERGE_V2,
       CDS_V2_LOAD_TEST,
       SMS_EXPORTER,
-      CDS_V2_COMPAT
+      CDS_V2_COMPAT,
+      STORIES_LOCALE
   );
 
   @VisibleForTesting
@@ -479,6 +481,13 @@ public final class FeatureFlags {
    */
   public static boolean storiesTextFunctions() {
     return getBoolean(STORIES_TEXT_FUNCTIONS, false);
+  }
+
+  /**
+   * List of locales in which stories have been enabled. Overridden by the stories flag.
+   */
+  public static @NonNull String storiesLocale() {
+    return getString(STORIES_LOCALE, "");
   }
 
   /**
