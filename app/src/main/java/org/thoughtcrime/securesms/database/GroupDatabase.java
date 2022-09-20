@@ -25,6 +25,7 @@ import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
 import org.signal.storageservice.protos.groups.local.EnabledState;
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchSortOrder;
+import org.thoughtcrime.securesms.contacts.paged.collections.ContactSearchIterator;
 import org.thoughtcrime.securesms.crypto.SenderKeyUtil;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.BadGroupIdException;
@@ -1049,7 +1050,7 @@ public class GroupDatabase extends Database {
     return result;
   }
 
-  public static class Reader implements Closeable {
+  public static class Reader implements Closeable, ContactSearchIterator<GroupRecord> {
 
     public final Cursor cursor;
 
@@ -1100,6 +1101,21 @@ public class GroupDatabase extends Database {
     public void close() {
       if (this.cursor != null)
         this.cursor.close();
+    }
+
+    @Override
+    public void moveToPosition(int n) {
+      cursor.moveToPosition(n);
+    }
+
+    @Override
+    public boolean hasNext() {
+      return !cursor.isLast() && !cursor.isAfterLast();
+    }
+
+    @Override
+    public GroupRecord next() {
+      return getNext();
     }
   }
 

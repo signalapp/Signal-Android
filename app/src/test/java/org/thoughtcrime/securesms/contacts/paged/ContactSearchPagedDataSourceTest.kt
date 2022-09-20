@@ -24,7 +24,7 @@ class ContactSearchPagedDataSourceTest {
 
   @Before
   fun setUp() {
-    whenever(repository.getRecipientFromGroupCursor(cursor)).thenReturn(Recipient.UNKNOWN)
+    whenever(repository.getRecipientFromGroupRecord(any())).thenReturn(Recipient.UNKNOWN)
     whenever(repository.getRecipientFromRecipientCursor(cursor)).thenReturn(Recipient.UNKNOWN)
     whenever(repository.getRecipientFromThreadCursor(cursor)).thenReturn(Recipient.UNKNOWN)
     whenever(repository.getRecipientFromDistributionListCursor(cursor)).thenReturn(Recipient.UNKNOWN)
@@ -34,6 +34,8 @@ class ContactSearchPagedDataSourceTest {
     whenever(cursor.moveToPosition(any())).thenCallRealMethod()
     whenever(cursor.moveToNext()).thenCallRealMethod()
     whenever(cursor.position).thenCallRealMethod()
+    whenever(cursor.isLast).thenCallRealMethod()
+    whenever(cursor.isAfterLast).thenCallRealMethod()
   }
 
   @Test

@@ -28,4 +28,12 @@ abstract class MockCursor : Cursor {
 
     return true
   }
+
+  override fun isLast(): Boolean {
+    return _position == count - 1
+  }
+
+  override fun isAfterLast(): Boolean {
+    return _position >= count
+  }
 }

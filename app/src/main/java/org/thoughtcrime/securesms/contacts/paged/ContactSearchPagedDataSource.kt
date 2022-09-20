@@ -2,11 +2,16 @@ package org.thoughtcrime.securesms.contacts.paged
 
 import android.database.Cursor
 import org.signal.paging.PagedDataSource
+import org.thoughtcrime.securesms.contacts.paged.collections.ContactSearchCollection
+import org.thoughtcrime.securesms.contacts.paged.collections.ContactSearchIterator
+import org.thoughtcrime.securesms.contacts.paged.collections.CursorSearchIterator
+import org.thoughtcrime.securesms.contacts.paged.collections.StoriesSearchCollection
+import org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord
 import org.thoughtcrime.securesms.database.model.DistributionListPrivacyMode
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.keyvalue.StorySend
+import org.thoughtcrime.securesms.recipients.Recipient
 import java.util.concurrent.TimeUnit
-import kotlin.math.min
 
 /**
  * Manages the querying of contact information based off a configuration.
@@ -78,25 +83,28 @@ class ContactSearchPagedDataSource(
   }
 
   private fun getSectionSize(section: ContactSearchConfiguration.Section, query: String?): Int {
-    when (section) {
-      is ContactSearchConfiguration.Section.Individuals -> getNonGroupContactsCursor(section, query)
-      is ContactSearchConfiguration.Section.Groups -> contactSearchPagedDataSourceRepository.getGroupContacts(section, query)
-      is ContactSearchConfiguration.Section.Recents -> getRecentsCursor(section, query)
-      is ContactSearchConfiguration.Section.Stories -> getStoriesCursor(query)
-    }!!.use { cursor ->
-      val extras: List<ContactSearchData> = when (section) {
-        is ContactSearchConfiguration.Section.Stories -> getFilteredGroupStories(section, query)
-        else -> emptyList()
-      }
-
-      val collection = createResultsCollection(
-        section = section,
-        cursor = cursor,
-        extraData = extras,
-        cursorMapper = { error("Unsupported") }
-      )
-      return collection.getSize()
+    return when (section) {
+      is ContactSearchConfiguration.Section.Individuals -> getNonGroupSearchIterator(section, query).getCollectionSize(section, query, null)
+      is ContactSearchConfiguration.Section.Groups -> contactSearchPagedDataSourceRepository.getGroupSearchIterator(section, query).getCollectionSize(section, query, this::canSendToGroup)
+      is ContactSearchConfiguration.Section.Recents -> getRecentsSearchIterator(section, query).getCollectionSize(section, query, null)
+      is ContactSearchConfiguration.Section.Stories -> getStoriesSearchIterator(query).getCollectionSize(section, query, null)
     }
+  }
+
+  private fun <R> ContactSearchIterator<R>.getCollectionSize(section: ContactSearchConfiguration.Section, query: String?, recordsPredicate: ((R) -> Boolean)?): Int {
+    val extras: List<ContactSearchData> = when (section) {
+      is ContactSearchConfiguration.Section.Stories -> getFilteredGroupStories(section, query)
+      else -> emptyList()
+    }
+
+    val collection = createResultsCollection(
+      section = section,
+      records = this,
+      recordsPredicate = recordsPredicate,
+      extraData = extras,
+      recordMapper = { error("Unsupported") }
+    )
+    return collection.getSize()
   }
 
   private fun getFilteredGroupStories(section: ContactSearchConfiguration.Section.Stories, query: String?): List<ContactSearchData> {
@@ -113,50 +121,52 @@ class ContactSearchPagedDataSource(
     }
   }
 
-  private fun getNonGroupContactsCursor(section: ContactSearchConfiguration.Section.Individuals, query: String?): Cursor? {
+  private fun getNonGroupSearchIterator(section: ContactSearchConfiguration.Section.Individuals, query: String?): ContactSearchIterator<Cursor> {
     return when (section.transportType) {
-      ContactSearchConfiguration.TransportType.PUSH -> contactSearchPagedDataSourceRepository.querySignalContacts(query, section.includeSelf)
-      ContactSearchConfiguration.TransportType.SMS -> contactSearchPagedDataSourceRepository.queryNonSignalContacts(query)
-      ContactSearchConfiguration.TransportType.ALL -> contactSearchPagedDataSourceRepository.queryNonGroupContacts(query, section.includeSelf)
+      ContactSearchConfiguration.TransportType.PUSH -> CursorSearchIterator(contactSearchPagedDataSourceRepository.querySignalContacts(query, section.includeSelf))
+      ContactSearchConfiguration.TransportType.SMS -> CursorSearchIterator(contactSearchPagedDataSourceRepository.queryNonSignalContacts(query))
+      ContactSearchConfiguration.TransportType.ALL -> CursorSearchIterator(contactSearchPagedDataSourceRepository.queryNonGroupContacts(query, section.includeSelf))
     }
   }
 
-  private fun getStoriesCursor(query: String?): Cursor? {
-    return contactSearchPagedDataSourceRepository.getStories(query)
+  private fun getStoriesSearchIterator(query: String?): ContactSearchIterator<Cursor> {
+    return CursorSearchIterator(contactSearchPagedDataSourceRepository.getStories(query))
   }
 
-  private fun getRecentsCursor(section: ContactSearchConfiguration.Section.Recents, query: String?): Cursor? {
+  private fun getRecentsSearchIterator(section: ContactSearchConfiguration.Section.Recents, query: String?): ContactSearchIterator<Cursor> {
     if (!query.isNullOrEmpty()) {
       throw IllegalArgumentException("Searching Recents is not supported")
     }
 
-    return contactSearchPagedDataSourceRepository.getRecents(section)
+    return CursorSearchIterator(contactSearchPagedDataSourceRepository.getRecents(section))
   }
 
-  private fun readContactDataFromCursor(
-    cursor: Cursor,
+  private fun <R> readContactData(
+    records: ContactSearchIterator<R>,
+    recordsPredicate: ((R) -> Boolean)?,
     section: ContactSearchConfiguration.Section,
     startIndex: Int,
     endIndex: Int,
-    cursorRowToData: (Cursor) -> ContactSearchData,
+    recordMapper: (R) -> ContactSearchData,
     extraData: List<ContactSearchData> = emptyList()
   ): List<ContactSearchData> {
     val results = mutableListOf<ContactSearchData>()
 
-    val collection = createResultsCollection(section, cursor, extraData, cursorRowToData)
+    val collection = createResultsCollection(section, records, recordsPredicate, extraData, recordMapper)
     results.addAll(collection.getSublist(startIndex, endIndex))
 
     return results
   }
 
   private fun getStoriesContactData(section: ContactSearchConfiguration.Section.Stories, query: String?, startIndex: Int, endIndex: Int): List<ContactSearchData> {
-    return getStoriesCursor(query)?.use { cursor ->
-      readContactDataFromCursor(
-        cursor = cursor,
+    return getStoriesSearchIterator(query).use { records ->
+      readContactData(
+        records = records,
+        null,
         section = section,
         startIndex = startIndex,
         endIndex = endIndex,
-        cursorRowToData = {
+        recordMapper = {
           val recipient = contactSearchPagedDataSourceRepository.getRecipientFromDistributionListCursor(it)
           val count = contactSearchPagedDataSourceRepository.getDistributionListMembershipCount(recipient)
           val privacyMode = contactSearchPagedDataSourceRepository.getPrivacyModeFromDistributionListCursor(it)
@@ -164,155 +174,76 @@ class ContactSearchPagedDataSource(
         },
         extraData = getFilteredGroupStories(section, query)
       )
-    } ?: emptyList()
+    }
   }
 
   private fun getRecentsContactData(section: ContactSearchConfiguration.Section.Recents, query: String?, startIndex: Int, endIndex: Int): List<ContactSearchData> {
-    return getRecentsCursor(section, query)?.use { cursor ->
-      readContactDataFromCursor(
-        cursor = cursor,
+    return getRecentsSearchIterator(section, query).use { records ->
+      readContactData(
+        records = records,
+        recordsPredicate = null,
         section = section,
         startIndex = startIndex,
         endIndex = endIndex,
-        cursorRowToData = {
-          ContactSearchData.KnownRecipient(contactSearchPagedDataSourceRepository.getRecipientFromThreadCursor(cursor))
+        recordMapper = {
+          ContactSearchData.KnownRecipient(contactSearchPagedDataSourceRepository.getRecipientFromThreadCursor(it))
         }
       )
-    } ?: emptyList()
+    }
   }
 
   private fun getNonGroupContactsData(section: ContactSearchConfiguration.Section.Individuals, query: String?, startIndex: Int, endIndex: Int): List<ContactSearchData> {
-    return getNonGroupContactsCursor(section, query)?.use { cursor ->
-      readContactDataFromCursor(
-        cursor = cursor,
+    return getNonGroupSearchIterator(section, query).use { records ->
+      readContactData(
+        records = records,
+        recordsPredicate = null,
         section = section,
         startIndex = startIndex,
         endIndex = endIndex,
-        cursorRowToData = {
-          ContactSearchData.KnownRecipient(contactSearchPagedDataSourceRepository.getRecipientFromRecipientCursor(cursor))
+        recordMapper = {
+          ContactSearchData.KnownRecipient(contactSearchPagedDataSourceRepository.getRecipientFromRecipientCursor(it))
         }
       )
-    } ?: emptyList()
+    }
   }
 
   private fun getGroupContactsData(section: ContactSearchConfiguration.Section.Groups, query: String?, startIndex: Int, endIndex: Int): List<ContactSearchData> {
-    return contactSearchPagedDataSourceRepository.getGroupContacts(section, query)?.use { cursor ->
-      readContactDataFromCursor(
-        cursor = cursor,
+    return contactSearchPagedDataSourceRepository.getGroupSearchIterator(section, query).use { records ->
+      readContactData(
+        records = records,
+        recordsPredicate = this::canSendToGroup,
         section = section,
         startIndex = startIndex,
         endIndex = endIndex,
-        cursorRowToData = {
+        recordMapper = {
           if (section.returnAsGroupStories) {
-            ContactSearchData.Story(contactSearchPagedDataSourceRepository.getRecipientFromGroupCursor(cursor), 0, DistributionListPrivacyMode.ALL)
+            ContactSearchData.Story(contactSearchPagedDataSourceRepository.getRecipientFromGroupRecord(it), 0, DistributionListPrivacyMode.ALL)
           } else {
-            ContactSearchData.KnownRecipient(contactSearchPagedDataSourceRepository.getRecipientFromGroupCursor(cursor))
+            ContactSearchData.KnownRecipient(contactSearchPagedDataSourceRepository.getRecipientFromGroupRecord(it))
           }
         }
       )
-    } ?: emptyList()
+    }
   }
 
-  private fun createResultsCollection(
+  private fun canSendToGroup(groupRecord: GroupRecord): Boolean {
+    return if (groupRecord.isAnnouncementGroup) {
+      groupRecord.isAdmin(Recipient.self())
+    } else {
+      groupRecord.isActive
+    }
+  }
+
+  private fun <R> createResultsCollection(
     section: ContactSearchConfiguration.Section,
-    cursor: Cursor,
+    records: ContactSearchIterator<R>,
+    recordsPredicate: ((R) -> Boolean)?,
     extraData: List<ContactSearchData>,
-    cursorMapper: (Cursor) -> ContactSearchData
-  ): ResultsCollection {
+    recordMapper: (R) -> ContactSearchData
+  ): ContactSearchCollection<R> {
     return when (section) {
-      is ContactSearchConfiguration.Section.Stories -> StoriesCollection(section, cursor, extraData, cursorMapper, activeStoryCount, StoryComparator(latestStorySends))
-      else -> ResultsCollection(section, cursor, extraData, cursorMapper, 0)
-    }
-  }
-
-  /**
-   * We assume that the collection is [cursor contents] + [extraData contents]
-   */
-  private open class ResultsCollection(
-    val section: ContactSearchConfiguration.Section,
-    val cursor: Cursor,
-    val extraData: List<ContactSearchData>,
-    val cursorMapper: (Cursor) -> ContactSearchData,
-    val activeContactCount: Int
-  ) {
-
-    private val contentSize = cursor.count + extraData.count()
-
-    fun getSize(): Int {
-      val contentsAndExpand = min(
-        section.expandConfig?.let {
-          if (it.isExpanded) Int.MAX_VALUE else (it.maxCountWhenNotExpanded(activeContactCount) + 1)
-        } ?: Int.MAX_VALUE,
-        contentSize
-      )
-
-      return contentsAndExpand + (if (contentsAndExpand > 0 && section.includeHeader) 1 else 0)
-    }
-
-    fun getSublist(start: Int, end: Int): List<ContactSearchData> {
-      val results = mutableListOf<ContactSearchData>()
-      for (i in start until end) {
-        results.add(getItemAt(i))
-      }
-
-      return results
-    }
-
-    private fun getItemAt(index: Int): ContactSearchData {
-      return when {
-        index == 0 && section.includeHeader -> ContactSearchData.Header(section.sectionKey, section.headerAction)
-        index == getSize() - 1 && shouldDisplayExpandRow() -> ContactSearchData.Expand(section.sectionKey)
-        else -> {
-          val correctedIndex = if (section.includeHeader) index - 1 else index
-          return getItemAtCorrectedIndex(correctedIndex)
-        }
-      }
-    }
-
-    protected open fun getItemAtCorrectedIndex(correctedIndex: Int): ContactSearchData {
-      return if (correctedIndex < cursor.count) {
-        cursor.moveToPosition(correctedIndex)
-        cursorMapper.invoke(cursor)
-      } else {
-        val extraIndex = correctedIndex - cursor.count
-        extraData[extraIndex]
-      }
-    }
-
-    private fun shouldDisplayExpandRow(): Boolean {
-      val expandConfig = section.expandConfig
-      return when {
-        expandConfig == null || expandConfig.isExpanded -> false
-        else -> contentSize > expandConfig.maxCountWhenNotExpanded(activeContactCount) + 1
-      }
-    }
-  }
-
-  private class StoriesCollection(
-    section: ContactSearchConfiguration.Section,
-    cursor: Cursor,
-    extraData: List<ContactSearchData>,
-    cursorMapper: (Cursor) -> ContactSearchData,
-    activeContactCount: Int,
-    val storyComparator: StoryComparator
-  ) : ResultsCollection(section, cursor, extraData, cursorMapper, activeContactCount) {
-    private val aggregateStoryData: List<ContactSearchData.Story> by lazy {
-      if (section !is ContactSearchConfiguration.Section.Stories) {
-        error("Aggregate data creation is only necessary for stories.")
-      }
-
-      val cursorContacts: List<ContactSearchData> = (0 until cursor.count).map {
-        cursor.moveToPosition(it)
-        cursorMapper(cursor)
-      }
-
-      (cursorContacts + extraData)
-        .filterIsInstance(ContactSearchData.Story::class.java)
-        .sortedWith(storyComparator)
-    }
-
-    override fun getItemAtCorrectedIndex(correctedIndex: Int): ContactSearchData {
-      return aggregateStoryData[correctedIndex]
+      is ContactSearchConfiguration.Section.Stories -> StoriesSearchCollection(section, records, extraData, recordMapper, activeStoryCount, StoryComparator(latestStorySends))
+      else -> ContactSearchCollection(section, records, recordsPredicate, extraData, recordMapper, 0)
     }
   }
 
