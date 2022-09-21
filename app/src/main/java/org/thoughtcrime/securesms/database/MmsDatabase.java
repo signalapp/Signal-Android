@@ -896,17 +896,8 @@ public class MmsDatabase extends MessageDatabase {
   }
 
   @Override
-  public boolean hasSelfReplyInGroupStory(long parentStoryId) {
-    SQLiteDatabase db        = databaseHelper.getSignalReadableDatabase();
-    String[]       columns   = new String[]{"COUNT(*)"};
-    String         where     = PARENT_STORY_ID + " = ? AND (" +
-                               getOutgoingTypeClause() + ") AND ("
-                               + MESSAGE_BOX + " & " + Types.SPECIAL_TYPES_MASK + " != " + Types.SPECIAL_TYPE_STORY_REACTION + ")";
-    String[]       whereArgs = SqlUtil.buildArgs(parentStoryId);
-
-    try (Cursor cursor = db.query(TABLE_NAME, columns, where, whereArgs, null, null, null, null)) {
-      return cursor != null && cursor.moveToNext() && cursor.getInt(0) > 0;
-    }
+  public boolean hasGroupReplyOrReactionInStory(long parentStoryId) {
+    return hasSelfReplyInStory(-parentStoryId);
   }
 
   @Override

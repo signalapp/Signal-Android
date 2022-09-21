@@ -1492,7 +1492,7 @@ public class SmsDatabase extends MessageDatabase {
   }
 
   @Override
-  public boolean hasSelfReplyInGroupStory(long parentStoryId) {
+  public boolean hasGroupReplyOrReactionInStory(long parentStoryId) {
     throw new UnsupportedOperationException();
   }
 

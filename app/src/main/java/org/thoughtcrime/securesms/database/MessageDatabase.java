@@ -206,7 +206,7 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns 
   public abstract @NonNull List<RecipientId>  getUnreadStoryThreadRecipientIds();
   public abstract boolean containsStories(long threadId);
   public abstract boolean hasSelfReplyInStory(long parentStoryId);
-  public abstract boolean hasSelfReplyInGroupStory(long parentStoryId);
+  public abstract boolean hasGroupReplyOrReactionInStory(long parentStoryId);
   public abstract @NonNull Cursor getStoryReplies(long parentStoryId);
   public abstract @Nullable Long getOldestStorySendTimestamp(boolean hasSeenReleaseChannelStories);
   public abstract int deleteStoriesOlderThan(long timestamp, boolean hasSeenReleaseChannelStories);

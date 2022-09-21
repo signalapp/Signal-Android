@@ -43,7 +43,7 @@ object NotificationStateProvider {
             }
 
             val hasSelfRepliedToGroupStory = conversationId.groupStoryId?.let {
-              SignalDatabase.mms.hasSelfReplyInGroupStory(it)
+              SignalDatabase.mms.hasGroupReplyOrReactionInStory(it)
             }
 
             messages += NotificationMessage(
