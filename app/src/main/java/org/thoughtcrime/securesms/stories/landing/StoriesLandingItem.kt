@@ -11,6 +11,7 @@ import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.view.AvatarView
 import org.thoughtcrime.securesms.badges.BadgeImageView
@@ -61,6 +62,7 @@ object StoriesLandingItem {
       return data.storyRecipient.hasSameContent(newItem.data.storyRecipient) &&
         data == newItem.data &&
         !hasStatusChange(newItem) &&
+        !hasThumbChange(newItem) &&
         (data.sendingCount == newItem.data.sendingCount && data.failureCount == newItem.data.failureCount) &&
         data.storyViewState == newItem.data.storyViewState
     }
@@ -85,9 +87,30 @@ object StoriesLandingItem {
         newRecord.isOutgoing &&
         (oldRecord.isPending != newRecord.isPending || oldRecord.isSent != newRecord.isSent || oldRecord.isFailed != newRecord.isFailed)
     }
+
+    private fun hasThumbChange(newItem: Model): Boolean {
+      val oldRecord = data.primaryStory.messageRecord as? MediaMmsMessageRecord ?: return false
+      val newRecord = newItem.data.primaryStory.messageRecord as? MediaMmsMessageRecord ?: return false
+
+      val oldThumb = oldRecord.slideDeck.thumbnailSlide?.uri
+      val newThumb = newRecord.slideDeck.thumbnailSlide?.uri
+
+      if (oldThumb != newThumb) {
+        return true
+      }
+
+      val oldBlur = oldRecord.slideDeck.thumbnailSlide?.placeholderBlur
+      val newBlur = newRecord.slideDeck.thumbnailSlide?.placeholderBlur
+
+      return oldBlur != newBlur
+    }
   }
 
   private class ViewHolder(itemView: View) : MappingViewHolder<Model>(itemView) {
+
+    companion object {
+      private val TAG = Log.tag(ViewHolder::class.java)
+    }
 
     private val avatarView: AvatarView = itemView.findViewById(R.id.avatar)
     private val badgeView: BadgeImageView = itemView.findViewById(R.id.badge)
@@ -130,6 +153,10 @@ object StoriesLandingItem {
 
       val thumbnail = record.slideDeck.thumbnailSlide?.uri
       val blur = record.slideDeck.thumbnailSlide?.placeholderBlur
+
+      if (thumbnail == null && blur == null && !record.storyType.isTextStory) {
+        Log.w(TAG, "Story[${record.dateSent}] has no thumbnail and no blur!")
+      }
 
       clearGlide()
       storyBlur.visible = blur != null
