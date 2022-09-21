@@ -37,12 +37,12 @@ class ConversationListTabsViewModel(repository: ConversationListTabRepository) :
 
   fun onChatsSelected() {
     internalTabClickEvents.onNext(ConversationListTab.CHATS)
-    store.update { it.copy(tab = ConversationListTab.CHATS) }
+    store.update { it.copy(tab = ConversationListTab.CHATS, prevTab = it.tab) }
   }
 
   fun onStoriesSelected() {
     internalTabClickEvents.onNext(ConversationListTab.STORIES)
-    store.update { it.copy(tab = ConversationListTab.STORIES) }
+    store.update { it.copy(tab = ConversationListTab.STORIES, prevTab = it.tab) }
   }
 
   fun onSearchOpened() {
