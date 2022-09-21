@@ -76,6 +76,26 @@
                 android:defaultValue="false"
                 app:argType="boolean" />
 
+            <argument
+                android:name="recovery_phrase_state"
+                android:defaultValue="NONE"
+                app:argType="org.thoughtcrime.securesms.payments.backup.RecoveryPhraseStates" />
+
+            <argument
+                android:name="first_time_non_zero_balance"
+                android:defaultValue="false"
+                app:argType="boolean" />
+
+            <argument
+                android:name="info_card"
+                android:defaultValue="false"
+                app:argType="boolean" />
+
+            <argument
+                android:name="payment_menu"
+                android:defaultValue="false"
+                app:argType="boolean" />
+
         </action>
 
         <action

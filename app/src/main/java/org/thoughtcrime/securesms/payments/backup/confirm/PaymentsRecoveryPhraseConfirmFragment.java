@@ -30,10 +30,12 @@ public class PaymentsRecoveryPhraseConfirmFragment extends Fragment {
   /**
    * The minimum number of characters required to show an error mark.
    */
-  private static final int ERROR_THRESHOLD = 1;
+  private static final int      ERROR_THRESHOLD             = 1;
+  public static final  String   RECOVERY_PHRASE_CONFIRMED   = "recovery_phrase_confirmed";
+  public static final  String   REQUEST_KEY_RECOVERY_PHRASE = "org.thoughtcrime.securesms.payments.backup.confirm.RECOVERY_PHRASE";
 
-  private Drawable validWordCheckMark;
-  private Drawable invalidWordX;
+  private              Drawable validWordCheckMark;
+  private              Drawable invalidWordX;
 
   public PaymentsRecoveryPhraseConfirmFragment() {
     super(R.layout.payments_recovery_phrase_confirm_fragment);
@@ -41,13 +43,13 @@ public class PaymentsRecoveryPhraseConfirmFragment extends Fragment {
 
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-    Toolbar  toolbar             = view.findViewById(R.id.payments_recovery_phrase_confirm_fragment_toolbar);
-    EditText word1               = view.findViewById(R.id.payments_recovery_phrase_confirm_fragment_word_1);
-    EditText word2               = view.findViewById(R.id.payments_recovery_phrase_confirm_fragment_word_2);
-    View     seePhraseAgain      = view.findViewById(R.id.payments_recovery_phrase_confirm_fragment_see_again);
-    View     done                = view.findViewById(R.id.payments_recovery_phrase_confirm_fragment_done);
-    TextInputLayout wordWrapper1 = view.findViewById(R.id.payments_recovery_phrase_confirm_fragment_word1_wrapper);
-    TextInputLayout wordWrapper2 = view.findViewById(R.id.payments_recovery_phrase_confirm_fragment_word2_wrapper);
+    Toolbar         toolbar        = view.findViewById(R.id.payments_recovery_phrase_confirm_fragment_toolbar);
+    EditText        word1          = view.findViewById(R.id.payments_recovery_phrase_confirm_fragment_word_1);
+    EditText        word2          = view.findViewById(R.id.payments_recovery_phrase_confirm_fragment_word_2);
+    View            seePhraseAgain = view.findViewById(R.id.payments_recovery_phrase_confirm_fragment_see_again);
+    View            done           = view.findViewById(R.id.payments_recovery_phrase_confirm_fragment_done);
+    TextInputLayout wordWrapper1   = view.findViewById(R.id.payments_recovery_phrase_confirm_fragment_word1_wrapper);
+    TextInputLayout wordWrapper2   = view.findViewById(R.id.payments_recovery_phrase_confirm_fragment_word2_wrapper);
 
     PaymentsRecoveryPhraseConfirmFragmentArgs args = PaymentsRecoveryPhraseConfirmFragmentArgs.fromBundle(requireArguments());
 
@@ -65,7 +67,7 @@ public class PaymentsRecoveryPhraseConfirmFragment extends Fragment {
     word2.addTextChangedListener(new AfterTextChanged(e -> viewModel.validateWord2(e.toString())));
     seePhraseAgain.setOnClickListener(v -> Navigation.findNavController(requireView()).popBackStack());
     done.setOnClickListener(v -> {
-      SignalStore.paymentsValues().setUserConfirmedMnemonic(true);
+      SignalStore.paymentsValues().confirmMnemonic(true);
       ViewUtil.hideKeyboard(requireContext(), view);
       Toast.makeText(requireContext(), R.string.PaymentRecoveryPhraseConfirmFragment__recovery_phrase_confirmed, Toast.LENGTH_SHORT).show();
 
@@ -73,6 +75,9 @@ public class PaymentsRecoveryPhraseConfirmFragment extends Fragment {
         requireActivity().setResult(Activity.RESULT_OK);
         requireActivity().finish();
       } else {
+        Bundle result = new Bundle();
+        result.putBoolean(RECOVERY_PHRASE_CONFIRMED, true);
+        getParentFragmentManager().setFragmentResult(REQUEST_KEY_RECOVERY_PHRASE, result);
         Navigation.findNavController(view).popBackStack(R.id.paymentsHome, false);
       }
     });

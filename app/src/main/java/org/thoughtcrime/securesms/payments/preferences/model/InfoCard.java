@@ -78,10 +78,10 @@ public class InfoCard implements MappingModel<InfoCard> {
     List<InfoCard> infoCards      = new ArrayList<>(Type.values().length);
     PaymentsValues paymentsValues = SignalStore.paymentsValues();
 
-    if (paymentsValues.showRecoveryPhraseInfoCard()) {
-      infoCards.add(new InfoCard(R.string.payment_info_card_record_recovery_phrase,
+    if (!paymentsValues.isMnemonicConfirmed()) {
+      infoCards.add(new InfoCard(R.string.payment_info_card_save_recovery_phrase,
                                  R.string.payment_info_card_your_recovery_phrase_gives_you,
-                                 R.string.payment_info_card_record_your_phrase,
+                                 R.string.payment_info_card_save_your_phrase,
                                  R.drawable.ic_payments_info_card_restore_80,
                                  Type.RECORD_RECOVERY_PHASE,
                                  paymentsValues::dismissRecoveryPhraseInfoCard));

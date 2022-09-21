@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.payments.preferences;
 
 import android.app.AlertDialog;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -33,6 +32,9 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.lock.v2.CreateKbsPinActivity;
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil;
 import org.thoughtcrime.securesms.payments.MoneyView;
+import org.thoughtcrime.securesms.payments.backup.RecoveryPhraseStates;
+import org.thoughtcrime.securesms.payments.backup.confirm.PaymentsRecoveryPhraseConfirmFragment;
+import org.thoughtcrime.securesms.payments.preferences.model.InfoCard;
 import org.thoughtcrime.securesms.payments.preferences.model.PaymentItem;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.SpanUtil;
@@ -121,6 +123,12 @@ public class PaymentsHomeFragment extends LoggingFragment {
 
     viewModel = new ViewModelProvider(this, new PaymentsHomeViewModel.Factory()).get(PaymentsHomeViewModel.class);
 
+    getParentFragmentManager().setFragmentResultListener(PaymentsRecoveryPhraseConfirmFragment.REQUEST_KEY_RECOVERY_PHRASE, this, (requestKey, result) -> {
+      if (result.getBoolean(PaymentsRecoveryPhraseConfirmFragment.RECOVERY_PHRASE_CONFIRMED)) {
+        viewModel.updateStore();
+      }
+    });
+
     viewModel.getList().observe(getViewLifecycleOwner(), list -> {
       boolean hadPaymentItems = Stream.of(adapter.getCurrentList()).anyMatch(model -> model instanceof PaymentItem);
 
@@ -139,7 +147,17 @@ public class PaymentsHomeFragment extends LoggingFragment {
       }
       header.setVisibility(enabled ? View.VISIBLE : View.GONE);
     });
-    viewModel.getBalance().observe(getViewLifecycleOwner(), balance::setMoney);
+
+    viewModel.getBalance().observe(getViewLifecycleOwner(), balanceAmount -> {
+      balance.setMoney(balanceAmount);
+      if (SignalStore.paymentsValues().getShowSaveRecoveryPhrase() &&
+          !SignalStore.paymentsValues().getUserConfirmedMnemonic() &&
+          !balanceAmount.isEqualOrLessThanZero()) {
+        SafeNavigation.safeNavigate(NavHostFragment.findNavController(this), PaymentsHomeFragmentDirections.actionPaymentsHomeToPaymentsBackup().setRecoveryPhraseState(RecoveryPhraseStates.FIRST_TIME_NON_ZERO_BALANCE_WITH_MNEMONIC_NOT_CONFIRMED));
+        SignalStore.paymentsValues().setShowSaveRecoveryPhrase(false);
+      }
+    });
+
     viewModel.getExchange().observe(getViewLifecycleOwner(), amount -> {
       if (amount != null) {
         exchange.setText(FiatMoneyUtil.format(getResources(), amount));
@@ -251,7 +269,10 @@ public class PaymentsHomeFragment extends LoggingFragment {
       viewModel.deactivatePayments();
       return true;
     } else if (item.getItemId() == R.id.payments_home_fragment_menu_view_recovery_phrase) {
-      SafeNavigation.safeNavigate(NavHostFragment.findNavController(this), R.id.action_paymentsHome_to_paymentsBackup);
+      SafeNavigation.safeNavigate(NavHostFragment.findNavController(this),
+                                  PaymentsHomeFragmentDirections.actionPaymentsHomeToPaymentsBackup().setRecoveryPhraseState(SignalStore.paymentsValues().isMnemonicConfirmed() ?
+                                                                                        RecoveryPhraseStates.FROM_PAYMENTS_MENU_WITH_MNEMONIC_CONFIRMED :
+                                                                                        RecoveryPhraseStates.FROM_PAYMENTS_MENU_WITH_MNEMONIC_NOT_CONFIRMED));
       return true;
     } else if (item.getItemId() == R.id.payments_home_fragment_menu_help) {
       startActivity(AppSettingsActivity.help(requireContext(), HelpFragment.PAYMENT_INDEX));
@@ -303,8 +324,11 @@ public class PaymentsHomeFragment extends LoggingFragment {
     }
 
     @Override
-    public void onInfoCardDismissed() {
-      viewModel.onInfoCardDismissed();
+    public void onInfoCardDismissed(InfoCard.Type type) {
+      viewModel.updateStore();
+      if (type == InfoCard.Type.RECORD_RECOVERY_PHASE) {
+        showSaveRecoveryPhrase();
+      }
     }
 
     @Override
@@ -314,7 +338,12 @@ public class PaymentsHomeFragment extends LoggingFragment {
 
     @Override
     public void onViewRecoveryPhrase() {
-      SafeNavigation.safeNavigate(NavHostFragment.findNavController(PaymentsHomeFragment.this), R.id.action_paymentsHome_to_paymentsBackup);
+      showSaveRecoveryPhrase();
+    }
+
+    private void showSaveRecoveryPhrase() {
+      SafeNavigation.safeNavigate(NavHostFragment.findNavController(PaymentsHomeFragment.this),
+                                  PaymentsHomeFragmentDirections.actionPaymentsHomeToPaymentsBackup().setRecoveryPhraseState(RecoveryPhraseStates.FROM_INFO_CARD_WITH_MNEMONIC_NOT_CONFIRMED));
     }
   }
 

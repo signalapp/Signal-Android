@@ -143,7 +143,7 @@ public class ConfirmPaymentFragment extends BottomSheetDialogFragment {
     BiometricPrompt.PromptInfo promptInfo = new BiometricPrompt.PromptInfo
                                                                .Builder()
                                                                .setAllowedAuthenticators(BiometricDeviceAuthentication.ALLOWED_AUTHENTICATORS)
-                                                               .setTitle(requireContext().getString(R.string.ConfirmPaymentFragment__unlock_to_send_payment))
+                                                               .setTitle(requireContext().getString(R.string.BiometricDeviceAuthentication__signal))
                                                                .setConfirmationRequired(false)
                                                                .build();
     biometricAuth = new BiometricDeviceAuthentication(BiometricManager.from(requireActivity()),
@@ -239,7 +239,7 @@ public class ConfirmPaymentFragment extends BottomSheetDialogFragment {
     }
 
     public Unit showConfirmDeviceCredentialIntent() {
-      activityResultLauncher.launch(getString(R.string.ConfirmPaymentFragment__unlock_to_send_payment));
+      activityResultLauncher.launch(getString(R.string.BiometricDeviceAuthentication__signal));
       return Unit.INSTANCE;
     }
   }

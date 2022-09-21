@@ -35,7 +35,7 @@ public class PaymentsHomeAdapter extends MappingAdapter {
     default void onRestorePaymentsAccount() {}
     default void onSeeAll(@NonNull PaymentType paymentType) {}
     default void onPaymentItem(@NonNull PaymentItem model) {}
-    default void onInfoCardDismissed() {}
+    default void onInfoCardDismissed(InfoCard.Type type) {}
     default void onViewRecoveryPhrase() {}
     default void onUpdatePin() {}
   }

@@ -188,7 +188,7 @@ public class PaymentsHomeViewModel extends ViewModel {
     return state.updatePayments(paymentItems, payments.size());
   }
 
-  public void onInfoCardDismissed() {
+  public void updateStore() {
     store.update(s -> s);
   }
 

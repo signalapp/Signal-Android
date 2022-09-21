@@ -83,7 +83,7 @@ public class PaymentsRecoveryPhraseFragment extends Fragment {
       if (args.getFinishOnConfirm()) {
         requireActivity().finish();
       } else {
-        toolbar.setNavigationOnClickListener(t -> Navigation.findNavController(view).popBackStack(R.id.paymentsHome, false));
+        Navigation.findNavController(view).popBackStack(R.id.paymentsHome, false);
       }
     });
 

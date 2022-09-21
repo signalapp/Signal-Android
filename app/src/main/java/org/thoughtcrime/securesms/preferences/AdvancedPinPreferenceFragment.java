@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.preferences;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -79,7 +78,7 @@ public class AdvancedPinPreferenceFragment extends ListSummaryPreferenceFragment
                      .setCancelable(true)
                      .setPositiveButton(android.R.string.ok, (d, which) -> d.dismiss())
                      .show();
-    } else if (!enabled && SignalStore.paymentsValues().mobileCoinPaymentsEnabled() && !SignalStore.paymentsValues().userConfirmedMnemonic()) {
+    } else if (!enabled && SignalStore.paymentsValues().mobileCoinPaymentsEnabled() && !SignalStore.paymentsValues().getUserConfirmedMnemonic()) {
       new AlertDialog.Builder(requireContext())
                      .setTitle(R.string.ApplicationPreferencesActivity_record_payments_recovery_phrase)
                      .setMessage(R.string.ApplicationPreferencesActivity_before_you_can_disable_your_pin)

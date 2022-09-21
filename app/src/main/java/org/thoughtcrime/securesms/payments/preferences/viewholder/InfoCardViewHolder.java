@@ -55,7 +55,7 @@ public class InfoCardViewHolder extends MappingViewHolder<InfoCard> {
             .setPositiveButton(R.string.payment_info_card_hide, (dialog, which) -> {
               model.dismiss();
               dialog.dismiss();
-              callbacks.onInfoCardDismissed();
+              callbacks.onInfoCardDismissed(model.getType());
             })
             .setNegativeButton(android.R.string.cancel, (dialog, which) -> dialog.dismiss())
             .show();

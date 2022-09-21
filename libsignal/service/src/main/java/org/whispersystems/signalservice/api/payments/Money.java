@@ -68,6 +68,8 @@ public abstract class Money {
 
   public abstract boolean isNegative();
 
+  public abstract boolean isEqualOrLessThanZero();
+
   public abstract Money negate();
 
   public abstract Money abs();
@@ -145,6 +147,11 @@ public abstract class Money {
     @Override
     public boolean isNegative() {
       return amount.signum() == -1;
+    }
+
+    @Override
+    public boolean isEqualOrLessThanZero() {
+      return amount != null && amount.compareTo(BigInteger.ZERO) <= 0;
     }
 
     @Override

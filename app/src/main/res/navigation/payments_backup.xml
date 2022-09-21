@@ -17,8 +17,7 @@
             app:enterAnim="@anim/fragment_open_enter"
             app:exitAnim="@anim/fragment_close_exit"
             app:popEnterAnim="@anim/fragment_close_enter"
-            app:popExitAnim="@anim/fragment_close_exit"
-            app:popUpTo="@id/paymentsHome" />
+            app:popExitAnim="@anim/fragment_close_exit" />
 
         <action
             android:id="@+id/action_paymentsRecoveryStart_to_paymentsRecoveryEntry"
@@ -46,6 +45,27 @@
             android:defaultValue="false"
             app:argType="boolean"
             app:nullable="false" />
+
+        <argument
+            android:name="recovery_phrase_state"
+            android:defaultValue="NONE"
+            app:argType="org.thoughtcrime.securesms.payments.backup.RecoveryPhraseStates" />
+
+        <argument
+            android:name="first_time_non_zero_balance"
+            android:defaultValue="false"
+            app:argType="boolean" />
+
+        <argument
+            android:name="info_card"
+            android:defaultValue="false"
+            app:argType="boolean" />
+
+        <argument
+            android:name="payment_menu"
+            android:defaultValue="false"
+            app:argType="boolean" />
+
     </fragment>
 
     <fragment

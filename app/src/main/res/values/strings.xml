@@ -2999,8 +2999,6 @@
     <string name="ConfirmPayment__payment_failed">Payment failed</string>
     <string name="ConfirmPayment__payment_will_continue_processing">Payment will continue processing</string>
     <string name="ConfirmPaymentFragment__invalid_recipient">Invalid recipient</string>
-    <!-- Biometric/Device authentication prompt title which comes up before sending a payment -->
-    <string name="ConfirmPaymentFragment__unlock_to_send_payment">Unlock to Send Payment</string>
     <!-- Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment -->
     <string name="ConfirmPaymentFragment__failed_to_show_payment_lock">Failed to show payment lock</string>
     <!-- Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment -->
@@ -3009,6 +3007,11 @@
     <string name="ConfirmPaymentFragment__go_to_settings">Go to settings</string>
     <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">This person has not activated payments</string>
     <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">Unable to request a network fee. To continue this payment tap okay to try again.</string>
+
+    <!-- BiometricDeviceAuthentication -->
+    <!-- Biometric/Device authentication prompt title -->
+    <string name="BiometricDeviceAuthentication__signal">Signal</string>
+
 
     <!-- CurrencyAmountFormatter_s_at_s -->
     <string name="CurrencyAmountFormatter_s_at_s">%1$s at %2$s</string>
@@ -3744,9 +3747,11 @@
     <string name="payment_info_card_you_can_cash_out_mobilecoin">You can cash out MobileCoin anytime on an exchange that supports MobileCoin. Just make a transfer to your account at that exchange.</string>
     <string name="payment_info_card_hide_this_card">Hide this card?</string>
     <string name="payment_info_card_hide">Hide</string>
-    <string name="payment_info_card_record_recovery_phrase">Record recovery phrase</string>
+    <!-- Title of save recovery phrase card -->
+    <string name="payment_info_card_save_recovery_phrase">Save recovery phrase</string>
     <string name="payment_info_card_your_recovery_phrase_gives_you">Your recovery phrase gives you another way to restore your payments account.</string>
-    <string name="payment_info_card_record_your_phrase">Record your phrase</string>
+    <!-- Button in save recovery phrase card -->
+    <string name="payment_info_card_save_your_phrase">Save your phrase</string>
     <string name="payment_info_card_update_your_pin">Update your PIN</string>
     <string name="payment_info_card_with_a_high_balance">With a high balance, you may want to update to an alphanumeric PIN to add more protection to your account.</string>
     <string name="payment_info_card_update_pin">Update PIN</string>
@@ -3770,12 +3775,26 @@
     <!-- PaymentsRecoveryStartFragment -->
     <string name="PaymentsRecoveryStartFragment__recovery_phrase">Recovery phrase</string>
     <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">View recovery phrase</string>
+    <!-- Title in save recovery phrase screen -->
+    <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Save recovery phrase</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Enter recovery phrase</string>
     <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</string>
+    <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
+    <string name="PaymentsRecoveryStartFragment__got_balance">You’ve got a balance! Time to save your recovery phrase—a 24-word key you can use to restore your balance.</string>
+    <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
+    <string name="PaymentsRecoveryStartFragment__time_to_save">Time to save your recovery phrase—a 24-word key you can use to restore your balance. Learn more</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Your recovery phrase is a %1$d-word phrase unique to you. Use this phrase to restore your balance.</string>
     <string name="PaymentsRecoveryStartFragment__start">Start</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">Enter manually</string>
     <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Paste from clipboard</string>
+    <!-- Alert dialog title which asks before going back if user wants to save recovery phrase -->
+    <string name="PaymentsRecoveryStartFragment__continue_without_saving">Continue Without Saving?</string>
+    <!-- Alert dialog description to let user know why recovery phrase needs to be saved -->
+    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">Your recovery phrase lets you restore your balance in a worst-case scenario. We strongly recommend you save it.</string>
+    <!-- Alert dialog option to skip recovery phrase -->
+    <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">Skip Recovery Phrase</string>
+    <!-- Alert dialog option to cancel dialog-->
+    <string name="PaymentsRecoveryStartFragment__cancel">Cancel</string>
 
     <!-- PaymentsRecoveryPasteFragment -->
     <string name="PaymentsRecoveryPasteFragment__paste_recovery_phrase">Paste recovery phrase</string>
