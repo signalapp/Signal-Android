@@ -36,7 +36,22 @@ data class StoryViewerPageState(
     /**
      * Story is from self and in a group
      */
-    GROUP_SELF;
+    GROUP_SELF,
+
+    /**
+     * Story was not sent to all recipients.
+     */
+    PARTIAL_SEND,
+
+    /**
+     * Story failed to send.
+     */
+    SEND_FAILURE,
+
+    /**
+     * Story is currently being sent.
+     */
+    SENDING;
 
     companion object {
       fun resolve(isFromSelf: Boolean, isToGroup: Boolean): ReplyState {

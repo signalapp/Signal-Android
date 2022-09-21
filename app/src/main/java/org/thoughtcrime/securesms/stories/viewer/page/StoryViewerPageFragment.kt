@@ -5,6 +5,7 @@ import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.res.ColorStateList
 import android.graphics.RenderEffect
 import android.graphics.Shader
 import android.graphics.drawable.Drawable
@@ -14,7 +15,6 @@ import android.os.Build
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
 import android.view.GestureDetector
-import android.view.GestureDetector.SimpleOnGestureListener
 import android.view.MotionEvent
 import android.view.ScaleGestureDetector
 import android.view.View
@@ -24,6 +24,7 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
+import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.core.view.GestureDetectorCompat
 import androidx.core.view.animation.PathInterpolatorCompat
@@ -32,9 +33,12 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.progressindicator.CircularProgressIndicatorSpec
+import com.google.android.material.progressindicator.IndeterminateDrawable
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import org.signal.core.util.DimensionUnit
+import org.signal.core.util.dp
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.animation.AnimationCompleteListener
@@ -44,6 +48,7 @@ import org.thoughtcrime.securesms.components.segmentedprogressbar.SegmentedProgr
 import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto
 import org.thoughtcrime.securesms.contacts.avatars.FallbackPhoto20dp
 import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto
+import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardBottomSheet
@@ -57,6 +62,7 @@ import org.thoughtcrime.securesms.mediapreview.VideoControlsDelegate
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet
 import org.thoughtcrime.securesms.stories.StoryFirstTimeNavigationView
 import org.thoughtcrime.securesms.stories.StorySlateView
 import org.thoughtcrime.securesms.stories.StoryVolumeOverlayView
@@ -94,7 +100,8 @@ class StoryViewerPageFragment :
   StorySlateView.Callback,
   StoryTextPostPreviewFragment.Callback,
   StoryFirstTimeNavigationView.Callback,
-  StoryInfoBottomSheetDialogFragment.OnInfoSheetDismissedListener {
+  StoryInfoBottomSheetDialogFragment.OnInfoSheetDismissedListener,
+  SafetyNumberBottomSheet.Callbacks {
 
   private val storyVolumeViewModel: StoryVolumeViewModel by viewModels(ownerProducer = { requireActivity() })
 
@@ -139,6 +146,8 @@ class StoryViewerPageFragment :
 
   private val lifecycleDisposable = LifecycleDisposable()
   private val timeoutDisposable = LifecycleDisposable()
+
+  private var sendingProgressDrawable: IndeterminateDrawable<CircularProgressIndicatorSpec>? = null
 
   private val storyRecipientId: RecipientId
     get() = requireArguments().getParcelable(ARG_STORY_RECIPIENT_ID)!!
@@ -374,7 +383,7 @@ class StoryViewerPageFragment :
       if (state.posts.isNotEmpty() && state.selectedPostIndex in state.posts.indices) {
         val post = state.posts[state.selectedPostIndex]
 
-        presentViewsAndReplies(post, state.replyState, state.isReceiptsEnabled)
+        presentBottomBar(post, state.replyState, state.isReceiptsEnabled)
         presentSenderAvatar(senderAvatar, post)
         presentGroupAvatar(groupAvatar, post)
         presentFrom(from, post)
@@ -649,6 +658,15 @@ class StoryViewerPageFragment :
         isFromNotification,
         groupReplyStartPosition
       )
+      StoryViewerPageState.ReplyState.PARTIAL_SEND -> {
+        handleResend(storyPost)
+        return
+      }
+      StoryViewerPageState.ReplyState.SEND_FAILURE -> {
+        handleResend(storyPost)
+        return
+      }
+      StoryViewerPageState.ReplyState.SENDING -> return
     }
 
     if (viewModel.getSwipeToReplyState() == StoryViewerPageState.ReplyState.PRIVATE) {
@@ -658,6 +676,19 @@ class StoryViewerPageFragment :
     }
 
     replyFragment.showNow(childFragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
+  }
+
+  private fun handleResend(storyPost: StoryPost) {
+    viewModel.setIsDisplayingPartialSendDialog(true)
+    if (storyPost.conversationMessage.messageRecord.isIdentityMismatchFailure) {
+      SafetyNumberBottomSheet
+        .forMessageRecord(requireContext(), storyPost.conversationMessage.messageRecord)
+        .show(childFragmentManager)
+    } else {
+      StoryDialogs.resendStory(requireContext(), { viewModel.setIsDisplayingPartialSendDialog(false) }) {
+        lifecycleDisposable += viewModel.resend(storyPost).subscribe()
+      }
+    }
   }
 
   private fun showInfo(storyPost: StoryPost) {
@@ -889,7 +920,7 @@ class StoryViewerPageFragment :
     }
   }
 
-  private fun presentViewsAndReplies(post: StoryPost, replyState: StoryViewerPageState.ReplyState, isReceiptsEnabled: Boolean) {
+  private fun presentBottomBar(post: StoryPost, replyState: StoryViewerPageState.ReplyState, isReceiptsEnabled: Boolean) {
     if (replyState == StoryViewerPageState.ReplyState.NONE) {
       viewsAndReplies.visible = false
       return
@@ -897,6 +928,51 @@ class StoryViewerPageFragment :
       viewsAndReplies.visible = true
     }
 
+    viewsAndReplies.iconTint = ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.signal_colorOnSurface))
+
+    when (replyState) {
+      StoryViewerPageState.ReplyState.SENDING -> presentSendingBottomBar()
+      StoryViewerPageState.ReplyState.PARTIAL_SEND -> presentPartialSendBottomBar()
+      StoryViewerPageState.ReplyState.SEND_FAILURE -> presentSendFailureBottomBar()
+      else -> presentViewsAndRepliesBottomBar(post, isReceiptsEnabled)
+    }
+  }
+
+  private fun presentSendingBottomBar() {
+    if (sendingProgressDrawable == null) {
+      sendingProgressDrawable = IndeterminateDrawable.createCircularDrawable(
+        requireContext(),
+        CircularProgressIndicatorSpec(requireContext(), null).apply {
+          indicatorSize = 18.dp
+          indicatorInset = 2.dp
+          trackColor = ContextCompat.getColor(requireContext(), R.color.transparent_white_40)
+          indicatorColors = intArrayOf(ContextCompat.getColor(requireContext(), R.color.signal_dark_colorNeutralInverse))
+          trackThickness = 2.dp
+        }
+      )
+    }
+
+    viewsAndReplies.icon = sendingProgressDrawable
+    viewsAndReplies.iconGravity = MaterialButton.ICON_GRAVITY_TEXT_START
+    viewsAndReplies.iconSize = 20.dp
+    viewsAndReplies.setText(R.string.StoriesLandingItem__sending)
+  }
+
+  private fun presentPartialSendBottomBar() {
+    viewsAndReplies.setIconResource(R.drawable.ic_error_outline_24)
+    viewsAndReplies.iconTint = ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.signal_light_colorError))
+    viewsAndReplies.iconSize = 20.dp
+    viewsAndReplies.setText(R.string.StoryViewerPageFragment__partially_sent)
+  }
+
+  private fun presentSendFailureBottomBar() {
+    viewsAndReplies.setIconResource(R.drawable.ic_error_outline_24)
+    viewsAndReplies.iconTint = ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.signal_light_colorError))
+    viewsAndReplies.iconSize = 20.dp
+    viewsAndReplies.setText(R.string.StoryViewerPageFragment__send_failed)
+  }
+
+  private fun presentViewsAndRepliesBottomBar(post: StoryPost, isReceiptsEnabled: Boolean) {
     val views = resources.getQuantityString(R.plurals.StoryViewerFragment__d_views, post.viewCount, post.viewCount)
     val replies = resources.getQuantityString(R.plurals.StoryViewerFragment__d_replies, post.replyCount, post.replyCount)
 
@@ -1279,5 +1355,17 @@ class StoryViewerPageFragment :
 
   override fun onInfoSheetDismissed() {
     viewModel.setIsDisplayingInfoDialog(false)
+  }
+
+  override fun sendAnywayAfterSafetyNumberChangedInBottomSheet(destinations: List<ContactSearchKey.RecipientSearchKey>) {
+    error("Not supported, we handed a message record to the bottom sheet.")
+  }
+
+  override fun onMessageResentAfterSafetyNumberChangeInBottomSheet() {
+    viewModel.setIsDisplayingPartialSendDialog(false)
+  }
+
+  override fun onCanceled() {
+    viewModel.setIsDisplayingPartialSendDialog(false)
   }
 }

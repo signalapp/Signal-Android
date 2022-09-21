@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.stories.viewer.page
 
 import android.content.Context
 import android.net.Uri
+import androidx.annotation.CheckResult
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -22,6 +23,7 @@ import org.thoughtcrime.securesms.jobs.SendViewedReceiptJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.Base64
 import org.thoughtcrime.securesms.util.TextSecurePreferences
@@ -192,6 +194,13 @@ open class StoryViewerPageRepository(context: Context) {
         }
       }
     }
+  }
+
+  @CheckResult
+  fun resend(messageRecord: MessageRecord): Completable {
+    return Completable.fromAction {
+      MessageSender.resend(ApplicationDependencies.getApplication(), messageRecord)
+    }.subscribeOn(Schedulers.io())
   }
 
   private fun getContent(record: MmsMessageRecord): StoryPost.Content {

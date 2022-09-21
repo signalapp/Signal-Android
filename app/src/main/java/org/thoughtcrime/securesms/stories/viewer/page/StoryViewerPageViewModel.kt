@@ -1,8 +1,10 @@
 package org.thoughtcrime.securesms.stories.viewer.page
 
+import androidx.annotation.CheckResult
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Observable
@@ -266,16 +268,27 @@ class StoryViewerPageViewModel(
     storyViewerPlaybackStore.update { it.copy(isUserScaling = isUserScaling) }
   }
 
+  fun setIsDisplayingPartialSendDialog(isDisplayingPartialSendDialog: Boolean) {
+    storyViewerPlaybackStore.update { it.copy(isDisplayingPartialSendDialog = isDisplayingPartialSendDialog) }
+  }
+
   private fun resolveSwipeToReplyState(state: StoryViewerPageState, index: Int): StoryViewerPageState.ReplyState {
     if (index !in state.posts.indices) {
       return StoryViewerPageState.ReplyState.NONE
     }
 
     val post = state.posts[index]
+    val message = post.conversationMessage.messageRecord
     val isFromSelf = post.sender.isSelf
     val isToGroup = post.group != null
+    val isFailed = message.isFailed
+    val isPartialSend = message.isIdentityMismatchFailure
+    val isInProgress = !post.conversationMessage.messageRecord.isSent
 
     return when {
+      isFromSelf && isPartialSend -> StoryViewerPageState.ReplyState.PARTIAL_SEND
+      isFromSelf && isFailed -> StoryViewerPageState.ReplyState.SEND_FAILURE
+      isFromSelf && isInProgress -> StoryViewerPageState.ReplyState.SENDING
       post.allowsReplies -> StoryViewerPageState.ReplyState.resolve(isFromSelf, isToGroup)
       isFromSelf -> StoryViewerPageState.ReplyState.SELF
       else -> StoryViewerPageState.ReplyState.NONE
@@ -288,6 +301,13 @@ class StoryViewerPageViewModel(
 
   fun getPostAt(index: Int): StoryPost? {
     return store.state.posts.getOrNull(index)
+  }
+
+  @CheckResult
+  fun resend(storyPost: StoryPost): Completable {
+    return repository
+      .resend(storyPost.conversationMessage.messageRecord)
+      .observeOn(AndroidSchedulers.mainThread())
   }
 
   class Factory(

@@ -4756,6 +4756,10 @@
     <string name="StoryViewerPageFragment__s_to_s">%1$s to %2$s</string>
     <!-- Displayed when viewing a post from another user with no replies -->
     <string name="StoryViewerPageFragment__reply">Reply</string>
+    <!-- Displayed when viewing a post that has failed to send to some users -->
+    <string name="StoryViewerPageFragment__partially_sent">Partially sent. Tap for details</string>
+    <!-- Displayed when viewing a post that has failed to send -->
+    <string name="StoryViewerPageFragment__send_failed">Send failed. Tap to retry</string>
     <!-- Label for the reply button in story viewer, which will launch the group story replies bottom sheet. -->
     <string name="StoryViewerPageFragment__reply_to_group">Reply to group</string>
     <!-- Displayed when a story has no views -->
@@ -5162,6 +5166,8 @@
     <string name="StoryInfoBottomSheetDialogFragment__sent_to">Sent to</string>
     <!-- Story info "Sent from" header -->
     <string name="StoryInfoBottomSheetDialogFragment__sent_from">Sent from</string>
+    <!-- Story info "Failed" header -->
+    <string name="StoryInfoBottomSheetDialogFragment__failed">Failed</string>
     <!-- Story Info context menu label -->
     <string name="StoryInfoBottomSheetDialogFragment__info">Info</string>
 

@@ -14,6 +14,7 @@ import org.mockito.kotlin.mock
 import org.mockito.kotlin.whenever
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
+import org.thoughtcrime.securesms.database.FakeMessageRecords
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 
@@ -186,7 +187,10 @@ class StoryViewerPageViewModelTest {
         conversationMessage = mock(),
         allowsReplies = true,
         hasSelfViewed = isViewed(it)
-      )
+      ).apply {
+        val messageRecord = FakeMessageRecords.buildMediaMmsMessageRecord()
+        whenever(conversationMessage.messageRecord).thenReturn(messageRecord)
+      }
     }
   }
 }

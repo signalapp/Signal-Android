@@ -72,9 +72,20 @@ object MyStoriesItem {
       val oldRecord = distributionStory.messageRecord
       val newRecord = newItem.distributionStory.messageRecord
 
+      val oldRecordHasIdentityMismatch = distributionStory.messageRecord.identityKeyMismatches.isNotEmpty()
+      val newRecordHasIdentityMismatch = newItem.distributionStory.messageRecord.identityKeyMismatches.isNotEmpty()
+      val oldRecordHasNetworkFailures = distributionStory.messageRecord.hasNetworkFailures()
+      val newRecordHasNetworkFailures = newItem.distributionStory.messageRecord.hasNetworkFailures()
+
       return oldRecord.isOutgoing &&
         newRecord.isOutgoing &&
-        (oldRecord.isPending != newRecord.isPending || oldRecord.isSent != newRecord.isSent || oldRecord.isFailed != newRecord.isFailed)
+        (
+          oldRecord.isPending != newRecord.isPending ||
+            oldRecord.isSent != newRecord.isSent ||
+            oldRecord.isFailed != newRecord.isFailed ||
+            oldRecordHasIdentityMismatch != newRecordHasIdentityMismatch ||
+            oldRecordHasNetworkFailures != newRecordHasNetworkFailures
+          )
     }
   }
 
@@ -156,6 +167,11 @@ object MyStoriesItem {
         errorIndicator.visible = true
         date.visible = true
         viewCount.setText(R.string.StoriesLandingItem__send_failed)
+        date.setText(R.string.StoriesLandingItem__tap_to_retry)
+      } else if (model.distributionStory.messageRecord.isIdentityMismatchFailure) {
+        errorIndicator.visible = true
+        date.visible = true
+        viewCount.setText(R.string.StoriesLandingItem__partially_sent)
         date.setText(R.string.StoriesLandingItem__tap_to_retry)
       } else {
         errorIndicator.visible = false

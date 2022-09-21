@@ -7,8 +7,11 @@ import io.reactivex.rxjava3.core.BackpressureStrategy
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
+import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.rx.RxStore
 
 /**
@@ -29,29 +32,45 @@ class StoryInfoViewModel(storyId: Long, repository: StoryInfoRepository = StoryI
         receivedMillis = storyInfo.messageRecord.dateReceived,
         size = (storyInfo.messageRecord as? MmsMessageRecord)?.let { it.slideDeck.firstSlide?.fileSize } ?: -1L,
         isOutgoing = storyInfo.messageRecord.isOutgoing,
-        recipients = buildRecipients(storyInfo)
+        sections = buildSections(storyInfo)
       )
     }
   }
 
-  private fun buildRecipients(storyInfo: StoryInfoRepository.StoryInfo): List<StoryInfoRecipientRow.Model> {
+  private fun buildSections(storyInfo: StoryInfoRepository.StoryInfo): Map<StoryInfoState.SectionKey, List<StoryInfoRecipientRow.Model>> {
     return if (storyInfo.messageRecord.isOutgoing) {
-      storyInfo.receiptInfo.map {
+      storyInfo.receiptInfo.map { groupReceiptInfo ->
         StoryInfoRecipientRow.Model(
-          recipient = Recipient.resolved(it.recipientId),
-          date = it.timestamp,
-          status = it.status
+          recipient = Recipient.resolved(groupReceiptInfo.recipientId),
+          date = groupReceiptInfo.timestamp,
+          status = groupReceiptInfo.status,
+          isFailed = hasFailure(storyInfo.messageRecord, groupReceiptInfo.recipientId)
         )
+      }.groupBy {
+        when {
+          it.isFailed -> StoryInfoState.SectionKey.FAILED
+          else -> StoryInfoState.SectionKey.SENT_TO
+        }
       }
     } else {
-      listOf(
-        StoryInfoRecipientRow.Model(
-          recipient = storyInfo.messageRecord.individualRecipient,
-          date = storyInfo.messageRecord.dateSent,
-          status = -1
+      mapOf(
+        StoryInfoState.SectionKey.SENT_FROM to listOf(
+          StoryInfoRecipientRow.Model(
+            recipient = storyInfo.messageRecord.individualRecipient,
+            date = storyInfo.messageRecord.dateSent,
+            status = -1,
+            isFailed = false
+          )
         )
       )
     }
+  }
+
+  private fun hasFailure(messageRecord: MessageRecord, recipientId: RecipientId): Boolean {
+    val hasNetworkFailure = messageRecord.networkFailures.any { it.getRecipientId(ApplicationDependencies.getApplication()) == recipientId }
+    val hasIdentityFailure = messageRecord.identityKeyMismatches.any { it.getRecipientId(ApplicationDependencies.getApplication()) == recipientId }
+
+    return hasNetworkFailure || hasIdentityFailure
   }
 
   override fun onCleared() {

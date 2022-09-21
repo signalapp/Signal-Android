@@ -58,17 +58,23 @@ class StoryInfoBottomSheetDialogFragment : DSLSettingsBottomSheetFragment() {
         )
       )
 
-      sectionHeaderPref(
-        title = if (state.isOutgoing) {
-          R.string.StoryInfoBottomSheetDialogFragment__sent_to
-        } else {
-          R.string.StoryInfoBottomSheetDialogFragment__sent_from
-        }
-      )
-
-      state.recipients.forEach {
-        customPref(it)
+      state.sections.map { (section, recipients) ->
+        renderSection(section, recipients)
       }
+    }
+  }
+
+  private fun DSLConfiguration.renderSection(sectionKey: StoryInfoState.SectionKey, recipients: List<StoryInfoRecipientRow.Model>) {
+    sectionHeaderPref(
+      title = when (sectionKey) {
+        StoryInfoState.SectionKey.FAILED -> R.string.StoryInfoBottomSheetDialogFragment__failed
+        StoryInfoState.SectionKey.SENT_TO -> R.string.StoryInfoBottomSheetDialogFragment__sent_to
+        StoryInfoState.SectionKey.SENT_FROM -> R.string.StoryInfoBottomSheetDialogFragment__sent_from
+      }
+    )
+
+    recipients.forEach {
+      customPref(it)
     }
   }
 

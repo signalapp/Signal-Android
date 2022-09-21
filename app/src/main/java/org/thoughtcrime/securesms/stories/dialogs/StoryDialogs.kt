@@ -10,13 +10,14 @@ import org.thoughtcrime.securesms.R
 
 object StoryDialogs {
 
-  fun resendStory(context: Context, resend: () -> Unit) {
-    MaterialAlertDialogBuilder(context)
-      .setMessage(R.string.StoryDialogs__story_could_not_be_sent)
-      .setNegativeButton(android.R.string.cancel, null)
-      .setPositiveButton(R.string.StoryDialogs__send) { _, _ -> resend() }
-      .show()
-  }
+  fun resendStory(context: Context, onDismiss: () -> Unit = {}, resend: () -> Unit) {
+  MaterialAlertDialogBuilder(context)
+    .setMessage(R.string.StoryDialogs__story_could_not_be_sent)
+    .setNegativeButton(android.R.string.cancel, null)
+    .setPositiveButton(R.string.StoryDialogs__send) { _, _ -> resend() }
+    .setOnDismissListener { onDismiss() }
+    .show()
+}
 
   fun displayStoryOrProfileImage(
     context: Context,

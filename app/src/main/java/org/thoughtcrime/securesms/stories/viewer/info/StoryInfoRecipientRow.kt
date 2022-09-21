@@ -23,7 +23,8 @@ object StoryInfoRecipientRow {
   class Model(
     val recipient: Recipient,
     val date: Long,
-    val status: Int
+    val status: Int,
+    val isFailed: Boolean
   ) : MappingModel<Model> {
     override fun areItemsTheSame(newItem: Model): Boolean {
       return recipient.id == newItem.recipient.id
