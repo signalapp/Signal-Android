@@ -1621,7 +1621,8 @@ public class ThreadDatabase extends Database {
            MmsSmsColumns.Types.isGroupV1MigrationEvent(type) ||
            MmsSmsColumns.Types.isChangeNumber(type) ||
            MmsSmsColumns.Types.isBoostRequest(type) ||
-           MmsSmsColumns.Types.isGroupV2LeaveOnly(type);
+           MmsSmsColumns.Types.isGroupV2LeaveOnly(type) ||
+           MmsSmsColumns.Types.isThreadMergeType(type);
   }
 
   public Reader readerFor(Cursor cursor) {

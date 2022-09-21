@@ -70,6 +70,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.ChatColor
 import org.thoughtcrime.securesms.database.model.databaseprotos.DeviceLastResetTime
 import org.thoughtcrime.securesms.database.model.databaseprotos.ExpiringProfileKeyCredentialColumnData
 import org.thoughtcrime.securesms.database.model.databaseprotos.RecipientExtras
+import org.thoughtcrime.securesms.database.model.databaseprotos.ThreadMergeEvent
 import org.thoughtcrime.securesms.database.model.databaseprotos.Wallpaper
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.groups.BadGroupIdException
@@ -3570,6 +3571,17 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       db.update(MmsDatabase.TABLE_NAME, values, MmsDatabase.THREAD_ID + " = ?", SqlUtil.buildArgs(threadMerge.previousThreadId))
     }
 
+    // Thread Merge event
+    if (threadMerge.neededMerge) {
+      val mergeEvent: ThreadMergeEvent.Builder = ThreadMergeEvent.newBuilder()
+
+      if (secondaryRecord.e164 != null) {
+        mergeEvent.previousE164 = secondaryRecord.e164
+      }
+
+      SignalDatabase.sms.insertThreadMergeEvent(primaryRecord.id, threadMerge.threadId, mergeEvent.build())
+    }
+
     // MSL
     messageLog.remapRecipient(secondaryId, primaryId)
 
@@ -3821,6 +3833,22 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
 
     ApplicationDependencies.getRecipientCache().clear()
     RecipientId.clearCache()
+  }
+
+  /**
+   * Should only be used for debugging! Clears the E164 and PNI from a recipient.
+   */
+  fun debugClearE164AndPni(recipientId: RecipientId) {
+    writableDatabase
+      .update(TABLE_NAME)
+      .values(
+        PHONE to null,
+        PNI_COLUMN to null
+      )
+      .where(ID_WHERE, recipientId)
+      .run()
+
+    Recipient.live(recipientId).refresh()
   }
 
   fun getRecord(context: Context, cursor: Cursor): RecipientRecord {

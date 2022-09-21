@@ -262,3 +262,7 @@ message MessageExportState {
     repeated string completedAttachments = 5;
     Progress progress                    = 6;
 }
+
+message ThreadMergeEvent {
+    string previousE164 = 1;
+}

@@ -22,8 +22,10 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.sms.OutgoingEncryptedMessage
 import org.thoughtcrime.securesms.subscription.Subscriber
 import org.thoughtcrime.securesms.util.Base64
+import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
@@ -213,6 +215,48 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
           }
         )
       }
+
+      sectionHeaderPref(DSLSettingsText.from("PNP"))
+
+      clickPref(
+        title = DSLSettingsText.from("Split contact"),
+        summary = DSLSettingsText.from("Splits this contact into two recipients and two threads so that you can test merging them together. This will remain the 'primary' recipient."),
+        onClick = {
+          MaterialAlertDialogBuilder(requireContext())
+            .setTitle("Are you sure?")
+            .setNegativeButton(android.R.string.cancel) { d, _ -> d.dismiss() }
+            .setPositiveButton(android.R.string.ok) { _, _ ->
+              if (!recipient.hasE164()) {
+                Toast.makeText(context, "Recipient doesn't have an E164! Can't split.", Toast.LENGTH_SHORT).show()
+                return@setPositiveButton
+              }
+
+              SignalDatabase.recipients.debugClearE164AndPni(recipient.id)
+
+              val splitRecipientId: RecipientId = if (FeatureFlags.phoneNumberPrivacy()) {
+                SignalDatabase.recipients.getAndPossiblyMergePnpVerified(recipient.pni.orElse(null), recipient.pni.orElse(null), recipient.requireE164())
+              } else {
+                SignalDatabase.recipients.getAndPossiblyMerge(recipient.pni.orElse(null), recipient.requireE164())
+              }
+              val splitRecipient: Recipient = Recipient.resolved(splitRecipientId)
+              val splitThreadId: Long = SignalDatabase.threads.getOrCreateThreadIdFor(splitRecipient)
+
+              val messageId: Long = SignalDatabase.sms.insertMessageOutbox(
+                splitThreadId,
+                OutgoingEncryptedMessage(splitRecipient, "Test Message ${System.currentTimeMillis()}", 0),
+                false,
+                System.currentTimeMillis(),
+                null
+              )
+              SignalDatabase.sms.markAsSent(messageId, true)
+
+              SignalDatabase.threads.update(splitThreadId, true)
+
+              Toast.makeText(context, "Done! We split the E164/PNI from this contact into $splitRecipientId", Toast.LENGTH_SHORT).show()
+            }
+            .show()
+        }
+      )
     }
   }
 
