@@ -4,6 +4,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.TextView
+import com.google.android.material.button.MaterialButton
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.BadgeImageView
 import org.thoughtcrime.securesms.components.AvatarImageView
@@ -322,7 +323,7 @@ object ContactSearchItems {
   private class HeaderViewHolder(itemView: View) : MappingViewHolder<HeaderModel>(itemView) {
 
     private val headerTextView: TextView = itemView.findViewById(R.id.section_header)
-    private val headerActionView: TextView = itemView.findViewById(R.id.section_header_action)
+    private val headerActionView: MaterialButton = itemView.findViewById(R.id.section_header_action)
 
     override fun bind(model: HeaderModel) {
       headerTextView.setText(
@@ -336,7 +337,7 @@ object ContactSearchItems {
 
       if (model.header.action != null) {
         headerActionView.visible = true
-        headerActionView.setCompoundDrawablesRelativeWithIntrinsicBounds(model.header.action.icon, 0, 0, 0)
+        headerActionView.setIconResource(model.header.action.icon)
         headerActionView.setText(model.header.action.label)
         headerActionView.setOnClickListener { model.header.action.action.run() }
       } else {
