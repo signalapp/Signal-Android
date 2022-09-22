@@ -69,7 +69,7 @@
         android:layout_marginStart="68dp"
         android:layout_marginEnd="68dp"
         android:gravity="center"
-        android:text="@string/StoriesLandingFragment__no_recent_updates_to_show_right_now_tap_plus_to_add_to_your_story"
+        android:text="@string/StoriesLandingFragment__no_recent_updates_to_show_right_now"
         android:textAppearance="@style/Signal.Text.BodyLarge"
         android:textColor="@color/signal_colorOutline"
         android:visibility="gone"
