@@ -239,10 +239,6 @@ class MediaSelectionRepository(context: Context) {
       val recipient = Recipient.resolved(contact.recipientId)
       val isStory = contact.isStory || recipient.isDistributionList
 
-      if (isStory && recipient.isActiveGroup && recipient.isGroup) {
-        SignalDatabase.groups.markDisplayAsStory(recipient.requireGroupId())
-      }
-
       if (isStory && !recipient.isMyStory) {
         SignalStore.storyValues().setLatestStorySend(StorySend.newSend(recipient))
       }

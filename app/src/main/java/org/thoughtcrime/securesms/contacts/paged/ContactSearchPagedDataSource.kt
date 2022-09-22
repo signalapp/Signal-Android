@@ -261,7 +261,6 @@ class ContactSearchPagedDataSource(
         rhs.recipient.isMyStory -> 1
         lhsActiveRank < rhsActiveRank -> -1
         lhsActiveRank > rhsActiveRank -> 1
-        lhsActiveRank == rhsActiveRank -> -1
         else -> 0
       }
     }

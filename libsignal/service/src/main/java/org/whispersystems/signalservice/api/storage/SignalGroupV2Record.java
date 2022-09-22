@@ -82,6 +82,10 @@ public final class SignalGroupV2Record implements SignalRecord {
         diff.add("HideStory");
       }
 
+      if (!Objects.equals(this.getStorySendMode(), that.getStorySendMode())) {
+        diff.add("StorySendMode");
+      }
+
       if (!Objects.equals(this.hasUnknownFields(), that.hasUnknownFields())) {
         diff.add("UnknownFields");
       }
@@ -138,6 +142,10 @@ public final class SignalGroupV2Record implements SignalRecord {
 
   public boolean shouldHideStory() {
     return proto.getHideStory();
+  }
+
+  public GroupV2Record.StorySendMode getStorySendMode() {
+    return proto.getStorySendMode();
   }
 
   public GroupV2Record toProto() {
@@ -210,6 +218,11 @@ public final class SignalGroupV2Record implements SignalRecord {
 
     public Builder setHideStory(boolean hideStory) {
       builder.setHideStory(hideStory);
+      return this;
+    }
+
+    public Builder setStorySendMode(GroupV2Record.StorySendMode storySendMode) {
+      builder.setStorySendMode(storySendMode);
       return this;
     }
 

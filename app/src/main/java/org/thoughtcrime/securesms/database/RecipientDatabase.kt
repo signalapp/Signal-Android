@@ -50,6 +50,7 @@ import org.thoughtcrime.securesms.conversation.colors.ChatColorsMapper.getChatCo
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
 import org.thoughtcrime.securesms.database.GroupDatabase.LegacyGroupInsertException
 import org.thoughtcrime.securesms.database.GroupDatabase.MissedGroupMigrationInsertException
+import org.thoughtcrime.securesms.database.GroupDatabase.ShowAsStoryState
 import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.distributionLists
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.groups
@@ -110,6 +111,7 @@ import org.whispersystems.signalservice.api.storage.SignalContactRecord
 import org.whispersystems.signalservice.api.storage.SignalGroupV1Record
 import org.whispersystems.signalservice.api.storage.SignalGroupV2Record
 import org.whispersystems.signalservice.api.storage.StorageId
+import org.whispersystems.signalservice.internal.storage.protos.GroupV2Record
 import java.io.Closeable
 import java.io.IOException
 import java.util.Arrays
@@ -1076,6 +1078,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
         .build()
     )
 
+    groups.setShowAsStoryState(groupId, insert.storySendMode.toShowAsStoryState())
     updateExtras(recipient.id) {
       it.setHideStory(insert.shouldHideStory())
     }
@@ -1095,12 +1098,14 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     }
 
     val masterKey = update.old.masterKeyOrThrow
-    val recipient = Recipient.externalGroupExact(GroupId.v2(masterKey))
+    val groupId = GroupId.v2(masterKey)
+    val recipient = Recipient.externalGroupExact(groupId)
 
     updateExtras(recipient.id) {
       it.setHideStory(update.new.shouldHideStory())
     }
 
+    groups.setShowAsStoryState(groupId, update.new.storySendMode.toShowAsStoryState())
     threads.applyStorageSyncUpdate(recipient.id, update.new)
     recipient.live().refresh()
   }
@@ -1206,6 +1211,15 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       } else {
         throw AssertionError("No recipient with that storage key!")
       }
+    }
+  }
+
+  private fun GroupV2Record.StorySendMode.toShowAsStoryState(): ShowAsStoryState {
+    return when (this) {
+      GroupV2Record.StorySendMode.DEFAULT -> ShowAsStoryState.IF_ACTIVE
+      GroupV2Record.StorySendMode.DISABLED -> ShowAsStoryState.NEVER
+      GroupV2Record.StorySendMode.ENABLED -> ShowAsStoryState.ALWAYS
+      GroupV2Record.StorySendMode.UNRECOGNIZED -> ShowAsStoryState.IF_ACTIVE
     }
   }
 

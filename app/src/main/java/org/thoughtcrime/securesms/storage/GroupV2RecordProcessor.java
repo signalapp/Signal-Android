@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.GroupsV1MigrationUtil;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.signalservice.api.storage.SignalGroupV2Record;
+import org.whispersystems.signalservice.internal.storage.protos.GroupV2Record;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -66,17 +67,18 @@ public final class GroupV2RecordProcessor extends DefaultStorageRecordProcessor<
 
   @Override
   @NonNull SignalGroupV2Record merge(@NonNull SignalGroupV2Record remote, @NonNull SignalGroupV2Record local, @NonNull StorageKeyGenerator keyGenerator) {
-    byte[]  unknownFields              = remote.serializeUnknownFields();
-    boolean blocked                    = remote.isBlocked();
-    boolean profileSharing             = remote.isProfileSharingEnabled();
-    boolean archived                   = remote.isArchived();
-    boolean forcedUnread               = remote.isForcedUnread();
-    long    muteUntil                  = remote.getMuteUntil();
-    boolean notifyForMentionsWhenMuted = remote.notifyForMentionsWhenMuted();
-    boolean hideStory      = remote.shouldHideStory();
+    byte[]                      unknownFields              = remote.serializeUnknownFields();
+    boolean                     blocked                    = remote.isBlocked();
+    boolean                     profileSharing             = remote.isProfileSharingEnabled();
+    boolean                     archived                   = remote.isArchived();
+    boolean                     forcedUnread               = remote.isForcedUnread();
+    long                        muteUntil                  = remote.getMuteUntil();
+    boolean                     notifyForMentionsWhenMuted = remote.notifyForMentionsWhenMuted();
+    boolean                     hideStory                  = remote.shouldHideStory();
+    GroupV2Record.StorySendMode storySendMode              = remote.getStorySendMode();
 
-    boolean matchesRemote = doParamsMatch(remote, unknownFields, blocked, profileSharing, archived, forcedUnread, muteUntil, notifyForMentionsWhenMuted, hideStory);
-    boolean matchesLocal  = doParamsMatch(local, unknownFields, blocked, profileSharing, archived, forcedUnread, muteUntil, notifyForMentionsWhenMuted, hideStory);
+    boolean matchesRemote = doParamsMatch(remote, unknownFields, blocked, profileSharing, archived, forcedUnread, muteUntil, notifyForMentionsWhenMuted, hideStory, storySendMode);
+    boolean matchesLocal  = doParamsMatch(local, unknownFields, blocked, profileSharing, archived, forcedUnread, muteUntil, notifyForMentionsWhenMuted, hideStory, storySendMode);
 
     if (matchesRemote) {
       return remote;
@@ -91,6 +93,7 @@ public final class GroupV2RecordProcessor extends DefaultStorageRecordProcessor<
                                     .setMuteUntil(muteUntil)
                                     .setNotifyForMentionsWhenMuted(notifyForMentionsWhenMuted)
                                     .setHideStory(hideStory)
+                                    .setStorySendMode(storySendMode)
                                     .build();
     }
   }
@@ -139,7 +142,8 @@ public final class GroupV2RecordProcessor extends DefaultStorageRecordProcessor<
                                 boolean forcedUnread,
                                 long muteUntil,
                                 boolean notifyForMentionsWhenMuted,
-                                boolean hideStory)
+                                boolean hideStory,
+                                @NonNull GroupV2Record.StorySendMode storySendMode)
   {
     return Arrays.equals(unknownFields, group.serializeUnknownFields())     &&
            blocked == group.isBlocked()                                     &&
@@ -148,6 +152,7 @@ public final class GroupV2RecordProcessor extends DefaultStorageRecordProcessor<
            forcedUnread == group.isForcedUnread()                           &&
            muteUntil == group.getMuteUntil()                                &&
            notifyForMentionsWhenMuted == group.notifyForMentionsWhenMuted() &&
-           hideStory == group.shouldHideStory();
+           hideStory == group.shouldHideStory()                             &&
+           storySendMode == group.getStorySendMode();
   }
 }

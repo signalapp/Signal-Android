@@ -1,12 +1,9 @@
 package org.signal.core.util
 
-import androidx.sqlite.db.SupportSQLiteDatabase
 import android.content.ContentValues
 import android.text.TextUtils
 import androidx.annotation.VisibleForTesting
-import java.lang.NullPointerException
-import java.lang.StringBuilder
-import java.util.ArrayList
+import androidx.sqlite.db.SupportSQLiteDatabase
 import java.util.LinkedList
 import java.util.Locale
 import java.util.stream.Collectors

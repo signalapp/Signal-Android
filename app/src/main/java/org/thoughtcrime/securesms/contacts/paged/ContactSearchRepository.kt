@@ -1,16 +1,20 @@
 package org.thoughtcrime.securesms.contacts.paged
 
+import androidx.annotation.CheckResult
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
+import org.thoughtcrime.securesms.database.GroupDatabase
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.stories.Stories
 
 class ContactSearchRepository {
+  @CheckResult
   fun filterOutUnselectableContactSearchKeys(contactSearchKeys: Set<ContactSearchKey>): Single<Set<ContactSearchSelectionResult>> {
     return Single.fromCallable {
       contactSearchKeys.map {
@@ -35,12 +39,25 @@ class ContactSearchRepository {
     }
   }
 
-  fun unmarkDisplayAsStory(groupId: GroupId): Completable {
+  @CheckResult
+  fun markDisplayAsStory(recipientIds: Collection<RecipientId>): Completable {
     return Completable.fromAction {
-      SignalDatabase.groups.markDisplayAsStory(groupId, false)
+      SignalDatabase.groups.setShowAsStoryState(recipientIds, GroupDatabase.ShowAsStoryState.ALWAYS)
+      SignalDatabase.recipients.markNeedsSync(recipientIds)
+      StorageSyncHelper.scheduleSyncForDataChange()
     }.subscribeOn(Schedulers.io())
   }
 
+  @CheckResult
+  fun unmarkDisplayAsStory(groupId: GroupId): Completable {
+    return Completable.fromAction {
+      SignalDatabase.groups.setShowAsStoryState(groupId, GroupDatabase.ShowAsStoryState.NEVER)
+      SignalDatabase.recipients.markNeedsSync(Recipient.externalGroupExact(groupId).id)
+      StorageSyncHelper.scheduleSyncForDataChange()
+    }.subscribeOn(Schedulers.io())
+  }
+
+  @CheckResult
   fun deletePrivateStory(distributionListId: DistributionListId): Completable {
     return Completable.fromAction {
       SignalDatabase.distributionLists.deleteList(distributionListId)

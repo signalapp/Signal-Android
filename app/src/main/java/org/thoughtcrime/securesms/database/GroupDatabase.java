@@ -14,6 +14,7 @@ import com.annimon.stream.Stream;
 import com.google.protobuf.InvalidProtocolBufferException;
 
 import org.signal.core.util.CursorUtil;
+import org.signal.core.util.SQLiteDatabaseExtensionsKt;
 import org.signal.core.util.SetUtil;
 import org.signal.core.util.SqlUtil;
 import org.signal.core.util.logging.Log;
@@ -37,6 +38,7 @@ import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
 import org.whispersystems.signalservice.api.groupsv2.GroupChangeReconstruct;
@@ -45,6 +47,7 @@ import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.push.DistributionId;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.util.UuidUtil;
+import org.whispersystems.signalservice.internal.push.exceptions.GroupNotFoundException;
 
 import java.io.Closeable;
 import java.security.SecureRandom;
@@ -84,7 +87,7 @@ public class GroupDatabase extends Database {
   private static final String EXPECTED_V2_ID        = "expected_v2_id";
   private static final String UNMIGRATED_V1_MEMBERS = "former_v1_members";
   private static final String DISTRIBUTION_ID       = "distribution_id";
-  private static final String DISPLAY_AS_STORY      = "display_as_story";
+  private static final String SHOW_AS_STORY_STATE   = "display_as_story";
 
   /** Was temporarily used for PNP accept by pni but is no longer needed/updated */
   @Deprecated
@@ -118,7 +121,7 @@ public class GroupDatabase extends Database {
                                                                                   EXPECTED_V2_ID        + " TEXT DEFAULT NULL, " +
                                                                                   UNMIGRATED_V1_MEMBERS + " TEXT DEFAULT NULL, " +
                                                                                   DISTRIBUTION_ID       + " TEXT DEFAULT NULL, " +
-                                                                                  DISPLAY_AS_STORY      + " INTEGER DEFAULT 0, " +
+                                                                                  SHOW_AS_STORY_STATE   + " INTEGER DEFAULT 0, " +
                                                                                   AUTH_SERVICE_ID       + " TEXT DEFAULT NULL);";
 
   public static final String[] CREATE_INDEXS = {
@@ -1462,11 +1465,20 @@ public class GroupDatabase extends Database {
   }
 
   public @NonNull List<GroupId> getGroupsToDisplayAsStories() throws BadGroupIdException {
-    String[] selection = SqlUtil.buildArgs(GROUP_ID);
-    String   where     = DISPLAY_AS_STORY + " = ? AND " + ACTIVE + " = ?";
-    String[] whereArgs = SqlUtil.buildArgs(1, 1);
+    String query = "SELECT " + GROUP_ID + ", (" +
+                    "SELECT " + MmsDatabase.TABLE_NAME + "." + MmsDatabase.DATE_RECEIVED + " FROM " + MmsDatabase.TABLE_NAME +
+                      " WHERE " + MmsDatabase.TABLE_NAME + "." + MmsDatabase.RECIPIENT_ID + " = " + ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.RECIPIENT_ID +
+                      " AND " + MmsDatabase.STORY_TYPE + " > 1 ORDER BY " + MmsDatabase.TABLE_NAME + "." + MmsDatabase.DATE_RECEIVED + " DESC LIMIT 1" +
+                    ") as active_timestamp" +
+                   " FROM " + TABLE_NAME +
+                   " INNER JOIN " + ThreadDatabase.TABLE_NAME + " ON " + ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.RECIPIENT_ID + " = " + TABLE_NAME + "." + RECIPIENT_ID +
+                   " WHERE " + ACTIVE + " = 1 " +
+                   " AND (" +
+                    SHOW_AS_STORY_STATE + " = " + ShowAsStoryState.ALWAYS.code +
+                    " OR (" + SHOW_AS_STORY_STATE + " = " + ShowAsStoryState.IF_ACTIVE.code + " AND active_timestamp IS NOT NULL)" +
+                   ") ORDER BY active_timestamp DESC";
 
-    try (Cursor cursor = getReadableDatabase().query(TABLE_NAME, selection, where, whereArgs, null, null, null, null)) {
+    try (Cursor cursor = getReadableDatabase().query(query)) {
       if (cursor == null || cursor.getCount() == 0) {
         return Collections.emptyList();
       }
@@ -1480,15 +1492,41 @@ public class GroupDatabase extends Database {
     }
   }
 
-  public void markDisplayAsStory(@NonNull GroupId groupId) {
-    markDisplayAsStory(groupId, true);
+  public @NonNull ShowAsStoryState getShowAsStoryState(@NonNull GroupId groupId) {
+    String[] projection = SqlUtil.buildArgs(SHOW_AS_STORY_STATE);
+    String   where      = GROUP_ID + " = ?";
+    String[] whereArgs  = SqlUtil.buildArgs(groupId.toString());
+
+    try (Cursor cursor = getReadableDatabase().query(TABLE_NAME, projection, where, whereArgs, null, null, null)) {
+      if (!cursor.moveToFirst()) {
+        throw new AssertionError("Group does not exist.");
+      }
+
+      int serializedState = CursorUtil.requireInt(cursor, SHOW_AS_STORY_STATE);
+      return ShowAsStoryState.deserialize(serializedState);
+    }
   }
 
-  public void markDisplayAsStory(@NonNull GroupId groupId, boolean displayAsStory) {
+  public void setShowAsStoryState(@NonNull GroupId groupId, @NonNull ShowAsStoryState showAsStoryState) {
     ContentValues contentValues = new ContentValues(1);
-    contentValues.put(DISPLAY_AS_STORY, displayAsStory);
+    contentValues.put(SHOW_AS_STORY_STATE, showAsStoryState.code);
 
     getWritableDatabase().update(TABLE_NAME, contentValues, GROUP_ID + " = ?", SqlUtil.buildArgs(groupId.toString()));
+  }
+
+  public void setShowAsStoryState(@NonNull Collection<RecipientId> recipientIds, @NonNull ShowAsStoryState showAsStoryState) {
+    ContentValues       contentValues = new ContentValues(1);
+    List<SqlUtil.Query> queries       = SqlUtil.buildCollectionQuery(RECIPIENT_ID, recipientIds);
+
+    contentValues.put(SHOW_AS_STORY_STATE, showAsStoryState.code);
+
+    SQLiteDatabaseExtensionsKt.withinTransaction(getWritableDatabase(), db -> {
+        for (SqlUtil.Query query : queries) {
+          db.update(TABLE_NAME, contentValues, query.getWhere(), query.getWhereArgs());
+        }
+
+        return null;
+    });
   }
 
   public enum MemberSet {
@@ -1503,6 +1541,45 @@ public class GroupDatabase extends Database {
     MemberSet(boolean includeSelf, boolean includePending) {
       this.includeSelf    = includeSelf;
       this.includePending = includePending;
+    }
+  }
+
+  /**
+   * State object describing whether or not to display a story in a list.
+   */
+  public enum ShowAsStoryState {
+    /**
+     * The default value. Display the group as a story if the group has stories in it currently.
+     */
+    IF_ACTIVE(0),
+    /**
+     * Always display the group as a story unless explicitly removed. This state is entered if the
+     * user sends a story to a group or otherwise explicitly selects it to appear.
+     */
+    ALWAYS(1),
+    /**
+     * Never display the story as a group. This state is entered if the user removes the group from
+     * their list, and is only navigated away from if the user explicitly adds the group again.
+     */
+    NEVER(2);
+
+    private final int code;
+
+    ShowAsStoryState(int code) {
+      this.code = code;
+    }
+
+    private static @NonNull ShowAsStoryState deserialize(int code) {
+      switch (code) {
+        case 0:
+          return IF_ACTIVE;
+        case 1:
+          return ALWAYS;
+        case 2:
+          return NEVER;
+        default:
+          throw new IllegalArgumentException("Unknown code: " + code);
+      }
     }
   }
 

@@ -68,10 +68,6 @@ class TextStoryPostSendRepository {
         val recipient = Recipient.resolved(contact.requireShareContact().recipientId.get())
         val isStory = contact is ContactSearchKey.RecipientSearchKey.Story || recipient.isDistributionList
 
-        if (isStory && recipient.isActiveGroup && recipient.isGroup) {
-          SignalDatabase.groups.markDisplayAsStory(recipient.requireGroupId())
-        }
-
         if (isStory && !recipient.isMyStory) {
           SignalStore.storyValues().setLatestStorySend(StorySend.newSend(recipient))
         }
