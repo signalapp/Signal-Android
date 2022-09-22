@@ -33,6 +33,7 @@ class ConversationListTabsFragment : Fragment(R.layout.conversation_list_tabs) {
   private lateinit var chatsPill: ImageView
   private lateinit var storiesPill: ImageView
 
+  private var shouldBeImmediate = true
   private var pillAnimator: Animator? = null
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -63,9 +64,10 @@ class ConversationListTabsFragment : Fragment(R.layout.conversation_list_tabs) {
       viewModel.onStoriesSelected()
     }
 
-    update(viewModel.stateSnapshot, true)
-
-    viewModel.state.observe(viewLifecycleOwner) { update(it, false) }
+    viewModel.state.observe(viewLifecycleOwner) {
+      update(it, shouldBeImmediate)
+      shouldBeImmediate = false
+    }
   }
 
   private fun update(state: ConversationListTabsState, immediate: Boolean) {

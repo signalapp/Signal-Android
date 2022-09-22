@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.stories.tabs
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import io.reactivex.rxjava3.core.Observable
@@ -15,7 +16,7 @@ class ConversationListTabsViewModel(repository: ConversationListTabRepository) :
   private val store = Store(ConversationListTabsState())
 
   val stateSnapshot: ConversationListTabsState = store.state
-  val state: LiveData<ConversationListTabsState> = store.stateLiveData
+  val state: LiveData<ConversationListTabsState> = Transformations.distinctUntilChanged(store.stateLiveData)
   val disposables = CompositeDisposable()
 
   private val internalTabClickEvents: Subject<ConversationListTab> = PublishSubject.create()
