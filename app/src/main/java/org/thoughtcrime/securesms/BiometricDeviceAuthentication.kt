@@ -44,7 +44,7 @@ class BiometricDeviceAuthentication(
         Log.i(TAG, "Skipping show system biometric or device lock dialog unless forced")
       }
       true
-    } else if (force) {
+    } else if (Build.VERSION.SDK_INT >= 21) {
       if (force) {
         Log.i(TAG, "firing intent...")
         showConfirmDeviceCredentialIntent()
