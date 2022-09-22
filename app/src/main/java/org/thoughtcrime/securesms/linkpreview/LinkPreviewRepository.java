@@ -185,6 +185,7 @@ public class LinkPreviewRepository {
       try {
         Response response = call.execute();
         if (!response.isSuccessful() || response.body() == null) {
+          callback.accept(Optional.empty());
           return;
         }
 
