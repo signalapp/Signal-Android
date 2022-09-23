@@ -243,7 +243,7 @@ class ContactSearchPagedDataSource(
   ): ContactSearchCollection<R> {
     return when (section) {
       is ContactSearchConfiguration.Section.Stories -> StoriesSearchCollection(section, records, extraData, recordMapper, activeStoryCount, StoryComparator(latestStorySends))
-      else -> ContactSearchCollection(section, records, recordsPredicate, extraData, recordMapper, 0)
+      else -> ContactSearchCollection(section, records, recordsPredicate, recordMapper, 0)
     }
   }
 

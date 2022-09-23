@@ -13,7 +13,7 @@ class StoriesSearchCollection<ContactRecord>(
   recordMapper: (ContactRecord) -> ContactSearchData,
   activeContactCount: Int,
   private val storyComparator: Comparator<ContactSearchData.Story>
-) : ContactSearchCollection<ContactRecord>(section, records, null, extraData, recordMapper, activeContactCount) {
+) : ContactSearchCollection<ContactRecord>(section, records, null, recordMapper, activeContactCount) {
   private val aggregateStoryData: List<ContactSearchData.Story> by lazy {
     if (section !is ContactSearchConfiguration.Section.Stories) {
       error("Aggregate data creation is only necessary for stories.")

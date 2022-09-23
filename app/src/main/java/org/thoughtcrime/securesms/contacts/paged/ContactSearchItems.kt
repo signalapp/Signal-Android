@@ -76,6 +76,7 @@ object ContactSearchItems {
           is ContactSearchData.KnownRecipient -> RecipientModel(it, selection.contains(it.contactSearchKey))
           is ContactSearchData.Expand -> ExpandModel(it)
           is ContactSearchData.Header -> HeaderModel(it)
+          is ContactSearchData.TestRow -> error("This row exists for testing only.")
         }
       }
     )

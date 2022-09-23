@@ -12,23 +12,20 @@ open class ContactSearchCollection<ContactRecord>(
   private val section: ContactSearchConfiguration.Section,
   private val records: ContactSearchIterator<ContactRecord>,
   private val recordPredicate: ((ContactRecord) -> Boolean)? = null,
-  private val extraData: List<ContactSearchData>,
   private val recordMapper: (ContactRecord) -> ContactSearchData,
   private val activeContactCount: Int
 ) {
 
-  private val recordsCount: Int = if (recordPredicate != null) {
+  private val contentSize: Int = if (recordPredicate != null) {
     records.asSequence().filter(recordPredicate).count()
   } else {
     records.getCount()
   }
 
-  private val contentSize: Int
   private val aggregateData: SparseArrayCompat<ContactSearchData> = SparseArrayCompat()
 
   init {
     records.moveToPosition(-1)
-    contentSize = recordsCount + extraData.count()
   }
 
   fun getSize(): Int {
@@ -57,7 +54,11 @@ open class ContactSearchCollection<ContactRecord>(
       null to 0
     }
 
-    fillDataWindow(start, end - start)
+    val windowOffset = start + startOffset - if (section.includeHeader) 1 else 0
+    val windowLimit = end - windowOffset - if (section.includeHeader) 1 else 0
+
+    fillDataWindow(windowOffset, windowLimit)
+
     for (i in (start + startOffset) until (end - endOffset)) {
       val correctedIndex = if (section.includeHeader) i - 1 else i
       results.add(getItemAtCorrectedIndex(correctedIndex))
@@ -95,20 +96,9 @@ open class ContactSearchCollection<ContactRecord>(
       key++
     }
 
-    if (isAggregateDataFilled(offset, limit)) {
-      return
+    if (!isAggregateDataFilled(offset, limit)) {
+      error("Data integrity failure: ${section.sectionKey} requesting $offset , $limit")
     }
-
-    extraData.forEach {
-      aggregateData.put(key, it)
-      key++
-    }
-
-    if (isAggregateDataFilled(offset, limit)) {
-      return
-    }
-
-    throw IllegalStateException("Could not fill aggregate data for bounds $offset $limit")
   }
 
   private fun isAggregateDataFilled(startOffset: Int, limit: Int): Boolean {

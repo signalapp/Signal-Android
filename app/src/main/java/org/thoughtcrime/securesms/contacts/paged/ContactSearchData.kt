@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.contacts.paged
 
+import androidx.annotation.VisibleForTesting
 import org.thoughtcrime.securesms.contacts.HeaderAction
 import org.thoughtcrime.securesms.database.model.DistributionListPrivacyMode
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -36,4 +37,10 @@ sealed class ContactSearchData(val contactSearchKey: ContactSearchKey) {
    * A row which the user can click to view all entries for a given section.
    */
   class Expand(val sectionKey: ContactSearchConfiguration.SectionKey) : ContactSearchData(ContactSearchKey.Expand(sectionKey))
+
+  /**
+   * A row which contains an integer, for testing.
+   */
+  @VisibleForTesting
+  class TestRow(val value: Int) : ContactSearchData(ContactSearchKey.Expand(ContactSearchConfiguration.SectionKey.RECENTS))
 }
