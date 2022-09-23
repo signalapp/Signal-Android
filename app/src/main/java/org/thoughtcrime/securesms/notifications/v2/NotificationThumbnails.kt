@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader
 import org.thoughtcrime.securesms.mms.Slide
 import org.thoughtcrime.securesms.providers.BlobProvider
+import org.thoughtcrime.securesms.util.BitmapDecodingException
 import org.thoughtcrime.securesms.util.ImageCompressionUtil
 import org.thoughtcrime.securesms.util.kb
 import org.thoughtcrime.securesms.util.mb
@@ -67,14 +68,19 @@ object NotificationThumbnails {
       val uri = thumbnailSlide.uri
 
       if (uri != null) {
-        val result = ImageCompressionUtil.compressWithinConstraints(
-          context,
-          thumbnailSlide.contentType,
-          DecryptableStreamUriLoader.DecryptableUri(uri),
-          1024,
-          TARGET_SIZE,
-          60
-        )
+        val result: ImageCompressionUtil.Result? = try {
+          ImageCompressionUtil.compressWithinConstraints(
+            context,
+            thumbnailSlide.contentType,
+            DecryptableStreamUriLoader.DecryptableUri(uri),
+            1024,
+            TARGET_SIZE,
+            60
+          )
+        } catch (e: BitmapDecodingException) {
+          Log.i(TAG, "Unable to decode bitmap", e)
+          null
+        }
 
         if (result != null) {
           val thumbnailUri = BlobProvider
