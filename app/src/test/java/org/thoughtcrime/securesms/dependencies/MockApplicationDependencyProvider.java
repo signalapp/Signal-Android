@@ -45,6 +45,7 @@ import org.whispersystems.signalservice.api.services.ProfileService;
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
 
 import java.security.KeyStore;
+import java.util.function.Supplier;
 
 import static org.mockito.Mockito.mock;
 
@@ -186,7 +187,7 @@ public class MockApplicationDependencyProvider implements ApplicationDependencie
   }
 
   @Override
-  public @NonNull SignalWebSocket provideSignalWebSocket(@NonNull SignalServiceConfiguration signalServiceConfiguration) {
+  public @NonNull SignalWebSocket provideSignalWebSocket(@NonNull Supplier<SignalServiceConfiguration> signalServiceConfigurationSupplier) {
     return null;
   }
 

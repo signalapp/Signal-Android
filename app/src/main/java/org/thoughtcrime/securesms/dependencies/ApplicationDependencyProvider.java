@@ -95,6 +95,7 @@ import org.whispersystems.signalservice.internal.websocket.WebSocketConnection;
 import java.security.KeyStore;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Supplier;
 
 /**
  * Implementation of {@link ApplicationDependencies.Provider} that provides real app dependencies.
@@ -281,10 +282,10 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
   }
 
   @Override
-  public @NonNull SignalWebSocket provideSignalWebSocket(@NonNull SignalServiceConfiguration signalServiceConfiguration) {
+  public @NonNull SignalWebSocket provideSignalWebSocket(@NonNull Supplier<SignalServiceConfiguration> signalServiceConfigurationSupplier) {
     SleepTimer                   sleepTimer      = SignalStore.account().isFcmEnabled() ? new UptimeSleepTimer() : new AlarmSleepTimer(context);
     SignalWebSocketHealthMonitor healthMonitor   = new SignalWebSocketHealthMonitor(context, sleepTimer);
-    SignalWebSocket              signalWebSocket = new SignalWebSocket(provideWebSocketFactory(signalServiceConfiguration, healthMonitor));
+    SignalWebSocket              signalWebSocket = new SignalWebSocket(provideWebSocketFactory(signalServiceConfigurationSupplier, healthMonitor));
 
     healthMonitor.monitor(signalWebSocket);
 
@@ -389,12 +390,12 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
                                                            10);
   }
 
-  private @NonNull WebSocketFactory provideWebSocketFactory(@NonNull SignalServiceConfiguration signalServiceConfiguration, @NonNull SignalWebSocketHealthMonitor healthMonitor) {
+  @NonNull WebSocketFactory provideWebSocketFactory(@NonNull Supplier<SignalServiceConfiguration> signalServiceConfigurationSupplier, @NonNull SignalWebSocketHealthMonitor healthMonitor) {
     return new WebSocketFactory() {
       @Override
       public WebSocketConnection createWebSocket() {
         return new WebSocketConnection("normal",
-                                       signalServiceConfiguration,
+                                       signalServiceConfigurationSupplier.get(),
                                        Optional.of(new DynamicCredentialsProvider()),
                                        BuildConfig.SIGNAL_AGENT,
                                        healthMonitor);
@@ -403,7 +404,7 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
       @Override
       public WebSocketConnection createUnidentifiedWebSocket() {
         return new WebSocketConnection("unidentified",
-                                       signalServiceConfiguration,
+                                       signalServiceConfigurationSupplier.get(),
                                        Optional.empty(),
                                        BuildConfig.SIGNAL_AGENT,
                                        healthMonitor);
