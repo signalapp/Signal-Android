@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.session.libsession.messaging.open_groups.OpenGroup
+import org.session.libsession.messaging.open_groups.OpenGroupApi
 import org.session.libsession.messaging.utilities.SessionId
 import org.session.libsession.messaging.utilities.SodiumUtilities
 import org.session.libsession.utilities.recipients.Recipient
@@ -41,7 +42,7 @@ class ConversationViewModel(
         get() = openGroup?.let { storage.getServerCapabilities(it.server) } ?: listOf()
 
     val blindedPublicKey: String?
-        get() = if (openGroup == null || edKeyPair == null) null else {
+        get() = if (openGroup == null || edKeyPair == null || !serverCapabilities.contains(OpenGroupApi.Capability.BLIND.name.lowercase())) null else {
             SodiumUtilities.blindedKeyPair(openGroup!!.publicKey, edKeyPair)?.publicKey?.asBytes
                 ?.let { SessionId(IdPrefix.BLINDED, it) }?.hexString
         }

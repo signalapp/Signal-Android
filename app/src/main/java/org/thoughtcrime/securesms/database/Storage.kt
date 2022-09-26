@@ -319,12 +319,8 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         return getAllOpenGroups().values.firstOrNull { it.server == server && it.room == room }
     }
 
-    override fun clearGroupMemberRoles(groupId: String) {
-        DatabaseComponent.get(context).groupMemberDatabase().clearGroupMemberRoles(groupId)
-    }
-
-    override fun addGroupMemberRole(member: GroupMember) {
-        DatabaseComponent.get(context).groupMemberDatabase().addGroupMember(member)
+    override fun setGroupMemberRoles(members: List<GroupMember>) {
+        DatabaseComponent.get(context).groupMemberDatabase().setGroupMembers(members)
     }
 
     override fun isDuplicateMessage(timestamp: Long): Boolean {

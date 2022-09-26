@@ -231,12 +231,18 @@ fun MessageReceiver.handleVisibleMessage(message: VisibleMessage,
         throw MessageReceiver.Error.NoThread
     }
     val threadRecipient = storage.getRecipientForThread(threadID)
+    val userBlindedKey = openGroupID?.let {
+        val openGroup = storage.getOpenGroup(threadID) ?: return@let null
+        val blindedKey = SodiumUtilities.blindedKeyPair(openGroup.publicKey, MessagingModuleConfiguration.shared.getUserED25519KeyPair()!!) ?: return@let null
+        SessionId(
+            IdPrefix.BLINDED, blindedKey.publicKey.asBytes
+        ).hexString
+    }
     // Update profile if needed
     val recipient = Recipient.from(context, Address.fromSerialized(messageSender!!), false)
     if (runProfileUpdate) {
         val profile = message.profile
-        val isUserBlindedSender = messageSender == storage.getOpenGroup(threadID)?.publicKey?.let { SodiumUtilities.blindedKeyPair(it, MessagingModuleConfiguration.shared.getUserED25519KeyPair()!!) }?.let { SessionId(
-            IdPrefix.BLINDED, it.publicKey.asBytes).hexString }
+        val isUserBlindedSender = messageSender == userBlindedKey
         if (profile != null && userPublicKey != messageSender && !isUserBlindedSender) {
             val profileManager = SSKEnvironment.shared.profileManager
             val name = profile.displayName!!
@@ -260,7 +266,13 @@ fun MessageReceiver.handleVisibleMessage(message: VisibleMessage,
     var quoteModel: QuoteModel? = null
     if (message.quote != null && proto.dataMessage.hasQuote()) {
         val quote = proto.dataMessage.quote
-        val author = Address.fromSerialized(quote.author)
+
+        val author = if (quote.author == userBlindedKey) {
+            Address.fromSerialized(userPublicKey!!)
+        } else {
+            Address.fromSerialized(quote.author)
+        }
+
         val messageDataProvider = MessagingModuleConfiguration.shared.messageDataProvider
         val messageInfo = messageDataProvider.getMessageForQuote(quote.id, author)
         quoteModel = if (messageInfo != null) {

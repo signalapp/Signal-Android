@@ -1397,7 +1397,13 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
             } else it.individualRecipient.address
             QuoteModel(it.dateSent, sender, it.body, false, quotedAttachments)
         }
-        val outgoingTextMessage = OutgoingMediaMessage.from(message, recipient, attachments, quote, linkPreview)
+        val localQuote = quotedMessage?.let {
+            val sender =
+                if (it.isOutgoing) fromSerialized(textSecurePreferences.getLocalNumber()!!)
+                else it.individualRecipient.address
+            quote?.copy(author = sender)
+        }
+        val outgoingTextMessage = OutgoingMediaMessage.from(message, recipient, attachments, localQuote, linkPreview)
         // Clear the input bar
         binding?.inputBar?.text = ""
         binding?.inputBar?.cancelQuoteDraft()
@@ -1713,7 +1719,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
 
     override fun resendMessage(messages: Set<MessageRecord>) {
         messages.iterator().forEach { messageRecord ->
-            ResendMessageUtilities.resend(messageRecord)
+            ResendMessageUtilities.resend(this, messageRecord, viewModel.blindedPublicKey)
         }
         endActionMode()
     }

@@ -134,20 +134,26 @@ class OpenGroupPoller(private val server: String, private val executorService: S
         storage.setUserCount(roomToken, server, pollInfo.activeUsers)
 
         // - Moderators
-        storage.clearGroupMemberRoles(groupId)
-
-        pollInfo.details?.moderators?.forEach {
-            storage.addGroupMemberRole(GroupMember(groupId, it, GroupMemberRole.MODERATOR))
+        pollInfo.details?.moderators?.let { moderatorList ->
+            storage.setGroupMemberRoles(moderatorList.map {
+                GroupMember(groupId, it, GroupMemberRole.MODERATOR)
+            })
         }
-        pollInfo.details?.hiddenModerators?.forEach {
-            storage.addGroupMemberRole(GroupMember(groupId, it, GroupMemberRole.HIDDEN_MODERATOR))
+        pollInfo.details?.hiddenModerators?.let { moderatorList ->
+            storage.setGroupMemberRoles(moderatorList.map {
+                GroupMember(groupId, it, GroupMemberRole.HIDDEN_MODERATOR)
+            })
         }
         // - Admins
-        pollInfo.details?.admins?.forEach {
-            storage.addGroupMemberRole(GroupMember(groupId, it, GroupMemberRole.ADMIN))
+        pollInfo.details?.admins?.let { moderatorList ->
+            storage.setGroupMemberRoles(moderatorList.map {
+                GroupMember(groupId, it, GroupMemberRole.ADMIN)
+            })
         }
-        pollInfo.details?.hiddenAdmins?.forEach {
-            storage.addGroupMemberRole(GroupMember(groupId, it, GroupMemberRole.HIDDEN_ADMIN))
+        pollInfo.details?.hiddenAdmins?.let { moderatorList ->
+            storage.setGroupMemberRoles(moderatorList.map {
+                GroupMember(groupId, it, GroupMemberRole.HIDDEN_ADMIN)
+            })
         }
     }
 

@@ -13,6 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import network.loki.messenger.R
 import network.loki.messenger.databinding.ViewQuoteBinding
 import org.session.libsession.messaging.contacts.Contact
+import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsession.utilities.recipients.Recipient
 import org.thoughtcrime.securesms.conversation.v2.utilities.MentionUtilities
 import org.thoughtcrime.securesms.database.SessionContactDatabase
@@ -69,7 +70,12 @@ class QuoteView @JvmOverloads constructor(context: Context, attrs: AttributeSet?
         isOriginalMissing: Boolean, glide: GlideRequests) {
         // Author
         val author = contactDb.getContactWithSessionID(authorPublicKey)
-        val authorDisplayName = author?.displayName(Contact.contextForRecipient(thread)) ?: "${authorPublicKey.take(4)}...${authorPublicKey.takeLast(4)}"
+        val localNumber = TextSecurePreferences.getLocalNumber(context)
+        val quoteIsLocalUser = localNumber != null && localNumber == author?.sessionID
+
+        val authorDisplayName =
+            if (quoteIsLocalUser) context.getString(R.string.QuoteView_you)
+            else author?.displayName(Contact.contextForRecipient(thread)) ?: "${authorPublicKey.take(4)}...${authorPublicKey.takeLast(4)}"
         binding.quoteViewAuthorTextView.text = authorDisplayName
         binding.quoteViewAuthorTextView.setTextColor(getTextColor(isOutgoingMessage))
         // Body
