@@ -5,15 +5,12 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.stories.viewer.page.StoryViewerPageArgs
 import org.thoughtcrime.securesms.stories.viewer.page.StoryViewerPageFragment
 
 class StoryViewerPagerAdapter(
   fragment: Fragment,
-  private val initialStoryId: Long,
-  private val isFromNotification: Boolean,
-  private val groupReplyStartPosition: Int,
-  private val isOutgoingOnly: Boolean,
-  private val isFromInfoContextMenuAction: Boolean
+  private val arguments: StoryViewerPageArgs
 ) : FragmentStateAdapter(fragment) {
 
   private val pages: MutableList<RecipientId> = mutableListOf()
@@ -39,7 +36,7 @@ class StoryViewerPagerAdapter(
   }
 
   override fun createFragment(position: Int): Fragment {
-    return StoryViewerPageFragment.create(pages[position], initialStoryId, isFromNotification, groupReplyStartPosition, isOutgoingOnly, isFromInfoContextMenuAction)
+    return StoryViewerPageFragment.create(arguments.copy(recipientId = pages[position]))
   }
 
   private class Callback(

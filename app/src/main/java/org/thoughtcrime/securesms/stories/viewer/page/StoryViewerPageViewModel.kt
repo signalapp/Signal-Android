@@ -25,9 +25,7 @@ import kotlin.math.min
  * Encapsulates presentation logic for displaying a collection of posts from a given user's story
  */
 class StoryViewerPageViewModel(
-  private val recipientId: RecipientId,
-  private val initialStoryId: Long,
-  private val isOutgoingOnly: Boolean,
+  private val args: StoryViewerPageArgs,
   private val repository: StoryViewerPageRepository,
   val storyCache: StoryCache
 ) : ViewModel() {
@@ -63,11 +61,11 @@ class StoryViewerPageViewModel(
 
   fun refresh() {
     disposables.clear()
-    disposables += repository.getStoryPostsFor(recipientId, isOutgoingOnly).subscribe { posts ->
+    disposables += repository.getStoryPostsFor(args.recipientId, args.isOutgoingOnly).subscribe { posts ->
       store.update { state ->
         val isDisplayingInitialState = state.posts.isEmpty() && posts.isNotEmpty()
-        val startIndex = if (state.posts.isEmpty() && initialStoryId > 0) {
-          val initialIndex = posts.indexOfFirst { it.id == initialStoryId }
+        val startIndex = if (state.posts.isEmpty() && args.initialStoryId > 0) {
+          val initialIndex = posts.indexOfFirst { it.id == args.initialStoryId }
           initialIndex.takeIf { it > -1 } ?: state.selectedPostIndex
         } else if (state.posts.isEmpty()) {
           val initialPost = getNextUnreadPost(posts)
@@ -104,7 +102,7 @@ class StoryViewerPageViewModel(
   }
 
   fun hideStory(): Completable {
-    return repository.hideStory(recipientId)
+    return repository.hideStory(args.recipientId)
   }
 
   fun markViewed(storyPost: StoryPost) {
@@ -133,10 +131,10 @@ class StoryViewerPageViewModel(
 
     val postIndex = store.state.selectedPostIndex
     val nextUnreadPost: StoryPost? = getNextUnreadPost(store.state.posts.drop(postIndex + 1))
-    if (nextUnreadPost == null) {
-      setSelectedPostIndex(postIndex + 1)
-    } else {
-      setSelectedPostIndex(store.state.posts.indexOf(nextUnreadPost))
+    when {
+      nextUnreadPost == null && args.isJumpForwardToUnviewed -> setSelectedPostIndex(store.state.posts.size)
+      nextUnreadPost == null -> setSelectedPostIndex(postIndex + 1)
+      else -> setSelectedPostIndex(store.state.posts.indexOf(nextUnreadPost))
     }
   }
 
@@ -311,14 +309,12 @@ class StoryViewerPageViewModel(
   }
 
   class Factory(
-    private val recipientId: RecipientId,
-    private val initialStoryId: Long,
-    private val isOutgoingOnly: Boolean,
+    private val args: StoryViewerPageArgs,
     private val repository: StoryViewerPageRepository,
     private val storyCache: StoryCache
   ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return modelClass.cast(StoryViewerPageViewModel(recipientId, initialStoryId, isOutgoingOnly, repository, storyCache)) as T
+      return modelClass.cast(StoryViewerPageViewModel(args, repository, storyCache)) as T
     }
   }
 }

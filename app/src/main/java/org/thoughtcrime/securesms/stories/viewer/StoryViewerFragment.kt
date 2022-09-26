@@ -7,8 +7,10 @@ import androidx.fragment.app.viewModels
 import androidx.viewpager2.widget.ViewPager2
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stories.StoryViewerArgs
+import org.thoughtcrime.securesms.stories.viewer.page.StoryViewerPageArgs
 import org.thoughtcrime.securesms.stories.viewer.page.StoryViewerPageFragment
 import org.thoughtcrime.securesms.stories.viewer.reply.StoriesSharedElementCrossFaderView
 import org.thoughtcrime.securesms.util.LifecycleDisposable
@@ -47,11 +49,18 @@ class StoryViewerFragment :
 
     val adapter = StoryViewerPagerAdapter(
       this,
-      storyViewerArgs.storyId,
-      storyViewerArgs.isFromNotification,
-      storyViewerArgs.groupReplyStartPosition,
-      storyViewerArgs.isFromMyStories,
-      storyViewerArgs.isFromInfoContextMenuAction
+      StoryViewerPageArgs(
+        recipientId = Recipient.UNKNOWN.id,
+        initialStoryId = storyViewerArgs.storyId,
+        isJumpForwardToUnviewed = storyViewerArgs.isJumpToUnviewed,
+        isOutgoingOnly = storyViewerArgs.isFromMyStories,
+        source = when {
+          storyViewerArgs.isFromInfoContextMenuAction -> StoryViewerPageArgs.Source.INFO_CONTEXT
+          storyViewerArgs.isFromNotification -> StoryViewerPageArgs.Source.NOTIFICATION
+          else -> StoryViewerPageArgs.Source.UNKNOWN
+        },
+        groupReplyStartPosition = storyViewerArgs.groupReplyStartPosition
+      )
     )
 
     storyPager.adapter = adapter

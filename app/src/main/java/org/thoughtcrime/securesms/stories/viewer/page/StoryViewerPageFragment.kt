@@ -124,9 +124,7 @@ class StoryViewerPageFragment :
   private val viewModel: StoryViewerPageViewModel by viewModels(
     factoryProducer = {
       StoryViewerPageViewModel.Factory(
-        storyRecipientId,
-        initialStoryId,
-        isOutgoingOnly,
+        storyViewerPageArgs,
         StoryViewerPageRepository(
           requireContext()
         ),
@@ -149,23 +147,7 @@ class StoryViewerPageFragment :
 
   private var sendingProgressDrawable: IndeterminateDrawable<CircularProgressIndicatorSpec>? = null
 
-  private val storyRecipientId: RecipientId
-    get() = requireArguments().getParcelable(ARG_STORY_RECIPIENT_ID)!!
-
-  private val initialStoryId: Long
-    get() = requireArguments().getLong(ARG_STORY_ID, -1L)
-
-  private val isFromNotification: Boolean
-    get() = requireArguments().getBoolean(ARG_IS_FROM_NOTIFICATION, false)
-
-  private val groupReplyStartPosition: Int
-    get() = requireArguments().getInt(ARG_GROUP_REPLY_START_POSITION, -1)
-
-  private val isOutgoingOnly: Boolean
-    get() = requireArguments().getBoolean(ARG_IS_OUTGOING_ONLY, false)
-
-  private val isFromInfoContextMenuAction: Boolean
-    get() = requireArguments().getBoolean(ARG_IS_FROM_INFO_CONTEXT_MENU_ACTION, false)
+  private val storyViewerPageArgs: StoryViewerPageArgs by lazy(LazyThreadSafetyMode.NONE) { requireArguments().getParcelable(ARGS)!! }
 
   @SuppressLint("ClickableViewAccessibility")
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -357,7 +339,7 @@ class StoryViewerPageFragment :
 
       if (parentState.pages.size <= parentState.page) {
         viewModel.setIsSelectedPage(false)
-      } else if (storyRecipientId == parentState.pages[parentState.page]) {
+      } else if (storyViewerPageArgs.recipientId == parentState.pages[parentState.page]) {
         if (progressBar.segmentCount != 0) {
           progressBar.reset()
           progressBar.setPosition(viewModel.getRestartIndex())
@@ -412,16 +394,16 @@ class StoryViewerPageFragment :
 
         viewModel.setAreSegmentsInitialized(true)
       } else if (state.selectedPostIndex >= state.posts.size) {
-        callback.onFinishedPosts(storyRecipientId)
+        callback.onFinishedPosts(storyViewerPageArgs.recipientId)
       } else if (state.selectedPostIndex < 0) {
-        callback.onGoToPreviousStory(storyRecipientId)
+        callback.onGoToPreviousStory(storyViewerPageArgs.recipientId)
       }
 
       if (state.isDisplayingInitialState && !sharedViewModel.hasConsumedInitialState) {
         sharedViewModel.consumeInitialState()
-        if (isFromNotification) {
-          startReply(isFromNotification = true, groupReplyStartPosition = groupReplyStartPosition)
-        } else if (isFromInfoContextMenuAction && state.selectedPostIndex in state.posts.indices) {
+        if (storyViewerPageArgs.source == StoryViewerPageArgs.Source.NOTIFICATION) {
+          startReply(isFromNotification = true, groupReplyStartPosition = storyViewerPageArgs.groupReplyStartPosition)
+        } else if (storyViewerPageArgs.source == StoryViewerPageArgs.Source.INFO_CONTEXT && state.selectedPostIndex in state.posts.indices) {
           showInfo(state.posts[state.selectedPostIndex])
         }
       }
@@ -1060,13 +1042,13 @@ class StoryViewerPageFragment :
         }
       },
       onGoToChat = {
-        startActivity(ConversationIntents.createBuilder(requireContext(), storyRecipientId, -1L).build())
+        startActivity(ConversationIntents.createBuilder(requireContext(), storyViewerPageArgs.recipientId, -1L).build())
       },
       onHide = {
         viewModel.setIsDisplayingHideDialog(true)
-        StoryDialogs.hideStory(requireContext(), Recipient.resolved(storyRecipientId).getDisplayName(requireContext()), { viewModel.setIsDisplayingHideDialog(true) }) {
+        StoryDialogs.hideStory(requireContext(), Recipient.resolved(storyViewerPageArgs.recipientId).getDisplayName(requireContext()), { viewModel.setIsDisplayingHideDialog(true) }) {
           lifecycleDisposable += viewModel.hideStory().subscribe {
-            callback.onStoryHidden(storyRecipientId)
+            callback.onStoryHidden(storyViewerPageArgs.recipientId)
           }
         }
       },
@@ -1099,29 +1081,12 @@ class StoryViewerPageFragment :
     private val CHARACTERS_PER_SECOND = 15L
     private val DEFAULT_DURATION = TimeUnit.SECONDS.toMillis(5)
 
-    private const val ARG_STORY_RECIPIENT_ID = "arg.story.recipient.id"
-    private const val ARG_STORY_ID = "arg.story.id"
-    private const val ARG_IS_FROM_NOTIFICATION = "is_from_notification"
-    private const val ARG_GROUP_REPLY_START_POSITION = "group_reply_start_position"
-    private const val ARG_IS_OUTGOING_ONLY = "is_outgoing_only"
-    private const val ARG_IS_FROM_INFO_CONTEXT_MENU_ACTION = "is_from_info_context_menu_action"
+    private const val ARGS = "args"
 
-    fun create(
-      recipientId: RecipientId,
-      initialStoryId: Long,
-      isFromNotification: Boolean,
-      groupReplyStartPosition: Int,
-      isOutgoingOnly: Boolean,
-      isFromInfoContextMenuAction: Boolean
-    ): Fragment {
+    fun create(args: StoryViewerPageArgs): Fragment {
       return StoryViewerPageFragment().apply {
         arguments = bundleOf(
-          ARG_STORY_RECIPIENT_ID to recipientId,
-          ARG_STORY_ID to initialStoryId,
-          ARG_IS_FROM_NOTIFICATION to isFromNotification,
-          ARG_GROUP_REPLY_START_POSITION to groupReplyStartPosition,
-          ARG_IS_OUTGOING_ONLY to isOutgoingOnly,
-          ARG_IS_FROM_INFO_CONTEXT_MENU_ACTION to isFromInfoContextMenuAction,
+          ARGS to args
         )
       }
     }

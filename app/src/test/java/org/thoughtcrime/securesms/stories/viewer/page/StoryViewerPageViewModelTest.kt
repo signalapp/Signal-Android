@@ -146,6 +146,24 @@ class StoryViewerPageViewModelTest {
   }
 
   @Test
+  fun `Given no unread and jump to next unread enabled, when I goToNext, then I expect storyIndex to be size`() {
+    // GIVEN
+    val storyPosts = createStoryPosts(3) { true }
+    whenever(repository.getStoryPostsFor(any(), any())).thenReturn(Observable.just(storyPosts))
+
+    // WHEN
+    val testSubject = createTestSubject(isJumpForwardToUnviewed = true)
+    testScheduler.triggerActions()
+    testSubject.goToNextPost()
+    testScheduler.triggerActions()
+
+    // THEN
+    val testSubscriber = testSubject.state.test()
+
+    testSubscriber.assertValueAt(0) { it.selectedPostIndex == 3 }
+  }
+
+  @Test
   fun `Given a single story, when I goToPrevious, then I expect storyIndex to be -1`() {
     // GIVEN
     val storyPosts = createStoryPosts(1)
@@ -163,11 +181,16 @@ class StoryViewerPageViewModelTest {
     testSubscriber.assertValueAt(0) { it.selectedPostIndex == -1 }
   }
 
-  private fun createTestSubject(): StoryViewerPageViewModel {
+  private fun createTestSubject(isJumpForwardToUnviewed: Boolean = false): StoryViewerPageViewModel {
     return StoryViewerPageViewModel(
-      RecipientId.from(1),
-      -1L,
-      false,
+      StoryViewerPageArgs(
+        recipientId = RecipientId.from(1),
+        initialStoryId = -1L,
+        isOutgoingOnly = false,
+        isJumpForwardToUnviewed = isJumpForwardToUnviewed,
+        source = StoryViewerPageArgs.Source.UNKNOWN,
+        groupReplyStartPosition = -1
+      ),
       repository,
       mock()
     )
