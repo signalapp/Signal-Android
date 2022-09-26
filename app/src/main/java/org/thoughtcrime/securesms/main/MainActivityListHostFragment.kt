@@ -172,7 +172,7 @@ class MainActivityListHostFragment : Fragment(R.layout.main_activity_list_host_f
 
   private fun presentToolbarForStoriesLandingFragment() {
     _toolbar.visible = true
-    _searchAction.visible = false
+    _searchAction.visible = true
     if (_basicToolbar.resolved()) {
       _basicToolbar.get().visible = false
     }
@@ -213,6 +213,7 @@ class MainActivityListHostFragment : Fragment(R.layout.main_activity_list_host_f
   override fun onSearchOpened() {
     conversationListTabsViewModel.onSearchOpened()
     _searchToolbar.get().clearText()
+    _searchToolbar.get().display(_searchAction.x + (_searchAction.width / 2.0f), _searchAction.y + (_searchAction.height / 2.0f))
   }
 
   override fun onSearchClosed() {

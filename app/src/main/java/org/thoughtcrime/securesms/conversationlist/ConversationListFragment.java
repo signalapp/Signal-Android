@@ -120,6 +120,7 @@ import org.thoughtcrime.securesms.jobs.ServiceOutageDetectionJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.lock.v2.CreateKbsPinActivity;
 import org.thoughtcrime.securesms.main.Material3OnScrollHelperBinder;
+import org.thoughtcrime.securesms.main.SearchBinder;
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity;
 import org.thoughtcrime.securesms.megaphone.Megaphone;
 import org.thoughtcrime.securesms.megaphone.MegaphoneActionController;
@@ -299,7 +300,6 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     initializeViewModel();
     initializeListAdapters();
     initializeTypingObserver();
-    initializeSearchListener();
     initializeVoiceNotePlayer();
 
     RatingManager.showRatingDialogIfNecessary(requireContext());
@@ -362,6 +362,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   public void onResume() {
     super.onResume();
 
+    initializeSearchListener();
     updateReminders();
     EventBus.getDefault().register(this);
     itemAnimator.disable();
@@ -434,6 +435,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   public void onPause() {
     super.onPause();
 
+    requireCallback().getSearchAction().setOnClickListener(null);
     fab.stopPulse();
     cameraFab.stopPulse();
     EventBus.getDefault().unregister(this);
@@ -617,8 +619,6 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     requireCallback().getSearchAction().setOnClickListener(v -> {
       fadeOutButtonsAndMegaphone(250);
       requireCallback().onSearchOpened();
-      requireCallback().getSearchToolbar().get().display(requireCallback().getSearchAction().getX() + (requireCallback().getSearchAction().getWidth() / 2.0f),
-                                                         requireCallback().getSearchAction().getY() + (requireCallback().getSearchAction().getHeight() / 2.0f));
 
       requireCallback().getSearchToolbar().get().setListener(new Material3SearchToolbar.Listener() {
         @Override
@@ -1670,12 +1670,8 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     }
   }
 
-  public interface Callback extends Material3OnScrollHelperBinder {
+  public interface Callback extends Material3OnScrollHelperBinder, SearchBinder {
     @NonNull Toolbar getToolbar();
-
-    @NonNull ImageView getSearchAction();
-
-    @NonNull Stub<Material3SearchToolbar> getSearchToolbar();
 
     @NonNull View getUnreadPaymentsDot();
 
@@ -1684,10 +1680,6 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     void updateNotificationProfileStatus(@NonNull List<NotificationProfile> notificationProfiles);
 
     void updateProxyStatus(@NonNull WebSocketConnectionState state);
-
-    void onSearchOpened();
-
-    void onSearchClosed();
 
     void onMultiSelectStarted();
 

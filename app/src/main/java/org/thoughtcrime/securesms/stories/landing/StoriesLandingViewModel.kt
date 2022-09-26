@@ -54,6 +54,10 @@ class StoriesLandingViewModel(private val storiesLandingRepository: StoriesLandi
       .map { it.storyRecipient.id }
   }
 
+  fun setSearchQuery(query: String) {
+    store.update { it.copy(searchQuery = query) }
+  }
+
   class Factory(private val storiesLandingRepository: StoriesLandingRepository) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
       return modelClass.cast(StoriesLandingViewModel(storiesLandingRepository)) as T
