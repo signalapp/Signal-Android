@@ -16,7 +16,7 @@ open class ContactSearchCollection<ContactRecord>(
   private val activeContactCount: Int
 ) {
 
-  private val contentSize: Int = if (recordPredicate != null) {
+  protected open val contentSize: Int = if (recordPredicate != null) {
     records.asSequence().filter(recordPredicate).count()
   } else {
     records.getCount()
