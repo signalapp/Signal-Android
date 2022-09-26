@@ -61,7 +61,7 @@ dependencyResolutionManagement {
             alias('androidx-core-role').to('androidx.core:core-role:1.0.0')
 
             // Material
-            alias('material-material').to('com.google.android.material:material:1.5.0')
+            alias('material-material').to('com.google.android.material:material:1.6.1')
 
             // Google
             alias('google-protobuf-javalite').to('com.google.protobuf:protobuf-javalite:3.11.4')

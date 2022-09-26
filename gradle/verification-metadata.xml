@@ -1182,7 +1182,7 @@ https://docs.gradle.org/current/userguide/dependency_verification.html
       </component>
       <component group="com.android.tools.emulator" name="proto" version="30.2.2">
          <artifact name="proto-30.2.2.jar">
-            <sha256 value="cab182760fdd57c575bf058f3e70e82986af7b12e5d655d40d93db99e85b8f29" origin="Generated manually" />
+            <sha256 value="cab182760fdd57c575bf058f3e70e82986af7b12e5d655d40d93db99e85b8f29" origin="Generated manually"/>
          </artifact>
       </component>
       <component group="com.android.tools.external.com-intellij" name="intellij-core" version="30.2.2">
@@ -1306,34 +1306,34 @@ https://docs.gradle.org/current/userguide/dependency_verification.html
       </component>
       <component group="com.android.tools.utp" name="android-test-plugin-host-device-info" version="30.2.2">
          <artifact name="android-test-plugin-host-device-info-30.2.2.jar">
-            <sha256 value="1ad132515ed4bdb221fb61d586a497ac955daee37397f186bc1bbbfc0dd29433" origin="Generated manually" />
+            <sha256 value="1ad132515ed4bdb221fb61d586a497ac955daee37397f186bc1bbbfc0dd29433" origin="Generated manually"/>
          </artifact>
          <artifact name="android-test-plugin-host-device-info-30.2.2.module">
-            <sha256 value="43d4b4e3b9d56be8eb814d66012067aaa6d6dc8a6354cf3dfd7aee0d6265528a" origin="Generated manually" />
+            <sha256 value="43d4b4e3b9d56be8eb814d66012067aaa6d6dc8a6354cf3dfd7aee0d6265528a" origin="Generated manually"/>
          </artifact>
       </component>
       <component group="com.android.tools.utp" name="android-test-plugin-host-device-info-proto" version="30.2.2">
          <artifact name="android-test-plugin-host-device-info-proto-30.2.2.jar">
-            <sha256 value="b7841f4c51d74282281a449460e9effc00afbe1cc474ca0e167f43f22702939e" origin="Generated manually" />
+            <sha256 value="b7841f4c51d74282281a449460e9effc00afbe1cc474ca0e167f43f22702939e" origin="Generated manually"/>
          </artifact>
          <artifact name="android-test-plugin-host-device-info-proto-30.2.2.module">
-            <sha256 value="65063895657eeb89addd5565c01663525f603fa1a9ed65340802a9b2ab394ad9" origin="Generated manually" />
+            <sha256 value="65063895657eeb89addd5565c01663525f603fa1a9ed65340802a9b2ab394ad9" origin="Generated manually"/>
          </artifact>
       </component>
       <component group="com.android.tools.utp" name="android-test-plugin-host-logcat" version="30.2.2">
          <artifact name="android-test-plugin-host-logcat-30.2.2.jar">
-            <sha256 value="f4c200202bd728500208ce9828e59bedfbda8d7c5c1bf6e50cb3ca32b5466fb8" origin="Generated manually" />
+            <sha256 value="f4c200202bd728500208ce9828e59bedfbda8d7c5c1bf6e50cb3ca32b5466fb8" origin="Generated manually"/>
          </artifact>
          <artifact name="android-test-plugin-host-logcat-30.2.2.module">
-            <sha256 value="7d0939b4af3dfbf52c6d8705a6df6c2e0ed32a8c90e43ebfefabf8293b947dee" origin="Generated manually" />
+            <sha256 value="7d0939b4af3dfbf52c6d8705a6df6c2e0ed32a8c90e43ebfefabf8293b947dee" origin="Generated manually"/>
          </artifact>
       </component>
       <component group="com.android.tools.utp" name="android-test-plugin-host-retention" version="30.2.2">
          <artifact name="android-test-plugin-host-retention-30.2.2.jar">
-            <sha256 value="0cdc180ccab9c3f29c5b5ab7bcb20647a689b6d59ceea32f7446b2d4e0ed8950" origin="Generated manually" />
+            <sha256 value="0cdc180ccab9c3f29c5b5ab7bcb20647a689b6d59ceea32f7446b2d4e0ed8950" origin="Generated manually"/>
          </artifact>
          <artifact name="android-test-plugin-host-retention-30.2.2.module">
-            <sha256 value="63e7e7329ef74deabc47e52dc23075831bea65745482335f62978912b0269e7a" origin="Generated manually" />
+            <sha256 value="63e7e7329ef74deabc47e52dc23075831bea65745482335f62978912b0269e7a" origin="Generated manually"/>
          </artifact>
       </component>
       <component group="com.android.tools.utp" name="android-test-plugin-host-retention-proto" version="30.2.2">
@@ -1346,10 +1346,10 @@ https://docs.gradle.org/current/userguide/dependency_verification.html
       </component>
       <component group="com.android.tools.utp" name="android-test-plugin-result-listener-gradle" version="30.2.2">
          <artifact name="android-test-plugin-result-listener-gradle-30.2.2.jar">
-            <sha256 value="e8a9b582b35d204d189de48f9b2abffa3233cafdc5b93bc9539cfe04077ec14c" origin="Generated manually" />
+            <sha256 value="e8a9b582b35d204d189de48f9b2abffa3233cafdc5b93bc9539cfe04077ec14c" origin="Generated manually"/>
          </artifact>
          <artifact name="android-test-plugin-result-listener-gradle-30.2.2.module">
-            <sha256 value="48df7f4a5da5bf8fcff1690ce49fd8a738e549214b9e4d7204468dfab0fb7baa" origin="Generated manually" />
+            <sha256 value="48df7f4a5da5bf8fcff1690ce49fd8a738e549214b9e4d7204468dfab0fb7baa" origin="Generated manually"/>
          </artifact>
       </component>
       <component group="com.android.tools.utp" name="android-test-plugin-result-listener-gradle-proto" version="30.2.2">
@@ -1656,12 +1656,12 @@ https://docs.gradle.org/current/userguide/dependency_verification.html
             <sha256 value="e19d1f4650f51ce2202c092cbe174058860b6558cf26c8be37a732eff3ae1864" origin="Generated by Gradle"/>
          </artifact>
       </component>
-      <component group="com.google.android.material" name="material" version="1.5.0">
-         <artifact name="material-1.5.0.aar">
-            <sha256 value="b14dc96f95085f26f36aab703b2f791d136b71e91d5e80f0a0364531074a69c7" origin="Generated by Gradle"/>
+      <component group="com.google.android.material" name="material" version="1.6.1">
+         <artifact name="material-1.6.1.aar">
+            <sha256 value="82c65f5130aaabc3aa02cc78ff7d75f261ece19e69b8fec6e0777172f3e6c98d" origin="Generated by Gradle"/>
          </artifact>
-         <artifact name="material-1.5.0.module">
-            <sha256 value="336a3ec3bd22223cff27f705ec2d7c4729807f4c204428e11aea7f3e4445e532" origin="Generated by Gradle"/>
+         <artifact name="material-1.6.1.module">
+            <sha256 value="bcff69c9acec4398505c4d4dcd695222e172aa6c7d1291e0cd09a581c474d0ba" origin="Generated by Gradle"/>
          </artifact>
       </component>
       <component group="com.google.api.grpc" name="proto-google-common-protos" version="1.12.0">
@@ -1900,7 +1900,7 @@ https://docs.gradle.org/current/userguide/dependency_verification.html
       </component>
       <component group="com.google.testing.platform" name="android-test-plugin" version="0.0.8-alpha07">
          <artifact name="android-test-plugin-0.0.8-alpha07.jar">
-            <sha256 value="0da8b65d8bb0c45a8c4c359ce9125ea2f5bf553a64f8c16421c33623461f1f50" origin="Generated manually" />
+            <sha256 value="0da8b65d8bb0c45a8c4c359ce9125ea2f5bf553a64f8c16421c33623461f1f50" origin="Generated manually"/>
          </artifact>
       </component>
       <component group="com.google.testing.platform" name="core" version="0.0.8-alpha07">
