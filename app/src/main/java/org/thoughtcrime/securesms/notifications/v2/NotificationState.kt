@@ -68,7 +68,7 @@ data class NotificationState(val conversations: List<NotificationConversation>, 
       .putParcelableArrayListExtra(DeleteNotificationReceiver.EXTRA_THREADS, ArrayList(threads))
       .makeUniqueToPreventMerging()
 
-    return PendingIntent.getBroadcast(context, 0, intent, PendingIntentFlags.updateCurrent())
+    return NotificationPendingIntentHelper.getBroadcast(context, 0, intent, PendingIntentFlags.updateCurrent())
   }
 
   fun getMarkAsReadIntent(context: Context): PendingIntent? {
@@ -77,7 +77,7 @@ data class NotificationState(val conversations: List<NotificationConversation>, 
       .putExtra(MarkReadReceiver.NOTIFICATION_ID_EXTRA, NotificationIds.MESSAGE_SUMMARY)
       .makeUniqueToPreventMerging()
 
-    return PendingIntent.getBroadcast(context, 0, intent, PendingIntentFlags.updateCurrent())
+    return NotificationPendingIntentHelper.getBroadcast(context, 0, intent, PendingIntentFlags.updateCurrent())
   }
 
   fun getThreadsWithMostRecentNotificationFromSelf(): Set<ConversationId> {

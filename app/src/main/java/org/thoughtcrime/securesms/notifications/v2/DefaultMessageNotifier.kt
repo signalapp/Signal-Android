@@ -285,16 +285,18 @@ class DefaultMessageNotifier(context: Application) : MessageNotifier {
     }
 
     val alarmManager: AlarmManager? = ContextCompat.getSystemService(context, AlarmManager::class.java)
-    val pendingIntent: PendingIntent = PendingIntent.getBroadcast(context, 0, Intent(context, ReminderReceiver::class.java), PendingIntentFlags.updateCurrent())
-    alarmManager?.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + timeout, pendingIntent)
-    lastScheduledReminder = System.currentTimeMillis()
+    val pendingIntent: PendingIntent? = NotificationPendingIntentHelper.getBroadcast(context, 0, Intent(context, ReminderReceiver::class.java), PendingIntentFlags.updateCurrent())
+    if (pendingIntent != null) {
+      alarmManager?.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + timeout, pendingIntent)
+      lastScheduledReminder = System.currentTimeMillis()
+    }
   }
 
   private fun clearReminderInternal(context: Context) {
     lastScheduledReminder = 0
     threadReminders.clear()
 
-    val pendingIntent: PendingIntent? = PendingIntent.getBroadcast(context, 0, Intent(context, ReminderReceiver::class.java), PendingIntentFlags.cancelCurrent())
+    val pendingIntent: PendingIntent? = NotificationPendingIntentHelper.getBroadcast(context, 0, Intent(context, ReminderReceiver::class.java), PendingIntentFlags.cancelCurrent())
     if (pendingIntent != null) {
       val alarmManager: AlarmManager? = ContextCompat.getSystemService(context, AlarmManager::class.java)
       alarmManager?.cancel(pendingIntent)
