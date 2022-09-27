@@ -819,7 +819,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   }
 
   private void onMegaphoneChanged(@Nullable Megaphone megaphone) {
-    if (megaphone == null) {
+    if (megaphone == null || isArchived()) {
       if (megaphoneContainer.resolved()) {
         megaphoneContainer.get().setVisibility(View.GONE);
         megaphoneContainer.get().removeAllViews();
