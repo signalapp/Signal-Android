@@ -37,6 +37,11 @@ class StoryLinkPreviewView @JvmOverloads constructor(
   private val binding = StoriesTextPostLinkPreviewBinding.bind(this)
   private val spinnerStub = Stub<View>(binding.loadingSpinner)
 
+  init {
+    binding.linkPreviewImage.isClickable = false
+    binding.linkPreviewLarge.isClickable = false
+  }
+
   private fun getThumbnailTarget(useLargeThumbnail: Boolean): ThumbnailView {
     return if (useLargeThumbnail) binding.linkPreviewLarge else binding.linkPreviewImage
   }
@@ -165,8 +170,8 @@ class StoryLinkPreviewView @JvmOverloads constructor(
   }
 
   fun setOnPreviewClickListener(onClickListener: OnClickListener?) {
-    binding.linkPreviewCard.setOnClickListener(onClickListener)
-    binding.linkPreviewPlaceholderCard.setOnClickListener(onClickListener)
+    binding.linkPreviewCard.setOnClickListener { onClickListener?.onClick(this) }
+    binding.linkPreviewPlaceholderCard.setOnClickListener { onClickListener?.onClick(this) }
   }
 
   fun setCanClose(canClose: Boolean) {
