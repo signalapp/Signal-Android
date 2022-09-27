@@ -37,7 +37,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
 
-public final class PaymentDatabase extends Database {
+public final class PaymentDatabase extends Database implements RecipientIdDatabaseReference {
 
   private static final String TAG = Log.tag(PaymentDatabase.class);
 
@@ -391,6 +391,13 @@ public final class PaymentDatabase extends Database {
   @AnyThread
   public @NonNull LiveData<List<PaymentTransaction>> getAllLive() {
     return LiveDataUtil.mapAsync(changeSignal, change -> getAll());
+  }
+
+  @Override
+  public void remapRecipient(@NonNull RecipientId fromId, @NonNull RecipientId toId) {
+    ContentValues values = new ContentValues();
+    values.put(RECIPIENT_ID, toId.serialize());
+    getWritableDatabase().update(TABLE_NAME, values, RECIPIENT_ID + " = ?", SqlUtil.buildArgs(fromId));
   }
 
   public boolean markPaymentSubmitted(@NonNull UUID uuid,

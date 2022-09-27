@@ -58,6 +58,15 @@ class PendingRetryReceiptCache @VisibleForTesting constructor(
     }
   }
 
+  fun clear() {
+    if (!FeatureFlags.retryReceipts()) return
+
+    synchronized(pendingRetries) {
+      pendingRetries.clear()
+      populated = false
+    }
+  }
+
   private fun ensurePopulated() {
     if (!populated) {
       synchronized(pendingRetries) {

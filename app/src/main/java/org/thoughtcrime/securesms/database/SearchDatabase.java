@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.database;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
 import android.text.TextUtils;
@@ -11,6 +12,7 @@ import com.annimon.stream.Stream;
 /**
  * Contains all databases necessary for full-text search (FTS).
  */
+@SuppressLint({ "RecipientIdDatabaseReferenceUsage", "ThreadIdDatabaseReferenceUsage"}) // Handles updates via triggers
 public class SearchDatabase extends Database {
 
   public static final String SMS_FTS_TABLE_NAME = "sms_fts";

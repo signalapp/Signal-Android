@@ -20,6 +20,8 @@ import android.content.Context;
 
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public abstract class Database {
@@ -30,9 +32,20 @@ public abstract class Database {
   protected       SignalDatabase databaseHelper;
   protected final Context        context;
 
+  static final Set<RecipientIdDatabaseReference> recipientIdDatabaseTables = new HashSet<>();
+  static final Set<ThreadIdDatabaseReference>    threadIdDatabaseTables    = new HashSet<>();
+
   public Database(Context context, SignalDatabase databaseHelper) {
     this.context        = context;
     this.databaseHelper = databaseHelper;
+
+    if (this instanceof RecipientIdDatabaseReference) {
+      recipientIdDatabaseTables.add((RecipientIdDatabaseReference) this);
+    }
+
+    if (this instanceof ThreadIdDatabaseReference) {
+      threadIdDatabaseTables.add((ThreadIdDatabaseReference) this);
+    }
   }
 
   protected void notifyConversationListeners(Set<Long> threadIds) {

@@ -33,7 +33,7 @@ import java.util.UUID
 /**
  * Stores distribution lists, which represent different sets of people you may want to share a story with.
  */
-class DistributionListDatabase constructor(context: Context?, databaseHelper: SignalDatabase?) : Database(context, databaseHelper) {
+class DistributionListDatabase constructor(context: Context?, databaseHelper: SignalDatabase?) : Database(context, databaseHelper), RecipientIdDatabaseReference {
 
   companion object {
     private val TAG = Log.tag(DistributionListDatabase::class.java)
@@ -536,7 +536,7 @@ class DistributionListDatabase constructor(context: Context?, databaseHelper: Si
       .run()
   }
 
-  fun remapRecipient(oldId: RecipientId, newId: RecipientId) {
+  override fun remapRecipient(oldId: RecipientId, newId: RecipientId) {
     val values = ContentValues().apply {
       put(MembershipTable.RECIPIENT_ID, newId.serialize())
     }

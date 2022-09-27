@@ -1,12 +1,21 @@
 package org.signal.lint;
 
+import com.android.tools.lint.checks.infrastructure.TestFile;
+
 import org.junit.Test;
+
+import java.io.InputStream;
+import java.util.Scanner;
 
 import static com.android.tools.lint.checks.infrastructure.TestFiles.java;
 import static com.android.tools.lint.checks.infrastructure.TestLintTask.lint;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 @SuppressWarnings("UnstableApiUsage")
 public final class VersionCodeDetectorTest {
+
+  private static final TestFile requiresApiStub = java(readResourceAsString("RequiresApiStub.java"));
 
   @Test
   public void version_code_constant_referenced_in_code() {
@@ -99,6 +108,7 @@ public final class VersionCodeDetectorTest {
   public void version_code_constant_referenced_in_RequiresApi_attribute_with_named_parameter() {
     lint()
       .files(
+        requiresApiStub,
         java("package foo;\n" +
              "import android.os.Build;\n" +
              "import android.annotation.RequiresApi;\n" +
@@ -118,5 +128,13 @@ public final class VersionCodeDetectorTest {
                       "@@ -5 +5\n" +
                       "-   @RequiresApi(app = Build.VERSION_CODES.M)\n" +
                       "+   @RequiresApi(app = 23)");
+  }
+
+  private static String readResourceAsString(String resourceName) {
+    InputStream inputStream = ClassLoader.getSystemClassLoader().getResourceAsStream(resourceName);
+    assertNotNull(inputStream);
+    Scanner scanner = new Scanner(inputStream).useDelimiter("\\A");
+    assertTrue(scanner.hasNext());
+    return scanner.next();
   }
 }

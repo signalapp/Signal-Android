@@ -52,16 +52,10 @@ import org.thoughtcrime.securesms.database.GroupDatabase.LegacyGroupInsertExcept
 import org.thoughtcrime.securesms.database.GroupDatabase.MissedGroupMigrationInsertException
 import org.thoughtcrime.securesms.database.GroupDatabase.ShowAsStoryState
 import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus
-import org.thoughtcrime.securesms.database.SignalDatabase.Companion.distributionLists
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.groups
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.identities
-import org.thoughtcrime.securesms.database.SignalDatabase.Companion.messageLog
-import org.thoughtcrime.securesms.database.SignalDatabase.Companion.notificationProfiles
-import org.thoughtcrime.securesms.database.SignalDatabase.Companion.pendingPniSignatureMessages
-import org.thoughtcrime.securesms.database.SignalDatabase.Companion.reactions
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.runPostSuccessfulTransaction
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.sessions
-import org.thoughtcrime.securesms.database.SignalDatabase.Companion.storySends
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.threads
 import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.database.model.RecipientRecord
@@ -2126,7 +2120,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
         .values(NEEDS_PNI_SIGNATURE to 0)
         .run()
 
-      pendingPniSignatureMessages.deleteAll()
+      SignalDatabase.pendingPniSignatureMessages.deleteAll()
 
       db.setTransactionSuccessful()
     } finally {
@@ -3534,59 +3528,23 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       ApplicationDependencies.getProtocolStore().aci().identities().delete(secondaryRecord.e164)
     }
 
-    // Group Receipts
-    val groupReceiptValues = ContentValues()
-    groupReceiptValues.put(GroupReceiptDatabase.RECIPIENT_ID, primaryId.serialize())
-    db.update(GroupReceiptDatabase.TABLE_NAME, groupReceiptValues, GroupReceiptDatabase.RECIPIENT_ID + " = ?", SqlUtil.buildArgs(secondaryId))
-
-    // Groups
-    val groupDatabase = groups
-    for (group in groupDatabase.getGroupsContainingMember(secondaryId, false, true)) {
-      val newMembers = LinkedHashSet(group.members).apply {
-        remove(secondaryId)
-        add(primaryId)
-      }
-
-      val groupValues = ContentValues().apply {
-        put(GroupDatabase.MEMBERS, RecipientId.toSerializedList(newMembers))
-      }
-      db.update(GroupDatabase.TABLE_NAME, groupValues, GroupDatabase.RECIPIENT_ID + " = ?", SqlUtil.buildArgs(group.recipientId))
-
-      if (group.isV2Group) {
-        groupDatabase.removeUnmigratedV1Members(group.id.requireV2(), listOf(secondaryId))
-      }
-    }
-
     // Threads
     val threadMerge = threads.merge(primaryId, secondaryId)
+    threads.setLastScrolled(threadMerge.threadId, 0)
+    threads.update(threadMerge.threadId, false, false)
 
-    // SMS Messages
-    val smsValues = ContentValues().apply {
-      put(SmsDatabase.RECIPIENT_ID, primaryId.serialize())
+    // Recipient remaps
+    for (table in recipientIdDatabaseTables) {
+      table.remapRecipient(secondaryId, primaryId)
     }
-    db.update(SmsDatabase.TABLE_NAME, smsValues, SmsDatabase.RECIPIENT_ID + " = ?", SqlUtil.buildArgs(secondaryId))
 
+    // Thread remaps
     if (threadMerge.neededMerge) {
-      val values = ContentValues().apply {
-        put(SmsDatabase.THREAD_ID, threadMerge.threadId)
+      for (table in threadIdDatabaseTables) {
+        table.remapThread(threadMerge.previousThreadId, threadMerge.threadId)
       }
-      db.update(SmsDatabase.TABLE_NAME, values, SmsDatabase.THREAD_ID + " = ?", SqlUtil.buildArgs(threadMerge.previousThreadId))
-    }
 
-    // MMS Messages
-    val mmsValues = ContentValues().apply {
-      put(MmsDatabase.RECIPIENT_ID, primaryId.serialize())
-    }
-    db.update(MmsDatabase.TABLE_NAME, mmsValues, MmsDatabase.RECIPIENT_ID + " = ?", SqlUtil.buildArgs(secondaryId))
-
-    if (threadMerge.neededMerge) {
-      val values = ContentValues()
-      values.put(MmsDatabase.THREAD_ID, threadMerge.threadId)
-      db.update(MmsDatabase.TABLE_NAME, values, MmsDatabase.THREAD_ID + " = ?", SqlUtil.buildArgs(threadMerge.previousThreadId))
-    }
-
-    // Thread Merge event
-    if (threadMerge.neededMerge) {
+      // Thread Merge Event
       val mergeEvent: ThreadMergeEvent.Builder = ThreadMergeEvent.newBuilder()
 
       if (secondaryRecord.e164 != null) {
@@ -3595,39 +3553,6 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
 
       SignalDatabase.sms.insertThreadMergeEvent(primaryRecord.id, threadMerge.threadId, mergeEvent.build())
     }
-
-    // MSL
-    messageLog.remapRecipient(secondaryId, primaryId)
-
-    // Mentions
-    val mentionRecipientValues = ContentValues().apply {
-      put(MentionDatabase.RECIPIENT_ID, primaryId.serialize())
-    }
-    db.update(MentionDatabase.TABLE_NAME, mentionRecipientValues, MentionDatabase.RECIPIENT_ID + " = ?", SqlUtil.buildArgs(secondaryId))
-
-    if (threadMerge.neededMerge) {
-      val mentionThreadValues = ContentValues().apply {
-        put(MentionDatabase.THREAD_ID, threadMerge.threadId)
-      }
-      db.update(MentionDatabase.TABLE_NAME, mentionThreadValues, MentionDatabase.THREAD_ID + " = ?", SqlUtil.buildArgs(threadMerge.previousThreadId))
-    }
-    threads.setLastScrolled(threadMerge.threadId, 0)
-    threads.update(threadMerge.threadId, false, false)
-
-    // Reactions
-    reactions.remapRecipient(secondaryId, primaryId)
-
-    // Notification Profiles
-    notificationProfiles.remapRecipient(secondaryId, primaryId)
-
-    // DistributionLists
-    distributionLists.remapRecipient(secondaryId, primaryId)
-
-    // Story Sends
-    storySends.remapRecipient(secondaryId, primaryId)
-
-    // PendingPniSignatureMessage
-    pendingPniSignatureMessages.remapRecipient(secondaryId, primaryId)
 
     // Recipient
     Log.w(TAG, "Deleting recipient $secondaryId", true)

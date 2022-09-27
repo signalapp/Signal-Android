@@ -2598,6 +2598,18 @@ public class MmsDatabase extends MessageDatabase {
     return new OutgoingMessageReader(message, threadId);
   }
 
+  @Override
+  public void remapRecipient(@NonNull RecipientId fromId, @NonNull RecipientId toId) {
+
+  }
+
+  @Override
+  public void remapThread(long fromId, long toId) {
+    ContentValues values = new ContentValues();
+    values.put(SmsDatabase.THREAD_ID, toId);
+    getWritableDatabase().update(TABLE_NAME, values, THREAD_ID + " = ?", SqlUtil.buildArgs(fromId));
+  }
+
   public static class Status {
     public static final int DOWNLOAD_INITIALIZED     = 1;
     public static final int DOWNLOAD_NO_CONNECTIVITY = 2;

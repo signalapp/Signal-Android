@@ -56,7 +56,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 
-public abstract class MessageDatabase extends Database implements MmsSmsColumns {
+public abstract class MessageDatabase extends Database implements MmsSmsColumns, RecipientIdDatabaseReference, ThreadIdDatabaseReference  {
 
   private static final String TAG = Log.tag(MessageDatabase.class);
 
@@ -454,6 +454,20 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns 
       }
     }
     return data;
+  }
+
+  @Override
+  public void remapRecipient(@NonNull RecipientId fromId, @NonNull RecipientId toId) {
+    ContentValues values = new ContentValues();
+    values.put(RECIPIENT_ID, toId.serialize());
+    getWritableDatabase().update(getTableName(), values, RECIPIENT_ID + " = ?", SqlUtil.buildArgs(toId));
+  }
+
+  @Override
+  public void remapThread(long fromId, long toId) {
+    ContentValues values = new ContentValues();
+    values.put(SmsDatabase.THREAD_ID, toId);
+    getWritableDatabase().update(getTableName(), values, THREAD_ID + " = ?", SqlUtil.buildArgs(fromId));
   }
 
   void updateReactionsUnread(SQLiteDatabase db, long messageId, boolean hasReactions, boolean isRemoval) {

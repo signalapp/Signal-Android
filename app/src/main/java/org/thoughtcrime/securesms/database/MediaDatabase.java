@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.database;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
 
@@ -12,10 +13,11 @@ import org.thoughtcrime.securesms.util.MediaUtil;
 
 import java.util.List;
 
+@SuppressLint({"RecipientIdDatabaseReferenceUsage", "ThreadIdDatabaseReferenceUsage"}) // Not a real table, just a view
 public class MediaDatabase extends Database {
 
-    public  static final int    ALL_THREADS         = -1;
-    private static final String THREAD_RECIPIENT_ID = "THREAD_RECIPIENT_ID";
+  public  static final int    ALL_THREADS         = -1;
+  private static final String THREAD_RECIPIENT_ID = "THREAD_RECIPIENT_ID";
 
     private static final String BASE_MEDIA_QUERY = "SELECT " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.ROW_ID + " AS " + AttachmentDatabase.ROW_ID + ", "
                                                    + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.CONTENT_TYPE + ", "

@@ -16,7 +16,7 @@ import org.whispersystems.signalservice.api.messages.SendMessageResult
  * When we receive delivery receipts for these messages, we remove entries from the table and can clear
  * the `needsPniSignature` flag on the recipient when all are delivered.
  */
-class PendingPniSignatureMessageDatabase(context: Context, databaseHelper: SignalDatabase) : Database(context, databaseHelper) {
+class PendingPniSignatureMessageDatabase(context: Context, databaseHelper: SignalDatabase) : Database(context, databaseHelper), RecipientIdDatabaseReference {
 
   companion object {
     private val TAG = Log.tag(PendingPniSignatureMessageDatabase::class.java)
@@ -97,7 +97,7 @@ class PendingPniSignatureMessageDatabase(context: Context, databaseHelper: Signa
     writableDatabase.delete(TABLE_NAME).run()
   }
 
-  fun remapRecipient(oldId: RecipientId, newId: RecipientId) {
+  override fun remapRecipient(oldId: RecipientId, newId: RecipientId) {
     writableDatabase
       .update(TABLE_NAME)
       .values(RECIPIENT_ID to newId.serialize())

@@ -21,7 +21,7 @@ import org.whispersystems.signalservice.api.push.DistributionId
  * 1. Only send a single copy of each story to a given recipient, while
  * 2. Knowing which people would have gotten duplicate copies.
  */
-class StorySendsDatabase(context: Context, databaseHelper: SignalDatabase) : Database(context, databaseHelper) {
+class StorySendsDatabase(context: Context, databaseHelper: SignalDatabase) : Database(context, databaseHelper), RecipientIdDatabaseReference {
 
   companion object {
     const val TABLE_NAME = "story_sends"
@@ -177,7 +177,7 @@ class StorySendsDatabase(context: Context, databaseHelper: SignalDatabase) : Dat
     return messageIds
   }
 
-  fun remapRecipient(oldId: RecipientId, newId: RecipientId) {
+  override fun remapRecipient(oldId: RecipientId, newId: RecipientId) {
     val query = "$RECIPIENT_ID = ?"
     val args = SqlUtil.buildArgs(oldId)
     val values = contentValuesOf(RECIPIENT_ID to newId.serialize())

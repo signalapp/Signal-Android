@@ -18,7 +18,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-public class GroupReceiptDatabase extends Database {
+public class GroupReceiptDatabase extends Database implements RecipientIdDatabaseReference {
 
   public  static final String TABLE_NAME = "group_receipts";
 
@@ -162,6 +162,14 @@ public class GroupReceiptDatabase extends Database {
   void deleteAllRows() {
     SQLiteDatabase db = databaseHelper.getSignalWritableDatabase();
     db.delete(TABLE_NAME, null, null);
+  }
+
+  @Override
+  public void remapRecipient(@NonNull RecipientId fromId, @NonNull RecipientId toId) {
+    ContentValues groupReceiptValues = new ContentValues();
+    groupReceiptValues.put(RECIPIENT_ID, toId.serialize());
+
+    getWritableDatabase().update(TABLE_NAME, groupReceiptValues, RECIPIENT_ID + " = ?", SqlUtil.buildArgs(fromId));
   }
 
   public static class GroupReceiptInfo {

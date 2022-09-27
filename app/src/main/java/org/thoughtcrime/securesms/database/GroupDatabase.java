@@ -54,6 +54,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
@@ -64,7 +65,7 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-public class GroupDatabase extends Database {
+public class GroupDatabase extends Database implements RecipientIdDatabaseReference {
 
   private static final String TAG = Log.tag(GroupDatabase.class);
 
@@ -1049,6 +1050,24 @@ public class GroupDatabase extends Database {
     }
 
     return result;
+  }
+
+  @Override
+  public void remapRecipient(@NonNull RecipientId fromId, @NonNull RecipientId toId) {
+    for (GroupRecord group : getGroupsContainingMember(fromId, false, true)) {
+      Set<RecipientId> newMembers = new LinkedHashSet<>(group.getMembers());
+      newMembers.remove(fromId);
+      newMembers.add(toId);
+
+      ContentValues groupValues = new ContentValues();
+      groupValues.put(GroupDatabase.MEMBERS, RecipientId.toSerializedList(newMembers));
+
+      getWritableDatabase().update(GroupDatabase.TABLE_NAME, groupValues, GroupDatabase.RECIPIENT_ID + " = ?", SqlUtil.buildArgs(group.recipientId));
+
+      if (group.isV2Group()) {
+        removeUnmigratedV1Members(group.id.requireV2(), Collections.singletonList(fromId));
+      }
+    }
   }
 
   public static class Reader implements Closeable, ContactSearchIterator<GroupRecord> {

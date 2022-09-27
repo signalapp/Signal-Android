@@ -17,7 +17,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
-public class DraftDatabase extends Database {
+public class DraftDatabase extends Database implements ThreadIdDatabaseReference {
 
   private static final String TAG = Log.tag(DraftDatabase.class);
 
@@ -121,6 +121,13 @@ public class DraftDatabase extends Database {
 
       return results;
     }
+  }
+
+  @Override
+  public void remapThread(long fromId, long toId) {
+    ContentValues values = new ContentValues();
+    values.put(THREAD_ID, toId);
+    getWritableDatabase().update(TABLE_NAME, values, THREAD_ID + " = ?", SqlUtil.buildArgs(fromId));
   }
 
   public static class Draft {

@@ -20,7 +20,7 @@ import java.time.DayOfWeek
 /**
  * Database for maintaining Notification Profiles, Notification Profile Schedules, and Notification Profile allowed memebers.
  */
-class NotificationProfileDatabase(context: Context, databaseHelper: SignalDatabase) : Database(context, databaseHelper) {
+class NotificationProfileDatabase(context: Context, databaseHelper: SignalDatabase) : Database(context, databaseHelper), RecipientIdDatabaseReference {
 
   companion object {
     @JvmField
@@ -292,7 +292,7 @@ class NotificationProfileDatabase(context: Context, databaseHelper: SignalDataba
     ApplicationDependencies.getDatabaseObserver().notifyNotificationProfileObservers()
   }
 
-  fun remapRecipient(oldId: RecipientId, newId: RecipientId) {
+  override fun remapRecipient(oldId: RecipientId, newId: RecipientId) {
     val query = "${NotificationProfileAllowedMembersTable.RECIPIENT_ID} = ?"
     val args = SqlUtil.buildArgs(oldId)
     val values = ContentValues().apply {

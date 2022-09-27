@@ -17,6 +17,7 @@
  */
 package org.thoughtcrime.securesms.database;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -85,6 +86,7 @@ import java.util.Set;
 import kotlin.Unit;
 import kotlin.collections.CollectionsKt;
 
+@SuppressLint({ "RecipientIdDatabaseReferenceUsage", "ThreadIdDatabaseReferenceUsage"}) // Handles remapping in a unique way
 public class ThreadDatabase extends Database {
 
   private static final String TAG = Log.tag(ThreadDatabase.class);

@@ -21,7 +21,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-public class MentionDatabase extends Database {
+public class MentionDatabase extends Database implements RecipientIdDatabaseReference, ThreadIdDatabaseReference {
 
   public static final String TABLE_NAME = "mention";
 
@@ -157,5 +157,20 @@ public class MentionDatabase extends Database {
                                       CursorUtil.requireInt(cursor, RANGE_LENGTH)));
     }
     return mentions;
+  }
+
+  @Override
+  public void remapRecipient(@NonNull RecipientId fromId, @NonNull RecipientId toId) {
+    ContentValues values = new ContentValues();
+    values.put(RECIPIENT_ID, toId.serialize());
+    getWritableDatabase().update(TABLE_NAME, values, RECIPIENT_ID + " = ?", SqlUtil.buildArgs(fromId));
+  }
+
+  @Override
+  public void remapThread(long fromId, long toId) {
+    ContentValues values = new ContentValues();
+    values.put(MentionDatabase.THREAD_ID, toId);
+
+    getWritableDatabase().update(TABLE_NAME, values, THREAD_ID + " = ?", SqlUtil.buildArgs(fromId));
   }
 }

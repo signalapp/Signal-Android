@@ -1795,6 +1795,7 @@ public class SmsDatabase extends MessageDatabase {
     throw new UnsupportedOperationException();
   }
 
+
   public static class Status {
     public static final int STATUS_NONE     = -1;
     public static final int STATUS_COMPLETE  = 0;

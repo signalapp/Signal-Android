@@ -13,7 +13,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 /**
  * Store reactions on messages.
  */
-class ReactionDatabase(context: Context, databaseHelper: SignalDatabase) : Database(context, databaseHelper) {
+class ReactionDatabase(context: Context, databaseHelper: SignalDatabase) : Database(context, databaseHelper), RecipientIdDatabaseReference {
 
   companion object {
     const val TABLE_NAME = "reaction"
@@ -188,7 +188,7 @@ class ReactionDatabase(context: Context, databaseHelper: SignalDatabase) : Datab
     }
   }
 
-  fun remapRecipient(oldAuthorId: RecipientId, newAuthorId: RecipientId) {
+  override fun remapRecipient(oldAuthorId: RecipientId, newAuthorId: RecipientId) {
     val query = "$AUTHOR_ID = ?"
     val args = SqlUtil.buildArgs(oldAuthorId)
     val values = ContentValues().apply {
