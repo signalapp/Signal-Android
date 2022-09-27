@@ -325,8 +325,6 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
     StoryDialogs.hideStory(requireContext(), model.data.storyRecipient.getShortDisplayName(requireContext())) {
       viewModel.setHideStory(model.data.storyRecipient, true).subscribe {
         Snackbar.make(cameraFab, R.string.StoriesLandingFragment__story_hidden, Snackbar.LENGTH_SHORT)
-          .setAnchorView(cameraFab)
-          .setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_FADE)
           .show()
       }
     }

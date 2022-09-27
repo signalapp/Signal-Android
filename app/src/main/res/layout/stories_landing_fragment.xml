@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:viewBindingIgnore="true"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:viewBindingIgnore="true">
 
     <View
         android:id="@+id/toolbar_shadow"
@@ -28,39 +28,58 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <org.thoughtcrime.securesms.components.registration.PulsingFloatingActionButton
-        android:id="@+id/camera_fab_shared_element_target"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:focusable="true"
-        android:theme="@style/Widget.Material3.FloatingActionButton.Secondary"
-        android:transitionName="camera_fab"
-        app:backgroundTint="@color/signal_colorSurfaceVariant"
-        app:elevation="0dp"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinator"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_camera_outline_24"
-        app:tint="@color/signal_colorOnSurface" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <org.thoughtcrime.securesms.components.registration.PulsingFloatingActionButton
-        android:id="@+id/camera_fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:contentDescription="@string/conversation_list_fragment__open_camera_description"
-        android:focusable="true"
-        android:theme="@style/Widget.Material3.FloatingActionButton.Primary"
-        android:transitionName="new_convo_fab"
-        app:backgroundTint="@color/signal_colorPrimaryContainer"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_camera_outline_24"
-        app:tint="@color/signal_colorOnSurface" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            app:layout_behavior="org.thoughtcrime.securesms.util.views.SlideUpWithSnackbarBehavior">
+
+            <org.thoughtcrime.securesms.components.registration.PulsingFloatingActionButton
+                android:id="@+id/camera_fab_shared_element_target"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:focusable="true"
+                android:theme="@style/Widget.Material3.FloatingActionButton.Secondary"
+                android:transitionName="camera_fab"
+                app:backgroundTint="@color/signal_colorSurfaceVariant"
+                app:elevation="0dp"
+                app:srcCompat="@drawable/ic_camera_outline_24"
+                app:tint="@color/signal_colorOnSurface" />
+
+            <org.thoughtcrime.securesms.components.registration.PulsingFloatingActionButton
+                android:id="@+id/camera_fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:contentDescription="@string/conversation_list_fragment__open_camera_description"
+                android:focusable="true"
+                android:theme="@style/Widget.Material3.FloatingActionButton.Primary"
+                android:transitionName="new_convo_fab"
+                app:backgroundTint="@color/signal_colorPrimaryContainer"
+                app:srcCompat="@drawable/ic_camera_outline_24"
+                app:tint="@color/signal_colorOnSurface" />
+
+        </FrameLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <TextView
         android:id="@+id/empty_notice"
