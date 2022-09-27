@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.preferences;
 
-import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +14,8 @@ import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.app.ShareCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher;
@@ -147,24 +148,24 @@ public class EditProxyFragment extends Fragment {
       case PROXY_SUCCESS:
         proxyStatus.setVisibility(View.VISIBLE);
         proxyText.setText(Optional.ofNullable(SignalStore.proxy().getProxy()).map(SignalProxy::getHost).orElse(""));
-        new AlertDialog.Builder(requireContext())
-                       .setTitle(R.string.preferences_success)
-                       .setMessage(R.string.preferences_you_are_connected_to_the_proxy)
-                       .setPositiveButton(android.R.string.ok, (d, i) -> {
-                         requireActivity().onBackPressed();
-                         d.dismiss();
-                       })
-                       .show();
+        new MaterialAlertDialogBuilder(requireContext())
+           .setTitle(R.string.preferences_success)
+           .setMessage(R.string.preferences_you_are_connected_to_the_proxy)
+           .setPositiveButton(android.R.string.ok, (d, i) -> {
+             requireActivity().onBackPressed();
+             d.dismiss();
+           })
+           .show();
         break;
       case PROXY_FAILURE:
         proxyStatus.setVisibility(View.INVISIBLE);
         proxyText.setText(Optional.ofNullable(SignalStore.proxy().getProxy()).map(SignalProxy::getHost).orElse(""));
         ViewUtil.focusAndMoveCursorToEndAndOpenKeyboard(proxyText);
-        new AlertDialog.Builder(requireContext())
-                       .setTitle(R.string.preferences_failed_to_connect)
-                       .setMessage(R.string.preferences_couldnt_connect_to_the_proxy)
-                       .setPositiveButton(android.R.string.ok, (d, i) -> d.dismiss())
-                       .show();
+        new MaterialAlertDialogBuilder(requireContext())
+           .setTitle(R.string.preferences_failed_to_connect)
+           .setMessage(R.string.preferences_couldnt_connect_to_the_proxy)
+           .setPositiveButton(android.R.string.ok, (d, i) -> d.dismiss())
+           .show();
         break;
     }
   }
