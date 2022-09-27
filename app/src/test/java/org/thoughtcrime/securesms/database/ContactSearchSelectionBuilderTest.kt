@@ -22,7 +22,8 @@ class ContactSearchSelectionBuilderTest {
 
     Assert.assertTrue(result.where.contains(RecipientDatabase.ContactSearchSelection.SIGNAL_CONTACT))
     Assert.assertTrue(result.where.contains(RecipientDatabase.ContactSearchSelection.FILTER_BLOCKED))
-    Assert.assertArrayEquals(SqlUtil.buildArgs(RecipientDatabase.RegisteredState.REGISTERED.id, 1, 0), result.args)
+    Assert.assertTrue(result.where.contains(RecipientDatabase.ContactSearchSelection.FILTER_HIDDEN))
+    Assert.assertArrayEquals(SqlUtil.buildArgs(RecipientDatabase.RegisteredState.REGISTERED.id, 1, 0, 0), result.args)
   }
 
   @Test
@@ -48,10 +49,12 @@ class ContactSearchSelectionBuilderTest {
     Assert.assertTrue(result.where.contains(RecipientDatabase.ContactSearchSelection.NON_SIGNAL_CONTACT))
     Assert.assertTrue(result.where.contains(RecipientDatabase.ContactSearchSelection.FILTER_GROUPS))
     Assert.assertTrue(result.where.contains(RecipientDatabase.ContactSearchSelection.FILTER_BLOCKED))
+    Assert.assertTrue(result.where.contains(RecipientDatabase.ContactSearchSelection.FILTER_HIDDEN))
     Assert.assertArrayEquals(
       SqlUtil.buildArgs(
         RecipientDatabase.RegisteredState.REGISTERED.id, 1,
         RecipientDatabase.RegisteredState.REGISTERED.id,
+        0,
         0
       ),
       result.args

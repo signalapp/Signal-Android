@@ -259,7 +259,7 @@ class MmsDatabaseTest_stories {
     )
 
     // WHEN
-    val result = mms.hasSelfReplyInStory(groupStoryId)
+    val result = mms.hasGroupReplyOrReactionInStory(groupStoryId)
 
     // THEN
     assertFalse(result)
@@ -284,7 +284,7 @@ class MmsDatabaseTest_stories {
     )
 
     // WHEN
-    val result = mms.hasSelfReplyInStory(groupStoryId)
+    val result = mms.hasGroupReplyOrReactionInStory(groupStoryId)
 
     // THEN
     assertTrue(result)
@@ -309,7 +309,7 @@ class MmsDatabaseTest_stories {
     )
 
     // WHEN
-    val result = mms.hasSelfReplyInStory(groupStoryId)
+    val result = mms.hasGroupReplyOrReactionInStory(groupStoryId)
 
     // THEN
     assertFalse(result)
@@ -337,7 +337,7 @@ class MmsDatabaseTest_stories {
     )
 
     // WHEN
-    val result = mms.hasSelfReplyInStory(groupStoryId)
+    val result = mms.hasGroupReplyOrReactionInStory(groupStoryId)
 
     // THEN
     assertFalse(result)

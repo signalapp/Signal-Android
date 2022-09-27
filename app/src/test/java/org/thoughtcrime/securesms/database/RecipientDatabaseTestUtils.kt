@@ -147,7 +147,8 @@ object RecipientDatabaseTestUtils {
         extras,
         hasGroupsInCommon,
         badges,
-        false
+        needsPniSignature = false,
+        isHidden = false
       ),
       participants,
       isReleaseChannel

@@ -130,6 +130,14 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
       itemView.setOnClickListener(v -> {
         if (clickListener != null) clickListener.onItemClick(getView());
       });
+
+      itemView.setOnLongClickListener(v -> {
+        if (clickListener != null) {
+          return clickListener.onItemLongClick(getView());
+        } else {
+          return false;
+        }
+      });
     }
 
     public ContactSelectionListItem getView() {
@@ -435,5 +443,6 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
 
   public interface ItemClickListener {
     void onItemClick(ContactSelectionListItem item);
+    boolean onItemLongClick(ContactSelectionListItem item);
   }
 }

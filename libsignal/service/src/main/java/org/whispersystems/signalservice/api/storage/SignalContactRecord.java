@@ -133,6 +133,10 @@ public final class SignalContactRecord implements SignalRecord {
         diff.add("UnregisteredTimestamp");
       }
 
+      if (isHidden() != that.isHidden()) {
+        diff.add("Hidden");
+      }
+
       if (!Objects.equals(this.hasUnknownFields(), that.hasUnknownFields())) {
         diff.add("UnknownFields");
       }
@@ -213,6 +217,10 @@ public final class SignalContactRecord implements SignalRecord {
 
   public long getUnregisteredTimestamp() {
     return proto.getUnregisteredAtTimestamp();
+  }
+
+  public boolean isHidden() {
+    return proto.getHidden();
   }
 
   /**
@@ -328,6 +336,11 @@ public final class SignalContactRecord implements SignalRecord {
 
     public Builder setUnregisteredTimestamp(long timestamp) {
       builder.setUnregisteredAtTimestamp(timestamp);
+      return this;
+    }
+
+    public Builder setHidden(boolean hidden) {
+      builder.setHidden(hidden);
       return this;
     }
 

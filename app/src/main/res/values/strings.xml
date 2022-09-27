@@ -4185,6 +4185,30 @@
 
     <!-- NewConversationActivity -->
     <string name="NewConversationActivity__new_message">New message</string>
+    <!-- Context menu item message -->
+    <string name="NewConversationActivity__message">Message</string>
+    <!-- Context menu item audio call -->
+    <string name="NewConversationActivity__audio_call">Audio call</string>
+    <!-- Context menu item video call -->
+    <string name="NewConversationActivity__video_call">Video call</string>
+    <!-- Context menu item remove -->
+    <string name="NewConversationActivity__remove">Remove</string>
+    <!-- Context menu item block -->
+    <string name="NewConversationActivity__block">Block</string>
+    <!-- Dialog title when removing a contact -->
+    <string name="NewConversationActivity__remove_s">Remove %1$s?</string>
+    <!-- Dialog message when removing a contact -->
+    <string name="NewConversationActivity__you_wont_see_this_person">You won\'t see this person when searching. You\'ll get a message request if they message you in the future.</string>
+    <!-- Snackbar message after removing a contact -->
+    <string name="NewConversationActivity__s_has_been_removed">%1$s has been removed</string>
+    <!-- Snackbar message after blocking a contact -->
+    <string name="NewConversationActivity__s_has_been_blocked">%1$s has been blocked</string>
+    <!-- Dialog title when remove target contact is in system contacts -->
+    <string name="NewConversationActivity__unable_to_remove_s">Unable to remove %1$s</string>
+    <!-- Dialog message when remove target contact is in system contacts -->
+    <string name="NewConversationActivity__this_person_is_saved_to_your">This person is saved to your device\'s Contacts. Delete them from your Contacts and try again.</string>
+    <!-- Dialog action to view contact when they can't be removed otherwise -->
+    <string name="NewConversationActivity__view_contact">View contact</string>
 
     <!-- ContactFilterView -->
     <string name="ContactFilterView__search_name_or_number">Search name or number</string>

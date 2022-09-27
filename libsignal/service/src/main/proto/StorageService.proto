@@ -87,7 +87,8 @@ message ContactRecord {
   uint64        mutedUntilTimestamp     = 13;
   bool          hideStory               = 14;
   uint64        unregisteredAtTimestamp = 16;
-  // NEXT ID: 17
+  bool          hidden                  = 19;
+  // NEXT ID: 20
 }
 
 message GroupV1Record {

@@ -106,6 +106,7 @@ public final class FeatureFlags {
   private static final String SMS_EXPORTER                      = "android.sms.exporter";
   private static final String CDS_V2_COMPAT                     = "android.cdsV2Compat.3";
   public  static final String STORIES_LOCALE                    = "android.stories.locale";
+  private static final String HIDE_CONTACTS                     = "android.hide.contacts";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -163,7 +164,8 @@ public final class FeatureFlags {
       CDS_V2_LOAD_TEST,
       SMS_EXPORTER,
       CDS_V2_COMPAT,
-      STORIES_LOCALE
+      STORIES_LOCALE,
+      HIDE_CONTACTS
   );
 
   @VisibleForTesting
@@ -586,6 +588,16 @@ public final class FeatureFlags {
    */
   public static boolean cdsV2Compat() {
     return getBoolean(CDS_V2_COMPAT, false);
+  }
+
+  /**
+   * Whether or not users can hide contacts.
+   *
+   * WARNING: This feature is intended to be enabled in tandem with other clients, as it modifies contact records.
+   * Here be dragons.
+   */
+  public static boolean hideContacts() {
+    return getBoolean(HIDE_CONTACTS, false);
   }
 
   /** Only for rendering debug info. */

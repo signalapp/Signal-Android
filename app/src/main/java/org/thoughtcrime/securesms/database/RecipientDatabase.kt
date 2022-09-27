@@ -184,6 +184,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     private const val IDENTITY_KEY = "identity_key"
     private const val NEEDS_PNI_SIGNATURE = "needs_pni_signature"
     private const val UNREGISTERED_TIMESTAMP = "unregistered_timestamp"
+    private const val HIDDEN = "hidden"
 
     @JvmField
     val CREATE_TABLE =
@@ -243,7 +244,8 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
         $PNI_COLUMN TEXT DEFAULT NULL,
         $DISTRIBUTION_LIST_ID INTEGER DEFAULT NULL,
         $NEEDS_PNI_SIGNATURE INTEGER DEFAULT 0,
-        $UNREGISTERED_TIMESTAMP INTEGER DEFAULT 0
+        $UNREGISTERED_TIMESTAMP INTEGER DEFAULT 0,
+        $HIDDEN INTEGER DEFAULT 0
       )
       """.trimIndent()
 
@@ -304,7 +306,8 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       CUSTOM_CHAT_COLORS_ID,
       BADGES,
       DISTRIBUTION_LIST_ID,
-      NEEDS_PNI_SIGNATURE
+      NEEDS_PNI_SIGNATURE,
+      HIDDEN
     )
 
     private val ID_PROJECTION = arrayOf(ID)
@@ -386,7 +389,8 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
         $TABLE_NAME.$REGISTERED = ${RegisteredState.NOT_REGISTERED.id} AND
         $TABLE_NAME.$SEEN_INVITE_REMINDER < ${InsightsBannerTier.TIER_TWO.id} AND
         ${ThreadDatabase.TABLE_NAME}.${ThreadDatabase.HAS_SENT} AND
-        ${ThreadDatabase.TABLE_NAME}.${ThreadDatabase.DATE} > ?
+        ${ThreadDatabase.TABLE_NAME}.${ThreadDatabase.DATE} > ? AND
+        $TABLE_NAME.$HIDDEN = 0
       ORDER BY ${ThreadDatabase.TABLE_NAME}.${ThreadDatabase.DATE} DESC LIMIT 50
       """
   }
@@ -1820,8 +1824,8 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
 
   fun getSimilarRecipientIds(recipient: Recipient): List<RecipientId> {
     val projection = SqlUtil.buildArgs(ID, "COALESCE(NULLIF($SYSTEM_JOINED_NAME, ''), NULLIF($PROFILE_JOINED_NAME, '')) AS checked_name")
-    val where = "checked_name = ?"
-    val arguments = SqlUtil.buildArgs(recipient.profileName.toString())
+    val where = "checked_name = ? AND $HIDDEN = ?"
+    val arguments = SqlUtil.buildArgs(recipient.profileName.toString(), 0)
 
     readableDatabase.query(TABLE_NAME, projection, where, arguments, null, null, null).use { cursor ->
       if (cursor == null || cursor.count == 0) {
@@ -1881,10 +1885,31 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     }
   }
 
+  fun markHidden(id: RecipientId) {
+    val contentValues = contentValuesOf(
+      HIDDEN to 1,
+      PROFILE_SHARING to 0
+    )
+
+    val updated = writableDatabase.update(TABLE_NAME, contentValues, "$ID_WHERE AND $GROUP_TYPE = ?", SqlUtil.buildArgs(id, GroupType.NONE.id)) > 0
+    if (updated) {
+      rotateStorageId(id)
+      ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
+      StorageSyncHelper.scheduleSyncForDataChange()
+    } else {
+      Log.w(TAG, "Failed to hide recipient $id")
+    }
+  }
+
   fun setProfileSharing(id: RecipientId, enabled: Boolean) {
     val contentValues = ContentValues(1).apply {
       put(PROFILE_SHARING, if (enabled) 1 else 0)
     }
+
+    if (enabled) {
+      contentValues.put(HIDDEN, 0)
+    }
+
     val profiledUpdated = update(id, contentValues)
 
     if (profiledUpdated && enabled) {
@@ -2961,7 +2986,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
   fun getRegistered(): List<RecipientId> {
     val results: MutableList<RecipientId> = LinkedList()
 
-    readableDatabase.query(TABLE_NAME, ID_PROJECTION, "$REGISTERED = ?", arrayOf("1"), null, null, null).use { cursor ->
+    readableDatabase.query(TABLE_NAME, ID_PROJECTION, "$REGISTERED = ? and $HIDDEN = ?", arrayOf("1", "0"), null, null, null).use { cursor ->
       while (cursor != null && cursor.moveToNext()) {
         results.add(RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(ID))))
       }
@@ -3127,7 +3152,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     val query = SqlUtil.buildCaseInsensitiveGlobPattern(inputQuery)
     val selection =
       """
-        $BLOCKED = ? AND 
+        $BLOCKED = ? AND $HIDDEN = ? AND
         (
           $SORT_NAME GLOB ? OR 
           $USERNAME GLOB ? OR 
@@ -3135,7 +3160,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
           $EMAIL GLOB ?
         )
       """.trimIndent()
-    val args = SqlUtil.buildArgs("0", query, query, query, query)
+    val args = SqlUtil.buildArgs(0, 0, query, query, query, query)
     return readableDatabase.query(TABLE_NAME, SEARCH_PROJECTION, selection, args, null, null, null)
   }
 
@@ -3323,9 +3348,11 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
 
     if (Util.hasItems(idsToUpdate)) {
       val query = SqlUtil.buildSingleCollectionQuery(ID, idsToUpdate)
-      val values = ContentValues(1).apply {
-        put(PROFILE_SHARING, 1)
-      }
+
+      val values = contentValuesOf(
+        PROFILE_SHARING to 1,
+        HIDDEN to 0
+      )
 
       writableDatabase.update(TABLE_NAME, values, query.where, query.whereArgs)
 
@@ -3588,6 +3615,10 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       MENTION_SETTING to if (primaryRecord.mentionSetting != MentionSetting.ALWAYS_NOTIFY) primaryRecord.mentionSetting.id else secondaryRecord.mentionSetting.id
     )
 
+    if (primaryRecord.profileSharing || secondaryRecord.profileSharing) {
+      uuidValues.put(HIDDEN, 0)
+    }
+
     if (primaryRecord.profileKey != null) {
       updateProfileValuesForMerge(uuidValues, primaryRecord)
     } else if (secondaryRecord.profileKey != null) {
@@ -3657,6 +3688,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       put(BLOCKED, if (contact.isBlocked) "1" else "0")
       put(MUTE_UNTIL, contact.muteUntil)
       put(STORAGE_SERVICE_ID, Base64.encodeBytes(contact.id.raw))
+      put(HIDDEN, contact.isHidden)
 
       if (contact.hasUnknownFields()) {
         put(STORAGE_PROTO, Base64.encodeBytes(Objects.requireNonNull(contact.serializeUnknownFields())))
@@ -3908,7 +3940,8 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       extras = getExtras(cursor),
       hasGroupsInCommon = cursor.requireBoolean(GROUPS_IN_COMMON),
       badges = parseBadgeList(cursor.requireBlob(BADGES)),
-      needsPniSignature = cursor.requireBoolean(NEEDS_PNI_SIGNATURE)
+      needsPniSignature = cursor.requireBoolean(NEEDS_PNI_SIGNATURE),
+      isHidden = cursor.requireBoolean(HIDDEN)
     )
   }
 
@@ -4187,6 +4220,9 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
         stringBuilder.append(FILTER_BLOCKED)
         args.add(0)
 
+        stringBuilder.append(FILTER_HIDDEN)
+        args.add(0)
+
         if (excludeGroups) {
           stringBuilder.append(FILTER_GROUPS)
         }
@@ -4204,6 +4240,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       const val FILTER_GROUPS = " AND $GROUP_ID IS NULL"
       const val FILTER_ID = " AND $ID != ?"
       const val FILTER_BLOCKED = " AND $BLOCKED = ?"
+      const val FILTER_HIDDEN = " AND $HIDDEN = ?"
       const val NON_SIGNAL_CONTACT = "$REGISTERED != ? AND $SYSTEM_CONTACT_URI NOT NULL AND ($PHONE NOT NULL OR $EMAIL NOT NULL)"
       const val QUERY_NON_SIGNAL_CONTACT = "$NON_SIGNAL_CONTACT AND ($PHONE GLOB ? OR $EMAIL GLOB ? OR $SYSTEM_JOINED_NAME GLOB ?)"
       const val SIGNAL_CONTACT = "$REGISTERED = ? AND (NULLIF($SYSTEM_JOINED_NAME, '') NOT NULL OR $PROFILE_SHARING = ?) AND ($SORT_NAME NOT NULL OR $USERNAME NOT NULL)"
@@ -4217,7 +4254,8 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
    */
   internal object Capabilities {
     const val BIT_LENGTH = 2
-//    const val GROUPS_V2 = 0
+
+    //    const val GROUPS_V2 = 0
     const val GROUPS_V1_MIGRATION = 1
     const val SENDER_KEY = 2
     const val ANNOUNCEMENT_GROUPS = 3

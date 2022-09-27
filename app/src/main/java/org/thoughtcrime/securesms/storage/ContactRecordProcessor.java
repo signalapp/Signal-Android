@@ -197,8 +197,9 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
     long                 muteUntil             = remote.getMuteUntil();
     boolean              hideStory             = remote.shouldHideStory();
     long                 unregisteredTimestamp = remote.getUnregisteredTimestamp();
-    boolean              matchesRemote         = doParamsMatch(remote, unknownFields, serviceId, pni, e164, givenName, familyName, profileKey, username, identityState, identityKey, blocked, profileSharing, archived, forcedUnread, muteUntil, hideStory, unregisteredTimestamp);
-    boolean              matchesLocal          = doParamsMatch(local, unknownFields, serviceId, pni, e164, givenName, familyName, profileKey, username, identityState, identityKey, blocked, profileSharing, archived, forcedUnread, muteUntil, hideStory, unregisteredTimestamp);
+    boolean              hidden                = remote.isHidden();
+    boolean              matchesRemote         = doParamsMatch(remote, unknownFields, serviceId, pni, e164, givenName, familyName, profileKey, username, identityState, identityKey, blocked, profileSharing, archived, forcedUnread, muteUntil, hideStory, unregisteredTimestamp, hidden);
+    boolean              matchesLocal          = doParamsMatch(local, unknownFields, serviceId, pni, e164, givenName, familyName, profileKey, username, identityState, identityKey, blocked, profileSharing, archived, forcedUnread, muteUntil, hideStory, unregisteredTimestamp, hidden);
 
     if (matchesRemote) {
       return remote;
@@ -221,6 +222,7 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
                                     .setMuteUntil(muteUntil)
                                     .setHideStory(hideStory)
                                     .setUnregisteredTimestamp(unregisteredTimestamp)
+                                    .setHidden(hidden)
                                     .build();
     }
   }
@@ -264,7 +266,8 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
                                        boolean forcedUnread,
                                        long muteUntil,
                                        boolean hideStory,
-                                       long unregisteredTimestamp)
+                                       long unregisteredTimestamp,
+                                       boolean hidden)
   {
     return Arrays.equals(contact.serializeUnknownFields(), unknownFields)     &&
            Objects.equals(contact.getServiceId(), serviceId)                  &&
@@ -282,6 +285,7 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
            contact.isForcedUnread() == forcedUnread                           &&
            contact.getMuteUntil() == muteUntil                                &&
            contact.shouldHideStory() == hideStory                             &&
-           contact.getUnregisteredTimestamp() == unregisteredTimestamp;
+           contact.getUnregisteredTimestamp() == unregisteredTimestamp        &&
+           contact.isHidden() == hidden;
   }
 }
