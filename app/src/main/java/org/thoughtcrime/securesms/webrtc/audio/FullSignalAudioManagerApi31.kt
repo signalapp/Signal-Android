@@ -61,7 +61,6 @@ class FullSignalAudioManagerApi31(context: Context, eventListener: EventListener
     return AudioDevice.NONE
   }
 
-
   override fun setDefaultAudioDevice(recipientId: RecipientId?, newDefaultDevice: AudioDevice, clearUserEarpieceSelection: Boolean) {
     defaultDevice = newDefaultDevice
   }

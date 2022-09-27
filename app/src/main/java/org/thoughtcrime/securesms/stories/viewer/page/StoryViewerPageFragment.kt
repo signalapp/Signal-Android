@@ -1049,7 +1049,7 @@ class StoryViewerPageFragment :
       },
       onHide = {
         viewModel.setIsDisplayingHideDialog(true)
-        StoryDialogs.hideStory(requireContext(), Recipient.resolved(storyViewerPageArgs.recipientId).getDisplayName(requireContext()), { viewModel.setIsDisplayingHideDialog(true) }) {
+        StoryDialogs.hideStory(requireContext(), Recipient.resolved(storyViewerPageArgs.recipientId).getDisplayName(requireContext()), { viewModel.setIsDisplayingHideDialog(false) }) {
           lifecycleDisposable += viewModel.hideStory().subscribe {
             callback.onStoryHidden(storyViewerPageArgs.recipientId)
           }
