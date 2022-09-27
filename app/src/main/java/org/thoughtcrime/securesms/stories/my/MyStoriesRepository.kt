@@ -27,14 +27,13 @@ class MyStoriesRepository(context: Context) {
       fun refresh() {
         val storiesMap = mutableMapOf<Recipient, List<MessageRecord>>()
         SignalDatabase.mms.getAllOutgoingStories(true, -1).use {
-          while (it.next != null) {
-            val messageRecord = it.current
+          for (messageRecord in it) {
             val currentList = storiesMap[messageRecord.recipient] ?: emptyList()
             storiesMap[messageRecord.recipient] = (currentList + messageRecord)
           }
         }
 
-        emitter.onNext(storiesMap.map { (r, m) -> createDistributionSet(r, m) })
+        emitter.onNext(storiesMap.toSortedMap(MyStoryBiasComparator()).map { (r, m) -> createDistributionSet(r, m) })
       }
 
       val observer = DatabaseObserver.Observer {
@@ -57,5 +56,19 @@ class MyStoriesRepository(context: Context) {
         ConversationMessage.ConversationMessageFactory.createWithUnresolvedData(context, it)
       }
     )
+  }
+
+  /**
+   * Biases "My Story" to the top of the list.
+   */
+  class MyStoryBiasComparator : Comparator<Recipient> {
+    override fun compare(o1: Recipient, o2: Recipient): Int {
+      return when {
+        o1 == o2 -> 0
+        o1.isMyStory -> -1
+        o2.isMyStory -> 1
+        else -> -1
+      }
+    }
   }
 }
