@@ -145,6 +145,11 @@ class StoryViewerFragment :
     viewModel.addHiddenAndRefresh(setOf(recipientId))
   }
 
+  override fun onContentTranslation(x: Float, y: Float) {
+    storyCrossfader.translationX = x
+    storyCrossfader.translationY = y
+  }
+
   override fun onReadyToAnimate() {
   }
 

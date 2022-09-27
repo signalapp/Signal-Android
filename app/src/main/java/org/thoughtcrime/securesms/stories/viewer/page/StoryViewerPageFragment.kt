@@ -214,6 +214,7 @@ class StoryViewerPageFragment :
         viewModel::goToNextPost,
         viewModel::goToPreviousPost,
         this::startReply,
+        requireListener<Callback>()::onContentTranslation,
         sharedViewModel = sharedViewModel
       )
     )
@@ -252,6 +253,8 @@ class StoryViewerPageFragment :
             .setDuration(100)
             .translationX(0f)
             .translationY(0f)
+
+          requireListener<Callback>().onContentTranslation(0f, 0f)
         }
       }
 
@@ -1144,6 +1147,7 @@ class StoryViewerPageFragment :
     private val onGoToNext: () -> Unit,
     private val onGoToPrevious: () -> Unit,
     private val onReplyToPost: () -> Unit,
+    private val onContentTranslation: (Float, Float) -> Unit,
     private val viewToTranslate: View = container.parent as View,
     private val sharedViewModel: StoryViewerViewModel
   ) : GestureDetector.SimpleOnGestureListener() {
@@ -1193,6 +1197,8 @@ class StoryViewerPageFragment :
 
       viewToTranslate.animate().cancel()
       viewToTranslate.translationX = distance
+
+      onContentTranslation(viewToTranslate.translationX, viewToTranslate.translationY)
 
       return true
     }
@@ -1303,12 +1309,6 @@ class StoryViewerPageFragment :
     sharedViewModel.setContentIsReady()
   }
 
-  interface Callback {
-    fun onGoToPreviousStory(recipientId: RecipientId)
-    fun onFinishedPosts(recipientId: RecipientId)
-    fun onStoryHidden(recipientId: RecipientId)
-  }
-
   override fun userHasSeenFirstNavigationView(): Boolean {
     return SignalStore.storyValues().userHasSeenFirstNavView
   }
@@ -1332,5 +1332,12 @@ class StoryViewerPageFragment :
 
   override fun onCanceled() {
     viewModel.setIsDisplayingPartialSendDialog(false)
+  }
+
+  interface Callback {
+    fun onGoToPreviousStory(recipientId: RecipientId)
+    fun onFinishedPosts(recipientId: RecipientId)
+    fun onStoryHidden(recipientId: RecipientId)
+    fun onContentTranslation(x: Float, y: Float)
   }
 }
