@@ -69,7 +69,7 @@ object Stories {
    */
   @JvmStatic
   fun isFeatureFlagEnabled(): Boolean {
-    return FeatureFlags.stories() || LocaleFeatureFlags.isInStoriesCountry()
+    return SignalStore.account().isRegistered && (FeatureFlags.stories() || LocaleFeatureFlags.isInStoriesCountry())
   }
 
   /**
@@ -81,7 +81,7 @@ object Stories {
    */
   @JvmStatic
   fun isFeatureAvailable(): Boolean {
-    return SignalStore.account().isRegistered && isFeatureFlagEnabled() && Recipient.self().storiesCapability == Recipient.Capability.SUPPORTED
+    return isFeatureFlagEnabled() && Recipient.self().storiesCapability == Recipient.Capability.SUPPORTED
   }
 
   /**
