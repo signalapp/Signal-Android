@@ -42,6 +42,8 @@ sealed class SignalAudioManager(protected val context: Context, protected val ev
     fun create(context: Context, eventListener: EventListener?, isGroup: Boolean): SignalAudioManager {
       return if (AndroidTelecomUtil.telecomSupported && !isGroup) {
         TelecomAwareSignalAudioManager(context, eventListener)
+      } else if (Build.VERSION.SDK_INT >= 31) {
+        FullSignalAudioManagerApi31(context, eventListener)
       } else {
         FullSignalAudioManager(context, eventListener)
       }

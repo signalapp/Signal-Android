@@ -4,17 +4,22 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.media.AudioAttributes;
+import android.media.AudioDeviceCallback;
 import android.media.AudioDeviceInfo;
 import android.media.AudioFocusRequest;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Build;
+import android.os.Handler;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
+import org.jetbrains.annotations.Nullable;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.util.ServiceUtil;
+
+import java.util.List;
 
 public abstract class AudioManagerCompat {
 
@@ -81,6 +86,36 @@ public abstract class AudioManagerCompat {
 
   public boolean hasEarpiece(@NonNull Context context) {
     return context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_TELEPHONY);
+  }
+
+  @RequiresApi(31)
+  public List<AudioDeviceInfo> getAvailableCommunicationDevices() {
+    return audioManager.getAvailableCommunicationDevices();
+  }
+
+  @RequiresApi(31)
+  public AudioDeviceInfo getCommunicationDevice() {
+    return audioManager.getCommunicationDevice();
+  }
+
+  @RequiresApi(31)
+  public boolean setCommunicationDevice(@Nullable AudioDeviceInfo device) {
+    return audioManager.setCommunicationDevice(device);
+  }
+
+  @RequiresApi(31)
+  public void clearCommunicationDevice() {
+    audioManager.clearCommunicationDevice();
+  }
+
+  @RequiresApi(23)
+  public void registerAudioDeviceCallback(@NonNull AudioDeviceCallback deviceCallback, @NonNull Handler handler) {
+    audioManager.registerAudioDeviceCallback(deviceCallback, handler);
+  }
+
+  @RequiresApi(23)
+  public void unregisterAudioDeviceCallback(@NonNull AudioDeviceCallback deviceCallback) {
+    audioManager.unregisterAudioDeviceCallback(deviceCallback);
   }
 
   @SuppressLint("WrongConstant")
