@@ -18,6 +18,7 @@ import androidx.core.view.ViewCompat;
 
 import org.signal.qr.QrScannerView;
 import org.signal.qr.kitkat.ScanListener;
+import org.thoughtcrime.securesms.mediasend.camerax.CameraXModelBlocklist;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.LifecycleDisposable;
 import org.thoughtcrime.securesms.util.ViewUtil;
@@ -57,7 +58,7 @@ public class DeviceAddFragment extends LoggingFragment {
       });
     }
 
-    scannerView.start(getViewLifecycleOwner());
+    scannerView.start(getViewLifecycleOwner(), CameraXModelBlocklist.isBlocklisted());
 
     lifecycleDisposable.bindTo(getViewLifecycleOwner());
 
