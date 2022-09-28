@@ -28,8 +28,10 @@ public final class SignalContactRecord implements SignalRecord {
   private final ServiceId        serviceId;
   private final Optional<PNI>    pni;
   private final Optional<String> e164;
-  private final Optional<String> givenName;
-  private final Optional<String> familyName;
+  private final Optional<String> profileGivenName;
+  private final Optional<String> profileFamilyName;
+  private final Optional<String> systemGivenName;
+  private final Optional<String> systemFamilyName;
   private final Optional<byte[]> profileKey;
   private final Optional<String> username;
   private final Optional<byte[]> identityKey;
@@ -39,14 +41,16 @@ public final class SignalContactRecord implements SignalRecord {
     this.proto            = proto;
     this.hasUnknownFields = ProtoUtil.hasUnknownFields(proto);
 
-    this.serviceId   = ServiceId.parseOrUnknown(proto.getServiceId());
-    this.pni         = OptionalUtil.absentIfEmpty(proto.getServicePni()).map(PNI::parseOrNull);
-    this.e164        = OptionalUtil.absentIfEmpty(proto.getServiceE164());
-    this.givenName   = OptionalUtil.absentIfEmpty(proto.getGivenName());
-    this.familyName  = OptionalUtil.absentIfEmpty(proto.getFamilyName());
-    this.profileKey  = OptionalUtil.absentIfEmpty(proto.getProfileKey());
-    this.username    = OptionalUtil.absentIfEmpty(proto.getUsername());
-    this.identityKey = OptionalUtil.absentIfEmpty(proto.getIdentityKey());
+    this.serviceId         = ServiceId.parseOrUnknown(proto.getServiceId());
+    this.pni               = OptionalUtil.absentIfEmpty(proto.getServicePni()).map(PNI::parseOrNull);
+    this.e164              = OptionalUtil.absentIfEmpty(proto.getServiceE164());
+    this.profileGivenName  = OptionalUtil.absentIfEmpty(proto.getGivenName());
+    this.profileFamilyName = OptionalUtil.absentIfEmpty(proto.getFamilyName());
+    this.systemGivenName   = OptionalUtil.absentIfEmpty(proto.getSystemGivenName());
+    this.systemFamilyName  = OptionalUtil.absentIfEmpty(proto.getSystemFamilyName());
+    this.profileKey        = OptionalUtil.absentIfEmpty(proto.getProfileKey());
+    this.username          = OptionalUtil.absentIfEmpty(proto.getUsername());
+    this.identityKey       = OptionalUtil.absentIfEmpty(proto.getIdentityKey());
   }
 
   @Override
@@ -81,12 +85,20 @@ public final class SignalContactRecord implements SignalRecord {
         diff.add("E164");
       }
 
-      if (!Objects.equals(this.givenName, that.givenName)) {
-        diff.add("GivenName");
+      if (!Objects.equals(this.profileGivenName, that.profileGivenName)) {
+        diff.add("ProfileGivenName");
       }
 
-      if (!Objects.equals(this.familyName, that.familyName)) {
-        diff.add("FamilyName");
+      if (!Objects.equals(this.profileFamilyName, that.profileFamilyName)) {
+        diff.add("ProfileFamilyName");
+      }
+
+      if (!Objects.equals(this.systemGivenName, that.systemGivenName)) {
+        diff.add("SystemGivenName");
+      }
+
+      if (!Objects.equals(this.systemFamilyName, that.systemFamilyName)) {
+        diff.add("SystemFamilyName");
       }
 
       if (!OptionalUtil.byteArrayEquals(this.profileKey, that.profileKey)) {
@@ -167,12 +179,20 @@ public final class SignalContactRecord implements SignalRecord {
     return e164;
   }
 
-  public Optional<String> getGivenName() {
-    return givenName;
+  public Optional<String> getProfileGivenName() {
+    return profileGivenName;
   }
 
-  public Optional<String> getFamilyName() {
-    return familyName;
+  public Optional<String> getProfileFamilyName() {
+    return profileFamilyName;
+  }
+
+  public Optional<String> getSystemGivenName() {
+    return systemGivenName;
+  }
+
+  public Optional<String> getSystemFamilyName() {
+    return systemFamilyName;
   }
 
   public Optional<byte[]> getProfileKey() {
@@ -274,13 +294,23 @@ public final class SignalContactRecord implements SignalRecord {
       return this;
     }
 
-    public Builder setGivenName(String givenName) {
+    public Builder setProfileGivenName(String givenName) {
       builder.setGivenName(givenName == null ? "" : givenName);
       return this;
     }
 
-    public Builder setFamilyName(String familyName) {
+    public Builder setProfileFamilyName(String familyName) {
       builder.setFamilyName(familyName == null ? "" : familyName);
+      return this;
+    }
+
+    public Builder setSystemGivenName(String givenName) {
+      builder.setSystemGivenName(givenName == null ? "" : givenName);
+      return this;
+    }
+
+    public Builder setSystemFamilyName(String familyName) {
+      builder.setSystemFamilyName(familyName == null ? "" : familyName);
       return this;
     }
 

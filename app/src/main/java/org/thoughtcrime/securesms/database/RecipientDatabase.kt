@@ -925,6 +925,21 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(recipientId)
   }
 
+  fun markAllSystemContactsNeedsSync() {
+    writableDatabase.withinTransaction { db ->
+      db
+        .select(ID)
+        .from(TABLE_NAME)
+        .where("$SYSTEM_CONTACT_URI NOT NULL")
+        .run()
+        .use { cursor ->
+          while (cursor.moveToNext()) {
+            rotateStorageId(RecipientId.from(cursor.requireLong(ID)))
+          }
+        }
+    }
+  }
+
   fun applyStorageIdUpdates(storageIds: Map<RecipientId, StorageId>) {
     val db = writableDatabase
     db.beginTransaction()
@@ -3667,8 +3682,9 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
 
   private fun getValuesForStorageContact(contact: SignalContactRecord, isInsert: Boolean): ContentValues {
     return ContentValues().apply {
-      val profileName = ProfileName.fromParts(contact.givenName.orElse(null), contact.familyName.orElse(null))
-      val username: String? = contact.username.orElse(null)
+      val profileName = ProfileName.fromParts(contact.profileGivenName.orElse(null), contact.profileFamilyName.orElse(null))
+      val systemName = ProfileName.fromParts(contact.systemGivenName.orElse(null), contact.systemFamilyName.orElse(null))
+      val username = contact.username.orElse(null)
 
       if (contact.serviceId.isValid) {
         put(SERVICE_ID, contact.serviceId.toString())
@@ -3682,6 +3698,9 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       put(PROFILE_GIVEN_NAME, profileName.givenName)
       put(PROFILE_FAMILY_NAME, profileName.familyName)
       put(PROFILE_JOINED_NAME, profileName.toString())
+      put(SYSTEM_GIVEN_NAME, systemName.givenName)
+      put(SYSTEM_FAMILY_NAME, systemName.familyName)
+      put(SYSTEM_JOINED_NAME, systemName.toString())
       put(PROFILE_KEY, contact.profileKey.map { source -> Base64.encodeBytes(source) }.orElse(null))
       put(USERNAME, if (TextUtils.isEmpty(username)) null else username)
       put(PROFILE_SHARING, if (contact.isProfileSharingEnabled) "1" else "0")

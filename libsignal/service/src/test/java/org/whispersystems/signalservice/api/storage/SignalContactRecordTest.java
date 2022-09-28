@@ -2,7 +2,6 @@ package org.whispersystems.signalservice.api.storage;
 
 import org.junit.Test;
 import org.whispersystems.signalservice.api.push.ServiceId;
-import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
@@ -53,6 +52,6 @@ public class SignalContactRecordTest {
   {
     return new SignalContactRecord.Builder(byteArray(key), serviceId, null)
                                   .setE164(e164)
-                                  .setGivenName(givenName);
+                                  .setProfileGivenName(givenName);
   }
 }

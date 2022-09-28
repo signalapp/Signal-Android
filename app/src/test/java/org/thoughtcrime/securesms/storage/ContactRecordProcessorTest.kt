@@ -3,17 +3,23 @@ package org.thoughtcrime.securesms.storage
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
+import org.junit.Before
 import org.junit.BeforeClass
 import org.junit.Rule
 import org.junit.Test
 import org.mockito.Mock
 import org.mockito.MockedStatic
+import org.mockito.Mockito
+import org.mockito.Mockito.mock
+import org.mockito.Mockito.`when`
 import org.mockito.internal.configuration.plugins.Plugins
 import org.mockito.internal.junit.JUnitRule
 import org.mockito.junit.MockitoRule
 import org.mockito.quality.Strictness
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.RecipientDatabase
+import org.thoughtcrime.securesms.keyvalue.AccountValues
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.testutil.EmptyLogger
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.whispersystems.signalservice.api.push.ACI
@@ -34,6 +40,16 @@ class ContactRecordProcessorTest {
 
   @Mock
   lateinit var featureFlags: MockedStatic<FeatureFlags>
+
+  @Mock
+  lateinit var signalStore: MockedStatic<SignalStore>
+
+  @Before
+  fun setup() {
+    val mockAccountValues = mock(AccountValues::class.java)
+    Mockito.lenient().`when`(mockAccountValues.isPrimaryDevice).thenReturn(true)
+    signalStore.`when`<AccountValues> { SignalStore.account() }.thenReturn(mockAccountValues)
+  }
 
   @Test
   fun `isInvalid, normal, false`() {

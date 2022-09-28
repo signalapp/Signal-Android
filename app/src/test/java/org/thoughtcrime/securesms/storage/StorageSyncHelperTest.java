@@ -14,7 +14,6 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper.IdDifferenceResult;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.whispersystems.signalservice.api.push.ServiceId;
-import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.storage.SignalAccountRecord;
 import org.whispersystems.signalservice.api.storage.SignalContactRecord;
 import org.whispersystems.signalservice.api.storage.SignalGroupV1Record;
@@ -178,7 +177,7 @@ public final class StorageSyncHelperTest {
   {
     return new SignalContactRecord.Builder(byteArray(key), aci, null)
                                   .setE164(e164)
-                                  .setGivenName(profileName);
+                                  .setProfileGivenName(profileName);
   }
 
   private static <E extends SignalRecord> StorageRecordUpdate<E> update(E oldRecord, E newRecord) {

@@ -1,7 +1,5 @@
 package org.thoughtcrime.securesms.storage;
 
-import android.content.Context;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -17,7 +15,6 @@ import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.whispersystems.signalservice.api.push.ACI;
 import org.whispersystems.signalservice.api.push.PNI;
 import org.whispersystems.signalservice.api.push.ServiceId;
-import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.storage.SignalContactRecord;
 import org.whispersystems.signalservice.api.util.OptionalUtil;
 import org.whispersystems.signalservice.internal.storage.protos.ContactRecord.IdentityState;
@@ -122,15 +119,15 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
       remote = remote.withoutPni();
     }
 
-    String givenName;
-    String familyName;
+    String profileGivenName;
+    String profileFamilyName;
 
-    if (remote.getGivenName().isPresent() || remote.getFamilyName().isPresent()) {
-      givenName  = remote.getGivenName().orElse("");
-      familyName = remote.getFamilyName().orElse("");
+    if (remote.getProfileGivenName().isPresent() || remote.getProfileFamilyName().isPresent()) {
+      profileGivenName  = remote.getProfileGivenName().orElse("");
+      profileFamilyName = remote.getProfileFamilyName().orElse("");
     } else {
-      givenName  = local.getGivenName().orElse("");
-      familyName = local.getFamilyName().orElse("");
+      profileGivenName  = local.getProfileGivenName().orElse("");
+      profileFamilyName = local.getProfileFamilyName().orElse("");
     }
 
     IdentityState identityState;
@@ -198,8 +195,10 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
     boolean              hideStory             = remote.shouldHideStory();
     long                 unregisteredTimestamp = remote.getUnregisteredTimestamp();
     boolean              hidden                = remote.isHidden();
-    boolean              matchesRemote         = doParamsMatch(remote, unknownFields, serviceId, pni, e164, givenName, familyName, profileKey, username, identityState, identityKey, blocked, profileSharing, archived, forcedUnread, muteUntil, hideStory, unregisteredTimestamp, hidden);
-    boolean              matchesLocal          = doParamsMatch(local, unknownFields, serviceId, pni, e164, givenName, familyName, profileKey, username, identityState, identityKey, blocked, profileSharing, archived, forcedUnread, muteUntil, hideStory, unregisteredTimestamp, hidden);
+    String               systemGivenName       = SignalStore.account().isPrimaryDevice() ? local.getSystemGivenName().orElse("") : remote.getSystemGivenName().orElse("");
+    String               systemFamilyName      = SignalStore.account().isPrimaryDevice() ? local.getSystemFamilyName().orElse("") : remote.getSystemFamilyName().orElse("");
+    boolean              matchesRemote         = doParamsMatch(remote, unknownFields, serviceId, pni, e164, profileGivenName, profileFamilyName, systemGivenName, systemFamilyName, profileKey, username, identityState, identityKey, blocked, profileSharing, archived, forcedUnread, muteUntil, hideStory, unregisteredTimestamp, hidden);
+    boolean              matchesLocal          = doParamsMatch(local, unknownFields, serviceId, pni, e164, profileGivenName, profileFamilyName, systemGivenName, systemFamilyName, profileKey, username, identityState, identityKey, blocked, profileSharing, archived, forcedUnread, muteUntil, hideStory, unregisteredTimestamp, hidden);
 
     if (matchesRemote) {
       return remote;
@@ -209,8 +208,10 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
       return new SignalContactRecord.Builder(keyGenerator.generate(), serviceId, unknownFields)
                                     .setE164(e164)
                                     .setPni(pni)
-                                    .setGivenName(givenName)
-                                    .setFamilyName(familyName)
+                                    .setProfileGivenName(profileGivenName)
+                                    .setProfileFamilyName(profileFamilyName)
+                                    .setSystemGivenName(systemGivenName)
+                                    .setSystemFamilyName(systemFamilyName)
                                     .setProfileKey(profileKey)
                                     .setUsername(username)
                                     .setIdentityState(identityState)
@@ -254,8 +255,10 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
                                        @NonNull ServiceId serviceId,
                                        @Nullable PNI pni,
                                        @Nullable String e164,
-                                       @NonNull String givenName,
-                                       @NonNull String familyName,
+                                       @NonNull String profileGivenName,
+                                       @NonNull String profileFamilyName,
+                                       @NonNull String systemGivenName,
+                                       @NonNull String systemFamilyName,
                                        @Nullable byte[] profileKey,
                                        @NonNull String username,
                                        @Nullable IdentityState identityState,
@@ -269,23 +272,25 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
                                        long unregisteredTimestamp,
                                        boolean hidden)
   {
-    return Arrays.equals(contact.serializeUnknownFields(), unknownFields)     &&
-           Objects.equals(contact.getServiceId(), serviceId)                  &&
-           Objects.equals(contact.getPni().orElse(null), pni)                 &&
-           Objects.equals(contact.getNumber().orElse(null), e164)             &&
-           Objects.equals(contact.getGivenName().orElse(""), givenName)       &&
-           Objects.equals(contact.getFamilyName().orElse(""), familyName)     &&
-           Arrays.equals(contact.getProfileKey().orElse(null), profileKey)    &&
-           Objects.equals(contact.getUsername().orElse(""), username)         &&
-           Objects.equals(contact.getIdentityState(), identityState)          &&
-           Arrays.equals(contact.getIdentityKey().orElse(null), identityKey)  &&
-           contact.isBlocked() == blocked                                     &&
-           contact.isProfileSharingEnabled() == profileSharing                &&
-           contact.isArchived() == archived                                   &&
-           contact.isForcedUnread() == forcedUnread                           &&
-           contact.getMuteUntil() == muteUntil                                &&
-           contact.shouldHideStory() == hideStory                             &&
-           contact.getUnregisteredTimestamp() == unregisteredTimestamp        &&
+    return Arrays.equals(contact.serializeUnknownFields(), unknownFields) &&
+           Objects.equals(contact.getServiceId(), serviceId) &&
+           Objects.equals(contact.getPni().orElse(null), pni) &&
+           Objects.equals(contact.getNumber().orElse(null), e164) &&
+           Objects.equals(contact.getProfileGivenName().orElse(""), profileGivenName) &&
+           Objects.equals(contact.getProfileFamilyName().orElse(""), profileFamilyName) &&
+           Objects.equals(contact.getSystemGivenName().orElse(""), systemGivenName) &&
+           Objects.equals(contact.getSystemFamilyName().orElse(""), systemFamilyName) &&
+           Arrays.equals(contact.getProfileKey().orElse(null), profileKey) &&
+           Objects.equals(contact.getUsername().orElse(""), username) &&
+           Objects.equals(contact.getIdentityState(), identityState) &&
+           Arrays.equals(contact.getIdentityKey().orElse(null), identityKey) &&
+           contact.isBlocked() == blocked &&
+           contact.isProfileSharingEnabled() == profileSharing &&
+           contact.isArchived() == archived &&
+           contact.isForcedUnread() == forcedUnread &&
+           contact.getMuteUntil() == muteUntil &&
+           contact.shouldHideStory() == hideStory &&
+           contact.getUnregisteredTimestamp() == unregisteredTimestamp &&
            contact.isHidden() == hidden;
   }
 }
