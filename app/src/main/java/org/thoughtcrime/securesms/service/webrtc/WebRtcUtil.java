@@ -35,7 +35,7 @@ public final class WebRtcUtil {
 
   public static @NonNull LockManager.PhoneState getInCallPhoneState(@NonNull Context context) {
     AudioManagerCompat audioManager = ApplicationDependencies.getAndroidCallAudioManager();
-    if (audioManager.isSpeakerphoneOn() || audioManager.isBluetoothScoOn() || audioManager.isWiredHeadsetOn()) {
+    if (audioManager.isSpeakerphoneOn() || audioManager.isBluetoothConnected() || audioManager.isWiredHeadsetOn()) {
       return LockManager.PhoneState.IN_HANDS_FREE_CALL;
     } else {
       return LockManager.PhoneState.IN_CALL;
