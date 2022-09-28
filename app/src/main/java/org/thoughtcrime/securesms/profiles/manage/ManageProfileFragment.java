@@ -108,17 +108,13 @@ public class ManageProfileFragment extends LoggingFragment {
       }
     });
 
-    if (FeatureFlags.donorBadges()) {
-      binding.manageProfileBadgesContainer.setOnClickListener(v -> {
-        if (Recipient.self().getBadges().isEmpty()) {
-          BecomeASustainerFragment.show(getParentFragmentManager());
-        } else {
-          SafeNavigation.safeNavigate(Navigation.findNavController(v), ManageProfileFragmentDirections.actionManageProfileFragmentToBadgeManageFragment());
-        }
-      });
-    } else {
-      binding.manageProfileBadgesContainer.setVisibility(View.GONE);
-    }
+    binding.manageProfileBadgesContainer.setOnClickListener(v -> {
+      if (Recipient.self().getBadges().isEmpty()) {
+        BecomeASustainerFragment.show(getParentFragmentManager());
+      } else {
+        SafeNavigation.safeNavigate(Navigation.findNavController(v), ManageProfileFragmentDirections.actionManageProfileFragmentToBadgeManageFragment());
+      }
+    });
 
     binding.manageProfileAvatar.setOnClickListener(v -> {
       startActivity(AvatarPreviewActivity.intentFromRecipientId(requireContext(), Recipient.self().getId()),

@@ -51,16 +51,6 @@ public final class LocaleFeatureFlags {
     return isEnabled(FeatureFlags.STORIES_LOCALE, FeatureFlags.storiesLocale());
   }
 
-  /**
-   * Whether or not you should suggest SMS during onboarding.
-   */
-  public static boolean shouldSuggestSms() {
-    Set<String> blacklist   = new HashSet<>(Arrays.asList(FeatureFlags.suggestSmsBlacklist().split(",")));
-    String      countryCode = String.valueOf(PhoneNumberFormatter.getLocalCountryCode());
-
-    return !blacklist.contains(countryCode);
-  }
-
   public static boolean shouldShowReleaseNote(@NonNull String releaseNoteUuid, @NonNull String countries) {
     return isEnabled(releaseNoteUuid, countries);
   }

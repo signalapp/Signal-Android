@@ -40,7 +40,6 @@ import org.thoughtcrime.securesms.megaphone.Megaphones
 import org.thoughtcrime.securesms.payments.DataExportUtil
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.ConversationUtil
-import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import java.util.Optional
@@ -365,7 +364,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         }
       )
 
-      if (FeatureFlags.donorBadges() && SignalStore.donationsValues().getSubscriber() != null) {
+      if (SignalStore.donationsValues().getSubscriber() != null) {
         dividerPref()
 
         sectionHeaderPref(R.string.preferences__internal_badges)

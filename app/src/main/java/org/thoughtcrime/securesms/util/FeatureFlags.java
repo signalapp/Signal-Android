@@ -78,14 +78,10 @@ public final class FeatureFlags {
   private static final String MEDIA_QUALITY_LEVELS              = "android.mediaQuality.levels";
   private static final String RETRY_RECEIPT_LIFESPAN            = "android.retryReceiptLifespan";
   private static final String RETRY_RESPOND_MAX_AGE             = "android.retryRespondMaxAge";
-  private static final String SENDER_KEY                        = "android.senderKey.5";
   private static final String SENDER_KEY_MAX_AGE                = "android.senderKeyMaxAge";
   private static final String RETRY_RECEIPTS                    = "android.retryReceipts";
-  private static final String SUGGEST_SMS_BLACKLIST             = "android.suggestSmsBlacklist";
   private static final String MAX_GROUP_CALL_RING_SIZE          = "global.calling.maxGroupCallRingSize";
   private static final String GROUP_CALL_RINGING                = "android.calling.groupCallRinging";
-  private static final String DONOR_BADGES                      = "android.donorBadges.6";
-  private static final String DONOR_BADGES_DISPLAY              = "android.donorBadges.display.4";
   private static final String STORIES                           = "android.stories.2";
   private static final String STORIES_TEXT_FUNCTIONS            = "android.stories.text.functions";
   private static final String HARDWARE_AEC_BLOCKLIST_MODELS     = "android.calling.hardwareAecBlockList";
@@ -138,14 +134,10 @@ public final class FeatureFlags {
       MEDIA_QUALITY_LEVELS,
       RETRY_RECEIPT_LIFESPAN,
       RETRY_RESPOND_MAX_AGE,
-      SENDER_KEY,
       RETRY_RECEIPTS,
-      SUGGEST_SMS_BLACKLIST,
       MAX_GROUP_CALL_RING_SIZE,
       GROUP_CALL_RINGING,
       SENDER_KEY_MAX_AGE,
-      DONOR_BADGES,
-      DONOR_BADGES_DISPLAY,
       STORIES,
       STORIES_TEXT_FUNCTIONS,
       HARDWARE_AEC_BLOCKLIST_MODELS,
@@ -211,13 +203,10 @@ public final class FeatureFlags {
       MEDIA_QUALITY_LEVELS,
       RETRY_RECEIPT_LIFESPAN,
       RETRY_RESPOND_MAX_AGE,
-      SUGGEST_SMS_BLACKLIST,
       RETRY_RECEIPTS,
-      SENDER_KEY,
       MAX_GROUP_CALL_RING_SIZE,
       GROUP_CALL_RINGING,
       SENDER_KEY_MAX_AGE,
-      DONOR_BADGES_DISPLAY,
       DONATE_MEGAPHONE,
       HARDWARE_AEC_BLOCKLIST_MODELS,
       SOFTWARE_AEC_BLOCKLIST_MODELS,
@@ -255,7 +244,6 @@ public final class FeatureFlags {
    */
   private static final Map<String, OnFlagChange> FLAG_CHANGE_LISTENERS = new HashMap<String, OnFlagChange>() {{
     put(MESSAGE_PROCESSOR_ALARM_INTERVAL, change -> MessageProcessReceiver.startOrUpdateAlarm(ApplicationDependencies.getApplication()));
-    put(SENDER_KEY, change -> ApplicationDependencies.getJobManager().startChain(new RefreshAttributesJob()).then(new RefreshOwnProfileJob()).enqueue());
     put(STORIES, change -> ApplicationDependencies.getJobManager().startChain(new RefreshAttributesJob()).then(new RefreshOwnProfileJob()).enqueue());
     put(GIFT_BADGE_RECEIVE_SUPPORT, change -> ApplicationDependencies.getJobManager().startChain(new RefreshAttributesJob()).then(new RefreshOwnProfileJob()).enqueue());
   }};
@@ -436,11 +424,6 @@ public final class FeatureFlags {
     return Math.min(getLong(SENDER_KEY_MAX_AGE, TimeUnit.DAYS.toMillis(14)), TimeUnit.DAYS.toMillis(90));
   }
 
-  /** A comma-delimited list of country codes that should not be told about SMS during onboarding. */
-  public static @NonNull String suggestSmsBlacklist() {
-    return getString(SUGGEST_SMS_BLACKLIST, "");
-  }
-
   /** Max group size that can be use group call ringing. */
   public static long maxGroupCallRingSize() {
     return getLong(MAX_GROUP_CALL_RING_SIZE, 16);
@@ -454,17 +437,6 @@ public final class FeatureFlags {
   /** A comma-separated list of country codes where payments should be disabled. */
   public static String paymentsCountryBlocklist() {
     return getString(PAYMENTS_COUNTRY_BLOCKLIST, "98,963,53,850,7");
-  }
-
-  /**
-   * Whether or not to show donor badges in the UI.
-   */
-  public static boolean donorBadges() {
-    if (Environment.IS_STAGING) {
-      return true;
-    } else {
-      return getBoolean(DONOR_BADGES, true) || SignalStore.donationsValues().getSubscriber() != null;
-    }
   }
 
   /**
@@ -490,13 +462,6 @@ public final class FeatureFlags {
    */
   public static @NonNull String storiesLocale() {
     return getString(STORIES_LOCALE, "");
-  }
-
-  /**
-   * Whether or not donor badges should be displayed throughout the app.
-   */
-  public static boolean displayDonorBadges() {
-    return getBoolean(DONOR_BADGES_DISPLAY, true);
   }
 
   /** A comma-separated list of models that should *not* use hardware AEC for calling. */
