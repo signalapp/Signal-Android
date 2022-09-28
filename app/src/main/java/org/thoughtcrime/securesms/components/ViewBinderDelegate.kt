@@ -11,11 +11,19 @@ import kotlin.reflect.KProperty
  * ViewBinderDelegate which enforces the "best practices" for maintaining a reference to a view binding given by
  * Android official documentation.
  */
-class ViewBinderDelegate<T : ViewBinding>(private val bindingFactory: (View) -> T) : DefaultLifecycleObserver {
+open class ViewBinderDelegate<T : ViewBinding>(
+  private val bindingFactory: (View) -> T,
+  private val onBindingWillBeDestroyed: (T) -> Unit = {}
+) : DefaultLifecycleObserver {
 
   private var binding: T? = null
+  private var isBindingDestroyed = false
 
   operator fun getValue(thisRef: Fragment, property: KProperty<*>): T {
+    if (isBindingDestroyed) {
+      error("Binding has been destroyed.")
+    }
+
     if (binding == null) {
       thisRef.viewLifecycleOwner.lifecycle.addObserver(this@ViewBinderDelegate)
       binding = bindingFactory(thisRef.requireView())
@@ -25,6 +33,11 @@ class ViewBinderDelegate<T : ViewBinding>(private val bindingFactory: (View) -> 
   }
 
   override fun onDestroy(owner: LifecycleOwner) {
+    if (binding != null) {
+      onBindingWillBeDestroyed(binding!!)
+    }
+
     binding = null
+    isBindingDestroyed = true
   }
 }

@@ -58,7 +58,11 @@ class AddMessageDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_a
     ownerProducer = { requireActivity() }
   )
 
-  private val binding by ViewBinderDelegate(V2MediaAddMessageDialogFragmentBinding::bind)
+  private val binding by ViewBinderDelegate(V2MediaAddMessageDialogFragmentBinding::bind, onBindingWillBeDestroyed = { binding ->
+    binding.content.addAMessageInput.setInlineQueryChangedListener(null)
+    binding.content.addAMessageInput.setMentionValidator(null)
+  })
+
   private lateinit var emojiDrawerStub: Stub<MediaKeyboard>
   private lateinit var inlineQueryResultsController: InlineQueryResultsController
 
@@ -153,9 +157,6 @@ class AddMessageDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_a
   override fun onDestroyView() {
     super.onDestroyView()
     disposables.dispose()
-
-    binding.content.addAMessageInput.setInlineQueryChangedListener(null)
-    binding.content.addAMessageInput.setMentionValidator(null)
   }
 
   private fun initializeMentions() {
