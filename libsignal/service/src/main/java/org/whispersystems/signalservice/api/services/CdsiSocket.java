@@ -10,6 +10,8 @@ import org.signal.libsignal.protocol.util.Pair;
 import org.whispersystems.signalservice.api.push.TrustStore;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.util.Tls12SocketFactory;
+import org.whispersystems.signalservice.api.util.TlsProxySocketFactory;
+import org.whispersystems.signalservice.internal.configuration.SignalProxy;
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
 import org.whispersystems.signalservice.internal.util.BlacklistingTrustManager;
 import org.whispersystems.signalservice.internal.util.Hex;
@@ -67,6 +69,11 @@ final class CdsiSocket {
 
     for (Interceptor interceptor : configuration.getNetworkInterceptors()) {
       builder.addInterceptor(interceptor);
+    }
+
+    if (configuration.getSignalProxy().isPresent()) {
+      SignalProxy proxy = configuration.getSignalProxy().get();
+      builder.socketFactory(new TlsProxySocketFactory(proxy.getHost(), proxy.getPort(), configuration.getDns()));
     }
 
     this.okhttp = builder.build();

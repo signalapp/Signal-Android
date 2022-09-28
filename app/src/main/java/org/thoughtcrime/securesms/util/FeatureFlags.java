@@ -104,7 +104,7 @@ public final class FeatureFlags {
   private static final String RECIPIENT_MERGE_V2                = "android.recipientMergeV2";
   private static final String CDS_V2_LOAD_TEST                  = "android.cdsV2LoadTest";
   private static final String SMS_EXPORTER                      = "android.sms.exporter";
-  private static final String CDS_V2_COMPAT                     = "android.cdsV2Compat.3";
+  private static final String CDS_V2_COMPAT                     = "android.cdsV2Compat.4";
   public  static final String STORIES_LOCALE                    = "android.stories.locale";
   private static final String HIDE_CONTACTS                     = "android.hide.contacts";
 
