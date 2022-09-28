@@ -68,6 +68,8 @@ class EditStoryNameFragment : Fragment(R.layout.stories_edit_story_name_fragment
     saveButton.setOnClickListener {
       onSaveClicked()
     }
+
+    ViewUtil.focusAndShowKeyboard(storyName)
   }
 
   override fun onPause() {
