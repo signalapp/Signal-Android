@@ -7,38 +7,31 @@
 <!-- af --><item>Afrikaans</item>
 <!-- ar --><item>Arabic العربية</item>
 <!-- az --><item>Azərbaycan</item>
-<!-- jv --><item>Basa Jawa</item>
 <!-- bn --><item>Bengali বাংলা</item>
 <!-- bs --><item>Bosanski</item>
 <!-- bg --><item>Bulgarian български</item>
 <!-- my --><item>Burmese ဗမာစကား</item>
-<!-- yue --><item>Cantonese (Traditional) 粵語 (繁體)</item>
 <!-- ca --><item>Català</item>
 <!-- cs --><item>Čeština</item>
 <!-- zh_CN --><item>Chinese (Simplified) 中文 (简体)</item>
 <!-- zh_TW --><item>Chinese (Traditional) 中文 (繁體)</item>
 <!-- zh_HK --><item>Chinese (Traditional, Hong Kong) 中文 (香港)</item>
-<!-- cy --><item>Cymraeg</item>
 <!-- da --><item>Dansk</item>
 <!-- de --><item>Deutsch</item>
 <!-- et --><item>Eesti</item>
 <!-- es --><item>Español</item>
-<!-- eo --><item>Esperanto</item>
 <!-- eu --><item>Euskara</item>
 <!-- tl --><item>Filipino</item>
 <!-- fr --><item>Français</item>
-<!-- fy --><item>Frysk</item>
 <!-- ga --><item>Gaeilge</item>
 <!-- gl --><item>Galego</item>
 <!-- ka --><item>Georgian ქართული</item>
 <!-- el --><item>Greek ελληνικά</item>
 <!-- gu --><item>Gujarati ગુજરાતી</item>
-<!-- ha --><item>Hausa</item>
 <!-- he/iw --><item>Hebrew עברית</item>
 <!-- hi --><item>Hindi हिंदी</item>
 <!-- hr --><item>Hrvatski</item>
 <!-- id/in --><item>Indonesia</item>
-<!-- is --><item>Íslenska</item>
 <!-- it --><item>Italiano</item>
 <!-- ja --><item>Japanese 日本語</item>
 <!-- kn --><item>Kannada ಕನ್ನಡ</item>
@@ -46,11 +39,9 @@
 <!-- km --><item>Khmer ភាសាខ្មែរ</item>
 <!-- sw --><item>Kiswahili</item>
 <!-- ko --><item>Korean 한국어</item>
-<!-- ku --><item>Kurdí</item>
 <!-- ky --><item>Kyrgyz Кыргыз тили</item>
 <!-- lv --><item>Latviešu</item>
 <!-- lt --><item>Lietuvių</item>
-<!-- lg --><item>Luganda</item>
 <!-- mk --><item>Macedonian македонски јазик</item>
 <!-- hu --><item>Magyar</item>
 <!-- ms --><item>Malay (Bahasa Melayu)</item>
@@ -58,16 +49,11 @@
 <!-- mr --><item>Marathi मराठी</item>
 <!-- nl --><item>Nederlands</item>
 <!-- nb --><item>Norsk (bokmål)</item>
-<!-- nn --><item>Norsk (nynorsk)</item>
-<!-- or --><item>Odia ଓଡ଼ିଆ</item>
-<!-- ps --><item>Pashto پښتو</item>
 <!-- fa --><item>Persian فارسی</item>
 <!-- pl --><item>Polski</item>
 <!-- pt --><item>Português</item>
 <!-- pt_BR --><item>Português do Brasil</item>
 <!-- pa --><item>Punjabi ਪੰਜਾਬੀ / پنجابی</item>
-<!-- pa_PK --><item>Punjabi (Pakistan) ਪੰਜਾਬ (ਪਾਕਿਸਤਾਨ) / پنجابی</item>
-<!-- qu_EC --><item>Quechua</item>
 <!-- ro --><item>Română</item>
 <!-- ru --><item>Russian Pусский</item>
 <!-- sr --><item>Serbian српски</item>
@@ -77,11 +63,9 @@
 <!-- fi --><item>Suomi</item>
 <!-- sv --><item>Svenska</item>
 <!-- ta --><item>Tamil தமிழ்</item>
-<!-- kab --><item>Taqbaylit</item>
 <!-- te --><item>Telugu తెలుగు</item>
 <!-- th --><item>Thai ภาษาไทย</item>
 <!-- tr --><item>Türkçe</item>
-<!-- ug --><item>Uyghurche / ئۇيغۇرچە‎</item>
 <!-- uk --><item>Ukrainian Українська</item>
 <!-- ur --><item>Urdu اردو‎</item>
 <!-- vi --><item>Vietnamese Tiếng Việt</item>
@@ -93,38 +77,31 @@
       <item>af</item>
       <item>ar</item>
       <item>az</item>
-      <item>jv</item>
       <item>bn</item>
       <item>bs</item>
       <item>bg</item>
       <item>my</item>
-      <item>yue</item>
       <item>ca</item>
       <item>cs</item>
       <item>zh_CN</item>
       <item>zh_TW</item>
       <item>zh_HK</item>
-      <item>cy</item>
       <item>da</item>
       <item>de</item>
       <item>et</item>
       <item>es</item>
-      <item>eo</item>
       <item>eu</item>
       <item>tl</item>
       <item>fr</item>
-      <item>fy</item>
       <item>ga</item>
       <item>gl</item>
       <item>ka</item>
       <item>el</item>
       <item>gu</item>
-      <item>ha</item>
       <item>iw</item>
       <item>hi</item>
       <item>hr</item>
       <item>in</item>
-      <item>is</item>
       <item>it</item>
       <item>ja</item>
       <item>kn</item>
@@ -132,11 +109,9 @@
       <item>km</item>
       <item>sw</item>
       <item>ko</item>
-      <item>ku</item>
       <item>ky</item>
       <item>lv</item>
       <item>lt</item>
-      <item>lg</item>
       <item>mk</item>
       <item>hu</item>
       <item>ms</item>
@@ -144,16 +119,11 @@
       <item>mr</item>
       <item>nl</item>
       <item>nb</item>
-      <item>nn</item>
-      <item>or</item>
-      <item>ps</item>
       <item>fa</item>
       <item>pl</item>
       <item>pt</item>
       <item>pt_BR</item>
       <item>pa</item>
-      <item>pa_PK</item>
-      <item>qu_EC</item>
       <item>ro</item>
       <item>ru</item>
       <item>sr</item>
@@ -163,11 +133,9 @@
       <item>fi</item>
       <item>sv</item>
       <item>ta</item>
-      <item>kab</item>
       <item>te</item>
       <item>th</item>
       <item>tr</item>
-      <item>ug</item>
       <item>uk</item>
       <item>ur</item>
       <item>vi</item>
