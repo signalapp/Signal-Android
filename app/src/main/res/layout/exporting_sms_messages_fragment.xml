@@ -26,7 +26,7 @@
         android:layout_marginHorizontal="32dp"
         android:layout_marginTop="24dp"
         android:gravity="center"
-        tools:text="Please don't close the app..."
+        tools:text="[WIP]"
         android:textAppearance="@style/Signal.Text.BodyLarge"
         android:textColor="@color/signal_colorOnSurfaceVariant"
         app:layout_constraintEnd_toEndOf="parent"

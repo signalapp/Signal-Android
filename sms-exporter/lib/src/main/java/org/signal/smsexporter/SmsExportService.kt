@@ -65,12 +65,14 @@ abstract class SmsExportService : Service() {
         val exportState = message.exportState
         if (exportState.progress != SmsExportState.Progress.COMPLETED) {
           when (message) {
-            is ExportableMessage.Sms -> exportSms(exportState, message)
-            is ExportableMessage.Mms -> exportMms(exportState, message)
+            is ExportableMessage.Sms<*> -> exportSms(exportState, message)
+            is ExportableMessage.Mms<*> -> exportMms(exportState, message)
           }
 
           progress++
-          updateNotification(progress, totalCount)
+          if (progress == 1 || progress.mod(100) == 0) {
+            updateNotification(progress, totalCount)
+          }
           progressState.onNext(SmsExportProgress.InProgress(progress, totalCount))
         }
       }
@@ -177,7 +179,7 @@ abstract class SmsExportService : Service() {
     startForeground(exportNotification.id, exportNotification.notification)
   }
 
-  private fun exportSms(smsExportState: SmsExportState, sms: ExportableMessage.Sms) {
+  private fun exportSms(smsExportState: SmsExportState, sms: ExportableMessage.Sms<*>) {
     onMessageExportStarted(sms)
     val mayAlreadyExist = smsExportState.progress == SmsExportState.Progress.STARTED
     ExportSmsMessagesUseCase.execute(this, sms, mayAlreadyExist).either(onSuccess = {
@@ -187,7 +189,7 @@ abstract class SmsExportService : Service() {
     })
   }
 
-  private fun exportMms(smsExportState: SmsExportState, mms: ExportableMessage.Mms) {
+  private fun exportMms(smsExportState: SmsExportState, mms: ExportableMessage.Mms<*>) {
     onMessageExportStarted(mms)
     val threadIdOutput: GetOrCreateMmsThreadIdsUseCase.Output? = getThreadId(mms)
     val exportMmsOutput: ExportMmsMessagesUseCase.Output? = threadIdOutput?.let { exportMms(smsExportState, it) }
@@ -207,7 +209,7 @@ abstract class SmsExportService : Service() {
     }
   }
 
-  private fun getThreadId(mms: ExportableMessage.Mms): GetOrCreateMmsThreadIdsUseCase.Output? {
+  private fun getThreadId(mms: ExportableMessage.Mms<*>): GetOrCreateMmsThreadIdsUseCase.Output? {
     return GetOrCreateMmsThreadIdsUseCase.execute(this, mms, threadCache).either(
       onSuccess = { output ->
         output

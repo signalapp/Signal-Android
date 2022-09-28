@@ -17,7 +17,7 @@ internal object ExportMmsMessagesUseCase {
 
   private val TAG = Log.tag(ExportMmsMessagesUseCase::class.java)
 
-  internal fun getTransactionId(mms: ExportableMessage.Mms): String {
+  internal fun getTransactionId(mms: ExportableMessage.Mms<*>): String {
     return "signal:T${mms.id}"
   }
 
@@ -82,7 +82,7 @@ internal object ExportMmsMessagesUseCase {
   }
 
   data class Output(
-    val mms: ExportableMessage.Mms,
+    val mms: ExportableMessage.Mms<*>,
     val messageId: Long
   )
 }

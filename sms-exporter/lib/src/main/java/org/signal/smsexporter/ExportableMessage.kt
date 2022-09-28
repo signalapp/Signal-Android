@@ -16,8 +16,8 @@ sealed interface ExportableMessage {
   /**
    * An exportable SMS message
    */
-  data class Sms(
-    val id: String,
+  data class Sms<out ID : Any>(
+    val id: ID,
     override val exportState: SmsExportState,
     val address: String,
     val dateReceived: Duration,
@@ -30,8 +30,8 @@ sealed interface ExportableMessage {
   /**
    * An exportable MMS message
    */
-  data class Mms(
-    val id: String,
+  data class Mms<out ID : Any>(
+    val id: ID,
     override val exportState: SmsExportState,
     val addresses: Set<String>,
     val dateReceived: Duration,

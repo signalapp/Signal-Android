@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
+import app.cash.exhaustive.Exhaustive
 import org.signal.smsexporter.ExportableMessage
 import org.signal.smsexporter.SmsExportService
 import org.thoughtcrime.securesms.R
@@ -36,7 +37,7 @@ class SignalSmsExportService : SmsExportService() {
     return ExportNotification(
       NotificationIds.SMS_EXPORT_SERVICE,
       NotificationCompat.Builder(this, NotificationChannels.BACKUPS)
-        .setSmallIcon(R.drawable.ic_launcher_foreground)
+        .setSmallIcon(R.drawable.ic_signal_backup)
         .setContentTitle(getString(R.string.SignalSmsExportService__exporting_messages))
         .setProgress(total, progress, false)
         .build()
@@ -126,18 +127,22 @@ class SignalSmsExportService : SmsExportService() {
   }
 
   private fun ExportableMessage.getMessageId(): MessageId {
-    return when (this) {
-      is ExportableMessage.Mms -> MessageId(id.toLong(), true)
-      is ExportableMessage.Sms -> MessageId(id.toLong(), false)
+    @Exhaustive
+    val messageId: Any = when (this) {
+      is ExportableMessage.Mms<*> -> id
+      is ExportableMessage.Sms<*> -> id
+    }
+
+    if (messageId is MessageId) {
+      return messageId
+    } else {
+      throw AssertionError("Exportable message id must be type MessageId. Type: ${messageId.javaClass}")
     }
   }
 
   private fun ensureReader() {
     if (reader == null) {
-      reader = SignalSmsExportReader(
-        smsCursor = SignalDatabase.sms.unexportedInsecureMessages,
-        mmsCursor = SignalDatabase.mms.unexportedInsecureMessages
-      )
+      reader = SignalSmsExportReader()
     }
   }
 }

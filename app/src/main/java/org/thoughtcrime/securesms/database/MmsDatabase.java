@@ -54,7 +54,6 @@ import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
-import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.NotificationMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.ParentStoryId;
 import org.thoughtcrime.securesms.database.model.Quote;
@@ -2422,13 +2421,13 @@ public class MmsDatabase extends MessageDatabase {
   }
 
   @Override
-  public Cursor getUnexportedInsecureMessages() {
+  public Cursor getUnexportedInsecureMessages(int limit) {
     return rawQuery(
         SqlUtil.appendArg(MMS_PROJECTION, EXPORT_STATE),
         getInsecureMessageClause() + " AND NOT " + EXPORTED,
         null,
         false,
-        0
+        limit
     );
   }
 

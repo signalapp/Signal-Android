@@ -1,136 +1,222 @@
 package org.thoughtcrime.securesms.exporter
 
-import android.database.Cursor
+import org.signal.core.util.logging.Log
 import org.signal.smsexporter.ExportableMessage
 import org.signal.smsexporter.SmsExportState
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
+import org.thoughtcrime.securesms.database.MessageDatabase
 import org.thoughtcrime.securesms.database.MmsDatabase
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.SmsDatabase
+import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.MessageExportState
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.JsonUtils
 import java.io.Closeable
 import kotlin.time.Duration.Companion.milliseconds
 
+/**
+ * Reads through the SMS and MMS databases for insecure messages that haven't been exported. Due to cursor size limitations
+ * we "page" through the unexported messages to reduce chances of exceeding that limit.
+ */
 class SignalSmsExportReader(
-  smsCursor: Cursor,
-  mmsCursor: Cursor
+  private val smsDatabase: MessageDatabase = SignalDatabase.sms,
+  private val mmsDatabase: MessageDatabase = SignalDatabase.mms
 ) : Iterable<ExportableMessage>, Closeable {
 
-  private val smsReader = SmsDatabase.readerFor(smsCursor)
-  private val mmsReader = MmsDatabase.readerFor(mmsCursor)
+  companion object {
+    private val TAG = Log.tag(SignalSmsExportReader::class.java)
+    private const val CURSOR_LIMIT = 1000
+  }
+
+  private var smsReader: SmsDatabase.Reader? = null
+  private var smsDone: Boolean = false
+  private var mmsReader: MmsDatabase.Reader? = null
+  private var mmsDone: Boolean = false
 
   override fun iterator(): Iterator<ExportableMessage> {
     return ExportableMessageIterator()
   }
 
   fun getCount(): Int {
-    return smsReader.count + mmsReader.count
+    return smsDatabase.unexportedInsecureMessagesCount + mmsDatabase.unexportedInsecureMessagesCount
   }
 
   override fun close() {
-    smsReader.close()
-    mmsReader.close()
+    smsReader?.close()
+    mmsReader?.close()
+  }
+
+  private fun refreshReaders() {
+    if (!smsDone) {
+      smsReader?.close()
+      smsReader = null
+
+      val refreshedSmsReader = SmsDatabase.readerFor(smsDatabase.getUnexportedInsecureMessages(CURSOR_LIMIT))
+      if (refreshedSmsReader.count > 0) {
+        smsReader = refreshedSmsReader
+        return
+      } else {
+        refreshedSmsReader.close()
+        smsDone = true
+      }
+    }
+
+    if (!mmsDone) {
+      mmsReader?.close()
+      mmsReader = null
+
+      val refreshedMmsReader = MmsDatabase.readerFor(mmsDatabase.getUnexportedInsecureMessages(CURSOR_LIMIT))
+      if (refreshedMmsReader.count > 0) {
+        mmsReader = refreshedMmsReader
+        return
+      } else {
+        refreshedMmsReader.close()
+        mmsDone = true
+      }
+    }
   }
 
   private inner class ExportableMessageIterator : Iterator<ExportableMessage> {
 
-    private val smsIterator = smsReader.iterator()
-    private val mmsIterator = mmsReader.iterator()
+    private var smsIterator: Iterator<MessageRecord>? = null
+    private var mmsIterator: Iterator<MessageRecord>? = null
+
+    private fun refreshIterators() {
+      refreshReaders()
+      smsIterator = smsReader?.iterator()
+      mmsIterator = mmsReader?.iterator()
+    }
 
     override fun hasNext(): Boolean {
-      return smsIterator.hasNext() || mmsIterator.hasNext()
+      if (smsIterator?.hasNext() == true) {
+        return true
+      } else if (!smsDone) {
+        refreshIterators()
+        if (smsIterator?.hasNext() == true) {
+          return true
+        }
+      }
+
+      if (mmsIterator?.hasNext() == true) {
+        return true
+      } else if (!mmsDone) {
+        refreshIterators()
+        if (mmsIterator?.hasNext() == true) {
+          return true
+        }
+      }
+
+      return false
     }
 
     override fun next(): ExportableMessage {
-      return if (smsIterator.hasNext()) {
-        readExportableSmsMessageFromRecord(smsIterator.next())
-      } else if (mmsIterator.hasNext()) {
-        readExportableMmsMessageFromRecord(mmsIterator.next())
+      var record: MessageRecord? = null
+      try {
+        return if (smsIterator?.hasNext() == true) {
+          record = smsIterator!!.next()
+          readExportableSmsMessageFromRecord(record, smsReader!!.messageExportStateForCurrentRecord)
+        } else if (mmsIterator?.hasNext() == true) {
+          record = mmsIterator!!.next()
+          readExportableMmsMessageFromRecord(record, mmsReader!!.messageExportStateForCurrentRecord)
+        } else {
+          throw NoSuchElementException()
+        }
+      } catch (e: Throwable) {
+        Log.w(TAG, "Error processing message: isMms: ${record?.isMms} type: ${record?.type}")
+        throw e
+      }
+    }
+
+    private fun readExportableMmsMessageFromRecord(record: MessageRecord, exportState: MessageExportState): ExportableMessage {
+      val threadRecipient: Recipient = SignalDatabase.threads.getRecipientForThreadId(record.threadId)!!
+      val addresses: Set<String> = if (threadRecipient.isMmsGroup) {
+        Recipient
+          .resolvedList(threadRecipient.participantIds)
+          .map { r -> r.smsExportAddress() }
+          .toSet()
       } else {
-        throw NoSuchElementException()
+        setOf(threadRecipient.smsExportAddress())
       }
-    }
-  }
 
-  private fun readExportableMmsMessageFromRecord(record: MessageRecord): ExportableMessage {
-    val threadRecipient = SignalDatabase.threads.getRecipientForThreadId(record.threadId)!!
-    val addresses = if (threadRecipient.isMmsGroup) {
-      Recipient.resolvedList(threadRecipient.participantIds).map { it.requireSmsAddress() }.toSet()
-    } else {
-      setOf(threadRecipient.requireSmsAddress())
-    }
-
-    val parts: MutableList<ExportableMessage.Mms.Part> = mutableListOf()
-    if (record.body.isNotBlank()) {
-      parts.add(ExportableMessage.Mms.Part.Text(record.body))
-    }
-
-    if (record is MmsMessageRecord) {
-      val slideDeck = record.slideDeck
-      slideDeck.slides.forEach {
-        parts.add(
-          ExportableMessage.Mms.Part.Stream(
-            id = JsonUtils.toJson((it.asAttachment() as DatabaseAttachment).attachmentId),
-            contentType = it.contentType
-          )
-        )
+      val parts: MutableList<ExportableMessage.Mms.Part> = mutableListOf()
+      if (record.body.isNotBlank()) {
+        parts.add(ExportableMessage.Mms.Part.Text(record.body))
       }
-    }
 
-    val sender = if (record.isOutgoing) Recipient.self().requireSmsAddress() else record.individualRecipient.requireSmsAddress()
+      if (record is MmsMessageRecord) {
+        val slideDeck = record.slideDeck
+        slideDeck
+          .slides
+          .filter { it.asAttachment() is DatabaseAttachment }
+          .forEach {
+            parts.add(
+              ExportableMessage.Mms.Part.Stream(
+                id = JsonUtils.toJson((it.asAttachment() as DatabaseAttachment).attachmentId),
+                contentType = it.contentType
+              )
+            )
+          }
+      }
 
-    return ExportableMessage.Mms(
-      id = record.id.toString(),
-      exportState = mapExportState(mmsReader.messageExportStateForCurrentRecord),
-      addresses = addresses,
-      dateReceived = record.dateReceived.milliseconds,
-      dateSent = record.dateSent.milliseconds,
-      isRead = true,
-      isOutgoing = record.isOutgoing,
-      parts = parts,
-      sender = sender
-    )
-  }
+      val sender: String = if (record.isOutgoing) Recipient.self().smsExportAddress() else record.individualRecipient.smsExportAddress()
 
-  private fun readExportableSmsMessageFromRecord(record: MessageRecord): ExportableMessage {
-    val threadRecipient = SignalDatabase.threads.getRecipientForThreadId(record.threadId)!!
-
-    return if (threadRecipient.isMmsGroup) {
-      readExportableMmsMessageFromRecord(record)
-    } else {
-      ExportableMessage.Sms(
-        id = record.id.toString(),
-        exportState = mapExportState(smsReader.messageExportStateForCurrentRecord),
-        address = record.recipient.requireSmsAddress(),
+      return ExportableMessage.Mms(
+        id = MessageId(record.id, record.isMms),
+        exportState = mapExportState(exportState),
+        addresses = addresses,
         dateReceived = record.dateReceived.milliseconds,
         dateSent = record.dateSent.milliseconds,
         isRead = true,
         isOutgoing = record.isOutgoing,
-        body = record.body
+        parts = parts,
+        sender = sender
       )
     }
-  }
 
-  private fun mapExportState(messageExportState: MessageExportState): SmsExportState {
-    return SmsExportState(
-      messageId = messageExportState.messageId,
-      startedRecipients = messageExportState.startedRecipientsList.toSet(),
-      completedRecipients = messageExportState.completedRecipientsList.toSet(),
-      startedAttachments = messageExportState.startedAttachmentsList.toSet(),
-      completedAttachments = messageExportState.completedAttachmentsList.toSet(),
-      progress = messageExportState.progress.let {
-        when (it) {
-          MessageExportState.Progress.INIT -> SmsExportState.Progress.INIT
-          MessageExportState.Progress.STARTED -> SmsExportState.Progress.STARTED
-          MessageExportState.Progress.COMPLETED -> SmsExportState.Progress.COMPLETED
-          MessageExportState.Progress.UNRECOGNIZED -> SmsExportState.Progress.INIT
-          null -> SmsExportState.Progress.INIT
-        }
+    private fun readExportableSmsMessageFromRecord(record: MessageRecord, exportState: MessageExportState): ExportableMessage {
+      val threadRecipient = SignalDatabase.threads.getRecipientForThreadId(record.threadId)!!
+
+      return if (threadRecipient.isMmsGroup) {
+        readExportableMmsMessageFromRecord(record, exportState)
+      } else {
+        ExportableMessage.Sms(
+          id = MessageId(record.id, record.isMms),
+          exportState = mapExportState(exportState),
+          address = record.recipient.smsExportAddress(),
+          dateReceived = record.dateReceived.milliseconds,
+          dateSent = record.dateSent.milliseconds,
+          isRead = true,
+          isOutgoing = record.isOutgoing,
+          body = record.body
+        )
       }
-    )
+    }
+
+    private fun mapExportState(messageExportState: MessageExportState): SmsExportState {
+      return SmsExportState(
+        messageId = messageExportState.messageId,
+        startedRecipients = messageExportState.startedRecipientsList.toSet(),
+        completedRecipients = messageExportState.completedRecipientsList.toSet(),
+        startedAttachments = messageExportState.startedAttachmentsList.toSet(),
+        completedAttachments = messageExportState.completedAttachmentsList.toSet(),
+        progress = messageExportState.progress.let {
+          when (it) {
+            MessageExportState.Progress.INIT -> SmsExportState.Progress.INIT
+            MessageExportState.Progress.STARTED -> SmsExportState.Progress.STARTED
+            MessageExportState.Progress.COMPLETED -> SmsExportState.Progress.COMPLETED
+            MessageExportState.Progress.UNRECOGNIZED -> SmsExportState.Progress.INIT
+            null -> SmsExportState.Progress.INIT
+          }
+        }
+      )
+    }
+
+    private fun Recipient.smsExportAddress(): String {
+      return smsAddress.orElseGet { getDisplayName(ApplicationDependencies.getApplication()) }
+    }
   }
 }

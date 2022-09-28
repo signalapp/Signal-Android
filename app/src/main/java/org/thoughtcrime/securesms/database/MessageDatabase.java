@@ -96,7 +96,7 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns,
   public abstract boolean isSent(long messageId);
   public abstract List<MessageRecord> getProfileChangeDetailsRecords(long threadId, long afterTimestamp);
   public abstract Set<Long> getAllRateLimitedMessageIds();
-  public abstract Cursor getUnexportedInsecureMessages();
+  public abstract Cursor getUnexportedInsecureMessages(int limit);
   public abstract int getInsecureMessageCount();
   public abstract void deleteExportedMessages();
 
@@ -360,11 +360,22 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns,
   }
 
   protected String getInsecureMessageClause() {
-    String isSent     = "(" + getTypeField() + " & " + Types.BASE_TYPE_MASK + ") = " + Types.BASE_SENT_TYPE;
-    String isReceived = "(" + getTypeField() + " & " + Types.BASE_TYPE_MASK + ") = " + Types.BASE_INBOX_TYPE;
-    String isSecure   = "(" + getTypeField() + " & " + (Types.SECURE_MESSAGE_BIT | Types.PUSH_MESSAGE_BIT) + ")";
+    String isSent      = "(" + getTypeField() + " & " + Types.BASE_TYPE_MASK + ") = " + Types.BASE_SENT_TYPE;
+    String isReceived  = "(" + getTypeField() + " & " + Types.BASE_TYPE_MASK + ") = " + Types.BASE_INBOX_TYPE;
+    String isSecure    = "(" + getTypeField() + " & " + (Types.SECURE_MESSAGE_BIT | Types.PUSH_MESSAGE_BIT) + ")";
+    String isNotSecure = "(" + getTypeField() + " <= " + (Types.BASE_TYPE_MASK | Types.MESSAGE_ATTRIBUTE_MASK) + ")";
 
-    return String.format(Locale.ENGLISH, "(%s OR %s) AND NOT %s", isSent, isReceived, isSecure);
+    return String.format(Locale.ENGLISH, "(%s OR %s) AND NOT %s AND %s", isSent, isReceived, isSecure, isNotSecure);
+  }
+
+  public int getUnexportedInsecureMessagesCount() {
+    try (Cursor cursor = getWritableDatabase().query(getTableName(), SqlUtil.COUNT, getInsecureMessageClause() + " AND NOT " + EXPORTED, null, null, null, null)) {
+      if (cursor.moveToFirst()) {
+        return cursor.getInt(0);
+      }
+    }
+
+    return 0;
   }
 
   public void setReactionsSeen(long threadId, long sinceTimestamp) {

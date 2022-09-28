@@ -6,8 +6,15 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.FragmentWrapperActivity
+import org.thoughtcrime.securesms.util.WindowUtil
 
 class SmsExportActivity : FragmentWrapperActivity() {
+
+  override fun onResume() {
+    super.onResume()
+    WindowUtil.setLightStatusBarFromTheme(this)
+  }
+
   override fun getFragment(): Fragment {
     return NavHostFragment.create(R.navigation.sms_export)
   }

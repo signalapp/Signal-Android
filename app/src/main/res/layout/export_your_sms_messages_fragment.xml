@@ -13,14 +13,14 @@
         app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="@drawable/ic_arrow_left_24" />
 
-    <!-- TODO [alex] - Image -->
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:importantForAccessibility="no"
         android:scaleType="centerInside"
+        app:srcCompat="@drawable/sms_message"
         app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
     <TextView
@@ -41,7 +41,7 @@
         android:layout_marginHorizontal="32dp"
         android:layout_marginTop="24dp"
         android:gravity="center"
-        tools:text="WIP Placeholder text"
+        android:text="@string/ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database"
         android:textColor="@color/signal_colorOnSurfaceVariant"
         android:textAppearance="@style/Signal.Text.BodyLarge"
         app:layout_constraintTop_toBottomOf="@id/headline" />

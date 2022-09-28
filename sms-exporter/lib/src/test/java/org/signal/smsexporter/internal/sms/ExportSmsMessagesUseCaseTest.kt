@@ -101,7 +101,7 @@ class ExportSmsMessagesUseCaseTest {
     )
   }
 
-  private fun validateExportedMessage(sms: ExportableMessage.Sms, expectedRowCount: Int = 1) {
+  private fun validateExportedMessage(sms: ExportableMessage.Sms<*>, expectedRowCount: Int = 1) {
     // 1. Grab the SMS record from the content resolver
     val context: Context = ApplicationProvider.getApplicationContext()
     val baseUri: Uri = Telephony.Sms.CONTENT_URI

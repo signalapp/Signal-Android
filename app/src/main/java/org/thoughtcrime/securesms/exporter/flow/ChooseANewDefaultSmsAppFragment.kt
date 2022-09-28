@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.exporter.flow
 
 import android.app.Activity
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -22,6 +23,12 @@ class ChooseANewDefaultSmsAppFragment : Fragment(R.layout.choose_a_new_default_s
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     val binding = ChooseANewDefaultSmsAppFragmentBinding.bind(view)
+
+    if (Build.VERSION.SDK_INT < 24) {
+      binding.bullet1Text.setText(R.string.ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app)
+      binding.bullet2Text.setText(R.string.ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app)
+      binding.continueButton.setText(R.string.ChooseANewDefaultSmsAppFragment__done)
+    }
 
     DefaultSmsHelper.releaseDefaultSms(requireContext()).either(
       onSuccess = {

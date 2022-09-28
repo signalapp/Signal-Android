@@ -15,7 +15,7 @@ object TestUtils {
     isRead: Boolean = false,
     isOutgoing: Boolean = false,
     body: String = "Hello, $id"
-  ): ExportableMessage.Sms {
+  ): ExportableMessage.Sms<*> {
     return ExportableMessage.Sms(id, SmsExportState(), address, dateReceived, dateSent, isRead, isOutgoing, body)
   }
 
@@ -28,7 +28,7 @@ object TestUtils {
     isOutgoing: Boolean = false,
     parts: List<ExportableMessage.Mms.Part> = listOf(ExportableMessage.Mms.Part.Text("Hello, $id")),
     sender: CharSequence = "+15555060177"
-  ): ExportableMessage.Mms {
+  ): ExportableMessage.Mms<*> {
     return ExportableMessage.Mms(id, SmsExportState(), addresses, dateReceived, dateSent, isRead, isOutgoing, parts, sender)
   }
 

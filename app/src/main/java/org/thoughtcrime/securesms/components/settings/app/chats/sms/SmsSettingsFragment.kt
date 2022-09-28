@@ -141,14 +141,16 @@ class SmsSettingsFragment : DSLSettingsFragment(R.string.preferences__sms_mms) {
   private fun showSmsRemovalDialog() {
     MaterialAlertDialogBuilder(requireContext())
       .setTitle(R.string.RemoveSmsMessagesDialogFragment__remove_sms_messages)
-      .setMessage(R.string.RemoveSmsMessagesDialogFragment__you_have_changed)
-      .setPositiveButton(R.string.RemoveSmsMessagesDialogFragment__keep_messages) { _, _ -> }
+      .setMessage(R.string.RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal)
+      .setPositiveButton(R.string.RemoveSmsMessagesDialogFragment__keep_messages) { _, _ ->
+        Snackbar.make(requireView(), R.string.SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings, Snackbar.LENGTH_SHORT).show()
+      }
       .setNegativeButton(R.string.RemoveSmsMessagesDialogFragment__remove_messages) { _, _ ->
         SignalExecutors.BOUNDED.execute {
           SignalDatabase.sms.deleteExportedMessages()
           SignalDatabase.mms.deleteExportedMessages()
         }
-        Snackbar.make(requireView(), R.string.SmsSettingsFragment__sms_messages_removed, Snackbar.LENGTH_SHORT).show()
+        Snackbar.make(requireView(), R.string.SmsSettingsFragment__removing_sms_messages_from_signal, Snackbar.LENGTH_SHORT).show()
       }
       .show()
   }

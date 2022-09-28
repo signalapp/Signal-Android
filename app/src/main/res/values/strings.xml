@@ -3948,7 +3948,9 @@
     <!-- Preference title to delete sms -->
     <string name="SmsSettingsFragment__remove_sms_messages">Remove SMS messages</string>
     <!-- Snackbar text to confirm deletion -->
-    <string name="SmsSettingsFragment__sms_messages_removed">SMS messages removed</string>
+    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Removing SMS messages from Signal…</string>
+    <!-- Snackbar text to indicate can delete later -->
+    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">You can remove SMS messages from Signal in Settings at any time.</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">Messages</string>
@@ -5231,6 +5233,8 @@
     <!-- ExportYourSmsMessagesFragment -->
     <!-- Title of the screen -->
     <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">Export your SMS messages</string>
+    <!-- Message of the screen -->
+    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">You can export your SMS messages to your phone\'s SMS database. This allows other SMS apps on your phone to access and import them. This does not create a shareable file of your SMS message history.</string>
     <!-- Button label to begin export -->
     <string name="ExportYourSmsMessagesFragment__continue">Continue</string>
 
@@ -5245,6 +5249,28 @@
     <string name="ChooseANewDefaultSmsAppFragment__choose_a_new">Choose a new default SMS app</string>
     <!-- Button label to launch picker -->
     <string name="ChooseANewDefaultSmsAppFragment__continue">Continue</string>
+    <!-- Button label for when done with changing default SMS app -->
+    <string name="ChooseANewDefaultSmsAppFragment__done">Done</string>
+    <!-- First step number/bullet for choose new default sms app instructions -->
+    <string name="ChooseANewDefaultSmsAppFragment__bullet_1">1</string>
+    <!-- Second step number/bullet for choose new default sms app instructions -->
+    <string name="ChooseANewDefaultSmsAppFragment__bullet_2">2</string>
+    <!-- Third step number/bullet for choose new default sms app instructions -->
+    <string name="ChooseANewDefaultSmsAppFragment__bullet_3">3</string>
+    <!-- Fourth step number/bullet for choose new default sms app instructions -->
+    <string name="ChooseANewDefaultSmsAppFragment__bullet_4">4</string>
+    <!-- Instruction step for choosing a new default sms app -->
+    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">Tap \"Continue\" to open the \"Default apps\" screen in Settings</string>
+    <!-- Instruction step for choosing a new default sms app -->
+    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">Select \"SMS app\" from the list</string>
+    <!-- Instruction step for choosing a new default sms app -->
+    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">Choose another app to use for SMS messaging</string>
+    <!-- Instruction step for choosing a new default sms app -->
+    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">Return to Signal</string>
+    <!-- Instruction step for choosing a new default sms app -->
+    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">Open your phone\'s Settings app</string>
+    <!-- Instruction step for choosing a new default sms app -->
+    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">Navigate to \"Apps\" > \"Default apps\" > \"SMS app\"</string>
 
     <!-- RemoveSmsMessagesDialogFragment -->
     <!-- Action button to keep messages -->
@@ -5254,11 +5280,13 @@
     <!-- Title of dialog -->
     <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Remove SMS messages from Signal?</string>
     <!-- Message of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__you_have_changed">You have changed the default SMS app, do you want to remove SMS messages from Signal?</string>
+    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">You can now remove SMS messages from Signal to clear up storage space. They will still be available to other SMS apps on your phone even if you remove them.</string>
 
     <!-- SetSignalAsDefaultSmsAppFragment -->
     <!-- Title of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__first_set_signal_as_the_default_sms_app">First, set Signal as the default SMS app</string>
+    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">Set Signal as the default SMS app</string>
+    <!-- Message of the screen -->
+    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">To export your SMS messages, you need to set Signal as the default SMS app.</string>
     <!-- Button label to start export -->
     <string name="SetSignalAsDefaultSmsAppFragment__next">Next</string>
 

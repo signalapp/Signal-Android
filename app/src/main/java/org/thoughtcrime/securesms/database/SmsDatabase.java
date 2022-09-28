@@ -908,13 +908,13 @@ public class SmsDatabase extends MessageDatabase {
   }
 
   @Override
-  public Cursor getUnexportedInsecureMessages() {
+  public Cursor getUnexportedInsecureMessages(int limit) {
     return queryMessages(
         SqlUtil.appendArg(MESSAGE_PROJECTION, EXPORT_STATE),
         getInsecureMessageClause() + " AND NOT " + EXPORTED,
         null,
         false,
-        -1
+        limit
     );
   }
 

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -13,8 +12,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="@drawable/ic_arrow_left_24" />
 
-    <!-- TODO [alex] - Image -->
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,7 +21,8 @@
         android:scaleType="centerInside"
         app:layout_constraintBottom_toTopOf="@id/continue_button"
         app:layout_constraintTop_toBottomOf="@id/description"
-        app:layout_constraintVertical_bias="0" />
+        app:layout_constraintVertical_bias="0"
+        app:srcCompat="@drawable/choose_signal" />
 
     <TextView
         android:id="@+id/headline"
@@ -31,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="32dp"
         android:gravity="center"
-        android:text="@string/SetSignalAsDefaultSmsAppFragment__first_set_signal_as_the_default_sms_app"
+        android:text="@string/SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app"
         android:textAppearance="@style/Signal.Text.HeadlineLarge"
         app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
@@ -42,10 +41,10 @@
         android:layout_marginHorizontal="32dp"
         android:layout_marginTop="24dp"
         android:gravity="center"
+        android:text="@string/SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages"
         android:textAppearance="@style/Signal.Text.BodyLarge"
         android:textColor="@color/signal_colorOnSurfaceVariant"
-        app:layout_constraintTop_toBottomOf="@id/headline"
-        tools:text="WIP Placeholder text" />
+        app:layout_constraintTop_toBottomOf="@id/headline" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/continue_button"

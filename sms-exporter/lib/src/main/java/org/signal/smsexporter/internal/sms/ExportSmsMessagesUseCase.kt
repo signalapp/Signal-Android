@@ -12,7 +12,7 @@ import java.lang.Exception
  * Returns nothing.
  */
 internal object ExportSmsMessagesUseCase {
-  fun execute(context: Context, sms: ExportableMessage.Sms, checkForExistence: Boolean): Try<Unit> {
+  fun execute(context: Context, sms: ExportableMessage.Sms<*>, checkForExistence: Boolean): Try<Unit> {
     try {
       if (checkForExistence) {
         val exists = context.contentResolver.query(

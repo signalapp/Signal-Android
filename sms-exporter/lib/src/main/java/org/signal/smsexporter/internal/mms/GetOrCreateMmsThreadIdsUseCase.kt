@@ -14,7 +14,7 @@ import org.signal.smsexporter.ExportableMessage
 internal object GetOrCreateMmsThreadIdsUseCase {
   fun execute(
     context: Context,
-    mms: ExportableMessage.Mms,
+    mms: ExportableMessage.Mms<*>,
     threadCache: MutableMap<Set<String>, Long>
   ): Try<Output> {
     return try {
@@ -37,7 +37,7 @@ internal object GetOrCreateMmsThreadIdsUseCase {
     }
   }
 
-  private fun getRecipientSet(mms: ExportableMessage.Mms): Set<String> {
+  private fun getRecipientSet(mms: ExportableMessage.Mms<*>): Set<String> {
     val recipients = mms.addresses
     if (recipients.isEmpty()) {
       error("Expected non-empty recipient count.")
@@ -46,5 +46,5 @@ internal object GetOrCreateMmsThreadIdsUseCase {
     return HashSet(recipients.map { it })
   }
 
-  data class Output(val mms: ExportableMessage.Mms, val threadId: Long)
+  data class Output(val mms: ExportableMessage.Mms<*>, val threadId: Long)
 }

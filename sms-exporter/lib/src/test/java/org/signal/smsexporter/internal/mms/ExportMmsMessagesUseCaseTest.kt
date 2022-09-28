@@ -104,7 +104,7 @@ class ExportMmsMessagesUseCaseTest {
   }
 
   private fun validateExportedMessage(
-    mms: ExportableMessage.Mms,
+    mms: ExportableMessage.Mms<*>,
     expectedRowCount: Int = 1,
     threadId: Long = 1L
   ) {
