@@ -11,6 +11,7 @@ import android.os.SystemClock;
 import androidx.core.app.AlarmManagerCompat;
 import androidx.core.content.ContextCompat;
 
+import org.signal.core.util.PendingIntentFlags;
 import org.signal.core.util.logging.Log;
 import org.whispersystems.signalservice.api.util.SleepTimer;
 
@@ -67,7 +68,7 @@ public class AlarmSleepTimer implements SleepTimer {
 
     private void setAlarm(long millis, String action) {
       final Intent        intent        = new Intent(action);
-      final PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
+      final PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntentFlags.mutable());
       final AlarmManager  alarmManager  = ContextCompat.getSystemService(context, AlarmManager.class);
 
       Log.w(TAG, "Setting alarm to wake up in " + millis + "ms.");

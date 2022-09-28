@@ -25,6 +25,7 @@
     <issue id="VectorRaster" severity="error" />
     <issue id="ButtonOrder" severity="error" />
     <issue id="ExtraTranslation" severity="warning" />
+    <issue id="UnspecifiedImmutableFlag" severity="error" />
 
     <!-- Custom lints -->
     <issue id="LogNotSignal" severity="error" />
