@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.messages.MessageDecryptionUtil.DecryptionResul
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.notifications.NotificationIds;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
@@ -106,7 +107,7 @@ public final class PushDecryptMessageJob extends BaseJob {
         handleSenderKeyDistributionMessage(result.getContent().getSender(), result.getContent().getSenderDevice(), result.getContent().getSenderKeyDistributionMessage().get());
       }
 
-      if (result.getContent().getPniSignatureMessage().isPresent()) {
+      if (FeatureFlags.phoneNumberPrivacy() && result.getContent().getPniSignatureMessage().isPresent()) {
         handlePniSignatureMessage(result.getContent().getSender(), result.getContent().getSenderDevice(), result.getContent().getPniSignatureMessage().get());
       }
 
