@@ -91,7 +91,7 @@ public class BackgroundMessageRetriever {
 
   private NoExceptionCloseable startDelayedForegroundServiceIfPossible(@NonNull Context context, long showNotificationAfterMs) {
     if (Build.VERSION.SDK_INT < 31) {
-      return (NoExceptionCloseable) GenericForegroundService.startForegroundTaskDelayed(context, context.getString(R.string.BackgroundMessageRetriever_checking_for_messages), showNotificationAfterMs, R.drawable.ic_signal_refresh);
+      return GenericForegroundService.startForegroundTaskDelayed(context, context.getString(R.string.BackgroundMessageRetriever_checking_for_messages), showNotificationAfterMs, R.drawable.ic_signal_refresh)::close;
     } else {
       return () -> {};
     }
