@@ -16,40 +16,75 @@ import org.thoughtcrime.securesms.recipients.RecipientId
  */
 @RequiresApi(31)
 class FullSignalAudioManagerApi31(context: Context, eventListener: EventListener?) : SignalAudioManager(context, eventListener) {
-  private val TAG = Log.tag(FullSignalAudioManagerApi31::class.java)
+  private val TAG = "SignalAudioManager31"
 
-  private var defaultDevice = AudioDevice.EARPIECE
+  private var currentAudioDevice: AudioDevice = AudioDevice.NONE
+  private var defaultAudioDevice: AudioDevice = AudioDevice.EARPIECE
+  private var userSelectedAudioDevice: AudioDevice = AudioDevice.NONE
+  private var savedAudioMode = AudioManager.MODE_INVALID
+  private var savedIsSpeakerPhoneOn = false
+  private var savedIsMicrophoneMute = false
+  private var hasWiredHeadset = false
+  private var hasBluetoothHeadset = false
+  private var autoSwitchToWiredHeadset = true
+  private var autoSwitchToBluetooth = true
+
   private val deviceCallback = object : AudioDeviceCallback() {
 
     override fun onAudioDevicesAdded(addedDevices: Array<out AudioDeviceInfo>) {
       super.onAudioDevicesAdded(addedDevices)
-      if (state == State.RUNNING) {
-        // Switch to any new audio devices immediately.
-        Log.i(TAG, "onAudioDevicesAdded $addedDevices")
-        val firstNewlyAddedDevice = addedDevices.firstNotNullOf { AudioDeviceMapping.fromPlatformType(it.type) }
-        selectAudioDevice(null, firstNewlyAddedDevice)
-      }
+      updateAudioDeviceState()
     }
 
     override fun onAudioDevicesRemoved(removedDevices: Array<out AudioDeviceInfo>) {
       super.onAudioDevicesRemoved(removedDevices)
-      if (state == State.RUNNING) {
-        audioDeviceChangedCallback()
-      }
+      updateAudioDeviceState()
     }
   }
 
   override fun setDefaultAudioDevice(recipientId: RecipientId?, newDefaultDevice: AudioDevice, clearUserEarpieceSelection: Boolean) {
-    defaultDevice = newDefaultDevice
+    Log.d(TAG, "setDefaultAudioDevice(): currentDefault: $defaultAudioDevice device: $newDefaultDevice clearUser: $clearUserEarpieceSelection")
+    defaultAudioDevice = when (newDefaultDevice) {
+      AudioDevice.SPEAKER_PHONE -> newDefaultDevice
+      AudioDevice.EARPIECE -> {
+        if (androidAudioManager.hasEarpiece(context)) {
+          newDefaultDevice
+        } else {
+          AudioDevice.SPEAKER_PHONE
+        }
+      }
+      else -> throw AssertionError("Invalid default audio device selection")
+    }
+
+    if (clearUserEarpieceSelection && userSelectedAudioDevice == AudioDevice.EARPIECE) {
+      Log.d(TAG, "Clearing user setting of earpiece")
+      userSelectedAudioDevice = AudioDevice.NONE
+    }
+
+    Log.d(TAG, "New default: $defaultAudioDevice userSelected: $userSelectedAudioDevice")
+    updateAudioDeviceState()
   }
 
   override fun initialize() {
-    val focusedGained = androidAudioManager.requestCallAudioFocus()
-    if (!focusedGained) {
-      handler.postDelayed({ androidAudioManager.requestCallAudioFocus() }, 500)
+    if (state == State.UNINITIALIZED) {
+      savedAudioMode = androidAudioManager.mode
+      savedIsSpeakerPhoneOn = androidAudioManager.isSpeakerphoneOn
+      savedIsMicrophoneMute = androidAudioManager.isMicrophoneMute
+      hasWiredHeadset = androidAudioManager.isWiredHeadsetOn
+
+      val focusedGained = androidAudioManager.requestCallAudioFocus()
+      if (!focusedGained) {
+        handler.postDelayed({ androidAudioManager.requestCallAudioFocus() }, 500)
+      }
+
+      setMicrophoneMute(false)
+
+      updateAudioDeviceState()
+      androidAudioManager.registerAudioDeviceCallback(deviceCallback, handler)
+      state = State.PREINITIALIZED
+
+      Log.d(TAG, "Initialized")
     }
-    androidAudioManager.registerAudioDeviceCallback(deviceCallback, handler)
-    state = State.PREINITIALIZED
   }
 
   override fun start() {
@@ -61,14 +96,12 @@ class FullSignalAudioManagerApi31(context: Context, eventListener: EventListener
       handler.postDelayed({ androidAudioManager.requestCallAudioFocus() }, 500)
     }
 
-    if (androidAudioManager.availableCommunicationDevices.any { AudioDeviceMapping.getEquivalentPlatformTypes(AudioDevice.BLUETOOTH).contains(it.type) }) {
-      selectAudioDevice(null, AudioDevice.BLUETOOTH)
-    } else if (androidAudioManager.availableCommunicationDevices.any { AudioDeviceMapping.getEquivalentPlatformTypes(AudioDevice.WIRED_HEADSET).contains(it.type) }) {
-      selectAudioDevice(null, AudioDevice.WIRED_HEADSET)
-    }
-
     state = State.RUNNING
     androidAudioManager.mode = AudioManager.MODE_IN_COMMUNICATION
+    val volume: Float = androidAudioManager.ringVolumeWithMinimum()
+    soundPool.play(connectedSoundId, volume, volume, 0, 0, 1.0f)
+
+    Log.d(TAG, "Started")
   }
 
   override fun stop(playDisconnect: Boolean) {
@@ -79,51 +112,129 @@ class FullSignalAudioManagerApi31(context: Context, eventListener: EventListener
       val volume: Float = androidAudioManager.ringVolumeWithMinimum()
       soundPool.play(disconnectedSoundId, volume, volume, 0, 0, 1.0f)
     }
+    state = State.UNINITIALIZED
     androidAudioManager.unregisterAudioDeviceCallback(deviceCallback)
     androidAudioManager.clearCommunicationDevice()
-    state = State.UNINITIALIZED
-
+    setSpeakerphoneOn(savedIsSpeakerPhoneOn)
+    setMicrophoneMute(savedIsMicrophoneMute)
+    androidAudioManager.mode = savedAudioMode
     androidAudioManager.abandonCallAudioFocus()
+    Log.d(TAG, "Abandoned audio focus for VOICE_CALL streams")
+
+    Log.d(TAG, "Stopped")
   }
 
   override fun selectAudioDevice(recipientId: RecipientId?, device: AudioDevice) {
     val devices: List<AudioDeviceInfo> = androidAudioManager.availableCommunicationDevices
 
-    try {
-      val chosenDevice: AudioDeviceInfo = devices.first { AudioDeviceMapping.getEquivalentPlatformTypes(device).contains(it.type) }
-      val result = androidAudioManager.setCommunicationDevice(chosenDevice)
-      if (result) {
-        Log.i(TAG, "Set active device to ID ${chosenDevice.id}, type ${chosenDevice.type}")
-        eventListener?.onAudioDeviceChanged(activeDevice = device, devices = devices.map { AudioDeviceMapping.fromPlatformType(it.type) }.toSet())
-      } else {
-        Log.w(TAG, "Setting device $chosenDevice failed.")
-      }
-    } catch (e: NoSuchElementException) {
-      androidAudioManager.clearCommunicationDevice()
+    val availableDevices: List<AudioDevice> = devices.map { AudioDeviceMapping.fromPlatformType(it.type) }
+    val actualDevice = if (device == AudioDevice.EARPIECE && availableDevices.contains(AudioDevice.WIRED_HEADSET)) AudioDevice.WIRED_HEADSET else device
+    Log.d(TAG, "selectAudioDevice(): device: $device actualDevice: $actualDevice")
+    if (!availableDevices.contains(actualDevice)) {
+      Log.w(TAG, "Can not select $actualDevice from available $availableDevices")
     }
-  }
-
-  private fun audioDeviceChangedCallback() {
-    val activeDevice: AudioDevice = AudioDeviceMapping.fromPlatformType(androidAudioManager.communicationDevice.type)
-    val devices: Set<AudioDevice> = androidAudioManager.availableCommunicationDevices.map { AudioDeviceMapping.fromPlatformType(it.type) }.toSet()
-    eventListener?.onAudioDeviceChanged(activeDevice, devices)
+    userSelectedAudioDevice = actualDevice
+    updateAudioDeviceState()
   }
 
   override fun startIncomingRinger(ringtoneUri: Uri?, vibrate: Boolean) {
     Log.i(TAG, "startIncomingRinger(): uri: ${if (ringtoneUri != null) "present" else "null"} vibrate: $vibrate")
     androidAudioManager.mode = AudioManager.MODE_RINGTONE
-    if (androidAudioManager.isMicrophoneMute) {
-      androidAudioManager.isMicrophoneMute = false
-    }
-
+    setMicrophoneMute(false)
     incomingRinger.start(ringtoneUri, vibrate)
   }
 
   override fun startOutgoingRinger() {
+    Log.i(TAG, "startOutgoingRinger(): currentDevice: $selectedAudioDevice")
     androidAudioManager.mode = AudioManager.MODE_IN_COMMUNICATION
-    if (androidAudioManager.isMicrophoneMute) {
-      androidAudioManager.isMicrophoneMute = false
-    }
+    setMicrophoneMute(false)
     outgoingRinger.start(OutgoingRinger.Type.RINGING)
+  }
+
+  private fun setSpeakerphoneOn(on: Boolean) {
+    if (androidAudioManager.isSpeakerphoneOn != on) {
+      androidAudioManager.isSpeakerphoneOn = on
+    }
+  }
+
+  private fun setMicrophoneMute(on: Boolean) {
+    if (androidAudioManager.isMicrophoneMute != on) {
+      androidAudioManager.isMicrophoneMute = on
+    }
+  }
+
+  private fun updateAudioDeviceState() {
+    handler.assertHandlerThread()
+
+    currentAudioDevice = AudioDeviceMapping.fromPlatformType(androidAudioManager.communicationDevice.type)
+    val availableCommunicationDevices: List<AudioDeviceInfo> = androidAudioManager.availableCommunicationDevices
+    hasBluetoothHeadset = availableCommunicationDevices.any { AudioDeviceMapping.fromPlatformType(it.type) == AudioDevice.BLUETOOTH }
+    hasWiredHeadset = availableCommunicationDevices.any { AudioDeviceMapping.fromPlatformType(it.type) == AudioDevice.WIRED_HEADSET }
+    Log.i(
+      TAG,
+      "updateAudioDeviceState(): " +
+        "wired: $hasWiredHeadset " +
+        "bt: $hasBluetoothHeadset " +
+        "available: $availableCommunicationDevices " +
+        "selected: $selectedAudioDevice " +
+        "userSelected: $userSelectedAudioDevice"
+    )
+    val audioDevices: MutableSet<AudioDevice> = mutableSetOf(AudioDevice.SPEAKER_PHONE)
+
+    if (hasBluetoothHeadset) {
+      audioDevices += AudioDevice.BLUETOOTH
+    }
+
+    if (hasWiredHeadset) {
+      audioDevices += AudioDevice.WIRED_HEADSET
+    } else {
+      autoSwitchToWiredHeadset = true
+      if (androidAudioManager.hasEarpiece(context)) {
+        audioDevices += AudioDevice.EARPIECE
+      }
+    }
+
+    if (!hasBluetoothHeadset && userSelectedAudioDevice == AudioDevice.BLUETOOTH) {
+      userSelectedAudioDevice = AudioDevice.NONE
+    }
+
+    if (hasWiredHeadset && autoSwitchToWiredHeadset) {
+      userSelectedAudioDevice = AudioDevice.WIRED_HEADSET
+      autoSwitchToWiredHeadset = false
+    }
+
+    if (!hasWiredHeadset && userSelectedAudioDevice == AudioDevice.WIRED_HEADSET) {
+      userSelectedAudioDevice = AudioDevice.NONE
+    }
+
+    if (!autoSwitchToBluetooth && !hasBluetoothHeadset) {
+      autoSwitchToBluetooth = true
+    }
+
+    if (autoSwitchToBluetooth && hasBluetoothHeadset) {
+      userSelectedAudioDevice = AudioDevice.BLUETOOTH
+      autoSwitchToBluetooth = false
+    }
+
+    val deviceToSet: AudioDevice = when {
+      audioDevices.contains(userSelectedAudioDevice) -> userSelectedAudioDevice
+      audioDevices.contains(defaultAudioDevice) -> defaultAudioDevice
+      else -> AudioDevice.SPEAKER_PHONE
+    }
+
+    if (deviceToSet != currentAudioDevice)
+      try {
+        val chosenDevice: AudioDeviceInfo = availableCommunicationDevices.first { AudioDeviceMapping.getEquivalentPlatformTypes(deviceToSet).contains(it.type) }
+        val result = androidAudioManager.setCommunicationDevice(chosenDevice)
+        if (result) {
+          Log.i(TAG, "Set active device to ID ${chosenDevice.id}, type ${chosenDevice.type}")
+          currentAudioDevice = deviceToSet
+          eventListener?.onAudioDeviceChanged(currentAudioDevice, availableCommunicationDevices.map { AudioDeviceMapping.fromPlatformType(it.type) }.toSet())
+        } else {
+          Log.w(TAG, "Setting device $chosenDevice failed.")
+        }
+      } catch (e: NoSuchElementException) {
+        androidAudioManager.clearCommunicationDevice()
+      }
   }
 }
