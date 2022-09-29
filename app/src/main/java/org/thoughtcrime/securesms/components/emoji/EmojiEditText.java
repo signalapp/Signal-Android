@@ -40,6 +40,7 @@ public class EmojiEditText extends AppCompatEditText {
 
     if (!isInEditMode() && (forceCustom || !SignalStore.settings().isPreferSystemEmoji())) {
       setFilters(appendEmojiFilter(this.getFilters(), jumboEmoji));
+      setEmojiCompatEnabled(false);
     }
 
     super.setOnFocusChangeListener((v, hasFocus) -> {

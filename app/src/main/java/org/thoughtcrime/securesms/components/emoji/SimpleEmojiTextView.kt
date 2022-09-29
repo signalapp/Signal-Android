@@ -17,6 +17,10 @@ open class SimpleEmojiTextView @JvmOverloads constructor(
   private var bufferType: BufferType? = null
   private val sizeChangeDebouncer: ThrottledDebouncer = ThrottledDebouncer(200)
 
+  init {
+    isEmojiCompatEnabled = SignalStore.settings().isPreferSystemEmoji
+  }
+
   override fun setText(text: CharSequence?, type: BufferType?) {
     bufferType = type
     val candidates = if (isInEditMode) null else EmojiProvider.getCandidates(text)
