@@ -11,11 +11,11 @@ import com.google.android.exoplayer2.SimpleExoPlayer
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.ThreadUtil
-import org.signal.core.util.isAbsent
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.contacts.HeaderAction
 import org.thoughtcrime.securesms.database.AttachmentDatabase
+import org.thoughtcrime.securesms.database.AttachmentDatabase.TransformProperties
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
@@ -267,7 +267,7 @@ object Stories {
 
     private fun getContentDuration(media: Media): DurationResult {
       return if (MediaUtil.isVideo(media.mimeType)) {
-        val mediaDuration = if (media.duration == 0L && media.transformProperties.isAbsent()) {
+        val mediaDuration = if (media.duration == 0L && media.transformProperties.map(TransformProperties::shouldSkipTransform).orElse(true)) {
           getVideoDuration(media.uri)
         } else if (media.transformProperties.map { it.isVideoTrim }.orElse(false)) {
           TimeUnit.MICROSECONDS.toMillis(media.transformProperties.get().videoTrimEndTimeUs - media.transformProperties.get().videoTrimStartTimeUs)
