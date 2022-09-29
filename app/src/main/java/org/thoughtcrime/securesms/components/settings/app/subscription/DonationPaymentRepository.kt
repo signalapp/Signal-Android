@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.components.settings.app.subscription
 
 import android.app.Activity
 import android.content.Intent
-import com.google.android.gms.wallet.PaymentData
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -10,7 +9,6 @@ import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
 import org.signal.donations.GooglePayApi
-import org.signal.donations.GooglePayPaymentSource
 import org.signal.donations.StripeApi
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource
@@ -62,6 +60,10 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
 
   private val googlePayApi = GooglePayApi(activity, StripeApi.Gateway(Environment.Donations.STRIPE_CONFIGURATION), Environment.Donations.GOOGLE_PAY_CONFIGURATION)
   private val stripeApi = StripeApi(Environment.Donations.STRIPE_CONFIGURATION, this, this, ApplicationDependencies.getOkHttpClient())
+
+  fun isGooglePayAvailable(): Completable {
+    return googlePayApi.queryIsReadyToPay()
+  }
 
   fun scheduleSyncForAccountRecordChange() {
     SignalExecutors.BOUNDED.execute {
@@ -129,7 +131,13 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
    * @param badgeRecipient    Who will be getting the badge
    * @param additionalMessage An additional message to send along with the badge (only used if badge recipient is not self)
    */
-  fun continuePayment(price: FiatMoney, paymentData: PaymentData, badgeRecipient: RecipientId, additionalMessage: String?, badgeLevel: Long): Completable {
+  fun continuePayment(
+    price: FiatMoney,
+    paymentSource: StripeApi.PaymentSource,
+    badgeRecipient: RecipientId,
+    additionalMessage: String?,
+    badgeLevel: Long
+  ): Completable {
     Log.d(TAG, "Creating payment intent for $price...", true)
 
     return stripeApi.createPaymentIntent(price, badgeLevel)
@@ -151,17 +159,17 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
           is StripeApi.CreatePaymentIntentResult.AmountIsTooSmall -> Completable.error(DonationError.oneTimeDonationAmountTooSmall(errorSource))
           is StripeApi.CreatePaymentIntentResult.AmountIsTooLarge -> Completable.error(DonationError.oneTimeDonationAmountTooLarge(errorSource))
           is StripeApi.CreatePaymentIntentResult.CurrencyIsNotSupported -> Completable.error(DonationError.invalidCurrencyForOneTimeDonation(errorSource))
-          is StripeApi.CreatePaymentIntentResult.Success -> confirmPayment(price, paymentData, result.paymentIntent, badgeRecipient, additionalMessage, badgeLevel)
+          is StripeApi.CreatePaymentIntentResult.Success -> confirmPayment(price, paymentSource, result.paymentIntent, badgeRecipient, additionalMessage, badgeLevel)
         }
       }.subscribeOn(Schedulers.io())
   }
 
-  fun continueSubscriptionSetup(paymentData: PaymentData): Completable {
+  fun continueSubscriptionSetup(paymentSource: StripeApi.PaymentSource): Completable {
     Log.d(TAG, "Continuing subscription setup...", true)
     return stripeApi.createSetupIntent()
       .flatMapCompletable { result ->
         Log.d(TAG, "Retrieved SetupIntent, confirming...", true)
-        stripeApi.confirmSetupIntent(GooglePayPaymentSource(paymentData), result.setupIntent).doOnComplete {
+        stripeApi.confirmSetupIntent(paymentSource, result.setupIntent).doOnComplete {
           Log.d(TAG, "Confirmed SetupIntent...", true)
         }
       }
@@ -203,12 +211,12 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
       }
   }
 
-  private fun confirmPayment(price: FiatMoney, paymentData: PaymentData, paymentIntent: StripeApi.PaymentIntent, badgeRecipient: RecipientId, additionalMessage: String?, badgeLevel: Long): Completable {
+  private fun confirmPayment(price: FiatMoney, paymentSource: StripeApi.PaymentSource, paymentIntent: StripeApi.PaymentIntent, badgeRecipient: RecipientId, additionalMessage: String?, badgeLevel: Long): Completable {
     val isBoost = badgeRecipient == Recipient.self().id
     val donationErrorSource: DonationErrorSource = if (isBoost) DonationErrorSource.BOOST else DonationErrorSource.GIFT
 
     Log.d(TAG, "Confirming payment intent...", true)
-    val confirmPayment = stripeApi.confirmPaymentIntent(GooglePayPaymentSource(paymentData), paymentIntent).onErrorResumeNext {
+    val confirmPayment = stripeApi.confirmPaymentIntent(paymentSource, paymentIntent).onErrorResumeNext {
       Completable.error(DonationError.getPaymentSetupError(donationErrorSource, it))
     }
 

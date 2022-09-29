@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/donate_to_signal"
+    app:startDestination="@id/donateToSignalFragment">
+
+    <fragment
+        android:id="@+id/donateToSignalFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonateToSignalFragment"
+        android:label="donate_to_signal_fragment"
+        tools:layout="@layout/dsl_settings_fragment">
+
+        <argument
+            android:name="start_type"
+            app:argType="org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonateToSignalType"
+            app:nullable="false" />
+
+        <action
+            android:id="@+id/action_donateToSignalFragment_to_setDonationCurrencyFragment"
+            app:destination="@id/setDonationCurrencyFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+
+        <action
+            android:id="@+id/action_donateToSignalFragment_to_gatewaySelectorBottomSheetDialog"
+            app:destination="@id/gatewaySelectorBottomSheet" />
+        <action
+            android:id="@+id/action_donateToSignalFragment_to_stripePaymentInProgressFragment"
+            app:destination="@id/stripePaymentInProgressFragment" />
+        <action
+            android:id="@+id/action_donateToSignalFragment_to_thanksForYourSupportBottomSheetDialog"
+            app:destination="@id/thanksForYourSupportBottomSheetDialog" />
+        <action
+            android:id="@+id/action_donateToSignalFragment_to_subscribeLearnMoreBottomSheetDialog"
+            app:destination="@id/subscribeLearnMoreBottomSheetDialog" />
+
+    </fragment>
+
+    <dialog
+        android:id="@+id/gatewaySelectorBottomSheet"
+        android:name="org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewaySelectorBottomSheet"
+        android:label="gateway_selector_bottom_sheet"
+        tools:layout="@layout/dsl_settings_bottom_sheet">
+
+        <argument
+            android:name="request"
+            app:argType="org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayRequest"
+            app:nullable="false" />
+
+    </dialog>
+
+    <dialog
+        android:id="@+id/setDonationCurrencyFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.subscription.currency.SetCurrencyFragment"
+        android:label="set_currency_fragment"
+        tools:layout="@layout/dsl_settings_fragment">
+
+        <argument
+            android:name="isBoost"
+            app:argType="boolean" />
+
+        <argument
+            android:name="supportedCurrencyCodes"
+            app:argType="string[]" />
+    </dialog>
+
+    <dialog
+        android:id="@+id/stripePaymentInProgressFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.subscription.donate.stripe.StripePaymentInProgressFragment"
+        android:label="stripe_payment_in_progress_fragment"
+        tools:layout="@layout/stripe_payment_in_progress_fragment">
+
+        <argument
+            android:name="action"
+            app:argType="org.thoughtcrime.securesms.components.settings.app.subscription.donate.stripe.StripeAction"
+            app:nullable="false" />
+
+        <argument
+            android:name="request"
+            app:argType="org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayRequest"
+            app:nullable="false" />
+    </dialog>
+
+    <dialog
+        android:id="@+id/thanksForYourSupportBottomSheetDialog"
+        android:name="org.thoughtcrime.securesms.components.settings.app.subscription.thanks.ThanksForYourSupportBottomSheetDialogFragment"
+        android:label="thanks_for_your_support_bottom_sheet_dialog"
+        tools:layout="@layout/thanks_for_your_support_bottom_sheet_dialog_fragment">
+
+        <argument
+            android:name="badge"
+            app:argType="org.thoughtcrime.securesms.badges.models.Badge"
+            app:nullable="false" />
+
+        <argument
+            android:name="isBoost"
+            app:argType="boolean"
+            android:defaultValue="false" />
+    </dialog>
+
+    <dialog
+        android:id="@+id/subscribeLearnMoreBottomSheetDialog"
+        android:name="org.thoughtcrime.securesms.components.settings.app.subscription.subscribe.SubscribeLearnMoreBottomSheetDialogFragment"
+        android:label="subscribe_learn_more_bottom_sheet_dialog"
+        tools:layout="@layout/subscribe_learn_more_bottom_sheet_dialog_fragment" />
+
+</navigation>

@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:viewBindingIgnore="true"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="@dimen/dsl_settings_gutter"
-    android:layout_marginTop="12dp"
+    android:layout_marginTop="10dp"
     android:layout_marginEnd="@dimen/dsl_settings_gutter"
-    android:background="@drawable/selectable_rounded_outline"
-    android:padding="16dp">
+    android:background="@drawable/subscription_row_item_background"
+    android:paddingHorizontal="16dp"
+    android:paddingVertical="12dp">
 
     <org.thoughtcrime.securesms.badges.BadgeImageView
         android:id="@+id/badge"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         app:badge_size="xlarge"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -49,24 +49,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="4dp"
         android:textAppearance="@style/TextAppearance.Signal.Body2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/badge"
         app:layout_constraintTop_toBottomOf="@id/title"
         tools:text="Earn a badge!" />
-
-    <TextView
-        android:id="@+id/price"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="4dp"
-        android:textAppearance="@style/TextAppearance.Signal.Body2"
-        android:textColor="@color/signal_text_secondary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/badge"
-        app:layout_constraintTop_toBottomOf="@id/tagline"
-        tools:text="$400.00" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

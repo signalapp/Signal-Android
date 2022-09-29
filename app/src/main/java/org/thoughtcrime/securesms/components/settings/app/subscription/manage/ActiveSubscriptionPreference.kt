@@ -53,15 +53,13 @@ object ActiveSubscriptionPreference {
 
     val badge: BadgeImageView = itemView.findViewById(R.id.my_support_badge)
     val title: TextView = itemView.findViewById(R.id.my_support_title)
-    val price: TextView = itemView.findViewById(R.id.my_support_price)
     val expiry: TextView = itemView.findViewById(R.id.my_support_expiry)
     val progress: ProgressBar = itemView.findViewById(R.id.my_support_progress)
 
     override fun bind(model: Model) {
       badge.setBadge(model.subscription.badge)
-      title.text = model.subscription.name
 
-      price.text = context.getString(
+      title.text = context.getString(
         R.string.MySupportPreference__s_per_month,
         FiatMoneyUtil.format(
           context.resources,
@@ -69,6 +67,7 @@ object ActiveSubscriptionPreference {
           FiatMoneyUtil.formatOptions()
         )
       )
+
       expiry.movementMethod = LinkMovementMethod.getInstance()
 
       when (model.redemptionState) {

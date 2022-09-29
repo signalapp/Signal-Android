@@ -15,6 +15,7 @@ import io.reactivex.rxjava3.subjects.PublishSubject
 import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
 import org.signal.donations.GooglePayApi
+import org.signal.donations.GooglePayPaymentSource
 import org.thoughtcrime.securesms.badges.gifts.Gifts
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationEvent
@@ -164,7 +165,7 @@ class GiftFlowViewModel(
 
             store.update { it.copy(stage = GiftFlowState.Stage.PAYMENT_PIPELINE) }
 
-            donationPaymentRepository.continuePayment(gift.price, paymentData, recipient, store.state.additionalMessage?.toString(), gift.level).subscribeBy(
+            donationPaymentRepository.continuePayment(gift.price, GooglePayPaymentSource(paymentData), recipient, store.state.additionalMessage?.toString(), gift.level).subscribeBy(
               onError = this@GiftFlowViewModel::onPaymentFlowError,
               onComplete = {
                 store.update { it.copy(stage = GiftFlowState.Stage.READY) }

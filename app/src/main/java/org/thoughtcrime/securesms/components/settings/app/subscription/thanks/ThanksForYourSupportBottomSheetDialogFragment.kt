@@ -96,7 +96,7 @@ class ThanksForYourSupportBottomSheetDialogFragment : FixedRoundedCornerBottomSh
       controlText.setText(R.string.SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge)
       controlNote.visible = true
       controlState = ControlState.FEATURE
-    } else if (hasOtherBadges && !displayingBadges) {
+    } else if (hasOtherBadges) {
       switch.isChecked = false
       controlText.setText(R.string.SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile)
       controlNote.visible = false

@@ -5,13 +5,15 @@ import org.thoughtcrime.securesms.subscription.Subscription
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 
 data class ManageDonationsState(
+  val hasOneTimeBadge: Boolean = false,
+  val hasReceipts: Boolean = false,
   val featuredBadge: Badge? = null,
   val transactionState: TransactionState = TransactionState.Init,
   val availableSubscriptions: List<Subscription> = emptyList(),
   private val subscriptionRedemptionState: SubscriptionRedemptionState = SubscriptionRedemptionState.NONE
 ) {
 
-  fun getRedemptionState(): SubscriptionRedemptionState {
+  fun getMonthlyDonorRedemptionState(): SubscriptionRedemptionState {
     return when (transactionState) {
       TransactionState.Init -> subscriptionRedemptionState
       TransactionState.NetworkFailure -> subscriptionRedemptionState

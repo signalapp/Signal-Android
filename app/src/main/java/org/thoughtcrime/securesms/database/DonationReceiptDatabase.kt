@@ -39,6 +39,13 @@ class DonationReceiptDatabase(context: Context, databaseHelper: SignalDatabase) 
     )
   }
 
+  fun hasReceipts(): Boolean {
+    return readableDatabase.query(TABLE_NAME, SqlUtil.COUNT, null, null, null, null, null, null).use {
+      it.moveToFirst()
+      it.getInt(0) > 0
+    }
+  }
+
   fun addReceipt(record: DonationReceiptRecord) {
     require(record.id == -1L)
 

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/boost1_animation"
+        android:layout_width="60dp"
+        android:layout_height="360dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:lottie_rawRes="@raw/boost_smile" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/boost2_animation"
+        android:layout_width="60dp"
+        android:layout_height="360dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:lottie_rawRes="@raw/boost_clap" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/boost3_animation"
+        android:layout_width="60dp"
+        android:layout_height="360dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:lottie_rawRes="@raw/boost_heart_eyes" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/boost4_animation"
+        android:layout_width="60dp"
+        android:layout_height="360dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:lottie_rawRes="@raw/boost_fire" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/boost5_animation"
+        android:layout_width="60dp"
+        android:layout_height="360dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:lottie_rawRes="@raw/boost_shock" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/boost6_animation"
+        android:layout_width="60dp"
+        android:layout_height="360dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:lottie_rawRes="@raw/boost_rockets" />
+
+    <include layout="@layout/dsl_settings_toolbar" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

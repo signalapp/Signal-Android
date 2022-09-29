@@ -8,25 +8,25 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="64dp"
         android:layout_marginStart="@dimen/dsl_settings_gutter"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="@dimen/dsl_settings_gutter"
         android:background="@drawable/subscription_loading_preference_background" />
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="64dp"
         android:layout_marginStart="@dimen/dsl_settings_gutter"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="@dimen/dsl_settings_gutter"
         android:background="@drawable/subscription_loading_preference_background" />
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="64dp"
         android:layout_marginStart="@dimen/dsl_settings_gutter"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="@dimen/dsl_settings_gutter"
         android:background="@drawable/subscription_loading_preference_background" />
 

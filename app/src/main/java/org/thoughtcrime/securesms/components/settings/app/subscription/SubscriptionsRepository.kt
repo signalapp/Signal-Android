@@ -1,10 +1,14 @@
 package org.thoughtcrime.securesms.components.settings.app.subscription
 
+import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.money.FiatMoney
 import org.thoughtcrime.securesms.badges.Badges
+import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.subscription.Subscription
 import org.thoughtcrime.securesms.util.PlatformCurrencyUtil
 import org.whispersystems.signalservice.api.services.DonationsService
@@ -54,4 +58,11 @@ class SubscriptionsRepository(private val donationsService: DonationsService) {
         it.level
       }
     }
+
+  fun syncAccountRecord(): Completable {
+    return Completable.fromAction {
+      SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
+      StorageSyncHelper.scheduleSyncForDataChange()
+    }.subscribeOn(Schedulers.io())
+  }
 }

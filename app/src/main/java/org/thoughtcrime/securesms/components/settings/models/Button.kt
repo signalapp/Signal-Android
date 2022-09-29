@@ -14,6 +14,7 @@ object Button {
 
   fun register(mappingAdapter: MappingAdapter) {
     mappingAdapter.registerFactory(Model.Primary::class.java, LayoutFactory({ ViewHolder(it) }, R.layout.dsl_button_primary))
+    mappingAdapter.registerFactory(Model.PrimaryWrapped::class.java, LayoutFactory({ ViewHolder(it) }, R.layout.dsl_button_primary_wrapped))
     mappingAdapter.registerFactory(Model.Tonal::class.java, LayoutFactory({ ViewHolder(it) }, R.layout.dsl_button_tonal))
     mappingAdapter.registerFactory(Model.SecondaryNoOutline::class.java, LayoutFactory({ ViewHolder(it) }, R.layout.dsl_button_secondary))
   }
@@ -28,12 +29,25 @@ object Button {
     icon = icon,
     isEnabled = isEnabled
   ) {
+    /**
+     * Large primary button with width set to match_parent
+     */
     class Primary(
       title: DSLSettingsText?,
       icon: DSLSettingsIcon?,
       isEnabled: Boolean,
       onClick: () -> Unit
     ) : Model<Primary>(title, icon, isEnabled, onClick)
+
+    /**
+     * Large primary button with width set to wrap_content
+     */
+    class PrimaryWrapped(
+      title: DSLSettingsText?,
+      icon: DSLSettingsIcon?,
+      isEnabled: Boolean,
+      onClick: () -> Unit
+    ) : Model<PrimaryWrapped>(title, icon, isEnabled, onClick)
 
     class Tonal(
       title: DSLSettingsText?,

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="@dimen/dsl_settings_gutter">
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/start_barrier"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        app:barrierDirection="start"
+        app:constraint_referenced_ids="monthly_invis_start,one_time_invis_start"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/end_barrier"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        app:barrierDirection="end"
+        app:constraint_referenced_ids="monthly_invis_end,one_time_invis_end" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/center_guide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <!-- Invisible Views -->
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/monthly_invis_start"
+        style="@style/Signal.Widget.Button.Medium.Primary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/DonationPillToggle__monthly"
+        android:textAppearance="@style/Signal.Text.LabelLarge"
+        android:textColor="@color/signal_colorOnSurface"
+        android:visibility="invisible"
+        app:backgroundTint="@color/donation_pill_toggle_background_tint"
+        app:icon="@drawable/ic_check_20"
+        app:iconGravity="textStart"
+        app:iconSize="20dp"
+        app:iconTint="@color/signal_colorOnSurface"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/center_guide"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Signal.DonationTogglePill.Start" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/one_time_invis_start"
+        style="@style/Signal.Widget.Button.Medium.Primary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/DonationPillToggle__one_time"
+        android:textAppearance="@style/Signal.Text.LabelLarge"
+        android:textColor="@color/signal_colorOnSurface"
+        android:visibility="invisible"
+        app:backgroundTint="@color/donation_pill_toggle_background_tint"
+        app:icon="@drawable/ic_check_20"
+        app:iconGravity="textStart"
+        app:iconSize="20dp"
+        app:iconTint="@color/signal_colorOnSurface"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/center_guide"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Signal.DonationTogglePill.Start" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/monthly_invis_end"
+        style="@style/Signal.Widget.Button.Medium.Primary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/DonationPillToggle__monthly"
+        android:textAppearance="@style/Signal.Text.LabelLarge"
+        android:textColor="@color/signal_colorOnSurface"
+        android:visibility="invisible"
+        app:backgroundTint="@color/donation_pill_toggle_background_tint"
+        app:icon="@drawable/ic_check_20"
+        app:iconGravity="textStart"
+        app:iconSize="20dp"
+        app:iconTint="@color/signal_colorOnSurface"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@id/center_guide"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Signal.DonationTogglePill.End" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/one_time_invis_end"
+        style="@style/Signal.Widget.Button.Medium.Primary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/DonationPillToggle__one_time"
+        android:textAppearance="@style/Signal.Text.LabelLarge"
+        android:textColor="@color/signal_colorOnSurface"
+        android:visibility="invisible"
+        app:backgroundTint="@color/donation_pill_toggle_background_tint"
+        app:icon="@drawable/ic_check_20"
+        app:iconGravity="textStart"
+        app:iconSize="20dp"
+        app:iconTint="@color/signal_colorOnSurface"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@id/center_guide"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Signal.DonationTogglePill.End" />
+
+    <!-- End invisible views -->
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/one_time"
+        style="@style/Signal.Widget.Button.Medium.Primary"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/DonationPillToggle__one_time"
+        android:textAppearance="@style/Signal.Text.LabelLarge"
+        android:textColor="@color/signal_colorOnSurface"
+        app:backgroundTint="@color/donation_pill_toggle_background_tint"
+        app:iconGravity="textStart"
+        app:iconSize="20dp"
+        app:iconTint="@color/signal_colorOnSurface"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/center_guide"
+        app:layout_constraintStart_toEndOf="@id/start_barrier"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Signal.DonationTogglePill.Start" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/monthly"
+        style="@style/Signal.Widget.Button.Medium.Primary"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/DonationPillToggle__monthly"
+        android:textAppearance="@style/Signal.Text.LabelLarge"
+        android:textColor="@color/signal_colorOnSurface"
+        app:backgroundTint="@color/donation_pill_toggle_background_tint"
+        app:iconGravity="textStart"
+        app:iconSize="20dp"
+        app:iconTint="@color/signal_colorOnSurface"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/end_barrier"
+        app:layout_constraintStart_toEndOf="@id/center_guide"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Signal.DonationTogglePill.End"
+        tools:icon="@drawable/ic_check_20" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

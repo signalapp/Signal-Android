@@ -10,6 +10,9 @@ import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder
 
+/**
+ * "Hero Image" for displaying an Avatar and badge. Allows the user to see what their profile will look like with a particular badge applied.
+ */
 object BadgePreview {
 
   fun register(mappingAdapter: MappingAdapter) {
@@ -19,6 +22,11 @@ object BadgePreview {
   }
 
   sealed class BadgeModel<T : BadgeModel<T>> : MappingModel<T> {
+
+    companion object {
+      const val PAYLOAD_BADGE = "badge"
+    }
+
     abstract val badge: Badge?
     abstract val recipient: Recipient
 
@@ -33,11 +41,19 @@ object BadgePreview {
     data class GiftedBadgeModel(override val badge: Badge?, override val recipient: Recipient) : BadgeModel<GiftedBadgeModel>()
 
     override fun areItemsTheSame(newItem: T): Boolean {
-      return badge?.id == newItem.badge?.id && recipient.id == newItem.recipient.id
+      return recipient.id == newItem.recipient.id
     }
 
     override fun areContentsTheSame(newItem: T): Boolean {
       return badge == newItem.badge && recipient.hasSameContent(newItem.recipient)
+    }
+
+    override fun getChangePayload(newItem: T): Any? {
+      return if (recipient.hasSameContent(newItem.recipient) && badge != newItem.badge) {
+        PAYLOAD_BADGE
+      } else {
+        null
+      }
     }
   }
 

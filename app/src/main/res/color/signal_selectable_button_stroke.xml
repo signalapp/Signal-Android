@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:color="@color/signal_accent_primary" android:state_selected="true" />
-    <item android:color="@color/signal_button_secondary_stroke" />
+    <item android:color="@color/signal_colorPrimary" android:state_selected="true" />
+    <item android:color="@color/transparent" />
 </selector>

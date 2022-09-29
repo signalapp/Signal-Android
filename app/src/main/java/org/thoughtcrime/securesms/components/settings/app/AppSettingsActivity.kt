@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsActivity
 import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.EditNotificationProfileScheduleFragmentArgs
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPaymentComponent
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPaymentRepository
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonateToSignalType
 import org.thoughtcrime.securesms.help.HelpFragment
 import org.thoughtcrime.securesms.keyvalue.SettingsValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -54,8 +55,8 @@ class AppSettingsActivity : DSLSettingsActivity(), DonationPaymentComponent {
         StartLocation.PROXY -> AppSettingsFragmentDirections.actionDirectToEditProxyFragment()
         StartLocation.NOTIFICATIONS -> AppSettingsFragmentDirections.actionDirectToNotificationsSettingsFragment()
         StartLocation.CHANGE_NUMBER -> AppSettingsFragmentDirections.actionDirectToChangeNumberFragment()
-        StartLocation.SUBSCRIPTIONS -> AppSettingsFragmentDirections.actionDirectToSubscriptions()
-        StartLocation.BOOST -> AppSettingsFragmentDirections.actionAppSettingsFragmentToBoostsFragment()
+        StartLocation.SUBSCRIPTIONS -> AppSettingsFragmentDirections.actionDirectToDonateToSignal(DonateToSignalType.MONTHLY)
+        StartLocation.BOOST -> AppSettingsFragmentDirections.actionDirectToDonateToSignal(DonateToSignalType.ONE_TIME)
         StartLocation.MANAGE_SUBSCRIPTIONS -> AppSettingsFragmentDirections.actionDirectToManageDonations()
         StartLocation.NOTIFICATION_PROFILES -> AppSettingsFragmentDirections.actionDirectToNotificationProfiles()
         StartLocation.CREATE_NOTIFICATION_PROFILE -> AppSettingsFragmentDirections.actionDirectToCreateNotificationProfiles()

@@ -3,6 +3,8 @@ package org.thoughtcrime.securesms.components.settings.app.subscription.boost
 import android.animation.Animator
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.graphics.Typeface
+import android.os.Build
 import android.text.Editable
 import android.text.Spanned
 import android.text.TextWatcher
@@ -144,7 +146,8 @@ data class Boost(
       itemView.isEnabled = model.isEnabled
 
       model.boosts.zip(boostButtons).forEach { (boost, button) ->
-        button.isSelected = boost == model.selectedBoost && !model.isCustomAmountFocused
+        val isSelected = boost == model.selectedBoost && !model.isCustomAmountFocused
+        button.isSelected = isSelected
         button.text = FiatMoneyUtil.format(
           context.resources,
           boost.price,
@@ -155,6 +158,13 @@ data class Boost(
         button.setOnClickListener {
           model.onBoostClick(it, boost)
           custom.clearFocus()
+        }
+
+        if (Build.VERSION.SDK_INT >= 28) {
+          val weight = if (isSelected) 500 else 400
+          button.typeface = Typeface.create(null, weight, false)
+        } else {
+          button.typeface = if (isSelected) Typeface.DEFAULT_BOLD else Typeface.DEFAULT
         }
       }
 

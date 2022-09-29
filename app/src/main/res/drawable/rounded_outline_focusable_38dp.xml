@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@drawable/rounded_outline_accent_38dp" android:state_selected="true" />
-    <item android:drawable="@drawable/rounded_outline_38dp" />
-</selector>

@@ -4397,10 +4397,8 @@
 
     <string name="ImageView__badge">Badge</string>
 
-    <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal is powered by people like you.</string>
     <string name="SubscribeFragment__support_technology_that_is_built_for_you">Support technology that is built for you—not for your data—by joining the community of people that sustain it.</string>
     <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Support technology that is built for you, not for your data, by joining the community that sustains Signal.</string>
-    <string name="SubscribeFragment__make_a_recurring_monthly_donation">Make a recurring monthly donation to Signal to support technology built for you, not your data.</string>
     <string name="SubscribeFragment__currency">Currency</string>
     <string name="SubscribeFragment__more_payment_options">More Payment Options</string>
     <string name="SubscribeFragment__cancel_subscription">Cancel Subscription</string>
@@ -4415,8 +4413,10 @@
     <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">You will be charged the full amount (%1$s) of the new subscription price today. Your subscription will renew monthly.</string>
 
     <string name="Subscription__s_per_month">%s/month</string>
-    <string name="Subscription__s_per_month_dot_renews_s">%1$s/month · Renews %2$s</string>
-    <string name="Subscription__s_per_month_dot_expires_s">%1$s/month · Expires %2$s</string>
+    <!-- Shown when a subscription is active and isn't going to expire at the end of the term -->
+    <string name="Subscription__renews_s">Renews %1$s</string>
+    <!-- Shown when a subscription is active and is going to expire at the end of the term -->
+    <string name="Subscription__expires_s">Expires %1$s</string>
 
     <!-- First small text blurb on learn more sheet -->
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal is a nonprofit with no advertisers or investors, sustained only by the people who use and value it. Make a recurring monthly donation and receive a profile badge to share your support.</string>
@@ -4438,14 +4438,14 @@
     <string name="BecomeASustainerFragment__get_badges">Get badges for your profile by supporting Signal.</string>
     <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal is a nonprofit with no advertisers or investors, supported only by people like you.</string>
 
-    <!-- Button label for creating a monthly donation -->
-    <string name="ManageDonationsFragment__make_a_monthly_donation">Make a monthly donation</string>
+    <!-- Button label for creating a donation -->
+    <string name="ManageDonationsFragment__donate_to_signal">Donate to Signal</string>
     <!-- Heading for more area of manage subscriptions page -->
     <string name="ManageDonationsFragment__more">More</string>
     <!-- Heading for receipts area of manage subscriptions page -->
     <string name="ManageDonationsFragment__receipts">Receipts</string>
     <!-- Heading for my subscription area of manage subscriptions page -->
-    <string name="ManageDonationsFragment__my_subscription">My subscription</string>
+    <string name="ManageDonationsFragment__my_support">My support</string>
     <string name="ManageDonationsFragment__manage_subscription">Manage subscription</string>
     <!-- Label for Donation Receipts button -->
     <string name="ManageDonationsFragment__donation_receipts">Donation Receipts</string>
@@ -4456,10 +4456,6 @@
     <string name="ManageDonationsFragment__other_ways_to_give">Other ways to give</string>
     <!-- Preference label to launch badge gifting -->
     <string name="ManageDonationsFragment__gift_a_badge">Gift a badge</string>
-
-    <string name="BoostFragment__give_signal_a_boost">Give Signal a Boost</string>
-    <!-- Description text in boost sheet -->
-    <string name="BoostFragment__make_a_one_time">Make a one-time donation and earn a Boost badge for %1$d days.</string>
 
     <string name="Boost__enter_custom_amount">Enter Custom Amount</string>
     <string name="Boost__one_time_contribution">One-time contribution</string>
@@ -4501,7 +4497,7 @@
 
     <string name="Subscription__please_contact_support_for_more_information">Please contact support for more information.</string>
     <string name="Subscription__contact_support">Contact Support</string>
-    <string name="Subscription__earn_a_s_badge">Earn a %1$s badge</string>
+    <string name="Subscription__get_a_s_badge">Get a %1$s badge</string>
 
     <string name="SubscribeFragment__processing_payment">Processing payment…</string>
     <!-- Displayed in notification when user payment fails to process on Stripe -->
@@ -5484,6 +5480,31 @@
     <!-- Helper text shown when all sms messages failed to export -->
     <string name="ExportSmsFullError__please_try_again_if_the_problem_persists">Please try again. If the problem persists, </string>
 
+
+    <!-- DonateToSignalFragment -->
+    <!-- Title below avatar -->
+    <string name="DonateToSignalFragment__powered_by">Powered by people like you.</string>
+    <!-- Continue button label -->
+    <string name="DonateToSignalFragment__continue">Continue</string>
+    <!-- Description below title -->
+    <string name="DonateToSignalFragment__support_technology">Support technology built for you, not your data, by joining the community that sustains Signal.</string>
+    <!-- Donation pill toggle monthly text -->
+    <string name="DonationPillToggle__monthly">Monthly</string>
+    <!-- Donation pill toggle one-time text -->
+    <string name="DonationPillToggle__one_time">One-time</string>
+
+    <!-- GatewaySelectorBottomSheet -->
+    <!-- Sheet title when subscribing -->
+    <string name="GatewaySelectorBottomSheet__donate_s_month_to_signal">Donate %1$s/month to Signal</string>
+    <!-- Sheet summary when subscribing -->
+    <string name="GatewaySelectorBottomSheet__get_a_s_badge">Get a %1$s badge</string>
+    <!-- Sheet title when giving a one-time donation -->
+    <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Donate %1$s to Signal</string>
+    <!-- Sheet summary when giving a one-time donation -->
+    <string name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">Get a %1$s badge for %2$d days</string>
+
+    <!-- StripePaymentInProgressFragment -->
+    <string name="StripePaymentInProgressFragment__cancelling">Cancelling…</string>
 
     <!-- EOF -->
 

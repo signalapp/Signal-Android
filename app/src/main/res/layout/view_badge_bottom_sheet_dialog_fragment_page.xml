@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:viewBindingIgnore="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:viewBindingIgnore="true">
 
     <org.thoughtcrime.securesms.badges.BadgeImageView
         android:id="@+id/badge"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
+        android:layout_width="112dp"
+        android:layout_height="112dp"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="36dp"
         android:contentDescription="@string/BadgesOverviewFragment__featured_badge"
         app:badge_size="xlarge"
         tools:src="@drawable/test_gradient" />
@@ -22,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="16dp"
-        android:textAppearance="@style/TextAppearance.Signal.Title2"
+        android:textAppearance="@style/Signal.Text.TitleLarge"
         tools:text="Signal Sustainer" />
 
     <TextView
@@ -38,7 +39,8 @@
         android:paddingStart="32dp"
         android:paddingEnd="32dp"
         android:textAlignment="center"
-        android:textAppearance="@style/Signal.Text.Body"
+        android:textAppearance="@style/Signal.Text.BodyLarge"
+        android:textColor="@color/signal_colorOnSurfaceVariant"
         tools:text="Paige supports Signal by making a monthly donation. Get your own badge by donating below." />
 
 </LinearLayout>

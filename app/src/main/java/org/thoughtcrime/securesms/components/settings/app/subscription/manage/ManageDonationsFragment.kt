@@ -2,10 +2,11 @@ package org.thoughtcrime.securesms.components.settings.app.subscription.manage
 
 import android.content.Intent
 import android.text.SpannableStringBuilder
+import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import org.signal.core.util.DimensionUnit
+import org.signal.core.util.dp
 import org.signal.core.util.money.FiatMoney
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.gifts.ExpiredGiftSheet
@@ -17,6 +18,7 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsIcon
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.components.settings.app.subscription.SubscriptionsRepository
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonateToSignalType
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.NetworkFailure
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.components.settings.models.IndeterminateLoadingCircle
@@ -26,6 +28,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.subscription.Subscription
 import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.Material3OnScrollHelper
 import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
@@ -37,13 +40,17 @@ import java.util.concurrent.TimeUnit
  * Fragment displayed when a user enters "Subscriptions" via app settings but is already
  * a subscriber. Used to manage their current subscription, view badges, and boost.
  */
-class ManageDonationsFragment : DSLSettingsFragment(), ExpiredGiftSheet.Callback {
+class ManageDonationsFragment :
+  DSLSettingsFragment(
+    layoutId = R.layout.manage_donations_fragment
+  ),
+  ExpiredGiftSheet.Callback {
 
   private val supportTechSummary: CharSequence by lazy {
-    SpannableStringBuilder(requireContext().getString(R.string.SubscribeFragment__make_a_recurring_monthly_donation))
+    SpannableStringBuilder(SpanUtil.color(ContextCompat.getColor(requireContext(), R.color.signal_colorOnSurfaceVariant), requireContext().getString(R.string.DonateToSignalFragment__support_technology)))
       .append(" ")
       .append(
-        SpanUtil.readMore(requireContext(), ContextCompat.getColor(requireContext(), R.color.signal_button_secondary_text)) {
+        SpanUtil.readMore(requireContext(), ContextCompat.getColor(requireContext(), R.color.signal_colorPrimary)) {
           findNavController().safeNavigate(ManageDonationsFragmentDirections.actionManageDonationsFragmentToSubscribeLearnMoreBottomSheetDialog())
         }
       )
@@ -77,48 +84,88 @@ class ManageDonationsFragment : DSLSettingsFragment(), ExpiredGiftSheet.Callback
     }
   }
 
+  override fun getMaterial3OnScrollHelper(toolbar: Toolbar?): Material3OnScrollHelper {
+    return object : Material3OnScrollHelper(requireActivity(), toolbar!!) {
+      override val activeColorSet: ColorSet = ColorSet(R.color.transparent, R.color.signal_colorBackground)
+      override val inactiveColorSet: ColorSet = ColorSet(R.color.transparent, R.color.signal_colorBackground)
+    }
+  }
+
   private fun getConfiguration(state: ManageDonationsState): DSLConfiguration {
     return configure {
+      space(36.dp)
+
       customPref(
-        BadgePreview.BadgeModel.FeaturedModel(
+        BadgePreview.BadgeModel.SubscriptionModel(
           badge = state.featuredBadge
         )
       )
 
-      space(DimensionUnit.DP.toPixels(8f).toInt())
+      space(12.dp)
 
-      sectionHeaderPref(
+      noPadTextPref(
         title = DSLSettingsText.from(
-          R.string.SubscribeFragment__signal_is_powered_by_people_like_you,
+          R.string.DonateToSignalFragment__powered_by,
           DSLSettingsText.CenterModifier, DSLSettingsText.TitleLargeModifier
         )
       )
 
+      space(8.dp)
+
+      noPadTextPref(
+        title = DSLSettingsText.from(supportTechSummary, DSLSettingsText.CenterModifier)
+      )
+
+      space(24.dp)
+
+      primaryWrappedButton(
+        text = DSLSettingsText.from(R.string.ManageDonationsFragment__donate_to_signal),
+        onClick = {
+          findNavController().safeNavigate(ManageDonationsFragmentDirections.actionManageDonationsFragmentToDonateToSignalFragment(DonateToSignalType.ONE_TIME))
+        }
+      )
+
+      space(16.dp)
+
       if (state.transactionState is ManageDonationsState.TransactionState.NotInTransaction) {
         val activeSubscription = state.transactionState.activeSubscription.activeSubscription
         if (activeSubscription != null) {
-          val subscription: Subscription? = state.availableSubscriptions.firstOrNull { activeSubscription.level == it.level }
+          val subscription: Subscription? = state.availableSubscriptions.firstOrNull { it.level == activeSubscription.level }
           if (subscription != null) {
-            presentSubscriptionSettings(activeSubscription, subscription, state.getRedemptionState())
+            presentSubscriptionSettings(activeSubscription, subscription, state.getMonthlyDonorRedemptionState())
           } else {
             customPref(IndeterminateLoadingCircle)
           }
+        } else if (state.hasOneTimeBadge) {
+          presentActiveOneTimeDonorSettings()
         } else {
-          presentNoSubscriptionSettings()
+          presentNotADonorSettings(state.hasReceipts)
         }
       } else if (state.transactionState == ManageDonationsState.TransactionState.NetworkFailure) {
-        presentNetworkFailureSettings(state.getRedemptionState())
+        presentNetworkFailureSettings(state.getMonthlyDonorRedemptionState(), state.hasReceipts)
       } else {
         customPref(IndeterminateLoadingCircle)
       }
     }
   }
 
-  private fun DSLConfiguration.presentNetworkFailureSettings(redemptionState: ManageDonationsState.SubscriptionRedemptionState) {
+  private fun DSLConfiguration.presentActiveOneTimeDonorSettings() {
+    dividerPref()
+
+    sectionHeaderPref(R.string.ManageDonationsFragment__my_support)
+
+    presentBadges()
+
+    presentOtherWaysToGive()
+
+    presentMore()
+  }
+
+  private fun DSLConfiguration.presentNetworkFailureSettings(redemptionState: ManageDonationsState.SubscriptionRedemptionState, hasReceipts: Boolean) {
     if (SignalStore.donationsValues().isLikelyASustainer()) {
       presentSubscriptionSettingsWithNetworkError(redemptionState)
     } else {
-      presentNoSubscriptionSettings()
+      presentNotADonorSettings(hasReceipts)
     }
   }
 
@@ -163,16 +210,9 @@ class ManageDonationsFragment : DSLSettingsFragment(), ExpiredGiftSheet.Callback
     redemptionState: ManageDonationsState.SubscriptionRedemptionState,
     subscriptionBlock: DSLConfiguration.() -> Unit
   ) {
-    space(DimensionUnit.DP.toPixels(32f).toInt())
+    dividerPref()
 
-    noPadTextPref(
-      title = DSLSettingsText.from(
-        R.string.ManageDonationsFragment__my_subscription,
-        DSLSettingsText.Body1BoldModifier, DSLSettingsText.BoldModifier
-      )
-    )
-
-    space(DimensionUnit.DP.toPixels(12f).toInt())
+    sectionHeaderPref(R.string.ManageDonationsFragment__my_support)
 
     subscriptionBlock()
 
@@ -181,66 +221,29 @@ class ManageDonationsFragment : DSLSettingsFragment(), ExpiredGiftSheet.Callback
       icon = DSLSettingsIcon.from(R.drawable.ic_person_white_24dp),
       isEnabled = redemptionState != ManageDonationsState.SubscriptionRedemptionState.IN_PROGRESS,
       onClick = {
-        findNavController().safeNavigate(ManageDonationsFragmentDirections.actionManageDonationsFragmentToSubscribeFragment())
+        findNavController().safeNavigate(ManageDonationsFragmentDirections.actionManageDonationsFragmentToDonateToSignalFragment(DonateToSignalType.MONTHLY))
       }
     )
 
-    clickPref(
-      title = DSLSettingsText.from(R.string.ManageDonationsFragment__badges),
-      icon = DSLSettingsIcon.from(R.drawable.ic_badge_24),
-      onClick = {
-        findNavController().safeNavigate(ManageDonationsFragmentDirections.actionManageDonationsFragmentToManageBadges())
-      }
-    )
+    presentBadges()
 
     presentOtherWaysToGive()
 
-    sectionHeaderPref(R.string.ManageDonationsFragment__more)
-
-    presentDonationReceipts()
-
-    externalLinkPref(
-      title = DSLSettingsText.from(R.string.ManageDonationsFragment__subscription_faq),
-      icon = DSLSettingsIcon.from(R.drawable.ic_help_24),
-      linkId = R.string.donate_url
-    )
+    presentMore()
   }
 
-  private fun DSLConfiguration.presentNoSubscriptionSettings() {
-    space(DimensionUnit.DP.toPixels(16f).toInt())
-
-    noPadTextPref(
-      title = DSLSettingsText.from(supportTechSummary, DSLSettingsText.CenterModifier)
-    )
-
-    space(DimensionUnit.DP.toPixels(16f).toInt())
-
-    tonalButton(
-      text = DSLSettingsText.from(R.string.ManageDonationsFragment__make_a_monthly_donation),
-      onClick = {
-        findNavController().safeNavigate(R.id.action_manageDonationsFragment_to_subscribeFragment)
-      }
-    )
-
+  private fun DSLConfiguration.presentNotADonorSettings(hasReceipts: Boolean) {
     presentOtherWaysToGive()
 
-    sectionHeaderPref(R.string.ManageDonationsFragment__receipts)
-
-    presentDonationReceipts()
+    if (hasReceipts) {
+      presentMore()
+    }
   }
 
   private fun DSLConfiguration.presentOtherWaysToGive() {
     dividerPref()
 
     sectionHeaderPref(R.string.ManageDonationsFragment__other_ways_to_give)
-
-    clickPref(
-      title = DSLSettingsText.from(R.string.preferences__one_time_donation),
-      icon = DSLSettingsIcon.from(R.drawable.ic_boost_24),
-      onClick = {
-        findNavController().safeNavigate(ManageDonationsFragmentDirections.actionManageDonationsFragmentToBoosts())
-      }
-    )
 
     if (FeatureFlags.giftBadgeSendSupport() && Recipient.self().giftBadgesCapability == Recipient.Capability.SUPPORTED) {
       clickPref(
@@ -253,7 +256,17 @@ class ManageDonationsFragment : DSLSettingsFragment(), ExpiredGiftSheet.Callback
     }
   }
 
-  private fun DSLConfiguration.presentDonationReceipts() {
+  private fun DSLConfiguration.presentBadges() {
+    clickPref(
+      title = DSLSettingsText.from(R.string.ManageDonationsFragment__badges),
+      icon = DSLSettingsIcon.from(R.drawable.ic_badge_24),
+      onClick = {
+        findNavController().safeNavigate(ManageDonationsFragmentDirections.actionManageDonationsFragmentToManageBadges())
+      }
+    )
+  }
+
+  private fun DSLConfiguration.presentReceipts() {
     clickPref(
       title = DSLSettingsText.from(R.string.ManageDonationsFragment__donation_receipts),
       icon = DSLSettingsIcon.from(R.drawable.ic_receipt_24),
@@ -263,7 +276,21 @@ class ManageDonationsFragment : DSLSettingsFragment(), ExpiredGiftSheet.Callback
     )
   }
 
+  private fun DSLConfiguration.presentMore() {
+    dividerPref()
+
+    sectionHeaderPref(R.string.ManageDonationsFragment__more)
+
+    presentReceipts()
+
+    externalLinkPref(
+      title = DSLSettingsText.from(R.string.ManageDonationsFragment__subscription_faq),
+      icon = DSLSettingsIcon.from(R.drawable.ic_help_24),
+      linkId = R.string.donate_url
+    )
+  }
+
   override fun onMakeAMonthlyDonation() {
-    findNavController().safeNavigate(ManageDonationsFragmentDirections.actionManageDonationsFragmentToSubscribeFragment())
+    findNavController().safeNavigate(ManageDonationsFragmentDirections.actionManageDonationsFragmentToDonateToSignalFragment(DonateToSignalType.MONTHLY))
   }
 }
