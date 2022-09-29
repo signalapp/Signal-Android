@@ -133,8 +133,8 @@ message DataMessage {
   }
 
   message BodyRange {
-    optional int32 start  = 1;
-    optional int32 length = 2;
+    optional uint32 start  = 1;
+    optional uint32 length = 2;
 
     oneof associatedValue {
       string mentionUuid = 3;
