@@ -1,11 +1,14 @@
 package org.thoughtcrime.securesms.util;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.net.ConnectivityManager;
 import android.telephony.TelephonyManager;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
 import org.signal.core.util.logging.Log;
 
@@ -44,6 +47,10 @@ public class TelephonyUtil {
   }
 
   public static boolean isAnyPstnLineBusy(@NonNull Context context) {
-    return getManager(context).getCallState() != TelephonyManager.CALL_STATE_IDLE;
+    if (ContextCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED) {
+      return getManager(context).getCallState() != TelephonyManager.CALL_STATE_IDLE;
+    } else {
+      return false;
+    }
   }
 }
