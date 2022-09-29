@@ -358,8 +358,8 @@
     </plurals>
     <string name="ConversationFragment_save_to_sd_card">Vil du lagre på enheten?</string>
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
-        <item quantity="one">Saving this media to storage will allow any other apps on your device to access it.\n\nContinue?</item>
-        <item quantity="other">Saving all %1$d media to storage will allow any other apps on your device to access them.\n\nContinue?</item>
+        <item quantity="one">Hvis du lagrer disse mediene på enheten din, kan andre programmer få tilgang til dem.\n\nVil du fortsette?</item>
+        <item quantity="other">Hvis du lagrer disse %1$d mediene på enheten din, kan andre programmer få tilgang til dem.\n\nVil du fortsette?</item>
     </plurals>
     <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
         <item quantity="one">Det oppstod en feil under lagring av vedlegg som vanlig fil.</item>
@@ -367,12 +367,12 @@
     </plurals>
     <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Klarte ikke å skrive til enhetslager.</string>
     <plurals name="ConversationFragment_saving_n_attachments">
-        <item quantity="one">Saving attachment</item>
-        <item quantity="other">Saving %1$d attachments</item>
+        <item quantity="one">Lagrer vedlegget</item>
+        <item quantity="other">Lagrer %1$d vedlegg</item>
     </plurals>
     <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="one">Saving attachment to storage…</item>
-        <item quantity="other">Saving %1$d attachments to storage…</item>
+        <item quantity="one">Lagrer vedlegget på enheten …</item>
+        <item quantity="other">Lagrer %1$d vedlegg på enheten …</item>
     </plurals>
     <string name="ConversationFragment_pending">Venter…</string>
     <string name="ConversationFragment_push">Data (Signal)</string>
@@ -418,19 +418,19 @@
         <item quantity="other">Vil du slette valgte samtaler?</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">This will permanently delete the selected conversation.</item>
-        <item quantity="other">This will permanently delete all %1$d selected conversations.</item>
+        <item quantity="one">Dette vil permanent slette den valgte samtalen.</item>
+        <item quantity="other">Dette vil permanent slette alle de %1$d valgte samtalene.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Sletter</string>
     <string name="ConversationListFragment_deleting_selected_conversations">Sletter valgte samtaler…</string>
     <plurals name="ConversationListFragment_conversations_archived">
-        <item quantity="one">Conversation archived</item>
-        <item quantity="other">%1$d conversations archived</item>
+        <item quantity="one">Samtalen er arkivert</item>
+        <item quantity="other">%1$d samtaler er arkivert</item>
     </plurals>
     <string name="ConversationListFragment_undo">Angre</string>
     <plurals name="ConversationListFragment_moved_conversations_to_inbox">
-        <item quantity="one">Moved conversation to inbox</item>
-        <item quantity="other">Moved %1$d conversations to inbox</item>
+        <item quantity="one">Flyttet samtalen til innboksen</item>
+        <item quantity="other">Flyttet %1$d samtaler til innboksen</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
         <item quantity="one">Les</item>
@@ -664,8 +664,8 @@
 
     <!-- GV2 invites sent -->
     <plurals name="GroupManagement_invitation_sent">
-        <item quantity="one">Invitation sent</item>
-        <item quantity="other">%1$d invitations sent</item>
+        <item quantity="one">Invitasjonen er sendt</item>
+        <item quantity="other">%1$d invitasjoner er sendt</item>
     </plurals>
     <string name="GroupManagement_invite_single_user">“%1$s” kan ikke bli automatisk lagt til denne gruppen av deg.\n\nPersonen har blitt invitert, men vil ikke se noen meldinger til gruppen før invitasjonen godtas.</string>
     <string name="GroupManagement_invite_multiple_users">Disse brukerne kan ikke automatisk legges til av deg.\n\nDe er blitt invitert, men vil ikke se noen meldinger til gruppen før invitasjonen godtas.</string>
@@ -765,8 +765,8 @@
     <string name="PendingMembersActivity_revoke_invite">Trekk tilbake invitasjon</string>
     <string name="PendingMembersActivity_revoke_invites">Trekk tilbake invitasjoner</string>
     <plurals name="PendingMembersActivity_revoke_d_invites">
-        <item quantity="one">Revoke invite</item>
-        <item quantity="other">Revoke %1$d invites</item>
+        <item quantity="one">Trekk tilbake invitasjonen</item>
+        <item quantity="other">Trekk tilbake %1$d invitasjoner</item>
     </plurals>
     <plurals name="PendingMembersActivity_error_revoking_invite">
         <item quantity="one">Tilbaketrekking av invitasjon feilet</item>
@@ -785,8 +785,8 @@
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Denne personen kan ikke legges til \"legacy\"-grupper.</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">Denne personen kan ikke legges til i kunngjøringsgrupper.</string>
     <plurals name="AddMembersActivity__add_d_members_to_s">
-        <item quantity="one">Add \"%1$s\" to \"%2$s\"?</item>
-        <item quantity="other">Add %3$d members to \"%2$s\"?</item>
+        <item quantity="one">Vil du legge %1$s medlemmer til i %2$s?</item>
+        <item quantity="other">Vil du legge %3$d medlemmer til i %2$s?</item>
     </plurals>
     <string name="AddMembersActivity__add">Legg til</string>
     <string name="AddMembersActivity__add_members">Legg til medlemmer</string>
@@ -887,8 +887,8 @@
     </plurals>
 
     <plurals name="GroupMemberList_invited">
-        <item quantity="one">%1$s invited 1 person</item>
-        <item quantity="other">%1$s invited %2$d people</item>
+        <item quantity="one">%1$s inviterte 1 person</item>
+        <item quantity="other">%1$s inviterte %2$d personer</item>
     </plurals>
 
     <!-- CustomNotificationsDialogFragment -->
@@ -926,8 +926,8 @@
     <!-- GV2 Invite Revoke confirmation dialog -->
     <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Ønsker du å kansellere invitasjonen du sendte til %1$s?</string>
     <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
-        <item quantity="one">Do you want to revoke the invite sent by %1$s?</item>
-        <item quantity="other">Do you want to revoke %2$d invites sent by %1$s?</item>
+        <item quantity="one">Vil du trekke tilbake invitasjonen som %1$s sendte?</item>
+        <item quantity="other">Vil du trekke tilbake de %2$d invitasjonene som %1$s sendte?</item>
     </plurals>
 
     <!-- GroupJoinBottomSheetDialogFragment -->
@@ -1035,8 +1035,8 @@
         <item quantity="other">Vil du slette valgte elementer?</item>
     </plurals>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-        <item quantity="one">This will permanently delete the selected file. Any message text associated with this item will also be deleted.</item>
-        <item quantity="other">This will permanently delete all %1$d selected files. Any message text associated with these items will also be deleted.</item>
+        <item quantity="one">Dette vil permanent slette den valgte filen. All tekst tilknyttet dette elementet vil også bli slettet.</item>
+        <item quantity="other">Dette vil permanent slette de %1$d valgte filene. All tekst tilknyttet disse elementene vil også bli slettet.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Sletter</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">Sletter meldinger…</string>
@@ -1168,13 +1168,13 @@
     <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Du kunne ikke bli lagt til den nye gruppen og har blitt invitert til å bli med.</string>
     <string name="MessageRecord_chat_session_refreshed">Samtaleøkt lastet inn på nytt</string>
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
-        <item quantity="one">A member couldn\'t be added to the New Group and has been invited to join.</item>
-        <item quantity="other">%1$s members couldn\'t be added to the New Group and have been invited to join.</item>
+        <item quantity="one">Et medlem kunne ikke legges til i den nye gruppen og har blitt invitert på nytt.</item>
+        <item quantity="other">%1$s medlemmer kunne ikke legges til i den nye gruppen og har blitt invitert på nytt.</item>
     </plurals>
 
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
-        <item quantity="one">A member couldn\'t be added to the New Group and has been removed.</item>
-        <item quantity="other">%1$s members couldn\'t be added to the New Group and have been removed.</item>
+        <item quantity="one">Et medlem kunne ikke legges til i den nye gruppen og er fjernet.</item>
+        <item quantity="other">%1$s medlemmer kunne ikke legges til i den nye gruppen og er fjernet.</item>
     </plurals>
 
     <!-- Profile change updates -->
@@ -1219,31 +1219,31 @@
     <string name="MessageRecord_you_invited_s_to_the_group">Du inviterte %1$s til gruppen.</string>
     <string name="MessageRecord_s_invited_you_to_the_group">%1$s inviterte deg til gruppen.</string>
     <plurals name="MessageRecord_s_invited_members">
-        <item quantity="one">%1$s invited 1 person to the group.</item>
-        <item quantity="other">%1$s invited %2$d people to the group.</item>
+        <item quantity="one">%1$s inviterte 1 person til å bli med i gruppen.</item>
+        <item quantity="other">%1$s inviterte %2$d personer til å bli med i gruppen.</item>
     </plurals>
     <string name="MessageRecord_you_were_invited_to_the_group">Du har blitt invitert til gruppen.</string>
     <plurals name="MessageRecord_d_people_were_invited_to_the_group">
-        <item quantity="one">1 person was invited to the group.</item>
-        <item quantity="other">%1$d people were invited to the group.</item>
+        <item quantity="one">En person ble invitert til å bli med i gruppen.</item>
+        <item quantity="other">%1$d personer ble invitert til å bli med i gruppen.</item>
     </plurals>
 
     <!-- GV2 invitation revokes -->
     <plurals name="MessageRecord_you_revoked_invites">
-        <item quantity="one">You revoked an invitation to the group.</item>
-        <item quantity="other">You revoked %1$d invitations to the group.</item>
+        <item quantity="one">Du trakk tilbake en invitasjon til gruppen.</item>
+        <item quantity="other">Du trakk tilbake %1$d invitasjoner til gruppen.</item>
     </plurals>
     <plurals name="MessageRecord_s_revoked_invites">
-        <item quantity="one">%1$s revoked an invitation to the group.</item>
-        <item quantity="other">%1$s revoked %2$d invitations to the group.</item>
+        <item quantity="one">%1$s trakk tilbake en invitasjon til gruppen.</item>
+        <item quantity="other">%1$s trakk tilbake %2$d invitasjoner til gruppen.</item>
     </plurals>
     <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Noen avslo en invitasjon til gruppen.</string>
     <string name="MessageRecord_you_declined_the_invitation_to_the_group">Du avslo invitasjonen til gruppen.</string>
     <string name="MessageRecord_s_revoked_your_invitation_to_the_group">Invitasjonen din til gruppen ble tilbakekalt av %1$s.</string>
     <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">En administrator har trukket tilbake invitasjonen til gruppen.</string>
     <plurals name="MessageRecord_d_invitations_were_revoked">
-        <item quantity="one">An invitation to the group was revoked.</item>
-        <item quantity="other">%1$d invitations to the group were revoked.</item>
+        <item quantity="one">En invitasjon til gruppen ble trukket tilbake.</item>
+        <item quantity="other">%1$d invitasjoner til gruppen ble trukket tilbake.</item>
     </plurals>
 
     <!-- GV2 invitation acceptance -->
@@ -1316,8 +1316,8 @@
     <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s ba om å bli medlem via gruppelenken.</string>
     <!-- Update message shown when someone requests to join via group link and cancels the request back to back -->
     <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
-        <item quantity="one">%1$s requested and cancelled their request to join via the group link.</item>
-        <item quantity="other">%1$s requested and cancelled %2$d requests to join via the group link.</item>
+        <item quantity="one">%1$s ba om å bli medlem og kansellerte så forespørselen via gruppelenken.</item>
+        <item quantity="other">%1$s ba om å bli medlem og kansellerte så %2$d forespørsler via gruppelenken.</item>
     </plurals>
 
     <!-- GV2 group link approvals -->
@@ -1450,8 +1450,8 @@
     <string name="OutdatedBuildReminder_update_now">Oppdater nå</string>
     <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Denne versjonen av Signal går ut på dato i dag. Oppgrader til nyeste versjon.</string>
     <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
-        <item quantity="one">This version of Signal will expire tomorrow. Update to the most recent version.</item>
-        <item quantity="other">This version of Signal will expire in %1$d days. Update to the most recent version.</item>
+        <item quantity="one">Denne versjonen av Signal vil utløpe i morgen. Husk å oppdatere til den nyeste versjonen.</item>
+        <item quantity="other">Denne versjonen av Signal vil utløpe om %1$d dager. Husk å oppdatere til den nyeste versjonen.</item>
     </plurals>
 
     <!-- PassphrasePromptActivity -->
@@ -1873,7 +1873,7 @@
 
     <!-- UsernameEditFragment -->
     <!-- Toolbar title when entering from registration -->
-    <string name="UsernameEditFragment__add_a_username">Add a username</string>
+    <string name="UsernameEditFragment__add_a_username">Legg til et brukernavn</string>
     <!-- Instructional text at the top of the username edit screen -->
     <string name="UsernameEditFragment__choose_your_username">Velg et brukernavn</string>
     <string name="UsernameEditFragment_username">Brukernavn</string>
@@ -3789,7 +3789,7 @@
     <!-- Alert dialog option to skip recovery phrase -->
     <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">Skip Recovery Phrase</string>
     <!-- Alert dialog option to cancel dialog-->
-    <string name="PaymentsRecoveryStartFragment__cancel">Cancel</string>
+    <string name="PaymentsRecoveryStartFragment__cancel">Avbryt</string>
 
     <!-- PaymentsRecoveryPasteFragment -->
     <string name="PaymentsRecoveryPasteFragment__paste_recovery_phrase">Lim inn gjenopprettingsfrasen</string>
@@ -4183,17 +4183,17 @@
     <!-- NewConversationActivity -->
     <string name="NewConversationActivity__new_message">Ny melding</string>
     <!-- Context menu item message -->
-    <string name="NewConversationActivity__message">Message</string>
+    <string name="NewConversationActivity__message">Melding</string>
     <!-- Context menu item audio call -->
-    <string name="NewConversationActivity__audio_call">Audio call</string>
+    <string name="NewConversationActivity__audio_call">Taleanrop</string>
     <!-- Context menu item video call -->
-    <string name="NewConversationActivity__video_call">Video call</string>
+    <string name="NewConversationActivity__video_call">Videoanrop</string>
     <!-- Context menu item remove -->
-    <string name="NewConversationActivity__remove">Remove</string>
+    <string name="NewConversationActivity__remove">Fjern</string>
     <!-- Context menu item block -->
-    <string name="NewConversationActivity__block">Block</string>
+    <string name="NewConversationActivity__block">Blokker</string>
     <!-- Dialog title when removing a contact -->
-    <string name="NewConversationActivity__remove_s">Remove %1$s?</string>
+    <string name="NewConversationActivity__remove_s">Vil du fjerne %1$s?</string>
     <!-- Dialog message when removing a contact -->
     <string name="NewConversationActivity__you_wont_see_this_person">You won\'t see this person when searching. You\'ll get a message request if they message you in the future.</string>
     <!-- Snackbar message after removing a contact -->
@@ -4778,9 +4778,9 @@
     <!-- Displayed when viewing a post from another user with no replies -->
     <string name="StoryViewerPageFragment__reply">Svar</string>
     <!-- Displayed when viewing a post that has failed to send to some users -->
-    <string name="StoryViewerPageFragment__partially_sent">Partially sent. Tap for details</string>
+    <string name="StoryViewerPageFragment__partially_sent">Delvis sendt. Trykk for detaljer.</string>
     <!-- Displayed when viewing a post that has failed to send -->
-    <string name="StoryViewerPageFragment__send_failed">Send failed. Tap to retry</string>
+    <string name="StoryViewerPageFragment__send_failed">Sending mislyktes. Trykk for å prøve igjen.</string>
     <!-- Label for the reply button in story viewer, which will launch the group story replies bottom sheet. -->
     <string name="StoryViewerPageFragment__reply_to_group">Svar til gruppen</string>
     <!-- Displayed when a story has no views -->
@@ -5188,7 +5188,7 @@
     <!-- Story info "Sent from" header -->
     <string name="StoryInfoBottomSheetDialogFragment__sent_from">Sendt av</string>
     <!-- Story info "Failed" header -->
-    <string name="StoryInfoBottomSheetDialogFragment__failed">Failed</string>
+    <string name="StoryInfoBottomSheetDialogFragment__failed">Feilet</string>
     <!-- Story Info context menu label -->
     <string name="StoryInfoBottomSheetDialogFragment__info">Info</string>
 
@@ -5245,7 +5245,7 @@
     <!-- Button label to launch picker -->
     <string name="ChooseANewDefaultSmsAppFragment__continue">Fortsett</string>
     <!-- Button label for when done with changing default SMS app -->
-    <string name="ChooseANewDefaultSmsAppFragment__done">Done</string>
+    <string name="ChooseANewDefaultSmsAppFragment__done">Ferdig</string>
     <!-- First step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_1">1</string>
     <!-- Second step number/bullet for choose new default sms app instructions -->

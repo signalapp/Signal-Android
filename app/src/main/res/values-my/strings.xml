@@ -3692,7 +3692,7 @@
     <!-- Alert dialog option to skip recovery phrase -->
     <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">Skip Recovery Phrase</string>
     <!-- Alert dialog option to cancel dialog-->
-    <string name="PaymentsRecoveryStartFragment__cancel">Cancel</string>
+    <string name="PaymentsRecoveryStartFragment__cancel">မလုပ်တော့ပါ</string>
 
     <!-- PaymentsRecoveryPasteFragment -->
     <string name="PaymentsRecoveryPasteFragment__paste_recovery_phrase">ပြန်လည်ရယူရန် စာပုဒ်တိုကို ကူးရေးမယ်</string>
@@ -4084,17 +4084,17 @@
     <!-- NewConversationActivity -->
     <string name="NewConversationActivity__new_message">စာအသစ်</string>
     <!-- Context menu item message -->
-    <string name="NewConversationActivity__message">Message</string>
+    <string name="NewConversationActivity__message">မက်ဆေ့ချ်</string>
     <!-- Context menu item audio call -->
-    <string name="NewConversationActivity__audio_call">Audio call</string>
+    <string name="NewConversationActivity__audio_call">အသံခေါ်ဆိုမှု</string>
     <!-- Context menu item video call -->
-    <string name="NewConversationActivity__video_call">Video call</string>
+    <string name="NewConversationActivity__video_call">ရုပ်သံခေါ်ဆိုမှု</string>
     <!-- Context menu item remove -->
-    <string name="NewConversationActivity__remove">Remove</string>
+    <string name="NewConversationActivity__remove">ဖယ်ရှားမယ်</string>
     <!-- Context menu item block -->
-    <string name="NewConversationActivity__block">Block</string>
+    <string name="NewConversationActivity__block">ဘလော့ လုပ်မည်</string>
     <!-- Dialog title when removing a contact -->
-    <string name="NewConversationActivity__remove_s">Remove %1$s?</string>
+    <string name="NewConversationActivity__remove_s">%1$s ကို ဖယ်ရှားမည်လား။</string>
     <!-- Dialog message when removing a contact -->
     <string name="NewConversationActivity__you_wont_see_this_person">You won\'t see this person when searching. You\'ll get a message request if they message you in the future.</string>
     <!-- Snackbar message after removing a contact -->
@@ -5070,7 +5070,7 @@
     <!-- Story info "Sent from" header -->
     <string name="StoryInfoBottomSheetDialogFragment__sent_from">မှပေးပို့သည်</string>
     <!-- Story info "Failed" header -->
-    <string name="StoryInfoBottomSheetDialogFragment__failed">Failed</string>
+    <string name="StoryInfoBottomSheetDialogFragment__failed">မအောင်မြင်ပါ</string>
     <!-- Story Info context menu label -->
     <string name="StoryInfoBottomSheetDialogFragment__info">အချက်အလက်</string>
 
@@ -5127,15 +5127,15 @@
     <!-- Button label to launch picker -->
     <string name="ChooseANewDefaultSmsAppFragment__continue">ဆက်လုပ်ရန်</string>
     <!-- Button label for when done with changing default SMS app -->
-    <string name="ChooseANewDefaultSmsAppFragment__done">Done</string>
+    <string name="ChooseANewDefaultSmsAppFragment__done">ပြီးပါပြီ</string>
     <!-- First step number/bullet for choose new default sms app instructions -->
-    <string name="ChooseANewDefaultSmsAppFragment__bullet_1">1</string>
+    <string name="ChooseANewDefaultSmsAppFragment__bullet_1">၁</string>
     <!-- Second step number/bullet for choose new default sms app instructions -->
-    <string name="ChooseANewDefaultSmsAppFragment__bullet_2">2</string>
+    <string name="ChooseANewDefaultSmsAppFragment__bullet_2">၂</string>
     <!-- Third step number/bullet for choose new default sms app instructions -->
-    <string name="ChooseANewDefaultSmsAppFragment__bullet_3">3</string>
+    <string name="ChooseANewDefaultSmsAppFragment__bullet_3">၃</string>
     <!-- Fourth step number/bullet for choose new default sms app instructions -->
-    <string name="ChooseANewDefaultSmsAppFragment__bullet_4">4</string>
+    <string name="ChooseANewDefaultSmsAppFragment__bullet_4">၄</string>
     <!-- Instruction step for choosing a new default sms app -->
     <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">Tap \"Continue\" to open the \"Default apps\" screen in Settings</string>
     <!-- Instruction step for choosing a new default sms app -->

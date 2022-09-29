@@ -3692,7 +3692,7 @@
     <!-- Alert dialog option to skip recovery phrase -->
     <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">Skip Recovery Phrase</string>
     <!-- Alert dialog option to cancel dialog-->
-    <string name="PaymentsRecoveryStartFragment__cancel">Cancel</string>
+    <string name="PaymentsRecoveryStartFragment__cancel">ยกเลิก</string>
 
     <!-- PaymentsRecoveryPasteFragment -->
     <string name="PaymentsRecoveryPasteFragment__paste_recovery_phrase">วางวลีกู้คืน</string>
@@ -4084,17 +4084,17 @@
     <!-- NewConversationActivity -->
     <string name="NewConversationActivity__new_message">ข้อความใหม่</string>
     <!-- Context menu item message -->
-    <string name="NewConversationActivity__message">Message</string>
+    <string name="NewConversationActivity__message">ข้อความ</string>
     <!-- Context menu item audio call -->
-    <string name="NewConversationActivity__audio_call">Audio call</string>
+    <string name="NewConversationActivity__audio_call">โทรเสียง</string>
     <!-- Context menu item video call -->
-    <string name="NewConversationActivity__video_call">Video call</string>
+    <string name="NewConversationActivity__video_call">โทรวิดีโอ</string>
     <!-- Context menu item remove -->
-    <string name="NewConversationActivity__remove">Remove</string>
+    <string name="NewConversationActivity__remove">ลบ</string>
     <!-- Context menu item block -->
-    <string name="NewConversationActivity__block">Block</string>
+    <string name="NewConversationActivity__block">ปิดกั้น</string>
     <!-- Dialog title when removing a contact -->
-    <string name="NewConversationActivity__remove_s">Remove %1$s?</string>
+    <string name="NewConversationActivity__remove_s">ลบ %1$sหรือไม่</string>
     <!-- Dialog message when removing a contact -->
     <string name="NewConversationActivity__you_wont_see_this_person">You won\'t see this person when searching. You\'ll get a message request if they message you in the future.</string>
     <!-- Snackbar message after removing a contact -->
@@ -4671,9 +4671,9 @@
     <!-- Displayed when viewing a post from another user with no replies -->
     <string name="StoryViewerPageFragment__reply">ตอบกลับ</string>
     <!-- Displayed when viewing a post that has failed to send to some users -->
-    <string name="StoryViewerPageFragment__partially_sent">Partially sent. Tap for details</string>
+    <string name="StoryViewerPageFragment__partially_sent">ส่งแล้วบางส่วน แตะเพื่อดูรายละเอียด</string>
     <!-- Displayed when viewing a post that has failed to send -->
-    <string name="StoryViewerPageFragment__send_failed">Send failed. Tap to retry</string>
+    <string name="StoryViewerPageFragment__send_failed">ส่งไม่สำเร็จ แตะเพื่อลองอีกครั้ง</string>
     <!-- Label for the reply button in story viewer, which will launch the group story replies bottom sheet. -->
     <string name="StoryViewerPageFragment__reply_to_group">ตอบกลับกลุ่ม</string>
     <!-- Displayed when a story has no views -->
@@ -5070,7 +5070,7 @@
     <!-- Story info "Sent from" header -->
     <string name="StoryInfoBottomSheetDialogFragment__sent_from">ส่งจาก</string>
     <!-- Story info "Failed" header -->
-    <string name="StoryInfoBottomSheetDialogFragment__failed">Failed</string>
+    <string name="StoryInfoBottomSheetDialogFragment__failed">ไม่สำเร็จ</string>
     <!-- Story Info context menu label -->
     <string name="StoryInfoBottomSheetDialogFragment__info">ข้อมูล</string>
 
@@ -5127,7 +5127,7 @@
     <!-- Button label to launch picker -->
     <string name="ChooseANewDefaultSmsAppFragment__continue">ดำเนินการต่อ</string>
     <!-- Button label for when done with changing default SMS app -->
-    <string name="ChooseANewDefaultSmsAppFragment__done">Done</string>
+    <string name="ChooseANewDefaultSmsAppFragment__done">เสร็จสิ้น</string>
     <!-- First step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_1">1</string>
     <!-- Second step number/bullet for choose new default sms app instructions -->

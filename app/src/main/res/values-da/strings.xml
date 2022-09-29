@@ -3789,7 +3789,7 @@
     <!-- Alert dialog option to skip recovery phrase -->
     <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">Skip Recovery Phrase</string>
     <!-- Alert dialog option to cancel dialog-->
-    <string name="PaymentsRecoveryStartFragment__cancel">Cancel</string>
+    <string name="PaymentsRecoveryStartFragment__cancel">Annuller</string>
 
     <!-- PaymentsRecoveryPasteFragment -->
     <string name="PaymentsRecoveryPasteFragment__paste_recovery_phrase">Indsæt gendannelsessætning</string>
@@ -4183,17 +4183,17 @@
     <!-- NewConversationActivity -->
     <string name="NewConversationActivity__new_message">Ny besked</string>
     <!-- Context menu item message -->
-    <string name="NewConversationActivity__message">Message</string>
+    <string name="NewConversationActivity__message">Besked</string>
     <!-- Context menu item audio call -->
-    <string name="NewConversationActivity__audio_call">Audio call</string>
+    <string name="NewConversationActivity__audio_call">Lydopkald</string>
     <!-- Context menu item video call -->
-    <string name="NewConversationActivity__video_call">Video call</string>
+    <string name="NewConversationActivity__video_call">Videoopkald</string>
     <!-- Context menu item remove -->
-    <string name="NewConversationActivity__remove">Remove</string>
+    <string name="NewConversationActivity__remove">Fjern</string>
     <!-- Context menu item block -->
-    <string name="NewConversationActivity__block">Block</string>
+    <string name="NewConversationActivity__block">Blokér</string>
     <!-- Dialog title when removing a contact -->
-    <string name="NewConversationActivity__remove_s">Remove %1$s?</string>
+    <string name="NewConversationActivity__remove_s">Fjern %1$s?</string>
     <!-- Dialog message when removing a contact -->
     <string name="NewConversationActivity__you_wont_see_this_person">You won\'t see this person when searching. You\'ll get a message request if they message you in the future.</string>
     <!-- Snackbar message after removing a contact -->
@@ -4709,7 +4709,7 @@
     <!-- Subtitle for "My Stories" row item when user has not added stories -->
     <string name="StoriesLandingFragment__tap_to_add_a_story">Tryk for at tilføje en historie</string>
     <!-- Displayed when there are no stories to display -->
-    <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now">No recent updates to show right now.</string>
+    <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now">Der er ingen nye opdateringer at vise lige nu.</string>
     <!-- Context menu option to hide a story -->
     <string name="StoriesLandingItem__hide_story">Skjul historie</string>
     <!-- Context menu option to unhide a story -->
@@ -4778,9 +4778,9 @@
     <!-- Displayed when viewing a post from another user with no replies -->
     <string name="StoryViewerPageFragment__reply">Besvar</string>
     <!-- Displayed when viewing a post that has failed to send to some users -->
-    <string name="StoryViewerPageFragment__partially_sent">Partially sent. Tap for details</string>
+    <string name="StoryViewerPageFragment__partially_sent">Delvist sendt. Tryk for flere oplysninger</string>
     <!-- Displayed when viewing a post that has failed to send -->
-    <string name="StoryViewerPageFragment__send_failed">Send failed. Tap to retry</string>
+    <string name="StoryViewerPageFragment__send_failed">Kunne ikke sendes. Klik for at prøve igen</string>
     <!-- Label for the reply button in story viewer, which will launch the group story replies bottom sheet. -->
     <string name="StoryViewerPageFragment__reply_to_group">Svar til gruppe</string>
     <!-- Displayed when a story has no views -->
@@ -5188,7 +5188,7 @@
     <!-- Story info "Sent from" header -->
     <string name="StoryInfoBottomSheetDialogFragment__sent_from">Sendt fra</string>
     <!-- Story info "Failed" header -->
-    <string name="StoryInfoBottomSheetDialogFragment__failed">Failed</string>
+    <string name="StoryInfoBottomSheetDialogFragment__failed">Mislykket</string>
     <!-- Story Info context menu label -->
     <string name="StoryInfoBottomSheetDialogFragment__info">Information</string>
 
@@ -5245,7 +5245,7 @@
     <!-- Button label to launch picker -->
     <string name="ChooseANewDefaultSmsAppFragment__continue">Fortsæt</string>
     <!-- Button label for when done with changing default SMS app -->
-    <string name="ChooseANewDefaultSmsAppFragment__done">Done</string>
+    <string name="ChooseANewDefaultSmsAppFragment__done">Udført</string>
     <!-- First step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_1">1</string>
     <!-- Second step number/bullet for choose new default sms app instructions -->

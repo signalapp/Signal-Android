@@ -3789,7 +3789,7 @@
     <!-- Alert dialog option to skip recovery phrase -->
     <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">Skip Recovery Phrase</string>
     <!-- Alert dialog option to cancel dialog-->
-    <string name="PaymentsRecoveryStartFragment__cancel">Cancel</string>
+    <string name="PaymentsRecoveryStartFragment__cancel">Annulla</string>
 
     <!-- PaymentsRecoveryPasteFragment -->
     <string name="PaymentsRecoveryPasteFragment__paste_recovery_phrase">Incolla frase di recupero</string>
@@ -4183,17 +4183,17 @@
     <!-- NewConversationActivity -->
     <string name="NewConversationActivity__new_message">Nuovo messaggio</string>
     <!-- Context menu item message -->
-    <string name="NewConversationActivity__message">Message</string>
+    <string name="NewConversationActivity__message">Messaggio</string>
     <!-- Context menu item audio call -->
-    <string name="NewConversationActivity__audio_call">Audio call</string>
+    <string name="NewConversationActivity__audio_call">Chiamata vocale</string>
     <!-- Context menu item video call -->
-    <string name="NewConversationActivity__video_call">Video call</string>
+    <string name="NewConversationActivity__video_call">Videochiamata</string>
     <!-- Context menu item remove -->
-    <string name="NewConversationActivity__remove">Remove</string>
+    <string name="NewConversationActivity__remove">Rimuovi</string>
     <!-- Context menu item block -->
-    <string name="NewConversationActivity__block">Block</string>
+    <string name="NewConversationActivity__block">Blocca</string>
     <!-- Dialog title when removing a contact -->
-    <string name="NewConversationActivity__remove_s">Remove %1$s?</string>
+    <string name="NewConversationActivity__remove_s">Rimuovere %1$s?</string>
     <!-- Dialog message when removing a contact -->
     <string name="NewConversationActivity__you_wont_see_this_person">You won\'t see this person when searching. You\'ll get a message request if they message you in the future.</string>
     <!-- Snackbar message after removing a contact -->
@@ -4709,7 +4709,7 @@
     <!-- Subtitle for "My Stories" row item when user has not added stories -->
     <string name="StoriesLandingFragment__tap_to_add_a_story">Tocca per aggiungere una Storia</string>
     <!-- Displayed when there are no stories to display -->
-    <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now">No recent updates to show right now.</string>
+    <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now">Nessun aggiornamento recente da mostrare al momento.</string>
     <!-- Context menu option to hide a story -->
     <string name="StoriesLandingItem__hide_story">Nascondi storia</string>
     <!-- Context menu option to unhide a story -->
@@ -5188,7 +5188,7 @@
     <!-- Story info "Sent from" header -->
     <string name="StoryInfoBottomSheetDialogFragment__sent_from">Inviato da</string>
     <!-- Story info "Failed" header -->
-    <string name="StoryInfoBottomSheetDialogFragment__failed">Failed</string>
+    <string name="StoryInfoBottomSheetDialogFragment__failed">Non riuscito</string>
     <!-- Story Info context menu label -->
     <string name="StoryInfoBottomSheetDialogFragment__info">Informazioni</string>
 
@@ -5245,7 +5245,7 @@
     <!-- Button label to launch picker -->
     <string name="ChooseANewDefaultSmsAppFragment__continue">Continua</string>
     <!-- Button label for when done with changing default SMS app -->
-    <string name="ChooseANewDefaultSmsAppFragment__done">Done</string>
+    <string name="ChooseANewDefaultSmsAppFragment__done">Fatto</string>
     <!-- First step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_1">1</string>
     <!-- Second step number/bullet for choose new default sms app instructions -->

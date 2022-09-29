@@ -358,8 +358,8 @@
     </plurals>
     <string name="ConversationFragment_save_to_sd_card">Salvesta sisemällu?</string>
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
-        <item quantity="one">Saving this media to storage will allow any other apps on your device to access it.\n\nContinue?</item>
-        <item quantity="other">Saving all %1$d media to storage will allow any other apps on your device to access them.\n\nContinue?</item>
+        <item quantity="one">Selle meediafaili sisemällu salvestamine lubab mis tahes teisel rakendusel sinu seadmes sellele ligi pääseda.\n\nKas jätkata?</item>
+        <item quantity="other">Kõigi %1$d meediafaili sisemällu salvestamine lubab mis tahes teisel rakendusel sinu seadmes nendele ligi pääseda.\n\nKas jätkata?</item>
     </plurals>
     <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
         <item quantity="one">Manuse sisemällu salvestamisel tekkis viga!</item>
@@ -367,12 +367,12 @@
     </plurals>
     <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Sisemällu kirjutamine ebaõnnestus!</string>
     <plurals name="ConversationFragment_saving_n_attachments">
-        <item quantity="one">Saving attachment</item>
-        <item quantity="other">Saving %1$d attachments</item>
+        <item quantity="one">Salvestan manuse</item>
+        <item quantity="other">Salvestan %1$d manust</item>
     </plurals>
     <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="one">Saving attachment to storage…</item>
-        <item quantity="other">Saving %1$d attachments to storage…</item>
+        <item quantity="one">Manuse salvestamine sisemällu…</item>
+        <item quantity="other">%1$d manuse salvestamine sisemällu…</item>
     </plurals>
     <string name="ConversationFragment_pending">Ootel…</string>
     <string name="ConversationFragment_push">Andmeside (Signal)</string>
@@ -418,19 +418,19 @@
         <item quantity="other">Kustutad valitud vestlused?</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">This will permanently delete the selected conversation.</item>
-        <item quantity="other">This will permanently delete all %1$d selected conversations.</item>
+        <item quantity="one">See kustutab jäädavalt valitud vestluse.</item>
+        <item quantity="other">See kustutab jäädavalt valitud %1$d vestlust.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Kustutan</string>
     <string name="ConversationListFragment_deleting_selected_conversations">Valitud sõnumite kustutamine…</string>
     <plurals name="ConversationListFragment_conversations_archived">
-        <item quantity="one">Conversation archived</item>
-        <item quantity="other">%1$d conversations archived</item>
+        <item quantity="one">Vestlus arhiveeritud</item>
+        <item quantity="other">%1$d vestlust arhiveeritud</item>
     </plurals>
     <string name="ConversationListFragment_undo">Võta tagasi</string>
     <plurals name="ConversationListFragment_moved_conversations_to_inbox">
-        <item quantity="one">Moved conversation to inbox</item>
-        <item quantity="other">Moved %1$d conversations to inbox</item>
+        <item quantity="one">Vestlus postkasti liigutatud</item>
+        <item quantity="other">%1$d vestlust postkasti liigutatud</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
         <item quantity="one">Loetud</item>
@@ -664,8 +664,8 @@
 
     <!-- GV2 invites sent -->
     <plurals name="GroupManagement_invitation_sent">
-        <item quantity="one">Invitation sent</item>
-        <item quantity="other">%1$d invitations sent</item>
+        <item quantity="one">Kutse saadetud</item>
+        <item quantity="other">%1$d kutset saadetud</item>
     </plurals>
     <string name="GroupManagement_invite_single_user">“%1$s” ei saa sinu poolt automaatselt gruppi lisada.\n\nNad on kutsutud grupiga liituma ja ei näe grupi sõnumeid enne kui on liitumisega nõustunud.</string>
     <string name="GroupManagement_invite_multiple_users">Neid kasutajaid ei saa sinu poolt automaatselt gruppi lisada.\n\nNad on kutsutud grupiga liituma ja ei näe grupi sõnumeid enne kui on liitumisega nõustunud.</string>
@@ -765,8 +765,8 @@
     <string name="PendingMembersActivity_revoke_invite">Tühista kutse</string>
     <string name="PendingMembersActivity_revoke_invites">Tühista kutsed</string>
     <plurals name="PendingMembersActivity_revoke_d_invites">
-        <item quantity="one">Revoke invite</item>
-        <item quantity="other">Revoke %1$d invites</item>
+        <item quantity="one">Tühista kutse</item>
+        <item quantity="other">Tühista %1$d kutset</item>
     </plurals>
     <plurals name="PendingMembersActivity_error_revoking_invite">
         <item quantity="one">Kutse tühistamisel tekkis tõrge</item>
@@ -785,8 +785,8 @@
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Seda isikut pole võimalik vanadesse gruppidesse lisada.</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">Seda isikut pole võimalik teavitusgruppidesse lisada.</string>
     <plurals name="AddMembersActivity__add_d_members_to_s">
-        <item quantity="one">Add \"%1$s\" to \"%2$s\"?</item>
-        <item quantity="other">Add %3$d members to \"%2$s\"?</item>
+        <item quantity="one">Kas lisada %1$s liige gruppi %2$s?</item>
+        <item quantity="other">Kas lisada %3$d liiget gruppi %2$s?</item>
     </plurals>
     <string name="AddMembersActivity__add">Lisa</string>
     <string name="AddMembersActivity__add_members">Lisa liikmed</string>
@@ -887,8 +887,8 @@
     </plurals>
 
     <plurals name="GroupMemberList_invited">
-        <item quantity="one">%1$s invited 1 person</item>
-        <item quantity="other">%1$s invited %2$d people</item>
+        <item quantity="one">%1$s kutsus 1 isiku</item>
+        <item quantity="other">%1$s kutsus %2$d isikut</item>
     </plurals>
 
     <!-- CustomNotificationsDialogFragment -->
@@ -926,8 +926,8 @@
     <!-- GV2 Invite Revoke confirmation dialog -->
     <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Kas sa soovid tühistada kasutajale %1$s saadetud kutse?</string>
     <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
-        <item quantity="one">Do you want to revoke the invite sent by %1$s?</item>
-        <item quantity="other">Do you want to revoke %2$d invites sent by %1$s?</item>
+        <item quantity="one">Kas sa soovid tühistada %1$s saadetud kutse?</item>
+        <item quantity="other">Kas sa soovid tühistada %2$d %1$s saadetud kutset?</item>
     </plurals>
 
     <!-- GroupJoinBottomSheetDialogFragment -->
@@ -1035,8 +1035,8 @@
         <item quantity="other">Kustutad valitud üksused?</item>
     </plurals>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-        <item quantity="one">This will permanently delete the selected file. Any message text associated with this item will also be deleted.</item>
-        <item quantity="other">This will permanently delete all %1$d selected files. Any message text associated with these items will also be deleted.</item>
+        <item quantity="one">See kustutab jäädavalt valitud faili. Mis tahes sellega seonduv sõnumitekst kustutatakse samuti.</item>
+        <item quantity="other">See kustutab jäädavalt kõik %1$d valitud faili. Mis tahes nendega seonduv sõnumitekst kustutatakse samuti.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Kustutan</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">Sõnumite kustutamine…</string>
@@ -1168,13 +1168,13 @@
     <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Sind polnud võimalik uude gruppi lisada ja oled kutsutud grupiga liituma.</string>
     <string name="MessageRecord_chat_session_refreshed">Vestluse seanss on värskendatud</string>
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
-        <item quantity="one">A member couldn\'t be added to the New Group and has been invited to join.</item>
-        <item quantity="other">%1$s members couldn\'t be added to the New Group and have been invited to join.</item>
+        <item quantity="one">Liiget polnud võimalik uude gruppi lisada ja teda kutsuti liituma.</item>
+        <item quantity="other">%1$s liiget polnud võimalik uude gruppi lisada ja neid kutsuti liituma.</item>
     </plurals>
 
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
-        <item quantity="one">A member couldn\'t be added to the New Group and has been removed.</item>
-        <item quantity="other">%1$s members couldn\'t be added to the New Group and have been removed.</item>
+        <item quantity="one">Liiget polnud võimalik uude gruppi lisada ja ta eemaldati.</item>
+        <item quantity="other">%1$s liiget polnud võimalik uude gruppi lisada ja nad eemaldati.</item>
     </plurals>
 
     <!-- Profile change updates -->
@@ -1219,31 +1219,31 @@
     <string name="MessageRecord_you_invited_s_to_the_group">Sa kutsusid kasutaja %1$s gruppi.</string>
     <string name="MessageRecord_s_invited_you_to_the_group">%1$s kutsus sind gruppi.</string>
     <plurals name="MessageRecord_s_invited_members">
-        <item quantity="one">%1$s invited 1 person to the group.</item>
-        <item quantity="other">%1$s invited %2$d people to the group.</item>
+        <item quantity="one">%1$s kutsus 1 isiku gruppi.</item>
+        <item quantity="other">%1$s kutsus %2$d isikut gruppi.</item>
     </plurals>
     <string name="MessageRecord_you_were_invited_to_the_group">Sind kutsuti gruppi.</string>
     <plurals name="MessageRecord_d_people_were_invited_to_the_group">
-        <item quantity="one">1 person was invited to the group.</item>
-        <item quantity="other">%1$d people were invited to the group.</item>
+        <item quantity="one">1 isiku kutsuti gruppi.</item>
+        <item quantity="other">%1$d isikut kutsuti gruppi.</item>
     </plurals>
 
     <!-- GV2 invitation revokes -->
     <plurals name="MessageRecord_you_revoked_invites">
-        <item quantity="one">You revoked an invitation to the group.</item>
-        <item quantity="other">You revoked %1$d invitations to the group.</item>
+        <item quantity="one">Sa tühistasid grupiga liitumise kutse.</item>
+        <item quantity="other">Sa tühistasid %1$d grupiga liitumise kutset.</item>
     </plurals>
     <plurals name="MessageRecord_s_revoked_invites">
-        <item quantity="one">%1$s revoked an invitation to the group.</item>
-        <item quantity="other">%1$s revoked %2$d invitations to the group.</item>
+        <item quantity="one">%1$s tühistas grupiga liitumise kutse.</item>
+        <item quantity="other">%1$s tühistas %2$d grupiga liitumise kutset.</item>
     </plurals>
     <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Keegi keeldus grupiga liitumise kutsest.</string>
     <string name="MessageRecord_you_declined_the_invitation_to_the_group">Sa keeldusid grupiga liitumise kutsest.</string>
     <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s tühistas sinu grupiga liitumise kutse.</string>
     <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">Administraator tühistas sinu grupiga liitumise kutse.</string>
     <plurals name="MessageRecord_d_invitations_were_revoked">
-        <item quantity="one">An invitation to the group was revoked.</item>
-        <item quantity="other">%1$d invitations to the group were revoked.</item>
+        <item quantity="one">Grupiga liitumise kutse tühistati.</item>
+        <item quantity="other">%1$d grupiga liitumise kutset tühistati.</item>
     </plurals>
 
     <!-- GV2 invitation acceptance -->
@@ -1316,8 +1316,8 @@
     <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s esitas grupilingi kaudu taotluse liitumiseks.</string>
     <!-- Update message shown when someone requests to join via group link and cancels the request back to back -->
     <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
-        <item quantity="one">%1$s requested and cancelled their request to join via the group link.</item>
-        <item quantity="other">%1$s requested and cancelled %2$d requests to join via the group link.</item>
+        <item quantity="one">%1$s taotles grupilingi kaudu ligipääsu ja loobus oma liitumissoovist.</item>
+        <item quantity="other">%1$s taotles grupilingi kaudu ligipääsu ja loobus oma %2$d liitumissoovist.</item>
     </plurals>
 
     <!-- GV2 group link approvals -->
@@ -1450,8 +1450,8 @@
     <string name="OutdatedBuildReminder_update_now">Uuenda kohe</string>
     <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">See Signali versioon aegub täna. Uuenda kõige uuemale versioonile.</string>
     <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
-        <item quantity="one">This version of Signal will expire tomorrow. Update to the most recent version.</item>
-        <item quantity="other">This version of Signal will expire in %1$d days. Update to the most recent version.</item>
+        <item quantity="one">See Signali versioon aegub homme. Uuenda kõige värskemale versioonile.</item>
+        <item quantity="other">See Signali versioon aegub %1$d päeva pärast. Uuenda kõige värskemale versioonile.</item>
     </plurals>
 
     <!-- PassphrasePromptActivity -->
@@ -1873,7 +1873,7 @@
 
     <!-- UsernameEditFragment -->
     <!-- Toolbar title when entering from registration -->
-    <string name="UsernameEditFragment__add_a_username">Add a username</string>
+    <string name="UsernameEditFragment__add_a_username">Lisa kasutajanimi</string>
     <!-- Instructional text at the top of the username edit screen -->
     <string name="UsernameEditFragment__choose_your_username">Vali omale kasutajanimi</string>
     <string name="UsernameEditFragment_username">Kasutajanimi</string>
@@ -3789,7 +3789,7 @@
     <!-- Alert dialog option to skip recovery phrase -->
     <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">Skip Recovery Phrase</string>
     <!-- Alert dialog option to cancel dialog-->
-    <string name="PaymentsRecoveryStartFragment__cancel">Cancel</string>
+    <string name="PaymentsRecoveryStartFragment__cancel">Loobu</string>
 
     <!-- PaymentsRecoveryPasteFragment -->
     <string name="PaymentsRecoveryPasteFragment__paste_recovery_phrase">Kleebi kontroll-lause</string>
@@ -4183,17 +4183,17 @@
     <!-- NewConversationActivity -->
     <string name="NewConversationActivity__new_message">Uus sõnum</string>
     <!-- Context menu item message -->
-    <string name="NewConversationActivity__message">Message</string>
+    <string name="NewConversationActivity__message">Sõnum</string>
     <!-- Context menu item audio call -->
-    <string name="NewConversationActivity__audio_call">Audio call</string>
+    <string name="NewConversationActivity__audio_call">Häälkõne</string>
     <!-- Context menu item video call -->
-    <string name="NewConversationActivity__video_call">Video call</string>
+    <string name="NewConversationActivity__video_call">Videokõne</string>
     <!-- Context menu item remove -->
-    <string name="NewConversationActivity__remove">Remove</string>
+    <string name="NewConversationActivity__remove">Eemalda</string>
     <!-- Context menu item block -->
-    <string name="NewConversationActivity__block">Block</string>
+    <string name="NewConversationActivity__block">Blokeeri</string>
     <!-- Dialog title when removing a contact -->
-    <string name="NewConversationActivity__remove_s">Remove %1$s?</string>
+    <string name="NewConversationActivity__remove_s">Eemalda %1$s?</string>
     <!-- Dialog message when removing a contact -->
     <string name="NewConversationActivity__you_wont_see_this_person">You won\'t see this person when searching. You\'ll get a message request if they message you in the future.</string>
     <!-- Snackbar message after removing a contact -->
@@ -5188,7 +5188,7 @@
     <!-- Story info "Sent from" header -->
     <string name="StoryInfoBottomSheetDialogFragment__sent_from">Saatjalt</string>
     <!-- Story info "Failed" header -->
-    <string name="StoryInfoBottomSheetDialogFragment__failed">Failed</string>
+    <string name="StoryInfoBottomSheetDialogFragment__failed">Ebaõnnestus</string>
     <!-- Story Info context menu label -->
     <string name="StoryInfoBottomSheetDialogFragment__info">Teave</string>
 
@@ -5245,7 +5245,7 @@
     <!-- Button label to launch picker -->
     <string name="ChooseANewDefaultSmsAppFragment__continue">Jätka</string>
     <!-- Button label for when done with changing default SMS app -->
-    <string name="ChooseANewDefaultSmsAppFragment__done">Done</string>
+    <string name="ChooseANewDefaultSmsAppFragment__done">Tehtud</string>
     <!-- First step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_1">1</string>
     <!-- Second step number/bullet for choose new default sms app instructions -->
