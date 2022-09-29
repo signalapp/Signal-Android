@@ -109,13 +109,19 @@ enum class CameraDisplay(
       return (cameraCaptureButtonSize - cameraCaptureImageButtonSize) / 2
     }
 
+    /**
+     * Get the camera display type given the current window metrics. Note that this
+     * will automatically invert the aspect ratio in the case of a non-portrait orientation,
+     * since we fix camera to portrait.
+     */
     @JvmStatic
     fun getDisplay(activity: Activity): CameraDisplay {
       val windowMetricsCalculator = WindowMetricsCalculator.getOrCreate()
       val windowMetrics = windowMetricsCalculator.computeCurrentWindowMetrics(activity)
       val width = windowMetrics.bounds.width()
       val height = windowMetrics.bounds.height()
-      val aspectRatio = width.toFloat() / height
+      val winAr = width.toFloat() / height
+      val aspectRatio = if (winAr > 1f) 1 / winAr else winAr
 
       return when {
         aspectRatio <= DISPLAY_20_9.aspectRatio -> DISPLAY_20_9

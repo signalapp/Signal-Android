@@ -43,7 +43,7 @@ import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.MediaUtil
-import org.thoughtcrime.securesms.util.ViewUtil
+import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.fragments.requireListener
 import org.thoughtcrime.securesms.util.views.TouchInterceptingFrameLayout
@@ -88,16 +88,11 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     postponeEnterTransition()
 
+    SystemWindowInsetsSetter.attach(view, viewLifecycleOwner)
+
     disposables.bindTo(viewLifecycleOwner)
 
     callback = requireListener()
-
-    view.setPadding(
-      0,
-      ViewUtil.getStatusBarHeight(view),
-      0,
-      ViewUtil.getNavigationBarHeight(view)
-    )
 
     drawToolButton = view.findViewById(R.id.draw_tool)
     cropAndRotateButton = view.findViewById(R.id.crop_and_rotate_tool)

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updateLayoutParams
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -18,6 +19,7 @@ import org.thoughtcrime.securesms.databinding.V2MediaGalleryFragmentBinding
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.MediaRepository
 import org.thoughtcrime.securesms.util.Material3OnScrollHelper
+import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.fragments.requireListener
@@ -53,12 +55,7 @@ class MediaGalleryFragment : Fragment(R.layout.v2_media_gallery_fragment) {
     callbacks = requireListener()
     val binding = V2MediaGalleryFragmentBinding.bind(view)
 
-    binding.root.setPadding(
-      0,
-      0,
-      0,
-      ViewUtil.getNavigationBarHeight(view)
-    )
+    SystemWindowInsetsSetter.attach(view, viewLifecycleOwner, WindowInsetsCompat.Type.navigationBars())
 
     binding.mediaGalleryToolbar.updateLayoutParams<ConstraintLayout.LayoutParams> {
       topMargin = ViewUtil.getStatusBarHeight(view)
