@@ -889,11 +889,7 @@ class StoryViewerPageFragment :
   }
 
   private fun presentDate(date: TextView, storyPost: StoryPost) {
-    val messageRecord = storyPost.conversationMessage.messageRecord
-    date.text = when {
-      messageRecord.isOutgoing && !messageRecord.isSent -> getString(R.string.StoriesLandingItem__sending)
-      else -> DateUtils.getBriefRelativeTimeSpanString(context, Locale.getDefault(), storyPost.dateInMilliseconds)
-    }
+    date.text = DateUtils.getBriefRelativeTimeSpanString(context, Locale.getDefault(), storyPost.dateInMilliseconds)
   }
 
   private fun presentSenderAvatar(senderAvatar: AvatarImageView, post: StoryPost) {
