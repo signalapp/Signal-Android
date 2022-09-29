@@ -358,8 +358,8 @@
     </plurals>
     <string name="ConversationFragment_save_to_sd_card">నిల్వలొ దాచు?</string>
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
-        <item quantity="one">Saving this media to storage will allow any other apps on your device to access it.\n\nContinue?</item>
-        <item quantity="other">Saving all %1$d media to storage will allow any other apps on your device to access them.\n\nContinue?</item>
+        <item quantity="one">ఈ మీడియాను నిల్వకు సేవ్ చేయడం వల్ల, మీ పరికరంలో ఉండే ఏవైనా ఇతర యాప్‌లు యాక్సెస్ చేసుకోవడానికి అనుమతిస్తుంది. \n\nకొనసాగేదా?</item>
+        <item quantity="other">మొత్తం %1$d మీడియాను నిల్వకు సేవ్ చేయడం వల్ల, మీ పరికరంలో ఉండే ఏవైనా ఇతర యాప్‌లు వాటిని యాక్సెస్ చేసుకోవడానికి అనుమతిస్తుంది. \n\nకొనసాగేదా?</item>
     </plurals>
     <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
         <item quantity="one">సంగ్రహించిన జోడింపును నిల్వచేయుటలో లోపం!</item>
@@ -367,12 +367,12 @@
     </plurals>
     <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">నిల్వకు వ్రాయలేకపోయింది!!</string>
     <plurals name="ConversationFragment_saving_n_attachments">
-        <item quantity="one">Saving attachment</item>
-        <item quantity="other">Saving %1$d attachments</item>
+        <item quantity="one">అటాచ్‌మెంట్‌ను సేవ్ చేస్తోంది</item>
+        <item quantity="other">%1$d అటాచ్‌మెంట్‌లను సేవ్ చేస్తోంది</item>
     </plurals>
     <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="one">Saving attachment to storage…</item>
-        <item quantity="other">Saving %1$d attachments to storage…</item>
+        <item quantity="one">అటాచ్‌మెంట్‌ను నిల్వకు సేవ్ చేస్తోంది…</item>
+        <item quantity="other">%1$d అటాచ్‌మెంట్‌లను స్టోరేజీకి సేవ్ చేస్తోంది…</item>
     </plurals>
     <string name="ConversationFragment_pending">  పెండింగ్</string>
     <string name="ConversationFragment_push">సమాచారం (Signal)</string>
@@ -418,19 +418,19 @@
         <item quantity="other">ఎంపిక చేసిన సంభాషణలను తొలగించాలా ?</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">This will permanently delete the selected conversation.</item>
-        <item quantity="other">This will permanently delete all %1$d selected conversations.</item>
+        <item quantity="one">ఇది ఎంపిక చేసిన సంభాషణను శాశ్వతంగా తొలగిస్తుంది.</item>
+        <item quantity="other">ఇది ఎంపిక చేసిన అన్ని %1$d సంభాషణలను శాశ్వతంగా తొలగిస్తుంది.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">తొలగిపోతున్నాయ్</string>
     <string name="ConversationListFragment_deleting_selected_conversations">ఎంపిక చేసిన సంభాషణలను తొలగించబడుతున్నాయి…</string>
     <plurals name="ConversationListFragment_conversations_archived">
-        <item quantity="one">Conversation archived</item>
-        <item quantity="other">%1$d conversations archived</item>
+        <item quantity="one">సంభాషణ ఆర్కైవ్ చేయబడింది</item>
+        <item quantity="other">%1$d సంభాషణలు ఆర్కైవ్ చేయబడ్డాయి</item>
     </plurals>
     <string name="ConversationListFragment_undo">దిద్దుబాటు</string>
     <plurals name="ConversationListFragment_moved_conversations_to_inbox">
-        <item quantity="one">Moved conversation to inbox</item>
-        <item quantity="other">Moved %1$d conversations to inbox</item>
+        <item quantity="one">సంభాషణ ఇన్‌బాక్స్‌కు తరలించబడింది</item>
+        <item quantity="other">%1$d సంభాషణలు ఇన్‌బాక్స్‌కు తరలించబడ్డాయి</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
         <item quantity="one">చదవడం</item>
@@ -664,8 +664,8 @@
 
     <!-- GV2 invites sent -->
     <plurals name="GroupManagement_invitation_sent">
-        <item quantity="one">Invitation sent</item>
-        <item quantity="other">%1$d invitations sent</item>
+        <item quantity="one">ఆహ్వానం పంపబడింది</item>
+        <item quantity="other">%1$d ఆహ్వానాలు పంపబడ్డాయి</item>
     </plurals>
     <string name="GroupManagement_invite_single_user">“%1$s” ను మీరు స్వయంచాలకంగా ఈ గుంపుకు చేర్చలేరు. \n\n చేరడానికి వారిని ఆహ్వానించారు మరియు వారు అంగీకరించే వరకు ఏ సమూహ సందేశాలను చూడలేరు.</string>
     <string name="GroupManagement_invite_multiple_users">ఈ వినియోగదారులను మీరు స్వయంచాలకంగా ఈ గుంపుకు చేర్చలేరు. \n\\ n గుంపులో చేరమని వారిని ఆహ్వానించారు మరియు వారు అంగీకరించే వరకు ఏ సమూహ సందేశాలను చూడలేరు.</string>
@@ -765,8 +765,8 @@
     <string name="PendingMembersActivity_revoke_invite">ఆహ్వానాన్ని ఉపసంహరించుకోండి</string>
     <string name="PendingMembersActivity_revoke_invites">ఆహ్వానాలను ఉపసంహరించుకోండి</string>
     <plurals name="PendingMembersActivity_revoke_d_invites">
-        <item quantity="one">Revoke invite</item>
-        <item quantity="other">Revoke %1$d invites</item>
+        <item quantity="one">ఆహ్వానమును ఉపసంహరించండి</item>
+        <item quantity="other">%1$d ఆహ్వానాలను ఉపసంహరించండి</item>
     </plurals>
     <plurals name="PendingMembersActivity_error_revoking_invite">
         <item quantity="one">ఆహ్వానాన్ని ఉపసంహరించుకోవడంలో లోపం</item>
@@ -785,8 +785,8 @@
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">ఈ వ్యక్తిని లెగసీ సమూహాలకు చేర్చలేరు.</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">ఈ వ్యక్తిని అనౌన్స్‌మెంట్ గ్రూపులకు జోడించలేం.</string>
     <plurals name="AddMembersActivity__add_d_members_to_s">
-        <item quantity="one">Add \"%1$s\" to \"%2$s\"?</item>
-        <item quantity="other">Add %3$d members to \"%2$s\"?</item>
+        <item quantity="one">\"%1$s\" సభ్యుడిని \"%2$s\" కు జోడించేదా?</item>
+        <item quantity="other">%3$d సభ్యులను \"%2$s\" కు జోడించేదా?</item>
     </plurals>
     <string name="AddMembersActivity__add">చేర్చు</string>
     <string name="AddMembersActivity__add_members">సభ్యులను జోడించండి</string>
@@ -887,8 +887,8 @@
     </plurals>
 
     <plurals name="GroupMemberList_invited">
-        <item quantity="one">%1$s invited 1 person</item>
-        <item quantity="other">%1$s invited %2$d people</item>
+        <item quantity="one">%1$s 1 వ్యక్తిని ఆహ్వానించారు</item>
+        <item quantity="other">%2$d వ్యక్తులను %1$s ఆహ్వానించారు</item>
     </plurals>
 
     <!-- CustomNotificationsDialogFragment -->
@@ -926,8 +926,8 @@
     <!-- GV2 Invite Revoke confirmation dialog -->
     <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">మీరు %1$s కి పంపిన ఆహ్వానాన్ని ఉపసంహరించుకోవాలనుకుంటున్నారా?</string>
     <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
-        <item quantity="one">Do you want to revoke the invite sent by %1$s?</item>
-        <item quantity="other">Do you want to revoke %2$d invites sent by %1$s?</item>
+        <item quantity="one">%1$s ద్వారా పంపబడిన ఆహ్వానాన్ని మీరు ఉపసంహరించుకోవాలని అనుకుంటున్నారా?</item>
+        <item quantity="other">%1$s ద్వారా పంపబడిన %2$d ఆహ్వానాలను మీరు ఉపసంహరించుకోవాలని అనుకుంటున్నారా?</item>
     </plurals>
 
     <!-- GroupJoinBottomSheetDialogFragment -->
@@ -1035,8 +1035,8 @@
         <item quantity="other">ఎంచుకున్న అంశాలను తొలగించాలా?</item>
     </plurals>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-        <item quantity="one">This will permanently delete the selected file. Any message text associated with this item will also be deleted.</item>
-        <item quantity="other">This will permanently delete all %1$d selected files. Any message text associated with these items will also be deleted.</item>
+        <item quantity="one">ఇది ఎంపిక చేసిన ఫైల్‌ని శాశ్వతంగా తొలగిస్తుంది. ఈ ఐటమ్‌కు సంబంధించిన ఏదైనా సందేశం కూడా తొలగించబడుతుంది.</item>
+        <item quantity="other">ఇది ఎంపిక చేసిన అన్ని %1$d ఫైళ్ళను శాశ్వతంగా తొలగిస్తుంది. ఈ అంశాలతో కూడి ఉన్న ఏదైనా సందేశం టెక్స్ట్ కూడా తొలగించబడుతుంది.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">తొలగిపోతున్నాయ్</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">సందేశాలను తొలగిస్తోంది …</string>
@@ -1168,13 +1168,13 @@
     <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">మిమ్మల్ని క్రొత్త సమూహానికి చేర్చలేరు మరియు చేరడానికి ఆహ్వానించబడ్డారు.</string>
     <string name="MessageRecord_chat_session_refreshed">చాట్ సెషన్ రిఫ్రెష్ చేయబడింది</string>
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
-        <item quantity="one">A member couldn\'t be added to the New Group and has been invited to join.</item>
-        <item quantity="other">%1$s members couldn\'t be added to the New Group and have been invited to join.</item>
+        <item quantity="one">కొత్త గ్రూపుకు సభ్యుడిని జోడించడం వీలుపడలేదు మరియు చేరడానికి ఆహ్వానించబడ్డారు.</item>
+        <item quantity="other">కొత్త గ్రూపుకు %1$s మంది సభ్యులను జోడించడం వీలుపడలేదు మరియు చేరడానికి ఆహ్వానించబడ్డారు.</item>
     </plurals>
 
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
-        <item quantity="one">A member couldn\'t be added to the New Group and has been removed.</item>
-        <item quantity="other">%1$s members couldn\'t be added to the New Group and have been removed.</item>
+        <item quantity="one">కొత్త గ్రూపుకు సభ్యుడిని జోడించడం వీలుపడలేదు మరియు తొలగించబడ్డారు.</item>
+        <item quantity="other">కొత్త గ్రూపుకు %1$s మంది సభ్యులను జోడించడం వీలుపడలేదు మరియు తొలగించబడ్డారు.</item>
     </plurals>
 
     <!-- Profile change updates -->
@@ -1219,31 +1219,31 @@
     <string name="MessageRecord_you_invited_s_to_the_group">మీరు %1$sని సమూహానికి ఆహ్వానించారు.</string>
     <string name="MessageRecord_s_invited_you_to_the_group">%1$s మిమ్మల్ని సమూహానికి ఆహ్వానించారు.</string>
     <plurals name="MessageRecord_s_invited_members">
-        <item quantity="one">%1$s invited 1 person to the group.</item>
-        <item quantity="other">%1$s invited %2$d people to the group.</item>
+        <item quantity="one">%1$s 1 వ్యక్తిని గ్రూపుకు ఆహ్వానించారు.</item>
+        <item quantity="other">%2$d మంది వ్యక్తులను %1$s గ్రూపుకు ఆహ్వానించారు.</item>
     </plurals>
     <string name="MessageRecord_you_were_invited_to_the_group">మిమ్మల్ని గుంపుకు ఆహ్వానించారు.</string>
     <plurals name="MessageRecord_d_people_were_invited_to_the_group">
-        <item quantity="one">1 person was invited to the group.</item>
-        <item quantity="other">%1$d people were invited to the group.</item>
+        <item quantity="one">గ్రూపుకు 1 వ్యక్తి ఆహ్వానించబడ్డాడు.</item>
+        <item quantity="other">గ్రూపుకు %1$d మంది వ్యక్తులు ఆహ్వానించబడ్డారు.</item>
     </plurals>
 
     <!-- GV2 invitation revokes -->
     <plurals name="MessageRecord_you_revoked_invites">
-        <item quantity="one">You revoked an invitation to the group.</item>
-        <item quantity="other">You revoked %1$d invitations to the group.</item>
+        <item quantity="one">మీరు గ్రూపుకు ఆహ్వానాన్ని ఉపసంహరించారు.</item>
+        <item quantity="other">మీరు గ్రూపుకు %1$d ఆహ్వానాలను ఉపసంహరించారు.</item>
     </plurals>
     <plurals name="MessageRecord_s_revoked_invites">
-        <item quantity="one">%1$s revoked an invitation to the group.</item>
-        <item quantity="other">%1$s revoked %2$d invitations to the group.</item>
+        <item quantity="one">%1$s గ్రూపుకు ఆహ్వానాన్ని ఉపసంహరించారు.</item>
+        <item quantity="other">గ్రూపుకు %2$d ఆహ్వానాలను %1$s ఉపసంహరించారు.</item>
     </plurals>
     <string name="MessageRecord_someone_declined_an_invitation_to_the_group">ఎవరో సమూహ ఆహ్వానాన్ని తిరస్కరించారు.</string>
     <string name="MessageRecord_you_declined_the_invitation_to_the_group">మీరు సమూహ ఆహ్వానాన్ని తిరస్కరించారు.</string>
     <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s గుంపుకు మీ ఆహ్వానాన్ని ఉపసంహరించుకుంది.</string>
     <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">నిర్వాహకుడు సమూహానికి మీ ఆహ్వానాన్ని ఉపసంహరించుకున్నారు.</string>
     <plurals name="MessageRecord_d_invitations_were_revoked">
-        <item quantity="one">An invitation to the group was revoked.</item>
-        <item quantity="other">%1$d invitations to the group were revoked.</item>
+        <item quantity="one">గ్రూపుకు ఆహ్వానం ఉపసంహరించబడింది.</item>
+        <item quantity="other">గ్రూపుకు %1$d ఆహ్వానాలు ఉపసంహరించబడ్డాయి.</item>
     </plurals>
 
     <!-- GV2 invitation acceptance -->
@@ -1316,8 +1316,8 @@
     <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$sగ్రూప్ లింక్ ద్వారా చేరాలని అభ్యర్థించారు.</string>
     <!-- Update message shown when someone requests to join via group link and cancels the request back to back -->
     <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
-        <item quantity="one">%1$s requested and cancelled their request to join via the group link.</item>
-        <item quantity="other">%1$s requested and cancelled %2$d requests to join via the group link.</item>
+        <item quantity="one">గ్రూప్ లింక్ ద్వారా చేరాలనే వారి అభ్యర్ధనను %1$s అభ్యర్ధించారు మరియు రద్దు చేశారు.</item>
+        <item quantity="other">గ్రూప్ లింక్ ద్వారా చేరడానికి %1$s అభ్యర్ధించారు మరియు %2$d అభ్యర్ధనలను రద్దు చేశారు.</item>
     </plurals>
 
     <!-- GV2 group link approvals -->
@@ -1450,8 +1450,8 @@
     <string name="OutdatedBuildReminder_update_now">నవీకరణ చేయండి ఇప్పుడు</string>
     <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Signal యొక్క ఈ వెర్షన్ ఈ రోజుతో ముగుస్తుంది. ఇటీవలి సంస్కరణకు నవీకరించండి.</string>
     <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
-        <item quantity="one">This version of Signal will expire tomorrow. Update to the most recent version.</item>
-        <item quantity="other">This version of Signal will expire in %1$d days. Update to the most recent version.</item>
+        <item quantity="one">Signal యొక్క ఈ వెర్షన్ గడువు రేపు ముగుస్తుంది. తాజా వెర్షన్‌కు అప్‌డేట్ చేయండి.</item>
+        <item quantity="other">Signal యొక్క ఈ వెర్షన్ గడువు %1$d రోజుల్లో గడువు ముగుస్తుంది. తాజా వెర్షన్‌కు అప్‌డేట్ చేయండి.</item>
     </plurals>
 
     <!-- PassphrasePromptActivity -->
@@ -1873,7 +1873,7 @@
 
     <!-- UsernameEditFragment -->
     <!-- Toolbar title when entering from registration -->
-    <string name="UsernameEditFragment__add_a_username">Add a username</string>
+    <string name="UsernameEditFragment__add_a_username">యూజర్‌నేమ్‌ను జోడించండి</string>
     <!-- Instructional text at the top of the username edit screen -->
     <string name="UsernameEditFragment__choose_your_username">మీ యూజర్‌నేమ్ ఎంచుకోండి</string>
     <string name="UsernameEditFragment_username">వినియోగదారుడు</string>

@@ -358,8 +358,8 @@
     </plurals>
     <string name="ConversationFragment_save_to_sd_card">Spara i lagring?</string>
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
-        <item quantity="one">Saving this media to storage will allow any other apps on your device to access it.\n\nContinue?</item>
-        <item quantity="other">Saving all %1$d media to storage will allow any other apps on your device to access them.\n\nContinue?</item>
+        <item quantity="one">Om du sparar den här mediafilen i lagring får alla andra appar på din enhet åtkomst till den.\n\nFortsätt?</item>
+        <item quantity="other">Om du sparar alla %1$d mediafiler i lagring får alla andra appar på din enhet åtkomst till dem.\n\nFortsätt?</item>
     </plurals>
     <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
         <item quantity="one">Det uppstod ett fel när bilaga skulle sparas i lagring!</item>
@@ -367,12 +367,12 @@
     </plurals>
     <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Kan inte skriva till lagring!</string>
     <plurals name="ConversationFragment_saving_n_attachments">
-        <item quantity="one">Saving attachment</item>
-        <item quantity="other">Saving %1$d attachments</item>
+        <item quantity="one">Sparar bilaga</item>
+        <item quantity="other">Sparar %1$d bilagor</item>
     </plurals>
     <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="one">Saving attachment to storage…</item>
-        <item quantity="other">Saving %1$d attachments to storage…</item>
+        <item quantity="one">Sparar bilaga i lagring …</item>
+        <item quantity="other">Sparar %1$d bilagor i lagring …</item>
     </plurals>
     <string name="ConversationFragment_pending">Väntar…</string>
     <string name="ConversationFragment_push">Data (Signal)</string>
@@ -418,19 +418,19 @@
         <item quantity="other">Ta bort markerade konversationer?</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">This will permanently delete the selected conversation.</item>
-        <item quantity="other">This will permanently delete all %1$d selected conversations.</item>
+        <item quantity="one">Detta tar bort den valda konversationen permanent.</item>
+        <item quantity="other">Detta tar bort alla %1$d valda konversationer permanent.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Tar bort</string>
     <string name="ConversationListFragment_deleting_selected_conversations">Tar bort valda konversationer…</string>
     <plurals name="ConversationListFragment_conversations_archived">
-        <item quantity="one">Conversation archived</item>
-        <item quantity="other">%1$d conversations archived</item>
+        <item quantity="one">Konversation arkiverad</item>
+        <item quantity="other">%1$d konversationer arkiverade</item>
     </plurals>
     <string name="ConversationListFragment_undo">Ångra</string>
     <plurals name="ConversationListFragment_moved_conversations_to_inbox">
-        <item quantity="one">Moved conversation to inbox</item>
-        <item quantity="other">Moved %1$d conversations to inbox</item>
+        <item quantity="one">Flyttat konversation till inkorgen</item>
+        <item quantity="other">Flyttade %1$d konversationer till inkorgen</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
         <item quantity="one">Läst</item>
@@ -664,8 +664,8 @@
 
     <!-- GV2 invites sent -->
     <plurals name="GroupManagement_invitation_sent">
-        <item quantity="one">Invitation sent</item>
-        <item quantity="other">%1$d invitations sent</item>
+        <item quantity="one">Inbjudan skickad</item>
+        <item quantity="other">%1$d inbjudningar skickade</item>
     </plurals>
     <string name="GroupManagement_invite_single_user">\"%1$s\" kan inte läggas till automatiskt till denna grupp av dig.\n\nPersonen har blivit inbjuden att gå med och kommer inte att se några gruppmeddelanden förrän personen accepterar.</string>
     <string name="GroupManagement_invite_multiple_users">Dessa användare kan inte automatiskt läggas till i denna grupp.\n\nDe har blivit inbjudna att gå med i gruppen och kommer inte att se några gruppmeddelanden förrän de accepterar.</string>
@@ -765,8 +765,8 @@
     <string name="PendingMembersActivity_revoke_invite">Återkalla inbjudan</string>
     <string name="PendingMembersActivity_revoke_invites">Återkalla inbjudningar</string>
     <plurals name="PendingMembersActivity_revoke_d_invites">
-        <item quantity="one">Revoke invite</item>
-        <item quantity="other">Revoke %1$d invites</item>
+        <item quantity="one">Återkalla inbjudan</item>
+        <item quantity="other">Återkalla %1$d inbjudningar</item>
     </plurals>
     <plurals name="PendingMembersActivity_error_revoking_invite">
         <item quantity="one">Fel vid återkallelse av inbjudan</item>
@@ -785,8 +785,8 @@
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Denna person kan inte läggas till i äldre grupper.</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">Denna person kan inte läggas till i tillkännagivande grupper.</string>
     <plurals name="AddMembersActivity__add_d_members_to_s">
-        <item quantity="one">Add \"%1$s\" to \"%2$s\"?</item>
-        <item quantity="other">Add %3$d members to \"%2$s\"?</item>
+        <item quantity="one">Lägg till %1$s i %2$s?</item>
+        <item quantity="other">Lägg till %3$d medlemmar i %2$s?</item>
     </plurals>
     <string name="AddMembersActivity__add">Lägg till</string>
     <string name="AddMembersActivity__add_members">Lägg till medlemmar</string>
@@ -887,8 +887,8 @@
     </plurals>
 
     <plurals name="GroupMemberList_invited">
-        <item quantity="one">%1$s invited 1 person</item>
-        <item quantity="other">%1$s invited %2$d people</item>
+        <item quantity="one">%1$s bjöd in person</item>
+        <item quantity="other">%1$s bjöd in %2$d personer</item>
     </plurals>
 
     <!-- CustomNotificationsDialogFragment -->
@@ -926,8 +926,8 @@
     <!-- GV2 Invite Revoke confirmation dialog -->
     <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Vill du återkalla inbjudan du skickade till %1$s?</string>
     <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
-        <item quantity="one">Do you want to revoke the invite sent by %1$s?</item>
-        <item quantity="other">Do you want to revoke %2$d invites sent by %1$s?</item>
+        <item quantity="one">Vill du återkalla inbjudan som skickades av %1$s?</item>
+        <item quantity="other">Vill du återkalla %2$d inbjudningar som skickades av %1$s?</item>
     </plurals>
 
     <!-- GroupJoinBottomSheetDialogFragment -->
@@ -1035,8 +1035,8 @@
         <item quantity="other">Ta bort valda objekt?</item>
     </plurals>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-        <item quantity="one">This will permanently delete the selected file. Any message text associated with this item will also be deleted.</item>
-        <item quantity="other">This will permanently delete all %1$d selected files. Any message text associated with these items will also be deleted.</item>
+        <item quantity="one">Detta kommer att ta bort den valda filen permanent. All meddelandetext som är associerad med objektet kommer också att tas bort.</item>
+        <item quantity="other">Detta kommer att ta bort alla %1$d valda filer permanent. All meddelandetext som är associerad med dessa objekt kommer också att tas bort.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Tar bort</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">Tar bort meddelanden…</string>
@@ -1168,13 +1168,13 @@
     <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Du kunde inte läggas till i den Nya gruppen och har blivit inbjuden att gå med.</string>
     <string name="MessageRecord_chat_session_refreshed">Chattsessionen uppdaterad</string>
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
-        <item quantity="one">A member couldn\'t be added to the New Group and has been invited to join.</item>
-        <item quantity="other">%1$s members couldn\'t be added to the New Group and have been invited to join.</item>
+        <item quantity="one">En medlem kunde inte läggas till i den Nya gruppen och har blivit inbjuden att gå med.</item>
+        <item quantity="other">%1$s medlemmar kunde inte läggas till i den Nya gruppen och har blivit inbjudna att gå med.</item>
     </plurals>
 
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
-        <item quantity="one">A member couldn\'t be added to the New Group and has been removed.</item>
-        <item quantity="other">%1$s members couldn\'t be added to the New Group and have been removed.</item>
+        <item quantity="one">En medlem kunde inte läggas till i den Nya gruppen och har tagits bort.</item>
+        <item quantity="other">%1$s medlemmar kunde inte läggas till i den Nya gruppen och har tagits bort.</item>
     </plurals>
 
     <!-- Profile change updates -->
@@ -1219,31 +1219,31 @@
     <string name="MessageRecord_you_invited_s_to_the_group">Du bjöd in %1$s till gruppen.</string>
     <string name="MessageRecord_s_invited_you_to_the_group">%1$s bjöd in dig till gruppen.</string>
     <plurals name="MessageRecord_s_invited_members">
-        <item quantity="one">%1$s invited 1 person to the group.</item>
-        <item quantity="other">%1$s invited %2$d people to the group.</item>
+        <item quantity="one">%1$s bjöd in 1 person till gruppen.</item>
+        <item quantity="other">%1$s bjöd in %2$d personer till gruppen.</item>
     </plurals>
     <string name="MessageRecord_you_were_invited_to_the_group">Du blev inbjuden till gruppen.</string>
     <plurals name="MessageRecord_d_people_were_invited_to_the_group">
-        <item quantity="one">1 person was invited to the group.</item>
-        <item quantity="other">%1$d people were invited to the group.</item>
+        <item quantity="one">1 person har bjudits in till gruppen.</item>
+        <item quantity="other">%1$d personer har bjudits in till gruppen.</item>
     </plurals>
 
     <!-- GV2 invitation revokes -->
     <plurals name="MessageRecord_you_revoked_invites">
-        <item quantity="one">You revoked an invitation to the group.</item>
-        <item quantity="other">You revoked %1$d invitations to the group.</item>
+        <item quantity="one">Du återkallade 1 inbjudan till gruppen.</item>
+        <item quantity="other">Du återkallade %1$d inbjudningar till gruppen.</item>
     </plurals>
     <plurals name="MessageRecord_s_revoked_invites">
-        <item quantity="one">%1$s revoked an invitation to the group.</item>
-        <item quantity="other">%1$s revoked %2$d invitations to the group.</item>
+        <item quantity="one">%1$s återkallade 1 inbjudan till gruppen.</item>
+        <item quantity="other">%1$s återkallade %2$d inbjudningar till gruppen.</item>
     </plurals>
     <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Någon avböjde en inbjudan till gruppen.</string>
     <string name="MessageRecord_you_declined_the_invitation_to_the_group">Du avböjde inbjudan till gruppen.</string>
     <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s återkallade din inbjudan till gruppen.</string>
     <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">En administratör återkallade din inbjudan till gruppen.</string>
     <plurals name="MessageRecord_d_invitations_were_revoked">
-        <item quantity="one">An invitation to the group was revoked.</item>
-        <item quantity="other">%1$d invitations to the group were revoked.</item>
+        <item quantity="one">En inbjudan till gruppen återkallades.</item>
+        <item quantity="other">%1$d inbjudningar till gruppen återkallades.</item>
     </plurals>
 
     <!-- GV2 invitation acceptance -->
@@ -1316,8 +1316,8 @@
     <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s begärde att gå med via grupplänken.</string>
     <!-- Update message shown when someone requests to join via group link and cancels the request back to back -->
     <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
-        <item quantity="one">%1$s requested and cancelled their request to join via the group link.</item>
-        <item quantity="other">%1$s requested and cancelled %2$d requests to join via the group link.</item>
+        <item quantity="one">%1$s begärde och avbröt sin begäran att gå med via grupplänken.</item>
+        <item quantity="other">%1$s begärde och avbröt %2$d begäran att gå med via grupplänken.</item>
     </plurals>
 
     <!-- GV2 group link approvals -->
@@ -1450,8 +1450,8 @@
     <string name="OutdatedBuildReminder_update_now">Uppdatera nu</string>
     <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Denna version av Signal upphör att gälla idag. Uppdatera till den senaste versionen.</string>
     <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
-        <item quantity="one">This version of Signal will expire tomorrow. Update to the most recent version.</item>
-        <item quantity="other">This version of Signal will expire in %1$d days. Update to the most recent version.</item>
+        <item quantity="one">Denna version av Signal upphör att gälla i morgon. Uppdatera till den senaste versionen.</item>
+        <item quantity="other">Denna version av Signal upphör att gälla om %1$d dagar. Uppdatera till den senaste versionen.</item>
     </plurals>
 
     <!-- PassphrasePromptActivity -->
@@ -1873,7 +1873,7 @@
 
     <!-- UsernameEditFragment -->
     <!-- Toolbar title when entering from registration -->
-    <string name="UsernameEditFragment__add_a_username">Add a username</string>
+    <string name="UsernameEditFragment__add_a_username">Lägg till ett användarnamn</string>
     <!-- Instructional text at the top of the username edit screen -->
     <string name="UsernameEditFragment__choose_your_username">Välj ditt användarnamn</string>
     <string name="UsernameEditFragment_username">Användarnamn</string>
