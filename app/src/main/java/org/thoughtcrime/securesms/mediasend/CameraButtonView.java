@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.mediasend;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
@@ -17,10 +16,10 @@ import android.view.animation.Interpolator;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.math.MathUtils;
 
 import org.signal.core.util.DimensionUnit;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 public class CameraButtonView extends View {
@@ -206,7 +205,7 @@ public class CameraButtonView extends View {
   }
 
   public void setProgress(float percentage) {
-    progressPercent = Util.clamp(percentage, 0f, 1f);
+    progressPercent = MathUtils.clamp(percentage, 0f, 1f);
     invalidate();
   }
 

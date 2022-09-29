@@ -13,9 +13,9 @@ import android.view.View;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.math.MathUtils;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.Util;
 
 public class ArcProgressBar extends View {
 
@@ -120,6 +120,6 @@ public class ArcProgressBar extends View {
                 getHeight() - halfWidth);
 
     canvas.drawArc(arcRect, arcStartAngle, arcSweepAngle, false, arcBackgroundPaint);
-    canvas.drawArc(arcRect, arcStartAngle, arcSweepAngle * Util.clamp(progress, 0f, 1f), false, arcForegroundPaint);
+    canvas.drawArc(arcRect, arcStartAngle, arcSweepAngle * MathUtils.clamp(progress, 0f, 1f), false, arcForegroundPaint);
   }
 }

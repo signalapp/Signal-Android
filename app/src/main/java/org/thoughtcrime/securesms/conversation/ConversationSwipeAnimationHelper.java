@@ -7,8 +7,7 @@ import android.view.animation.Interpolator;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
-import org.thoughtcrime.securesms.util.Util;
+import androidx.core.math.MathUtils;
 
 final class ConversationSwipeAnimationHelper {
 
@@ -146,7 +145,7 @@ final class ConversationSwipeAnimationHelper {
 
     @Override
     public float getInterpolation(float input) {
-      return Util.clamp(slope * input + yIntercept, min, max);
+      return MathUtils.clamp(slope * input + yIntercept, min, max);
     }
   }
 

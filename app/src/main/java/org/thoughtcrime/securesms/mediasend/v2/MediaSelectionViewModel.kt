@@ -31,7 +31,6 @@ import org.thoughtcrime.securesms.mms.SentMediaQuality
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.scribbles.ImageEditorFragment
 import org.thoughtcrime.securesms.stories.Stories
-import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.livedata.Store
 import java.util.Collections
 
@@ -239,7 +238,7 @@ class MediaSelectionViewModel(
     val oldFocusIndex = snapshot.selectedMedia.indexOf(media)
     val newFocus = when {
       newMediaList.isEmpty() -> null
-      media == snapshot.focusedMedia -> newMediaList[Util.clamp(oldFocusIndex, 0, newMediaList.size - 1)]
+      media == snapshot.focusedMedia -> newMediaList[oldFocusIndex.coerceIn(newMediaList.indices)]
       else -> snapshot.focusedMedia
     }
 

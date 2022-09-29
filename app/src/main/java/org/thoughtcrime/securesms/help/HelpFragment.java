@@ -18,6 +18,7 @@ import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
+import androidx.core.math.MathUtils;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.annimon.stream.Stream;
@@ -28,7 +29,6 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiImageView;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.SupportEmailUtil;
-import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
 import org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton;
 
@@ -100,7 +100,7 @@ public class HelpFragment extends LoggingFragment {
 
     Bundle args = getArguments();
     if (args != null) {
-      categorySpinner.setSelection(Util.clamp(args.getInt(START_CATEGORY_INDEX, 0), 0, categorySpinner.getCount() - 1));
+      categorySpinner.setSelection(MathUtils.clamp(args.getInt(START_CATEGORY_INDEX, 0), 0, categorySpinner.getCount() - 1));
     }
   }
 

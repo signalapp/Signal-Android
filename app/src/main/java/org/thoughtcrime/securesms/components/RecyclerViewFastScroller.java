@@ -31,11 +31,11 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.math.MathUtils;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.Util;
 
 public final class RecyclerViewFastScroller extends LinearLayout {
   private static final int BUBBLE_ANIMATION_DURATION = 100;
@@ -56,7 +56,7 @@ public final class RecyclerViewFastScroller extends LinearLayout {
       final int   range       = recyclerView.computeVerticalScrollRange();
       final int   extent      = recyclerView.computeVerticalScrollExtent();
       final int   offsetRange = Math.max(range - extent, 1);
-      setBubbleAndHandlePosition((float) Util.clamp(offset, 0, offsetRange) / offsetRange);
+      setBubbleAndHandlePosition((float) MathUtils.clamp(offset, 0, offsetRange) / offsetRange);
     }
   };
 
@@ -157,7 +157,7 @@ public final class RecyclerViewFastScroller extends LinearLayout {
         proportion = y / (float)height;
       }
 
-      final int targetPos = Util.clamp((int)(proportion * (float)itemCount), 0, itemCount - 1);
+      final int targetPos = MathUtils.clamp((int) (proportion * (float) itemCount), 0, itemCount - 1);
       ((LinearLayoutManager) recyclerView.getLayoutManager()).scrollToPositionWithOffset(targetPos, 0);
       final CharSequence bubbleText = ((FastScrollAdapter) recyclerView.getAdapter()).getBubbleText(targetPos);
       bubble.setText(bubbleText);
@@ -167,11 +167,9 @@ public final class RecyclerViewFastScroller extends LinearLayout {
   private void setBubbleAndHandlePosition(float y) {
     final int handleHeight = handle.getHeight();
     final int bubbleHeight = bubble.getHeight();
-    final int handleY = Util.clamp((int)((height - handleHeight) * y), 0, height - handleHeight);
+    final int handleY = MathUtils.clamp((int) ((height - handleHeight) * y), 0, height - handleHeight);
     handle.setY(handleY);
-    bubble.setY(Util.clamp(handleY - bubbleHeight - bubble.getPaddingBottom() + handleHeight,
-                           0,
-                           height - bubbleHeight));
+    bubble.setY(MathUtils.clamp(handleY - bubbleHeight - bubble.getPaddingBottom() + handleHeight, 0, height - bubbleHeight));
   }
 
   private void showBubble() {

@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.Px;
 import androidx.annotation.RequiresApi;
+import androidx.core.math.MathUtils;
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
 
 import org.signal.core.util.logging.Log;
@@ -379,14 +380,14 @@ public final class VideoThumbnailsRangeSelectorView extends VideoThumbnailsView 
     final long maxDiff = maximumSelectableRangeMicros <= MINIMUM_SELECTABLE_RANGE ? 0 : Math.max(maximumSelectableRangeMicros, pixelToDuration(thumbSizePixels * 2.5f));
 
     if (thumb == Thumb.MIN) {
-      newMin = clamp(newMin, 0, currentMax - minDiff);
+      newMin = MathUtils.clamp(newMin, 0, currentMax - minDiff);
       if (maxDiff > 0) {
-        newMax = clamp(newMax, newMin + minDiff, Math.min(newMin + maxDiff, duration));
+        newMax = MathUtils.clamp(newMax, newMin + minDiff, Math.min(newMin + maxDiff, duration));
       }
     } else {
-      newMax = clamp(newMax, currentMin + minDiff, duration);
+      newMax = MathUtils.clamp(newMax, currentMin + minDiff, duration);
       if (maxDiff > 0) {
-        newMin = clamp(newMin, Math.max(0, newMax - maxDiff), newMax - minDiff);
+        newMin = MathUtils.clamp(newMin, Math.max(0, newMax - maxDiff), newMax - minDiff);
       }
     }
 
@@ -397,10 +398,6 @@ public final class VideoThumbnailsRangeSelectorView extends VideoThumbnailsView 
       return true;
     }
     return false;
-  }
-
-  private static long clamp(long value, long min, long max) {
-    return Math.min(Math.max(min, value), max);
   }
 
   @Override

@@ -32,12 +32,11 @@ import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.conversation.colors.ui.ChatColorPreviewView
 import org.thoughtcrime.securesms.conversation.colors.ui.ChatColorSelectionViewModel
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.customizeOnDraw
 
 private const val MAX_SEEK_DIVISIONS = 1023
-private const val MAX_HUE = 360
+private const val MAX_HUE = 360f
 
 private const val PAGE_ARG = "page"
 private const val SINGLE_PAGE = 0
@@ -292,11 +291,11 @@ class CustomChatColorCreatorPageFragment :
   }
 
   private fun Number.toHue(max: Number): Float {
-    return Util.clamp(toFloat() * (MAX_HUE / max.toFloat()), 0f, MAX_HUE.toFloat())
+    return (toFloat() * (MAX_HUE / max.toFloat())).coerceIn(0f, MAX_HUE)
   }
 
   private fun Number.toUnit(max: Number): Float {
-    return Util.clamp(toFloat() / max.toFloat(), 0f, 1f)
+    return (toFloat() / max.toFloat()).coerceIn(0f, 1f)
   }
 
   private fun Drawable.forSeekBar(): Drawable {

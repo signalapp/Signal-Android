@@ -16,8 +16,6 @@ import androidx.annotation.ColorInt
 import androidx.annotation.Dimension
 import androidx.appcompat.widget.AppCompatSeekBar
 import androidx.core.graphics.ColorUtils
-import org.thoughtcrime.securesms.scribbles.HSVColorSlider.toHue
-import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.customizeOnDraw
 
@@ -25,8 +23,7 @@ import org.thoughtcrime.securesms.util.customizeOnDraw
  * One stop shop to turn an AppCompatSeekBar into an HSV Color Slider.
  */
 object HSVColorSlider {
-
-  private const val MAX_HUE = 360
+  private const val MAX_HUE = 360f
   private const val COLOR_DIVISIONS = 1023
   private const val BLACK_DIVISIONS = 175
   private const val WHITE_DIVISIONS = 125
@@ -37,7 +34,7 @@ object HSVColorSlider {
   private val colors: IntArray = (0..BLACK_DIVISIONS).map { value ->
     ColorUtils.HSLToColor(
       floatArrayOf(
-        MAX_HUE.toFloat(),
+        MAX_HUE,
         1f,
         value / BLACK_DIVISIONS.toFloat() * STANDARD_LIGHTNESS
       )
@@ -147,7 +144,7 @@ object HSVColorSlider {
   }
 
   private fun Number.toHue(max: Number): Float {
-    return Util.clamp(toFloat() * (MAX_HUE / max.toFloat()), 0f, MAX_HUE.toFloat())
+    return (toFloat() * (MAX_HUE / max.toFloat())).coerceIn(0f, MAX_HUE)
   }
 
   private fun Drawable.forSeekBar(): Drawable {

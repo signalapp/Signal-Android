@@ -29,11 +29,11 @@ import android.view.View;
 import android.view.WindowInsets;
 
 import androidx.appcompat.widget.LinearLayoutCompat;
+import androidx.core.math.MathUtils;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.ServiceUtil;
-import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 import java.lang.reflect.Field;
@@ -233,7 +233,7 @@ public class KeyboardAwareLinearLayout extends LinearLayoutCompat {
 
     int keyboardHeight = PreferenceManager.getDefaultSharedPreferences(getContext())
                                           .getInt("keyboard_height_landscape", defaultCustomKeyboardSize);
-    return Util.clamp(keyboardHeight, minCustomKeyboardSize, getRootView().getHeight() - minCustomKeyboardTopMarginLandscape);
+    return MathUtils.clamp(keyboardHeight, minCustomKeyboardSize, getRootView().getHeight() - minCustomKeyboardTopMarginLandscape);
   }
 
   private int getKeyboardPortraitHeight() {
@@ -244,7 +244,7 @@ public class KeyboardAwareLinearLayout extends LinearLayoutCompat {
 
     int keyboardHeight = PreferenceManager.getDefaultSharedPreferences(getContext())
                                           .getInt("keyboard_height_portrait", defaultCustomKeyboardSize);
-    return Util.clamp(keyboardHeight, minCustomKeyboardSize, getRootView().getHeight() - minCustomKeyboardTopMarginPortrait);
+    return MathUtils.clamp(keyboardHeight, minCustomKeyboardSize, getRootView().getHeight() - minCustomKeyboardTopMarginPortrait);
   }
 
   private void setKeyboardPortraitHeight(int height) {

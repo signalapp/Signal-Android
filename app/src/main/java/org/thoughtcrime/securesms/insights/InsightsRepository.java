@@ -3,10 +3,12 @@ package org.thoughtcrime.securesms.insights;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
+import androidx.core.math.MathUtils;
 import androidx.core.util.Consumer;
 
 import com.annimon.stream.Stream;
 
+import org.signal.core.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
@@ -17,8 +19,6 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
-import org.thoughtcrime.securesms.util.Util;
-import org.signal.core.util.concurrent.SimpleTask;
 
 import java.util.List;
 import java.util.Optional;
@@ -41,7 +41,7 @@ public class InsightsRepository implements InsightsDashboardViewModel.Repository
       if (insecure + secure == 0) {
         return new InsightsData(false, 0);
       } else {
-        return new InsightsData(true, Util.clamp((int) Math.ceil((insecure * 100f) / (insecure + secure)), 0, 100));
+        return new InsightsData(true, MathUtils.clamp((int) Math.ceil((insecure * 100f) / (insecure + secure)), 0, 100));
       }
     }, insightsDataConsumer::accept);
   }

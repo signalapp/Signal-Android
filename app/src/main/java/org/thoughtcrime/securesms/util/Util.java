@@ -426,18 +426,6 @@ public class Util {
            activityManager.getLargeMemoryClass() <= 64;
   }
 
-  public static int clamp(int value, int min, int max) {
-    return Math.min(Math.max(value, min), max);
-  }
-
-  public static long clamp(long value, long min, long max) {
-    return Math.min(Math.max(value, min), max);
-  }
-
-  public static float clamp(float value, float min, float max) {
-    return Math.min(Math.max(value, min), max);
-  }
-
   /**
    * Returns half of the difference between the given length, and the length when scaled by the
    * given scale.
@@ -448,14 +436,12 @@ public class Util {
   }
 
   public static @Nullable String readTextFromClipboard(@NonNull Context context) {
-    {
-      ClipboardManager clipboardManager = (ClipboardManager)context.getSystemService(Context.CLIPBOARD_SERVICE);
+    ClipboardManager clipboardManager = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
 
-      if (clipboardManager.hasPrimaryClip() && clipboardManager.getPrimaryClip().getItemCount() > 0) {
-        return clipboardManager.getPrimaryClip().getItemAt(0).getText().toString();
-      } else {
-        return null;
-      }
+    if (clipboardManager.hasPrimaryClip() && clipboardManager.getPrimaryClip().getItemCount() > 0) {
+      return clipboardManager.getPrimaryClip().getItemAt(0).getText().toString();
+    } else {
+      return null;
     }
   }
 
