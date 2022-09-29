@@ -111,6 +111,8 @@ class StoryViewerPageFragment :
   private lateinit var storyCaptionContainer: FrameLayout
   private lateinit var storyContentContainer: FrameLayout
   private lateinit var storyFirstTimeNavigationViewStub: StoryFirstNavigationStub
+  private lateinit var sendingBarTextView: TextView
+  private lateinit var sendingBar: View
 
   private lateinit var callback: Callback
 
@@ -182,6 +184,8 @@ class StoryViewerPageFragment :
     progressBar = view.findViewById(R.id.progress)
     viewsAndReplies = view.findViewById(R.id.views_and_replies_bar)
     storyFirstTimeNavigationViewStub = StoryFirstNavigationStub(view.findViewById(R.id.story_first_time_nav_stub))
+    sendingBarTextView = view.findViewById(R.id.sending_text_view)
+    sendingBar = view.findViewById(R.id.sending_bar)
 
     storySlate.callback = this
     storyFirstTimeNavigationViewStub.setCallback(this)
@@ -913,6 +917,8 @@ class StoryViewerPageFragment :
       viewsAndReplies.visible = true
     }
 
+    sendingBar.visible = false
+    viewsAndReplies.isEnabled = true
     viewsAndReplies.iconTint = ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.signal_colorOnSurface))
 
     when (replyState) {
@@ -934,13 +940,20 @@ class StoryViewerPageFragment :
           indicatorColors = intArrayOf(ContextCompat.getColor(requireContext(), R.color.signal_dark_colorNeutralInverse))
           trackThickness = 2.dp
         }
-      )
+      ).apply {
+        setBounds(0, 0, 20.dp, 20.dp)
+      }
     }
 
-    viewsAndReplies.icon = sendingProgressDrawable
-    viewsAndReplies.iconGravity = MaterialButton.ICON_GRAVITY_TEXT_START
-    viewsAndReplies.iconSize = 20.dp
-    viewsAndReplies.setText(R.string.StoriesLandingItem__sending)
+    sendingBarTextView.setCompoundDrawablesRelativeWithIntrinsicBounds(
+      sendingProgressDrawable,
+      null,
+      null,
+      null
+    )
+
+    sendingBar.visible = true
+    viewsAndReplies.isEnabled = false
   }
 
   private fun presentPartialSendBottomBar() {

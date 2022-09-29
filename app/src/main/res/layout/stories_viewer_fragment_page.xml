@@ -84,6 +84,27 @@
         tools:icon="@drawable/ic_reply_24_outline"
         tools:text="6 views 4 replies" />
 
+    <FrameLayout
+        android:id="@+id/sending_bar"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/signal_colorSurface"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/views_and_replies_bar"
+        app:layout_constraintTop_toTopOf="@id/views_and_replies_bar">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/sending_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:drawablePadding="10dp"
+            android:text="@string/StoriesLandingItem__sending"
+            android:textAppearance="@style/Signal.Text.Body"
+            app:drawableTint="@color/signal_colorOnSurface" />
+
+    </FrameLayout>
+
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/replies_bar_top"
         android:layout_width="wrap_content"
@@ -137,9 +158,9 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="24dp"
+        android:scrollbars="vertical"
         android:textAppearance="@style/Signal.Text.Body"
         android:visibility="gone"
-        android:scrollbars="vertical"
         app:layout_constrainedHeight="true"
         app:layout_constraintBottom_toTopOf="@id/story_from_barrier"
         app:layout_constraintEnd_toEndOf="parent"
