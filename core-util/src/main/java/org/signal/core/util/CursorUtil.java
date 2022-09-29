@@ -46,7 +46,7 @@ public final class CursorUtil {
   }
 
   public static int requireMaskedInt(@NonNull Cursor cursor, @NonNull String column, int position, int flagBitSize) {
-    return Conversions.toIntExact(Bitmask.read(requireLong(cursor, column), position, flagBitSize));
+    return Math.toIntExact(Bitmask.read(requireLong(cursor, column), position, flagBitSize));
   }
 
   public static Optional<String> getString(@NonNull Cursor cursor, @NonNull String column) {

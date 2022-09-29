@@ -7,7 +7,6 @@ import androidx.annotation.RequiresApi;
 
 import org.thoughtcrime.securesms.crypto.AttachmentSecret;
 import org.thoughtcrime.securesms.crypto.ClassicDecryptingPartInputStream;
-import org.thoughtcrime.securesms.util.Util;
 
 import java.io.File;
 import java.io.IOException;
@@ -33,7 +32,7 @@ final class ClassicEncryptedMediaDataSource extends MediaDataSource {
       long   headerRemaining = position;
 
       while (headerRemaining > 0) {
-        int read = inputStream.read(buffer, 0, Util.toIntExact(Math.min((long)buffer.length, headerRemaining)));
+        int read = inputStream.read(buffer, 0, Math.toIntExact(Math.min((long) buffer.length, headerRemaining)));
 
         if (read == -1) return -1;
 

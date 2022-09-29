@@ -595,7 +595,7 @@ public class FullBackupExporter extends FullBackupBase {
         write(outputStream, BackupProtos.BackupFrame.newBuilder()
                                                     .setAvatar(BackupProtos.Avatar.newBuilder()
                                                                                   .setRecipientId(avatarName)
-                                                                                  .setLength(Util.toIntExact(size))
+                                                                                  .setLength(Math.toIntExact(size))
                                                                                   .build())
                                                     .build());
       } catch (ArithmeticException e) {
@@ -614,7 +614,7 @@ public class FullBackupExporter extends FullBackupBase {
                                                     .setAttachment(BackupProtos.Attachment.newBuilder()
                                                                                           .setRowId(attachmentId.getRowId())
                                                                                           .setAttachmentId(attachmentId.getUniqueId())
-                                                                                          .setLength(Util.toIntExact(size))
+                                                                                          .setLength(Math.toIntExact(size))
                                                                                           .build())
                                                     .build());
       } catch (ArithmeticException e) {
@@ -632,7 +632,7 @@ public class FullBackupExporter extends FullBackupBase {
         write(outputStream, BackupProtos.BackupFrame.newBuilder()
                                                     .setSticker(BackupProtos.Sticker.newBuilder()
                                                                                     .setRowId(rowId)
-                                                                                    .setLength(Util.toIntExact(size))
+                                                                                    .setLength(Math.toIntExact(size))
                                                                                     .build())
                                                     .build());
       } catch (ArithmeticException e) {

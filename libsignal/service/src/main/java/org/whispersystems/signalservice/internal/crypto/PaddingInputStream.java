@@ -1,8 +1,6 @@
 package org.whispersystems.signalservice.internal.crypto;
 
 
-import org.whispersystems.signalservice.internal.util.Util;
-
 import java.io.FilterInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -35,7 +33,7 @@ public class PaddingInputStream extends FilterInputStream {
     if (result != -1) return result;
 
     if (paddingRemaining > 0) {
-      length = Math.min(length, Util.toIntExact(paddingRemaining));
+      length = Math.min(length, Math.toIntExact(paddingRemaining));
       paddingRemaining -= length;
       return length;
     }
@@ -50,7 +48,7 @@ public class PaddingInputStream extends FilterInputStream {
 
   @Override
   public int available() throws IOException {
-    return super.available() + Util.toIntExact(paddingRemaining);
+    return super.available() + Math.toIntExact(paddingRemaining);
   }
 
   public static long getPaddedSize(long size) {

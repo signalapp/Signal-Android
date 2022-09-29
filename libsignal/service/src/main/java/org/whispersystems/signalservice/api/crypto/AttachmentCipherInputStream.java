@@ -240,7 +240,7 @@ public class AttachmentCipherInputStream extends FilterInputStream {
   {
     try {
       MessageDigest   digest        = MessageDigest.getInstance("SHA256");
-      int             remainingData = Util.toIntExact(length) - mac.getMacLength();
+      int             remainingData = Math.toIntExact(length) - mac.getMacLength();
       byte[]          buffer        = new byte[4096];
 
       while (remainingData > 0) {

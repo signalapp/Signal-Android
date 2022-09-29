@@ -32,7 +32,7 @@ public class ContentLengthInputStream extends FilterInputStream {
   public int read(byte[] buffer, int offset, int length) throws IOException {
     if (bytesRemaining == 0) return -1;
 
-    int result = super.read(buffer, offset, Math.min(length, Util.toIntExact(bytesRemaining)));
+    int result = super.read(buffer, offset, Math.min(length, Math.toIntExact(bytesRemaining)));
 
     bytesRemaining -= result;
     return result;

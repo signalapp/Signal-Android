@@ -10,7 +10,6 @@ import com.bumptech.glide.util.ContentLengthInputStream;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.util.Pair;
-import org.thoughtcrime.securesms.util.Util;
 
 import java.io.FilterInputStream;
 import java.io.IOException;
@@ -319,14 +318,14 @@ public class ChunkedDataFetcher {
 
     @Override
     public int available() throws IOException {
-      return Util.toIntExact(super.available() - skip);
+      return Math.toIntExact(super.available() - skip);
     }
 
     private void skipFully(long amount) throws IOException {
       byte[] buffer = new byte[4096];
 
       while (amount > 0) {
-        int read = super.read(buffer, 0, Math.min(buffer.length, Util.toIntExact(amount)));
+        int read = super.read(buffer, 0, Math.min(buffer.length, Math.toIntExact(amount)));
 
         if (read != -1) amount -= read;
         else            return;

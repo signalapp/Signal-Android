@@ -110,7 +110,7 @@ public class LimitedInputStream extends FilterInputStream {
 
     long correctLength = Math.min(len, sizeMax - count);
 
-    int res = super.read(b, off, Util.toIntExact(correctLength));
+    int res = super.read(b, off, Math.toIntExact(correctLength));
     if (res > 0) {
       count += res;
     }

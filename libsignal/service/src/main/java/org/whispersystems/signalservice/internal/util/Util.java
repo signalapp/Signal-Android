@@ -139,13 +139,6 @@ public class Util {
     }
   }
 
-  public static int toIntExact(long value) {
-    if ((int)value != value) {
-      throw new ArithmeticException("integer overflow");
-    }
-    return (int)value;
-  }
-
   public static <T> List<T> immutableList(T... elements) {
     return Collections.unmodifiableList(Arrays.asList(elements.clone()));
   }

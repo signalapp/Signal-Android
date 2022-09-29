@@ -455,13 +455,6 @@ public class Util {
     clipboard.setPrimaryClip(clip);
   }
 
-  public static int toIntExact(long value) {
-    if ((int)value != value) {
-      throw new ArithmeticException("integer overflow");
-    }
-    return (int)value;
-  }
-
   public static boolean isEquals(@Nullable Long first, long second) {
     return first != null && first == second;
   }

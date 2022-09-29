@@ -13,7 +13,6 @@ import org.signal.core.util.StreamUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.util.MemoryFileUtil;
-import org.thoughtcrime.securesms.util.Util;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -42,7 +41,7 @@ public final class BlobContentProvider extends BaseContentProvider {
           throw new FileNotFoundException();
         }
 
-        return getParcelStreamForStream(stream, Util.toIntExact(fileSize));
+        return getParcelStreamForStream(stream, Math.toIntExact(fileSize));
       }
     } catch (IOException e) {
       throw new FileNotFoundException();

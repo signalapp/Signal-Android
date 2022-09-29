@@ -46,7 +46,6 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.mms.PartUriParser;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.MemoryFileUtil;
-import org.thoughtcrime.securesms.util.Util;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -186,7 +185,7 @@ public final class PartProvider extends BaseContentProvider {
 
   private ParcelFileDescriptor getParcelStreamForAttachment(AttachmentId attachmentId) throws IOException {
     long       plaintextLength = StreamUtil.getStreamLength(SignalDatabase.attachments().getAttachmentStream(attachmentId, 0));
-    MemoryFile memoryFile      = new MemoryFile(attachmentId.toString(), Util.toIntExact(plaintextLength));
+    MemoryFile memoryFile      = new MemoryFile(attachmentId.toString(), Math.toIntExact(plaintextLength));
 
     InputStream  in  = SignalDatabase.attachments().getAttachmentStream(attachmentId, 0);
     OutputStream out = memoryFile.getOutputStream();

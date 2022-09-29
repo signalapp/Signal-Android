@@ -28,7 +28,6 @@ import org.thoughtcrime.securesms.s3.S3;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.util.AttachmentUtil;
 import org.thoughtcrime.securesms.util.Base64;
-import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentRemoteId;
@@ -220,7 +219,7 @@ public final class AttachmentDownloadJob extends BaseJob {
       }
 
       return new SignalServiceAttachmentPointer(attachment.getCdnNumber(), remoteId, null, key,
-                                                Optional.of(Util.toIntExact(attachment.getSize())),
+                                                Optional.of(Math.toIntExact(attachment.getSize())),
                                                 Optional.empty(),
                                                 0, 0,
                                                 Optional.ofNullable(attachment.getDigest()),

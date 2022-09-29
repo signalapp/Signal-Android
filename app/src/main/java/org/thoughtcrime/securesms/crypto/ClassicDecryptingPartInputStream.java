@@ -20,7 +20,6 @@ import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.util.LimitedInputStream;
-import org.thoughtcrime.securesms.util.Util;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -155,7 +154,7 @@ public class ClassicDecryptingPartInputStream {
       byte[] skipBuffer = new byte[4092];
 
       while (remaining > 0) {
-        int read = super.read(skipBuffer, 0, Util.toIntExact(Math.min(skipBuffer.length, remaining)));
+        int read = super.read(skipBuffer, 0, Math.toIntExact(Math.min(skipBuffer.length, remaining)));
 
         if (read < 0) {
           break;

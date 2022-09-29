@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.jobs;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.media.Image;
 import android.os.Build;
 import android.text.TextUtils;
 
@@ -41,7 +40,6 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.CertificateType;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
-import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.mms.PartAuthority;
@@ -58,7 +56,6 @@ import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.ImageCompressionUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
-import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentRemoteId;
@@ -273,7 +270,7 @@ public abstract class PushSendJob extends SendJob {
                                                 remoteId,
                                                 attachment.getContentType(),
                                                 key,
-                                                Optional.of(Util.toIntExact(attachment.getSize())),
+                                                Optional.of(Math.toIntExact(attachment.getSize())),
                                                 Optional.empty(),
                                                 width,
                                                 height,
