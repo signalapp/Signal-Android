@@ -757,9 +757,14 @@ public class AttachmentDatabase extends Database {
         values.putNull(CAPTION);
       }
 
+      int updatedCount = 0;
+      int attachmentIdSize = 0;
       for (AttachmentId attachmentId : attachmentIds) {
-        db.update(TABLE_NAME, values, PART_ID_WHERE, attachmentId.toStrings());
+        attachmentIdSize++;
+        updatedCount = db.update(TABLE_NAME, values, PART_ID_WHERE, attachmentId.toStrings());
       }
+
+      Log.d(TAG, "[updateMessageId] Updated " + updatedCount + " out of " + attachmentIdSize + " ids.");
 
       db.setTransactionSuccessful();
     } finally {
