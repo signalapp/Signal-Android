@@ -159,7 +159,7 @@ public final class InternalValues extends SignalStoreValues {
    */
   public synchronized boolean callingDisableTelecom() {
     if (FeatureFlags.internalUser()) {
-      return getBoolean(CALLING_DISABLE_TELECOM, false);
+      return getBoolean(CALLING_DISABLE_TELECOM, true);
     } else {
       return false;
     }
