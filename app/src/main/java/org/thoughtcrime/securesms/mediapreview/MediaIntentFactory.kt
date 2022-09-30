@@ -34,7 +34,7 @@ object MediaIntentFactory {
     val initialCaption: String? = null,
     val leftIsRecent: Boolean = false,
     val hideAllMedia: Boolean = false,
-    val showThread: Boolean= false,
+    val showThread: Boolean = false,
     val sorting: Int,
     val isVideoGif: Boolean
   ) : Parcelable

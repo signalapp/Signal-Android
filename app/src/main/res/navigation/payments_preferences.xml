@@ -112,6 +112,14 @@
 
         </action>
 
+        <action
+            android:id="@+id/action_paymentsHome_to_securitySetup"
+            app:destination="@id/paymentsSecuritySetup"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+
     </fragment>
 
     <fragment
@@ -189,6 +197,28 @@
             app:popExitAnim="@anim/fragment_close_exit"
             app:popUpTo="@id/paymentsHome"
             app:popUpToInclusive="false" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/paymentsSecuritySetup"
+        android:name="org.thoughtcrime.securesms.payments.securitysetup.PaymentsSecuritySetupFragment"
+        tools:layout="@layout/payments_security_setup_fragment">
+
+        <action
+            android:id="@+id/action_paymentsHome_to_privacySettings"
+            app:destination="@id/privacy_settings"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit"
+            app:popUpTo="@id/paymentsHome">
+
+            <argument
+                android:name="show_payment_lock"
+                app:argType="boolean" />
+
+        </action>
 
     </fragment>
 

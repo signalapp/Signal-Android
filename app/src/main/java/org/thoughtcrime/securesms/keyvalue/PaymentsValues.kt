@@ -55,6 +55,7 @@ internal class PaymentsValues internal constructor(store: KeyValueStore) : Signa
     const val MOB_PAYMENTS_ENABLED = "mob_payments_enabled"
   }
 
+  @get:JvmName("isPaymentLockEnabled")
   var paymentLock: Boolean by booleanValue(PAYMENT_LOCK_ENABLED, false)
   var paymentLockTimestamp: Long by longValue(PAYMENT_LOCK_TIMESTAMP, 0)
   var paymentLockSkipCount: Int by integerValue(PAYMENT_LOCK_SKIP_COUNT, 0)

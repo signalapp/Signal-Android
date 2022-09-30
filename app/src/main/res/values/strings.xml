@@ -2909,6 +2909,26 @@
     <!-- Alert dialog button to not enable payment lock for now -->
     <string name="PaymentsHomeFragment__not_now">Not Now</string>
 
+    <!-- PaymentsSecuritySetupFragment -->
+    <!-- Toolbar title -->
+    <string name="PaymentsSecuritySetupFragment__security_setup">Security setup</string>
+    <!-- Title to enable payment lock -->
+    <string name="PaymentsSecuritySetupFragment__protect_your_funds">Protect your funds</string>
+    <!-- Description as to why payment lock is required -->
+    <string name="PaymentsSecuritySetupFragment__help_prevent">Help prevent a person with your phone from accessing your funds by adding another layer of security. You can disable this option in Settings.</string>
+    <!-- Option to enable payment lock -->
+    <string name="PaymentsSecuritySetupFragment__enable_payment_lock">Enable payment lock</string>
+    <!-- Option to cancel -->
+    <string name="PaymentsSecuritySetupFragment__not_now">Not now</string>
+    <!-- Dialog title to confirm skipping the step -->
+    <string name="PaymentsSecuritySetupFragment__skip_this_step">Skip this step?</string>
+    <!-- Dialog description to let users know why payment lock is required -->
+    <string name="PaymentsSecuritySetupFragment__skipping_this_step">Skipping this step could allow anyone who has physical access to your phone to transfer funds or view your recovery phrase.</string>
+    <!-- Dialog option to cancel -->
+    <string name="PaymentsSecuritySetupFragment__cancel">Cancel</string>
+    <!-- Dialog option to skip -->
+    <string name="PaymentsSecuritySetupFragment__skip">Skip</string>
+
     <!-- PaymentsAddMoneyFragment -->
     <string name="PaymentsAddMoneyFragment__add_funds">Add funds</string>
     <string name="PaymentsAddMoneyFragment__your_wallet_address">Your Wallet Address</string>

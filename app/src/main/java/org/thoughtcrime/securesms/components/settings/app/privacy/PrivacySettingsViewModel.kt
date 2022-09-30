@@ -74,8 +74,8 @@ class PrivacySettingsViewModel(
     refresh()
   }
 
-  fun togglePaymentLock() {
-    SignalStore.paymentsValues().paymentLock = state.value?.let { !it.paymentLock } ?: false
+  fun togglePaymentLock(enable: Boolean) {
+    SignalStore.paymentsValues().paymentLock = enable
     refresh()
   }
 

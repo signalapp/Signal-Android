@@ -65,7 +65,7 @@ public class PaymentsRecoveryStartFragment extends Fragment {
       message.setText(getDescription(state));
       message.setLink(getString(R.string.PaymentsRecoveryStartFragment__learn_more__view));
       startButton.setOnClickListener(v -> {
-        if (state == RecoveryPhraseStates.FROM_PAYMENTS_MENU_WITH_MNEMONIC_CONFIRMED && ServiceUtil.getKeyguardManager(requireContext()).isKeyguardSecure() && SignalStore.paymentsValues().getPaymentLock()) {
+        if (state == RecoveryPhraseStates.FROM_PAYMENTS_MENU_WITH_MNEMONIC_CONFIRMED && ServiceUtil.getKeyguardManager(requireContext()).isKeyguardSecure() && SignalStore.paymentsValues().isPaymentLockEnabled()) {
           BiometricPrompt.PromptInfo promptInfo = new BiometricPrompt.PromptInfo
                                                                      .Builder()
                                                                      .setAllowedAuthenticators(BiometricDeviceAuthentication.ALLOWED_AUTHENTICATORS)

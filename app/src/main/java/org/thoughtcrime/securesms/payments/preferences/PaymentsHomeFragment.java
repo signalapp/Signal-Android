@@ -222,6 +222,9 @@ public class PaymentsHomeFragment extends LoggingFragment {
           });
           break;
         case ACTIVATED:
+          if (!SignalStore.paymentsValues().isPaymentLockEnabled()) {
+            SafeNavigation.safeNavigate(NavHostFragment.findNavController(this), R.id.action_paymentsHome_to_securitySetup);
+          }
           return;
         default:
           throw new IllegalStateException("Unsupported event type: " + paymentStateEvent.name());

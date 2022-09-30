@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/signal_m3_toolbar_height"
+        android:theme="?actionBarStyle"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_arrow_left_24"
+        app:title="@string/PaymentsSecuritySetupFragment__security_setup"
+        app:titleTextAppearance="@style/TextAppearance.Signal.Body1.Bold" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/payments_security_setup_fragment_image"
+                android:layout_width="120dp"
+                android:layout_height="72dp"
+                android:layout_marginTop="162dp"
+                android:layout_marginBottom="20dp"
+                android:importantForAccessibility="no"
+                app:layout_constraintBottom_toTopOf="@id/payments_security_setup_fragment_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:srcCompat="@drawable/ic_payment_security_setup_lock" />
+
+            <TextView
+                android:id="@+id/payments_security_setup_fragment_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginBottom="12dp"
+                android:gravity="center"
+                android:text="@string/PaymentsSecuritySetupFragment__protect_your_funds"
+                android:textAppearance="@style/TextAppearance.Signal.Title2"
+                app:layout_constraintBottom_toTopOf="@id/payments_security_setup_fragment_message"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/payments_security_setup_fragment_image" />
+
+            <TextView
+                android:id="@+id/payments_security_setup_fragment_message"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginBottom="12dp"
+                android:gravity="center"
+                android:lineSpacingExtra="6sp"
+                android:text="@string/PaymentsSecuritySetupFragment__help_prevent"
+                android:textAppearance="@style/Signal.Text.BodyMedium"
+                android:textColor="@color/signal_text_secondary"
+                app:layout_constraintBottom_toTopOf="@id/payments_security_setup_enable_lock"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/payments_security_setup_fragment_title" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/payments_security_setup_enable_lock"
+                style="@style/Signal.Widget.Button.Large.Primary"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="48dp"
+                android:layout_marginEnd="48dp"
+                android:layout_marginBottom="20dp"
+                android:text="@string/PaymentsSecuritySetupFragment__enable_payment_lock"
+                app:layout_constraintBottom_toTopOf="@id/payments_security_setup_fragment_not_now"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/payments_security_setup_fragment_not_now"
+                style="@style/Signal.Widget.Button.Medium.Secondary"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="48dp"
+                android:layout_marginEnd="48dp"
+                android:layout_marginBottom="16dp"
+                android:text="@string/PaymentsSecuritySetupFragment__not_now"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</LinearLayout>

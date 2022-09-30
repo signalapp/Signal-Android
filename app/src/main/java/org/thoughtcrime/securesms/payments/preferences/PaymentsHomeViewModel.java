@@ -203,6 +203,7 @@ public class PaymentsHomeViewModel extends ViewModel {
       @Override
       public void onComplete(@Nullable Void result) {
         store.update(state -> state.updatePaymentsEnabled(PaymentsHomeState.PaymentsState.ACTIVATED));
+        paymentStateEvents.postValue(PaymentStateEvent.ACTIVATED);
       }
 
       @Override
