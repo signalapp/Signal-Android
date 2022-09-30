@@ -88,7 +88,7 @@ public final class GroupsV1MigrationUtil {
           registeredMembers = Stream.of(registeredMembers).map(Recipient::fresh).toList();
         }
 
-        List<Recipient> possibleMembers = forced ? getMigratableManualMigrationMembers(registeredMembers)
+        List<Recipient> possibleMembers = forced ? registeredMembers
                                                  : getMigratableAutoMigrationMembers(registeredMembers);
 
         if (!forced && !groupRecipient.hasName()) {
@@ -200,17 +200,8 @@ public final class GroupsV1MigrationUtil {
    * to consider them migratable in an auto-migration.
    */
   private static @NonNull List<Recipient> getMigratableAutoMigrationMembers(@NonNull List<Recipient> registeredMembers) {
-    return Stream.of(getMigratableManualMigrationMembers(registeredMembers))
-                 .filter(r -> r.getProfileKey() != null)
-                 .toList();
-  }
-
-  /**
-   * You can only migrate users that have the required capabilities.
-   */
-  private static @NonNull List<Recipient> getMigratableManualMigrationMembers(@NonNull List<Recipient> registeredMembers) {
     return Stream.of(registeredMembers)
-                 .filter(r -> r.getGroupsV1MigrationCapability() == Recipient.Capability.SUPPORTED)
+                 .filter(r -> r.getProfileKey() != null)
                  .toList();
   }
 
@@ -219,7 +210,6 @@ public final class GroupsV1MigrationUtil {
    */
   public static boolean isAutoMigratable(@NonNull Recipient recipient) {
     return recipient.hasServiceId() &&
-           recipient.getGroupsV1MigrationCapability() == Recipient.Capability.SUPPORTED &&
            recipient.getRegistered() == RecipientDatabase.RegisteredState.REGISTERED &&
            recipient.getProfileKey() != null;
   }

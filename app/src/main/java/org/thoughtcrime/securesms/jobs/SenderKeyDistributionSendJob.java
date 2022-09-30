@@ -79,11 +79,6 @@ public final class SenderKeyDistributionSendJob extends BaseJob {
     Recipient targetRecipient = Recipient.resolved(targetRecipientId);
     Recipient threadRecipient = Recipient.resolved(threadRecipientId);
 
-    if (targetRecipient.getSenderKeyCapability() != Recipient.Capability.SUPPORTED) {
-      Log.w(TAG, targetRecipientId + " does not support sender key! Not sending.");
-      return;
-    }
-
     if (targetRecipient.isUnregistered()) {
       Log.w(TAG, threadRecipient.getId() + " not registered!");
       return;

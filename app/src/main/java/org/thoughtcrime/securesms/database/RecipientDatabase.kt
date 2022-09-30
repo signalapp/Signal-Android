@@ -3431,6 +3431,21 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     updateExtras(recipientId) { b: RecipientExtras.Builder -> b.setManuallyShownAvatar(true) }
   }
 
+  fun getCapabilities(id: RecipientId): RecipientRecord.Capabilities? {
+    readableDatabase
+      .select(CAPABILITIES)
+      .from(TABLE_NAME)
+      .where("$ID = ?", id)
+      .run()
+      .use { cursor ->
+        return if (cursor.moveToFirst()) {
+          readCapabilities(cursor)
+        } else {
+          null
+        }
+      }
+  }
+
   private fun updateExtras(recipientId: RecipientId, updater: java.util.function.Function<RecipientExtras.Builder, RecipientExtras.Builder>) {
     val db = writableDatabase
     db.beginTransaction()
@@ -3626,7 +3641,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       SYSTEM_PHONE_LABEL to secondaryRecord.systemPhoneLabel,
       SYSTEM_CONTACT_URI to secondaryRecord.systemContactUri,
       PROFILE_SHARING to (primaryRecord.profileSharing || secondaryRecord.profileSharing),
-      CAPABILITIES to max(primaryRecord.rawCapabilities, secondaryRecord.rawCapabilities),
+      CAPABILITIES to max(primaryRecord.capabilities.rawBits, secondaryRecord.capabilities.rawBits),
       MENTION_SETTING to if (primaryRecord.mentionSetting != MentionSetting.ALWAYS_NOTIFY) primaryRecord.mentionSetting.id else secondaryRecord.mentionSetting.id
     )
 
@@ -3901,7 +3916,6 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     }
 
     val recipientId = RecipientId.from(cursor.requireLong(idColumnName))
-    val capabilities = cursor.requireLong(CAPABILITIES)
     val distributionListId: DistributionListId? = DistributionListId.fromNullable(cursor.requireLong(DISTRIBUTION_LIST_ID))
     val avatarColor: AvatarColor = if (distributionListId != null) AvatarColor.UNKNOWN else AvatarColor.deserialize(cursor.requireString(AVATAR_COLOR))
 
@@ -3939,14 +3953,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       notificationChannel = cursor.requireString(NOTIFICATION_CHANNEL),
       unidentifiedAccessMode = UnidentifiedAccessMode.fromMode(cursor.requireInt(UNIDENTIFIED_ACCESS_MODE)),
       forceSmsSelection = cursor.requireBoolean(FORCE_SMS_SELECTION),
-      rawCapabilities = capabilities,
-      groupsV1MigrationCapability = Recipient.Capability.deserialize(Bitmask.read(capabilities, Capabilities.GROUPS_V1_MIGRATION, Capabilities.BIT_LENGTH).toInt()),
-      senderKeyCapability = Recipient.Capability.deserialize(Bitmask.read(capabilities, Capabilities.SENDER_KEY, Capabilities.BIT_LENGTH).toInt()),
-      announcementGroupCapability = Recipient.Capability.deserialize(Bitmask.read(capabilities, Capabilities.ANNOUNCEMENT_GROUPS, Capabilities.BIT_LENGTH).toInt()),
-      changeNumberCapability = Recipient.Capability.deserialize(Bitmask.read(capabilities, Capabilities.CHANGE_NUMBER, Capabilities.BIT_LENGTH).toInt()),
-      storiesCapability = Recipient.Capability.deserialize(Bitmask.read(capabilities, Capabilities.STORIES, Capabilities.BIT_LENGTH).toInt()),
-      giftBadgesCapability = Recipient.Capability.deserialize(Bitmask.read(capabilities, Capabilities.GIFT_BADGES, Capabilities.BIT_LENGTH).toInt()),
-      pnpCapability = Recipient.Capability.deserialize(Bitmask.read(capabilities, Capabilities.PNP, Capabilities.BIT_LENGTH).toInt()),
+      capabilities = readCapabilities(cursor),
       insightsBannerTier = InsightsBannerTier.fromId(cursor.requireInt(SEEN_INVITE_REMINDER)),
       storageId = Base64.decodeNullableOrThrow(cursor.requireString(STORAGE_SERVICE_ID)),
       mentionSetting = MentionSetting.fromId(cursor.requireInt(MENTION_SETTING)),
@@ -3961,6 +3968,20 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       badges = parseBadgeList(cursor.requireBlob(BADGES)),
       needsPniSignature = cursor.requireBoolean(NEEDS_PNI_SIGNATURE),
       isHidden = cursor.requireBoolean(HIDDEN)
+    )
+  }
+
+  private fun readCapabilities(cursor: Cursor): RecipientRecord.Capabilities {
+    val capabilities = cursor.requireLong(CAPABILITIES)
+    return RecipientRecord.Capabilities(
+      rawBits = capabilities,
+      groupsV1MigrationCapability = Recipient.Capability.deserialize(Bitmask.read(capabilities, Capabilities.GROUPS_V1_MIGRATION, Capabilities.BIT_LENGTH).toInt()),
+      senderKeyCapability = Recipient.Capability.deserialize(Bitmask.read(capabilities, Capabilities.SENDER_KEY, Capabilities.BIT_LENGTH).toInt()),
+      announcementGroupCapability = Recipient.Capability.deserialize(Bitmask.read(capabilities, Capabilities.ANNOUNCEMENT_GROUPS, Capabilities.BIT_LENGTH).toInt()),
+      changeNumberCapability = Recipient.Capability.deserialize(Bitmask.read(capabilities, Capabilities.CHANGE_NUMBER, Capabilities.BIT_LENGTH).toInt()),
+      storiesCapability = Recipient.Capability.deserialize(Bitmask.read(capabilities, Capabilities.STORIES, Capabilities.BIT_LENGTH).toInt()),
+      giftBadgesCapability = Recipient.Capability.deserialize(Bitmask.read(capabilities, Capabilities.GIFT_BADGES, Capabilities.BIT_LENGTH).toInt()),
+      pnpCapability = Recipient.Capability.deserialize(Bitmask.read(capabilities, Capabilities.PNP, Capabilities.BIT_LENGTH).toInt()),
     )
   }
 

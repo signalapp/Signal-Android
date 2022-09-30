@@ -242,8 +242,7 @@ public final class GroupSendUtil {
         validMembership = false;
       }
 
-      if (recipient.getSenderKeyCapability() == Recipient.Capability.SUPPORTED &&
-          recipient.hasServiceId() &&
+      if (recipient.hasServiceId() &&
           access.isPresent() &&
           access.get().getTargetUnidentifiedAccess().isPresent() &&
           validMembership)
@@ -256,10 +255,6 @@ public final class GroupSendUtil {
 
     if (distributionId == null) {
       Log.i(TAG, "No DistributionId. Using legacy.");
-      legacyTargets.addAll(senderKeyTargets);
-      senderKeyTargets.clear();
-    } else if (Recipient.self().getSenderKeyCapability() != Recipient.Capability.SUPPORTED) {
-      Log.i(TAG, "All of our devices do not support sender key. Using legacy.");
       legacyTargets.addAll(senderKeyTargets);
       senderKeyTargets.clear();
     } else if (SignalStore.internalValues().removeSenderKeyMinimum()) {

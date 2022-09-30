@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.model.RecipientRecord
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -266,17 +267,23 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
   }
 
   private fun buildCapabilitySpan(recipient: Recipient): CharSequence {
-    return TextUtils.concat(
-      colorize("GV1Migration", recipient.groupsV1MigrationCapability),
-      ", ",
-      colorize("AnnouncementGroup", recipient.announcementGroupCapability),
-      ", ",
-      colorize("SenderKey", recipient.senderKeyCapability),
-      ", ",
-      colorize("ChangeNumber", recipient.changeNumberCapability),
-      ", ",
-      colorize("Stories", recipient.storiesCapability),
-    )
+    val capabilities: RecipientRecord.Capabilities? = SignalDatabase.recipients.getCapabilities(recipient.id)
+
+    return if (capabilities != null) {
+      TextUtils.concat(
+        colorize("GV1Migration", capabilities.groupsV1MigrationCapability),
+        ", ",
+        colorize("AnnouncementGroup", capabilities.announcementGroupCapability),
+        ", ",
+        colorize("SenderKey", capabilities.senderKeyCapability),
+        ", ",
+        colorize("ChangeNumber", capabilities.changeNumberCapability),
+        ", ",
+        colorize("Stories", capabilities.storiesCapability),
+      )
+    } else {
+      "Recipient not found!"
+    }
   }
 
   private fun colorize(name: String, support: Recipient.Capability): CharSequence {

@@ -63,14 +63,7 @@ data class RecipientRecord(
   val unidentifiedAccessMode: UnidentifiedAccessMode,
   @get:JvmName("isForceSmsSelection")
   val forceSmsSelection: Boolean,
-  val rawCapabilities: Long,
-  val groupsV1MigrationCapability: Recipient.Capability,
-  val senderKeyCapability: Recipient.Capability,
-  val announcementGroupCapability: Recipient.Capability,
-  val changeNumberCapability: Recipient.Capability,
-  val storiesCapability: Recipient.Capability,
-  val giftBadgesCapability: Recipient.Capability,
-  val pnpCapability: Recipient.Capability,
+  val capabilities: Capabilities,
   val insightsBannerTier: InsightsBannerTier,
   val storageId: ByteArray?,
   val mentionSetting: MentionSetting,
@@ -122,4 +115,29 @@ data class RecipientRecord(
     val isForcedUnread: Boolean,
     val unregisteredTimestamp: Long
   )
+
+  data class Capabilities(
+    val rawBits: Long,
+    val groupsV1MigrationCapability: Recipient.Capability,
+    val senderKeyCapability: Recipient.Capability,
+    val announcementGroupCapability: Recipient.Capability,
+    val changeNumberCapability: Recipient.Capability,
+    val storiesCapability: Recipient.Capability,
+    val giftBadgesCapability: Recipient.Capability,
+    val pnpCapability: Recipient.Capability,
+  ) {
+    companion object {
+      @JvmField
+      val UNKNOWN = Capabilities(
+        0,
+        Recipient.Capability.UNKNOWN,
+        Recipient.Capability.UNKNOWN,
+        Recipient.Capability.UNKNOWN,
+        Recipient.Capability.UNKNOWN,
+        Recipient.Capability.UNKNOWN,
+        Recipient.Capability.UNKNOWN,
+        Recipient.Capability.UNKNOWN
+      )
+    }
+  }
 }

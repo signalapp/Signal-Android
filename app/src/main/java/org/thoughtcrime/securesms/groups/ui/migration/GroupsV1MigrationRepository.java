@@ -68,19 +68,7 @@ final class GroupsV1MigrationRepository {
       return new MigrationState(Collections.emptyList(), Collections.emptyList());
     }
 
-    List<Recipient>  members      = Recipient.resolvedList(group.getParticipantIds());
-    Set<RecipientId> needsRefresh = Stream.of(members)
-                                          .filter(r -> r.getGroupsV1MigrationCapability() != Recipient.Capability.SUPPORTED)
-                                          .map(Recipient::getId)
-                                          .collect(Collectors.toSet());
-
-    List<Job> jobs = RetrieveProfileJob.forRecipients(needsRefresh);
-
-    for (Job job : jobs) {
-      if (!ApplicationDependencies.getJobManager().runSynchronously(job, TimeUnit.SECONDS.toMillis(3)).isPresent()) {
-        Log.w(TAG, "Failed to refresh capabilities in time!");
-      }
-    }
+    List<Recipient> members = Recipient.resolvedList(group.getParticipantIds());
 
     try {
       List<Recipient> registered = Stream.of(members)
@@ -95,9 +83,7 @@ final class GroupsV1MigrationRepository {
     group = group.fresh();
 
     List<Recipient> ineligible = Stream.of(members)
-                                       .filter(r -> !r.hasServiceId() ||
-                                                    r.getGroupsV1MigrationCapability() != Recipient.Capability.SUPPORTED ||
-                                                    r.getRegistered() != RecipientDatabase.RegisteredState.REGISTERED)
+                                       .filter(r -> !r.hasServiceId() || r.getRegistered() != RecipientDatabase.RegisteredState.REGISTERED)
                                        .toList();
 
     List<Recipient> invites = Stream.of(members)

@@ -127,7 +127,7 @@ public final class MessageDecryptionUtil {
         Log.w(TAG, String.valueOf(envelope.getTimestamp()), e, true);
         Recipient sender = Recipient.external(context, e.getSender());
 
-        if (sender.supportsMessageRetries() && Recipient.self().supportsMessageRetries() && FeatureFlags.retryReceipts()) {
+        if (FeatureFlags.retryReceipts()) {
           jobs.add(handleRetry(context, sender, envelope, e));
           postInternalErrorNotification(context);
         } else {

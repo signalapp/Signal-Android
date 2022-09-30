@@ -66,49 +66,6 @@ public class GroupV1MigrationJob extends BaseJob {
     });
   }
 
-  public static void enqueueRoutineMigrationsIfNecessary(@NonNull Application application) {
-    if (!SignalStore.registrationValues().isRegistrationComplete() ||
-        !SignalStore.account().isRegistered()                      ||
-        SignalStore.account().getAci() == null)
-    {
-      Log.i(TAG, "Registration not complete. Skipping.");
-      return;
-    }
-
-    long timeSinceRefresh = System.currentTimeMillis() - SignalStore.misc().getLastGv1RoutineMigrationTime();
-
-    if (timeSinceRefresh < REFRESH_INTERVAL) {
-      Log.i(TAG, "Too soon to refresh. Did the last refresh " + timeSinceRefresh + " ms ago.");
-      return;
-    }
-
-    SignalStore.misc().setLastGv1RoutineMigrationTime(System.currentTimeMillis());
-
-    SignalExecutors.BOUNDED.execute(() -> {
-      JobManager         jobManager   = ApplicationDependencies.getJobManager();
-      List<ThreadRecord> threads      = SignalDatabase.threads().getRecentV1Groups(ROUTINE_LIMIT);
-      Set<RecipientId>   needsRefresh = new HashSet<>();
-
-      if (threads.size() > 0) {
-        Log.d(TAG, "About to enqueue refreshes for " + threads.size() + " groups.");
-      }
-
-      for (ThreadRecord thread : threads) {
-        jobManager.add(new GroupV1MigrationJob(thread.getRecipient().getId()));
-
-        needsRefresh.addAll(Stream.of(Recipient.resolvedList(thread.getRecipient().getParticipantIds()))
-                                  .filter(r -> r.getGroupsV1MigrationCapability() != Recipient.Capability.SUPPORTED)
-                                  .map(Recipient::getId)
-                                  .toList());
-      }
-
-      if (needsRefresh.size() > 0) {
-        Log.w(TAG, "Enqueuing profile refreshes for " + needsRefresh.size() + " GV1 participants.");
-        RetrieveProfileJob.enqueue(needsRefresh);
-      }
-    });
-  }
-
   @Override
   public @NonNull Data serialize() {
     return new Data.Builder().putString(KEY_RECIPIENT_ID, recipientId.serialize())
