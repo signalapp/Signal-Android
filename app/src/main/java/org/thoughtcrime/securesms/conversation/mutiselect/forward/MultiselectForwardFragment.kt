@@ -29,6 +29,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.signal.core.util.DimensionUnit
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ContactFilterView
 import org.thoughtcrime.securesms.components.TooltipPopup
@@ -318,6 +319,8 @@ class MultiselectForwardFragment :
   }
 
   private fun dismissAndShowToast(@PluralsRes toastTextResId: Int) {
+    Log.d(TAG, "dismissAndShowToast")
+
     val argCount = getMessageCount()
 
     callback.onFinishForwardAction()
@@ -329,6 +332,8 @@ class MultiselectForwardFragment :
   private fun getMessageCount(): Int = args.multiShareArgs.size + if (addMessage.text.isNotEmpty()) 1 else 0
 
   private fun handleMessageExpired() {
+    Log.d(TAG, "handleMessageExpired")
+
     callback.onFinishForwardAction()
     dismissibleDialog?.dismiss()
     Toast.makeText(requireContext(), resources.getQuantityString(R.plurals.MultiselectForwardFragment__couldnt_forward_messages, args.multiShareArgs.size), Toast.LENGTH_LONG).show()
@@ -336,6 +341,8 @@ class MultiselectForwardFragment :
   }
 
   private fun dismissWithSelection(selectedContacts: Set<ContactSearchKey>) {
+    Log.d(TAG, "dismissWithSelection")
+
     callback.onFinishForwardAction()
     dismissibleDialog?.dismiss()
 
@@ -486,6 +493,8 @@ class MultiselectForwardFragment :
   }
 
   companion object {
+    private val TAG = Log.tag(MultiselectForwardActivity::class.java)
+
     const val DIALOG_TITLE = "title"
     const val ARGS = "args"
     const val RESULT_KEY = "result_key"
