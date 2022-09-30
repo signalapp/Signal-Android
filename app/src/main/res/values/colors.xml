@@ -46,6 +46,9 @@
     <color name="call_action_foreground_highlighted">#171717</color>
     <color name="call_background">#171717</color>
 
+    <color name="bottom_sheet_background">#1B1B1B</color>
+    <color name="bottom_sheet_item_background">#1B1B1B</color>
+
     <array name="profile_picture_placeholder_colors">
         <item>#5ff8b0</item>
         <item>#26cdb9</item>

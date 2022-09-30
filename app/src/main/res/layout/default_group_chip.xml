@@ -7,11 +7,10 @@
     style="?attr/chipStyle"
     app:chipStartPadding="4dp"
     app:chipBackgroundColor="@color/open_group_chip_color"
-    android:layout_columnWeight="1"
     tools:text="Main Group"
     android:ellipsize="end"
     tools:layout_width="wrap_content"
     app:chipMinTouchTargetSize="0dp"
     android:layout_margin="4dp"
-    android:layout_width="0dp"
+    android:layout_width="156dp"
     android:layout_height="wrap_content" />

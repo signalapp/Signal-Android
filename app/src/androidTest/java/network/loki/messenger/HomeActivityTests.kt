@@ -22,7 +22,6 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
 import androidx.test.platform.app.InstrumentationRegistry
 import network.loki.messenger.util.InputBarButtonDrawableMatcher.Companion.inputButtonWithDrawable
-import network.loki.messenger.util.NewConversationButtonDrawableMatcher.Companion.newConversationButtonWithDrawable
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers.allOf
 import org.hamcrest.Matchers.not
@@ -38,7 +37,6 @@ import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2
 import org.thoughtcrime.securesms.conversation.v2.input_bar.InputBar
 import org.thoughtcrime.securesms.home.HomeActivity
 import org.thoughtcrime.securesms.mms.GlideApp
-
 
 @RunWith(AndroidJUnit4::class)
 @LargeTest
@@ -90,8 +88,8 @@ class HomeActivityTests {
     }
 
     private fun goToMyChat() {
-        onView(newConversationButtonWithDrawable(R.drawable.ic_plus)).perform(ViewActions.click())
-        onView(newConversationButtonWithDrawable(R.drawable.ic_message)).perform(ViewActions.click())
+        onView(withId(R.id.newConversationButton)).perform(ViewActions.click())
+        onView(withId(R.id.createPrivateChatButton)).perform(ViewActions.click())
         // new chat
         onView(withId(R.id.publicKeyEditText)).perform(ViewActions.closeSoftKeyboard())
         onView(withId(R.id.copyButton)).perform(ViewActions.click())

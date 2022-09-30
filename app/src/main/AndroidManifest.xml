@@ -141,22 +141,9 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Session.DayNight.FlatActionBar" />
         <activity
-            android:name="org.thoughtcrime.securesms.dms.CreatePrivateChatActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize"
-            android:theme="@style/Theme.Session.DayNight.FlatActionBar" />
-        <activity
-            android:name="org.thoughtcrime.securesms.groups.CreateClosedGroupActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name="org.thoughtcrime.securesms.groups.EditClosedGroupActivity"
             android:label="@string/activity_edit_closed_group_title"
             android:screenOrientation="portrait" />
-        <activity
-            android:name="org.thoughtcrime.securesms.groups.JoinPublicChatActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize"
-            android:theme="@style/Theme.Session.DayNight.FlatActionBar" />
         <activity
             android:name="org.thoughtcrime.securesms.onboarding.SeedActivity"
             android:screenOrientation="portrait" />

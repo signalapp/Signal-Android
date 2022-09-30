@@ -34,6 +34,9 @@
     <color name="conversation_pinned_background">#F0F0F0</color>
     <color name="conversation_pinned_icon">#606060</color>
 
+    <color name="bottom_sheet_background">#F9F9F9</color>
+    <color name="bottom_sheet_item_background">@color/white</color>
+
     <color name="default_background_start">#ffffff</color>
     <color name="default_background_end">#fcfcfc</color>
     <color name="action_bar_background">#fcfcfc</color>

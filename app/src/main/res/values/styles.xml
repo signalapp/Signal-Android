@@ -50,7 +50,6 @@
     <style name="Widget.Session.TabLayout" parent="Widget.Design.TabLayout">
         <item name="elevation">1dp</item>
         <item name="tabIndicatorColor">?colorAccent</item>
-        <item name="tabSelectedTextColor">?colorAccent</item>>
         <item name="tabIndicatorHeight">@dimen/accent_line_thickness</item>
         <item name="tabRippleColor">@color/cell_selected</item>
         <item name="tabTextAppearance">@style/TextAppearance.Session.Tab</item>

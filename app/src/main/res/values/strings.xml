@@ -961,4 +961,19 @@
         <item quantity="one">And %1$d other has reacted %2$s to this message</item>
         <item quantity="other">And %1$d others have reacted %2$s to this message</item>
     </plurals>
+
+    <string name="dialog_new_conversation_title">New Conversation</string>
+    <string name="dialog_new_message_title">New Message</string>
+    <string name="activity_create_group_title">Create Group</string>
+    <string name="dialog_join_community_title">Join Community</string>
+    <string name="new_conversation_contacts_title">Contacts</string>
+    <string name="new_conversation_unknown_contacts_section_title">Unknown</string>
+    <string name="fragment_enter_public_key_prompt">Start a new conversation by entering someone\'s Session ID or share your Session ID with them.</string>
+    <string name="activity_create_group_create_button_title">Create</string>
+    <string name="search_contacts_hint">Search contacts</string>
+    <string name="activity_join_public_chat_enter_community_url_tab_title">Community URL</string>
+    <string name="fragment_enter_community_url_edit_text_hint">Enter Community URL</string>
+    <string name="fragment_enter_community_url_join_button_title">Join</string>
+    <string name="new_conversation_dialog_back_button_content_description">Navigate Back</string>
+    <string name="new_conversation_dialog_close_button_content_description">Close Dialog</string>
 </resources>

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import network.loki.messenger.databinding.FragmentScanQrCodeBinding
 import org.thoughtcrime.securesms.qr.ScanListener
@@ -30,6 +31,7 @@ class ScanQRCodeFragment : Fragment() {
             else -> binding.overlayView.orientation = LinearLayout.VERTICAL
         }
         binding.messageTextView.text = message
+        binding.messageTextView.isVisible = message.isNotEmpty()
     }
 
     override fun onResume() {

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bottom_sheet_background">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/medium_spacing">
+
+        <TextView
+            android:id="@+id/titleText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal|center_vertical"
+            android:paddingTop="@dimen/large_spacing"
+            android:paddingBottom="@dimen/very_large_spacing"
+            android:text="@string/dialog_new_conversation_title"
+            android:textColor="@color/text"
+            android:textSize="@dimen/very_large_font_size"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/closeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/large_spacing"
+            android:clickable="true"
+            android:contentDescription="@string/new_conversation_dialog_close_button_content_description"
+            android:focusable="true"
+            android:src="@drawable/ic_baseline_close_24"
+            app:layout_constraintBottom_toTopOf="@id/title_divider"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/title_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginBottom="1dp"
+            android:background="?android:dividerHorizontal"
+            app:layout_constraintStart_toStartOf="@+id/titleText"
+            app:layout_constraintTop_toBottomOf="@+id/titleText" />
+
+        <TextView
+            android:id="@+id/createPrivateChatButton"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/setting_button_height"
+            android:background="@color/bottom_sheet_item_background"
+            android:drawablePadding="@dimen/large_spacing"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="@dimen/large_spacing"
+            android:text="@string/dialog_new_message_title"
+            android:textColor="@color/text"
+            android:textSize="@dimen/medium_font_size"
+            app:drawableStartCompat="@drawable/ic_message"
+            app:layout_constraintBottom_toTopOf="@+id/new_message_divider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title_divider" />
+
+        <View
+            android:id="@+id/new_message_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginStart="@dimen/massive_spacing"
+            android:background="?android:dividerHorizontal"
+            app:layout_constraintStart_toStartOf="@+id/createPrivateChatButton"
+            app:layout_constraintTop_toBottomOf="@+id/createPrivateChatButton" />
+
+        <TextView
+            android:id="@+id/createClosedGroupButton"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/setting_button_height"
+            android:background="@color/bottom_sheet_item_background"
+            android:drawablePadding="@dimen/large_spacing"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="@dimen/large_spacing"
+            android:text="@string/activity_create_group_title"
+            android:textColor="@color/text"
+            android:textSize="@dimen/medium_font_size"
+            app:drawableStartCompat="@drawable/ic_group"
+            app:layout_constraintBottom_toTopOf="@+id/create_group_divider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/new_message_divider" />
+
+        <View
+            android:id="@+id/create_group_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginStart="@dimen/massive_spacing"
+            android:background="?android:dividerHorizontal"
+            app:layout_constraintStart_toStartOf="@+id/createClosedGroupButton"
+            app:layout_constraintTop_toBottomOf="@+id/createClosedGroupButton" />
+
+        <TextView
+            android:id="@+id/joinCommunityButton"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/setting_button_height"
+            android:background="@color/bottom_sheet_item_background"
+            android:drawablePadding="@dimen/large_spacing"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="@dimen/large_spacing"
+            android:text="@string/dialog_join_community_title"
+            android:textColor="@color/text"
+            android:textSize="@dimen/medium_font_size"
+            app:drawableStartCompat="@drawable/ic_globe"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/create_group_divider" />
+
+        <View
+            android:id="@+id/join_community_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginBottom="1dp"
+            android:background="?android:dividerHorizontal"
+            app:layout_constraintStart_toStartOf="@+id/joinCommunityButton"
+            app:layout_constraintTop_toBottomOf="@+id/joinCommunityButton" />
+
+        <TextView
+            android:id="@+id/contactsText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="@dimen/large_spacing"
+            android:paddingTop="@dimen/medium_spacing"
+            android:paddingBottom="@dimen/small_spacing"
+            android:text="@string/new_conversation_contacts_title"
+            android:textColor="@color/text"
+            android:textSize="@dimen/medium_font_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/join_community_divider" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/contactsRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/contactsText"
+            tools:itemCount="6"
+            tools:listitem="@layout/view_contact" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

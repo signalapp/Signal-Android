@@ -157,12 +157,16 @@
 
         </LinearLayout>
 
-        <org.thoughtcrime.securesms.home.NewConversationButtonSetView
-            android:id="@+id/newConversationButtonSet"
-            android:layout_width="276dp"
-            android:layout_height="236dp"
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/newConversationButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/new_conversation_button_background"
+            android:layout_marginBottom="@dimen/new_conversation_button_bottom_offset"
+            android:src="@drawable/ic_plus"
+            app:tint="@color/white" />
 
     </RelativeLayout>
 
