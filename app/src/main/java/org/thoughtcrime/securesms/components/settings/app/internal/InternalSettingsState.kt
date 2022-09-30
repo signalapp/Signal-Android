@@ -10,6 +10,7 @@ data class InternalSettingsState(
   val gv2ignoreServerChanges: Boolean,
   val gv2ignoreP2PChanges: Boolean,
   val allowCensorshipSetting: Boolean,
+  val forceWebsocketMode: Boolean,
   val callingServer: String,
   val callingAudioProcessingMethod: CallManager.AudioProcessingMethod,
   val callingBandwidthMode: CallManager.BandwidthMode,

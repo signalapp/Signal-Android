@@ -81,7 +81,7 @@ public class IncomingMessageObserver {
 
     new MessageRetrievalThread().start();
 
-    if (!SignalStore.account().isFcmEnabled()) {
+    if (!SignalStore.account().isFcmEnabled() || SignalStore.internalValues().isWebsocketModeForced()) {
       ContextCompat.startForegroundService(context, new Intent(context, ForegroundService.class));
     }
 
@@ -157,22 +157,23 @@ public class IncomingMessageObserver {
   }
 
   private synchronized boolean isConnectionNecessary() {
-    boolean registered = SignalStore.account().isRegistered();
-    boolean fcmEnabled = SignalStore.account().isFcmEnabled();
-    boolean hasNetwork = NetworkConstraint.isMet(context);
-    boolean hasProxy   = SignalStore.proxy().isProxyEnabled();
-    long    oldRequest = System.currentTimeMillis() - OLD_REQUEST_WINDOW_MS;
+    boolean registered     = SignalStore.account().isRegistered();
+    boolean fcmEnabled     = SignalStore.account().isFcmEnabled();
+    boolean hasNetwork     = NetworkConstraint.isMet(context);
+    boolean hasProxy       = SignalStore.proxy().isProxyEnabled();
+    boolean forceWebsocket = SignalStore.internalValues().isWebsocketModeForced();
+    long    oldRequest     = System.currentTimeMillis() - OLD_REQUEST_WINDOW_MS;
 
     boolean removedRequests = keepAliveTokens.entrySet().removeIf(e -> e.getValue() < oldRequest);
     if (removedRequests) {
       Log.d(TAG, "Removed old keep web socket open requests.");
     }
 
-    Log.d(TAG, String.format("Network: %s, Foreground: %s, FCM: %s, Stay open requests: [%s], Censored: %s, Registered: %s, Proxy: %s",
-                             hasNetwork, appVisible, fcmEnabled, Util.join(keepAliveTokens.entrySet(), ","), networkAccess.isCensored(), registered, hasProxy));
+    Log.d(TAG, String.format("Network: %s, Foreground: %s, FCM: %s, Stay open requests: [%s], Censored: %s, Registered: %s, Proxy: %s, Force websocket: %s",
+                             hasNetwork, appVisible, fcmEnabled, Util.join(keepAliveTokens.entrySet(), ","), networkAccess.isCensored(), registered, hasProxy, forceWebsocket));
 
     return registered &&
-           (appVisible || !fcmEnabled || Util.hasItems(keepAliveTokens)) &&
+           (appVisible || !fcmEnabled || forceWebsocket || Util.hasItems(keepAliveTokens)) &&
            hasNetwork &&
            !networkAccess.isCensored();
   }

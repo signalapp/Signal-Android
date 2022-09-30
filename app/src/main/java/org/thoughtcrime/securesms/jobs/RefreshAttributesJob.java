@@ -84,7 +84,7 @@ public class RefreshAttributesJob extends BaseJob {
     }
 
     int       registrationId              = SignalStore.account().getRegistrationId();
-    boolean   fetchesMessages             = !SignalStore.account().isFcmEnabled();
+    boolean   fetchesMessages             = !SignalStore.account().isFcmEnabled() || SignalStore.internalValues().isWebsocketModeForced();
     byte[]    unidentifiedAccessKey       = UnidentifiedAccess.deriveAccessKeyFrom(ProfileKeyUtil.getSelfProfileKey());
     boolean   universalUnidentifiedAccess = TextSecurePreferences.isUniversalUnidentifiedAccess(context);
     String    registrationLockV1          = null;
