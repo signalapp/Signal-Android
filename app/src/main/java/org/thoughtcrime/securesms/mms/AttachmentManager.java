@@ -52,8 +52,10 @@ import org.thoughtcrime.securesms.components.location.SignalMapView;
 import org.thoughtcrime.securesms.components.location.SignalPlace;
 import org.thoughtcrime.securesms.conversation.MessageSendType;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
+import org.thoughtcrime.securesms.database.MediaDatabase;
 import org.thoughtcrime.securesms.giph.ui.GiphyActivity;
 import org.thoughtcrime.securesms.maps.PlacePickerActivity;
+import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory;
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity;
 import org.thoughtcrime.securesms.payments.create.CreatePaymentFragmentArgs;
 import org.thoughtcrime.securesms.payments.preferences.PaymentsActivity;
@@ -469,13 +471,19 @@ public class AttachmentManager {
 
   private void previewImageDraft(final @NonNull Slide slide) {
     if (MediaPreviewActivity.isContentTypeSupported(slide.getContentType()) && slide.getUri() != null) {
-      Intent intent = new Intent(context, MediaPreviewActivity.class);
-      intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-      intent.putExtra(MediaPreviewActivity.SIZE_EXTRA, slide.asAttachment().getSize());
-      intent.putExtra(MediaPreviewActivity.CAPTION_EXTRA, slide.getCaption().orElse(null));
-      intent.setDataAndType(slide.getUri(), slide.getContentType());
-
-      context.startActivity(intent);
+      MediaIntentFactory.MediaPreviewArgs args = new MediaIntentFactory.MediaPreviewArgs(
+          MediaIntentFactory.NOT_IN_A_THREAD,
+          MediaIntentFactory.UNKNOWN_TIMESTAMP,
+          slide.getUri(),
+          slide.getContentType(),
+          slide.asAttachment().getSize(),
+          slide.getCaption().orElse(null),
+          false,
+          false,
+          false,
+          MediaDatabase.Sorting.Newest.ordinal(),
+          slide.isVideoGif());
+      context.startActivity(MediaIntentFactory.create(context, args));
     }
   }
 

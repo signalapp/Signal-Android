@@ -192,7 +192,7 @@ public class MediaDatabase extends Database {
       this.outgoing          = outgoing;
     }
 
-    public static MediaRecord from(@NonNull Context context, @NonNull Cursor cursor) {
+    public static MediaRecord from(@NonNull Cursor cursor) {
       AttachmentDatabase       attachmentDatabase = SignalDatabase.attachments();
       List<DatabaseAttachment> attachments        = attachmentDatabase.getAttachments(cursor);
       RecipientId              recipientId        = RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.RECIPIENT_ID)));

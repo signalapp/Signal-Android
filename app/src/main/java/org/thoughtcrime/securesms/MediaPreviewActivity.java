@@ -65,6 +65,7 @@ import org.thoughtcrime.securesms.database.MediaDatabase;
 import org.thoughtcrime.securesms.database.MediaDatabase.MediaRecord;
 import org.thoughtcrime.securesms.database.loaders.PagingMediaLoader;
 import org.thoughtcrime.securesms.mediaoverview.MediaOverviewActivity;
+import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory;
 import org.thoughtcrime.securesms.mediapreview.MediaPreviewFragment;
 import org.thoughtcrime.securesms.mediapreview.MediaPreviewViewModel;
 import org.thoughtcrime.securesms.mediapreview.MediaRailAdapter;
@@ -98,18 +99,6 @@ public final class MediaPreviewActivity extends PassphraseRequiredActivity
 
   private final static String TAG = Log.tag(MediaPreviewActivity.class);
 
-  private static final int NOT_IN_A_THREAD = -2;
-
-  public static final String THREAD_ID_EXTRA      = "thread_id";
-  public static final String DATE_EXTRA           = "date";
-  public static final String SIZE_EXTRA           = "size";
-  public static final String CAPTION_EXTRA        = "caption";
-  public static final String LEFT_IS_RECENT_EXTRA = "left_is_recent";
-  public static final String HIDE_ALL_MEDIA_EXTRA = "came_from_all_media";
-  public static final String SHOW_THREAD_EXTRA    = "show_thread";
-  public static final String SORTING_EXTRA        = "sorting";
-  public static final String IS_VIDEO_GIF         = "is_video_gif";
-
   private ViewPager             mediaPager;
   private View                  detailsContainer;
   private TextView              caption;
@@ -127,7 +116,7 @@ public final class MediaPreviewActivity extends PassphraseRequiredActivity
   private ViewPagerListener     viewPagerListener;
 
   private int                   restartItem      = -1;
-  private long                  threadId         = NOT_IN_A_THREAD;
+  private long                  threadId         = MediaIntentFactory.NOT_IN_A_THREAD;
   private boolean               cameFromAllMedia;
   private boolean               showThread;
   private MediaDatabase.Sorting sorting;
@@ -143,12 +132,12 @@ public final class MediaPreviewActivity extends PassphraseRequiredActivity
   {
     DatabaseAttachment attachment = Objects.requireNonNull(mediaRecord.getAttachment());
     Intent intent = new Intent(context, MediaPreviewActivity.class);
-    intent.putExtra(MediaPreviewActivity.THREAD_ID_EXTRA, mediaRecord.getThreadId());
-    intent.putExtra(MediaPreviewActivity.DATE_EXTRA, mediaRecord.getDate());
-    intent.putExtra(MediaPreviewActivity.SIZE_EXTRA, attachment.getSize());
-    intent.putExtra(MediaPreviewActivity.CAPTION_EXTRA, attachment.getCaption());
-    intent.putExtra(MediaPreviewActivity.LEFT_IS_RECENT_EXTRA, leftIsRecent);
-    intent.putExtra(MediaPreviewActivity.IS_VIDEO_GIF, attachment.isVideoGif());
+    intent.putExtra(MediaIntentFactory.THREAD_ID_EXTRA, mediaRecord.getThreadId());
+    intent.putExtra(MediaIntentFactory.DATE_EXTRA, mediaRecord.getDate());
+    intent.putExtra(MediaIntentFactory.SIZE_EXTRA, attachment.getSize());
+    intent.putExtra(MediaIntentFactory.CAPTION_EXTRA, attachment.getCaption());
+    intent.putExtra(MediaIntentFactory.LEFT_IS_RECENT_EXTRA, leftIsRecent);
+    intent.putExtra(MediaIntentFactory.IS_VIDEO_GIF, attachment.isVideoGif());
     intent.setDataAndType(attachment.getUri(), mediaRecord.getContentType());
     return intent;
   }
@@ -305,17 +294,17 @@ public final class MediaPreviewActivity extends PassphraseRequiredActivity
   private void initializeResources() {
     Intent intent = getIntent();
 
-    threadId         = intent.getLongExtra(THREAD_ID_EXTRA, NOT_IN_A_THREAD);
-    cameFromAllMedia = intent.getBooleanExtra(HIDE_ALL_MEDIA_EXTRA, false);
-    showThread       = intent.getBooleanExtra(SHOW_THREAD_EXTRA, false);
-    sorting          = MediaDatabase.Sorting.values()[intent.getIntExtra(SORTING_EXTRA, 0)];
+    threadId         = intent.getLongExtra(MediaIntentFactory.THREAD_ID_EXTRA, MediaIntentFactory.NOT_IN_A_THREAD);
+    cameFromAllMedia = intent.getBooleanExtra(MediaIntentFactory.HIDE_ALL_MEDIA_EXTRA, false);
+    showThread       = intent.getBooleanExtra(MediaIntentFactory.SHOW_THREAD_EXTRA, false);
+    sorting          = MediaDatabase.Sorting.values()[intent.getIntExtra(MediaIntentFactory.SORTING_EXTRA, 0)];
 
     initialMediaUri        = intent.getData();
     initialMediaType       = intent.getType();
-    initialMediaSize       = intent.getLongExtra(SIZE_EXTRA, 0);
-    initialCaption         = intent.getStringExtra(CAPTION_EXTRA);
-    leftIsRecent           = intent.getBooleanExtra(LEFT_IS_RECENT_EXTRA, false);
-    initialMediaIsVideoGif = intent.getBooleanExtra(IS_VIDEO_GIF, false);
+    initialMediaSize       = intent.getLongExtra(MediaIntentFactory.SIZE_EXTRA, 0);
+    initialCaption         = intent.getStringExtra(MediaIntentFactory.CAPTION_EXTRA);
+    leftIsRecent           = intent.getBooleanExtra(MediaIntentFactory.LEFT_IS_RECENT_EXTRA, false);
+    initialMediaIsVideoGif = intent.getBooleanExtra(MediaIntentFactory.IS_VIDEO_GIF, false);
     restartItem            = -1;
   }
 
@@ -533,7 +522,7 @@ public final class MediaPreviewActivity extends PassphraseRequiredActivity
   }
 
   private boolean isMediaInDb() {
-    return threadId != NOT_IN_A_THREAD;
+    return threadId != MediaIntentFactory.NOT_IN_A_THREAD;
   }
 
   private @Nullable MediaItem getCurrentMediaItem() {
@@ -789,7 +778,7 @@ public final class MediaPreviewActivity extends PassphraseRequiredActivity
 
       cursor.moveToPosition(cursorPosition);
 
-      MediaDatabase.MediaRecord mediaRecord = MediaDatabase.MediaRecord.from(context, cursor);
+      MediaDatabase.MediaRecord mediaRecord = MediaDatabase.MediaRecord.from(cursor);
       DatabaseAttachment        attachment  = Objects.requireNonNull(mediaRecord.getAttachment());
       MediaPreviewFragment      fragment    = MediaPreviewFragment.newInstance(attachment, autoPlay);
 
@@ -819,7 +808,7 @@ public final class MediaPreviewActivity extends PassphraseRequiredActivity
 
       cursor.moveToPosition(cursorPosition);
 
-      MediaRecord        mediaRecord       = MediaRecord.from(context, cursor);
+      MediaRecord        mediaRecord       = MediaRecord.from(cursor);
       DatabaseAttachment attachment        = Objects.requireNonNull(mediaRecord.getAttachment());
       RecipientId        recipientId       = mediaRecord.getRecipientId();
       RecipientId        threadRecipientId = mediaRecord.getThreadRecipientId();

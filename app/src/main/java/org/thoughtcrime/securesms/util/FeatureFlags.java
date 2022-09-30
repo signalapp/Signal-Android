@@ -103,6 +103,7 @@ public final class FeatureFlags {
   private static final String CDS_V2_COMPAT                     = "android.cdsV2Compat.4";
   public  static final String STORIES_LOCALE                    = "android.stories.locale";
   private static final String HIDE_CONTACTS                     = "android.hide.contacts";
+  public  static final String MEDIA_PREVIEW_V2                  = "android.mediaPreviewV2";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -157,7 +158,8 @@ public final class FeatureFlags {
       SMS_EXPORTER,
       CDS_V2_COMPAT,
       STORIES_LOCALE,
-      HIDE_CONTACTS
+      HIDE_CONTACTS,
+      MEDIA_PREVIEW_V2
   );
 
   @VisibleForTesting
@@ -220,7 +222,8 @@ public final class FeatureFlags {
       RECIPIENT_MERGE_V2,
       CDS_V2_LOAD_TEST,
       CDS_V2_COMPAT,
-      STORIES
+      STORIES,
+      MEDIA_PREVIEW_V2
   );
 
   /**
@@ -563,6 +566,13 @@ public final class FeatureFlags {
    */
   public static boolean hideContacts() {
     return getBoolean(HIDE_CONTACTS, false);
+  }
+
+  /**
+   * Whether or not we should use the new media preview fragment implementation.
+   */
+  public static boolean mediaPreviewV2() {
+    return getBoolean(MEDIA_PREVIEW_V2, false);
   }
 
   /** Only for rendering debug info. */

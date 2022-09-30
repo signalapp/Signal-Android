@@ -28,7 +28,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.codewaves.stickyheadergrid.StickyHeaderGridLayoutManager;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.MediaPreviewActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.components.menu.ActionItem;
@@ -38,6 +37,7 @@ import org.thoughtcrime.securesms.components.voice.VoiceNotePlaybackState;
 import org.thoughtcrime.securesms.database.MediaDatabase;
 import org.thoughtcrime.securesms.database.loaders.GroupedThreadMediaLoader;
 import org.thoughtcrime.securesms.database.loaders.MediaLoader;
+import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.util.BottomOffsetDecoration;
@@ -46,6 +46,7 @@ import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public final class MediaOverviewPageFragment extends Fragment
   implements MediaGalleryAllAdapter.ItemClickListener,
@@ -236,18 +237,19 @@ public final class MediaOverviewPageFragment extends Fragment
     DatabaseAttachment attachment = mediaRecord.getAttachment();
 
     if (MediaUtil.isVideo(attachment) || MediaUtil.isImage(attachment)) {
-      Intent intent = new Intent(context, MediaPreviewActivity.class);
-      intent.putExtra(MediaPreviewActivity.DATE_EXTRA, mediaRecord.getDate());
-      intent.putExtra(MediaPreviewActivity.SIZE_EXTRA, mediaRecord.getAttachment().getSize());
-      intent.putExtra(MediaPreviewActivity.THREAD_ID_EXTRA, threadId);
-      intent.putExtra(MediaPreviewActivity.LEFT_IS_RECENT_EXTRA, true);
-      intent.putExtra(MediaPreviewActivity.HIDE_ALL_MEDIA_EXTRA, true);
-      intent.putExtra(MediaPreviewActivity.SHOW_THREAD_EXTRA, threadId == MediaDatabase.ALL_THREADS);
-      intent.putExtra(MediaPreviewActivity.SORTING_EXTRA, sorting.ordinal());
-      intent.putExtra(MediaPreviewActivity.IS_VIDEO_GIF, attachment.isVideoGif());
-
-      intent.setDataAndType(mediaRecord.getAttachment().getUri(), mediaRecord.getContentType());
-      context.startActivity(intent);
+      MediaIntentFactory.MediaPreviewArgs args = new MediaIntentFactory.MediaPreviewArgs(
+          threadId,
+          mediaRecord.getDate(),
+          Objects.requireNonNull(mediaRecord.getAttachment().getUri()),
+          mediaRecord.getContentType(),
+          mediaRecord.getAttachment().getSize(),
+          mediaRecord.getAttachment().getCaption(),
+          true,
+          true,
+          threadId == MediaDatabase.ALL_THREADS,
+          sorting.ordinal(),
+          attachment.isVideoGif());
+      context.startActivity(MediaIntentFactory.create(context, args));
     } else {
       if (!MediaUtil.isAudio(attachment)) {
         showFileExternally(context, mediaRecord);

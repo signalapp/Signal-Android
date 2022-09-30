@@ -47,14 +47,14 @@ public class MediaPreviewViewModel extends ViewModel {
 
     cursor.moveToPosition(activePosition);
 
-    MediaRecord       activeRecord = MediaRecord.from(context, cursor);
+    MediaRecord       activeRecord = MediaRecord.from(cursor);
     LinkedList<Media> rail         = new LinkedList<>();
 
     Media activeMedia = toMedia(activeRecord);
     if (activeMedia != null) rail.add(activeMedia);
 
     while (cursor.moveToPrevious()) {
-      MediaRecord record = MediaRecord.from(context, cursor);
+      MediaRecord record = MediaRecord.from(cursor);
       if (record.getAttachment().getMmsId() == activeRecord.getAttachment().getMmsId()) {
         Media media = toMedia(record);
         if (media != null) rail.addFirst(media);
@@ -66,7 +66,7 @@ public class MediaPreviewViewModel extends ViewModel {
     cursor.moveToPosition(activePosition);
 
     while (cursor.moveToNext()) {
-      MediaRecord record = MediaRecord.from(context, cursor);
+      MediaRecord record = MediaRecord.from(cursor);
       if (record.getAttachment().getMmsId() == activeRecord.getAttachment().getMmsId()) {
         Media media = toMedia(record);
         if (media != null) rail.addLast(media);

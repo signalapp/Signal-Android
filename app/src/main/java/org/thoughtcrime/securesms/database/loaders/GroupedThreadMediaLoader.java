@@ -75,7 +75,7 @@ public final class GroupedThreadMediaLoader extends AsyncTaskLoader<GroupedThrea
 
     try (Cursor cursor = ThreadMediaLoader.createThreadMediaCursor(context, threadId, mediaType, sorting)) {
       while (cursor != null && cursor.moveToNext()) {
-        mediaGrouping.add(MediaDatabase.MediaRecord.from(context, cursor));
+        mediaGrouping.add(MediaDatabase.MediaRecord.from(cursor));
       }
     }
 

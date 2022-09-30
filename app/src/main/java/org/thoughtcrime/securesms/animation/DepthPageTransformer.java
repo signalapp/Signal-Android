@@ -4,11 +4,12 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager2.widget.ViewPager2;
 
 /**
  * Based on https://developer.android.com/training/animation/screen-slide#depth-page
  */
-public final class DepthPageTransformer implements ViewPager.PageTransformer {
+public final class DepthPageTransformer implements ViewPager.PageTransformer, ViewPager2.PageTransformer {
   private static final float MIN_SCALE = 0.75f;
 
   public void transformPage(@NonNull View view, float position) {
