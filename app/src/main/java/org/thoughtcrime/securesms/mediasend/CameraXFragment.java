@@ -49,6 +49,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.animation.AnimationCompleteListener;
 import org.thoughtcrime.securesms.components.TooltipPopup;
 import org.thoughtcrime.securesms.mediasend.camerax.CameraXFlashToggleView;
+import org.thoughtcrime.securesms.mediasend.camerax.CameraXModePolicy;
 import org.thoughtcrime.securesms.mediasend.camerax.CameraXUtil;
 import org.thoughtcrime.securesms.mediasend.v2.MediaAnimations;
 import org.thoughtcrime.securesms.mediasend.v2.MediaCountIndicatorButton;
@@ -87,6 +88,7 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
   private MemoryFileDescriptor      videoFileDescriptor;
   private LifecycleCameraController cameraController;
   private Disposable                mostRecentItemDisposable = Disposable.disposed();
+  private CameraXModePolicy         cameraXModePolicy;
 
   private boolean isThumbAvailable;
   private boolean isMediaSelected;
@@ -136,13 +138,18 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
 
     this.previewView       = view.findViewById(R.id.camerax_camera);
     this.controlsContainer = view.findViewById(R.id.camerax_controls_container);
+    this.cameraXModePolicy = CameraXModePolicy.acquire(requireContext(),
+                                                       controller.getMediaConstraints(),
+                                                       requireArguments().getBoolean(IS_VIDEO_ENABLED, true));
+
+    Log.d(TAG, "Starting CameraX with mode policy " + cameraXModePolicy.getClass().getSimpleName());
 
     cameraController = new LifecycleCameraController(requireContext());
     cameraController.bindToLifecycle(getViewLifecycleOwner());
     cameraController.setCameraSelector(CameraXUtil.toCameraSelector(TextSecurePreferences.getDirectCaptureCameraId(requireContext())));
     cameraController.setTapToFocusEnabled(true);
     cameraController.setImageCaptureMode(CameraXUtil.getOptimalCaptureMode());
-    cameraController.setEnabledUseCases(getSupportedUseCases());
+    cameraXModePolicy.initialize(cameraController);
 
     previewView.setScaleType(PREVIEW_SCALE_TYPE);
     previewView.setController(cameraController);
@@ -335,7 +342,7 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
     galleryButton.setOnClickListener(v -> controller.onGalleryClicked());
     countButton.setOnClickListener(v -> controller.onCameraCountButtonClicked());
 
-    if (isVideoRecordingSupported(requireContext())) {
+    if (Build.VERSION.SDK_INT >= 26 && cameraXModePolicy.isVideoSupported()) {
       try {
         closeVideoFileDescriptor();
         videoFileDescriptor = CameraXVideoCaptureHelper.createFileDescriptor(requireContext());
@@ -356,6 +363,7 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
             cameraController,
             previewView,
             videoFileDescriptor,
+            cameraXModePolicy,
             maxDuration,
             new CameraXVideoCaptureHelper.Callback() {
               @Override
@@ -387,23 +395,6 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
                  "Camera: " + CameraXUtil.getLowestSupportedHardwareLevel(requireContext()) + ", " +
                  "MaxDuration: " + VideoUtil.getMaxVideoRecordDurationInSeconds(requireContext(), controller.getMediaConstraints()) + " sec");
     }
-  }
-
-  @CameraController.UseCases
-  private int getSupportedUseCases() {
-    if (isVideoRecordingSupported(requireContext())) {
-      return CameraController.IMAGE_CAPTURE | CameraController.VIDEO_CAPTURE;
-    } else {
-      return CameraController.IMAGE_CAPTURE;
-    }
-  }
-
-  private boolean isVideoRecordingSupported(@NonNull Context context) {
-    return Build.VERSION.SDK_INT >= 26 &&
-           requireArguments().getBoolean(IS_VIDEO_ENABLED, true) &&
-           MediaConstraints.isVideoTranscodeAvailable() &&
-           CameraXUtil.isMixedModeSupported(context) &&
-           VideoUtil.getMaxVideoRecordDurationInSeconds(context, controller.getMediaConstraints()) > 0;
   }
 
   private void displayVideoRecordingTooltipIfNecessary(CameraButtonView captureButton) {
