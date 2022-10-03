@@ -157,7 +157,7 @@ final class CdsiSocket {
           } catch (IOException | AttestationDataException | Cds2CommunicationFailureException e) {
             Log.w(TAG, e);
             webSocket.close(1000, "OK");
-            emitter.onError(e);
+            emitter.tryOnError(e);
           }
         }
 
@@ -170,13 +170,13 @@ final class CdsiSocket {
             Log.w(TAG, "Remote side is closing with non-normal code " + code);
             webSocket.close(1000, "Remote closed with code " + code);
             stage.set(Stage.FAILED);
-            emitter.onError(new NonSuccessfulResponseCodeException(code));
+            emitter.tryOnError(new NonSuccessfulResponseCodeException(code));
           }
         }
 
         @Override
         public void onFailure(WebSocket webSocket, Throwable t, Response response) {
-          emitter.onError(t);
+          emitter.tryOnError(t);
           stage.set(Stage.FAILED);
           webSocket.close(1000, "OK");
         }
