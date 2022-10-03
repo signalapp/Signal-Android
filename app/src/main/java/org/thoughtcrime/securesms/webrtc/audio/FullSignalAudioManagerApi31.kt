@@ -166,7 +166,12 @@ class FullSignalAudioManagerApi31(context: Context, eventListener: EventListener
   private fun updateAudioDeviceState() {
     handler.assertHandlerThread()
 
-    currentAudioDevice = AudioDeviceMapping.fromPlatformType(androidAudioManager.communicationDevice.type)
+    val communicationDevice: AudioDeviceInfo? = androidAudioManager.communicationDevice
+    currentAudioDevice = if (communicationDevice == null) {
+      AudioDevice.NONE
+    } else {
+      AudioDeviceMapping.fromPlatformType(communicationDevice.type)
+    }
     val availableCommunicationDevices: List<AudioDeviceInfo> = androidAudioManager.availableCommunicationDevices
     hasBluetoothHeadset = availableCommunicationDevices.any { AudioDeviceMapping.fromPlatformType(it.type) == AudioDevice.BLUETOOTH }
     hasWiredHeadset = availableCommunicationDevices.any { AudioDeviceMapping.fromPlatformType(it.type) == AudioDevice.WIRED_HEADSET }

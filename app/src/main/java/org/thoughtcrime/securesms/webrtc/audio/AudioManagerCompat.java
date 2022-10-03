@@ -103,6 +103,7 @@ public abstract class AudioManagerCompat {
   }
 
   @RequiresApi(31)
+  @Nullable
   public AudioDeviceInfo getCommunicationDevice() {
     return audioManager.getCommunicationDevice();
   }
