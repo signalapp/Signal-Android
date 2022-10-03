@@ -7,7 +7,6 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.logging.Log
 import org.signal.core.util.requireLong
 import org.thoughtcrime.securesms.attachments.AttachmentId
-import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.database.AttachmentDatabase
 import org.thoughtcrime.securesms.database.MediaDatabase
 import org.thoughtcrime.securesms.database.MediaDatabase.Sorting
@@ -29,11 +28,11 @@ class MediaPreviewRepository {
    * @param sorting the ordering of the results
    * @param limit the maximum quantity of the results
    */
-  fun getAttachments(startingUri: Uri, threadId: Long, sorting: Sorting, limit: Int = 500): Flowable<List<DatabaseAttachment>> {
+  fun getAttachments(startingUri: Uri, threadId: Long, sorting: Sorting, limit: Int = 500): Flowable<List<MediaDatabase.MediaRecord>> {
     return Single.fromCallable {
       val cursor = media.getGalleryMediaForThread(threadId, sorting)
 
-      val acc = mutableListOf<DatabaseAttachment>()
+      val acc = mutableListOf<MediaDatabase.MediaRecord>()
       var attachmentUri: Uri? = null
       while (cursor.moveToNext()) {
         val attachmentId = AttachmentId(cursor.requireLong(AttachmentDatabase.ROW_ID), cursor.requireLong(AttachmentDatabase.UNIQUE_ID))
@@ -45,7 +44,7 @@ class MediaPreviewRepository {
 
       if (attachmentUri == startingUri) {
         for (i in 0..limit) {
-          val element = MediaDatabase.MediaRecord.from(cursor).attachment
+          val element = MediaDatabase.MediaRecord.from(cursor)
           if (element != null) {
             acc.add(element)
           }

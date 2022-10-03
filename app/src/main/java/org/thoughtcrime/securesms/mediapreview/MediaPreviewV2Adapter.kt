@@ -6,8 +6,9 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.util.MediaUtil
 
-class PreviewMediaAdapter(val fragment: Fragment, val items: List<Attachment>) : FragmentStateAdapter(fragment) {
-  var autoPlayPosition = -1
+class MediaPreviewV2Adapter(val fragment: Fragment) : FragmentStateAdapter(fragment) {
+  private var items: List<Attachment> = listOf()
+  private var autoPlayPosition = -1
 
   override fun getItemCount(): Int {
     return items.count()
@@ -35,5 +36,12 @@ class PreviewMediaAdapter(val fragment: Fragment, val items: List<Attachment>) :
     fragment.arguments = args
 
     return fragment
+  }
+
+  fun updateBackingItems(newItems: Collection<Attachment>) {
+    if (newItems != items) {
+      items = newItems.toList()
+      notifyDataSetChanged()
+    }
   }
 }

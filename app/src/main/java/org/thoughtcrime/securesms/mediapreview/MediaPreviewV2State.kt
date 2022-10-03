@@ -1,10 +1,12 @@
 package org.thoughtcrime.securesms.mediapreview
 
-import org.thoughtcrime.securesms.attachments.Attachment
+import org.thoughtcrime.securesms.database.MediaDatabase
 
 data class MediaPreviewV2State(
-  val attachments: List<Attachment> = emptyList(),
-  val loadState: LoadState = LoadState.INIT
+  val mediaRecords: List<MediaDatabase.MediaRecord> = emptyList(),
+  val loadState: LoadState = LoadState.INIT,
+  val position: Int = 0,
+  val showThread: Boolean = false
 ) {
   enum class LoadState { INIT, READY, }
 }

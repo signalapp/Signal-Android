@@ -21,8 +21,5 @@ class MediaPreviewV2Activity : AppCompatActivity(R.layout.activity_mediapreview_
 
   companion object {
     private const val FRAGMENT_TAG = "media_preview_fragment_v2"
-    private const val NOT_IN_A_THREAD = -2
-
-    const val THREAD_ID_EXTRA = "thread_id"
   }
 }

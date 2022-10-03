@@ -19,8 +19,23 @@ class MediaPreviewV2ViewModel : ViewModel() {
   val state: Flowable<MediaPreviewV2State> = store.stateFlowable.observeOn(AndroidSchedulers.mainThread())
 
   fun fetchAttachments(startingUri: Uri, threadId: Long, sorting: MediaDatabase.Sorting) {
-    disposables += store.update(repository.getAttachments(startingUri, threadId, sorting)) { attachments, oldState ->
-      oldState.copy(attachments = attachments, loadState = MediaPreviewV2State.LoadState.READY)
+    disposables += store.update(repository.getAttachments(startingUri, threadId, sorting)) { mediaRecords: List<MediaDatabase.MediaRecord>, oldState: MediaPreviewV2State ->
+      oldState.copy(
+        mediaRecords = mediaRecords,
+        loadState = MediaPreviewV2State.LoadState.READY
+      )
+    }
+  }
+
+  fun setShowThread(value: Boolean) {
+    store.update { oldState ->
+      oldState.copy(showThread = value)
+    }
+  }
+
+  fun setCurrentPage(position: Int) {
+    store.update { oldState ->
+      oldState.copy(position = position)
     }
   }
 
