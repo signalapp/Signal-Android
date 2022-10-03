@@ -1288,9 +1288,9 @@
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Suka fitur baru ini? Dukung Signal dengan donasi satu kali.</string>
     <!-- Update item message shown when we merge two threads together -->
-    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Your message history with %1$s and their number %2$s has been merged.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Riwayat pesan Anda dengan %1$s dan nomor %2$s telah digabungkan.</string>
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
-    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Your message history with %1$s and another chat that belonged to them has been merged.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Riwayat pesan Anda dengan %1$s dan satu obrolan lain dengan mereka telah digabungkan.</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s memulai panggilan grup. %2$s</string>
@@ -3646,10 +3646,10 @@
     <string name="payment_info_card_hide_this_card">Sembunyikan kartu ini?</string>
     <string name="payment_info_card_hide">Sembunyikan</string>
     <!-- Title of save recovery phrase card -->
-    <string name="payment_info_card_save_recovery_phrase">Save recovery phrase</string>
+    <string name="payment_info_card_save_recovery_phrase">Simpan frasa pemulihan</string>
     <string name="payment_info_card_your_recovery_phrase_gives_you">Frasa pemulihan Anda memberikan cara lain untuk Anda memulihkan akun pembayaran Anda.</string>
     <!-- Button in save recovery phrase card -->
-    <string name="payment_info_card_save_your_phrase">Save your phrase</string>
+    <string name="payment_info_card_save_your_phrase">Simpan frasa Anda</string>
     <string name="payment_info_card_update_your_pin">Perbarui PIN Anda</string>
     <string name="payment_info_card_with_a_high_balance">Dengan saldo yang tinggi, Anda mungkin ingin memperbarui PIN alfanumerik untuk menambah perlindungan tambahan atas akun Anda.</string>
     <string name="payment_info_card_update_pin">Perbarui PIN</string>
@@ -3674,23 +3674,23 @@
     <string name="PaymentsRecoveryStartFragment__recovery_phrase">Frasa pemulihan</string>
     <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Lihat frasa pemulihan</string>
     <!-- Title in save recovery phrase screen -->
-    <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Save recovery phrase</string>
+    <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Simpan frasa pemulihan</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Masukkan frasa pemulihan</string>
     <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Saldo Anda akan dipulihkan secara otomatis saat Anda memasang ulang Signal jika Anda mengkonfirmasi PIN Signal. Anda juga dapat memulihkan saldo menggunakan frasa pemulihan, yang berupa %1$d-frasa kata unik untuk Anda. Tuliskan dan simpan di tempat yang aman.</string>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
-    <string name="PaymentsRecoveryStartFragment__got_balance">You’ve got a balance! Time to save your recovery phrase—a 24-word key you can use to restore your balance.</string>
+    <string name="PaymentsRecoveryStartFragment__got_balance">Anda memiliki saldo! Waktunya menyimpan frasa pemulihan—ini adalah kunci 24 kata yang bisa digunakan untuk memulihkan saldo.</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
-    <string name="PaymentsRecoveryStartFragment__time_to_save">Time to save your recovery phrase—a 24-word key you can use to restore your balance. Learn more</string>
+    <string name="PaymentsRecoveryStartFragment__time_to_save">Waktunya menyimpan frasa pemulihan—ini adalah kunci 24 kata yang bisa digunakan untuk memulihkan saldo. Pelajari lebih lanjut</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Frasa pemulihan Anda berupa%1$d-frasa kata unik untuk Anda. Gunakan frasa ini untuk memulihkan saldo Anda.</string>
     <string name="PaymentsRecoveryStartFragment__start">Mulai</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">Masukkan secara manual</string>
     <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Tempel dari papan klip</string>
     <!-- Alert dialog title which asks before going back if user wants to save recovery phrase -->
-    <string name="PaymentsRecoveryStartFragment__continue_without_saving">Continue Without Saving?</string>
+    <string name="PaymentsRecoveryStartFragment__continue_without_saving">Lanjutkan Tanpa Menyimpan?</string>
     <!-- Alert dialog description to let user know why recovery phrase needs to be saved -->
-    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">Your recovery phrase lets you restore your balance in a worst-case scenario. We strongly recommend you save it.</string>
+    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">Frasa pemulihan memungkinkan Anda memulihkan saldo jika terjadi skenario terburuk. Sangat disarankan untuk menyimpannya.</string>
     <!-- Alert dialog option to skip recovery phrase -->
-    <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">Skip Recovery Phrase</string>
+    <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">Lewati Frasa Pemulihan</string>
     <!-- Alert dialog option to cancel dialog-->
     <string name="PaymentsRecoveryStartFragment__cancel">Batal</string>
 
@@ -3846,9 +3846,9 @@
     <!-- Preference title to delete sms -->
     <string name="SmsSettingsFragment__remove_sms_messages">Hapus pesan SMS</string>
     <!-- Snackbar text to confirm deletion -->
-    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Removing SMS messages from Signal…</string>
+    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Menghapus pesan SMS dari Signal…</string>
     <!-- Snackbar text to indicate can delete later -->
-    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">You can remove SMS messages from Signal in Settings at any time.</string>
+    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">Anda bisa menghapus pesan SMS dari Signal di Pengaturan kapan saja.</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">Pesan</string>
@@ -4096,17 +4096,17 @@
     <!-- Dialog title when removing a contact -->
     <string name="NewConversationActivity__remove_s">Hapus %1$s?</string>
     <!-- Dialog message when removing a contact -->
-    <string name="NewConversationActivity__you_wont_see_this_person">You won\'t see this person when searching. You\'ll get a message request if they message you in the future.</string>
+    <string name="NewConversationActivity__you_wont_see_this_person">Anda tidak akan melihat orang ini saat melakukan pencarian. Anda akan mendapatkan permintaan pesan jika mereka mengirimi Anda pesan di masa mendatang.</string>
     <!-- Snackbar message after removing a contact -->
-    <string name="NewConversationActivity__s_has_been_removed">%1$s has been removed</string>
+    <string name="NewConversationActivity__s_has_been_removed">%1$s telah dihapus</string>
     <!-- Snackbar message after blocking a contact -->
-    <string name="NewConversationActivity__s_has_been_blocked">%1$s has been blocked</string>
+    <string name="NewConversationActivity__s_has_been_blocked">%1$s telah diblokir</string>
     <!-- Dialog title when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__unable_to_remove_s">Unable to remove %1$s</string>
+    <string name="NewConversationActivity__unable_to_remove_s">Tidak dapat menghapus %1$s</string>
     <!-- Dialog message when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__this_person_is_saved_to_your">This person is saved to your device\'s Contacts. Delete them from your Contacts and try again.</string>
+    <string name="NewConversationActivity__this_person_is_saved_to_your">Orang ini disimpan di Kontak perangkat Anda. Hapus dari Kontak dan coba lagi.</string>
     <!-- Dialog action to view contact when they can't be removed otherwise -->
-    <string name="NewConversationActivity__view_contact">View contact</string>
+    <string name="NewConversationActivity__view_contact">Lihat kontak</string>
 
     <!-- ContactFilterView -->
     <string name="ContactFilterView__search_name_or_number">Cari nama atau nomor</string>
@@ -4605,7 +4605,7 @@
     <!-- Subtitle for "My Stories" row item when user has not added stories -->
     <string name="StoriesLandingFragment__tap_to_add_a_story">Ketuk untuk menambahkan cerita</string>
     <!-- Displayed when there are no stories to display -->
-    <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now">No recent updates to show right now.</string>
+    <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now">Tidak ada pembaruan terkini yang bisa ditampilkan sekarang.</string>
     <!-- Context menu option to hide a story -->
     <string name="StoriesLandingItem__hide_story">Sembunyikan cerita</string>
     <!-- Context menu option to unhide a story -->
@@ -5111,7 +5111,7 @@
     <!-- Title of the screen -->
     <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">Ekspor pesan SMS Anda</string>
     <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">You can export your SMS messages to your phone\'s SMS database. This allows other SMS apps on your phone to access and import them. This does not create a shareable file of your SMS message history.</string>
+    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">Anda dapat mengekspor pesan SMS ke basis data SMS ponsel Anda. Ini memungkinkan aplikasi SMS lain di ponsel untuk mengakses dan mengimpornya. Tindakan ini tidak menghasilkan file yang bisa dibagikan dari riwayat pesan SMS Anda.</string>
     <!-- Button label to begin export -->
     <string name="ExportYourSmsMessagesFragment__continue">Lanjutkan</string>
 
@@ -5137,17 +5137,17 @@
     <!-- Fourth step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_4">4</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">Tap \"Continue\" to open the \"Default apps\" screen in Settings</string>
+    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">Ketuk \"Lanjutkan\" untuk membuka layar \"Aplikasi default\" di Pengaturan</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">Select \"SMS app\" from the list</string>
+    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">Pilih \"Aplikasi SMS\" dari daftar</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">Choose another app to use for SMS messaging</string>
+    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">Pilih aplikasi lain yang akan digunakan untuk perpesanan SMS</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">Return to Signal</string>
+    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">Kembali ke Signal</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">Open your phone\'s Settings app</string>
+    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">Buka aplikasi Pengaturan di ponsel Anda</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">Navigate to \"Apps\" &gt; \"Default apps\" &gt; \"SMS app\"</string>
+    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">Cari dan buka \"Aplikasi\" &gt; \"Aplikasi default\" &gt; \"Aplikasi SMS\"</string>
 
     <!-- RemoveSmsMessagesDialogFragment -->
     <!-- Action button to keep messages -->
@@ -5157,13 +5157,13 @@
     <!-- Title of dialog -->
     <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Hapus pesan SMS dari Signal?</string>
     <!-- Message of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">You can now remove SMS messages from Signal to clear up storage space. They will still be available to other SMS apps on your phone even if you remove them.</string>
+    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">Kini Anda dapat menghapus pesan SMS dari Signal untuk mengosongkan ruang penyimpanan. Pesan masih bisa dilihat di aplikasi SMS lain di ponsel meskipun Anda menghapusnya.</string>
 
     <!-- SetSignalAsDefaultSmsAppFragment -->
     <!-- Title of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">Set Signal as the default SMS app</string>
+    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">Tetapkan Signal sebagai aplikasi SMS default</string>
     <!-- Message of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">To export your SMS messages, you need to set Signal as the default SMS app.</string>
+    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">Untuk mengekspor pesan SMS, Anda harus menetapkan Signal sebagai aplikasi SMS default.</string>
     <!-- Button label to start export -->
     <string name="SetSignalAsDefaultSmsAppFragment__next">Berikutnya</string>
 

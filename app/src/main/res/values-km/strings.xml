@@ -1288,9 +1288,9 @@
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">ចូលចិត្តមុខងារថ្មីនេះឬ? ជួយគាំទ្រ Signal ជាមួយនឹងការបរិច្ចាគតែមួយដង។</string>
     <!-- Update item message shown when we merge two threads together -->
-    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Your message history with %1$s and their number %2$s has been merged.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">ប្រវត្តិសាររបស់អ្នកជាមួយ %1$s និងលេខ %2$s របស់គេត្រូវបានបញ្ចូលគ្នា។</string>
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
-    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Your message history with %1$s and another chat that belonged to them has been merged.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">ប្រវត្តិសាររបស់អ្នកជាមួយ %1$s និងការជជែកមួយផ្សេងទៀតដែលមានគេនៅក្នុងនោះដែរត្រូវបានបញ្ចូលគ្នា។</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s បានចាប់ផ្តើមការហៅជាក្រុម · %2$s</string>
@@ -1800,7 +1800,7 @@
 
     <!-- UsernameEditFragment -->
     <!-- Toolbar title when entering from registration -->
-    <string name="UsernameEditFragment__add_a_username">Add a username</string>
+    <string name="UsernameEditFragment__add_a_username">បញ្ចូលឈ្មោះអ្នកប្រើ</string>
     <!-- Instructional text at the top of the username edit screen -->
     <string name="UsernameEditFragment__choose_your_username">ជ្រើសរើសឈ្មោះអ្នកប្រើរបស់អ្នក</string>
     <string name="UsernameEditFragment_username">ឈ្មោះអ្នកប្រើប្រាស់</string>
@@ -3646,10 +3646,10 @@
     <string name="payment_info_card_hide_this_card">លាក់កាតនេះ?</string>
     <string name="payment_info_card_hide">លាក់</string>
     <!-- Title of save recovery phrase card -->
-    <string name="payment_info_card_save_recovery_phrase">Save recovery phrase</string>
+    <string name="payment_info_card_save_recovery_phrase">រក្សាទុកឃ្លាសម្រាប់ស្តារ</string>
     <string name="payment_info_card_your_recovery_phrase_gives_you">ឃ្លាសង្គ្រោះរបស់អ្នក ជាវិធីមួយទៀតសម្រាប់ជួយស្ដារគណនីទូទាត់ប្រាក់របស់អ្នក</string>
     <!-- Button in save recovery phrase card -->
-    <string name="payment_info_card_save_your_phrase">Save your phrase</string>
+    <string name="payment_info_card_save_your_phrase">រក្សាទុកឃ្លារបស់អ្នក</string>
     <string name="payment_info_card_update_your_pin">ធ្វើបច្ចុប្បន្នភាពលេខកូដរបស់អ្នក</string>
     <string name="payment_info_card_with_a_high_balance">អ្នកគួរតែធ្វើបច្ចុប្បន្នភាពលេខកូដរបស់អ្នកដោយបន្ថែមអក្សរ និងលេខដើម្បីបន្ថែមសុវត្ថិភាពគណនីដែលមានសមតុល្យខ្ពស់របស់អ្នក។</string>
     <string name="payment_info_card_update_pin">ធ្វើបច្ចុប្បន្នភាពកូដ PIN</string>
@@ -3674,23 +3674,23 @@
     <string name="PaymentsRecoveryStartFragment__recovery_phrase">ឃ្លាសង្គ្រោះ</string>
     <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">មើលឃ្លាសង្គ្រោះ</string>
     <!-- Title in save recovery phrase screen -->
-    <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Save recovery phrase</string>
+    <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">រក្សាទុកឃ្លាសម្រាប់ស្តារ</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">បញ្ជូលឃ្លាសង្គ្រោះ</string>
     <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">សមតុល្យរបស់អ្នកនឹងស្ដារឡើងវិញដោយស្វ័យប្រវត្តិនៅពេលអ្នកដំឡើង Signal ឡើងវិញ ប្រសិនបើអ្នកបញ្ជាក់លេខកូដ Signal របស់អ្នក។ អ្នកក៏អាចស្ដារសមតុល្យរបស់អ្នកដោយប្រើឃ្លាសង្គ្រោះ ដែលជាឃ្លា %1$dតែមួយគត់សម្រាប់អ្នក។ សរសេរ​វា​ ហើយ​ទុក​ក្នុង​កន្លែង​មាន​សុវត្ថិភាព។</string>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
-    <string name="PaymentsRecoveryStartFragment__got_balance">You’ve got a balance! Time to save your recovery phrase—a 24-word key you can use to restore your balance.</string>
+    <string name="PaymentsRecoveryStartFragment__got_balance">អ្នកមានសមតុល្យ! ដល់ពេលដែលត្រូវរក្សាទុកឃ្លាសម្រាប់ស្តាររបស់អ្នកហើយ—គន្លឹះដែលមាន 24 ពាក្យដែលអ្នកអាចប្រើដើម្បីស្ដារសមតុល្យរបស់អ្នក។</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
-    <string name="PaymentsRecoveryStartFragment__time_to_save">Time to save your recovery phrase—a 24-word key you can use to restore your balance. Learn more</string>
+    <string name="PaymentsRecoveryStartFragment__time_to_save">ដល់ពេលដែលត្រូវរក្សាទុកឃ្លាសម្រាប់ស្តាររបស់អ្នកហើយ—គន្លឹះដែលមាន 24 ពាក្យដែលអ្នកអាចប្រើដើម្បីស្ដារសមតុល្យរបស់អ្នក។ ស្វែងយល់បន្ថែម</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">ឃ្លាសង្គ្រោះរបស់អ្នក គឺជា%1$dពាក្យដែលប្លែកសម្រាប់អ្នក។ សូមប្រើឃ្លានេះសម្រាប់ទាញយកសមតុលអ្នកមកវិញ។</string>
     <string name="PaymentsRecoveryStartFragment__start">ចាប់ផ្ដើម</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">បញ្ជូលដោយខ្លួនឯង</string>
     <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">ភ្ជាប់ពី clipboard</string>
     <!-- Alert dialog title which asks before going back if user wants to save recovery phrase -->
-    <string name="PaymentsRecoveryStartFragment__continue_without_saving">Continue Without Saving?</string>
+    <string name="PaymentsRecoveryStartFragment__continue_without_saving">បន្តដោយមិនរក្សាទុកឬ?</string>
     <!-- Alert dialog description to let user know why recovery phrase needs to be saved -->
-    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">Your recovery phrase lets you restore your balance in a worst-case scenario. We strongly recommend you save it.</string>
+    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">ឃ្លាសម្រាប់ស្តាររបស់អ្នកអាចឲ្យអ្នកស្ដារសមតុល្យរបស់អ្នកមកវិញបាន ក្នុងករណីដែលអាក្រក់បំផុត។ យើងសូមណែនាំឲ្យអ្នករក្សាទុកវាកុំខាន។</string>
     <!-- Alert dialog option to skip recovery phrase -->
-    <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">Skip Recovery Phrase</string>
+    <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">រំលងឃ្លាសម្រាប់ស្តារ</string>
     <!-- Alert dialog option to cancel dialog-->
     <string name="PaymentsRecoveryStartFragment__cancel">បោះបង់</string>
 
@@ -3846,9 +3846,9 @@
     <!-- Preference title to delete sms -->
     <string name="SmsSettingsFragment__remove_sms_messages">ដកសារជាអក្សរចេញ</string>
     <!-- Snackbar text to confirm deletion -->
-    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Removing SMS messages from Signal…</string>
+    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">កំពុងលុបសារជាអក្សរចេញពី Signal…</string>
     <!-- Snackbar text to indicate can delete later -->
-    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">You can remove SMS messages from Signal in Settings at any time.</string>
+    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">អ្នកអាចលុបសារជាអក្សរចេញពី Signal នៅក្នុងការកំណត់នៅពេលណាក៏បាន។</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">សារ</string>
@@ -4096,17 +4096,17 @@
     <!-- Dialog title when removing a contact -->
     <string name="NewConversationActivity__remove_s">ដក %1$s ចេញឬ?</string>
     <!-- Dialog message when removing a contact -->
-    <string name="NewConversationActivity__you_wont_see_this_person">You won\'t see this person when searching. You\'ll get a message request if they message you in the future.</string>
+    <string name="NewConversationActivity__you_wont_see_this_person">អ្នកនឹងមិនឃើញបុគ្គលនេះទេ នៅពេលស្វែងរក។ អ្នកនឹងទទួលបានសំណើសារមួយប្រសិនបើគេផ្ញើសារមកអ្នកនៅពេលអនាគត។</string>
     <!-- Snackbar message after removing a contact -->
-    <string name="NewConversationActivity__s_has_been_removed">%1$s has been removed</string>
+    <string name="NewConversationActivity__s_has_been_removed">%1$s ត្រូវបានដកចេញ</string>
     <!-- Snackbar message after blocking a contact -->
-    <string name="NewConversationActivity__s_has_been_blocked">%1$s has been blocked</string>
+    <string name="NewConversationActivity__s_has_been_blocked">%1$s ត្រូវបានទប់ស្កាត់</string>
     <!-- Dialog title when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__unable_to_remove_s">Unable to remove %1$s</string>
+    <string name="NewConversationActivity__unable_to_remove_s">មិនអាចដក %1$s ចេញបានទេ</string>
     <!-- Dialog message when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__this_person_is_saved_to_your">This person is saved to your device\'s Contacts. Delete them from your Contacts and try again.</string>
+    <string name="NewConversationActivity__this_person_is_saved_to_your">បុគ្គលនេះត្រូវបានរក្សាទុកទៅក្នុងឈ្មោះទំនាក់ទំនងរបស់ឧបករណ៍អ្នក។ លុបគេចេញពីឈ្មោះទំនាក់ទំនងរបស់អ្នក ហើយព្យាយាមម្តងទៀត។</string>
     <!-- Dialog action to view contact when they can't be removed otherwise -->
-    <string name="NewConversationActivity__view_contact">View contact</string>
+    <string name="NewConversationActivity__view_contact">មើលឈ្មោះទំនាក់ទំនង</string>
 
     <!-- ContactFilterView -->
     <string name="ContactFilterView__search_name_or_number">ស្វែងរកឈ្មោះ ឬលេខទូរស័ព្ទ</string>
@@ -4605,7 +4605,7 @@
     <!-- Subtitle for "My Stories" row item when user has not added stories -->
     <string name="StoriesLandingFragment__tap_to_add_a_story">ចុចដើម្បីបញ្ចូលរឿងរ៉ាវ</string>
     <!-- Displayed when there are no stories to display -->
-    <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now">No recent updates to show right now.</string>
+    <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now">មិនមានព័ត៌មានថ្មីៗសម្រាប់បង្ហាញនៅពេលនេះទេ។</string>
     <!-- Context menu option to hide a story -->
     <string name="StoriesLandingItem__hide_story">លាក់រឿងរ៉ាវ</string>
     <!-- Context menu option to unhide a story -->
@@ -4671,9 +4671,9 @@
     <!-- Displayed when viewing a post from another user with no replies -->
     <string name="StoryViewerPageFragment__reply">ឆ្លើយតប</string>
     <!-- Displayed when viewing a post that has failed to send to some users -->
-    <string name="StoryViewerPageFragment__partially_sent">Partially sent. Tap for details</string>
+    <string name="StoryViewerPageFragment__partially_sent">បានផ្ញើផ្នែកខ្លះ។ សូមចុចដើម្បីបានព័ត៌មានលម្អិត</string>
     <!-- Displayed when viewing a post that has failed to send -->
-    <string name="StoryViewerPageFragment__send_failed">Send failed. Tap to retry</string>
+    <string name="StoryViewerPageFragment__send_failed">មិនអាចផ្ញើបាន។ ចុចដើម្បីព្យាយាមម្តងទៀត</string>
     <!-- Label for the reply button in story viewer, which will launch the group story replies bottom sheet. -->
     <string name="StoryViewerPageFragment__reply_to_group">ឆ្លើយតបទៅក្រុម</string>
     <!-- Displayed when a story has no views -->
@@ -5111,7 +5111,7 @@
     <!-- Title of the screen -->
     <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">នាំចេញសារជាអក្សររបស់អ្នក</string>
     <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">You can export your SMS messages to your phone\'s SMS database. This allows other SMS apps on your phone to access and import them. This does not create a shareable file of your SMS message history.</string>
+    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">អ្នកអាចនាំចេញសារជាអក្សររបស់អ្នកទៅកាន់មូលដ្ឋានទិន្នន័យសារជាអក្សររបស់ទូរសព្ទអ្នក។ ការធ្វើបែបនេះអាចឲ្យកម្មវិធីសារជាអក្សរផ្សេងទៀតនៅលើទូរសព្ទរបស់អ្នក ចូលប្រើ និងនាំចូលពួកវាបាន។ ការធ្វើបែបនេះមិនបង្កើតជាឯកសារដែលអាចចែករំលែកបាននៃប្រវត្តិសារជាអក្សររបស់អ្នកទេ។</string>
     <!-- Button label to begin export -->
     <string name="ExportYourSmsMessagesFragment__continue">បន្ត</string>
 
@@ -5137,17 +5137,17 @@
     <!-- Fourth step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_4">4</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">Tap \"Continue\" to open the \"Default apps\" screen in Settings</string>
+    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">ចុច \"បន្ត\" ដើម្បីបើកអេក្រង់ \"កម្មវិធីលំនាំដើម\" នៅក្នុងការកំណត់</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">Select \"SMS app\" from the list</string>
+    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">ជ្រើសរើស \"កម្មវិធីសារជាអក្សរ\" ពីបញ្ជី</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">Choose another app to use for SMS messaging</string>
+    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">ជ្រើសរើសកម្មវិធីមួយទៀតដើម្បីប្រើសម្រាប់ផ្ញើសារជាអក្សរ</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">Return to Signal</string>
+    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">ត្រឡប់ទៅ Signal វិញ</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">Open your phone\'s Settings app</string>
+    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">បើកកម្មវិធីការកំណត់របស់ទូរសព្ទអ្នក</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">Navigate to \"Apps\" &gt; \"Default apps\" &gt; \"SMS app\"</string>
+    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">ចូលទៅកាន់ \"កម្មវិធី\" &gt; \"កម្មវិធីលំនាំដើម\" &gt; \"កម្មវិធីសារជាអក្សរ\"</string>
 
     <!-- RemoveSmsMessagesDialogFragment -->
     <!-- Action button to keep messages -->
@@ -5157,13 +5157,13 @@
     <!-- Title of dialog -->
     <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">ដកសារជាអក្សរចេញពី Signal ឬ?</string>
     <!-- Message of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">You can now remove SMS messages from Signal to clear up storage space. They will still be available to other SMS apps on your phone even if you remove them.</string>
+    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">ឥឡូវនេះ អ្នកអាចលុបសារជាអក្សរចេញពី Signal ដើម្បីសម្អាតទំហំផ្ទុក។ ពួកវានឹងនៅតែមានសម្រាប់កម្មវិធីសារជាអក្សរផ្សេងទៀតនៅលើទូរសព្ទរបស់អ្នក ទោះបីជាអ្នកលុបពួកវាចេញក៏ដោយ។</string>
 
     <!-- SetSignalAsDefaultSmsAppFragment -->
     <!-- Title of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">Set Signal as the default SMS app</string>
+    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">កំណត់ Signal ជាកម្មវិធីសារជាអក្សរលំនាំដើម</string>
     <!-- Message of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">To export your SMS messages, you need to set Signal as the default SMS app.</string>
+    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">ដើម្បីនាំចេញសារជាអក្សររបស់អ្នក អ្នកត្រូវកំណត់ Signal ជាកម្មវិធីសារជាអក្សរលំនាំដើម។</string>
     <!-- Button label to start export -->
     <string name="SetSignalAsDefaultSmsAppFragment__next">បន្ទាប់</string>
 

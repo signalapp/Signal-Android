@@ -358,8 +358,8 @@
     </plurals>
     <string name="ConversationFragment_save_to_sd_card">I-save sa storage?</string>
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
-        <item quantity="one">Saving this media to storage will allow any other apps on your device to access it.\n\nContinue?</item>
-        <item quantity="other">Saving all %1$d media to storage will allow any other apps on your device to access them.\n\nContinue?</item>
+        <item quantity="one">Ma-access ng iba pang apps sa device mo ang media na ito sa storage kapag sinave mo ito.\n\nGusto mo bang magpatuloy?</item>
+        <item quantity="other">Ma-access ng iba pang apps sa device mo ang %1$d media sa storage kapag sinave mo ito.\n\nGusto mo bang magpatuloy?</item>
     </plurals>
     <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
         <item quantity="one">Nagkaproblema habang isine-save ang kalakip sa storage!</item>
@@ -367,12 +367,12 @@
     </plurals>
     <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Hindi makapagsulat sa storage!</string>
     <plurals name="ConversationFragment_saving_n_attachments">
-        <item quantity="one">Saving attachment</item>
-        <item quantity="other">Saving %1$d attachments</item>
+        <item quantity="one">Sine-save ang attachment</item>
+        <item quantity="other">Sine-save ang %1$d attachments</item>
     </plurals>
     <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="one">Saving attachment to storage…</item>
-        <item quantity="other">Saving %1$d attachments to storage…</item>
+        <item quantity="one">Sine-save ang attachment sa storage...</item>
+        <item quantity="other">Sine-save ang %1$d attachments sa storage...</item>
     </plurals>
     <string name="ConversationFragment_pending">Nakabinbin…</string>
     <string name="ConversationFragment_push">Data (Signal)</string>
@@ -418,19 +418,19 @@
         <item quantity="other">Burahin ang mga piniling pag-uusap?</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">This will permanently delete the selected conversation.</item>
-        <item quantity="other">This will permanently delete all %1$d selected conversations.</item>
+        <item quantity="one">Permanenteng made-delete ang piniling chat.</item>
+        <item quantity="other">Permanenteng made-delete ang %1$d piniling chats.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Binubura</string>
     <string name="ConversationListFragment_deleting_selected_conversations">Binubura ang mga piniling pag-uusap…</string>
     <plurals name="ConversationListFragment_conversations_archived">
-        <item quantity="one">Conversation archived</item>
-        <item quantity="other">%1$d conversations archived</item>
+        <item quantity="one">In-archive ang chat</item>
+        <item quantity="other">In-archive ang %1$d chat</item>
     </plurals>
     <string name="ConversationListFragment_undo">Undo</string>
     <plurals name="ConversationListFragment_moved_conversations_to_inbox">
-        <item quantity="one">Moved conversation to inbox</item>
-        <item quantity="other">Moved %1$d conversations to inbox</item>
+        <item quantity="one">Nilipat ang chat sa inbox</item>
+        <item quantity="other">Nilipat ang %1$d chats sa inbox</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
         <item quantity="one">Read</item>
@@ -664,8 +664,8 @@
 
     <!-- GV2 invites sent -->
     <plurals name="GroupManagement_invitation_sent">
-        <item quantity="one">Invitation sent</item>
-        <item quantity="other">%1$d invitations sent</item>
+        <item quantity="one">Pinadala ang invite</item>
+        <item quantity="other">Pinadala ang %1$d invites</item>
     </plurals>
     <string name="GroupManagement_invite_single_user">Si \"%1$s\" ay hindi mo automatic na maidadagdag sa grupong ito. Siya ay naimbitahang mag-join, at hindi makakakita ng anumang group messages hanggang i-accept niya ito.</string>
     <string name="GroupManagement_invite_multiple_users">Ang users na ito ay hindi mo automatic na maidadagdag sa grupong ito. Sila ay naimbitahan mag-join, at hindi makakakita ng anumang group messages hanggang i-accept nila ito.</string>
@@ -765,8 +765,8 @@
     <string name="PendingMembersActivity_revoke_invite">I-revoke ang invite</string>
     <string name="PendingMembersActivity_revoke_invites">I-revoke ang invites</string>
     <plurals name="PendingMembersActivity_revoke_d_invites">
-        <item quantity="one">Revoke invite</item>
-        <item quantity="other">Revoke %1$d invites</item>
+        <item quantity="one">Bawiin ang invite</item>
+        <item quantity="other">Bawiin ang %1$d invites</item>
     </plurals>
     <plurals name="PendingMembersActivity_error_revoking_invite">
         <item quantity="one">Error revoking invite</item>
@@ -785,8 +785,8 @@
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Hindi ma-add sa legacy groups ang user na ito.</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">Hindi ma-add sa announcement groups ang user na ito.</string>
     <plurals name="AddMembersActivity__add_d_members_to_s">
-        <item quantity="one">Add \"%1$s\" to \"%2$s\"?</item>
-        <item quantity="other">Add %3$d members to \"%2$s\"?</item>
+        <item quantity="one">Gusto mo bang mag-add ng \"%1$s\" member sa \"%2$s\"?</item>
+        <item quantity="other">Gusto mo bang mag-add ng %3$d members sa \"%2$s\"?</item>
     </plurals>
     <string name="AddMembersActivity__add">Mag-add</string>
     <string name="AddMembersActivity__add_members">Magdagdag ng mga kasapi</string>
@@ -887,8 +887,8 @@
     </plurals>
 
     <plurals name="GroupMemberList_invited">
-        <item quantity="one">%1$s invited 1 person</item>
-        <item quantity="other">%1$s invited %2$d people</item>
+        <item quantity="one">Nag-invite si %1$s ng 1 tao</item>
+        <item quantity="other">Nag-invite si %1$s ng %2$d tao</item>
     </plurals>
 
     <!-- CustomNotificationsDialogFragment -->
@@ -926,8 +926,8 @@
     <!-- GV2 Invite Revoke confirmation dialog -->
     <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Gusto mo bang bawiin ang invite na ipinadala mo kay %1$s?</string>
     <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
-        <item quantity="one">Do you want to revoke the invite sent by %1$s?</item>
-        <item quantity="other">Do you want to revoke %2$d invites sent by %1$s?</item>
+        <item quantity="one">Gusto mo bang bawiin ang invite na ipinadala ni %1$s?</item>
+        <item quantity="other">Gusto mo bang bawiin ang %2$d invites na ipinadala ni %1$s?</item>
     </plurals>
 
     <!-- GroupJoinBottomSheetDialogFragment -->
@@ -1035,8 +1035,8 @@
         <item quantity="other">Burahin ang mga piniling item?</item>
     </plurals>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-        <item quantity="one">This will permanently delete the selected file. Any message text associated with this item will also be deleted.</item>
-        <item quantity="other">This will permanently delete all %1$d selected files. Any message text associated with these items will also be deleted.</item>
+        <item quantity="one">Permanenteng made-delete ang piniling file. Anumang message ang kaugnay ng file ay made-delete rin.</item>
+        <item quantity="other">Permanenteng made-delete ang %1$d piniling files. Anumang message ang kaugnay ng files ay made-delete rin.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Binubura</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">Binubura ang mga mensahe…</string>
@@ -1168,13 +1168,13 @@
     <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Hindi ka ma-add sa Bagong Group at inimbitahan kang sumali.</string>
     <string name="MessageRecord_chat_session_refreshed">Chat session refreshed</string>
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
-        <item quantity="one">A member couldn\'t be added to the New Group and has been invited to join.</item>
-        <item quantity="other">%1$s members couldn\'t be added to the New Group and have been invited to join.</item>
+        <item quantity="one">Hindi ma-add ang isang member sa Bagong Group at inimbitahang sumali.</item>
+        <item quantity="other">Hindi ma-add ang %1$s members sa Bagong Group at inimbitahang sumali.</item>
     </plurals>
 
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
-        <item quantity="one">A member couldn\'t be added to the New Group and has been removed.</item>
-        <item quantity="other">%1$s members couldn\'t be added to the New Group and have been removed.</item>
+        <item quantity="one">Hindi ma-add ang isang member sa Bagong Group at inalis.</item>
+        <item quantity="other">Hindi ma-add ang %1$s members sa Bagong Group at inalis.</item>
     </plurals>
 
     <!-- Profile change updates -->
@@ -1219,31 +1219,31 @@
     <string name="MessageRecord_you_invited_s_to_the_group">Inimbitahan mo si %1$s sa group.</string>
     <string name="MessageRecord_s_invited_you_to_the_group">Inimbitahan ka ni %1$s sa group.</string>
     <plurals name="MessageRecord_s_invited_members">
-        <item quantity="one">%1$s invited 1 person to the group.</item>
-        <item quantity="other">%1$s invited %2$d people to the group.</item>
+        <item quantity="one">Nag-invite si %1$s ng 1 tao sa group.</item>
+        <item quantity="other">Nag-invite si %1$s ng %2$d tao sa group.</item>
     </plurals>
     <string name="MessageRecord_you_were_invited_to_the_group">Ikaw ay inimbitahan sa grupo.</string>
     <plurals name="MessageRecord_d_people_were_invited_to_the_group">
-        <item quantity="one">1 person was invited to the group.</item>
-        <item quantity="other">%1$d people were invited to the group.</item>
+        <item quantity="one">In-invite ang 1 tao sa group.</item>
+        <item quantity="other">In-invite ang %1$d tao sa group.</item>
     </plurals>
 
     <!-- GV2 invitation revokes -->
     <plurals name="MessageRecord_you_revoked_invites">
-        <item quantity="one">You revoked an invitation to the group.</item>
-        <item quantity="other">You revoked %1$d invitations to the group.</item>
+        <item quantity="one">Binawi mo ang isang invitation sa group.</item>
+        <item quantity="other">Binawi mo ang %1$d invitations sa group.</item>
     </plurals>
     <plurals name="MessageRecord_s_revoked_invites">
-        <item quantity="one">%1$s revoked an invitation to the group.</item>
-        <item quantity="other">%1$s revoked %2$d invitations to the group.</item>
+        <item quantity="one">Binawi ni %1$s ang isang invitation sa group.</item>
+        <item quantity="other">Binawi ni %1$s ang %2$d invitations sa group.</item>
     </plurals>
     <string name="MessageRecord_someone_declined_an_invitation_to_the_group">May nag-decline ng isang invitation sa group.</string>
     <string name="MessageRecord_you_declined_the_invitation_to_the_group">Hindi mo tinanggap ang invitation na sumali sa group.</string>
     <string name="MessageRecord_s_revoked_your_invitation_to_the_group">Binawi ni %1$s ang iyong invitation na sumali sa group.</string>
     <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">Binawi ng admin ang iyong invitation sa group.</string>
     <plurals name="MessageRecord_d_invitations_were_revoked">
-        <item quantity="one">An invitation to the group was revoked.</item>
-        <item quantity="other">%1$d invitations to the group were revoked.</item>
+        <item quantity="one">Binawi ang isang invitation sa group.</item>
+        <item quantity="other">Binawi ang %1$d invitations sa group.</item>
     </plurals>
 
     <!-- GV2 invitation acceptance -->
@@ -1316,8 +1316,8 @@
     <string name="MessageRecord_s_requested_to_join_via_the_group_link">Si %1$s ay nag-request to join gamit ang group link.</string>
     <!-- Update message shown when someone requests to join via group link and cancels the request back to back -->
     <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
-        <item quantity="one">%1$s requested and cancelled their request to join via the group link.</item>
-        <item quantity="other">%1$s requested and cancelled %2$d requests to join via the group link.</item>
+        <item quantity="one">Nag-request at kinancel ni %1$s ang request niyang sumali sa group via sa group link.</item>
+        <item quantity="other">Nag-request at kinancel ni %1$s ang %2$d requests niyang sumali sa group via sa group link..</item>
     </plurals>
 
     <!-- GV2 group link approvals -->
@@ -1346,9 +1346,9 @@
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Like this new feature? Suportahan ang Signal sa pamamagitan ng one-time donation.</string>
     <!-- Update item message shown when we merge two threads together -->
-    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Your message history with %1$s and their number %2$s has been merged.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Pinagsama na ang iyong message history ni %1$s at ang kanyang number na %2$s.</string>
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
-    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Your message history with %1$s and another chat that belonged to them has been merged.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Pinagsama na ang iyong message history ni %1$s at isa pa niyang chat.</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">Sinimulan ni %1$s ang group call · %2$s</string>
@@ -1450,8 +1450,8 @@
     <string name="OutdatedBuildReminder_update_now">I-update na</string>
     <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Itong version ng Signal ay mage-expire ngayon. Mag-update sa most recent version.</string>
     <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
-        <item quantity="one">This version of Signal will expire tomorrow. Update to the most recent version.</item>
-        <item quantity="other">This version of Signal will expire in %1$d days. Update to the most recent version.</item>
+        <item quantity="one">Mag-e-expire na bukas ang version na ito ng Signal. Mag-update sa pinakabagong version.</item>
+        <item quantity="other">Mag-e-expire na ang version na ito ng Signal pagkatapos ng %1$d araw. Mag-update sa pinakabagong version.</item>
     </plurals>
 
     <!-- PassphrasePromptActivity -->
@@ -1873,7 +1873,7 @@
 
     <!-- UsernameEditFragment -->
     <!-- Toolbar title when entering from registration -->
-    <string name="UsernameEditFragment__add_a_username">Add a username</string>
+    <string name="UsernameEditFragment__add_a_username">Mag-add ng username</string>
     <!-- Instructional text at the top of the username edit screen -->
     <string name="UsernameEditFragment__choose_your_username">Pumili ng username mo</string>
     <string name="UsernameEditFragment_username">Username</string>
@@ -3743,10 +3743,10 @@
     <string name="payment_info_card_hide_this_card">Gusto mo bang i-hide ang card na ito?</string>
     <string name="payment_info_card_hide">I-hide</string>
     <!-- Title of save recovery phrase card -->
-    <string name="payment_info_card_save_recovery_phrase">Save recovery phrase</string>
+    <string name="payment_info_card_save_recovery_phrase">I-save ang recovery phrase</string>
     <string name="payment_info_card_your_recovery_phrase_gives_you">Ang iyong recovery phrase ay isang paraan para ma-restore ang payments account mo.</string>
     <!-- Button in save recovery phrase card -->
-    <string name="payment_info_card_save_your_phrase">Save your phrase</string>
+    <string name="payment_info_card_save_your_phrase">I-save ang iyong phrase</string>
     <string name="payment_info_card_update_your_pin">I-update ang iyong PIN</string>
     <string name="payment_info_card_with_a_high_balance">With a high balance, pwede kang mag-update ng alphanumeric PIN to add more protection to your account.</string>
     <string name="payment_info_card_update_pin">I-update ang PIN</string>
@@ -3771,23 +3771,23 @@
     <string name="PaymentsRecoveryStartFragment__recovery_phrase">Recovery phrase</string>
     <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">View recovery phrase</string>
     <!-- Title in save recovery phrase screen -->
-    <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Save recovery phrase</string>
+    <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">I-save ang recovery phrase</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Enter recovery phrase</string>
     <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Your balance will automatically restore kapag nag-reinstall ka ng Signal app at na-confirm ang Signal PIN mo. Pwede mo ring i-restore ang iyong balance gamit ang recovery phrase, isang %1$d-word phrase na unique sa\'yo. Isulat ito at itago sa isang safe na lugar.</string>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
-    <string name="PaymentsRecoveryStartFragment__got_balance">You’ve got a balance! Time to save your recovery phrase—a 24-word key you can use to restore your balance.</string>
+    <string name="PaymentsRecoveryStartFragment__got_balance">May balance ka! Oras na para i-save ang iyong recovery phrase—isang 24-word key na magagamit mo para ma-restore ang iyong balance.</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
-    <string name="PaymentsRecoveryStartFragment__time_to_save">Time to save your recovery phrase—a 24-word key you can use to restore your balance. Learn more</string>
+    <string name="PaymentsRecoveryStartFragment__time_to_save">Oras na para i-save ang iyong recovery phrase—isang 24-word key na magagamit mo para ma-restore ang iyong balance. Matuto pa</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Ang iyong recovery phrase ay isang %1$d-word phrase na unique sa\'yo. Gamitin ang phrase na ito para ma-restore ang balance mo.</string>
     <string name="PaymentsRecoveryStartFragment__start">Start</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">Enter manually</string>
     <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Paste from clipboard</string>
     <!-- Alert dialog title which asks before going back if user wants to save recovery phrase -->
-    <string name="PaymentsRecoveryStartFragment__continue_without_saving">Continue Without Saving?</string>
+    <string name="PaymentsRecoveryStartFragment__continue_without_saving">Gusto mo bang Magpatuloy Nang Hindi Ito Sine-save?</string>
     <!-- Alert dialog description to let user know why recovery phrase needs to be saved -->
-    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">Your recovery phrase lets you restore your balance in a worst-case scenario. We strongly recommend you save it.</string>
+    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">Magagamit mo ang recovery phrase para ma-restore ang iyong balance sa isang worst-case scenario. Nire-recommend naming i-save mo ito.</string>
     <!-- Alert dialog option to skip recovery phrase -->
-    <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">Skip Recovery Phrase</string>
+    <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">I-skip ang Recovery Phrase</string>
     <!-- Alert dialog option to cancel dialog-->
     <string name="PaymentsRecoveryStartFragment__cancel">Kanselahin</string>
 
@@ -3943,9 +3943,9 @@
     <!-- Preference title to delete sms -->
     <string name="SmsSettingsFragment__remove_sms_messages">Tanggalin ang SMS messages</string>
     <!-- Snackbar text to confirm deletion -->
-    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Removing SMS messages from Signal…</string>
+    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Inaalis ang SMS messages mula sa Signal...</string>
     <!-- Snackbar text to indicate can delete later -->
-    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">You can remove SMS messages from Signal in Settings at any time.</string>
+    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">Pwede mong tanggalin ang SMS message mula sa Signal sa Settings anumang oras.</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">Mga Mensahe</string>
@@ -4195,17 +4195,17 @@
     <!-- Dialog title when removing a contact -->
     <string name="NewConversationActivity__remove_s">Remove %1$s?</string>
     <!-- Dialog message when removing a contact -->
-    <string name="NewConversationActivity__you_wont_see_this_person">You won\'t see this person when searching. You\'ll get a message request if they message you in the future.</string>
+    <string name="NewConversationActivity__you_wont_see_this_person">Hindi mo makikita ang user na ito sa search. Makakatanggap ka ng message request kung mag-message siya sa\'yo sa susunod.</string>
     <!-- Snackbar message after removing a contact -->
-    <string name="NewConversationActivity__s_has_been_removed">%1$s has been removed</string>
+    <string name="NewConversationActivity__s_has_been_removed">Natanggal na si %1$s</string>
     <!-- Snackbar message after blocking a contact -->
-    <string name="NewConversationActivity__s_has_been_blocked">%1$s has been blocked</string>
+    <string name="NewConversationActivity__s_has_been_blocked">Na-block na si %1$s</string>
     <!-- Dialog title when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__unable_to_remove_s">Unable to remove %1$s</string>
+    <string name="NewConversationActivity__unable_to_remove_s">Hindi matanggal si %1$s</string>
     <!-- Dialog message when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__this_person_is_saved_to_your">This person is saved to your device\'s Contacts. Delete them from your Contacts and try again.</string>
+    <string name="NewConversationActivity__this_person_is_saved_to_your">Ang user na ito\'y naka-save sa Contacts ng device mo. Tanggalin siya sa iyong Contacts at subukan ulit.</string>
     <!-- Dialog action to view contact when they can't be removed otherwise -->
-    <string name="NewConversationActivity__view_contact">View contact</string>
+    <string name="NewConversationActivity__view_contact">Tingnan ang contact</string>
 
     <!-- ContactFilterView -->
     <string name="ContactFilterView__search_name_or_number">I-search ang name o number</string>
@@ -4709,7 +4709,7 @@
     <!-- Subtitle for "My Stories" row item when user has not added stories -->
     <string name="StoriesLandingFragment__tap_to_add_a_story">I-tap para mag-add ng story</string>
     <!-- Displayed when there are no stories to display -->
-    <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now">No recent updates to show right now.</string>
+    <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now">Walang recent updates sa ngayon.</string>
     <!-- Context menu option to hide a story -->
     <string name="StoriesLandingItem__hide_story">I-hide ang story</string>
     <!-- Context menu option to unhide a story -->
@@ -4778,9 +4778,9 @@
     <!-- Displayed when viewing a post from another user with no replies -->
     <string name="StoryViewerPageFragment__reply">Tugon</string>
     <!-- Displayed when viewing a post that has failed to send to some users -->
-    <string name="StoryViewerPageFragment__partially_sent">Partially sent. Tap for details</string>
+    <string name="StoryViewerPageFragment__partially_sent">Partially sent. I-tap para sa iba pang detalye.</string>
     <!-- Displayed when viewing a post that has failed to send -->
-    <string name="StoryViewerPageFragment__send_failed">Send failed. Tap to retry</string>
+    <string name="StoryViewerPageFragment__send_failed">Hindi ma-send. I-tap para subukan ulit</string>
     <!-- Label for the reply button in story viewer, which will launch the group story replies bottom sheet. -->
     <string name="StoryViewerPageFragment__reply_to_group">Mag-reply sa group</string>
     <!-- Displayed when a story has no views -->
@@ -5229,7 +5229,7 @@
     <!-- Title of the screen -->
     <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">I-export ang iyong SMS messages</string>
     <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">You can export your SMS messages to your phone\'s SMS database. This allows other SMS apps on your phone to access and import them. This does not create a shareable file of your SMS message history.</string>
+    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">Pwede mong i-export ang SMS messages mo papunta sa SMS database ng phone mo. Pinapayagan nito ang iba pang SMS apps sa phone mo na ma-access at ma-import ang mga ito. Hindi ito gumagawa ng shareable file ng iyong SMS message history.</string>
     <!-- Button label to begin export -->
     <string name="ExportYourSmsMessagesFragment__continue">Magpatuloy</string>
 
@@ -5255,17 +5255,17 @@
     <!-- Fourth step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_4">4</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">Tap \"Continue\" to open the \"Default apps\" screen in Settings</string>
+    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">I-tap ang \"Magpatuloy\" para mabuksan ang \"Default apps\" screen sa Settings</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">Select \"SMS app\" from the list</string>
+    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">Piliin ang \"SMS app\" mula sa listahan</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">Choose another app to use for SMS messaging</string>
+    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">Pumili ng iba pang app na gagamitin sa SMS messaging</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">Return to Signal</string>
+    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">Bumalik sa Signal</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">Open your phone\'s Settings app</string>
+    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">Buksan ang Settings sa phone mo</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">Navigate to \"Apps\" &gt; \"Default apps\" &gt; \"SMS app\"</string>
+    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">Pumunta sa \"Apps\" &gt; \"Default apps\" &gt; \"SMS app\"</string>
 
     <!-- RemoveSmsMessagesDialogFragment -->
     <!-- Action button to keep messages -->
@@ -5275,13 +5275,13 @@
     <!-- Title of dialog -->
     <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Gusto mo bang tanggalin ang SMS messages mula sa Signal?</string>
     <!-- Message of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">You can now remove SMS messages from Signal to clear up storage space. They will still be available to other SMS apps on your phone even if you remove them.</string>
+    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">Pwede ka nang magtanggal ng SMS message mula sa Signal para madagdagan ang iyong storage space. Makikita mo pa rin ito sa iba pang SMS apps sa phone mo kahit tanggalin mo ito sa Signal app.</string>
 
     <!-- SetSignalAsDefaultSmsAppFragment -->
     <!-- Title of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">Set Signal as the default SMS app</string>
+    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">Gawing default SMS app ang Signal</string>
     <!-- Message of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">To export your SMS messages, you need to set Signal as the default SMS app.</string>
+    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">Para ma-export ang iyong SMS messages, kailangan mong gawing default SMS app ang Signal.</string>
     <!-- Button label to start export -->
     <string name="SetSignalAsDefaultSmsAppFragment__next">Susunod</string>
 

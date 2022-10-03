@@ -1346,9 +1346,9 @@
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">¿Te gusta esta nueva función? ¡Ayuda a Signal con una donación puntual!</string>
     <!-- Update item message shown when we merge two threads together -->
-    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Your message history with %1$s and their number %2$s has been merged.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Tu historial de mensajes con %1$s y su número %2$s se han fusionado.</string>
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
-    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Your message history with %1$s and another chat that belonged to them has been merged.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Tu historial de mensajes con %1$s y con otro chat con la misma persona se han fusionado.</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s ha iniciado una llamada en grupo · %2$s</string>
@@ -3743,10 +3743,10 @@
     <string name="payment_info_card_hide_this_card">¿Ocultar esta tarjeta?</string>
     <string name="payment_info_card_hide">Ocultar</string>
     <!-- Title of save recovery phrase card -->
-    <string name="payment_info_card_save_recovery_phrase">Save recovery phrase</string>
+    <string name="payment_info_card_save_recovery_phrase">Guardar la frase de recuperación</string>
     <string name="payment_info_card_your_recovery_phrase_gives_you">La frase de recuperación también te permite recuperar tu cartera.</string>
     <!-- Button in save recovery phrase card -->
-    <string name="payment_info_card_save_your_phrase">Save your phrase</string>
+    <string name="payment_info_card_save_your_phrase">Guardar tu frase</string>
     <string name="payment_info_card_update_your_pin">Actualiza tu PIN de Signal</string>
     <string name="payment_info_card_with_a_high_balance">Con un balance alto, necesitas actualizar tu PIN de Signal a un PIN alfanumérico que añada protección extra a tu cuenta de Signal.</string>
     <string name="payment_info_card_update_pin">Actualizar PIN</string>
@@ -3771,23 +3771,23 @@
     <string name="PaymentsRecoveryStartFragment__recovery_phrase">Frase de recuperación</string>
     <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Ver frase de recuperación</string>
     <!-- Title in save recovery phrase screen -->
-    <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Save recovery phrase</string>
+    <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Guardar la frase de recuperación</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Introducir frase de recuperación</string>
     <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Tu balance se restaurará automáticamente al reinstalar Signal si confirmas el PIN de tu cuenta de Signal. También puedes restaurar tu balance con la frase de recuperación: %1$d palabras que tan solo tú conoces. Anótala y guárdala en sitio seguro.</string>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
-    <string name="PaymentsRecoveryStartFragment__got_balance">You’ve got a balance! Time to save your recovery phrase—a 24-word key you can use to restore your balance.</string>
+    <string name="PaymentsRecoveryStartFragment__got_balance">¡Tienes saldo! Es el momento de guardar tu frase de recuperación, una clave de 24 palabras que puedes usar para restaurar tu saldo.</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
-    <string name="PaymentsRecoveryStartFragment__time_to_save">Time to save your recovery phrase—a 24-word key you can use to restore your balance. Learn more</string>
+    <string name="PaymentsRecoveryStartFragment__time_to_save">Es el momento de guardar tu frase de recuperación, una clave de 24 palabras que puedes usar para restaurar tu saldo. Saber más</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Tu frase de recuperación son las %1$d palabras que se generan al activar los pagos y que solo tú conoces. Úsala para recuperar tu cuenta de pagos.</string>
     <string name="PaymentsRecoveryStartFragment__start">Comenzar</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">Introducir manualmente</string>
     <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Copiar del portapapeles</string>
     <!-- Alert dialog title which asks before going back if user wants to save recovery phrase -->
-    <string name="PaymentsRecoveryStartFragment__continue_without_saving">Continue Without Saving?</string>
+    <string name="PaymentsRecoveryStartFragment__continue_without_saving">¿Continuar sin guardar?</string>
     <!-- Alert dialog description to let user know why recovery phrase needs to be saved -->
-    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">Your recovery phrase lets you restore your balance in a worst-case scenario. We strongly recommend you save it.</string>
+    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">Tu frase de recuperación te permite restablecer tu saldo en el peor de los casos. Te recomendamos que la guardes.</string>
     <!-- Alert dialog option to skip recovery phrase -->
-    <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">Skip Recovery Phrase</string>
+    <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">Saltar frase de recuperación</string>
     <!-- Alert dialog option to cancel dialog-->
     <string name="PaymentsRecoveryStartFragment__cancel">Cancelar</string>
 
@@ -3943,9 +3943,9 @@
     <!-- Preference title to delete sms -->
     <string name="SmsSettingsFragment__remove_sms_messages">Eliminar mensajes SMS</string>
     <!-- Snackbar text to confirm deletion -->
-    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Removing SMS messages from Signal…</string>
+    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Eliminando mensajes SMS de Signal…</string>
     <!-- Snackbar text to indicate can delete later -->
-    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">You can remove SMS messages from Signal in Settings at any time.</string>
+    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">Puedes eliminar los mensajes SMS de Signal desde Ajustes en cualquier momento.</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">Mensajes</string>
@@ -4195,17 +4195,17 @@
     <!-- Dialog title when removing a contact -->
     <string name="NewConversationActivity__remove_s">¿Eliminar a %1$s?</string>
     <!-- Dialog message when removing a contact -->
-    <string name="NewConversationActivity__you_wont_see_this_person">You won\'t see this person when searching. You\'ll get a message request if they message you in the future.</string>
+    <string name="NewConversationActivity__you_wont_see_this_person">No verás a esta persona en tus búsquedas. Recibirás una solicitud de mensaje si te envían un mensaje en el futuro.</string>
     <!-- Snackbar message after removing a contact -->
-    <string name="NewConversationActivity__s_has_been_removed">%1$s has been removed</string>
+    <string name="NewConversationActivity__s_has_been_removed">Se ha eliminado a %1$s</string>
     <!-- Snackbar message after blocking a contact -->
-    <string name="NewConversationActivity__s_has_been_blocked">%1$s has been blocked</string>
+    <string name="NewConversationActivity__s_has_been_blocked">Se ha bloqueado a %1$s</string>
     <!-- Dialog title when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__unable_to_remove_s">Unable to remove %1$s</string>
+    <string name="NewConversationActivity__unable_to_remove_s">No se ha podido eliminar a %1$s</string>
     <!-- Dialog message when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__this_person_is_saved_to_your">This person is saved to your device\'s Contacts. Delete them from your Contacts and try again.</string>
+    <string name="NewConversationActivity__this_person_is_saved_to_your">Esta persona está entre los contactos guardados en tu dispositivo. Elimínala de tus contactos y vuelve a intentarlo.</string>
     <!-- Dialog action to view contact when they can't be removed otherwise -->
-    <string name="NewConversationActivity__view_contact">View contact</string>
+    <string name="NewConversationActivity__view_contact">Ver contacto</string>
 
     <!-- ContactFilterView -->
     <string name="ContactFilterView__search_name_or_number">Buscar por nombre o número</string>
@@ -5229,7 +5229,7 @@
     <!-- Title of the screen -->
     <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">Exportar tus mensajes SMS</string>
     <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">You can export your SMS messages to your phone\'s SMS database. This allows other SMS apps on your phone to access and import them. This does not create a shareable file of your SMS message history.</string>
+    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">Puedes exportar tus mensajes SMS a la base de datos de SMS de tu teléfono. Esto permite que otras aplicaciones de SMS de tu teléfono puedan acceder a ellos e importarlos. Esto no crea un archivo compartible de tu historial de mensajes SMS.</string>
     <!-- Button label to begin export -->
     <string name="ExportYourSmsMessagesFragment__continue">Continuar</string>
 
@@ -5255,17 +5255,17 @@
     <!-- Fourth step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_4">4</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">Tap \"Continue\" to open the \"Default apps\" screen in Settings</string>
+    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">Toca \"Continuar\" para abrir la pantalla \"Apps predeterminadas\" en Ajustes</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">Select \"SMS app\" from the list</string>
+    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">Selecciona \"App de SMS\" de la lista</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">Choose another app to use for SMS messaging</string>
+    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">Elige otra aplicación para usar la mensajería SMS</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">Return to Signal</string>
+    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">Vuelve a Signal</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">Open your phone\'s Settings app</string>
+    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">Abre los Ajustes de tu teléfono</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">Navigate to \"Apps\" &gt; \"Default apps\" &gt; \"SMS app\"</string>
+    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">Ve a \"Apps\" &gt; \"Apps predeterminadas\" &gt; \"App SMS\"</string>
 
     <!-- RemoveSmsMessagesDialogFragment -->
     <!-- Action button to keep messages -->
@@ -5275,13 +5275,13 @@
     <!-- Title of dialog -->
     <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">¿Eliminar mensajes SMS de Signal?</string>
     <!-- Message of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">You can now remove SMS messages from Signal to clear up storage space. They will still be available to other SMS apps on your phone even if you remove them.</string>
+    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">Ahora puedes eliminar los mensajes SMS de Signal para liberar espacio. Seguirán estando disponibles para otras aplicaciones de SMS en tu teléfono incluso si los eliminas.</string>
 
     <!-- SetSignalAsDefaultSmsAppFragment -->
     <!-- Title of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">Set Signal as the default SMS app</string>
+    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">Convierte a Signal en tu app de SMS por defecto</string>
     <!-- Message of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">To export your SMS messages, you need to set Signal as the default SMS app.</string>
+    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">Para exportar tus mensajes SMS, debes establecer Signal como tu app de SMS predeterminada.</string>
     <!-- Button label to start export -->
     <string name="SetSignalAsDefaultSmsAppFragment__next">Siguiente</string>
 

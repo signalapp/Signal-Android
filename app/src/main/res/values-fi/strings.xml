@@ -358,8 +358,8 @@
     </plurals>
     <string name="ConversationFragment_save_to_sd_card">Kopioi tallennustilaan?</string>
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
-        <item quantity="one">Saving this media to storage will allow any other apps on your device to access it.\n\nContinue?</item>
-        <item quantity="other">Saving all %1$d media to storage will allow any other apps on your device to access them.\n\nContinue?</item>
+        <item quantity="one">Jos tallennat tämän tiedoston laitteen tallennustilaan, muutkin laitteella olevat sovellukset voivat käyttää sitä.\n\nHaluatko jatkaa?</item>
+        <item quantity="other">Jos tallennat kaikki %1$d tiedostoa laitteen tallennustilaan, muutkin laitteella olevat sovellukset voivat käyttää niitä.\n\nHaluatko jatkaa?</item>
     </plurals>
     <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
         <item quantity="one">Virhe tallennettaessa liitetiedostoa laitteesi tallennustilaan!</item>
@@ -367,12 +367,12 @@
     </plurals>
     <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Tallennustilaan kirjoitus epäonnistui!</string>
     <plurals name="ConversationFragment_saving_n_attachments">
-        <item quantity="one">Saving attachment</item>
-        <item quantity="other">Saving %1$d attachments</item>
+        <item quantity="one">Tallennetaan liitetiedostoa</item>
+        <item quantity="other">Tallennetaan %1$d liitetiedostoa</item>
     </plurals>
     <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="one">Saving attachment to storage…</item>
-        <item quantity="other">Saving %1$d attachments to storage…</item>
+        <item quantity="one">Tallennetaan liitetiedostoa tallennustilaan…</item>
+        <item quantity="other">Tallennetaan %1$d liitetiedostoa tallennustilaan…</item>
     </plurals>
     <string name="ConversationFragment_pending">Käsiteltävänä…</string>
     <string name="ConversationFragment_push">Data (Signal)</string>
@@ -418,19 +418,19 @@
         <item quantity="other">Poistetaanko valitut keskustelut?</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">This will permanently delete the selected conversation.</item>
-        <item quantity="other">This will permanently delete all %1$d selected conversations.</item>
+        <item quantity="one">Tämä poistaa valitun keskustelun pysyvästi.</item>
+        <item quantity="other">Tämä poistaa kaikki %1$d valittua keskustelua pysyvästi.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Poistetaan</string>
     <string name="ConversationListFragment_deleting_selected_conversations">Poistetaan valittuja keskusteluja…</string>
     <plurals name="ConversationListFragment_conversations_archived">
-        <item quantity="one">Conversation archived</item>
-        <item quantity="other">%1$d conversations archived</item>
+        <item quantity="one">Keskustelu arkistoitu</item>
+        <item quantity="other">%1$d keskustelua arkistoitu</item>
     </plurals>
     <string name="ConversationListFragment_undo">Kumoa</string>
     <plurals name="ConversationListFragment_moved_conversations_to_inbox">
-        <item quantity="one">Moved conversation to inbox</item>
-        <item quantity="other">Moved %1$d conversations to inbox</item>
+        <item quantity="one">Keskustelu siirretty Saapuneet-kansioon</item>
+        <item quantity="other">%1$d keskustelua siirretty Saapuneet-kansioon</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
         <item quantity="one">Luettu</item>
@@ -664,8 +664,8 @@
 
     <!-- GV2 invites sent -->
     <plurals name="GroupManagement_invitation_sent">
-        <item quantity="one">Invitation sent</item>
-        <item quantity="other">%1$d invitations sent</item>
+        <item quantity="one">Kutsu lähetetty</item>
+        <item quantity="other">%1$d kutsua lähetetty</item>
     </plurals>
     <string name="GroupManagement_invite_single_user">Et voi lisätä käyttäjää %1$s automaattisesti tähän ryhmään.\n\nHänet on kutsuttu liittymään ryhmään, ja hän näkee ryhmäviestit vasta hyväksyttyään kutsun.</string>
     <string name="GroupManagement_invite_multiple_users">Et voi lisätä näitä käyttäjiä automaattisesti tähän ryhmään.\n\nHeidät on kutsuttu liittymään ryhmään, ja he näkee ryhmäviestit vasta hyväksyttyään kutsun.</string>
@@ -765,8 +765,8 @@
     <string name="PendingMembersActivity_revoke_invite">Peruuta kutsu</string>
     <string name="PendingMembersActivity_revoke_invites">Peruuta kutsut</string>
     <plurals name="PendingMembersActivity_revoke_d_invites">
-        <item quantity="one">Revoke invite</item>
-        <item quantity="other">Revoke %1$d invites</item>
+        <item quantity="one">Peruuta kutsu</item>
+        <item quantity="other">Peruuta %1$d kutsua</item>
     </plurals>
     <plurals name="PendingMembersActivity_error_revoking_invite">
         <item quantity="one">Virhe kutsun peruuttamisessa</item>
@@ -785,8 +785,8 @@
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Tätä henkilöä ei voida lisätä vanhan tyyppisiin ryhmiin.</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">Tätä henkilöä ei voi lisätä ilmoitusryhmiin.</string>
     <plurals name="AddMembersActivity__add_d_members_to_s">
-        <item quantity="one">Add \"%1$s\" to \"%2$s\"?</item>
-        <item quantity="other">Add %3$d members to \"%2$s\"?</item>
+        <item quantity="one">Lisätäänkö %1$s ryhmään %2$s?</item>
+        <item quantity="other">Lisätäänkö %3$d jäsentä ryhmään %2$s?</item>
     </plurals>
     <string name="AddMembersActivity__add">Lisää</string>
     <string name="AddMembersActivity__add_members">Lisää jäseniä</string>
@@ -887,8 +887,8 @@
     </plurals>
 
     <plurals name="GroupMemberList_invited">
-        <item quantity="one">%1$s invited 1 person</item>
-        <item quantity="other">%1$s invited %2$d people</item>
+        <item quantity="one">%1$s kutsui 1 henkilön</item>
+        <item quantity="other">%1$s kutsui %2$d henkilöä</item>
     </plurals>
 
     <!-- CustomNotificationsDialogFragment -->
@@ -926,8 +926,8 @@
     <!-- GV2 Invite Revoke confirmation dialog -->
     <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Haluatko peruuttaa henkilölle %1$s lähettämäsi ryhmäkutsun?</string>
     <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
-        <item quantity="one">Do you want to revoke the invite sent by %1$s?</item>
-        <item quantity="other">Do you want to revoke %2$d invites sent by %1$s?</item>
+        <item quantity="one">Haluatko peruuttaa henkilön %1$s lähettämän kutsun?</item>
+        <item quantity="other">Haluatko peruuttaa henkilön %1$s lähettämät %2$d kutsua?</item>
     </plurals>
 
     <!-- GroupJoinBottomSheetDialogFragment -->
@@ -1035,8 +1035,8 @@
         <item quantity="other">Poistetaanko valitut?</item>
     </plurals>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-        <item quantity="one">This will permanently delete the selected file. Any message text associated with this item will also be deleted.</item>
-        <item quantity="other">This will permanently delete all %1$d selected files. Any message text associated with these items will also be deleted.</item>
+        <item quantity="one">Tämä poistaa valitun tiedoston pysyvästi. Myös kaikki tähän kohteeseen liitetyt viestitekstit poistetaan.</item>
+        <item quantity="other">Tämä poistaa kaikki %1$d valittua tiedostoa pysyvästi. Myös kaikki näihin kohteisiin liitetyt viestitekstit poistetaan.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Poistetaan</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">Viestejä poistetaan…</string>
@@ -1168,13 +1168,13 @@
     <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Sinua ei pystytty lisäämään uuteen ryhmään ja sait siihen kutsun.</string>
     <string name="MessageRecord_chat_session_refreshed">Keskustelu on päivitetty</string>
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
-        <item quantity="one">A member couldn\'t be added to the New Group and has been invited to join.</item>
-        <item quantity="other">%1$s members couldn\'t be added to the New Group and have been invited to join.</item>
+        <item quantity="one">Jäsentä ei voitu lisätä uuteen ryhmään, ja hänelle on lähetetty kutsu.</item>
+        <item quantity="other">%1$s jäsentä ei voitu lisätä uuteen ryhmään, ja heille on lähetetty kutsu.</item>
     </plurals>
 
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
-        <item quantity="one">A member couldn\'t be added to the New Group and has been removed.</item>
-        <item quantity="other">%1$s members couldn\'t be added to the New Group and have been removed.</item>
+        <item quantity="one">Jäsentä ei voitu lisätä uuteen ryhmään, ja hänet on poistettu.</item>
+        <item quantity="other">%1$s jäsentä ei voitu lisätä uuteen ryhmään, ja heidät on poistettu.</item>
     </plurals>
 
     <!-- Profile change updates -->
@@ -1219,31 +1219,31 @@
     <string name="MessageRecord_you_invited_s_to_the_group">Kutsuit käyttäjän %1$s ryhmään.</string>
     <string name="MessageRecord_s_invited_you_to_the_group">%1$s kutsui sinut liittymään ryhmään.</string>
     <plurals name="MessageRecord_s_invited_members">
-        <item quantity="one">%1$s invited 1 person to the group.</item>
-        <item quantity="other">%1$s invited %2$d people to the group.</item>
+        <item quantity="one">%1$s kutsui 1 henkilön ryhmään.</item>
+        <item quantity="other">%1$s kutsui %2$d henkilöä ryhmään.</item>
     </plurals>
     <string name="MessageRecord_you_were_invited_to_the_group">Sinut kutsuttiin liittymään ryhmään.</string>
     <plurals name="MessageRecord_d_people_were_invited_to_the_group">
-        <item quantity="one">1 person was invited to the group.</item>
-        <item quantity="other">%1$d people were invited to the group.</item>
+        <item quantity="one">1 henkilö kutsuttiin ryhmään.</item>
+        <item quantity="other">%1$d henkilöä kutsuttiin ryhmään.</item>
     </plurals>
 
     <!-- GV2 invitation revokes -->
     <plurals name="MessageRecord_you_revoked_invites">
-        <item quantity="one">You revoked an invitation to the group.</item>
-        <item quantity="other">You revoked %1$d invitations to the group.</item>
+        <item quantity="one">Peruutit kutsun ryhmään.</item>
+        <item quantity="other">Peruutit %1$d kutsua ryhmään.</item>
     </plurals>
     <plurals name="MessageRecord_s_revoked_invites">
-        <item quantity="one">%1$s revoked an invitation to the group.</item>
-        <item quantity="other">%1$s revoked %2$d invitations to the group.</item>
+        <item quantity="one">%1$s peruutti kutsun ryhmään.</item>
+        <item quantity="other">%1$s peruutti %2$d kutsua ryhmään.</item>
     </plurals>
     <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Joku hylkäsi kutsun ryhmään.</string>
     <string name="MessageRecord_you_declined_the_invitation_to_the_group">Hylkäsit kutsun ryhmään.</string>
     <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s peruutti kutsusi ryhmään.</string>
     <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">Ylläpitäjä peruutti kutsusi ryhmään.</string>
     <plurals name="MessageRecord_d_invitations_were_revoked">
-        <item quantity="one">An invitation to the group was revoked.</item>
-        <item quantity="other">%1$d invitations to the group were revoked.</item>
+        <item quantity="one">Kutsu ryhmään peruttiin.</item>
+        <item quantity="other">%1$d kutsua ryhmään peruttiin.</item>
     </plurals>
 
     <!-- GV2 invitation acceptance -->
@@ -1316,8 +1316,8 @@
     <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s pyytää liittyä ryhmään ryhmälinkin kautta.</string>
     <!-- Update message shown when someone requests to join via group link and cancels the request back to back -->
     <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
-        <item quantity="one">%1$s requested and cancelled their request to join via the group link.</item>
-        <item quantity="other">%1$s requested and cancelled %2$d requests to join via the group link.</item>
+        <item quantity="one">%1$s pyysi ja peruutti liittymispyyntönsä ryhmälinkin kautta.</item>
+        <item quantity="other">%1$s pyysi ja peruutti %2$d liittymispyyntöä ryhmälinkin kautta.</item>
     </plurals>
 
     <!-- GV2 group link approvals -->
@@ -1346,9 +1346,9 @@
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Pidätkö tästä uudesta ominaisuudesta? Tue Signalia kertalahjoituksella.</string>
     <!-- Update item message shown when we merge two threads together -->
-    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Your message history with %1$s and their number %2$s has been merged.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Viestihistoriasi yhteystiedon %1$s kanssa ja numero %2$s on yhdistetty.</string>
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
-    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Your message history with %1$s and another chat that belonged to them has been merged.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Viestihistoriasi yhteystiedon %1$s kanssa ja toinen siihen kuulunut keskustelu on yhdistetty.</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s aloitti ryhmäpuhelun · %2$s</string>
@@ -1450,8 +1450,8 @@
     <string name="OutdatedBuildReminder_update_now">Päivitä nyt</string>
     <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Tämä Signal-versio vanhenee tänään. Päivitä viimeisimpään versioon.</string>
     <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
-        <item quantity="one">This version of Signal will expire tomorrow. Update to the most recent version.</item>
-        <item quantity="other">This version of Signal will expire in %1$d days. Update to the most recent version.</item>
+        <item quantity="one">Tämä Signal-versio vanhenee huomenna. Päivitä viimeisimpään versioon.</item>
+        <item quantity="other">Tämä Signal-versio vanhenee %1$d päivän kuluttua. Päivitä viimeisimpään versioon.</item>
     </plurals>
 
     <!-- PassphrasePromptActivity -->
@@ -1873,7 +1873,7 @@
 
     <!-- UsernameEditFragment -->
     <!-- Toolbar title when entering from registration -->
-    <string name="UsernameEditFragment__add_a_username">Add a username</string>
+    <string name="UsernameEditFragment__add_a_username">Lisää käyttäjänimi</string>
     <!-- Instructional text at the top of the username edit screen -->
     <string name="UsernameEditFragment__choose_your_username">Valitse käyttäjänimi</string>
     <string name="UsernameEditFragment_username">Käyttäjätunnus</string>
@@ -3743,10 +3743,10 @@
     <string name="payment_info_card_hide_this_card">Piilota tämä kortti?</string>
     <string name="payment_info_card_hide">Piilota</string>
     <!-- Title of save recovery phrase card -->
-    <string name="payment_info_card_save_recovery_phrase">Save recovery phrase</string>
+    <string name="payment_info_card_save_recovery_phrase">Tallenna palautuslause</string>
     <string name="payment_info_card_your_recovery_phrase_gives_you">Palautuslauseella voi palauttaa tilin, jos tavanomaiset kirjautumismenetelmät eivät toimi.</string>
     <!-- Button in save recovery phrase card -->
-    <string name="payment_info_card_save_your_phrase">Save your phrase</string>
+    <string name="payment_info_card_save_your_phrase">Tallenna lauseesi</string>
     <string name="payment_info_card_update_your_pin">Päivitä tunnusluku</string>
     <string name="payment_info_card_with_a_high_balance">Tili kannattaa suojata aakkosnumeerisella suojakoodilla, erityisesti jos sen kate on korkea.</string>
     <string name="payment_info_card_update_pin">Päivitä tunnusluku</string>
@@ -3771,23 +3771,23 @@
     <string name="PaymentsRecoveryStartFragment__recovery_phrase">Palautuslause</string>
     <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Näytä palautuslause</string>
     <!-- Title in save recovery phrase screen -->
-    <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Save recovery phrase</string>
+    <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Tallenna palautuslause</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Syötä palautuslause</string>
     <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Tilin saldo palautetaan automaattisesti Signalin uudelleenasennuksen yhteydessä syöttämällä Signalin tunnusluku. Saldon voi palauttaa myös henkilökohtaisella %1$d-sanaisella palautuslauseella. Kirjoita se ylös ja säilytä turvallisessa paikassa.</string>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
-    <string name="PaymentsRecoveryStartFragment__got_balance">You’ve got a balance! Time to save your recovery phrase—a 24-word key you can use to restore your balance.</string>
+    <string name="PaymentsRecoveryStartFragment__got_balance">Sinulla on saldoa! On aika tallentaa palautuslause – 24 sanan mittainen avain, jonka avulla voit palauttaa saldosi.</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
-    <string name="PaymentsRecoveryStartFragment__time_to_save">Time to save your recovery phrase—a 24-word key you can use to restore your balance. Learn more</string>
+    <string name="PaymentsRecoveryStartFragment__time_to_save">On aika tallentaa palautuslause – 24 sanan mittainen avain, jonka avulla voit palauttaa saldosi. Lue lisää</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Palautuslause on henkilökohtainen %1$d-sanainen lause, joka vaaditaan saldon palauttamiseen.</string>
     <string name="PaymentsRecoveryStartFragment__start">Aloita</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">Syötä käsin</string>
     <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Liitä leikepöydältä</string>
     <!-- Alert dialog title which asks before going back if user wants to save recovery phrase -->
-    <string name="PaymentsRecoveryStartFragment__continue_without_saving">Continue Without Saving?</string>
+    <string name="PaymentsRecoveryStartFragment__continue_without_saving">Jatketaanko tallentamatta?</string>
     <!-- Alert dialog description to let user know why recovery phrase needs to be saved -->
-    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">Your recovery phrase lets you restore your balance in a worst-case scenario. We strongly recommend you save it.</string>
+    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">Palautuslauseen avulla voit pahimmassa tapauksessa palauttaa saldosi. Suosittelemme vahvasti, että tallennat sen.</string>
     <!-- Alert dialog option to skip recovery phrase -->
-    <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">Skip Recovery Phrase</string>
+    <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">Ohita palautuslause</string>
     <!-- Alert dialog option to cancel dialog-->
     <string name="PaymentsRecoveryStartFragment__cancel">Peruuta</string>
 
@@ -3943,9 +3943,9 @@
     <!-- Preference title to delete sms -->
     <string name="SmsSettingsFragment__remove_sms_messages">Poista tekstiviestit</string>
     <!-- Snackbar text to confirm deletion -->
-    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Removing SMS messages from Signal…</string>
+    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Poistetaan tekstiviestejä Signalista...</string>
     <!-- Snackbar text to indicate can delete later -->
-    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">You can remove SMS messages from Signal in Settings at any time.</string>
+    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">Voit poistaa tekstiviestejä Signalista asetuksissa milloin tahansa.</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">Viestit</string>
@@ -4195,17 +4195,17 @@
     <!-- Dialog title when removing a contact -->
     <string name="NewConversationActivity__remove_s">Poista %1$s?</string>
     <!-- Dialog message when removing a contact -->
-    <string name="NewConversationActivity__you_wont_see_this_person">You won\'t see this person when searching. You\'ll get a message request if they message you in the future.</string>
+    <string name="NewConversationActivity__you_wont_see_this_person">Tätä henkilöä ei näytetä haussa. Saat viestipyynnön, jos hän jatkossa lähettää sinulle viestin.</string>
     <!-- Snackbar message after removing a contact -->
-    <string name="NewConversationActivity__s_has_been_removed">%1$s has been removed</string>
+    <string name="NewConversationActivity__s_has_been_removed">%1$s on poistettu</string>
     <!-- Snackbar message after blocking a contact -->
-    <string name="NewConversationActivity__s_has_been_blocked">%1$s has been blocked</string>
+    <string name="NewConversationActivity__s_has_been_blocked">%1$s on estetty</string>
     <!-- Dialog title when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__unable_to_remove_s">Unable to remove %1$s</string>
+    <string name="NewConversationActivity__unable_to_remove_s">Henkilöä %1$s ei voida poistaa</string>
     <!-- Dialog message when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__this_person_is_saved_to_your">This person is saved to your device\'s Contacts. Delete them from your Contacts and try again.</string>
+    <string name="NewConversationActivity__this_person_is_saved_to_your">Tämä henkilö on tallennettu laitteesi yhteystietoihin. Poista henkilö yhteystiedoistasi ja yritä uudelleen.</string>
     <!-- Dialog action to view contact when they can't be removed otherwise -->
-    <string name="NewConversationActivity__view_contact">View contact</string>
+    <string name="NewConversationActivity__view_contact">Näytä yhteystieto</string>
 
     <!-- ContactFilterView -->
     <string name="ContactFilterView__search_name_or_number">Etsi nimellä tai numerolla</string>
@@ -4778,9 +4778,9 @@
     <!-- Displayed when viewing a post from another user with no replies -->
     <string name="StoryViewerPageFragment__reply">Vastaa</string>
     <!-- Displayed when viewing a post that has failed to send to some users -->
-    <string name="StoryViewerPageFragment__partially_sent">Partially sent. Tap for details</string>
+    <string name="StoryViewerPageFragment__partially_sent">Osittain lähetetty. Lisätietoja napsauttamalla</string>
     <!-- Displayed when viewing a post that has failed to send -->
-    <string name="StoryViewerPageFragment__send_failed">Send failed. Tap to retry</string>
+    <string name="StoryViewerPageFragment__send_failed">Lähetys epäonnistui. Yritä uudelleen napauttamalla</string>
     <!-- Label for the reply button in story viewer, which will launch the group story replies bottom sheet. -->
     <string name="StoryViewerPageFragment__reply_to_group">Vastaa ryhmään</string>
     <!-- Displayed when a story has no views -->
@@ -5229,7 +5229,7 @@
     <!-- Title of the screen -->
     <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">Vie tekstiviestisi</string>
     <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">You can export your SMS messages to your phone\'s SMS database. This allows other SMS apps on your phone to access and import them. This does not create a shareable file of your SMS message history.</string>
+    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">Voit viedä tekstiviestit puhelimesi tekstiviestitietokantaan. Näin muut tekstiviestisovellukset puhelimessasi voivat käyttää ja tuoda niitä. Tämä ei luo jaettavaa tiedostoa tekstiviestihistoriasta.</string>
     <!-- Button label to begin export -->
     <string name="ExportYourSmsMessagesFragment__continue">Jatka</string>
 
@@ -5255,17 +5255,17 @@
     <!-- Fourth step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_4">4</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">Tap \"Continue\" to open the \"Default apps\" screen in Settings</string>
+    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">Avaa Oletussovellukset -näyttö asetuksissa napauttamalla Jatka</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">Select \"SMS app\" from the list</string>
+    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">Valitse luettelosta vaihtoehto Tekstiviestisovellus</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">Choose another app to use for SMS messaging</string>
+    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">Valitse toinen sovellus, jota käytetään tekstiviesteissä</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">Return to Signal</string>
+    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">Palaa Signaliin</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">Open your phone\'s Settings app</string>
+    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">Avaa puhelimesi Asetukset-sovellus</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">Navigate to \"Apps\" &gt; \"Default apps\" &gt; \"SMS app\"</string>
+    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">Valitse Sovellukset &gt; Oletussovellukset &gt; Tekstiviestisovellus</string>
 
     <!-- RemoveSmsMessagesDialogFragment -->
     <!-- Action button to keep messages -->
@@ -5275,13 +5275,13 @@
     <!-- Title of dialog -->
     <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Haluatko poistaa tekstiviestit Signalista?</string>
     <!-- Message of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">You can now remove SMS messages from Signal to clear up storage space. They will still be available to other SMS apps on your phone even if you remove them.</string>
+    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">Voit nyt poistaa tekstiviestit Signalista vapauttaaksesi tallennustilaa. Ne ovat edelleen muiden tekstiviestisovellusten käytettävissä puhelimessasi, vaikka poistatkin ne.</string>
 
     <!-- SetSignalAsDefaultSmsAppFragment -->
     <!-- Title of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">Set Signal as the default SMS app</string>
+    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">Määritä Signal tekstiviestien oletussovellukseksi</string>
     <!-- Message of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">To export your SMS messages, you need to set Signal as the default SMS app.</string>
+    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">Jos haluat viedä tekstiviestisi, sinun on määritettävä Signal tekstiviestien oletussovellukseksi.</string>
     <!-- Button label to start export -->
     <string name="SetSignalAsDefaultSmsAppFragment__next">Seuraava</string>
 

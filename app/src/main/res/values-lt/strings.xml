@@ -383,10 +383,10 @@
         <item quantity="other">Įrašoma %1$d priedų</item>
     </plurals>
     <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="one">Saving attachment to storage…</item>
-        <item quantity="few">Saving %1$d attachments to storage…</item>
-        <item quantity="many">Saving %1$d attachments to storage…</item>
-        <item quantity="other">Saving %1$d attachments to storage…</item>
+        <item quantity="one">Priedas įrašomas į atmintį…</item>
+        <item quantity="few">%1$d priedai įrašomi į atmintį…</item>
+        <item quantity="many">%1$d priedo įrašoma į atmintį…</item>
+        <item quantity="other">%1$d priedų įrašoma į atmintį…</item>
     </plurals>
     <string name="ConversationFragment_pending">Laukiama…</string>
     <string name="ConversationFragment_push">Duomenys (Signal)</string>
@@ -708,10 +708,10 @@
 
     <!-- GV2 invites sent -->
     <plurals name="GroupManagement_invitation_sent">
-        <item quantity="one">Invitation sent</item>
-        <item quantity="few">%1$d invitations sent</item>
-        <item quantity="many">%1$d invitations sent</item>
-        <item quantity="other">%1$d invitations sent</item>
+        <item quantity="one">Pakvietimas išsiųstas</item>
+        <item quantity="few">Išsiųsti %1$d pakvietimai</item>
+        <item quantity="many">Išsiųsta %1$d pakvietimo</item>
+        <item quantity="other">Išsiųsta %1$d pakvietimų</item>
     </plurals>
     <string name="GroupManagement_invite_single_user">Jūs negalite automatiškai pridėti naudotojo „%1$s“ į šią grupę.\n\nJis yra pakviestas prisijungti prie grupės ir nematys jokių grupėje esančių žinučių tol, kol nepriims kvietimo.</string>
     <string name="GroupManagement_invite_multiple_users">Jūs negalite automatiškai pridėti šių naudotojų į šią grupę.\n\nJie yra pakviesti prisijungti prie grupės ir nematys jokių grupėje esančių žinučių tol, kol nepriims kvietimo.</string>
@@ -835,10 +835,10 @@
     <string name="PendingMembersActivity_revoke_invite">Panaikinti pakvietimą</string>
     <string name="PendingMembersActivity_revoke_invites">Panaikinti pakvietimus</string>
     <plurals name="PendingMembersActivity_revoke_d_invites">
-        <item quantity="one">Revoke invite</item>
-        <item quantity="few">Revoke %1$d invites</item>
-        <item quantity="many">Revoke %1$d invites</item>
-        <item quantity="other">Revoke %1$d invites</item>
+        <item quantity="one">Atšaukti pakvietimą</item>
+        <item quantity="few">Atšaukti %1$d pakvietimus</item>
+        <item quantity="many">Atšaukti %1$d pakvietimo</item>
+        <item quantity="other">Atšaukti %1$d pakvietimų</item>
     </plurals>
     <plurals name="PendingMembersActivity_error_revoking_invite">
         <item quantity="one">Klaida panaikinant pakvietimą</item>
@@ -859,10 +859,10 @@
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Šis žmogus negali būti pridėtas į pasenusias grupes.</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">Šis žmogus negali būti pridėtas į skelbimų grupes.</string>
     <plurals name="AddMembersActivity__add_d_members_to_s">
-        <item quantity="one">Add \"%1$s\" to \"%2$s\"?</item>
-        <item quantity="few">Add %3$d members to \"%2$s\"?</item>
-        <item quantity="many">Add %3$d members to \"%2$s\"?</item>
-        <item quantity="other">Add %3$d members to \"%2$s\"?</item>
+        <item quantity="one">Pridėti „%1$s“ į „%2$s“?</item>
+        <item quantity="few">Pridėti %3$d narius į „%2$s“?</item>
+        <item quantity="many">Pridėti %3$d nario į „%2$s“?</item>
+        <item quantity="other">Pridėti %3$d narių į „%2$s“?</item>
     </plurals>
     <string name="AddMembersActivity__add">Pridėti</string>
     <string name="AddMembersActivity__add_members">Pridėti narius</string>
@@ -967,10 +967,10 @@
     </plurals>
 
     <plurals name="GroupMemberList_invited">
-        <item quantity="one">%1$s invited 1 person</item>
-        <item quantity="few">%1$s invited %2$d people</item>
-        <item quantity="many">%1$s invited %2$d people</item>
-        <item quantity="other">%1$s invited %2$d people</item>
+        <item quantity="one">%1$s pakvietė 1 žmogų</item>
+        <item quantity="few">%1$s pakvietė %2$d žmones</item>
+        <item quantity="many">%1$s pakvietė %2$d žmog.</item>
+        <item quantity="other">%1$s pakvietė %2$d žmonių</item>
     </plurals>
 
     <!-- CustomNotificationsDialogFragment -->
@@ -1008,10 +1008,10 @@
     <!-- GV2 Invite Revoke confirmation dialog -->
     <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Ar norite panaikinti pakvietimą, kurį išsiuntėte naudotojui %1$s?</string>
     <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
-        <item quantity="one">Do you want to revoke the invite sent by %1$s?</item>
-        <item quantity="few">Do you want to revoke %2$d invites sent by %1$s?</item>
-        <item quantity="many">Do you want to revoke %2$d invites sent by %1$s?</item>
-        <item quantity="other">Do you want to revoke %2$d invites sent by %1$s?</item>
+        <item quantity="one">Ar nori atšaukti pakvietimą, kurį išsiuntė %1$s?</item>
+        <item quantity="few">Ar nori atšaukti %2$d pakvietimus, kuriuos išsiuntė %1$s?</item>
+        <item quantity="many">Ar nori atšaukti %2$d pakvietimo, kuriuos išsiuntė %1$s?</item>
+        <item quantity="other">Ar nori atšaukti %2$d pakvietimų, kuriuos išsiuntė %1$s?</item>
     </plurals>
 
     <!-- GroupJoinBottomSheetDialogFragment -->
@@ -1125,10 +1125,10 @@
         <item quantity="other">Ištrinti pažymėtus elementus?</item>
     </plurals>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-        <item quantity="one">This will permanently delete the selected file. Any message text associated with this item will also be deleted.</item>
-        <item quantity="few">This will permanently delete all %1$d selected files. Any message text associated with these items will also be deleted.</item>
-        <item quantity="many">This will permanently delete all %1$d selected files. Any message text associated with these items will also be deleted.</item>
-        <item quantity="other">This will permanently delete all %1$d selected files. Any message text associated with these items will also be deleted.</item>
+        <item quantity="one">Tai negrįžtamai ištrins pažymėtą failą. Visos su juo susietos žinutės taip pat bus ištrintos.</item>
+        <item quantity="few">Tai negrįžtamai ištrins visus %1$d pažymėtus failus. Visos su jais susietos žinutės taip pat bus ištrintos.</item>
+        <item quantity="many">Tai negrįžtamai ištrins visus %1$d pažymėtus failus. Visos su jais susietos žinutės taip pat bus ištrintos.</item>
+        <item quantity="other">Tai negrįžtamai ištrins visus %1$d pažymėtų failų. Visos su jais susietos žinutės taip pat bus ištrintos.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Ištrinama</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">Ištrinamos žinutės…</string>
@@ -1268,17 +1268,17 @@
     <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Jūsų nepavyko pridėti į naująją grupę ir todėl, buvote pakviesti prie jos prisijungti.</string>
     <string name="MessageRecord_chat_session_refreshed">Pokalbio seansas atnaujintas</string>
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
-        <item quantity="one">A member couldn\'t be added to the New Group and has been invited to join.</item>
-        <item quantity="few">%1$s members couldn\'t be added to the New Group and have been invited to join.</item>
-        <item quantity="many">%1$s members couldn\'t be added to the New Group and have been invited to join.</item>
-        <item quantity="other">%1$s members couldn\'t be added to the New Group and have been invited to join.</item>
+        <item quantity="one">Nario nepavyko pridėti į naująją grupę, jis pakviestas prisijungti.</item>
+        <item quantity="few">%1$s narių nepavyko pridėti į naująją grupę, jie pakviesti prisijungti.</item>
+        <item quantity="many">%1$s nario nepavyko pridėti į naująją grupę, jie pakviesti prisijungti.</item>
+        <item quantity="other">%1$s narių nepavyko pridėti į naująją grupę, jie pakviesti prisijungti.</item>
     </plurals>
 
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
-        <item quantity="one">A member couldn\'t be added to the New Group and has been removed.</item>
-        <item quantity="few">%1$s members couldn\'t be added to the New Group and have been removed.</item>
-        <item quantity="many">%1$s members couldn\'t be added to the New Group and have been removed.</item>
-        <item quantity="other">%1$s members couldn\'t be added to the New Group and have been removed.</item>
+        <item quantity="one">Nario nepavyko pridėti į naująją grupę, jis pašalintas.</item>
+        <item quantity="few">%1$s narių nepavyko pridėti į naująją grupę, jie pašalinti.</item>
+        <item quantity="many">%1$s nario nepavyko pridėti į naująją grupę, jie pašalinti.</item>
+        <item quantity="other">%1$s narių nepavyko pridėti į naująją grupę, jie pašalinti.</item>
     </plurals>
 
     <!-- Profile change updates -->
@@ -1323,41 +1323,41 @@
     <string name="MessageRecord_you_invited_s_to_the_group">Jūs pakvietėte %1$s į grupę.</string>
     <string name="MessageRecord_s_invited_you_to_the_group">%1$s pakvietė jus į grupę.</string>
     <plurals name="MessageRecord_s_invited_members">
-        <item quantity="one">%1$s invited 1 person to the group.</item>
-        <item quantity="few">%1$s invited %2$d people to the group.</item>
-        <item quantity="many">%1$s invited %2$d people to the group.</item>
-        <item quantity="other">%1$s invited %2$d people to the group.</item>
+        <item quantity="one">%1$s pakvietė 1 žmogų į grupę.</item>
+        <item quantity="few">%1$s pakvietė %2$d žmones į grupę.</item>
+        <item quantity="many">%1$s pakvietė %2$d žmog. į grupę.</item>
+        <item quantity="other">%1$s pakvietė %2$d žmonių į grupę.</item>
     </plurals>
     <string name="MessageRecord_you_were_invited_to_the_group">Jūs buvote pakviesti į grupę.</string>
     <plurals name="MessageRecord_d_people_were_invited_to_the_group">
-        <item quantity="one">1 person was invited to the group.</item>
-        <item quantity="few">%1$d people were invited to the group.</item>
-        <item quantity="many">%1$d people were invited to the group.</item>
-        <item quantity="other">%1$d people were invited to the group.</item>
+        <item quantity="one">Į grupę buvo pakviestas 1 žmogus.</item>
+        <item quantity="few">Į grupę buvo pakviesti %1$d žmonės.</item>
+        <item quantity="many">Į grupę buvo pakviesta %1$d žmog.</item>
+        <item quantity="other">Į grupę buvo pakviesta %1$d žmonių.</item>
     </plurals>
 
     <!-- GV2 invitation revokes -->
     <plurals name="MessageRecord_you_revoked_invites">
-        <item quantity="one">You revoked an invitation to the group.</item>
-        <item quantity="few">You revoked %1$d invitations to the group.</item>
-        <item quantity="many">You revoked %1$d invitations to the group.</item>
-        <item quantity="other">You revoked %1$d invitations to the group.</item>
+        <item quantity="one">Tu atšaukei pakvietimą į grupę.</item>
+        <item quantity="few">Tu atšaukei %1$d pakvietimus į grupę.</item>
+        <item quantity="many">Tu atšaukei %1$d pakvietim. į grupę.</item>
+        <item quantity="other">Tu atšaukei %1$d pakvietimų į grupę.</item>
     </plurals>
     <plurals name="MessageRecord_s_revoked_invites">
-        <item quantity="one">%1$s revoked an invitation to the group.</item>
-        <item quantity="few">%1$s revoked %2$d invitations to the group.</item>
-        <item quantity="many">%1$s revoked %2$d invitations to the group.</item>
-        <item quantity="other">%1$s revoked %2$d invitations to the group.</item>
+        <item quantity="one">%1$s atšaukė pakvietimą į grupę.</item>
+        <item quantity="few">%1$s atšaukė %2$d pakvietimus į grupę.</item>
+        <item quantity="many">%1$s atšaukė %2$d pakvietim. į grupę.</item>
+        <item quantity="other">%1$s atšaukė %2$d pakvietimų į grupę.</item>
     </plurals>
     <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Kažkas atmetė pakvietimą prisijungti prie grupės.</string>
     <string name="MessageRecord_you_declined_the_invitation_to_the_group">Jūs atmetėte pakvietimą prisijungti prie grupės.</string>
     <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s panaikino jūsų pakvietimą prisijungti prie grupės.</string>
     <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">Administratorius panaikino jūsų pakvietimą prisijungti prie grupės.</string>
     <plurals name="MessageRecord_d_invitations_were_revoked">
-        <item quantity="one">An invitation to the group was revoked.</item>
-        <item quantity="few">%1$d invitations to the group were revoked.</item>
-        <item quantity="many">%1$d invitations to the group were revoked.</item>
-        <item quantity="other">%1$d invitations to the group were revoked.</item>
+        <item quantity="one">Atšauktas pakvietimas į grupę.</item>
+        <item quantity="few">Atšaukti %1$d pakvietimai į grupę.</item>
+        <item quantity="many">Atšaukta %1$d pakvietim. į grupę.</item>
+        <item quantity="other">Atšaukta %1$d pakvietimų į grupę.</item>
     </plurals>
 
     <!-- GV2 invitation acceptance -->
@@ -1430,10 +1430,10 @@
     <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s paprašė prisijungti per grupės nuorodą.</string>
     <!-- Update message shown when someone requests to join via group link and cancels the request back to back -->
     <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
-        <item quantity="one">%1$s requested and cancelled their request to join via the group link.</item>
-        <item quantity="few">%1$s requested and cancelled %2$d requests to join via the group link.</item>
-        <item quantity="many">%1$s requested and cancelled %2$d requests to join via the group link.</item>
-        <item quantity="other">%1$s requested and cancelled %2$d requests to join via the group link.</item>
+        <item quantity="one">%1$s paprašė ir atšaukė savo prašymą prisijungti per grupės nuorodą.</item>
+        <item quantity="few">%1$s paprašė ir atšaukė %2$d prašymus prisijungti per grupės nuorodą.</item>
+        <item quantity="many">%1$s paprašė ir atšaukė %2$d prašym. prisijungti per grupės nuorodą.</item>
+        <item quantity="other">%1$s paprašė ir atšaukė %2$d prašymų prisijungti per grupės nuorodą.</item>
     </plurals>
 
     <!-- GV2 group link approvals -->
@@ -1462,9 +1462,9 @@
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Patinka ši nauja funkcija? Prisidėkite prie „Signal“ palaikymo vienkartine auka.</string>
     <!-- Update item message shown when we merge two threads together -->
-    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Your message history with %1$s and their number %2$s has been merged.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Tavo ir %1$s žinučių istorija buvo susieta su šio žmogaus numeriu %2$s.</string>
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
-    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Your message history with %1$s and another chat that belonged to them has been merged.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Tavo ir %1$s žinučių istorija buvo susieta su kitu šiam žmogui priklausiusiu pokalbiu.</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s pradėjo grupės skambutį · %2$s</string>
@@ -1578,10 +1578,10 @@
     <string name="OutdatedBuildReminder_update_now">Atnaujinti dabar</string>
     <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Šiandien nustos galioti ši Signal versija. Atnaujinkite Signal iki naujausios versijos.</string>
     <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
-        <item quantity="one">This version of Signal will expire tomorrow. Update to the most recent version.</item>
-        <item quantity="few">This version of Signal will expire in %1$d days. Update to the most recent version.</item>
-        <item quantity="many">This version of Signal will expire in %1$d days. Update to the most recent version.</item>
-        <item quantity="other">This version of Signal will expire in %1$d days. Update to the most recent version.</item>
+        <item quantity="one">Ši „Signal“ versija nustos galioti rytoj. Atnaujink „Signal“ į naujausią versiją.</item>
+        <item quantity="few">Ši „Signal“ versija nustos galioti po %1$d dienų. Atnaujink „Signal“ į naujausią versiją.</item>
+        <item quantity="many">Ši „Signal“ versija nustos galioti po %1$d d. Atnaujink „Signal“ į naujausią versiją.</item>
+        <item quantity="other">Ši „Signal“ versija nustos galioti po %1$d dienų. Atnaujink „Signal“ į naujausią versiją.</item>
     </plurals>
 
     <!-- PassphrasePromptActivity -->
@@ -2019,7 +2019,7 @@
 
     <!-- UsernameEditFragment -->
     <!-- Toolbar title when entering from registration -->
-    <string name="UsernameEditFragment__add_a_username">Add a username</string>
+    <string name="UsernameEditFragment__add_a_username">Pridėti naudotojo vardą</string>
     <!-- Instructional text at the top of the username edit screen -->
     <string name="UsernameEditFragment__choose_your_username">Pasirink naudotojo vardą</string>
     <string name="UsernameEditFragment_username">Naudotojo vardas</string>
@@ -3937,10 +3937,10 @@
     <string name="payment_info_card_hide_this_card">Slėpti šią kortelę?</string>
     <string name="payment_info_card_hide">Slėpti</string>
     <!-- Title of save recovery phrase card -->
-    <string name="payment_info_card_save_recovery_phrase">Save recovery phrase</string>
+    <string name="payment_info_card_save_recovery_phrase">Išsaugoti atkūrimo frazę</string>
     <string name="payment_info_card_your_recovery_phrase_gives_you">Atkūrimo frazė suteikia jums kitą būdą atkurti savo mokėjimų paskyrą.</string>
     <!-- Button in save recovery phrase card -->
-    <string name="payment_info_card_save_your_phrase">Save your phrase</string>
+    <string name="payment_info_card_save_your_phrase">Išsaugoti savo frazę</string>
     <string name="payment_info_card_update_your_pin">Atnaujinti savo PIN kodą</string>
     <string name="payment_info_card_with_a_high_balance">Turėdami didelį likutį, galite pageidauti atnaujinti savo PIN kodą į tekstinį, kad stipriau apsaugotumėte savo paskyrą.</string>
     <string name="payment_info_card_update_pin">Atnaujinti PIN kodą</string>
@@ -3965,23 +3965,23 @@
     <string name="PaymentsRecoveryStartFragment__recovery_phrase">Atkūrimo frazė</string>
     <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Rodyti atkūrimo frazę</string>
     <!-- Title in save recovery phrase screen -->
-    <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Save recovery phrase</string>
+    <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Išsaugoti atkūrimo frazę</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Įvesti atkūrimo frazę</string>
     <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Kai įdiegsite Signal iš naujo, jūsų likutis bus automatiškai atkurtas tuo atveju, jei patvirtinsite savo Signal PIN kodą. Taip pat galite atkurti savo likutį naudodami atkūrimo frazę – savo unikalią %1$d žodžių frazę. Užsirašykite ją ir saugokite saugioje vietoje.</string>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
-    <string name="PaymentsRecoveryStartFragment__got_balance">You’ve got a balance! Time to save your recovery phrase—a 24-word key you can use to restore your balance.</string>
+    <string name="PaymentsRecoveryStartFragment__got_balance">Turi likutį! Laikas išsaugoti atkūrimo frazę – 24 žodžių raktą, kurį galėsi panaudoti savo likučiui atkurti.</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
-    <string name="PaymentsRecoveryStartFragment__time_to_save">Time to save your recovery phrase—a 24-word key you can use to restore your balance. Learn more</string>
+    <string name="PaymentsRecoveryStartFragment__time_to_save">Laikas išsaugoti atkūrimo frazę – 24 žodžių raktą, kurį galėsi panaudoti savo likučiui atkurti. Sužinoti daugiau</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Atkūrimo frazė yra jūsų unikali %1$d žodžių frazė. Naudokite šią frazę, norėdami atkurti savo likutį.</string>
     <string name="PaymentsRecoveryStartFragment__start">Pradėti</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">Įvesti rankiniu būdu</string>
     <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Įdėti iš iškarpinės</string>
     <!-- Alert dialog title which asks before going back if user wants to save recovery phrase -->
-    <string name="PaymentsRecoveryStartFragment__continue_without_saving">Continue Without Saving?</string>
+    <string name="PaymentsRecoveryStartFragment__continue_without_saving">Tęsti neišsaugojus?</string>
     <!-- Alert dialog description to let user know why recovery phrase needs to be saved -->
-    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">Your recovery phrase lets you restore your balance in a worst-case scenario. We strongly recommend you save it.</string>
+    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">Tavo atkūrimo frazė leidžia atkurti likutį, jei kas nutiktų. Primygtinai rekomenduojame ją išsaugoti.</string>
     <!-- Alert dialog option to skip recovery phrase -->
-    <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">Skip Recovery Phrase</string>
+    <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">Praleisti atkūrimo frazę</string>
     <!-- Alert dialog option to cancel dialog-->
     <string name="PaymentsRecoveryStartFragment__cancel">Atsisakyti</string>
 
@@ -4137,9 +4137,9 @@
     <!-- Preference title to delete sms -->
     <string name="SmsSettingsFragment__remove_sms_messages">Pašalinti SMS žinutes</string>
     <!-- Snackbar text to confirm deletion -->
-    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Removing SMS messages from Signal…</string>
+    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">SMS žinutės pašalinamos iš „Signal“…</string>
     <!-- Snackbar text to indicate can delete later -->
-    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">You can remove SMS messages from Signal in Settings at any time.</string>
+    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">Gali bet kada pašalinti SMS žinutes iš „Signal“ per nustatymus.</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">Žinutės</string>
@@ -4393,17 +4393,17 @@
     <!-- Dialog title when removing a contact -->
     <string name="NewConversationActivity__remove_s">Šalinti %1$s?</string>
     <!-- Dialog message when removing a contact -->
-    <string name="NewConversationActivity__you_wont_see_this_person">You won\'t see this person when searching. You\'ll get a message request if they message you in the future.</string>
+    <string name="NewConversationActivity__you_wont_see_this_person">Šio asmens nematysi paieškoje. Jei jis tau kada nors parašys, gausi žinutės užklausą.</string>
     <!-- Snackbar message after removing a contact -->
-    <string name="NewConversationActivity__s_has_been_removed">%1$s has been removed</string>
+    <string name="NewConversationActivity__s_has_been_removed">%1$s pašalintas (-a)</string>
     <!-- Snackbar message after blocking a contact -->
-    <string name="NewConversationActivity__s_has_been_blocked">%1$s has been blocked</string>
+    <string name="NewConversationActivity__s_has_been_blocked">%1$s užblokuotas (-a)</string>
     <!-- Dialog title when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__unable_to_remove_s">Unable to remove %1$s</string>
+    <string name="NewConversationActivity__unable_to_remove_s">Nepavyko pašalinti %1$s</string>
     <!-- Dialog message when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__this_person_is_saved_to_your">This person is saved to your device\'s Contacts. Delete them from your Contacts and try again.</string>
+    <string name="NewConversationActivity__this_person_is_saved_to_your">Šis asmuo išsaugotas tavo įrenginio adresatų sąraše. Ištrink jį iš adresatų sąrašo ir bandyk dar kartą.</string>
     <!-- Dialog action to view contact when they can't be removed otherwise -->
-    <string name="NewConversationActivity__view_contact">View contact</string>
+    <string name="NewConversationActivity__view_contact">Žiūrėti adresatą</string>
 
     <!-- ContactFilterView -->
     <string name="ContactFilterView__search_name_or_number">Ieškoti vardo ar numerio</string>
@@ -4992,9 +4992,9 @@
     <!-- Displayed when viewing a post from another user with no replies -->
     <string name="StoryViewerPageFragment__reply">Atsakyti</string>
     <!-- Displayed when viewing a post that has failed to send to some users -->
-    <string name="StoryViewerPageFragment__partially_sent">Partially sent. Tap for details</string>
+    <string name="StoryViewerPageFragment__partially_sent">Iš dalies nusiųsta. Bakstelėk peržiūrėti informaciją</string>
     <!-- Displayed when viewing a post that has failed to send -->
-    <string name="StoryViewerPageFragment__send_failed">Send failed. Tap to retry</string>
+    <string name="StoryViewerPageFragment__send_failed">Siuntimas nepavyko. Bakstelėk ir bandyk dar kartą</string>
     <!-- Label for the reply button in story viewer, which will launch the group story replies bottom sheet. -->
     <string name="StoryViewerPageFragment__reply_to_group">Atsakyti grupei</string>
     <!-- Displayed when a story has no views -->
@@ -5465,7 +5465,7 @@
     <!-- Title of the screen -->
     <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">Eksportuok savo SMS žinutes</string>
     <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">You can export your SMS messages to your phone\'s SMS database. This allows other SMS apps on your phone to access and import them. This does not create a shareable file of your SMS message history.</string>
+    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">Gali eksportuoti savo SMS žinutes į savo telefono SMS duomenų bazę. Tuomet kitos SMS programėlės tavo telefone galės jas pasiekti ir importuoti. Nebus sukurtas bendrinti tinkamas tavo SMS žinučių istorijos failas.</string>
     <!-- Button label to begin export -->
     <string name="ExportYourSmsMessagesFragment__continue">Tęsti</string>
 
@@ -5491,17 +5491,17 @@
     <!-- Fourth step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_4">4</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">Tap \"Continue\" to open the \"Default apps\" screen in Settings</string>
+    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">Bakstelėk „Tęsti“, kad atidarytum nustatymų ekraną „Numatytosios programėlės“</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">Select \"SMS app\" from the list</string>
+    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">Sąraše pasirink „SMS programėlė“</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">Choose another app to use for SMS messaging</string>
+    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">Pasirink kitą programėlę SMS žinučių siuntimui</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">Return to Signal</string>
+    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">Grįžti į „Signal“</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">Open your phone\'s Settings app</string>
+    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">Atidaryk telefono nustatymų programėlę</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">Navigate to \"Apps\" &gt; \"Default apps\" &gt; \"SMS app\"</string>
+    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">Eik į „Programėlės“ &gt; „Numatytosios programėlės“ &gt; „SMS programėlė“</string>
 
     <!-- RemoveSmsMessagesDialogFragment -->
     <!-- Action button to keep messages -->
@@ -5511,13 +5511,13 @@
     <!-- Title of dialog -->
     <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Pašalinti SMS žinutes iš „Signal“?</string>
     <!-- Message of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">You can now remove SMS messages from Signal to clear up storage space. They will still be available to other SMS apps on your phone even if you remove them.</string>
+    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">Dabar gali pašalinti SMS žinutes iš „Signal“ ir atlaisvinti atminties vietos. Net ir pašalinus, jos tebebus pasiekiamos kitoms SMS programėlėms tavo telefone.</string>
 
     <!-- SetSignalAsDefaultSmsAppFragment -->
     <!-- Title of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">Set Signal as the default SMS app</string>
+    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">Padaryti „Signal“ numatytąja SMS programėle</string>
     <!-- Message of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">To export your SMS messages, you need to set Signal as the default SMS app.</string>
+    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">Jei nori eksportuoti SMS žinutes, turi padaryti „Signal“ numatytąja SMS programėle.</string>
     <!-- Button label to start export -->
     <string name="SetSignalAsDefaultSmsAppFragment__next">Kitas</string>
 

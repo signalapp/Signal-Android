@@ -1346,9 +1346,9 @@
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">ఈ ఫీచర్ నచ్చిందా? ఒక్కసారి విరాళంతో Signal కు మద్దతు ఇవ్వడానికి సాయపడండి.</string>
     <!-- Update item message shown when we merge two threads together -->
-    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Your message history with %1$s and their number %2$s has been merged.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">%1$s తో మీ సందేశ చరిత్ర మరియు వాటి నంబరు %2$s విలీనం చేయబడ్డాయి.</string>
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
-    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Your message history with %1$s and another chat that belonged to them has been merged.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">%1$s తో మీ సందేశ చరిత్ర మరియు వాటికి సంబంధించిన మరో చాట్ విలీనం చేయబడ్డాయి.</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s సమూహ కాల్ ప్రారంభించారు. %2$s</string>
@@ -3743,10 +3743,10 @@
     <string name="payment_info_card_hide_this_card">ఈ కార్డును దాచిపెట్టాలా?</string>
     <string name="payment_info_card_hide">దాచు</string>
     <!-- Title of save recovery phrase card -->
-    <string name="payment_info_card_save_recovery_phrase">Save recovery phrase</string>
+    <string name="payment_info_card_save_recovery_phrase">రికవరీ పదబంధాన్ని సేవ్ చేయండి</string>
     <string name="payment_info_card_your_recovery_phrase_gives_you">మీ రికవరీ పదబంధం మీ చెల్లింపుల ఖాతాను పునరుద్ధరించడానికి మరొక మార్గాన్ని ఇస్తుంది.</string>
     <!-- Button in save recovery phrase card -->
-    <string name="payment_info_card_save_your_phrase">Save your phrase</string>
+    <string name="payment_info_card_save_your_phrase">మీ పదబంధాన్ని సేవ్ చేయండి</string>
     <string name="payment_info_card_update_your_pin">మీ పిన్‌ను నవీకరించండి</string>
     <string name="payment_info_card_with_a_high_balance">అధిక బ్యాలెన్స్‌తో, మీ ఖాతాకు మరింత రక్షణను జోడించడానికి మీరు ఆల్ఫాన్యూమరిక్ పిన్‌కు నవీకరించాలనుకోవచ్చు.</string>
     <string name="payment_info_card_update_pin">పిన్‌ను నవీకరించండి</string>
@@ -3771,23 +3771,23 @@
     <string name="PaymentsRecoveryStartFragment__recovery_phrase">రికవరీ పదబంధం</string>
     <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">రికవరీ దశను వీక్షించండి</string>
     <!-- Title in save recovery phrase screen -->
-    <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Save recovery phrase</string>
+    <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">రికవరీ పదబంధాన్ని సేవ్ చేయండి</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">రికవరీ దశను నమోదు చేయండి</string>
     <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">మీరు మీ Signal PINను ధృవీకరిస్తే, మీరు Signal ను తిరిగి ఇన్‌స్టాల్ చేసేటప్పుడు మీ బ్యాలెన్స్ ఆటోమేటిక్‌గా పునరుద్ధరించబడుతుంది. మీకు ప్రత్యేకమైన %1$d- రికవరీ పదబంధాన్ని ఉపయోగించి కూడా మీరు మీ బ్యాలెన్స్‌ని పునరుద్ధరించవచ్చు, దీనిని రాసుకొని, ఒక సురక్షితమైన ప్రదేశంలో భద్రపరచండి.</string>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
-    <string name="PaymentsRecoveryStartFragment__got_balance">You’ve got a balance! Time to save your recovery phrase—a 24-word key you can use to restore your balance.</string>
+    <string name="PaymentsRecoveryStartFragment__got_balance">మీకు బ్యాలెన్స్ ఉంది! మీ రికవరీ పదబంధాన్ని సేవ్ చేసే సమయం—మీ బ్యాలెన్స్‌ను పునరుద్ధరించడానికి మీరు ఉపయోగించగల 24-పదాల కీ.</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
-    <string name="PaymentsRecoveryStartFragment__time_to_save">Time to save your recovery phrase—a 24-word key you can use to restore your balance. Learn more</string>
+    <string name="PaymentsRecoveryStartFragment__time_to_save">మీ రికవరీ పదబంధాన్ని సేవ్ చేసే సమయం—మీ బ్యాలెన్స్‌ను పునరుద్ధరించడానికి మీరు ఉపయోగించగల 24-పదాల కీ. మరింత తెలుసుకోండి</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">మీ రికవరీ పదబంధం అనేది మీకే ప్రత్యేకమైన %1$d- పదబంధం. మీ బ్యాలెన్స్‌ని పునరుద్ధరించడానికి ఈ పదబంధాన్ని ఉపయోగించండి.</string>
     <string name="PaymentsRecoveryStartFragment__start">ప్రారంభించండి</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">మాన్యువల్‌గా నమోదు చేయండి</string>
     <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">క్లిప్‌బోర్డ్ నుంచి పేస్ట్ చేయండి</string>
     <!-- Alert dialog title which asks before going back if user wants to save recovery phrase -->
-    <string name="PaymentsRecoveryStartFragment__continue_without_saving">Continue Without Saving?</string>
+    <string name="PaymentsRecoveryStartFragment__continue_without_saving">సేవ్ చేయకుండా కొనసాగించేదా?</string>
     <!-- Alert dialog description to let user know why recovery phrase needs to be saved -->
-    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">Your recovery phrase lets you restore your balance in a worst-case scenario. We strongly recommend you save it.</string>
+    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">ఒక అధ్వాన్నమైన పరిస్థితిలో మీ బ్యాలెన్స్‌ను మీరు పునరుద్ధరించడానికి మీ రికవరీ పదబంధం అనుమతిస్తుంది. మీరు దానిని సేవ్ చేయాలని మేం బలంగా సిఫారసు చేస్తున్నాము.</string>
     <!-- Alert dialog option to skip recovery phrase -->
-    <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">Skip Recovery Phrase</string>
+    <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">రికవరీ పదబంధాన్ని దాటవేయండి</string>
     <!-- Alert dialog option to cancel dialog-->
     <string name="PaymentsRecoveryStartFragment__cancel">రద్దు</string>
 
@@ -3943,9 +3943,9 @@
     <!-- Preference title to delete sms -->
     <string name="SmsSettingsFragment__remove_sms_messages">SMS సందేశాలను తొలగించండి</string>
     <!-- Snackbar text to confirm deletion -->
-    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Removing SMS messages from Signal…</string>
+    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Signal నుంచి SMS సందేశాలను తొలగిస్తోంది…</string>
     <!-- Snackbar text to indicate can delete later -->
-    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">You can remove SMS messages from Signal in Settings at any time.</string>
+    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">మీరు ఏ సమయంలోనైనా సెట్టింగ్‌లలో Signal నుంచి SMS సందేశాలను తొలగించవచ్చు.</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">సందేశాలు</string>
@@ -4195,17 +4195,17 @@
     <!-- Dialog title when removing a contact -->
     <string name="NewConversationActivity__remove_s">%1$s తొలగించాలా?</string>
     <!-- Dialog message when removing a contact -->
-    <string name="NewConversationActivity__you_wont_see_this_person">You won\'t see this person when searching. You\'ll get a message request if they message you in the future.</string>
+    <string name="NewConversationActivity__you_wont_see_this_person">వెతికేటప్పుడు మీరు ఈ వ్యక్తిని చూడలేరు. ఒకవేళ వారు భవిష్యత్తులో మీకు సందేశాన్ని పంపితే, మీరు ఒక సందేశ అభ్యర్ధనను పొందుతారు.</string>
     <!-- Snackbar message after removing a contact -->
-    <string name="NewConversationActivity__s_has_been_removed">%1$s has been removed</string>
+    <string name="NewConversationActivity__s_has_been_removed">%1$s తొలగించబడింది</string>
     <!-- Snackbar message after blocking a contact -->
-    <string name="NewConversationActivity__s_has_been_blocked">%1$s has been blocked</string>
+    <string name="NewConversationActivity__s_has_been_blocked">%1$s బ్లాక్ చేయబడింది</string>
     <!-- Dialog title when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__unable_to_remove_s">Unable to remove %1$s</string>
+    <string name="NewConversationActivity__unable_to_remove_s">%1$s ను తొలగించడం సాధ్యం కాలేదు</string>
     <!-- Dialog message when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__this_person_is_saved_to_your">This person is saved to your device\'s Contacts. Delete them from your Contacts and try again.</string>
+    <string name="NewConversationActivity__this_person_is_saved_to_your">ఈ వ్యక్తి మీ పరికరం యొక్క పరిచయాలకు సేవ్ చేయబడ్డారు. మీ పరిచయాల నుంచి వారిని తొలగించండి మరియు మళ్ళీ ప్రయత్నించండి.</string>
     <!-- Dialog action to view contact when they can't be removed otherwise -->
-    <string name="NewConversationActivity__view_contact">View contact</string>
+    <string name="NewConversationActivity__view_contact">పరిచయాన్ని వీక్షించండి</string>
 
     <!-- ContactFilterView -->
     <string name="ContactFilterView__search_name_or_number">పేరు లేదా నెంబరు వెతకండి</string>
@@ -4709,7 +4709,7 @@
     <!-- Subtitle for "My Stories" row item when user has not added stories -->
     <string name="StoriesLandingFragment__tap_to_add_a_story">ఒక కథను జోడించేందుకు తట్టండి</string>
     <!-- Displayed when there are no stories to display -->
-    <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now">No recent updates to show right now.</string>
+    <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now">ప్రస్తుతం చూపించడానికి ఇటీవల అప్‌డేట్‌లు ఏవీ లేవు.</string>
     <!-- Context menu option to hide a story -->
     <string name="StoriesLandingItem__hide_story">స్టోరీని దాచిపెట్టండి</string>
     <!-- Context menu option to unhide a story -->
@@ -4778,9 +4778,9 @@
     <!-- Displayed when viewing a post from another user with no replies -->
     <string name="StoryViewerPageFragment__reply">స్పంధించు</string>
     <!-- Displayed when viewing a post that has failed to send to some users -->
-    <string name="StoryViewerPageFragment__partially_sent">Partially sent. Tap for details</string>
+    <string name="StoryViewerPageFragment__partially_sent">పాక్షికంగా పంపబడింది. వివరాల కోసం తట్టండి</string>
     <!-- Displayed when viewing a post that has failed to send -->
-    <string name="StoryViewerPageFragment__send_failed">Send failed. Tap to retry</string>
+    <string name="StoryViewerPageFragment__send_failed">పంపడం విఫలమైంది. మళ్ళీ ప్రయత్నించడానికి తట్టండి</string>
     <!-- Label for the reply button in story viewer, which will launch the group story replies bottom sheet. -->
     <string name="StoryViewerPageFragment__reply_to_group">గ్రూపుకు రిప్లై ఇవ్వండి</string>
     <!-- Displayed when a story has no views -->
@@ -5229,7 +5229,7 @@
     <!-- Title of the screen -->
     <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">మీ SMS సందేశాలను ఎగుమతి చేయండి</string>
     <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">You can export your SMS messages to your phone\'s SMS database. This allows other SMS apps on your phone to access and import them. This does not create a shareable file of your SMS message history.</string>
+    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">మీ ఫోన్ యొక్క SMS డేటాబేస్‌కు మీ SMS సందేశాలను మీరు ఎగుమతి చేయగలరు. వాటిని యాక్సెస్ చేసుకోవడానికి మరియు దిగుమతి చేయడానికి మీ ఫోన్‌లో ఇతర SMS యాప్‌లను ఇది అనుమతిస్తుంది. ఇది మీ SMS సందేశ చరిత్ర యొక్క పంచుకోదగిన ఫైల్‌ను సృష్టించదు.</string>
     <!-- Button label to begin export -->
     <string name="ExportYourSmsMessagesFragment__continue">కొనసాగు</string>
 
@@ -5255,17 +5255,17 @@
     <!-- Fourth step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_4">4</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">Tap \"Continue\" to open the \"Default apps\" screen in Settings</string>
+    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">సెట్టింగ్‌లలో ‘‘డిఫాల్ట్ యాప్స్’’ స్క్రీన్ తెరవడానికి ‘‘కొనసాగండి’’ పై తట్టండి</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">Select \"SMS app\" from the list</string>
+    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">జాబితా నుంచి ‘‘SMS యాప్’’ ను ఎంచుకోండి</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">Choose another app to use for SMS messaging</string>
+    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">SMS సందేశాలు పంపడానికి మరో యాప్‌ను ఎంచుకోండి</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">Return to Signal</string>
+    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">Signal కు తిరిగి రండి</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">Open your phone\'s Settings app</string>
+    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">మీ ఫోన్ యొక్క సెట్టింగ్‌ల యాప్‌ను తెరవండి</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">Navigate to \"Apps\" &gt; \"Default apps\" &gt; \"SMS app\"</string>
+    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">\"యాప్స్\" &gt; \"డిఫాల్ట్ యాప్స్\" &gt; \"SMS యాప్\" కు వెళ్లండి</string>
 
     <!-- RemoveSmsMessagesDialogFragment -->
     <!-- Action button to keep messages -->
@@ -5275,13 +5275,13 @@
     <!-- Title of dialog -->
     <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Signal నుంచి SMS సందేశాలను తొలగించేదా?</string>
     <!-- Message of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">You can now remove SMS messages from Signal to clear up storage space. They will still be available to other SMS apps on your phone even if you remove them.</string>
+    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">నిల్వ స్థలాన్ని ఖాళీ చేయడానికి Signal నుంచి SMS సందేశాలను మీరు ఇప్పుడు తొలగించవచ్చు. ఒకవేళ మీరు వాటిని తొలగించినప్పటికీ మీ ఫోన్‌లో ఇతర SMS యాప్‌లకు అవి ఇంకా అందుబాటులో ఉంటాయి.</string>
 
     <!-- SetSignalAsDefaultSmsAppFragment -->
     <!-- Title of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">Set Signal as the default SMS app</string>
+    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">Signal ను డిఫాల్ట్ SMS యాప్‌గా సెట్ చేయండి</string>
     <!-- Message of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">To export your SMS messages, you need to set Signal as the default SMS app.</string>
+    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">మీ SMS సందేశాలను ఎగుమతి చేయడానికి, మీరు Signal ను డిఫాల్ట్ SMS యాప్‌గా సెట్ చేయాల్సి ఉంటుంది.</string>
     <!-- Button label to start export -->
     <string name="SetSignalAsDefaultSmsAppFragment__next">తరువాత</string>
 

@@ -358,8 +358,8 @@
     </plurals>
     <string name="ConversationFragment_save_to_sd_card">Hifadhi kwa hifadhi?</string>
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
-        <item quantity="one">Saving this media to storage will allow any other apps on your device to access it.\n\nContinue?</item>
-        <item quantity="other">Saving all %1$d media to storage will allow any other apps on your device to access them.\n\nContinue?</item>
+        <item quantity="one">Kuhifadhi media kutawezesha programu nyinginezo kwenye kifaa chako kuzifikia.\n\nEndelea?</item>
+        <item quantity="other">Kuhifadhi media zote %1$d kutawezesha programu nyinginezo kwenye kifaa chako kuzifikia.\n\nEndelea?</item>
     </plurals>
     <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
         <item quantity="one">kosa wakati wa kuhifadhi kiambatisho kwenye stoo</item>
@@ -367,12 +367,12 @@
     </plurals>
     <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Imeshindwa kuhifadhi kwa kuhifadhi</string>
     <plurals name="ConversationFragment_saving_n_attachments">
-        <item quantity="one">Saving attachment</item>
-        <item quantity="other">Saving %1$d attachments</item>
+        <item quantity="one">Inahifadhi kiambatisho</item>
+        <item quantity="other">Inahifadhi viambatisho %1$d</item>
     </plurals>
     <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="one">Saving attachment to storage…</item>
-        <item quantity="other">Saving %1$d attachments to storage…</item>
+        <item quantity="one">Inahifadhi viambatisho kwenye hifadhi…</item>
+        <item quantity="other">Inahifadhi viambatisho %1$d kwenye hifadhi</item>
     </plurals>
     <string name="ConversationFragment_pending">Subiriwa…</string>
     <string name="ConversationFragment_push">Data (Signal)</string>
@@ -418,19 +418,19 @@
         <item quantity="other">Futa mazungumzo uliyoyachagua?</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">This will permanently delete the selected conversation.</item>
-        <item quantity="other">This will permanently delete all %1$d selected conversations.</item>
+        <item quantity="one">Hii itafuta kabisa gumzo zote zilizochaguliwa.</item>
+        <item quantity="other">Hii itafuta kabisa gumzo %1$d zote zilizochaguliwa.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Inafutwa</string>
     <string name="ConversationListFragment_deleting_selected_conversations">Inafuta mazungumzo yaliyochaguliwa…</string>
     <plurals name="ConversationListFragment_conversations_archived">
-        <item quantity="one">Conversation archived</item>
-        <item quantity="other">%1$d conversations archived</item>
+        <item quantity="one">Gumzo zimewekwa kwenye jalada</item>
+        <item quantity="other">Gumzo %1$d zimewekwa kwenye jalada</item>
     </plurals>
     <string name="ConversationListFragment_undo">Tengua</string>
     <plurals name="ConversationListFragment_moved_conversations_to_inbox">
-        <item quantity="one">Moved conversation to inbox</item>
-        <item quantity="other">Moved %1$d conversations to inbox</item>
+        <item quantity="one">Gumzo zimehamishwa kwenye kisanduku pokezi</item>
+        <item quantity="other">Gumzo %1$d zimehamishwa kwenye kisanduku pokezi</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
         <item quantity="one">Soma</item>
@@ -664,8 +664,8 @@
 
     <!-- GV2 invites sent -->
     <plurals name="GroupManagement_invitation_sent">
-        <item quantity="one">Invitation sent</item>
-        <item quantity="other">%1$d invitations sent</item>
+        <item quantity="one">Mialiko imetumwa</item>
+        <item quantity="other">Mialiko %1$d imetumwa</item>
     </plurals>
     <string name="GroupManagement_invite_single_user">\"%1$s\" hawezi kuongezwa na wewe kiotomatiki kwenye kikundi hiki.\n\nAmealikwa kujiunga, na hataona ujumbe wowote wa kikundi mpaka atakapokubali.</string>
     <string name="GroupManagement_invite_multiple_users">Watumiaji hawa hawawezi kuongezwa na wewe kiotomatiki kwenye kikundi hiki.\n\nWamealikwa kujiunga na kikundi, na hawataona ujumbe wowote wa kikundi mpaka watakapokubali.</string>
@@ -765,8 +765,8 @@
     <string name="PendingMembersActivity_revoke_invite">Batilisha mwaliko</string>
     <string name="PendingMembersActivity_revoke_invites">Batilisha mialiko</string>
     <plurals name="PendingMembersActivity_revoke_d_invites">
-        <item quantity="one">Revoke invite</item>
-        <item quantity="other">Revoke %1$d invites</item>
+        <item quantity="one">Batilisha mwaliko</item>
+        <item quantity="other">Batilisha mialiko %1$d</item>
     </plurals>
     <plurals name="PendingMembersActivity_error_revoking_invite">
         <item quantity="one">Hitilafu katika kubatilisha mwaliko</item>
@@ -785,8 +785,8 @@
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Mtu huyu hawezi kuongezwa kwenye vikundi vizee.</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">Mtu huyu hawezi kuongezwa kwenye vikundi vya matangazo.</string>
     <plurals name="AddMembersActivity__add_d_members_to_s">
-        <item quantity="one">Add \"%1$s\" to \"%2$s\"?</item>
-        <item quantity="other">Add %3$d members to \"%2$s\"?</item>
+        <item quantity="one">Ongeza \"%1$s\" hadi \"%2$s\"?</item>
+        <item quantity="other">Ongeza wanachama %3$d kwenye \"%2$s\"?</item>
     </plurals>
     <string name="AddMembersActivity__add">Mwongeze</string>
     <string name="AddMembersActivity__add_members">Ongeza wanachama</string>
@@ -887,8 +887,8 @@
     </plurals>
 
     <plurals name="GroupMemberList_invited">
-        <item quantity="one">%1$s invited 1 person</item>
-        <item quantity="other">%1$s invited %2$d people</item>
+        <item quantity="one">%1$s amealika mtu 1</item>
+        <item quantity="other">%1$s amealika watu %2$d</item>
     </plurals>
 
     <!-- CustomNotificationsDialogFragment -->
@@ -926,8 +926,8 @@
     <!-- GV2 Invite Revoke confirmation dialog -->
     <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Je, unataka kubatilisha mwaliko uliomtumia %1$s?</string>
     <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
-        <item quantity="one">Do you want to revoke the invite sent by %1$s?</item>
-        <item quantity="other">Do you want to revoke %2$d invites sent by %1$s?</item>
+        <item quantity="one">Je, unataka kubatilisha mialiko iliyotumwa na %1$s?</item>
+        <item quantity="other">Je, unataka kubatilisha mialiko %2$d iliyotumwa na %1$s?</item>
     </plurals>
 
     <!-- GroupJoinBottomSheetDialogFragment -->
@@ -1035,8 +1035,8 @@
         <item quantity="other">Futa vitu vilivyochaguliwa?</item>
     </plurals>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-        <item quantity="one">This will permanently delete the selected file. Any message text associated with this item will also be deleted.</item>
-        <item quantity="other">This will permanently delete all %1$d selected files. Any message text associated with these items will also be deleted.</item>
+        <item quantity="one">Hii itafuta moja kwa moja faili lililochaguliwa. Ujumbe wowote mfupi unaohusishwa na vitu hivi pia utafutwa.</item>
+        <item quantity="other">Hii itafuta moja kwa moja faili %1$d zote zilizochaguliwa. Ujumbe wowote mfupi unaohusishwa na vitu hivi pia utafutwa.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Inafutwa</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">Jumbe zinafutwa</string>
@@ -1168,13 +1168,13 @@
     <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Hukuweza kuongezwa kwenye Kikundi Kipya na umealikwa ujiunge.</string>
     <string name="MessageRecord_chat_session_refreshed">Kipindi cha gumzo kimeonyeshwa upya</string>
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
-        <item quantity="one">A member couldn\'t be added to the New Group and has been invited to join.</item>
-        <item quantity="other">%1$s members couldn\'t be added to the New Group and have been invited to join.</item>
+        <item quantity="one">Mwanachama hakuweza kuongezwa kwenye Kikundi Kipya na amealikwa kujiunga.</item>
+        <item quantity="other">Wanachama %1$s hawakuweza kuongezwa kwenye Kikundi Kipya na wamealikwa kujiunga.</item>
     </plurals>
 
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
-        <item quantity="one">A member couldn\'t be added to the New Group and has been removed.</item>
-        <item quantity="other">%1$s members couldn\'t be added to the New Group and have been removed.</item>
+        <item quantity="one">Mwanachama hakuweza kuongezwa kwenye Kikundi Kipya na ameondolewa.</item>
+        <item quantity="other">Wanachama %1$s hawakuweza kuongezwa kwenye Kikundi Kipya na wameondolewa.</item>
     </plurals>
 
     <!-- Profile change updates -->
@@ -1219,31 +1219,31 @@
     <string name="MessageRecord_you_invited_s_to_the_group">Umemwalika %1$s kwenye kikundi.</string>
     <string name="MessageRecord_s_invited_you_to_the_group">%1$s amekualika kwenye kikundi.</string>
     <plurals name="MessageRecord_s_invited_members">
-        <item quantity="one">%1$s invited 1 person to the group.</item>
-        <item quantity="other">%1$s invited %2$d people to the group.</item>
+        <item quantity="one">%1$s amemualika mtu 1 kwenye kikundi.</item>
+        <item quantity="other">%1$s amewaalika watu %2$d kwenye kikundi.</item>
     </plurals>
     <string name="MessageRecord_you_were_invited_to_the_group">Umealikwa kwenye kundi.</string>
     <plurals name="MessageRecord_d_people_were_invited_to_the_group">
-        <item quantity="one">1 person was invited to the group.</item>
-        <item quantity="other">%1$d people were invited to the group.</item>
+        <item quantity="one">Mtu 1 amealikwa kwenye kikundi.</item>
+        <item quantity="other">Watu %1$d walialikwa kwenye kikundi.</item>
     </plurals>
 
     <!-- GV2 invitation revokes -->
     <plurals name="MessageRecord_you_revoked_invites">
-        <item quantity="one">You revoked an invitation to the group.</item>
-        <item quantity="other">You revoked %1$d invitations to the group.</item>
+        <item quantity="one">Ulibatilisha mwaliko kwa kundi.</item>
+        <item quantity="other">Ulibatilisha mwaliko wa %1$d kwa kikundi.</item>
     </plurals>
     <plurals name="MessageRecord_s_revoked_invites">
-        <item quantity="one">%1$s revoked an invitation to the group.</item>
-        <item quantity="other">%1$s revoked %2$d invitations to the group.</item>
+        <item quantity="one">%1$s alibatilisha mialiko kwa kikundi.</item>
+        <item quantity="other">%1$s alibatilisha mialiko ya %2$d kwa kikundi.</item>
     </plurals>
     <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Mtu fulani amekataa mwaliko wa kujiunga na kikundi hiki.</string>
     <string name="MessageRecord_you_declined_the_invitation_to_the_group">Umekataa mwaliko wa kujiunga na kikundi.</string>
     <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s amebatilisha mwaliko wako wa kujiunga na kikundi hiki.</string>
     <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">Msimamizi amebatilisha mwaliko wako wa kujiunga na kikundi.</string>
     <plurals name="MessageRecord_d_invitations_were_revoked">
-        <item quantity="one">An invitation to the group was revoked.</item>
-        <item quantity="other">%1$d invitations to the group were revoked.</item>
+        <item quantity="one">Mwaliko kwa kundi ulibatilishwa.</item>
+        <item quantity="other">Mialiko %1$d kwa kikundi ilibatilishwa.</item>
     </plurals>
 
     <!-- GV2 invitation acceptance -->
@@ -1316,8 +1316,8 @@
     <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s ameomba kujiunga kupitia kiungo cha kikundi.</string>
     <!-- Update message shown when someone requests to join via group link and cancels the request back to back -->
     <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
-        <item quantity="one">%1$s requested and cancelled their request to join via the group link.</item>
-        <item quantity="other">%1$s requested and cancelled %2$d requests to join via the group link.</item>
+        <item quantity="one">%1$s aliomba na kughairisha ombi la kujiunga kupitia kiungo cha kikundi.</item>
+        <item quantity="other">%1$s aliomba na kughairisha ombi %2$d za kujiunga kupitia kiungo cha kikundi.</item>
     </plurals>
 
     <!-- GV2 group link approvals -->
@@ -1346,9 +1346,9 @@
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Umependelea kipengele hiki kipya? Saidia kuiunga mkono Signal na mchango wa mara moja.</string>
     <!-- Update item message shown when we merge two threads together -->
-    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Your message history with %1$s and their number %2$s has been merged.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Historia ya jumbe zako na %1$s na nambari zao %2$s zimekunganishwa.</string>
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
-    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Your message history with %1$s and another chat that belonged to them has been merged.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Historia ya jumbe zako na %1$s na gumzo jingine ambalo ni la kwao zimeunganishwa.</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s ameanzisha mazungumzo ya simu ya kikundi · %2$s</string>
@@ -1450,8 +1450,8 @@
     <string name="OutdatedBuildReminder_update_now">Sasisha sasa</string>
     <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Muda wa toleo hili la Signal utaisha leo. Sasisha utumie toleo jipya.</string>
     <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
-        <item quantity="one">This version of Signal will expire tomorrow. Update to the most recent version.</item>
-        <item quantity="other">This version of Signal will expire in %1$d days. Update to the most recent version.</item>
+        <item quantity="one">Muda wa toleo hili la Signal utaisha kesho. Sasisha utumie toleo jipya.</item>
+        <item quantity="other">Muda wa toleo hili la Signal utaisha ndani ya siku %1$d. Sasisha utumie toleo jipya.</item>
     </plurals>
 
     <!-- PassphrasePromptActivity -->
@@ -1873,7 +1873,7 @@
 
     <!-- UsernameEditFragment -->
     <!-- Toolbar title when entering from registration -->
-    <string name="UsernameEditFragment__add_a_username">Add a username</string>
+    <string name="UsernameEditFragment__add_a_username">Ongeza jina la mtumiaji</string>
     <!-- Instructional text at the top of the username edit screen -->
     <string name="UsernameEditFragment__choose_your_username">Chagua jina lako la mtumiaji</string>
     <string name="UsernameEditFragment_username">Jina la mtumiaji</string>
@@ -3743,10 +3743,10 @@
     <string name="payment_info_card_hide_this_card">Ungependa kuficha kadi hii?</string>
     <string name="payment_info_card_hide">Ficha</string>
     <!-- Title of save recovery phrase card -->
-    <string name="payment_info_card_save_recovery_phrase">Save recovery phrase</string>
+    <string name="payment_info_card_save_recovery_phrase">Hifadhi sentensi ya urejesho</string>
     <string name="payment_info_card_your_recovery_phrase_gives_you">Maneno yako ya kurejesha yanakupa njia nyingine ya kurejesha akaunti yako ya malipo.</string>
     <!-- Button in save recovery phrase card -->
-    <string name="payment_info_card_save_your_phrase">Save your phrase</string>
+    <string name="payment_info_card_save_your_phrase">Hifadhi sentensi yako</string>
     <string name="payment_info_card_update_your_pin">Badilisha PIN yako</string>
     <string name="payment_info_card_with_a_high_balance">Ikiwa una salio kubwa, huenda utahitaji kubadilisha utumie PIN ya herufi na nambari ili kudumisha ulinzi kwenye akaunti yako.</string>
     <string name="payment_info_card_update_pin">Sasisha Nenosiri</string>
@@ -3771,23 +3771,23 @@
     <string name="PaymentsRecoveryStartFragment__recovery_phrase">Maneno ya kurejesha</string>
     <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Angalia maneno ya kurejesha</string>
     <!-- Title in save recovery phrase screen -->
-    <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Save recovery phrase</string>
+    <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Hifadhi sentensi ya urejesho</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Weka maneno ya kurejesha</string>
     <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Salio lako litarejeshwa kiotomatiki utakapoweka tena Signal ikiwa utathibitisha PIN yako ya Signal. Unaweza pia kurejesha salio lako ukitumia maneno ya kurejesha, ambayo ni maneno %1$d maalum kwako. Yaandike na kuyahifadhi mahali salama.</string>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
-    <string name="PaymentsRecoveryStartFragment__got_balance">You’ve got a balance! Time to save your recovery phrase—a 24-word key you can use to restore your balance.</string>
+    <string name="PaymentsRecoveryStartFragment__got_balance">Una salio! Muda wa kuhifadhi kauli yako ya urejesho—neno siri lenye maneno 24 unaloweza kutumia kurejesha salio lako.</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
-    <string name="PaymentsRecoveryStartFragment__time_to_save">Time to save your recovery phrase—a 24-word key you can use to restore your balance. Learn more</string>
+    <string name="PaymentsRecoveryStartFragment__time_to_save">Muda wa kuhifadhi kauli yako ya urejesho—neno siri lenye maneno 24 unaloweza kutumia kurejesha salio lako. Jifunze zaidi</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Maneno yako ya kurejesha ni kifungu cha maneno %1$d maalum kwako. Yatumie kurejesha salio lako.</string>
     <string name="PaymentsRecoveryStartFragment__start">Anza</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">Weka mwenyewe</string>
     <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Bandika kutoka ubao wa kunakili</string>
     <!-- Alert dialog title which asks before going back if user wants to save recovery phrase -->
-    <string name="PaymentsRecoveryStartFragment__continue_without_saving">Continue Without Saving?</string>
+    <string name="PaymentsRecoveryStartFragment__continue_without_saving">Endelea Bila Kuhifadhi?</string>
     <!-- Alert dialog description to let user know why recovery phrase needs to be saved -->
-    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">Your recovery phrase lets you restore your balance in a worst-case scenario. We strongly recommend you save it.</string>
+    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">Kauli yako ya urejesho inakuwezesha kurejesha salio lako katika mazingira hasi. Tunakushauri sana uihifadhi.</string>
     <!-- Alert dialog option to skip recovery phrase -->
-    <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">Skip Recovery Phrase</string>
+    <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">Ruka Sentensi ya Urejesho</string>
     <!-- Alert dialog option to cancel dialog-->
     <string name="PaymentsRecoveryStartFragment__cancel">Ghairi</string>
 
@@ -3943,9 +3943,9 @@
     <!-- Preference title to delete sms -->
     <string name="SmsSettingsFragment__remove_sms_messages">Ondoa jumbe za SMS</string>
     <!-- Snackbar text to confirm deletion -->
-    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Removing SMS messages from Signal…</string>
+    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Kuondoa jumbe za SMS kutoka Signal…</string>
     <!-- Snackbar text to indicate can delete later -->
-    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">You can remove SMS messages from Signal in Settings at any time.</string>
+    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">Unaweza kuondoa jumbe za SMS kutoka Signal kwenye Mipangilio muda wowote ule.</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">Jumbe</string>
@@ -4195,17 +4195,17 @@
     <!-- Dialog title when removing a contact -->
     <string name="NewConversationActivity__remove_s">Ondoa %1$s?</string>
     <!-- Dialog message when removing a contact -->
-    <string name="NewConversationActivity__you_wont_see_this_person">You won\'t see this person when searching. You\'ll get a message request if they message you in the future.</string>
+    <string name="NewConversationActivity__you_wont_see_this_person">Hutomuona huyu mtu ukiwa unatafuta. Utapata ombi la ujumbe kama watakutumia ujumbe mbeleni.</string>
     <!-- Snackbar message after removing a contact -->
-    <string name="NewConversationActivity__s_has_been_removed">%1$s has been removed</string>
+    <string name="NewConversationActivity__s_has_been_removed">%1$s ametolewa</string>
     <!-- Snackbar message after blocking a contact -->
-    <string name="NewConversationActivity__s_has_been_blocked">%1$s has been blocked</string>
+    <string name="NewConversationActivity__s_has_been_blocked">%1$s amezuiliwa</string>
     <!-- Dialog title when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__unable_to_remove_s">Unable to remove %1$s</string>
+    <string name="NewConversationActivity__unable_to_remove_s">Imeshindikana kumuondoa %1$s</string>
     <!-- Dialog message when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__this_person_is_saved_to_your">This person is saved to your device\'s Contacts. Delete them from your Contacts and try again.</string>
+    <string name="NewConversationActivity__this_person_is_saved_to_your">Mtu huyu amehifadhiwa kwenye Wawasiliani wa kifaa chako. Wafute kutoka kwenye Wawasiliani wako na ujaribu tena.</string>
     <!-- Dialog action to view contact when they can't be removed otherwise -->
-    <string name="NewConversationActivity__view_contact">View contact</string>
+    <string name="NewConversationActivity__view_contact">Angalia muwasiliani</string>
 
     <!-- ContactFilterView -->
     <string name="ContactFilterView__search_name_or_number">Tafuta jina au nambari</string>
@@ -4709,7 +4709,7 @@
     <!-- Subtitle for "My Stories" row item when user has not added stories -->
     <string name="StoriesLandingFragment__tap_to_add_a_story">Bonyeza kuongeza stori</string>
     <!-- Displayed when there are no stories to display -->
-    <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now">No recent updates to show right now.</string>
+    <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now">Hakuna masasisho ya hivi karibuni ya kuonyesha sasa hivi.</string>
     <!-- Context menu option to hide a story -->
     <string name="StoriesLandingItem__hide_story">Ficha stori</string>
     <!-- Context menu option to unhide a story -->
@@ -4778,9 +4778,9 @@
     <!-- Displayed when viewing a post from another user with no replies -->
     <string name="StoryViewerPageFragment__reply">Jibu</string>
     <!-- Displayed when viewing a post that has failed to send to some users -->
-    <string name="StoryViewerPageFragment__partially_sent">Partially sent. Tap for details</string>
+    <string name="StoryViewerPageFragment__partially_sent">Imetumwa nusu. Bofya kupata taarifa zaidi</string>
     <!-- Displayed when viewing a post that has failed to send -->
-    <string name="StoryViewerPageFragment__send_failed">Send failed. Tap to retry</string>
+    <string name="StoryViewerPageFragment__send_failed">Imeshindikana Kutuma. Bonyeza kujaribu tena</string>
     <!-- Label for the reply button in story viewer, which will launch the group story replies bottom sheet. -->
     <string name="StoryViewerPageFragment__reply_to_group">Jibu kwenye kikundi</string>
     <!-- Displayed when a story has no views -->
@@ -5229,7 +5229,7 @@
     <!-- Title of the screen -->
     <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">Hamisha jumbe zako za SMS</string>
     <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">You can export your SMS messages to your phone\'s SMS database. This allows other SMS apps on your phone to access and import them. This does not create a shareable file of your SMS message history.</string>
+    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">Unaweza kuhamisha jumbe zako za SMS katika hifadhidata ya SMS ya simu yako. Hii inawezesha programu zingine za SMS kwenye simu yako kuzipata na kuzihamisha. Hii haitengenezi faili la kusambaza kwenye historia ya jumbe zako za SMS zako.</string>
     <!-- Button label to begin export -->
     <string name="ExportYourSmsMessagesFragment__continue">Endelea</string>
 
@@ -5255,17 +5255,17 @@
     <!-- Fourth step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_4">4</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">Tap \"Continue\" to open the \"Default apps\" screen in Settings</string>
+    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">Bofya \"Endelea\" ili kufungua skrini ya \"Programu za kawaida\" kwenye Mipangilio</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">Select \"SMS app\" from the list</string>
+    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">Chagua \"programu ya SMS\" kutoka kwenye orodha</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">Choose another app to use for SMS messaging</string>
+    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">Chagua programu nyingine ya kutumia kwa ajili ya utumaji jumbe za SMS</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">Return to Signal</string>
+    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">Rejea Signal</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">Open your phone\'s Settings app</string>
+    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">Fungua programu ya Mipangilio ya simu yako</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">Navigate to \"Apps\" &gt; \"Default apps\" &gt; \"SMS app\"</string>
+    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">Elekea \"Programu\" &gt; \"Programu za kawaida\" &gt; \"programu ya SMS\"</string>
 
     <!-- RemoveSmsMessagesDialogFragment -->
     <!-- Action button to keep messages -->
@@ -5275,13 +5275,13 @@
     <!-- Title of dialog -->
     <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Ondoa jumbe za SMS kutoka Signal?</string>
     <!-- Message of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">You can now remove SMS messages from Signal to clear up storage space. They will still be available to other SMS apps on your phone even if you remove them.</string>
+    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">Sasa unaweza kuondoa jumbe za SMS kutoka Signal ili kuacha nafasi ya uhifadhi. Bado zitakuwa zinapatikana kwenye programu zingine za SMS kwenye simu yako hata kama utaziondoa.</string>
 
     <!-- SetSignalAsDefaultSmsAppFragment -->
     <!-- Title of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">Set Signal as the default SMS app</string>
+    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">Fanya Signal kuwa programu yako ya SMS</string>
     <!-- Message of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">To export your SMS messages, you need to set Signal as the default SMS app.</string>
+    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">Kuhamisha jumbe zako za SMS, unahitaji kuifanya Signal kuwa programu yako ya chaguo msingi ya SMS.</string>
     <!-- Button label to start export -->
     <string name="SetSignalAsDefaultSmsAppFragment__next">Inayofuata</string>
 

@@ -1288,9 +1288,9 @@
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Suka ciri baru ini? Bantu menyokong Signal dengan derma sekali.</string>
     <!-- Update item message shown when we merge two threads together -->
-    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Your message history with %1$s and their number %2$s has been merged.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Sejarah mesej anda dengan %1$s dan nombor mereka %2$s telah digabungkan.</string>
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
-    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Your message history with %1$s and another chat that belonged to them has been merged.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Sejarah mesej anda dengan %1$s dan sembang lain milik mereka telah digabungkan.</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s telah memulakan panggilan kumpulan · %2$s</string>
@@ -1800,7 +1800,7 @@
 
     <!-- UsernameEditFragment -->
     <!-- Toolbar title when entering from registration -->
-    <string name="UsernameEditFragment__add_a_username">Add a username</string>
+    <string name="UsernameEditFragment__add_a_username">Tambah nama pengguna</string>
     <!-- Instructional text at the top of the username edit screen -->
     <string name="UsernameEditFragment__choose_your_username">Pilih nama pengguna anda</string>
     <string name="UsernameEditFragment_username">Nama Pengguna</string>
@@ -3646,10 +3646,10 @@
     <string name="payment_info_card_hide_this_card">Sembunyikan kad ini?</string>
     <string name="payment_info_card_hide">Sembunyikan</string>
     <!-- Title of save recovery phrase card -->
-    <string name="payment_info_card_save_recovery_phrase">Save recovery phrase</string>
+    <string name="payment_info_card_save_recovery_phrase">Simpan frasa pemulihan</string>
     <string name="payment_info_card_your_recovery_phrase_gives_you">Frasa pemulihan anda memberikan anda kaedah lain untuk memulihkan akaun pembayaran anda.</string>
     <!-- Button in save recovery phrase card -->
-    <string name="payment_info_card_save_your_phrase">Save your phrase</string>
+    <string name="payment_info_card_save_your_phrase">Simpan frasa anda</string>
     <string name="payment_info_card_update_your_pin">Kemas kini PIN anda</string>
     <string name="payment_info_card_with_a_high_balance">Dengan baki yang tinggi, anda mungkin mahu mengemas kini PIN kepada PIN abjad angka untuk menambahkan lebih banyak perlindungan pada akaun anda.</string>
     <string name="payment_info_card_update_pin">Kemas kini PIN</string>
@@ -3674,23 +3674,23 @@
     <string name="PaymentsRecoveryStartFragment__recovery_phrase">Frasa pemulihan</string>
     <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Lihat frasa pemulihan</string>
     <!-- Title in save recovery phrase screen -->
-    <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Save recovery phrase</string>
+    <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Simpan frasa pemulihan</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Masukkan frasa pemulihan</string>
     <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Baki anda akan dipulihkan secara automatik apabila anda memasang semula Signal jika anda mengesahkan PIN Signal anda. Anda juga dapat memulihkan baki anda menggunakan frasa pemulihan, yang merupakan frasa %1$d perkataan yang unik untuk anda. Catatkannya dan simpan di tempat yang selamat.</string>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
-    <string name="PaymentsRecoveryStartFragment__got_balance">You’ve got a balance! Time to save your recovery phrase—a 24-word key you can use to restore your balance.</string>
+    <string name="PaymentsRecoveryStartFragment__got_balance">Anda mempunyai baki! Masa untuk menyimpan frasa pemulihan anda—kunci 24 perkataan yang anda boleh gunakan untuk menyimpan baki anda.</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
-    <string name="PaymentsRecoveryStartFragment__time_to_save">Time to save your recovery phrase—a 24-word key you can use to restore your balance. Learn more</string>
+    <string name="PaymentsRecoveryStartFragment__time_to_save">Masa untuk menyimpan frasa pemulihan anda—kunci 24 perkataan yang anda boleh gunakan untuk menyimpan baki anda. Ketahui lebih lanjut</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Frasa pemulihan anda merupakan frasa %1$d perkataan yang unik untuk anda. Gunakan frasa ini untuk memulihkan baki anda.</string>
     <string name="PaymentsRecoveryStartFragment__start">Mulakan</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">Masukkan secara manual</string>
     <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Tampal daripada papan keratan</string>
     <!-- Alert dialog title which asks before going back if user wants to save recovery phrase -->
-    <string name="PaymentsRecoveryStartFragment__continue_without_saving">Continue Without Saving?</string>
+    <string name="PaymentsRecoveryStartFragment__continue_without_saving">Teruskan Tanpa Menyimpan?</string>
     <!-- Alert dialog description to let user know why recovery phrase needs to be saved -->
-    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">Your recovery phrase lets you restore your balance in a worst-case scenario. We strongly recommend you save it.</string>
+    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">Frasa pemulihan membolehkan anda menyimpan baki anda sekiranya perkara buruk berlaku. Kami amat mencadangkan anda menyimpannya.</string>
     <!-- Alert dialog option to skip recovery phrase -->
-    <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">Skip Recovery Phrase</string>
+    <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">Langkau Frasa Pemulihan</string>
     <!-- Alert dialog option to cancel dialog-->
     <string name="PaymentsRecoveryStartFragment__cancel">Batal</string>
 
@@ -3846,9 +3846,9 @@
     <!-- Preference title to delete sms -->
     <string name="SmsSettingsFragment__remove_sms_messages">Alih keluar mesej SMS</string>
     <!-- Snackbar text to confirm deletion -->
-    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Removing SMS messages from Signal…</string>
+    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Mengalih keluar mesej SMS daripada Signal…</string>
     <!-- Snackbar text to indicate can delete later -->
-    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">You can remove SMS messages from Signal in Settings at any time.</string>
+    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">Anda boleh mengalih keluar mesej SMS daripada Signal dalam tetapan pada bila-bila masa.</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">Mesej</string>
@@ -4096,17 +4096,17 @@
     <!-- Dialog title when removing a contact -->
     <string name="NewConversationActivity__remove_s">Alih keluar %1$s?</string>
     <!-- Dialog message when removing a contact -->
-    <string name="NewConversationActivity__you_wont_see_this_person">You won\'t see this person when searching. You\'ll get a message request if they message you in the future.</string>
+    <string name="NewConversationActivity__you_wont_see_this_person">Anda tidak akan melihat orang ini semasa membuat pencarian. Anda akan menerima permintaan mesej jika mereka menghantar mesej kepada anda pada masa depan.</string>
     <!-- Snackbar message after removing a contact -->
-    <string name="NewConversationActivity__s_has_been_removed">%1$s has been removed</string>
+    <string name="NewConversationActivity__s_has_been_removed">%1$s telah dialih keluar.</string>
     <!-- Snackbar message after blocking a contact -->
-    <string name="NewConversationActivity__s_has_been_blocked">%1$s has been blocked</string>
+    <string name="NewConversationActivity__s_has_been_blocked">%1$s telah disekat.</string>
     <!-- Dialog title when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__unable_to_remove_s">Unable to remove %1$s</string>
+    <string name="NewConversationActivity__unable_to_remove_s">Tidak dapat mengalih keluar %1$s</string>
     <!-- Dialog message when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__this_person_is_saved_to_your">This person is saved to your device\'s Contacts. Delete them from your Contacts and try again.</string>
+    <string name="NewConversationActivity__this_person_is_saved_to_your">Orang ini disimpan ke Kenalan dalam peranti anda. Padam mereka daripada Kenalan anda dan cuba lagi.</string>
     <!-- Dialog action to view contact when they can't be removed otherwise -->
-    <string name="NewConversationActivity__view_contact">View contact</string>
+    <string name="NewConversationActivity__view_contact">Lihat Kenalan</string>
 
     <!-- ContactFilterView -->
     <string name="ContactFilterView__search_name_or_number">Cari nama atau nombor</string>
@@ -4605,7 +4605,7 @@
     <!-- Subtitle for "My Stories" row item when user has not added stories -->
     <string name="StoriesLandingFragment__tap_to_add_a_story">Ketik untuk tambah cerita</string>
     <!-- Displayed when there are no stories to display -->
-    <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now">No recent updates to show right now.</string>
+    <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now">Tiada kemas kini terbaru untuk ditunjukkan.</string>
     <!-- Context menu option to hide a story -->
     <string name="StoriesLandingItem__hide_story">Sembunyikan cerita</string>
     <!-- Context menu option to unhide a story -->
@@ -4671,9 +4671,9 @@
     <!-- Displayed when viewing a post from another user with no replies -->
     <string name="StoryViewerPageFragment__reply">Balas</string>
     <!-- Displayed when viewing a post that has failed to send to some users -->
-    <string name="StoryViewerPageFragment__partially_sent">Partially sent. Tap for details</string>
+    <string name="StoryViewerPageFragment__partially_sent">Sebahagiannya telah dihantar. Ketik untuk butiran</string>
     <!-- Displayed when viewing a post that has failed to send -->
-    <string name="StoryViewerPageFragment__send_failed">Send failed. Tap to retry</string>
+    <string name="StoryViewerPageFragment__send_failed">Penghantaran gagal. Ketik untuk cuba lagi</string>
     <!-- Label for the reply button in story viewer, which will launch the group story replies bottom sheet. -->
     <string name="StoryViewerPageFragment__reply_to_group">Balas ke kumpulan</string>
     <!-- Displayed when a story has no views -->
@@ -5111,7 +5111,7 @@
     <!-- Title of the screen -->
     <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">Eksport mesej SMS anda</string>
     <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">You can export your SMS messages to your phone\'s SMS database. This allows other SMS apps on your phone to access and import them. This does not create a shareable file of your SMS message history.</string>
+    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">Anda boleh mengeksport mesej SMS anda ke pangkalan data SMS telefon anda. Ini membolehkan aplikasi SMS lain pada telefon anda mengakses dan mengimportnya. Ini tidak mencipta fail yang boleh dikongsi untuk sejarah mesej SMS anda.</string>
     <!-- Button label to begin export -->
     <string name="ExportYourSmsMessagesFragment__continue">Teruskan</string>
 
@@ -5137,17 +5137,17 @@
     <!-- Fourth step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_4">4</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">Tap \"Continue\" to open the \"Default apps\" screen in Settings</string>
+    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">Ketik \"Teruskan\" untuk membuka skrin \"Aplikasi lalai\" dalam Tetapan</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">Select \"SMS app\" from the list</string>
+    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">Pilih \"Aplikasi SMS\" daripada senarai</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">Choose another app to use for SMS messaging</string>
+    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">Pilih aplikasi lain untuk digunakan bagi pemesejan SMS</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">Return to Signal</string>
+    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">Kembali ke Signal</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">Open your phone\'s Settings app</string>
+    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">Buka aplikasi Tetapan telefon anda</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">Navigate to \"Apps\" &gt; \"Default apps\" &gt; \"SMS app\"</string>
+    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">Navigasi ke \"Aplikasi\" &gt; \"Aplikasi lalai\" &gt; \"Aplikasi SMS\"</string>
 
     <!-- RemoveSmsMessagesDialogFragment -->
     <!-- Action button to keep messages -->
@@ -5157,13 +5157,13 @@
     <!-- Title of dialog -->
     <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Alih keluar mesej daripada Signal?</string>
     <!-- Message of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">You can now remove SMS messages from Signal to clear up storage space. They will still be available to other SMS apps on your phone even if you remove them.</string>
+    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">Anda kini boleh mengalih keluar mesej SMS daripada Signal untuk mengosongkan ruang storan. Ia masih akan tersedia untuk aplikasi SMS lain pada telefon anda walaupun dialih keluar.</string>
 
     <!-- SetSignalAsDefaultSmsAppFragment -->
     <!-- Title of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">Set Signal as the default SMS app</string>
+    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">Tetapkan Signal sebagai aplikasi SMS lalai</string>
     <!-- Message of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">To export your SMS messages, you need to set Signal as the default SMS app.</string>
+    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">Untuk mengeksport mesej SMS anda, anda perlu menetapkan Signal sebagai aplikasi SMS lalai.</string>
     <!-- Button label to start export -->
     <string name="SetSignalAsDefaultSmsAppFragment__next">Seterusnya</string>
 

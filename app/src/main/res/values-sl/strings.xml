@@ -364,10 +364,10 @@
     </plurals>
     <string name="ConversationFragment_save_to_sd_card">Shranim v sistemsko shrambo?</string>
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
-        <item quantity="one">Saving this media to storage will allow any other apps on your device to access it.\n\nContinue?</item>
-        <item quantity="two">Saving all %1$d media to storage will allow any other apps on your device to access them.\n\nContinue?</item>
-        <item quantity="few">Saving all %1$d media to storage will allow any other apps on your device to access them.\n\nContinue?</item>
-        <item quantity="other">Saving all %1$d media to storage will allow any other apps on your device to access them.\n\nContinue?</item>
+        <item quantity="one">Shranitev datoteke v sistemsko shrambo bo omogočila dostop do nje vsaki aplikaciji na vaši napravi.\n\nŽelite nadaljevati?</item>
+        <item quantity="two">Shranitev obeh datotek v sistemsko shrambo bo omogočila dostop do njiju vsaki aplikaciji na vaši napravi.\n\nŽelite nadaljevati?</item>
+        <item quantity="few">Shranitev vseh %1$d datotek v sistemsko shrambo bo omogočila dostop do njih vsaki aplikaciji na vaši napravi.\n\nŽelite nadaljevati?</item>
+        <item quantity="other">Shranitev vseh %1$d datotek v sistemsko shrambo bo omogočila dostop do njih vsaki aplikaciji na vaši napravi.\n\nŽelite nadaljevati?</item>
     </plurals>
     <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
         <item quantity="one">Napaka pri shranjevanju priponke v shrambo!</item>
@@ -377,16 +377,16 @@
     </plurals>
     <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Ne morem shranjevati v sistemsko shrambo!</string>
     <plurals name="ConversationFragment_saving_n_attachments">
-        <item quantity="one">Saving attachment</item>
-        <item quantity="two">Saving %1$d attachments</item>
-        <item quantity="few">Saving %1$d attachments</item>
-        <item quantity="other">Saving %1$d attachments</item>
+        <item quantity="one">Shranjujem priponko</item>
+        <item quantity="two">Shranjujem %1$d priponki</item>
+        <item quantity="few">Shranjujem %1$d priponke</item>
+        <item quantity="other">Shranjujem %1$d priponk</item>
     </plurals>
     <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="one">Saving attachment to storage…</item>
-        <item quantity="two">Saving %1$d attachments to storage…</item>
-        <item quantity="few">Saving %1$d attachments to storage…</item>
-        <item quantity="other">Saving %1$d attachments to storage…</item>
+        <item quantity="one">Shranjevanje priloge v shrambo …</item>
+        <item quantity="two">Shranjevanje %1$d prilog v shrambo …</item>
+        <item quantity="few">Shranjevanje %1$d prilog v shrambo …</item>
+        <item quantity="other">Shranjevanje %1$d prilog v shrambo …</item>
     </plurals>
     <string name="ConversationFragment_pending">V teku …</string>
     <string name="ConversationFragment_push">Podatkovno (Signal)</string>
@@ -434,25 +434,25 @@
         <item quantity="other">Izbrišem izbrane pogovore?</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">This will permanently delete the selected conversation.</item>
-        <item quantity="two">This will permanently delete all %1$d selected conversations.</item>
-        <item quantity="few">This will permanently delete all %1$d selected conversations.</item>
-        <item quantity="other">This will permanently delete all %1$d selected conversations.</item>
+        <item quantity="one">S tem boste nepovratno izbrisali izbran pogovor.</item>
+        <item quantity="two">S tem boste nepovratno izbrisali oba izbrana pogovora.</item>
+        <item quantity="few">S tem boste nepovratno izbrisali vse %1$d izbrane pogovore.</item>
+        <item quantity="other">S tem boste nepovratno izbrisali vseh %1$d izbranih pogovorov.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Brisanje</string>
     <string name="ConversationListFragment_deleting_selected_conversations">Izbris izbranih pogovorov …</string>
     <plurals name="ConversationListFragment_conversations_archived">
-        <item quantity="one">Conversation archived</item>
-        <item quantity="two">%1$d conversations archived</item>
-        <item quantity="few">%1$d conversations archived</item>
-        <item quantity="other">%1$d conversations archived</item>
+        <item quantity="one">Pogovor je premaknjen v arhiv</item>
+        <item quantity="two">Pogovora sta premaknjena v arhiv</item>
+        <item quantity="few">%1$d pogovori so premaknjeni v arhiv</item>
+        <item quantity="other">%1$d pogovorov je premaknjenih v arhiv</item>
     </plurals>
     <string name="ConversationListFragment_undo">Razveljavi</string>
     <plurals name="ConversationListFragment_moved_conversations_to_inbox">
-        <item quantity="one">Moved conversation to inbox</item>
-        <item quantity="two">Moved %1$d conversations to inbox</item>
-        <item quantity="few">Moved %1$d conversations to inbox</item>
-        <item quantity="other">Moved %1$d conversations to inbox</item>
+        <item quantity="one">Pogovor je premaknjen v nabiralnik</item>
+        <item quantity="two">Pogovora sta premaknjena v nabiralnik</item>
+        <item quantity="few">%1$d pogovori so premaknjeni v nabiralnik</item>
+        <item quantity="other">%1$d pogovorov je premaknjenih v nabiralnik</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
         <item quantity="one">Prebrano</item>
@@ -708,10 +708,10 @@
 
     <!-- GV2 invites sent -->
     <plurals name="GroupManagement_invitation_sent">
-        <item quantity="one">Invitation sent</item>
-        <item quantity="two">%1$d invitations sent</item>
-        <item quantity="few">%1$d invitations sent</item>
-        <item quantity="other">%1$d invitations sent</item>
+        <item quantity="one">Vabilo je poslano</item>
+        <item quantity="two">Vabili sta poslani</item>
+        <item quantity="few">%1$d vabila so poslana</item>
+        <item quantity="other">%1$d vabil je poslanih</item>
     </plurals>
     <string name="GroupManagement_invite_single_user">Uporabnika_ce “%1$s” ne morete avtomatično dodati k skupini.\n\nPoslano mu_ji je bilo vabilo in dokler ga ne potrdi, ne bo videl_a sporočil skupine.</string>
     <string name="GroupManagement_invite_multiple_users">Teh uporabnikov_ic ne morete avtomatično dodati v skupino.\n\nPoslano jim je bilo vabilo in dokler ga ne potrdijo, ne bodo videli_e sporočil skupine.</string>
@@ -835,10 +835,10 @@
     <string name="PendingMembersActivity_revoke_invite">Prekliči vabilo</string>
     <string name="PendingMembersActivity_revoke_invites">Prekliči vabila</string>
     <plurals name="PendingMembersActivity_revoke_d_invites">
-        <item quantity="one">Revoke invite</item>
-        <item quantity="two">Revoke %1$d invites</item>
-        <item quantity="few">Revoke %1$d invites</item>
-        <item quantity="other">Revoke %1$d invites</item>
+        <item quantity="one">Prekliči vabilo</item>
+        <item quantity="two">Prekliči vabili</item>
+        <item quantity="few">Prekliči %1$d vabila</item>
+        <item quantity="other">Prekliči %1$d vabil</item>
     </plurals>
     <plurals name="PendingMembersActivity_error_revoking_invite">
         <item quantity="one">Napaka pri preklicu vabila</item>
@@ -859,10 +859,10 @@
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Uporabnik_ca ne more biti dodan_a v staro skupino.</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">Oseba ne more biti dodana v skupino za obveščanje.</string>
     <plurals name="AddMembersActivity__add_d_members_to_s">
-        <item quantity="one">Add \"%1$s\" to \"%2$s\"?</item>
-        <item quantity="two">Add %3$d members to \"%2$s\"?</item>
-        <item quantity="few">Add %3$d members to \"%2$s\"?</item>
-        <item quantity="other">Add %3$d members to \"%2$s\"?</item>
+        <item quantity="one">Želite dodati uporabnika_co \"%1$s\" v skupino \"%2$s\"?</item>
+        <item quantity="two">Želite dodati %3$d uporabnika_ci v skupino \"%2$s\"?</item>
+        <item quantity="few">Želite dodati %3$d uporabnike_ce v skupino \"%2$s\"?</item>
+        <item quantity="other">Želite dodati %3$d uporabnikov_ic v skupino \"%2$s\"?</item>
     </plurals>
     <string name="AddMembersActivity__add">Dodaj</string>
     <string name="AddMembersActivity__add_members">Dodaj člane_ice</string>
@@ -967,10 +967,10 @@
     </plurals>
 
     <plurals name="GroupMemberList_invited">
-        <item quantity="one">%1$s invited 1 person</item>
-        <item quantity="two">%1$s invited %2$d people</item>
-        <item quantity="few">%1$s invited %2$d people</item>
-        <item quantity="other">%1$s invited %2$d people</item>
+        <item quantity="one">%1$s je povabil_a 1 osebo</item>
+        <item quantity="two">%1$s je povabil_a %2$d osebi</item>
+        <item quantity="few">%1$s je povabil_a %2$d osebe</item>
+        <item quantity="other">%1$s je povabil_a %2$d oseb</item>
     </plurals>
 
     <!-- CustomNotificationsDialogFragment -->
@@ -1008,10 +1008,10 @@
     <!-- GV2 Invite Revoke confirmation dialog -->
     <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Želite preklicati vabilo, ki ste ga poslali uporabniku_ci %1$s?</string>
     <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
-        <item quantity="one">Do you want to revoke the invite sent by %1$s?</item>
-        <item quantity="two">Do you want to revoke %2$d invites sent by %1$s?</item>
-        <item quantity="few">Do you want to revoke %2$d invites sent by %1$s?</item>
-        <item quantity="other">Do you want to revoke %2$d invites sent by %1$s?</item>
+        <item quantity="one">Želite preklicati vabilo uporabnika_ce %1$s?</item>
+        <item quantity="two">Želite preklicati vabili uporabnika_ce %1$s?</item>
+        <item quantity="few">Želite preklicati %2$d vabila uporabnika_ce %1$s?</item>
+        <item quantity="other">Želite preklicati %2$d vabil uporabnika_ce %1$s?</item>
     </plurals>
 
     <!-- GroupJoinBottomSheetDialogFragment -->
@@ -1125,10 +1125,10 @@
         <item quantity="other">Izbris izbranih predmetov?</item>
     </plurals>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-        <item quantity="one">This will permanently delete the selected file. Any message text associated with this item will also be deleted.</item>
-        <item quantity="two">This will permanently delete all %1$d selected files. Any message text associated with these items will also be deleted.</item>
-        <item quantity="few">This will permanently delete all %1$d selected files. Any message text associated with these items will also be deleted.</item>
-        <item quantity="other">This will permanently delete all %1$d selected files. Any message text associated with these items will also be deleted.</item>
+        <item quantity="one">S tem boste nepovratno izbrisali izbrano datoteko. Vsak tekst, povezan s to datoteko, bo prav tako izbrisan.</item>
+        <item quantity="two">S tem boste nepovratno izbrisali izbrani datoteki. Vsak tekst, povezan s tema datotekama, bo prav tako izbrisan.</item>
+        <item quantity="few">S tem boste nepovratno izbrisali %1$d izbrane datoteke. Vsak tekst, povezan s temi datotekami, bo prav tako izbrisan.</item>
+        <item quantity="other">S tem boste nepovratno izbrisali %1$d izbranih datotek. Vsak tekst, povezan s temi datotekami, bo prav tako izbrisan.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Brišem</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">Izbris sporočil …</string>
@@ -1268,17 +1268,17 @@
     <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Niste mogli biti dodani Novi skupini, zato ste bili povabljeni, da se ponovno pridružite.</string>
     <string name="MessageRecord_chat_session_refreshed">Seja pogovora je bila osvežena</string>
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
-        <item quantity="one">A member couldn\'t be added to the New Group and has been invited to join.</item>
-        <item quantity="two">%1$s members couldn\'t be added to the New Group and have been invited to join.</item>
-        <item quantity="few">%1$s members couldn\'t be added to the New Group and have been invited to join.</item>
-        <item quantity="other">%1$s members couldn\'t be added to the New Group and have been invited to join.</item>
+        <item quantity="one">Član_ica ni mogel_la biti dodan_a v Novo skupino, zato je bil_a povabljen_a, da se pridruži.</item>
+        <item quantity="two">Člana_ici nista mogla_i biti dodana_i v Novo skupino, zato sta bila_i povabljena_i, da se pridružita.</item>
+        <item quantity="few">%1$s člani_ce niso mogli_e biti dodani_e v Novo skupino, zato so bili_e povabljeni_e, da se pridružijo.</item>
+        <item quantity="other">%1$s članov_ic ni moglo biti dodanih v Novo skupino, zato so bili_e povabljeni_e, da se pridružijo.</item>
     </plurals>
 
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
-        <item quantity="one">A member couldn\'t be added to the New Group and has been removed.</item>
-        <item quantity="two">%1$s members couldn\'t be added to the New Group and have been removed.</item>
-        <item quantity="few">%1$s members couldn\'t be added to the New Group and have been removed.</item>
-        <item quantity="other">%1$s members couldn\'t be added to the New Group and have been removed.</item>
+        <item quantity="one">Član_ica ni mogel_la biti dodan_a v Novo skupino, zato je bil_a odstranjen_a.</item>
+        <item quantity="two">%1$s člana_ici nista mogla_i biti dodana_i v Novo skupino, zato sta bila_i odstranjena_i.</item>
+        <item quantity="few">%1$s člani_ce niso mogli_e biti dodani_e v Novo skupino, zato so bili_e odstranjeni_e.</item>
+        <item quantity="other">%1$s članov_ic ni moglo biti dodanih v Novo skupino, zato so bili_e odstranjeni_e.</item>
     </plurals>
 
     <!-- Profile change updates -->
@@ -1323,10 +1323,10 @@
     <string name="MessageRecord_you_invited_s_to_the_group">Uporabnika_co %1$s ste povabili v skupino.</string>
     <string name="MessageRecord_s_invited_you_to_the_group">%1$s vas je povabil_a v skupino.</string>
     <plurals name="MessageRecord_s_invited_members">
-        <item quantity="one">%1$s invited 1 person to the group.</item>
-        <item quantity="two">%1$s invited %2$d people to the group.</item>
-        <item quantity="few">%1$s invited %2$d people to the group.</item>
-        <item quantity="other">%1$s invited %2$d people to the group.</item>
+        <item quantity="one">Član_ica %1$s je povabil_a 1 osebo v skupino.</item>
+        <item quantity="two">Član_ica %1$s je povabil_a %2$d osebi v skupino.</item>
+        <item quantity="few">Član_ica %1$s je povabil_a %2$d osebe v skupino.</item>
+        <item quantity="other">Član_ica %1$s je povabil_a %2$d oseb v skupino.</item>
     </plurals>
     <string name="MessageRecord_you_were_invited_to_the_group">Bili ste povabljeni v skupino.</string>
     <plurals name="MessageRecord_d_people_were_invited_to_the_group">
@@ -1338,26 +1338,26 @@
 
     <!-- GV2 invitation revokes -->
     <plurals name="MessageRecord_you_revoked_invites">
-        <item quantity="one">You revoked an invitation to the group.</item>
-        <item quantity="two">You revoked %1$d invitations to the group.</item>
-        <item quantity="few">You revoked %1$d invitations to the group.</item>
-        <item quantity="other">You revoked %1$d invitations to the group.</item>
+        <item quantity="one">Preklicali ste vabilo v skupino.</item>
+        <item quantity="two">Preklicali ste %1$d vabili v skupino.</item>
+        <item quantity="few">Preklicali ste %1$d vabila v skupino.</item>
+        <item quantity="other">Preklicali ste %1$d vabil v skupino.</item>
     </plurals>
     <plurals name="MessageRecord_s_revoked_invites">
-        <item quantity="one">%1$s revoked an invitation to the group.</item>
-        <item quantity="two">%1$s revoked %2$d invitations to the group.</item>
-        <item quantity="few">%1$s revoked %2$d invitations to the group.</item>
-        <item quantity="other">%1$s revoked %2$d invitations to the group.</item>
+        <item quantity="one">%1$s je preklical_a vabilo v skupino.</item>
+        <item quantity="two">%1$s je preklical_a %2$d vabili v skupino.</item>
+        <item quantity="few">%1$s je preklical_a %2$d vabila v skupino.</item>
+        <item quantity="other">%1$s je preklical_a %2$d vabil v skupino.</item>
     </plurals>
     <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Nekdo je zavrnil vabilo v skupino.</string>
     <string name="MessageRecord_you_declined_the_invitation_to_the_group">Zavrnili ste vabilo v skupino.</string>
     <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s je preklical_a vaše vabilo v skupino.</string>
     <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">Skrbnik_ca je preklical_a vaše vabilo v skupino.</string>
     <plurals name="MessageRecord_d_invitations_were_revoked">
-        <item quantity="one">An invitation to the group was revoked.</item>
-        <item quantity="two">%1$d invitations to the group were revoked.</item>
-        <item quantity="few">%1$d invitations to the group were revoked.</item>
-        <item quantity="other">%1$d invitations to the group were revoked.</item>
+        <item quantity="one">Vabilo v skupino je bilo preklicano.</item>
+        <item quantity="two">Vabili v skupino sta bili preklicani.</item>
+        <item quantity="few">%1$d vabila v skupino so bila preklicana.</item>
+        <item quantity="other">%1$d vabil v skupino je bilo preklicanih.</item>
     </plurals>
 
     <!-- GV2 invitation acceptance -->
@@ -1430,10 +1430,10 @@
     <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s je preko deljene povezave zaprosil_a za pridružitev skupini.</string>
     <!-- Update message shown when someone requests to join via group link and cancels the request back to back -->
     <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
-        <item quantity="one">%1$s requested and cancelled their request to join via the group link.</item>
-        <item quantity="two">%1$s requested and cancelled %2$d requests to join via the group link.</item>
-        <item quantity="few">%1$s requested and cancelled %2$d requests to join via the group link.</item>
-        <item quantity="other">%1$s requested and cancelled %2$d requests to join via the group link.</item>
+        <item quantity="one">%1$s je zaprosil_a in nato preklical_a svojo prošnjo za pridružitev preko povezave skupine.</item>
+        <item quantity="two">%1$s je zaprosil_a in nato preklical_a svoji prošnji za pridružitev preko povezave skupine.</item>
+        <item quantity="few">%1$s je zaprosil_a in nato preklical_a %2$d prošnje za pridružitev preko povezave skupine.</item>
+        <item quantity="other">%1$s je zaprosil_a in nato preklical_a %2$d prošenj za pridružitev preko povezave skupine.</item>
     </plurals>
 
     <!-- GV2 group link approvals -->
@@ -1462,9 +1462,9 @@
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Ali vam je ta nova funkcija všeč? Pomagajte podpreti Signal z enkratno donacijo.</string>
     <!-- Update item message shown when we merge two threads together -->
-    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Your message history with %1$s and their number %2$s has been merged.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Vaša zgodovina sporočil z uporabnikom_co %1$s in njegova_na telefonska številka %2$s sta bili združeni.</string>
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
-    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Your message history with %1$s and another chat that belonged to them has been merged.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Vaša zgodovina sporočil z uporabnikom_co %1$s in še en njen_gov klepet sta bila združena.</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s je začel_a skupinski klic. · %2$s</string>
@@ -1578,10 +1578,10 @@
     <string name="OutdatedBuildReminder_update_now">Posodobi zdaj</string>
     <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Ta različica aplikacije Signal poteče danes. Nadgradite je na najnovejšo različico.</string>
     <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
-        <item quantity="one">This version of Signal will expire tomorrow. Update to the most recent version.</item>
-        <item quantity="two">This version of Signal will expire in %1$d days. Update to the most recent version.</item>
-        <item quantity="few">This version of Signal will expire in %1$d days. Update to the most recent version.</item>
-        <item quantity="other">This version of Signal will expire in %1$d days. Update to the most recent version.</item>
+        <item quantity="one">Ta različica aplikacije Signal poteče jutri. Nadgradite na najnovejšo različico.</item>
+        <item quantity="two">Ta različica aplikacije Signal poteče čez %1$d dni. Nadgradite na najnovejšo različico.</item>
+        <item quantity="few">Ta različica aplikacije Signal poteče čez %1$d dni. Nadgradite na najnovejšo različico.</item>
+        <item quantity="other">Ta različica aplikacije Signal poteče čez %1$d dni. Nadgradite na najnovejšo različico.</item>
     </plurals>
 
     <!-- PassphrasePromptActivity -->
@@ -2019,7 +2019,7 @@
 
     <!-- UsernameEditFragment -->
     <!-- Toolbar title when entering from registration -->
-    <string name="UsernameEditFragment__add_a_username">Add a username</string>
+    <string name="UsernameEditFragment__add_a_username">Dodajte uporabniško ime</string>
     <!-- Instructional text at the top of the username edit screen -->
     <string name="UsernameEditFragment__choose_your_username">Izberite uporabniško ime</string>
     <string name="UsernameEditFragment_username">Uporabniško ime</string>
@@ -3937,10 +3937,10 @@
     <string name="payment_info_card_hide_this_card">Želite skriti to kartico?</string>
     <string name="payment_info_card_hide">Skrij</string>
     <!-- Title of save recovery phrase card -->
-    <string name="payment_info_card_save_recovery_phrase">Save recovery phrase</string>
+    <string name="payment_info_card_save_recovery_phrase">Shranite obnovitveno frazo</string>
     <string name="payment_info_card_your_recovery_phrase_gives_you">Obnovitvena fraza je še ena možnost za obnovitev vašega plačilnega računa.</string>
     <!-- Button in save recovery phrase card -->
-    <string name="payment_info_card_save_your_phrase">Save your phrase</string>
+    <string name="payment_info_card_save_your_phrase">Shranite svojo frazo</string>
     <string name="payment_info_card_update_your_pin">Posodobite svoj PIN</string>
     <string name="payment_info_card_with_a_high_balance">Zaradi višine zneskov bi morda želeli spremeniti svoj PIN v alfanumeričnega in tako zagotoviti večjo varnost računa.</string>
     <string name="payment_info_card_update_pin">Posodobite PIN</string>
@@ -3965,23 +3965,23 @@
     <string name="PaymentsRecoveryStartFragment__recovery_phrase">Obnovitvena fraza</string>
     <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Prikaži obnovitveno frazo</string>
     <!-- Title in save recovery phrase screen -->
-    <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Save recovery phrase</string>
+    <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Shranite obnovitveno frazo</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Vnesi obnovitveno frazo</string>
     <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Če boste ponovno namestili SIgnal in potrdili svoj PIN, bo vaše stanje na računu avtomatsko obnovljeno. Lahko pa ga obnovite tudi z vnosom obnovitvene fraze, %1$d-besedne fraze, ki je zgolj vaša. Zapišite si jo in jo hranite na varnem mestu.</string>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
-    <string name="PaymentsRecoveryStartFragment__got_balance">You’ve got a balance! Time to save your recovery phrase—a 24-word key you can use to restore your balance.</string>
+    <string name="PaymentsRecoveryStartFragment__got_balance">Imate ravnotežje! Čas je, da shranite obnovitveno frazo — 24-besedni ključ, s katerim lahko obnovite ravnovesje.</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
-    <string name="PaymentsRecoveryStartFragment__time_to_save">Time to save your recovery phrase—a 24-word key you can use to restore your balance. Learn more</string>
+    <string name="PaymentsRecoveryStartFragment__time_to_save">Čas je, da shranite obnovitveno frazo — 24-besedni ključ, s katerim lahko obnovite ravnovesje. Preberite več</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Vaša obnovitvena fraza je %1$d-besedna fraza, ki je zgolj vaša. Uporabite jo za obnovitev stanja na računu.</string>
     <string name="PaymentsRecoveryStartFragment__start">Začni</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">Ročen vnos</string>
     <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Prilepi iz odložišča</string>
     <!-- Alert dialog title which asks before going back if user wants to save recovery phrase -->
-    <string name="PaymentsRecoveryStartFragment__continue_without_saving">Continue Without Saving?</string>
+    <string name="PaymentsRecoveryStartFragment__continue_without_saving">Želite nadaljevati brez shranjevanja?</string>
     <!-- Alert dialog description to let user know why recovery phrase needs to be saved -->
-    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">Your recovery phrase lets you restore your balance in a worst-case scenario. We strongly recommend you save it.</string>
+    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">Vaša obnovitvena fraza vam omogoča, da v najslabšem primeru obnovite ravnovesje. Toplo priporočamo, da jo shranite.</string>
     <!-- Alert dialog option to skip recovery phrase -->
-    <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">Skip Recovery Phrase</string>
+    <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">Preskoči obnovitveno frazo</string>
     <!-- Alert dialog option to cancel dialog-->
     <string name="PaymentsRecoveryStartFragment__cancel">Prekliči</string>
 
@@ -4137,9 +4137,9 @@
     <!-- Preference title to delete sms -->
     <string name="SmsSettingsFragment__remove_sms_messages">Odstrani SMS sporočila</string>
     <!-- Snackbar text to confirm deletion -->
-    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Removing SMS messages from Signal…</string>
+    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Odstranjevanje SMS sporočil iz Signala ...</string>
     <!-- Snackbar text to indicate can delete later -->
-    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">You can remove SMS messages from Signal in Settings at any time.</string>
+    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">SMS sporočila lahko kadarkoli odstranite iz Signala v Nastavitvah.</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">Sporočila</string>
@@ -4393,17 +4393,17 @@
     <!-- Dialog title when removing a contact -->
     <string name="NewConversationActivity__remove_s">Želite izbrisati %1$s?</string>
     <!-- Dialog message when removing a contact -->
-    <string name="NewConversationActivity__you_wont_see_this_person">You won\'t see this person when searching. You\'ll get a message request if they message you in the future.</string>
+    <string name="NewConversationActivity__you_wont_see_this_person">Med iskanjem te osebe ne boste videli. Če vam bo v prihodnje poslala sporočilo, boste prejeli zahtevo za sporočilo.</string>
     <!-- Snackbar message after removing a contact -->
-    <string name="NewConversationActivity__s_has_been_removed">%1$s has been removed</string>
+    <string name="NewConversationActivity__s_has_been_removed">%1$s je bil_a odstranjen_a</string>
     <!-- Snackbar message after blocking a contact -->
-    <string name="NewConversationActivity__s_has_been_blocked">%1$s has been blocked</string>
+    <string name="NewConversationActivity__s_has_been_blocked">%1$s je bil_a blokiran_a</string>
     <!-- Dialog title when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__unable_to_remove_s">Unable to remove %1$s</string>
+    <string name="NewConversationActivity__unable_to_remove_s">%1$s ni mogoče odstraniti</string>
     <!-- Dialog message when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__this_person_is_saved_to_your">This person is saved to your device\'s Contacts. Delete them from your Contacts and try again.</string>
+    <string name="NewConversationActivity__this_person_is_saved_to_your">Ta oseba je shranjena v imeniku vaše naprave. Izbrišite jo iz svojih stikov in poskusite znova.</string>
     <!-- Dialog action to view contact when they can't be removed otherwise -->
-    <string name="NewConversationActivity__view_contact">View contact</string>
+    <string name="NewConversationActivity__view_contact">Ogled stika</string>
 
     <!-- ContactFilterView -->
     <string name="ContactFilterView__search_name_or_number">Iskanje po imenu ali številki</string>
@@ -4992,9 +4992,9 @@
     <!-- Displayed when viewing a post from another user with no replies -->
     <string name="StoryViewerPageFragment__reply">Odgovori</string>
     <!-- Displayed when viewing a post that has failed to send to some users -->
-    <string name="StoryViewerPageFragment__partially_sent">Partially sent. Tap for details</string>
+    <string name="StoryViewerPageFragment__partially_sent">Delno poslano. Tapnite za več informacij</string>
     <!-- Displayed when viewing a post that has failed to send -->
-    <string name="StoryViewerPageFragment__send_failed">Send failed. Tap to retry</string>
+    <string name="StoryViewerPageFragment__send_failed">Pošiljanje ni uspelo. Tapnite za ponoven poskus</string>
     <!-- Label for the reply button in story viewer, which will launch the group story replies bottom sheet. -->
     <string name="StoryViewerPageFragment__reply_to_group">Odgovori skupini</string>
     <!-- Displayed when a story has no views -->
@@ -5465,7 +5465,7 @@
     <!-- Title of the screen -->
     <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">Izvozi SMS sporočila</string>
     <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">You can export your SMS messages to your phone\'s SMS database. This allows other SMS apps on your phone to access and import them. This does not create a shareable file of your SMS message history.</string>
+    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">Svoja SMS sporočila lahko izvozite v zbirko SMS sporočil v svojem telefonu. To drugim aplikacijam za SMS-e v vašem telefonu omogoča, da do njih dostopajo in jih uvozijo. S tem ne ustvarite datoteke zgodovine SMS sporočil, ki jo je mogoče deliti.</string>
     <!-- Button label to begin export -->
     <string name="ExportYourSmsMessagesFragment__continue">Nadaljuj</string>
 
@@ -5491,17 +5491,17 @@
     <!-- Fourth step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_4">4</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">Tap \"Continue\" to open the \"Default apps\" screen in Settings</string>
+    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">Tapnite »Nadaljuj«, da odprete zaslon »Privzete aplikacije« v Nastavitvah</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">Select \"SMS app\" from the list</string>
+    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">Na seznamu izberite »Aplikacija za SMS-e«</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">Choose another app to use for SMS messaging</string>
+    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">Izberite drugo aplikacijo za pošiljanje SMS sporočil</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">Return to Signal</string>
+    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">Nazaj na Signal</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">Open your phone\'s Settings app</string>
+    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">V telefonu odprite aplikacijo Nastavitve</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">Navigate to \"Apps\" &gt; \"Default apps\" &gt; \"SMS app\"</string>
+    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">Pojdite na »Aplikacije« &gt; »Privzete aplikacije« &gt; »Aplikacija za SMS-e«</string>
 
     <!-- RemoveSmsMessagesDialogFragment -->
     <!-- Action button to keep messages -->
@@ -5511,13 +5511,13 @@
     <!-- Title of dialog -->
     <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Odstrani SMS sporočila iz Signala?</string>
     <!-- Message of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">You can now remove SMS messages from Signal to clear up storage space. They will still be available to other SMS apps on your phone even if you remove them.</string>
+    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">Zdaj lahko odstranite SMS sporočila iz Signala, da sprostite prostor za shranjevanje. Še vedno bodo na voljo drugim aplikacijam za SMS-e v vašem telefonu, tudi če jih odstranite.</string>
 
     <!-- SetSignalAsDefaultSmsAppFragment -->
     <!-- Title of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">Set Signal as the default SMS app</string>
+    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">Nastavite Signal za privzeto aplikacijo za SMS-e</string>
     <!-- Message of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">To export your SMS messages, you need to set Signal as the default SMS app.</string>
+    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">Če želite izvoziti svoja SMS sporočila, morate nastaviti Signal kot privzeto aplikacijo za SMS sporočila.</string>
     <!-- Button label to start export -->
     <string name="SetSignalAsDefaultSmsAppFragment__next">Naprej</string>
 

@@ -361,9 +361,9 @@
     </plurals>
     <string name="ConversationFragment_save_to_sd_card">Salvez pe spațiul de stocare?</string>
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
-        <item quantity="one">Saving this media to storage will allow any other apps on your device to access it.\n\nContinue?</item>
-        <item quantity="few">Saving all %1$d media to storage will allow any other apps on your device to access them.\n\nContinue?</item>
-        <item quantity="other">Saving all %1$d media to storage will allow any other apps on your device to access them.\n\nContinue?</item>
+        <item quantity="one">Salvarea acestui fișier pe spațiul de stocare va permite altor aplicații de pe dispozitivul tău să îl acceseze.\n\nContinui?</item>
+        <item quantity="few">Salvarea tuturor celor %1$d fișiere pe spațiul de stocare va permite altor aplicații de pe dispozitivul tău să le acceseze.\n\nContinui?</item>
+        <item quantity="other">Salvarea tuturor celor %1$d de fișiere pe spațiul de stocare va permite altor aplicații de pe dispozitivul tău să le acceseze.\n\nContinui?</item>
     </plurals>
     <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
         <item quantity="one">A apărut o eroare în timpul salvării atașamentului pe spațiul de stocare!</item>
@@ -372,14 +372,14 @@
     </plurals>
     <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Nu se poate scrie pe spațiul de stocare!</string>
     <plurals name="ConversationFragment_saving_n_attachments">
-        <item quantity="one">Saving attachment</item>
-        <item quantity="few">Saving %1$d attachments</item>
-        <item quantity="other">Saving %1$d attachments</item>
+        <item quantity="one">Se salvează atașamentul</item>
+        <item quantity="few">Se salvează %1$d atașamente</item>
+        <item quantity="other">Se salvează %1$d de atașamente</item>
     </plurals>
     <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="one">Saving attachment to storage…</item>
-        <item quantity="few">Saving %1$d attachments to storage…</item>
-        <item quantity="other">Saving %1$d attachments to storage…</item>
+        <item quantity="one">Se salvează atașamentul pe spațiul de stocare…</item>
+        <item quantity="few">Se salvează %1$d atașamente pe spațiul de stocare…</item>
+        <item quantity="other">Se salvează %1$d de atașamente pe spațiul de stocare…</item>
     </plurals>
     <string name="ConversationFragment_pending">În curs…</string>
     <string name="ConversationFragment_push">Date (Signal)</string>
@@ -426,22 +426,22 @@
         <item quantity="other">Șterg conversațiile selectate?</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">This will permanently delete the selected conversation.</item>
-        <item quantity="few">This will permanently delete all %1$d selected conversations.</item>
-        <item quantity="other">This will permanently delete all %1$d selected conversations.</item>
+        <item quantity="one">Această acțiune va șterge permanent conversația selectată.</item>
+        <item quantity="few">Această acțiune va șterge permanent toate cele %1$d conversații selectate.</item>
+        <item quantity="other">Această acțiune va șterge permanent toate cele %1$d de conversații selectate.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Se șterge</string>
     <string name="ConversationListFragment_deleting_selected_conversations">Se șterg conversațiile selectate…</string>
     <plurals name="ConversationListFragment_conversations_archived">
-        <item quantity="one">Conversation archived</item>
-        <item quantity="few">%1$d conversations archived</item>
-        <item quantity="other">%1$d conversations archived</item>
+        <item quantity="one">Conversație arhivată</item>
+        <item quantity="few">%1$d conversații arhivate</item>
+        <item quantity="other">%1$d de conversații arhivate</item>
     </plurals>
     <string name="ConversationListFragment_undo">Anulează</string>
     <plurals name="ConversationListFragment_moved_conversations_to_inbox">
-        <item quantity="one">Moved conversation to inbox</item>
-        <item quantity="few">Moved %1$d conversations to inbox</item>
-        <item quantity="other">Moved %1$d conversations to inbox</item>
+        <item quantity="one">Conversațiile au fost mutate în inbox</item>
+        <item quantity="few">%1$d conversații au fost mutate în inbox</item>
+        <item quantity="other">%1$d de conversații au fost mutate în inbox</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
         <item quantity="one">Citit</item>
@@ -686,9 +686,9 @@
 
     <!-- GV2 invites sent -->
     <plurals name="GroupManagement_invitation_sent">
-        <item quantity="one">Invitation sent</item>
-        <item quantity="few">%1$d invitations sent</item>
-        <item quantity="other">%1$d invitations sent</item>
+        <item quantity="one">Invitație trimisă</item>
+        <item quantity="few">%1$d invitații trimise</item>
+        <item quantity="other">%1$d de invitații trimise</item>
     </plurals>
     <string name="GroupManagement_invite_single_user">\"%1$s\" nu poate fi adăugat automat la acest grup de către tine.\n\nAu fost invitați să se alăture și nu vor vedea niciun mesaj de grup până când nu acceptă.</string>
     <string name="GroupManagement_invite_multiple_users">Acești utilizatori nu pot fi adăugați automat la acest grup de către tine.\n\nAu fost invitați să se alăture și nu vor vedea niciun mesaj de grup până când nu acceptă.</string>
@@ -800,9 +800,9 @@
     <string name="PendingMembersActivity_revoke_invite">Revocare invitație</string>
     <string name="PendingMembersActivity_revoke_invites">Revocare invitații</string>
     <plurals name="PendingMembersActivity_revoke_d_invites">
-        <item quantity="one">Revoke invite</item>
-        <item quantity="few">Revoke %1$d invites</item>
-        <item quantity="other">Revoke %1$d invites</item>
+        <item quantity="one">Revocare invitație</item>
+        <item quantity="few">Revocare %1$d invitații</item>
+        <item quantity="other">Revocare %1$d de invitații</item>
     </plurals>
     <plurals name="PendingMembersActivity_error_revoking_invite">
         <item quantity="one">A apărut o eroare la revocarea invitației</item>
@@ -822,9 +822,9 @@
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Această persoană nu poate fi adăugată la grupurile vechi.</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">Această persoană nu poate fi adăugată la grupuri de anunț</string>
     <plurals name="AddMembersActivity__add_d_members_to_s">
-        <item quantity="one">Add \"%1$s\" to \"%2$s\"?</item>
-        <item quantity="few">Add %3$d members to \"%2$s\"?</item>
-        <item quantity="other">Add %3$d members to \"%2$s\"?</item>
+        <item quantity="one">Adaugi „%1$s“ la „%2$s“?</item>
+        <item quantity="few">Adaugi %3$d membri la \"%2$s\"?</item>
+        <item quantity="other">Adaugi %3$d de membri la \"%2$s\"?</item>
     </plurals>
     <string name="AddMembersActivity__add">Adaugă</string>
     <string name="AddMembersActivity__add_members">Adăugare membri</string>
@@ -927,9 +927,9 @@
     </plurals>
 
     <plurals name="GroupMemberList_invited">
-        <item quantity="one">%1$s invited 1 person</item>
-        <item quantity="few">%1$s invited %2$d people</item>
-        <item quantity="other">%1$s invited %2$d people</item>
+        <item quantity="one">%1$s a invitat o persoană</item>
+        <item quantity="few">%1$s a invitat %2$d persoane</item>
+        <item quantity="other">%1$s a invitat %2$d de persoane</item>
     </plurals>
 
     <!-- CustomNotificationsDialogFragment -->
@@ -967,9 +967,9 @@
     <!-- GV2 Invite Revoke confirmation dialog -->
     <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Dorești să revoci invitația trimisă la %1$s?</string>
     <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
-        <item quantity="one">Do you want to revoke the invite sent by %1$s?</item>
-        <item quantity="few">Do you want to revoke %2$d invites sent by %1$s?</item>
-        <item quantity="other">Do you want to revoke %2$d invites sent by %1$s?</item>
+        <item quantity="one">Dorești să revoci invitația trimisă de %1$s?</item>
+        <item quantity="few">Dorești să revoci %2$d invitații trimise de %1$s?</item>
+        <item quantity="other">Dorești să revoci %2$d de invitații trimise de %1$s?</item>
     </plurals>
 
     <!-- GroupJoinBottomSheetDialogFragment -->
@@ -1080,9 +1080,9 @@
         <item quantity="other">Ștergi elementele selectate?</item>
     </plurals>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-        <item quantity="one">This will permanently delete the selected file. Any message text associated with this item will also be deleted.</item>
-        <item quantity="few">This will permanently delete all %1$d selected files. Any message text associated with these items will also be deleted.</item>
-        <item quantity="other">This will permanently delete all %1$d selected files. Any message text associated with these items will also be deleted.</item>
+        <item quantity="one">Această acțiune va șterge permanent fișierul selectat. Orice mesaj text asociat cu acest element va fi de asemenea șters.</item>
+        <item quantity="few">Această acțiune va șterge permanent toate cele %1$d fișiere selectate. Orice mesaj text asociat cu aceste elemente va fi de asemenea șters.</item>
+        <item quantity="other">Această acțiune va șterge permanent toate cele %1$d de fișiere selectate. Orice mesaj text asociat cu aceste elemente va fi de asemenea șters.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Se șterge</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">Se șterg mesajele…</string>
@@ -1218,15 +1218,15 @@
     <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Nu ai putut fi adăugat la noul grup și ai fost invitat să te înscrii.</string>
     <string name="MessageRecord_chat_session_refreshed">Sesiunea conversației a fost resetată</string>
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
-        <item quantity="one">A member couldn\'t be added to the New Group and has been invited to join.</item>
-        <item quantity="few">%1$s members couldn\'t be added to the New Group and have been invited to join.</item>
-        <item quantity="other">%1$s members couldn\'t be added to the New Group and have been invited to join.</item>
+        <item quantity="one">1 membru nu a putut fi adăugat noului grup și a fost invitat să se alăture.</item>
+        <item quantity="few">%1$s membri nu au putut fi adăugați noului grup și au fost invitați să se alăture.</item>
+        <item quantity="other">%1$s de membri nu au putut fi adăugați noului grup și au fost invitați să se alăture.</item>
     </plurals>
 
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
-        <item quantity="one">A member couldn\'t be added to the New Group and has been removed.</item>
-        <item quantity="few">%1$s members couldn\'t be added to the New Group and have been removed.</item>
-        <item quantity="other">%1$s members couldn\'t be added to the New Group and have been removed.</item>
+        <item quantity="one">Un membru nu a putut fi adăugat noului grup și a fost eliminat.</item>
+        <item quantity="few">%1$s de membri nu au putut fi adăugați noului grup și au fost eliminați.</item>
+        <item quantity="other">%1$s membri nu au putut fi adăugați noului grup și au fost eliminați.</item>
     </plurals>
 
     <!-- Profile change updates -->
@@ -1271,36 +1271,36 @@
     <string name="MessageRecord_you_invited_s_to_the_group">Ai invitat pe %1$s la grup.</string>
     <string name="MessageRecord_s_invited_you_to_the_group">%1$s te-a invitat la grup.</string>
     <plurals name="MessageRecord_s_invited_members">
-        <item quantity="one">%1$s invited 1 person to the group.</item>
-        <item quantity="few">%1$s invited %2$d people to the group.</item>
-        <item quantity="other">%1$s invited %2$d people to the group.</item>
+        <item quantity="one">%1$s a invitat 1 persoană la grup.</item>
+        <item quantity="few">%1$s a invitat %2$d persoane la grup.</item>
+        <item quantity="other">%1$s a invitat %2$d de persoane la grup.</item>
     </plurals>
     <string name="MessageRecord_you_were_invited_to_the_group">Ai fost invitat la grup.</string>
     <plurals name="MessageRecord_d_people_were_invited_to_the_group">
-        <item quantity="one">1 person was invited to the group.</item>
-        <item quantity="few">%1$d people were invited to the group.</item>
-        <item quantity="other">%1$d people were invited to the group.</item>
+        <item quantity="one">1 persoană a fost invitată la grup.</item>
+        <item quantity="few">%1$d persoane au fost invitate la grup.</item>
+        <item quantity="other">%1$d de persoane au fost invitate la grup.</item>
     </plurals>
 
     <!-- GV2 invitation revokes -->
     <plurals name="MessageRecord_you_revoked_invites">
-        <item quantity="one">You revoked an invitation to the group.</item>
-        <item quantity="few">You revoked %1$d invitations to the group.</item>
-        <item quantity="other">You revoked %1$d invitations to the group.</item>
+        <item quantity="one">Ai revocat o invitație la grup.</item>
+        <item quantity="few">Ai revocat %1$d invitații la grup.</item>
+        <item quantity="other">Ai revocat %1$d de invitații la grup.</item>
     </plurals>
     <plurals name="MessageRecord_s_revoked_invites">
-        <item quantity="one">%1$s revoked an invitation to the group.</item>
-        <item quantity="few">%1$s revoked %2$d invitations to the group.</item>
-        <item quantity="other">%1$s revoked %2$d invitations to the group.</item>
+        <item quantity="one">%1$s a revocat o invitație la grup.</item>
+        <item quantity="few">%1$s a revocat %2$d invitații la grup.</item>
+        <item quantity="other">%1$s a revocat %2$d de invitații la grup.</item>
     </plurals>
     <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Cineva a refuzat o invitație la grup.</string>
     <string name="MessageRecord_you_declined_the_invitation_to_the_group">Ai refuzat invitația la grup.</string>
     <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s a revocat invitația ta la grup.</string>
     <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">Un administrator a revocat invitația ta la grup.</string>
     <plurals name="MessageRecord_d_invitations_were_revoked">
-        <item quantity="one">An invitation to the group was revoked.</item>
-        <item quantity="few">%1$d invitations to the group were revoked.</item>
-        <item quantity="other">%1$d invitations to the group were revoked.</item>
+        <item quantity="one">O invitație la grup a fost revocată.</item>
+        <item quantity="few">%1$d invitații la grup au fost revocate.</item>
+        <item quantity="other">%1$d de invitații la grup au fost revocate.</item>
     </plurals>
 
     <!-- GV2 invitation acceptance -->
@@ -1373,9 +1373,9 @@
     <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s a solicitat să se alăture prin linkul grupului.</string>
     <!-- Update message shown when someone requests to join via group link and cancels the request back to back -->
     <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
-        <item quantity="one">%1$s requested and cancelled their request to join via the group link.</item>
-        <item quantity="few">%1$s requested and cancelled %2$d requests to join via the group link.</item>
-        <item quantity="other">%1$s requested and cancelled %2$d requests to join via the group link.</item>
+        <item quantity="one">%1$s a solicitat și apoi a anulat solicitarea de alăturare folosind linkul grupului.</item>
+        <item quantity="few">%1$s a solicitat și apoi a anulat %2$d solicitări de alăturare folosind linkul grupului.</item>
+        <item quantity="other">%1$s a solicitat și apoi a anulat %2$d de solicitări de alăturare folosind linkul grupului.</item>
     </plurals>
 
     <!-- GV2 group link approvals -->
@@ -1514,9 +1514,9 @@
     <string name="OutdatedBuildReminder_update_now">Actualizează acum</string>
     <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Această versiune de Signal va expira astăzi. Actualizează la cea mai recentă versiune.</string>
     <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
-        <item quantity="one">This version of Signal will expire tomorrow. Update to the most recent version.</item>
-        <item quantity="few">This version of Signal will expire in %1$d days. Update to the most recent version.</item>
-        <item quantity="other">This version of Signal will expire in %1$d days. Update to the most recent version.</item>
+        <item quantity="one">Această versiune de Signal va expira mâine. Actualizează la cea mai recentă versiune.</item>
+        <item quantity="few">Această versiune de Signal va expira în %1$d zile. Actualizează la cea mai recentă versiune.</item>
+        <item quantity="other">Această versiune de Signal va expira în %1$d de zile. Actualizează la cea mai recentă versiune.</item>
     </plurals>
 
     <!-- PassphrasePromptActivity -->
@@ -1946,7 +1946,7 @@
 
     <!-- UsernameEditFragment -->
     <!-- Toolbar title when entering from registration -->
-    <string name="UsernameEditFragment__add_a_username">Add a username</string>
+    <string name="UsernameEditFragment__add_a_username">Adaugă un nume de utilizator</string>
     <!-- Instructional text at the top of the username edit screen -->
     <string name="UsernameEditFragment__choose_your_username">Alegeți numele de utilizator</string>
     <string name="UsernameEditFragment_username">Nume utilizator</string>
@@ -4885,9 +4885,9 @@
     <!-- Displayed when viewing a post from another user with no replies -->
     <string name="StoryViewerPageFragment__reply">Răspunde</string>
     <!-- Displayed when viewing a post that has failed to send to some users -->
-    <string name="StoryViewerPageFragment__partially_sent">Partially sent. Tap for details</string>
+    <string name="StoryViewerPageFragment__partially_sent">Trimis parțial. Apasă pentru detalii</string>
     <!-- Displayed when viewing a post that has failed to send -->
-    <string name="StoryViewerPageFragment__send_failed">Send failed. Tap to retry</string>
+    <string name="StoryViewerPageFragment__send_failed">Trimitere eșuată. Atinge și reîncearcă</string>
     <!-- Label for the reply button in story viewer, which will launch the group story replies bottom sheet. -->
     <string name="StoryViewerPageFragment__reply_to_group">Răspunde grupului</string>
     <!-- Displayed when a story has no views -->

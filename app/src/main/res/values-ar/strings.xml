@@ -370,12 +370,12 @@
     </plurals>
     <string name="ConversationFragment_save_to_sd_card">أحفظ في الذاكرة؟</string>
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
-        <item quantity="zero">Saving all %1$d media to storage will allow any other apps on your device to access them.\n\nContinue?</item>
-        <item quantity="one">Saving this media to storage will allow any other apps on your device to access it.\n\nContinue?</item>
-        <item quantity="two">Saving all %1$d media to storage will allow any other apps on your device to access them.\n\nContinue?</item>
-        <item quantity="few">Saving all %1$d media to storage will allow any other apps on your device to access them.\n\nContinue?</item>
-        <item quantity="many">Saving all %1$d media to storage will allow any other apps on your device to access them.\n\nContinue?</item>
-        <item quantity="other">Saving all %1$d media to storage will allow any other apps on your device to access them.\n\nContinue?</item>
+        <item quantity="zero">إن حفظ %1$d ملف متعدد الوسائط في سعة التخزين سَيسمح لأي تطبيق آخر على جهازك بالوصول إليه.\n\n استمرار؟</item>
+        <item quantity="one">إن حفظ الملف متعدد الوسائط هذا في سعة التخزين سَيسمح لأي تطبيق آخر على جهازك بالوصول إليه.\n\n استمرار؟</item>
+        <item quantity="two">إن حفظ %1$d ملفات متعددة الوسائط في سعة التخزين سَيسمح لأي تطبيق آخر على جهازك بالوصول إليها.\n\n استمرار؟</item>
+        <item quantity="few">إن حفظ %1$d ملفات متعددة الوسائط في سعة التخزين سيسمح لأي تطبيق آخر على جهازك بالوصول إليها.\n\n استمرار؟</item>
+        <item quantity="many">إن حفظ %1$d ملفًا متعدد الوسائط في سعة التخزين سَيسمح لأي تطبيق آخر على جهازك بالوصول إليها.\n\n استمرار؟</item>
+        <item quantity="other">إن حفظ %1$d ملفٍ متعدد الوسائط في سعة التخزين سَيسمح لأي تطبيق آخر على جهازك بالوصول إليها.\n\n استمرار؟</item>
     </plurals>
     <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
         <item quantity="zero">وقع خطأ أثناء حفظ المرفقات في مساحة التخزين!</item>
@@ -387,20 +387,20 @@
     </plurals>
     <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">تعذر الإضافة إلى الذاكرة!</string>
     <plurals name="ConversationFragment_saving_n_attachments">
-        <item quantity="zero">Saving %1$d attachments</item>
-        <item quantity="one">Saving attachment</item>
-        <item quantity="two">Saving %1$d attachments</item>
-        <item quantity="few">Saving %1$d attachments</item>
-        <item quantity="many">Saving %1$d attachments</item>
-        <item quantity="other">Saving %1$d attachments</item>
+        <item quantity="zero">جارٍ حفظ %1$d مرفق</item>
+        <item quantity="one">جارٍ حفظ مرفق واحد</item>
+        <item quantity="two">جارٍ حفظ %1$d مرفقين</item>
+        <item quantity="few">جارٍ حفظ %1$d مرفقات</item>
+        <item quantity="many">جارٍ حفظ %1$d مرفقًا</item>
+        <item quantity="other">جارٍ حفظ %1$d مرفقٍ</item>
     </plurals>
     <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="zero">Saving %1$d attachments to storage…</item>
-        <item quantity="one">Saving attachment to storage…</item>
-        <item quantity="two">Saving %1$d attachments to storage…</item>
-        <item quantity="few">Saving %1$d attachments to storage…</item>
-        <item quantity="many">Saving %1$d attachments to storage…</item>
-        <item quantity="other">Saving %1$d attachments to storage…</item>
+        <item quantity="zero">جارٍ حفظ %1$d مرفق في ذاكرة التخزين…</item>
+        <item quantity="one">جارٍ حفظ مرفق واحد في ذاكرة التخزين…</item>
+        <item quantity="two">جارٍ حفظ %1$d مرفقين في ذاكرة التخزين…</item>
+        <item quantity="few">جارٍ حفظ %1$d مرفقات في ذاكرة التخزين…</item>
+        <item quantity="many">جارٍ حفظ %1$d مرفقًا في ذاكرة التخزين…</item>
+        <item quantity="other">جارٍ حفظ %1$d مرفقٍ في ذاكرة التخزين…</item>
     </plurals>
     <string name="ConversationFragment_pending">معلق…</string>
     <string name="ConversationFragment_push">بيانات (Signal)</string>
@@ -450,31 +450,31 @@
         <item quantity="other">حذف المحادثات المختارة؟</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="zero">This will permanently delete all %1$d selected conversations.</item>
-        <item quantity="one">This will permanently delete the selected conversation.</item>
-        <item quantity="two">This will permanently delete all %1$d selected conversations.</item>
-        <item quantity="few">This will permanently delete all %1$d selected conversations.</item>
-        <item quantity="many">This will permanently delete all %1$d selected conversations.</item>
-        <item quantity="other">This will permanently delete all %1$d selected conversations.</item>
+        <item quantity="zero">سيؤدي هذا إلى حذف %1$d رسالة مختارة بشكل نهائي.</item>
+        <item quantity="one">سيؤدي هذا إلى حذف رسالة واحدة مختارة بشكل نهائي.</item>
+        <item quantity="two">سيؤدي هذا إلى حذف %1$d رسالتين مختارتين بشكل نهائي.</item>
+        <item quantity="few">سيؤدي هذا إلى حذف %1$d رسائل مختارة بشكل نهائي.</item>
+        <item quantity="many">سيؤدي هذا إلى حذف %1$d رسالة مختارة بشكل نهائي.</item>
+        <item quantity="other">سيؤدي هذا إلى حذف %1$d رسالة مختارة بشكل نهائي.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">يجري الحذف</string>
     <string name="ConversationListFragment_deleting_selected_conversations">يجري حذف المحادثات المختارة…</string>
     <plurals name="ConversationListFragment_conversations_archived">
-        <item quantity="zero">%1$d conversations archived</item>
-        <item quantity="one">Conversation archived</item>
-        <item quantity="two">%1$d conversations archived</item>
-        <item quantity="few">%1$d conversations archived</item>
-        <item quantity="many">%1$d conversations archived</item>
-        <item quantity="other">%1$d conversations archived</item>
+        <item quantity="zero">تم نقل %1$d رسالة إلى الأرشيف</item>
+        <item quantity="one">تم نقل رسالة واحدة إلى الأرشيف</item>
+        <item quantity="two">تم نقل %1$d رسالتين إلى الأرشيف</item>
+        <item quantity="few">تم نقل %1$d رسائل إلى الأرشيف</item>
+        <item quantity="many">تم نقل %1$d رسالة إلى الأرشيف</item>
+        <item quantity="other">تم نقل %1$d رسالة إلى الأرشيف</item>
     </plurals>
     <string name="ConversationListFragment_undo">تراجع</string>
     <plurals name="ConversationListFragment_moved_conversations_to_inbox">
-        <item quantity="zero">Moved %1$d conversations to inbox</item>
-        <item quantity="one">Moved conversation to inbox</item>
-        <item quantity="two">Moved %1$d conversations to inbox</item>
-        <item quantity="few">Moved %1$d conversations to inbox</item>
-        <item quantity="many">Moved %1$d conversations to inbox</item>
-        <item quantity="other">Moved %1$d conversations to inbox</item>
+        <item quantity="zero">تم نقل %1$d رسالة إلى الوارد</item>
+        <item quantity="one">تم نقل رسالة واحدة إلى الوارد</item>
+        <item quantity="two">تم نقل %1$d رسالتين إلى الوارد</item>
+        <item quantity="few">تم نقل %1$d رسائل إلى الوارد</item>
+        <item quantity="many">تم نقل %1$d رسالة إلى الوارد</item>
+        <item quantity="other">تم نقل %1$d رسالة إلى الوارد</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
         <item quantity="zero">اقرأ</item>
@@ -752,12 +752,12 @@
 
     <!-- GV2 invites sent -->
     <plurals name="GroupManagement_invitation_sent">
-        <item quantity="zero">%1$d invitations sent</item>
-        <item quantity="one">Invitation sent</item>
-        <item quantity="two">%1$d invitations sent</item>
-        <item quantity="few">%1$d invitations sent</item>
-        <item quantity="many">%1$d invitations sent</item>
-        <item quantity="other">%1$d invitations sent</item>
+        <item quantity="zero">تم إرسال %1$d دعوة</item>
+        <item quantity="one">تم إرسال دعوة واحدة</item>
+        <item quantity="two">تم إرسال %1$d دعوتين</item>
+        <item quantity="few">تم إرسال %1$d دعوات</item>
+        <item quantity="many">تم إرسال %1$d دعوة</item>
+        <item quantity="other">تم إرسال %1$d دعوة</item>
     </plurals>
     <string name="GroupManagement_invite_single_user">لا يمكنك إضافة \"%1$s\" تلقائياً إلى هذه المجموعة. \n\n لقد تمت دعوة ذلك الشخص للانضمام، ولن يرى أيّة رسالة من رسائل المجموعة حتى يقبلها.</string>
     <string name="GroupManagement_invite_multiple_users">لا يمكنك إضافة هؤلاء المستخدمين تلقائياً إلى هذه المجموعة . \n\n لقد تمت دعوتهم للانضمام، ولن يروا أيّة رسالة من رسائل المجموعة حتى يقبلون.</string>
@@ -905,12 +905,12 @@
     <string name="PendingMembersActivity_revoke_invite">سحب الدعوة</string>
     <string name="PendingMembersActivity_revoke_invites">سحب الدعوات</string>
     <plurals name="PendingMembersActivity_revoke_d_invites">
-        <item quantity="zero">Revoke %1$d invites</item>
-        <item quantity="one">Revoke invite</item>
-        <item quantity="two">Revoke %1$d invites</item>
-        <item quantity="few">Revoke %1$d invites</item>
-        <item quantity="many">Revoke %1$d invites</item>
-        <item quantity="other">Revoke %1$d invites</item>
+        <item quantity="zero">سحب %1$d دعوة</item>
+        <item quantity="one">سحب دعوة واحدة</item>
+        <item quantity="two">سحب %1$d دعوتين</item>
+        <item quantity="few">سحب %1$d دعوات</item>
+        <item quantity="many">سحب %1$d دعوة</item>
+        <item quantity="other">سحب %1$d دعوة</item>
     </plurals>
     <plurals name="PendingMembersActivity_error_revoking_invite">
         <item quantity="zero">حدث خطأ أثناء سحب الدعوات</item>
@@ -933,12 +933,12 @@
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">لا يمكن إضافة هذا الشخص إلى المجموعات من الطراز القديم.</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">لا يمكن إضافة هذا الشخص إلى مجموعات الإعلان.</string>
     <plurals name="AddMembersActivity__add_d_members_to_s">
-        <item quantity="zero">Add %3$d members to \"%2$s\"?</item>
-        <item quantity="one">Add \"%1$s\" to \"%2$s\"?</item>
-        <item quantity="two">Add %3$d members to \"%2$s\"?</item>
-        <item quantity="few">Add %3$d members to \"%2$s\"?</item>
-        <item quantity="many">Add %3$d members to \"%2$s\"?</item>
-        <item quantity="other">Add %3$d members to \"%2$s\"?</item>
+        <item quantity="zero">إضافة %3$d عضوًا إلى \"%2$s\"؟</item>
+        <item quantity="one">إضافة \"%1$s\" إلى \"%2$s\"؟</item>
+        <item quantity="two">إضافة %3$d عضوين إلى \"%2$s\"؟</item>
+        <item quantity="few">إضافة %3$d أعضاء إلى \"%2$s\"؟</item>
+        <item quantity="many">إضافة %3$d عضوًا إلى \"%2$s\"؟</item>
+        <item quantity="other">إضافة %3$d عضو إلى \"%2$s\" ؟</item>
     </plurals>
     <string name="AddMembersActivity__add">إضافة</string>
     <string name="AddMembersActivity__add_members">إضافة أعضاء</string>
@@ -1047,12 +1047,12 @@
     </plurals>
 
     <plurals name="GroupMemberList_invited">
-        <item quantity="zero">%1$s invited %2$d people</item>
-        <item quantity="one">%1$s invited 1 person</item>
-        <item quantity="two">%1$s invited %2$d people</item>
-        <item quantity="few">%1$s invited %2$d people</item>
-        <item quantity="many">%1$s invited %2$d people</item>
-        <item quantity="other">%1$s invited %2$d people</item>
+        <item quantity="zero">قام %1$s بدعوة %2$d شخص</item>
+        <item quantity="one">قام %1$s بدعوة شخص واحد</item>
+        <item quantity="two">قام %1$s بدعوة %2$d شخصين</item>
+        <item quantity="few">قام %1$s بدعوة %2$d أشخاص</item>
+        <item quantity="many">قام %1$s بدعوة %2$d شخصًا</item>
+        <item quantity="other">قام %1$s بدعوة %2$d شخص</item>
     </plurals>
 
     <!-- CustomNotificationsDialogFragment -->
@@ -1090,12 +1090,12 @@
     <!-- GV2 Invite Revoke confirmation dialog -->
     <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">هل تريد سحب الدعوة التي أرسلتها إلى %1$s؟</string>
     <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
-        <item quantity="zero">Do you want to revoke %2$d invites sent by %1$s?</item>
-        <item quantity="one">Do you want to revoke the invite sent by %1$s?</item>
-        <item quantity="two">Do you want to revoke %2$d invites sent by %1$s?</item>
-        <item quantity="few">Do you want to revoke %2$d invites sent by %1$s?</item>
-        <item quantity="many">Do you want to revoke %2$d invites sent by %1$s?</item>
-        <item quantity="other">Do you want to revoke %2$d invites sent by %1$s?</item>
+        <item quantity="zero">هل تريد سحب %2$d دعوة مُرسلة من طرف %1$s؟</item>
+        <item quantity="one">هل تريد سحب الدعوة المُرسلة من طرف %1$s؟</item>
+        <item quantity="two">هل تريد سحب %2$d دعوتين مُرسلتين من طرف %1$s؟</item>
+        <item quantity="few">هل تريد سحب %2$d دعوات مُرسلة من طرف %1$s؟</item>
+        <item quantity="many">هل تريد سحب %2$d دعوة مُرسلة من طرف %1$s؟</item>
+        <item quantity="other">هل تريد سحب %2$d دعوة مُرسلة من طرف %1$s؟</item>
     </plurals>
 
     <!-- GroupJoinBottomSheetDialogFragment -->
@@ -1215,12 +1215,12 @@
         <item quantity="other">حذف العناصر المختارة؟</item>
     </plurals>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-        <item quantity="zero">This will permanently delete all %1$d selected files. Any message text associated with these items will also be deleted.</item>
-        <item quantity="one">This will permanently delete the selected file. Any message text associated with this item will also be deleted.</item>
-        <item quantity="two">This will permanently delete all %1$d selected files. Any message text associated with these items will also be deleted.</item>
-        <item quantity="few">This will permanently delete all %1$d selected files. Any message text associated with these items will also be deleted.</item>
-        <item quantity="many">This will permanently delete all %1$d selected files. Any message text associated with these items will also be deleted.</item>
-        <item quantity="other">This will permanently delete all %1$d selected files. Any message text associated with these items will also be deleted.</item>
+        <item quantity="zero">هذا سيحذف جميع الـ %1$d ملف التي تمّ اختياره. سيتم حذف أيضًا أي رسالة نصية ذات صلة بهذه العناصر.</item>
+        <item quantity="one">هذا سيحذف الملف الذي تمّ اختياره. سيتم حذف أيضًا أي رسالة نصية ذات صلة بهذه العناصر.</item>
+        <item quantity="two">هذا سًيحذف %1$d الملفين اللذين تمّ اختيارهما. سيتم حذف أيضًا أي رسالة نصية ذات صلة بهذه العناصر.</item>
+        <item quantity="few">هذا سيحذف جميع الـ %1$d ملفات التي تمّ اختيارها. سيتم حذف أيضًا أي رسالة نصية ذات صلة بهذه العناصر.</item>
+        <item quantity="many">هذا سيحذف جميع الـ %1$d ملفًا التي تمّ اختيارها. سيتم حذف أيضًا أي رسالة نصية ذات صلة بهذه العناصر.</item>
+        <item quantity="other">هذا سيحذف جميع الـ %1$d ملفٍ التي تمّ اختيارها. سيتم حذف أيضًا أي رسالة نصية ذات صلة بهذه العناصر.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">جار الحذف</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">جار حذف الرسائل…</string>
@@ -1368,21 +1368,21 @@
     <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">تعذرت إضافتك إلى المجموعات الجديدة والآن تمت دعوتك إليها.</string>
     <string name="MessageRecord_chat_session_refreshed">تم إنعاش جلسة المحادثة</string>
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
-        <item quantity="zero">%1$s members couldn\'t be added to the New Group and have been invited to join.</item>
-        <item quantity="one">A member couldn\'t be added to the New Group and has been invited to join.</item>
-        <item quantity="two">%1$s members couldn\'t be added to the New Group and have been invited to join.</item>
-        <item quantity="few">%1$s members couldn\'t be added to the New Group and have been invited to join.</item>
-        <item quantity="many">%1$s members couldn\'t be added to the New Group and have been invited to join.</item>
-        <item quantity="other">%1$s members couldn\'t be added to the New Group and have been invited to join.</item>
+        <item quantity="zero">تعذّر إضافة %1$s عضو إلى المجموعة الجديدة وقد تمت دعوته إليها.</item>
+        <item quantity="one">تعذّر إضافة عضو واحد إلى المجموعة الجديدة وقد تمت دعوته إليها.</item>
+        <item quantity="two">تعذّر إضافة %1$s عضوين إلى المجموعة الجديدة وقد تمت دعوتهما إليها.</item>
+        <item quantity="few">تعذّر إضافة %1$s أعضاء إلى المجموعة الجديدة وقد تمت دعوتهم إليها.</item>
+        <item quantity="many">تعذّر إضافة %1$s عضوًا إلى المجموعة الجديدة وقد تمت دعوتهم إليها.</item>
+        <item quantity="other">تعذّر إضافة %1$s عضو إلى المجموعة الجديدة وقد تمت دعوتهم إليها.</item>
     </plurals>
 
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
-        <item quantity="zero">%1$s members couldn\'t be added to the New Group and have been removed.</item>
-        <item quantity="one">A member couldn\'t be added to the New Group and has been removed.</item>
-        <item quantity="two">%1$s members couldn\'t be added to the New Group and have been removed.</item>
-        <item quantity="few">%1$s members couldn\'t be added to the New Group and have been removed.</item>
-        <item quantity="many">%1$s members couldn\'t be added to the New Group and have been removed.</item>
-        <item quantity="other">%1$s members couldn\'t be added to the New Group and have been removed.</item>
+        <item quantity="zero">تعذّر إضافة %1$s عضو إلى المجموعة الجديدة وقد تمت إزالته.</item>
+        <item quantity="one">تعذّر إضافة عضو واحد إلى المجموعة الجديدة وقد تمت إزالته.</item>
+        <item quantity="two">تعذّر إضافة %1$s عضوين إلى المجموعة الجديدة وقد تمت إزالتهما.</item>
+        <item quantity="few">تعذّر إضافة %1$s أعضاء إلى المجموعة الجديدة وقد تمت إزالتهم.</item>
+        <item quantity="many">تعذّر إضافة %1$s عضوًا إلى المجموعة الجديدة وقد تمت إزالتهم.</item>
+        <item quantity="other">تعذّر إضافة %1$s عضو إلى المجموعات الجديدة وقد تمت إزالتهم.</item>
     </plurals>
 
     <!-- Profile change updates -->
@@ -1427,51 +1427,51 @@
     <string name="MessageRecord_you_invited_s_to_the_group">لقد دعوت %1$s إلى المجموعة.</string>
     <string name="MessageRecord_s_invited_you_to_the_group">دعاك %1$s إلى المجموعة.</string>
     <plurals name="MessageRecord_s_invited_members">
-        <item quantity="zero">%1$s invited %2$d people to the group.</item>
-        <item quantity="one">%1$s invited 1 person to the group.</item>
-        <item quantity="two">%1$s invited %2$d people to the group.</item>
-        <item quantity="few">%1$s invited %2$d people to the group.</item>
-        <item quantity="many">%1$s invited %2$d people to the group.</item>
-        <item quantity="other">%1$s invited %2$d people to the group.</item>
+        <item quantity="zero">دعا %1$s %2$d شخص إلى المجموعة.</item>
+        <item quantity="one">دعا %1$s شخصًا واحدًا إلى المجموعة.</item>
+        <item quantity="two">دعا %1$s %2$d شخصين إلى المجموعة.</item>
+        <item quantity="few">دعا %1$s %2$d أشخاص إلى المجموعة.</item>
+        <item quantity="many">دعا %1$s %2$d شخصًا إلى المجموعة.</item>
+        <item quantity="other">دعا %1$s %2$d شخصٍ إلى المجموعة.</item>
     </plurals>
     <string name="MessageRecord_you_were_invited_to_the_group">لقد دُعيت إلى المجموعة.</string>
     <plurals name="MessageRecord_d_people_were_invited_to_the_group">
-        <item quantity="zero">%1$d people were invited to the group.</item>
-        <item quantity="one">1 person was invited to the group.</item>
-        <item quantity="two">%1$d people were invited to the group.</item>
-        <item quantity="few">%1$d people were invited to the group.</item>
-        <item quantity="many">%1$d people were invited to the group.</item>
-        <item quantity="other">%1$d people were invited to the group.</item>
+        <item quantity="zero">دُعي %1$d شخص إلى المجموعة.</item>
+        <item quantity="one">دُعي شخص واحد إلى المجموعة.</item>
+        <item quantity="two">دُعي %1$d شخصان إلى المجموعة.</item>
+        <item quantity="few">دُعي %1$d أشخاص إلى المجموعة.</item>
+        <item quantity="many">دُعي %1$d شخصًا إلى المجموعة.</item>
+        <item quantity="other">دُعي %1$d شخص إلى المجموعة.</item>
     </plurals>
 
     <!-- GV2 invitation revokes -->
     <plurals name="MessageRecord_you_revoked_invites">
-        <item quantity="zero">You revoked %1$d invitations to the group.</item>
-        <item quantity="one">You revoked an invitation to the group.</item>
-        <item quantity="two">You revoked %1$d invitations to the group.</item>
-        <item quantity="few">You revoked %1$d invitations to the group.</item>
-        <item quantity="many">You revoked %1$d invitations to the group.</item>
-        <item quantity="other">You revoked %1$d invitations to the group.</item>
+        <item quantity="zero">لقد أبطلت %1$d دعوة إلى مجموعة.</item>
+        <item quantity="one">لقد أبطلت دعوة واحدة إلى المجموعة.</item>
+        <item quantity="two">لقد أبطلت %1$d دعوتين إلى المجموعة.</item>
+        <item quantity="few">لقد أبطلت %1$d دعوات إلى المجموعة.</item>
+        <item quantity="many">لقد أبطلت %1$d دعوة إلى المجموعة.</item>
+        <item quantity="other">لقد أبطلت %1$d دعوة إلى المجموعة.</item>
     </plurals>
     <plurals name="MessageRecord_s_revoked_invites">
-        <item quantity="zero">%1$s revoked %2$d invitations to the group.</item>
-        <item quantity="one">%1$s revoked an invitation to the group.</item>
-        <item quantity="two">%1$s revoked %2$d invitations to the group.</item>
-        <item quantity="few">%1$s revoked %2$d invitations to the group.</item>
-        <item quantity="many">%1$s revoked %2$d invitations to the group.</item>
-        <item quantity="other">%1$s revoked %2$d invitations to the group.</item>
+        <item quantity="zero">أبطل %1$s %2$d دعوة إلى المجموعة.</item>
+        <item quantity="one">أبطل %1$s دعوة واحدة إلى المجموعة.</item>
+        <item quantity="two">أبطل %1$s %2$d دعوتين إلى المجموعة.</item>
+        <item quantity="few">أبطل %1$s %2$d دعوات إلى المجموعة.</item>
+        <item quantity="many">أبطل %1$s %2$d دعوة إلى المجموعة.</item>
+        <item quantity="other">أبطل %1$s %2$d دعوة إلى المجموعة.</item>
     </plurals>
     <string name="MessageRecord_someone_declined_an_invitation_to_the_group">رفض شخص ما الدعوة إلى المجموعة.</string>
     <string name="MessageRecord_you_declined_the_invitation_to_the_group">لقد رفضت الدعوة إلى المجموعة.</string>
     <string name="MessageRecord_s_revoked_your_invitation_to_the_group">أبطل العضو %1$s دعوتك للمجموعة.</string>
     <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">أبطل المشرف دعوتك للمجموعة.</string>
     <plurals name="MessageRecord_d_invitations_were_revoked">
-        <item quantity="zero">%1$d invitations to the group were revoked.</item>
-        <item quantity="one">An invitation to the group was revoked.</item>
-        <item quantity="two">%1$d invitations to the group were revoked.</item>
-        <item quantity="few">%1$d invitations to the group were revoked.</item>
-        <item quantity="many">%1$d invitations to the group were revoked.</item>
-        <item quantity="other">%1$d invitations to the group were revoked.</item>
+        <item quantity="zero">تم إبطال %1$d دعوة للمجموعة.</item>
+        <item quantity="one">تم إبطال دعوة للمجموعة.</item>
+        <item quantity="two">تم إبطال %1$d دعوتين للمجموعة.</item>
+        <item quantity="few">تم إبطال %1$d دعوات للمجموعة.</item>
+        <item quantity="many">تم إبطال %1$d دعوة للمجموعة.</item>
+        <item quantity="other">تم إبطال %1$d دعوة للمجموعة.</item>
     </plurals>
 
     <!-- GV2 invitation acceptance -->
@@ -1544,12 +1544,12 @@
     <string name="MessageRecord_s_requested_to_join_via_the_group_link">طلب العضو %1$s الانضمام للمجموعة بواسطة وصلة المجموعة.</string>
     <!-- Update message shown when someone requests to join via group link and cancels the request back to back -->
     <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
-        <item quantity="zero">%1$s requested and cancelled %2$d requests to join via the group link.</item>
-        <item quantity="one">%1$s requested and cancelled their request to join via the group link.</item>
-        <item quantity="two">%1$s requested and cancelled %2$d requests to join via the group link.</item>
-        <item quantity="few">%1$s requested and cancelled %2$d requests to join via the group link.</item>
-        <item quantity="many">%1$s requested and cancelled %2$d requests to join via the group link.</item>
-        <item quantity="other">%1$s requested and cancelled %2$d requests to join via the group link.</item>
+        <item quantity="zero">أرسل %1$s %2$d طلب للانضمام وألغاه عبر رابط المجموعة.</item>
+        <item quantity="one">أرسل %1$s طلبًا للانضمام وألغاه عبر رابط المجموعة.</item>
+        <item quantity="two">أرسل %1$s طلبين %2$d للانضمام وألغاهما عبر رابط المجموعة.</item>
+        <item quantity="few">أرسل %1$s %2$d طلبات للانضمام وألغاها عبر رابط المجموعة.</item>
+        <item quantity="many">أرسل %1$s %2$d طلبًا للانضمام وألغاها عبر رابط المجموعة.</item>
+        <item quantity="other">أرسل %1$s %2$d طلب للانضمام وألغاها عبر رابط المجموعة.</item>
     </plurals>
 
     <!-- GV2 group link approvals -->
@@ -1578,9 +1578,9 @@
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">أتعجبك هذه الميزة الجديدة؟ ادعم Signal بتقديمك تبرعًا لمرة واحدة.</string>
     <!-- Update item message shown when we merge two threads together -->
-    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Your message history with %1$s and their number %2$s has been merged.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">تمّ دمج سِجّل رسائلك مع %1$s ورقمه %2$s.</string>
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
-    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Your message history with %1$s and another chat that belonged to them has been merged.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">تمّ دمج سِجّل رسائلك مع %1$s ودردشة أخرى تخصه.</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">قام العضو %1$s ببدء مكالمة جماعية · %2$s</string>
@@ -1706,12 +1706,12 @@
     <string name="OutdatedBuildReminder_update_now">حدِّث الآن</string>
     <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">تنتهي اليوم صلاحية إصدار Signal. يُرجى اللمس لتثبيت آخر نسخة من التطبيق.</string>
     <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
-        <item quantity="zero">This version of Signal will expire in %1$d days. Update to the most recent version.</item>
-        <item quantity="one">This version of Signal will expire tomorrow. Update to the most recent version.</item>
-        <item quantity="two">This version of Signal will expire in %1$d days. Update to the most recent version.</item>
-        <item quantity="few">This version of Signal will expire in %1$d days. Update to the most recent version.</item>
-        <item quantity="many">This version of Signal will expire in %1$d days. Update to the most recent version.</item>
-        <item quantity="other">This version of Signal will expire in %1$d days. Update to the most recent version.</item>
+        <item quantity="zero">تنتهي صلاحية إصدار Signal خلال %1$d يوم. يُرجى التحديث لآخر إصدار.</item>
+        <item quantity="one">تنتهي صلاحية إصدار Signal غدًا. يُرجى التحديث لآخر إصدار.</item>
+        <item quantity="two">تنتهي صلاحية إصدار Signal خلال يومين %1$d. يُرجى التحديث لآخر إصدار.</item>
+        <item quantity="few">تنتهي صلاحية إصدار Signal خلال %1$d أيام. يُرجى التحديث لآخر إصدار.</item>
+        <item quantity="many">تنتهي صلاحية إصدار Signal خلال %1$d يومًا. يُرجى التحديث لآخر إصدار.</item>
+        <item quantity="other">تنتهي صلاحية إصدار Signal خلال %1$d يومٍ. يُرجى التحديث لآخر إصدار.</item>
     </plurals>
 
     <!-- PassphrasePromptActivity -->
@@ -2165,7 +2165,7 @@
 
     <!-- UsernameEditFragment -->
     <!-- Toolbar title when entering from registration -->
-    <string name="UsernameEditFragment__add_a_username">Add a username</string>
+    <string name="UsernameEditFragment__add_a_username">إضافة اسم مُستخدم</string>
     <!-- Instructional text at the top of the username edit screen -->
     <string name="UsernameEditFragment__choose_your_username">يُرجى اختيار اسم المستخدم</string>
     <string name="UsernameEditFragment_username">اسم المستخدم</string>
@@ -2824,13 +2824,13 @@
     <string name="HelpFragment__could_not_upload_logs">لا يمكن تحميل السجلات</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">نرجو منك الشرح لنا بإسهاب قدر الإمكان لمساعدتنا على فهم المشكلة.</string>
     <string-array name="HelpFragment__categories_4">
-        <item>\\-\\- Please select an option \\-\\-</item>
+        <item>\\-\\- يُرجى تحديد اختيار \\-\\-</item>
         <item>شيء ما لا يعمل</item>
         <item>طلب الميزات</item>
         <item>سؤال</item>
         <item>الملاحظات</item>
         <item>غير ذلك</item>
-        <item>Payments (MobileCoin)</item>
+        <item>عمليات الدفع (MobileCoin)</item>
         <item>تبرّعات وشارات</item>
     </string-array>
 
@@ -4131,10 +4131,10 @@
     <string name="payment_info_card_hide_this_card">إخفاء هذه البطاقة ؟</string>
     <string name="payment_info_card_hide">إخفاء</string>
     <!-- Title of save recovery phrase card -->
-    <string name="payment_info_card_save_recovery_phrase">Save recovery phrase</string>
+    <string name="payment_info_card_save_recovery_phrase">حفظ جملة الاستعادة</string>
     <string name="payment_info_card_your_recovery_phrase_gives_you">توفر لك جملة الاستعادة وسيلة أخرى لاستعادة حساب دفوعاتك.</string>
     <!-- Button in save recovery phrase card -->
-    <string name="payment_info_card_save_your_phrase">Save your phrase</string>
+    <string name="payment_info_card_save_your_phrase">حفظ جملتك</string>
     <string name="payment_info_card_update_your_pin">تحديث رقمك التعريفي الشخصي</string>
     <string name="payment_info_card_with_a_high_balance">قد تكون لديك الرغبة في زيادة حماية حسابك عبر تحديث رقمك التعريفي الشخصي ليكون أبجَدرَقميا، بالذات عند توفرك على رصيد كبير من العملة الرقمية.</string>
     <string name="payment_info_card_update_pin">تحديث الرقم التعريفي الشخصي</string>
@@ -4159,23 +4159,23 @@
     <string name="PaymentsRecoveryStartFragment__recovery_phrase">جملة الاستعادة</string>
     <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">عرض جملة الاستعادة</string>
     <!-- Title in save recovery phrase screen -->
-    <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Save recovery phrase</string>
+    <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">حفظ جملة الاستعادة</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">إدخال جملة الاستعادة</string>
     <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">سوف يُستعاد رصيدك تلقائيا فور الانتهاء من إعادة تثبيت Signal، وذلك إذا قمت بتأكيد ‫رقم Signal التعريفي الشخصي‬. يمكنك أيضا استعادة حسابك باستخدام جملة الاستعادة، والتي تتكون من %1$d كلمة فريدة خاصك بك فقط. يٌرجى كتابتها ثم حفظها في مكان آمن.</string>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
-    <string name="PaymentsRecoveryStartFragment__got_balance">You’ve got a balance! Time to save your recovery phrase—a 24-word key you can use to restore your balance.</string>
+    <string name="PaymentsRecoveryStartFragment__got_balance">لديك رصيد! حان وقت حفظ جملة الاستعادة الخاصة بك—مفتاح من 24 كلمة يُمكنك استخدامه لاستعادة رصيدك.</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
-    <string name="PaymentsRecoveryStartFragment__time_to_save">Time to save your recovery phrase—a 24-word key you can use to restore your balance. Learn more</string>
+    <string name="PaymentsRecoveryStartFragment__time_to_save">حان وقت حفظ جملة الاستعادة الخاصة بك—مفتاح من 24 كلمة يُمكنك استخدامه لاستعادة رصيدك. معرفة المزيد</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">إن جملة الاستعادة هي جملة مكونة من %1$d كلمة فريدة خاصة بك فقط. يُرجى استخدامها لاستعادة حساب دفوعاتك.</string>
     <string name="PaymentsRecoveryStartFragment__start">البدأ</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">إدخال يدويا</string>
     <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">لصق من الحافظة</string>
     <!-- Alert dialog title which asks before going back if user wants to save recovery phrase -->
-    <string name="PaymentsRecoveryStartFragment__continue_without_saving">Continue Without Saving?</string>
+    <string name="PaymentsRecoveryStartFragment__continue_without_saving">متابعة بدون حفظ؟</string>
     <!-- Alert dialog description to let user know why recovery phrase needs to be saved -->
-    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">Your recovery phrase lets you restore your balance in a worst-case scenario. We strongly recommend you save it.</string>
+    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">تُتيح لك جملة الاستعادة الخاصة بك اِسترجاع رصيدك في حالة حدوث أمر ما. نوصي بشدة بحفظها.</string>
     <!-- Alert dialog option to skip recovery phrase -->
-    <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">Skip Recovery Phrase</string>
+    <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">تَخَطَّ جملة الاستعادة</string>
     <!-- Alert dialog option to cancel dialog-->
     <string name="PaymentsRecoveryStartFragment__cancel">إلغاء</string>
 
@@ -4331,9 +4331,9 @@
     <!-- Preference title to delete sms -->
     <string name="SmsSettingsFragment__remove_sms_messages">إزالة الرسائل القصيرة</string>
     <!-- Snackbar text to confirm deletion -->
-    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Removing SMS messages from Signal…</string>
+    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">إزالة رسائل SMS من تطبيق Signal…</string>
     <!-- Snackbar text to indicate can delete later -->
-    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">You can remove SMS messages from Signal in Settings at any time.</string>
+    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">يُمكنك إزالة رسائل SMS من Signal في الإعدادات في أي وقت.</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">الرسائل</string>
@@ -4591,17 +4591,17 @@
     <!-- Dialog title when removing a contact -->
     <string name="NewConversationActivity__remove_s">إزالة %1$s ؟</string>
     <!-- Dialog message when removing a contact -->
-    <string name="NewConversationActivity__you_wont_see_this_person">You won\'t see this person when searching. You\'ll get a message request if they message you in the future.</string>
+    <string name="NewConversationActivity__you_wont_see_this_person">لن يظهر لك هذا الشخص عند البحث. سَتتلقّى طلب رسالة إذا راسلوك في المستقبل.</string>
     <!-- Snackbar message after removing a contact -->
-    <string name="NewConversationActivity__s_has_been_removed">%1$s has been removed</string>
+    <string name="NewConversationActivity__s_has_been_removed">تم حذف %1$s</string>
     <!-- Snackbar message after blocking a contact -->
-    <string name="NewConversationActivity__s_has_been_blocked">%1$s has been blocked</string>
+    <string name="NewConversationActivity__s_has_been_blocked">تم حظر %1$s</string>
     <!-- Dialog title when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__unable_to_remove_s">Unable to remove %1$s</string>
+    <string name="NewConversationActivity__unable_to_remove_s">لا يمكن إزالة %1$s</string>
     <!-- Dialog message when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__this_person_is_saved_to_your">This person is saved to your device\'s Contacts. Delete them from your Contacts and try again.</string>
+    <string name="NewConversationActivity__this_person_is_saved_to_your">هذا الشخص محفوظ في جهات اتصالك. اِحذفه من جهات اتصالك وحاول مرة أخرى.</string>
     <!-- Dialog action to view contact when they can't be removed otherwise -->
-    <string name="NewConversationActivity__view_contact">View contact</string>
+    <string name="NewConversationActivity__view_contact">عرض جهات الاتصال</string>
 
     <!-- ContactFilterView -->
     <string name="ContactFilterView__search_name_or_number">البحث باستخدام الاسم أو الرقم</string>
@@ -5701,7 +5701,7 @@
     <!-- Title of the screen -->
     <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">قم بتصدير رسائلك القصيرة</string>
     <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">You can export your SMS messages to your phone\'s SMS database. This allows other SMS apps on your phone to access and import them. This does not create a shareable file of your SMS message history.</string>
+    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">يُمكنك تصدير رسائل SMS الخاصة بك إلى قاعدة بيانات SMS بهاتفك. يُتيح هذا لتطبيقات رسائل SMS الأخرى على هاتفك الوصول إليها واستيرادها. لا يُؤدي هذا إلى إنشاء ملف قابل للمشاركة من سِجل رسائل SMS الخاصة بك.</string>
     <!-- Button label to begin export -->
     <string name="ExportYourSmsMessagesFragment__continue">واصل</string>
 
@@ -5727,17 +5727,17 @@
     <!-- Fourth step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_4">4</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">Tap \"Continue\" to open the \"Default apps\" screen in Settings</string>
+    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">انقر \"متابعة\" لفتح شاشة \"التطبيقات الافتراضية\" في الإعدادات</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">Select \"SMS app\" from the list</string>
+    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">حدّد \"تطبيق رسائل SMS\" من القائمة</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">Choose another app to use for SMS messaging</string>
+    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">اِختر تطبيقًا آخر لاستخدامه في رسائل SMS</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">Return to Signal</string>
+    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">الرجوع إلى Signal</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">Open your phone\'s Settings app</string>
+    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">اِفتح تطبيق \"الإعدادات\" على هاتفك</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">Navigate to \"Apps\" &gt; \"Default apps\" &gt; \"SMS app\"</string>
+    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">اِنتقل إلى \"التطبيقات\" &gt; \"التطبيقات الافتراضية\" &gt; \"تطبيق رسائل SMS\"</string>
 
     <!-- RemoveSmsMessagesDialogFragment -->
     <!-- Action button to keep messages -->
@@ -5747,13 +5747,13 @@
     <!-- Title of dialog -->
     <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">إزالة الرسائل القصيرة من Signal؟</string>
     <!-- Message of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">You can now remove SMS messages from Signal to clear up storage space. They will still be available to other SMS apps on your phone even if you remove them.</string>
+    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">يُمكنك الآن إزالة رسائل SMS من Signal لإخلاء مساحة التخزين. لكنها سَتظل متاحة لتطبيقات رسائل SMS الأخرى على هاتفك حتى إذا قمت بإزالتها.</string>
 
     <!-- SetSignalAsDefaultSmsAppFragment -->
     <!-- Title of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">Set Signal as the default SMS app</string>
+    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">عيّن Signal التطبيق الافتراضي لِرسائل SMS</string>
     <!-- Message of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">To export your SMS messages, you need to set Signal as the default SMS app.</string>
+    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">لتصدير رسائل SMS الخاصة بك، تحتاج إلى تعيين Signal كتطبيق رسائل SMS الافتراضي.</string>
     <!-- Button label to start export -->
     <string name="SetSignalAsDefaultSmsAppFragment__next">التالي</string>
 

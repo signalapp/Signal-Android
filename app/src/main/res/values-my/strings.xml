@@ -1288,9 +1288,9 @@
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">ဤလုပ်ဆောင်ချက် အင်္ဂါရပ်အသစ်ကို သဘောကျပါသလား။ တစ်ကြိမ်စာ လှူဒါန်းမှုဖြင့် Signal ကို ကူညီလိုက်ပါ။</string>
     <!-- Update item message shown when we merge two threads together -->
-    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Your message history with %1$s and their number %2$s has been merged.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">%1$s နှင့် သင်၏ မက်ဆေ့ချ်မှတ်တမ်း၊ ၎င်းတို့၏ နံပါတ် %2$s တို့ကို ပေါင်းစည်းထားပါသည်။</string>
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
-    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Your message history with %1$s and another chat that belonged to them has been merged.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">%1$s နှင့် သင်၏ မက်ဆေ့ချ်မှတ်တမ်း၊ ၎င်းတို့နှင့် သက်ဆိုင်သည့် အခြား ချက်(တ်)ကို ပေါင်းစည်းထားပါသည်။</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s သည် အဖွဲ့လိုက်ခေါ်ဆိုမှု စခဲ့ပါသည် · %2$s</string>
@@ -1800,7 +1800,7 @@
 
     <!-- UsernameEditFragment -->
     <!-- Toolbar title when entering from registration -->
-    <string name="UsernameEditFragment__add_a_username">Add a username</string>
+    <string name="UsernameEditFragment__add_a_username">သုံးစွဲသူအမည် ပေါင်းထည့်ရန်</string>
     <!-- Instructional text at the top of the username edit screen -->
     <string name="UsernameEditFragment__choose_your_username">သင်၏ သုံးစွဲသူအမည်ကို ရွေးရန်</string>
     <string name="UsernameEditFragment_username">အသုံးပြုသူအမည်</string>
@@ -3646,10 +3646,10 @@
     <string name="payment_info_card_hide_this_card">၎င်းကဒ်ကို ပုန်းမည်လား?</string>
     <string name="payment_info_card_hide">ဝှက်ပါ</string>
     <!-- Title of save recovery phrase card -->
-    <string name="payment_info_card_save_recovery_phrase">Save recovery phrase</string>
+    <string name="payment_info_card_save_recovery_phrase">ပြန်လည်ရယူရေး စကားစုကို သိမ်းရန်</string>
     <string name="payment_info_card_your_recovery_phrase_gives_you">ပြန်လည်ရယူရန် စာပုဒ်တိုသည် သင့် ငွေပေးချေမှုအကောင့်ကို ပြန်လည်ရယူရန် နည်းတစ်နည်းဖြစ်ပါသည်။</string>
     <!-- Button in save recovery phrase card -->
-    <string name="payment_info_card_save_your_phrase">Save your phrase</string>
+    <string name="payment_info_card_save_your_phrase">သင်၏ စကားစုကို သိမ်းရန်</string>
     <string name="payment_info_card_update_your_pin">သင့် ပင်နံပါတ်ကို အပ်ဒိတ်ပြုလုပ်မယ်</string>
     <string name="payment_info_card_with_a_high_balance">လက်ကျန်ငွေများလျှင် သင့်အကောင့်ကို ပိုမိုလုံခြုံမှုရှိစေရန် အက္ခရာနံပါတ်ပါသော ပင်နံပါတ်သို့ အပ်ဒိတ်ပြုလုပ်ပြီး သင့်အကောင့်ကို ကာကွယ်နိုင်ပါသည်။</string>
     <string name="payment_info_card_update_pin">ပင်နံပါတ်ကို အပ်ဒိတ်ပြုလုပ်မယ်</string>
@@ -3674,23 +3674,23 @@
     <string name="PaymentsRecoveryStartFragment__recovery_phrase">ပြန်လည်ရယူရန် စာပုဒ်တို</string>
     <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">ပြန်လည်ရယူရန် စာပုဒ်တိုကို ကြည့်ရှုမယ်</string>
     <!-- Title in save recovery phrase screen -->
-    <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Save recovery phrase</string>
+    <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">ပြန်လည်ရယူရေး စကားစုကို သိမ်းရန်</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">ပြန်လည်ရယူ စာပုဒ်တိုကို ရိုက်ထည့်ပါ</string>
     <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Signal ပြန်တင်သွင်းသည့်အချိန်တွင် သင်မှသင့် Signal ပင်နံပါတ်ကို အတည်ပြုခဲ့လျှင် သင့် လက်ကျန်ငွေကို အလိုအလျောက်ပြန်လည် ရရှိပါမည်။ ပြန်လည်ရယူရန် စာပုဒ်တိုဖြင့်လည်း သင့်လက်ကျန်ငွေကို ပြန်ရယူနိုင်ပါသည်။ ၎င်းသည် သင့်အတွက်သာ ထူးခြားသာ စာလုံး %1$d လုံး ရှိသော စာပုဒ်တိုဖြစ်ပါသည်။ ရေးသားမှတ်ထားပြီး လုံခြုံသောတစ်နေရာတွင် ဝှက်ထားပါ။</string>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
-    <string name="PaymentsRecoveryStartFragment__got_balance">You’ve got a balance! Time to save your recovery phrase—a 24-word key you can use to restore your balance.</string>
+    <string name="PaymentsRecoveryStartFragment__got_balance">လက်ကျန်ငွေ ရရှိထားပါသည်။ သင်၏ လက်ကျန်ငွေကို ပြန်လည်ရယူရန် သုံးနိုင်သည့် ပြန်လည်ရယူရေး စကားစု—စာလုံး 24 လုံးပါ ကီး ကို သိမ်းရန် အချိန်ကျပါပြီ။</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
-    <string name="PaymentsRecoveryStartFragment__time_to_save">Time to save your recovery phrase—a 24-word key you can use to restore your balance. Learn more</string>
+    <string name="PaymentsRecoveryStartFragment__time_to_save">သင်၏ လက်ကျန်ငွေကို ပြန်လည်ရယူရန် သုံးနိုင်သည့် စာလုံး 24 လုံးပါ ကီး — ပြန်လည်ရယူရေး စကားစုကို သိမ်းရန် အချိန်ကျပါပြီ။ ပိုမိုလေ့လာရန်</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">သင်၏ ပြန်လည်ရယူရန် စာပုဒ်တိုသည် သင့်အတွက်သာ ထူးခြားသော စကားလုံး %1$d လုံးရှိသော စာပုဒ်တိုဖြစ်ပါသည်။ ၎င်းစာပုဒ်တိုကိုသုံး၍ သင့် လက်ကျန်ငွေ ပြန်ရယူလိုက်ပါ။</string>
     <string name="PaymentsRecoveryStartFragment__start">စမယ်</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">ကိုယ်တိုင်ရိုက်ထည့်ပါ</string>
     <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">ကလစ်ဘုတ်မှ​ ကူးရေးမယ်</string>
     <!-- Alert dialog title which asks before going back if user wants to save recovery phrase -->
-    <string name="PaymentsRecoveryStartFragment__continue_without_saving">Continue Without Saving?</string>
+    <string name="PaymentsRecoveryStartFragment__continue_without_saving">မသိမ်းဘဲ ဆက်လုပ်မည်လား။</string>
     <!-- Alert dialog description to let user know why recovery phrase needs to be saved -->
-    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">Your recovery phrase lets you restore your balance in a worst-case scenario. We strongly recommend you save it.</string>
+    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">သင်၏ ပြန်လည်ရယူရေး စကားစုသည် အဆိုးဆုံး အခြေအနေတွင် သင်၏ လက်ကျန်ငွေကို ပြန်လည်ရယူနိုင်စေပါသည်။ ၎င်းကို သိမ်းထားရန် အလေးအနက် အကြံပြုပါသည်။</string>
     <!-- Alert dialog option to skip recovery phrase -->
-    <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">Skip Recovery Phrase</string>
+    <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">ပြန်လည်ရယူရေး စကားစုကို ကျော်ရန်</string>
     <!-- Alert dialog option to cancel dialog-->
     <string name="PaymentsRecoveryStartFragment__cancel">မလုပ်တော့ပါ</string>
 
@@ -3846,9 +3846,9 @@
     <!-- Preference title to delete sms -->
     <string name="SmsSettingsFragment__remove_sms_messages">SMS မက်ဆေ့ချ်များကို ဖယ်ရှားရန်</string>
     <!-- Snackbar text to confirm deletion -->
-    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Removing SMS messages from Signal…</string>
+    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">SMS မက်ဆေ့ချ်များကို Signal မှ ဖယ်ရှားနေဆဲ…</string>
     <!-- Snackbar text to indicate can delete later -->
-    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">You can remove SMS messages from Signal in Settings at any time.</string>
+    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">Signal မှ SMS မက်ဆေ့ချ်များကို ဆက်တင်တွင် အချိန်မရွေး ဖယ်ရှားနိုင်ပါသည်။</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">မက်ဆေ့ချ်များ</string>
@@ -4096,17 +4096,17 @@
     <!-- Dialog title when removing a contact -->
     <string name="NewConversationActivity__remove_s">%1$s ကို ဖယ်ရှားမည်လား။</string>
     <!-- Dialog message when removing a contact -->
-    <string name="NewConversationActivity__you_wont_see_this_person">You won\'t see this person when searching. You\'ll get a message request if they message you in the future.</string>
+    <string name="NewConversationActivity__you_wont_see_this_person">ရှာဖွေသည့်အခါ ဤပုဂ္ဂိုလ်ကို မြင်ရမည် မဟုတ်ပါ။ နောင်တွင် ၎င်းတို့က သင့်ထံ မက်ဆေ့ချ်များ ပို့ခဲ့ပါက သင်သည် မက်ဆေ့ချ် တောင်းဆိုချက်ကို ရရှိပါမည်။</string>
     <!-- Snackbar message after removing a contact -->
-    <string name="NewConversationActivity__s_has_been_removed">%1$s has been removed</string>
+    <string name="NewConversationActivity__s_has_been_removed">%1$s ကို ဖယ်ရှားထားပါသည်</string>
     <!-- Snackbar message after blocking a contact -->
-    <string name="NewConversationActivity__s_has_been_blocked">%1$s has been blocked</string>
+    <string name="NewConversationActivity__s_has_been_blocked">%1$s အား ဘလော့ထားပါသည်</string>
     <!-- Dialog title when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__unable_to_remove_s">Unable to remove %1$s</string>
+    <string name="NewConversationActivity__unable_to_remove_s">%1$s ကို ဖယ်ရှား၍ မရနိုင်ပါ</string>
     <!-- Dialog message when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__this_person_is_saved_to_your">This person is saved to your device\'s Contacts. Delete them from your Contacts and try again.</string>
+    <string name="NewConversationActivity__this_person_is_saved_to_your">ဤပုဂ္ဂိုလ်ကို သင့်စက်၏ အဆက်အသွယ်များတွင် သိမ်းထားပါသည်။ ၎င်းတို့ကို သင်၏ အဆက်အသွယ်များမှ ဖျက်ပြီး ထပ်ကြိုးစားကြည့်ပါ။</string>
     <!-- Dialog action to view contact when they can't be removed otherwise -->
-    <string name="NewConversationActivity__view_contact">View contact</string>
+    <string name="NewConversationActivity__view_contact">အဆက်အသွယ် ကြည့်ရန်</string>
 
     <!-- ContactFilterView -->
     <string name="ContactFilterView__search_name_or_number">အမည် သို့မဟုတ် နံပါတ်ကို ရှာရန်</string>
@@ -4605,7 +4605,7 @@
     <!-- Subtitle for "My Stories" row item when user has not added stories -->
     <string name="StoriesLandingFragment__tap_to_add_a_story">စတိုရီ ပေါင်းထည့်ရန် နှိပ်ပါ</string>
     <!-- Displayed when there are no stories to display -->
-    <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now">No recent updates to show right now.</string>
+    <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now">ပြသရန် မကြာသေးမီက အပ်ဒိတ်များ ယခု မရှိသေးပါ။</string>
     <!-- Context menu option to hide a story -->
     <string name="StoriesLandingItem__hide_story">စတိုရီကို ဝှက်ရန်</string>
     <!-- Context menu option to unhide a story -->
@@ -4671,9 +4671,9 @@
     <!-- Displayed when viewing a post from another user with no replies -->
     <string name="StoryViewerPageFragment__reply">စာပြန်မည်</string>
     <!-- Displayed when viewing a post that has failed to send to some users -->
-    <string name="StoryViewerPageFragment__partially_sent">Partially sent. Tap for details</string>
+    <string name="StoryViewerPageFragment__partially_sent">တစ်စိတ်တစ်ပိုင်း ပို့ပြီး။ အသေးစိတ်သိရန် နှိပ်ပါ</string>
     <!-- Displayed when viewing a post that has failed to send -->
-    <string name="StoryViewerPageFragment__send_failed">Send failed. Tap to retry</string>
+    <string name="StoryViewerPageFragment__send_failed">ပေးပို့မှု မအောင်မြင်ပါ။ ပြန်ကြိုးစားရန် နှိပ်ပါ</string>
     <!-- Label for the reply button in story viewer, which will launch the group story replies bottom sheet. -->
     <string name="StoryViewerPageFragment__reply_to_group">အဖွဲ့အတွက် ပြန်စာ</string>
     <!-- Displayed when a story has no views -->
@@ -5111,7 +5111,7 @@
     <!-- Title of the screen -->
     <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">သင့် SMS မက်ဆေ့ချ်များကို ထုတ်ရန်</string>
     <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">You can export your SMS messages to your phone\'s SMS database. This allows other SMS apps on your phone to access and import them. This does not create a shareable file of your SMS message history.</string>
+    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">သင်၏ SMS မက်ဆေ့ချ်များကို သင့်ဖုန်း၏ SMS ဒေတာဘေ့စ်တွင် ထုတ်သိမ်းနိုင်ပါသည်။ ဤသည်က သင့်ဖုန်းရှိ အခြားသော SMS အက်ပ်များအား ၎င်းတို့ကို ရယူသုံးစွဲရန်နှင့် ထည့်သွင်းခွင့်ပြုပါသည်။ ဤသည်က သင်၏ SMS မက်ဆေ့ချ်မှတ်တမ်းကို ဝေမျှနိုင်သော ဖိုင်အဖြစ် ဖန်တီးမည် မဟုတ်ပါ။</string>
     <!-- Button label to begin export -->
     <string name="ExportYourSmsMessagesFragment__continue">ဆက်လုပ်ရန်</string>
 
@@ -5137,17 +5137,17 @@
     <!-- Fourth step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_4">၄</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">Tap \"Continue\" to open the \"Default apps\" screen in Settings</string>
+    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">ဆက်တင်တွင် \"Default apps\" စခရင်ကို ဖွင့်ရန် \"Continue\" ကို နှိပ်ပါ။</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">Select \"SMS app\" from the list</string>
+    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">စာရင်းမှ \"SMS app\" ကို ရွေးပါ</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">Choose another app to use for SMS messaging</string>
+    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">SMS မက်ဆေ့ချ်အတွက် သုံးရန် အခြားအက်ပ်ကို ရွေးပါ</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">Return to Signal</string>
+    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">Signal သို့ ပြန်သွားပါ</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">Open your phone\'s Settings app</string>
+    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">သင့်ဖုန်း၏ ဆက်တင်အက်ပ်ကို ဖွင့်ပါ</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">Navigate to \"Apps\" &gt; \"Default apps\" &gt; \"SMS app\"</string>
+    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">\"Apps\" &gt; \"Default apps\" &gt; \"SMS app\" သို့ သွားပါ</string>
 
     <!-- RemoveSmsMessagesDialogFragment -->
     <!-- Action button to keep messages -->
@@ -5157,13 +5157,13 @@
     <!-- Title of dialog -->
     <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">SMS မက်ဆေ့ချ်များကို Signal မှ ဖယ်ရှားမည်လား။</string>
     <!-- Message of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">You can now remove SMS messages from Signal to clear up storage space. They will still be available to other SMS apps on your phone even if you remove them.</string>
+    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">သိုလှောင်မှု နေရာလွတ်ကို ရှင်းရန် Signal မှ SMS မက်ဆေ့ချ်များကို ယခု ဖယ်ရှားနိုင်ပါသည်။ အခြား SMS အက်ပ်များကို ဖယ်ရှားလျှင်ပင် သင့်ဖုန်းတွင် ၎င်းတို့ကို ဆက်လက်ရရှိနိုင်ပါသည်။</string>
 
     <!-- SetSignalAsDefaultSmsAppFragment -->
     <!-- Title of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">Set Signal as the default SMS app</string>
+    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">Signal ကို ပုံသေ SMS အက်ပ်အဖြစ် သတ်မှတ်ရန်</string>
     <!-- Message of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">To export your SMS messages, you need to set Signal as the default SMS app.</string>
+    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">သင့် SMS မက်ဆေ့ချ်များကို ထုတ်သိမ်းရန် Signal အား ပုံသေ SMS အက်ပ်အဖြစ် သတ်မှတ်ရန် လိုအပ်ပါသည်။</string>
     <!-- Button label to start export -->
     <string name="SetSignalAsDefaultSmsAppFragment__next">နောက်ထက်</string>
 

@@ -358,8 +358,8 @@
     </plurals>
     <string name="ConversationFragment_save_to_sd_card">Stoor op toestel?</string>
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
-        <item quantity="one">Saving this media to storage will allow any other apps on your device to access it.\n\nContinue?</item>
-        <item quantity="other">Saving all %1$d media to storage will allow any other apps on your device to access them.\n\nContinue?</item>
+        <item quantity="one">As jy hierdie media op jou toestel stoor, kan enige ander toepassings op jou toestel toegang daartoe verkry.\n\nGaan voort?</item>
+        <item quantity="other">As jy al %1$d media stoor, kan enige ander toepassings op jou toestel toegang daartoe verkry.\n\nGaan voort?</item>
     </plurals>
     <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
         <item quantity="one">Fout tydens die stoor van aanhangsel op die toestel!</item>
@@ -367,12 +367,12 @@
     </plurals>
     <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Kan nie na berging skryf nie!</string>
     <plurals name="ConversationFragment_saving_n_attachments">
-        <item quantity="one">Saving attachment</item>
-        <item quantity="other">Saving %1$d attachments</item>
+        <item quantity="one">Besig om aanhangsel te stoor</item>
+        <item quantity="other">Besig om %1$d aanhangsels te stoor</item>
     </plurals>
     <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="one">Saving attachment to storage…</item>
-        <item quantity="other">Saving %1$d attachments to storage…</item>
+        <item quantity="one">Besig om aanhangsel na stoorruimte te stoor…</item>
+        <item quantity="other">Besig om %1$d aanhangsels na stoorruimte te stoor…</item>
     </plurals>
     <string name="ConversationFragment_pending">Hangend…</string>
     <string name="ConversationFragment_push">Data (Signal)</string>
@@ -418,19 +418,19 @@
         <item quantity="other">Skrap geselekteerde gesprekke?</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">This will permanently delete the selected conversation.</item>
-        <item quantity="other">This will permanently delete all %1$d selected conversations.</item>
+        <item quantity="one">Dit sal die geselekteerde gesprek permanent skrap.</item>
+        <item quantity="other">Dit sal al %1$d die geselekteerde gesprekke permanent skrap.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Skrap</string>
     <string name="ConversationListFragment_deleting_selected_conversations">Skrap tans geselekteerde gesprekke …</string>
     <plurals name="ConversationListFragment_conversations_archived">
-        <item quantity="one">Conversation archived</item>
-        <item quantity="other">%1$d conversations archived</item>
+        <item quantity="one">Gesprek geargiveer</item>
+        <item quantity="other">%1$d gesprekke geargiveer</item>
     </plurals>
     <string name="ConversationListFragment_undo">Maak ongedaan</string>
     <plurals name="ConversationListFragment_moved_conversations_to_inbox">
-        <item quantity="one">Moved conversation to inbox</item>
-        <item quantity="other">Moved %1$d conversations to inbox</item>
+        <item quantity="one">Gesprek na inkassie geskuif</item>
+        <item quantity="other">%1$d gesprekke na inkassie geskuif</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
         <item quantity="one">Lees</item>
@@ -664,8 +664,8 @@
 
     <!-- GV2 invites sent -->
     <plurals name="GroupManagement_invitation_sent">
-        <item quantity="one">Invitation sent</item>
-        <item quantity="other">%1$d invitations sent</item>
+        <item quantity="one">Uitnodiging gestuur</item>
+        <item quantity="other">%1$d uitnodigings gestuur</item>
     </plurals>
     <string name="GroupManagement_invite_single_user">\"%1$s\" kan nie outomaties deur jou by hierdie groep gevoeg word nie.\n\nHulle is genooi om aan te sluit, maar sal geen groepboodskappe sien voordat hulle aanvaar nie.</string>
     <string name="GroupManagement_invite_multiple_users">Hierdie gebruikers kan nie outomaties deur jou by hierdie groep gevoeg word nie.\n\nHulle is genooi om by die groep aan te sluit, maar sal geen groepboodskappe sien voordat hulle aanvaar nie.</string>
@@ -765,8 +765,8 @@
     <string name="PendingMembersActivity_revoke_invite">Herroep uitnodiging</string>
     <string name="PendingMembersActivity_revoke_invites">Herroep uitnodigings</string>
     <plurals name="PendingMembersActivity_revoke_d_invites">
-        <item quantity="one">Revoke invite</item>
-        <item quantity="other">Revoke %1$d invites</item>
+        <item quantity="one">Herroep uitnodiging</item>
+        <item quantity="other">Herroep %1$d uitnodigings</item>
     </plurals>
     <plurals name="PendingMembersActivity_error_revoking_invite">
         <item quantity="one">Kon nie uitnodiging herroep nie</item>
@@ -785,8 +785,8 @@
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Hierdie persoon kan nie by legaatgroepe gevoeg word nie.</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">Hierdie persoon kan nie by aankondigingsgroepe gevoeg word nie.</string>
     <plurals name="AddMembersActivity__add_d_members_to_s">
-        <item quantity="one">Add \"%1$s\" to \"%2$s\"?</item>
-        <item quantity="other">Add %3$d members to \"%2$s\"?</item>
+        <item quantity="one">Voeg \"%1$s\" by “%2$s” by?</item>
+        <item quantity="other">Voeg %3$d lede by “%2$s” by?</item>
     </plurals>
     <string name="AddMembersActivity__add">Voeg toe</string>
     <string name="AddMembersActivity__add_members">Voeg lede toe</string>
@@ -887,8 +887,8 @@
     </plurals>
 
     <plurals name="GroupMemberList_invited">
-        <item quantity="one">%1$s invited 1 person</item>
-        <item quantity="other">%1$s invited %2$d people</item>
+        <item quantity="one">%1$s het 1 persoon genooi</item>
+        <item quantity="other">%1$s het %2$d persone genooi</item>
     </plurals>
 
     <!-- CustomNotificationsDialogFragment -->
@@ -926,8 +926,8 @@
     <!-- GV2 Invite Revoke confirmation dialog -->
     <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Wil jy die uitnodiging herroep wat jy aan %1$s gestuur het?</string>
     <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
-        <item quantity="one">Do you want to revoke the invite sent by %1$s?</item>
-        <item quantity="other">Do you want to revoke %2$d invites sent by %1$s?</item>
+        <item quantity="one">Wil jy die uitnodiging herroep wat deur %1$s gestuur is?</item>
+        <item quantity="other">Wil jy %2$d uitnodigings herroep wat deur %1$s gestuur is?</item>
     </plurals>
 
     <!-- GroupJoinBottomSheetDialogFragment -->
@@ -1035,8 +1035,8 @@
         <item quantity="other">Skrap gekose items?</item>
     </plurals>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-        <item quantity="one">This will permanently delete the selected file. Any message text associated with this item will also be deleted.</item>
-        <item quantity="other">This will permanently delete all %1$d selected files. Any message text associated with these items will also be deleted.</item>
+        <item quantity="one">Dit sal die geselekteerde lêer permanent skrap. Enige boodskapteks wat met hierdie item verband hou, sal ook uitgevee word.</item>
+        <item quantity="other">Dit sal al %1$d geselekteerde lêers permanent skrap. Enige boodskapteks wat met hierdie items verband hou, sal ook geskrap word.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Skrap tans</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">Skrap tans boodskappe…</string>
@@ -1168,13 +1168,13 @@
     <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Jy kon nie by die nuwe groep toegevoeg word nie en is genooi om aan te sluit.</string>
     <string name="MessageRecord_chat_session_refreshed">Kletssessie het verfris</string>
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
-        <item quantity="one">A member couldn\'t be added to the New Group and has been invited to join.</item>
-        <item quantity="other">%1$s members couldn\'t be added to the New Group and have been invited to join.</item>
+        <item quantity="one">\'n Lid kon nie by die nuwe groep gevoeg word nie en is genooi om aan te sluit.</item>
+        <item quantity="other">%1$s lede kon nie by die nuwe groep gevoeg word nie en is genooi om aan te sluit.</item>
     </plurals>
 
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
-        <item quantity="one">A member couldn\'t be added to the New Group and has been removed.</item>
-        <item quantity="other">%1$s members couldn\'t be added to the New Group and have been removed.</item>
+        <item quantity="one">\'n Lid kon nie by die nuwe groep gevoeg word nie en is verwyder.</item>
+        <item quantity="other">%1$s lede kon nie by die nuwe groep gevoeg word nie en is verwyder.</item>
     </plurals>
 
     <!-- Profile change updates -->
@@ -1219,31 +1219,31 @@
     <string name="MessageRecord_you_invited_s_to_the_group">Jy het %1$s na die groep genooi.</string>
     <string name="MessageRecord_s_invited_you_to_the_group">%1$s het jou na die groep genooi.</string>
     <plurals name="MessageRecord_s_invited_members">
-        <item quantity="one">%1$s invited 1 person to the group.</item>
-        <item quantity="other">%1$s invited %2$d people to the group.</item>
+        <item quantity="one">%1$s het 1 persoon na die groep genooi.</item>
+        <item quantity="other">%1$s het %2$d persone na die groep genooi.</item>
     </plurals>
     <string name="MessageRecord_you_were_invited_to_the_group">Jy is na die groep genooi.</string>
     <plurals name="MessageRecord_d_people_were_invited_to_the_group">
-        <item quantity="one">1 person was invited to the group.</item>
-        <item quantity="other">%1$d people were invited to the group.</item>
+        <item quantity="one">1 persoon is na die groep genooi.</item>
+        <item quantity="other">%1$d persone is na die groep genooi.</item>
     </plurals>
 
     <!-- GV2 invitation revokes -->
     <plurals name="MessageRecord_you_revoked_invites">
-        <item quantity="one">You revoked an invitation to the group.</item>
-        <item quantity="other">You revoked %1$d invitations to the group.</item>
+        <item quantity="one">Jy het \'n uitnodiging na die groep herroep.</item>
+        <item quantity="other">Jy het %1$d uitnodigings na die groep herroep.</item>
     </plurals>
     <plurals name="MessageRecord_s_revoked_invites">
-        <item quantity="one">%1$s revoked an invitation to the group.</item>
-        <item quantity="other">%1$s revoked %2$d invitations to the group.</item>
+        <item quantity="one">%1$s het \'n uitnodiging na die groep herroep.</item>
+        <item quantity="other">%1$s het %2$d uitnodigings na die groep herroep.</item>
     </plurals>
     <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Iemand het \'n uitnodiging na die groep geweier.</string>
     <string name="MessageRecord_you_declined_the_invitation_to_the_group">Jy het ’n uitnodiging na die groep geweier.</string>
     <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s het jou uitnodiging na die groep herroep.</string>
     <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">\'n Admin het jou uitnodiging na die groep herroep.</string>
     <plurals name="MessageRecord_d_invitations_were_revoked">
-        <item quantity="one">An invitation to the group was revoked.</item>
-        <item quantity="other">%1$d invitations to the group were revoked.</item>
+        <item quantity="one">\'n Uitnodiging na die groep is herroep.</item>
+        <item quantity="other">%1$d uitnodigings na die groep is herroep.</item>
     </plurals>
 
     <!-- GV2 invitation acceptance -->
@@ -1316,8 +1316,8 @@
     <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s het d.m.v. die groepskakel versoek om aan te sluit.</string>
     <!-- Update message shown when someone requests to join via group link and cancels the request back to back -->
     <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
-        <item quantity="one">%1$s requested and cancelled their request to join via the group link.</item>
-        <item quantity="other">%1$s requested and cancelled %2$d requests to join via the group link.</item>
+        <item quantity="one">%1$s het d.m.v. die groepskakel versoek om aan te sluit en het dit gekanselleer.</item>
+        <item quantity="other">%1$s het d.m.v. die groepskakel %2$d versoeke gerig om aan te sluit en het dit gekanselleer.</item>
     </plurals>
 
     <!-- GV2 group link approvals -->
@@ -1346,9 +1346,9 @@
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Hou jy van hierdie funksie? Ondersteun Signal met \'n eenmalige skenking.</string>
     <!-- Update item message shown when we merge two threads together -->
-    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Your message history with %1$s and their number %2$s has been merged.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Jou boodskapgeskiedenis met %1$s en hul nommer %2$s is saamgevoeg.</string>
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
-    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Your message history with %1$s and another chat that belonged to them has been merged.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Jou boodskapgeskiedenis met %1$s en \'n ander klets wat aan hulle behoort het, is saamgevoeg.</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s het ’n groepoproep begin · %2$s</string>
@@ -1450,8 +1450,8 @@
     <string name="OutdatedBuildReminder_update_now">Werk nou by</string>
     <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Hierdie weergawe van Signal verval vandag. Werk die jongste weergawe by.</string>
     <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
-        <item quantity="one">This version of Signal will expire tomorrow. Update to the most recent version.</item>
-        <item quantity="other">This version of Signal will expire in %1$d days. Update to the most recent version.</item>
+        <item quantity="one">Hierdie weergawe van Signal verval môre. Doen \'n bywerking van die jongste weergawe.</item>
+        <item quantity="other">Hierdie weergawe van Signal verval oor %1$d dae. Doen \'n bywerking van die jongste weergawe.</item>
     </plurals>
 
     <!-- PassphrasePromptActivity -->
@@ -1873,7 +1873,7 @@
 
     <!-- UsernameEditFragment -->
     <!-- Toolbar title when entering from registration -->
-    <string name="UsernameEditFragment__add_a_username">Add a username</string>
+    <string name="UsernameEditFragment__add_a_username">Voeg \'n gebruikersnaam by</string>
     <!-- Instructional text at the top of the username edit screen -->
     <string name="UsernameEditFragment__choose_your_username">Kies jou gebruikersnaam</string>
     <string name="UsernameEditFragment_username">Gebruikersnaam</string>
@@ -3743,10 +3743,10 @@
     <string name="payment_info_card_hide_this_card">Versteek hierdie kaart?</string>
     <string name="payment_info_card_hide">Versteek</string>
     <!-- Title of save recovery phrase card -->
-    <string name="payment_info_card_save_recovery_phrase">Save recovery phrase</string>
+    <string name="payment_info_card_save_recovery_phrase">Stoor herwinfrase</string>
     <string name="payment_info_card_your_recovery_phrase_gives_you">Jou herwinfrase bied nog ’n manier om jou betalingsrekening terug te stel.</string>
     <!-- Button in save recovery phrase card -->
-    <string name="payment_info_card_save_your_phrase">Save your phrase</string>
+    <string name="payment_info_card_save_your_phrase">Stoor jou frase</string>
     <string name="payment_info_card_update_your_pin">Werk jou PIN by</string>
     <string name="payment_info_card_with_a_high_balance">Met ’n hoë balans wil jy dalk na ’n alfanumeriese PIN opgradeer om jou rekening beter te beskerm.</string>
     <string name="payment_info_card_update_pin">Werk PIN by</string>
@@ -3771,23 +3771,23 @@
     <string name="PaymentsRecoveryStartFragment__recovery_phrase">Herwinfrase</string>
     <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Bekyk herwinfrase</string>
     <!-- Title in save recovery phrase screen -->
-    <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Save recovery phrase</string>
+    <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Stoor herwinfrase</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Voer herwinfrase in</string>
     <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Jou balans sal outomaties teruggestel word wanneer jy Signal herinstalleer as jy jou Signal-PIN bevestig. Jy kan ook jou balans terugstel deur ’n herwinfrase, ’n %1$d-woord frase wat uniek is vir jou, te gebruik. Skryf dit neer en bewaar dit veilig.</string>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
-    <string name="PaymentsRecoveryStartFragment__got_balance">You’ve got a balance! Time to save your recovery phrase—a 24-word key you can use to restore your balance.</string>
+    <string name="PaymentsRecoveryStartFragment__got_balance">Jy het \'n beskikbare saldo! Dis tyd om jou herwinfrase te stoor—\'n sleutel van 24 woorde wat jy kan gebruik om jou saldo te herwin.</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
-    <string name="PaymentsRecoveryStartFragment__time_to_save">Time to save your recovery phrase—a 24-word key you can use to restore your balance. Learn more</string>
+    <string name="PaymentsRecoveryStartFragment__time_to_save">Dis tyd om jou herwinfrase te stoor—\'n sleutel van 24 woorde wat jy kan gebruik om jou saldo te herwin. Vind meer uit</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Jou herwinfrase is ’n %1$d-woordfrase wat uniek is vir jou. Gebruik dit om jou balans terug te stel.</string>
     <string name="PaymentsRecoveryStartFragment__start">Begin</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">Voer handmatig in</string>
     <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Plak vanaf knipbord</string>
     <!-- Alert dialog title which asks before going back if user wants to save recovery phrase -->
-    <string name="PaymentsRecoveryStartFragment__continue_without_saving">Continue Without Saving?</string>
+    <string name="PaymentsRecoveryStartFragment__continue_without_saving">Gaan voort sonder om te stoor?</string>
     <!-- Alert dialog description to let user know why recovery phrase needs to be saved -->
-    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">Your recovery phrase lets you restore your balance in a worst-case scenario. We strongly recommend you save it.</string>
+    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">Jou herwinfrase laat toe dat jy jou saldo in \'n ergstegeval-scenario herwin. Ons beveel ten sterkste aan dat jy dit stoor.</string>
     <!-- Alert dialog option to skip recovery phrase -->
-    <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">Skip Recovery Phrase</string>
+    <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">Slaan Herwinfrase oor</string>
     <!-- Alert dialog option to cancel dialog-->
     <string name="PaymentsRecoveryStartFragment__cancel">Kanselleer</string>
 
@@ -3943,9 +3943,9 @@
     <!-- Preference title to delete sms -->
     <string name="SmsSettingsFragment__remove_sms_messages">Verwyder SMS-boodskappe</string>
     <!-- Snackbar text to confirm deletion -->
-    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Removing SMS messages from Signal…</string>
+    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Besig om SMS-boodskappe uit Signal te verwyder…</string>
     <!-- Snackbar text to indicate can delete later -->
-    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">You can remove SMS messages from Signal in Settings at any time.</string>
+    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">Jy kan in Instellings te eniger tyd SMS-boodskappe uit Signal verwyder.</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">Boodskappe</string>
@@ -4195,17 +4195,17 @@
     <!-- Dialog title when removing a contact -->
     <string name="NewConversationActivity__remove_s">Verwyder %1$s?</string>
     <!-- Dialog message when removing a contact -->
-    <string name="NewConversationActivity__you_wont_see_this_person">You won\'t see this person when searching. You\'ll get a message request if they message you in the future.</string>
+    <string name="NewConversationActivity__you_wont_see_this_person">Jy sal nie hierdie persoon sien wanneer jy soek nie. Jy sal \'n boodskapversoek kry as hulle in die toekoms vir jou \'n boodskap stuur.</string>
     <!-- Snackbar message after removing a contact -->
-    <string name="NewConversationActivity__s_has_been_removed">%1$s has been removed</string>
+    <string name="NewConversationActivity__s_has_been_removed">%1$s is verwyder</string>
     <!-- Snackbar message after blocking a contact -->
-    <string name="NewConversationActivity__s_has_been_blocked">%1$s has been blocked</string>
+    <string name="NewConversationActivity__s_has_been_blocked">%1$s is versper</string>
     <!-- Dialog title when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__unable_to_remove_s">Unable to remove %1$s</string>
+    <string name="NewConversationActivity__unable_to_remove_s">Kan nie %1$s verwyder nie</string>
     <!-- Dialog message when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__this_person_is_saved_to_your">This person is saved to your device\'s Contacts. Delete them from your Contacts and try again.</string>
+    <string name="NewConversationActivity__this_person_is_saved_to_your">Hierdie persoon is in jou toestel se kontakte gestoor. Skrap hulle uit jou kontakte en probeer weer.</string>
     <!-- Dialog action to view contact when they can't be removed otherwise -->
-    <string name="NewConversationActivity__view_contact">View contact</string>
+    <string name="NewConversationActivity__view_contact">Bekyk kontak</string>
 
     <!-- ContactFilterView -->
     <string name="ContactFilterView__search_name_or_number">Soek vir naam of nommer</string>
@@ -4709,7 +4709,7 @@
     <!-- Subtitle for "My Stories" row item when user has not added stories -->
     <string name="StoriesLandingFragment__tap_to_add_a_story">Tik om \'n storie by te voeg</string>
     <!-- Displayed when there are no stories to display -->
-    <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now">No recent updates to show right now.</string>
+    <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now">Geen onlangse bywerking om te wys nie.</string>
     <!-- Context menu option to hide a story -->
     <string name="StoriesLandingItem__hide_story">Versteek storie</string>
     <!-- Context menu option to unhide a story -->
@@ -4778,9 +4778,9 @@
     <!-- Displayed when viewing a post from another user with no replies -->
     <string name="StoryViewerPageFragment__reply">Antwoord</string>
     <!-- Displayed when viewing a post that has failed to send to some users -->
-    <string name="StoryViewerPageFragment__partially_sent">Partially sent. Tap for details</string>
+    <string name="StoryViewerPageFragment__partially_sent">Gedeeltelik gestuur. Tik vir besonderhede</string>
     <!-- Displayed when viewing a post that has failed to send -->
-    <string name="StoryViewerPageFragment__send_failed">Send failed. Tap to retry</string>
+    <string name="StoryViewerPageFragment__send_failed">Kon nie stuur nie. Tik om weer te probeer</string>
     <!-- Label for the reply button in story viewer, which will launch the group story replies bottom sheet. -->
     <string name="StoryViewerPageFragment__reply_to_group">Antwoord aan groep</string>
     <!-- Displayed when a story has no views -->
@@ -5229,7 +5229,7 @@
     <!-- Title of the screen -->
     <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">Voer jou SMS-boodskappe uit</string>
     <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">You can export your SMS messages to your phone\'s SMS database. This allows other SMS apps on your phone to access and import them. This does not create a shareable file of your SMS message history.</string>
+    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">Jy kan jou SMS\'e na jou foon se SMS-databasis uitvoer. Dit laat ander SMS-toepassings op jou foon toe om toegang tot hulle te verkry en hulle in te voer. Dit skep nie \'n deelbare lêer van jou SMS-boodskapgeskiedenis nie.</string>
     <!-- Button label to begin export -->
     <string name="ExportYourSmsMessagesFragment__continue">Gaan voort</string>
 
@@ -5255,17 +5255,17 @@
     <!-- Fourth step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_4">4</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">Tap \"Continue\" to open the \"Default apps\" screen in Settings</string>
+    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">Tik \"Gaan voort\" om die \"Verstektoepassings\"-skerm in Instellings oop te maak</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">Select \"SMS app\" from the list</string>
+    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">Kies \"SMS-toepassing\" uit die lys</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">Choose another app to use for SMS messaging</string>
+    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">Kies \'n ander toepassing om vir SMS-boodskappe te gebruik</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">Return to Signal</string>
+    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">Keer terug na Signal</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">Open your phone\'s Settings app</string>
+    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">Maak jou foon se Instellings-toepassing oop</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">Navigate to \"Apps\" &gt; \"Default apps\" &gt; \"SMS app\"</string>
+    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">Gaan na \"Toepassings\" &gt; \"Verstektoepassings\" &gt; \"SMS-toepassing\"</string>
 
     <!-- RemoveSmsMessagesDialogFragment -->
     <!-- Action button to keep messages -->
@@ -5275,13 +5275,13 @@
     <!-- Title of dialog -->
     <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Verwyder SMS-boodskappe uit Signal?</string>
     <!-- Message of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">You can now remove SMS messages from Signal to clear up storage space. They will still be available to other SMS apps on your phone even if you remove them.</string>
+    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">Jy kan nou SMS-boodskappe uit Signal verwyder om stoorruimte beskikbaar te stel. Hulle sal steeds vir ander SMS-toepassings op jou foon beskikbaar wees, selfs al verwyder jy hulle.</string>
 
     <!-- SetSignalAsDefaultSmsAppFragment -->
     <!-- Title of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">Set Signal as the default SMS app</string>
+    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">Stel Signal as die verstek-SMS-toepassing</string>
     <!-- Message of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">To export your SMS messages, you need to set Signal as the default SMS app.</string>
+    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">Om jou SMS-boodskappe uit te voer, moet jy Signal as die verstek-SMS-toepassing stel.</string>
     <!-- Button label to start export -->
     <string name="SetSignalAsDefaultSmsAppFragment__next">Volgende</string>
 

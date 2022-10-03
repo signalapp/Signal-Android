@@ -358,8 +358,8 @@
     </plurals>
     <string name="ConversationFragment_save_to_sd_card">Запази в хранилището?</string>
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
-        <item quantity="one">Saving this media to storage will allow any other apps on your device to access it.\n\nContinue?</item>
-        <item quantity="other">Saving all %1$d media to storage will allow any other apps on your device to access them.\n\nContinue?</item>
+        <item quantity="one">Запазването на този медиен файл ще даде достъп до него на всички други приложения.\n\nПродължете?</item>
+        <item quantity="other">Запазването на всички %1$d медийни файлове ще даде достъп до тях на всички други приложения.\n\nПродължете?</item>
     </plurals>
     <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
         <item quantity="one">Грешка при запазването на прикаченият файл!</item>
@@ -367,12 +367,12 @@
     </plurals>
     <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Неуспешен запис върху хранилището!</string>
     <plurals name="ConversationFragment_saving_n_attachments">
-        <item quantity="one">Saving attachment</item>
-        <item quantity="other">Saving %1$d attachments</item>
+        <item quantity="one">Запазване на прикачения файл</item>
+        <item quantity="other">Запазване на %1$d прикачени файла</item>
     </plurals>
     <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="one">Saving attachment to storage…</item>
-        <item quantity="other">Saving %1$d attachments to storage…</item>
+        <item quantity="one">Запазване на прикачения файл в хранилището…</item>
+        <item quantity="other">Запазване на %1$d прикачени файла в хранилището…</item>
     </plurals>
     <string name="ConversationFragment_pending">Предстоящ…</string>
     <string name="ConversationFragment_push">Данни (Signal)</string>
@@ -418,19 +418,19 @@
         <item quantity="other">Изтриване на избраните разговори?</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">This will permanently delete the selected conversation.</item>
-        <item quantity="other">This will permanently delete all %1$d selected conversations.</item>
+        <item quantity="one">Това ще изтрие перманентно избрания разговор.</item>
+        <item quantity="other">Това ще изтрие перманентно всичките %1$d избрани разговора.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Изтриване</string>
     <string name="ConversationListFragment_deleting_selected_conversations">Изтриване на избраните разговори…</string>
     <plurals name="ConversationListFragment_conversations_archived">
-        <item quantity="one">Conversation archived</item>
-        <item quantity="other">%1$d conversations archived</item>
+        <item quantity="one">Разговорът е архивиран</item>
+        <item quantity="other">%1$d разговора са архивирани</item>
     </plurals>
     <string name="ConversationListFragment_undo">Върни</string>
     <plurals name="ConversationListFragment_moved_conversations_to_inbox">
-        <item quantity="one">Moved conversation to inbox</item>
-        <item quantity="other">Moved %1$d conversations to inbox</item>
+        <item quantity="one">Разговорът е преместен във входящата кутия</item>
+        <item quantity="other">%1$d разговора са преместени във входящата кутия</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
         <item quantity="one">Прочетено</item>
@@ -664,8 +664,8 @@
 
     <!-- GV2 invites sent -->
     <plurals name="GroupManagement_invitation_sent">
-        <item quantity="one">Invitation sent</item>
-        <item quantity="other">%1$d invitations sent</item>
+        <item quantity="one">Поканата е изпратена</item>
+        <item quantity="other">Изпратени са %1$d покани</item>
     </plurals>
     <string name="GroupManagement_invite_single_user">Не можете да добавите \"%1$s\" автоматично към тази група. Той/тя е получил/а покана за присъединяване и няма да вижда съобщенията в групата, преди да приеме.</string>
     <string name="GroupManagement_invite_multiple_users">Не можете да добавите тези потребители автоматично към групата. Те са получили покани да се присъединят и няма да виждат съобщенията в групата, преди да приемат.</string>
@@ -765,8 +765,8 @@
     <string name="PendingMembersActivity_revoke_invite">Оттегляне на покана</string>
     <string name="PendingMembersActivity_revoke_invites">Оттегляне на покани</string>
     <plurals name="PendingMembersActivity_revoke_d_invites">
-        <item quantity="one">Revoke invite</item>
-        <item quantity="other">Revoke %1$d invites</item>
+        <item quantity="one">Оттегляне на поканата</item>
+        <item quantity="other">Оттегляне на %1$d покани</item>
     </plurals>
     <plurals name="PendingMembersActivity_error_revoking_invite">
         <item quantity="one">Грешка по оттегляне на покана</item>
@@ -785,8 +785,8 @@
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Този човек не може да бъде добавен в стари групи.</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">Този човек не може да бъде добавен към групи за известия.</string>
     <plurals name="AddMembersActivity__add_d_members_to_s">
-        <item quantity="one">Add \"%1$s\" to \"%2$s\"?</item>
-        <item quantity="other">Add %3$d members to \"%2$s\"?</item>
+        <item quantity="one">Добавяне на „%1$s“ към „%2$s“?</item>
+        <item quantity="other">Добавяне на %3$d членове към „%2$s“?</item>
     </plurals>
     <string name="AddMembersActivity__add">Добави</string>
     <string name="AddMembersActivity__add_members">Добави членове</string>
@@ -887,8 +887,8 @@
     </plurals>
 
     <plurals name="GroupMemberList_invited">
-        <item quantity="one">%1$s invited 1 person</item>
-        <item quantity="other">%1$s invited %2$d people</item>
+        <item quantity="one">%1$s покани 1 човек</item>
+        <item quantity="other">%1$s покани %2$d души</item>
     </plurals>
 
     <!-- CustomNotificationsDialogFragment -->
@@ -926,8 +926,8 @@
     <!-- GV2 Invite Revoke confirmation dialog -->
     <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Искате ли да оттеглите поканата, която сте изпратили на %1$s?</string>
     <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
-        <item quantity="one">Do you want to revoke the invite sent by %1$s?</item>
-        <item quantity="other">Do you want to revoke %2$d invites sent by %1$s?</item>
+        <item quantity="one">Искате ли да оттеглите поканата, изпратена от %1$s?</item>
+        <item quantity="other">Искате ли да оттеглите %2$d покани, изпратени от %1$s?</item>
     </plurals>
 
     <!-- GroupJoinBottomSheetDialogFragment -->
@@ -1035,8 +1035,8 @@
         <item quantity="other">Да се изтрият ли избраните елементи?</item>
     </plurals>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-        <item quantity="one">This will permanently delete the selected file. Any message text associated with this item will also be deleted.</item>
-        <item quantity="other">This will permanently delete all %1$d selected files. Any message text associated with these items will also be deleted.</item>
+        <item quantity="one">Това ще изтрие перманентно избрания файл. Всички текстови съобщения, свързани с този елемент, също ще бъдат изтрити.</item>
+        <item quantity="other">Това ще изтрие перманентно всичките %1$d избрани файла. Всички текстови съобщения, свързани с тези елементи, също ще бъдат изтрити.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Изтриване</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">Изтриване на съобщения…</string>
@@ -1168,13 +1168,13 @@
     <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Не можахте да бъдете добавени към новата група и бяхте поканени.</string>
     <string name="MessageRecord_chat_session_refreshed">Чат сесията е презаредена.</string>
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
-        <item quantity="one">A member couldn\'t be added to the New Group and has been invited to join.</item>
-        <item quantity="other">%1$s members couldn\'t be added to the New Group and have been invited to join.</item>
+        <item quantity="one">Един член не можа да бъде добавен към новата група и е поканен да се присъедини.</item>
+        <item quantity="other">%1$s члена не можаха да бъдат добавени към новата група и са поканени да се присъединят.</item>
     </plurals>
 
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
-        <item quantity="one">A member couldn\'t be added to the New Group and has been removed.</item>
-        <item quantity="other">%1$s members couldn\'t be added to the New Group and have been removed.</item>
+        <item quantity="one">Един член не можа да бъде добавен към новата група и е премахнат.</item>
+        <item quantity="other">%1$s члена не можаха да бъдат добавени към новата група и са премахнати.</item>
     </plurals>
 
     <!-- Profile change updates -->
@@ -1219,31 +1219,31 @@
     <string name="MessageRecord_you_invited_s_to_the_group">Вие поканихте %1$s към групата.</string>
     <string name="MessageRecord_s_invited_you_to_the_group">%1$s ви покани към групата.</string>
     <plurals name="MessageRecord_s_invited_members">
-        <item quantity="one">%1$s invited 1 person to the group.</item>
-        <item quantity="other">%1$s invited %2$d people to the group.</item>
+        <item quantity="one">%1$s покани 1 човек в групата.</item>
+        <item quantity="other">%1$s покани %2$d души в групата.</item>
     </plurals>
     <string name="MessageRecord_you_were_invited_to_the_group">Бяхте поканени в групата.</string>
     <plurals name="MessageRecord_d_people_were_invited_to_the_group">
-        <item quantity="one">1 person was invited to the group.</item>
-        <item quantity="other">%1$d people were invited to the group.</item>
+        <item quantity="one">1 човек беше поканен в групата.</item>
+        <item quantity="other">%1$d души бяха поканени в групата.</item>
     </plurals>
 
     <!-- GV2 invitation revokes -->
     <plurals name="MessageRecord_you_revoked_invites">
-        <item quantity="one">You revoked an invitation to the group.</item>
-        <item quantity="other">You revoked %1$d invitations to the group.</item>
+        <item quantity="one">Вие оттеглихте покана за групата.</item>
+        <item quantity="other">Вие оттеглихте %1$d покани за групата.</item>
     </plurals>
     <plurals name="MessageRecord_s_revoked_invites">
-        <item quantity="one">%1$s revoked an invitation to the group.</item>
-        <item quantity="other">%1$s revoked %2$d invitations to the group.</item>
+        <item quantity="one">%1$s оттегли покана за групата.</item>
+        <item quantity="other">%1$s оттегли %2$d покани за групата.</item>
     </plurals>
     <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Някой отказа покана за групата.</string>
     <string name="MessageRecord_you_declined_the_invitation_to_the_group">Отказахте покана за групата.</string>
     <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s отмени вашата покажа за групата.</string>
     <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">Администратор отмени поканата ви за групата.</string>
     <plurals name="MessageRecord_d_invitations_were_revoked">
-        <item quantity="one">An invitation to the group was revoked.</item>
-        <item quantity="other">%1$d invitations to the group were revoked.</item>
+        <item quantity="one">Покана за групата беше отменена.</item>
+        <item quantity="other">%1$d покани за групата бяха отменени.</item>
     </plurals>
 
     <!-- GV2 invitation acceptance -->
@@ -1316,8 +1316,8 @@
     <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s иска да се присъедини през груповата препратка.</string>
     <!-- Update message shown when someone requests to join via group link and cancels the request back to back -->
     <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
-        <item quantity="one">%1$s requested and cancelled their request to join via the group link.</item>
-        <item quantity="other">%1$s requested and cancelled %2$d requests to join via the group link.</item>
+        <item quantity="one">%1$s поиска и отмени своята заявка за присъединяване чрез линка на групата.</item>
+        <item quantity="other">%1$s поиска и отмени %2$d заявки за присъединяване чрез линка на групата.</item>
     </plurals>
 
     <!-- GV2 group link approvals -->
@@ -1450,8 +1450,8 @@
     <string name="OutdatedBuildReminder_update_now">Обнови сега</string>
     <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Тази версия на Signal ще изтече днес. Актуализирайте до най-новата версия.</string>
     <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
-        <item quantity="one">This version of Signal will expire tomorrow. Update to the most recent version.</item>
-        <item quantity="other">This version of Signal will expire in %1$d days. Update to the most recent version.</item>
+        <item quantity="one">Тази версия на Signal ще изтече утре. Актуализирайте до най-новата версия.</item>
+        <item quantity="other">Тази версия на Signal ще изтече след %1$d дни. Актуализирайте до най-новата версия.</item>
     </plurals>
 
     <!-- PassphrasePromptActivity -->
@@ -1873,7 +1873,7 @@
 
     <!-- UsernameEditFragment -->
     <!-- Toolbar title when entering from registration -->
-    <string name="UsernameEditFragment__add_a_username">Add a username</string>
+    <string name="UsernameEditFragment__add_a_username">Добавяне на потребителско име</string>
     <!-- Instructional text at the top of the username edit screen -->
     <string name="UsernameEditFragment__choose_your_username">Изберете потребителското ви име</string>
     <string name="UsernameEditFragment_username">Потребителско име</string>

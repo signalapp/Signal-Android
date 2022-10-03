@@ -358,8 +358,8 @@
     </plurals>
     <string name="ConversationFragment_save_to_sd_card">Im Gerätespeicher speichern?</string>
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
-        <item quantity="one">Saving this media to storage will allow any other apps on your device to access it.\n\nContinue?</item>
-        <item quantity="other">Saving all %1$d media to storage will allow any other apps on your device to access them.\n\nContinue?</item>
+        <item quantity="one">Wenn du diesen Medieninhalt im Gerätespeicher speicherst, können installierte Apps darauf zugreifen.\n\nTrotzdem fortfahren?</item>
+        <item quantity="other">Wenn du alle %1$d Medieninhalte im Gerätespeicher speicherst, können installierte Apps darauf zugreifen.\n\nTrotzdem fortfahren?</item>
     </plurals>
     <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
         <item quantity="one">Fehler beim Speichern des Anhangs im Gerätespeicher!</item>
@@ -367,12 +367,12 @@
     </plurals>
     <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Kein Schreibzugriff auf Gerätespeicher!</string>
     <plurals name="ConversationFragment_saving_n_attachments">
-        <item quantity="one">Saving attachment</item>
-        <item quantity="other">Saving %1$d attachments</item>
+        <item quantity="one">Anhang speichern</item>
+        <item quantity="other">%1$d Anhänge speichern</item>
     </plurals>
     <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="one">Saving attachment to storage…</item>
-        <item quantity="other">Saving %1$d attachments to storage…</item>
+        <item quantity="one">Anhang wird im Gerätespeicher gespeichert …</item>
+        <item quantity="other">%1$d Anhänge werden im Gerätespeicher gespeichert …</item>
     </plurals>
     <string name="ConversationFragment_pending">Ausstehend …</string>
     <string name="ConversationFragment_push">Internet (Signal Protocol)</string>
@@ -418,19 +418,19 @@
         <item quantity="other">Ausgewählte Unterhaltungen löschen?</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">This will permanently delete the selected conversation.</item>
-        <item quantity="other">This will permanently delete all %1$d selected conversations.</item>
+        <item quantity="one">Dies wird die ausgewählte Unterhaltung unwiderruflich löschen.</item>
+        <item quantity="other">Dies wird alle %1$d ausgewählten Unterhaltungen unwiderruflich löschen.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Löschen</string>
     <string name="ConversationListFragment_deleting_selected_conversations">Ausgewählte Unterhaltungen werden gelöscht …</string>
     <plurals name="ConversationListFragment_conversations_archived">
-        <item quantity="one">Conversation archived</item>
-        <item quantity="other">%1$d conversations archived</item>
+        <item quantity="one">Unterhaltung archiviert</item>
+        <item quantity="other">%1$d Unterhaltungen archiviert</item>
     </plurals>
     <string name="ConversationListFragment_undo">Rückgängig</string>
     <plurals name="ConversationListFragment_moved_conversations_to_inbox">
-        <item quantity="one">Moved conversation to inbox</item>
-        <item quantity="other">Moved %1$d conversations to inbox</item>
+        <item quantity="one">Unterhaltung in Eingang verschoben</item>
+        <item quantity="other">%1$d Unterhaltungen in Eingang verschoben</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
         <item quantity="one">Gelesen</item>
@@ -664,8 +664,8 @@
 
     <!-- GV2 invites sent -->
     <plurals name="GroupManagement_invitation_sent">
-        <item quantity="one">Invitation sent</item>
-        <item quantity="other">%1$d invitations sent</item>
+        <item quantity="one">Einladung versendet</item>
+        <item quantity="other">%1$d Einladungen versendet</item>
     </plurals>
     <string name="GroupManagement_invite_single_user">»%1$s« kann von dir nicht automatisch zu dieser Gruppe hinzugefügt werden.\n\nDer Nutzer wurde eingeladen beizutreten, wird aber keine Gruppennachrichten erhalten, bis er die Einladung angenommen hat.</string>
     <string name="GroupManagement_invite_multiple_users">Diese Nutzer können von dir nicht automatisch zu dieser Gruppe hinzugefügt werden.\n\nSie wurden eingeladen, der Gruppe beizutreten, werden aber keine Gruppennachrichten erhalten, bis sie die Einladung angenommen haben.</string>
@@ -765,8 +765,8 @@
     <string name="PendingMembersActivity_revoke_invite">Einladung widerrufen</string>
     <string name="PendingMembersActivity_revoke_invites">Einladungen widerrufen</string>
     <plurals name="PendingMembersActivity_revoke_d_invites">
-        <item quantity="one">Revoke invite</item>
-        <item quantity="other">Revoke %1$d invites</item>
+        <item quantity="one">Einladung widerrufen</item>
+        <item quantity="other">%1$d Einladungen widerrufen</item>
     </plurals>
     <plurals name="PendingMembersActivity_error_revoking_invite">
         <item quantity="one">Fehler beim Widerrufen der Einladung</item>
@@ -785,8 +785,8 @@
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Diese Person kann nicht zu Gruppen alten Typs hinzugefügt werden.</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">Diese Person kann nicht zu Bekanntgabegruppen hinzugefügt werden.</string>
     <plurals name="AddMembersActivity__add_d_members_to_s">
-        <item quantity="one">Add \"%1$s\" to \"%2$s\"?</item>
-        <item quantity="other">Add %3$d members to \"%2$s\"?</item>
+        <item quantity="one">»%1$s« zu »%2$s« hinzufügen?</item>
+        <item quantity="other">%3$d Mitglieder zu »%2$s« hinzufügen?</item>
     </plurals>
     <string name="AddMembersActivity__add">Hinzufügen</string>
     <string name="AddMembersActivity__add_members">Mitglieder hinzufügen</string>
@@ -887,8 +887,8 @@
     </plurals>
 
     <plurals name="GroupMemberList_invited">
-        <item quantity="one">%1$s invited 1 person</item>
-        <item quantity="other">%1$s invited %2$d people</item>
+        <item quantity="one">%1$s hat 1 Person eingeladen</item>
+        <item quantity="other">%1$s hat %2$d Personen eingeladen</item>
     </plurals>
 
     <!-- CustomNotificationsDialogFragment -->
@@ -926,8 +926,8 @@
     <!-- GV2 Invite Revoke confirmation dialog -->
     <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Möchtest du deine an %1$s versendete Einladung widerrufen?</string>
     <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
-        <item quantity="one">Do you want to revoke the invite sent by %1$s?</item>
-        <item quantity="other">Do you want to revoke %2$d invites sent by %1$s?</item>
+        <item quantity="one">Möchtest du die von %1$s versendete Einladung widerrufen?</item>
+        <item quantity="other">Möchtest du %2$d von %1$s versendete Einladungen widerrufen?</item>
     </plurals>
 
     <!-- GroupJoinBottomSheetDialogFragment -->
@@ -1035,8 +1035,8 @@
         <item quantity="other">Ausgewählte Elemente löschen?</item>
     </plurals>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-        <item quantity="one">This will permanently delete the selected file. Any message text associated with this item will also be deleted.</item>
-        <item quantity="other">This will permanently delete all %1$d selected files. Any message text associated with these items will also be deleted.</item>
+        <item quantity="one">Dies wird die ausgewählte Datei unwiderruflich löschen. Jegliche diesen Elementen zugehörigen Nachrichtentexte werden ebenfalls gelöscht.</item>
+        <item quantity="other">Dies wird alle %1$d ausgewählten Dateien unwiderruflich löschen. Jegliche diesen Elementen zugehörigen Nachrichtentexte werden ebenfalls gelöscht.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Löschen</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">Nachrichten werden gelöscht …</string>
@@ -1168,13 +1168,13 @@
     <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Du konntest der Gruppe neuen Typs nicht hinzugefügt werden und wurdest daher eingeladen, beizutreten.</string>
     <string name="MessageRecord_chat_session_refreshed">Unterhaltungssitzung aktualisiert</string>
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
-        <item quantity="one">A member couldn\'t be added to the New Group and has been invited to join.</item>
-        <item quantity="other">%1$s members couldn\'t be added to the New Group and have been invited to join.</item>
+        <item quantity="one">Ein Mitglied konnte der Gruppe neuen Typs nicht hinzugefügt werden und wurde daher eingeladen, beizutreten.</item>
+        <item quantity="other">%1$s Mitglieder konnten der Gruppe neuen Typs nicht hinzugefügt werden und wurden daher eingeladen, beizutreten.</item>
     </plurals>
 
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
-        <item quantity="one">A member couldn\'t be added to the New Group and has been removed.</item>
-        <item quantity="other">%1$s members couldn\'t be added to the New Group and have been removed.</item>
+        <item quantity="one">Ein Mitglied konnte der Gruppe neuen Typs nicht hinzugefügt werden und wurde daher aus der Gruppe entfernt.</item>
+        <item quantity="other">%1$s Mitglieder konnten der Gruppe neuen Typs nicht hinzugefügt werden und wurden daher aus der Gruppe entfernt.</item>
     </plurals>
 
     <!-- Profile change updates -->
@@ -1219,31 +1219,31 @@
     <string name="MessageRecord_you_invited_s_to_the_group">Du hast %1$s in die Gruppe eingeladen.</string>
     <string name="MessageRecord_s_invited_you_to_the_group">%1$s hat dich in die Gruppe eingeladen.</string>
     <plurals name="MessageRecord_s_invited_members">
-        <item quantity="one">%1$s invited 1 person to the group.</item>
-        <item quantity="other">%1$s invited %2$d people to the group.</item>
+        <item quantity="one">%1$s hat 1 Person in die Gruppe eingeladen.</item>
+        <item quantity="other">%1$s hat %2$d Personen in die Gruppe eingeladen.</item>
     </plurals>
     <string name="MessageRecord_you_were_invited_to_the_group">Du wurdest in die Gruppe eingeladen.</string>
     <plurals name="MessageRecord_d_people_were_invited_to_the_group">
-        <item quantity="one">1 person was invited to the group.</item>
-        <item quantity="other">%1$d people were invited to the group.</item>
+        <item quantity="one">1 Person wurde in die Gruppe eingeladen.</item>
+        <item quantity="other">%1$d Personen wurden in die Gruppe eingeladen.</item>
     </plurals>
 
     <!-- GV2 invitation revokes -->
     <plurals name="MessageRecord_you_revoked_invites">
-        <item quantity="one">You revoked an invitation to the group.</item>
-        <item quantity="other">You revoked %1$d invitations to the group.</item>
+        <item quantity="one">Du hast eine Gruppeneinladung widerrufen.</item>
+        <item quantity="other">Du hast %1$d Gruppeneinladungen widerrufen.</item>
     </plurals>
     <plurals name="MessageRecord_s_revoked_invites">
-        <item quantity="one">%1$s revoked an invitation to the group.</item>
-        <item quantity="other">%1$s revoked %2$d invitations to the group.</item>
+        <item quantity="one">%1$s hat eine Gruppeneinladung widerrufen.</item>
+        <item quantity="other">%1$s hat %2$d Gruppeneinladungen widerrufen.</item>
     </plurals>
     <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Jemand hat eine Gruppeneinladung abgelehnt.</string>
     <string name="MessageRecord_you_declined_the_invitation_to_the_group">Du hast die Gruppeneinladung abgelehnt.</string>
     <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s hat deine Gruppeneinladung widerrufen.</string>
     <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">Ein Admin hat deine Gruppeneinladung widerrufen.</string>
     <plurals name="MessageRecord_d_invitations_were_revoked">
-        <item quantity="one">An invitation to the group was revoked.</item>
-        <item quantity="other">%1$d invitations to the group were revoked.</item>
+        <item quantity="one">Eine Gruppeneinladung wurde widerrufen.</item>
+        <item quantity="other">%1$d Gruppeneinladungen wurden widerrufen.</item>
     </plurals>
 
     <!-- GV2 invitation acceptance -->
@@ -1316,8 +1316,8 @@
     <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s hat eine Beitrittsanfrage über den Gruppen-Link gestellt.</string>
     <!-- Update message shown when someone requests to join via group link and cancels the request back to back -->
     <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
-        <item quantity="one">%1$s requested and cancelled their request to join via the group link.</item>
-        <item quantity="other">%1$s requested and cancelled %2$d requests to join via the group link.</item>
+        <item quantity="one">%1$s hat seine*ihre Beitrittsanfrage über den Gruppen-Link gestellt und zurückgezogen.</item>
+        <item quantity="other">%1$s hat %2$d Beitrittsanfragen über den Gruppen-Link gestellt und zurückgezogen.</item>
     </plurals>
 
     <!-- GV2 group link approvals -->
@@ -1450,8 +1450,8 @@
     <string name="OutdatedBuildReminder_update_now">Jetzt aktualisieren</string>
     <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Diese Signal-Version wird heute ablaufen. Aktualisiere auf die neueste Version.</string>
     <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
-        <item quantity="one">This version of Signal will expire tomorrow. Update to the most recent version.</item>
-        <item quantity="other">This version of Signal will expire in %1$d days. Update to the most recent version.</item>
+        <item quantity="one">Diese Signal-Version wird morgen ablaufen. Aktualisiere auf die neueste Version.</item>
+        <item quantity="other">Diese Signal-Version wird in %1$d Tagen ablaufen. Aktualisiere auf die neueste Version.</item>
     </plurals>
 
     <!-- PassphrasePromptActivity -->
@@ -1873,7 +1873,7 @@
 
     <!-- UsernameEditFragment -->
     <!-- Toolbar title when entering from registration -->
-    <string name="UsernameEditFragment__add_a_username">Add a username</string>
+    <string name="UsernameEditFragment__add_a_username">Einen Nutzernamen hinzufügen</string>
     <!-- Instructional text at the top of the username edit screen -->
     <string name="UsernameEditFragment__choose_your_username">Wähle deinen Usernamen</string>
     <string name="UsernameEditFragment_username">Nutzername</string>
@@ -4778,9 +4778,9 @@
     <!-- Displayed when viewing a post from another user with no replies -->
     <string name="StoryViewerPageFragment__reply">Antworten</string>
     <!-- Displayed when viewing a post that has failed to send to some users -->
-    <string name="StoryViewerPageFragment__partially_sent">Partially sent. Tap for details</string>
+    <string name="StoryViewerPageFragment__partially_sent">Teilweise gesendet. Für Details antippen</string>
     <!-- Displayed when viewing a post that has failed to send -->
-    <string name="StoryViewerPageFragment__send_failed">Send failed. Tap to retry</string>
+    <string name="StoryViewerPageFragment__send_failed">Senden gescheitert. Für erneuten Versuch antippen</string>
     <!-- Label for the reply button in story viewer, which will launch the group story replies bottom sheet. -->
     <string name="StoryViewerPageFragment__reply_to_group">Gruppe antworten</string>
     <!-- Displayed when a story has no views -->

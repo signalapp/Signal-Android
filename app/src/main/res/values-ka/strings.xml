@@ -371,8 +371,8 @@
         <item quantity="other">ინახება %1$d მიმაგრება</item>
     </plurals>
     <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="one">Saving attachment to storage…</item>
-        <item quantity="other">Saving %1$d attachments to storage…</item>
+        <item quantity="one">დანართს მეხსიერებაში ვინახავთ...</item>
+        <item quantity="other">%1$d დანართს მეხსიერებაში ვინახავთ...</item>
     </plurals>
     <string name="ConversationFragment_pending">მოლოდინის რეჟიმში…</string>
     <string name="ConversationFragment_push">მონაცემები (Signal)</string>
@@ -664,8 +664,8 @@
 
     <!-- GV2 invites sent -->
     <plurals name="GroupManagement_invitation_sent">
-        <item quantity="one">Invitation sent</item>
-        <item quantity="other">%1$d invitations sent</item>
+        <item quantity="one">მოწვევა გაგზავნილია</item>
+        <item quantity="other">გაგზავნილია %1$d მოწვევა</item>
     </plurals>
     <string name="GroupManagement_invite_single_user">“%1$s”-ის შენს მიერ ამ ჯგუფში ავტომატურად დამატება შეუძლებელია.\n\nისინი მოწვეულნი არიან გასაწევრიანებლად და ვერ ნახავენ ჯგუფურ შეტყობინებებს, სანამ მოწვევას არ დაეთანხმებიან.</string>
     <string name="GroupManagement_invite_multiple_users">შენ მიერ ამ მომხმარებლების ამ ჯგუფში ავტომატურად დამატება შეუძლებელია.\n\nისინი მოწვეული არიან ჯგუფში გასაწევრიანებლად და ვერ ნახავენ ჯგუფურ შეტყობინებებს, სანამ მოწვევას არ დაეთანხმებიან.</string>
@@ -765,8 +765,8 @@
     <string name="PendingMembersActivity_revoke_invite">მოწვევის გაუქმება</string>
     <string name="PendingMembersActivity_revoke_invites">მოწვევების გაუქმება</string>
     <plurals name="PendingMembersActivity_revoke_d_invites">
-        <item quantity="one">Revoke invite</item>
-        <item quantity="other">Revoke %1$d invites</item>
+        <item quantity="one">მოწვევის გაუქმება</item>
+        <item quantity="other">%1$d მოწვევის გაუქმება</item>
     </plurals>
     <plurals name="PendingMembersActivity_error_revoking_invite">
         <item quantity="one">მოწვევის გაუქმებისას მოხდა შეცდომა</item>
@@ -785,8 +785,8 @@
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">ამ პიროვნების მოძველებულ ჯგუფებში დამატება შეუძლებელია.</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">ეს პერსონა ვერ დაემატება განცხადების ჯგუფებს.</string>
     <plurals name="AddMembersActivity__add_d_members_to_s">
-        <item quantity="one">Add \"%1$s\" to \"%2$s\"?</item>
-        <item quantity="other">Add %3$d members to \"%2$s\"?</item>
+        <item quantity="one">დავამატოთ \"%1$s\" \"%2$s\"-ში?</item>
+        <item quantity="other">დავამატოთ %3$d წევრი \"%2$s\"-ში?</item>
     </plurals>
     <string name="AddMembersActivity__add">დამატება</string>
     <string name="AddMembersActivity__add_members">წევრების დამატება</string>
@@ -887,8 +887,8 @@
     </plurals>
 
     <plurals name="GroupMemberList_invited">
-        <item quantity="one">%1$s invited 1 person</item>
-        <item quantity="other">%1$s invited %2$d people</item>
+        <item quantity="one">%1$s-მა 1 ადამიანი მოიწვია</item>
+        <item quantity="other">%1$s-მა %2$d ადამიანი მოიწვია</item>
     </plurals>
 
     <!-- CustomNotificationsDialogFragment -->
@@ -926,8 +926,8 @@
     <!-- GV2 Invite Revoke confirmation dialog -->
     <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">გსურს ის მოწვევა გააუქმო, რომელიც %1$s-ს გაუგზავნე?</string>
     <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
-        <item quantity="one">Do you want to revoke the invite sent by %1$s?</item>
-        <item quantity="other">Do you want to revoke %2$d invites sent by %1$s?</item>
+        <item quantity="one">გსურს %1$s-ის გაგზავნილი მოწვევა გააუქმო?</item>
+        <item quantity="other">გსურს %1$s-ის გაგზავნილი %2$d მოწვევა გააუქმო?</item>
     </plurals>
 
     <!-- GroupJoinBottomSheetDialogFragment -->
@@ -1035,8 +1035,8 @@
         <item quantity="other">წავშალოთ რაც მონიშნე?</item>
     </plurals>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-        <item quantity="one">This will permanently delete the selected file. Any message text associated with this item will also be deleted.</item>
-        <item quantity="other">This will permanently delete all %1$d selected files. Any message text associated with these items will also be deleted.</item>
+        <item quantity="one">ეს სამუდამოდ წაშლის მონიშნულ ფაილს. მასთან დაკავშირებული ნებისმიერი შეტყობინების ტექსტიც წაიშლება.</item>
+        <item quantity="other">ეს სამუდამოდ წაშლის %1$d მონიშნულ ფაილს. მათთან დაკავშირებული ნებისმიერი შეტყობინების ტექსტიც წაიშლება.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">იშლება</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">ვშლით შეტყობინებებს…</string>
@@ -1168,13 +1168,13 @@
     <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">ახალ ჯგუფში ვერ დაემატე და გასაწევრიანებლად მიგიწვიეს.</string>
     <string name="MessageRecord_chat_session_refreshed">ჩატის სესია განახლდა</string>
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
-        <item quantity="one">A member couldn\'t be added to the New Group and has been invited to join.</item>
-        <item quantity="other">%1$s members couldn\'t be added to the New Group and have been invited to join.</item>
+        <item quantity="one">წევრი ახალ ჯგუფში ვერ დაემატა და გასაწევრიანებლად მიიწვიეს.</item>
+        <item quantity="other">%1$s წევრი ახალ ჯგუფში ვერ დაემატა და გასაწევრიანებლად მიიწვიეს.</item>
     </plurals>
 
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
-        <item quantity="one">A member couldn\'t be added to the New Group and has been removed.</item>
-        <item quantity="other">%1$s members couldn\'t be added to the New Group and have been removed.</item>
+        <item quantity="one">წევრი ახალ ჯგუფში ვერ დაემატა და ამოიშალა.</item>
+        <item quantity="other">%1$s წევრი ახალ ჯგუფში ვერ დაემატა და ამოიშალა.</item>
     </plurals>
 
     <!-- Profile change updates -->
@@ -1219,31 +1219,31 @@
     <string name="MessageRecord_you_invited_s_to_the_group">%1$s ჯგუფში მოიწვიე.</string>
     <string name="MessageRecord_s_invited_you_to_the_group">%1$s-მა ჯგუფში მოგიწვია.</string>
     <plurals name="MessageRecord_s_invited_members">
-        <item quantity="one">%1$s invited 1 person to the group.</item>
-        <item quantity="other">%1$s invited %2$d people to the group.</item>
+        <item quantity="one">%1$s -მა ჯგუფში 1 ადამიანი მოიწვია.</item>
+        <item quantity="other">%1$s -მა ჯგუფში %2$d ადამიანი მოიწვია.</item>
     </plurals>
     <string name="MessageRecord_you_were_invited_to_the_group">ჯგუფში მიგიწვიეს.</string>
     <plurals name="MessageRecord_d_people_were_invited_to_the_group">
-        <item quantity="one">1 person was invited to the group.</item>
-        <item quantity="other">%1$d people were invited to the group.</item>
+        <item quantity="one">ჯგუფში 1 ადამიანი მოიწვიეს.</item>
+        <item quantity="other">ჯგუფში %1$d ადამიანი მოიწვიეს.</item>
     </plurals>
 
     <!-- GV2 invitation revokes -->
     <plurals name="MessageRecord_you_revoked_invites">
-        <item quantity="one">You revoked an invitation to the group.</item>
-        <item quantity="other">You revoked %1$d invitations to the group.</item>
+        <item quantity="one">შენ გააუქმე ჯგუფში მოწვევა.</item>
+        <item quantity="other">შენ გააუქმე %1$d მოწვევა ჯგუფში.</item>
     </plurals>
     <plurals name="MessageRecord_s_revoked_invites">
-        <item quantity="one">%1$s revoked an invitation to the group.</item>
-        <item quantity="other">%1$s revoked %2$d invitations to the group.</item>
+        <item quantity="one">%1$s-მა ჯგუფში მოწვევა გააუქმა.</item>
+        <item quantity="other">%1$s-მა ჯგუფში %2$d მოწვევა გააუქმა.</item>
     </plurals>
     <string name="MessageRecord_someone_declined_an_invitation_to_the_group">ვიღაცამ უარყო ჯგუფში მოწვევა.</string>
     <string name="MessageRecord_you_declined_the_invitation_to_the_group">შენ უარყავი ჯგუფში მოწვევა</string>
     <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s-მა უარყო ჯგუფში შენი მიწვევა.</string>
     <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">ადმინმა ჯგუფში შენ მიწვევაზე უარი თქვა.</string>
     <plurals name="MessageRecord_d_invitations_were_revoked">
-        <item quantity="one">An invitation to the group was revoked.</item>
-        <item quantity="other">%1$d invitations to the group were revoked.</item>
+        <item quantity="one">ჯგუფში მიწვევა გაუქმდა.</item>
+        <item quantity="other">გაუქმდა %1$d მიწვევა ჯგუფში.</item>
     </plurals>
 
     <!-- GV2 invitation acceptance -->
@@ -1316,8 +1316,8 @@
     <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s-მა ჯგუფში გაწევრიანება ჯგუფის ბმულით მოითხოვა.</string>
     <!-- Update message shown when someone requests to join via group link and cancels the request back to back -->
     <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
-        <item quantity="one">%1$s requested and cancelled their request to join via the group link.</item>
-        <item quantity="other">%1$s requested and cancelled %2$d requests to join via the group link.</item>
+        <item quantity="one">%1$s-მა მოითხოვა და გააუქმა ჯგუფის ბმულით გაწევრიანების მოთხოვნა.</item>
+        <item quantity="other">%1$s-მა მოითხოვა და გააუქმა ჯგუფის ბმულით გაწევრიანების %2$d მოთხოვნა.</item>
     </plurals>
 
     <!-- GV2 group link approvals -->
@@ -1346,9 +1346,9 @@
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">მოგწონს ეს ახალი ფუნქცია? დაგვეხმარე Signal-ის მხარდაჭერაში ერთჯერადი დონაციით.</string>
     <!-- Update item message shown when we merge two threads together -->
-    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Your message history with %1$s and their number %2$s has been merged.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">%1$s-სთან შენი მიმოწერის ისტორია და მისი ნომერი %2$s გაერთიანდა.</string>
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
-    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Your message history with %1$s and another chat that belonged to them has been merged.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">%1$s-სთან შენი მიმოწერის ისტორია და სხვა ჩატი, რომელიც მას ეკუთვნოდა, გაერთიანდა.</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s-მა ჯგუფური ზარი წამოიწყო · %2$s</string>
@@ -1450,8 +1450,8 @@
     <string name="OutdatedBuildReminder_update_now">განაახლე ახლავე</string>
     <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Signal-ის ამ ვერსიას ვადა დღეს ამოეწურება. გადმოწერე უახლესი ვერსია.</string>
     <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
-        <item quantity="one">This version of Signal will expire tomorrow. Update to the most recent version.</item>
-        <item quantity="other">This version of Signal will expire in %1$d days. Update to the most recent version.</item>
+        <item quantity="one">Signal-ის ამ ვერსიას ვადა ხვალ გაუვა. გადმოწერე უახლესი ვერსია.</item>
+        <item quantity="other">Signal-ის ამ ვერსიას ვადა %1$d დღეში გაუვა. გადმოწერე უახლესი ვერსია.</item>
     </plurals>
 
     <!-- PassphrasePromptActivity -->
@@ -1873,7 +1873,7 @@
 
     <!-- UsernameEditFragment -->
     <!-- Toolbar title when entering from registration -->
-    <string name="UsernameEditFragment__add_a_username">Add a username</string>
+    <string name="UsernameEditFragment__add_a_username">დაამატე მომხმარებლის სახელი</string>
     <!-- Instructional text at the top of the username edit screen -->
     <string name="UsernameEditFragment__choose_your_username">აირჩიე შენი მომხმარებლის სახელი</string>
     <string name="UsernameEditFragment_username">მომხმარებლის სახელი</string>
@@ -3743,10 +3743,10 @@
     <string name="payment_info_card_hide_this_card">დავმალოთ ეს ბარათი?</string>
     <string name="payment_info_card_hide">დამალვა</string>
     <!-- Title of save recovery phrase card -->
-    <string name="payment_info_card_save_recovery_phrase">Save recovery phrase</string>
+    <string name="payment_info_card_save_recovery_phrase">შეინახე აღდგენის ფრაზა</string>
     <string name="payment_info_card_your_recovery_phrase_gives_you">აღდგენის ფრაზა შენი გადახდების მონაცემების აღსადგენად დამატებით საშუალებას გაძლევს.</string>
     <!-- Button in save recovery phrase card -->
-    <string name="payment_info_card_save_your_phrase">Save your phrase</string>
+    <string name="payment_info_card_save_your_phrase">შეინახე შენი ფრაზა</string>
     <string name="payment_info_card_update_your_pin">განაახლე შენი პინ-კოდი</string>
     <string name="payment_info_card_with_a_high_balance">მეტი ბალანსით, ანბანურ-ციფრულ პინ-კოდზე გადასვლა შეგეძლება, რათა შენი ანგარიში უკეთ დაიცვა.</string>
     <string name="payment_info_card_update_pin">პინ-კოდის განახლება</string>
@@ -3771,23 +3771,23 @@
     <string name="PaymentsRecoveryStartFragment__recovery_phrase">აღდგენის ფრაზა</string>
     <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">აღდგენის ფრაზის ნახვა</string>
     <!-- Title in save recovery phrase screen -->
-    <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Save recovery phrase</string>
+    <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">შეინახე აღდგენის ფრაზა</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">შეიყვანე აღდგენის ფრაზა</string>
     <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">შენი ბალანსი ავტომატურად აღდგება Signal-ის ხელახლა ინსტალაციისას, თუ დაადასტურებ Signal-ის შენს პინ-კოდს. ასევე შეგიძლია აღადგინო შენი ბალანსი აღდგენის ფრაზის გამოყენებით, რომელიც შენთვის უნიკალური %1$d-სიტყვიანი ფრაზაა. ჩაიწერე და შეინახე ის უსაფრთხო ადგილას.</string>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
-    <string name="PaymentsRecoveryStartFragment__got_balance">You’ve got a balance! Time to save your recovery phrase—a 24-word key you can use to restore your balance.</string>
+    <string name="PaymentsRecoveryStartFragment__got_balance">ბალანსი გაქვს! დროა შენი აღდგენის ფრაზა შეინახო—24-სიტყვიანი პაროლი, რომლის გამოყენებაც ბალანსის აღსადგენად შეგიძლია.</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
-    <string name="PaymentsRecoveryStartFragment__time_to_save">Time to save your recovery phrase—a 24-word key you can use to restore your balance. Learn more</string>
+    <string name="PaymentsRecoveryStartFragment__time_to_save">დროა შენი აღდგენის ფრაზა შეინახო—24-სიტყვიანი პაროლი, რომლის გამოყენებაც ბალანსის აღსადგენად შეგიძლია. გაიგე მეტი</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">შენი აღდგენის ფრაზა შენთვის უნიკალური %1$d-სიტყვიანი ფრაზაა. გამოიყენე ეს ფრაზა შენი ბალანსის აღსადგენად.</string>
     <string name="PaymentsRecoveryStartFragment__start">დაწყება</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">ხელით შეყვანა</string>
     <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">ბუფერიდან ჩასმა</string>
     <!-- Alert dialog title which asks before going back if user wants to save recovery phrase -->
-    <string name="PaymentsRecoveryStartFragment__continue_without_saving">Continue Without Saving?</string>
+    <string name="PaymentsRecoveryStartFragment__continue_without_saving">შენახვის გარეშე გავაგრძელოთ?</string>
     <!-- Alert dialog description to let user know why recovery phrase needs to be saved -->
-    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">Your recovery phrase lets you restore your balance in a worst-case scenario. We strongly recommend you save it.</string>
+    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">შენი აღდგენის ფრაზა საშუალებას გაძლევს ყველაზე უარეს შემთხვევაში შენი ბალანსი აღადგინო. გირჩევთ, აუცილებლად ის შეინახო.</string>
     <!-- Alert dialog option to skip recovery phrase -->
-    <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">Skip Recovery Phrase</string>
+    <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">აღდგენის ფრაზის გამოტოვება</string>
     <!-- Alert dialog option to cancel dialog-->
     <string name="PaymentsRecoveryStartFragment__cancel">გაუქმება</string>
 
@@ -3943,9 +3943,9 @@
     <!-- Preference title to delete sms -->
     <string name="SmsSettingsFragment__remove_sms_messages">SMS შეტყობინებების წაშლა</string>
     <!-- Snackbar text to confirm deletion -->
-    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Removing SMS messages from Signal…</string>
+    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">ვშლით SMS შეტყობინებებს Signal-იდან…</string>
     <!-- Snackbar text to indicate can delete later -->
-    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">You can remove SMS messages from Signal in Settings at any time.</string>
+    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">SMS შეტყობინებების Signal-იდან წაშლა ნებისმიერ დროს შეგიძლია პარამეტრებში.</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">შეტყობინებები</string>
@@ -4185,7 +4185,7 @@
     <!-- Context menu item message -->
     <string name="NewConversationActivity__message">მიწერა</string>
     <!-- Context menu item audio call -->
-    <string name="NewConversationActivity__audio_call">Audio call</string>
+    <string name="NewConversationActivity__audio_call">აუდიო ზარი</string>
     <!-- Context menu item video call -->
     <string name="NewConversationActivity__video_call">ვიდეო ზარი</string>
     <!-- Context menu item remove -->
@@ -4195,17 +4195,17 @@
     <!-- Dialog title when removing a contact -->
     <string name="NewConversationActivity__remove_s">წავშალოთ %1$s?</string>
     <!-- Dialog message when removing a contact -->
-    <string name="NewConversationActivity__you_wont_see_this_person">You won\'t see this person when searching. You\'ll get a message request if they message you in the future.</string>
+    <string name="NewConversationActivity__you_wont_see_this_person">ძებნისას ამ ადამიანს ვერ ნახავ. თუ მომავალში მოგწერს, შეტყობინების მოთხოვნას მიიღებ.</string>
     <!-- Snackbar message after removing a contact -->
-    <string name="NewConversationActivity__s_has_been_removed">%1$s has been removed</string>
+    <string name="NewConversationActivity__s_has_been_removed">%1$s ამოიშალა</string>
     <!-- Snackbar message after blocking a contact -->
-    <string name="NewConversationActivity__s_has_been_blocked">%1$s has been blocked</string>
+    <string name="NewConversationActivity__s_has_been_blocked">%1$s დაიბლოკა</string>
     <!-- Dialog title when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__unable_to_remove_s">Unable to remove %1$s</string>
+    <string name="NewConversationActivity__unable_to_remove_s">%1$s-ის ამოშლა ვერ მოხერხდა</string>
     <!-- Dialog message when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__this_person_is_saved_to_your">This person is saved to your device\'s Contacts. Delete them from your Contacts and try again.</string>
+    <string name="NewConversationActivity__this_person_is_saved_to_your">ეს ადამიანი შენი მოწყობილობის კონტაქტებშია შენახული. წაშალე ის შენი კონტაქტებიდან და თავიდან სცადე.</string>
     <!-- Dialog action to view contact when they can't be removed otherwise -->
-    <string name="NewConversationActivity__view_contact">View contact</string>
+    <string name="NewConversationActivity__view_contact">კონტაქტის ნახვა</string>
 
     <!-- ContactFilterView -->
     <string name="ContactFilterView__search_name_or_number">სახელის ან ნომრის ძებნა</string>
@@ -4709,7 +4709,7 @@
     <!-- Subtitle for "My Stories" row item when user has not added stories -->
     <string name="StoriesLandingFragment__tap_to_add_a_story">დააჭირე Story-ის დასამატებლად</string>
     <!-- Displayed when there are no stories to display -->
-    <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now">No recent updates to show right now.</string>
+    <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now">საჩვენებელი ბოლო განახლებები ამჟამად ვერ მოიძებნა.</string>
     <!-- Context menu option to hide a story -->
     <string name="StoriesLandingItem__hide_story">Story-ის დამალვა</string>
     <!-- Context menu option to unhide a story -->
@@ -4778,9 +4778,9 @@
     <!-- Displayed when viewing a post from another user with no replies -->
     <string name="StoryViewerPageFragment__reply">პასუხი</string>
     <!-- Displayed when viewing a post that has failed to send to some users -->
-    <string name="StoryViewerPageFragment__partially_sent">Partially sent. Tap for details</string>
+    <string name="StoryViewerPageFragment__partially_sent">ნაწილობრივ გაიგზავნა. დააჭირე დეტალების სანახავად</string>
     <!-- Displayed when viewing a post that has failed to send -->
-    <string name="StoryViewerPageFragment__send_failed">Send failed. Tap to retry</string>
+    <string name="StoryViewerPageFragment__send_failed">გაგზავნა ვერ მოხერხდა. დააჭირე თავიდან საცდელად</string>
     <!-- Label for the reply button in story viewer, which will launch the group story replies bottom sheet. -->
     <string name="StoryViewerPageFragment__reply_to_group">ჯგუფისთვის პასუხის დაბრუნება</string>
     <!-- Displayed when a story has no views -->
@@ -5188,7 +5188,7 @@
     <!-- Story info "Sent from" header -->
     <string name="StoryInfoBottomSheetDialogFragment__sent_from">გამოგზავნილია ჩამოთვლილებისგან</string>
     <!-- Story info "Failed" header -->
-    <string name="StoryInfoBottomSheetDialogFragment__failed">Failed</string>
+    <string name="StoryInfoBottomSheetDialogFragment__failed">წარუმატებელია</string>
     <!-- Story Info context menu label -->
     <string name="StoryInfoBottomSheetDialogFragment__info">ინფორმაცია</string>
 
@@ -5229,7 +5229,7 @@
     <!-- Title of the screen -->
     <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">დააექსპორტე შენი SMS შეტყობინებები</string>
     <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">You can export your SMS messages to your phone\'s SMS database. This allows other SMS apps on your phone to access and import them. This does not create a shareable file of your SMS message history.</string>
+    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">შენი SMS შეტყობინებების ექსპორტირება შენი ტელეფონის SMS მონაცემთა ბაზაში შეგიძლია. ეს შენს ტელეფონში არსებულ სხვა SMS აპებს მათზე წვდომას და იმპორტირების საშუალებას აძლევს. ეს არ ქმნის შენი SMS შეტყობინებების ისტორიის გაზიარებად ფაილს.</string>
     <!-- Button label to begin export -->
     <string name="ExportYourSmsMessagesFragment__continue">გაგრძელება</string>
 
@@ -5255,17 +5255,17 @@
     <!-- Fourth step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_4">4</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">Tap \"Continue\" to open the \"Default apps\" screen in Settings</string>
+    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">დააჭირე \"გაგრძელებას\", რათა \"ნაგულისხმები აპების\" ეკრანი გახსნა პარამეტრებში.</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">Select \"SMS app\" from the list</string>
+    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">აირჩიე \"SMS აპი\" სიიდან</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">Choose another app to use for SMS messaging</string>
+    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">SMS შეტყობინებებისთვის გამოსაყენებლად სხვა აპი აირჩიე</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">Return to Signal</string>
+    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">Signal-ზე დაბრუნება</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">Open your phone\'s Settings app</string>
+    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">გახსენი შენი ტელეფონის პარამეტრების აპი</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">Navigate to \"Apps\" &gt; \"Default apps\" &gt; \"SMS app\"</string>
+    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">აირჩიე \"აპები\" &gt; \"ნაგულისხმევი აპები\" &gt; \"SMS აპი\"</string>
 
     <!-- RemoveSmsMessagesDialogFragment -->
     <!-- Action button to keep messages -->
@@ -5275,13 +5275,13 @@
     <!-- Title of dialog -->
     <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">წავშალოთ SMS შეტყობინებები Signal-იდან?</string>
     <!-- Message of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">You can now remove SMS messages from Signal to clear up storage space. They will still be available to other SMS apps on your phone even if you remove them.</string>
+    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">მეხსიერების გასასუფთავებლად ახლა უკვე შეგიძლია Signal-იდან SMS შეტყობინებები წაშალო. ისინი ისევ ხელმისაწვდომი იქნება შენი ტელეფონის სხვა SMS აპებისთვის, მაშინაც კი, თუ მათ წაშლი.</string>
 
     <!-- SetSignalAsDefaultSmsAppFragment -->
     <!-- Title of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">Set Signal as the default SMS app</string>
+    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">დააყენე Signal-ი ძირითად SMS აპად</string>
     <!-- Message of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">To export your SMS messages, you need to set Signal as the default SMS app.</string>
+    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">იმისათვის, რომ შენი SMS შეტყობინებების ექსპორტირება მოახერხო, Signal-ი ძირითად SMS აპად უნდა დააყენო.</string>
     <!-- Button label to start export -->
     <string name="SetSignalAsDefaultSmsAppFragment__next">შემდეგი</string>
 

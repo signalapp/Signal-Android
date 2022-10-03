@@ -358,8 +358,8 @@
     </plurals>
     <string name="ConversationFragment_save_to_sd_card">સ્ટોરેજમાં સેવ કરો?</string>
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
-        <item quantity="one">Saving this media to storage will allow any other apps on your device to access it.\n\nContinue?</item>
-        <item quantity="other">Saving all %1$d media to storage will allow any other apps on your device to access them.\n\nContinue?</item>
+        <item quantity="one">આ મીડિયાને સ્ટોરેજમાં સાચવવાથી તમારા ડિવાઇસ પરની કોઈપણ અન્ય એપ્લિકેશનોને તેને પહોંચવાની મંજૂરી મળશે. \n\nચાલુ રાખીએ?</item>
+        <item quantity="other">બધા %1$d મીડિયાને સ્ટોરેજમાં સાચવવાથી તમારા ડિવાઇસ પરની કોઈપણ અન્ય એપ્લિકેશનોને તેને પહોંચવાની મંજૂરી મળશે. \n\nચાલુ રાખીએ?</item>
     </plurals>
     <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
         <item quantity="one">સ્ટોરેજ માં સેવ કરતી વખતે ભૂલ!</item>
@@ -367,12 +367,12 @@
     </plurals>
     <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">સ્ટોરેજ પર લખવામાં અસમર્થ!</string>
     <plurals name="ConversationFragment_saving_n_attachments">
-        <item quantity="one">Saving attachment</item>
-        <item quantity="other">Saving %1$d attachments</item>
+        <item quantity="one">જોડાણ સેવ કરી રહ્યા છીએ</item>
+        <item quantity="other">%1$d જોડાણો સેવ કરી રહ્યા છે</item>
     </plurals>
     <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="one">Saving attachment to storage…</item>
-        <item quantity="other">Saving %1$d attachments to storage…</item>
+        <item quantity="one">સ્ટોરેજમાં જોડાણ સેવ થઈ રહ્યાં છે...</item>
+        <item quantity="other">સ્ટોરેજમાં %1$d જોડાણો સેવ થઈ રહ્યાં છે...</item>
     </plurals>
     <string name="ConversationFragment_pending">બાકી</string>
     <string name="ConversationFragment_push">તારીખ (Signal)</string>
@@ -418,19 +418,19 @@
         <item quantity="other">પસંદ કરેલા સંવાદ કાઢી નાખીએ?</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">This will permanently delete the selected conversation.</item>
-        <item quantity="other">This will permanently delete all %1$d selected conversations.</item>
+        <item quantity="one">આ પસંદ કરેલ વાતચીતને કાયમીરૂપે ડિલીટ કરશે.</item>
+        <item quantity="other">આ બધી %1$d પસંદ કરેલ વાતચીતને કાયમીરૂપે ડિલીટ કરશે.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">કાઢી નાખો</string>
     <string name="ConversationListFragment_deleting_selected_conversations">પસંદ કરેલ સંવાદ કાઢી નાખી રહ્યાં છે…</string>
     <plurals name="ConversationListFragment_conversations_archived">
-        <item quantity="one">Conversation archived</item>
-        <item quantity="other">%1$d conversations archived</item>
+        <item quantity="one">વાતચીત આર્કાઇવ કરી</item>
+        <item quantity="other">%1$d વાતચીત આર્કાઇવ કરી</item>
     </plurals>
     <string name="ConversationListFragment_undo">પૂર્વવત્ કરો</string>
     <plurals name="ConversationListFragment_moved_conversations_to_inbox">
-        <item quantity="one">Moved conversation to inbox</item>
-        <item quantity="other">Moved %1$d conversations to inbox</item>
+        <item quantity="one">વાતચીતને ઇનબોક્સમાં ખસેડી</item>
+        <item quantity="other">%1$d વાતચીતોને ઇનબોક્સમાં ખસેડી</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
         <item quantity="one">વાંચેલ</item>
@@ -664,8 +664,8 @@
 
     <!-- GV2 invites sent -->
     <plurals name="GroupManagement_invitation_sent">
-        <item quantity="one">Invitation sent</item>
-        <item quantity="other">%1$d invitations sent</item>
+        <item quantity="one">આમંત્રણ મોકલ્યું</item>
+        <item quantity="other">%1$d આમંત્રણો મોકલ્યા</item>
     </plurals>
     <string name="GroupManagement_invite_single_user">\"%1$s\" ને તમારા દ્વારા આ ગ્રુપમાં આપમેળે ઉમેરી શકાશે નહીં.\n\nતેમને જોડાવા માટે આમંત્રિત કરવામાં આવ્યા છે, અને જ્યાં સુધી તેઓ સ્વીકારશે નહીં ત્યાં સુધી કોઈ ગ્રુપ મેસેજ જોઇ શકાશે નહીં.</string>
     <string name="GroupManagement_invite_multiple_users">આ વપરાશકર્તાઓ તમારા દ્વારા આ ગ્રુપમાં આપમેળે ઉમેરી શકાતા નથી. \n\n તેમને ગ્રુપમાં જોડાવા માટે આમંત્રિત કરવામાં આવ્યા છે, અને જ્યાં સુધી તેઓ સ્વીકારે નહીં ત્યાં સુધી તેઓ કોઈ ગ્રુપ મેસેજ જોશે નહીં.</string>
@@ -765,8 +765,8 @@
     <string name="PendingMembersActivity_revoke_invite">આમંત્રણ રદ કરો</string>
     <string name="PendingMembersActivity_revoke_invites">આમંત્રણો રદ કરો</string>
     <plurals name="PendingMembersActivity_revoke_d_invites">
-        <item quantity="one">Revoke invite</item>
-        <item quantity="other">Revoke %1$d invites</item>
+        <item quantity="one">આમંત્રણ રદ કરો</item>
+        <item quantity="other">%1$d આમંત્રણો રદ કરો</item>
     </plurals>
     <plurals name="PendingMembersActivity_error_revoking_invite">
         <item quantity="one">આમંત્રણ રદ કરવામાં ભૂલ</item>
@@ -785,8 +785,8 @@
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">આ વ્યક્તિને જૂના ગ્રુપમાં ઉમેરી શકાતા નથી.</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">આ વ્યક્તિ જાહેરાત જૂથોમાં ઉમેરી શકાતી નથી.</string>
     <plurals name="AddMembersActivity__add_d_members_to_s">
-        <item quantity="one">Add \"%1$s\" to \"%2$s\"?</item>
-        <item quantity="other">Add %3$d members to \"%2$s\"?</item>
+        <item quantity="one">\"%1$s\" ને \"%2$s\" માં ઉમેરવા છે?</item>
+        <item quantity="other">%3$d સભ્યોને \"%2$s\" માં ઉમેરવા છે?</item>
     </plurals>
     <string name="AddMembersActivity__add">ઉમેરો</string>
     <string name="AddMembersActivity__add_members">સભ્યો ઉમેરો</string>
@@ -887,8 +887,8 @@
     </plurals>
 
     <plurals name="GroupMemberList_invited">
-        <item quantity="one">%1$s invited 1 person</item>
-        <item quantity="other">%1$s invited %2$d people</item>
+        <item quantity="one">%1$s એ 1 વ્યક્તિને આમંત્રિત કરી</item>
+        <item quantity="other">%1$s એ %2$d લોકોને આમંત્રિત કર્યા</item>
     </plurals>
 
     <!-- CustomNotificationsDialogFragment -->
@@ -926,8 +926,8 @@
     <!-- GV2 Invite Revoke confirmation dialog -->
     <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">શું તમે %1$s ને મોકલેલ આમંત્રણ રદ કરવા માંગો છો?</string>
     <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
-        <item quantity="one">Do you want to revoke the invite sent by %1$s?</item>
-        <item quantity="other">Do you want to revoke %2$d invites sent by %1$s?</item>
+        <item quantity="one">શું તમે %1$s દ્વારા મોકલવામાં આવેલા આમંત્રણને રદ કરવા માંગો છો?</item>
+        <item quantity="other">શું તમે %1$s દ્વારા મોકલવામાં આવેલા %2$d આમંત્રણોને રદ કરવા માંગો છો?</item>
     </plurals>
 
     <!-- GroupJoinBottomSheetDialogFragment -->
@@ -1035,8 +1035,8 @@
         <item quantity="other">પસંદ કરેલી આઇટમ્સ કાઢી નાખો?</item>
     </plurals>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-        <item quantity="one">This will permanently delete the selected file. Any message text associated with this item will also be deleted.</item>
-        <item quantity="other">This will permanently delete all %1$d selected files. Any message text associated with these items will also be deleted.</item>
+        <item quantity="one">આ પસંદ કરેલી ફાઇલને કાયમીરૂપે ડિલીટ કરશે. આ આઇટમ સાથે સંકળાયેલ કોઈપણ મેસેજ ટેક્સ્ટ પણ ડિલીટ થઈ જશે.</item>
+        <item quantity="other">આ બધી %1$d પસંદ કરેલી ફાઇલોને કાયમીરૂપે કાઢી નાખશે. આ આઇટમ્સ સાથે સંકળાયેલ કોઈપણ મેસેજ ટેક્સ્ટ પણ કાઢી નાખવામાં આવશે.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">કાઢી નાખો</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">મેસેજ કાઢી નાખો…</string>
@@ -1168,13 +1168,13 @@
     <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">તમને નવા ગ્રુપમાં ઉમેરી શકાયા નથી અને તમને જોડાવા માટે આમંત્રિત કરવામાં આવ્યા છે.</string>
     <string name="MessageRecord_chat_session_refreshed">ચેટ સેશન રિફ્રેશ તાજું થયું</string>
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
-        <item quantity="one">A member couldn\'t be added to the New Group and has been invited to join.</item>
-        <item quantity="other">%1$s members couldn\'t be added to the New Group and have been invited to join.</item>
+        <item quantity="one">એક સભ્યને નવા ગ્રુપમાં ઉમેરી શકાયા નથી અને તેમને જોડાવા માટે આમંત્રણ આપવામાં આવ્યું છે.</item>
+        <item quantity="other">%1$s સભ્યોને નવા ગ્રુપમાં ઉમેરી શકાયા નથી અને તેમને જોડાવા માટે આમંત્રણ આપવામાં આવ્યું છે.</item>
     </plurals>
 
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
-        <item quantity="one">A member couldn\'t be added to the New Group and has been removed.</item>
-        <item quantity="other">%1$s members couldn\'t be added to the New Group and have been removed.</item>
+        <item quantity="one">એક સભ્યને નવા ગ્રુપમાં ઉમેરી શકાયા નથી અને તેમને દૂર કરવામાં આવ્યા છે.</item>
+        <item quantity="other">%1$s સભ્યોને નવા ગ્રુપમાં ઉમેરી શકાયા નથી અને તેમને દૂર કરવામાં આવ્યા છે.</item>
     </plurals>
 
     <!-- Profile change updates -->
@@ -1219,31 +1219,31 @@
     <string name="MessageRecord_you_invited_s_to_the_group">તમે ગ્રુપ માં %1$s ને આમંત્રિત કર્યા છે.</string>
     <string name="MessageRecord_s_invited_you_to_the_group">%1$s એ તમને ગ્રુપમાં આમંત્રિત કર્યા છે.</string>
     <plurals name="MessageRecord_s_invited_members">
-        <item quantity="one">%1$s invited 1 person to the group.</item>
-        <item quantity="other">%1$s invited %2$d people to the group.</item>
+        <item quantity="one">%1$s એ વ્યક્તિને ગ્રુપમાં આમંત્રિત કર્યા.</item>
+        <item quantity="other">%1$s એ %2$d લોકોને ગ્રુપમાં આમંત્રિત કર્યા.</item>
     </plurals>
     <string name="MessageRecord_you_were_invited_to_the_group">તમને ગ્રુપમાં આમંત્રણ અપાયું હતું.</string>
     <plurals name="MessageRecord_d_people_were_invited_to_the_group">
-        <item quantity="one">1 person was invited to the group.</item>
-        <item quantity="other">%1$d people were invited to the group.</item>
+        <item quantity="one">1 વ્યક્તિને ગ્રુપમાં આમંત્રિત કરવામાં આવી હતી.</item>
+        <item quantity="other">%1$d લોકોને ગ્રુપમાં આમંત્રિત કરવામાં આવ્યા હતા.</item>
     </plurals>
 
     <!-- GV2 invitation revokes -->
     <plurals name="MessageRecord_you_revoked_invites">
-        <item quantity="one">You revoked an invitation to the group.</item>
-        <item quantity="other">You revoked %1$d invitations to the group.</item>
+        <item quantity="one">તમે ગ્રુપમાં 1 આમંત્રણ રદ કર્યું</item>
+        <item quantity="other">તમે ગ્રુપમાં %1$d આમંત્રણો રદ કર્યા</item>
     </plurals>
     <plurals name="MessageRecord_s_revoked_invites">
-        <item quantity="one">%1$s revoked an invitation to the group.</item>
-        <item quantity="other">%1$s revoked %2$d invitations to the group.</item>
+        <item quantity="one">%1$s એ ગ્રુપમાં એક આમંત્રણ રદ કર્યું.</item>
+        <item quantity="other">%1$s એ ગ્રુપમાં %2$d આમંત્રણો રદ કર્યા.</item>
     </plurals>
     <string name="MessageRecord_someone_declined_an_invitation_to_the_group">કોઈએ ગ્રુપને આમંત્રણ નકાર્યું.</string>
     <string name="MessageRecord_you_declined_the_invitation_to_the_group">તમે ગ્રુપનું આમંત્રણ નકાર્યું.</string>
     <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s એ ગ્રુપમાં તમારું આમંત્રણ રદ કર્યું.</string>
     <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">એક ઍડમીનએ ગ્રુપમાં તમારું આમંત્રણ રદ કર્યું.</string>
     <plurals name="MessageRecord_d_invitations_were_revoked">
-        <item quantity="one">An invitation to the group was revoked.</item>
-        <item quantity="other">%1$d invitations to the group were revoked.</item>
+        <item quantity="one">ગ્રુપમાં એક આમંત્રણ રદ કરવામાં આવ્યું હતું.</item>
+        <item quantity="other">ગ્રુપમાં %1$d આમંત્રણો રદ કરવામાં આવ્યા હતા.</item>
     </plurals>
 
     <!-- GV2 invitation acceptance -->
@@ -1316,8 +1316,8 @@
     <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s એ ગ્રુપ લિંક મારફતે જોડાવા વિનંતી કરી.</string>
     <!-- Update message shown when someone requests to join via group link and cancels the request back to back -->
     <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
-        <item quantity="one">%1$s requested and cancelled their request to join via the group link.</item>
-        <item quantity="other">%1$s requested and cancelled %2$d requests to join via the group link.</item>
+        <item quantity="one">%1$s એ ગ્રુપ લિંક વડે જોડાવાની તેમની વિનંતી કરી અને રદ કરી</item>
+        <item quantity="other">%1$s એ ગ્રુપ લિંક વડે જોડાવાની %2$d વિનંતીઓ કરી અને રદ કરી</item>
     </plurals>
 
     <!-- GV2 group link approvals -->
@@ -1346,9 +1346,9 @@
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">આ નવી સુવિધા ગમી? Signalને એક-વખતના યોગદાન સાથે સહયોગ આપવામાં મદદ કરો.</string>
     <!-- Update item message shown when we merge two threads together -->
-    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Your message history with %1$s and their number %2$s has been merged.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">%1$s સાથેનો તમારો મેસેજ ઇતિહાસ અને તેમનો નંબર %2$s ભેગા કરી દેવામાં આવ્યા છે.</string>
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
-    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Your message history with %1$s and another chat that belonged to them has been merged.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">%1$s સાથેનો તમારો મેસેજ ઈતિહાસ અને તેમની સાથે જોડાયેલી બીજી ચેટ ભેગા કરી દેવામાં આવ્યા છે.</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s એ ગ્રુપ કૉલ શરૂ કર્યો · %2$s</string>
@@ -1450,8 +1450,8 @@
     <string name="OutdatedBuildReminder_update_now">અત્યારે અપડેટ કરો</string>
     <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">તમારું Signal નું વર્ઝન આજે સમાપ્ત થશે. સૌથી તાજેતરનું વર્ઝન અપડેટ કરો.</string>
     <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
-        <item quantity="one">This version of Signal will expire tomorrow. Update to the most recent version.</item>
-        <item quantity="other">This version of Signal will expire in %1$d days. Update to the most recent version.</item>
+        <item quantity="one">Signal નું આ વર્ઝન આવતીકાલે સમાપ્ત થશે. સૌથી તાજેતરના વર્ઝન પર અપડેટ કરો.</item>
+        <item quantity="other">Signal નું આ વર્ઝન %1$d દિવસમાં સમાપ્ત થશે. સૌથી તાજેતરના વર્ઝન પર અપડેટ કરો.</item>
     </plurals>
 
     <!-- PassphrasePromptActivity -->
@@ -1873,7 +1873,7 @@
 
     <!-- UsernameEditFragment -->
     <!-- Toolbar title when entering from registration -->
-    <string name="UsernameEditFragment__add_a_username">Add a username</string>
+    <string name="UsernameEditFragment__add_a_username">વપરાશકર્તાનામ ઉમેરો</string>
     <!-- Instructional text at the top of the username edit screen -->
     <string name="UsernameEditFragment__choose_your_username">તમારું યુઝરનેમ પસંદ કરો</string>
     <string name="UsernameEditFragment_username">વપરાશકર્તા નામ</string>
@@ -3743,10 +3743,10 @@
     <string name="payment_info_card_hide_this_card">આ કાર્ડ છુપાવું છે?</string>
     <string name="payment_info_card_hide">છુપાવો</string>
     <!-- Title of save recovery phrase card -->
-    <string name="payment_info_card_save_recovery_phrase">Save recovery phrase</string>
+    <string name="payment_info_card_save_recovery_phrase">રિકવરી ફ્રેઝ સેવ કરો</string>
     <string name="payment_info_card_your_recovery_phrase_gives_you">તમારો રિકવરી ફ્રેઝ તમને તમારા પેમેન્ટ ખાતાને રિસ્ટોર કરવાની બીજી રીત આપે છે.</string>
     <!-- Button in save recovery phrase card -->
-    <string name="payment_info_card_save_your_phrase">Save your phrase</string>
+    <string name="payment_info_card_save_your_phrase">તમારો ફ્રેઝ સેવ કરો</string>
     <string name="payment_info_card_update_your_pin">તમારો PIN અપડેટ કરો</string>
     <string name="payment_info_card_with_a_high_balance">ઉચ્ચ બેલેન્સ સાથે, તમે તમારા એકાઉન્ટમાં વધુ રક્ષણ ઉમેરવા માટે આલ્ફાન્યુમેરિક PIN માં અપડેટ કરવા માંગો છો.</string>
     <string name="payment_info_card_update_pin">PIN અપડેટ કરો</string>
@@ -3771,23 +3771,23 @@
     <string name="PaymentsRecoveryStartFragment__recovery_phrase">રિકવરી ફ્રેઝ</string>
     <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">રિકવરી ફ્રેઝ જુઓ</string>
     <!-- Title in save recovery phrase screen -->
-    <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Save recovery phrase</string>
+    <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">રિકવરી ફ્રેઝ સેવ કરો</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">રિકવરી ફ્રેઝ દાખલ કરો</string>
     <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">જો તમે તમારા Signal પિનની પુષ્ટિ કરો છો તો તમે Signal ને ફરીથી ઇન્સ્ટોલ કરો ત્યારે તમારું બેલેન્સ આપોઆપ રિસ્ટોર થશે. તમે રિકવરી ફ્રેઝનો ઉપયોગ કરીને તમારું બેલેન્સ પણ રિસ્ટોર કરી શકો છો, જે તમારા માટે અનન્ય %1$d શબ્દોનો ફ્રેઝ છે. તેને લખીને સલામત સ્થળે સંગ્રહ કરો.</string>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
-    <string name="PaymentsRecoveryStartFragment__got_balance">You’ve got a balance! Time to save your recovery phrase—a 24-word key you can use to restore your balance.</string>
+    <string name="PaymentsRecoveryStartFragment__got_balance">તમને બેલેન્સ મળ્યું છે! સમય છે તમારા રિકવરી ફ્રેઝને સેવ કરવાનો — જે એક 24-શબ્દની કી છે અને તેનો ઉપયોગ તમે તમારું બેલેન્સ પુનઃસ્થાપિત કરવા માટે કરી શકો છો.</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
-    <string name="PaymentsRecoveryStartFragment__time_to_save">Time to save your recovery phrase—a 24-word key you can use to restore your balance. Learn more</string>
+    <string name="PaymentsRecoveryStartFragment__time_to_save">સમય છે તમારા રિકવરી ફ્રેઝને સેવ કરવાનો — જે એક 24-શબ્દની કી છે અને તેનો ઉપયોગ તમે તમારું બેલેન્સ પુનઃસ્થાપિત કરવા માટે કરી શકો છો. વધુ જાણો</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">તમારો રિકવરી ફ્રેઝ તમારા માટે અનન્ય %1$d શબ્દોનો ફ્રેઝ છે. તમારા પેમેન્ટ એકાઉન્ટને રિસ્ટોર કરવા માટે તેનો ઉપયોગ કરો.</string>
     <string name="PaymentsRecoveryStartFragment__start">શરૂ કરો</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">મેન્યુઅલી દાખલ કરો</string>
     <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">ક્લિપબોર્ડમાંથી પેસ્ટ કરો</string>
     <!-- Alert dialog title which asks before going back if user wants to save recovery phrase -->
-    <string name="PaymentsRecoveryStartFragment__continue_without_saving">Continue Without Saving?</string>
+    <string name="PaymentsRecoveryStartFragment__continue_without_saving">સેવ કર્યા વિના ચાલુ રાખવું છે?</string>
     <!-- Alert dialog description to let user know why recovery phrase needs to be saved -->
-    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">Your recovery phrase lets you restore your balance in a worst-case scenario. We strongly recommend you save it.</string>
+    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">તમારો રિકવરી ફ્રેઝ તમને સૌથી ખરાબ પરિસ્થિતિમાં તમારું બેલેન્સ પુનઃસ્થાપિત કરવા દે છે. અમે ભારપૂર્વક ભલામણ કરીએ છીએ કે તમે તેને સેવ કરો.</string>
     <!-- Alert dialog option to skip recovery phrase -->
-    <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">Skip Recovery Phrase</string>
+    <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">રિકવરી ફ્રેઝને અવગણો</string>
     <!-- Alert dialog option to cancel dialog-->
     <string name="PaymentsRecoveryStartFragment__cancel">રદ કરો</string>
 
@@ -3943,9 +3943,9 @@
     <!-- Preference title to delete sms -->
     <string name="SmsSettingsFragment__remove_sms_messages">SMS મેસેજ દૂર કરો</string>
     <!-- Snackbar text to confirm deletion -->
-    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Removing SMS messages from Signal…</string>
+    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Signalમાંથી SMS મેસેજ દૂર કરીએ છીએ...</string>
     <!-- Snackbar text to indicate can delete later -->
-    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">You can remove SMS messages from Signal in Settings at any time.</string>
+    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">તમે કોઈપણ સમયે સેટિંગ્સમાં Signalમાંથી SMS મેસેજ દૂર કરી શકો છો.</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">મેસેજ</string>
@@ -4195,17 +4195,17 @@
     <!-- Dialog title when removing a contact -->
     <string name="NewConversationActivity__remove_s">%1$sને દૂર કરવા છે?</string>
     <!-- Dialog message when removing a contact -->
-    <string name="NewConversationActivity__you_wont_see_this_person">You won\'t see this person when searching. You\'ll get a message request if they message you in the future.</string>
+    <string name="NewConversationActivity__you_wont_see_this_person">શોધ કરતી વખતે તમે આ વ્યક્તિને જોશો નહીં. જો તેઓ ભવિષ્યમાં તમને મેસેજ મોકલશે તો તમને એક મેસેજ વિનંતી મળશે.</string>
     <!-- Snackbar message after removing a contact -->
-    <string name="NewConversationActivity__s_has_been_removed">%1$s has been removed</string>
+    <string name="NewConversationActivity__s_has_been_removed">%1$s ને દૂર કરવામાં આવ્યા છે</string>
     <!-- Snackbar message after blocking a contact -->
-    <string name="NewConversationActivity__s_has_been_blocked">%1$s has been blocked</string>
+    <string name="NewConversationActivity__s_has_been_blocked">%1$s ને બ્લૉક કરવામાં આવ્યા છે</string>
     <!-- Dialog title when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__unable_to_remove_s">Unable to remove %1$s</string>
+    <string name="NewConversationActivity__unable_to_remove_s">%1$s ને દૂર ન કરી શક્યા</string>
     <!-- Dialog message when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__this_person_is_saved_to_your">This person is saved to your device\'s Contacts. Delete them from your Contacts and try again.</string>
+    <string name="NewConversationActivity__this_person_is_saved_to_your">આ વ્યક્તિ તમારા ડિવાઇસના સંપર્કોમાં સેવ કરેલ છે. તેમને તમારા સંપર્કોમાંથી ડિલીટ કરો અને ફરી પ્રયાસ કરો.</string>
     <!-- Dialog action to view contact when they can't be removed otherwise -->
-    <string name="NewConversationActivity__view_contact">View contact</string>
+    <string name="NewConversationActivity__view_contact">સંપર્ક જુઓ</string>
 
     <!-- ContactFilterView -->
     <string name="ContactFilterView__search_name_or_number">નામ અથવા નંબર સર્ચ કરો</string>
@@ -4709,7 +4709,7 @@
     <!-- Subtitle for "My Stories" row item when user has not added stories -->
     <string name="StoriesLandingFragment__tap_to_add_a_story">સ્ટોરી ઉમેરવા ટૅપ કરો</string>
     <!-- Displayed when there are no stories to display -->
-    <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now">No recent updates to show right now.</string>
+    <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now">અત્યારે બતાવવા માટે કોઈ તાજેતરના અપડેટ નથી.</string>
     <!-- Context menu option to hide a story -->
     <string name="StoriesLandingItem__hide_story">સ્ટોરી છુપાવો</string>
     <!-- Context menu option to unhide a story -->
@@ -4778,9 +4778,9 @@
     <!-- Displayed when viewing a post from another user with no replies -->
     <string name="StoryViewerPageFragment__reply">જવાબ</string>
     <!-- Displayed when viewing a post that has failed to send to some users -->
-    <string name="StoryViewerPageFragment__partially_sent">Partially sent. Tap for details</string>
+    <string name="StoryViewerPageFragment__partially_sent">આખી નથી મોકલાઈ. વિગતો માટે ટેપ કરો</string>
     <!-- Displayed when viewing a post that has failed to send -->
-    <string name="StoryViewerPageFragment__send_failed">Send failed. Tap to retry</string>
+    <string name="StoryViewerPageFragment__send_failed">મોકલવાનું નિષ્ફળ રહ્યું. ફરી પ્રયાસ કરવા ટૅપ કરો</string>
     <!-- Label for the reply button in story viewer, which will launch the group story replies bottom sheet. -->
     <string name="StoryViewerPageFragment__reply_to_group">ગ્રુપમાં જવાબ આપો</string>
     <!-- Displayed when a story has no views -->
@@ -5229,7 +5229,7 @@
     <!-- Title of the screen -->
     <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">તમારા SMS મેસેજ એક્સપોર્ટ કરો</string>
     <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">You can export your SMS messages to your phone\'s SMS database. This allows other SMS apps on your phone to access and import them. This does not create a shareable file of your SMS message history.</string>
+    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">તમે તમારા SMS મેસેજને તમારા ફોનના SMS ડેટાબેઝમાં એક્સપોર્ટ કરી શકો છો. આનાથી તમારા ફોન પરની અન્ય SMS ઍપને તેમને ઍક્સેસ કરવા અને ઇમ્પોર્ટ કરવાની મંજૂરી મળે છે. આ તમારા SMS મેસેજ ઇતિહાસની શેર કરી શકાય તેવી ફાઇલ બનાવતું નથી.</string>
     <!-- Button label to begin export -->
     <string name="ExportYourSmsMessagesFragment__continue">ચાલુ રાખો</string>
 
@@ -5255,17 +5255,17 @@
     <!-- Fourth step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_4">4</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">Tap \"Continue\" to open the \"Default apps\" screen in Settings</string>
+    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">સેટિંગ્સમાં \"ડિફોલ્ટ ઍપ્સ\" સ્ક્રીન ખોલવા માટે \"ચાલુ રાખો\" પર ટૅપ કરો</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">Select \"SMS app\" from the list</string>
+    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">સૂચિમાંથી \"SMS ઍપ\" પસંદ કરો</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">Choose another app to use for SMS messaging</string>
+    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">SMS મેસેજિંગ માટે વાપરવા માટે બીજી ઍપ પસંદ કરો</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">Return to Signal</string>
+    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">Signal પર પાછા ફરો</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">Open your phone\'s Settings app</string>
+    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">તમારા ફોનની સેટિંગ્સ ઍપ ખોલો</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">Navigate to \"Apps\" &gt; \"Default apps\" &gt; \"SMS app\"</string>
+    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">\"ઍપ્સ\"&gt; \"ડિફોલ્ટ ઍપ્સ\"&gt; \"SMS ઍપ\" પર નેવિગેટ કરો</string>
 
     <!-- RemoveSmsMessagesDialogFragment -->
     <!-- Action button to keep messages -->
@@ -5275,13 +5275,13 @@
     <!-- Title of dialog -->
     <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Signalમાંથી SMS મેસેજ દૂર કરવા છે?</string>
     <!-- Message of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">You can now remove SMS messages from Signal to clear up storage space. They will still be available to other SMS apps on your phone even if you remove them.</string>
+    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">સ્ટોરેજ સ્પેસ ખાલી કરવા હવે તમે Signalમાંથી SMS મેસેજ દૂર કરી શકો છો. તમે તેને દૂર કરી નાખો તો પણ તે તમારા ફોન પરની અન્ય SMS ઍપ્સ માટે ઉપલબ્ધ રહેશે.</string>
 
     <!-- SetSignalAsDefaultSmsAppFragment -->
     <!-- Title of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">Set Signal as the default SMS app</string>
+    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">Signalને ડિફોલ્ટ SMS ઍપ તરીકે સેટ કરો</string>
     <!-- Message of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">To export your SMS messages, you need to set Signal as the default SMS app.</string>
+    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">તમારા SMS મેસેજને એક્સપોર્ટ કરવા માટે, તમારે Signalને ડિફોલ્ટ SMS ઍપ તરીકે સેટ કરવાની જરૂર છે.</string>
     <!-- Button label to start export -->
     <string name="SetSignalAsDefaultSmsAppFragment__next">આગળ</string>
 

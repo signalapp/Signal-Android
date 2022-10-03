@@ -1288,9 +1288,9 @@
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Bạn thích tính năng mới này? Hãy hỗ trợ Signal với khoản ủng hộ một lần.</string>
     <!-- Update item message shown when we merge two threads together -->
-    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Your message history with %1$s and their number %2$s has been merged.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Lịch sử tin nhắn của bạn với %1$s và số điện thoại %2$s của liên hệ này đã được hợp nhất.</string>
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
-    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Your message history with %1$s and another chat that belonged to them has been merged.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Lịch sử tin nhắn của bạn với %1$s và một cuộc trò chuyện khác của liên hệ này đã được hợp nhất.</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s đã bắt đầu cuộc gọi nhóm · %2$s</string>
@@ -3646,10 +3646,10 @@
     <string name="payment_info_card_hide_this_card">Ẩn thẻ này?</string>
     <string name="payment_info_card_hide">Ẩn</string>
     <!-- Title of save recovery phrase card -->
-    <string name="payment_info_card_save_recovery_phrase">Save recovery phrase</string>
+    <string name="payment_info_card_save_recovery_phrase">Lưu cụm từ khôi phục</string>
     <string name="payment_info_card_your_recovery_phrase_gives_you">Cụm từ khôi phục cho bạn một cách khác để khôi phục tài khoản thanh toán của bạn.</string>
     <!-- Button in save recovery phrase card -->
-    <string name="payment_info_card_save_your_phrase">Save your phrase</string>
+    <string name="payment_info_card_save_your_phrase">Lưu cụm từ của bạn</string>
     <string name="payment_info_card_update_your_pin">Cập nhật mã PIN của bạn</string>
     <string name="payment_info_card_with_a_high_balance">Với số dư cao, bạn có thể sẽ muốn cập nhật thành một mã PIN gồm cả chữ và số để thêm bảo vệ cho tài khoản của bạn.</string>
     <string name="payment_info_card_update_pin">Cập nhật mã PIN</string>
@@ -3674,23 +3674,23 @@
     <string name="PaymentsRecoveryStartFragment__recovery_phrase">Cụm từ khôi phục</string>
     <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Xem cụm từ khôi phục</string>
     <!-- Title in save recovery phrase screen -->
-    <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Save recovery phrase</string>
+    <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Lưu cụm từ khôi phục</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Nhập vào cụm từ khôi phục</string>
     <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Số dư của bạn sẽ tự động khôi phục khi bạn cài đặt lại Signal nếu như bạn xác minh mã PIN Signal của mình. Bạn cũng có thể khôi phục số dư của bạn qua sử dụng một cụm từ khôi phục, và đây là một cụm từ gồm %1$d-từ chỉ riêng cho bạn. Ghi nó lại và lưu giữ nó ở một nơi an toàn.</string>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
-    <string name="PaymentsRecoveryStartFragment__got_balance">You’ve got a balance! Time to save your recovery phrase—a 24-word key you can use to restore your balance.</string>
+    <string name="PaymentsRecoveryStartFragment__got_balance">Bạn đã nhận được số dư! Đã đến lúc lưu cụm từ khôi phục—cụm 24 từ này giống như chìa khóa giúp bạn khôi phục số dư của mình.</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
-    <string name="PaymentsRecoveryStartFragment__time_to_save">Time to save your recovery phrase—a 24-word key you can use to restore your balance. Learn more</string>
+    <string name="PaymentsRecoveryStartFragment__time_to_save">Đã đến lúc lưu cụm từ khôi phục—cụm 24 từ này giống như chìa khóa giúp bạn khôi phục số dư của mình. Tìm hiểu thêm</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Cụm từ khôi phục của bạn là một cụm từ gồm %1$d-từ chỉ riêng cho bạn. Sử dụng cụm từ này để khôi phục số dư của bạn.</string>
     <string name="PaymentsRecoveryStartFragment__start">Bắt đầu</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">Nhập vào bằng tay</string>
     <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Dán từ bảng kẹp</string>
     <!-- Alert dialog title which asks before going back if user wants to save recovery phrase -->
-    <string name="PaymentsRecoveryStartFragment__continue_without_saving">Continue Without Saving?</string>
+    <string name="PaymentsRecoveryStartFragment__continue_without_saving">Tiếp tục và không lưu?</string>
     <!-- Alert dialog description to let user know why recovery phrase needs to be saved -->
-    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">Your recovery phrase lets you restore your balance in a worst-case scenario. We strongly recommend you save it.</string>
+    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">Cụm từ khôi phục này giúp bạn khôi phục số dư tài khoản của mình trong trường hợp xấu nhất. Chúng tôi khuyến khích bạn lưu lại.</string>
     <!-- Alert dialog option to skip recovery phrase -->
-    <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">Skip Recovery Phrase</string>
+    <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">Bỏ qua Cụm từ Khôi phục</string>
     <!-- Alert dialog option to cancel dialog-->
     <string name="PaymentsRecoveryStartFragment__cancel">Hủy</string>
 
@@ -3846,9 +3846,9 @@
     <!-- Preference title to delete sms -->
     <string name="SmsSettingsFragment__remove_sms_messages">Xóa tin nhắn SMS</string>
     <!-- Snackbar text to confirm deletion -->
-    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Removing SMS messages from Signal…</string>
+    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Xóa tin nhắn SMS khỏi Signal…</string>
     <!-- Snackbar text to indicate can delete later -->
-    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">You can remove SMS messages from Signal in Settings at any time.</string>
+    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">Bạn có thể xóa tin nhắn SMS khỏi Signal trong mục Cài đặt bất cứ lúc nào.</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">Tin nhắn</string>
@@ -4096,17 +4096,17 @@
     <!-- Dialog title when removing a contact -->
     <string name="NewConversationActivity__remove_s">Xóa %1$s?</string>
     <!-- Dialog message when removing a contact -->
-    <string name="NewConversationActivity__you_wont_see_this_person">You won\'t see this person when searching. You\'ll get a message request if they message you in the future.</string>
+    <string name="NewConversationActivity__you_wont_see_this_person">Bạn sẽ không nhìn thấy người này khi tìm kiếm. Bạn sẽ nhận được một yêu cầu gửi tin nhắn nếu người này nhắn tin cho bạn trong tương lai.</string>
     <!-- Snackbar message after removing a contact -->
-    <string name="NewConversationActivity__s_has_been_removed">%1$s has been removed</string>
+    <string name="NewConversationActivity__s_has_been_removed">%1$s đã được xóa</string>
     <!-- Snackbar message after blocking a contact -->
-    <string name="NewConversationActivity__s_has_been_blocked">%1$s has been blocked</string>
+    <string name="NewConversationActivity__s_has_been_blocked">%1$s đã bị chặn</string>
     <!-- Dialog title when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__unable_to_remove_s">Unable to remove %1$s</string>
+    <string name="NewConversationActivity__unable_to_remove_s">Không thể xóa %1$s</string>
     <!-- Dialog message when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__this_person_is_saved_to_your">This person is saved to your device\'s Contacts. Delete them from your Contacts and try again.</string>
+    <string name="NewConversationActivity__this_person_is_saved_to_your">Người này được lưu trong Danh bạ trên thiết bị của bạn. Xóa liên hệ của người này trên Danh bạ và thử lại.</string>
     <!-- Dialog action to view contact when they can't be removed otherwise -->
-    <string name="NewConversationActivity__view_contact">View contact</string>
+    <string name="NewConversationActivity__view_contact">Xem liên hệ</string>
 
     <!-- ContactFilterView -->
     <string name="ContactFilterView__search_name_or_number">Tìm kiếm tên hoặc số điện thoại</string>
@@ -4605,7 +4605,7 @@
     <!-- Subtitle for "My Stories" row item when user has not added stories -->
     <string name="StoriesLandingFragment__tap_to_add_a_story">Nhấn để thêm story</string>
     <!-- Displayed when there are no stories to display -->
-    <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now">No recent updates to show right now.</string>
+    <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now">Không có cập nhật nào gần đây để hiển thị.</string>
     <!-- Context menu option to hide a story -->
     <string name="StoriesLandingItem__hide_story">Ẩn story</string>
     <!-- Context menu option to unhide a story -->
@@ -5111,7 +5111,7 @@
     <!-- Title of the screen -->
     <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">Xuất tin nhắn SMS của bạn</string>
     <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">You can export your SMS messages to your phone\'s SMS database. This allows other SMS apps on your phone to access and import them. This does not create a shareable file of your SMS message history.</string>
+    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">Bạn có thể xuất các tin nhắn SMS cho cơ sở dữ liệu SMS của điện thoại. Điều này cho phép các ứng dụng SMS khác trên điện thoại của bạn truy cập và tiến hành bước nhập. Điều này không tạo ra một tập tin có thể chia sẻ của lịch sử tin nhắn SMS của bạn.</string>
     <!-- Button label to begin export -->
     <string name="ExportYourSmsMessagesFragment__continue">Tiếp tục</string>
 
@@ -5137,17 +5137,17 @@
     <!-- Fourth step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_4">4</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">Tap \"Continue\" to open the \"Default apps\" screen in Settings</string>
+    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">Nhấn \"Tiếp tục\" để mở giao diện \"Ứng dụng mặc định\" trong mục Cài đặt</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">Select \"SMS app\" from the list</string>
+    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">Chọn \"Ứng dụng SMS\" từ danh sách</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">Choose another app to use for SMS messaging</string>
+    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">Chọn một ứng dụng khác cho việc nhắn tin SMS</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">Return to Signal</string>
+    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">Quay lại Signal</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">Open your phone\'s Settings app</string>
+    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">Mở mục Cài đặt Ứng dụng trên điện thoại của bạn</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">Navigate to \"Apps\" &gt; \"Default apps\" &gt; \"SMS app\"</string>
+    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">Điều hướng đến \"Ứng dụng\" &gt; \"Ứng dụng mặc định\" &gt; \"Ứng dụng SMS\"</string>
 
     <!-- RemoveSmsMessagesDialogFragment -->
     <!-- Action button to keep messages -->
@@ -5157,13 +5157,13 @@
     <!-- Title of dialog -->
     <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Xóa tin nhắn SMS khỏi Signal?</string>
     <!-- Message of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">You can now remove SMS messages from Signal to clear up storage space. They will still be available to other SMS apps on your phone even if you remove them.</string>
+    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">Từ giờ bạn có thể xóa các tin nhắn SMS khỏi Signal để giải phóng dung lượng lưu trữ. Các tin nhắn SMS vẫn sẽ còn trong các ứng dụng SMS khác trên điện thoại khi bạn xóa khỏi Signal.</string>
 
     <!-- SetSignalAsDefaultSmsAppFragment -->
     <!-- Title of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">Set Signal as the default SMS app</string>
+    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">Đặt Signal làm ứng dụng SMS mặc định</string>
     <!-- Message of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">To export your SMS messages, you need to set Signal as the default SMS app.</string>
+    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">Để xuất các tin nhắn SMS của bạn, bạn cần đặt Signal làm ứng dụng SMS mặc định.</string>
     <!-- Button label to start export -->
     <string name="SetSignalAsDefaultSmsAppFragment__next">Tiếp</string>
 

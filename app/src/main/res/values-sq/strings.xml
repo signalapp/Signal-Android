@@ -358,8 +358,8 @@
     </plurals>
     <string name="ConversationFragment_save_to_sd_card">Të ruhet në Storage?</string>
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
-        <item quantity="one">Saving this media to storage will allow any other apps on your device to access it.\n\nContinue?</item>
-        <item quantity="other">Saving all %1$d media to storage will allow any other apps on your device to access them.\n\nContinue?</item>
+        <item quantity="one">Ruajtja e kësaj media në magazinë, do të lejojë çdo aplikacion tjetër në pajisjen tënde të ketë qasje në të. \n\n Dëshiron të vazhdosh?</item>
+        <item quantity="other">Ruajtja e të gjitha %1$d mediave në magazinë do të lejojë qasjen e çdo aplikacioni tjetër në pajisjen tënde tek to.\n\nDëshiron të vazhdoshi?</item>
     </plurals>
     <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
         <item quantity="one">Gabim gjatë ruajtjes së bashkëngjitjes në depozitë!</item>
@@ -367,12 +367,12 @@
     </plurals>
     <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Nuk mund të futen në hapësirën ruajtëse!</string>
     <plurals name="ConversationFragment_saving_n_attachments">
-        <item quantity="one">Saving attachment</item>
-        <item quantity="other">Saving %1$d attachments</item>
+        <item quantity="one">Duke ruajtur bashkëngjitjen</item>
+        <item quantity="other">Duke ruajtur %1$d bashkëngjitjet</item>
     </plurals>
     <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="one">Saving attachment to storage…</item>
-        <item quantity="other">Saving %1$d attachments to storage…</item>
+        <item quantity="one">Duke ruajtur bashkëngjitjen në magazinë…</item>
+        <item quantity="other">Duke ruajtur %1$d bashkëngjitjet në magazinë…</item>
     </plurals>
     <string name="ConversationFragment_pending">Në pritje…</string>
     <string name="ConversationFragment_push">Të dhëna (Signal)</string>
@@ -418,19 +418,19 @@
         <item quantity="other">Dëshironi të fshini bisedat e përzgjedhura?</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">This will permanently delete the selected conversation.</item>
-        <item quantity="other">This will permanently delete all %1$d selected conversations.</item>
+        <item quantity="one">Kjo do të fshijë përgjithmonë bisedën e zgjedhur.</item>
+        <item quantity="other">Kjo do të fshijë përgjithmonë të gjitha %1$d bisedat e zgjedhura.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Po fshihet</string>
     <string name="ConversationListFragment_deleting_selected_conversations">Duke fshirë bisedat e zgjedhura…</string>
     <plurals name="ConversationListFragment_conversations_archived">
-        <item quantity="one">Conversation archived</item>
-        <item quantity="other">%1$d conversations archived</item>
+        <item quantity="one">Biseda u arkivua</item>
+        <item quantity="other">Bisedat u arkivuan %1$d</item>
     </plurals>
     <string name="ConversationListFragment_undo">Zhbëje</string>
     <plurals name="ConversationListFragment_moved_conversations_to_inbox">
-        <item quantity="one">Moved conversation to inbox</item>
-        <item quantity="other">Moved %1$d conversations to inbox</item>
+        <item quantity="one">Biseda u transferua te mesazhet hyrëse</item>
+        <item quantity="other">%1$d Bisedat u transferuan te mesazhet hyrëse</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
         <item quantity="one">Lexojeni</item>
@@ -664,8 +664,8 @@
 
     <!-- GV2 invites sent -->
     <plurals name="GroupManagement_invitation_sent">
-        <item quantity="one">Invitation sent</item>
-        <item quantity="other">%1$d invitations sent</item>
+        <item quantity="one">Ftesa u dërgua</item>
+        <item quantity="other">%1$d ftesat u dërguan</item>
     </plurals>
     <string name="GroupManagement_invite_single_user">“%1$s” s\\’mund të shtohet automatikisht te ky grup nga ju.\n\nËshtë ftuar të marrë pjesë, dhe s\\’do të shohë ndonjë mesazh grupi, para se të pranojnë ftesën.</string>
     <string name="GroupManagement_invite_multiple_users">Këta përdorues s\\’mund të shtohen automatikisht te ky grup nga ju.\n\n Janë ftuar të marrin pjesë te grupi, dhe s\\’do të shohin ndonjë mesazh grupi, përpara se të pranojnë ftesat.</string>
@@ -765,8 +765,8 @@
     <string name="PendingMembersActivity_revoke_invite">Shfuqizoje ftesën</string>
     <string name="PendingMembersActivity_revoke_invites">Shfuqizoji ftesat</string>
     <plurals name="PendingMembersActivity_revoke_d_invites">
-        <item quantity="one">Revoke invite</item>
-        <item quantity="other">Revoke %1$d invites</item>
+        <item quantity="one">Anulo ftesën</item>
+        <item quantity="other">Anulo %1$d ftesat</item>
     </plurals>
     <plurals name="PendingMembersActivity_error_revoking_invite">
         <item quantity="one">Gabim gjatë shfuqizimit të ftesës</item>
@@ -785,8 +785,8 @@
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Ky person nuk mund të shtohet në grupet e vjetra.</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">Ky person s\\’mund të shtohet te grupe njoftimesh.</string>
     <plurals name="AddMembersActivity__add_d_members_to_s">
-        <item quantity="one">Add \"%1$s\" to \"%2$s\"?</item>
-        <item quantity="other">Add %3$d members to \"%2$s\"?</item>
+        <item quantity="one">Shto \"%1$s\" te \"%2$s\"?</item>
+        <item quantity="other">Shto %3$d anëtarë te \"%2$s\"?</item>
     </plurals>
     <string name="AddMembersActivity__add">Shto</string>
     <string name="AddMembersActivity__add_members">Shtoni anëtarë</string>
@@ -887,8 +887,8 @@
     </plurals>
 
     <plurals name="GroupMemberList_invited">
-        <item quantity="one">%1$s invited 1 person</item>
-        <item quantity="other">%1$s invited %2$d people</item>
+        <item quantity="one">%1$s ftoi 1 person</item>
+        <item quantity="other">%1$s ftoi %2$d persona</item>
     </plurals>
 
     <!-- CustomNotificationsDialogFragment -->
@@ -926,8 +926,8 @@
     <!-- GV2 Invite Revoke confirmation dialog -->
     <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Doni të shfuqizohet ftesa që u dërgua te %1$s?</string>
     <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
-        <item quantity="one">Do you want to revoke the invite sent by %1$s?</item>
-        <item quantity="other">Do you want to revoke %2$d invites sent by %1$s?</item>
+        <item quantity="one">Dëshiron të anulosh ftesën e dërguar nga %1$s?</item>
+        <item quantity="other">Dëshiron t\'i anulosh %2$d ftesat e dërguara nga %1$s?</item>
     </plurals>
 
     <!-- GroupJoinBottomSheetDialogFragment -->
@@ -1035,8 +1035,8 @@
         <item quantity="other">Dëshironi të fshini artikujt e zgjedhur?</item>
     </plurals>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-        <item quantity="one">This will permanently delete the selected file. Any message text associated with this item will also be deleted.</item>
-        <item quantity="other">This will permanently delete all %1$d selected files. Any message text associated with these items will also be deleted.</item>
+        <item quantity="one">Kjo do të fshijë përgjithmonë skedarin e zgjedhur. Do të fshihet edhe çdo tekst mesazhi i lidhur me këtë artikull.</item>
+        <item quantity="other">Kjo do të fshijë përgjithmonë të gjitha %1$d skedaret e zgjedhura. Do të fshihet edhe çdo tekst mesazhi i lidhur me këtë artikull.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Po fshihet</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">Po fshihen mesazhet…</string>
@@ -1168,13 +1168,13 @@
     <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">S\\’u shtuat dot te Grupi i Ri dhe u ftuat të bëheni pjesë.</string>
     <string name="MessageRecord_chat_session_refreshed">Sesioni i fjalosjes u rifreskua</string>
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
-        <item quantity="one">A member couldn\'t be added to the New Group and has been invited to join.</item>
-        <item quantity="other">%1$s members couldn\'t be added to the New Group and have been invited to join.</item>
+        <item quantity="one">Një anëtar nuk mundi të shtohej në grupin e ri dhe është ftuar të bashkohet.</item>
+        <item quantity="other">%1$s anëtarë nuk mundën të shtoheshin në grupin e ri dhe janë ftuar t\'i bashkohen.</item>
     </plurals>
 
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
-        <item quantity="one">A member couldn\'t be added to the New Group and has been removed.</item>
-        <item quantity="other">%1$s members couldn\'t be added to the New Group and have been removed.</item>
+        <item quantity="one">Një anëtar nuk mundi të shtohej në grupin e ri dhe është hequr.</item>
+        <item quantity="other">%1$s anëtarë nuk mundën të shtoheshin në grupin e ri dhe janë hequr.</item>
     </plurals>
 
     <!-- Profile change updates -->
@@ -1219,31 +1219,31 @@
     <string name="MessageRecord_you_invited_s_to_the_group">Ftuat %1$s te grupi.</string>
     <string name="MessageRecord_s_invited_you_to_the_group">%1$s ju ftoi te grupi.</string>
     <plurals name="MessageRecord_s_invited_members">
-        <item quantity="one">%1$s invited 1 person to the group.</item>
-        <item quantity="other">%1$s invited %2$d people to the group.</item>
+        <item quantity="one">%1$s ftoi te grupi 1 person.</item>
+        <item quantity="other">%1$s ftoi te grupi %2$d persona.</item>
     </plurals>
     <string name="MessageRecord_you_were_invited_to_the_group">U ftuat te grupi.</string>
     <plurals name="MessageRecord_d_people_were_invited_to_the_group">
-        <item quantity="one">1 person was invited to the group.</item>
-        <item quantity="other">%1$d people were invited to the group.</item>
+        <item quantity="one">1 person u ftua në grup.</item>
+        <item quantity="other">%1$d persona u ftuan në grup.</item>
     </plurals>
 
     <!-- GV2 invitation revokes -->
     <plurals name="MessageRecord_you_revoked_invites">
-        <item quantity="one">You revoked an invitation to the group.</item>
-        <item quantity="other">You revoked %1$d invitations to the group.</item>
+        <item quantity="one">Ti anulove një ftesë për te grupi.</item>
+        <item quantity="other">Ti anulove %1$d ftesa për te grupi.</item>
     </plurals>
     <plurals name="MessageRecord_s_revoked_invites">
-        <item quantity="one">%1$s revoked an invitation to the group.</item>
-        <item quantity="other">%1$s revoked %2$d invitations to the group.</item>
+        <item quantity="one">%1$s anuloi një ftesë për te grupi.</item>
+        <item quantity="other">%1$s anuloi %2$d ftesa për te grupi.</item>
     </plurals>
     <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Dikush hodhi poshtë një ftesë për te grupi.</string>
     <string name="MessageRecord_you_declined_the_invitation_to_the_group">Hodhët poshtë ftesën për te grupi.</string>
     <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s shfuqizoi ftesën tuaj ndaj grupit.</string>
     <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">Një përgjegjës shfuqizoi ftesën tuaj ndaj grupit.</string>
     <plurals name="MessageRecord_d_invitations_were_revoked">
-        <item quantity="one">An invitation to the group was revoked.</item>
-        <item quantity="other">%1$d invitations to the group were revoked.</item>
+        <item quantity="one">Një ftesë për te grupi u anulua.</item>
+        <item quantity="other">%1$d ftesa për te grupi u anuluan.</item>
     </plurals>
 
     <!-- GV2 invitation acceptance -->
@@ -1316,8 +1316,8 @@
     <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s kërkoi të bëhet pjesë e grupit përmes lidhjes së grupit.</string>
     <!-- Update message shown when someone requests to join via group link and cancels the request back to back -->
     <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
-        <item quantity="one">%1$s requested and cancelled their request to join via the group link.</item>
-        <item quantity="other">%1$s requested and cancelled %2$d requests to join via the group link.</item>
+        <item quantity="one">%1$s kërkoi dhe anuloi kërkesën e vet për t\'u bashkuar përmes lidhjes së grupit.</item>
+        <item quantity="other">%1$s kërkoi dhe anuloi %2$d kërkesat për t\'u bashkuar përmes lidhjes së grupit.</item>
     </plurals>
 
     <!-- GV2 group link approvals -->
@@ -1450,8 +1450,8 @@
     <string name="OutdatedBuildReminder_update_now">Përditësoje tani</string>
     <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Ky version i Signal-it do të skadojë sot. Përditësojeni me versionin më të freskët.</string>
     <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
-        <item quantity="one">This version of Signal will expire tomorrow. Update to the most recent version.</item>
-        <item quantity="other">This version of Signal will expire in %1$d days. Update to the most recent version.</item>
+        <item quantity="one">Ky version i Signal skadon nesër. Përditësoje me versionin më të ri.</item>
+        <item quantity="other">Ky version i Signal skadon për %1$d ditë. Përditësoje me versionin më të ri.</item>
     </plurals>
 
     <!-- PassphrasePromptActivity -->
@@ -1873,7 +1873,7 @@
 
     <!-- UsernameEditFragment -->
     <!-- Toolbar title when entering from registration -->
-    <string name="UsernameEditFragment__add_a_username">Add a username</string>
+    <string name="UsernameEditFragment__add_a_username">Shto një emër përdoruesi</string>
     <!-- Instructional text at the top of the username edit screen -->
     <string name="UsernameEditFragment__choose_your_username">Zgjidh emrin tënd të përdoruesit</string>
     <string name="UsernameEditFragment_username">Emër përdoruesi</string>

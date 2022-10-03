@@ -1346,9 +1346,9 @@
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">இந்த புதிய அம்சம் பிடித்திருக்கிறதா? ஒரு முறைக்கான நன்கொடை மூலம் சிக்னலை ஆதரிக்க உதவுங்கள்.</string>
     <!-- Update item message shown when we merge two threads together -->
-    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Your message history with %1$s and their number %2$s has been merged.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">%1$s உடனான உங்கள் செய்தி வரலாறு மற்றும் அவற்றின் எண் %2$s இணைக்கப்பட்டது.</string>
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
-    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Your message history with %1$s and another chat that belonged to them has been merged.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">%1$s உடனான உங்கள் செய்தி வரலாறும் அவர்களுக்குச் சொந்தமான மற்றொரு அரட்டையும் இணைக்கப்பட்டது.</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$sகுழு அழைப்பைத் தொடங்கினார்%2$s</string>
@@ -3743,10 +3743,10 @@
     <string name="payment_info_card_hide_this_card">இந்த அட்டையை மறைக்கவா?</string>
     <string name="payment_info_card_hide">மறை</string>
     <!-- Title of save recovery phrase card -->
-    <string name="payment_info_card_save_recovery_phrase">Save recovery phrase</string>
+    <string name="payment_info_card_save_recovery_phrase">மீட்பு சொற்றொடரைச் சேமிக்கவும்</string>
     <string name="payment_info_card_your_recovery_phrase_gives_you">உங்கள் மீட்பு சொற்றொடர் உங்களுக்கு மற்றொரு வழியைத் தருகிறது மீட்டமை உங்கள் கொடுப்பனவுகள் கணக்கு.</string>
     <!-- Button in save recovery phrase card -->
-    <string name="payment_info_card_save_your_phrase">Save your phrase</string>
+    <string name="payment_info_card_save_your_phrase">உங்கள் சொற்றொடரைச் சேமிக்கவும்</string>
     <string name="payment_info_card_update_your_pin">புதுப்பிப்பு உங்கள் பின்</string>
     <string name="payment_info_card_with_a_high_balance">உயர்ந்த நிலையில் சமநிலை, நீங்கள் விரும்பலாம் புதுப்பிப்பு ஒரு எண்ணெழுத்துக்கு பின் க்கு கூட்டு உங்களுக்கு கூடுதல் பாதுகாப்பு கணக்கு.</string>
     <string name="payment_info_card_update_pin">பின்னைப் புதுப்பிக்கவும்</string>
@@ -3771,23 +3771,23 @@
     <string name="PaymentsRecoveryStartFragment__recovery_phrase">மீட்பு சொற்றொடர்</string>
     <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">மீட்பு சொற்றொடரைக் காண்க</string>
     <!-- Title in save recovery phrase screen -->
-    <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Save recovery phrase</string>
+    <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">மீட்பு சொற்றொடரைச் சேமிக்கவும்</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">உள்ளிடவும் மீட்பு சொற்றொடர்</string>
     <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">உங்கள் சமநிலை தானாகவே இருக்கும் மீட்டமை நீங்கள் மீண்டும் நிறுவும் போது Signal நீங்கள் உறுதிப்படுத்தினால் Signal பின். நீங்களும் செய்யலாம்மீட்டமை உங்கள் சமநிலை மீட்பு சொற்றொடரைப் பயன்படுத்துதல், இது ஒரு %1$d-சொல் சொற்றொடர் உங்களுக்கு தனித்துவமானது. அதை எழுதுங்கள்கடை அது ஒரு பாதுகாப்பான இடத்தில்.</string>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
-    <string name="PaymentsRecoveryStartFragment__got_balance">You’ve got a balance! Time to save your recovery phrase—a 24-word key you can use to restore your balance.</string>
+    <string name="PaymentsRecoveryStartFragment__got_balance">நீங்கள் சமநிலையில் உள்ளீர்கள்! உங்கள் மீட்பு சொற்றொடரைச் சேமிப்பதற்கான நேரம்—உங்கள் சமநிலையை மீட்டெடுக்க நீங்கள் பயன்படுத்தக்கூடிய 24-வார்த்தை குறியீடு</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
-    <string name="PaymentsRecoveryStartFragment__time_to_save">Time to save your recovery phrase—a 24-word key you can use to restore your balance. Learn more</string>
+    <string name="PaymentsRecoveryStartFragment__time_to_save">உங்கள் மீட்பு சொற்றொடரைச் சேமிப்பதற்கான நேரம்—உங்கள் சமநிலையை மீட்டெடுக்க நீங்கள் பயன்படுத்தக்கூடிய 24-வார்த்தை குறியீடு மேலும் அறிக</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">உங்கள் மீட்பு சொற்றொடர் ஒரு %1$dசொல் சொற்றொடர் உங்களுக்கு தனித்துவமானது. இந்த சொற்றொடரைப் பயன்படுத்தவும்மீட்டமை உங்கள் சமநிலை.</string>
     <string name="PaymentsRecoveryStartFragment__start">தொடங்கு</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">உள்ளிடவும் கைமுறையாக</string>
     <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">கிளிப்போர்டிலிருந்து ஒட்டவும்</string>
     <!-- Alert dialog title which asks before going back if user wants to save recovery phrase -->
-    <string name="PaymentsRecoveryStartFragment__continue_without_saving">Continue Without Saving?</string>
+    <string name="PaymentsRecoveryStartFragment__continue_without_saving">சேமிக்காமல் தொடரவதா?</string>
     <!-- Alert dialog description to let user know why recovery phrase needs to be saved -->
-    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">Your recovery phrase lets you restore your balance in a worst-case scenario. We strongly recommend you save it.</string>
+    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">உங்கள் மீட்பு சொற்றொடர் மோசமான சூழ்நிலையில் உங்கள் சமநிலையை மீட்டெடுக்க உதவுகிறது. நீங்கள் அதை சேமிக்க பரிந்துரைக்கிறோம்.</string>
     <!-- Alert dialog option to skip recovery phrase -->
-    <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">Skip Recovery Phrase</string>
+    <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">மீட்பு சொற்றொடரைத் தவிர்க்கவும்</string>
     <!-- Alert dialog option to cancel dialog-->
     <string name="PaymentsRecoveryStartFragment__cancel">ரத்து</string>
 
@@ -3943,9 +3943,9 @@
     <!-- Preference title to delete sms -->
     <string name="SmsSettingsFragment__remove_sms_messages">எஸ்.எம்.எஸ் செய்திகளை அகற்று</string>
     <!-- Snackbar text to confirm deletion -->
-    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Removing SMS messages from Signal…</string>
+    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">சிக்னலில் இருந்து எஸ்.எம்.எஸ் செய்திகளை அகற்றுகிறது…</string>
     <!-- Snackbar text to indicate can delete later -->
-    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">You can remove SMS messages from Signal in Settings at any time.</string>
+    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">நீங்கள் எந்த நேரத்திலும் அமைப்புகளில் சென்று சிக்னலில் இருந்து எஸ்.எம்.எஸ் செய்திகளை அகற்றலாம்.</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">செய்திகள்</string>
@@ -4195,17 +4195,17 @@
     <!-- Dialog title when removing a contact -->
     <string name="NewConversationActivity__remove_s">%1$s-ஐ அகற்றுவதா?</string>
     <!-- Dialog message when removing a contact -->
-    <string name="NewConversationActivity__you_wont_see_this_person">You won\'t see this person when searching. You\'ll get a message request if they message you in the future.</string>
+    <string name="NewConversationActivity__you_wont_see_this_person">தேடும் போது இவரைப் பார்க்க முடியாது. எதிர்காலத்தில் அவர்கள் உங்களுக்கு செய்தி அனுப்பினால், நீங்கள் ஒரு செய்தி கோரிக்கையைப் பெறுவீர்கள்.</string>
     <!-- Snackbar message after removing a contact -->
-    <string name="NewConversationActivity__s_has_been_removed">%1$s has been removed</string>
+    <string name="NewConversationActivity__s_has_been_removed">%1$s அகற்றப்பட்டார்</string>
     <!-- Snackbar message after blocking a contact -->
-    <string name="NewConversationActivity__s_has_been_blocked">%1$s has been blocked</string>
+    <string name="NewConversationActivity__s_has_been_blocked">%1$s தடுக்கப்பட்டார்</string>
     <!-- Dialog title when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__unable_to_remove_s">Unable to remove %1$s</string>
+    <string name="NewConversationActivity__unable_to_remove_s">%1$s ஐ அகற்ற முடியவில்லை</string>
     <!-- Dialog message when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__this_person_is_saved_to_your">This person is saved to your device\'s Contacts. Delete them from your Contacts and try again.</string>
+    <string name="NewConversationActivity__this_person_is_saved_to_your">இந்த நபர் உங்கள் சாதனத்தின் தொடர்புகளில் சேமிக்கப்பட்டுள்ளார். உங்கள் தொடர்புகளில் இருந்து அவர்களை நீக்கிவிட்டு மீண்டும் முயற்சிக்கவும்.</string>
     <!-- Dialog action to view contact when they can't be removed otherwise -->
-    <string name="NewConversationActivity__view_contact">View contact</string>
+    <string name="NewConversationActivity__view_contact">தொடர்பைக் காண்க</string>
 
     <!-- ContactFilterView -->
     <string name="ContactFilterView__search_name_or_number">தேடல் பெயர் அல்லது எண்</string>
@@ -4709,7 +4709,7 @@
     <!-- Subtitle for "My Stories" row item when user has not added stories -->
     <string name="StoriesLandingFragment__tap_to_add_a_story">ஒரு ஸ்டோரியைச் சேர்க்க தட்டவும்</string>
     <!-- Displayed when there are no stories to display -->
-    <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now">No recent updates to show right now.</string>
+    <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now">தற்போது காண்பிக்க சமீபத்திய புதுப்பிப்புகள் எதுவும் இல்லை.</string>
     <!-- Context menu option to hide a story -->
     <string name="StoriesLandingItem__hide_story">ஸ்டோரியை மறைக்கவும்</string>
     <!-- Context menu option to unhide a story -->
@@ -4778,9 +4778,9 @@
     <!-- Displayed when viewing a post from another user with no replies -->
     <string name="StoryViewerPageFragment__reply">பதில்</string>
     <!-- Displayed when viewing a post that has failed to send to some users -->
-    <string name="StoryViewerPageFragment__partially_sent">Partially sent. Tap for details</string>
+    <string name="StoryViewerPageFragment__partially_sent">ஓரளவு அனுப்பப்பட்டது. விவரங்களுக்குத் தட்டவும்</string>
     <!-- Displayed when viewing a post that has failed to send -->
-    <string name="StoryViewerPageFragment__send_failed">Send failed. Tap to retry</string>
+    <string name="StoryViewerPageFragment__send_failed">அனுப்புவது தோல்வியுற்றது. மீண்டும் முயற்சிக்கத் தட்டவும்</string>
     <!-- Label for the reply button in story viewer, which will launch the group story replies bottom sheet. -->
     <string name="StoryViewerPageFragment__reply_to_group">குழுவுக்குப் பதிலளிக்கவும்</string>
     <!-- Displayed when a story has no views -->
@@ -5229,7 +5229,7 @@
     <!-- Title of the screen -->
     <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">உங்கள் எஸ்.எம்.எஸ் செய்திகளை ஏற்றுமதி செய்யுங்கள்</string>
     <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">You can export your SMS messages to your phone\'s SMS database. This allows other SMS apps on your phone to access and import them. This does not create a shareable file of your SMS message history.</string>
+    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">உங்கள் எஸ்.எம்.எஸ் செய்திகளை உங்கள் தொலைபேசியின் எஸ்.எம்.எஸ் தரவுத்தளத்திற்கு ஏற்றுமதி செய்யலாம். இது உங்கள் மொபைலில் உள்ள பிற எஸ்.எம்.எஸ் பயன்பாடுகளை அணுகவும் அவற்றை இறக்குமதி செய்யவும் அனுமதிக்கிறது. இது உங்கள் எஸ்.எம்.எஸ் செய்தி வரலாற்றின் பகிரக்கூடிய கோப்பை உருவாக்காது.</string>
     <!-- Button label to begin export -->
     <string name="ExportYourSmsMessagesFragment__continue">தொடரவும்</string>
 
@@ -5255,17 +5255,17 @@
     <!-- Fourth step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_4">4</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">Tap \"Continue\" to open the \"Default apps\" screen in Settings</string>
+    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">அமைப்புகளில் \"இயல்புநிலை பயன்பாடுகள்\" திரையைத் திறக்க \"தொடரவும்\" என்பதைத் தட்டவும்</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">Select \"SMS app\" from the list</string>
+    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">பட்டியலில் இருந்து \"எஸ்.எம்.எஸ் பயன்பாடு\" என்பதைத் தேர்ந்தெடுக்கவும்</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">Choose another app to use for SMS messaging</string>
+    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">எஸ்.எம்.எஸ் செய்தி அனுப்புவதற்குப் பயன்படுத்த மற்றொரு பயன்பாட்டைத் தேர்வுசெய்யவும்</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">Return to Signal</string>
+    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">சிக்னலுக்குத் திரும்பு</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">Open your phone\'s Settings app</string>
+    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">உங்கள் மொபைலின் அமைப்புகள் பயன்பாட்டைத் திறக்கவும்</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">Navigate to \"Apps\" &gt; \"Default apps\" &gt; \"SMS app\"</string>
+    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">\"பயன்பாடுகள்\" &gt; \"இயல்புநிலை பயன்பாடுகள்\" &gt; \"எஸ்.எம்.எஸ் பயன்பாடு\" என்பதற்குச் செல்லவும்</string>
 
     <!-- RemoveSmsMessagesDialogFragment -->
     <!-- Action button to keep messages -->
@@ -5275,13 +5275,13 @@
     <!-- Title of dialog -->
     <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">சிக்னலில் இருந்து எஸ்.எம்.எஸ் செய்திகளை அகற்றுவதா?</string>
     <!-- Message of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">You can now remove SMS messages from Signal to clear up storage space. They will still be available to other SMS apps on your phone even if you remove them.</string>
+    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">சேமிப்பக இடத்தைக் காலியாக்க நீங்கள் இப்போது சிக்னலில் இருந்து எஸ்.எம்.எஸ் செய்திகளை அகற்றலாம். நீங்கள் அவற்றை அகற்றினாலும் உங்கள் மொபைலில் உள்ள பிற எஸ்.எம்.எஸ் பயன்பாடுகளுக்கு அவை தொடர்ந்து கிடைக்கப்பெறும்.</string>
 
     <!-- SetSignalAsDefaultSmsAppFragment -->
     <!-- Title of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">Set Signal as the default SMS app</string>
+    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">சிக்னலை இயல்புநிலை எஸ்.எம்.எஸ் பயன்பாடாக அமைக்கவும்</string>
     <!-- Message of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">To export your SMS messages, you need to set Signal as the default SMS app.</string>
+    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">உங்கள் எஸ்.எம்.எஸ் செய்திகளை ஏற்றுமதி செய்ய, இயல்புநிலை எஸ்.எம்.எஸ் பயன்பாடாக சிக்னலை அமைக்க வேண்டும்.</string>
     <!-- Button label to start export -->
     <string name="SetSignalAsDefaultSmsAppFragment__next">அடுத்தது</string>
 
