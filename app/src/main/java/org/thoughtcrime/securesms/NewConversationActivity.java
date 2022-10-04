@@ -248,7 +248,7 @@ public class NewConversationActivity extends ContactSelectionActivity
 
   private @NonNull ActionItem createMessageActionItem(@NonNull Recipient recipient) {
     return new ActionItem(
-        R.drawable.ic_message_24,
+        R.drawable.ic_chat_message_24,
         getString(R.string.NewConversationActivity__message),
         R.color.signal_colorOnSurface,
         () -> startActivity(ConversationIntents.createBuilder(this, recipient.getId(), -1L).build())
