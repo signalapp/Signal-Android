@@ -1,6 +1,8 @@
 package org.thoughtcrime.securesms.util
 
+import android.os.Build
 import android.view.View
+import androidx.core.graphics.Insets
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.DefaultLifecycleObserver
@@ -13,9 +15,9 @@ object SystemWindowInsetsSetter {
    */
   fun attach(view: View, lifecycleOwner: LifecycleOwner, @WindowInsetsCompat.Type.InsetsType insetType: Int = WindowInsetsCompat.Type.systemBars()) {
     val listener = view.doOnEachLayout {
-      val insets = ViewCompat.getRootWindowInsets(view)?.getInsets(insetType)
+      val insets: Insets? = ViewCompat.getRootWindowInsets(view)?.getInsets(insetType)
 
-      if (insets != null) {
+      if (Build.VERSION.SDK_INT > 29 && insets != null && !insets.isEmpty()) {
         view.setPadding(
           insets.left,
           insets.top,
@@ -39,5 +41,9 @@ object SystemWindowInsetsSetter {
     }
 
     lifecycleOwner.lifecycle.addObserver(lifecycleObserver)
+  }
+
+  private fun Insets.isEmpty(): Boolean {
+    return (top + bottom + right + left) == 0
   }
 }

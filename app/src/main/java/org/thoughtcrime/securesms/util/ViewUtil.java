@@ -20,6 +20,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
+import android.os.Build;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -329,7 +330,7 @@ public final class ViewUtil {
 
   public static int getStatusBarHeight(@NonNull View view) {
     final WindowInsetsCompat rootWindowInsets = ViewCompat.getRootWindowInsets(view);
-    if (rootWindowInsets != null) {
+    if (Build.VERSION.SDK_INT > 29 && rootWindowInsets != null) {
       return rootWindowInsets.getInsets(WindowInsetsCompat.Type.statusBars()).top;
     } else {
       int result     = 0;
@@ -343,7 +344,7 @@ public final class ViewUtil {
 
   public static int getNavigationBarHeight(@NonNull View view) {
     final WindowInsetsCompat rootWindowInsets = ViewCompat.getRootWindowInsets(view);
-    if (rootWindowInsets != null) {
+    if (Build.VERSION.SDK_INT > 29 && rootWindowInsets != null) {
       return rootWindowInsets.getInsets(WindowInsetsCompat.Type.navigationBars()).bottom;
     } else {
       int result     = 0;
