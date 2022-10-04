@@ -358,8 +358,8 @@
     </plurals>
     <string name="ConversationFragment_save_to_sd_card">சேமிப்பில் சேர்க்கவேண்டுமா?</string>
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
-        <item quantity="one">Saving this media to storage will allow any other apps on your device to access it.\n\nContinue?</item>
-        <item quantity="other">Saving all %1$d media to storage will allow any other apps on your device to access them.\n\nContinue?</item>
+        <item quantity="one">இந்த மீடியாவை சேமிப்பகத்தில் சேமிப்பதால் உங்கள் சாதனத்தில் உள்ள மற்ற ஆப்ஸ்கள் இதை அணுக அனுமதிக்கும். \n\nதொடர்வதா?</item>
+        <item quantity="other">எல்லா %1$d மீடியாவையும் சேமிப்பகத்தில் சேமிப்பதால் உங்கள் சாதனத்தில் உள்ள மற்ற ஆப்ஸ்கள் இவற்றை அணுக அனுமதிக்கும்.\n\nதொடர்வதா?</item>
     </plurals>
     <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
         <item quantity="one">சேமிப்பகத்தில் இணைப்பு சேமிக்கும்போது பிழை!</item>
@@ -367,12 +367,12 @@
     </plurals>
     <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">சேமிப்பில் சேர்க இயலவில்லை!</string>
     <plurals name="ConversationFragment_saving_n_attachments">
-        <item quantity="one">Saving attachment</item>
-        <item quantity="other">Saving %1$d attachments</item>
+        <item quantity="one">இணைப்பைச் சேமிக்கிறது</item>
+        <item quantity="other">%1$d இணைப்புகளை சேமிக்கிறது</item>
     </plurals>
     <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="one">Saving attachment to storage…</item>
-        <item quantity="other">Saving %1$d attachments to storage…</item>
+        <item quantity="one">சேமிப்பகத்தில் இணைப்பைச் சேமிக்கிறது…</item>
+        <item quantity="other">சேமிப்பகத்தில் %1$d இணைப்புகளை சேமிக்கிறது…</item>
     </plurals>
     <string name="ConversationFragment_pending">நிலுவையில் உள்ளது…</string>
     <string name="ConversationFragment_push">தரவு (Signal)</string>
@@ -418,19 +418,19 @@
         <item quantity="other">தேர்ந்தெடுக்கப்பட்ட உரையாடலைகளை நீக்கவா?</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">This will permanently delete the selected conversation.</item>
-        <item quantity="other">This will permanently delete all %1$d selected conversations.</item>
+        <item quantity="one">இது தேர்ந்தெடுக்கப்பட்ட உரையாடலை நிரந்தரமாக நீக்கும்.</item>
+        <item quantity="other">இது தேர்ந்தெடுக்கப்பட்ட அனைத்து %1$d உரையாடல்களையும் நிரந்தரமாக நீக்கும்.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">நீக்கப்படுகிறது</string>
     <string name="ConversationListFragment_deleting_selected_conversations">தேர்ந்தெடுக்கப்பட்ட உரையாடலைகள் நீக்கப்படுகிறது …</string>
     <plurals name="ConversationListFragment_conversations_archived">
-        <item quantity="one">Conversation archived</item>
-        <item quantity="other">%1$d conversations archived</item>
+        <item quantity="one">உரையாடல் காப்பகப்படுத்தப்பட்டது</item>
+        <item quantity="other">%1$d உரையாடல்கள் காப்பகப்படுத்தப்பட்டது</item>
     </plurals>
     <string name="ConversationListFragment_undo">செயல்தவிர்</string>
     <plurals name="ConversationListFragment_moved_conversations_to_inbox">
-        <item quantity="one">Moved conversation to inbox</item>
-        <item quantity="other">Moved %1$d conversations to inbox</item>
+        <item quantity="one">உரையாடல் இன்பாக்ஸுக்கு நகர்த்தப்பட்டது</item>
+        <item quantity="other">%1$d உரையாடல்கள் இன்பாக்ஸுக்கு நகர்த்தப்பட்டது</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
         <item quantity="one">படித்தது</item>
@@ -664,8 +664,8 @@
 
     <!-- GV2 invites sent -->
     <plurals name="GroupManagement_invitation_sent">
-        <item quantity="one">Invitation sent</item>
-        <item quantity="other">%1$d invitations sent</item>
+        <item quantity="one">அழைப்பிதழ் அனுப்பப்பட்டது</item>
+        <item quantity="other">%1$d அழைப்பிதழ்கள் அனுப்பப்பட்டன</item>
     </plurals>
     <string name="GroupManagement_invite_single_user">“%1$s” ஐ தானாக இந்த குழுவில் சேர்க்க முடியாது. குழுவில் சேர அவர்கள் அழைக்கப்பட்டுள்ளனர். எந்தவொரு குழு செய்திகளையும் அவர்கள் ஏற்றுக்கொள்ளும் வரை பார்க்க மாட்டார்கள்.</string>
     <string name="GroupManagement_invite_multiple_users">இந்த பயனர்களை இந்த குழுவில் தானாக உங்களால் சேர்க்க முடியாது. குழுவில் சேர அவர்கள் அழைக்கப்பட்டுள்ளனர், அவர்கள் ஏற்றுக்கொள்ளும் வரை எந்த குழு செய்திகளையும் பார்க்க மாட்டார்கள்.</string>
@@ -765,8 +765,8 @@
     <string name="PendingMembersActivity_revoke_invite">அழைப்பைத் திரும்பப்பெறுங்கள்</string>
     <string name="PendingMembersActivity_revoke_invites">அழைப்புகளைத் திரும்பப் பெறுங்கள்</string>
     <plurals name="PendingMembersActivity_revoke_d_invites">
-        <item quantity="one">Revoke invite</item>
-        <item quantity="other">Revoke %1$d invites</item>
+        <item quantity="one">அழைப்பை திரும்பப் பெறுங்கள்</item>
+        <item quantity="other">%1$d அழைப்புகளை திரும்பப் பெறுங்கள்</item>
     </plurals>
     <plurals name="PendingMembersActivity_error_revoking_invite">
         <item quantity="one">அழைப்புகளைத் திரும்பப் பெறுவதில் பிழை</item>
@@ -785,8 +785,8 @@
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">இந்த நபரை பழைய மரபு குழுக்களில் சேர்க்க முடியாது.</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">இந்த நபரை அறிவிப்பில் சேர்க்க முடியாது குழுக்கள்.</string>
     <plurals name="AddMembersActivity__add_d_members_to_s">
-        <item quantity="one">Add \"%1$s\" to \"%2$s\"?</item>
-        <item quantity="other">Add %3$d members to \"%2$s\"?</item>
+        <item quantity="one">\"%2$s\" -இல் \"%1$s\" உறுப்பினரைச் சேர்க்கலாமா?</item>
+        <item quantity="other">\"%2$s\" -இல் %3$d உறுப்பினர்களை சேர்க்கலாமா?</item>
     </plurals>
     <string name="AddMembersActivity__add">சேர்க்கவும்</string>
     <string name="AddMembersActivity__add_members">உறுப்பினர்களைச் சேர்க்கவும்</string>
@@ -887,8 +887,8 @@
     </plurals>
 
     <plurals name="GroupMemberList_invited">
-        <item quantity="one">%1$s invited 1 person</item>
-        <item quantity="other">%1$s invited %2$d people</item>
+        <item quantity="one">%1$s ஒருவரை அழைத்தார்</item>
+        <item quantity="other">%1$s அவர்கள் %2$d நபர்களை அழைத்தார்</item>
     </plurals>
 
     <!-- CustomNotificationsDialogFragment -->
@@ -926,8 +926,8 @@
     <!-- GV2 Invite Revoke confirmation dialog -->
     <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">நீங்கள் %1$s அவர்களுக்கு அனுப்பிய அழைப்பை ரத்து செய்ய விரும்புகிறீர்களா?</string>
     <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
-        <item quantity="one">Do you want to revoke the invite sent by %1$s?</item>
-        <item quantity="other">Do you want to revoke %2$d invites sent by %1$s?</item>
+        <item quantity="one">%1$s அனுப்பிய அழைப்பை நீங்கள் திரும்பப் பெற விரும்புகிறீர்களா?</item>
+        <item quantity="other">%1$s அனுப்பிய %2$d அழைப்புகளை நீங்கள் திரும்பப் பெற விரும்புகிறீர்களா?</item>
     </plurals>
 
     <!-- GroupJoinBottomSheetDialogFragment -->
@@ -1035,8 +1035,8 @@
         <item quantity="other">தேர்ந்தெடுக்கப்பட்ட உருப்படிகளை நீக்கவா?</item>
     </plurals>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-        <item quantity="one">This will permanently delete the selected file. Any message text associated with this item will also be deleted.</item>
-        <item quantity="other">This will permanently delete all %1$d selected files. Any message text associated with these items will also be deleted.</item>
+        <item quantity="one">இது தேர்ந்தெடுக்கப்பட்ட கோப்பையை நிரந்தரமாக நீக்கும். இந்த உருப்படியுடன் தொடர்புடைய எந்தவொரு செய்தி உரையும் நீக்கப்படும்.</item>
+        <item quantity="other">இது தேர்ந்தெடுக்கப்பட்ட %1$d கோப்புகள் அனைத்தையும் நிரந்தரமாக நீக்கும். இந்த உருப்படிகளுடன் தொடர்புடைய எந்தவொரு செய்தி உரையும் நீக்கப்படும்.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">நீக்கப்படுகிறது</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">செய்திகள் நீக்கப்படுகிறது…</string>
@@ -1168,13 +1168,13 @@
     <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">நீங்கள் புதிய குழுவில் சேர்க்கப்படவில்லை. நீங்கள் இந்தக் குழுவில் சேருவதற்கு அழைக்கப்பட்டுள்ளீர்கள்</string>
     <string name="MessageRecord_chat_session_refreshed">உரையாடல் அமர்வு புதுப்பிக்கப்பட்டது</string>
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
-        <item quantity="one">A member couldn\'t be added to the New Group and has been invited to join.</item>
-        <item quantity="other">%1$s members couldn\'t be added to the New Group and have been invited to join.</item>
+        <item quantity="one">புதிய குழுவில் ஒரு உறுப்பினரைச் சேர்க்க முடியவில்லை மற்றும் அவர் குழுவில் சேர அழைக்கப்பட்டுள்ளார்.</item>
+        <item quantity="other">புதிய குழுவில் %1$s உறுப்பினர்களைச் சேர்க்க முடியவில்லை மற்றும் அவர்கள் குழுவில் சேர அழைக்கப்பட்டுள்ளனர்.</item>
     </plurals>
 
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
-        <item quantity="one">A member couldn\'t be added to the New Group and has been removed.</item>
-        <item quantity="other">%1$s members couldn\'t be added to the New Group and have been removed.</item>
+        <item quantity="one">புதிய குழுவில் ஒரு உறுப்பினரைச் சேர்க்க முடியவில்லை மேலும் அவர் அகற்றப்பட்டார்.</item>
+        <item quantity="other">புதிய குழுவில் %1$s உறுப்பினர்களைச் சேர்க்க முடியவில்லை மேலும் அவர்கள் அகற்றப்பட்டனர்.</item>
     </plurals>
 
     <!-- Profile change updates -->
@@ -1219,31 +1219,31 @@
     <string name="MessageRecord_you_invited_s_to_the_group">நீங்கள் குழுவிற்கு %1$sஐ அழைத்தீர்கள்.</string>
     <string name="MessageRecord_s_invited_you_to_the_group">%1$s அவர்கள் உங்களை குழுவிற்கு அழைத்தார்கள்.</string>
     <plurals name="MessageRecord_s_invited_members">
-        <item quantity="one">%1$s invited 1 person to the group.</item>
-        <item quantity="other">%1$s invited %2$d people to the group.</item>
+        <item quantity="one">%1$s 1 நபரை குழுவிற்கு அழைத்தார்.</item>
+        <item quantity="other">%1$s அவர்கள் %2$d நபர்களை குழுவிற்கு அழைத்தார்.</item>
     </plurals>
     <string name="MessageRecord_you_were_invited_to_the_group">நீங்கள் குழுவிற்கு அழைக்கப்பட்டனர்.</string>
     <plurals name="MessageRecord_d_people_were_invited_to_the_group">
-        <item quantity="one">1 person was invited to the group.</item>
-        <item quantity="other">%1$d people were invited to the group.</item>
+        <item quantity="one">1 நபர் குழுவிற்கு அழைக்கப்பட்டார்.</item>
+        <item quantity="other">%1$d நபர்கள் குழுவிற்கு அழைக்கப்பட்டனர்.</item>
     </plurals>
 
     <!-- GV2 invitation revokes -->
     <plurals name="MessageRecord_you_revoked_invites">
-        <item quantity="one">You revoked an invitation to the group.</item>
-        <item quantity="other">You revoked %1$d invitations to the group.</item>
+        <item quantity="one">குழுவிற்கான அழைப்பை நீங்கள் ரத்து செய்தீர்கள்.</item>
+        <item quantity="other">குழுவிற்கான %1$d அழைப்புகளை நீங்கள் ரத்து செய்தீர்கள்.</item>
     </plurals>
     <plurals name="MessageRecord_s_revoked_invites">
-        <item quantity="one">%1$s revoked an invitation to the group.</item>
-        <item quantity="other">%1$s revoked %2$d invitations to the group.</item>
+        <item quantity="one">%1$s குழுவிற்கான அழைப்பை ரத்து செய்தார்.</item>
+        <item quantity="other">குழுவிற்கான %2$d அழைப்புகளை %1$s ரத்து செய்தார்.</item>
     </plurals>
     <string name="MessageRecord_someone_declined_an_invitation_to_the_group">குழுவிற்கான அழைப்பை யாரோ மறுத்துவிட்டனர்.</string>
     <string name="MessageRecord_you_declined_the_invitation_to_the_group">குழுவிற்கான அழைப்பை நீங்கள் மறுத்துவிட்டீர்கள்.</string>
     <string name="MessageRecord_s_revoked_your_invitation_to_the_group">குழுவிற்கான உங்கள் அழைப்பை %1$s அவர்கள் ரத்து செய்தனர்.</string>
     <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">குழுவிற்கு உங்கள் அழைப்பை ஒரு நிர்வாகி ரத்து செய்தார்.</string>
     <plurals name="MessageRecord_d_invitations_were_revoked">
-        <item quantity="one">An invitation to the group was revoked.</item>
-        <item quantity="other">%1$d invitations to the group were revoked.</item>
+        <item quantity="one">குழுவிற்கான ஓர் அழைப்பு ரத்து செய்யப்பட்டது.</item>
+        <item quantity="other">குழுவிற்கான %1$d அழைப்புகள் ரத்து செய்யப்பட்டன.</item>
     </plurals>
 
     <!-- GV2 invitation acceptance -->
@@ -1316,8 +1316,8 @@
     <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$sகுழு இணைப்பைப் பயன்படுத்தி குழுவில் சேர அவர் கோரியுள்ளார்.</string>
     <!-- Update message shown when someone requests to join via group link and cancels the request back to back -->
     <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
-        <item quantity="one">%1$s requested and cancelled their request to join via the group link.</item>
-        <item quantity="other">%1$s requested and cancelled %2$d requests to join via the group link.</item>
+        <item quantity="one">%1$s கோரிக்கை விடுத்தார் மற்றும் குழு இணைப்பு மூலம் சேருவதற்கான கோரிக்கையை ரத்து செய்துள்ளார்.</item>
+        <item quantity="other">%1$s கோரிக்கை விடுத்தார் மற்றும் குழு இணைப்பு மூலம் சேருவதற்கான %2$d கோரிக்கைகளை ரத்து செய்துள்ளார்.</item>
     </plurals>
 
     <!-- GV2 group link approvals -->
@@ -1450,8 +1450,8 @@
     <string name="OutdatedBuildReminder_update_now">இப்பொழுது மேம்படுத்து</string>
     <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">சிக்னலின் இந்த பதிப்பு இன்று காலாவதியாகும். மிக சமீபத்திய பதிப்பிற்கு புதுப்பிக்கவும்.</string>
     <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
-        <item quantity="one">This version of Signal will expire tomorrow. Update to the most recent version.</item>
-        <item quantity="other">This version of Signal will expire in %1$d days. Update to the most recent version.</item>
+        <item quantity="one">சிக்னலின் இந்த பதிப்பு நாளை காலாவதியாகும். மிக சமீபத்திய பதிப்பிற்கு புதுப்பிக்கவும்.</item>
+        <item quantity="other">சிக்னலின் இந்த பதிப்பு %1$d நாட்களில் காலாவதியாகும். மிக சமீபத்திய பதிப்பிற்கு புதுப்பிக்கவும்.</item>
     </plurals>
 
     <!-- PassphrasePromptActivity -->
@@ -1873,7 +1873,7 @@
 
     <!-- UsernameEditFragment -->
     <!-- Toolbar title when entering from registration -->
-    <string name="UsernameEditFragment__add_a_username">Add a username</string>
+    <string name="UsernameEditFragment__add_a_username">ஒரு பயனர் பெயரைச் சேர்க்கவும்</string>
     <!-- Instructional text at the top of the username edit screen -->
     <string name="UsernameEditFragment__choose_your_username">உங்கள் பயனர்பெயரைத் தேர்வு செய்யவும்</string>
     <string name="UsernameEditFragment_username">பயனர்பெயர்</string>
@@ -2484,13 +2484,13 @@
     <string name="HelpFragment__could_not_upload_logs">பதிவுகளை பதிவேற்ற முடியவில்லை</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">சிக்கலைப் புரிந்துகொள்ள எங்களுக்கு உதவ முடிந்தவரை விளக்கமாகச் சொல்லுங்கள்.</string>
     <string-array name="HelpFragment__categories_4">
-        <item>\\-\\- Please select an option \\-\\-</item>
+        <item>\\-\\- தயவுசெய்து ஒரு விருப்பத்தைத் தேர்ந்தெடுக்கவும் \\-\\-</item>
         <item>ஏதோ வேலை செய்யவில்லை</item>
         <item>சிறப்பு விண்ணப்பம்</item>
         <item>கேள்வி</item>
         <item>பின்னூட்டம்</item>
         <item>மற்றவை </item>
-        <item>Payments (MobileCoin)</item>
+        <item>கட்டணங்கள் (MobileCoin)</item>
         <item>Donations &amp; Badges</item>
     </string-array>
 

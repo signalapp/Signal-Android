@@ -77,10 +77,10 @@
 
     <!-- AppProtectionPreferenceFragment -->
     <plurals name="AppProtectionPreferenceFragment_minutes">
-        <item quantity="one">%1$d minute</item>
-        <item quantity="few">%1$d minutes</item>
-        <item quantity="many">%1$d minutes</item>
-        <item quantity="other">%1$d minutes</item>
+        <item quantity="one">%1$d minuta</item>
+        <item quantity="few">%1$d minute</item>
+        <item quantity="many">%1$d minuta</item>
+        <item quantity="other">%1$d minuta</item>
     </plurals>
 
     <!-- DraftDatabase -->
@@ -347,46 +347,46 @@
 
     <!-- ConversationAdapter -->
     <plurals name="ConversationAdapter_n_unread_messages">
-        <item quantity="one">%1$d unread message</item>
-        <item quantity="few">%1$d unread messages</item>
-        <item quantity="many">%1$d unread messages</item>
-        <item quantity="other">%1$d unread messages</item>
+        <item quantity="one">%1$d nepročitana poruka</item>
+        <item quantity="few">%1$d nepročitane poruke</item>
+        <item quantity="many">%1$d nepročitanih poruka</item>
+        <item quantity="other">%1$d nepročitanih poruka</item>
     </plurals>
 
     <!-- ConversationFragment -->
     <!-- Toast text when contacts activity is not found -->
     <string name="ConversationFragment__contacts_app_not_found">Nije pronađena aplikacija za praćenje kontakata.</string>
     <plurals name="ConversationFragment_delete_selected_messages">
-        <item quantity="one">Delete selected message?</item>
-        <item quantity="few">Delete selected messages?</item>
-        <item quantity="many">Delete selected messages?</item>
-        <item quantity="other">Delete selected messages?</item>
+        <item quantity="one">Izbrisati odabranu poruku?</item>
+        <item quantity="few">Izbrisati odabrane poruke?</item>
+        <item quantity="many">Izbrisati odabrane poruke?</item>
+        <item quantity="other">Izbrisati odabrane poruke?</item>
     </plurals>
     <string name="ConversationFragment_save_to_sd_card">Želite li spremiti u prostor za pohranu?</string>
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
-        <item quantity="one">Saving this media to storage will allow any other apps on your device to access it.\n\nContinue?</item>
-        <item quantity="few">Saving all %1$d media to storage will allow any other apps on your device to access them.\n\nContinue?</item>
-        <item quantity="many">Saving all %1$d media to storage will allow any other apps on your device to access them.\n\nContinue?</item>
-        <item quantity="other">Saving all %1$d media to storage will allow any other apps on your device to access them.\n\nContinue?</item>
+        <item quantity="one">Spremanje ovog medijskoga zapisa u prostor za pohranu omogućit će svim ostalim aplikacijama na vašem uređaju da mu pristupe.\n\nNastaviti?</item>
+        <item quantity="few">Spremanje ova %1$d medijska zapisa u prostor za pohranu omogućit će svim ostalim aplikacijama na vašem uređaju da im pristupe.\n\nNastaviti?</item>
+        <item quantity="many">Spremanje ovih %1$d medijskih zapisa u prostor za pohranu omogućit će svim ostalim aplikacijama na vašem uređaju da im pristupe.\n\nNastaviti?</item>
+        <item quantity="other">Spremanje ovih %1$d medijskih zapisa u prostor za pohranu omogućiti će svim ostalim aplikacijama na vašem uređaju da im pristupe.\n\nNastaviti?</item>
     </plurals>
     <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
-        <item quantity="one">Error while saving attachment to storage!</item>
-        <item quantity="few">Error while saving attachments to storage!</item>
-        <item quantity="many">Error while saving attachments to storage!</item>
-        <item quantity="other">Error while saving attachments to storage!</item>
+        <item quantity="one">Pogreška prilikom spremanja privitka u prostor za pohranu!</item>
+        <item quantity="few">Pogreška prilikom spremanja privitaka u prostor za pohranu!</item>
+        <item quantity="many">Pogreška prilikom spremanja privitaka u prostor za pohranu!</item>
+        <item quantity="other">Pogreška prilikom spremanja privitaka u prostor za pohranu!</item>
     </plurals>
     <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Nije moguće zapisivati u prostor za pohranu!</string>
     <plurals name="ConversationFragment_saving_n_attachments">
-        <item quantity="one">Saving attachment</item>
-        <item quantity="few">Saving %1$d attachments</item>
-        <item quantity="many">Saving %1$d attachments</item>
-        <item quantity="other">Saving %1$d attachments</item>
+        <item quantity="one">Spremanje privitka</item>
+        <item quantity="few">Spremanje %1$d privitka</item>
+        <item quantity="many">Spremanje %1$d privitaka</item>
+        <item quantity="other">Spremanje %1$d privitaka</item>
     </plurals>
     <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="one">Saving attachment to storage…</item>
-        <item quantity="few">Saving %1$d attachments to storage…</item>
-        <item quantity="many">Saving %1$d attachments to storage…</item>
-        <item quantity="other">Saving %1$d attachments to storage…</item>
+        <item quantity="one">Spremanje privitka u prostor za pohranu…</item>
+        <item quantity="few">Spremanje %1$d privitka u prostor za pohranu…</item>
+        <item quantity="many">Spremanje %1$d privitaka u prostor za pohranu…</item>
+        <item quantity="other">Spremanje %1$d privitaka u prostor za pohranu…</item>
     </plurals>
     <string name="ConversationFragment_pending">U tijeku…</string>
     <string name="ConversationFragment_push">Internet (Signal)</string>
@@ -428,93 +428,93 @@
     <string name="ConversationFragment__blocked">Blokirani</string>
 
     <plurals name="ConversationListFragment_delete_selected_conversations">
-        <item quantity="one">Delete selected conversation?</item>
-        <item quantity="few">Delete selected conversations?</item>
-        <item quantity="many">Delete selected conversations?</item>
-        <item quantity="other">Delete selected conversations?</item>
+        <item quantity="one">Izbrisati odabrani razgovor?</item>
+        <item quantity="few">Izbrisati odabrane razgovore?</item>
+        <item quantity="many">Izbrisati odabrane razgovore?</item>
+        <item quantity="other">Izbrisati odabrane razgovore?</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">This will permanently delete the selected conversation.</item>
-        <item quantity="few">This will permanently delete all %1$d selected conversations.</item>
-        <item quantity="many">This will permanently delete all %1$d selected conversations.</item>
-        <item quantity="other">This will permanently delete all %1$d selected conversations.</item>
+        <item quantity="one">Ovo će trajno izbrisati odabrani razgovor.</item>
+        <item quantity="few">Ovo će trajno izbrisati %1$d odabrana razgovora.</item>
+        <item quantity="many">Ovo će trajno izbrisati %1$d odabranih razgovora.</item>
+        <item quantity="other">Ovo će trajno izbrisati %1$d odabranih razgovora.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Brisanje</string>
     <string name="ConversationListFragment_deleting_selected_conversations">Brisanje odabranih razgovora…</string>
     <plurals name="ConversationListFragment_conversations_archived">
-        <item quantity="one">Conversation archived</item>
-        <item quantity="few">%1$d conversations archived</item>
-        <item quantity="many">%1$d conversations archived</item>
-        <item quantity="other">%1$d conversations archived</item>
+        <item quantity="one">Razgovor je arhiviran</item>
+        <item quantity="few">%1$d razgovora su arhivirana</item>
+        <item quantity="many">%1$d razgovora je arhivirano</item>
+        <item quantity="other">%1$d razgovora je arhivirano</item>
     </plurals>
     <string name="ConversationListFragment_undo">Poništi</string>
     <plurals name="ConversationListFragment_moved_conversations_to_inbox">
-        <item quantity="one">Moved conversation to inbox</item>
-        <item quantity="few">Moved %1$d conversations to inbox</item>
-        <item quantity="many">Moved %1$d conversations to inbox</item>
-        <item quantity="other">Moved %1$d conversations to inbox</item>
+        <item quantity="one">Razgovor je premješten u pristiglu poštu</item>
+        <item quantity="few">%1$d razgovora su premještena u pristiglu poštu</item>
+        <item quantity="many">%1$d razgovora je premješteno u pristiglu poštu</item>
+        <item quantity="other">%1$d razgovora je premješteno u pristiglu poštu</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
-        <item quantity="one">Read</item>
-        <item quantity="few">Read</item>
-        <item quantity="many">Read</item>
-        <item quantity="other">Read</item>
+        <item quantity="one">Pročitano</item>
+        <item quantity="few">Pročitano</item>
+        <item quantity="many">Pročitano</item>
+        <item quantity="other">Pročitano</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
-        <item quantity="one">Unread</item>
-        <item quantity="few">Unread</item>
-        <item quantity="many">Unread</item>
-        <item quantity="other">Unread</item>
+        <item quantity="one">Nepročitano</item>
+        <item quantity="few">Nepročitano</item>
+        <item quantity="many">Nepročitano</item>
+        <item quantity="other">Nepročitano</item>
     </plurals>
     <plurals name="ConversationListFragment_pin_plural">
-        <item quantity="one">Pin</item>
-        <item quantity="few">Pin</item>
-        <item quantity="many">Pin</item>
-        <item quantity="other">Pin</item>
+        <item quantity="one">Prikvači</item>
+        <item quantity="few">Prikvači</item>
+        <item quantity="many">Prikvači</item>
+        <item quantity="other">Prikvači</item>
     </plurals>
     <plurals name="ConversationListFragment_unpin_plural">
-        <item quantity="one">Unpin</item>
-        <item quantity="few">Unpin</item>
-        <item quantity="many">Unpin</item>
-        <item quantity="other">Unpin</item>
+        <item quantity="one">Otkvači</item>
+        <item quantity="few">Otkvači</item>
+        <item quantity="many">Otkvači</item>
+        <item quantity="other">Otkvači</item>
     </plurals>
     <plurals name="ConversationListFragment_mute_plural">
-        <item quantity="one">Mute</item>
-        <item quantity="few">Mute</item>
-        <item quantity="many">Mute</item>
-        <item quantity="other">Mute</item>
+        <item quantity="one">Utišaj</item>
+        <item quantity="few">Utišaj</item>
+        <item quantity="many">Utišaj</item>
+        <item quantity="other">Utišaj</item>
     </plurals>
     <plurals name="ConversationListFragment_unmute_plural">
-        <item quantity="one">Unmute</item>
-        <item quantity="few">Unmute</item>
-        <item quantity="many">Unmute</item>
-        <item quantity="other">Unmute</item>
+        <item quantity="one">Uključi zvuk</item>
+        <item quantity="few">Uključi zvuk</item>
+        <item quantity="many">Uključi zvuk</item>
+        <item quantity="other">Uključi zvuk</item>
     </plurals>
     <string name="ConversationListFragment_select">Odaberi</string>
     <plurals name="ConversationListFragment_archive_plural">
-        <item quantity="one">Archive</item>
-        <item quantity="few">Archive</item>
-        <item quantity="many">Archive</item>
-        <item quantity="other">Archive</item>
+        <item quantity="one">Arhiviraj</item>
+        <item quantity="few">Arhiviraj</item>
+        <item quantity="many">Arhiviraj</item>
+        <item quantity="other">Arhiviraj</item>
     </plurals>
     <plurals name="ConversationListFragment_unarchive_plural">
-        <item quantity="one">Unarchive</item>
-        <item quantity="few">Unarchive</item>
-        <item quantity="many">Unarchive</item>
-        <item quantity="other">Unarchive</item>
+        <item quantity="one">Vrati iz arhive</item>
+        <item quantity="few">Vrati iz arhive</item>
+        <item quantity="many">Vrati iz arhive</item>
+        <item quantity="other">Vrati iz arhive</item>
     </plurals>
     <plurals name="ConversationListFragment_delete_plural">
-        <item quantity="one">Delete</item>
-        <item quantity="few">Delete</item>
-        <item quantity="many">Delete</item>
-        <item quantity="other">Delete</item>
+        <item quantity="one">Izbriši</item>
+        <item quantity="few">Izbriši</item>
+        <item quantity="many">Izbriši</item>
+        <item quantity="other">Izbriši</item>
     </plurals>
     <string name="ConversationListFragment_select_all">Odaberi sve</string>
     <plurals name="ConversationListFragment_s_selected">
-        <item quantity="one">%1$d selected</item>
-        <item quantity="few">%1$d selected</item>
-        <item quantity="many">%1$d selected</item>
-        <item quantity="other">%1$d selected</item>
+        <item quantity="one">%1$d odabran</item>
+        <item quantity="few">%1$d odabrana</item>
+        <item quantity="many">%1$d odabranih</item>
+        <item quantity="other">%1$d odabranih</item>
     </plurals>
 
     <!-- Show in conversation list overflow menu to open selection bottom sheet -->
@@ -654,10 +654,10 @@
 
     <!-- PendingGroupJoinRequestsReminder -->
     <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
-        <item quantity="one">%1$d pending member request.</item>
-        <item quantity="few">%1$d pending member requests.</item>
-        <item quantity="many">%1$d pending member requests.</item>
-        <item quantity="other">%1$d pending member requests.</item>
+        <item quantity="one">%1$d zahtjev za članstvo na čekanju.</item>
+        <item quantity="few">%1$d zahtjeva za članstvo na čekanju.</item>
+        <item quantity="many">%1$d zahtjeva za članstvo na čekanju.</item>
+        <item quantity="other">%1$d zahtjeva za članstvo na čekanju.</item>
     </plurals>
     <string name="PendingGroupJoinRequestsReminder_view">Pregledaj</string>
 
@@ -708,10 +708,10 @@
 
     <!-- GV2 invites sent -->
     <plurals name="GroupManagement_invitation_sent">
-        <item quantity="one">Invitation sent</item>
-        <item quantity="few">%1$d invitations sent</item>
-        <item quantity="many">%1$d invitations sent</item>
-        <item quantity="other">%1$d invitations sent</item>
+        <item quantity="one">Pozivnica je poslana</item>
+        <item quantity="few">%1$d poslane pozivnice</item>
+        <item quantity="many">%1$d poslanih pozivnica</item>
+        <item quantity="other">%1$d poslanih pozivnica</item>
     </plurals>
     <string name="GroupManagement_invite_single_user">Ne možete automatski dodati \"%1$s\" u grupu.\n\nKorisnik je pozvan i neće vidjeti poruke grupe dok ne prihvati pozivnicu.</string>
     <string name="GroupManagement_invite_multiple_users">Ne možete automatski dodati ove korisnike u grupu.\n\nKorisnik je pozvan u grupu i neće vidjeti poruke grupe dok ne prihvati pozivnicu.</string>
@@ -722,16 +722,16 @@
     <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Sva povijest poruka i medijskih zapisa sačuvani su od prije nadogradnje.</string>
     <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">Morati će te prihvatiti pozivnicu da se ponovno pridruži ovoj grupi i nećete primati poruke grupe dok ne prihvatite:</string>
     <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
-        <item quantity="one">This member will need to accept an invite to join this group again and will not receive group messages until they accept:</item>
-        <item quantity="few">These members will need to accept an invite to join this group again and will not receive group messages until they accept:</item>
-        <item quantity="many">These members will need to accept an invite to join this group again and will not receive group messages until they accept:</item>
-        <item quantity="other">These members will need to accept an invite to join this group again and will not receive group messages until they accept:</item>
+        <item quantity="one">Ovaj će član morati prihvatiti pozivnicu da bi se ponovno pridružio grupi i neće primati poruke grupe dok ne prihvati:</item>
+        <item quantity="few">Ovi će članovi morati prihvatiti pozivnicu da bi se ponovno pridružili grupi i neće primati poruke grupe dok ne prihvate:</item>
+        <item quantity="many">Ovi će članovi morati prihvatiti pozivnicu da bi se ponovno pridružili grupi i neće primati poruke grupe dok ne prihvate:</item>
+        <item quantity="other">Ovi će članovi morati prihvatiti pozivnicu da bi se ponovno pridružili grupi i neće primati poruke grupe dok ne prihvate:</item>
     </plurals>
     <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
-        <item quantity="one">This member was removed from the group and will not be able to rejoin until they upgrade:</item>
-        <item quantity="few">These members were removed from the group and will not be able to rejoin until they upgrade:</item>
-        <item quantity="many">These members were removed from the group and will not be able to rejoin until they upgrade:</item>
-        <item quantity="other">These members were removed from the group and will not be able to rejoin until they upgrade:</item>
+        <item quantity="one">Ovaj je član uklonjen iz grupe i neće se moći pridružiti grupi dok ne ažurira:</item>
+        <item quantity="few">Ovi su članovi uklonjeni iz grupe i neće se moći pridružiti grupi dok ne ažuriraju:</item>
+        <item quantity="many">Ovi su članovi uklonjeni iz grupe i neće se moći pridružiti grupi dok ne ažuriraju:</item>
+        <item quantity="other">Ovi su članovi uklonjeni iz grupe i neće se moći pridružiti grupi dok ne ažuriraju:</item>
     </plurals>
 
     <!-- GroupsV1MigrationInitiationBottomSheetDialogFragment -->
@@ -742,63 +742,63 @@
     <string name="GroupsV1MigrationInitiation_encountered_a_network_error">Došlo je do mrežne pogreške. Pokušajte ponovno kasnije.</string>
     <string name="GroupsV1MigrationInitiation_failed_to_upgrade">Ažuriranje nije uspjelo.</string>
     <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
-        <item quantity="one">This member will need to accept an invite to join this group again and will not receive group messages until they accept:</item>
-        <item quantity="few">These members will need to accept an invite to join this group again and will not receive group messages until they accept:</item>
-        <item quantity="many">These members will need to accept an invite to join this group again and will not receive group messages until they accept:</item>
-        <item quantity="other">These members will need to accept an invite to join this group again and will not receive group messages until they accept:</item>
+        <item quantity="one">Ovaj će član morati prihvatiti pozivnicu da bi se ponovno pridružio grupi i neće primati grupne poruke dok ne prihvati:</item>
+        <item quantity="few">Ovi će članovi morati prihvatiti pozivnicu da bi se ponovno pridružili grupi i neće primati poruke grupe dok ne prihvate:</item>
+        <item quantity="many">Ovi će članovi morati prihvatiti pozivnicu da bi se ponovno pridružili grupi i neće primati poruke grupe dok ne prihvate:</item>
+        <item quantity="other">Ovi će članovi morati prihvatiti pozivnicu da bi se ponovno pridružili grupi i neće primati poruke grupe dok ne prihvate:</item>
     </plurals>
     <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
-        <item quantity="one">This member is not capable of joining New Groups, and will be removed from the group:</item>
-        <item quantity="few">These members are not capable of joining New Groups, and will be removed from the group:</item>
-        <item quantity="many">These members are not capable of joining New Groups, and will be removed from the group:</item>
-        <item quantity="other">These members are not capable of joining New Groups, and will be removed from the group:</item>
+        <item quantity="one">Ovaj član se ne može pridružiti Novim grupama i bit će uklonjen iz grupe:</item>
+        <item quantity="few">Ovi članovi se ne mogu pridružiti Novim grupama i bit će uklonjeni iz grupe:</item>
+        <item quantity="many">Ovi članovi se ne mogu pridružiti Novim grupama i bit će uklonjeni iz grupe:</item>
+        <item quantity="other">Ovi članovi se ne mogu pridružiti Novim grupama i bit će uklonjeni iz grupe:</item>
     </plurals>
 
     <!-- GroupsV1MigrationSuggestionsReminder -->
     <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
-        <item quantity="one">%1$d member couldn\'t be re-added to the New Group. Do you want to add them now?</item>
-        <item quantity="few">%1$d members couldn\'t be re-added to the New Group. Do you want to add them now?</item>
-        <item quantity="many">%1$d members couldn\'t be re-added to the New Group. Do you want to add them now?</item>
-        <item quantity="other">%1$d members couldn\'t be re-added to the New Group. Do you want to add them now?</item>
+        <item quantity="one">%1$d člana nije bilo moguće ponovno dodati u Novu grupu. Želite li ga dodati sada?</item>
+        <item quantity="few">%1$d člana nije bilo moguće ponovno dodati u Novu grupu. Želite li ih dodati sada?</item>
+        <item quantity="many">%1$d članova nije bilo moguće ponovno dodati u Novu grupu. Želite li ih dodati sada?</item>
+        <item quantity="other">%1$d članova nije bilo moguće ponovno dodati u Novu grupu. Želite li ih dodati sada?</item>
     </plurals>
     <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
-        <item quantity="one">Add member</item>
-        <item quantity="few">Add members</item>
-        <item quantity="many">Add members</item>
-        <item quantity="other">Add members</item>
+        <item quantity="one">Dodaj člana</item>
+        <item quantity="few">Dodaj članove</item>
+        <item quantity="many">Dodaj članove</item>
+        <item quantity="other">Dodaj članove</item>
     </plurals>
     <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">Ne, hvala</string>
 
     <!-- GroupsV1MigrationSuggestionsDialog -->
     <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
-        <item quantity="one">Add member?</item>
-        <item quantity="few">Add members?</item>
-        <item quantity="many">Add members?</item>
-        <item quantity="other">Add members?</item>
+        <item quantity="one">Dodati člana?</item>
+        <item quantity="few">Dodati članove?</item>
+        <item quantity="many">Dodati članove?</item>
+        <item quantity="other">Dodati članove?</item>
     </plurals>
     <plurals name="GroupsV1MigrationSuggestionsDialog_these_members_couldnt_be_automatically_added">
-        <item quantity="one">This member couldn\'t be automatically added to the New Group when it was upgraded:</item>
-        <item quantity="few">These members couldn\'t be automatically added to the New Group when it was upgraded:</item>
-        <item quantity="many">These members couldn\'t be automatically added to the New Group when it was upgraded:</item>
-        <item quantity="other">These members couldn\'t be automatically added to the New Group when it was upgraded:</item>
+        <item quantity="one">Nije bilo moguće dodati ovog člana u Novu grupu kada je nadograđena:</item>
+        <item quantity="few">Ove članove nije bilo moguće dodati u Novu grupu kada je nadograđena:</item>
+        <item quantity="many">Ove članove nije bilo moguće dodati u Novu grupu kada je nadograđena:</item>
+        <item quantity="other">Ove članove nije bilo moguće dodati u Novu grupu kada je nadograđena:</item>
     </plurals>
     <plurals name="GroupsV1MigrationSuggestionsDialog_add_members">
-        <item quantity="one">Add member</item>
-        <item quantity="few">Add members</item>
-        <item quantity="many">Add members</item>
-        <item quantity="other">Add members</item>
+        <item quantity="one">Dodaj člana</item>
+        <item quantity="few">Dodaj članove</item>
+        <item quantity="many">Dodaj članove</item>
+        <item quantity="other">Dodaj članove</item>
     </plurals>
     <plurals name="GroupsV1MigrationSuggestionsDialog_failed_to_add_members_try_again_later">
-        <item quantity="one">Failed to add member. Try again later.</item>
-        <item quantity="few">Failed to add members. Try again later.</item>
-        <item quantity="many">Failed to add members. Try again later.</item>
-        <item quantity="other">Failed to add members. Try again later.</item>
+        <item quantity="one">Neuspješno dodavanje člana. Pokušajte ponovno kasnije.</item>
+        <item quantity="few">Neuspješno dodavanje članova. Pokušajte ponovno kasnije.</item>
+        <item quantity="many">Neuspješno dodavanje članova. Pokušajte ponovno kasnije.</item>
+        <item quantity="other">Neuspješno dodavanje članova. Pokušajte ponovno kasnije.</item>
     </plurals>
     <plurals name="GroupsV1MigrationSuggestionsDialog_cannot_add_members">
-        <item quantity="one">Cannot add member.</item>
-        <item quantity="few">Cannot add members.</item>
-        <item quantity="many">Cannot add members.</item>
-        <item quantity="other">Cannot add members.</item>
+        <item quantity="one">Nije moguće dodati člana.</item>
+        <item quantity="few">Nije moguće dodati članove.</item>
+        <item quantity="many">Nije moguće dodati članove.</item>
+        <item quantity="other">Nije moguće dodati članove.</item>
     </plurals>
 
     <!-- LeaveGroupDialog -->
@@ -816,10 +816,10 @@
 
     <!-- LinkPreviewRepository -->
     <plurals name="LinkPreviewRepository_d_members">
-        <item quantity="one">%1$d member</item>
-        <item quantity="few">%1$d members</item>
-        <item quantity="many">%1$d members</item>
-        <item quantity="other">%1$d members</item>
+        <item quantity="one">%1$d član</item>
+        <item quantity="few">%1$d člana</item>
+        <item quantity="many">%1$d članova</item>
+        <item quantity="other">%1$d članova</item>
     </plurals>
 
     <!-- PendingMembersActivity -->
@@ -835,16 +835,16 @@
     <string name="PendingMembersActivity_revoke_invite">Opozovi pozivnicu</string>
     <string name="PendingMembersActivity_revoke_invites">Opozovi pozivnice</string>
     <plurals name="PendingMembersActivity_revoke_d_invites">
-        <item quantity="one">Revoke invite</item>
-        <item quantity="few">Revoke %1$d invites</item>
-        <item quantity="many">Revoke %1$d invites</item>
-        <item quantity="other">Revoke %1$d invites</item>
+        <item quantity="one">Opozovi pozivnicu</item>
+        <item quantity="few">Opozovi %1$d pozivnice</item>
+        <item quantity="many">Opozovi %1$d pozivnica</item>
+        <item quantity="other">Opozovi %1$d pozivnica</item>
     </plurals>
     <plurals name="PendingMembersActivity_error_revoking_invite">
-        <item quantity="one">Error revoking invite</item>
-        <item quantity="few">Error revoking invites</item>
-        <item quantity="many">Error revoking invites</item>
-        <item quantity="other">Error revoking invites</item>
+        <item quantity="one">Pogreška pri opozivu pozivnice</item>
+        <item quantity="few">Pogreška pri opozivu pozivnica</item>
+        <item quantity="many">Pogreška pri opozivu pozivnica</item>
+        <item quantity="other">Pogreška pri opozivu pozivnica</item>
     </plurals>
 
     <!-- RequestingMembersFragment -->
@@ -859,10 +859,10 @@
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Ovu osobu nije moguće dodati u naslijeđene grupe.</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">Ova se osoba ne može dodati u grupe za najave.</string>
     <plurals name="AddMembersActivity__add_d_members_to_s">
-        <item quantity="one">Add \"%1$s\" to \"%2$s\"?</item>
-        <item quantity="few">Add %3$d members to \"%2$s\"?</item>
-        <item quantity="many">Add %3$d members to \"%2$s\"?</item>
-        <item quantity="other">Add %3$d members to \"%2$s\"?</item>
+        <item quantity="one">Dodati člana \"%1$s\" u \"%2$s\"?</item>
+        <item quantity="few">Dodati %3$d člana u \"%2$s\"?</item>
+        <item quantity="many">Dodati %3$d članova u \"%2$s\"?</item>
+        <item quantity="other">Dodati %3$d članova u \"%2$s\"?</item>
     </plurals>
     <string name="AddMembersActivity__add">Dodaj</string>
     <string name="AddMembersActivity__add_members">Dodaj članove</string>
@@ -906,10 +906,10 @@
     <string name="ManageGroupActivity_see_all">Prikaži sve</string>
 
     <plurals name="ManageGroupActivity_added">
-        <item quantity="one">%1$d member added.</item>
-        <item quantity="few">%1$d members added.</item>
-        <item quantity="many">%1$d members added.</item>
-        <item quantity="other">%1$d members added.</item>
+        <item quantity="one">Dodan je %1$d član.</item>
+        <item quantity="few">Dodana su %1$d člana.</item>
+        <item quantity="many">Dodano je %1$d članova.</item>
+        <item quantity="other">Dodano je %1$d članova.</item>
     </plurals>
 
     <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">Samo administratori mogu omogućiti ili onemogućiti grupnu poveznicu za dijeljenje.</string>
@@ -960,17 +960,17 @@
     <!-- ManageRecipientActivity -->
     <string name="ManageRecipientActivity_no_groups_in_common">Nema zajedničkih grupa</string>
     <plurals name="ManageRecipientActivity_d_groups_in_common">
-        <item quantity="one">%1$d group in common</item>
-        <item quantity="few">%1$d groups in common</item>
-        <item quantity="many">%1$d groups in common</item>
-        <item quantity="other">%1$d groups in common</item>
+        <item quantity="one">%1$d zajednička grupa</item>
+        <item quantity="few">%1$d zajedničke grupe</item>
+        <item quantity="many">%1$d zajedničkih grupa</item>
+        <item quantity="other">%1$d zajedničkih grupa</item>
     </plurals>
 
     <plurals name="GroupMemberList_invited">
-        <item quantity="one">%1$s invited 1 person</item>
-        <item quantity="few">%1$s invited %2$d people</item>
-        <item quantity="many">%1$s invited %2$d people</item>
-        <item quantity="other">%1$s invited %2$d people</item>
+        <item quantity="one">%1$s poziva 1 osobu</item>
+        <item quantity="few">%1$s poziva %2$d osobe</item>
+        <item quantity="many">%1$s poziva %2$d osoba</item>
+        <item quantity="other">%1$s poziva %2$d osoba</item>
     </plurals>
 
     <!-- CustomNotificationsDialogFragment -->
@@ -1008,10 +1008,10 @@
     <!-- GV2 Invite Revoke confirmation dialog -->
     <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Želite li opozvati pozivnicu koju ste poslali %1$s?</string>
     <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
-        <item quantity="one">Do you want to revoke the invite sent by %1$s?</item>
-        <item quantity="few">Do you want to revoke %2$d invites sent by %1$s?</item>
-        <item quantity="many">Do you want to revoke %2$d invites sent by %1$s?</item>
-        <item quantity="other">Do you want to revoke %2$d invites sent by %1$s?</item>
+        <item quantity="one">Želite li opozvati pozivnicu korisnika %1$s?</item>
+        <item quantity="few">Želite li opozvati %2$d pozivnice korisnika %1$s?</item>
+        <item quantity="many">Želite li opozvati %2$d pozivnica korisnika %1$s?</item>
+        <item quantity="other">Želite li opozvati %2$d pozivnica korisnika %1$s?</item>
     </plurals>
 
     <!-- GroupJoinBottomSheetDialogFragment -->
@@ -1035,10 +1035,10 @@
     <string name="GroupJoinBottomSheetDialogFragment_direct_join">Želite li se pridružiti ovoj grupi i podijeliti svoje ime i fotografiju s članovima?</string>
     <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Administrator ove grupe mora odobriti vaš zahtjev prije nego što se možete pridružiti ovoj grupi. Kada zatražite pridruživanje, vaše će ime i fotografija biti podijeljena sa članovima grupe.</string>
     <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
-        <item quantity="one">Group · %1$d member</item>
-        <item quantity="few">Group · %1$d members</item>
-        <item quantity="many">Group · %1$d members</item>
-        <item quantity="other">Group · %1$d members</item>
+        <item quantity="one">Grupa · %1$d član</item>
+        <item quantity="few">Grupa · %1$d člana</item>
+        <item quantity="many">Grupa · %1$d članova</item>
+        <item quantity="other">Grupa · %1$d članova</item>
     </plurals>
 
     <!-- GroupJoinUpdateRequiredBottomSheetDialogFragment -->
@@ -1088,10 +1088,10 @@
     <string name="InviteActivity_invite_to_signal">Pozovi u Signal</string>
     <string name="InviteActivity_send_sms">Pošalji SMS (%1$d)</string>
     <plurals name="InviteActivity_send_sms_invites">
-        <item quantity="one">Send %1$d SMS invite?</item>
-        <item quantity="few">Send %1$d SMS invites?</item>
-        <item quantity="many">Send %1$d SMS invites?</item>
-        <item quantity="other">Send %1$d SMS invites?</item>
+        <item quantity="one">Poslati %1$d SMS pozivnicu?</item>
+        <item quantity="few">Poslati %1$d SMS pozivnice?</item>
+        <item quantity="many">Poslati %1$d SMS pozivnica?</item>
+        <item quantity="other">Poslati %1$d SMS pozivnica?</item>
     </plurals>
     <string name="InviteActivity_lets_switch_to_signal">Prebacimo se na Signal: %1$s</string>
     <string name="InviteActivity_no_app_to_share_to">Izgleda da nemate nijednu aplikaciju za dijeljenje.</string>
@@ -1119,16 +1119,16 @@
     <string name="MediaOverviewActivity_Audio">Zvuk</string>
     <string name="MediaOverviewActivity_All">Sve</string>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-        <item quantity="one">Delete selected item?</item>
-        <item quantity="few">Delete selected items?</item>
-        <item quantity="many">Delete selected items?</item>
-        <item quantity="other">Delete selected items?</item>
+        <item quantity="one">Želite li izbrisati odabranu stavku?</item>
+        <item quantity="few">Želite li izbrisati odabrane stavke?</item>
+        <item quantity="many">Želite li izbrisati odabrane stavke?</item>
+        <item quantity="other">Želite li izbrisati odabrane stavke?</item>
     </plurals>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-        <item quantity="one">This will permanently delete the selected file. Any message text associated with this item will also be deleted.</item>
-        <item quantity="few">This will permanently delete all %1$d selected files. Any message text associated with these items will also be deleted.</item>
-        <item quantity="many">This will permanently delete all %1$d selected files. Any message text associated with these items will also be deleted.</item>
-        <item quantity="other">This will permanently delete all %1$d selected files. Any message text associated with these items will also be deleted.</item>
+        <item quantity="one">Ovo će trajno izbrisati odabranu datoteku. Sve tekstualne poruke povezane s ovom datotekom također će biti izbrisane.</item>
+        <item quantity="few">Ovo će trajno izbrisati %1$d odabrane datoteke. Sve tekstualne poruke povezane s ovim datotekama također će biti izbrisane.</item>
+        <item quantity="many">Ovo će trajno izbrisati %1$d odabranih datoteka. Sve tekstualne poruke povezane s ovim datotekama također će biti izbrisane.</item>
+        <item quantity="other">Ovo će trajno izbrisati %1$d odabranih datoteka. Sve tekstualne poruke povezane s ovim datotekama također će biti izbrisane.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Brisanje</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">Brisanje poruka…</string>
@@ -1144,23 +1144,23 @@
     <string name="MediaOverviewActivity_Selected_description">Odabrano</string>
     <string name="MediaOverviewActivity_select_all">Odaberi sve</string>
     <plurals name="MediaOverviewActivity_save_plural">
-        <item quantity="one">Save</item>
-        <item quantity="few">Save</item>
-        <item quantity="many">Save</item>
-        <item quantity="other">Save</item>
+        <item quantity="one">Spremi</item>
+        <item quantity="few">Spremi</item>
+        <item quantity="many">Spremi</item>
+        <item quantity="other">Spremi</item>
     </plurals>
     <plurals name="MediaOverviewActivity_delete_plural">
-        <item quantity="one">Delete</item>
-        <item quantity="few">Delete</item>
-        <item quantity="many">Delete</item>
-        <item quantity="other">Delete</item>
+        <item quantity="one">Izbriši</item>
+        <item quantity="few">Izbriši</item>
+        <item quantity="many">Izbriši</item>
+        <item quantity="other">Izbriši</item>
     </plurals>
 
     <plurals name="MediaOverviewActivity_d_selected_s">
-        <item quantity="one">%1$d selected (%2$s)</item>
-        <item quantity="few">%1$d selected (%2$s)</item>
-        <item quantity="many">%1$d selected (%2$s)</item>
-        <item quantity="other">%1$d selected (%2$s)</item>
+        <item quantity="one">Odabrano %1$d (%2$s)</item>
+        <item quantity="few">Odabrano %1$d (%2$s)</item>
+        <item quantity="many">Odabrano %1$d (%2$s)</item>
+        <item quantity="other">Odabrano %1$d (%2$s)</item>
     </plurals>
     <string name="MediaOverviewActivity_file">Datoteka</string>
     <string name="MediaOverviewActivity_audio">Zvuk</string>
@@ -1231,10 +1231,10 @@
     <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal zahtjeva pristup vašim kontaktima kako bi ih mogao prikazati.</string>
     <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal zahtijeva dopuštenje za kontakte da bi prikazao vaše kontakte, ali je trajno odbijen. Otvorite postavke aplikacije, odaberite \"Dozvole\" i omogućite \"Kontakti\".</string>
     <plurals name="MediaSendActivity_cant_share_more_than_n_items">
-        <item quantity="one">You can\'t share more than %1$d item.</item>
-        <item quantity="few">You can\'t share more than %1$d items.</item>
-        <item quantity="many">You can\'t share more than %1$d items.</item>
-        <item quantity="other">You can\'t share more than %1$d items.</item>
+        <item quantity="one">Ne možete dijeliti više od %1$d stavke.</item>
+        <item quantity="few">Ne možete dijeliti više od %1$d stavke.</item>
+        <item quantity="many">Ne možete dijeliti više od %1$d stavki.</item>
+        <item quantity="other">Ne možete dijeliti više od %1$d stavki.</item>
     </plurals>
     <string name="MediaSendActivity_select_recipients_description">Odaberi primatelje</string>
     <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">Pritisnite ovdje da ova poruka nestane nakon što je pogledana.</string>
@@ -1268,17 +1268,17 @@
     <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Ne možete biti dodani u Novu grupu, ali ste pozvani da se pridružite.</string>
     <string name="MessageRecord_chat_session_refreshed">Sesija razgovora je osvježena</string>
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
-        <item quantity="one">A member couldn\'t be added to the New Group and has been invited to join.</item>
-        <item quantity="few">%1$s members couldn\'t be added to the New Group and have been invited to join.</item>
-        <item quantity="many">%1$s members couldn\'t be added to the New Group and have been invited to join.</item>
-        <item quantity="other">%1$s members couldn\'t be added to the New Group and have been invited to join.</item>
+        <item quantity="one">Nije bilo moguće dodati člana u Novu grupu, stoga je pozvan da se pridruži.</item>
+        <item quantity="few">%1$s člana nije bilo moguće dodati u Novu grupu, stoga su pozvani da se pridruže.</item>
+        <item quantity="many">%1$s članova nije bilo moguće dodati u Novu grupu, stoga su pozvani da se pridruže.</item>
+        <item quantity="other">%1$s članova nije moguće dodati u Novu grupu, stoga su pozvani da se pridruže.</item>
     </plurals>
 
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
-        <item quantity="one">A member couldn\'t be added to the New Group and has been removed.</item>
-        <item quantity="few">%1$s members couldn\'t be added to the New Group and have been removed.</item>
-        <item quantity="many">%1$s members couldn\'t be added to the New Group and have been removed.</item>
-        <item quantity="other">%1$s members couldn\'t be added to the New Group and have been removed.</item>
+        <item quantity="one">Nije bilo moguće dodati člana u Novu grupu, stoga je uklonjen.</item>
+        <item quantity="few">%1$s člana nije moguće dodati u Novu grupu, stoga su uklonjeni iz grupe.</item>
+        <item quantity="many">%1$s članova nije moguće dodati u Novu grupu, stoga su uklonjeni iz grupe.</item>
+        <item quantity="other">%1$s članova nije moguće dodati u Novu grupu, stoga su uklonjeni iz grupe.</item>
     </plurals>
 
     <!-- Profile change updates -->
@@ -1323,41 +1323,41 @@
     <string name="MessageRecord_you_invited_s_to_the_group">Pozvali ste %1$s u grupu.</string>
     <string name="MessageRecord_s_invited_you_to_the_group">%1$s vas je pozvao/la u grupu.</string>
     <plurals name="MessageRecord_s_invited_members">
-        <item quantity="one">%1$s invited 1 person to the group.</item>
-        <item quantity="few">%1$s invited %2$d people to the group.</item>
-        <item quantity="many">%1$s invited %2$d people to the group.</item>
-        <item quantity="other">%1$s invited %2$d people to the group.</item>
+        <item quantity="one">%1$s poziva 1 osobu u grupu.</item>
+        <item quantity="few">%1$s poziva %2$d osobe u grupu.</item>
+        <item quantity="many">%1$s poziva %2$d osoba u grupu.</item>
+        <item quantity="other">%1$s poziva %2$d osoba u grupu.</item>
     </plurals>
     <string name="MessageRecord_you_were_invited_to_the_group">Pozvani ste u grupu.</string>
     <plurals name="MessageRecord_d_people_were_invited_to_the_group">
-        <item quantity="one">1 person was invited to the group.</item>
-        <item quantity="few">%1$d people were invited to the group.</item>
-        <item quantity="many">%1$d people were invited to the group.</item>
-        <item quantity="other">%1$d people were invited to the group.</item>
+        <item quantity="one">1 osoba je pozvana u grupu.</item>
+        <item quantity="few">%1$d osobe su pozvane u grupu.</item>
+        <item quantity="many">%1$d osoba je pozvano u grupu.</item>
+        <item quantity="other">%1$d osoba je pozvano u grupu.</item>
     </plurals>
 
     <!-- GV2 invitation revokes -->
     <plurals name="MessageRecord_you_revoked_invites">
-        <item quantity="one">You revoked an invitation to the group.</item>
-        <item quantity="few">You revoked %1$d invitations to the group.</item>
-        <item quantity="many">You revoked %1$d invitations to the group.</item>
-        <item quantity="other">You revoked %1$d invitations to the group.</item>
+        <item quantity="one">Opozvali ste pozivnicu u grupu.</item>
+        <item quantity="few">Opozvali ste %1$d pozivnice u grupu.</item>
+        <item quantity="many">Opozvali ste %1$d pozivnica u grupu.</item>
+        <item quantity="other">Opozvali ste %1$d pozivnica u grupu.</item>
     </plurals>
     <plurals name="MessageRecord_s_revoked_invites">
-        <item quantity="one">%1$s revoked an invitation to the group.</item>
-        <item quantity="few">%1$s revoked %2$d invitations to the group.</item>
-        <item quantity="many">%1$s revoked %2$d invitations to the group.</item>
-        <item quantity="other">%1$s revoked %2$d invitations to the group.</item>
+        <item quantity="one">%1$s je opozvao/la pozivnicu u grupu.</item>
+        <item quantity="few">%1$s je opozvao/la %2$d pozivnice u grupu.</item>
+        <item quantity="many">%1$s je opozvao/la %2$d pozivnica u grupu.</item>
+        <item quantity="other">%1$s je opozvao %2$d pozivnica u grupu.</item>
     </plurals>
     <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Netko je odbio poziv u grupu.</string>
     <string name="MessageRecord_you_declined_the_invitation_to_the_group">Odbili ste poziv u grupu.</string>
     <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s je opozvao/la vašu pozivnicu u grupu.</string>
     <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">Administrator je opozvao vašu pozivnicu u grupu.</string>
     <plurals name="MessageRecord_d_invitations_were_revoked">
-        <item quantity="one">An invitation to the group was revoked.</item>
-        <item quantity="few">%1$d invitations to the group were revoked.</item>
-        <item quantity="many">%1$d invitations to the group were revoked.</item>
-        <item quantity="other">%1$d invitations to the group were revoked.</item>
+        <item quantity="one">Pozivnica u grupu je opozvana.</item>
+        <item quantity="few">%1$d pozivnice u grupu su opozvane.</item>
+        <item quantity="many">%1$d pozivnica u grupu je opozvano.</item>
+        <item quantity="other">%1$d pozivnica u grupu je opozvano.</item>
     </plurals>
 
     <!-- GV2 invitation acceptance -->
@@ -1430,10 +1430,10 @@
     <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s je zatražio/la pridruživanje grupi putem poveznice grupe.</string>
     <!-- Update message shown when someone requests to join via group link and cancels the request back to back -->
     <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
-        <item quantity="one">%1$s requested and cancelled their request to join via the group link.</item>
-        <item quantity="few">%1$s requested and cancelled %2$d requests to join via the group link.</item>
-        <item quantity="many">%1$s requested and cancelled %2$d requests to join via the group link.</item>
-        <item quantity="other">%1$s requested and cancelled %2$d requests to join via the group link.</item>
+        <item quantity="one">%1$s šalje i otkazuje zahtjev za pridruživanje putem poveznice grupe.</item>
+        <item quantity="few">%1$s šalje i otkazuje %2$d zahtjeva za pridruživanje putem poveznice grupe.</item>
+        <item quantity="many">%1$s šalje i otkazuje %2$d zahtjeva za pridruživanje putem poveznice grupe.</item>
+        <item quantity="other">%1$s šalje i otkazuje %2$d zahtjeva za pridruživanje putem poveznice grupe.</item>
     </plurals>
 
     <!-- GV2 group link approvals -->
@@ -1482,17 +1482,17 @@
     <string name="MessageRecord_you">Vi</string>
 
     <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
-        <item quantity="one">%1$s, %2$s, and %3$d other are in the group call · %4$s</item>
-        <item quantity="few">%1$s, %2$s, and %3$d others are in the group call · %4$s</item>
-        <item quantity="many">%1$s, %2$s, and %3$d others are in the group call · %4$s</item>
-        <item quantity="other">%1$s, %2$s, and %3$d others are in the group call · %4$s</item>
+        <item quantity="one">%1$s, %2$s i još %3$d osoba su na ovom grupnom pozivu · %4$s</item>
+        <item quantity="few">%1$s, %2$s i još %3$d osobe su na ovom grupnom pozivu · %4$s</item>
+        <item quantity="many">%1$s, %2$s i još %3$d osoba je na ovom grupnom pozivu · %4$s</item>
+        <item quantity="other">%1$s, %2$s i još %3$d osoba su na ovom grupnom pozivu · %4$s</item>
     </plurals>
 
     <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call">
-        <item quantity="one">%1$s, %2$s, and %3$d other are in the group call</item>
-        <item quantity="few">%1$s, %2$s, and %3$d others are in the group call</item>
-        <item quantity="many">%1$s, %2$s, and %3$d others are in the group call</item>
-        <item quantity="other">%1$s, %2$s, and %3$d others are in the group call</item>
+        <item quantity="one">%1$s, %2$s i još %3$d osoba su na ovom grupnom pozivu</item>
+        <item quantity="few">%1$s, %2$s i još %3$d osobe su na ovom grupnom pozivu</item>
+        <item quantity="many">%1$s, %2$s i još %3$d osoba je na ovom grupnom pozivu</item>
+        <item quantity="other">%1$s, %2$s i još %3$d osoba je na ovom grupnom pozivu</item>
     </plurals>
 
     <!-- MessageRequestBottomView -->
@@ -1521,30 +1521,30 @@
     <string name="MessageRequestProfileView_member_of_two_groups">Član/ica %1$s i %2$s</string>
     <string name="MessageRequestProfileView_member_of_many_groups">Član/ica %1$s, %2$s i %3$s</string>
     <plurals name="MessageRequestProfileView_members">
-        <item quantity="one">%1$d member</item>
-        <item quantity="few">%1$d members</item>
-        <item quantity="many">%1$d members</item>
-        <item quantity="other">%1$d members</item>
+        <item quantity="one">%1$d član</item>
+        <item quantity="few">%1$d člana</item>
+        <item quantity="many">%1$d članova</item>
+        <item quantity="other">%1$d članova</item>
     </plurals>
     <!-- Describes the number of members in a group. The string MessageRequestProfileView_invited is nested in the parentheses. -->
     <plurals name="MessageRequestProfileView_members_and_invited">
-        <item quantity="one">%1$d member (%2$s)</item>
-        <item quantity="few">%1$d members (%2$s)</item>
-        <item quantity="many">%1$d members (%2$s)</item>
-        <item quantity="other">%1$d members (%2$s)</item>
+        <item quantity="one">%1$d član (%2$s)</item>
+        <item quantity="few">%1$d člana (%2$s)</item>
+        <item quantity="many">%1$d članova (%2$s)</item>
+        <item quantity="other">%1$d članova (%2$s)</item>
     </plurals>
     <!-- Describes the number of people invited to a group. Nested inside of the string MessageRequestProfileView_members_and_invited -->
     <plurals name="MessageRequestProfileView_invited">
-        <item quantity="one">+%1$d invited</item>
-        <item quantity="few">+%1$d invited</item>
-        <item quantity="many">+%1$d invited</item>
-        <item quantity="other">+%1$d invited</item>
+        <item quantity="one">+%1$d pozvan</item>
+        <item quantity="few">+%1$d pozvana</item>
+        <item quantity="many">+%1$d pozvanih</item>
+        <item quantity="other">+%1$d pozvanih</item>
     </plurals>
     <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
-        <item quantity="one">%1$d additional group</item>
-        <item quantity="few">%1$d additional groups</item>
-        <item quantity="many">%1$d additional groups</item>
-        <item quantity="other">%1$d additional groups</item>
+        <item quantity="one">%1$d dodatna grupa</item>
+        <item quantity="few">%1$d dodatne grupe</item>
+        <item quantity="many">%1$d dodatnih grupa</item>
+        <item quantity="other">%1$d dodatnih grupa</item>
     </plurals>
 
     <!-- PassphraseChangeActivity -->
@@ -1578,10 +1578,10 @@
     <string name="OutdatedBuildReminder_update_now">Ažuriraj sada</string>
     <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Ova verzija Signala istječe danas. Ažurirajte na najnoviju verziju.</string>
     <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
-        <item quantity="one">This version of Signal will expire tomorrow. Update to the most recent version.</item>
-        <item quantity="few">This version of Signal will expire in %1$d days. Update to the most recent version.</item>
-        <item quantity="many">This version of Signal will expire in %1$d days. Update to the most recent version.</item>
-        <item quantity="other">This version of Signal will expire in %1$d days. Update to the most recent version.</item>
+        <item quantity="one">Ova verzija Signala istječe sutra. Ažurirajte na najnoviju verziju.</item>
+        <item quantity="few">Ova verzija Signala istječe za %1$d dana. Ažurirajte na najnoviju verziju.</item>
+        <item quantity="many">Ova verzija Signala istječe za %1$d dana. Ažurirajte na najnoviju verziju.</item>
+        <item quantity="other">Ova verzija Signala istječe za %1$d dana. Ažurirajte na najnoviju verziju.</item>
     </plurals>
 
     <!-- PassphrasePromptActivity -->
@@ -1612,10 +1612,10 @@
     <string name="PinRestoreEntryFragment_cancel">Poništi</string>
     <string name="PinRestoreEntryFragment_skip">Preskoči</string>
     <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
-        <item quantity="one">You have %1$d attempt remaining. If you run out of attempts, you can create a new PIN. You can register and use your account but you\'ll lose some saved settings like your profile information.</item>
-        <item quantity="few">You have %1$d attempts remaining. If you run out of attempts, you can create a new PIN. You can register and use your account but you\'ll lose some saved settings like your profile information.</item>
-        <item quantity="many">You have %1$d attempts remaining. If you run out of attempts, you can create a new PIN. You can register and use your account but you\'ll lose some saved settings like your profile information.</item>
-        <item quantity="other">You have %1$d attempts remaining. If you run out of attempts, you can create a new PIN. You can register and use your account but you\'ll lose some saved settings like your profile information.</item>
+        <item quantity="one">Preostao vam je %1$d pokušaj. Ako vam ponestane pokušaja, možete stvoriti novi PIN. Možete registrirati i koristiti svoj račun, ali ćete izgubiti neke spremljene postavke poput podataka o vašem profilu.</item>
+        <item quantity="few">Preostala su vam %1$d pokušaja. Ako vam ponestane pokušaja, možete stvoriti novi PIN. Možete registrirati i koristiti svoj račun, ali ćete izgubiti neke spremljene postavke poput podataka o vašem profilu.</item>
+        <item quantity="many">Preostalo vam je %1$d pokušaja. Ako vam ponestane pokušaja, možete stvoriti novi PIN. Možete registrirati i koristiti svoj račun, ali ćete izgubiti neke spremljene postavke poput podataka o vašem profilu.</item>
+        <item quantity="other">Preostalo vam je %1$d pokušaja. Ako vam ponestane pokušaja, možete stvoriti novi PIN. Možete registrirati i koristiti svoj račun, ali ćete izgubiti neke spremljene postavke poput podataka o vašem profilu.</item>
     </plurals>
     <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Registracija Signala - Trebate pomoć s PIN-om za Android</string>
     <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Unesite alfanumerički PIN</string>
@@ -1715,38 +1715,38 @@
     <string name="WebRtcCallView__signal_will_ring_s">Poziva se %1$s</string>
     <string name="WebRtcCallView__signal_will_ring_s_and_s">Pozivaju se %1$s i %2$s</string>
     <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
-        <item quantity="one">Signal will ring %1$s, %2$s, and %3$d other</item>
-        <item quantity="few">Signal will ring %1$s, %2$s, and %3$d others</item>
-        <item quantity="many">Signal will ring %1$s, %2$s, and %3$d others</item>
-        <item quantity="other">Signal will ring %1$s, %2$s, and %3$d others</item>
+        <item quantity="one">Pozivaju se %1$s, %2$s i još %3$d osoba</item>
+        <item quantity="few">Pozivaju se %1$s, %2$s i još %3$d osobe</item>
+        <item quantity="many">Pozivaju se %1$s, %2$s i još %3$d osoba</item>
+        <item quantity="other">Pozivaju se %1$s, %2$s i još %3$d osoba</item>
     </plurals>
 
     <string name="WebRtcCallView__s_will_be_notified">%1$s bit će obavješten(a)</string>
     <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s i %2$s bit će obavješteni/e</string>
     <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
-        <item quantity="one">%1$s, %2$s, and %3$d other will be notified</item>
-        <item quantity="few">%1$s, %2$s, and %3$d others will be notified</item>
-        <item quantity="many">%1$s, %2$s, and %3$d others will be notified</item>
-        <item quantity="other">%1$s, %2$s, and %3$d others will be notified</item>
+        <item quantity="one">%1$s, %2$s i još %3$d osoba bit će obaviješteno</item>
+        <item quantity="few">%1$s, %2$s i još %3$d osobe bit će obaviješteno</item>
+        <item quantity="many">%1$s, %2$s i još %3$d osoba bit će obaviješteno</item>
+        <item quantity="other">%1$s, %2$s i još %3$d osoba bit će obaviješteno</item>
     </plurals>
 
     <string name="WebRtcCallView__ringing_s">Poziva se %1$s</string>
     <string name="WebRtcCallView__ringing_s_and_s">Pozivaju se %1$s i %2$s</string>
     <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
-        <item quantity="one">Ringing %1$s, %2$s, and %3$d other</item>
-        <item quantity="few">Ringing %1$s, %2$s, and %3$d others</item>
-        <item quantity="many">Ringing %1$s, %2$s, and %3$d others</item>
-        <item quantity="other">Ringing %1$s, %2$s, and %3$d others</item>
+        <item quantity="one">Pozivaju se %1$s, %2$s i još %3$d osoba</item>
+        <item quantity="few">Pozivaju se %1$s, %2$s i još %3$d osobe</item>
+        <item quantity="many">Pozivaju se %1$s, %2$s i još %3$d osoba</item>
+        <item quantity="other">Pozivaju se %1$s, %2$s i još %3$d osoba</item>
     </plurals>
 
     <string name="WebRtcCallView__s_is_calling_you">%1$s vas zove</string>
     <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s zove vas i %2$s</string>
     <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s zove vas, %2$s i %3$s</string>
     <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
-        <item quantity="one">%1$s is calling you, %2$s, %3$s, and %4$d other</item>
-        <item quantity="few">%1$s is calling you, %2$s, %3$s, and %4$d others</item>
-        <item quantity="many">%1$s is calling you, %2$s, %3$s, and %4$d others</item>
-        <item quantity="other">%1$s is calling you, %2$s, %3$s, and %4$d others</item>
+        <item quantity="one">%1$s zove vas, %2$s, %3$s i još %4$d osobu</item>
+        <item quantity="few">%1$s zove vas, %2$s, %3$s i još %4$d osobe</item>
+        <item quantity="many">%1$s zove vas, %2$s, %3$s i još %4$d osoba</item>
+        <item quantity="other">%1$s zove vas, %2$s, %3$s i još %4$d osoba</item>
     </plurals>
 
     <string name="WebRtcCallView__no_one_else_is_here">Nitko drugi nije ovdje</string>
@@ -1756,10 +1756,10 @@
     <string name="WebRtcCallView__s_is_presenting">%1$s prezentira</string>
 
     <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
-        <item quantity="one">%1$s, %2$s, and %3$d other are in this call</item>
-        <item quantity="few">%1$s, %2$s, and %3$d others are in this call</item>
-        <item quantity="many">%1$s, %2$s, and %3$d others are in this call</item>
-        <item quantity="other">%1$s, %2$s, and %3$d others are in this call</item>
+        <item quantity="one">%1$s, %2$s i još %3$d osoba su na ovom pozivu</item>
+        <item quantity="few">%1$s, %2$s i još %3$d osobe su na ovom pozivu</item>
+        <item quantity="many">%1$s, %2$s i još %3$d osoba je na ovom pozivu</item>
+        <item quantity="other">%1$s, %2$s i još %3$d osoba je na ovom pozivu</item>
     </plurals>
 
     <string name="WebRtcCallView__flip">Okreni</string>
@@ -1772,10 +1772,10 @@
 
     <!-- CallParticipantsListDialog -->
     <plurals name="CallParticipantsListDialog_in_this_call_d_people">
-        <item quantity="one">In this call · %1$d person</item>
-        <item quantity="few">In this call · %1$d people</item>
-        <item quantity="many">In this call · %1$d people</item>
-        <item quantity="other">In this call · %1$d people</item>
+        <item quantity="one">U ovom pozivu · %1$d osoba</item>
+        <item quantity="few">U ovom pozivu · %1$d osobe</item>
+        <item quantity="many">U ovom pozivu · %1$d osoba</item>
+        <item quantity="other">U ovom pozivu · %1$d osoba</item>
     </plurals>
 
     <!-- CallParticipantView -->
@@ -1828,10 +1828,10 @@
     <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android – format broja telefona</string>
     <string name="RegistrationActivity_call_requested">Zatražen poziv</string>
     <plurals name="RegistrationActivity_debug_log_hint">
-        <item quantity="one">You are now %1$d step away from submitting a debug log.</item>
-        <item quantity="few">You are now %1$d steps away from submitting a debug log.</item>
-        <item quantity="many">You are now %1$d steps away from submitting a debug log.</item>
-        <item quantity="other">You are now %1$d steps away from submitting a debug log.</item>
+        <item quantity="one">Još %1$d korak do slanja zapisnika o pogreški.</item>
+        <item quantity="few">Još %1$d koraka do slanja zapisnika o pogreški.</item>
+        <item quantity="many">Još %1$d koraka do slanja zapisnika o pogreški.</item>
+        <item quantity="other">Još %1$d koraka do slanja zapisnika o pogreški.</item>
     </plurals>
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Moramo potvrditi da ste osoba.</string>
     <string name="RegistrationActivity_next">Sljedeće</string>
@@ -2019,7 +2019,7 @@
 
     <!-- UsernameEditFragment -->
     <!-- Toolbar title when entering from registration -->
-    <string name="UsernameEditFragment__add_a_username">Add a username</string>
+    <string name="UsernameEditFragment__add_a_username">Dodajte korisničko ime</string>
     <!-- Instructional text at the top of the username edit screen -->
     <string name="UsernameEditFragment__choose_your_username">Odaberite vaše korisničko ime</string>
     <string name="UsernameEditFragment_username">Korisničko ime</string>
@@ -2044,10 +2044,10 @@
     <string name="UsernameEditFragment__done">Gotovo</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
-        <item quantity="one">%1$d contact is on Signal!</item>
-        <item quantity="few">%1$d contacts are on Signal!</item>
-        <item quantity="many">%1$d contacts are on Signal!</item>
-        <item quantity="other">%1$d contacts are on Signal!</item>
+        <item quantity="one">%1$d kontakt je na Signalu!</item>
+        <item quantity="few">%1$d kontakta su na Signalu!</item>
+        <item quantity="many">%1$d kontakata je na Signalu!</item>
+        <item quantity="other">%1$d kontakata je na Signalu!</item>
     </plurals>
 
     <!-- UsernameShareBottomSheet -->
@@ -2194,10 +2194,10 @@
 
     <!-- TransferControlView -->
     <plurals name="TransferControlView_n_items">
-        <item quantity="one">%1$d Item</item>
-        <item quantity="few">%1$d Items</item>
-        <item quantity="many">%1$d Items</item>
-        <item quantity="other">%1$d Items</item>
+        <item quantity="one">%1$d stavka</item>
+        <item quantity="few">%1$d stavke</item>
+        <item quantity="many">%1$d stavki</item>
+        <item quantity="other">%1$d stavki</item>
     </plurals>
 
     <!-- UnauthorizedReminder -->
@@ -2264,10 +2264,10 @@
     <string name="ContactSelectionListFragment_recommended_member_limit_reached">Dosegnuto preporučeno ograničenje članova</string>
     <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Signal grupe najbolje rade s %1$d članova ili manje. Dodavanje više članova uzrokovat će kašnjenja u slanju i primanju poruka.</string>
     <plurals name="ContactSelectionListFragment_d_members">
-        <item quantity="one">%1$d member</item>
-        <item quantity="few">%1$d members</item>
-        <item quantity="many">%1$d members</item>
-        <item quantity="other">%1$d members</item>
+        <item quantity="one">%1$d član</item>
+        <item quantity="few">%1$d člana</item>
+        <item quantity="many">%1$d članova</item>
+        <item quantity="other">%1$d članova</item>
     </plurals>
 
     <!-- contact_selection_list_fragment -->
@@ -2276,17 +2276,17 @@
 
     <!-- contact_selection_list_item -->
     <plurals name="contact_selection_list_item__number_of_members">
-        <item quantity="one">%1$d member</item>
-        <item quantity="few">%1$d members</item>
-        <item quantity="many">%1$d members</item>
-        <item quantity="other">%1$d members</item>
+        <item quantity="one">%1$d član</item>
+        <item quantity="few">%1$d člana</item>
+        <item quantity="many">%1$d članova</item>
+        <item quantity="other">%1$d članova</item>
     </plurals>
     <!-- Displays number of viewers for a story -->
     <plurals name="contact_selection_list_item__number_of_viewers">
-        <item quantity="one">%1$d viewer</item>
-        <item quantity="few">%1$d viewers</item>
-        <item quantity="many">%1$d viewers</item>
-        <item quantity="other">%1$d viewers</item>
+        <item quantity="one">%1$d gledatelj</item>
+        <item quantity="few">%1$d gledatelja</item>
+        <item quantity="many">%1$d gledatelja</item>
+        <item quantity="other">%1$d gledatelja</item>
     </plurals>
 
     <!-- conversation_activity -->
@@ -2417,46 +2417,46 @@
     <string name="expiration_off">Isključeno</string>
 
     <plurals name="expiration_seconds">
-        <item quantity="one">%1$d second</item>
-        <item quantity="few">%1$d seconds</item>
-        <item quantity="many">%1$d seconds</item>
-        <item quantity="other">%1$d seconds</item>
+        <item quantity="one">%1$d sekunda</item>
+        <item quantity="few">%1$d sekunde</item>
+        <item quantity="many">%1$d sekundi</item>
+        <item quantity="other">%1$d sekundi</item>
     </plurals>
 
     <string name="expiration_seconds_abbreviated">%1$ds</string>
 
     <plurals name="expiration_minutes">
-        <item quantity="one">%1$d minute</item>
-        <item quantity="few">%1$d minutes</item>
-        <item quantity="many">%1$d minutes</item>
-        <item quantity="other">%1$d minutes</item>
+        <item quantity="one">%1$d minuta</item>
+        <item quantity="few">%1$d minute</item>
+        <item quantity="many">%1$d minuta</item>
+        <item quantity="other">%1$d minuta</item>
     </plurals>
 
     <string name="expiration_minutes_abbreviated">%1$dm</string>
 
     <plurals name="expiration_hours">
-        <item quantity="one">%1$d hour</item>
-        <item quantity="few">%1$d hours</item>
-        <item quantity="many">%1$d hours</item>
-        <item quantity="other">%1$d hours</item>
+        <item quantity="one">%1$d sat</item>
+        <item quantity="few">%1$d sata</item>
+        <item quantity="many">%1$d sati</item>
+        <item quantity="other">%1$d sati</item>
     </plurals>
 
     <string name="expiration_hours_abbreviated">%1$dh</string>
 
     <plurals name="expiration_days">
-        <item quantity="one">%1$d day</item>
-        <item quantity="few">%1$d days</item>
-        <item quantity="many">%1$d days</item>
-        <item quantity="other">%1$d days</item>
+        <item quantity="one">%1$d dan</item>
+        <item quantity="few">%1$d dana</item>
+        <item quantity="many">%1$d dana</item>
+        <item quantity="other">%1$d dana</item>
     </plurals>
 
     <string name="expiration_days_abbreviated">%1$dd</string>
 
     <plurals name="expiration_weeks">
-        <item quantity="one">%1$d week</item>
-        <item quantity="few">%1$d weeks</item>
-        <item quantity="many">%1$d weeks</item>
-        <item quantity="other">%1$d weeks</item>
+        <item quantity="one">%1$d tjedan</item>
+        <item quantity="few">%1$d tjedna</item>
+        <item quantity="many">%1$d tjedana</item>
+        <item quantity="other">%1$d tjedana</item>
     </plurals>
 
     <string name="expiration_weeks_abbreviated">%1$dtj</string>
@@ -2476,10 +2476,10 @@
     <string name="IdentityUtil_untrusted_dialog_many">Vaši sigurnosni brojevi s %1$s, %2$s i %3$s su upravo promijenjeni.</string>
 
     <plurals name="identity_others">
-        <item quantity="one">%1$d other</item>
-        <item quantity="few">%1$d others</item>
-        <item quantity="many">%1$d others</item>
-        <item quantity="other">%1$d others</item>
+        <item quantity="one">još %1$d</item>
+        <item quantity="few">još %1$d</item>
+        <item quantity="many">još %1$d</item>
+        <item quantity="other">još %1$d</item>
     </plurals>
 
     <!-- giphy_activity -->
@@ -2515,10 +2515,10 @@
 
     <!-- GroupUtil -->
     <plurals name="GroupUtil_joined_the_group">
-        <item quantity="one">%1$s joined the group.</item>
-        <item quantity="few">%1$s joined the group.</item>
-        <item quantity="many">%1$s joined the group.</item>
-        <item quantity="other">%1$s joined the group.</item>
+        <item quantity="one">%1$s se pridružuje grupi.</item>
+        <item quantity="few">%1$s se pridružuju grupi.</item>
+        <item quantity="many">%1$s se pridružuju grupi.</item>
+        <item quantity="other">%1$s se pridružuju grupi.</item>
     </plurals>
     <string name="GroupUtil_group_name_is_now">Naziv grupe je sada \'%1$s\'.</string>
 
@@ -3207,10 +3207,10 @@
 
     <!-- Heading which shows how many messages are currently selected -->
     <plurals name="conversation_context__s_selected">
-        <item quantity="one">%1$d selected</item>
-        <item quantity="few">%1$d selected</item>
-        <item quantity="many">%1$d selected</item>
-        <item quantity="other">%1$d selected</item>
+        <item quantity="one">%1$d odabran</item>
+        <item quantity="few">%1$d odabrana</item>
+        <item quantity="many">%1$d odabranih</item>
+        <item quantity="other">%1$d odabranih</item>
     </plurals>
 
     <!-- conversation_context_image -->
@@ -3367,16 +3367,16 @@
 
     <!-- CreateKbsPinFragment -->
     <plurals name="CreateKbsPinFragment__pin_must_be_at_least_characters">
-        <item quantity="one">PIN must be at least %1$d character</item>
-        <item quantity="few">PIN must be at least %1$d characters</item>
-        <item quantity="many">PIN must be at least %1$d characters</item>
-        <item quantity="other">PIN must be at least %1$d characters</item>
+        <item quantity="one">PIN mora imati najmanje %1$d znak</item>
+        <item quantity="few">PIN mora imati najmanje %1$d znaka</item>
+        <item quantity="many">PIN mora imati najmanje %1$d znakova</item>
+        <item quantity="other">PIN mora imati najmanje %1$d znakova</item>
     </plurals>
     <plurals name="CreateKbsPinFragment__pin_must_be_at_least_digits">
-        <item quantity="one">PIN must be at least %1$d digit</item>
-        <item quantity="few">PIN must be at least %1$d digits</item>
-        <item quantity="many">PIN must be at least %1$d digits</item>
-        <item quantity="other">PIN must be at least %1$d digits</item>
+        <item quantity="one">PIN mora imati najmanje %1$d znamenku</item>
+        <item quantity="few">PIN mora imati najmanje %1$d znamenke</item>
+        <item quantity="many">PIN mora imati najmanje %1$d znamenki</item>
+        <item quantity="other">PIN mora imati najmanje %1$d znamenki</item>
     </plurals>
     <string name="CreateKbsPinFragment__create_a_new_pin">Stvori novi PIN</string>
     <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Možete promijeniti PIN sve dok je ovaj uređaj registriran.</string>
@@ -3434,38 +3434,38 @@
     <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Registracija Signala - Trebate pomoć s PIN-om za Android (v2 PIN)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
-        <item quantity="one">For your privacy and security, there is no way to recover your PIN. If you can\'t remember your PIN, you can re-verify with SMS after %1$d day of inactivity. In this case, your account will be wiped and all content deleted.</item>
-        <item quantity="few">For your privacy and security, there is no way to recover your PIN. If you can\'t remember your PIN, you can re-verify with SMS after %1$d days of inactivity. In this case, your account will be wiped and all content deleted.</item>
-        <item quantity="many">For your privacy and security, there is no way to recover your PIN. If you can\'t remember your PIN, you can re-verify with SMS after %1$d days of inactivity. In this case, your account will be wiped and all content deleted.</item>
-        <item quantity="other">For your privacy and security, there is no way to recover your PIN. If you can\'t remember your PIN, you can re-verify with SMS after %1$d days of inactivity. In this case, your account will be wiped and all content deleted.</item>
+        <item quantity="one">Zbog vaše privatnosti i sigurnosti ne možete oporaviti svoj PIN. Ako se ne možete sjetiti svog PIN-a, možete se ponovno registrirati SMS-om nakon %1$d dana neaktivnosti. U tom će slučaju vaš račun i sav sadržaj biti izbrisani.</item>
+        <item quantity="few">Zbog vaše privatnosti i sigurnosti ne možete oporaviti svoj PIN. Ako se ne možete sjetiti svog PIN-a, možete se ponovno registrirati SMS-om nakon %1$d dana neaktivnosti. U tom će slučaju vaš račun i sav sadržaj biti izbrisani.</item>
+        <item quantity="many">Zbog vaše privatnosti i sigurnosti ne možete oporaviti svoj PIN. Ako se ne možete sjetiti svog PIN-a, možete se ponovno registrirati SMS-om nakon %1$d dana neaktivnosti. U tom će slučaju vaš račun i sav sadržaj biti izbrisani.</item>
+        <item quantity="other">Zbog vaše privatnosti i sigurnosti ne možete oporaviti svoj PIN. Ako se ne možete sjetiti svog PIN-a, možete se ponovno registrirati SMS-om nakon %1$d dana neaktivnosti. U tom će slučaju vaš račun i sav sadržaj biti izbrisani.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
-        <item quantity="one">Incorrect PIN. %1$d attempt remaining.</item>
-        <item quantity="few">Incorrect PIN. %1$d attempts remaining.</item>
-        <item quantity="many">Incorrect PIN. %1$d attempts remaining.</item>
-        <item quantity="other">Incorrect PIN. %1$d attempts remaining.</item>
+        <item quantity="one">Nevažeći PIN. Preostaje još %1$d pokušaj.</item>
+        <item quantity="few">Nevažeći PIN. Preostala su još %1$d pokušaja.</item>
+        <item quantity="many">Nevažeći PIN. Preostalo još %1$d pokušaja.</item>
+        <item quantity="other">Nevažeći PIN. Preostalo još %1$d pokušaja.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
-        <item quantity="one">If you run out of attempts your account will be locked for %1$d day. After %1$d day of inactivity, you can re-register without your PIN. Your account will be wiped and all content deleted.</item>
-        <item quantity="few">If you run out of attempts your account will be locked for %1$d days. After %1$d days of inactivity, you can re-register without your PIN. Your account will be wiped and all content deleted.</item>
-        <item quantity="many">If you run out of attempts your account will be locked for %1$d days. After %1$d days of inactivity, you can re-register without your PIN. Your account will be wiped and all content deleted.</item>
-        <item quantity="other">If you run out of attempts your account will be locked for %1$d days. After %1$d days of inactivity, you can re-register without your PIN. Your account will be wiped and all content deleted.</item>
+        <item quantity="one">Ako vam ponestane pokušaja, vaš će račun biti zaključan na %1$d dan. Nakon %1$d dana neaktivnosti možete se ponovno registrirati bez PIN-a. Vaš račun kao i sav sadržaj će biti izbrisani.</item>
+        <item quantity="few">Ako vam ponestane pokušaja, vaš će račun biti zaključan na %1$d dana. Nakon %1$d dana neaktivnosti možete se ponovno registrirati bez PIN-a. Vaš račun kao i sav sadržaj će biti izbrisani.</item>
+        <item quantity="many">Ako vam ponestane pokušaja, vaš će račun biti zaključan na %1$d dana. Nakon %1$d dana neaktivnosti možete se ponovno registrirati bez PIN-a. Vaš račun kao i sav sadržaj će biti izbrisani.</item>
+        <item quantity="other">Ako vam ponestane pokušaja, vaš će račun biti zaključan na %1$d dana. Nakon %1$d dana neaktivnosti možete se ponovno registrirati bez PIN-a. Vaš račun kao i sav sadržaj će biti izbrisani.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
-        <item quantity="one">You have %1$d attempt remaining.</item>
-        <item quantity="few">You have %1$d attempts remaining.</item>
-        <item quantity="many">You have %1$d attempts remaining.</item>
-        <item quantity="other">You have %1$d attempts remaining.</item>
+        <item quantity="one">Imate još %1$d preostali pokušaj.</item>
+        <item quantity="few">Imate još %1$d preostala pokušaja.</item>
+        <item quantity="many">Imate još %1$d preostalih pokušaja.</item>
+        <item quantity="other">Imate još %1$d preostalih pokušaja.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__d_attempts_remaining">
-        <item quantity="one">%1$d attempt remaining.</item>
-        <item quantity="few">%1$d attempts remaining.</item>
-        <item quantity="many">%1$d attempts remaining.</item>
-        <item quantity="other">%1$d attempts remaining.</item>
+        <item quantity="one">Preostao je još %1$d pokušaj.</item>
+        <item quantity="few">Preostala su još %1$d pokušaja.</item>
+        <item quantity="many">Preostalo je još %1$d pokušaja.</item>
+        <item quantity="other">Preostalo je još %1$d pokušaja.</item>
     </plurals>
 
     <!-- CalleeMustAcceptMessageRequestDialogFragment -->
@@ -3784,16 +3784,16 @@
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">Nema drugih zajedničkih grupa.</string>
     <string name="ReviewCardDialogFragment__no_groups_in_common">Nema zajedničkih grupa.</string>
     <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
-        <item quantity="one">%1$d group in common</item>
-        <item quantity="few">%1$d groups in common</item>
-        <item quantity="many">%1$d groups in common</item>
-        <item quantity="other">%1$d groups in common</item>
+        <item quantity="one">%1$d zajednička grupa</item>
+        <item quantity="few">%1$d zajedničke grupe</item>
+        <item quantity="many">%1$d zajedničkih grupa</item>
+        <item quantity="other">%1$d zajedničkih grupa</item>
     </plurals>
     <plurals name="ReviewCardDialogFragment__d_groups_in_common">
-        <item quantity="one">%1$d group in common</item>
-        <item quantity="few">%1$d groups in common</item>
-        <item quantity="many">%1$d groups in common</item>
-        <item quantity="other">%1$d groups in common</item>
+        <item quantity="one">%1$d zajednička grupa</item>
+        <item quantity="few">%1$d zajedničke grupe</item>
+        <item quantity="many">%1$d zajedničkih grupa</item>
+        <item quantity="other">%1$d zajedničkih grupa</item>
     </plurals>
     <string name="ReviewCardDialogFragment__remove_s_from_group">Ukloniti %1$s iz grupe?</string>
     <string name="ReviewCardDialogFragment__remove">Ukloni</string>
@@ -3863,10 +3863,10 @@
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity__skip">Preskoči</string>
     <plurals name="CreateGroupActivity__d_members">
-        <item quantity="one">%1$d member</item>
-        <item quantity="few">%1$d members</item>
-        <item quantity="many">%1$d members</item>
-        <item quantity="other">%1$d members</item>
+        <item quantity="one">%1$d član</item>
+        <item quantity="few">%1$d člana</item>
+        <item quantity="many">%1$d članova</item>
+        <item quantity="other">%1$d članova</item>
     </plurals>
 
     <!-- ShareActivity -->
@@ -4235,10 +4235,10 @@
     <string name="ChatColorSelectionFragment__delete">Izbriši</string>
     <string name="ChatColorSelectionFragment__delete_color">Izbriši boju</string>
     <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
-        <item quantity="one">This custom color is used in %1$d chat. Do you want to delete it for all chats?</item>
-        <item quantity="few">This custom color is used in %1$d chats. Do you want to delete it for all chats?</item>
-        <item quantity="many">This custom color is used in %1$d chats. Do you want to delete it for all chats?</item>
-        <item quantity="other">This custom color is used in %1$d chats. Do you want to delete it for all chats?</item>
+        <item quantity="one">Ova prilagođena boja koristi se u %1$d razgovoru. Želite li je izbrisati za sve razgovore?</item>
+        <item quantity="few">Ova prilagođena boja koristi se u %1$d razgovora. Želite li je izbrisati za sve razgovore?</item>
+        <item quantity="many">Ova prilagođena boja koristi se u %1$d razgovora. Želite li je izbrisati za sve razgovore?</item>
+        <item quantity="other">Ova prilagođena boja koristi se u %1$d razgovora. Želite li je izbrisati za sve razgovore?</item>
     </plurals>
     <string name="ChatColorSelectionFragment__delete_chat_color">Izbrisati boju razgovora?</string>
 
@@ -4252,10 +4252,10 @@
     <string name="CustomChatColorCreatorFragmentPage__save">Spremi</string>
     <string name="CustomChatColorCreatorFragmentPage__edit_color">Uredi boju</string>
     <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
-        <item quantity="one">This color is used in %1$d chat. Do you want to save changes for all chats?</item>
-        <item quantity="few">This color is used in %1$d chats. Do you want to save changes for all chats?</item>
-        <item quantity="many">This color is used in %1$d chats. Do you want to save changes for all chats?</item>
-        <item quantity="other">This color is used in %1$d chats. Do you want to save changes for all chats?</item>
+        <item quantity="one">Ova boja se koristi u %1$d razgovoru. Želite li spremiti promjene za sve razgovore?</item>
+        <item quantity="few">Ova boja se koristi u %1$d razgovora. Želite li spremiti promjene za sve razgovore?</item>
+        <item quantity="many">Ova boja se koristi u %1$d razgovora. Želite li spremiti promjene za sve razgovore?</item>
+        <item quantity="other">Ova boja se koristi u %1$d razgovora. Želite li spremiti promjene za sve razgovore?</item>
     </plurals>
 
     <!-- ChatColorGradientTool -->
@@ -4459,28 +4459,28 @@
     <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">Videozapisi koji se šalju u Priče ne smiju biti dulji od 30 sekundi.</string>
     <string name="MultiselectForwardFragment__forwarded_messages_are_now">Proslijeđene poruke sada se šalju odmah.</string>
     <plurals name="MultiselectForwardFragment_send_d_messages">
-        <item quantity="one">Send %1$d message</item>
-        <item quantity="few">Send %1$d messages</item>
-        <item quantity="many">Send %1$d messages</item>
-        <item quantity="other">Send %1$d messages</item>
+        <item quantity="one">Pošalji %1$d poruku</item>
+        <item quantity="few">Pošalji %1$d poruke</item>
+        <item quantity="many">Pošalji %1$d poruka</item>
+        <item quantity="other">Pošalji %1$d poruka</item>
     </plurals>
     <plurals name="MultiselectForwardFragment_messages_sent">
-        <item quantity="one">Message sent</item>
-        <item quantity="few">Messages sent</item>
-        <item quantity="many">Messages sent</item>
-        <item quantity="other">Messages sent</item>
+        <item quantity="one">Poruka je poslana</item>
+        <item quantity="few">Poruke su poslane</item>
+        <item quantity="many">Poruke su poslane</item>
+        <item quantity="other">Poruke su poslane</item>
     </plurals>
     <plurals name="MultiselectForwardFragment_messages_failed_to_send">
-        <item quantity="one">Message failed to send</item>
-        <item quantity="few">Messages failed to send</item>
-        <item quantity="many">Messages failed to send</item>
-        <item quantity="other">Messages failed to send</item>
+        <item quantity="one">Slanje poruke nije uspjelo</item>
+        <item quantity="few">Slanje poruka nije uspjelo</item>
+        <item quantity="many">Slanje poruka nije uspjelo</item>
+        <item quantity="other">Slanje poruka nije uspjelo</item>
     </plurals>
     <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
-        <item quantity="one">Couldn\'t forward message because it\'s no longer available.</item>
-        <item quantity="few">Couldn\'t forward messages because they\'re no longer available.</item>
-        <item quantity="many">Couldn\'t forward messages because they\'re no longer available.</item>
-        <item quantity="other">Couldn\'t forward messages because they\'re no longer available.</item>
+        <item quantity="one">Nije moguće proslijediti poruku jer više nije dostupna.</item>
+        <item quantity="few">Nije moguće proslijediti poruke jer više nisu dostupne.</item>
+        <item quantity="many">Nije moguće proslijediti poruke jer više nisu dostupne.</item>
+        <item quantity="other">Nije moguće proslijediti poruke jer više nisu dostupne.</item>
     </plurals>
     <!-- Error message shown when attempting to select a group to forward/share but it\'s announcement only and you are not an admin -->
     <string name="MultiselectForwardFragment__only_admins_can_send_messages_to_this_group">Samo administratori mogu slati poruke u ovoj grupi.</string>
@@ -4680,10 +4680,10 @@
     <string name="GiftMessageView__gift_badge">Značka na poklon</string>
     <!-- Gift message view expiry information -->
     <plurals name="GiftMessageView__lasts_for_d_months">
-        <item quantity="one">Lasts for %1$d month</item>
-        <item quantity="few">Lasts for %1$d months</item>
-        <item quantity="many">Lasts for %1$d months</item>
-        <item quantity="other">Lasts for %1$d months</item>
+        <item quantity="one">Traje %1$d mjesec</item>
+        <item quantity="few">Traje %1$d mjeseca</item>
+        <item quantity="many">Traje %1$d mjeseci</item>
+        <item quantity="other">Traje %1$d mjeseci</item>
     </plurals>
     <!-- Gift badge redeem action label -->
     <string name="GiftMessageView__redeem">Preuzmi</string>
@@ -4952,10 +4952,10 @@
     <string name="StoriesLandingFragment__hidden_stories">Sakrivene priče</string>
     <!-- Displayed on each sent story under My Stories -->
     <plurals name="MyStories__d_views">
-        <item quantity="one">%1$d view</item>
-        <item quantity="few">%1$d views</item>
-        <item quantity="many">%1$d views</item>
-        <item quantity="other">%1$d views</item>
+        <item quantity="one">%1$d pregled</item>
+        <item quantity="few">%1$d pregleda</item>
+        <item quantity="many">%1$d pregleda</item>
+        <item quantity="other">%1$d pregleda</item>
     </plurals>
     <!-- Forward story label, displayed in My Stories context menu -->
     <string name="MyStories_forward">Proslijedi</string>
@@ -4969,17 +4969,17 @@
     <string name="MyStories__unable_to_save">Spremanje nije uspjelo</string>
     <!-- Displayed at bottom of story viewer when current item has views -->
     <plurals name="StoryViewerFragment__d_views">
-        <item quantity="one">%1$d view</item>
-        <item quantity="few">%1$d views</item>
-        <item quantity="many">%1$d views</item>
-        <item quantity="other">%1$d views</item>
+        <item quantity="one">%1$d pregled</item>
+        <item quantity="few">%1$d pregleda</item>
+        <item quantity="many">%1$d pregleda</item>
+        <item quantity="other">%1$d pregleda</item>
     </plurals>
     <!-- Displayed at bottom of story viewer when current item has replies -->
     <plurals name="StoryViewerFragment__d_replies">
-        <item quantity="one">%1$d reply</item>
-        <item quantity="few">%1$d replies</item>
-        <item quantity="many">%1$d replies</item>
-        <item quantity="other">%1$d replies</item>
+        <item quantity="one">%1$d odgovor</item>
+        <item quantity="few">%1$d odgovora</item>
+        <item quantity="many">%1$d odgovora</item>
+        <item quantity="other">%1$d odgovora</item>
     </plurals>
     <!-- Used when view receipts are disabled -->
     <string name="StoryViewerPageFragment__views_off">Isključi preglede</string>
@@ -5045,10 +5045,10 @@
     <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Sakrij svoju priču od određenih osoba</string>
     <!-- Summary of clickable option displaying how many people you have excluded from your story -->
     <plurals name="MyStorySettingsFragment__d_people_excluded">
-        <item quantity="one">%1$d person excluded</item>
-        <item quantity="few">%1$d people excluded</item>
-        <item quantity="many">%1$d people excluded</item>
-        <item quantity="other">%1$d people excluded</item>
+        <item quantity="one">Isključeno za %1$d osobu</item>
+        <item quantity="few">Isključeno za %1$d osobe</item>
+        <item quantity="many">Isključeno za %1$d osoba</item>
+        <item quantity="other">Isključeno za %1$d osoba</item>
     </plurals>
     <!-- Privacy setting title for only sharing your story with specified connections -->
     <string name="MyStorySettingsFragment__only_share_with">Podijeli samo s…</string>
@@ -5056,10 +5056,10 @@
     <string name="MyStorySettingsFragment__only_share_with_selected_people">Podijeli samo s odabranim ljudima</string>
     <!-- Summary of clickable option displaying how many people you have included to send to in your story -->
     <plurals name="MyStorySettingsFragment__d_people">
-        <item quantity="one">%1$d person</item>
-        <item quantity="few">%1$d people</item>
-        <item quantity="many">%1$d people</item>
-        <item quantity="other">%1$d people</item>
+        <item quantity="one">%1$d osoba</item>
+        <item quantity="few">%1$d osobe</item>
+        <item quantity="many">%1$d osoba</item>
+        <item quantity="other">%1$d osoba</item>
     </plurals>
     <!-- My story privacy fine print about what the privacy settings are for -->
     <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Odaberite tko može pogledati vašu priču. Promjene neće utjecati na priče koje ste već poslali.</string>
@@ -5151,10 +5151,10 @@
     <string name="CreateStoryViewerSelectionFragment__next">Sljedeće</string>
     <!-- New story viewer selection screen title as recipients are selected -->
     <plurals name="SelectViewersFragment__d_viewers">
-        <item quantity="one">%1$d viewer</item>
-        <item quantity="few">%1$d viewers</item>
-        <item quantity="many">%1$d viewers</item>
-        <item quantity="other">%1$d viewers</item>
+        <item quantity="one">%1$d gledatelj</item>
+        <item quantity="few">%1$d gledatelja</item>
+        <item quantity="many">%1$d gledatelja</item>
+        <item quantity="other">%1$d gledatelja</item>
     </plurals>
     <!-- Name story screen title -->
     <string name="CreateStoryWithViewersFragment__name_story">Dodijelite naziv priči</string>
@@ -5226,10 +5226,10 @@
 
     <!-- Gift price and duration, formatted as: {price} dot {n} day duration -->
     <plurals name="GiftRowItem_s_dot_d_day_duration">
-        <item quantity="one">%1$s · %2$d day duration</item>
-        <item quantity="few">%1$s · %2$d day duration</item>
-        <item quantity="many">%1$s · %2$d day duration</item>
-        <item quantity="other">%1$s · %2$d day duration</item>
+        <item quantity="one">%1$s · Trajanje: %2$d dan</item>
+        <item quantity="few">%1$s · Trajanje: %2$d dana</item>
+        <item quantity="many">%1$s · Trajanje: %2$d dana</item>
+        <item quantity="other">%1$s · Trajanje: %2$d dana</item>
     </plurals>
     <!-- Tagline for gift row items -->
     <string name="GiftRowItem__send_a_gift_badge">Pošaljite značku na poklon</string>
@@ -5285,24 +5285,24 @@
     <string name="ContactSearchItems__only_share_with">Podijeli samo s</string>
     <!-- Label under name for private stories -->
     <plurals name="ContactSearchItems__private_story_d_viewers">
-        <item quantity="one">Private story · %1$d viewer</item>
-        <item quantity="few">Private story · %1$d viewers</item>
-        <item quantity="many">Private story · %1$d viewers</item>
-        <item quantity="other">Private story · %1$d viewers</item>
+        <item quantity="one">Privatna priča · %1$d gledatelj</item>
+        <item quantity="few">Privatna priča · %1$d gledatelja</item>
+        <item quantity="many">Privatna priča · %1$d gledatelja</item>
+        <item quantity="other">Privatna priča · %1$d gledatelja</item>
     </plurals>
     <!-- Label under name for group stories -->
     <plurals name="ContactSearchItems__group_story_d_viewers">
-        <item quantity="one">Group story · %1$d viewer</item>
-        <item quantity="few">Group story · %1$d viewers</item>
-        <item quantity="many">Group story · %1$d viewers</item>
-        <item quantity="other">Group story · %1$d viewers</item>
+        <item quantity="one">Grupna priča · %1$d gledatelj</item>
+        <item quantity="few">Grupna priča · %1$d gledatelja</item>
+        <item quantity="many">Grupna priča · %1$d gledatelja</item>
+        <item quantity="other">Grupna priča · %1$d gledatelja</item>
     </plurals>
     <!-- Label under name for my story -->
     <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
-        <item quantity="one">%1$s · %2$d viewer</item>
-        <item quantity="few">%1$s · %2$d viewers</item>
-        <item quantity="many">%1$s · %2$d viewers</item>
-        <item quantity="other">%1$s · %2$d viewers</item>
+        <item quantity="one">%1$s · %2$d gledatelj</item>
+        <item quantity="few">%1$s · %2$d gledatelja</item>
+        <item quantity="many">%1$s · %2$d gledatelja</item>
+        <item quantity="other">%1$s · %2$d gledatelja</item>
     </plurals>
     <!-- Label under name for My Story when first sending to my story -->
     <string name="ContactSearchItems__tap_to_choose_your_viewers">Dodirni za odabir gledatelja</string>
@@ -5326,24 +5326,24 @@
     <string name="ContactSearchMediator__delete">Izbriši</string>
     <!-- Gift expiry days remaining -->
     <plurals name="Gifts__d_days_remaining">
-        <item quantity="one">%1$d days remaining</item>
-        <item quantity="few">%1$d days remaining</item>
-        <item quantity="many">%1$d days remaining</item>
-        <item quantity="other">%1$d days remaining</item>
+        <item quantity="one">Preostao je %1$d dan</item>
+        <item quantity="few">Preostala su %1$d dana</item>
+        <item quantity="many">Preostalo je %1$d dana</item>
+        <item quantity="other">Preostalo je %1$d dana</item>
     </plurals>
     <!-- Gift expiry hours remaining -->
     <plurals name="Gifts__d_hours_remaining">
-        <item quantity="one">%1$d hours remaining</item>
-        <item quantity="few">%1$d hours remaining</item>
-        <item quantity="many">%1$d hours remaining</item>
-        <item quantity="other">%1$d hours remaining</item>
+        <item quantity="one">Preostao je %1$d sat</item>
+        <item quantity="few">Preostala su %1$d sata</item>
+        <item quantity="many">Preostalo je %1$d sati</item>
+        <item quantity="other">Preostalo je %1$d sati</item>
     </plurals>
     <!-- Gift expiry minutes remaining -->
     <plurals name="Gifts__d_minutes_remaining">
-        <item quantity="one">%1$d minute remaining</item>
-        <item quantity="few">%1$d minutes remaining</item>
-        <item quantity="many">%1$d minutes remaining</item>
-        <item quantity="other">%1$d minutes remaining</item>
+        <item quantity="one">Preostala je %1$d minuta</item>
+        <item quantity="few">Preostale su %1$d minute</item>
+        <item quantity="many">Preostalo je %1$d minuta</item>
+        <item quantity="other">Preostalo je %1$d minuta</item>
     </plurals>
     <!-- Gift expiry expired -->
     <string name="Gifts__expired">Isteklo</string>
@@ -5390,10 +5390,10 @@
     <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Promjene sigurnosnog broja</string>
     <!-- Message of safety number review fragment -->
     <plurals name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">
-        <item quantity="one">%1$d recipient may have reinstalled Signal or changed devices. Tap a recipient to confirm the new safety number. This is optional.</item>
-        <item quantity="few">%1$d recipients may have reinstalled Signal or changed devices. Tap a recipient to confirm the new safety number. This is optional.</item>
-        <item quantity="many">%1$d recipients may have reinstalled Signal or changed devices. Tap a recipient to confirm the new safety number. This is optional.</item>
-        <item quantity="other">%1$d recipients may have reinstalled Signal or changed devices. Tap a recipient to confirm the new safety number. This is optional.</item>
+        <item quantity="one">%1$d primatelj je možda ponovno instalirao Signal ili promijenio uređaj. Dodirnite primatelja kako biste potvrdili novi sigurnosni broj. Ovo nije obavezno.</item>
+        <item quantity="few">%1$d primatelja su možda ponovno instalirala Signal ili promijenila uređaje. Dodirnite primatelja kako biste potvrdili novi sigurnosni broj. Ovo nije obavezno.</item>
+        <item quantity="many">%1$d primatelja je možda ponovno instaliralo Signal ili promijenilo uređaje. Dodirnite primatelja kako biste potvrdili novi sigurnosni broj. Ovo nije obavezno.</item>
+        <item quantity="other">%1$d primatelja je možda ponovno instaliralo Signal ili promijenilo uređaje. Dodirnite primatelja kako biste potvrdili novi sigurnosni broj. Ovo nije obavezno.</item>
     </plurals>
     <!-- Section header for 1:1 contacts in review fragment -->
     <string name="SafetyNumberBucketRowItem__contacts">Kontakti</string>

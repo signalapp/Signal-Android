@@ -358,8 +358,8 @@
     </plurals>
     <string name="ConversationFragment_save_to_sd_card">Anbarda saxlanılsın?</string>
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
-        <item quantity="one">Saving this media to storage will allow any other apps on your device to access it.\n\nContinue?</item>
-        <item quantity="other">Saving all %1$d media to storage will allow any other apps on your device to access them.\n\nContinue?</item>
+        <item quantity="one">Bu medianı yaddaşda saxlamaq, cihazınızdakı istənilən digər tətbiqin həmin mediaya girişinə icazə verir.\n\nDavam etmək istəyirsiniz?</item>
+        <item quantity="other">%1$d medianın hamısını yaddaşda saxlamaq, cihazınızdakı istənilən digər tətbiqin həmin medialara girişinə icazə verir.\n\nDavam etmək istəyirsiniz?</item>
     </plurals>
     <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
         <item quantity="one">Faylı yaddaşa yazarkən xəta baş verdi!</item>
@@ -367,12 +367,12 @@
     </plurals>
     <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Anbara yazıla bilmir!</string>
     <plurals name="ConversationFragment_saving_n_attachments">
-        <item quantity="one">Saving attachment</item>
-        <item quantity="other">Saving %1$d attachments</item>
+        <item quantity="one">Qoşma yaddaşda saxlanılır</item>
+        <item quantity="other">%1$d qoşma yaddaşda saxlanılır</item>
     </plurals>
     <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="one">Saving attachment to storage…</item>
-        <item quantity="other">Saving %1$d attachments to storage…</item>
+        <item quantity="one">Qoşma yaddaş faylında saxlanılır...</item>
+        <item quantity="other">%1$d qoşma yaddaş faylında saxlanılır...</item>
     </plurals>
     <string name="ConversationFragment_pending">Gözlənilir…</string>
     <string name="ConversationFragment_push">Verilənlər (Signal)</string>
@@ -418,19 +418,19 @@
         <item quantity="other">Seçilmiş danışıqlar silinsin?</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">This will permanently delete the selected conversation.</item>
-        <item quantity="other">This will permanently delete all %1$d selected conversations.</item>
+        <item quantity="one">Bu, seçilmiş söhbəti birdəfəlik siləcək.</item>
+        <item quantity="other">Bu, seçilmiş %1$d söhbətin hamısını birdəfəlik siləcək.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Silinir</string>
     <string name="ConversationListFragment_deleting_selected_conversations">Seçilmiş danışıqlar silinir…</string>
     <plurals name="ConversationListFragment_conversations_archived">
-        <item quantity="one">Conversation archived</item>
-        <item quantity="other">%1$d conversations archived</item>
+        <item quantity="one">Söhbət arxivləndi</item>
+        <item quantity="other">%1$d söhbət arxivləndi</item>
     </plurals>
     <string name="ConversationListFragment_undo">Geri qaytar</string>
     <plurals name="ConversationListFragment_moved_conversations_to_inbox">
-        <item quantity="one">Moved conversation to inbox</item>
-        <item quantity="other">Moved %1$d conversations to inbox</item>
+        <item quantity="one">Söhbət gələnlər qutusuna köçürüldü</item>
+        <item quantity="other">%1$d söhbət gələnlər qutusuna köçürüldü</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
         <item quantity="one">Oxundu</item>
@@ -664,8 +664,8 @@
 
     <!-- GV2 invites sent -->
     <plurals name="GroupManagement_invitation_sent">
-        <item quantity="one">Invitation sent</item>
-        <item quantity="other">%1$d invitations sent</item>
+        <item quantity="one">Dəvət göndərildi</item>
+        <item quantity="other">%1$d dəvət göndərildi</item>
     </plurals>
     <string name="GroupManagement_invite_single_user">\"%1$s\", sizin tərəfinizdən bu qrupa avtomatik olaraq əlavə edilə bilməz. Qoşulması üçün dəvət göndərildi və qəbul edənə qədər qrup mesajını görməyəcəklər.</string>
     <string name="GroupManagement_invite_multiple_users">Bu istifadəçiləri bu qrupa avtomatik olaraq əlavə edə bilməzsiniz.\n\nQoşulmaq üçün dəvət göndərildi və qəbul edənə qədər qrup mesajlarını görməyəcəklər.</string>
@@ -765,8 +765,8 @@
     <string name="PendingMembersActivity_revoke_invite">Dəvəti ləğv et</string>
     <string name="PendingMembersActivity_revoke_invites">Dəvətləri ləğv et</string>
     <plurals name="PendingMembersActivity_revoke_d_invites">
-        <item quantity="one">Revoke invite</item>
-        <item quantity="other">Revoke %1$d invites</item>
+        <item quantity="one">Dəvəti ləğv et</item>
+        <item quantity="other">%1$d dəvəti ləğv et</item>
     </plurals>
     <plurals name="PendingMembersActivity_error_revoking_invite">
         <item quantity="one">Dəvət ləğv etmə xətası</item>
@@ -785,8 +785,8 @@
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Bu şəxs, köhnə qruplara əlavə ediə bilməz.</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">Bu şəxs, elan qruplarına əlavə edilə bilməz.</string>
     <plurals name="AddMembersActivity__add_d_members_to_s">
-        <item quantity="one">Add \"%1$s\" to \"%2$s\"?</item>
-        <item quantity="other">Add %3$d members to \"%2$s\"?</item>
+        <item quantity="one">%2$s\"%1$s\" üzv \"%2$s\" qrupuna əlavə edilsin?</item>
+        <item quantity="other">%3$d üzv \"%2$s\" qrupuna əlavə edilsin?</item>
     </plurals>
     <string name="AddMembersActivity__add">Əlavə et</string>
     <string name="AddMembersActivity__add_members">Üzv əlavə et</string>
@@ -887,8 +887,8 @@
     </plurals>
 
     <plurals name="GroupMemberList_invited">
-        <item quantity="one">%1$s invited 1 person</item>
-        <item quantity="other">%1$s invited %2$d people</item>
+        <item quantity="one">%1$s bir nəfər dəvət etdi</item>
+        <item quantity="other">%1$s %2$d nəfər dəvət etdi</item>
     </plurals>
 
     <!-- CustomNotificationsDialogFragment -->
@@ -926,8 +926,8 @@
     <!-- GV2 Invite Revoke confirmation dialog -->
     <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">%1$s üçün göndərdiyiniz dəvəti ləğv etmək istəyirsiniz?</string>
     <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
-        <item quantity="one">Do you want to revoke the invite sent by %1$s?</item>
-        <item quantity="other">Do you want to revoke %2$d invites sent by %1$s?</item>
+        <item quantity="one">%1$s tərəfindən göndərilən dəvəti ləğv etmək istəyirsiniz?</item>
+        <item quantity="other">%1$s tərəfindən göndərilən %2$d dəvəti ləğv etmək istəyirsiniz?</item>
     </plurals>
 
     <!-- GroupJoinBottomSheetDialogFragment -->
@@ -1035,8 +1035,8 @@
         <item quantity="other">Seçilmiş elementlər silinsin?</item>
     </plurals>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-        <item quantity="one">This will permanently delete the selected file. Any message text associated with this item will also be deleted.</item>
-        <item quantity="other">This will permanently delete all %1$d selected files. Any message text associated with these items will also be deleted.</item>
+        <item quantity="one">Bu, seçilmiş faylı birdəfəlik siləcək. Bu elementlə əlaqəli bütün mesaj mətnləri də silinəcək.</item>
+        <item quantity="other">Bu, seçilmiş %1$d faylın hamısını birdəfəlik siləcək. Bu elementlərlə əlaqəli bütün mesaj mətnləri də silinəcək.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Silinir</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">Mesajlar silinir…</string>
@@ -1168,13 +1168,13 @@
     <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Yeni Qrupa əlavə edilə bilmədiniz və qoşulmağınız üçün dəvət göndərildi.</string>
     <string name="MessageRecord_chat_session_refreshed">Söhbət seansı təzələndi</string>
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
-        <item quantity="one">A member couldn\'t be added to the New Group and has been invited to join.</item>
-        <item quantity="other">%1$s members couldn\'t be added to the New Group and have been invited to join.</item>
+        <item quantity="one">Üzv Yeni Qrupa əlavə edilə bilmədi və qoşulmaq üçün dəvət edildi.</item>
+        <item quantity="other">%1$s üzv Yeni Qrupa əlavə edilə bilmədi və qoşulmaq üçün dəvət edildi.</item>
     </plurals>
 
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
-        <item quantity="one">A member couldn\'t be added to the New Group and has been removed.</item>
-        <item quantity="other">%1$s members couldn\'t be added to the New Group and have been removed.</item>
+        <item quantity="one">Üzv Yeni Qrupa əlavə edilə bilmədi və çıxarıldı.</item>
+        <item quantity="other">%1$s üzv Yeni Qrupa əlavə edilə bilmədi və çıxarıldı.</item>
     </plurals>
 
     <!-- Profile change updates -->
@@ -1219,31 +1219,31 @@
     <string name="MessageRecord_you_invited_s_to_the_group">%1$s əlaqəsini qrupa dəvət etdiniz.</string>
     <string name="MessageRecord_s_invited_you_to_the_group">%1$s, sizi qrupa dəvət etdi.</string>
     <plurals name="MessageRecord_s_invited_members">
-        <item quantity="one">%1$s invited 1 person to the group.</item>
-        <item quantity="other">%1$s invited %2$d people to the group.</item>
+        <item quantity="one">%1$s 1 nəfəri qrupa dəvət etdi.</item>
+        <item quantity="other">%1$s, %2$d nəfəri qrupa dəvət etdi.</item>
     </plurals>
     <string name="MessageRecord_you_were_invited_to_the_group">Qrupa dəvət olundunuz.</string>
     <plurals name="MessageRecord_d_people_were_invited_to_the_group">
-        <item quantity="one">1 person was invited to the group.</item>
-        <item quantity="other">%1$d people were invited to the group.</item>
+        <item quantity="one">1 nəfər qrupa dəvət edildi.</item>
+        <item quantity="other">%1$d nəfər qrupa dəvət edildi.</item>
     </plurals>
 
     <!-- GV2 invitation revokes -->
     <plurals name="MessageRecord_you_revoked_invites">
-        <item quantity="one">You revoked an invitation to the group.</item>
-        <item quantity="other">You revoked %1$d invitations to the group.</item>
+        <item quantity="one">Qrupa bir dəvəti ləğv etdiniz.</item>
+        <item quantity="other">Qrupa %1$d dəvəti ləğv etdiniz.</item>
     </plurals>
     <plurals name="MessageRecord_s_revoked_invites">
-        <item quantity="one">%1$s revoked an invitation to the group.</item>
-        <item quantity="other">%1$s revoked %2$d invitations to the group.</item>
+        <item quantity="one">%1$s bir qrup dəvətini ləğv etdi.</item>
+        <item quantity="other">%1$s %2$d qrup dəvətini ləğv etdi.</item>
     </plurals>
     <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Kimsə qrup dəvətini rədd etdi.</string>
     <string name="MessageRecord_you_declined_the_invitation_to_the_group">Qrup dəvətini rədd etdiniz.</string>
     <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s, qrup dəvətinizi qəbul etmədi.</string>
     <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">Bir admin, qrup dəvətinizi qəbul etmədi.</string>
     <plurals name="MessageRecord_d_invitations_were_revoked">
-        <item quantity="one">An invitation to the group was revoked.</item>
-        <item quantity="other">%1$d invitations to the group were revoked.</item>
+        <item quantity="one">Qrup dəvəti ləğv edildi.</item>
+        <item quantity="other">%1$d qrup dəvəti ləğv edildi.</item>
     </plurals>
 
     <!-- GV2 invitation acceptance -->
@@ -1316,8 +1316,8 @@
     <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s qrup bağlantısı vasitəsilə qrupa qoşulma tələbi göndərdi.</string>
     <!-- Update message shown when someone requests to join via group link and cancels the request back to back -->
     <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
-        <item quantity="one">%1$s requested and cancelled their request to join via the group link.</item>
-        <item quantity="other">%1$s requested and cancelled %2$d requests to join via the group link.</item>
+        <item quantity="one">%1$s qrup keçidi vasitəsilə qoşulmaq üçün göndərilən tələbi ləğv etdi.</item>
+        <item quantity="other">%1$s qrup bağlantısı vasitəsilə qoşulmaq üçün göndərdiyi %2$d tələbi ləğv etdi.</item>
     </plurals>
 
     <!-- GV2 group link approvals -->
@@ -1346,9 +1346,9 @@
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Bu yeni xüsusiyyəti bəyənirsiniz? Birdəfəlik ianə ilə Signal-a dəstək olmağa kömək edin.</string>
     <!-- Update item message shown when we merge two threads together -->
-    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Your message history with %1$s and their number %2$s has been merged.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">%1$s ilə olan mesaj tarixçəniz və onun %2$s əlaqə nömrəsi birləşdirildi.</string>
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
-    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Your message history with %1$s and another chat that belonged to them has been merged.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">%1$s ilə olan mesaj tarixçəniz və ona aid digər bir söhbət birləşdirildi.</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s bir qrup zəngi başlatdı · %2$s</string>
@@ -1450,8 +1450,8 @@
     <string name="OutdatedBuildReminder_update_now">İndi yenilə</string>
     <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Signal-ın bu versiyasının istifadə müddəti bu gün bitir. Ən son versiyaya yeniləyin.</string>
     <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
-        <item quantity="one">This version of Signal will expire tomorrow. Update to the most recent version.</item>
-        <item quantity="other">This version of Signal will expire in %1$d days. Update to the most recent version.</item>
+        <item quantity="one">Signal-ın bu versiyasının istifadə müddəti sabah bitir. Ən son versiyaya yeniləyin.</item>
+        <item quantity="other">Signal-ın bu versiyasının istifadə müddəti %1$d günə bitir. Ən son versiyaya yeniləyin.</item>
     </plurals>
 
     <!-- PassphrasePromptActivity -->
@@ -1873,7 +1873,7 @@
 
     <!-- UsernameEditFragment -->
     <!-- Toolbar title when entering from registration -->
-    <string name="UsernameEditFragment__add_a_username">Add a username</string>
+    <string name="UsernameEditFragment__add_a_username">Bir istifadəçi adı əlavə edin</string>
     <!-- Instructional text at the top of the username edit screen -->
     <string name="UsernameEditFragment__choose_your_username">İstifadəçi adınızı seçin</string>
     <string name="UsernameEditFragment_username">istifadəçi adı</string>
@@ -3743,10 +3743,10 @@
     <string name="payment_info_card_hide_this_card">Bu kart gizlədilsin?</string>
     <string name="payment_info_card_hide">Gizlət</string>
     <!-- Title of save recovery phrase card -->
-    <string name="payment_info_card_save_recovery_phrase">Save recovery phrase</string>
+    <string name="payment_info_card_save_recovery_phrase">Bərpa parolunu yaddaşda saxlayın</string>
     <string name="payment_info_card_your_recovery_phrase_gives_you">Bərpa parolu, sizə ödəniş hesabınızı geri yükləmənin başqa bir yolunu təqdim edir.</string>
     <!-- Button in save recovery phrase card -->
-    <string name="payment_info_card_save_your_phrase">Save your phrase</string>
+    <string name="payment_info_card_save_your_phrase">Parolu yaddaşda saxlayın</string>
     <string name="payment_info_card_update_your_pin">PIN-inizi yeniləyin</string>
     <string name="payment_info_card_with_a_high_balance">Yüksək bir balans ilə, hesabınıza daha çox qoruma əlavə etmək üçün PIN-i alfanömrəli olaraq yeniləmək istəyə bilərsiniz.</string>
     <string name="payment_info_card_update_pin">PIN-i yenilə</string>
@@ -3771,23 +3771,23 @@
     <string name="PaymentsRecoveryStartFragment__recovery_phrase">Bərpa parolu</string>
     <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Bərpa paroluna bax</string>
     <!-- Title in save recovery phrase screen -->
-    <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Save recovery phrase</string>
+    <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Bərpa parolunu yaddaşda saxlayın</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Bərpa parolunu daxil edin</string>
     <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Signal PIN-inizi təsdiqləmisinizsə, Signal-ı yenidən quraşdıranda balansınız avtomatik geri yüklənəcək. Həmçinin sizə xas olan %1$d sözdən ibarət bir bərpa parolunu istifadə edərək balansınızı geri yükləyə bilərsiniz. Bunu bir yerə yazın və etibarlı bir yerdə saxlayın.</string>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
-    <string name="PaymentsRecoveryStartFragment__got_balance">You’ve got a balance! Time to save your recovery phrase—a 24-word key you can use to restore your balance.</string>
+    <string name="PaymentsRecoveryStartFragment__got_balance">Balans əldə etdiniz! Bərpa parolunu yaddaşda saxlamaq vaxtıdır— balansınızı bərpa etmək üçün 24 sözdən ibarət bir şifrə.</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
-    <string name="PaymentsRecoveryStartFragment__time_to_save">Time to save your recovery phrase—a 24-word key you can use to restore your balance. Learn more</string>
+    <string name="PaymentsRecoveryStartFragment__time_to_save">Bərpa parolunu yaddaşda saxlamaq vaxtıdır— balansınızı bərpa etmək üçün 24 sözdən ibarət bir şifrə. Daha ətraflı</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Bərpa parolunuz, sizə xas %1$d sözdən ibarət bir paroldur. Balansınızı geri yükləmək üçün bu parolu istifadə edin.</string>
     <string name="PaymentsRecoveryStartFragment__start">Başla</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">Əllə daxil edin</string>
     <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Lövhədən yapışdır</string>
     <!-- Alert dialog title which asks before going back if user wants to save recovery phrase -->
-    <string name="PaymentsRecoveryStartFragment__continue_without_saving">Continue Without Saving?</string>
+    <string name="PaymentsRecoveryStartFragment__continue_without_saving">Yaddaşda saxlamadan davam etmək istəyirsiniz?</string>
     <!-- Alert dialog description to let user know why recovery phrase needs to be saved -->
-    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">Your recovery phrase lets you restore your balance in a worst-case scenario. We strongly recommend you save it.</string>
+    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">Bərpa parolu çıxılmaz vəziyyətdə balansınızı bərpa etmək imkanı verir. Onu yaddaşda saxlamağınızı tövsiyə edirik.</string>
     <!-- Alert dialog option to skip recovery phrase -->
-    <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">Skip Recovery Phrase</string>
+    <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">Bərpa parolunu ötür</string>
     <!-- Alert dialog option to cancel dialog-->
     <string name="PaymentsRecoveryStartFragment__cancel">İmtina</string>
 
@@ -3943,9 +3943,9 @@
     <!-- Preference title to delete sms -->
     <string name="SmsSettingsFragment__remove_sms_messages">SMS mesajlarını sil</string>
     <!-- Snackbar text to confirm deletion -->
-    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Removing SMS messages from Signal…</string>
+    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">SMS mesajları Signal-dan silinir...</string>
     <!-- Snackbar text to indicate can delete later -->
-    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">You can remove SMS messages from Signal in Settings at any time.</string>
+    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">Parametrlərə keçərək Signal-dan SMS mesajlarını istədiyiniz vaxt silə bilərsiniz.</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">Mesajlar</string>
@@ -4195,17 +4195,17 @@
     <!-- Dialog title when removing a contact -->
     <string name="NewConversationActivity__remove_s">%1$s çıxarılsın?</string>
     <!-- Dialog message when removing a contact -->
-    <string name="NewConversationActivity__you_wont_see_this_person">You won\'t see this person when searching. You\'ll get a message request if they message you in the future.</string>
+    <string name="NewConversationActivity__you_wont_see_this_person">Axtarış zamanı bu şəxsi görməyəcəksiniz. Gələcəkdə həmin şəxs sizə mesaj göndərsə mesaj sorğusu alacaqsınız.</string>
     <!-- Snackbar message after removing a contact -->
-    <string name="NewConversationActivity__s_has_been_removed">%1$s has been removed</string>
+    <string name="NewConversationActivity__s_has_been_removed">%1$s silindi</string>
     <!-- Snackbar message after blocking a contact -->
-    <string name="NewConversationActivity__s_has_been_blocked">%1$s has been blocked</string>
+    <string name="NewConversationActivity__s_has_been_blocked">%1$s əngəlləndi</string>
     <!-- Dialog title when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__unable_to_remove_s">Unable to remove %1$s</string>
+    <string name="NewConversationActivity__unable_to_remove_s">%1$s silmək mümkün olmadı</string>
     <!-- Dialog message when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__this_person_is_saved_to_your">This person is saved to your device\'s Contacts. Delete them from your Contacts and try again.</string>
+    <string name="NewConversationActivity__this_person_is_saved_to_your">Bu əlaqə nömrəsi cihazınızın Kontaktlarında saxlanılır. Kontaktlardan onu silib yenidən cəhd edin.</string>
     <!-- Dialog action to view contact when they can't be removed otherwise -->
-    <string name="NewConversationActivity__view_contact">View contact</string>
+    <string name="NewConversationActivity__view_contact">Kontakta bax</string>
 
     <!-- ContactFilterView -->
     <string name="ContactFilterView__search_name_or_number">Ad və ya nömrə axtarın</string>
@@ -4778,9 +4778,9 @@
     <!-- Displayed when viewing a post from another user with no replies -->
     <string name="StoryViewerPageFragment__reply">Cavabla</string>
     <!-- Displayed when viewing a post that has failed to send to some users -->
-    <string name="StoryViewerPageFragment__partially_sent">Partially sent. Tap for details</string>
+    <string name="StoryViewerPageFragment__partially_sent">Qismən göndərildi. Təfərrüatlar üçün toxunun</string>
     <!-- Displayed when viewing a post that has failed to send -->
-    <string name="StoryViewerPageFragment__send_failed">Send failed. Tap to retry</string>
+    <string name="StoryViewerPageFragment__send_failed">Göndərmək mümkün olmadı. Təkrar cəhd etmək üçün toxunun</string>
     <!-- Label for the reply button in story viewer, which will launch the group story replies bottom sheet. -->
     <string name="StoryViewerPageFragment__reply_to_group">Qrupa cavab ver</string>
     <!-- Displayed when a story has no views -->
@@ -5229,7 +5229,7 @@
     <!-- Title of the screen -->
     <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">SMS mesajlarınızı ixrac edin</string>
     <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">You can export your SMS messages to your phone\'s SMS database. This allows other SMS apps on your phone to access and import them. This does not create a shareable file of your SMS message history.</string>
+    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">SMS mesajlarınızı telefonunuzun SMS verilənlər bazasına ixrac edə bilərsiniz. Bu, telefonunuzdakı digər SMS tətbiqlərinə həmin mesajlara daxil olma və onları idxal etmə imkanı verir. Bu, SMS mesajı tarixçənizin paylaşıla bilən faylını yaratmır.</string>
     <!-- Button label to begin export -->
     <string name="ExportYourSmsMessagesFragment__continue">Davam et</string>
 
@@ -5255,17 +5255,17 @@
     <!-- Fourth step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_4">4</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">Tap \"Continue\" to open the \"Default apps\" screen in Settings</string>
+    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">Parametrlərdə \"Standart tətbiqlər\" ekranını açmaq üçün \"Davam et\" üzərinə toxunun</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">Select \"SMS app\" from the list</string>
+    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">Siyahıdan \"SMS tətbiqi\" seçin</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">Choose another app to use for SMS messaging</string>
+    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">SMS mesajlaşmasında istifadə etmək üçün başqa bir tətbiq seçin</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">Return to Signal</string>
+    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">Signal-a qayıdın</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">Open your phone\'s Settings app</string>
+    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">Telefonunuzun Parametrlər tətbiqini açın</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">Navigate to \"Apps\" &gt; \"Default apps\" &gt; \"SMS app\"</string>
+    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">\"Tətbiqlər\" &gt; \"Standart tətbiqlər\" &gt; \"SMS tətbiqi\"nə keçin</string>
 
     <!-- RemoveSmsMessagesDialogFragment -->
     <!-- Action button to keep messages -->
@@ -5275,13 +5275,13 @@
     <!-- Title of dialog -->
     <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Signal-dan SMS mesajları silinsin?</string>
     <!-- Message of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">You can now remove SMS messages from Signal to clear up storage space. They will still be available to other SMS apps on your phone even if you remove them.</string>
+    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">Bundan sonra yaddaşda yer boşaltmaq üçün SMS mesajlarınızı Signal-dan silə bilərsiniz. Bu mesajları silsəniz də telefonunuzdakı digər SMS tətbiqləri onlara daxil ola biləcək.</string>
 
     <!-- SetSignalAsDefaultSmsAppFragment -->
     <!-- Title of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">Set Signal as the default SMS app</string>
+    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">Signal-ı standart SMS tətbiqi olaraq təyin edin</string>
     <!-- Message of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">To export your SMS messages, you need to set Signal as the default SMS app.</string>
+    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">SMS mesajlarınızı ixrac etmək üçün Signal-ı standart SMS tətbiqi olaraq təyin etməlisiniz.</string>
     <!-- Button label to start export -->
     <string name="SetSignalAsDefaultSmsAppFragment__next">Növbəti</string>
 

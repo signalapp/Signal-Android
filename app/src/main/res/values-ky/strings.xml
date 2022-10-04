@@ -1288,9 +1288,9 @@
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Бул жаңы функция жактыбы? Бир жолу салым кошуп, Signal кызматына колдоо көрсөтүңүз.</string>
     <!-- Update item message shown when we merge two threads together -->
-    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Your message history with %1$s and their number %2$s has been merged.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">%1$s менен болгон билдирүүлөр таржымалыңыз жана алардын номери %2$s бирикти.</string>
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
-    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Your message history with %1$s and another chat that belonged to them has been merged.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">%1$s менен болгон билдирүүлөр таржымалыңыз жана аларга таандык маек бирикти.</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s топтун ичинде чалып баштады · %2$s</string>
@@ -3646,10 +3646,10 @@
     <string name="payment_info_card_hide_this_card">Бул карта жашырылсынбы?</string>
     <string name="payment_info_card_hide">Жашыруу</string>
     <!-- Title of save recovery phrase card -->
-    <string name="payment_info_card_save_recovery_phrase">Save recovery phrase</string>
+    <string name="payment_info_card_save_recovery_phrase">Калыбына келтирүүчү сүйлөмдү сактоо</string>
     <string name="payment_info_card_your_recovery_phrase_gives_you">Калыбына келтирүүчү сөз айкашыңыз төлөм аккаунтуңузду калыбына келтирүүнүн кошумча жолу.</string>
     <!-- Button in save recovery phrase card -->
-    <string name="payment_info_card_save_your_phrase">Save your phrase</string>
+    <string name="payment_info_card_save_your_phrase">Сүйлөмүңүздү сактаңыз</string>
     <string name="payment_info_card_update_your_pin">PIN кодуңузду жаңыртыңыз</string>
     <string name="payment_info_card_with_a_high_balance">Балансыңыз чоң болгондуктан, аккаунтуңузду жакшыраак коргоо үчүн тамгалык-цифралык PIN кодуна жаңыртсаңыз болот.</string>
     <string name="payment_info_card_update_pin">PIN кодду жаңыртуу</string>
@@ -3674,23 +3674,23 @@
     <string name="PaymentsRecoveryStartFragment__recovery_phrase">Калыбына келтирүүчү сөз айкашы</string>
     <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Калыбына келтирүүчү сөз айкашын көрүү</string>
     <!-- Title in save recovery phrase screen -->
-    <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Save recovery phrase</string>
+    <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Калыбына келтирүүчү сүйлөмдү сактоо</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Калыбына келтирүүчү сөз айкашын киргизиңиз</string>
     <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Signal PIN кодун ырастасаңыз, Signal\'ды кайра орнотконуңузда балансыңыз автоматтык түрдө калыбына келтирилет. Сиз балансыңызды калыбына келтирүүчү сөз айкашы менен да калыбына келтирсеңиз болот, ал сизге уникалдуу %1$d сөз айкашын түзөт. Аны жазып алып, коопсуз жерде сактаңыз.</string>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
-    <string name="PaymentsRecoveryStartFragment__got_balance">You’ve got a balance! Time to save your recovery phrase—a 24-word key you can use to restore your balance.</string>
+    <string name="PaymentsRecoveryStartFragment__got_balance">Балансыңыз толук! Калыбына келтирүүчү сүйлөмүңүздү сактоого кез келди—балансыңызды 24 сөздөн турган ачкыч менен калыбына келтире аласыз.</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
-    <string name="PaymentsRecoveryStartFragment__time_to_save">Time to save your recovery phrase—a 24-word key you can use to restore your balance. Learn more</string>
+    <string name="PaymentsRecoveryStartFragment__time_to_save">Калыбына келтирүүчү сүйлөмүңүздү сактоого кез келди—балансыңызды 24 сөздөн турган ачкыч менен калыбына келтире аласыз. Кененирээк маалымат</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Калыбына келтирүүчү сөз айкашыңыз сизге гана тиешелүү %1$d сөздүк сөз айкашы. Балансыңызды калыбына келтирүү үчүн бул сөз айкашын колдонуңуз.</string>
     <string name="PaymentsRecoveryStartFragment__start">Баштоо</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">Кол менен кирүү</string>
     <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Буферден чаптоо</string>
     <!-- Alert dialog title which asks before going back if user wants to save recovery phrase -->
-    <string name="PaymentsRecoveryStartFragment__continue_without_saving">Continue Without Saving?</string>
+    <string name="PaymentsRecoveryStartFragment__continue_without_saving">Сактабай уланта бересизби?</string>
     <!-- Alert dialog description to let user know why recovery phrase needs to be saved -->
-    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">Your recovery phrase lets you restore your balance in a worst-case scenario. We strongly recommend you save it.</string>
+    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">Калыбына келтирүүчү сүйлөмүңүз менен балансыңызды каалаган учурда калыбына келтире аласыз. Биз аны сактоону сунуштайбыз.</string>
     <!-- Alert dialog option to skip recovery phrase -->
-    <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">Skip Recovery Phrase</string>
+    <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">Калыбына келтирүүчү сүйлөмдү өткөрүп жиберүү</string>
     <!-- Alert dialog option to cancel dialog-->
     <string name="PaymentsRecoveryStartFragment__cancel">Жокко чыгаруу</string>
 
@@ -3846,9 +3846,9 @@
     <!-- Preference title to delete sms -->
     <string name="SmsSettingsFragment__remove_sms_messages">SMS билдирүүлөрүн өчүрүү</string>
     <!-- Snackbar text to confirm deletion -->
-    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Removing SMS messages from Signal…</string>
+    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Signal\'дан SMS билдирүүлөр өчүрүлүүдө…</string>
     <!-- Snackbar text to indicate can delete later -->
-    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">You can remove SMS messages from Signal in Settings at any time.</string>
+    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">Signal\'дагы SMS билдирүүлөрдү Тууралоо бөлүмүнөн каалаган учурда өчүрө аласыз.</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">Билдирүүлөр</string>
@@ -4086,7 +4086,7 @@
     <!-- Context menu item message -->
     <string name="NewConversationActivity__message">Билдирүү</string>
     <!-- Context menu item audio call -->
-    <string name="NewConversationActivity__audio_call">Audio call</string>
+    <string name="NewConversationActivity__audio_call">Аудио чалуу</string>
     <!-- Context menu item video call -->
     <string name="NewConversationActivity__video_call">Видео чалуу</string>
     <!-- Context menu item remove -->
@@ -4096,17 +4096,17 @@
     <!-- Dialog title when removing a contact -->
     <string name="NewConversationActivity__remove_s">%1$s алынып салынсынбы?</string>
     <!-- Dialog message when removing a contact -->
-    <string name="NewConversationActivity__you_wont_see_this_person">You won\'t see this person when searching. You\'ll get a message request if they message you in the future.</string>
+    <string name="NewConversationActivity__you_wont_see_this_person">Бул адамды издегенде ал сизге көрүнбөйт. Ал сиз менен жазышуу сурамын жөнөтүп туруп гана жазыша алат.</string>
     <!-- Snackbar message after removing a contact -->
-    <string name="NewConversationActivity__s_has_been_removed">%1$s has been removed</string>
+    <string name="NewConversationActivity__s_has_been_removed">%1$s өчүрүлдү</string>
     <!-- Snackbar message after blocking a contact -->
-    <string name="NewConversationActivity__s_has_been_blocked">%1$s has been blocked</string>
+    <string name="NewConversationActivity__s_has_been_blocked">%1$s бөгөттөлдү</string>
     <!-- Dialog title when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__unable_to_remove_s">Unable to remove %1$s</string>
+    <string name="NewConversationActivity__unable_to_remove_s">%1$s өчүрүлгөн жок</string>
     <!-- Dialog message when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__this_person_is_saved_to_your">This person is saved to your device\'s Contacts. Delete them from your Contacts and try again.</string>
+    <string name="NewConversationActivity__this_person_is_saved_to_your">Бул адам түзмөгүңүздөгү Байланыштар тизмесине сакталган. Аны Байланыштарыңыздан өчүрүп, кайталап көрүңүз.</string>
     <!-- Dialog action to view contact when they can't be removed otherwise -->
-    <string name="NewConversationActivity__view_contact">View contact</string>
+    <string name="NewConversationActivity__view_contact">Байланышты карап көрүү</string>
 
     <!-- ContactFilterView -->
     <string name="ContactFilterView__search_name_or_number">Атын же номерин издөө</string>
@@ -4605,7 +4605,7 @@
     <!-- Subtitle for "My Stories" row item when user has not added stories -->
     <string name="StoriesLandingFragment__tap_to_add_a_story">Окуя кошуу үчүн басыңыз</string>
     <!-- Displayed when there are no stories to display -->
-    <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now">No recent updates to show right now.</string>
+    <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now">Азырынча жаңылык жок.</string>
     <!-- Context menu option to hide a story -->
     <string name="StoriesLandingItem__hide_story">Окуяны жашыруу</string>
     <!-- Context menu option to unhide a story -->
@@ -4671,9 +4671,9 @@
     <!-- Displayed when viewing a post from another user with no replies -->
     <string name="StoryViewerPageFragment__reply">Жооп берүү</string>
     <!-- Displayed when viewing a post that has failed to send to some users -->
-    <string name="StoryViewerPageFragment__partially_sent">Partially sent. Tap for details</string>
+    <string name="StoryViewerPageFragment__partially_sent">Жарым-жартылай жөнөтүлгөн. Көбүрөөк билүү үчүн басып коюңуз</string>
     <!-- Displayed when viewing a post that has failed to send -->
-    <string name="StoryViewerPageFragment__send_failed">Send failed. Tap to retry</string>
+    <string name="StoryViewerPageFragment__send_failed">Жөнөтүлбөй калды. Кайталоо үчүн басыңыз</string>
     <!-- Label for the reply button in story viewer, which will launch the group story replies bottom sheet. -->
     <string name="StoryViewerPageFragment__reply_to_group">Группага жооп берүү</string>
     <!-- Displayed when a story has no views -->
@@ -5070,7 +5070,7 @@
     <!-- Story info "Sent from" header -->
     <string name="StoryInfoBottomSheetDialogFragment__sent_from">Ким жөнөттү:</string>
     <!-- Story info "Failed" header -->
-    <string name="StoryInfoBottomSheetDialogFragment__failed">Failed</string>
+    <string name="StoryInfoBottomSheetDialogFragment__failed">Болбой калды</string>
     <!-- Story Info context menu label -->
     <string name="StoryInfoBottomSheetDialogFragment__info">Маалымат</string>
 
@@ -5111,7 +5111,7 @@
     <!-- Title of the screen -->
     <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">SMS билдирүүлөрүңүздү өткөрүп бериңиз</string>
     <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">You can export your SMS messages to your phone\'s SMS database. This allows other SMS apps on your phone to access and import them. This does not create a shareable file of your SMS message history.</string>
+    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">SMS билдирүүлөрүңүздү телефонуңуздун SMS\'тер сакталган бөлүмүнө өткөрүп алсаңыз болот. Ушуну менен, телефонуңуздагы башка SMS колдонмолору аларды көрүп, импорттой алышат. SMS билдирүүлөрүңүздүн таржымалын бөлүшө албайсыз.</string>
     <!-- Button label to begin export -->
     <string name="ExportYourSmsMessagesFragment__continue">Улантуу</string>
 
@@ -5137,17 +5137,17 @@
     <!-- Fourth step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_4">4</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">Tap \"Continue\" to open the \"Default apps\" screen in Settings</string>
+    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">Тууралоо бөлүмүндөгү \"Демейки колдонмолорду\" ачуу үчүн \"Улантуу\" дегенди басыңыз</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">Select \"SMS app\" from the list</string>
+    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">Тизмеден \"SMS колдонмосу\" дегенди тандаңыз</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">Choose another app to use for SMS messaging</string>
+    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">SMS билдирүүлөрү менен жазышуу үчүн башка колдонмону тандаңыз</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">Return to Signal</string>
+    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">Signal\'га кайтуу</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">Open your phone\'s Settings app</string>
+    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">Телефонуңуздан Тууралоо колдонмосун ачыңыз</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">Navigate to \"Apps\" &gt; \"Default apps\" &gt; \"SMS app\"</string>
+    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">\"Колдонмолор\" &gt; \"Демейки колдонмолор\" &gt; \"SMS колдонмосу\" дегенге өтүңүз</string>
 
     <!-- RemoveSmsMessagesDialogFragment -->
     <!-- Action button to keep messages -->
@@ -5157,13 +5157,13 @@
     <!-- Title of dialog -->
     <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">SMS билдирүүлөрүн Signal колдонмосунан өчүрөсүзбү?</string>
     <!-- Message of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">You can now remove SMS messages from Signal to clear up storage space. They will still be available to other SMS apps on your phone even if you remove them.</string>
+    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">Сактагычты тазалоо үчүн SMS билдирүүлөрүн Signal\'дан өчүрүңүз. Аларды өчүрсөңүз да, телефонуңуздагы башка SMS колдонмолорунан көрө бересиз.</string>
 
     <!-- SetSignalAsDefaultSmsAppFragment -->
     <!-- Title of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">Set Signal as the default SMS app</string>
+    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">Signal\'ды демейки SMS колдонмосу катары коюу</string>
     <!-- Message of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">To export your SMS messages, you need to set Signal as the default SMS app.</string>
+    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">SMS билдирүүлөрүңүздү өткөрүп берүү үчүн Signal\'ды демейки SMS колдонмосу катары орнотушуңуз керек.</string>
     <!-- Button label to start export -->
     <string name="SetSignalAsDefaultSmsAppFragment__next">Кийинки</string>
 

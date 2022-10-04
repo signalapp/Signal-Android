@@ -358,8 +358,8 @@
     </plurals>
     <string name="ConversationFragment_save_to_sd_card">Жадқа сақтау керек пе?</string>
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
-        <item quantity="one">Saving this media to storage will allow any other apps on your device to access it.\n\nContinue?</item>
-        <item quantity="other">Saving all %1$d media to storage will allow any other apps on your device to access them.\n\nContinue?</item>
+        <item quantity="one">Мультимедианың барлығын жадқа сақтасаңыз, құрылғыңыздағы басқа қолданбалар да оларды пайдалана алатын болады.\n\nЖалғастыру керек пе?</item>
+        <item quantity="other">%1$d мультимедианың барлығын жадқа сақтасаңыз, құрылғыңыздағы басқа қолданбалар да оларды пайдалана алатын болады.\n\nЖалғастыру керек пе?</item>
     </plurals>
     <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
         <item quantity="one">Тіркемені жадқа сақтау кезінде қате шықты!</item>
@@ -367,12 +367,12 @@
     </plurals>
     <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Жадқа жазу мүмкін емес!</string>
     <plurals name="ConversationFragment_saving_n_attachments">
-        <item quantity="one">Saving attachment</item>
-        <item quantity="other">Saving %1$d attachments</item>
+        <item quantity="one">Тіркеме сақталуда</item>
+        <item quantity="other">%1$d тіркеме сақталуда</item>
     </plurals>
     <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="one">Saving attachment to storage…</item>
-        <item quantity="other">Saving %1$d attachments to storage…</item>
+        <item quantity="one">Тіркеме жадқа сақталуда…</item>
+        <item quantity="other">%1$d тіркеме жадқа сақталуда…</item>
     </plurals>
     <string name="ConversationFragment_pending">Күтуде…</string>
     <string name="ConversationFragment_push">Дерек (Signal)</string>
@@ -418,19 +418,19 @@
         <item quantity="other">Таңдалған әңгімені жою керек пе?</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">This will permanently delete the selected conversation.</item>
-        <item quantity="other">This will permanently delete all %1$d selected conversations.</item>
+        <item quantity="one">Бұл функция таңдалған әңгімені біржола жойып тастайды.</item>
+        <item quantity="other">Таңдалған %1$d әңгіменің барлығы біржола жойылады.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Жою</string>
     <string name="ConversationListFragment_deleting_selected_conversations">Таңдалған әңгімелер жойылуда…</string>
     <plurals name="ConversationListFragment_conversations_archived">
-        <item quantity="one">Conversation archived</item>
-        <item quantity="other">%1$d conversations archived</item>
+        <item quantity="one">Әңгіме мұрағатталды</item>
+        <item quantity="other">%1$d әңгіме мұрағатталды</item>
     </plurals>
     <string name="ConversationListFragment_undo">Болдырмау</string>
     <plurals name="ConversationListFragment_moved_conversations_to_inbox">
-        <item quantity="one">Moved conversation to inbox</item>
-        <item quantity="other">Moved %1$d conversations to inbox</item>
+        <item quantity="one">Әңгіме кіріс қалтасына көшірілді</item>
+        <item quantity="other">%1$d әңгіме кіріс қалтасына көшірілді</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
         <item quantity="one">Оқылды</item>
@@ -664,8 +664,8 @@
 
     <!-- GV2 invites sent -->
     <plurals name="GroupManagement_invitation_sent">
-        <item quantity="one">Invitation sent</item>
-        <item quantity="other">%1$d invitations sent</item>
+        <item quantity="one">Шақыру жіберілді</item>
+        <item quantity="other">%1$d шақыру жіберілді</item>
     </plurals>
     <string name="GroupManagement_invite_single_user">Сіз “%1$s” контактісін бұл топқа автоматты түрде қоса алмайсыз.\n\nОған шақыру жіберілді, ол шақыруды қабылдамайынша, топтағы хаттарды көре алмайды.</string>
     <string name="GroupManagement_invite_multiple_users">Сіз бұл пайдаланушыларды бұл топқа автоматты түрде қоса алмайсыз.\n\nОларға шақыру жіберілді, олар шақыруды қабылдамайынша, топтағы хаттарды көре алмайды.</string>
@@ -765,8 +765,8 @@
     <string name="PendingMembersActivity_revoke_invite">Шақырудан бас тарту</string>
     <string name="PendingMembersActivity_revoke_invites">Шақырулардан бас тарту</string>
     <plurals name="PendingMembersActivity_revoke_d_invites">
-        <item quantity="one">Revoke invite</item>
-        <item quantity="other">Revoke %1$d invites</item>
+        <item quantity="one">Шақырудан бас тарту</item>
+        <item quantity="other">%1$d шақырудан бас тарту</item>
     </plurals>
     <plurals name="PendingMembersActivity_error_revoking_invite">
         <item quantity="one">Шақырудан бас тарту кезінде қате шықты</item>
@@ -785,8 +785,8 @@
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Бұл адамды ескі топтарға қоса алмайсыз.</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">Бұл адамды хабарландыру топтарына қосу мүмкін емес.</string>
     <plurals name="AddMembersActivity__add_d_members_to_s">
-        <item quantity="one">Add \"%1$s\" to \"%2$s\"?</item>
-        <item quantity="other">Add %3$d members to \"%2$s\"?</item>
+        <item quantity="one">\"%1$s\" деген кісіні \"%2$s\" тобына қосу керек пе?</item>
+        <item quantity="other">%3$d мүшені \"%2$s\" тобына қосу қажет пе?</item>
     </plurals>
     <string name="AddMembersActivity__add">Қосу</string>
     <string name="AddMembersActivity__add_members">Мүшелерді қосу</string>
@@ -887,8 +887,8 @@
     </plurals>
 
     <plurals name="GroupMemberList_invited">
-        <item quantity="one">%1$s invited 1 person</item>
-        <item quantity="other">%1$s invited %2$d people</item>
+        <item quantity="one">%1$s 1 адамды шақырды</item>
+        <item quantity="other">%1$s %2$d адамды шақырды</item>
     </plurals>
 
     <!-- CustomNotificationsDialogFragment -->
@@ -926,8 +926,8 @@
     <!-- GV2 Invite Revoke confirmation dialog -->
     <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">%1$s контактісіне жіберген шақыруыңыздан бас тартқыңыз келе ме?</string>
     <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
-        <item quantity="one">Do you want to revoke the invite sent by %1$s?</item>
-        <item quantity="other">Do you want to revoke %2$d invites sent by %1$s?</item>
+        <item quantity="one">%1$s жіберген шақырудан бас тартқыңыз келе ме?</item>
+        <item quantity="other">%1$s жіберген %2$d шақырудан бас тартқыңыз келе ме?</item>
     </plurals>
 
     <!-- GroupJoinBottomSheetDialogFragment -->
@@ -1035,8 +1035,8 @@
         <item quantity="other">Таңдалған элементтерді жою керек пе?</item>
     </plurals>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-        <item quantity="one">This will permanently delete the selected file. Any message text associated with this item will also be deleted.</item>
-        <item quantity="other">This will permanently delete all %1$d selected files. Any message text associated with these items will also be deleted.</item>
+        <item quantity="one">Бұл функция таңдалған файлды біржола жойып тастайды. Осы элементке қатысы бар кез келген хат мәтіні де жойылады.</item>
+        <item quantity="other">Таңдалған %1$d файлдың барлығы біржола жойылады. Осы элементтерге қатысы бар хат мәтіні де жойылады.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Жою</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">Хаттар жойылуда…</string>
@@ -1168,13 +1168,13 @@
     <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Сізді Жаңа топқа тікелей қосу мүмкін болмады, сондықтан топқа өзіңіз қосылуыңыз үшін шақыру жіберілді.</string>
     <string name="MessageRecord_chat_session_refreshed">Чат сеансы жаңартылды</string>
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
-        <item quantity="one">A member couldn\'t be added to the New Group and has been invited to join.</item>
-        <item quantity="other">%1$s members couldn\'t be added to the New Group and have been invited to join.</item>
+        <item quantity="one">Мүшені Жаңа топқа тікелей қосу мүмкін болмады, сондықтан олар өздері қосылу үшін шақыру жіберілді.</item>
+        <item quantity="other">%1$s мүшені Жаңа топқа тікелей қосу мүмкін болмады, сондықтан олар өздері қосылу үшін шақыру жіберілді.</item>
     </plurals>
 
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
-        <item quantity="one">A member couldn\'t be added to the New Group and has been removed.</item>
-        <item quantity="other">%1$s members couldn\'t be added to the New Group and have been removed.</item>
+        <item quantity="one">Мүшені Жаңа топқа қосу мүмкін болмады, сондықтан жойылды.</item>
+        <item quantity="other">%1$s мүшені Жаңа топқа қосу мүмкін болмады, сондықтан жойылды.</item>
     </plurals>
 
     <!-- Profile change updates -->
@@ -1219,31 +1219,31 @@
     <string name="MessageRecord_you_invited_s_to_the_group">%1$s контактісін топқа шақырдыңыз.</string>
     <string name="MessageRecord_s_invited_you_to_the_group">%1$s сізді топқа шақырды.</string>
     <plurals name="MessageRecord_s_invited_members">
-        <item quantity="one">%1$s invited 1 person to the group.</item>
-        <item quantity="other">%1$s invited %2$d people to the group.</item>
+        <item quantity="one">%1$s 1 адамды топқа шақырды.</item>
+        <item quantity="other">%1$s %2$d адамды топқа шақырды.</item>
     </plurals>
     <string name="MessageRecord_you_were_invited_to_the_group">Сіз топқа шақыру алдыңыз.</string>
     <plurals name="MessageRecord_d_people_were_invited_to_the_group">
-        <item quantity="one">1 person was invited to the group.</item>
-        <item quantity="other">%1$d people were invited to the group.</item>
+        <item quantity="one">1 адам топқа шақырылды.</item>
+        <item quantity="other">%1$d адам топқа шақырылды.</item>
     </plurals>
 
     <!-- GV2 invitation revokes -->
     <plurals name="MessageRecord_you_revoked_invites">
-        <item quantity="one">You revoked an invitation to the group.</item>
-        <item quantity="other">You revoked %1$d invitations to the group.</item>
+        <item quantity="one">Топқа қосылуға жіберілген шақырудан бас тарттыңыз.</item>
+        <item quantity="other">Топқа қосылуға жіберілген %1$d шақырудан бас тарттыңыз.</item>
     </plurals>
     <plurals name="MessageRecord_s_revoked_invites">
-        <item quantity="one">%1$s revoked an invitation to the group.</item>
-        <item quantity="other">%1$s revoked %2$d invitations to the group.</item>
+        <item quantity="one">%1$s топқа қосылуға жіберілген шақырудан бас тартты.</item>
+        <item quantity="other">%1$s топқа қосылуға жіберілген %2$d шақырудан бас тартты.</item>
     </plurals>
     <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Біреу топқа шақыруды қабылдамады.</string>
     <string name="MessageRecord_you_declined_the_invitation_to_the_group">Сіз топқа шақыруды қабылдамадыңыз.</string>
     <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s топқа қосылуға жіберілген шақыруды жойды.</string>
     <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">Әкімші сізді топқа шақыру рұқсатынан айырды.</string>
     <plurals name="MessageRecord_d_invitations_were_revoked">
-        <item quantity="one">An invitation to the group was revoked.</item>
-        <item quantity="other">%1$d invitations to the group were revoked.</item>
+        <item quantity="one">Топқа қосылу үшін жіберілген шақыру жойылды.</item>
+        <item quantity="other">Топқа қосылу үшін жіберілген %1$d шақыру жойылды.</item>
     </plurals>
 
     <!-- GV2 invitation acceptance -->
@@ -1316,8 +1316,8 @@
     <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s топқа топ сілтемесі арқылы қосылуға өтініш білдірді.</string>
     <!-- Update message shown when someone requests to join via group link and cancels the request back to back -->
     <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
-        <item quantity="one">%1$s requested and cancelled their request to join via the group link.</item>
-        <item quantity="other">%1$s requested and cancelled %2$d requests to join via the group link.</item>
+        <item quantity="one">%1$s өтініш білдірді және топ сілтемесі арқылы топқа қосылуға өтініштен бас тартты.</item>
+        <item quantity="other">%1$s өтініш білдірді және топ сілтемесі арқылы топқа қосылуға %2$d өтініштен бас тартты.</item>
     </plurals>
 
     <!-- GV2 group link approvals -->
@@ -1346,9 +1346,9 @@
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Бұл жаңа функция ұнады ма? Бір реттік демеу жіберіп, Signal-ға қолдау көрсетіңіз.</string>
     <!-- Update item message shown when we merge two threads together -->
-    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Your message history with %1$s and their number %2$s has been merged.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">%1$s чаты және оның %2$s нөмірінен тұратын хаттар тарихы біріктірілді.</string>
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
-    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Your message history with %1$s and another chat that belonged to them has been merged.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">%1$s чаты бар хаттар тарихы мен оған тиесілі тағы бір чат біріктірілді.</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s топтық қоңырауды бастады · %2$s</string>
@@ -1450,8 +1450,8 @@
     <string name="OutdatedBuildReminder_update_now">Қазір жаңарту</string>
     <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Signal қолданбасының бұл нұсқасының мерзімі бүгін бітеді. Ең соңғы нұсқасын орнатыңыз.</string>
     <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
-        <item quantity="one">This version of Signal will expire tomorrow. Update to the most recent version.</item>
-        <item quantity="other">This version of Signal will expire in %1$d days. Update to the most recent version.</item>
+        <item quantity="one">Signal қолданбасының бұл нұсқасының мерзімі ертең бітеді. Ең соңғы нұсқасын орнатыңыз.</item>
+        <item quantity="other">Signal қолданбасының бұл нұсқасының мерзімі %1$d күннен кейін бітеді. Ең соңғы нұсқасын орнатыңыз.</item>
     </plurals>
 
     <!-- PassphrasePromptActivity -->
@@ -1873,7 +1873,7 @@
 
     <!-- UsernameEditFragment -->
     <!-- Toolbar title when entering from registration -->
-    <string name="UsernameEditFragment__add_a_username">Add a username</string>
+    <string name="UsernameEditFragment__add_a_username">Пайдаланушы атын қосу</string>
     <!-- Instructional text at the top of the username edit screen -->
     <string name="UsernameEditFragment__choose_your_username">Пайдаланушы атын таңдау</string>
     <string name="UsernameEditFragment_username">Пайдаланушы аты</string>
@@ -3743,10 +3743,10 @@
     <string name="payment_info_card_hide_this_card">Бұл картаны жасыру керек пе?</string>
     <string name="payment_info_card_hide">Жасыру</string>
     <!-- Title of save recovery phrase card -->
-    <string name="payment_info_card_save_recovery_phrase">Save recovery phrase</string>
+    <string name="payment_info_card_save_recovery_phrase">Қалпына келтіру сөйлемін сақтау</string>
     <string name="payment_info_card_your_recovery_phrase_gives_you">Қалпына келтіру сөйлемі – төлемдер аккаунтын қалпына келтірудің тағы бір жолы.</string>
     <!-- Button in save recovery phrase card -->
-    <string name="payment_info_card_save_your_phrase">Save your phrase</string>
+    <string name="payment_info_card_save_your_phrase">Сөйлеміңізді сақтаңыз</string>
     <string name="payment_info_card_update_your_pin">PIN-кодты жаңарту</string>
     <string name="payment_info_card_with_a_high_balance">Балансыңыздағы қаражат көп болса, аккаунтыңызды қорғанысын арттыру үшін әріптік-сандық PIN-кодқа ауысқыңыз келуі мүмкін.</string>
     <string name="payment_info_card_update_pin">PIN-кодты жаңарту</string>
@@ -3771,23 +3771,23 @@
     <string name="PaymentsRecoveryStartFragment__recovery_phrase">Қалпына келтіру сөйлемі</string>
     <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Қалпына келтіру сөйлемін көру</string>
     <!-- Title in save recovery phrase screen -->
-    <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Save recovery phrase</string>
+    <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Қалпына келтіру сөйлемін сақтау</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Қалпына келтіру сөйлемін енгізіңіз</string>
     <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Signal-дағы PIN-кодыңызды растасаңыз, Signal-ды қайта орнатқанда, балансыңыз автоматты түрде қалпына келеді. Қалпына келтіру сөйлемін пайдаланып та, балансыңызды қалпына келтіре аласыз. Қалпына келтіру сөйлемі – сізге ғана мәлім%1$d сөздік сөйлем. Оны жазып алып, қауіпсіз бір жерге сақтап қойыңыз.</string>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
-    <string name="PaymentsRecoveryStartFragment__got_balance">You’ve got a balance! Time to save your recovery phrase—a 24-word key you can use to restore your balance.</string>
+    <string name="PaymentsRecoveryStartFragment__got_balance">Сізде баланс бар! Қалпына келтіру сөйлемін сақтайтын уақыт. Ол – балансыңызды қалпына келтіру үшін пайдаланылатын 24 сөздік кілт.</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
-    <string name="PaymentsRecoveryStartFragment__time_to_save">Time to save your recovery phrase—a 24-word key you can use to restore your balance. Learn more</string>
+    <string name="PaymentsRecoveryStartFragment__time_to_save">Қалпына келтіру сөйлемін сақтайтын уақыт. Ол – балансыңызды қалпына келтіру үшін пайдаланылатын 24 сөздік кілт. Толық ақпарат</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Қалпына келтіру сөйлемі – сізге ғана мәлім %1$d сөздік сөйлем. Балансыңызды қалпына келтіру үшін осы сөйлемді қолданыңыз.</string>
     <string name="PaymentsRecoveryStartFragment__start">Бастау</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">Қолмен енгізу</string>
     <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Буферден қою</string>
     <!-- Alert dialog title which asks before going back if user wants to save recovery phrase -->
-    <string name="PaymentsRecoveryStartFragment__continue_without_saving">Continue Without Saving?</string>
+    <string name="PaymentsRecoveryStartFragment__continue_without_saving">Сақтамай жалғастыру керек пе?</string>
     <!-- Alert dialog description to let user know why recovery phrase needs to be saved -->
-    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">Your recovery phrase lets you restore your balance in a worst-case scenario. We strongly recommend you save it.</string>
+    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">Қалпына келтіру сөйлемінің арқасында балансыңызды өте қиын жағдайда қалпына келтіре аласыз. Оны сақтап қойғаныңыз жөн.</string>
     <!-- Alert dialog option to skip recovery phrase -->
-    <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">Skip Recovery Phrase</string>
+    <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">Қалпына келтіру сөйлемін өткізіп жіберу</string>
     <!-- Alert dialog option to cancel dialog-->
     <string name="PaymentsRecoveryStartFragment__cancel">Болдырмау</string>
 
@@ -3943,9 +3943,9 @@
     <!-- Preference title to delete sms -->
     <string name="SmsSettingsFragment__remove_sms_messages">SMS-хаттарды өшіру</string>
     <!-- Snackbar text to confirm deletion -->
-    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Removing SMS messages from Signal…</string>
+    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Signal-дан SMS хаттар өшірілуде...</string>
     <!-- Snackbar text to indicate can delete later -->
-    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">You can remove SMS messages from Signal in Settings at any time.</string>
+    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">Signal-дағы \"Параметрлер\" бөлімінен SMS хаттарды кез келген уақытта өшіріп тастай аласыз.</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">Хабарламалар</string>
@@ -4195,17 +4195,17 @@
     <!-- Dialog title when removing a contact -->
     <string name="NewConversationActivity__remove_s">%1$s өшірілсін бе?</string>
     <!-- Dialog message when removing a contact -->
-    <string name="NewConversationActivity__you_wont_see_this_person">You won\'t see this person when searching. You\'ll get a message request if they message you in the future.</string>
+    <string name="NewConversationActivity__you_wont_see_this_person">Іздеп жатқанда бұл адамды көрмейсіз. Болашақта ол сізге жазатын болса, хатты қабылдау туралы сұрау келеді.</string>
     <!-- Snackbar message after removing a contact -->
-    <string name="NewConversationActivity__s_has_been_removed">%1$s has been removed</string>
+    <string name="NewConversationActivity__s_has_been_removed">%1$s өшірілді</string>
     <!-- Snackbar message after blocking a contact -->
-    <string name="NewConversationActivity__s_has_been_blocked">%1$s has been blocked</string>
+    <string name="NewConversationActivity__s_has_been_blocked">%1$s блокталды</string>
     <!-- Dialog title when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__unable_to_remove_s">Unable to remove %1$s</string>
+    <string name="NewConversationActivity__unable_to_remove_s">%1$s өшпеді</string>
     <!-- Dialog message when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__this_person_is_saved_to_your">This person is saved to your device\'s Contacts. Delete them from your Contacts and try again.</string>
+    <string name="NewConversationActivity__this_person_is_saved_to_your">Бұл адам құрылғыңыздың Контактілер тізіміне сақталған. Оны Контактілер тізімінен өшіріп, қайталап көріңіз.</string>
     <!-- Dialog action to view contact when they can't be removed otherwise -->
-    <string name="NewConversationActivity__view_contact">View contact</string>
+    <string name="NewConversationActivity__view_contact">Контактіні көру</string>
 
     <!-- ContactFilterView -->
     <string name="ContactFilterView__search_name_or_number">Атын немесе нөмірін іздеу</string>
@@ -4709,7 +4709,7 @@
     <!-- Subtitle for "My Stories" row item when user has not added stories -->
     <string name="StoriesLandingFragment__tap_to_add_a_story">Сторис қосу үшін түртіңіз</string>
     <!-- Displayed when there are no stories to display -->
-    <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now">No recent updates to show right now.</string>
+    <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now">Дәл қазір көрсететін ешқандай жаңалық жоқ.</string>
     <!-- Context menu option to hide a story -->
     <string name="StoriesLandingItem__hide_story">Стористі жасыру</string>
     <!-- Context menu option to unhide a story -->
@@ -4778,9 +4778,9 @@
     <!-- Displayed when viewing a post from another user with no replies -->
     <string name="StoryViewerPageFragment__reply">Жауап қату</string>
     <!-- Displayed when viewing a post that has failed to send to some users -->
-    <string name="StoryViewerPageFragment__partially_sent">Partially sent. Tap for details</string>
+    <string name="StoryViewerPageFragment__partially_sent">Ішінара жіберілді. Мәліметті көру үшін түртіңіз</string>
     <!-- Displayed when viewing a post that has failed to send -->
-    <string name="StoryViewerPageFragment__send_failed">Send failed. Tap to retry</string>
+    <string name="StoryViewerPageFragment__send_failed">Жіберілмеді. Қайталап көру үшін түртіңіз</string>
     <!-- Label for the reply button in story viewer, which will launch the group story replies bottom sheet. -->
     <string name="StoryViewerPageFragment__reply_to_group">Топқа жауап беру</string>
     <!-- Displayed when a story has no views -->
@@ -5229,7 +5229,7 @@
     <!-- Title of the screen -->
     <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">SMS-хаттарды экспорттау</string>
     <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">You can export your SMS messages to your phone\'s SMS database. This allows other SMS apps on your phone to access and import them. This does not create a shareable file of your SMS message history.</string>
+    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">SMS хаттарды телефоныңыздың SMS дерекқорына экспорттай аласыз. Ол телефоныңыздағы басқа SMS қолданбаларының хаттарды қолдануына және импорттауына мүмкіндік береді. Ол SMS хаттар тарихының бөлісуге болатын файлын жасамайды.</string>
     <!-- Button label to begin export -->
     <string name="ExportYourSmsMessagesFragment__continue">Жалғастыру</string>
 
@@ -5255,17 +5255,17 @@
     <!-- Fourth step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_4">4</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">Tap \"Continue\" to open the \"Default apps\" screen in Settings</string>
+    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">Параметрлер бөлімінде \"Әдепкі қолданбалар\" экранын ашу үшін \"Жалғастыру\" түймесін түртіңіз</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">Select \"SMS app\" from the list</string>
+    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">Тізімнен \"SMS қолданбасы\" опциясын таңдаңыз</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">Choose another app to use for SMS messaging</string>
+    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">SMS хат алмасу үшін басқа қолданба таңдаңыз</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">Return to Signal</string>
+    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">Signal-ға оралу</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">Open your phone\'s Settings app</string>
+    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">Телефоныңыздың Параметрлер қолданбасын ашыңыз</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">Navigate to \"Apps\" &gt; \"Default apps\" &gt; \"SMS app\"</string>
+    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">\"Қолданбалар &gt; Әдепкі қолданбалар &gt; SMS қолданбасы\" тармағына өтіңіз</string>
 
     <!-- RemoveSmsMessagesDialogFragment -->
     <!-- Action button to keep messages -->
@@ -5275,13 +5275,13 @@
     <!-- Title of dialog -->
     <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Signal-дан SMS-хаттарды өшіру керек пе?</string>
     <!-- Message of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">You can now remove SMS messages from Signal to clear up storage space. They will still be available to other SMS apps on your phone even if you remove them.</string>
+    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">Жадты босату үшін Signal-дан SMS хаттарды өшіріп тастауыңызға болады. Өшіріп тастасаңыз да, телефоныңыздағы басқа SMS қолданбалары оларды пайдалана алады.</string>
 
     <!-- SetSignalAsDefaultSmsAppFragment -->
     <!-- Title of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">Set Signal as the default SMS app</string>
+    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">Signal-ды әдепкі SMS қолданбасы етіп орнату</string>
     <!-- Message of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">To export your SMS messages, you need to set Signal as the default SMS app.</string>
+    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">SMS хаттарыңызды экспорттау үшін Signal-ды әдепкі SMS қолданбасы етіп орнатуыңыз керек.</string>
     <!-- Button label to start export -->
     <string name="SetSignalAsDefaultSmsAppFragment__next">Келесі</string>
 

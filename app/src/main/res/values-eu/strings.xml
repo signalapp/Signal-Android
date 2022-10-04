@@ -358,8 +358,8 @@
     </plurals>
     <string name="ConversationFragment_save_to_sd_card">Biltegian gorde?</string>
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
-        <item quantity="one">Saving this media to storage will allow any other apps on your device to access it.\n\nContinue?</item>
-        <item quantity="other">Saving all %1$d media to storage will allow any other apps on your device to access them.\n\nContinue?</item>
+        <item quantity="one">Multimedia-fitxategi hauek memorian gordetzen badituzu, telefonoan duzun beste edozein aplikaziok ikusi ahal izango ditu.\n\nAurrera egin nahi duzu?</item>
+        <item quantity="other">%1$d multimedia-fitxategiak memorian gordetzen badituzu, telefonoan duzun beste edozein aplikaziok ikusi ahal izango ditu.\n\nAurrera egin nahi duzu?</item>
     </plurals>
     <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
         <item quantity="one">Errorea eranskina biltegian gordetzerakoan!</item>
@@ -367,12 +367,12 @@
     </plurals>
     <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Ezgai biltegian idazteko!</string>
     <plurals name="ConversationFragment_saving_n_attachments">
-        <item quantity="one">Saving attachment</item>
-        <item quantity="other">Saving %1$d attachments</item>
+        <item quantity="one">Eraskinak gordetzen</item>
+        <item quantity="other">%1$d eranskin gordetzen</item>
     </plurals>
     <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="one">Saving attachment to storage…</item>
-        <item quantity="other">Saving %1$d attachments to storage…</item>
+        <item quantity="one">Eraskinak biltegian gordetzen…</item>
+        <item quantity="other">%1$d eraskin biltegian gordetzen…</item>
     </plurals>
     <string name="ConversationFragment_pending">Zain…</string>
     <string name="ConversationFragment_push">Datuak (Signal)</string>
@@ -418,19 +418,19 @@
         <item quantity="other">Ezabatu aukeratutako solasaldiak?</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">This will permanently delete the selected conversation.</item>
-        <item quantity="other">This will permanently delete all %1$d selected conversations.</item>
+        <item quantity="one">Hautatutako elkarrizketa betiko ezabatuko da.</item>
+        <item quantity="other">Hautatutako %1$d elkarrizketak betiko ezabatuko dira.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Ezabatzen</string>
     <string name="ConversationListFragment_deleting_selected_conversations">Aukeratutako solasaldiak ezabatzen…</string>
     <plurals name="ConversationListFragment_conversations_archived">
-        <item quantity="one">Conversation archived</item>
-        <item quantity="other">%1$d conversations archived</item>
+        <item quantity="one">Artxibatu da elkarrizketa</item>
+        <item quantity="other">%1$d elkarrizketa artxibatu dira</item>
     </plurals>
     <string name="ConversationListFragment_undo">Desegin</string>
     <plurals name="ConversationListFragment_moved_conversations_to_inbox">
-        <item quantity="one">Moved conversation to inbox</item>
-        <item quantity="other">Moved %1$d conversations to inbox</item>
+        <item quantity="one">Eraman da elkarrizketa sarrera-ontzira</item>
+        <item quantity="other">%1$d elkarrizketa eraman dira sarrera-ontzira</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
         <item quantity="one">Irakurrita</item>
@@ -664,8 +664,8 @@
 
     <!-- GV2 invites sent -->
     <plurals name="GroupManagement_invitation_sent">
-        <item quantity="one">Invitation sent</item>
-        <item quantity="other">%1$d invitations sent</item>
+        <item quantity="one">Bidali da gonbidapena</item>
+        <item quantity="other">%1$d gonbidapen bidali dira</item>
     </plurals>
     <string name="GroupManagement_invite_single_user">\"%1$s\" erabiltzailea ezin duzu talde honetara modu automatikoan gehitu.\n\nGehitzeko gonbidapena bidali zaie eta ezingo dute talde mezurik ikusi gonbidapena onartu arte.</string>
     <string name="GroupManagement_invite_multiple_users">Ezin duzu modu automatikoan erabiltzaile hauek taldera gehitu. Gehitzeko gonbidapena bidali zaie eta ezingo dute talde mezurik ikusi onartu arte.</string>
@@ -765,8 +765,8 @@
     <string name="PendingMembersActivity_revoke_invite">Bertan behera utzi gonbidapena</string>
     <string name="PendingMembersActivity_revoke_invites">Bertan behera utzi gonbidapenak</string>
     <plurals name="PendingMembersActivity_revoke_d_invites">
-        <item quantity="one">Revoke invite</item>
-        <item quantity="other">Revoke %1$d invites</item>
+        <item quantity="one">Ezeztatu gonbidapena</item>
+        <item quantity="other">Ezeztatu %1$d gonbidapen</item>
     </plurals>
     <plurals name="PendingMembersActivity_error_revoking_invite">
         <item quantity="one">Errorea gonbidapena ezeztatzen</item>
@@ -785,8 +785,8 @@
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Pertsona hau ezin da jarauntsitako taldeetan gehitu.</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">Pertsona hau ezin da gehitu iragarpen-taldeetan.</string>
     <plurals name="AddMembersActivity__add_d_members_to_s">
-        <item quantity="one">Add \"%1$s\" to \"%2$s\"?</item>
-        <item quantity="other">Add %3$d members to \"%2$s\"?</item>
+        <item quantity="one">\"%2$s\" taldean gehitu nahi duzu \"%1$s\"?</item>
+        <item quantity="other">\"%2$s\" taldean gehitu nahi dituzu %3$d kide?</item>
     </plurals>
     <string name="AddMembersActivity__add">Gehitu</string>
     <string name="AddMembersActivity__add_members">Gehitu kideak</string>
@@ -887,8 +887,8 @@
     </plurals>
 
     <plurals name="GroupMemberList_invited">
-        <item quantity="one">%1$s invited 1 person</item>
-        <item quantity="other">%1$s invited %2$d people</item>
+        <item quantity="one">%1$s(e)k pertsona bat gonbidatu du</item>
+        <item quantity="other">%1$s(e)k %2$d pertsona gonbidatu ditu</item>
     </plurals>
 
     <!-- CustomNotificationsDialogFragment -->
@@ -926,8 +926,8 @@
     <!-- GV2 Invite Revoke confirmation dialog -->
     <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">%1$s erabiltzaileari bidalitako gonbidapena ezeztatu nahi duzu?</string>
     <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
-        <item quantity="one">Do you want to revoke the invite sent by %1$s?</item>
-        <item quantity="other">Do you want to revoke %2$d invites sent by %1$s?</item>
+        <item quantity="one">%1$s(e)k bidalitako gonbidapena ezeztatu nahi duzu?</item>
+        <item quantity="other">%1$s(e)k bidalitako %2$d gonbidapenak ezeztatu nahi dituzu?</item>
     </plurals>
 
     <!-- GroupJoinBottomSheetDialogFragment -->
@@ -1035,8 +1035,8 @@
         <item quantity="other">Ezabatu hautatutako elementuak?</item>
     </plurals>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-        <item quantity="one">This will permanently delete the selected file. Any message text associated with this item will also be deleted.</item>
-        <item quantity="other">This will permanently delete all %1$d selected files. Any message text associated with these items will also be deleted.</item>
+        <item quantity="one">Ekintza honen bidez, betiko ezabatuko da hautatutako fitxategia. Fitxategiarekin lotutako mezuak ere ezabatuko dira.</item>
+        <item quantity="other">Ekintza honen bidez, betiko ezabatuko dira hautatutako %1$d fitxategiak. Haiekin lotutako mezuak ere ezabatuko dira.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Ezabatzen</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">Mezuak ezabatzen…</string>
@@ -1168,13 +1168,13 @@
     <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Ezin izan zaituzte Talde Berrira gehitu eta taldean sartzeko gonbidapena bidali zaizu.</string>
     <string name="MessageRecord_chat_session_refreshed">Txataren sesioa eguneratu egin da</string>
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
-        <item quantity="one">A member couldn\'t be added to the New Group and has been invited to join.</item>
-        <item quantity="other">%1$s members couldn\'t be added to the New Group and have been invited to join.</item>
+        <item quantity="one">Kide bat ezin izan da gehitu Talde Berrian, eta sartzeko gonbidapen bat bidali zaio.</item>
+        <item quantity="other">%1$s kide ezin izan dira gehitu Talde Berrian, eta sartzeko gonbidapenak bidali zaizkie.</item>
     </plurals>
 
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
-        <item quantity="one">A member couldn\'t be added to the New Group and has been removed.</item>
-        <item quantity="other">%1$s members couldn\'t be added to the New Group and have been removed.</item>
+        <item quantity="one">Kide bat ezin izan da gehitu Talde Berrian, eta kendu egin da.</item>
+        <item quantity="other">%1$s kide ezin izan dira gehitu Talde Berrian, eta kendu egin dira.</item>
     </plurals>
 
     <!-- Profile change updates -->
@@ -1219,31 +1219,31 @@
     <string name="MessageRecord_you_invited_s_to_the_group">%1$s gondibatu duzu taldera.</string>
     <string name="MessageRecord_s_invited_you_to_the_group">%1$s erabiltzaileak gonbidatu zaitu taldera.</string>
     <plurals name="MessageRecord_s_invited_members">
-        <item quantity="one">%1$s invited 1 person to the group.</item>
-        <item quantity="other">%1$s invited %2$d people to the group.</item>
+        <item quantity="one">%1$s(e)k pertsona bat gonbidatu du taldera.</item>
+        <item quantity="other">%1$s(e)k %2$d pertsona gonbidatu ditu taldera.</item>
     </plurals>
     <string name="MessageRecord_you_were_invited_to_the_group">Taldera gonbidatu zaituzte</string>
     <plurals name="MessageRecord_d_people_were_invited_to_the_group">
-        <item quantity="one">1 person was invited to the group.</item>
-        <item quantity="other">%1$d people were invited to the group.</item>
+        <item quantity="one">Pertsona bat taldera gonbidatu da.</item>
+        <item quantity="other">%1$d pertsona taldera gonbidatu dira.</item>
     </plurals>
 
     <!-- GV2 invitation revokes -->
     <plurals name="MessageRecord_you_revoked_invites">
-        <item quantity="one">You revoked an invitation to the group.</item>
-        <item quantity="other">You revoked %1$d invitations to the group.</item>
+        <item quantity="one">Taldean sartzeko gonbidapen bat ezeztatu duzu.</item>
+        <item quantity="other">Taldean sartzeko %1$d gonbidapen ezeztatu dituzu.</item>
     </plurals>
     <plurals name="MessageRecord_s_revoked_invites">
-        <item quantity="one">%1$s revoked an invitation to the group.</item>
-        <item quantity="other">%1$s revoked %2$d invitations to the group.</item>
+        <item quantity="one">%1$s(e)k taldean sartzeko gonbidapen bat ezeztatu du.</item>
+        <item quantity="other">%1$s(e)k taldean sartzeko %2$d gonbidapen ezeztatu ditu.</item>
     </plurals>
     <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Norbaitek uko egin dio taldean sartzeko gonbidapen bati.</string>
     <string name="MessageRecord_you_declined_the_invitation_to_the_group">Taldean sartzeko gonbidapen bati uko egin diozu.</string>
     <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s erabiltzaileak zuk taldean sartzeko egindako gonbidapena ezeztatu du.</string>
     <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">Administratzaile batek taldean sartzeko zenuen gonbidapena ezeztatu du.</string>
     <plurals name="MessageRecord_d_invitations_were_revoked">
-        <item quantity="one">An invitation to the group was revoked.</item>
-        <item quantity="other">%1$d invitations to the group were revoked.</item>
+        <item quantity="one">Taldean sartzeko gonbidapen bat ezeztatu da.</item>
+        <item quantity="other">Taldean sartzeko %1$d gonbidapen ezeztatu dira.</item>
     </plurals>
 
     <!-- GV2 invitation acceptance -->
@@ -1316,8 +1316,8 @@
     <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s erabiltzaileak taldean sartzeko eskatu du talde esteka baten bidez.</string>
     <!-- Update message shown when someone requests to join via group link and cancels the request back to back -->
     <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
-        <item quantity="one">%1$s requested and cancelled their request to join via the group link.</item>
-        <item quantity="other">%1$s requested and cancelled %2$d requests to join via the group link.</item>
+        <item quantity="one">%1$s(e)k, esteka bidez taldean sartzeko eskaera egin, eta bertan behera utzi du.</item>
+        <item quantity="other">%1$s(e)k, esteka bidez taldean sartzeko %2$d eskaera egin, eta bertan behera utzi ditu.</item>
     </plurals>
 
     <!-- GV2 group link approvals -->
@@ -1346,9 +1346,9 @@
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Eginbide berri hau gustuko duzu? Lagundu Signal-i aldi bateko dohaintza batekin.</string>
     <!-- Update item message shown when we merge two threads together -->
-    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Your message history with %1$s and their number %2$s has been merged.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">%1$s(r)ekin eta %2$s zenbakiarekin izandako mezuen historiak bateratu egin dira.</string>
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
-    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Your message history with %1$s and another chat that belonged to them has been merged.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">%1$s(r)ekin izandako mezuen historia eta hari zegokion beste txat bat bateratu egin dira.</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s erabiltzaileak talde-deia hasi du %2$s</string>
@@ -1450,8 +1450,8 @@
     <string name="OutdatedBuildReminder_update_now">Eguneratu orain</string>
     <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Singalen bertsio hau gaur iraungiko da. Eguneratu azken bertsiora.</string>
     <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
-        <item quantity="one">This version of Signal will expire tomorrow. Update to the most recent version.</item>
-        <item quantity="other">This version of Signal will expire in %1$d days. Update to the most recent version.</item>
+        <item quantity="one">Signal-en bertsio hau bihar iraungiko da. Eguneratu azken bertsiora.</item>
+        <item quantity="other">Signal-en bertsio hau %1$d egun barru iraungiko da. Eguneratu azken bertsiora.</item>
     </plurals>
 
     <!-- PassphrasePromptActivity -->
@@ -1873,7 +1873,7 @@
 
     <!-- UsernameEditFragment -->
     <!-- Toolbar title when entering from registration -->
-    <string name="UsernameEditFragment__add_a_username">Add a username</string>
+    <string name="UsernameEditFragment__add_a_username">Gehitu erabiltzaile-izen bat</string>
     <!-- Instructional text at the top of the username edit screen -->
     <string name="UsernameEditFragment__choose_your_username">Aukeratu erabiltzaile-izena</string>
     <string name="UsernameEditFragment_username">Erabiltzailearen izena</string>
@@ -3743,10 +3743,10 @@
     <string name="payment_info_card_hide_this_card">Txartel hau ezkutatu?</string>
     <string name="payment_info_card_hide">Ezkutatu</string>
     <!-- Title of save recovery phrase card -->
-    <string name="payment_info_card_save_recovery_phrase">Save recovery phrase</string>
+    <string name="payment_info_card_save_recovery_phrase">Gorde berreskuratze-esaldia</string>
     <string name="payment_info_card_your_recovery_phrase_gives_you">Berreskuratzeko esaldiak zure ordainketa-kontua leheneratzeko beste modu bat eskaintzen dizu.</string>
     <!-- Button in save recovery phrase card -->
-    <string name="payment_info_card_save_your_phrase">Save your phrase</string>
+    <string name="payment_info_card_save_your_phrase">Gorde zure esaldia</string>
     <string name="payment_info_card_update_your_pin">Eguneratu zure PINa</string>
     <string name="payment_info_card_with_a_high_balance">Balantze handia izanez gero, baliteke PIN alfanumeriko batera eguneratu nahi izatea zure kontuari babes gehiago emateko.</string>
     <string name="payment_info_card_update_pin">Eguneratu PINa</string>
@@ -3771,23 +3771,23 @@
     <string name="PaymentsRecoveryStartFragment__recovery_phrase">Berreskuratze-esaldia</string>
     <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Ikusi berreskuratzeko esaldia</string>
     <!-- Title in save recovery phrase screen -->
-    <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Save recovery phrase</string>
+    <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Gorde berreskuratze-esaldia</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Sartu berreskuratzeko esaldia</string>
     <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Zure saldoa automatikoki berrezartuko da Signal berriro instalatzen duzunean zure Signal PINa berresten baduzu. Zure oreka berrezar dezakezu berreskuratzeko esaldi bat erabiliz, hau da, zuretzako berezia den %1$d-hitz esaldi bat. Idatzi eta gorde leku seguru batean.</string>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
-    <string name="PaymentsRecoveryStartFragment__got_balance">You’ve got a balance! Time to save your recovery phrase—a 24-word key you can use to restore your balance.</string>
+    <string name="PaymentsRecoveryStartFragment__got_balance">Saldoa duzu! Gorde berreskuratze-esaldi bat; hots, saldoa berrezartzeko erabil daitekeen 24 hitzeko gako bat.</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
-    <string name="PaymentsRecoveryStartFragment__time_to_save">Time to save your recovery phrase—a 24-word key you can use to restore your balance. Learn more</string>
+    <string name="PaymentsRecoveryStartFragment__time_to_save">Gorde berreskuratze-esaldi bat; hots, saldoa berrezartzeko erabil daitekeen 24 hitzeko gako bat. Informazio gehiago</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Zure berreskurapen-esaldia %1$d-hitz esaldi bat da zuretzat esklusiboki. Erabili esaldi hau oreka berrezartzeko.</string>
     <string name="PaymentsRecoveryStartFragment__start">Hasi</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">Eskuz sartu</string>
     <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Itsatsi arbeletik</string>
     <!-- Alert dialog title which asks before going back if user wants to save recovery phrase -->
-    <string name="PaymentsRecoveryStartFragment__continue_without_saving">Continue Without Saving?</string>
+    <string name="PaymentsRecoveryStartFragment__continue_without_saving">Gorde gabe egin nahi duzu aurrera?</string>
     <!-- Alert dialog description to let user know why recovery phrase needs to be saved -->
-    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">Your recovery phrase lets you restore your balance in a worst-case scenario. We strongly recommend you save it.</string>
+    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">Berreskuratze-esaldiari esker, kasurik txarrenean, saldoa berreskuratu ahal izango duzu. Gordetzea gomendatzen dizugu.</string>
     <!-- Alert dialog option to skip recovery phrase -->
-    <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">Skip Recovery Phrase</string>
+    <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">Ez gorde berreskuratze-esaldia</string>
     <!-- Alert dialog option to cancel dialog-->
     <string name="PaymentsRecoveryStartFragment__cancel">Utzi</string>
 
@@ -3943,9 +3943,9 @@
     <!-- Preference title to delete sms -->
     <string name="SmsSettingsFragment__remove_sms_messages">Ezabatu SMS mezuak</string>
     <!-- Snackbar text to confirm deletion -->
-    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Removing SMS messages from Signal…</string>
+    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">SMS mezuak Signal-etik kentzen…</string>
     <!-- Snackbar text to indicate can delete later -->
-    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">You can remove SMS messages from Signal in Settings at any time.</string>
+    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">SMS mezuak Signal-etik kentzeko, joan ezarpenetara.</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">Mezuak</string>
@@ -4195,17 +4195,17 @@
     <!-- Dialog title when removing a contact -->
     <string name="NewConversationActivity__remove_s">%1$sezabatu?</string>
     <!-- Dialog message when removing a contact -->
-    <string name="NewConversationActivity__you_wont_see_this_person">You won\'t see this person when searching. You\'ll get a message request if they message you in the future.</string>
+    <string name="NewConversationActivity__you_wont_see_this_person">Bilaketak egitean, ez duzu pertsona hau ikusiko. Etorkizunean mezu bat bidaltzen badizu, mezu-eskaera bat jasoko duzu.</string>
     <!-- Snackbar message after removing a contact -->
-    <string name="NewConversationActivity__s_has_been_removed">%1$s has been removed</string>
+    <string name="NewConversationActivity__s_has_been_removed">Kendu da %1$s</string>
     <!-- Snackbar message after blocking a contact -->
-    <string name="NewConversationActivity__s_has_been_blocked">%1$s has been blocked</string>
+    <string name="NewConversationActivity__s_has_been_blocked">Blokeatu da %1$s</string>
     <!-- Dialog title when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__unable_to_remove_s">Unable to remove %1$s</string>
+    <string name="NewConversationActivity__unable_to_remove_s">Ezin da kendu %1$s</string>
     <!-- Dialog message when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__this_person_is_saved_to_your">This person is saved to your device\'s Contacts. Delete them from your Contacts and try again.</string>
+    <string name="NewConversationActivity__this_person_is_saved_to_your">Pertsona hau zure gailuko Kontaktuak aplikazioan dago gordeta. Ezaba ezazu bertatik eta saiatu berriro.</string>
     <!-- Dialog action to view contact when they can't be removed otherwise -->
-    <string name="NewConversationActivity__view_contact">View contact</string>
+    <string name="NewConversationActivity__view_contact">Ikusi kontaktua</string>
 
     <!-- ContactFilterView -->
     <string name="ContactFilterView__search_name_or_number">Bilatu izena edo zenbakia</string>
@@ -4709,7 +4709,7 @@
     <!-- Subtitle for "My Stories" row item when user has not added stories -->
     <string name="StoriesLandingFragment__tap_to_add_a_story">Sakatu istorio bat gehitzeko</string>
     <!-- Displayed when there are no stories to display -->
-    <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now">No recent updates to show right now.</string>
+    <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now">Une honetan ez dago azken eguneratzerik erakusteko.</string>
     <!-- Context menu option to hide a story -->
     <string name="StoriesLandingItem__hide_story">Ezkutatu storie-ak</string>
     <!-- Context menu option to unhide a story -->
@@ -4778,9 +4778,9 @@
     <!-- Displayed when viewing a post from another user with no replies -->
     <string name="StoryViewerPageFragment__reply">Erantzun</string>
     <!-- Displayed when viewing a post that has failed to send to some users -->
-    <string name="StoryViewerPageFragment__partially_sent">Partially sent. Tap for details</string>
+    <string name="StoryViewerPageFragment__partially_sent">Partzialki bidalia. Sakatu xehetasunak ikusteko</string>
     <!-- Displayed when viewing a post that has failed to send -->
-    <string name="StoryViewerPageFragment__send_failed">Send failed. Tap to retry</string>
+    <string name="StoryViewerPageFragment__send_failed">Ezin izan da bidali. Sakatu berriro saiatzeko</string>
     <!-- Label for the reply button in story viewer, which will launch the group story replies bottom sheet. -->
     <string name="StoryViewerPageFragment__reply_to_group">Taldera erantzun</string>
     <!-- Displayed when a story has no views -->
@@ -5229,7 +5229,7 @@
     <!-- Title of the screen -->
     <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">Esportatu zure SMS mezuak</string>
     <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">You can export your SMS messages to your phone\'s SMS database. This allows other SMS apps on your phone to access and import them. This does not create a shareable file of your SMS message history.</string>
+    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">SMS mezuak telefonoko SMSen datu-basera esporta ditzakezu. Horrela, telefonoko beste SMS aplikazio batzuek atzitu eta inportatu ahalko dituzte. Ez da sortuko SMS mezuen historiaren fitxategi partekagarririk.</string>
     <!-- Button label to begin export -->
     <string name="ExportYourSmsMessagesFragment__continue">Jarraitu</string>
 
@@ -5255,17 +5255,17 @@
     <!-- Fourth step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_4">4</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">Tap \"Continue\" to open the \"Default apps\" screen in Settings</string>
+    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">Ezarpenetan \"Aplikazio lehenetsiak\" pantaila irekitzeko, sakatu \"Egin aurrera\".</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">Select \"SMS app\" from the list</string>
+    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">Hautatu \"SMS aplikazioa\" zerrendan</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">Choose another app to use for SMS messaging</string>
+    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">Aukeratu beste aplikazio bat SMS mezuekin erabiltzeko</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">Return to Signal</string>
+    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">Itzuli Signal-era</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">Open your phone\'s Settings app</string>
+    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">Ireki telefonoko Ezarpenak aplikazioa</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">Navigate to \"Apps\" &gt; \"Default apps\" &gt; \"SMS app\"</string>
+    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">Joan \"Aplikazioak\" &gt; \"Aplikazio lehenetsiak\" &gt; \"SMS aplikazioa\" atalera</string>
 
     <!-- RemoveSmsMessagesDialogFragment -->
     <!-- Action button to keep messages -->
@@ -5275,13 +5275,13 @@
     <!-- Title of dialog -->
     <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Ezabatu SMS mezuak Signaletik?</string>
     <!-- Message of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">You can now remove SMS messages from Signal to clear up storage space. They will still be available to other SMS apps on your phone even if you remove them.</string>
+    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">Orain, SMS mezuak Signal-etik ken ditzakezu, memorian tokia egiteko. Kendu arren, telefonoko beste SMS aplikazioetarako erabilgarri egongo dira.</string>
 
     <!-- SetSignalAsDefaultSmsAppFragment -->
     <!-- Title of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">Set Signal as the default SMS app</string>
+    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">Ezarri Signal SMS aplikazio lehenetsi gisa</string>
     <!-- Message of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">To export your SMS messages, you need to set Signal as the default SMS app.</string>
+    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">SMS mezuak esportatzeko, Signal ezarri behar duzu SMS aplikazio lehenetsi gisa.</string>
     <!-- Button label to start export -->
     <string name="SetSignalAsDefaultSmsAppFragment__next">Hurrengoa</string>
 

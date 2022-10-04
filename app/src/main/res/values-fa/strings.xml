@@ -358,8 +358,8 @@
     </plurals>
     <string name="ConversationFragment_save_to_sd_card">در حافظه ذخیره شود؟</string>
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
-        <item quantity="one">Saving this media to storage will allow any other apps on your device to access it.\n\nContinue?</item>
-        <item quantity="other">Saving all %1$d media to storage will allow any other apps on your device to access them.\n\nContinue?</item>
+        <item quantity="one">ذخیره‌سازی این رسانه در حافظه دستگاه به هر یک از برنامه‌ها‌‌ی دیگر در دستگاهتان اجازه دسترسی به آن را می‌دهد.\n\n ادامه می‌دهید؟</item>
+        <item quantity="other">ذخیره‌سازی هر %1$d رسانه در حافظهٔ دستگاه به هر یک از برنامه‌ها‌ی دیگر در دستگاهتان اجازه دسترسی به آن‌ها را می‌دهد.\n\n آیا مایل به ادامه هستید؟</item>
     </plurals>
     <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
         <item quantity="one">خطا هنگام ذخیره‌سازی پیوست در حافظه!</item>
@@ -367,12 +367,12 @@
     </plurals>
     <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">نوشتن در حافظه ممکن نیست!</string>
     <plurals name="ConversationFragment_saving_n_attachments">
-        <item quantity="one">Saving attachment</item>
-        <item quantity="other">Saving %1$d attachments</item>
+        <item quantity="one">در حال ذخیره‌سازی پیوست</item>
+        <item quantity="other">در حال ذخیره‌سازی %1$d پیوست</item>
     </plurals>
     <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="one">Saving attachment to storage…</item>
-        <item quantity="other">Saving %1$d attachments to storage…</item>
+        <item quantity="one">در حال ذخیره‌سازی پیوست در حافظه…</item>
+        <item quantity="other">در حال ذخیره‌سازی %1$d پیوست در حافظه…</item>
     </plurals>
     <string name="ConversationFragment_pending">در انتظار…</string>
     <string name="ConversationFragment_push">اینترنت (سیگنال)</string>
@@ -418,19 +418,19 @@
         <item quantity="other">حذف مکالمه‌ها‌ی انتخاب شده؟</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">This will permanently delete the selected conversation.</item>
-        <item quantity="other">This will permanently delete all %1$d selected conversations.</item>
+        <item quantity="one">این گزینه باعث حذف دائمی مکالمه انتخاب‌شده می‌شود.</item>
+        <item quantity="other">این گزینه باعث حذف دائمی هر %1$d مکالمه انتخاب شده می‌شود.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">در حال حذف</string>
     <string name="ConversationListFragment_deleting_selected_conversations">حذف مکالمه‌ها‌ی انتخاب شده…</string>
     <plurals name="ConversationListFragment_conversations_archived">
-        <item quantity="one">Conversation archived</item>
-        <item quantity="other">%1$d conversations archived</item>
+        <item quantity="one">مکالمه بایگانی شد</item>
+        <item quantity="other">%1$d مکالمه بایگانی شد</item>
     </plurals>
     <string name="ConversationListFragment_undo">واگرد</string>
     <plurals name="ConversationListFragment_moved_conversations_to_inbox">
-        <item quantity="one">Moved conversation to inbox</item>
-        <item quantity="other">Moved %1$d conversations to inbox</item>
+        <item quantity="one">مکالمه به صندوق ورودی منتقل شد</item>
+        <item quantity="other">%1$d مکالمه به صندوق ورودی انتقال یافت</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
         <item quantity="one">خوانده</item>
@@ -664,8 +664,8 @@
 
     <!-- GV2 invites sent -->
     <plurals name="GroupManagement_invitation_sent">
-        <item quantity="one">Invitation sent</item>
-        <item quantity="other">%1$d invitations sent</item>
+        <item quantity="one">دعوت‌نامه ارسال شد</item>
+        <item quantity="other">%1$d دعوت‌نامه ارسال شد</item>
     </plurals>
     <string name="GroupManagement_invite_single_user">«%1$s» نمی‌تواند به صورت خودکار توسط شما به این گروه اضافه شود.\n\nآن‌ها برای پیوستن دعوت شده‌اند و پیام‌های گروهی را تا زمانی که دعوت را نپذیرند، نخواهند دید.</string>
     <string name="GroupManagement_invite_multiple_users">این کاربران نمی‌توانند به صورت خودکار توسط شما به این گروه اضافه شوند.\n\nآن‌ها برای پیوستن به گروه دعوت شده‌اند و پیام‌های گروهی را تا زمانی که دعوت را بپذیرند، نخواهند دید.</string>
@@ -765,8 +765,8 @@
     <string name="PendingMembersActivity_revoke_invite">لغو دعوت</string>
     <string name="PendingMembersActivity_revoke_invites">لغو دعوت‌ها</string>
     <plurals name="PendingMembersActivity_revoke_d_invites">
-        <item quantity="one">Revoke invite</item>
-        <item quantity="other">Revoke %1$d invites</item>
+        <item quantity="one">لغو دعوت</item>
+        <item quantity="other">لغو %1$d دعوت</item>
     </plurals>
     <plurals name="PendingMembersActivity_error_revoking_invite">
         <item quantity="one">خطا در لغو دعوت</item>
@@ -785,8 +785,8 @@
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">این فرد نمی‌تواند به گروه‌های قدیمی اضافه شود.</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">این فرد نمی‌تواند به گروه‌های اطلاع‌رسانی اضافه شود.</string>
     <plurals name="AddMembersActivity__add_d_members_to_s">
-        <item quantity="one">Add \"%1$s\" to \"%2$s\"?</item>
-        <item quantity="other">Add %3$d members to \"%2$s\"?</item>
+        <item quantity="one">«%1$s» به «%2$s» افزوده شود؟</item>
+        <item quantity="other">%3$d عضو به «%2$s» افزوده شوند؟</item>
     </plurals>
     <string name="AddMembersActivity__add">افزودن</string>
     <string name="AddMembersActivity__add_members">افزودن اعضا</string>
@@ -887,8 +887,8 @@
     </plurals>
 
     <plurals name="GroupMemberList_invited">
-        <item quantity="one">%1$s invited 1 person</item>
-        <item quantity="other">%1$s invited %2$d people</item>
+        <item quantity="one">%1$s ۱ نفر را دعوت کرد</item>
+        <item quantity="other">%1$s %2$d نفر را دعوت کرد</item>
     </plurals>
 
     <!-- CustomNotificationsDialogFragment -->
@@ -926,8 +926,8 @@
     <!-- GV2 Invite Revoke confirmation dialog -->
     <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">آیا می‌خواهید دعوتی که به %1$s فرستادید را لغو کنید؟</string>
     <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
-        <item quantity="one">Do you want to revoke the invite sent by %1$s?</item>
-        <item quantity="other">Do you want to revoke %2$d invites sent by %1$s?</item>
+        <item quantity="one">آیا می‌خواهید دعوت ارسال‌شده از طرف %1$s را لغو کنید؟</item>
+        <item quantity="other">آیا می‌خواهید %2$d دعوت ارسال شده از طرف %1$s را لغو کنید؟</item>
     </plurals>
 
     <!-- GroupJoinBottomSheetDialogFragment -->
@@ -1035,8 +1035,8 @@
         <item quantity="other">حذف موارد انتخاب شده؟</item>
     </plurals>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-        <item quantity="one">This will permanently delete the selected file. Any message text associated with this item will also be deleted.</item>
-        <item quantity="other">This will permanently delete all %1$d selected files. Any message text associated with these items will also be deleted.</item>
+        <item quantity="one">این گزینه باعث حذف دائم فایل انتخاب‌شده می‌شود. هر پیام متنی مرتبط با این مورد هم حذف خواهد شد.</item>
+        <item quantity="other">این گزینه باعث حذف دائم تمام %1$d فایل انتخاب شده می‌شود. هر پیام متنی مرتبط با این موارد هم حذف خواهد شد.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">در حال حذف</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">حذف پیام‌ها…</string>
@@ -1168,13 +1168,13 @@
     <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">شما نمی‌توانستید به گروه اضافه شوید و برای پیوستن دعوت شدید.</string>
     <string name="MessageRecord_chat_session_refreshed">نشست گفتگو تازه‌سازی شد</string>
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
-        <item quantity="one">A member couldn\'t be added to the New Group and has been invited to join.</item>
-        <item quantity="other">%1$s members couldn\'t be added to the New Group and have been invited to join.</item>
+        <item quantity="one">یک نفر از اعضا نمی‌توانست به گروه جدید اضافه شود و برای پیوستن دعوت شده است.</item>
+        <item quantity="other">%1$s نفر از اعضا نمی‌توانستند به گروه جدید اضافه شوند و برای پیوستن دعوت شده‌اند.</item>
     </plurals>
 
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
-        <item quantity="one">A member couldn\'t be added to the New Group and has been removed.</item>
-        <item quantity="other">%1$s members couldn\'t be added to the New Group and have been removed.</item>
+        <item quantity="one">یک نفر از اعضا نمی‌توانست به گروه جدید اضافه شود و حذف شده است.</item>
+        <item quantity="other">%1$s نفر از اعضا نمی‌توانستند به گروه جدید اضافه شوند و حذف شده‌اند.</item>
     </plurals>
 
     <!-- Profile change updates -->
@@ -1219,31 +1219,31 @@
     <string name="MessageRecord_you_invited_s_to_the_group">شما %1$s را به گروه دعوت کردید.</string>
     <string name="MessageRecord_s_invited_you_to_the_group">%1$s شما را به گروه دعوت کرد.</string>
     <plurals name="MessageRecord_s_invited_members">
-        <item quantity="one">%1$s invited 1 person to the group.</item>
-        <item quantity="other">%1$s invited %2$d people to the group.</item>
+        <item quantity="one">%1$s ۱ نفر را به گروه دعوت کرد.</item>
+        <item quantity="other">%1$s %2$d نفر را به گروه دعوت کرد.</item>
     </plurals>
     <string name="MessageRecord_you_were_invited_to_the_group">شما به گروه دعوت شدید.</string>
     <plurals name="MessageRecord_d_people_were_invited_to_the_group">
-        <item quantity="one">1 person was invited to the group.</item>
-        <item quantity="other">%1$d people were invited to the group.</item>
+        <item quantity="one">۱ نفر به گروه دعوت شد.</item>
+        <item quantity="other">%1$d نفر به گروه دعوت شدند.</item>
     </plurals>
 
     <!-- GV2 invitation revokes -->
     <plurals name="MessageRecord_you_revoked_invites">
-        <item quantity="one">You revoked an invitation to the group.</item>
-        <item quantity="other">You revoked %1$d invitations to the group.</item>
+        <item quantity="one">شما یک دعوت‌نامه به گروه را لغو کردید.</item>
+        <item quantity="other">شما %1$d دعوت‌نامه به گروه را لغو کردید.</item>
     </plurals>
     <plurals name="MessageRecord_s_revoked_invites">
-        <item quantity="one">%1$s revoked an invitation to the group.</item>
-        <item quantity="other">%1$s revoked %2$d invitations to the group.</item>
+        <item quantity="one">%1$s یک دعوت‌نامه به گروه را لغو کرد.</item>
+        <item quantity="other">%1$s %2$d دعوت‌نامه به گروه را لغو کرد.</item>
     </plurals>
     <string name="MessageRecord_someone_declined_an_invitation_to_the_group">یک نفر دعوت به گروه را رد کرد.</string>
     <string name="MessageRecord_you_declined_the_invitation_to_the_group">شما دعوت به گروه را رد کردید.</string>
     <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s دعوت شما به گروه را لغو کرد.</string>
     <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">یک مدیر دعوت شما به گروه را لغو کرد.</string>
     <plurals name="MessageRecord_d_invitations_were_revoked">
-        <item quantity="one">An invitation to the group was revoked.</item>
-        <item quantity="other">%1$d invitations to the group were revoked.</item>
+        <item quantity="one">یک دعوت‌نامه به گروه لغو شد.</item>
+        <item quantity="other">%1$d دعوت‌نامه به گروه لغو شد.</item>
     </plurals>
 
     <!-- GV2 invitation acceptance -->
@@ -1316,8 +1316,8 @@
     <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s برای پیوستن از طریق پیوند درخواست داد.</string>
     <!-- Update message shown when someone requests to join via group link and cancels the request back to back -->
     <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
-        <item quantity="one">%1$s requested and cancelled their request to join via the group link.</item>
-        <item quantity="other">%1$s requested and cancelled %2$d requests to join via the group link.</item>
+        <item quantity="one">%1$s برای پیوستن به گروه از طریق پیوند درخواست کرد و درخواست خود را لغو کرد.</item>
+        <item quantity="other">%1$s برای پیوستن از طریق پیوند گروه درخواست کرد و %2$d درخواست خود را لغو کرد.</item>
     </plurals>
 
     <!-- GV2 group link approvals -->
@@ -1346,9 +1346,9 @@
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">این قابلیت جدید را می‌پسندید؟ با یک حمایت مالی یک‌باره از سیگنال پشتیبانی کنید.</string>
     <!-- Update item message shown when we merge two threads together -->
-    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Your message history with %1$s and their number %2$s has been merged.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">سابقه پیام شما با %1$s و شماره او %2$s ادغام شده است.</string>
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
-    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Your message history with %1$s and another chat that belonged to them has been merged.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">سابقه پیام شما با %1$s و گفتگوی دیگری که متعلق به او بود ادغام شده است.</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s یک تماس گروهی آغاز کرد · %2$s</string>
@@ -1450,8 +1450,8 @@
     <string name="OutdatedBuildReminder_update_now">همین حالا به‌روزرسانی کنید</string>
     <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">تاریخ انقضای این نسخهٔ سیگنال امروز به پایان می‌رسد. به آخرین نسخه به‌روزرسانی کنید.</string>
     <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
-        <item quantity="one">This version of Signal will expire tomorrow. Update to the most recent version.</item>
-        <item quantity="other">This version of Signal will expire in %1$d days. Update to the most recent version.</item>
+        <item quantity="one">این نسخه سیگنال فردا منقضی می‌شود. به آخرین نسخه به‌روزرسانی کنید.</item>
+        <item quantity="other">این نسخه سیگنال طی %1$d روز آینده منقضی می‌شود. به آخرین نسخه به‌روزرسانی کنید.</item>
     </plurals>
 
     <!-- PassphrasePromptActivity -->
@@ -1873,7 +1873,7 @@
 
     <!-- UsernameEditFragment -->
     <!-- Toolbar title when entering from registration -->
-    <string name="UsernameEditFragment__add_a_username">Add a username</string>
+    <string name="UsernameEditFragment__add_a_username">یک نام کاربری اضافه کنید</string>
     <!-- Instructional text at the top of the username edit screen -->
     <string name="UsernameEditFragment__choose_your_username">نام کاربری خود را انتخاب کنید</string>
     <string name="UsernameEditFragment_username">نام کاربری</string>
@@ -3743,10 +3743,10 @@
     <string name="payment_info_card_hide_this_card">پنهان کردن این کارت؟</string>
     <string name="payment_info_card_hide">مخفی‌سازی</string>
     <!-- Title of save recovery phrase card -->
-    <string name="payment_info_card_save_recovery_phrase">Save recovery phrase</string>
+    <string name="payment_info_card_save_recovery_phrase">ذخیره‌سازی عبارت بازیابی</string>
     <string name="payment_info_card_your_recovery_phrase_gives_you">عبارت بازیابی راه دیگری برای بازگردانی حساب کاربری پرداخت‌های شما را فراهم می‌کند.</string>
     <!-- Button in save recovery phrase card -->
-    <string name="payment_info_card_save_your_phrase">Save your phrase</string>
+    <string name="payment_info_card_save_your_phrase">ذخیره‌سازی عبارت خود</string>
     <string name="payment_info_card_update_your_pin">پین خود را به‌روزرسانی کنید</string>
     <string name="payment_info_card_with_a_high_balance">در صورت داشتن موجودی بالا، بهتر است پین خود را به یک پین حرفی‌عددی به‌روزرسانی کنید تا محافظت بیشتری به حساب خود اضافه کنید.</string>
     <string name="payment_info_card_update_pin">به‌روزرسانی پین</string>
@@ -3771,23 +3771,23 @@
     <string name="PaymentsRecoveryStartFragment__recovery_phrase">عبارت بازیابی</string>
     <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">مشاهدهٔ عبارت بازیابی</string>
     <!-- Title in save recovery phrase screen -->
-    <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Save recovery phrase</string>
+    <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">ذخیره‌سازی عبارت بازیابی</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">عبارت بازیابی را وارد کنید</string>
     <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">اگر پین سیگنال خود را تأیید کنید موجودی شما هنگام نصب دوبارهٔ سیگنال به صورت خودکار بازگردانی خواهد شد. شما همچنین می‌توانید موجودی خود را با استفاده از یک عبارت بازیابی، که یک عبارت %1$d-کلمه‌ای منحصر به شماست، بازگردانی کنید. آن را یادداشت و در یک مکان امن نگهداری کنید.</string>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
-    <string name="PaymentsRecoveryStartFragment__got_balance">You’ve got a balance! Time to save your recovery phrase—a 24-word key you can use to restore your balance.</string>
+    <string name="PaymentsRecoveryStartFragment__got_balance">شما موجودی دارید! زمان ذخیره‌سازی عبارت بازیابی است—یک رمز 24 کلمه‌ای که می‌توانید برای بازیابی موجودی خود از آن استفاده کنید.</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
-    <string name="PaymentsRecoveryStartFragment__time_to_save">Time to save your recovery phrase—a 24-word key you can use to restore your balance. Learn more</string>
+    <string name="PaymentsRecoveryStartFragment__time_to_save">زمان ذخیره‌سازی عبارت بازیابی است—یک رمز 24 کلمه‌ای که می‌توانید برای بازیابی موجودی خود از آن استفاده کنید. بیشتر بدانید</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">عبارت بازیابی شما یک عبارت %1$d-کلمه‌ای مختص شماست. از این عبارت برای بازگردانی موجودی خود استفاده کنید.</string>
     <string name="PaymentsRecoveryStartFragment__start">شروع</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">به صورت دستی وارد کنید</string>
     <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">جایگذاری از کلیپ‌بورد</string>
     <!-- Alert dialog title which asks before going back if user wants to save recovery phrase -->
-    <string name="PaymentsRecoveryStartFragment__continue_without_saving">Continue Without Saving?</string>
+    <string name="PaymentsRecoveryStartFragment__continue_without_saving">ادامه بدون ذخیره‌سازی؟</string>
     <!-- Alert dialog description to let user know why recovery phrase needs to be saved -->
-    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">Your recovery phrase lets you restore your balance in a worst-case scenario. We strongly recommend you save it.</string>
+    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">عبارت بازیابی به شما امکان می‌دهد که در بدترین حالت، موجودی خود را بازیابی کنید. اکیدا توصیه می‌کنیم که آن را ذخیره کنید.</string>
     <!-- Alert dialog option to skip recovery phrase -->
-    <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">Skip Recovery Phrase</string>
+    <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">رد شدن از عبارت بازیابی</string>
     <!-- Alert dialog option to cancel dialog-->
     <string name="PaymentsRecoveryStartFragment__cancel">لغو</string>
 
@@ -3943,9 +3943,9 @@
     <!-- Preference title to delete sms -->
     <string name="SmsSettingsFragment__remove_sms_messages">حذف پیامک‌ها</string>
     <!-- Snackbar text to confirm deletion -->
-    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Removing SMS messages from Signal…</string>
+    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">در حال حذف پیامک‌ها از سیگنال…</string>
     <!-- Snackbar text to indicate can delete later -->
-    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">You can remove SMS messages from Signal in Settings at any time.</string>
+    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">می‌توانید در هر زمانی پیامک‌ها را در تنظیمات از سیگنال حذف کنید.</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">پیام‌ها</string>
@@ -4195,17 +4195,17 @@
     <!-- Dialog title when removing a contact -->
     <string name="NewConversationActivity__remove_s">%1$s حذف شود؟</string>
     <!-- Dialog message when removing a contact -->
-    <string name="NewConversationActivity__you_wont_see_this_person">You won\'t see this person when searching. You\'ll get a message request if they message you in the future.</string>
+    <string name="NewConversationActivity__you_wont_see_this_person">هنگام جستجو این شخص را نخواهید دید. اگر در آینده برای شما پیام ارسال کند، یک درخواست پیام دریافت خواهید کرد.</string>
     <!-- Snackbar message after removing a contact -->
-    <string name="NewConversationActivity__s_has_been_removed">%1$s has been removed</string>
+    <string name="NewConversationActivity__s_has_been_removed">%1$s حذف شد</string>
     <!-- Snackbar message after blocking a contact -->
-    <string name="NewConversationActivity__s_has_been_blocked">%1$s has been blocked</string>
+    <string name="NewConversationActivity__s_has_been_blocked">%1$s مسدود شد</string>
     <!-- Dialog title when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__unable_to_remove_s">Unable to remove %1$s</string>
+    <string name="NewConversationActivity__unable_to_remove_s">حذف %1$s ممکن نیست</string>
     <!-- Dialog message when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__this_person_is_saved_to_your">This person is saved to your device\'s Contacts. Delete them from your Contacts and try again.</string>
+    <string name="NewConversationActivity__this_person_is_saved_to_your">این شخص در مخاطبان دستگاه شما ذخیره شده است. او را از مخاطبان خود حذف و دوباره امتحان کنید.</string>
     <!-- Dialog action to view contact when they can't be removed otherwise -->
-    <string name="NewConversationActivity__view_contact">View contact</string>
+    <string name="NewConversationActivity__view_contact">مشاهده مخاطب</string>
 
     <!-- ContactFilterView -->
     <string name="ContactFilterView__search_name_or_number">نام یا شماره را جستجو کنید</string>
@@ -4709,7 +4709,7 @@
     <!-- Subtitle for "My Stories" row item when user has not added stories -->
     <string name="StoriesLandingFragment__tap_to_add_a_story">برای افزودن استوری ضربه بزنید</string>
     <!-- Displayed when there are no stories to display -->
-    <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now">No recent updates to show right now.</string>
+    <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now">اکنون هیچ به‌روزرسانی جدیدی برای نمایش وجود ندارد.</string>
     <!-- Context menu option to hide a story -->
     <string name="StoriesLandingItem__hide_story">پنهان کردن استوری</string>
     <!-- Context menu option to unhide a story -->
@@ -4778,9 +4778,9 @@
     <!-- Displayed when viewing a post from another user with no replies -->
     <string name="StoryViewerPageFragment__reply">پاسخ</string>
     <!-- Displayed when viewing a post that has failed to send to some users -->
-    <string name="StoryViewerPageFragment__partially_sent">Partially sent. Tap for details</string>
+    <string name="StoryViewerPageFragment__partially_sent">بخشی از آن ارسال شد. برای جزئیات بیشتر ضربه بزنید</string>
     <!-- Displayed when viewing a post that has failed to send -->
-    <string name="StoryViewerPageFragment__send_failed">Send failed. Tap to retry</string>
+    <string name="StoryViewerPageFragment__send_failed">ارسال نشد. برای تلاش مجدد، ضربه بزنید</string>
     <!-- Label for the reply button in story viewer, which will launch the group story replies bottom sheet. -->
     <string name="StoryViewerPageFragment__reply_to_group">پاسخ به گروه</string>
     <!-- Displayed when a story has no views -->
@@ -5229,7 +5229,7 @@
     <!-- Title of the screen -->
     <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">صدور پیامک‌ها</string>
     <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">You can export your SMS messages to your phone\'s SMS database. This allows other SMS apps on your phone to access and import them. This does not create a shareable file of your SMS message history.</string>
+    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">می‌توانید پیامک‌های خود را به پایگاه داده پیامک تلفن خود صادر کنید. این کار به سایر برنامه‌های پیامک موجود در تلفن شما اجازه می‌دهد تا به آنها دسترسی پیدا کرده و آن‌ها را وارد کنند. این کار یک فایل قابل اشتراک‌گذاری از تاریخچه پیامک شما ایجاد نمی‌کند.</string>
     <!-- Button label to begin export -->
     <string name="ExportYourSmsMessagesFragment__continue">ادامه</string>
 
@@ -5255,17 +5255,17 @@
     <!-- Fourth step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_4">۴</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">Tap \"Continue\" to open the \"Default apps\" screen in Settings</string>
+    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">برای باز کردن صفحه «برنامه‌های پیش‌فرض» در تنظیمات، روی «ادامه» ضربه بزنید</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">Select \"SMS app\" from the list</string>
+    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">«برنامه پیامک» را از لیست انتخاب کنید</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">Choose another app to use for SMS messaging</string>
+    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">برنامه دیگری را برای استفاده از پیامک انتخاب کنید</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">Return to Signal</string>
+    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">بازگشت به سیگنال</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">Open your phone\'s Settings app</string>
+    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">برنامه تنظیمات گوشی خود را باز کنید</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">Navigate to \"Apps\" &gt; \"Default apps\" &gt; \"SMS app\"</string>
+    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">به «برنامه‌ها» &gt; «برنامه‌های پیش‌فرض» &gt; «برنامه پیامک» بروید</string>
 
     <!-- RemoveSmsMessagesDialogFragment -->
     <!-- Action button to keep messages -->
@@ -5275,13 +5275,13 @@
     <!-- Title of dialog -->
     <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">پیامک‌ها از سیگنال حذف شود؟</string>
     <!-- Message of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">You can now remove SMS messages from Signal to clear up storage space. They will still be available to other SMS apps on your phone even if you remove them.</string>
+    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">اکنون می‌توانید پیامک‌ها را از سیگنال حذف کنید تا فضای ذخیره‌سازی خالی شود. حتی اگر آن‌ها را حذف کنید، همچنان برای سایر برنامه‌های پیامک تلفن‌تان در دسترس خواهند بود.</string>
 
     <!-- SetSignalAsDefaultSmsAppFragment -->
     <!-- Title of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">Set Signal as the default SMS app</string>
+    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">سیگنال را به عنوان برنامه پیش‌فرض پیامک تنظیم کنید</string>
     <!-- Message of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">To export your SMS messages, you need to set Signal as the default SMS app.</string>
+    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">برای صادر کردن پیامک‌های خود، باید سیگنال را به‌عنوان برنامه پیش‌فرض پیامک تنظیم کنید.</string>
     <!-- Button label to start export -->
     <string name="SetSignalAsDefaultSmsAppFragment__next">بعدی</string>
 

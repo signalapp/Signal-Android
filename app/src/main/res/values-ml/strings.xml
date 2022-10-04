@@ -1346,9 +1346,9 @@
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">ഈ പുതിയ ഫീച്ചർ ഇഷ്‌ടമായോ? ഒരു ഒറ്റത്തവണ സംഭാവന നൽകി Signal-നെ പിന്തുണയ്ക്കൂ.</string>
     <!-- Update item message shown when we merge two threads together -->
-    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Your message history with %1$s and their number %2$s has been merged.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">%1$s എന്നതുമായുള്ള നിങ്ങളുടെ സന്ദേശ ചരിത്രവും അവരുടെ %2$s നമ്പരും ലയിപ്പിച്ചു.</string>
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
-    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Your message history with %1$s and another chat that belonged to them has been merged.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">%1$s എന്നതുമായുള്ള നിങ്ങളുടെ സന്ദേശ ചരിത്രവും അവരുടേതായ മറ്റൊരു ചാറ്റും ലയിപ്പിച്ചിരിക്കുന്നു.</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s ഒരു ഗ്രൂപ്പ് കോൾ ആരംഭിച്ചു . %2$s</string>
@@ -3743,10 +3743,10 @@
     <string name="payment_info_card_hide_this_card">ഈ കാർഡ് മറയ്ക്കുക</string>
     <string name="payment_info_card_hide">മറയ്ക്കുക</string>
     <!-- Title of save recovery phrase card -->
-    <string name="payment_info_card_save_recovery_phrase">Save recovery phrase</string>
+    <string name="payment_info_card_save_recovery_phrase">വീണ്ടെടുക്കൽ വാക്യം സംരക്ഷിക്കുക</string>
     <string name="payment_info_card_your_recovery_phrase_gives_you">നിങ്ങളുടെ പേയ്മെന്റ് അക്കൗണ്ട് പുന:സ്ഥാപിക്കുന്നതിന് നിങ്ങളുടെ വീണ്ടെടുക്കൽ വാക്യം നിങ്ങൾക്ക് മറ്റൊരു മാർഗം നൽകുന്നു.</string>
     <!-- Button in save recovery phrase card -->
-    <string name="payment_info_card_save_your_phrase">Save your phrase</string>
+    <string name="payment_info_card_save_your_phrase">നിങ്ങളുടെ വാക്യം സംരക്ഷിക്കുക</string>
     <string name="payment_info_card_update_your_pin">നിങ്ങളുടെ PIN പുതുക്കുക</string>
     <string name="payment_info_card_with_a_high_balance">ഉയർന്ന ബാലൻസ് ഉള്ളതിനാൽ, നിങ്ങളുടെ അക്കൗണ്ടിലേക്ക് കൂടുതൽ പരിരക്ഷ ചേർക്കുന്നതിന് ഒരു ആൽഫാന്യൂമറിക് പിൻ അപ്‌ഡേറ്റ് ചെയ്യാൻ നിങ്ങൾ ആഗ്രഹിച്ചേക്കാം.</string>
     <string name="payment_info_card_update_pin">PIN പുതുക്കുക</string>
@@ -3771,23 +3771,23 @@
     <string name="PaymentsRecoveryStartFragment__recovery_phrase">വീണ്ടെടുക്കൽ വാചകം</string>
     <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">വീണ്ടെടുക്കൽ വാക്യം കാണുക</string>
     <!-- Title in save recovery phrase screen -->
-    <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Save recovery phrase</string>
+    <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">വീണ്ടെടുക്കൽ വാക്യം സംരക്ഷിക്കുക</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">വീണ്ടെടുക്കൽ വാക്യം നൽകുക</string>
     <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">നിങ്ങൾ നിങ്ങളുടെ Signal പിൻ സ്ഥിരീകരിക്കുകയാണെങ്കിൽ, നിങ്ങൾ Signal വീണ്ടും ഇൻസ്റ്റാൾ ചെയ്യുമ്പോൾ നിങ്ങളുടെ ബാലൻസ് സ്വയമേവ പുനഃസ്ഥാപിക്കപ്പെടും. നിങ്ങൾക്ക് വേണ്ടി അതുല്യമായ ഒരു %1$d-വാക്ക് വാക്യമായ ഒരു വീണ്ടെടുക്കൽ വാക്യം ഉപയോഗിച്ച് നിങ്ങൾക്ക് നിങ്ങളുടെ ബാലൻസ് പുന:സ്ഥാപിക്കാനും കഴിയും. അത് എഴുതി സുരക്ഷിതമായ ഒരു സ്ഥലത്ത് സൂക്ഷിക്കുക.</string>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
-    <string name="PaymentsRecoveryStartFragment__got_balance">You’ve got a balance! Time to save your recovery phrase—a 24-word key you can use to restore your balance.</string>
+    <string name="PaymentsRecoveryStartFragment__got_balance">നിങ്ങളുടെ അക്കൗണ്ടിൽ ബാലൻസ് ഉണ്ട്! നിങ്ങളുടെ വീണ്ടെടുക്കൽ വാക്യം സംരക്ഷിക്കാനുള്ള സമയമായി—നിങ്ങളുടെ ബാലൻസ് പുനഃസ്ഥാപിക്കാൻ നിങ്ങൾക്ക് ഉപയോഗിക്കാൻ കഴിയുന്ന 24 വാക്കുകളുള്ള ഒരു കീ.</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
-    <string name="PaymentsRecoveryStartFragment__time_to_save">Time to save your recovery phrase—a 24-word key you can use to restore your balance. Learn more</string>
+    <string name="PaymentsRecoveryStartFragment__time_to_save">നിങ്ങളുടെ വീണ്ടെടുക്കൽ വാക്യം സംരക്ഷിക്കാനുള്ള സമയമായി—നിങ്ങളുടെ ബാലൻസ് പുനഃസ്ഥാപിക്കാൻ നിങ്ങൾക്ക് ഉപയോഗിക്കാൻ കഴിയുന്ന 24 വാക്കുകളുള്ള ഒരു കീ. കൂടുതൽ അറിയുക</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">നിങ്ങളുടെ വീണ്ടെടുക്കൽ വാക്യം നിങ്ങൾക്ക് അതുല്യമായ ഒരു %1$d-വാക്ക് വാക്യമാണ്. നിങ്ങളുടെ ബാലൻസ് പുന:സ്ഥാപിക്കാൻ ഈ വാക്യം ഉപയോഗിക്കുക.</string>
     <string name="PaymentsRecoveryStartFragment__start">ആരംഭിക്കുക</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">സ്വമേധയാ നൽകുക</string>
     <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">ക്ലിപ്ബോർഡിൽ നിന്ന് ഒട്ടിക്കുക</string>
     <!-- Alert dialog title which asks before going back if user wants to save recovery phrase -->
-    <string name="PaymentsRecoveryStartFragment__continue_without_saving">Continue Without Saving?</string>
+    <string name="PaymentsRecoveryStartFragment__continue_without_saving">സംരക്ഷിക്കാതെ തുടരണോ?</string>
     <!-- Alert dialog description to let user know why recovery phrase needs to be saved -->
-    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">Your recovery phrase lets you restore your balance in a worst-case scenario. We strongly recommend you save it.</string>
+    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">ഏതെങ്കിലും മോശകരമായ സാഹചര്യത്തിൽ നിങ്ങളുടെ ബാലൻസ് പുനഃസ്ഥാപിക്കാൻ നിങ്ങളുടെ വീണ്ടെടുക്കൽ വാക്യം നിങ്ങളെ അനുവദിക്കുന്നു. നിങ്ങൾ അത് സംരക്ഷിക്കണമെന്ന് ഞങ്ങൾ ശക്തമായി ശുപാർശ ചെയ്യുന്നു.</string>
     <!-- Alert dialog option to skip recovery phrase -->
-    <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">Skip Recovery Phrase</string>
+    <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">വീണ്ടെടുക്കൽ വാക്യം ഒഴിവാക്കുക</string>
     <!-- Alert dialog option to cancel dialog-->
     <string name="PaymentsRecoveryStartFragment__cancel">റദ്ദാക്കുക</string>
 
@@ -3943,9 +3943,9 @@
     <!-- Preference title to delete sms -->
     <string name="SmsSettingsFragment__remove_sms_messages">SMS സന്ദേശങ്ങൾ നീക്കം ചെയ്യുക</string>
     <!-- Snackbar text to confirm deletion -->
-    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Removing SMS messages from Signal…</string>
+    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Signal-ൽ നിന്ന് SMS സന്ദേശങ്ങൾ നീക്കം ചെയ്യുന്നു…</string>
     <!-- Snackbar text to indicate can delete later -->
-    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">You can remove SMS messages from Signal in Settings at any time.</string>
+    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">നിങ്ങൾക്ക് എപ്പോൾ വേണമെങ്കിലും ക്രമീകരണങ്ങളിലെ Signal-ൽ നിന്ന് SMS സന്ദേശങ്ങൾ നീക്കം ചെയ്യാൻ കഴിയും.</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">സന്ദേശങ്ങൾ</string>
@@ -4195,17 +4195,17 @@
     <!-- Dialog title when removing a contact -->
     <string name="NewConversationActivity__remove_s">%1$sഎന്നയാളെ നീക്കം ചെയ്യണോ?</string>
     <!-- Dialog message when removing a contact -->
-    <string name="NewConversationActivity__you_wont_see_this_person">You won\'t see this person when searching. You\'ll get a message request if they message you in the future.</string>
+    <string name="NewConversationActivity__you_wont_see_this_person">തിരയുമ്പോൾ നിങ്ങൾക്ക് ഈ വ്യക്തിയെ കാണാൻ കഴിയില്ല. ഭാവിയിൽ അവർ നിങ്ങൾക്ക് സന്ദേശം അയച്ചാൽ നിങ്ങൾക്ക് ഒരു സന്ദേശ അഭ്യർത്ഥന ലഭിക്കും.</string>
     <!-- Snackbar message after removing a contact -->
-    <string name="NewConversationActivity__s_has_been_removed">%1$s has been removed</string>
+    <string name="NewConversationActivity__s_has_been_removed">%1$s എന്നയാളെ നീക്കം ചെയ്‌തു</string>
     <!-- Snackbar message after blocking a contact -->
-    <string name="NewConversationActivity__s_has_been_blocked">%1$s has been blocked</string>
+    <string name="NewConversationActivity__s_has_been_blocked">%1$s എന്നയാളെ തടഞ്ഞു</string>
     <!-- Dialog title when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__unable_to_remove_s">Unable to remove %1$s</string>
+    <string name="NewConversationActivity__unable_to_remove_s">%1$s എന്നയാളെ നീക്കം ചെയ്യാനായില്ല</string>
     <!-- Dialog message when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__this_person_is_saved_to_your">This person is saved to your device\'s Contacts. Delete them from your Contacts and try again.</string>
+    <string name="NewConversationActivity__this_person_is_saved_to_your">ഈ വ്യക്തിയെ നിങ്ങളുടെ ഉപകരണത്തിലെ കോൺടാക്റ്റുകളിലേക്ക് സംരക്ഷിച്ചു. നിങ്ങളുടെ കോൺടാക്റ്റുകളിൽ നിന്ന് അവ ഇല്ലാതാക്കിയ ശേഷം വീണ്ടും ശ്രമിക്കുക.</string>
     <!-- Dialog action to view contact when they can't be removed otherwise -->
-    <string name="NewConversationActivity__view_contact">View contact</string>
+    <string name="NewConversationActivity__view_contact">കോൺടാക്റ്റ് കാണുക</string>
 
     <!-- ContactFilterView -->
     <string name="ContactFilterView__search_name_or_number">പേര് അല്ലെങ്കിൽ നമ്പർ തിരയുക</string>
@@ -4709,7 +4709,7 @@
     <!-- Subtitle for "My Stories" row item when user has not added stories -->
     <string name="StoriesLandingFragment__tap_to_add_a_story">ഒരു സ്റ്റോറി ചേർക്കാൻ ടാപ്പ് ചെയ്യുക</string>
     <!-- Displayed when there are no stories to display -->
-    <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now">No recent updates to show right now.</string>
+    <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now">ഇപ്പോൾ കാണിക്കാൻ സമീപകാല അപ്‌ഡേറ്റുകൾ ഒന്നുമില്ല.</string>
     <!-- Context menu option to hide a story -->
     <string name="StoriesLandingItem__hide_story">സ്റ്റോറി മറയ്ക്കുക</string>
     <!-- Context menu option to unhide a story -->
@@ -4778,9 +4778,9 @@
     <!-- Displayed when viewing a post from another user with no replies -->
     <string name="StoryViewerPageFragment__reply">മറുപടി</string>
     <!-- Displayed when viewing a post that has failed to send to some users -->
-    <string name="StoryViewerPageFragment__partially_sent">Partially sent. Tap for details</string>
+    <string name="StoryViewerPageFragment__partially_sent">ഭാഗികമായി അയച്ചു. വിശദാംശങ്ങൾക്ക് ടാപ്പ് ചെയ്യുക</string>
     <!-- Displayed when viewing a post that has failed to send -->
-    <string name="StoryViewerPageFragment__send_failed">Send failed. Tap to retry</string>
+    <string name="StoryViewerPageFragment__send_failed">അയയ്‌ക്കാനായില്ല. വീണ്ടും ശ്രമിക്കാൻ ടാപ്പ് ചെയ്യുക</string>
     <!-- Label for the reply button in story viewer, which will launch the group story replies bottom sheet. -->
     <string name="StoryViewerPageFragment__reply_to_group">ഗ്രൂപ്പിന് മറുപടി നൽകുക</string>
     <!-- Displayed when a story has no views -->
@@ -5229,7 +5229,7 @@
     <!-- Title of the screen -->
     <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">നിങ്ങളുടെ SMS സന്ദേശങ്ങൾ എക്‌സ്‌പോർട്ട് ചെയ്യുക</string>
     <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">You can export your SMS messages to your phone\'s SMS database. This allows other SMS apps on your phone to access and import them. This does not create a shareable file of your SMS message history.</string>
+    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">നിങ്ങളുടെ ഫോണിന്റെ SMS ഡാറ്റാബേസിലേക്ക് നിങ്ങളുടെ SMS സന്ദേശങ്ങൾ എക്സ്പോർട്ട് ചെയ്യാൻ നിങ്ങൾക്ക് കഴിയും. അവ ആക്‌സസ് ചെയ്യാനും ഇമ്പോർട്ട് ചെയ്യാനും നിങ്ങളുടെ ഫോണിലെ മറ്റ് SMS ആപ്പുകളെ ഇത് അനുവദിക്കുന്നു. നിങ്ങളുടെ SMS സന്ദേശ ചരിത്രത്തിന്റെ പങ്കിടാനാകുന്ന ഒരു ഫയൽ ഇത് സൃഷ്‌ടിക്കുന്നില്ല.</string>
     <!-- Button label to begin export -->
     <string name="ExportYourSmsMessagesFragment__continue">തുടരുക</string>
 
@@ -5255,17 +5255,17 @@
     <!-- Fourth step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_4">4</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">Tap \"Continue\" to open the \"Default apps\" screen in Settings</string>
+    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">ക്രമീകരണങ്ങളിൽ \"ഡിഫോൾട്ട് ആപ്പുകൾ\" എന്ന സ്‌ക്രീൻ തുറക്കാൻ \"തുടരുക\" എന്നതിൽ ടാപ്പ് ചെയ്യുക</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">Select \"SMS app\" from the list</string>
+    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">ലിസ്റ്റിൽ നിന്ന് \"SMS ആപ്പ്\" തിരഞ്ഞെടുക്കുക</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">Choose another app to use for SMS messaging</string>
+    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">SMS സന്ദേശം അയയ്‌ക്കുന്നതിന് ഉപയോഗിക്കാൻ മറ്റൊരു ആപ്പ് തിരഞ്ഞെടുക്കുക</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">Return to Signal</string>
+    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">Signal-ലേക്ക് മടങ്ങുക</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">Open your phone\'s Settings app</string>
+    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">നിങ്ങളുടെ ഫോണിന്റെ ക്രമീകരണങ്ങൾ ആപ്പ് തിരഞ്ഞെടുക്കുക</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">Navigate to \"Apps\" &gt; \"Default apps\" &gt; \"SMS app\"</string>
+    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">\"ആപ്പുകൾ\" &gt; \"ഡിഫോൾട്ട് ആപ്പുകൾ\" &gt; \"SMS ആപ്പ്\" എന്നതിലേക്ക് നാവിഗേറ്റ് ചെയ്യുക</string>
 
     <!-- RemoveSmsMessagesDialogFragment -->
     <!-- Action button to keep messages -->
@@ -5275,13 +5275,13 @@
     <!-- Title of dialog -->
     <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Signal-ൽ നിന്ന് SMS സന്ദേശങ്ങൾ നീക്കം ചെയ്യണോ?</string>
     <!-- Message of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">You can now remove SMS messages from Signal to clear up storage space. They will still be available to other SMS apps on your phone even if you remove them.</string>
+    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">സംഭരണ സ്ഥലം കൂട്ടാൻ നിങ്ങൾക്ക് ഇപ്പോൾ Signal-ൽ നിന്ന് SMS സന്ദേശങ്ങൾ നീക്കം ചെയ്യാൻ കഴിയും. നിങ്ങൾ നീക്കം ചെയ്‌താലും നിങ്ങളുടെ ഫോണിലെ മറ്റ് SMS ആപ്പുകൾക്ക് അവ തുടർന്നും ലഭ്യമാകും.</string>
 
     <!-- SetSignalAsDefaultSmsAppFragment -->
     <!-- Title of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">Set Signal as the default SMS app</string>
+    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">Signal ഡിഫോൾട്ട് SMS ആപ്പായി സജ്ജീകരിക്കുക</string>
     <!-- Message of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">To export your SMS messages, you need to set Signal as the default SMS app.</string>
+    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">നിങ്ങളുടെ SMS സന്ദേശങ്ങൾ എക്‌സ്‌പോർട്ട് ചെയ്യാൻ, നിങ്ങൾ Signal-നെ ഡിഫോൾട്ട് SMS ആപ്പായി സജ്ജീകരിക്കേണ്ടതുണ്ട്.</string>
     <!-- Button label to start export -->
     <string name="SetSignalAsDefaultSmsAppFragment__next">അടുത്തത്</string>
 

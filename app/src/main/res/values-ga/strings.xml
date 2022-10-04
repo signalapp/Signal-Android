@@ -1520,9 +1520,9 @@
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Like this new feature? Help support Signal with a one-time donation.</string>
     <!-- Update item message shown when we merge two threads together -->
-    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Your message history with %1$s and their number %2$s has been merged.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Cumascadh stair do theachtaireachtaí le %1$s agus uimhir an duine sin %2$s.</string>
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
-    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Your message history with %1$s and another chat that belonged to them has been merged.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Cumascadh stair do theachtaireachtaí le %1$s agus comhrá eile ar leis an duine sin é.</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s started a group call · %2$s</string>
@@ -1863,9 +1863,9 @@
 
     <!-- ProxyBottomSheetFragment -->
     <string name="ProxyBottomSheetFragment_proxy_server">Proxy server</string>
-    <string name="ProxyBottomSheetFragment_proxy_address">Proxy address</string>
-    <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">Do you want to use this proxy address?</string>
-    <string name="ProxyBottomSheetFragment_use_proxy">Use proxy</string>
+    <string name="ProxyBottomSheetFragment_proxy_address">Seoladh Seachfhreastalaí</string>
+    <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">An bhfuil fonn ort an seoladh seachfhreastalaí seo a úsáid?</string>
+    <string name="ProxyBottomSheetFragment_use_proxy">Úsáid Seachfhreastalaí</string>
     <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Successfully connected to proxy.</string>
 
     <!-- RecaptchaProofActivity -->
@@ -2986,10 +2986,10 @@
     <string name="preferences_communication__sealed_sender_learn_more">Foghlaim tuilleadh</string>
     <string name="preferences_setup_a_username">Setup a username</string>
     <string name="preferences_proxy">Seachfhreastalaí</string>
-    <string name="preferences_use_proxy">Use proxy</string>
+    <string name="preferences_use_proxy">Úsáid Seachfhreastalaí</string>
     <string name="preferences_off">As</string>
     <string name="preferences_on">Ar siúl</string>
-    <string name="preferences_proxy_address">Proxy address</string>
+    <string name="preferences_proxy_address">Seoladh Seachfhreastalaí</string>
     <string name="preferences_only_use_a_proxy_if">Only use a proxy if you\'re not able to connect to Signal on mobile data or Wi-Fi.</string>
     <string name="preferences_share">Comhroinn</string>
     <string name="preferences_save">Sábháil</string>
@@ -2997,10 +2997,10 @@
     <string name="preferences_connected_to_proxy">Connected to proxy</string>
     <string name="preferences_connection_failed">Connection failed</string>
     <string name="preferences_couldnt_connect_to_the_proxy">Couldn\'t connect to the proxy. Check the proxy address and try again.</string>
-    <string name="preferences_you_are_connected_to_the_proxy">You are connected to the proxy. You can turn the proxy off at any time from Settings.</string>
+    <string name="preferences_you_are_connected_to_the_proxy">Tá tú nasctha leis an seachfhreastalaí. Is féidir leat an seachfhreastalaí a chasadh as am ar bith ó na Socruithe.</string>
     <string name="preferences_success">D\'éirigh leis</string>
     <string name="preferences_failed_to_connect">Theip air nascadh leis</string>
-    <string name="preferences_enter_proxy_address">Enter proxy address</string>
+    <string name="preferences_enter_proxy_address">Iontráil Seoladh Seachfhreastalaí</string>
 
 
     <string name="configurable_single_select__customize_option">Customize option</string>
@@ -4034,10 +4034,10 @@
     <string name="payment_info_card_hide_this_card">Cuir an cárta seo i bhfolach?</string>
     <string name="payment_info_card_hide">Folaigh</string>
     <!-- Title of save recovery phrase card -->
-    <string name="payment_info_card_save_recovery_phrase">Save recovery phrase</string>
+    <string name="payment_info_card_save_recovery_phrase">Sábháil frása athshlánaithe</string>
     <string name="payment_info_card_your_recovery_phrase_gives_you">Your recovery phrase gives you another way to restore your payments account.</string>
     <!-- Button in save recovery phrase card -->
-    <string name="payment_info_card_save_your_phrase">Save your phrase</string>
+    <string name="payment_info_card_save_your_phrase">Sábháil do fhrása</string>
     <string name="payment_info_card_update_your_pin">Update your PIN</string>
     <string name="payment_info_card_with_a_high_balance">With a high balance, you may want to update to an alphanumeric PIN to add more protection to your account.</string>
     <string name="payment_info_card_update_pin">Nuashonraigh UAP</string>
@@ -4062,23 +4062,23 @@
     <string name="PaymentsRecoveryStartFragment__recovery_phrase">Recovery phrase</string>
     <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">View Recovery Phrase</string>
     <!-- Title in save recovery phrase screen -->
-    <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Save recovery phrase</string>
+    <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Sábháil frása athshlánaithe</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Enter Recovery Phrase</string>
     <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</string>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
-    <string name="PaymentsRecoveryStartFragment__got_balance">You’ve got a balance! Time to save your recovery phrase—a 24-word key you can use to restore your balance.</string>
+    <string name="PaymentsRecoveryStartFragment__got_balance">Tá iarmhéid agat! Tá sé in am duit do fhrása athshlánaithe a shábháil – eochair 24 focal is féidir leat a úsáid chun d\'iarmhéid a aischur.</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
-    <string name="PaymentsRecoveryStartFragment__time_to_save">Time to save your recovery phrase—a 24-word key you can use to restore your balance. Learn more</string>
+    <string name="PaymentsRecoveryStartFragment__time_to_save">Tá sé in am duit do fhrása athshlánaithe a shábháil – eochair 24 focal is féidir leat a úsáid chun d\'iarmhéid a aischur. Tuilleadh faisnéise</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Your recovery phrase is a %1$d-word phrase unique to you. Use this phrase to restore your balance.</string>
     <string name="PaymentsRecoveryStartFragment__start">Tosaigh</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">Enter Manually</string>
     <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Paste From Clipboard</string>
     <!-- Alert dialog title which asks before going back if user wants to save recovery phrase -->
-    <string name="PaymentsRecoveryStartFragment__continue_without_saving">Continue Without Saving?</string>
+    <string name="PaymentsRecoveryStartFragment__continue_without_saving">An bhfuil fonn ort leanúint ar aghaidh gan sábháil?</string>
     <!-- Alert dialog description to let user know why recovery phrase needs to be saved -->
-    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">Your recovery phrase lets you restore your balance in a worst-case scenario. We strongly recommend you save it.</string>
+    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">Ligeann do fhrása athshlánaithe duit d\'iarmhéid a aischur sa chás is measa. Molaimid go láidir duit é a shábháil.</string>
     <!-- Alert dialog option to skip recovery phrase -->
-    <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">Skip Recovery Phrase</string>
+    <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">Ná bac le Frása Athshlánaithe</string>
     <!-- Alert dialog option to cancel dialog-->
     <string name="PaymentsRecoveryStartFragment__cancel">Cealaigh</string>
 
@@ -4234,9 +4234,9 @@
     <!-- Preference title to delete sms -->
     <string name="SmsSettingsFragment__remove_sms_messages">Remove SMS messages</string>
     <!-- Snackbar text to confirm deletion -->
-    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Removing SMS messages from Signal…</string>
+    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Teachtaireachtaí SMS á mbaint de Signal...</string>
     <!-- Snackbar text to indicate can delete later -->
-    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">You can remove SMS messages from Signal in Settings at any time.</string>
+    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">Is féidir leat teachtaireachtaí SMS a bhaint de Signal i Socruithe uair ar bith.</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">Teachtaireachtaí</string>
@@ -4492,17 +4492,17 @@
     <!-- Dialog title when removing a contact -->
     <string name="NewConversationActivity__remove_s">Bain %1$s?</string>
     <!-- Dialog message when removing a contact -->
-    <string name="NewConversationActivity__you_wont_see_this_person">You won\'t see this person when searching. You\'ll get a message request if they message you in the future.</string>
+    <string name="NewConversationActivity__you_wont_see_this_person">Ní fheicfidh tú an duine seo agus cuardach á dhéanamh agat. Gheobhaidh tú iarratas teachtaireachta má sheolfaidh an duine sin teachtaireacht chugat amach anseo.</string>
     <!-- Snackbar message after removing a contact -->
-    <string name="NewConversationActivity__s_has_been_removed">%1$s has been removed</string>
+    <string name="NewConversationActivity__s_has_been_removed">Baineadh %1$s</string>
     <!-- Snackbar message after blocking a contact -->
-    <string name="NewConversationActivity__s_has_been_blocked">%1$s has been blocked</string>
+    <string name="NewConversationActivity__s_has_been_blocked">Cuireadh bac ar %1$s</string>
     <!-- Dialog title when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__unable_to_remove_s">Unable to remove %1$s</string>
+    <string name="NewConversationActivity__unable_to_remove_s">Ní féidir %1$s a bhaint</string>
     <!-- Dialog message when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__this_person_is_saved_to_your">This person is saved to your device\'s Contacts. Delete them from your Contacts and try again.</string>
+    <string name="NewConversationActivity__this_person_is_saved_to_your">Tá an duine seo sábháilte i dTeagmhálaithe ar do ghléas. Scrios an duine sin de do Theagmhálaithe agus triail arís.</string>
     <!-- Dialog action to view contact when they can't be removed otherwise -->
-    <string name="NewConversationActivity__view_contact">View contact</string>
+    <string name="NewConversationActivity__view_contact">Féach an teagmhálaí</string>
 
     <!-- ContactFilterView -->
     <string name="ContactFilterView__search_name_or_number">Cuardaigh ainm nó uimhir</string>
@@ -5021,7 +5021,7 @@
     <!-- Subtitle for "My Stories" row item when user has not added stories -->
     <string name="StoriesLandingFragment__tap_to_add_a_story">Tapáil chun scéal a chur leis</string>
     <!-- Displayed when there are no stories to display -->
-    <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now">No recent updates to show right now.</string>
+    <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now">Níl aon nuashonruithe le déanaí ann lena dtaispeáint díreach anois.</string>
     <!-- Context menu option to hide a story -->
     <string name="StoriesLandingItem__hide_story">Hide Story</string>
     <!-- Context menu option to unhide a story -->
@@ -5041,7 +5041,7 @@
     <!-- Label when a story fails to send due to networking -->
     <string name="StoriesLandingItem__send_failed">Theip ar an seoladh</string>
     <!-- Label when a story fails to send due to identity mismatch -->
-    <string name="StoriesLandingItem__partially_sent">Partially sent</string>
+    <string name="StoriesLandingItem__partially_sent">Seolta go páirteach</string>
     <!-- Status label when a story fails to send indicating user action to retry -->
     <string name="StoriesLandingItem__tap_to_retry">Tapáil lena atriail</string>
     <!-- Title of dialog confirming decision to hide a story -->
@@ -5099,9 +5099,9 @@
     <!-- Displayed when viewing a post from another user with no replies -->
     <string name="StoryViewerPageFragment__reply">Freagair</string>
     <!-- Displayed when viewing a post that has failed to send to some users -->
-    <string name="StoryViewerPageFragment__partially_sent">Partially sent. Tap for details</string>
+    <string name="StoryViewerPageFragment__partially_sent">Seolta go páirteach. Tapáil chun sonraí a fháil</string>
     <!-- Displayed when viewing a post that has failed to send -->
-    <string name="StoryViewerPageFragment__send_failed">Send failed. Tap to retry</string>
+    <string name="StoryViewerPageFragment__send_failed">Theip ar an seoladh. Tapáil chun atriail</string>
     <!-- Label for the reply button in story viewer, which will launch the group story replies bottom sheet. -->
     <string name="StoryViewerPageFragment__reply_to_group">Freagair an Grúpa</string>
     <!-- Displayed when a story has no views -->
@@ -5583,7 +5583,7 @@
     <!-- Title of the screen -->
     <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">Export your SMS messages</string>
     <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">You can export your SMS messages to your phone\'s SMS database. This allows other SMS apps on your phone to access and import them. This does not create a shareable file of your SMS message history.</string>
+    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">Is féidir leat do theachtaireachtaí SMS a easpórtáil go dtí bunachar sonraí SMS do ghutháin. Ligeann sé seo d\'aipeanna SMS eile ar do ghuthán iad a rochtain agus a iompórtáil. Ní chruthaíonn sé seo comhad inroinnte de stair do theachtaireachtaí SMS.</string>
     <!-- Button label to begin export -->
     <string name="ExportYourSmsMessagesFragment__continue">Ar Aghaidh</string>
 
@@ -5609,17 +5609,17 @@
     <!-- Fourth step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_4">4</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">Tap \"Continue\" to open the \"Default apps\" screen in Settings</string>
+    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">Tapáil \"Ar aghaidh\" chun an scáileán \"Aipeanna réamhshocraithe\" a oscailt i Socruithe</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">Select \"SMS app\" from the list</string>
+    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">Roghnaigh \"Aip SMS\" ón liosta</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">Choose another app to use for SMS messaging</string>
+    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">Roghnaigh aip eile chun í a úsáid le haghaidh cur teachtaireachtaí SMS</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">Return to Signal</string>
+    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">Fill ar Signal</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">Open your phone\'s Settings app</string>
+    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">Oscail aip Socruithe do ghutháin</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">Navigate to \"Apps\" &gt; \"Default apps\" &gt; \"SMS app\"</string>
+    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">Téigh go dtí \"Aipeanna\" &gt; \"Aipeanna réamhshocraithe\" &gt; \"Aip SMS\"</string>
 
     <!-- RemoveSmsMessagesDialogFragment -->
     <!-- Action button to keep messages -->
@@ -5629,13 +5629,13 @@
     <!-- Title of dialog -->
     <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Remove SMS messages from Signal?</string>
     <!-- Message of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">You can now remove SMS messages from Signal to clear up storage space. They will still be available to other SMS apps on your phone even if you remove them.</string>
+    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">Is féidir leat teachtaireachtaí SMS a bhaint de Signal anois chun spás stórála a ghlanadh. Beidh siad fós ar fáil d\'aipeanna SMS eile ar do ghuthán fiú má bhaineann tú iad.</string>
 
     <!-- SetSignalAsDefaultSmsAppFragment -->
     <!-- Title of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">Set Signal as the default SMS app</string>
+    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">Socraigh Signal mar an aip réamhshocraithe SMS</string>
     <!-- Message of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">To export your SMS messages, you need to set Signal as the default SMS app.</string>
+    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">Chun do theachtaireachtaí SMS a easpórtáil, caithfidh tú Signal a shocrú mar an aip réamhshocraithe SMS.</string>
     <!-- Button label to start export -->
     <string name="SetSignalAsDefaultSmsAppFragment__next">Ar aghaidh</string>
 

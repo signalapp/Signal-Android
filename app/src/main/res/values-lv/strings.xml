@@ -361,9 +361,9 @@
     </plurals>
     <string name="ConversationFragment_save_to_sd_card">Saglabāt krātuvē?</string>
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
-        <item quantity="zero">Saving all %1$d media to storage will allow any other apps on your device to access them.\n\nContinue?</item>
-        <item quantity="one">Saving this media to storage will allow any other apps on your device to access it.\n\nContinue?</item>
-        <item quantity="other">Saving all %1$d media to storage will allow any other apps on your device to access them.\n\nContinue?</item>
+        <item quantity="zero">Saglabājot visus %1$d multivides failus ierīces krātuvē, jebkura cita ierīces lietotne varēs tiem piekļūt. \n\nTurpināt?</item>
+        <item quantity="one">Saglabājot šo multivides failu ierīces krātuvē, jebkura cita ierīces lietotne varēs tam piekļūt. \n\nTurpināt?</item>
+        <item quantity="other">Saglabājot visus %1$d multivides failus ierīces krātuvē, jebkura cita ierīces lietotne varēs tiem piekļūt. \n\nTurpināt?</item>
     </plurals>
     <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
         <item quantity="zero">Neizdevās saglabāt pielikumus krātuvē.</item>
@@ -372,14 +372,14 @@
     </plurals>
     <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Neizdevās ierakstīt krātuvē!</string>
     <plurals name="ConversationFragment_saving_n_attachments">
-        <item quantity="zero">Saving %1$d attachments</item>
-        <item quantity="one">Saving attachment</item>
-        <item quantity="other">Saving %1$d attachments</item>
+        <item quantity="zero">Saglabā %1$d pielikumus</item>
+        <item quantity="one">Saglabā pielikumu</item>
+        <item quantity="other">Saglabā %1$d pielikumus</item>
     </plurals>
     <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="zero">Saving %1$d attachments to storage…</item>
-        <item quantity="one">Saving attachment to storage…</item>
-        <item quantity="other">Saving %1$d attachments to storage…</item>
+        <item quantity="zero">Saglabā %1$d pielikumus krātuvē…</item>
+        <item quantity="one">Saglabā pielikumu krātuvē…</item>
+        <item quantity="other">Saglabā %1$d pielikumus krātuvē…</item>
     </plurals>
     <string name="ConversationFragment_pending">Gaida…</string>
     <string name="ConversationFragment_push">Dati (Signal)</string>
@@ -426,22 +426,22 @@
         <item quantity="other">Vai izdzēst izvēlētās sarunas?</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="zero">This will permanently delete all %1$d selected conversations.</item>
-        <item quantity="one">This will permanently delete the selected conversation.</item>
-        <item quantity="other">This will permanently delete all %1$d selected conversations.</item>
+        <item quantity="zero">Šis neatgriezeniski dzēsīs visas %1$d atlasītās sarunas.</item>
+        <item quantity="one">Šis neatgriezeniski dzēsīs atlasīto sarunu.</item>
+        <item quantity="other">Šis neatgriezeniski dzēsīs visas %1$d atlasītās sarunas.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Dzēš</string>
     <string name="ConversationListFragment_deleting_selected_conversations">Dzēš izvēlētās sarunas…</string>
     <plurals name="ConversationListFragment_conversations_archived">
-        <item quantity="zero">%1$d conversations archived</item>
-        <item quantity="one">Conversation archived</item>
-        <item quantity="other">%1$d conversations archived</item>
+        <item quantity="zero">%1$d sarunas arhivētas</item>
+        <item quantity="one">Saruna arhivēta</item>
+        <item quantity="other">%1$d sarunas arhivētas</item>
     </plurals>
     <string name="ConversationListFragment_undo">Atsaukt</string>
     <plurals name="ConversationListFragment_moved_conversations_to_inbox">
-        <item quantity="zero">Moved %1$d conversations to inbox</item>
-        <item quantity="one">Moved conversation to inbox</item>
-        <item quantity="other">Moved %1$d conversations to inbox</item>
+        <item quantity="zero">%1$d sarunas pārvietotas uz iesūtni</item>
+        <item quantity="one">Saruna pārvietota uz iesūtni</item>
+        <item quantity="other">%1$d sarunas pārvietotas uz iesūtni</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
         <item quantity="zero">Lasīts</item>
@@ -686,9 +686,9 @@
 
     <!-- GV2 invites sent -->
     <plurals name="GroupManagement_invitation_sent">
-        <item quantity="zero">%1$d invitations sent</item>
-        <item quantity="one">Invitation sent</item>
-        <item quantity="other">%1$d invitations sent</item>
+        <item quantity="zero">Nosūtīti %1$d uzaicinājumi</item>
+        <item quantity="one">Uzaicinājums nosūtīts</item>
+        <item quantity="other">Nosūtīti %1$d uzaicinājumi</item>
     </plurals>
     <string name="GroupManagement_invite_single_user">Jūs nevarat automātiski pievienot %1$s šai grupai. \n\nLietotāji ir uzaicināti pievienoties, un viņi neredzēs nevienu grupas ziņu, kamēr neapstiprinās savu dalību.</string>
     <string name="GroupManagement_invite_multiple_users">Jūs nevarat automātiski pievienot šos lietotājus šai grupai. \n\nLietotāji ir uzaicināti pievienoties, un viņi neredzēs nevienu grupas ziņu, kamēr neapstiprinās savu dalību.</string>
@@ -800,9 +800,9 @@
     <string name="PendingMembersActivity_revoke_invite">Atsaukt uzaicinājumu</string>
     <string name="PendingMembersActivity_revoke_invites">Atsaukt uzaicinājumus</string>
     <plurals name="PendingMembersActivity_revoke_d_invites">
-        <item quantity="zero">Revoke %1$d invites</item>
-        <item quantity="one">Revoke invite</item>
-        <item quantity="other">Revoke %1$d invites</item>
+        <item quantity="zero">Atsaukt %1$d uzaicinājumus</item>
+        <item quantity="one">Atsaukt uzaicinājumu</item>
+        <item quantity="other">Atsaukt %1$d uzaicinājumus</item>
     </plurals>
     <plurals name="PendingMembersActivity_error_revoking_invite">
         <item quantity="zero">Uzaicinājuma atsaukšanas kļūda</item>
@@ -822,9 +822,9 @@
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Šī persona nevar tikt pievienota vecā tipa grupām.</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">Šo personu nav iespējams pievienot paziņojumu grupām.</string>
     <plurals name="AddMembersActivity__add_d_members_to_s">
-        <item quantity="zero">Add %3$d members to \"%2$s\"?</item>
-        <item quantity="one">Add \"%1$s\" to \"%2$s\"?</item>
-        <item quantity="other">Add %3$d members to \"%2$s\"?</item>
+        <item quantity="zero">Vai pievienot %3$d dalībniekus \"%2$s\"?</item>
+        <item quantity="one">Vai pievienot \"%3$d\" \"%2$s\"?</item>
+        <item quantity="other">Vai pievienot %3$d dalībniekus \"%2$s\"?</item>
     </plurals>
     <string name="AddMembersActivity__add">Pievienot</string>
     <string name="AddMembersActivity__add_members">Pievienot dalībniekus</string>
@@ -927,9 +927,9 @@
     </plurals>
 
     <plurals name="GroupMemberList_invited">
-        <item quantity="zero">%1$s invited %2$d people</item>
-        <item quantity="one">%1$s invited 1 person</item>
-        <item quantity="other">%1$s invited %2$d people</item>
+        <item quantity="zero">%1$s ielūdza %2$d cilvēkus</item>
+        <item quantity="one">%1$s ielūdza 1 cilvēku</item>
+        <item quantity="other">%1$s ielūdza %2$d cilvēkus</item>
     </plurals>
 
     <!-- CustomNotificationsDialogFragment -->
@@ -967,9 +967,9 @@
     <!-- GV2 Invite Revoke confirmation dialog -->
     <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Vai vēlaties atsaukt uzaicinājumu, ko nosūtījāt %1$s?</string>
     <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
-        <item quantity="zero">Do you want to revoke %2$d invites sent by %1$s?</item>
-        <item quantity="one">Do you want to revoke the invite sent by %1$s?</item>
-        <item quantity="other">Do you want to revoke %2$d invites sent by %1$s?</item>
+        <item quantity="zero">Vai vēlaties atsaukt %2$d uzaicinājumus, ko nosūtīja %1$s?</item>
+        <item quantity="one">Vai vēlaties atsaukt uzaicinājumu, ko nosūtīja %1$s?</item>
+        <item quantity="other">Vai vēlaties atsaukt %2$d uzaicinājumus, ko nosūtīja %1$s?</item>
     </plurals>
 
     <!-- GroupJoinBottomSheetDialogFragment -->
@@ -1080,9 +1080,9 @@
         <item quantity="other">Izdzēst atlasītos?</item>
     </plurals>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-        <item quantity="zero">This will permanently delete all %1$d selected files. Any message text associated with these items will also be deleted.</item>
-        <item quantity="one">This will permanently delete the selected file. Any message text associated with this item will also be deleted.</item>
-        <item quantity="other">This will permanently delete all %1$d selected files. Any message text associated with these items will also be deleted.</item>
+        <item quantity="zero">Tiks neatgriezeniski izdzēsti visi atlasītie %1$d faili. Tiks izdzēstas arī ar šiem failiem saistītās ziņas.</item>
+        <item quantity="one">Atlasītais fails tiks neatgriezeniski izdzēsts. Tiks izdzēsta arī ar šo failu saistītā ziņa.</item>
+        <item quantity="other">Tiks neatgriezeniski izdzēsti visi atlasītie %1$d faili. Tiks izdzēstas arī ar šiem failiem saistītās ziņas.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Dzēš</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">Dzēš ziņas…</string>
@@ -1218,15 +1218,15 @@
     <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Jūs nevarēja pievienot jaunā tipa grupai, bet jūs tikā uzaicināts tai pievienoties.</string>
     <string name="MessageRecord_chat_session_refreshed">Sarunas sesija atsvaidzināta</string>
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
-        <item quantity="zero">%1$s members couldn\'t be added to the New Group and have been invited to join.</item>
-        <item quantity="one">A member couldn\'t be added to the New Group and has been invited to join.</item>
-        <item quantity="other">%1$s members couldn\'t be added to the New Group and have been invited to join.</item>
+        <item quantity="zero">%1$s dalībniekus nevarēja pievienot jaunajai grupai, un viņi tika uzaicināti tai pievienoties.</item>
+        <item quantity="one">Dalībnieku nevarēja pievienot jaunajai grupai, un viņš tika uzaicināts tai pievienoties.</item>
+        <item quantity="other">%1$s dalībniekus nevarēja pievienot jaunajai grupai, un viņi tika uzaicināti tai pievienoties.</item>
     </plurals>
 
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
-        <item quantity="zero">%1$s members couldn\'t be added to the New Group and have been removed.</item>
-        <item quantity="one">A member couldn\'t be added to the New Group and has been removed.</item>
-        <item quantity="other">%1$s members couldn\'t be added to the New Group and have been removed.</item>
+        <item quantity="zero">%1$s dalībniekus nevarēja pievienot jaunajai grupai, un viņi tika izdzēsti.</item>
+        <item quantity="one">%1$s dalībniekus nevarēja pievienot jaunajai grupai, un viņš tika izdzēsts.</item>
+        <item quantity="other">%1$s dalībniekus nevarēja pievienot jaunajai grupai, un viņi tika izdzēsti.</item>
     </plurals>
 
     <!-- Profile change updates -->
@@ -1271,36 +1271,36 @@
     <string name="MessageRecord_you_invited_s_to_the_group">Jūs uzaicinājāt %1$s pievienoties grupai.</string>
     <string name="MessageRecord_s_invited_you_to_the_group">%1$s uzaicināja jūs pievienoties grupai.</string>
     <plurals name="MessageRecord_s_invited_members">
-        <item quantity="zero">%1$s invited %2$d people to the group.</item>
-        <item quantity="one">%1$s invited 1 person to the group.</item>
-        <item quantity="other">%1$s invited %2$d people to the group.</item>
+        <item quantity="zero">%1$s uzaicināja %2$d cilvēkus pievienoties grupai.</item>
+        <item quantity="one">%1$s uzaicināja 1 personu pievienoties grupai.</item>
+        <item quantity="other">%1$s uzaicināja %2$d cilvēkus pievienoties grupai.</item>
     </plurals>
     <string name="MessageRecord_you_were_invited_to_the_group">Jūs tikāt uzaicināts pievienoties šai grupai.</string>
     <plurals name="MessageRecord_d_people_were_invited_to_the_group">
-        <item quantity="zero">%1$d people were invited to the group.</item>
-        <item quantity="one">1 person was invited to the group.</item>
-        <item quantity="other">%1$d people were invited to the group.</item>
+        <item quantity="zero">%1$d cilvēki tika uzaicināti pievienoties šai grupai.</item>
+        <item quantity="one">1 persona tika uzaicināta pievienoties šai grupai.</item>
+        <item quantity="other">%1$d cilvēki tika uzaicināti pievienoties šai grupai.</item>
     </plurals>
 
     <!-- GV2 invitation revokes -->
     <plurals name="MessageRecord_you_revoked_invites">
-        <item quantity="zero">You revoked %1$d invitations to the group.</item>
-        <item quantity="one">You revoked an invitation to the group.</item>
-        <item quantity="other">You revoked %1$d invitations to the group.</item>
+        <item quantity="zero">Jūs atsaucāt %1$d uzaicinājumus pievienoties grupai.</item>
+        <item quantity="one">Jūs atsaucāt uzaicinājumu pievienoties grupai.</item>
+        <item quantity="other">Jūs atsaucāt %1$d uzaicinājumus pievienoties grupai.</item>
     </plurals>
     <plurals name="MessageRecord_s_revoked_invites">
-        <item quantity="zero">%1$s revoked %2$d invitations to the group.</item>
-        <item quantity="one">%1$s revoked an invitation to the group.</item>
-        <item quantity="other">%1$s revoked %2$d invitations to the group.</item>
+        <item quantity="zero">%1$s atsauca %2$d uzaicinājumus pievienoties grupai.</item>
+        <item quantity="one">%1$s atsauca uzaicinājumu pievienoties grupai.</item>
+        <item quantity="other">%1$s atsauca %2$d uzaicinājumus pievienoties grupai.</item>
     </plurals>
     <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Kāds atcēla ielūgumu pievienoties grupai.</string>
     <string name="MessageRecord_you_declined_the_invitation_to_the_group">Jūs atcēlāt ielūgumu pievienoties grupai.</string>
     <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s atsauca jūsu uzaicinājumu pievienoties šai grupai.</string>
     <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">Administrators atsauca jūsu ielūgumu uz grupu.</string>
     <plurals name="MessageRecord_d_invitations_were_revoked">
-        <item quantity="zero">%1$d invitations to the group were revoked.</item>
-        <item quantity="one">An invitation to the group was revoked.</item>
-        <item quantity="other">%1$d invitations to the group were revoked.</item>
+        <item quantity="zero">%1$d uzaicinājumi pievienoties šai grupai tika atsaukti.</item>
+        <item quantity="one">Uzaicinājums pievienoties šai grupai tika atsaukts.</item>
+        <item quantity="other">%1$d uzaicinājumi pievienoties šai grupai tika atsaukti.</item>
     </plurals>
 
     <!-- GV2 invitation acceptance -->
@@ -1373,9 +1373,9 @@
     <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s nosūtīja pieprasījumu pievienoties šai grupai, izmantojot grupas saiti.</string>
     <!-- Update message shown when someone requests to join via group link and cancels the request back to back -->
     <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
-        <item quantity="zero">%1$s requested and cancelled %2$d requests to join via the group link.</item>
-        <item quantity="one">%1$s requested and cancelled their request to join via the group link.</item>
-        <item quantity="other">%1$s requested and cancelled %2$d requests to join via the group link.</item>
+        <item quantity="zero">%1$s pieprasīja un atcēla %2$d pieprasījumus pievienoties šai grupai, izmantojot grupas saiti.</item>
+        <item quantity="one">%1$s pieprasīja un atcēla savu pieprasījumu pievienoties šai grupai, izmantojot grupas saiti.</item>
+        <item quantity="other">%1$s pieprasīja un atcēla %2$d pieprasījumus pievienoties šai grupai, izmantojot grupas saiti.</item>
     </plurals>
 
     <!-- GV2 group link approvals -->
@@ -1404,9 +1404,9 @@
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Jums patīk šī jaunā funkcija? Palīdziet atbalstīt Signal ar vienreizēju ziedojumu.</string>
     <!-- Update item message shown when we merge two threads together -->
-    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Your message history with %1$s and their number %2$s has been merged.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Jūsu ziņu vēsture ar lietotāju %1$s un šī lietotāja numuru %2$s ir apvienota.</string>
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
-    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Your message history with %1$s and another chat that belonged to them has been merged.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Jūsu ziņu vēsture ar lietotāju %1$s un citu šī lietotāja sarunu ir apvienota.</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s sāka grupas zvanu · %2$s</string>
@@ -1514,9 +1514,9 @@
     <string name="OutdatedBuildReminder_update_now">Atjaunināt tagad</string>
     <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Šīs Signal versijas lietošanas termiņš beigsies šodien. Aktualizējiet uz nesenāku versiju.</string>
     <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
-        <item quantity="zero">This version of Signal will expire in %1$d days. Update to the most recent version.</item>
-        <item quantity="one">This version of Signal will expire tomorrow. Update to the most recent version.</item>
-        <item quantity="other">This version of Signal will expire in %1$d days. Update to the most recent version.</item>
+        <item quantity="zero">Šīs Signal versijas lietošanas termiņš beigsies pēc %1$d dienām. Atjauniniet uz jaunāku versiju.</item>
+        <item quantity="one">Šīs Signal versijas lietošanas termiņš beigsies rīt. Atjauniniet uz jaunāku versiju.</item>
+        <item quantity="other">Šīs Signal versijas lietošanas termiņš beigsies pēc %1$d dienām. Atjauniniet uz jaunāku versiju.</item>
     </plurals>
 
     <!-- PassphrasePromptActivity -->
@@ -1946,7 +1946,7 @@
 
     <!-- UsernameEditFragment -->
     <!-- Toolbar title when entering from registration -->
-    <string name="UsernameEditFragment__add_a_username">Add a username</string>
+    <string name="UsernameEditFragment__add_a_username">Pievienojiet lietotājvārdu</string>
     <!-- Instructional text at the top of the username edit screen -->
     <string name="UsernameEditFragment__choose_your_username">Izvēlieties lietotājvārdu</string>
     <string name="UsernameEditFragment_username">Lietotājvārds</string>
@@ -3840,10 +3840,10 @@
     <string name="payment_info_card_hide_this_card">Vai paslēpt šo karti?</string>
     <string name="payment_info_card_hide">Slēpt</string>
     <!-- Title of save recovery phrase card -->
-    <string name="payment_info_card_save_recovery_phrase">Save recovery phrase</string>
+    <string name="payment_info_card_save_recovery_phrase">Saglabāt atgūšanas frāzi</string>
     <string name="payment_info_card_your_recovery_phrase_gives_you">Atkopšanas frāze nodrošina citu veidu, kā atjaunot jūsu maksājumu kontu.</string>
     <!-- Button in save recovery phrase card -->
-    <string name="payment_info_card_save_your_phrase">Save your phrase</string>
+    <string name="payment_info_card_save_your_phrase">Saglabājiet frāzi</string>
     <string name="payment_info_card_update_your_pin">Atjaunināt PIN</string>
     <string name="payment_info_card_with_a_high_balance">Ja atlikums ir liels, iespējams, vēlēsieties atjaunināt uz burtciparu PIN kodu, lai savam kontam piešķirtu lielāku aizsardzību.</string>
     <string name="payment_info_card_update_pin">Aktualizēt PIN</string>
@@ -3868,23 +3868,23 @@
     <string name="PaymentsRecoveryStartFragment__recovery_phrase">Atkopšanas frāze</string>
     <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Skatīt atkopšanas frāzi</string>
     <!-- Title in save recovery phrase screen -->
-    <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Save recovery phrase</string>
+    <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Saglabāt atgūšanas frāzi</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Ievadiet atkopšanas frāzi</string>
     <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Jūsu atlikums tiks automātiski atjaunots, atkārtoti instalējot Signal, ja apstiprināsiet savu lietotnes Signal PIN. Atlikumu var arī atjaunot, izmantojot atkopšanas frāzi, kas ir tikai jums raksturīga %1$d vārdu frāze. Pierakstiet to un glabājiet drošā vietā.</string>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
-    <string name="PaymentsRecoveryStartFragment__got_balance">You’ve got a balance! Time to save your recovery phrase—a 24-word key you can use to restore your balance.</string>
+    <string name="PaymentsRecoveryStartFragment__got_balance">Jums ir atlikums! Laiks saglabāt atgūšanas frāzi — 24 vārdu atslēgu, ar kuru varat atjaunot savu atlikumu.</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
-    <string name="PaymentsRecoveryStartFragment__time_to_save">Time to save your recovery phrase—a 24-word key you can use to restore your balance. Learn more</string>
+    <string name="PaymentsRecoveryStartFragment__time_to_save">Laiks saglabāt atgūšanas frāzi — 24 vārdu atslēgu, ar kuru varat atjaunot savu atlikumu. Lasīt vairāk</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Jūsu atkopšanas frāze ir tikai jums raksturīga %1$d vārdu frāze. Izmantojiet šo frāzi, lai atjaunotu atlikumu.</string>
     <string name="PaymentsRecoveryStartFragment__start">Sākt</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">Ievadīt manuāli</string>
     <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Ielīmēt no starpliktuves</string>
     <!-- Alert dialog title which asks before going back if user wants to save recovery phrase -->
-    <string name="PaymentsRecoveryStartFragment__continue_without_saving">Continue Without Saving?</string>
+    <string name="PaymentsRecoveryStartFragment__continue_without_saving">Turpināt nesaglabājot?</string>
     <!-- Alert dialog description to let user know why recovery phrase needs to be saved -->
-    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">Your recovery phrase lets you restore your balance in a worst-case scenario. We strongly recommend you save it.</string>
+    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">Atgūšanas frāze ļauj atjaunot atlikumu, ja notiek kas neparedzēts. Ir ļoti ieteicams to saglabāt.</string>
     <!-- Alert dialog option to skip recovery phrase -->
-    <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">Skip Recovery Phrase</string>
+    <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">Izlaist atgūšanas frāzi</string>
     <!-- Alert dialog option to cancel dialog-->
     <string name="PaymentsRecoveryStartFragment__cancel">Atcelt</string>
 
@@ -4040,9 +4040,9 @@
     <!-- Preference title to delete sms -->
     <string name="SmsSettingsFragment__remove_sms_messages">Dzēst SMS ziņas</string>
     <!-- Snackbar text to confirm deletion -->
-    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Removing SMS messages from Signal…</string>
+    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Notiek SMS ziņu dzēšana no Signal…</string>
     <!-- Snackbar text to indicate can delete later -->
-    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">You can remove SMS messages from Signal in Settings at any time.</string>
+    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">Jebkurā brīdī iestatījumos varat no Signal izdzēst SMS ziņas.</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">Ziņas</string>
@@ -4294,17 +4294,17 @@
     <!-- Dialog title when removing a contact -->
     <string name="NewConversationActivity__remove_s">Noņemt %1$s?</string>
     <!-- Dialog message when removing a contact -->
-    <string name="NewConversationActivity__you_wont_see_this_person">You won\'t see this person when searching. You\'ll get a message request if they message you in the future.</string>
+    <string name="NewConversationActivity__you_wont_see_this_person">Šī persona nebūs redzama meklēšanas rezultātos. Ja šī persona jums turpmāk nosūtīs ziņu, jūs saņemsiet ziņas pieprasījumu.</string>
     <!-- Snackbar message after removing a contact -->
-    <string name="NewConversationActivity__s_has_been_removed">%1$s has been removed</string>
+    <string name="NewConversationActivity__s_has_been_removed">%1$s ir dzēsta</string>
     <!-- Snackbar message after blocking a contact -->
-    <string name="NewConversationActivity__s_has_been_blocked">%1$s has been blocked</string>
+    <string name="NewConversationActivity__s_has_been_blocked">%1$s ir bloķēta</string>
     <!-- Dialog title when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__unable_to_remove_s">Unable to remove %1$s</string>
+    <string name="NewConversationActivity__unable_to_remove_s">Nevar noņemt %1$s</string>
     <!-- Dialog message when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__this_person_is_saved_to_your">This person is saved to your device\'s Contacts. Delete them from your Contacts and try again.</string>
+    <string name="NewConversationActivity__this_person_is_saved_to_your">Šī persona ir saglabāta jūsu ierīces kontaktos. Izdzēsiet viņu no kontaktiem un mēģiniet vēlreiz.</string>
     <!-- Dialog action to view contact when they can't be removed otherwise -->
-    <string name="NewConversationActivity__view_contact">View contact</string>
+    <string name="NewConversationActivity__view_contact">Skatīt kontaktu</string>
 
     <!-- ContactFilterView -->
     <string name="ContactFilterView__search_name_or_number">Meklēt vārdu vai numuru</string>
@@ -4885,9 +4885,9 @@
     <!-- Displayed when viewing a post from another user with no replies -->
     <string name="StoryViewerPageFragment__reply">Atbildēt</string>
     <!-- Displayed when viewing a post that has failed to send to some users -->
-    <string name="StoryViewerPageFragment__partially_sent">Partially sent. Tap for details</string>
+    <string name="StoryViewerPageFragment__partially_sent">Daļēji nosūtīta. Pieskarieties, lai skatītu sīkāku informāciju</string>
     <!-- Displayed when viewing a post that has failed to send -->
-    <string name="StoryViewerPageFragment__send_failed">Send failed. Tap to retry</string>
+    <string name="StoryViewerPageFragment__send_failed">Sūtīšana neizdevās. Pieskarieties, lai mēģinātu vēlreiz</string>
     <!-- Label for the reply button in story viewer, which will launch the group story replies bottom sheet. -->
     <string name="StoryViewerPageFragment__reply_to_group">Atbildēt grupai</string>
     <!-- Displayed when a story has no views -->
@@ -5347,7 +5347,7 @@
     <!-- Title of the screen -->
     <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">Eksportējiet SMS ziņas</string>
     <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">You can export your SMS messages to your phone\'s SMS database. This allows other SMS apps on your phone to access and import them. This does not create a shareable file of your SMS message history.</string>
+    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">Varat eksportēt SMS ziņas uz tālruņa SMS datu bāzi. Tas ļauj citām jūsu tālruņa SMS lietotnēm piekļūt tām un importēt tās. Tādējādi netiek izveidots koplietojams SMS ziņu vēstures fails.</string>
     <!-- Button label to begin export -->
     <string name="ExportYourSmsMessagesFragment__continue">Turpināt</string>
 
@@ -5373,17 +5373,17 @@
     <!-- Fourth step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_4">4</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">Tap \"Continue\" to open the \"Default apps\" screen in Settings</string>
+    <string name="ChooseANewDefaultSmsAppFragment__tap_continue_to_open_the_defaults_apps_screen_in_settings">Pieskarieties \"Turpināt\", lai iestatījumos atvērtu ekrānu \"Noklusējuma lietotnes\".</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">Select \"SMS app\" from the list</string>
+    <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">Sarakstā atlasiet \"SMS lietotne\".</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">Choose another app to use for SMS messaging</string>
+    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">Izvēlieties citu lietotni SMS ziņu sūtīšanai</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">Return to Signal</string>
+    <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">Atgriezties uz Signal</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">Open your phone\'s Settings app</string>
+    <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">Atveriet tālruņa iestatījumus</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">Navigate to \"Apps\" &gt; \"Default apps\" &gt; \"SMS app\"</string>
+    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">Pārejiet uz \"Lietotnes\" &gt; \"Noklusējuma lietotnes\" &gt; \"SMS lietotne\"</string>
 
     <!-- RemoveSmsMessagesDialogFragment -->
     <!-- Action button to keep messages -->
@@ -5393,13 +5393,13 @@
     <!-- Title of dialog -->
     <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Vai dzēst SMS ziņas no Signal?</string>
     <!-- Message of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">You can now remove SMS messages from Signal to clear up storage space. They will still be available to other SMS apps on your phone even if you remove them.</string>
+    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">Tagad varat izdzēst SMS ziņas no Signal, lai atbrīvotu vietu krātuvē. Tās joprojām būs pieejamas citām SMS ziņu lietotnēm jūsu tālrunī, pat ja tās izdzēsīsiet.</string>
 
     <!-- SetSignalAsDefaultSmsAppFragment -->
     <!-- Title of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">Set Signal as the default SMS app</string>
+    <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">Iestatīt Signal kā noklusējuma SMS ziņu lietotni</string>
     <!-- Message of the screen -->
-    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">To export your SMS messages, you need to set Signal as the default SMS app.</string>
+    <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">Lai eksportētu SMS ziņas, Signal ir jāiestata kā noklusējuma SMS ziņu lietotne.</string>
     <!-- Button label to start export -->
     <string name="SetSignalAsDefaultSmsAppFragment__next">Tālāk</string>
 
