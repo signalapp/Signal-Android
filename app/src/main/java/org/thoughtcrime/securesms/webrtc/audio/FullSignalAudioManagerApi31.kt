@@ -141,6 +141,7 @@ class FullSignalAudioManagerApi31(context: Context, eventListener: EventListener
     Log.i(TAG, "startIncomingRinger(): uri: ${if (ringtoneUri != null) "present" else "null"} vibrate: $vibrate")
     androidAudioManager.mode = AudioManager.MODE_RINGTONE
     setMicrophoneMute(false)
+    setDefaultAudioDevice(null, AudioDevice.SPEAKER_PHONE, false)
     incomingRinger.start(ringtoneUri, vibrate)
   }
 
