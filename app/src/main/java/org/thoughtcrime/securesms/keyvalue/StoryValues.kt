@@ -39,6 +39,11 @@ internal class StoryValues(store: KeyValueStore) : SignalStoreValues(store) {
      * Marks whether the user has seen the onboarding story
      */
     private const val USER_HAS_SEEN_ONBOARDING_STORY = "stories.user.has.seen.onboarding"
+
+    /**
+     * Marks whether the user has seen the beta dialog
+     */
+    private const val USER_HAS_SEEN_BETA_DIALOG = "stories.user.has.seen.beta.dialog"
   }
 
   override fun onFirstEverAppLaunch() = Unit
@@ -47,7 +52,8 @@ internal class StoryValues(store: KeyValueStore) : SignalStoreValues(store) {
     MANUAL_FEATURE_DISABLE,
     USER_HAS_ADDED_TO_A_STORY,
     USER_HAS_SEEN_FIRST_NAV_VIEW,
-    HAS_DOWNLOADED_ONBOARDING_STORY
+    HAS_DOWNLOADED_ONBOARDING_STORY,
+    USER_HAS_SEEN_BETA_DIALOG
   )
 
   var isFeatureDisabled: Boolean by booleanValue(MANUAL_FEATURE_DISABLE, false)
@@ -61,6 +67,8 @@ internal class StoryValues(store: KeyValueStore) : SignalStoreValues(store) {
   var hasDownloadedOnboardingStory: Boolean by booleanValue(HAS_DOWNLOADED_ONBOARDING_STORY, false)
 
   var userHasSeenOnboardingStory: Boolean by booleanValue(USER_HAS_SEEN_ONBOARDING_STORY, false)
+
+  var userHasSeenBetaDialog: Boolean by booleanValue(USER_HAS_SEEN_BETA_DIALOG, false)
 
   fun setLatestStorySend(storySend: StorySend) {
     synchronized(this) {

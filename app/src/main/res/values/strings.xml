@@ -4945,6 +4945,10 @@
     <string name="StoryDialogs__s_and_updates_shared">\"%1$s\" and updates shared to this story will be deleted.</string>
     <!-- Dialog positive action for deleting a private story -->
     <string name="StoryDialogs__delete">Delete</string>
+    <!-- Dialog title for first time sending something to a beta story -->
+    <string name="StoryDialogs__stories_is_available_to">Stories is available to Signal beta users only.</string>
+    <!-- Dialog message for first time sending something to a beta story -->
+    <string name="StoryDialogs__if_you_share_a_story">If you share a story, it will only be available to people who are on Signal beta.</string>
     <!-- Dialog title for first time adding something to a story -->
     <string name="StoryDialogs__add_to_story_q">Add to story?</string>
     <!-- Dialog message for first time adding something to a story -->

@@ -12,6 +12,7 @@ import io.reactivex.rxjava3.core.Observable
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.groups.SelectionLimits
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.stories.dialogs.StoryDialogs
 import org.thoughtcrime.securesms.stories.settings.custom.PrivateStorySettingsFragment
 import org.thoughtcrime.securesms.stories.settings.my.MyStorySettingsFragment
 import org.thoughtcrime.securesms.stories.settings.privacy.ChooseInitialMyStoryMembershipBottomSheetDialogFragment
@@ -97,6 +98,17 @@ class ContactSearchMediator(
   }
 
   private fun toggleStorySelection(view: View, contactSearchData: ContactSearchData.Story, isSelected: Boolean) {
+    if (SignalStore.storyValues().userHasSeenBetaDialog) {
+      performStoryToggle(view, contactSearchData, isSelected)
+    } else {
+      StoryDialogs.displayBetaDialog(view.context) {
+        SignalStore.storyValues().userHasSeenBetaDialog = true
+        performStoryToggle(view, contactSearchData, isSelected)
+      }
+    }
+  }
+
+  private fun performStoryToggle(view: View, contactSearchData: ContactSearchData.Story, isSelected: Boolean) {
     if (contactSearchData.recipient.isMyStory && !SignalStore.storyValues().userHasBeenNotifiedAboutStories) {
       ChooseInitialMyStoryMembershipBottomSheetDialogFragment.show(fragment.childFragmentManager)
     } else {
