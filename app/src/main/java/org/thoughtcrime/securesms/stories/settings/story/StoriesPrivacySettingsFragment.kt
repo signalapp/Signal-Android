@@ -4,9 +4,10 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ConcatAdapter
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.signal.core.util.dp
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.DialogFragmentDisplayManager
+import org.thoughtcrime.securesms.components.ProgressCardDialogFragment
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
@@ -17,6 +18,7 @@ import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.groups.ParcelableGroupId
 import org.thoughtcrime.securesms.mediasend.v2.stories.ChooseGroupStoryBottomSheet
 import org.thoughtcrime.securesms.mediasend.v2.stories.ChooseStoryTypeBottomSheet
+import org.thoughtcrime.securesms.stories.dialogs.StoryDialogs
 import org.thoughtcrime.securesms.stories.settings.create.CreateStoryFlowDialogFragment
 import org.thoughtcrime.securesms.stories.settings.create.CreateStoryWithViewersFragment
 import org.thoughtcrime.securesms.util.BottomSheetUtil
@@ -36,6 +38,7 @@ class StoriesPrivacySettingsFragment :
 
   private val viewModel: StoriesPrivacySettingsViewModel by viewModels()
   private val lifecycleDisposable = LifecycleDisposable()
+  private val progressDisplayManager = DialogFragmentDisplayManager { ProgressCardDialogFragment() }
 
   override fun createAdapters(): Array<MappingAdapter> {
     return arrayOf(DSLSettingsAdapter(), PagingMappingAdapter<ContactSearchKey>(), DSLSettingsAdapter())
@@ -84,6 +87,12 @@ class StoriesPrivacySettingsFragment :
     }
 
     lifecycleDisposable += viewModel.state.subscribe { state ->
+      if (state.isUpdatingEnabledState) {
+        progressDisplayManager.show(viewLifecycleOwner, childFragmentManager)
+      } else {
+        progressDisplayManager.hide()
+      }
+
       (top as MappingAdapter).submitList(getTopConfiguration(state).toMappingModelList())
       middle.submitList(getMiddleConfiguration(state).toMappingModelList())
       (bottom as MappingAdapter).submitList(getBottomConfiguration(state).toMappingModelList())
@@ -144,12 +153,9 @@ class StoriesPrivacySettingsFragment :
             DSLSettingsText.ColorModifier(ContextCompat.getColor(requireContext(), R.color.signal_colorOnSurfaceVariant))
           ),
           onClick = {
-            MaterialAlertDialogBuilder(requireContext())
-              .setTitle(R.string.StoriesPrivacySettingsFragment__turn_off_stories_question)
-              .setMessage(R.string.StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to)
-              .setPositiveButton(R.string.StoriesPrivacySettingsFragment__turn_off_stories) { _, _ -> viewModel.setStoriesEnabled(false) }
-              .setNegativeButton(android.R.string.cancel) { _, _ -> }
-              .show()
+            StoryDialogs.disableStories(requireContext(), viewModel.userHasActiveStories) {
+              viewModel.setStoriesEnabled(false)
+            }
           }
         )
       }

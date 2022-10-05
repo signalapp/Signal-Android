@@ -44,6 +44,33 @@ class StoryDialogLauncherFragment : DSLSettingsFragment(titleId = R.string.prefe
           }
         }
       )
+
+      clickPref(
+        title = DSLSettingsText.from(R.string.preferences__internal_turn_off_stories),
+        onClick = {
+          StoryDialogs.disableStories(requireContext(), false) {
+            Toast.makeText(requireContext(), R.string.preferences__internal_turn_off_stories, Toast.LENGTH_SHORT).show()
+          }
+        }
+      )
+
+      clickPref(
+        title = DSLSettingsText.from(R.string.preferences__internal_turn_off_stories_with_stories_on_disk),
+        onClick = {
+          StoryDialogs.disableStories(requireContext(), true) {
+            Toast.makeText(requireContext(), R.string.preferences__internal_turn_off_stories_with_stories_on_disk, Toast.LENGTH_SHORT).show()
+          }
+        }
+      )
+
+      clickPref(
+        title = DSLSettingsText.from(R.string.preferences__internal_delete_private_story),
+        onClick = {
+          StoryDialogs.deleteDistributionList(requireContext(), "Family") {
+            Toast.makeText(requireContext(), R.string.preferences__internal_delete_private_story, Toast.LENGTH_SHORT).show()
+          }
+        }
+      )
     }
   }
 }

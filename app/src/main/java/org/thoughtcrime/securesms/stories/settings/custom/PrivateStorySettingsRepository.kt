@@ -7,6 +7,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.database.model.DistributionListRecord
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.stories.Stories
 
 class PrivateStorySettingsRepository {
@@ -27,6 +28,13 @@ class PrivateStorySettingsRepository {
     return Completable.fromAction {
       SignalDatabase.distributionLists.deleteList(distributionListId)
       Stories.onStorySettingsChanged(distributionListId)
+
+      val recipientId = SignalDatabase.recipients.getOrInsertFromDistributionListId(distributionListId)
+      SignalDatabase.mms.getAllStoriesFor(recipientId, -1).use { reader ->
+        for (record in reader) {
+          MessageSender.sendRemoteDelete(record.id, record.isMms)
+        }
+      }
     }.subscribeOn(Schedulers.io())
   }
 

@@ -12,5 +12,6 @@
         android:layout_gravity="center"
         android:layout_margin="24dp"
         android:indeterminate="true"
+        android:background="@color/transparent"
         app:indicatorColor="@color/signal_colorPrimary" />
 </merge>
