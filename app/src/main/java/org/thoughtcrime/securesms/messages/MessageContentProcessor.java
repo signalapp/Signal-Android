@@ -1641,6 +1641,10 @@ public final class MessageContentProcessor {
         Recipient        threadRecipient = Objects.requireNonNull(SignalDatabase.threads().getRecipientForThreadId(story.getThreadId()));
         boolean          groupStory      = threadRecipient.isActiveGroup();
 
+        if (!groupStory) {
+          threadRecipient = senderRecipient;
+        }
+
         handlePossibleExpirationUpdate(content, message, threadRecipient.getGroupId(), senderRecipient, threadRecipient, receivedTime);
 
         if (message.getGroupContext().isPresent() ) {
@@ -1935,7 +1939,7 @@ public final class MessageContentProcessor {
         }
 
         quoteModel      = new QuoteModel(storyContext.getSentTimestamp(), storyAuthorRecipient, quoteBody, false, story.getSlideDeck().asAttachments(), Collections.emptyList(), QuoteModel.Type.NORMAL);
-        expiresInMillis = TimeUnit.SECONDS.toMillis(message.getExpirationStartTimestamp());
+        expiresInMillis = TimeUnit.SECONDS.toMillis(message.getDataMessage().get().getExpiresInSeconds());
       } else {
         warn(envelopeTimestamp, "Story has replies disabled. Dropping reply.");
         return -1L;
