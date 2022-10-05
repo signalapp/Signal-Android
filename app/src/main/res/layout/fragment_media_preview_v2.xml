@@ -1,11 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/core_grey_95"
-    android:theme="@style/TextSecure.MediaPreview">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/signal_dark_colorNeutral">
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/media_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusable="true" />
 
+    <LinearLayout
+        android:id="@+id/media_preview_details_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:animateLayoutChanges="true"
+        android:background="@drawable/image_preview_shade"
+        android:gravity="bottom"
+        android:orientation="vertical"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <org.thoughtcrime.securesms.components.MaxHeightScrollView
+            android:id="@+id/media_preview_caption_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="32dp"
+            android:animateLayoutChanges="true"
+            app:scrollView_maxHeight="120dp">
+
+            <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+                android:id="@+id/media_preview_caption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="8dp"
+                style="@style/Signal.Text.Body"
+                android:textColor="@color/core_white"
+                android:gravity="bottom"
+                tools:text="With great power comes great responsibility." />
+
+        </org.thoughtcrime.securesms.components.MaxHeightScrollView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/media_preview_album_rail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            tools:layout_height="64dp"/>
+
+        <FrameLayout
+            android:id="@+id/media_preview_playback_controls_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true"/>
+
+    </LinearLayout>
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/toolbar_layout"
         android:layout_width="match_parent"
@@ -19,18 +75,14 @@
             android:layout_height="0dp"
             android:visibility="gone" />
 
-        <androidx.appcompat.widget.Toolbar
+        <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:theme="?actionBarStyle"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@android:color/transparent" />
+            android:background="@android:color/transparent"
+            app:navigationIcon="@drawable/ic_arrow_left_white_24" />
 
     </com.google.android.material.appbar.AppBarLayout>
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/media_pager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clickable="true"
-        android:focusable="true" />
-</FrameLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

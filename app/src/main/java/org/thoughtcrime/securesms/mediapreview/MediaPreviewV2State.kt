@@ -8,5 +8,5 @@ data class MediaPreviewV2State(
   val position: Int = 0,
   val showThread: Boolean = false
 ) {
-  enum class LoadState { INIT, READY, }
+  enum class LoadState { INIT, READY, LOADED }
 }
