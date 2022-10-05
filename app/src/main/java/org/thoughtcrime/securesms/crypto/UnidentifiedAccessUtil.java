@@ -17,6 +17,8 @@ import org.signal.libsignal.protocol.ecc.Curve;
 import org.signal.libsignal.protocol.ecc.ECPublicKey;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 import org.thoughtcrime.securesms.BuildConfig;
+import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.RecipientDatabase.UnidentifiedAccessMode;
 import org.thoughtcrime.securesms.keyvalue.CertificateType;
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -68,8 +70,8 @@ public class UnidentifiedAccessUtil {
   }
 
   @WorkerThread
-  public static Map<RecipientId, Optional<UnidentifiedAccessPair>> getAccessMapFor(@NonNull Context context, @NonNull List<Recipient> recipients) {
-    List<Optional<UnidentifiedAccessPair>> accessList = getAccessFor(context, recipients, true);
+  public static Map<RecipientId, Optional<UnidentifiedAccessPair>> getAccessMapFor(@NonNull Context context, @NonNull List<Recipient> recipients, boolean isForStory) {
+    List<Optional<UnidentifiedAccessPair>> accessList = getAccessFor(context, recipients, true, isForStory);
 
     Iterator<Recipient>                        recipientIterator = recipients.iterator();
     Iterator<Optional<UnidentifiedAccessPair>> accessIterator    = accessList.iterator();
@@ -82,9 +84,14 @@ public class UnidentifiedAccessUtil {
 
     return accessMap;
   }
-
+  
   @WorkerThread
   public static List<Optional<UnidentifiedAccessPair>> getAccessFor(@NonNull Context context, @NonNull List<Recipient> recipients, boolean log) {
+    return getAccessFor(context, recipients, false, log);
+  }
+
+  @WorkerThread
+  public static List<Optional<UnidentifiedAccessPair>> getAccessFor(@NonNull Context context, @NonNull List<Recipient> recipients, boolean isForStory, boolean log) {
     byte[] ourUnidentifiedAccessKey = UnidentifiedAccess.deriveAccessKeyFrom(ProfileKeyUtil.getSelfProfileKey());
 
     if (TextSecurePreferences.isUniversalUnidentifiedAccess(context)) {
@@ -96,7 +103,7 @@ public class UnidentifiedAccessUtil {
     Map<CertificateType, Integer> typeCounts = new HashMap<>();
 
     for (Recipient recipient : recipients) {
-      byte[]          theirUnidentifiedAccessKey       = getTargetUnidentifiedAccessKey(recipient);
+      byte[]          theirUnidentifiedAccessKey       = getTargetUnidentifiedAccessKey(recipient, isForStory);
       CertificateType certificateType                  = getUnidentifiedAccessCertificateType(recipient);
       byte[]          ourUnidentifiedAccessCertificate = SignalStore.certificateValues().getUnidentifiedAccessCertificate(certificateType);
 
@@ -168,28 +175,40 @@ public class UnidentifiedAccessUtil {
                       .getUnidentifiedAccessCertificate(getUnidentifiedAccessCertificateType(recipient));
   }
 
-  private static @Nullable byte[] getTargetUnidentifiedAccessKey(@NonNull Recipient recipient) {
+  private static @Nullable byte[] getTargetUnidentifiedAccessKey(@NonNull Recipient recipient, boolean isForStory) {
     ProfileKey theirProfileKey = ProfileKeyUtil.profileKeyOrNull(recipient.resolve().getProfileKey());
+
+    byte[] accessKey;
 
     switch (recipient.resolve().getUnidentifiedAccessMode()) {
       case UNKNOWN:
         if (theirProfileKey == null) {
-          return UNRESTRICTED_KEY;
+          accessKey = UNRESTRICTED_KEY;
         } else {
-          return UnidentifiedAccess.deriveAccessKeyFrom(theirProfileKey);
+          accessKey = UnidentifiedAccess.deriveAccessKeyFrom(theirProfileKey);
         }
+        break;
       case DISABLED:
-        return null;
+        accessKey = null;
+        break;
       case ENABLED:
         if (theirProfileKey == null) {
-          return null;
+          accessKey = null;
         } else {
-          return UnidentifiedAccess.deriveAccessKeyFrom(theirProfileKey);
+          accessKey = UnidentifiedAccess.deriveAccessKeyFrom(theirProfileKey);
         }
+        break;
       case UNRESTRICTED:
-        return UNRESTRICTED_KEY;
+        accessKey = UNRESTRICTED_KEY;
+        break;
       default:
         throw new AssertionError("Unknown mode: " + recipient.getUnidentifiedAccessMode().getMode());
     }
+
+    if (accessKey == null && isForStory) {
+      accessKey = UNRESTRICTED_KEY;
+    }
+
+    return accessKey;
   }
 }

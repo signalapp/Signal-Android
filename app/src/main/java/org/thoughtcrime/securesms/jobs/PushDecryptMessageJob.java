@@ -102,6 +102,11 @@ public final class PushDecryptMessageJob extends BaseJob {
     List<Job>        jobs = new LinkedList<>();
     DecryptionResult result = MessageDecryptionUtil.decrypt(context, envelope);
 
+    if (result.getState() == MessageState.DECRYPTED_OK && envelope.isStory() && !isStoryMessage(result)) {
+      Log.w(TAG, "Envelope was flagged as a story, but it did not have any story-related content! Dropping.");
+      return;
+    }
+
     if (result.getContent() != null) {
       if (result.getContent().getSenderKeyDistributionMessage().isPresent()) {
         handleSenderKeyDistributionMessage(result.getContent().getSender(), result.getContent().getSenderDevice(), result.getContent().getSenderKeyDistributionMessage().get());
@@ -170,6 +175,25 @@ public final class PushDecryptMessageJob extends BaseJob {
     } else {
       Log.w(TAG, "[validatePniSignature] Invalid PNI signature! Cannot associate ACI (" + address.getServiceId() + ") with PNI (" + pni + ")");
     }
+  }
+
+  private boolean isStoryMessage(@NonNull DecryptionResult result) {
+    if (result.getContent() == null) {
+      return false;
+    }
+
+    if (result.getContent().getStoryMessage().isPresent()) {
+      return true;
+    }
+
+    if (result.getContent().getDataMessage().isPresent() &&
+        result.getContent().getDataMessage().get().getStoryContext().isPresent() &&
+        result.getContent().getDataMessage().get().getGroupContext().isPresent())
+    {
+      return true;
+    }
+
+    return false;
   }
 
   private boolean needsMigration() {

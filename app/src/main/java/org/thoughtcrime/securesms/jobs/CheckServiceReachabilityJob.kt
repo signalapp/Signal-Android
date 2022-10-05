@@ -7,6 +7,7 @@ import org.thoughtcrime.securesms.jobmanager.Data
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.stories.Stories
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
 import org.whispersystems.signalservice.internal.util.StaticCredentialsProvider
 import org.whispersystems.signalservice.internal.websocket.WebSocketConnection
@@ -78,7 +79,8 @@ class CheckServiceReachabilityJob private constructor(params: Parameters) : Base
       ),
       BuildConfig.SIGNAL_AGENT,
       null,
-      ""
+      "",
+      Stories.isFeatureEnabled()
     )
 
     try {

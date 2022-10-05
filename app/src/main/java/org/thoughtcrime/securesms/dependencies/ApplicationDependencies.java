@@ -258,7 +258,7 @@ public class ApplicationDependencies {
     }
   }
 
-  public static void resetNetworkConnectionsAfterProxyChange() {
+  public static void resetAllNetworkConnections() {
     synchronized (LOCK) {
       closeConnections();
       if (signalWebSocket != null) {

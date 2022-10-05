@@ -249,7 +249,10 @@ public final class FeatureFlags {
    */
   private static final Map<String, OnFlagChange> FLAG_CHANGE_LISTENERS = new HashMap<String, OnFlagChange>() {{
     put(MESSAGE_PROCESSOR_ALARM_INTERVAL, change -> MessageProcessReceiver.startOrUpdateAlarm(ApplicationDependencies.getApplication()));
-    put(STORIES, change -> ApplicationDependencies.getJobManager().startChain(new RefreshAttributesJob()).then(new RefreshOwnProfileJob()).enqueue());
+    put(STORIES, change -> {
+      ApplicationDependencies.getJobManager().startChain(new RefreshAttributesJob()).then(new RefreshOwnProfileJob()).enqueue();
+      ApplicationDependencies.resetAllNetworkConnections();
+    });
     put(GIFT_BADGE_RECEIVE_SUPPORT, change -> ApplicationDependencies.getJobManager().startChain(new RefreshAttributesJob()).then(new RefreshOwnProfileJob()).enqueue());
   }};
 

@@ -94,7 +94,7 @@ public final class GroupSendUtil {
                                                                   boolean urgent)
       throws IOException, UntrustedIdentityException
   {
-    return sendMessage(context, groupId, getDistributionId(groupId), messageId, allTargets, isRecipientUpdate, DataSendOperation.resendable(message, contentHint, messageId, urgent), null);
+    return sendMessage(context, groupId, getDistributionId(groupId), messageId, allTargets, isRecipientUpdate, false, DataSendOperation.resendable(message, contentHint, messageId, urgent), null);
   }
 
   /**
@@ -116,7 +116,7 @@ public final class GroupSendUtil {
                                                                     boolean urgent)
       throws IOException, UntrustedIdentityException
   {
-    return sendMessage(context, groupId, getDistributionId(groupId), null, allTargets, isRecipientUpdate, DataSendOperation.unresendable(message, contentHint, urgent), null);
+    return sendMessage(context, groupId, getDistributionId(groupId), null, allTargets, isRecipientUpdate, false, DataSendOperation.unresendable(message, contentHint, urgent), null);
   }
 
   /**
@@ -133,7 +133,7 @@ public final class GroupSendUtil {
                                                           @Nullable CancelationSignal cancelationSignal)
       throws IOException, UntrustedIdentityException
   {
-    return sendMessage(context, groupId, getDistributionId(groupId), null, allTargets, false, new TypingSendOperation(message), cancelationSignal);
+    return sendMessage(context, groupId, getDistributionId(groupId), null, allTargets, false, false, new TypingSendOperation(message), cancelationSignal);
   }
 
   /**
@@ -149,11 +149,11 @@ public final class GroupSendUtil {
                                                         @NonNull SignalServiceCallMessage message)
       throws IOException, UntrustedIdentityException
   {
-    return sendMessage(context, groupId, getDistributionId(groupId), null, allTargets, false, new CallSendOperation(message), null);
+    return sendMessage(context, groupId, getDistributionId(groupId), null, allTargets, false, false, new CallSendOperation(message), null);
   }
 
   /**
-   * Handles all of the logic of sending a story to a group. Will do sender key sends and legacy 1:1 sends as-needed, and give you back a list of
+   * Handles all of the logic of sending a story to a distribution list. Will do sender key sends and legacy 1:1 sends as-needed, and give you back a list of
    * {@link SendMessageResult}s just like we're used to.
    *
    * @param isRecipientUpdate True if you've already sent this message to some recipients in the past, otherwise false.
@@ -175,6 +175,7 @@ public final class GroupSendUtil {
         messageId,
         allTargets,
         isRecipientUpdate,
+        true,
         new StorySendOperation(messageId, null, sentTimestamp, message, manifest),
         null);
   }
@@ -201,6 +202,7 @@ public final class GroupSendUtil {
         messageId,
         allTargets,
         isRecipientUpdate,
+        true,
         new StorySendOperation(messageId, groupId, sentTimestamp, message, Collections.emptySet()),
         null);
   }
@@ -219,6 +221,7 @@ public final class GroupSendUtil {
                                                      @Nullable MessageId relatedMessageId,
                                                      @NonNull List<Recipient> allTargets,
                                                      boolean isRecipientUpdate,
+                                                     boolean isStorySend,
                                                      @NonNull SendOperation sendOperation,
                                                      @Nullable CancelationSignal cancelationSignal)
       throws IOException, UntrustedIdentityException
@@ -228,7 +231,7 @@ public final class GroupSendUtil {
     Set<Recipient>  unregisteredTargets = allTargets.stream().filter(Recipient::isUnregistered).collect(Collectors.toSet());
     List<Recipient> registeredTargets   = allTargets.stream().filter(r -> !unregisteredTargets.contains(r)).collect(Collectors.toList());
 
-    RecipientData         recipients  = new RecipientData(context, registeredTargets);
+    RecipientData         recipients  = new RecipientData(context, registeredTargets, isStorySend);
     Optional<GroupRecord> groupRecord = groupId != null ? SignalDatabase.groups().getGroup(groupId) : Optional.empty();
 
     List<Recipient> senderKeyTargets = new LinkedList<>();
@@ -257,6 +260,11 @@ public final class GroupSendUtil {
       Log.i(TAG, "No DistributionId. Using legacy.");
       legacyTargets.addAll(senderKeyTargets);
       senderKeyTargets.clear();
+    } else if (isStorySend) {
+      Log.i(TAG, "Sending a story. Using sender key for all " + allTargets.size() + " recipients.");
+      senderKeyTargets.clear();
+      senderKeyTargets.addAll(registeredTargets);
+      legacyTargets.clear();
     } else if (SignalStore.internalValues().removeSenderKeyMinimum()) {
       Log.i(TAG, "Sender key minimum removed. Using for " + senderKeyTargets.size() + " recipients.");
     } else if (senderKeyTargets.size() < 2) {
@@ -681,7 +689,7 @@ public final class GroupSendUtil {
                                                        @Nullable CancelationSignal cancelationSignal)
         throws IOException, UntrustedIdentityException
     {
-      return messageSender.sendStory(targets, access, isRecipientUpdate, message, getSentTimestamp(), manifest);
+      throw new UnsupportedOperationException("Stories can only be send via sender key!");
     }
 
     @Override
@@ -767,8 +775,8 @@ public final class GroupSendUtil {
     private final Map<RecipientId, SignalServiceAddress>             addressById;
     private final RecipientAccessList                                accessList;
 
-    RecipientData(@NonNull Context context, @NonNull List<Recipient> recipients) throws IOException {
-      this.accessById  = UnidentifiedAccessUtil.getAccessMapFor(context, recipients);
+    RecipientData(@NonNull Context context, @NonNull List<Recipient> recipients, boolean isForStory) throws IOException {
+      this.accessById  = UnidentifiedAccessUtil.getAccessMapFor(context, recipients, isForStory);
       this.addressById = mapAddresses(context, recipients);
       this.accessList  = new RecipientAccessList(recipients);
     }

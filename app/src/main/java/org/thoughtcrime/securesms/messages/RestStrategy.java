@@ -10,6 +10,8 @@ import org.thoughtcrime.securesms.jobmanager.JobTracker;
 import org.thoughtcrime.securesms.jobs.MarkerJob;
 import org.thoughtcrime.securesms.jobs.PushDecryptMessageJob;
 import org.thoughtcrime.securesms.jobs.PushProcessMessageJob;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.stories.Stories;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 
 import java.io.IOException;
@@ -82,7 +84,7 @@ public class RestStrategy extends MessageRetrievalStrategy {
 
     receiver.setSoTimeoutMillis(timeout);
 
-    receiver.retrieveMessages(envelope -> {
+    receiver.retrieveMessages(Stories.isFeatureEnabled(), envelope -> {
       Log.i(TAG, "Retrieved an envelope." + timeSuffix(startTime));
       String jobId = processor.processEnvelope(envelope);
 

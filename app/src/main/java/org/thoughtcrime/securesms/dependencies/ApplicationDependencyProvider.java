@@ -63,6 +63,7 @@ import org.thoughtcrime.securesms.service.PendingRetryReceiptManager;
 import org.thoughtcrime.securesms.service.TrimThreadsByDateManager;
 import org.thoughtcrime.securesms.service.webrtc.SignalCallManager;
 import org.thoughtcrime.securesms.shakereport.ShakeToReport;
+import org.thoughtcrime.securesms.stories.Stories;
 import org.thoughtcrime.securesms.util.AlarmSleepTimer;
 import org.thoughtcrime.securesms.util.AppForegroundObserver;
 import org.thoughtcrime.securesms.util.ByteUnit;
@@ -398,7 +399,8 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
                                        signalServiceConfigurationSupplier.get(),
                                        Optional.of(new DynamicCredentialsProvider()),
                                        BuildConfig.SIGNAL_AGENT,
-                                       healthMonitor);
+                                       healthMonitor,
+                                       Stories.isFeatureEnabled());
       }
 
       @Override
@@ -407,7 +409,8 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
                                        signalServiceConfigurationSupplier.get(),
                                        Optional.empty(),
                                        BuildConfig.SIGNAL_AGENT,
-                                       healthMonitor);
+                                       healthMonitor,
+                                       Stories.isFeatureEnabled());
       }
     };
   }

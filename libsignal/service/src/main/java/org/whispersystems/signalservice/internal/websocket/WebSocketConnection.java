@@ -66,14 +66,15 @@ public class WebSocketConnection extends WebSocketListener {
 
   private final String                                    name;
   private final String                                    wsUri;
-  private final TrustStore                    trustStore;
-  private final Optional<CredentialsProvider> credentialsProvider;
-  private final String                        signalAgent;
+  private final TrustStore                                trustStore;
+  private final Optional<CredentialsProvider>             credentialsProvider;
+  private final String                                    signalAgent;
   private final HealthMonitor                             healthMonitor;
   private final List<Interceptor>                         interceptors;
   private final Optional<Dns>                             dns;
   private final Optional<SignalProxy>                     signalProxy;
   private final BehaviorSubject<WebSocketConnectionState> webSocketState;
+  private final boolean                                   allowStories;
 
   private WebSocket client;
 
@@ -81,8 +82,9 @@ public class WebSocketConnection extends WebSocketListener {
                              SignalServiceConfiguration serviceConfiguration,
                              Optional<CredentialsProvider> credentialsProvider,
                              String signalAgent,
-                             HealthMonitor healthMonitor) {
-    this(name, serviceConfiguration, credentialsProvider, signalAgent, healthMonitor, "");
+                             HealthMonitor healthMonitor,
+                             boolean allowStories) {
+    this(name, serviceConfiguration, credentialsProvider, signalAgent, healthMonitor, "", allowStories);
   }
 
   public WebSocketConnection(String name,
@@ -90,7 +92,8 @@ public class WebSocketConnection extends WebSocketListener {
                              Optional<CredentialsProvider> credentialsProvider,
                              String signalAgent,
                              HealthMonitor healthMonitor,
-                             String extraPathUri)
+                             String extraPathUri,
+                             boolean allowStories)
   {
     this.name                = "[" + name + ":" + System.identityHashCode(this) + "]";
     this.trustStore          = serviceConfiguration.getSignalServiceUrls()[0].getTrustStore();
@@ -101,6 +104,7 @@ public class WebSocketConnection extends WebSocketListener {
     this.signalProxy         = serviceConfiguration.getSignalProxy();
     this.healthMonitor       = healthMonitor;
     this.webSocketState      = BehaviorSubject.createDefault(WebSocketConnectionState.DISCONNECTED);
+    this.allowStories        = allowStories;
 
     String uri = serviceConfiguration.getSignalServiceUrls()[0].getUrl().replace("https://", "wss://").replace("http://", "ws://");
 
@@ -155,6 +159,8 @@ public class WebSocketConnection extends WebSocketListener {
       if (signalAgent != null) {
         requestBuilder.addHeader("X-Signal-Agent", signalAgent);
       }
+
+      requestBuilder.addHeader("X-Signal-Receive-Stories", allowStories ? "true" : "false");
 
       webSocketState.onNext(WebSocketConnectionState.CONNECTING);
 

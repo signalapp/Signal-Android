@@ -220,8 +220,8 @@ public class PushServiceSocket {
   private static final String DEVICE_PATH               = "/v1/devices/%s";
 
   private static final String DIRECTORY_AUTH_PATH       = "/v1/directory/auth";
-  private static final String MESSAGE_PATH              = "/v1/messages/%s";
-  private static final String GROUP_MESSAGE_PATH        = "/v1/messages/multi_recipient?ts=%s&online=%s&urgent=%s";
+  private static final String MESSAGE_PATH              = "/v1/messages/%s?story=%s";
+  private static final String GROUP_MESSAGE_PATH        = "/v1/messages/multi_recipient?ts=%s&online=%s&urgent=%s&story=%s";
   private static final String SENDER_ACK_MESSAGE_PATH   = "/v1/messages/%s/%d";
   private static final String UUID_ACK_MESSAGE_PATH     = "/v1/messages/uuid/%s";
   private static final String ATTACHMENT_V2_PATH        = "/v2/attachments/form/upload";
@@ -486,12 +486,12 @@ public class PushServiceSocket {
     return JsonUtil.fromJson(responseText, SenderCertificate.class).getCertificate();
   }
 
-  public SendGroupMessageResponse sendGroupMessage(byte[] body, byte[] joinedUnidentifiedAccess, long timestamp, boolean online, boolean urgent)
+  public SendGroupMessageResponse sendGroupMessage(byte[] body, byte[] joinedUnidentifiedAccess, long timestamp, boolean online, boolean urgent, boolean story)
       throws IOException
   {
     ServiceConnectionHolder connectionHolder = (ServiceConnectionHolder) getRandom(serviceClients, random);
 
-    String path = String.format(Locale.US, GROUP_MESSAGE_PATH, timestamp, online, urgent);
+    String path = String.format(Locale.US, GROUP_MESSAGE_PATH, timestamp, online, urgent, story);
 
     Request.Builder requestBuilder = new Request.Builder();
     requestBuilder.url(String.format("%s%s", connectionHolder.getUrl(), path));
@@ -544,11 +544,11 @@ public class PushServiceSocket {
     }
   }
 
-  public SendMessageResponse sendMessage(OutgoingPushMessageList bundle, Optional<UnidentifiedAccess> unidentifiedAccess)
+  public SendMessageResponse sendMessage(OutgoingPushMessageList bundle, Optional<UnidentifiedAccess> unidentifiedAccess, boolean story)
       throws IOException
   {
     try {
-      String              responseText = makeServiceRequest(String.format(MESSAGE_PATH, bundle.getDestination()), "PUT", JsonUtil.toJson(bundle), NO_HEADERS, unidentifiedAccess);
+      String              responseText = makeServiceRequest(String.format(MESSAGE_PATH, bundle.getDestination(), story ? "true" : "false"), "PUT", JsonUtil.toJson(bundle), NO_HEADERS, unidentifiedAccess);
       SendMessageResponse response     = JsonUtil.fromJson(responseText, SendMessageResponse.class);
 
       response.setSentUnidentfied(unidentifiedAccess.isPresent());
@@ -559,8 +559,10 @@ public class PushServiceSocket {
     }
   }
 
-  public SignalServiceMessagesResult getMessages() throws IOException {
-    try (Response response = makeServiceRequest(String.format(MESSAGE_PATH, ""), "GET", (RequestBody) null, NO_HEADERS, NO_HANDLER, Optional.empty())) {
+  public SignalServiceMessagesResult getMessages(boolean allowStories) throws IOException {
+    Map<String, String> headers = Collections.singletonMap("X-Signal-Receive-Stories", allowStories ? "true" : "false");
+    
+    try (Response response = makeServiceRequest(String.format(MESSAGE_PATH, ""), "GET", (RequestBody) null, headers, NO_HANDLER, Optional.empty())) {
       validateServiceResponse(response);
 
       List<SignalServiceEnvelopeEntity> envelopes = readBodyJson(response.body(), SignalServiceEnvelopeEntityList.class).getMessages();

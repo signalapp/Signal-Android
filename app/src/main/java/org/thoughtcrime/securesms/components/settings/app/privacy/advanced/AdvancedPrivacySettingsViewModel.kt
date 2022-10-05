@@ -77,7 +77,7 @@ class AdvancedPrivacySettingsViewModel(
   fun setCensorshipCircumventionEnabled(enabled: Boolean) {
     SignalStore.settings().setCensorshipCircumventionEnabled(enabled)
     SignalStore.misc().isServiceReachableWithoutCircumvention = false
-    ApplicationDependencies.resetNetworkConnectionsAfterProxyChange()
+    ApplicationDependencies.resetAllNetworkConnections()
     refresh()
   }
 

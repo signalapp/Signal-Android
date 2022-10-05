@@ -43,7 +43,7 @@ public class MessagingService {
     this.signalWebSocket = signalWebSocket;
   }
 
-  public Single<ServiceResponse<SendMessageResponse>> send(OutgoingPushMessageList list, Optional<UnidentifiedAccess> unidentifiedAccess) {
+  public Single<ServiceResponse<SendMessageResponse>> send(OutgoingPushMessageList list, Optional<UnidentifiedAccess> unidentifiedAccess, boolean story) {
     List<String> headers = new LinkedList<String>() {{
       add("content-type:application/json");
     }};
@@ -51,7 +51,7 @@ public class MessagingService {
     WebSocketRequestMessage requestMessage = WebSocketRequestMessage.newBuilder()
                                                                     .setId(new SecureRandom().nextLong())
                                                                     .setVerb("PUT")
-                                                                    .setPath(String.format("/v1/messages/%s", list.getDestination()))
+                                                                    .setPath(String.format("/v1/messages/%s?story=%s", list.getDestination(), story ? "true" : "false"))
                                                                     .addAllHeaders(headers)
                                                                     .setBody(ByteString.copyFrom(JsonUtil.toJson(list).getBytes()))
                                                                     .build();
@@ -72,13 +72,13 @@ public class MessagingService {
                           .onErrorReturn(ServiceResponse::forUnknownError);
   }
 
-  public Single<ServiceResponse<SendGroupMessageResponse>> sendToGroup(byte[] body, byte[] joinedUnidentifiedAccess, long timestamp, boolean online, boolean urgent) {
+  public Single<ServiceResponse<SendGroupMessageResponse>> sendToGroup(byte[] body, byte[] joinedUnidentifiedAccess, long timestamp, boolean online, boolean urgent, boolean story) {
     List<String> headers = new LinkedList<String>() {{
       add("content-type:application/vnd.signal-messenger.mrm");
       add("Unidentified-Access-Key:" + Base64.encodeBytes(joinedUnidentifiedAccess));
     }};
 
-    String path = String.format(Locale.US, "/v1/messages/multi_recipient?ts=%s&online=%s&urgent=%s", timestamp, online, urgent);
+    String path = String.format(Locale.US, "/v1/messages/multi_recipient?ts=%s&online=%s&urgent=%s&story=%s", timestamp, online, urgent, story);
 
     WebSocketRequestMessage requestMessage = WebSocketRequestMessage.newBuilder()
                                                                     .setId(new SecureRandom().nextLong())

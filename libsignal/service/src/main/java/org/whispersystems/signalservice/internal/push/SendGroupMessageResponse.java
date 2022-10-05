@@ -18,9 +18,10 @@ public class SendGroupMessageResponse {
   public SendGroupMessageResponse() {}
 
   public Set<ServiceId> getUnsentTargets() {
-    Set<ServiceId> serviceIds = new HashSet<>(uuids404.length);
+    String[]       uuids      = uuids404 != null ? uuids404 : new String[0];
+    Set<ServiceId> serviceIds = new HashSet<>(uuids.length);
 
-    for (String raw : uuids404) {
+    for (String raw : uuids) {
       ServiceId parsed = ServiceId.parseOrNull(raw);
       if (parsed != null) {
         serviceIds.add(parsed);
