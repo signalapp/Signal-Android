@@ -220,7 +220,7 @@ public class PushServiceSocket {
   private static final String DEVICE_PATH               = "/v1/devices/%s";
 
   private static final String DIRECTORY_AUTH_PATH       = "/v1/directory/auth";
-  private static final String MESSAGE_PATH              = "/v1/messages/%s?story=%s";
+  private static final String MESSAGE_PATH              = "/v1/messages/%s";
   private static final String GROUP_MESSAGE_PATH        = "/v1/messages/multi_recipient?ts=%s&online=%s&urgent=%s&story=%s";
   private static final String SENDER_ACK_MESSAGE_PATH   = "/v1/messages/%s/%d";
   private static final String UUID_ACK_MESSAGE_PATH     = "/v1/messages/uuid/%s";
@@ -548,7 +548,7 @@ public class PushServiceSocket {
       throws IOException
   {
     try {
-      String              responseText = makeServiceRequest(String.format(MESSAGE_PATH, bundle.getDestination(), story ? "true" : "false"), "PUT", JsonUtil.toJson(bundle), NO_HEADERS, unidentifiedAccess);
+      String              responseText = makeServiceRequest(String.format("/v1/messages/%s?story=%s", bundle.getDestination(), story ? "true" : "false"), "PUT", JsonUtil.toJson(bundle), NO_HEADERS, unidentifiedAccess);
       SendMessageResponse response     = JsonUtil.fromJson(responseText, SendMessageResponse.class);
 
       response.setSentUnidentfied(unidentifiedAccess.isPresent());
