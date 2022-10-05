@@ -15,7 +15,7 @@
         <layer-list>
             <item>
                 <shape android:shape="oval">
-                    <solid android:color="@color/core_ultramarine" />
+                    <solid android:color="@color/signal_colorPrimary" />
                 </shape>
             </item>
             <item android:drawable="@drawable/ic_check_outline_22" />

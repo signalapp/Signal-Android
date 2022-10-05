@@ -5112,6 +5112,11 @@
         <item quantity="one">Group story · %1$d viewer</item>
         <item quantity="other">Group story · %1$d viewers</item>
     </plurals>
+    <!-- Label under name for groups -->
+    <plurals name="ContactSearchItems__group_d_members">
+        <item quantity="one">%1$d member</item>
+        <item quantity="other">%1$d members</item>
+    </plurals>
     <!-- Label under name for my story -->
     <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
         <item quantity="one">%1$s · %2$d viewer</item>

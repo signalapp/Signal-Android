@@ -23,7 +23,7 @@ sealed class ContactSearchData(val contactSearchKey: ContactSearchKey) {
   /**
    * A row displaying a known recipient.
    */
-  data class KnownRecipient(val recipient: Recipient) : ContactSearchData(ContactSearchKey.RecipientSearchKey.KnownRecipient(recipient.id))
+  data class KnownRecipient(val recipient: Recipient, val shortSummary: Boolean = false) : ContactSearchData(ContactSearchKey.RecipientSearchKey.KnownRecipient(recipient.id))
 
   /**
    * A row containing a title for a given section

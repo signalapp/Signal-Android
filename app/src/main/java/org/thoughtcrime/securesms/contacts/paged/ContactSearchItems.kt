@@ -73,7 +73,7 @@ object ContactSearchItems {
       contactSearchData.filterNotNull().map {
         when (it) {
           is ContactSearchData.Story -> StoryModel(it, selection.contains(it.contactSearchKey), SignalStore.storyValues().userHasBeenNotifiedAboutStories)
-          is ContactSearchData.KnownRecipient -> RecipientModel(it, selection.contains(it.contactSearchKey))
+          is ContactSearchData.KnownRecipient -> RecipientModel(it, selection.contains(it.contactSearchKey), it.shortSummary)
           is ContactSearchData.Expand -> ExpandModel(it)
           is ContactSearchData.Header -> HeaderModel(it)
           is ContactSearchData.TestRow -> error("This row exists for testing only.")
@@ -207,7 +207,7 @@ object ContactSearchItems {
   /**
    * Recipient model
    */
-  private class RecipientModel(val knownRecipient: ContactSearchData.KnownRecipient, val isSelected: Boolean) : MappingModel<RecipientModel> {
+  private class RecipientModel(val knownRecipient: ContactSearchData.KnownRecipient, val isSelected: Boolean, val shortSummary: Boolean) : MappingModel<RecipientModel> {
 
     override fun areItemsTheSame(newItem: RecipientModel): Boolean {
       return newItem.knownRecipient == knownRecipient
@@ -230,6 +230,16 @@ object ContactSearchItems {
     override fun isSelected(model: RecipientModel): Boolean = model.isSelected
     override fun getData(model: RecipientModel): ContactSearchData.KnownRecipient = model.knownRecipient
     override fun getRecipient(model: RecipientModel): Recipient = model.knownRecipient.recipient
+    override fun bindNumberField(model: RecipientModel) {
+      val recipient = getRecipient(model)
+
+      if (model.shortSummary && recipient.isGroup) {
+        val count = recipient.participantIds.size
+        number.setText(context.resources.getQuantityString(R.plurals.ContactSearchItems__group_d_members, count, count))
+      } else {
+        super.bindNumberField(model)
+      }
+    }
   }
 
   /**

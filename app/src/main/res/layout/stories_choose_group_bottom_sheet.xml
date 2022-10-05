@@ -22,8 +22,7 @@
         android:layout_marginTop="12dp"
         android:gravity="center"
         android:text="@string/ChooseGroupStoryBottomSheet__choose_groups"
-        android:textAppearance="@style/Signal.Text.Body"
-        android:textStyle="bold" />
+        android:textAppearance="@style/Signal.Text.TitleMedium" />
 
     <org.thoughtcrime.securesms.components.emoji.EmojiEditText
         android:id="@+id/search_field"
@@ -33,12 +32,13 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="12dp"
-        android:background="@drawable/rounded_rectangle_secondary_18"
+        android:background="@drawable/rounded_rectangle_secondary_22"
         android:hint="@string/TextStoryPostSendFragment__search"
         android:minHeight="44dp"
         android:paddingHorizontal="16dp"
         android:textAppearance="@style/Signal.Text.Body"
-        app:backgroundTint="@color/signal_background_dialog_secondary" />
+        android:textColor="@color/signal_colorOnSurfaceVariant"
+        app:backgroundTint="@color/signal_colorSurface5" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/contact_recycler"

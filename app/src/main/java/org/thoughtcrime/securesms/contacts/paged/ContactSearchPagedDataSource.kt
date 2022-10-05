@@ -219,7 +219,7 @@ class ContactSearchPagedDataSource(
           if (section.returnAsGroupStories) {
             ContactSearchData.Story(contactSearchPagedDataSourceRepository.getRecipientFromGroupRecord(it), 0, DistributionListPrivacyMode.ALL)
           } else {
-            ContactSearchData.KnownRecipient(contactSearchPagedDataSourceRepository.getRecipientFromGroupRecord(it))
+            ContactSearchData.KnownRecipient(contactSearchPagedDataSourceRepository.getRecipientFromGroupRecord(it), shortSummary = section.shortSummary)
           }
         }
       )

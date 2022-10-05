@@ -34,7 +34,6 @@ class ChooseGroupStoryBottomSheet : FixedRoundedCornerBottomSheetDialogFragment(
 
   private lateinit var confirmButton: View
   private lateinit var selectedList: RecyclerView
-  private lateinit var backgroundHelper: View
   private lateinit var divider: View
   private lateinit var mediator: ContactSearchMediator
 
@@ -52,7 +51,6 @@ class ChooseGroupStoryBottomSheet : FixedRoundedCornerBottomSheetDialogFragment(
 
     confirmButton = bottomBar.findViewById(R.id.share_confirm)
     selectedList = bottomBar.findViewById(R.id.selected_list)
-    backgroundHelper = bottomBar.findViewById(R.id.background_helper)
     divider = bottomBar.findViewById(R.id.divider)
 
     val adapter = ShareSelectionAdapter()
@@ -75,7 +73,7 @@ class ChooseGroupStoryBottomSheet : FixedRoundedCornerBottomSheetDialogFragment(
           addSection(
             ContactSearchConfiguration.Section.Groups(
               includeHeader = false,
-              returnAsGroupStories = true,
+              shortSummary = true,
               sortOrder = ContactSearchSortOrder.RECENCY
             )
           )
@@ -86,7 +84,7 @@ class ChooseGroupStoryBottomSheet : FixedRoundedCornerBottomSheetDialogFragment(
 
     mediator.getSelectionState().observe(viewLifecycleOwner) { state ->
       adapter.submitList(
-        state.filterIsInstance(ContactSearchKey.RecipientSearchKey.Story::class.java)
+        state.filterIsInstance(ContactSearchKey.RecipientSearchKey.KnownRecipient::class.java)
           .map { it.recipientId }
           .mapIndexed { index, recipientId ->
             ShareSelectionMappingModel(
@@ -118,9 +116,8 @@ class ChooseGroupStoryBottomSheet : FixedRoundedCornerBottomSheetDialogFragment(
     animatorSet?.cancel()
     animatorSet = AnimatorSet().apply {
       playTogether(
-        ObjectAnimator.ofFloat(confirmButton, View.ALPHA, 1f),
+        ObjectAnimator.ofFloat(confirmButton, View.TRANSLATION_Y, 0f),
         ObjectAnimator.ofFloat(selectedList, View.TRANSLATION_Y, 0f),
-        ObjectAnimator.ofFloat(backgroundHelper, View.TRANSLATION_Y, 0f),
         ObjectAnimator.ofFloat(divider, View.TRANSLATION_Y, 0f)
       )
       start()
@@ -128,14 +125,13 @@ class ChooseGroupStoryBottomSheet : FixedRoundedCornerBottomSheetDialogFragment(
   }
 
   private fun animateOutBottomBar() {
-    val translationY = DimensionUnit.DP.toPixels(48f)
+    val translationY = DimensionUnit.SP.toPixels(64f)
 
     animatorSet?.cancel()
     animatorSet = AnimatorSet().apply {
       playTogether(
-        ObjectAnimator.ofFloat(confirmButton, View.ALPHA, 0f),
+        ObjectAnimator.ofFloat(confirmButton, View.TRANSLATION_Y, translationY),
         ObjectAnimator.ofFloat(selectedList, View.TRANSLATION_Y, translationY),
-        ObjectAnimator.ofFloat(backgroundHelper, View.TRANSLATION_Y, translationY),
         ObjectAnimator.ofFloat(divider, View.TRANSLATION_Y, translationY)
       )
       start()
@@ -150,7 +146,7 @@ class ChooseGroupStoryBottomSheet : FixedRoundedCornerBottomSheetDialogFragment(
           RESULT_SET,
           ArrayList(
             mediator.getSelectedContacts()
-              .filterIsInstance(ContactSearchKey.RecipientSearchKey.Story::class.java)
+              .filterIsInstance(ContactSearchKey.RecipientSearchKey.KnownRecipient::class.java)
               .map { it.recipientId }
           )
         )
