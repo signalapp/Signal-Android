@@ -12,13 +12,14 @@ import org.thoughtcrime.securesms.database.helpers.migration.V154_PniSignaturesM
 import org.thoughtcrime.securesms.database.helpers.migration.V155_SmsExporterMigration
 import org.thoughtcrime.securesms.database.helpers.migration.V156_RecipientUnregisteredTimestampMigration
 import org.thoughtcrime.securesms.database.helpers.migration.V157_RecipeintHiddenMigration
+import org.thoughtcrime.securesms.database.helpers.migration.V158_GroupsLastForceUpdateTimestampMigration
 
 /**
  * Contains all of the database migrations for [SignalDatabase]. Broken into a separate file for cleanliness.
  */
 object SignalDatabaseMigrations {
 
-  const val DATABASE_VERSION = 157
+  const val DATABASE_VERSION = 158
 
   @JvmStatic
   fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -56,6 +57,10 @@ object SignalDatabaseMigrations {
 
     if (oldVersion < 157) {
       V157_RecipeintHiddenMigration.migrate(context, db, oldVersion, newVersion)
+    }
+
+    if (oldVersion < 158) {
+      V158_GroupsLastForceUpdateTimestampMigration.migrate(context, db, oldVersion, newVersion)
     }
   }
 

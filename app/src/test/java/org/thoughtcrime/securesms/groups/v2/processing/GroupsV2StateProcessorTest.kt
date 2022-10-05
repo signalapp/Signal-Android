@@ -3,19 +3,28 @@ package org.thoughtcrime.securesms.groups.v2.processing
 import android.app.Application
 import androidx.test.core.app.ApplicationProvider
 import org.hamcrest.MatcherAssert.assertThat
+import org.hamcrest.Matchers.both
+import org.hamcrest.Matchers.hasItem
+import org.hamcrest.Matchers.hasProperty
 import org.hamcrest.Matchers.`is`
+import org.hamcrest.Matchers.notNullValue
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.mockito.ArgumentCaptor
+import org.mockito.ArgumentMatchers.anyLong
 import org.mockito.ArgumentMatchers.eq
 import org.mockito.Mockito.any
+import org.mockito.Mockito.doCallRealMethod
 import org.mockito.Mockito.doReturn
 import org.mockito.Mockito.isA
 import org.mockito.Mockito.mock
 import org.mockito.Mockito.reset
 import org.mockito.Mockito.verify
+import org.mockito.kotlin.anyOrNull
+import org.mockito.kotlin.doNothing
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.signal.core.util.Hex.fromStringCondensed
@@ -25,11 +34,13 @@ import org.signal.libsignal.zkgroup.groups.GroupMasterKey
 import org.signal.storageservice.protos.groups.local.DecryptedGroup
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange
 import org.signal.storageservice.protos.groups.local.DecryptedMember
+import org.signal.storageservice.protos.groups.local.DecryptedString
 import org.signal.storageservice.protos.groups.local.DecryptedTimer
 import org.thoughtcrime.securesms.SignalStoreRule
 import org.thoughtcrime.securesms.database.GroupDatabase
 import org.thoughtcrime.securesms.database.GroupStateTestData
 import org.thoughtcrime.securesms.database.RecipientDatabase
+import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context
 import org.thoughtcrime.securesms.database.model.databaseprotos.member
 import org.thoughtcrime.securesms.database.model.databaseprotos.requestingMember
 import org.thoughtcrime.securesms.database.setNewDescription
@@ -104,6 +115,7 @@ class GroupsV2StateProcessorTest {
         }
       }
       doReturn(testPartial).`when`(groupsV2API).getPartialDecryptedGroup(any(), any())
+      doReturn(serverState).`when`(groupsV2API).getGroup(any(), any())
     }
 
     data.changeSet?.let { changeSet ->
@@ -452,5 +464,119 @@ class GroupsV2StateProcessorTest {
 
     assertThat("local should update to server", result.groupState, `is`(GroupsV2StateProcessor.GroupState.GROUP_UPDATED))
     assertThat("revision matches latest revision on server", result.latestServer!!.revision, `is`(101))
+  }
+
+  /**
+   * If for some reason we missed a member being added in our local state, and then we preform a multi-revision update,
+   * we should now know about the member and add update messages to the chat.
+   */
+  @Test
+  fun missedMemberAddResolvesWithMultipleRevisionUpdate() {
+    val secondOther = member(ServiceId.from(UUID.randomUUID()))
+
+    val updateMessageContextCapture = ArgumentCaptor.forClass(DecryptedGroupV2Context::class.java)
+    profileAndMessageHelper.masterKey = masterKey
+    doCallRealMethod().`when`(profileAndMessageHelper).insertUpdateMessages(anyLong(), anyOrNull(), any())
+    doNothing().`when`(profileAndMessageHelper).storeMessage(updateMessageContextCapture.capture(), anyLong())
+
+    given {
+      localState(
+        revision = 8,
+        title = "Whatever",
+        members = selfAndOthers
+      )
+      serverState(
+        revision = 10,
+        title = "Changed",
+        members = selfAndOthers + secondOther
+      )
+      changeSet {
+        changeLog(9) {
+          change {
+            setNewTitle("Mid-Change")
+          }
+          fullSnapshot(
+            title = "Mid-Change",
+            members = selfAndOthers + secondOther
+          )
+        }
+        changeLog(10) {
+          change {
+            setNewTitle("Changed")
+          }
+        }
+      }
+      apiCallParameters(requestedRevision = 8, includeFirst = true)
+    }
+
+    val result = processor.updateLocalGroupToRevision(GroupsV2StateProcessor.LATEST, 0, null)
+    assertThat("local should update to server", result.groupState, `is`(GroupsV2StateProcessor.GroupState.GROUP_UPDATED))
+    assertThat("members contains second other", result.latestServer!!.membersList, hasItem(secondOther))
+
+    val allUpdateMessageContexts = updateMessageContextCapture.allValues
+    assertThat("group update messages contains new member add", allUpdateMessageContexts.map { it.change.newMembersList }, hasItem(hasItem(secondOther)))
+  }
+
+  /**
+   * If for some reason we missed a member being added in our local state, and then we preform a forced sanity update,
+   * we should now know about the member and any other changes, and add update messages to the chat.
+   */
+  @Test
+  fun missedMemberAddResolvesWithForcedUpdate() {
+    val secondOther = member(ServiceId.from(UUID.randomUUID()))
+
+    val updateMessageContextCapture = ArgumentCaptor.forClass(DecryptedGroupV2Context::class.java)
+    profileAndMessageHelper.masterKey = masterKey
+    doCallRealMethod().`when`(profileAndMessageHelper).insertUpdateMessages(anyLong(), anyOrNull(), any())
+    doNothing().`when`(profileAndMessageHelper).storeMessage(updateMessageContextCapture.capture(), anyLong())
+
+    given {
+      localState(
+        revision = 10,
+        title = "Title",
+        members = selfAndOthers
+      )
+      serverState(
+        revision = 10,
+        title = "Changed",
+        members = selfAndOthers + secondOther
+      )
+    }
+
+    val result = processor.forceSanityUpdateFromServer(0)
+    assertThat("local should update to server", result.groupState, `is`(GroupsV2StateProcessor.GroupState.GROUP_UPDATED))
+    assertThat("members contains second other", result.latestServer!!.membersList, hasItem(secondOther))
+    assertThat("title should be updated", result.latestServer!!.title, `is`("Changed"))
+
+    val allUpdateMessageContexts = updateMessageContextCapture.allValues
+    assertThat("group update messages contains new member add", allUpdateMessageContexts.map { it.change.newMembersList }, hasItem(hasItem(secondOther)))
+
+    assertThat(
+      "group update messages contains title change",
+      allUpdateMessageContexts.map { it.change.newTitle },
+      hasItem(both<DecryptedString>(notNullValue()).and(hasProperty("value", `is`("Changed"))))
+    )
+  }
+
+  /**
+   * If we preform a forced sanity update, with no differences between local and server, then it should be no-op.
+   */
+  @Test
+  fun noDifferencesNoOpsWithForcedUpdate() {
+    given {
+      localState(
+        revision = 10,
+        title = "Title",
+        members = selfAndOthers
+      )
+      serverState(
+        revision = 10,
+        title = "Title",
+        members = selfAndOthers
+      )
+    }
+
+    val result = processor.forceSanityUpdateFromServer(0)
+    assertThat("local should be unchanged", result.groupState, `is`(GroupsV2StateProcessor.GroupState.GROUP_CONSISTENT_OR_AHEAD))
   }
 }

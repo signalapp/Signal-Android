@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.groups;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.signal.core.util.DatabaseId;
 import org.signal.core.util.Hex;
 import org.signal.libsignal.protocol.kdf.HKDFv3;
 import org.signal.libsignal.zkgroup.InvalidInputException;
@@ -14,7 +15,7 @@ import org.thoughtcrime.securesms.util.Util;
 import java.io.IOException;
 import java.security.SecureRandom;
 
-public abstract class GroupId {
+public abstract class GroupId implements DatabaseId {
 
   private static final String ENCODED_SIGNAL_GROUP_V1_PREFIX = "__textsecure_group__!";
   private static final String ENCODED_SIGNAL_GROUP_V2_PREFIX = "__signal_group__v2__!";
@@ -170,6 +171,11 @@ public abstract class GroupId {
 
   @Override
   public @NonNull String toString() {
+    return encodedId;
+  }
+
+  @Override
+  public @NonNull String serialize() {
     return encodedId;
   }
 

@@ -48,6 +48,7 @@ import org.thoughtcrime.securesms.sms.IncomingGroupUpdateMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupHistoryEntry;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
+import org.whispersystems.signalservice.api.groupsv2.GroupChangeReconstruct;
 import org.whispersystems.signalservice.api.groupsv2.GroupHistoryPage;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Api;
 import org.whispersystems.signalservice.api.groupsv2.InvalidGroupStateException;
@@ -168,6 +169,52 @@ public class GroupsV2StateProcessor {
       this.groupId                 = GroupId.v2(masterKey);
       this.groupSecretParams       = GroupSecretParams.deriveFromMasterKey(groupMasterKey);
       this.profileAndMessageHelper = profileAndMessageHelper;
+    }
+
+    @WorkerThread
+    public GroupUpdateResult forceSanityUpdateFromServer(long timestamp)
+        throws IOException, GroupNotAMemberException
+    {
+      Optional<GroupRecord> localRecord = groupDatabase.getGroup(groupId);
+      DecryptedGroup        localState  = localRecord.map(g -> g.requireV2GroupProperties().getDecryptedGroup()).orElse(null);
+      DecryptedGroup        serverState;
+
+      if (localState == null) {
+        info("No local state to force update");
+        return new GroupUpdateResult(GroupState.GROUP_CONSISTENT_OR_AHEAD, null);
+      }
+
+      try {
+        serverState = groupsV2Api.getGroup(groupSecretParams, groupsV2Authorization.getAuthorizationForToday(serviceIds, groupSecretParams));
+      } catch (NotInGroupException | GroupNotFoundException e) {
+        throw new GroupNotAMemberException(e);
+      } catch (VerificationFailedException | InvalidGroupStateException e) {
+        throw new IOException(e);
+      }
+
+      DecryptedGroupChange    decryptedGroupChange    = GroupChangeReconstruct.reconstructGroupChange(localState, serverState);
+      GlobalGroupState        inputGroupState         = new GlobalGroupState(localState, Collections.singletonList(new ServerGroupLogEntry(serverState, decryptedGroupChange)));
+      AdvanceGroupStateResult advanceGroupStateResult = GroupStateMapper.partiallyAdvanceGroupState(inputGroupState, serverState.getRevision());
+      DecryptedGroup          newLocalState           = advanceGroupStateResult.getNewGlobalGroupState().getLocalState();
+
+      if (newLocalState == null || newLocalState == inputGroupState.getLocalState()) {
+        info("Local state and server state are equal");
+        return new GroupUpdateResult(GroupState.GROUP_CONSISTENT_OR_AHEAD, null);
+      } else {
+        info("Local state (revision: " + localState.getRevision() + ") does not match server state (revision: " + serverState.getRevision() + "), updating");
+      }
+
+      updateLocalDatabaseGroupState(inputGroupState, newLocalState);
+      if (localState.getRevision() == GroupsV2StateProcessor.RESTORE_PLACEHOLDER_REVISION) {
+        info("Inserting single update message for restore placeholder");
+        profileAndMessageHelper.insertUpdateMessages(timestamp, null, Collections.singleton(new LocalGroupLogEntry(newLocalState, null)));
+      } else {
+        info("Inserting force update messages");
+        profileAndMessageHelper.insertUpdateMessages(timestamp, localState, advanceGroupStateResult.getProcessedLogEntries());
+      }
+      profileAndMessageHelper.persistLearnedProfileKeys(inputGroupState);
+
+      return new GroupUpdateResult(GroupState.GROUP_UPDATED, newLocalState);
     }
 
     /**
@@ -560,9 +607,11 @@ public class GroupsV2StateProcessor {
 
     private final Context           context;
     private final ServiceId         serviceId;
-    private final GroupMasterKey    masterKey;
     private final GroupId.V2        groupId;
     private final RecipientDatabase recipientDatabase;
+
+    @VisibleForTesting
+    GroupMasterKey masterKey;
 
     ProfileAndMessageHelper(@NonNull Context context, @NonNull ServiceId serviceId, @NonNull GroupMasterKey masterKey, @NonNull GroupId.V2 groupId, @NonNull RecipientDatabase recipientDatabase) {
       this.context           = context;

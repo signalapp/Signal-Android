@@ -798,6 +798,14 @@ final class GroupManagerV2 {
                                          .updateLocalGroupToRevision(revision, timestamp, getDecryptedGroupChange(signedGroupChange));
     }
 
+    @WorkerThread
+    void forceSanityUpdateFromServer(long timestamp)
+        throws IOException, GroupNotAMemberException
+    {
+      new GroupsV2StateProcessor(context).forGroup(serviceIds, groupMasterKey)
+                                         .forceSanityUpdateFromServer(timestamp);
+    }
+
     private DecryptedGroupChange getDecryptedGroupChange(@Nullable byte[] signedGroupChange) {
       if (signedGroupChange != null) {
         GroupsV2Operations.GroupOperations groupOperations = groupsV2Operations.forGroup(GroupSecretParams.deriveFromMasterKey(groupMasterKey));
@@ -928,24 +936,6 @@ final class GroupManagerV2 {
 
       if (group.isPresent()) {
         Log.i(TAG, "Group already present locally");
-
-        DecryptedGroup currentGroupState = group.get()
-                                                .requireV2GroupProperties()
-                                                .getDecryptedGroup();
-
-        DecryptedGroup updatedGroup = currentGroupState;
-
-        try {
-          if (decryptedChange != null) {
-            updatedGroup = DecryptedGroupUtil.applyWithoutRevisionCheck(updatedGroup, decryptedChange);
-          }
-          updatedGroup = resetRevision(updatedGroup, currentGroupState.getRevision());
-        } catch (NotAbleToApplyGroupV2ChangeException e) {
-          Log.w(TAG, e);
-          updatedGroup = decryptedGroup;
-        }
-
-        groupDatabase.update(groupId, updatedGroup);
       } else {
         groupDatabase.create(groupMasterKey, decryptedGroup);
         Log.i(TAG, "Created local group with placeholder");

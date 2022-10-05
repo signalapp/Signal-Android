@@ -190,7 +190,8 @@ fun groupRecord(
       masterKey.serialize(),
       decryptedGroup.revision,
       decryptedGroup.toByteArray(),
-      distributionId
+      distributionId,
+      System.currentTimeMillis()
     )
   )
 }

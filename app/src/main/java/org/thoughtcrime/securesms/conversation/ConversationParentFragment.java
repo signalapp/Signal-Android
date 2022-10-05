@@ -199,6 +199,7 @@ import org.thoughtcrime.securesms.groups.ui.migration.GroupsV1MigrationSuggestio
 import org.thoughtcrime.securesms.insights.InsightsLauncher;
 import org.thoughtcrime.securesms.invites.InviteReminderModel;
 import org.thoughtcrime.securesms.invites.InviteReminderRepository;
+import org.thoughtcrime.securesms.jobs.ForceUpdateGroupV2Job;
 import org.thoughtcrime.securesms.jobs.GroupV1MigrationJob;
 import org.thoughtcrime.securesms.jobs.GroupV2UpdateSelfProfileKeyJob;
 import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob;
@@ -593,6 +594,8 @@ public class ConversationParentFragment extends Fragment
                              .startChain(new RequestGroupV2InfoJob(groupId))
                              .then(GroupV2UpdateSelfProfileKeyJob.withoutLimits(groupId))
                              .enqueue();
+
+      ForceUpdateGroupV2Job.enqueueIfNecessary(groupId);
 
       if (viewModel.getArgs().isFirstTimeInSelfCreatedGroup()) {
         groupViewModel.inviteFriendsOneTimeIfJustSelfInGroup(getChildFragmentManager(), groupId);

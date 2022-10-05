@@ -189,6 +189,17 @@ public final class GroupManager {
   }
 
   @WorkerThread
+  public static void forceSanityUpdateFromServer(@NonNull Context context,
+                                                 @NonNull GroupMasterKey groupMasterKey,
+                                                 long timestamp)
+      throws GroupChangeBusyException, IOException, GroupNotAMemberException
+  {
+    try (GroupManagerV2.GroupUpdater updater = new GroupManagerV2(context).updater(groupMasterKey)) {
+      updater.forceSanityUpdateFromServer(timestamp);
+    }
+  }
+
+  @WorkerThread
   public static V2GroupServerStatus v2GroupStatus(@NonNull Context context,
                                                   @NonNull ServiceId authServiceId,
                                                   @NonNull GroupMasterKey groupMasterKey)
