@@ -62,6 +62,7 @@ class DonorErrorConfigurationViewModel : ViewModel() {
 
   override fun onCleared() {
     disposables.clear()
+    store.dispose()
   }
 
   fun setSelectedBadge(badgeIndex: Int) {

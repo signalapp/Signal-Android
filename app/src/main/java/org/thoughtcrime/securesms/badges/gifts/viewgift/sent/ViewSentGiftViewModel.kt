@@ -38,6 +38,7 @@ class ViewSentGiftViewModel(
 
   override fun onCleared() {
     disposables.dispose()
+    store.dispose()
   }
 
   class Factory(

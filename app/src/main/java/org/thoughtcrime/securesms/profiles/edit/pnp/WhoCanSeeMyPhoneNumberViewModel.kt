@@ -29,5 +29,6 @@ class WhoCanSeeMyPhoneNumberViewModel : ViewModel() {
 
   override fun onCleared() {
     disposables.clear()
+    store.dispose()
   }
 }

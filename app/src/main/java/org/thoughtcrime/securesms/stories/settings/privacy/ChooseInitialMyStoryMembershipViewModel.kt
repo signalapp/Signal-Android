@@ -31,6 +31,7 @@ class ChooseInitialMyStoryMembershipViewModel @JvmOverloads constructor(
 
   override fun onCleared() {
     disposables.clear()
+    store.dispose()
   }
 
   fun select(selection: DistributionListPrivacyMode): Single<DistributionListPrivacyMode> {

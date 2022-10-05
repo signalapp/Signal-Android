@@ -35,6 +35,7 @@ class ContactChipViewModel : ViewModel() {
     disposables.clear()
     disposableMap.values.forEach { it.dispose() }
     disposableMap.clear()
+    store.dispose()
   }
 
   fun add(selectedContact: SelectedContact) {

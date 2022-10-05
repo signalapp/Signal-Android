@@ -65,6 +65,7 @@ class UsernameEditViewModel extends ViewModel {
   protected void onCleared() {
     super.onCleared();
     disposables.clear();
+    uiState.dispose();
   }
 
   void onNicknameUpdated(@NonNull String nickname) {

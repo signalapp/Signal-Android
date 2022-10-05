@@ -70,6 +70,7 @@ class ViewReceivedGiftViewModel(
 
   override fun onCleared() {
     disposables.dispose()
+    store.dispose()
   }
 
   fun setChecked(isChecked: Boolean) {

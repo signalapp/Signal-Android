@@ -143,6 +143,7 @@ class StoryViewerViewModel(
 
   override fun onCleared() {
     disposables.clear()
+    store.dispose()
   }
 
   fun setSelectedPage(page: Int) {

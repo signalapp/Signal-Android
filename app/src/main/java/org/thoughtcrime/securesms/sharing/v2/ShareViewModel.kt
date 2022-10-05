@@ -72,6 +72,7 @@ class ShareViewModel(
 
   override fun onCleared() {
     disposables.clear()
+    store.dispose()
   }
 
   private fun moveToFailedState(throwable: Throwable? = null) {

@@ -41,5 +41,6 @@ class MediaPreviewV2ViewModel : ViewModel() {
 
   override fun onCleared() {
     disposables.dispose()
+    store.dispose()
   }
 }

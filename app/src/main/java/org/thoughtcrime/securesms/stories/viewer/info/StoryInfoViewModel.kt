@@ -75,6 +75,7 @@ class StoryInfoViewModel(storyId: Long, repository: StoryInfoRepository = StoryI
 
   override fun onCleared() {
     disposables.clear()
+    store.dispose()
   }
 
   class Factory(private val storyId: Long) : ViewModelProvider.Factory {

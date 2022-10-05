@@ -26,6 +26,10 @@ class MediaCaptureViewModel(private val repository: MediaCaptureRepository) : Vi
     }
   }
 
+  override fun onCleared() {
+    store.dispose()
+  }
+
   fun onImageCaptured(data: ByteArray, width: Int, height: Int) {
     repository.renderImageToMedia(data, width, height, this::onMediaRendered, this::onMediaRenderFailed)
   }

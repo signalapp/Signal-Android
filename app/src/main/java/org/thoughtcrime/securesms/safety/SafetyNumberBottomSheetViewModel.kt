@@ -66,6 +66,8 @@ class SafetyNumberBottomSheetViewModel(
 
   override fun onCleared() {
     disposables.clear()
+    destinationStore.dispose()
+    store.dispose()
   }
 
   fun getIdentityRecord(recipientId: RecipientId): Maybe<IdentityRecord> {

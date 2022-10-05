@@ -33,6 +33,10 @@ class DraftViewModel @JvmOverloads constructor(
   val voiceNoteDraft: Draft?
     get() = store.state.voiceNoteDraft
 
+  override fun onCleared() {
+    store.dispose()
+  }
+
   fun setThreadId(threadId: Long) {
     store.update { it.copy(threadId = threadId) }
   }

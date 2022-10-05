@@ -99,6 +99,7 @@ class StoryViewerPageViewModel(
   override fun onCleared() {
     disposables.clear()
     storyCache.clear()
+    store.dispose()
   }
 
   fun hideStory(): Completable {

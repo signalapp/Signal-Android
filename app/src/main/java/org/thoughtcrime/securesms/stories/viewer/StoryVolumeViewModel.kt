@@ -10,6 +10,10 @@ class StoryVolumeViewModel : ViewModel() {
   val state: Flowable<StoryVolumeState> = store.stateFlowable
   val snapshot: StoryVolumeState get() = store.state
 
+  override fun onCleared() {
+    store.dispose()
+  }
+
   fun mute() {
     store.update { it.copy(isMuted = true) }
   }

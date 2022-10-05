@@ -51,6 +51,7 @@ class StoryGroupReplyViewModel(storyId: Long, repository: StoryGroupReplyReposit
 
   override fun onCleared() {
     disposables.clear()
+    store.dispose()
   }
 
   class Factory(private val storyId: Long, private val repository: StoryGroupReplyRepository) : ViewModelProvider.Factory {

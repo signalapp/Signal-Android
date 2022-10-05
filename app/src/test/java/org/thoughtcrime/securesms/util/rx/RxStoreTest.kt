@@ -33,6 +33,7 @@ class RxStoreTest {
     // THEN
     subscriber.assertValueAt(0, 1)
     subscriber.assertNotComplete()
+    testSubject.dispose()
   }
 
   @Test
@@ -50,6 +51,7 @@ class RxStoreTest {
     subscriber.assertValueAt(0, 1)
     subscriber.assertValueAt(1, 2)
     subscriber.assertNotComplete()
+    testSubject.dispose()
   }
 
   @Test
@@ -66,5 +68,6 @@ class RxStoreTest {
     // THEN
     subscriber.assertValueAt(0, 2)
     subscriber.assertNotComplete()
+    testSubject.dispose()
   }
 }

@@ -59,13 +59,14 @@ class StoriesPrivacySettingsViewModel : ViewModel() {
 
     pagingController.set(observablePagedData.controller)
 
-    store.update(observablePagedData.data.toFlowable(BackpressureStrategy.LATEST)) { data, state ->
+    disposables += store.update(observablePagedData.data.toFlowable(BackpressureStrategy.LATEST)) { data, state ->
       state.copy(storyContactItems = data)
     }
   }
 
   override fun onCleared() {
     disposables.clear()
+    store.dispose()
   }
 
   fun setStoriesEnabled(isEnabled: Boolean) {
