@@ -253,7 +253,7 @@ final class MessageRequestRepository {
     executor.execute(() -> {
       Recipient recipient = liveRecipient.resolve();
 
-      RecipientUtil.unblock(context, recipient);
+      RecipientUtil.unblock(recipient);
 
       if (TextSecurePreferences.isMultiDevice(context)) {
         ApplicationDependencies.getJobManager().add(MultiDeviceMessageRequestResponseJob.forAccept(liveRecipient.getId()));
@@ -277,6 +277,6 @@ final class MessageRequestRepository {
     Long    threadId = SignalDatabase.threads().getThreadIdFor(recipient.getId());
 
     return threadId != null &&
-        (RecipientUtil.hasSentMessageInThread(context, threadId) || RecipientUtil.isPreMessageRequestThread(context, threadId));
+        (RecipientUtil.hasSentMessageInThread(threadId) || RecipientUtil.isPreMessageRequestThread(threadId));
   }
 }

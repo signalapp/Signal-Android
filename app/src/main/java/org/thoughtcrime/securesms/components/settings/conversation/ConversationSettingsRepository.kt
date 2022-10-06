@@ -175,7 +175,7 @@ class ConversationSettingsRepository(
   fun unblock(recipientId: RecipientId) {
     SignalExecutors.BOUNDED.execute {
       val recipient = Recipient.resolved(recipientId)
-      RecipientUtil.unblock(context, recipient)
+      RecipientUtil.unblock(recipient)
     }
   }
 
@@ -189,7 +189,7 @@ class ConversationSettingsRepository(
   fun unblock(groupId: GroupId) {
     SignalExecutors.BOUNDED.execute {
       val recipient = Recipient.externalGroupExact(groupId)
-      RecipientUtil.unblock(context, recipient)
+      RecipientUtil.unblock(recipient)
     }
   }
 

@@ -69,7 +69,7 @@ class BlockedUsersRepository {
 
   void unblock(@NonNull RecipientId recipientId, @NonNull Runnable success) {
     SignalExecutors.BOUNDED.execute(() -> {
-      RecipientUtil.unblock(context, Recipient.resolved(recipientId));
+      RecipientUtil.unblock(Recipient.resolved(recipientId));
       success.run();
     });
   }

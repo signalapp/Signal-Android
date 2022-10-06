@@ -740,7 +740,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     ConversationListViewModel.Factory viewModelFactory = new ConversationListViewModel.Factory(isArchived(),
                                                                                                getString(R.string.note_to_self));
 
-    viewModel = new ViewModelProvider(this, viewModelFactory).get(ConversationListViewModel.class);
+    viewModel = new ViewModelProvider(this, (ViewModelProvider.Factory) viewModelFactory).get(ConversationListViewModel.class);
 
     viewModel.getSearchResult().observe(getViewLifecycleOwner(), this::onSearchResultChanged);
     viewModel.getMegaphone().observe(getViewLifecycleOwner(), this::onMegaphoneChanged);

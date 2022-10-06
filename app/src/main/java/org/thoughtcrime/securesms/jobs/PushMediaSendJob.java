@@ -124,7 +124,7 @@ public class PushMediaSendJob extends PushSendJob {
     try {
       log(TAG, String.valueOf(message.getSentTimeMillis()), "Sending message: " + messageId + ", Recipient: " + message.getRecipient().getId() + ", Thread: " + threadId + ", Attachments: " + buildAttachmentString(message.getAttachments()));
 
-      RecipientUtil.shareProfileIfFirstSecureMessage(context, message.getRecipient());
+      RecipientUtil.shareProfileIfFirstSecureMessage(message.getRecipient());
 
       Recipient              recipient  = message.getRecipient().fresh();
       byte[]                 profileKey = recipient.getProfileKey();

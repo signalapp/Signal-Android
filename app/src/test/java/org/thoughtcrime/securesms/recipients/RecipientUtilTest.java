@@ -217,7 +217,7 @@ public class RecipientUtilTest {
     when(mockMmsSmsDatabase.getOutgoingSecureConversationCount(anyLong())).thenReturn(0);
 
     // WHEN
-    RecipientUtil.shareProfileIfFirstSecureMessage(context, recipient);
+    RecipientUtil.shareProfileIfFirstSecureMessage(recipient);
 
     // THEN
     verify(mockRecipientDatabase).setProfileSharing(recipient.getId(), true);
@@ -230,7 +230,7 @@ public class RecipientUtilTest {
     when(mockMmsSmsDatabase.getOutgoingSecureConversationCount(anyLong())).thenReturn(5);
 
     // WHEN
-    RecipientUtil.shareProfileIfFirstSecureMessage(context, recipient);
+    RecipientUtil.shareProfileIfFirstSecureMessage(recipient);
 
     // THEN
     verify(mockRecipientDatabase, never()).setProfileSharing(recipient.getId(), true);

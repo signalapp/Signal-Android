@@ -1286,7 +1286,7 @@ public class ConversationParentFragment extends Fragment
     final Context context = requireContext().getApplicationContext();
     BlockUnblockDialog.showUnblockFor(requireContext(), getLifecycle(), recipient.get(), () -> {
       SignalExecutors.BOUNDED.execute(() -> {
-        RecipientUtil.unblock(context, recipient.get());
+        RecipientUtil.unblock(recipient.get());
       });
     });
   }
@@ -2232,7 +2232,7 @@ public class ConversationParentFragment extends Fragment
   }
 
   private void initializeLinkPreviewObserver() {
-    linkPreviewViewModel = new ViewModelProvider(this, new LinkPreviewViewModel.Factory(new LinkPreviewRepository())).get(LinkPreviewViewModel.class);
+    linkPreviewViewModel = new ViewModelProvider(this, (ViewModelProvider.Factory) new LinkPreviewViewModel.Factory(new LinkPreviewRepository())).get(LinkPreviewViewModel.class);
 
     linkPreviewViewModel.getLinkPreviewState().observe(getViewLifecycleOwner(), previewState -> {
       if (previewState == null) return;
@@ -2252,7 +2252,7 @@ public class ConversationParentFragment extends Fragment
   private void initializeSearchObserver() {
     ConversationSearchViewModel.Factory viewModelFactory = new ConversationSearchViewModel.Factory(getString(R.string.note_to_self));
 
-    searchViewModel = new ViewModelProvider(this, viewModelFactory).get(ConversationSearchViewModel.class);
+    searchViewModel = new ViewModelProvider(this, (ViewModelProvider.Factory) viewModelFactory).get(ConversationSearchViewModel.class);
 
     searchViewModel.getSearchResults().observe(getViewLifecycleOwner(), result -> {
       if (result == null) return;
@@ -2269,7 +2269,7 @@ public class ConversationParentFragment extends Fragment
   private void initializeStickerObserver() {
     StickerSearchRepository repository = new StickerSearchRepository(requireContext());
 
-    stickerViewModel = new ViewModelProvider(this, new ConversationStickerViewModel.Factory(requireActivity().getApplication(), repository))
+    stickerViewModel = new ViewModelProvider(this, (ViewModelProvider.Factory) new ConversationStickerViewModel.Factory(requireActivity().getApplication(), repository))
                                          .get(ConversationStickerViewModel.class);
 
     stickerViewModel.getStickerResults().observe(getViewLifecycleOwner(), stickers -> {
@@ -2308,7 +2308,7 @@ public class ConversationParentFragment extends Fragment
   }
 
   private void initializeViewModel(@NonNull ConversationIntents.Args args) {
-    this.viewModel = new ViewModelProvider(this, new ConversationViewModel.Factory()).get(ConversationViewModel.class);
+    this.viewModel = new ViewModelProvider(this, (ViewModelProvider.Factory) new ConversationViewModel.Factory()).get(ConversationViewModel.class);
 
     this.viewModel.setArgs(args);
     this.viewModel.getEvents().observe(getViewLifecycleOwner(), this::onViewModelEvent);
@@ -2316,7 +2316,7 @@ public class ConversationParentFragment extends Fragment
   }
 
   private void initializeGroupViewModel() {
-    groupViewModel = new ViewModelProvider(this, new ConversationGroupViewModel.Factory()).get(ConversationGroupViewModel.class);
+    groupViewModel = new ViewModelProvider(this, (ViewModelProvider.Factory) new ConversationGroupViewModel.Factory()).get(ConversationGroupViewModel.class);
     recipient.observe(this, groupViewModel::onRecipientChange);
     groupViewModel.getGroupActiveState().observe(getViewLifecycleOwner(), unused -> invalidateOptionsMenu());
     groupViewModel.getReviewState().observe(getViewLifecycleOwner(), this::presentGroupReviewBanner);

@@ -136,7 +136,7 @@ public abstract class WebRtcActionProcessor {
     SignalServiceCallMessage callMessage         = SignalServiceCallMessage.forOffer(offerMessage, true, destinationDeviceId);
 
     Recipient callRecipient = currentState.getCallInfoState().getCallRecipient();
-    RecipientUtil.shareProfileIfFirstSecureMessage(context, callRecipient);
+    RecipientUtil.shareProfileIfFirstSecureMessage(callRecipient);
     webRtcInteractor.sendCallMessage(callMetadata.getRemotePeer(), callMessage);
 
     return currentState;
@@ -179,7 +179,7 @@ public abstract class WebRtcActionProcessor {
       return currentState;
     }
 
-    if (!RecipientUtil.isCallRequestAccepted(context.getApplicationContext(), callMetadata.getRemotePeer().getRecipient())) {
+    if (!RecipientUtil.isCallRequestAccepted(callMetadata.getRemotePeer().getRecipient())) {
       Log.w(tag, "Caller is untrusted.");
       currentState = currentState.getActionProcessor().handleSendHangup(currentState, callMetadata, WebRtcData.HangupMetadata.fromType(HangupMessage.Type.NEED_PERMISSION), true);
       webRtcInteractor.insertMissedCall(callMetadata.getRemotePeer(), receivedOfferMetadata.getServerReceivedTimestamp(), offerMetadata.getOfferType() == OfferMessage.Type.VIDEO_CALL);

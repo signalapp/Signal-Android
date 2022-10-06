@@ -189,7 +189,7 @@ public final class PushGroupSendJob extends PushSendJob {
       log(TAG, String.valueOf(message.getSentTimeMillis()), "Sending message: " + messageId + ", Recipient: " + message.getRecipient().getId() + ", Thread: " + threadId + ", Attachments: " + buildAttachmentString(message.getAttachments()));
 
       if (!groupRecipient.resolve().isProfileSharing() && !database.isGroupQuitMessage(messageId)) {
-        RecipientUtil.shareProfileIfFirstSecureMessage(context, groupRecipient);
+        RecipientUtil.shareProfileIfFirstSecureMessage(groupRecipient);
       }
 
       List<Recipient>   target;

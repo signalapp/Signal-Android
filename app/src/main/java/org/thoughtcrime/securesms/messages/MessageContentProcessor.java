@@ -312,7 +312,7 @@ public final class MessageContentProcessor {
         if (content.isNeedsReceipt() && messageId != null) {
           handleNeedsDeliveryReceipt(content, message, messageId);
         } else if (!content.isNeedsReceipt()) {
-          if (RecipientUtil.shouldHaveProfileKey(context, threadRecipient)) {
+          if (RecipientUtil.shouldHaveProfileKey(threadRecipient)) {
             Log.w(TAG, "Received an unsealed sender message from " + senderRecipient.getId() + ", but they should already have our profile key. Correcting.");
 
             if (groupId.isPresent() && groupId.get().isV2()) {
