@@ -167,7 +167,9 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
       viewLifecycleOwner,
       object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
-          tabsViewModel.onChatsSelected()
+          if (!closeSearchIfOpen()) {
+            tabsViewModel.onChatsSelected()
+          }
         }
       }
     )
@@ -349,5 +351,26 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
 
     viewModel.isTransitioningToAnotherScreen = true
     startActivity(intent, options)
+  }
+
+  private fun isSearchOpen(): Boolean {
+    return isSearchVisible()
+  }
+
+  private fun isSearchVisible(): Boolean {
+    return requreSearchBinder().getSearchToolbar().resolved() && requreSearchBinder().getSearchToolbar().get().getVisibility() == View.VISIBLE
+  }
+
+  private fun closeSearchIfOpen(): Boolean {
+    if (isSearchOpen()) {
+      requreSearchBinder().getSearchToolbar().get().collapse()
+      requreSearchBinder().onSearchClosed()
+      return true
+    }
+    return false
+  }
+
+  private fun requreSearchBinder(): SearchBinder {
+    return requireListener()
   }
 }
