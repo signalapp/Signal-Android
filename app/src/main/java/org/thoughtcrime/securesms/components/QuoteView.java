@@ -305,12 +305,11 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
       missingStoryReaction.setVisibility(View.GONE);
     }
 
-    boolean isTextStory = !attachments.containsMediaSlide() && isStoryReply();
-
+    StoryTextPostModel textPostModel = isStoryReply() ? getStoryTextPost(body) : null;
     if (!TextUtils.isEmpty(body) || !attachments.containsMediaSlide()) {
-      if (isTextStory && body != null) {
+      if (textPostModel != null) {
         try {
-          bodyView.setText(getStoryTextPost(body).getText());
+          bodyView.setText(textPostModel.getText());
         } catch (Exception e) {
           Log.w(TAG, "Could not parse body of text post.", e);
           bodyView.setText("");
@@ -365,8 +364,8 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
     mainView.setMinimumHeight(isStoryReply() && originalMissing ? 0 : thumbHeight);
     thumbnailView.setPadding(0, 0, 0, 0);
 
-    if (!attachments.containsMediaSlide() && isStoryReply()) {
-      StoryTextPostModel model = getStoryTextPost(body);
+    StoryTextPostModel model = isStoryReply() ? getStoryTextPost(body) : null;
+    if (model != null) {
       attachmentVideoOverlayView.setVisibility(GONE);
       attachmentContainerView.setVisibility(GONE);
       thumbnailView.setVisibility(VISIBLE);
