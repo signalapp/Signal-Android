@@ -1,19 +1,19 @@
 package org.thoughtcrime.securesms.stories.viewer.info
 
+import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
+import org.thoughtcrime.securesms.messagedetails.MessageDetails
+
 /**
  * Contains the needed information to render the story info sheet.
  */
 data class StoryInfoState(
-  val sentMillis: Long = -1L,
-  val receivedMillis: Long = -1L,
-  val size: Long = -1L,
-  val isOutgoing: Boolean = false,
-  val sections: Map<SectionKey, List<StoryInfoRecipientRow.Model>> = emptyMap(),
-  val isLoaded: Boolean = false
+  val messageDetails: MessageDetails? = null
 ) {
-  enum class SectionKey {
-    FAILED,
-    SENT_TO,
-    SENT_FROM
-  }
+  private val mediaMessage = messageDetails?.conversationMessage?.messageRecord as? MediaMmsMessageRecord
+
+  val sentMillis: Long = mediaMessage?.dateSent ?: -1L
+  val receivedMillis: Long = mediaMessage?.dateReceived ?: -1L
+  val size: Long = mediaMessage?.slideDeck?.thumbnailSlide?.fileSize ?: 0
+  val isOutgoing: Boolean = mediaMessage?.isOutgoing ?: false
+  val isLoaded: Boolean = mediaMessage != null
 }

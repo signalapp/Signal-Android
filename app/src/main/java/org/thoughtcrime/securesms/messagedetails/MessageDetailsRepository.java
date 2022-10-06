@@ -10,9 +10,11 @@ import androidx.lifecycle.MutableLiveData;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.conversation.ConversationMessage.ConversationMessageFactory;
+import org.thoughtcrime.securesms.database.DatabaseObserver;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.GroupReceiptDatabase;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
+import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
@@ -24,7 +26,10 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import java.util.LinkedList;
 import java.util.List;
 
-final class MessageDetailsRepository {
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+
+public final class MessageDetailsRepository {
 
   private final Context context = ApplicationDependencies.getApplication();
 
@@ -44,11 +49,33 @@ final class MessageDetailsRepository {
     return liveData;
   }
 
+  public @NonNull Observable<MessageDetails> getMessageDetails(@NonNull MessageId messageId) {
+    return Observable.<MessageDetails>create(emitter -> {
+      DatabaseObserver.MessageObserver messageObserver = mId -> {
+        try {
+          MessageRecord messageRecord = messageId.isMms() ? SignalDatabase.mms().getMessageRecord(messageId.getId())
+                                                          : SignalDatabase.sms().getMessageRecord(messageId.getId());
+
+          MessageDetails messageDetails = getRecipientDeliveryStatusesInternal(messageRecord);
+
+          emitter.onNext(messageDetails);
+        } catch (NoSuchMessageException e) {
+          emitter.onError(e);
+        }
+      };
+
+      ApplicationDependencies.getDatabaseObserver().registerMessageUpdateObserver(messageObserver);
+      emitter.setCancellable(() -> ApplicationDependencies.getDatabaseObserver().unregisterObserver(messageObserver));
+
+      messageObserver.onMessageChanged(messageId);
+    }).observeOn(Schedulers.io());
+  }
+
   @WorkerThread
   private @NonNull MessageDetails getRecipientDeliveryStatusesInternal(@NonNull MessageRecord messageRecord) {
     List<RecipientDeliveryStatus> recipients = new LinkedList<>();
 
-    if (!messageRecord.getRecipient().isGroup()) {
+    if (!messageRecord.getRecipient().isGroup() && !messageRecord.getRecipient().isDistributionList()) {
       recipients.add(new RecipientDeliveryStatus(messageRecord,
                                                  messageRecord.getRecipient(),
                                                  getStatusFor(messageRecord),

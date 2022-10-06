@@ -8,7 +8,7 @@ import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
-final class RecipientDeliveryStatus {
+public final class RecipientDeliveryStatus {
 
   enum Status {
     UNKNOWN, PENDING, SENT, DELIVERED, READ, VIEWED, SKIPPED,
@@ -32,31 +32,31 @@ final class RecipientDeliveryStatus {
     this.keyMismatchFailure = keyMismatchFailure;
   }
 
-  @NonNull MessageRecord getMessageRecord() {
+  public @NonNull MessageRecord getMessageRecord() {
     return messageRecord;
   }
 
-  @NonNull Status getDeliveryStatus() {
+  public @NonNull Status getDeliveryStatus() {
     return deliveryStatus;
   }
 
-  boolean isUnidentified() {
+  public boolean isUnidentified() {
     return isUnidentified;
   }
 
-  long getTimestamp() {
+  public long getTimestamp() {
     return timestamp;
   }
 
-  @NonNull Recipient getRecipient() {
+  public @NonNull Recipient getRecipient() {
     return recipient;
   }
 
-  @Nullable NetworkFailure getNetworkFailure() {
+  public @Nullable NetworkFailure getNetworkFailure() {
     return networkFailure;
   }
 
-  @Nullable IdentityKeyMismatch getKeyMismatchFailure() {
+  public @Nullable IdentityKeyMismatch getKeyMismatchFailure() {
     return keyMismatchFailure;
   }
 }

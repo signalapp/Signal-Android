@@ -4,7 +4,7 @@ import android.view.View
 import android.widget.TextView
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.AvatarImageView
-import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.messagedetails.RecipientDeliveryStatus
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
@@ -21,17 +21,15 @@ object StoryInfoRecipientRow {
   }
 
   class Model(
-    val recipient: Recipient,
-    val date: Long,
-    val status: Int,
-    val isFailed: Boolean
+    val recipientDeliveryStatus: RecipientDeliveryStatus
   ) : MappingModel<Model> {
     override fun areItemsTheSame(newItem: Model): Boolean {
-      return recipient.id == newItem.recipient.id
+      return recipientDeliveryStatus.recipient.id == newItem.recipientDeliveryStatus.recipient.id
     }
 
     override fun areContentsTheSame(newItem: Model): Boolean {
-      return recipient.hasSameContent(newItem.recipient) && date == newItem.date
+      return recipientDeliveryStatus.recipient.hasSameContent(newItem.recipientDeliveryStatus.recipient) &&
+        recipientDeliveryStatus.timestamp == newItem.recipientDeliveryStatus.timestamp
     }
   }
 
@@ -42,9 +40,9 @@ object StoryInfoRecipientRow {
     private val timestampView: TextView = itemView.findViewById(R.id.story_info_timestamp)
 
     override fun bind(model: Model) {
-      avatarView.setRecipient(model.recipient)
-      nameView.text = model.recipient.getDisplayName(context)
-      timestampView.text = DateUtils.getTimeString(context, Locale.getDefault(), model.date)
+      avatarView.setRecipient(model.recipientDeliveryStatus.recipient)
+      nameView.text = model.recipientDeliveryStatus.recipient.getDisplayName(context)
+      timestampView.text = DateUtils.getTimeString(context, Locale.getDefault(), model.recipientDeliveryStatus.timestamp)
     }
   }
 }
