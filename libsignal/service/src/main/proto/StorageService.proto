@@ -174,7 +174,8 @@ message AccountRecord {
            bool                   keepMutedChatsArchived        = 25;
            bool                   hasSetMyStoriesPrivacy        = 26;
            bool                   hasViewedOnboardingStory      = 27;
-           bool                   storiesDisabled               = 28;
+           reserved            /* storiesDisabled */              28;
+           bool                   storiesDisabled               = 29;
 }
 
 message StoryDistributionListRecord {
