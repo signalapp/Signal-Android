@@ -4824,6 +4824,8 @@
     <string name="StoryViewItem__remove_viewer">കാണുന്നയാളെ നീക്കം ചെയ്യുക</string>
     <!-- Displayed when a story has no replies yet -->
     <string name="StoryGroupReplyFragment__no_replies_yet">ഇതുവരെ മറുപടികളൊന്നുമില്ല</string>
+    <!-- Displayed when no longer a group member -->
+    <string name="StoryGroupReplyFragment__you_cant_reply">You can\'t reply to this story because you\'re no longer a member of this group.</string>
     <!-- Displayed for each user that reacted to a story when viewing replies -->
     <string name="StoryGroupReactionReplyItem__reacted_to_the_story">സ്റ്റോറിയോട് പ്രതികരിച്ചു</string>
     <!-- Label for story views tab -->

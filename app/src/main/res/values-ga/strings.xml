@@ -4103,9 +4103,9 @@
     <!-- Alert dialog description to let user know why recovery phrase needs to be saved -->
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">Ligeann do fhrása athshlánaithe duit d\'iarmhéid a aischur sa chás is measa. Molaimid go láidir duit é a shábháil.</string>
     <!-- Alert dialog option to skip recovery phrase -->
-    <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">Ná bac le Frása Athshlánaithe</string>
+    <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">Scipeáil Frása Athshlánaithe</string>
     <!-- Alert dialog option to cancel dialog-->
-    <string name="PaymentsRecoveryStartFragment__cancel">Cealaigh</string>
+    <string name="PaymentsRecoveryStartFragment__cancel">Cuir ar ceal</string>
 
     <!-- PaymentsRecoveryPasteFragment -->
     <string name="PaymentsRecoveryPasteFragment__paste_recovery_phrase">Paste Recovery Phrase</string>
@@ -4259,9 +4259,9 @@
     <!-- Preference title to delete sms -->
     <string name="SmsSettingsFragment__remove_sms_messages">Remove SMS messages</string>
     <!-- Snackbar text to confirm deletion -->
-    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Teachtaireachtaí SMS á mbaint de Signal...</string>
+    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Teachtaireachtaí SMS á mbaint ó Signal...</string>
     <!-- Snackbar text to indicate can delete later -->
-    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">Is féidir leat teachtaireachtaí SMS a bhaint de Signal i Socruithe uair ar bith.</string>
+    <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">Is féidir leat teachtaireachtaí SMS a bhaint ó Signal sna Socruithe am ar bith.</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">Teachtaireachtaí</string>
@@ -4507,27 +4507,27 @@
     <!-- Context menu item message -->
     <string name="NewConversationActivity__message">Teachtaireacht</string>
     <!-- Context menu item audio call -->
-    <string name="NewConversationActivity__audio_call">Glao Fuaime</string>
+    <string name="NewConversationActivity__audio_call">Guthghlao</string>
     <!-- Context menu item video call -->
     <string name="NewConversationActivity__video_call">Físghlao</string>
     <!-- Context menu item remove -->
-    <string name="NewConversationActivity__remove">Bain é</string>
+    <string name="NewConversationActivity__remove">Bain</string>
     <!-- Context menu item block -->
-    <string name="NewConversationActivity__block">Bac Nua</string>
+    <string name="NewConversationActivity__block">Cuir bac air/uirthi</string>
     <!-- Dialog title when removing a contact -->
     <string name="NewConversationActivity__remove_s">Bain %1$s?</string>
     <!-- Dialog message when removing a contact -->
     <string name="NewConversationActivity__you_wont_see_this_person">Ní fheicfidh tú an duine seo agus cuardach á dhéanamh agat. Gheobhaidh tú iarratas teachtaireachta má sheolfaidh an duine sin teachtaireacht chugat amach anseo.</string>
     <!-- Snackbar message after removing a contact -->
-    <string name="NewConversationActivity__s_has_been_removed">Baineadh %1$s</string>
+    <string name="NewConversationActivity__s_has_been_removed">%1$s bainte</string>
     <!-- Snackbar message after blocking a contact -->
-    <string name="NewConversationActivity__s_has_been_blocked">Cuireadh bac ar %1$s</string>
+    <string name="NewConversationActivity__s_has_been_blocked">Bac curtha ar %1$s</string>
     <!-- Dialog title when remove target contact is in system contacts -->
     <string name="NewConversationActivity__unable_to_remove_s">Ní féidir %1$s a bhaint</string>
     <!-- Dialog message when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__this_person_is_saved_to_your">Tá an duine seo sábháilte i dTeagmhálaithe ar do ghléas. Scrios an duine sin de do Theagmhálaithe agus triail arís.</string>
+    <string name="NewConversationActivity__this_person_is_saved_to_your">Tá an duine seo sábháilte i dTeagmhálaithe ar do ghléas. Scrios an duine sin ó do Theagmhálaithe agus triail arís.</string>
     <!-- Dialog action to view contact when they can't be removed otherwise -->
-    <string name="NewConversationActivity__view_contact">Féach an teagmhálaí</string>
+    <string name="NewConversationActivity__view_contact">Féach ar an teagmhálaí</string>
 
     <!-- ContactFilterView -->
     <string name="ContactFilterView__search_name_or_number">Cuardaigh ainm nó uimhir</string>
@@ -5046,7 +5046,7 @@
     <!-- Subtitle for "My Stories" row item when user has not added stories -->
     <string name="StoriesLandingFragment__tap_to_add_a_story">Tapáil chun scéal a chur leis</string>
     <!-- Displayed when there are no stories to display -->
-    <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now">Níl aon nuashonruithe le déanaí ann lena dtaispeáint díreach anois.</string>
+    <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now">Níl aon nuashonruithe le déanaí ann le taispeáint díreach anois.</string>
     <!-- Context menu option to hide a story -->
     <string name="StoriesLandingItem__hide_story">Hide Story</string>
     <!-- Context menu option to unhide a story -->
@@ -5145,6 +5145,8 @@
     <string name="StoryViewItem__remove_viewer">Bain an t-amharcóir</string>
     <!-- Displayed when a story has no replies yet -->
     <string name="StoryGroupReplyFragment__no_replies_yet">No replies yet</string>
+    <!-- Displayed when no longer a group member -->
+    <string name="StoryGroupReplyFragment__you_cant_reply">You can\'t reply to this story because you\'re no longer a member of this group.</string>
     <!-- Displayed for each user that reacted to a story when viewing replies -->
     <string name="StoryGroupReactionReplyItem__reacted_to_the_story">Reacted to the story</string>
     <!-- Label for story views tab -->
@@ -5593,7 +5595,7 @@
     <!-- Story info "Sent from" header -->
     <string name="StoryInfoBottomSheetDialogFragment__sent_from">Seolta ó</string>
     <!-- Story info "Failed" header -->
-    <string name="StoryInfoBottomSheetDialogFragment__failed">Teipthe</string>
+    <string name="StoryInfoBottomSheetDialogFragment__failed">Theip air</string>
     <!-- Story Info context menu label -->
     <string name="StoryInfoBottomSheetDialogFragment__info">Eolas</string>
 
@@ -5634,7 +5636,7 @@
     <!-- Title of the screen -->
     <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">Export your SMS messages</string>
     <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">Is féidir leat do theachtaireachtaí SMS a easpórtáil go dtí bunachar sonraí SMS do ghutháin. Ligeann sé seo d\'aipeanna SMS eile ar do ghuthán iad a rochtain agus a iompórtáil. Ní chruthaíonn sé seo comhad inroinnte de stair do theachtaireachtaí SMS.</string>
+    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">Is féidir leat do theachtaireachtaí SMS a easpórtáil chuig bunachar sonraí SMS do ghutháin. Ligeann sé seo d\'aipeanna eile SMS ar do ghuthán iad a rochtain agus a iompórtáil. Ní chruthaíonn sé seo comhad in-chomhroinnte de stair do theachtaireachtaí SMS.</string>
     <!-- Button label to begin export -->
     <string name="ExportYourSmsMessagesFragment__continue">Ar Aghaidh</string>
 
@@ -5664,13 +5666,13 @@
     <!-- Instruction step for choosing a new default sms app -->
     <string name="ChooseANewDefaultSmsAppFragment__select_sms_app_from_the_list">Roghnaigh \"Aip SMS\" ón liosta</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">Roghnaigh aip eile chun í a úsáid le haghaidh cur teachtaireachtaí SMS</string>
+    <string name="ChooseANewDefaultSmsAppFragment__choose_another_app_to_use_for_sms_messaging">Roghnaigh aip eile le húsáid le cur teachtaireachtaí SMS</string>
     <!-- Instruction step for choosing a new default sms app -->
     <string name="ChooseANewDefaultSmsAppFragment__return_to_signal">Fill ar Signal</string>
     <!-- Instruction step for choosing a new default sms app -->
     <string name="ChooseANewDefaultSmsAppFragment__open_your_phones_settings_app">Oscail aip Socruithe do ghutháin</string>
     <!-- Instruction step for choosing a new default sms app -->
-    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">Téigh go dtí \"Aipeanna\" &gt; \"Aipeanna réamhshocraithe\" &gt; \"Aip SMS\"</string>
+    <string name="ChooseANewDefaultSmsAppFragment__navigate_to_apps_default_apps_sms_app">Téigh chuig \"Aipeanna\" &gt; \"Aipeanna réamhshocraithe\" &gt; \"Aip SMS\"</string>
 
     <!-- RemoveSmsMessagesDialogFragment -->
     <!-- Action button to keep messages -->
@@ -5680,7 +5682,7 @@
     <!-- Title of dialog -->
     <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Remove SMS messages from Signal?</string>
     <!-- Message of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">Is féidir leat teachtaireachtaí SMS a bhaint de Signal anois chun spás stórála a ghlanadh. Beidh siad fós ar fáil d\'aipeanna SMS eile ar do ghuthán fiú má bhaineann tú iad.</string>
+    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">Is féidir leat teachtaireachtaí SMS a bhaint ó Signal anois chun spás stórála a ghlanadh. Beidh siad fós ar fáil ag aipeanna eile SMS ar do ghuthán fiú má bhaineann tú iad.</string>
 
     <!-- SetSignalAsDefaultSmsAppFragment -->
     <!-- Title of the screen -->

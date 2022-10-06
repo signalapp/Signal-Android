@@ -4824,6 +4824,8 @@
     <string name="StoryViewItem__remove_viewer">Fjern seer</string>
     <!-- Displayed when a story has no replies yet -->
     <string name="StoryGroupReplyFragment__no_replies_yet">Ingen svar ennå</string>
+    <!-- Displayed when no longer a group member -->
+    <string name="StoryGroupReplyFragment__you_cant_reply">You can\'t reply to this story because you\'re no longer a member of this group.</string>
     <!-- Displayed for each user that reacted to a story when viewing replies -->
     <string name="StoryGroupReactionReplyItem__reacted_to_the_story">Reagerte på storyen</string>
     <!-- Label for story views tab -->

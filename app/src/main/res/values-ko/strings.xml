@@ -4717,6 +4717,8 @@
     <string name="StoryViewItem__remove_viewer">볼 수 있는 사람 제거</string>
     <!-- Displayed when a story has no replies yet -->
     <string name="StoryGroupReplyFragment__no_replies_yet">답장 없음</string>
+    <!-- Displayed when no longer a group member -->
+    <string name="StoryGroupReplyFragment__you_cant_reply">You can\'t reply to this story because you\'re no longer a member of this group.</string>
     <!-- Displayed for each user that reacted to a story when viewing replies -->
     <string name="StoryGroupReactionReplyItem__reacted_to_the_story">스토리에 반응함</string>
     <!-- Label for story views tab -->
