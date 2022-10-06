@@ -10,6 +10,19 @@ import org.thoughtcrime.securesms.R
 
 object StoryDialogs {
 
+  fun removeGroupStory(
+    context: Context,
+    groupName: String,
+    onConfirmed: () -> Unit
+  ) {
+    MaterialAlertDialogBuilder(context)
+      .setTitle(R.string.StoryDialogs__remove_group_story)
+      .setMessage(context.getString(R.string.StoryDialogs__s_will_be_removed, groupName))
+      .setPositiveButton(R.string.StoryDialogs__remove) { _, _ -> onConfirmed() }
+      .setNegativeButton(android.R.string.cancel) { _, _ -> }
+      .show()
+  }
+
   fun deleteDistributionList(
     context: Context,
     distributionListName: String,

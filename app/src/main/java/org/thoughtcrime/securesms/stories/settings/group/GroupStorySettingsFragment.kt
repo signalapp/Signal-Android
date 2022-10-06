@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.conversation.ConversationIntents
+import org.thoughtcrime.securesms.stories.dialogs.StoryDialogs
 import org.thoughtcrime.securesms.stories.settings.custom.PrivateStoryItem
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
@@ -94,7 +95,12 @@ class GroupStorySettingsFragment : DSLSettingsFragment(menuId = R.menu.story_gro
           DSLSettingsText.ColorModifier(ContextCompat.getColor(requireContext(), R.color.signal_colorError))
         ),
         onClick = {
-          viewModel.doNotDisplayAsStory()
+          StoryDialogs.removeGroupStory(
+            requireContext(),
+            state.name
+          ) {
+            viewModel.doNotDisplayAsStory()
+          }
         }
       )
     }

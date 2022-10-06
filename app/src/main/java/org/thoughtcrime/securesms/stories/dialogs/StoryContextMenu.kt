@@ -66,7 +66,7 @@ object StoryContextMenu {
     val intent = if (messageRecord.storyType.isTextStory) {
       val textStoryBody = StoryTextPost.parseFrom(Base64.decode(messageRecord.body)).body
       val linkUrl = messageRecord.linkPreviews.firstOrNull()?.url ?: ""
-      val shareText = "${textStoryBody} $linkUrl".trim()
+      val shareText = "$textStoryBody $linkUrl".trim()
 
       ShareCompat.IntentBuilder(fragment.requireContext())
         .setText(shareText)
