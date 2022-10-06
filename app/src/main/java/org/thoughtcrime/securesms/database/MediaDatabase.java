@@ -63,6 +63,7 @@ public class MediaDatabase extends Database {
                                                    + " FROM " + MmsDatabase.TABLE_NAME
                                                    + " WHERE " + MmsDatabase.THREAD_ID + " __EQUALITY__ ?) AND (%s) AND "
                                                    + MmsDatabase.VIEW_ONCE + " = 0 AND "
+                                                   + MmsDatabase.STORY_TYPE + " = 0 AND "
                                                    + AttachmentDatabase.DATA + " IS NOT NULL AND "
                                                    + "(" + AttachmentDatabase.QUOTE + " = 0 OR (" + AttachmentDatabase.QUOTE + " = 1 AND " + AttachmentDatabase.DATA_HASH + " IS NULL)) AND "
                                                    + AttachmentDatabase.STICKER_PACK_ID + " IS NULL AND "
