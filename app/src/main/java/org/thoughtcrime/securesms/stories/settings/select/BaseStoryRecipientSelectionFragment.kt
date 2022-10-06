@@ -147,7 +147,7 @@ abstract class BaseStoryRecipientSelectionFragment : Fragment(R.layout.stories_b
       canSelectSelf = false,
       currentSelection = emptyList(),
       displaySelectionCount = false,
-      displayChips = false,
+      displayChips = true,
       checkboxResource = checkboxResource
     )
 

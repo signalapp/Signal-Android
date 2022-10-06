@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:viewBindingIgnore="true"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:viewBindingIgnore="true">
 
     <org.thoughtcrime.securesms.util.views.DarkOverflowToolbar
         android:id="@+id/toolbar"
@@ -12,7 +12,8 @@
         android:layout_height="64dp"
         android:minHeight="64dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:navigationIcon="@drawable/ic_arrow_left_24" />
+        app:navigationIcon="@drawable/ic_arrow_left_24"
+        app:titleTextAppearance="@style/Signal.Text.TitleLarge" />
 
     <org.thoughtcrime.securesms.components.emoji.EmojiEditText
         android:id="@+id/search_field"
@@ -22,7 +23,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="10dp"
-        android:background="@drawable/rounded_rectangle_secondary_18"
+        android:background="@drawable/rounded_rectangle_variant_22"
         android:hint="@string/TextStoryPostSendFragment__search"
         android:minHeight="44dp"
         android:paddingHorizontal="16dp"
