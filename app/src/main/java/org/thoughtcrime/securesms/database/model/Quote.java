@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.components.mention.MentionAnnotation;
 import org.thoughtcrime.securesms.mms.QuoteModel;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.util.Util;
 
 import java.util.List;
 
@@ -37,7 +38,7 @@ public class Quote {
     this.mentions   = mentions;
     this.quoteType  = quoteType;
 
-    SpannableString spannable = new SpannableString(text);
+    SpannableString spannable = new SpannableString(Util.emptyIfNull(text));
     MentionAnnotation.setMentionAnnotations(spannable, mentions);
 
     this.text = spannable;

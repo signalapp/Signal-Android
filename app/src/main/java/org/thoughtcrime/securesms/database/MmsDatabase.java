@@ -989,6 +989,17 @@ public class MmsDatabase extends MessageDatabase {
     }
   }
 
+  private void disassociateStoryQuotes(long storyId) {
+    ContentValues contentValues = new ContentValues(2);
+    contentValues.put(QUOTE_MISSING, 1);
+    contentValues.putNull(QUOTE_BODY);
+
+    getWritableDatabase().update(TABLE_NAME,
+                                 contentValues,
+                                 PARENT_STORY_ID + " = ?",
+                                 SqlUtil.buildArgs(new ParentStoryId.DirectReply(storyId).serialize()));
+  }
+
   @Override
   public boolean isGroupQuitMessage(long messageId) {
     SQLiteDatabase db = databaseHelper.getSignalReadableDatabase();
@@ -1380,6 +1391,7 @@ public class MmsDatabase extends MessageDatabase {
       SignalDatabase.messageLog().deleteAllRelatedToMessage(messageId, true);
       SignalDatabase.reactions().deleteReactions(new MessageId(messageId, true));
       deleteGroupStoryReplies(messageId);
+      disassociateStoryQuotes(messageId);
 
       threadId = getThreadIdForMessage(messageId);
       SignalDatabase.threads().update(threadId, false);
