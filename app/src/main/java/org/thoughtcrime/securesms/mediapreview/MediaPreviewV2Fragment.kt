@@ -151,6 +151,9 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
 
   private fun bindReadyState(currentState: MediaPreviewV2State) {
     (binding.mediaPager.adapter as MediaPreviewV2Adapter).updateBackingItems(currentState.mediaRecords.mapNotNull { it.attachment })
+    if (binding.mediaPager.currentItem != currentState.position) {
+      binding.mediaPager.currentItem = currentState.position
+    }
     val currentItem: MediaDatabase.MediaRecord = currentState.mediaRecords[currentState.position]
     binding.toolbar.title = getTitleText(currentItem, currentState.showThread)
     binding.toolbar.subtitle = getSubTitleText(currentItem)

@@ -26,10 +26,11 @@ class MediaPreviewV2ViewModel : ViewModel() {
 
   fun fetchAttachments(startingUri: Uri, threadId: Long, sorting: MediaDatabase.Sorting) {
     disposables += store.update(repository.getAttachments(startingUri, threadId, sorting)) {
-      mediaRecords: List<MediaDatabase.MediaRecord>, oldState: MediaPreviewV2State ->
+      result: MediaPreviewRepository.Result, oldState: MediaPreviewV2State ->
       oldState.copy(
-        mediaRecords = mediaRecords,
-        loadState = MediaPreviewV2State.LoadState.READY
+        position = result.initialPosition,
+        mediaRecords = result.records,
+        loadState = MediaPreviewV2State.LoadState.READY,
       )
     }
   }

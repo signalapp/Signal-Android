@@ -28,21 +28,29 @@ class MediaPreviewRepository {
    * @param sorting the ordering of the results
    * @param limit the maximum quantity of the results
    */
-  fun getAttachments(startingUri: Uri, threadId: Long, sorting: Sorting, limit: Int = 500): Flowable<List<MediaDatabase.MediaRecord>> {
+  fun getAttachments(startingUri: Uri, threadId: Long, sorting: Sorting, limit: Int = 500): Flowable<Result> {
     return Single.fromCallable {
       val cursor = media.getGalleryMediaForThread(threadId, sorting)
 
       val acc = mutableListOf<MediaDatabase.MediaRecord>()
+      var initialPosition = 0
       var attachmentUri: Uri? = null
       while (cursor.moveToNext()) {
         val attachmentId = AttachmentId(cursor.requireLong(AttachmentDatabase.ROW_ID), cursor.requireLong(AttachmentDatabase.UNIQUE_ID))
         attachmentUri = PartAuthority.getAttachmentDataUri(attachmentId)
         if (attachmentUri == startingUri) {
+          initialPosition = cursor.position
           break
         }
       }
 
       if (attachmentUri == startingUri) {
+        val frontLimit: Int = limit / 2
+        if (initialPosition < frontLimit) {
+          cursor.moveToFirst()
+        } else {
+          cursor.move(-frontLimit)
+        }
         for (i in 0..limit) {
           val element = MediaDatabase.MediaRecord.from(cursor)
           if (element != null) {
@@ -54,11 +62,11 @@ class MediaPreviewRepository {
             break
           }
         }
-        acc.toList()
       } else {
         Log.e(TAG, "Could not find $startingUri in thread $threadId")
-        emptyList()
       }
+      Result(initialPosition, acc.toList())
     }.subscribeOn(Schedulers.io()).toFlowable()
   }
+  data class Result(val initialPosition: Int, val records: List<MediaDatabase.MediaRecord>)
 }
