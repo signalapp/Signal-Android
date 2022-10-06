@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.stories.viewer
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.viewpager2.widget.ViewPager2
@@ -75,7 +76,7 @@ class StoryViewerFragment :
     lifecycleDisposable.bindTo(viewLifecycleOwner)
     lifecycleDisposable += viewModel.state.observeOn(AndroidSchedulers.mainThread()).subscribe { state ->
       if (state.noPosts) {
-        requireActivity().finish()
+        ActivityCompat.finishAfterTransition(requireActivity())
       }
 
       adapter.setPages(state.pages)
@@ -86,7 +87,7 @@ class StoryViewerFragment :
         pagerOnPageSelectedLock = false
 
         if (state.page >= state.pages.size) {
-          requireActivity().onBackPressed()
+          ActivityCompat.finishAfterTransition(requireActivity())
         }
       }
 
