@@ -358,8 +358,8 @@
     </plurals>
     <string name="ConversationFragment_save_to_sd_card">संचयनमध्ये जतन करायचे?</string>
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
-        <item quantity="one">हा मिडिया संचयनामध्ये जतन केल्याने आपल्या डिव्हाईस वरील इतर ॲप्सना त्यात प्रवेश करण्याची अनुमती मिळेल.\n\nसुरू ठेवायचे?</item>
-        <item quantity="other">सर्व %1$d मिडिया संचयन मध्ये जतन केल्याने आपल्या डिव्हाईस वरील इतर ॲप्सना त्यात प्रवेश करण्याची अनुमती मिळेल.\n\nसुरू ठेवायचे?</item>
+        <item quantity="one">हा मिडिया संग्रहणामध्ये जतन केल्याने आपल्या डिव्हाईस वरील इतर ॲप्सना त्यात प्रवेश करण्याची अनुमती मिळेल.\n\nसुरू ठेवायचे?</item>
+        <item quantity="other">सर्व %1$d मिडिया संग्रहणामध्ये जतन केल्याने आपल्या डिव्हाईस वरील इतर ॲप्सना त्यात प्रवेश करण्याची अनुमती मिळेल.\n\nसुरू ठेवायचे?</item>
     </plurals>
     <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
         <item quantity="one">संचयनमध्ये संलग्न जतन करण्यात त्रुटी!</item>
@@ -367,12 +367,12 @@
     </plurals>
     <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">संचयनमध्ये लिहिण्यात अक्षम!</string>
     <plurals name="ConversationFragment_saving_n_attachments">
-        <item quantity="one">संलग्न जतन करत आहे</item>
+        <item quantity="one">संलग्नक जतन करत आहे</item>
         <item quantity="other">%1$d संलग्नके जतन करत आहे</item>
     </plurals>
     <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="one">संलग्न संचयनमध्ये जतन करत आहे…</item>
-        <item quantity="other">%1$d संलग्नके संचयनामध्ये जतन करत आहे…</item>
+        <item quantity="one">संलग्नक संग्रहणामध्ये जतन करत आहे…</item>
+        <item quantity="other">%1$d संलग्नके संग्रहणामध्ये जतन करत आहे…</item>
     </plurals>
     <string name="ConversationFragment_pending">प्रलंबित…</string>
     <string name="ConversationFragment_push">डेटा (Signal)</string>
@@ -418,14 +418,14 @@
         <item quantity="other">निवडलेले संभाषणे हटवायचे?</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">हे निवडलेले संभाषणे कायमचे हटवेल.</item>
-        <item quantity="other">हे निवडलेले %1$d संभाषणे कायमचे हटवेल.</item>
+        <item quantity="one">हे निवडलेले संभाषण कायमचे हटवेल.</item>
+        <item quantity="other">हे निवडलेली %1$d संभाषणे कायमची हटवेल.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">हटवत आहे</string>
     <string name="ConversationListFragment_deleting_selected_conversations">निवडलेले संभाषण हटवत आहे…</string>
     <plurals name="ConversationListFragment_conversations_archived">
-        <item quantity="one">संभाषण आर्काईव्ह केले</item>
-        <item quantity="other">%1$d संभाषणे आर्काईव्ह केली</item>
+        <item quantity="one">संभाषण संग्रहित केले</item>
+        <item quantity="other">%1$d संभाषणे संग्रहित केली</item>
     </plurals>
     <string name="ConversationListFragment_undo">अनडू करा</string>
     <plurals name="ConversationListFragment_moved_conversations_to_inbox">
@@ -887,7 +887,7 @@
     </plurals>
 
     <plurals name="GroupMemberList_invited">
-        <item quantity="one">%1$s ने व्यक्ती आमंत्रित केली</item>
+        <item quantity="one">%1$s ने 1 व्यक्तीला आमंत्रित केले</item>
         <item quantity="other">%1$s ने %2$d व्यक्तींना आमंत्रित केले</item>
     </plurals>
 
@@ -926,8 +926,8 @@
     <!-- GV2 Invite Revoke confirmation dialog -->
     <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">आपण %1$s ला पाठवलेले आमंत्रण रद्द करू इच्छिता?</string>
     <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
-        <item quantity="one">%1$s द्वारा पाठवलेले आमंत्रण आपण मागे घेऊ इच्छिता?</item>
-        <item quantity="other">%1$s द्वारा पाठवलेली %2$d आमंत्रणे मागे घेऊ इच्छिता?</item>
+        <item quantity="one">आपण %1$s द्वारे पाठवलेले आमंत्रण मागे घेऊ इच्छिता?</item>
+        <item quantity="other">%1$s द्वारे पाठवलेली %2$d आमंत्रणे मागे घेऊ इच्छिता?</item>
     </plurals>
 
     <!-- GroupJoinBottomSheetDialogFragment -->
@@ -1035,8 +1035,8 @@
         <item quantity="other">निवडलेले आयटम हटवायचे?</item>
     </plurals>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-        <item quantity="one">हे निवडलेली फाईल कायमची हटवेल. या आयटम सोबत संबंधित कुठलाही संदेश मजकूर देखील हटविला जाईल.</item>
-        <item quantity="other">हे निवडलेल्या सर्व %1$d फायली कायमच्या हटवेल. या आयटम सोबत संबंधित कुठलाही संदेश मजकूर देखील हटविला जाईल.</item>
+        <item quantity="one">हे निवडलेली फाईल कायमची हटवेल. या घटकाशी संबंधित कुठलाही संदेश मजकूर देखील हटविला जाईल.</item>
+        <item quantity="other">हे निवडलेल्या सर्व %1$d फायली कायमच्या हटवेल. या घटकांशी संबंधित कुठलाही संदेश मजकूर देखील हटविला जाईल.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">हटवत आहे</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">संदेश हटवत आहे…</string>
@@ -1168,13 +1168,13 @@
     <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">आपण नवीन गटात जोडले जाऊ शकले नाही आणि त्यात सामील होण्यासाठी आपणास आमंत्रित केले गेले आहे.</string>
     <string name="MessageRecord_chat_session_refreshed">चॅट सत्र ताजेतवाने झाले</string>
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
-        <item quantity="one">सदस्य नवीन गटात जोडला जाऊ शकत नाही आणि त्यात सामील होण्यासाठी आमंत्रित केले गेले आहे.</item>
-        <item quantity="other">%1$s सदस्य नवीन गटात जोडले जाऊ शकले नाही आणि त्यात सामील होण्यासाठी आमंत्रित केले गेले आहे.</item>
+        <item quantity="one">नवीन गटात सदस्य जोडला जाऊ शकत नाही आणि त्याला सामील होण्यासाठी आमंत्रित केले गेले आहे.</item>
+        <item quantity="other">%1$s सदस्य नवीन गटात जोडले जाऊ शकत नाहीत आणि त्यांना सामील होण्यासाठी आमंत्रित केले गेले आहे.</item>
     </plurals>
 
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
-        <item quantity="one">सदस्य नवीन गटात जोडला जाऊ शकत नाही आणि त्यातून तो काढला गेला आहे.</item>
-        <item quantity="other">%1$s सदस्य नवीन गटात जोडले जाऊ शकले नाही आणि त्यातून ते काढले गेले आहेत.</item>
+        <item quantity="one">सदस्य नवीन गटात जोडला जाऊ शकत नाही आणि त्यातून त्याला काढून टाकले आहे.</item>
+        <item quantity="other">%1$s सदस्य नवीन गटात जोडले जाऊ शकत नाहीत आणि त्यातून त्यांना काढून टाकले आहे.</item>
     </plurals>
 
     <!-- Profile change updates -->
@@ -1219,23 +1219,23 @@
     <string name="MessageRecord_you_invited_s_to_the_group">आपण %1$s ला गटात आमंत्रित केले.</string>
     <string name="MessageRecord_s_invited_you_to_the_group">%1$s ने आपल्याला गटात आमंत्रित केले.</string>
     <plurals name="MessageRecord_s_invited_members">
-        <item quantity="one">%1$s ने 1 व्यक्तींला गटात आमंत्रित केले.</item>
-        <item quantity="other">%1$s ने %2$d व्यक्तींना गटात आमंत्रित केले.</item>
+        <item quantity="one">%1$s ने 1 व्यक्तीला ग्रुपमध्ये आमंत्रित केले.</item>
+        <item quantity="other">%1$s ने %2$d व्यक्तींना ग्रुपमध्ये आमंत्रित केले.</item>
     </plurals>
     <string name="MessageRecord_you_were_invited_to_the_group">आपल्याला गटात निमंत्रित केले गेले होते.</string>
     <plurals name="MessageRecord_d_people_were_invited_to_the_group">
-        <item quantity="one">1 व्यक्ती गटात आमंत्रित केली गेली होती.</item>
-        <item quantity="other">%1$d व्यक्तीना गटात आमंत्रित केले गेले होते.</item>
+        <item quantity="one">1 व्यक्तीला ग्रुपमध्ये आमंत्रित केले गेले होते.</item>
+        <item quantity="other">%1$d व्यक्तींना गटात आमंत्रित केले गेले होते.</item>
     </plurals>
 
     <!-- GV2 invitation revokes -->
     <plurals name="MessageRecord_you_revoked_invites">
-        <item quantity="one">आपण गटाचे आमंत्रण मागे घेतले.</item>
-        <item quantity="other">आपण गटाची %1$d आमंत्रणे मागे घेतली.</item>
+        <item quantity="one">आपण ग्रुपचे आमंत्रण मागे घेतले.</item>
+        <item quantity="other">आपण ग्रुपची %1$d आमंत्रणे मागे घेतली.</item>
     </plurals>
     <plurals name="MessageRecord_s_revoked_invites">
-        <item quantity="one">%1$s ने गटाचे आमंत्रण मागे घेतले.</item>
-        <item quantity="other">%1$s ने गटाची %2$d आमंत्रणे मागे घेतली.</item>
+        <item quantity="one">%1$s ने ग्रुपचे आमंत्रण मागे घेतले.</item>
+        <item quantity="other">%1$s ने ग्रुपची %2$d आमंत्रणे मागे घेतली.</item>
     </plurals>
     <string name="MessageRecord_someone_declined_an_invitation_to_the_group">कुणीतरी गटाचे आमंत्रण रद्द केले.</string>
     <string name="MessageRecord_you_declined_the_invitation_to_the_group">आपण गटाचे आमंत्रण रद्द केले.</string>
@@ -1316,8 +1316,8 @@
     <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s ने गट लिंक द्वारे सामिल होण्यासाठी विनंती केली.</string>
     <!-- Update message shown when someone requests to join via group link and cancels the request back to back -->
     <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
-        <item quantity="one">%1$s ने गट लिंकद्वारे सामील होण्यासाठी विनंती केली आणि त्यांची विनंती रद्द केली.</item>
-        <item quantity="other">%1$s ने गट लिंकद्वारे सामील होण्यासाठी विनंती केली आणि त्यांच्या %2$d विनंत्या रद्द केल्या.</item>
+        <item quantity="one">%1$s ने विनंती केली आणि ग्रुप लिंकद्वारे सामील होण्यासाठी त्यांची विनंती रद्द केली.</item>
+        <item quantity="other">%1$s ने विनंती केली आणि ग्रुप लिंकद्वारे सामील होण्याच्या %2$d विनंत्या रद्द केल्या.</item>
     </plurals>
 
     <!-- GV2 group link approvals -->
@@ -1960,6 +1960,7 @@
     <string name="MediaPreviewActivity_s_to_you">%1$s कडून आपणाला</string>
     <string name="MediaPreviewActivity_media_no_longer_available">मिडिया आता उपलब्ध नाही.</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">हे मिडिया शेअर करण्यासाठी सक्षम असे अॅप सापडू शकले नाही.</string>
+    <string name="MediaPreviewActivity_dismiss_due_to_error">Close</string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%2$d संभाषणांमध्ये %1$d नवीन संदेश</string>
@@ -2748,10 +2749,14 @@
     <string name="configurable_single_select__customize_option">पर्याय सानुकूलित करा</string>
 
     <!-- Internal only preferences -->
+    <string name="preferences__internal_turn_off_stories_with_stories_on_disk" translatable="false">Turn off stories (with stories on disk)</string>
+    <string name="preferences__internal_turn_off_stories" translatable="false">Turn off stories</string>
+    <string name="preferences__internal_delete_private_story" translatable="false">Delete private story</string>
     <string name="preferences__internal_hide_story" translatable="false">Hide story</string>
     <string name="preferences__internal_story_or_profile_selector" translatable="false">Story or profile selector</string>
     <string name="preferences__internal_stories_dialog_launcher" translatable="false">Stories dialog launcher</string>
     <string name="preferences__internal_retry_send" translatable="false">Retry send</string>
+    <string name="preferences__internal_remove_group_story" translatable="false">Remove group story</string>
     <string name="preferences__internal_clear_onboarding_state" translatable="false">Clear onboarding state</string>
     <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories" translatable="false">Clears onboarding flag and triggers download of onboarding stories.</string>
     <string name="preferences__internal_preferences" translatable="false">Internal Preferences</string>
@@ -2903,6 +2908,26 @@
     <string name="PaymentsHomeFragment__enable">चालू करा</string>
     <!-- Alert dialog button to not enable payment lock for now -->
     <string name="PaymentsHomeFragment__not_now">आता नाही</string>
+
+    <!-- PaymentsSecuritySetupFragment -->
+    <!-- Toolbar title -->
+    <string name="PaymentsSecuritySetupFragment__security_setup">Security setup</string>
+    <!-- Title to enable payment lock -->
+    <string name="PaymentsSecuritySetupFragment__protect_your_funds">Protect your funds</string>
+    <!-- Description as to why payment lock is required -->
+    <string name="PaymentsSecuritySetupFragment__help_prevent">Help prevent a person with your phone from accessing your funds by adding another layer of security. You can disable this option in Settings.</string>
+    <!-- Option to enable payment lock -->
+    <string name="PaymentsSecuritySetupFragment__enable_payment_lock">Enable payment lock</string>
+    <!-- Option to cancel -->
+    <string name="PaymentsSecuritySetupFragment__not_now">Not now</string>
+    <!-- Dialog title to confirm skipping the step -->
+    <string name="PaymentsSecuritySetupFragment__skip_this_step">Skip this step?</string>
+    <!-- Dialog description to let users know why payment lock is required -->
+    <string name="PaymentsSecuritySetupFragment__skipping_this_step">Skipping this step could allow anyone who has physical access to your phone to transfer funds or view your recovery phrase.</string>
+    <!-- Dialog option to cancel -->
+    <string name="PaymentsSecuritySetupFragment__cancel">Cancel</string>
+    <!-- Dialog option to skip -->
+    <string name="PaymentsSecuritySetupFragment__skip">Skip</string>
 
     <!-- PaymentsAddMoneyFragment -->
     <string name="PaymentsAddMoneyFragment__add_funds">फंड जोडा</string>
@@ -4911,6 +4936,22 @@
     <string name="ChangeMyStoryMembershipFragment__only_share_with">फक्त …सोबत शेअर करा</string>
     <!-- Done button label for hide story from screen -->
     <string name="HideStoryFromFragment__done">ठीक</string>
+    <!-- Dialog title for removing a group story -->
+    <string name="StoryDialogs__remove_group_story">Remove group story?</string>
+    <!-- Dialog message for removing a group story -->
+    <string name="StoryDialogs__s_will_be_removed">\"%1$s\" will be removed.</string>
+    <!-- Dialog positive action for removing a group story -->
+    <string name="StoryDialogs__remove">Remove</string>
+    <!-- Dialog title for deleting a private story -->
+    <string name="StoryDialogs__delete_private_story">Delete private story?</string>
+    <!-- Dialog message for deleting a private story -->
+    <string name="StoryDialogs__s_and_updates_shared">\"%1$s\" and updates shared to this story will be deleted.</string>
+    <!-- Dialog positive action for deleting a private story -->
+    <string name="StoryDialogs__delete">Delete</string>
+    <!-- Dialog title for first time sending something to a beta story -->
+    <string name="StoryDialogs__stories_is_available_to">Stories is available to Signal beta users only.</string>
+    <!-- Dialog message for first time sending something to a beta story -->
+    <string name="StoryDialogs__if_you_share_a_story">If you share a story, it will only be available to people who are on Signal beta.</string>
     <!-- Dialog title for first time adding something to a story -->
     <string name="StoryDialogs__add_to_story_q">स्टोरीत जोडायचे?</string>
     <!-- Dialog message for first time adding something to a story -->
@@ -4923,6 +4964,8 @@
     <string name="StoryDialogs__story_could_not_be_sent">स्टोरी पाठवता आली नाही. आपले कनेक्शन तपासा आणि पुन्हा प्रयत्न करा.</string>
     <!-- Error message dialog button to resend a previously failed story send -->
     <string name="StoryDialogs__send">पाठवा</string>
+    <!-- Action button for turning off stories when stories are present on the device -->
+    <string name="StoryDialogs__turn_off_and_delete">Turn off and delete</string>
     <!-- Privacy Settings toggle title for stories -->
     <string name="PrivacySettingsFragment__share_and_view_stories">स्टोरीज पहा &amp; शेअर करा</string>
     <!-- Privacy Settings toggle summary for stories -->
@@ -5071,6 +5114,11 @@
         <item quantity="one">ग्रुप स्टोरी · %1$d दर्शक</item>
         <item quantity="other">ग्रुप स्टोरी · %1$d दर्शक</item>
     </plurals>
+    <!-- Label under name for groups -->
+    <plurals name="ContactSearchItems__group_d_members">
+        <item quantity="one">%1$d member</item>
+        <item quantity="other">%1$d members</item>
+    </plurals>
     <!-- Label under name for my story -->
     <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
         <item quantity="one">%1$s · %2$d दर्शक</item>
@@ -5206,7 +5254,7 @@
     <!-- Dialog title to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">स्टोरीज बंद करा?</string>
     <!-- Dialog message to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to">आपण यापुढे स्टोरीज पाहू किंवा शेअर करु शकणार नाही. आपण अलिकडेच पाठविलेल्या स्टोरीज कालबाह्य होत नाहीत तोपर्यंत इतरांना अद्याप दृश्यमान असतील.</string>
+    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">You will no longer be able to share or view stories. Story updates you have recently shared will also be deleted.</string>
     <!-- Page title when launched from stories landing screen -->
     <string name="StoriesPrivacySettingsFragment__story_privacy">स्टोरी गोपनीयता</string>
 
