@@ -269,6 +269,20 @@ public class SignalServiceMessageSender {
   }
 
   /**
+   * Only sends sync message for a story. Useful if you're sending to a group with no one else in it -- meaning you don't need to send a story, but you do need
+   * to send it to your linked devices.
+   */
+  public void sendStorySyncMessage(SignalServiceStoryMessage message,
+                                   long timestamp,
+                                   boolean isRecipientUpdate,
+                                   Set<SignalServiceStoryMessageRecipient> manifest)
+      throws IOException, UntrustedIdentityException
+  {
+    SignalServiceSyncMessage syncMessage = createSelfSendSyncMessageForStory(message, timestamp, isRecipientUpdate, manifest);
+    sendSyncMessage(syncMessage, Optional.empty());
+  }
+
+  /**
    * Send a story using sender key. Note: This is not just for group stories -- it's for any story. Just following the naming convention of making sender key
    * method named "sendGroup*"
    */

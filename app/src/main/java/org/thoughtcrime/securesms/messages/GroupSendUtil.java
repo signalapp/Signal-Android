@@ -484,6 +484,7 @@ public final class GroupSendUtil {
                                                        @Nullable CancelationSignal cancelationSignal)
         throws IOException, UntrustedIdentityException
     {
+      // PniSignatures are only needed for 1:1 messages, but some message jobs use the GroupSendUtil methods to send 1:1
       if (targets.size() == 1 && relatedMessageId == null) {
         Recipient            targetRecipient = targetRecipients.get(0);
         SendMessageResult    result          = messageSender.sendDataMessage(targets.get(0), access.get(0), contentHint, message, SignalServiceMessageSender.IndividualSendEvents.EMPTY, urgent, targetRecipient.needsPniSignature());
@@ -689,7 +690,14 @@ public final class GroupSendUtil {
                                                        @Nullable CancelationSignal cancelationSignal)
         throws IOException, UntrustedIdentityException
     {
-      throw new UnsupportedOperationException("Stories can only be send via sender key!");
+      // We only allow legacy sends if you're sending to an empty group and just need to send a sync message.
+      if (targets.isEmpty()) {
+        Log.w(TAG, "Only sending a sync message.");
+        messageSender.sendStorySyncMessage(message, getSentTimestamp(), isRecipientUpdate, manifest);
+        return Collections.emptyList();
+      } else {
+        throw new UnsupportedOperationException("Stories can only be send via sender key!");
+      }
     }
 
     @Override
