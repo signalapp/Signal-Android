@@ -193,6 +193,12 @@ public final class PushDecryptMessageJob extends BaseJob {
       return true;
     }
 
+    if (result.getContent().getDataMessage().isPresent() &&
+        result.getContent().getDataMessage().get().getRemoteDelete().isPresent())
+    {
+      return true;
+    }
+
     return false;
   }
 
