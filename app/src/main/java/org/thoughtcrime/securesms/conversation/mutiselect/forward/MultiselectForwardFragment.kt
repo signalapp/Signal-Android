@@ -144,9 +144,10 @@ class MultiselectForwardFragment :
     val sendButton: AppCompatImageView = bottomBar.findViewById(R.id.share_confirm)
     val backgroundHelper: View = bottomBar.findViewById(R.id.background_helper)
 
-    if (args.sendButtonTint != -1) {
-      sendButton.setColorFilter(ContextCompat.getColor(requireContext(), R.color.signal_colorOnCustom))
-      ViewCompat.setBackgroundTintList(sendButton, ColorStateList.valueOf(args.sendButtonTint))
+    val sendButtonColors = args.sendButtonColors
+    if (sendButtonColors != null) {
+      sendButton.setColorFilter(sendButtonColors.foreground.resolve(requireContext()))
+      ViewCompat.setBackgroundTintList(sendButton, ColorStateList.valueOf(sendButtonColors.background.resolve(requireContext())))
     }
 
     FullscreenHelper.configureBottomBarLayout(requireActivity(), bottomBarSpacer, bottomBar)

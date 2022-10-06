@@ -12,6 +12,7 @@ import org.signal.core.util.ThreadUtil
 import org.signal.core.util.concurrent.SignalExecutors
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.attachments.Attachment
+import org.thoughtcrime.securesms.color.ViewColorSet
 import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.conversation.mutiselect.Multiselect
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart
@@ -43,12 +44,12 @@ data class MultiselectForwardFragmentArgs @JvmOverloads constructor(
   val forceDisableAddMessage: Boolean = false,
   val forceSelectionOnly: Boolean = false,
   val selectSingleRecipient: Boolean = false,
-  @ColorInt val sendButtonTint: Int = -1,
+  val sendButtonColors: ViewColorSet? = null,
   val storySendRequirements: Stories.MediaTransform.SendRequirements = Stories.MediaTransform.SendRequirements.CAN_NOT_SEND,
   val isSearchEnabled: Boolean = true
 ) : Parcelable {
 
-  fun withSendButtonTint(@ColorInt sendButtonTint: Int) = copy(sendButtonTint = sendButtonTint)
+  fun withSendButtonTint(@ColorInt sendButtonTint: Int) = copy(sendButtonColors = ViewColorSet.forCustomColor(sendButtonTint))
 
   companion object {
     @JvmStatic
@@ -61,9 +62,11 @@ data class MultiselectForwardFragmentArgs @JvmOverloads constructor(
           .withDataType(mediaType)
           .build()
 
-        val sendButtonTint: Int = threadId.takeIf { it > 0 }
-          ?.let { SignalDatabase.threads.getRecipientForThreadId(it) }?.chatColors?.asSingleColor()
-          ?: -1
+        val sendButtonColors: ViewColorSet? = threadId.takeIf { it > 0 }
+          ?.let { SignalDatabase.threads.getRecipientForThreadId(it) }
+          ?.chatColors
+          ?.asSingleColor()
+          ?.let { ViewColorSet.forCustomColor(it) }
 
         ThreadUtil.runOnMain {
           consumer.accept(
@@ -71,7 +74,7 @@ data class MultiselectForwardFragmentArgs @JvmOverloads constructor(
               isMmsSupported,
               listOf(multiShareArgs),
               storySendRequirements = Stories.MediaTransform.SendRequirements.CAN_NOT_SEND,
-              sendButtonTint = sendButtonTint
+              sendButtonColors = sendButtonColors
             )
           )
         }
