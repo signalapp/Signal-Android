@@ -19,9 +19,11 @@ import org.thoughtcrime.securesms.components.menu.ActionItem
 import org.thoughtcrime.securesms.components.menu.SignalContextMenu
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.database.model.MessageRecord
+import org.thoughtcrime.securesms.database.model.databaseprotos.StoryTextPost
 import org.thoughtcrime.securesms.stories.landing.StoriesLandingItem
 import org.thoughtcrime.securesms.stories.viewer.page.StoryPost
 import org.thoughtcrime.securesms.stories.viewer.page.StoryViewerPageState
+import org.thoughtcrime.securesms.util.Base64
 import org.thoughtcrime.securesms.util.DeleteDialog
 import org.thoughtcrime.securesms.util.SaveAttachmentTask
 
@@ -61,12 +63,23 @@ object StoryContextMenu {
   }
 
   fun share(fragment: Fragment, messageRecord: MediaMmsMessageRecord) {
-    val attachment: Attachment = messageRecord.slideDeck.firstSlide!!.asAttachment()
-    val intent: Intent = ShareCompat.IntentBuilder(fragment.requireContext())
-      .setStream(attachment.publicUri)
-      .setType(attachment.contentType)
-      .createChooserIntent()
-      .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+    val intent = if (messageRecord.storyType.isTextStory) {
+      val textStoryBody = StoryTextPost.parseFrom(Base64.decode(messageRecord.body)).body
+      val linkUrl = messageRecord.linkPreviews.firstOrNull()?.url ?: ""
+      val shareText = "${textStoryBody} $linkUrl".trim()
+
+      ShareCompat.IntentBuilder(fragment.requireContext())
+        .setText(shareText)
+        .createChooserIntent()
+    } else {
+      val attachment: Attachment = messageRecord.slideDeck.firstSlide!!.asAttachment()
+
+      ShareCompat.IntentBuilder(fragment.requireContext())
+        .setStream(attachment.publicUri)
+        .setType(attachment.contentType)
+        .createChooserIntent()
+        .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+    }
 
     try {
       fragment.startActivity(intent)
