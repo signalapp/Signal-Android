@@ -199,6 +199,18 @@ class PrivacySettingsFragment : DSLSettingsFragment(R.string.preferences__privac
         )
       )
 
+      if (Stories.isFeatureAvailable()) {
+        dividerPref()
+
+        clickPref(
+          title = DSLSettingsText.from(R.string.preferences__stories),
+          summary = DSLSettingsText.from(R.string.PrivacySettingsFragment__manage_your_stories),
+          onClick = {
+            findNavController().safeNavigate(PrivacySettingsFragmentDirections.actionPrivacySettingsFragmentToStoryPrivacySettings(R.string.preferences__stories))
+          }
+        )
+      }
+
       dividerPref()
 
       sectionHeaderPref(R.string.PrivacySettingsFragment__app_security)
@@ -332,18 +344,6 @@ class PrivacySettingsFragment : DSLSettingsFragment(R.string.preferences__privac
       textPref(
         summary = DSLSettingsText.from(incognitoSummary),
       )
-
-      if (Stories.isFeatureAvailable()) {
-        dividerPref()
-
-        clickPref(
-          title = DSLSettingsText.from(R.string.preferences__stories),
-          summary = DSLSettingsText.from(R.string.PrivacySettingsFragment__manage_your_stories),
-          onClick = {
-            findNavController().safeNavigate(PrivacySettingsFragmentDirections.actionPrivacySettingsFragmentToStoryPrivacySettings(R.string.preferences__stories))
-          }
-        )
-      }
 
       dividerPref()
 
