@@ -38,6 +38,8 @@ object StoryDialogs {
       .setTitle(R.string.StoriesPrivacySettingsFragment__turn_off_stories_question)
       .setMessage(R.string.StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share)
       .setPositiveButton(positiveButtonMessage) { _, _ -> onDisable() }
+      .setNegativeButton(android.R.string.cancel) { _, _ -> }
+      .show()
   }
 
   fun displayBetaDialog(context: Context, onConfirmed: () -> Unit) {
