@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.scribbles;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
@@ -33,10 +34,10 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.signal.core.util.FontUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
+import org.signal.core.util.concurrent.SimpleTask;
 import org.signal.core.util.logging.Log;
 import org.signal.imageeditor.core.Bounds;
 import org.signal.imageeditor.core.ColorableRenderer;
-import org.signal.imageeditor.core.HiddenEditText;
 import org.signal.imageeditor.core.ImageEditorView;
 import org.signal.imageeditor.core.Renderer;
 import org.signal.imageeditor.core.SelectableRenderer;
@@ -48,7 +49,6 @@ import org.signal.imageeditor.core.renderers.MultiLineTextRenderer;
 import org.signal.libsignal.protocol.util.Pair;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.animation.ResizeAnimation;
-import org.thoughtcrime.securesms.components.emoji.EmojiUtil;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.fonts.FontTypefaceProvider;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -66,7 +66,6 @@ import org.thoughtcrime.securesms.util.StorageUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ThrottledDebouncer;
 import org.thoughtcrime.securesms.util.ViewUtil;
-import org.signal.core.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 
 import java.io.ByteArrayOutputStream;
@@ -791,8 +790,13 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
 
   @WorkerThread
   public @NonNull Uri renderToSingleUseBlob() {
+    return renderToSingleUseBlob(requireContext(), imageEditorView.getModel());
+  }
+
+  @WorkerThread
+  public static @NonNull Uri renderToSingleUseBlob(@NonNull Context context, @NonNull EditorModel editorModel) {
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-    Bitmap                image        = imageEditorView.getModel().render(requireContext(), new FontTypefaceProvider());
+    Bitmap                image        = editorModel.render(context, new FontTypefaceProvider());
 
     image.compress(Bitmap.CompressFormat.JPEG, 80, outputStream);
     image.recycle();
