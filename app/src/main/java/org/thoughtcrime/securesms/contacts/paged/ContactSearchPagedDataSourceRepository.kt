@@ -111,7 +111,7 @@ open class ContactSearchPagedDataSourceRepository(
   }
 
   open fun recipientNameContainsQuery(recipient: Recipient, query: String?): Boolean {
-    return query.isNullOrBlank() || recipient.getDisplayName(context).contains(query)
+    return query.isNullOrBlank() || recipient.getDisplayName(context).contains(query, ignoreCase = true)
   }
 
   open fun myStoryContainsQuery(query: String): Boolean {
@@ -120,6 +120,6 @@ open class ContactSearchPagedDataSourceRepository(
     }
 
     val myStory = context.getString(R.string.Recipient_my_story)
-    return myStory.contains(query)
+    return myStory.contains(query, ignoreCase = true)
   }
 }

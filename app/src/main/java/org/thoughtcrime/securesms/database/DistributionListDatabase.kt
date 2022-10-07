@@ -16,7 +16,6 @@ import org.signal.core.util.requireString
 import org.signal.core.util.select
 import org.signal.core.util.withinTransaction
 import org.thoughtcrime.securesms.database.model.DistributionListId
-import org.thoughtcrime.securesms.database.model.DistributionListPartialRecord
 import org.thoughtcrime.securesms.database.model.DistributionListPrivacyData
 import org.thoughtcrime.securesms.database.model.DistributionListPrivacyMode
 import org.thoughtcrime.securesms.database.model.DistributionListRecord
@@ -99,7 +98,10 @@ class DistributionListDatabase constructor(context: Context?, databaseHelper: Si
 
     const val IS_NOT_DELETED = "$DELETION_TIMESTAMP == 0"
 
-    val LIST_UI_PROJECTION = arrayOf(ID, NAME, RECIPIENT_ID, ALLOWS_REPLIES, IS_UNKNOWN, PRIVACY_MODE)
+    val SEARCH_NAME_COLUMN = "search_name"
+    private val SEARCH_NAME = "LOWER($NAME) AS $SEARCH_NAME_COLUMN"
+
+    val LIST_UI_PROJECTION = arrayOf(ID, NAME, RECIPIENT_ID, ALLOWS_REPLIES, IS_UNKNOWN, PRIVACY_MODE, SEARCH_NAME)
   }
 
   private object MembershipTable {
@@ -148,8 +150,8 @@ class DistributionListDatabase constructor(context: Context?, databaseHelper: Si
     val where = when {
       query.isNullOrEmpty() && includeMyStory -> ListTable.IS_NOT_DELETED
       query.isNullOrEmpty() -> "${ListTable.ID} != ? AND ${ListTable.IS_NOT_DELETED}"
-      includeMyStory -> "(${ListTable.NAME} GLOB ? OR ${ListTable.ID} == ?) AND ${ListTable.IS_NOT_DELETED} AND NOT ${ListTable.IS_UNKNOWN}"
-      else -> "${ListTable.NAME} GLOB ? AND ${ListTable.ID} != ? AND ${ListTable.IS_NOT_DELETED} AND NOT ${ListTable.IS_UNKNOWN}"
+      includeMyStory -> "(${ListTable.SEARCH_NAME_COLUMN} GLOB ? OR ${ListTable.ID} == ?) AND ${ListTable.IS_NOT_DELETED} AND NOT ${ListTable.IS_UNKNOWN}"
+      else -> "${ListTable.SEARCH_NAME_COLUMN} GLOB ? AND ${ListTable.ID} != ? AND ${ListTable.IS_NOT_DELETED} AND NOT ${ListTable.IS_UNKNOWN}"
     }
 
     val whereArgs = when {
@@ -167,29 +169,6 @@ class DistributionListDatabase constructor(context: Context?, databaseHelper: Si
       .from(ListTable.TABLE_NAME)
       .run()
       .readToList { cursor -> RecipientId.from(cursor.requireLong(ListTable.RECIPIENT_ID)) }
-  }
-
-  fun getCustomListsForUi(): List<DistributionListPartialRecord> {
-    val db = readableDatabase
-    val selection = "${ListTable.ID} != ${DistributionListId.MY_STORY_ID} AND ${ListTable.IS_NOT_DELETED}"
-
-    return db.query(ListTable.TABLE_NAME, ListTable.LIST_UI_PROJECTION, selection, null, null, null, null)?.use { cursor ->
-      val results = mutableListOf<DistributionListPartialRecord>()
-      while (cursor.moveToNext()) {
-        results.add(
-          DistributionListPartialRecord(
-            id = DistributionListId.from(CursorUtil.requireLong(cursor, ListTable.ID)),
-            name = CursorUtil.requireString(cursor, ListTable.NAME),
-            allowsReplies = CursorUtil.requireBoolean(cursor, ListTable.ALLOWS_REPLIES),
-            recipientId = RecipientId.from(CursorUtil.requireLong(cursor, ListTable.RECIPIENT_ID)),
-            isUnknown = CursorUtil.requireBoolean(cursor, ListTable.IS_UNKNOWN),
-            privacyMode = cursor.requireObject(ListTable.PRIVACY_MODE, DistributionListPrivacyMode.Serializer)
-          )
-        )
-      }
-
-      results
-    } ?: emptyList()
   }
 
   /**
