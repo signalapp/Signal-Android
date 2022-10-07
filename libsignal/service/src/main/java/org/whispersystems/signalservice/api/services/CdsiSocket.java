@@ -64,6 +64,7 @@ final class CdsiSocket {
     OkHttpClient.Builder builder = new OkHttpClient.Builder()
                                                    .sslSocketFactory(new Tls12SocketFactory(socketFactory.first()), socketFactory.second())
                                                    .connectionSpecs(Util.immutableList(ConnectionSpec.RESTRICTED_TLS))
+                                                   .retryOnConnectionFailure(false)
                                                    .readTimeout(30, TimeUnit.SECONDS)
                                                    .connectTimeout(30, TimeUnit.SECONDS);
 
@@ -92,7 +93,7 @@ final class CdsiSocket {
       WebSocket webSocket = okhttp.newWebSocket(request, new WebSocketListener() {
         @Override
         public void onOpen(WebSocket webSocket, Response response) {
-          Log.d(TAG, "onOpen");
+          Log.d(TAG, "[onOpen]");
           stage.set(Stage.WAITING_FOR_CONNECTION);
         }
 
@@ -163,6 +164,7 @@ final class CdsiSocket {
 
         @Override
         public void onClosing(WebSocket webSocket, int code, String reason) {
+          Log.i(TAG, "[onClosing] code: " + code + ", reason: " + reason);
           if (code == 1000) {
             emitter.onComplete();
             stage.set(Stage.CLOSED);
@@ -176,6 +178,7 @@ final class CdsiSocket {
 
         @Override
         public void onFailure(WebSocket webSocket, Throwable t, Response response) {
+          Log.w(TAG, "[onFailure] response? " + (response != null), t);
           emitter.tryOnError(t);
           stage.set(Stage.FAILED);
           webSocket.close(1000, "OK");
