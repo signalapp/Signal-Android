@@ -73,7 +73,7 @@ public class EditProxyFragment extends Fragment {
 
     saveButton.setOnClickListener(v -> onSaveClicked());
     shareButton.setOnClickListener(v -> onShareClicked());
-    proxySwitch.setOnCheckedChangeListener((buttonView, isChecked) -> viewModel.onToggleProxy(isChecked));
+    proxySwitch.setOnCheckedChangeListener((buttonView, isChecked) -> viewModel.onToggleProxy(isChecked, proxyText.getText().toString()));
 
     LearnMoreTextView description = view.findViewById(R.id.edit_proxy_switch_title_description);
     description.setLearnMoreVisible(true);
@@ -103,6 +103,8 @@ public class EditProxyFragment extends Fragment {
       case ALL_ENABLED:
         proxyText.setEnabled(true);
         proxyText.setAlpha(1);
+        saveButton.setEnabled(true);
+        saveButton.setAlpha(1);
         proxyTitle.setAlpha(1);
         onProxyTextChanged(proxyText.getText().toString());
         break;
@@ -182,7 +184,12 @@ public class EditProxyFragment extends Fragment {
   }
 
   private void onSaveClicked() {
-    viewModel.onSaveClicked(proxyText.getText().toString());
+    String text = proxyText.getText().toString();
+    if (Util.isEmpty(text)) {
+      proxySwitch.setChecked(false);
+    } else {
+      viewModel.onSaveClicked(text);
+    }
   }
 
   private void onShareClicked() {
@@ -195,14 +202,10 @@ public class EditProxyFragment extends Fragment {
 
   private void onProxyTextChanged(@NonNull String text) {
     if (Util.isEmpty(text)) {
-      saveButton.setEnabled(false);
-      saveButton.setAlpha(0.5f);
       shareButton.setEnabled(false);
       shareButton.setAlpha(0.5f);
       proxyStatus.setVisibility(View.INVISIBLE);
     } else {
-      saveButton.setEnabled(true);
-      saveButton.setAlpha(1);
       shareButton.setEnabled(true);
       shareButton.setAlpha(1);
 
