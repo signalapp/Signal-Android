@@ -83,7 +83,12 @@ object FcmFetchManager {
         context.stopService(Intent(context, FcmFetchBackgroundService::class.java))
 
         if (startedForeground) {
-          context.startService(FcmFetchForegroundService.buildStopIntent(context))
+          try {
+            context.startService(FcmFetchForegroundService.buildStopIntent(context))
+          } catch (e: IllegalStateException) {
+            Log.w(TAG, "Failed to stop the foreground notification!", e)
+          }
+
           startedForeground = false
         }
       }
