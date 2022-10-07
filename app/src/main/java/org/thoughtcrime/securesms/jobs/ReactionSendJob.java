@@ -238,12 +238,14 @@ public class ReactionSendJob extends BaseJob {
     boolean                  includesSelf        = nonSelfDestinations.size() != destinations.size();
     List<SendMessageResult>  results             = GroupSendUtil.sendResendableDataMessage(context,
                                                                                            conversationRecipient.getGroupId().map(GroupId::requireV2).orElse(null),
+                                                                                           null,
                                                                                            nonSelfDestinations,
                                                                                            false,
                                                                                            ContentHint.RESENDABLE,
                                                                                            messageId,
                                                                                            dataMessage,
-                                                                                           true);
+                                                                                           true,
+                                                                                           false);
 
     if (includesSelf) {
       results.add(ApplicationDependencies.getSignalServiceMessageSender().sendSyncMessage(dataMessage));

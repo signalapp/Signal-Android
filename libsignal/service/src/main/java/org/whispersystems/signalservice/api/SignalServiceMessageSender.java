@@ -475,14 +475,15 @@ public class SignalServiceMessageSender {
                                                       ContentHint                contentHint,
                                                       SignalServiceDataMessage   message,
                                                       SenderKeyGroupEvents       sendEvents,
-                                                      boolean                    urgent)
+                                                      boolean                    urgent,
+                                                      boolean                    isForStory)
       throws IOException, UntrustedIdentityException, NoSessionException, InvalidKeyException, InvalidRegistrationIdException
   {
     Log.d(TAG, "[" + message.getTimestamp() + "] Sending a group data message to " + recipients.size() + " recipients using DistributionId " + distributionId);
 
     Content                 content = createMessageContent(message);
     Optional<byte[]>        groupId = message.getGroupId();
-    List<SendMessageResult> results = sendGroupMessage(distributionId, recipients, unidentifiedAccess, message.getTimestamp(), content, contentHint, groupId, false, sendEvents, urgent, false);
+    List<SendMessageResult> results = sendGroupMessage(distributionId, recipients, unidentifiedAccess, message.getTimestamp(), content, contentHint, groupId, false, sendEvents, urgent, isForStory);
 
     sendEvents.onMessageSent();
 

@@ -45,6 +45,7 @@ import org.whispersystems.signalservice.api.messages.calls.SignalServiceCallMess
 import org.whispersystems.signalservice.api.push.DistributionId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.NotFoundException;
+import org.whispersystems.signalservice.api.util.Preconditions;
 import org.whispersystems.signalservice.internal.push.exceptions.InvalidUnidentifiedAccessHeaderException;
 import org.whispersystems.signalservice.internal.push.http.CancelationSignal;
 import org.whispersystems.signalservice.internal.push.http.PartialSendCompleteListener;
@@ -82,19 +83,41 @@ public final class GroupSendUtil {
    *
    * @param groupId The groupId of the group you're sending to, or null if you're sending to a collection of recipients not joined by a group.
    * @param isRecipientUpdate True if you've already sent this message to some recipients in the past, otherwise false.
+   * @param isForStory True if the message is related to a story, and should be sent with the story flag on the envelope
    */
   @WorkerThread
   public static List<SendMessageResult> sendResendableDataMessage(@NonNull Context context,
                                                                   @Nullable GroupId.V2 groupId,
+                                                                  @Nullable DistributionListId distributionListId,
                                                                   @NonNull List<Recipient> allTargets,
                                                                   boolean isRecipientUpdate,
                                                                   ContentHint contentHint,
                                                                   @NonNull MessageId messageId,
                                                                   @NonNull SignalServiceDataMessage message,
-                                                                  boolean urgent)
+                                                                  boolean urgent,
+                                                                  boolean isForStory)
       throws IOException, UntrustedIdentityException
   {
-    return sendMessage(context, groupId, getDistributionId(groupId), messageId, allTargets, isRecipientUpdate, false, DataSendOperation.resendable(message, contentHint, messageId, urgent), null);
+    Preconditions.checkArgument(groupId == null || distributionListId == null, "Cannot supply both a groupId and a distributionListId!");
+
+    DistributionId distributionId = groupId != null ? getDistributionId(groupId) : getDistributionId(distributionListId);
+
+    return sendMessage(context, groupId, distributionId, messageId, allTargets, isRecipientUpdate, isForStory, DataSendOperation.resendable(message, contentHint, messageId, urgent, isForStory), null);
+  }
+
+  @WorkerThread
+  public static List<SendMessageResult> sendResendableStoryRelatedMessage(@NonNull Context context,
+                                                                          @Nullable GroupId.V2 groupId,
+                                                                          @NonNull DistributionListId distributionListId,
+                                                                          @NonNull List<Recipient> allTargets,
+                                                                          boolean isRecipientUpdate,
+                                                                          ContentHint contentHint,
+                                                                          @NonNull MessageId messageId,
+                                                                          @NonNull SignalServiceDataMessage message,
+                                                                          boolean urgent)
+      throws IOException, UntrustedIdentityException
+  {
+    return sendMessage(context, groupId, getDistributionId(distributionListId), messageId, allTargets, isRecipientUpdate, true, DataSendOperation.resendable(message, contentHint, messageId, urgent, true), null);
   }
 
   /**
@@ -441,21 +464,23 @@ public final class GroupSendUtil {
     private final MessageId                relatedMessageId;
     private final boolean                  resendable;
     private final boolean                  urgent;
+    private final boolean                  isForStory;
 
-    public static DataSendOperation resendable(@NonNull SignalServiceDataMessage message, @NonNull ContentHint contentHint, @NonNull MessageId relatedMessageId, boolean urgent) {
-      return new DataSendOperation(message, contentHint, true, relatedMessageId, urgent);
+    public static DataSendOperation resendable(@NonNull SignalServiceDataMessage message, @NonNull ContentHint contentHint, @NonNull MessageId relatedMessageId, boolean urgent, boolean isForStory) {
+      return new DataSendOperation(message, contentHint, true, relatedMessageId, urgent, isForStory);
     }
 
     public static DataSendOperation unresendable(@NonNull SignalServiceDataMessage message, @NonNull ContentHint contentHint, boolean urgent) {
-      return new DataSendOperation(message, contentHint, false, null, urgent);
+      return new DataSendOperation(message, contentHint, false, null, urgent, false);
     }
 
-    private DataSendOperation(@NonNull SignalServiceDataMessage message, @NonNull ContentHint contentHint, boolean resendable, @Nullable MessageId relatedMessageId, boolean urgent) {
+    private DataSendOperation(@NonNull SignalServiceDataMessage message, @NonNull ContentHint contentHint, boolean resendable, @Nullable MessageId relatedMessageId, boolean urgent, boolean isForStory) {
       this.message          = message;
       this.contentHint      = contentHint;
       this.resendable       = resendable;
       this.relatedMessageId = relatedMessageId;
       this.urgent           = urgent;
+      this.isForStory       = isForStory;
 
       if (resendable && relatedMessageId == null) {
         throw new IllegalArgumentException("If a message is resendable, it must have a related message ID!");
@@ -471,7 +496,7 @@ public final class GroupSendUtil {
         throws NoSessionException, UntrustedIdentityException, InvalidKeyException, IOException, InvalidRegistrationIdException
     {
       SenderKeyGroupEvents listener = relatedMessageId != null ? new SenderKeyMetricEventListener(relatedMessageId.getId()) : SenderKeyGroupEvents.EMPTY;
-      return messageSender.sendGroupDataMessage(distributionId, targets, access, isRecipientUpdate, contentHint, message, listener, urgent);
+      return messageSender.sendGroupDataMessage(distributionId, targets, access, isRecipientUpdate, contentHint, message, listener, urgent, isForStory);
     }
 
     @Override

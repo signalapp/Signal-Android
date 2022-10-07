@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.jobs;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
 import com.annimon.stream.Stream;
@@ -10,8 +11,11 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.MessageDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.SignalDatabase;
+import org.thoughtcrime.securesms.database.model.DistributionListId;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
+import org.thoughtcrime.securesms.database.model.StoryType;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.jobmanager.Data;
@@ -29,6 +33,7 @@ import org.whispersystems.signalservice.api.crypto.ContentHint;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.SendMessageResult;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
+import org.whispersystems.signalservice.api.push.DistributionId;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 
 import java.io.IOException;
@@ -157,7 +162,10 @@ public class RemoteDeleteSendJob extends BaseJob {
     List<Recipient>   eligible = RecipientUtil.getEligibleForSending(Stream.of(recipients).map(Recipient::resolved).toList());
     List<RecipientId> skipped  = Stream.of(SetUtil.difference(possible, eligible)).map(Recipient::getId).toList();
 
-    GroupSendJobHelper.SendResult sendResult   = deliver(conversationRecipient, eligible, targetSentTimestamp);
+    boolean            isForStory         = message.isMms() && (((MmsMessageRecord) message).getStoryType().isStory() || ((MmsMessageRecord) message).getParentStoryId() != null);
+    DistributionListId distributionListId = isForStory ? message.getRecipient().getDistributionListId().orElse(null) : null;
+
+    GroupSendJobHelper.SendResult sendResult = deliver(conversationRecipient, eligible, targetSentTimestamp, isForStory, distributionListId);
 
     for (Recipient completion : sendResult.completed) {
       recipients.remove(completion.getId());
@@ -196,7 +204,11 @@ public class RemoteDeleteSendJob extends BaseJob {
     Log.w(TAG, "Failed to send remote delete to all recipients! (" + (initialRecipientCount - recipients.size() + "/" + initialRecipientCount + ")") );
   }
 
-  private @NonNull GroupSendJobHelper.SendResult deliver(@NonNull Recipient conversationRecipient, @NonNull List<Recipient> destinations, long targetSentTimestamp)
+  private @NonNull GroupSendJobHelper.SendResult deliver(@NonNull Recipient conversationRecipient,
+                                                         @NonNull List<Recipient> destinations,
+                                                         long targetSentTimestamp,
+                                                         boolean isForStory,
+                                                         @Nullable DistributionListId distributionListId)
       throws IOException, UntrustedIdentityException
   {
     SignalServiceDataMessage.Builder dataMessageBuilder = SignalServiceDataMessage.newBuilder()
@@ -210,12 +222,14 @@ public class RemoteDeleteSendJob extends BaseJob {
     SignalServiceDataMessage dataMessage = dataMessageBuilder.build();
     List<SendMessageResult>  results     = GroupSendUtil.sendResendableDataMessage(context,
                                                                                    conversationRecipient.getGroupId().map(GroupId::requireV2).orElse(null),
+                                                                                   distributionListId,
                                                                                    destinations,
                                                                                    false,
                                                                                    ContentHint.RESENDABLE,
                                                                                    new MessageId(messageId, isMms),
                                                                                    dataMessage,
-                                                                                   true);
+                                                                                   true,
+                                                                                   isForStory);
 
     return GroupSendJobHelper.getCompletedSends(destinations, results);
   }
