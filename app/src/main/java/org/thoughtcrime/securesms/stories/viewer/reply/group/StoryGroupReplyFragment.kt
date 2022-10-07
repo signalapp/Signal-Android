@@ -358,7 +358,6 @@ class StoryGroupReplyFragment :
 
           override fun onReactionSelected(emoji: String) {
             dialog.dismiss()
-            findListener<Callback>()?.onReactionEmojiSelected(emoji)
             sendReaction(emoji)
           }
 
@@ -377,6 +376,8 @@ class StoryGroupReplyFragment :
   }
 
   private fun sendReaction(emoji: String) {
+    findListener<Callback>()?.onReactionEmojiSelected(emoji)
+
     lifecycleDisposable += StoryGroupReplySender.sendReaction(requireContext(), storyId, emoji)
       .observeOn(AndroidSchedulers.mainThread())
       .subscribeBy(
