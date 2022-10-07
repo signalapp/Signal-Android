@@ -1886,7 +1886,7 @@
     <string name="MediaPreviewActivity_s_to_you">%1$s ถึงคุณ</string>
     <string name="MediaPreviewActivity_media_no_longer_available">สื่อตัวนี้ไม่มีอยู่แล้ว</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">ไม่พบแอปที่แบ่งปันสื่อนี้ได้</string>
-    <string name="MediaPreviewActivity_dismiss_due_to_error">Close</string>
+    <string name="MediaPreviewActivity_dismiss_due_to_error">ปิด</string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">มี %1$d ข้อความใหม่ใน %2$d การสนทนา</string>
@@ -2825,23 +2825,23 @@
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
-    <string name="PaymentsSecuritySetupFragment__security_setup">Security setup</string>
+    <string name="PaymentsSecuritySetupFragment__security_setup">การตั้งค่าความปลอดภัย</string>
     <!-- Title to enable payment lock -->
-    <string name="PaymentsSecuritySetupFragment__protect_your_funds">Protect your funds</string>
+    <string name="PaymentsSecuritySetupFragment__protect_your_funds">ปกป้องเงินของคุณ</string>
     <!-- Description as to why payment lock is required -->
-    <string name="PaymentsSecuritySetupFragment__help_prevent">Help prevent a person with your phone from accessing your funds by adding another layer of security. You can disable this option in Settings.</string>
+    <string name="PaymentsSecuritySetupFragment__help_prevent">ช่วยป้องกันไม่ให้ผู้อื่นใช้โทรศัพท์คุณเข้าถึงเงินของคุณ ด้วยการยกระดับการรักษาความปลอดภัยขึ้นอีกขั้น คุณสามารถปิดใช้งานตัวเลือกนี้ได้ในการตั้งค่า</string>
     <!-- Option to enable payment lock -->
-    <string name="PaymentsSecuritySetupFragment__enable_payment_lock">Enable payment lock</string>
+    <string name="PaymentsSecuritySetupFragment__enable_payment_lock">เปิดใช้การล็อกการชำระเงิน</string>
     <!-- Option to cancel -->
-    <string name="PaymentsSecuritySetupFragment__not_now">Not now</string>
+    <string name="PaymentsSecuritySetupFragment__not_now">ไม่ใช่ตอนนี้</string>
     <!-- Dialog title to confirm skipping the step -->
-    <string name="PaymentsSecuritySetupFragment__skip_this_step">Skip this step?</string>
+    <string name="PaymentsSecuritySetupFragment__skip_this_step">ต้องการข้ามขั้นตอนนี้ใช่หรือไม่</string>
     <!-- Dialog description to let users know why payment lock is required -->
-    <string name="PaymentsSecuritySetupFragment__skipping_this_step">Skipping this step could allow anyone who has physical access to your phone to transfer funds or view your recovery phrase.</string>
+    <string name="PaymentsSecuritySetupFragment__skipping_this_step">การข้ามขั้นตอนนี้จะทำให้ผู้อื่นสามารถใช้โทรศัพท์ของคุณในการโอนเงินหรือดูวลีกู้คืนของคุณได้</string>
     <!-- Dialog option to cancel -->
-    <string name="PaymentsSecuritySetupFragment__cancel">Cancel</string>
+    <string name="PaymentsSecuritySetupFragment__cancel">ยกเลิก</string>
     <!-- Dialog option to skip -->
-    <string name="PaymentsSecuritySetupFragment__skip">Skip</string>
+    <string name="PaymentsSecuritySetupFragment__skip">ข้าม</string>
 
     <!-- PaymentsAddMoneyFragment -->
     <string name="PaymentsAddMoneyFragment__add_funds">เพิ่มเงิน</string>
@@ -4718,7 +4718,7 @@
     <!-- Displayed when a story has no replies yet -->
     <string name="StoryGroupReplyFragment__no_replies_yet">ยังไม่มีการตอบกลับ</string>
     <!-- Displayed when no longer a group member -->
-    <string name="StoryGroupReplyFragment__you_cant_reply">You can\'t reply to this story because you\'re no longer a member of this group.</string>
+    <string name="StoryGroupReplyFragment__you_cant_reply">คุณไม่สามารถตอบกลับสตอรี่นี้ได้ เนื่องจากคุณไม่ได้เป็นสมาชิกในกลุ่มนี้แล้ว</string>
     <!-- Displayed for each user that reacted to a story when viewing replies -->
     <string name="StoryGroupReactionReplyItem__reacted_to_the_story">ตอบสนองสตอรี่ของคุณ</string>
     <!-- Label for story views tab -->
@@ -4737,6 +4737,12 @@
     <string name="StoryGroupReplyItem__delete">ลบ</string>
     <!-- Page title for My Story options -->
     <string name="MyStorySettingsFragment__my_story">สตอรี่ของฉัน</string>
+    <!-- Number of total signal connections displayed in "All connections" row item -->
+    <plurals name="MyStorySettingsFragment__viewers">
+        <item quantity="other">%1$d viewers</item>
+    </plurals>
+    <!-- Button on all signal connections row to view all signal connections. Please keep as short as possible. -->
+    <string name="MyStorySettingsFragment__view">View</string>
     <!-- Section heading for story visibility -->
     <string name="MyStorySettingsFragment__who_can_view_this_story">ใครเห็นสตอรี่นี้บ้าง</string>
     <!-- Clickable option for selecting people to hide your story from -->
@@ -4830,21 +4836,21 @@
     <!-- Done button label for hide story from screen -->
     <string name="HideStoryFromFragment__done">เสร็จสิ้น</string>
     <!-- Dialog title for removing a group story -->
-    <string name="StoryDialogs__remove_group_story">Remove group story?</string>
+    <string name="StoryDialogs__remove_group_story">ลบสตอรี่กลุ่มใช่หรือไม่</string>
     <!-- Dialog message for removing a group story -->
-    <string name="StoryDialogs__s_will_be_removed">\"%1$s\" will be removed.</string>
+    <string name="StoryDialogs__s_will_be_removed">\"%1$s\" จะถูกลบ</string>
     <!-- Dialog positive action for removing a group story -->
-    <string name="StoryDialogs__remove">Remove</string>
+    <string name="StoryDialogs__remove">ลบ</string>
     <!-- Dialog title for deleting a private story -->
-    <string name="StoryDialogs__delete_private_story">Delete private story?</string>
+    <string name="StoryDialogs__delete_private_story">ลบสตอรี่ส่วนตัวใช่หรือไม่</string>
     <!-- Dialog message for deleting a private story -->
-    <string name="StoryDialogs__s_and_updates_shared">\"%1$s\" and updates shared to this story will be deleted.</string>
+    <string name="StoryDialogs__s_and_updates_shared">\"%1$s\" และการอัปเดตต่างๆ ที่แชร์ในสตอรี่นี้จะถูกลบ</string>
     <!-- Dialog positive action for deleting a private story -->
-    <string name="StoryDialogs__delete">Delete</string>
+    <string name="StoryDialogs__delete">ลบ</string>
     <!-- Dialog title for first time sending something to a beta story -->
-    <string name="StoryDialogs__stories_is_available_to">Stories is available to Signal beta users only.</string>
+    <string name="StoryDialogs__stories_is_available_to">เฉพาะผู้ใช้ Signal รุ่นเบต้าเท่านั้นที่สามารถใช้งานสตอรี่ได้</string>
     <!-- Dialog message for first time sending something to a beta story -->
-    <string name="StoryDialogs__if_you_share_a_story">If you share a story, it will only be available to people who are on Signal beta.</string>
+    <string name="StoryDialogs__if_you_share_a_story">หากคุณแชร์สตอรี่ จะมีเฉพาะผู้ใช้ Signal รุ่นเบต้าเท่านั้นที่เห็น</string>
     <!-- Dialog title for first time adding something to a story -->
     <string name="StoryDialogs__add_to_story_q">เพิ่มไปยังสตอรี่หรือไม่</string>
     <!-- Dialog message for first time adding something to a story -->
@@ -4858,7 +4864,7 @@
     <!-- Error message dialog button to resend a previously failed story send -->
     <string name="StoryDialogs__send">ส่ง</string>
     <!-- Action button for turning off stories when stories are present on the device -->
-    <string name="StoryDialogs__turn_off_and_delete">Turn off and delete</string>
+    <string name="StoryDialogs__turn_off_and_delete">ปิดใช้งานและลบ</string>
     <!-- Privacy Settings toggle title for stories -->
     <string name="PrivacySettingsFragment__share_and_view_stories">แชร์ &amp; ดูสตอรี่</string>
     <!-- Privacy Settings toggle summary for stories -->
@@ -5005,7 +5011,7 @@
     </plurals>
     <!-- Label under name for groups -->
     <plurals name="ContactSearchItems__group_d_members">
-        <item quantity="other">%1$d members</item>
+        <item quantity="other">สมาชิก %1$d คน</item>
     </plurals>
     <!-- Label under name for my story -->
     <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
@@ -5137,7 +5143,7 @@
     <!-- Dialog title to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">ปิดสตอรี่ใช่ไหม</string>
     <!-- Dialog message to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">You will no longer be able to share or view stories. Story updates you have recently shared will also be deleted.</string>
+    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">คุณจะไม่สามารถแชร์หรือดูสตอรี่ได้อีกต่อไป การอัปเดตสตอรี่ที่คุณเพิ่งแชร์จะถูกลบด้วยเช่นกัน</string>
     <!-- Page title when launched from stories landing screen -->
     <string name="StoriesPrivacySettingsFragment__story_privacy">ความเป็นส่วนตัวของสตอรี่</string>
 
