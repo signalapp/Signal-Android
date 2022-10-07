@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.components;
 import android.content.Context;
 import android.content.DialogInterface;
 
-import androidx.appcompat.app.AlertDialog;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.BuildConfig;
@@ -35,14 +35,14 @@ public class RatingManager {
   }
 
   private static void showRatingDialog(final Context context) {
-    new AlertDialog.Builder(context)
-        .setTitle(R.string.RatingManager_rate_this_app)
-        .setMessage(R.string.RatingManager_if_you_enjoy_using_this_app_please_take_a_moment)
-        .setPositiveButton(R.string.RatingManager_rate_now, new DialogInterface.OnClickListener() {
-          @Override
-          public void onClick(DialogInterface dialog, int which) {
-            TextSecurePreferences.setRatingEnabled(context, false);
-            PlayStoreUtil.openPlayStoreOrOurApkDownloadPage(context);
+    new MaterialAlertDialogBuilder(context)
+       .setTitle(R.string.RatingManager_rate_this_app)
+       .setMessage(R.string.RatingManager_if_you_enjoy_using_this_app_please_take_a_moment)
+       .setPositiveButton(R.string.RatingManager_rate_now, new DialogInterface.OnClickListener() {
+         @Override
+         public void onClick(DialogInterface dialog, int which) {
+           TextSecurePreferences.setRatingEnabled(context, false);
+           PlayStoreUtil.openPlayStoreOrOurApkDownloadPage(context);
          }
        })
        .setNegativeButton(R.string.RatingManager_no_thanks, new DialogInterface.OnClickListener() {
