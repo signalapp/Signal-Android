@@ -182,6 +182,10 @@ public final class PushDecryptMessageJob extends BaseJob {
       return false;
     }
 
+    if (result.getContent().getSenderKeyDistributionMessage().isPresent()) {
+      return true;
+    }
+
     if (result.getContent().getStoryMessage().isPresent()) {
       return true;
     }
