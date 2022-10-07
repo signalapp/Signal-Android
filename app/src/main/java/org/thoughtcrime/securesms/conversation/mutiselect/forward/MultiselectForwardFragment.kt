@@ -459,7 +459,7 @@ class MultiselectForwardFragment :
   }
 
   private fun isSelectedMediaValidForStories(): Boolean {
-    return args.multiShareArgs.all { it.isValidForStories }
+    return !args.isViewOnce && args.multiShareArgs.all { it.isValidForStories }
   }
 
   private fun isSelectedMediaValidForNonStories(): Boolean {

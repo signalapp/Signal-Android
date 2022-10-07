@@ -46,7 +46,8 @@ data class MultiselectForwardFragmentArgs @JvmOverloads constructor(
   val selectSingleRecipient: Boolean = false,
   val sendButtonColors: ViewColorSet = ViewColorSet.PRIMARY,
   val storySendRequirements: Stories.MediaTransform.SendRequirements = Stories.MediaTransform.SendRequirements.CAN_NOT_SEND,
-  val isSearchEnabled: Boolean = true
+  val isSearchEnabled: Boolean = true,
+  val isViewOnce: Boolean = false
 ) : Parcelable {
 
   fun withSendButtonTint(@ColorInt sendButtonTint: Int) = copy(sendButtonColors = ViewColorSet.forCustomColor(sendButtonTint))

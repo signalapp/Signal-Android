@@ -160,12 +160,15 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
     }
 
     sendButton.setOnClickListener {
+      val viewOnce: Boolean = sharedViewModel.state.value?.viewOnceToggleState == MediaSelectionState.ViewOnceToggleState.ONCE
+
       if (sharedViewModel.isContactSelectionRequired) {
         val args = MultiselectForwardFragmentArgs(
           false,
           title = R.string.MediaReviewFragment__send_to,
           storySendRequirements = sharedViewModel.getStorySendRequirements(),
-          isSearchEnabled = !sharedViewModel.isStory()
+          isSearchEnabled = !sharedViewModel.isStory(),
+          isViewOnce = viewOnce
         )
 
         if (sharedViewModel.isStory()) {
