@@ -52,7 +52,8 @@ class ContactSearchConfiguration private constructor(
       val includeSelf: Boolean,
       val transportType: TransportType,
       override val includeHeader: Boolean,
-      override val expandConfig: ExpandConfig? = null
+      override val expandConfig: ExpandConfig? = null,
+      val includeLetterHeaders: Boolean = false
     ) : Section(SectionKey.INDIVIDUALS)
 
     /**

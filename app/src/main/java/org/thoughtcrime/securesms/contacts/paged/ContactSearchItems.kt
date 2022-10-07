@@ -11,6 +11,7 @@ import org.thoughtcrime.securesms.components.AvatarImageView
 import org.thoughtcrime.securesms.components.FromTextView
 import org.thoughtcrime.securesms.components.menu.ActionItem
 import org.thoughtcrime.securesms.components.menu.SignalContextMenu
+import org.thoughtcrime.securesms.contacts.LetterHeaderDecoration
 import org.thoughtcrime.securesms.database.model.DistributionListPrivacyMode
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -226,7 +227,10 @@ object ContactSearchItems {
     }
   }
 
-  private class KnownRecipientViewHolder(itemView: View, displayCheckBox: Boolean, onClick: RecipientClickListener) : BaseRecipientViewHolder<RecipientModel, ContactSearchData.KnownRecipient>(itemView, displayCheckBox, onClick) {
+  private class KnownRecipientViewHolder(itemView: View, displayCheckBox: Boolean, onClick: RecipientClickListener) : BaseRecipientViewHolder<RecipientModel, ContactSearchData.KnownRecipient>(itemView, displayCheckBox, onClick), LetterHeaderDecoration.LetterHeaderItem {
+
+    private var headerLetter: String? = null
+
     override fun isSelected(model: RecipientModel): Boolean = model.isSelected
     override fun getData(model: RecipientModel): ContactSearchData.KnownRecipient = model.knownRecipient
     override fun getRecipient(model: RecipientModel): Recipient = model.knownRecipient.recipient
@@ -235,10 +239,16 @@ object ContactSearchItems {
 
       if (model.shortSummary && recipient.isGroup) {
         val count = recipient.participantIds.size
-        number.setText(context.resources.getQuantityString(R.plurals.ContactSearchItems__group_d_members, count, count))
+        number.text = context.resources.getQuantityString(R.plurals.ContactSearchItems__group_d_members, count, count)
       } else {
         super.bindNumberField(model)
       }
+
+      headerLetter = model.knownRecipient.headerLetter
+    }
+
+    override fun getHeaderLetter(): String? {
+      return headerLetter
     }
   }
 

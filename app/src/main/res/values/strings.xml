@@ -4849,6 +4849,13 @@
     <string name="StoryGroupReplyItem__delete">Delete</string>
     <!-- Page title for My Story options -->
     <string name="MyStorySettingsFragment__my_story">My Story</string>
+    <!-- Number of total signal connections displayed in "All connections" row item -->
+    <plurals name="MyStorySettingsFragment__viewers">
+        <item quantity="one">%1$d viewer</item>
+        <item quantity="other">%1$d viewers</item>
+    </plurals>
+    <!-- Button on all signal connections row to view all signal connections. Please keep as short as possible. -->
+    <string name="MyStorySettingsFragment__view">View</string>
     <!-- Section heading for story visibility -->
     <string name="MyStorySettingsFragment__who_can_view_this_story">Who can view this story</string>
     <!-- Clickable option for selecting people to hide your story from -->

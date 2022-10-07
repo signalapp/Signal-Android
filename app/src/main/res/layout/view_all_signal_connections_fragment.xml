@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <org.thoughtcrime.securesms.util.views.DarkOverflowToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/signal_m3_toolbar_height"
+        android:background="@null"
+        android:minHeight="@dimen/signal_m3_toolbar_height"
+        android:theme="?attr/settingsToolbarStyle"
+        app:navigationContentDescription="@string/DSLSettingsToolbar__navigate_up"
+        app:navigationIcon="@drawable/ic_arrow_left_24"
+        app:title="@string/MyStorySettingsFragment__all_signal_connections"
+        app:titleTextAppearance="@style/Signal.Text.TitleLarge" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/stories_recipient_item" />
+
+</LinearLayout>

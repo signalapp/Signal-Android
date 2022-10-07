@@ -22,11 +22,15 @@ class MyStorySettingsRepository {
   }
 
   fun observeChooseInitialPrivacy(): Observable<ChooseInitialMyStoryMembershipState> {
-    return Single.fromCallable { SignalDatabase.distributionLists.getRecipientId(DistributionListId.MY_STORY)!! }
+    return Single
+      .fromCallable { SignalDatabase.distributionLists.getRecipientId(DistributionListId.MY_STORY)!! }
       .subscribeOn(Schedulers.io())
       .flatMapObservable { recipientId ->
-        Recipient.observable(recipientId)
+        val allSignalConnectionsCount = getAllSignalConnectionsCount().toObservable()
+        val stateWithoutCount = Recipient.observable(recipientId)
           .flatMap { Observable.just(ChooseInitialMyStoryMembershipState(recipientId = recipientId, privacyState = getStoryPrivacyState())) }
+
+        Observable.combineLatest(allSignalConnectionsCount, stateWithoutCount) { count, state -> state.copy(allSignalConnectionsCount = count) }
       }
   }
 
@@ -47,6 +51,12 @@ class MyStorySettingsRepository {
     return Completable.fromAction {
       SignalDatabase.distributionLists.setAllowsReplies(DistributionListId.MY_STORY, repliesAndReactionsEnabled)
       Stories.onStorySettingsChanged(DistributionListId.MY_STORY)
+    }.subscribeOn(Schedulers.io())
+  }
+
+  fun getAllSignalConnectionsCount(): Single<Int> {
+    return Single.fromCallable {
+      SignalDatabase.recipients.getSignalContactsCount(false)
     }.subscribeOn(Schedulers.io())
   }
 

@@ -17,6 +17,11 @@
     </style>
 
     <style name="Widget.Signal.Button.TextButton" parent="Widget.Material3.Button.TextButton">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.Signal.Button.TextButton</item>
+    </style>
+
+    <style name="ThemeOverlay.Signal.Button.TextButton" parent="ThemeOverlay.Material3.Button.TextButton">
+        <item name="colorOnContainer">@color/signal_colorPrimary</item>
     </style>
 
     <style name="NoAnimation.Theme.BlackScreen" parent="Theme.AppCompat.NoActionBar">

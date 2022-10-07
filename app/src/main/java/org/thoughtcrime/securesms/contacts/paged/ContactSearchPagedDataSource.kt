@@ -11,6 +11,7 @@ import org.thoughtcrime.securesms.database.model.DistributionListPrivacyMode
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.keyvalue.StorySend
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.recipients.RecipientId
 import java.util.concurrent.TimeUnit
 
 /**
@@ -129,6 +130,13 @@ class ContactSearchPagedDataSource(
     }
   }
 
+  private fun getNonGroupHeaderLetterMap(section: ContactSearchConfiguration.Section.Individuals, query: String?): Map<RecipientId, String> {
+    return when (section.transportType) {
+      ContactSearchConfiguration.TransportType.PUSH -> contactSearchPagedDataSourceRepository.querySignalContactLetterHeaders(query, section.includeSelf)
+      else -> error("This has only been implemented for push recipients.")
+    }
+  }
+
   private fun getStoriesSearchIterator(query: String?): ContactSearchIterator<Cursor> {
     return CursorSearchIterator(contactSearchPagedDataSourceRepository.getStories(query))
   }
@@ -193,6 +201,12 @@ class ContactSearchPagedDataSource(
   }
 
   private fun getNonGroupContactsData(section: ContactSearchConfiguration.Section.Individuals, query: String?, startIndex: Int, endIndex: Int): List<ContactSearchData> {
+    val headerMap: Map<RecipientId, String> = if (section.includeLetterHeaders) {
+      getNonGroupHeaderLetterMap(section, query)
+    } else {
+      emptyMap()
+    }
+
     return getNonGroupSearchIterator(section, query).use { records ->
       readContactData(
         records = records,
@@ -201,7 +215,8 @@ class ContactSearchPagedDataSource(
         startIndex = startIndex,
         endIndex = endIndex,
         recordMapper = {
-          ContactSearchData.KnownRecipient(contactSearchPagedDataSourceRepository.getRecipientFromRecipientCursor(it))
+          val recipient = contactSearchPagedDataSourceRepository.getRecipientFromRecipientCursor(it)
+          ContactSearchData.KnownRecipient(recipient, headerLetter = headerMap[recipient.id])
         }
       )
     }

@@ -3112,6 +3112,44 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     return readableDatabase.query(TABLE_NAME, SEARCH_PROJECTION, selection, args, null, null, orderBy)
   }
 
+  fun querySignalContactLetterHeaders(inputQuery: String, includeSelf: Boolean): Map<RecipientId, String> {
+    val searchSelection = ContactSearchSelection.Builder()
+      .withRegistered(true)
+      .withGroups(false)
+      .excludeId(if (includeSelf) null else Recipient.self().id)
+      .withSearchQuery(inputQuery)
+      .build()
+
+    return readableDatabase.query(
+      """
+        SELECT
+          _id,
+          UPPER(SUBSTR($SORT_NAME, 0, 2)) AS letter_header
+        FROM (
+          SELECT ${SEARCH_PROJECTION.joinToString(", ")}
+          FROM recipient
+          WHERE ${searchSelection.where}
+          ORDER BY $SORT_NAME, $SYSTEM_JOINED_NAME, $SEARCH_PROFILE_NAME, $PHONE
+        )
+        GROUP BY letter_header
+      """.trimIndent(),
+      searchSelection.args
+    ).use { cursor ->
+      if (cursor.count == 0) {
+        emptyMap()
+      } else {
+        val resultsMap = mutableMapOf<RecipientId, String>()
+        while (cursor.moveToNext()) {
+          cursor.requireString("letter_header")?.let {
+            resultsMap[RecipientId.from(cursor.requireLong(ID))] = it
+          }
+        }
+
+        resultsMap
+      }
+    }
+  }
+
   fun getNonSignalContacts(): Cursor? {
     val searchSelection = ContactSearchSelection.Builder().withNonRegistered(true)
       .withGroups(false)

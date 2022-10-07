@@ -25,6 +25,8 @@ class MyStorySettingsViewModel @JvmOverloads constructor(private val repository:
       .subscribe { myStoryPrivacyState -> store.update { it.copy(myStoryPrivacyState = myStoryPrivacyState) } }
     disposables += repository.getRepliesAndReactionsEnabled()
       .subscribe { repliesAndReactionsEnabled -> store.update { it.copy(areRepliesAndReactionsEnabled = repliesAndReactionsEnabled) } }
+    disposables += repository.getAllSignalConnectionsCount()
+      .subscribe { allSignalConnectionsCount -> store.update { it.copy(allSignalConnectionsCount = allSignalConnectionsCount) } }
   }
 
   fun setRepliesAndReactionsEnabled(repliesAndReactionsEnabled: Boolean) {

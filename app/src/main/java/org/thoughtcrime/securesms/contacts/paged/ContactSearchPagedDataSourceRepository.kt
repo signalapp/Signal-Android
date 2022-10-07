@@ -36,6 +36,10 @@ open class ContactSearchPagedDataSourceRepository(
     return contactRepository.querySignalContacts(query ?: "", includeSelf)
   }
 
+  open fun querySignalContactLetterHeaders(query: String?, includeSelf: Boolean): Map<RecipientId, String> {
+    return SignalDatabase.recipients.querySignalContactLetterHeaders(query ?: "", includeSelf)
+  }
+
   open fun queryNonSignalContacts(query: String?): Cursor? {
     return contactRepository.queryNonSignalContacts(query ?: "")
   }
