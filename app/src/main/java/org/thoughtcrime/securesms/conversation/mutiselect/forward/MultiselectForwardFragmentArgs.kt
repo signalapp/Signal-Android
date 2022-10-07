@@ -44,7 +44,7 @@ data class MultiselectForwardFragmentArgs @JvmOverloads constructor(
   val forceDisableAddMessage: Boolean = false,
   val forceSelectionOnly: Boolean = false,
   val selectSingleRecipient: Boolean = false,
-  val sendButtonColors: ViewColorSet? = null,
+  val sendButtonColors: ViewColorSet = ViewColorSet.PRIMARY,
   val storySendRequirements: Stories.MediaTransform.SendRequirements = Stories.MediaTransform.SendRequirements.CAN_NOT_SEND,
   val isSearchEnabled: Boolean = true
 ) : Parcelable {
@@ -74,7 +74,7 @@ data class MultiselectForwardFragmentArgs @JvmOverloads constructor(
               isMmsSupported,
               listOf(multiShareArgs),
               storySendRequirements = Stories.MediaTransform.SendRequirements.CAN_NOT_SEND,
-              sendButtonColors = sendButtonColors
+              sendButtonColors = sendButtonColors ?: ViewColorSet.PRIMARY
             )
           )
         }

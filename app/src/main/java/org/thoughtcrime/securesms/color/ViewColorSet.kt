@@ -19,6 +19,11 @@ data class ViewColorSet(
   val background: ViewColor
 ) : Parcelable {
   companion object {
+    val PRIMARY = ViewColorSet(
+      foreground = ViewColor.ColorResource(R.color.signal_colorOnPrimary),
+      background = ViewColor.ColorResource(R.color.signal_colorPrimary)
+    )
+
     fun forCustomColor(@ColorInt customColor: Int): ViewColorSet {
       return ViewColorSet(
         foreground = ViewColor.ColorResource(R.color.signal_colorOnCustom),
