@@ -43,7 +43,7 @@ public class EditProxyViewModel extends ViewModel {
     }
   }
 
-  void onToggleProxy(boolean enabled) {
+  void onToggleProxy(boolean enabled, String text) {
     if (enabled) {
       SignalProxy currentProxy = SignalStore.proxy().getProxy();
 
@@ -51,9 +51,12 @@ public class EditProxyViewModel extends ViewModel {
         SignalProxyUtil.enableProxy(currentProxy);
       }
       uiState.postValue(UiState.ALL_ENABLED);
+    } else if (Util.isEmpty(text)) {
+        SignalProxyUtil.disableAndClearProxy();
+        uiState.postValue(UiState.ALL_DISABLED);
     } else {
-      SignalProxyUtil.disableProxy();
-      uiState.postValue(UiState.ALL_DISABLED);
+        SignalProxyUtil.disableProxy();
+        uiState.postValue(UiState.ALL_DISABLED);
     }
   }
 

@@ -67,6 +67,11 @@ public final class SignalProxyUtil {
     startListeningToWebsocket();
   }
 
+  public static void disableAndClearProxy(){
+    disableProxy();
+    SignalStore.proxy().setProxy(null);
+  }
+
   /**
    * A blocking call that will wait until the websocket either successfully connects, or fails.
    * It is assumed that the app state is already configured how you would like it, e.g. you've
