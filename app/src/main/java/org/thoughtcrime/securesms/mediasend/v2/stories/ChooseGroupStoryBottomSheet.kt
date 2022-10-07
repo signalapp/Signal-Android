@@ -32,10 +32,9 @@ class ChooseGroupStoryBottomSheet : FixedRoundedCornerBottomSheetDialogFragment(
     const val RESULT_SET = "groups"
   }
 
-  private lateinit var confirmButton: View
-  private lateinit var selectedList: RecyclerView
   private lateinit var divider: View
   private lateinit var mediator: ContactSearchMediator
+  private lateinit var innerContainer: View
 
   private var animatorSet: AnimatorSet? = null
 
@@ -49,13 +48,14 @@ class ChooseGroupStoryBottomSheet : FixedRoundedCornerBottomSheetDialogFragment(
     val container = view.parent.parent.parent as FrameLayout
     val bottomBar = LayoutInflater.from(requireContext()).inflate(R.layout.stories_choose_group_bottom_bar, container, true)
 
-    confirmButton = bottomBar.findViewById(R.id.share_confirm)
-    selectedList = bottomBar.findViewById(R.id.selected_list)
+    innerContainer = bottomBar.findViewById(R.id.inner_container)
     divider = bottomBar.findViewById(R.id.divider)
 
     val adapter = ShareSelectionAdapter()
+    val selectedList: RecyclerView = bottomBar.findViewById(R.id.selected_list)
     selectedList.adapter = adapter
 
+    val confirmButton: View = bottomBar.findViewById(R.id.share_confirm)
     confirmButton.setOnClickListener {
       onDone()
     }
@@ -116,8 +116,7 @@ class ChooseGroupStoryBottomSheet : FixedRoundedCornerBottomSheetDialogFragment(
     animatorSet?.cancel()
     animatorSet = AnimatorSet().apply {
       playTogether(
-        ObjectAnimator.ofFloat(confirmButton, View.TRANSLATION_Y, 0f),
-        ObjectAnimator.ofFloat(selectedList, View.TRANSLATION_Y, 0f),
+        ObjectAnimator.ofFloat(innerContainer, View.TRANSLATION_Y, 0f),
         ObjectAnimator.ofFloat(divider, View.TRANSLATION_Y, 0f)
       )
       start()
@@ -125,13 +124,12 @@ class ChooseGroupStoryBottomSheet : FixedRoundedCornerBottomSheetDialogFragment(
   }
 
   private fun animateOutBottomBar() {
-    val translationY = DimensionUnit.SP.toPixels(64f)
+    val translationY = DimensionUnit.SP.toPixels(68f)
 
     animatorSet?.cancel()
     animatorSet = AnimatorSet().apply {
       playTogether(
-        ObjectAnimator.ofFloat(confirmButton, View.TRANSLATION_Y, translationY),
-        ObjectAnimator.ofFloat(selectedList, View.TRANSLATION_Y, translationY),
+        ObjectAnimator.ofFloat(innerContainer, View.TRANSLATION_Y, translationY),
         ObjectAnimator.ofFloat(divider, View.TRANSLATION_Y, translationY)
       )
       start()

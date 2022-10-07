@@ -1,53 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:viewBindingIgnore="true"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_gravity="bottom">
+    android:layout_gravity="bottom"
+    android:orientation="vertical">
 
     <View
         android:id="@+id/divider"
         android:layout_width="match_parent"
         android:layout_height="4dp"
         android:background="@drawable/bottom_toolbar_shadow"
-        android:translationY="64sp"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/inner_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:translationY="68sp"
+        android:background="@color/signal_colorSurface1">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/selected_list"
-        android:layout_width="0dp"
-        android:layout_height="44dp"
-        android:layout_marginEnd="@dimen/dsl_settings_gutter"
-        android:clipToPadding="false"
-        android:orientation="horizontal"
-        android:paddingStart="@dimen/dsl_settings_gutter"
-        android:paddingEnd="78dp"
-        android:translationY="64sp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/divider"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:listitem="@layout/share_contact_selection_item" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/selected_list"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_marginEnd="@dimen/dsl_settings_gutter"
+            android:clipToPadding="false"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/dsl_settings_gutter"
+            android:paddingEnd="78dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:listitem="@layout/share_contact_selection_item" />
 
-    <ImageView
-        android:id="@+id/share_confirm"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_margin="16dp"
-        android:contentDescription="@string/ShareActivity__share"
-        android:background="@drawable/circle_tintable"
-        android:padding="6dp"
-        android:translationY="64sp"
-        app:backgroundTint="@color/signal_colorPrimary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:srcCompat="@drawable/ic_check_24"
-        app:tint="@color/signal_colorOnPrimary"
-        tools:alpha="1" />
+        <ImageView
+            android:id="@+id/share_confirm"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="16dp"
+            android:contentDescription="@string/ShareActivity__share"
+            android:background="@drawable/circle_tintable"
+            android:padding="6dp"
+            app:backgroundTint="@color/signal_colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:srcCompat="@drawable/ic_check_24"
+            app:tint="@color/signal_colorOnPrimary"
+            tools:alpha="1" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>
