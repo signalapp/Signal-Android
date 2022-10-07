@@ -159,6 +159,12 @@ public class ConversationDataSource implements PagedDataSource<MessageId, Conver
     MessageDatabase database  = messageId.isMms() ? SignalDatabase.mms() : SignalDatabase.sms();
     MessageRecord   record    = database.getMessageRecordOrNull(messageId.getId());
 
+    if (record instanceof MediaMmsMessageRecord &&
+        ((MediaMmsMessageRecord) record).getParentStoryId() != null &&
+        ((MediaMmsMessageRecord) record).getParentStoryId().isGroupReply()) {
+      return null;
+    }
+
     stopwatch.split("message");
 
     try {
