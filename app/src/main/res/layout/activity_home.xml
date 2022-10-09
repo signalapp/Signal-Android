@@ -47,8 +47,8 @@
                     android:layout_width="0dp"
                     android:layout_height="16dp"
                     android:layout_centerInParent="true"
-                    android:layout_toStartOf="@+id/searchViewContainer"
-                    android:layout_toEndOf="@+id/profileButton"
+                    android:layout_toLeftOf="@+id/searchViewContainer"
+                    android:layout_toRightOf="@+id/profileButton"
                     android:scaleType="centerInside"
                     android:src="@drawable/ic_session"
                     app:tint="@color/black" />

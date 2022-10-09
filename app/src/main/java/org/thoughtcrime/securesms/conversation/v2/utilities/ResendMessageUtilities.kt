@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.conversation.v2.utilities
 
+import android.content.Context
 import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.messages.visible.LinkPreview
 import org.session.libsession.messaging.messages.visible.OpenGroupInvitation
@@ -7,13 +8,14 @@ import org.session.libsession.messaging.messages.visible.Quote
 import org.session.libsession.messaging.messages.visible.VisibleMessage
 import org.session.libsession.messaging.sending_receiving.MessageSender
 import org.session.libsession.messaging.utilities.UpdateMessageData
+import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsession.utilities.recipients.Recipient
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 
 object ResendMessageUtilities {
 
-    fun resend(messageRecord: MessageRecord) {
+    fun resend(context: Context, messageRecord: MessageRecord, userBlindedKey: String?) {
         val recipient: Recipient = messageRecord.recipient
         val message = VisibleMessage()
         message.id = messageRecord.getId()
@@ -44,6 +46,9 @@ object ResendMessageUtilities {
             }
             if (mmsMessageRecord.quote != null) {
                 message.quote = Quote.from(mmsMessageRecord.quote!!.quoteModel)
+                if (userBlindedKey != null && messageRecord.quote!!.author.serialize() == TextSecurePreferences.getLocalNumber(context)) {
+                    message.quote!!.publicKey = userBlindedKey
+                }
             }
             message.addSignalAttachments(mmsMessageRecord.slideDeck.asAttachments())
         }

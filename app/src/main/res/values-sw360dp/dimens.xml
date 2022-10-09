@@ -11,4 +11,5 @@
     <dimen name="album_5_total_height">210dp</dimen>
     <dimen name="album_5_cell_size_big">125dp</dimen>
     <dimen name="album_5_cell_size_small">83dp</dimen>
+    <dimen name="max_text_width">240dp</dimen>
 </resources>

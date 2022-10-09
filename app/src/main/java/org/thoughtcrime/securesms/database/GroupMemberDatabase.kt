@@ -51,31 +51,31 @@ class GroupMemberDatabase(context: Context, helper: SQLCipherOpenHelper) : Datab
         return mappings.map { it.role }
     }
 
-    fun addGroupMember(member: GroupMember) {
+    fun setGroupMembers(members: List<GroupMember>) {
         writableDatabase.beginTransaction()
         try {
-            val values = ContentValues().apply {
-                put(GROUP_ID, member.groupId)
-                put(PROFILE_ID, member.profileId)
-                put(ROLE, member.role.name)
+            val grouped = members.groupBy { it.role }
+            grouped.forEach { (role, members) ->
+                if (members.isEmpty()) return@forEach
+
+                val toDeleteQuery = "$GROUP_ID = ? AND $ROLE = ?"
+                val toDeleteArgs = arrayOf(members.first().groupId, role.name)
+
+                writableDatabase.delete(TABLE_NAME, toDeleteQuery, toDeleteArgs)
+
+                members.forEach { member ->
+                    val values = ContentValues().apply {
+                        put(GROUP_ID, member.groupId)
+                        put(PROFILE_ID, member.profileId)
+                        put(ROLE, member.role.name)
+                    }
+                    val query = "$GROUP_ID = ? AND $PROFILE_ID = ?"
+                    val args = arrayOf(member.groupId, member.profileId)
+
+                    writableDatabase.insertOrUpdate(TABLE_NAME, values, query, args)
+                }
+                writableDatabase.setTransactionSuccessful()
             }
-            val query = "$GROUP_ID = ? AND $PROFILE_ID = ?"
-            val args = arrayOf(member.groupId, member.profileId)
-
-            writableDatabase.insertOrUpdate(TABLE_NAME, values, query, args)
-            writableDatabase.setTransactionSuccessful()
-        } finally {
-            writableDatabase.endTransaction()
-        }
-    }
-
-    fun clearGroupMemberRoles(groupId: String) {
-        writableDatabase.beginTransaction()
-        try {
-            val query = "$GROUP_ID = ?"
-            val args = arrayOf(groupId)
-            writableDatabase.delete(TABLE_NAME, query, args)
-            writableDatabase.setTransactionSuccessful()
         } finally {
             writableDatabase.endTransaction()
         }

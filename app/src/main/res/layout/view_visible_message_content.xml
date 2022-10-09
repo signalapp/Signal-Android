@@ -104,7 +104,7 @@
             android:visibility="gone"
             app:layout_constraintTop_toBottomOf="@+id/bodyTopBarrier"
             app:layout_constraintStart_toStartOf="parent"
-            android:maxWidth="300dp"
+            android:maxWidth="@dimen/max_text_width"
             android:paddingHorizontal="12dp"
             android:paddingVertical="@dimen/small_spacing"
             android:id="@+id/bodyTextView"
