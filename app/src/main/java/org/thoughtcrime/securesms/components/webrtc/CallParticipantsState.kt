@@ -285,7 +285,7 @@ data class CallParticipantsState(
       val displayLocal: Boolean = (numberOfRemoteParticipants == 0 || !isInPip) && (isNonIdleGroupCall || localParticipant.isVideoEnabled)
       var localRenderState: WebRtcLocalRenderState = WebRtcLocalRenderState.GONE
 
-      if (isExpanded && (localParticipant.isVideoEnabled || isNonIdleGroupCall)) {
+      if (!isInPip && isExpanded && (localParticipant.isVideoEnabled || isNonIdleGroupCall)) {
         return WebRtcLocalRenderState.EXPANDED
       } else if (displayLocal || showVideoForOutgoing) {
         if (callState == WebRtcViewModel.State.CALL_CONNECTED || callState == WebRtcViewModel.State.CALL_RECONNECTING) {
