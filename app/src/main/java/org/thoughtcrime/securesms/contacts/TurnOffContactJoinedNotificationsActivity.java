@@ -40,7 +40,9 @@ public class TurnOffContactJoinedNotificationsActivity extends AppCompatActivity
 
     new AlertDialog.Builder(this)
                    .setMessage(R.string.TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal)
-                   .setPositiveButton(android.R.string.ok, (dialog, which) -> handlePositiveAction(dialog))
+                   .setPositiveButton(android.R.string.ok, (dialog, which) -> {
+                     handlePositiveAction(dialog);
+                   })
                    .setNegativeButton(android.R.string.cancel, ((dialog, which) -> {
                      dialog.dismiss();
                      finish();
