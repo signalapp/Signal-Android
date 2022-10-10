@@ -69,6 +69,7 @@ public class CallNotificationBuilder {
       builder.addAction(getServiceNotificationAction(context, WebRtcCallService.hangupIntent(context), R.drawable.ic_call_end_grey600_32dp, R.string.NotificationBarManager__cancel_call));
     } else {
       builder.setContentText(context.getString(R.string.NotificationBarManager_signal_call_in_progress));
+      builder.setOnlyAlertOnce(true);
       builder.addAction(getServiceNotificationAction(context, WebRtcCallService.hangupIntent(context), R.drawable.ic_call_end_grey600_32dp, R.string.NotificationBarManager__end_call));
     }
 
