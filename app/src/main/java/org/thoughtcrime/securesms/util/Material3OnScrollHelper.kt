@@ -7,6 +7,7 @@ import android.view.View
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
+import androidx.core.widget.NestedScrollView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.animation.ArgbEvaluatorCompat
 import com.google.android.material.appbar.AppBarLayout
@@ -47,6 +48,14 @@ open class Material3OnScrollHelper(
   private var animator: ValueAnimator? = null
   private var active: Boolean? = null
 
+  fun attach(nestedScrollView: NestedScrollView) {
+    nestedScrollView.setOnScrollChangeListener(
+      OnScrollListener().apply {
+        onScrollChange(nestedScrollView, 0, 0, 0, 0)
+      }
+    )
+  }
+
   fun attach(recyclerView: RecyclerView) {
     recyclerView.addOnScrollListener(
       OnScrollListener().apply {
@@ -57,7 +66,7 @@ open class Material3OnScrollHelper(
 
   fun attach(appBarLayout: AppBarLayout) {
     appBarLayout.addOnOffsetChangedListener(
-      OnOffsetChangedListener().apply {
+      OnScrollListener().apply {
         onOffsetChanged(appBarLayout, 0)
       }
     )
@@ -119,15 +128,17 @@ open class Material3OnScrollHelper(
     viewStubs.filter { it.resolved() }.forEach { it.get().setBackgroundColor(color) }
   }
 
-  private inner class OnScrollListener : RecyclerView.OnScrollListener() {
+  private inner class OnScrollListener : RecyclerView.OnScrollListener(), AppBarLayout.OnOffsetChangedListener, NestedScrollView.OnScrollChangeListener {
     override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
       updateActiveState(recyclerView.canScrollVertically(-1))
     }
-  }
 
-  private inner class OnOffsetChangedListener : AppBarLayout.OnOffsetChangedListener {
     override fun onOffsetChanged(appBarLayout: AppBarLayout, verticalOffset: Int) {
       updateActiveState(verticalOffset != 0)
+    }
+
+    override fun onScrollChange(v: NestedScrollView, scrollX: Int, scrollY: Int, oldScrollX: Int, oldScrollY: Int) {
+      updateActiveState(v.canScrollVertically(-1))
     }
   }
 }

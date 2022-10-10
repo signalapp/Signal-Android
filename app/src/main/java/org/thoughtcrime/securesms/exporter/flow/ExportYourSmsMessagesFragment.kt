@@ -7,6 +7,7 @@ import androidx.navigation.fragment.findNavController
 import org.signal.smsexporter.DefaultSmsHelper
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.databinding.ExportYourSmsMessagesFragmentBinding
+import org.thoughtcrime.securesms.util.Material3OnScrollHelper
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 /**
@@ -28,5 +29,7 @@ class ExportYourSmsMessagesFragment : Fragment(R.layout.export_your_sms_messages
         findNavController().safeNavigate(ExportYourSmsMessagesFragmentDirections.actionExportYourSmsMessagesFragmentToSetSignalAsDefaultSmsAppFragment())
       }
     }
+
+    Material3OnScrollHelper(requireActivity(), binding.toolbar).attach(binding.scrollView)
   }
 }
