@@ -197,7 +197,7 @@
     <string name="ClientDeprecatedActivity_update">تحديث التطبيق</string>
     <string name="ClientDeprecatedActivity_dont_update">لا تقم بالتحديث</string>
     <string name="ClientDeprecatedActivity_warning">تحذير</string>
-    <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">لقد انتهت صلاحية إصدار Signal الخاص بك. يمكنك عرض محفوظات رسائلك ولكنك لن يصبح بإمكانك إرسال أو استلام الرسائل إلى حين قيامك بالتحديث.</string>
+    <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">لقد انتهت صلاحية إصدار Signal الخاص بك. يُمكنك عرض محفوظات رسائلك ولكنك لن تتمكّن من إرسال أو استلام الرسائل إلى حين قيامك بالتحديث.</string>
 
     <!-- CommunicationActions -->
     <string name="CommunicationActions_no_browser_found">لم يتم العثور على متصفح للإنترنت.</string>
@@ -765,7 +765,7 @@
     <!-- GroupsV1MigrationLearnMoreBottomSheetDialogFragment -->
     <string name="GroupsV1MigrationLearnMore_what_are_new_groups">ما هي المجموعات الجديدة ؟</string>
     <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">تحوي المجموعات الجديدة ميزات كـ ‎@mentions‎ والمشرفين على المجموعة، كما ستدعم مستقبلا المزيد من الميزات.</string>
-    <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">تم الاحتفاظ بكل محفوظات الرسائل والوسائط قبل الترقية.</string>
+    <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">سيُحتفظ بكل محفوظات الرسائل والوسائط التي كانت قبل الترقية.</string>
     <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">قبول دعوة الانضمام إلى هذه المجموعة مرة أخرى ضروري، ولن تصلك أي رسائل من المجموعة إلى حين موافقتك علي الانضمام إليها.</string>
     <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
         <item quantity="zero">يحتاج هذا العضو قبول دعوة الانضمام إلى هذه المجموعة مرة أخرى، ولن تصله أي رسائل من المجموعة إلى حين موافقته على الانضمام إليها :</item>
@@ -788,7 +788,7 @@
     <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">قم بالترقية إلى مجموعة جديدة</string>
     <string name="GroupsV1MigrationInitiation_upgrade_this_group">يُرجى ترقية هذه المجموعة</string>
     <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">تحوي المجموعات الجديدة ميزات كـ ‎@mentions‎ والمشرفين على المجموعة، كما ستدعم مستقبلا المزيد من الميزات.</string>
-    <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">ستُحتفَظ كل محفوظات الرسائل والوسائط قبل الترقية.</string>
+    <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">سيُحتفظ بكل محفوظات الرسائل والوسائط التي كانت قبل الترقية.</string>
     <string name="GroupsV1MigrationInitiation_encountered_a_network_error">حدث خطأ في الشبكة. يُرجى المحاولة مرة أخرى لاحقا.</string>
     <string name="GroupsV1MigrationInitiation_failed_to_upgrade">فشلت الترقية.</string>
     <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
@@ -2680,7 +2680,7 @@
     <!-- Displayed in a toast when user long presses an item in MyStories -->
     <string name="MyStoriesFragment__copied_sent_timestamp_to_clipboard">لقد نُسخ ثم أُرسل مع التاريخ إلى الحافظة</string>
     <!-- Displayed when there are no outgoing stories -->
-    <string name="MyStoriesFragment__updates_to_your_story_will_show_up_here">سوف يظهر تحديث قصتك هنا.</string>
+    <string name="MyStoriesFragment__updates_to_your_story_will_show_up_here">ستظهر تحديثات قصتك هنا.</string>
 
     <!-- GroupUtil -->
     <plurals name="GroupUtil_joined_the_group">
@@ -3010,12 +3010,12 @@
     <string name="preferences_storage__audio">صوت</string>
     <string name="preferences_storage__review_storage">مراجعة سعة التخزين</string>
     <string name="preferences_storage__delete_older_messages">أأحذف الرسائل القديمة ؟</string>
-    <string name="preferences_storage__clear_message_history">أأمحو محفوظات الرسائل ؟</string>
-    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">سوف تُحذَف من جهازك كل الملفات الأقدم من %1$s نهائيا، بما في ذلك محفوظات الرسائل والوسائط.</string>
+    <string name="preferences_storage__clear_message_history">محو محفوظات الرسائل؟</string>
+    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">ستُحذَف جميع محفوظات الرسائل والوسائط الأقدم من %1$s من جهازك بصفة نهائية.</string>
     <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">سوف يتم تقليم كل المحادثات إلى أحدث %1$s رسالة.</string>
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">سوف تُحذَف كل محفوظات الرسائل والوسائط نهائيا من جهازك.</string>
-    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">أأنت على يقين من نيتك حذف كل محفوظات الرسائل ؟</string>
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">ستُزال محفوظات الرسائل نهائيا. لن يتم التراجع عن هذا الإجراء.</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">ستُحذَف جميع محفوظات الرسائل والوسائط من جهازك بصفة نهائية.</string>
+    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">هل أنت متأكد من أنك تريد حذف كل محفوظات الرسائل ؟</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">ستُحذف محفوظات الرسائل نهائيًا. لن يتم التراجع عن هذا الإجراء.</string>
     <string name="preferences_storage__delete_all_now">حذف الكل الآن</string>
     <string name="preferences_storage__forever">للأبد</string>
     <string name="preferences_storage__one_year">عام واحد</string>
@@ -3255,19 +3255,19 @@
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
-    <string name="PaymentsSecuritySetupFragment__security_setup">Security setup</string>
+    <string name="PaymentsSecuritySetupFragment__security_setup">إعداد الأمان</string>
     <!-- Title to enable payment lock -->
-    <string name="PaymentsSecuritySetupFragment__protect_your_funds">Protect your funds</string>
+    <string name="PaymentsSecuritySetupFragment__protect_your_funds">اِحم أموالك</string>
     <!-- Description as to why payment lock is required -->
-    <string name="PaymentsSecuritySetupFragment__help_prevent">Help prevent a person with your phone from accessing your funds by adding another layer of security. You can disable this option in Settings.</string>
+    <string name="PaymentsSecuritySetupFragment__help_prevent">ساعد في منع أي شخص يستخدم هاتفكَ من الوصول إلى أموالك عن طريقة إضافة طبقة أخرى من الأمان. يُمكنك تعطيل هذا الخيار في الإعدادات.</string>
     <!-- Option to enable payment lock -->
-    <string name="PaymentsSecuritySetupFragment__enable_payment_lock">Enable payment lock</string>
+    <string name="PaymentsSecuritySetupFragment__enable_payment_lock">تفعيل قفل عمليات الدفع</string>
     <!-- Option to cancel -->
     <string name="PaymentsSecuritySetupFragment__not_now">ليس الآن</string>
     <!-- Dialog title to confirm skipping the step -->
-    <string name="PaymentsSecuritySetupFragment__skip_this_step">Skip this step?</string>
+    <string name="PaymentsSecuritySetupFragment__skip_this_step">تَخَطّ هذه الخطوة</string>
     <!-- Dialog description to let users know why payment lock is required -->
-    <string name="PaymentsSecuritySetupFragment__skipping_this_step">Skipping this step could allow anyone who has physical access to your phone to transfer funds or view your recovery phrase.</string>
+    <string name="PaymentsSecuritySetupFragment__skipping_this_step">قد يُؤدي تخطِّي هذه الخطوة إلى السماح لأي شخص يستخدم هاتفك بتحويل الأموال أو الاطّللاع على عبارة الاسترداد الخاصة بك.</string>
     <!-- Dialog option to cancel -->
     <string name="PaymentsSecuritySetupFragment__cancel">إلغاء</string>
     <!-- Dialog option to skip -->
@@ -4677,7 +4677,7 @@
     <string name="MultiselectForwardFragment__add_a_message">إضافة نص</string>
     <string name="MultiselectForwardFragment__faster_forwards">إعادة توجيه أسرع</string>
     <!-- Displayed when user selects a video that will be clipped before sharing to a story -->
-    <string name="MultiselectForwardFragment__videos_will_be_trimmed">سَيتم تجزئة الفيديوهات إلى مقاطع من 30 ثانية وإرسالها كعدة قصص.</string>
+    <string name="MultiselectForwardFragment__videos_will_be_trimmed">سَيتم تجزئة الفيديوهات إلى مقاطع من 30 ثانية وإرسالها كعدة قِصص.</string>
     <!-- Displayed when user selects a video that cannot be sent as a story -->
     <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">لا يمكن أن تتعدى الفيديوهات المرسلة كقِصص 30 ثانية.</string>
     <string name="MultiselectForwardFragment__forwarded_messages_are_now">لقد أُرسِلت اﻵن الرسائل الموجَّهة فورا.</string>
@@ -5174,9 +5174,9 @@
     <!-- Status label when a story fails to send indicating user action to retry -->
     <string name="StoriesLandingItem__tap_to_retry">يُرجى اللمس لإعادة المحاولة</string>
     <!-- Title of dialog confirming decision to hide a story -->
-    <string name="StoriesLandingFragment__hide_story">أأخفي القصة ؟</string>
+    <string name="StoriesLandingFragment__hide_story">إخفاء القصة؟</string>
     <!-- Message of dialog confirming decision to hide a story -->
-    <string name="StoriesLandingFragment__new_story_updates">إن مستجدات قصص %1$s الحديثة لن تظهر في أعلى لائحة القصص بعد ذلك.</string>
+    <string name="StoriesLandingFragment__new_story_updates">لن تظهر مستجدات قِصص %1$s الجديدة في أعلى لائحة القصص بعد الآن.</string>
     <!-- Positive action of dialog confirming decision to hide a story -->
     <string name="StoriesLandingFragment__hide">إخفاء</string>
     <!-- Displayed in Snackbar after story is hidden -->
@@ -5197,9 +5197,9 @@
     <!-- Label for stories for a single user. Format is {given name}\'s Story -->
     <string name="MyStories__ss_story">قصص %1$s</string>
     <!-- Title of dialog to confirm deletion of story -->
-    <string name="MyStories__delete_story">أأحذف القصة ؟</string>
+    <string name="MyStories__delete_story">حذف القصة؟</string>
     <!-- Message of dialog to confirm deletion of story -->
-    <string name="MyStories__this_story_will_be_deleted">سوف تُحذَف هذه القصة من عند جميع من استلمها بما، فيهم أنت.</string>
+    <string name="MyStories__this_story_will_be_deleted">ستُحذَف هذه القصة من عند جميع من استلمها بما فيهم أنت.</string>
     <!-- Toast shown when story media cannot be saved -->
     <string name="MyStories__unable_to_save">تعذّر الحفظ</string>
     <!-- Displayed at bottom of story viewer when current item has views -->
@@ -5239,7 +5239,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">لا مشاهدة حاليا</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">تفعيل إيصالات القراءة لرؤية من شاهد قصصك.</string>
+    <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">فًعّل إيصالات القراءة لرؤية من شاهد قصصك.</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">الانتقال إلى الإعدادات</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -5253,7 +5253,7 @@
     <!-- Displayed when a story has no replies yet -->
     <string name="StoryGroupReplyFragment__no_replies_yet">لا جواب حاليا</string>
     <!-- Displayed when no longer a group member -->
-    <string name="StoryGroupReplyFragment__you_cant_reply">You can\'t reply to this story because you\'re no longer a member of this group.</string>
+    <string name="StoryGroupReplyFragment__you_cant_reply">لا تستطيع الردّ على هذه القصة لأنك لم تعد عضواً في هذه المجموعة.</string>
     <!-- Displayed for each user that reacted to a story when viewing replies -->
     <string name="StoryGroupReactionReplyItem__reacted_to_the_story">المتفاعلون مع القصة</string>
     <!-- Label for story views tab -->
@@ -5261,7 +5261,7 @@
     <!-- Label for story replies tab -->
     <string name="StoryViewsAndRepliesDialogFragment__replies">الإجابات</string>
     <!-- Description of action for reaction button -->
-    <string name="StoryReplyComposer__react_to_this_story">التفاعل مع هذه القصة</string>
+    <string name="StoryReplyComposer__react_to_this_story">تفاعل مع هذه القصة</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">الإجابة بشكل خاص على %1$s</string>
     <!-- Context menu item to privately reply to a story response -->
@@ -5294,7 +5294,7 @@
     <!-- Privacy setting title for sending stories to all except the specified connections -->
     <string name="MyStorySettingsFragment__all_except">الكل إلا…</string>
     <!-- Privacy setting description for sending stories to all except the specified connections -->
-    <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">إخفاء قصتك من أناس مُحددين</string>
+    <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">إخفاء قصتك عن أناس مُحددين</string>
     <!-- Summary of clickable option displaying how many people you have excluded from your story -->
     <plurals name="MyStorySettingsFragment__d_people_excluded">
         <item quantity="zero">%1$d شخصا مستبعدا</item>
@@ -5318,15 +5318,13 @@
         <item quantity="other">%1$d فرد</item>
     </plurals>
     <!-- My story privacy fine print about what the privacy settings are for -->
-    <string name="MyStorySettingsFragment__choose_who_can_view_your_story">اختر من يُمكنه رؤية قصتك. لن تؤثر التغييرات على القصص التي أرسلتها من قبل.</string>
+    <string name="MyStorySettingsFragment__choose_who_can_view_your_story">اِختر من يُمكنه رؤية قصتك. لن تؤثر التغييرات على القصص التي أرسلتها من قبل.</string>
     <!-- Section header for options related to replies and reactions -->
     <string name="MyStorySettingsFragment__replies_amp_reactions">الإجابات وردود الفعل</string>
     <!-- Switchable option for allowing replies and reactions on your stories -->
     <string name="MyStorySettingsFragment__allow_replies_amp_reactions">السماح بالإجابات وردود الفعل</string>
     <!-- Summary for switchable option allowing replies and reactions on your story -->
-    <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">تمكين الأفراد الذين يمكنهم مشاهدة قصتك من التفاعل والرد عليها</string>
-    <!-- Note about default sharing -->
-    <string name="MyStorySettingsFragment__hide_your_story_from">إخفاء قصتك عن أفراد محددين. إن قصتك تتم مشاركتها افتراضيا مع %1$s.</string>
+    <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">تمكين الأفراد الذين يُمكنهم مشاهدة قصتك من التفاعل والرد عليها</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
     <string name="SignalConnectionsBottomSheet___signal_connections">جهات الاتصال في Signal</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
@@ -5338,7 +5336,7 @@
     <!-- Signal connections sheet bullet point 3 -->
     <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">وجودهم في جهات اتصال نظامك</string>
     <!-- Note at the bottom of the Signal connections sheet -->
-    <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"يمكنك لمعارفك رؤية اسمك وصورتك، كما يمكنهم الاطلاع على منشوراتك في « قصتي » إلا إذا أخفيتها عنهم."</string>
+    <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"يُمكن لِجهات اتصالك رؤية اسمك وصورتك، كما يمكنهم الاطلاع على منشوراتك في \"قصتي\" إلا إذا أخفيتها عنهم."</string>
     <!-- Clickable option to add a viewer to a private story -->
     <string name="PrivateStorySettingsFragment__add_viewer">إضافة مُشاهد</string>
     <!-- Clickable option to delete a custom story -->
@@ -5346,7 +5344,7 @@
     <!-- Dialog title when attempting to remove someone from a private story -->
     <string name="PrivateStorySettingsFragment__remove_s">إزالة %1$s ؟</string>
     <!-- Dialog message when attempting to remove someone from a private story -->
-    <string name="PrivateStorySettingsFragment__this_person_will_no_longer">لن يتمكن هذا الشخص بعد ذلك من رؤية قصتك.</string>
+    <string name="PrivateStorySettingsFragment__this_person_will_no_longer">لن يتمكن هذا الشخص من رؤية قصتك بعد الآن.</string>
     <!-- Positive action label when attempting to remove someone from a private story -->
     <string name="PrivateStorySettingsFragment__remove">إزالة</string>
     <!-- Dialog title when deleting a private story -->
@@ -5374,7 +5372,7 @@
     <!-- Hint for entering a URL for a text post -->
     <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">يُرجى كتابة أو لصق عنوان الصفحة</string>
     <!-- Displayed prior to the user entering a URL for a text post -->
-    <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">مشاركة وصلة مع مشاهدي قصتك</string>
+    <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">مشاركة رابط مع مشاهدي قصتك</string>
     <!-- Hint text for searching for a story text post recipient. -->
     <string name="TextStoryPostSendFragment__search">البحث</string>
     <!-- Toast shown when an unexpected error occurs while sending a text story -->
@@ -5388,25 +5386,25 @@
     <!-- Dialog title for removing a group story -->
     <string name="StoryDialogs__remove_group_story">حذف قصة المجموعة؟</string>
     <!-- Dialog message for removing a group story -->
-    <string name="StoryDialogs__s_will_be_removed">\"%1$s\" will be removed.</string>
+    <string name="StoryDialogs__s_will_be_removed">سيتم حذف \"%1$s\"</string>
     <!-- Dialog positive action for removing a group story -->
     <string name="StoryDialogs__remove">إزالة</string>
     <!-- Dialog title for deleting a private story -->
     <string name="StoryDialogs__delete_private_story">حذف قصة خاصة؟</string>
     <!-- Dialog message for deleting a private story -->
-    <string name="StoryDialogs__s_and_updates_shared">\"%1$s\" and updates shared to this story will be deleted.</string>
+    <string name="StoryDialogs__s_and_updates_shared">سيتم حذف \"%1$s\" والتحديثات التي تمت مشاركتها في هذه القصة.</string>
     <!-- Dialog positive action for deleting a private story -->
     <string name="StoryDialogs__delete">حذف</string>
     <!-- Dialog title for first time sending something to a beta story -->
-    <string name="StoryDialogs__stories_is_available_to">Stories is available to Signal beta users only.</string>
+    <string name="StoryDialogs__stories_is_available_to">القصص متاحة لمستخدمي الإصدار التجريبي لتطبيق Signal فقط.</string>
     <!-- Dialog message for first time sending something to a beta story -->
-    <string name="StoryDialogs__if_you_share_a_story">If you share a story, it will only be available to people who are on Signal beta.</string>
+    <string name="StoryDialogs__if_you_share_a_story">إذا قمت بمشاركة قصة، فلن تكون متاحة إلا للأشخاص الذين يستخدمون الإصدار التجريبي لتطبيق Signal.</string>
     <!-- Dialog title for first time adding something to a story -->
-    <string name="StoryDialogs__add_to_story_q">أأضيف للقصة ؟</string>
+    <string name="StoryDialogs__add_to_story_q">إضافة للقصة؟</string>
     <!-- Dialog message for first time adding something to a story -->
-    <string name="StoryDialogs__adding_content">إن إضافة محتوى لقصتك سوف يمكِّن ‫معارف Signal‬ من مشاهدتها لمدة 24 ساعة. يمكنك تغيير من يمكنه مشاهدة قصصك في الإعدادات.</string>
+    <string name="StoryDialogs__adding_content">يَسمح إضافة محتوى لقصتك ل‫جهات اتصال Signal‬ من مشاهدتها لمدة 24 ساعة. يُمكنك تغيير من يمكنه مشاهدة قصصك في الإعدادات.</string>
     <!-- First time share to story dialog: Positive action to go ahead and add to story -->
-    <string name="StoryDialogs__add_to_story">الإضافة للقصة</string>
+    <string name="StoryDialogs__add_to_story">إضافة للقصة</string>
     <!-- First time share to story dialog: Neutral action to edit who can view "My Story" -->
     <string name="StoryDialogs__edit_viewers">تحرير المشاهدين</string>
     <!-- Error message shown when a failure occurs during story send -->
@@ -5414,9 +5412,9 @@
     <!-- Error message dialog button to resend a previously failed story send -->
     <string name="StoryDialogs__send">أرسلْ</string>
     <!-- Action button for turning off stories when stories are present on the device -->
-    <string name="StoryDialogs__turn_off_and_delete">Turn off and delete</string>
+    <string name="StoryDialogs__turn_off_and_delete">إيقاف وحذف</string>
     <!-- Privacy Settings toggle title for stories -->
-    <string name="PrivacySettingsFragment__share_and_view_stories">مشاركة أو إظهار القصص</string>
+    <string name="PrivacySettingsFragment__share_and_view_stories">مشاركة و إظهار القصص</string>
     <!-- Privacy Settings toggle summary for stories -->
     <string name="PrivacySettingsFragment__you_will_no_longer_be_able">لن يصبح بإمكانك بعد الآن مشاركة القصص أو مشاهدتها حينما يكون هذا الخيار غير مُشغَّل.</string>
     <!-- New story viewer selection screen title -->
@@ -5471,11 +5469,11 @@
     <!-- Displayed in the viewer when network is available but content could not be downloaded -->
     <string name="StorySlateView__couldnt_load_content">لقد تعذر تحميل المحتوى</string>
     <!-- Toasted when the user externally shares to a text story successfully -->
-    <string name="TextStoryPostCreationFragment__sent_story">القصة مُرسَلة</string>
+    <string name="TextStoryPostCreationFragment__sent_story">قصة مُرسَلة</string>
     <!-- Toasted when the user external share to a text story fails -->
     <string name="TextStoryPostCreationFragment__failed_to_send_story">لقد فشل إرسال القصة</string>
     <!-- Displayed in a dialog to let the user select a given users story -->
-    <string name="StoryDialogs__view_story">عرض قصة</string>
+    <string name="StoryDialogs__view_story">عرض القصة</string>
     <!-- Displayed in a dialog to let the user select a given users profile photo -->
     <string name="StoryDialogs__view_profile_photo">عرض صورة الحساب الشخصي</string>
 
@@ -5491,9 +5489,9 @@
     <!-- Conversation Item label for when you react to someone else\'s story -->
     <string name="ConversationItem__you_reacted_to_s_story">لقد تفاعلت مع قصة %1$s</string>
     <!-- Conversation Item label for reactions to your story -->
-    <string name="ConversationItem__reacted_to_your_story">التفاعلات مع قصتك</string>
+    <string name="ConversationItem__reacted_to_your_story">تفاعل مع قصتك</string>
     <!-- Conversation Item label for reactions to an unavailable story -->
-    <string name="ConversationItem__reacted_to_a_story">التفاعلات مع قصة</string>
+    <string name="ConversationItem__reacted_to_a_story">تفاعل مع قصة</string>
 
     <!-- endregion -->
     <!-- Content description for expand contacts chevron -->
@@ -5564,28 +5562,28 @@
     <!-- Label under name for private stories -->
     <plurals name="ContactSearchItems__private_story_d_viewers">
         <item quantity="zero">قصة خاصة · %1$d مشاهد</item>
-        <item quantity="one">قصة خاصة · %1$d مشاهد</item>
-        <item quantity="two">قصة خاصة · %1$d مشاهدين</item>
+        <item quantity="one">قصة خاصة · مشاهد واحد</item>
+        <item quantity="two">قصة خاصة · %1$d مشاهدين </item>
         <item quantity="few">قصة خاصة · %1$d مشاهدين</item>
-        <item quantity="many">قصة خاصة · %1$d مشاهدين</item>
-        <item quantity="other">قصة خاصة · %1$d مشاهدين / مشاهد</item>
+        <item quantity="many">قصة خاصة · %1$d مشاهدًا</item>
+        <item quantity="other">قصة خاصة · %1$d مشاهد</item>
     </plurals>
     <!-- Label under name for group stories -->
     <plurals name="ContactSearchItems__group_story_d_viewers">
         <item quantity="zero">قصة جماعية · %1$d مشاهد</item>
-        <item quantity="one">قصة جماعية · %1$d مشاهد</item>
-        <item quantity="two">قصة جماعية · %1$d مشاهدين</item>
+        <item quantity="one">قصة جماعية · مشاهد واحد</item>
+        <item quantity="two">قصة جماعية · %1$d مشاهدين </item>
         <item quantity="few">قصة جماعية · %1$d مشاهدين</item>
-        <item quantity="many">قصة جماعية · %1$d مشاهدين</item>
-        <item quantity="other">قصة جماعية · %1$d مشاهدين / مشاهد</item>
+        <item quantity="many">قصة جماعية · %1$d مشاهدًا</item>
+        <item quantity="other">قصة جماعية · %1$d مشاهد</item>
     </plurals>
     <!-- Label under name for groups -->
     <plurals name="ContactSearchItems__group_d_members">
         <item quantity="zero">%1$d عضو</item>
         <item quantity="one">%1$d عضو</item>
-        <item quantity="two">%1$d أعضاء</item>
+        <item quantity="two">%1$d عضوان</item>
         <item quantity="few">%1$d أعضاء</item>
-        <item quantity="many">%1$d عضو</item>
+        <item quantity="many">%1$d عضوًا</item>
         <item quantity="other">%1$d عضو</item>
     </plurals>
     <!-- Label under name for my story -->
@@ -5608,13 +5606,13 @@
     <!-- Dialog title for removing a group story -->
     <string name="ContactSearchMediator__remove_group_story">حذف قصة المجموعة؟</string>
     <!-- Dialog message for removing a group story -->
-    <string name="ContactSearchMediator__this_will_remove">سَيتسبب هذا في إزالة القصة من هذه اللائحة. يُمكنك مواصلة مشاهدة هذه القِصص من هذه المجموعة.</string>
+    <string name="ContactSearchMediator__this_will_remove">سَيتسبب هذا في إزالة القصة من هذه اللائحة. يُمكنك مواصلة مشاهدة القِصص من هذه المجموعة.</string>
     <!-- Dialog action item for removing a group story -->
     <string name="ContactSearchMediator__remove">إزالة</string>
     <!-- Dialog title for deleting a private story -->
-    <string name="ContactSearchMediator__delete_story">أأحذف القصة ؟</string>
+    <string name="ContactSearchMediator__delete_story">حذف القصة؟</string>
     <!-- Dialog message for deleting a private story -->
-    <string name="ContactSearchMediator__delete_the_private">حذف القصة الخصوصية \"%1$s\"؟</string>
+    <string name="ContactSearchMediator__delete_the_private">حذف القصة الخاصة \"%1$s\"؟</string>
     <!-- Dialog action item for deleting a private story -->
     <string name="ContactSearchMediator__delete">حذف</string>
     <!-- Gift expiry days remaining -->
@@ -5654,7 +5652,7 @@
     <!-- Label indicating swipe direction to exit story viewer -->
     <string name="StoryFirstTimeNavigationView__swipe_right_to_exit">اسحب لليمين للمُغادرة</string>
     <!-- Button label to confirm understanding of story navigation -->
-    <string name="StoryFirstTimeNagivationView__got_it">فهِمت</string>
+    <string name="StoryFirstTimeNagivationView__got_it">عُلم</string>
     <!-- Content description for vertical context menu button in safety number sheet rows -->
     <string name="SafetyNumberRecipientRowItem__open_context_menu">فتح قائمة السياق</string>
     <!-- Sub-line when a user is verified. -->
@@ -5672,7 +5670,7 @@
     <!-- Message of safety number changes bottom sheet when not showing individual records and user has seen review screen -->
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">تمت مراجعة كل جهات الاتصال، انقر إرسال للمواصلة.</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
-    <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">لديك %1$d جهات اتصال قد يكونوا أعادو تثبيت Signal أو غيّروا أجهزتهم. قبل مشاركة قِصتك معهم، يُرجى مراجعة أرقام الأمان الخاصة بهم أو فكّر في حذفهم من قصتك.</string>
+    <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">%1$d من جهات اتصالك قد يكونوا أعادو تثبيت Signal أو غيّروا أجهزتهم. قبل مشاركة قِصتك معهم، يُرجى مراجعة أرقام الأمان الخاصة بهم أو فكّر في حذفهم من قصتك.</string>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">تحقق من رقم اﻷمان</string>
     <!-- Menu action to remove user from story -->
@@ -5706,7 +5704,7 @@
     <!-- Title of initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">خصوصية قصّتي</string>
     <!-- Subtitle of initial My Story settings configuration shown when sending to My Story for the first time -->
-    <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">اختيار من يمكنه رؤية منشورات في قصتي. يمكنك إحداث تغييرات في أي وقت في الإعدادات.</string>
+    <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">اختيار من يُمكنه رؤية منشورات في قصتي. يُمكنك إحداث تغييرات في أي وقت في الإعدادات.</string>
     <!-- All connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">كل معارف ‫Signal‬</string>
     <!-- All connections except option for initial My Story settings configuration shown when sending to My Story for the first time -->
@@ -5739,11 +5737,11 @@
     <!-- Preference title to turn on stories -->
     <string name="StoriesPrivacySettingsFragment__turn_on_stories">تفعيل القِصص</string>
     <!-- Preference summary to turn on stories -->
-    <string name="StoriesPrivacySettingsFragment__share_and_view">شارك واعرض قِصص الآخرين. تختفي القصص تلقائيًا بعد 24 ساعة.</string>
+    <string name="StoriesPrivacySettingsFragment__share_and_view">شارك وشاهد قِصص الآخرين. تختفي القصص تلقائيًا بعد 24 ساعة.</string>
     <!-- Dialog title to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">إيقاف تشغيل القِصص؟</string>
     <!-- Dialog message to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">You will no longer be able to share or view stories. Story updates you have recently shared will also be deleted.</string>
+    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">لن تتمكن من مشاركة القِصص أو مُشَاهداتها بعد الآن. وسيتم أيضًا حذف تحديثات القصة التي شاركتها مؤخرًا.</string>
     <!-- Page title when launched from stories landing screen -->
     <string name="StoriesPrivacySettingsFragment__story_privacy">إعدادات خصوصية القِصة</string>
 
@@ -5751,7 +5749,7 @@
     <!-- Section header for who can view a group story -->
     <string name="GroupStorySettingsFragment__who_can_view_this_story">من يُمكنه مشاهدة هذه القصة</string>
     <!-- Explanation of who can view a group story -->
-    <string name="GroupStorySettingsFragment__members_of_the_group_s">"يُمكن لعضو في هذه المجموعة \"%1$s\" مشاهدة هذه القصة و الرّد عليها. يمكنك تحديث العضوية لهذه الدردشة في المجموعة."</string>
+    <string name="GroupStorySettingsFragment__members_of_the_group_s">"يُمكن لعضو في هذه المجموعة %1$s مشاهدة هذه القصة و الرّد عليها. يمكنك تحديث العضوية لهذه الدردشة في المجموعة."</string>
     <!-- Preference label for removing this group story -->
     <string name="GroupStorySettingsFragment__remove_group_story">حذف قصة المجموعة</string>
 

@@ -1524,7 +1524,7 @@
     <!-- Recipient -->
     <string name="Recipient_you">Sinä</string>
     <!-- Name of recipient representing user\'s \'My Story\' -->
-    <string name="Recipient_my_story">Omat tarinat</string>
+    <string name="Recipient_my_story">Oma tarina</string>
 
     <!-- RecipientPreferencesActivity -->
     <string name="RecipientPreferenceActivity_block">Estä</string>
@@ -2667,11 +2667,11 @@
     <string name="preferences_storage__review_storage">Tarkista tallennustila</string>
     <string name="preferences_storage__delete_older_messages">Poistetaanko vanhemmat viestit?</string>
     <string name="preferences_storage__clear_message_history">Tyhjennetäänkö viestihistoria?</string>
-    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Tämä poistaa pysyvästi kaikki viestit ja mediatiedostot laitteeltasi, jotka ovat vanhempia kuin %1$s.</string>
+    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Tämä poistaa pysyvästi koko viestihistorian ja mediatiedostot laitteeltasi. Tämä koskee viestejä ja tiedostoja, jotka ovat vanhempia kuin %1$s.</string>
     <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Keskustelut rajataan pysyvästi %1$s viimeisimpään viestiin.</string>
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Kaikki viestit ja mediatiedostot poistetaan laitteesta.</string>
-    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Haluatko varmasti poistaa kaiken viestihistorian?</string>
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Kaikki viestihistoria poistetaan pysyvästi. Toimintoa ei voi kumota.</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Koko viestihistoria ja kaikki mediatiedostot poistetaan laitteesta.</string>
+    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Haluatko varmasti poistaa koko viestihistorian?</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Koko viestihistoria poistetaan pysyvästi. Toimintoa ei voi kumota.</string>
     <string name="preferences_storage__delete_all_now">Poista kaikki nyt</string>
     <string name="preferences_storage__forever">Pysyvästi</string>
     <string name="preferences_storage__one_year">1 vuosi</string>
@@ -2911,19 +2911,19 @@
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
-    <string name="PaymentsSecuritySetupFragment__security_setup">Security setup</string>
+    <string name="PaymentsSecuritySetupFragment__security_setup">Suojausasetukset</string>
     <!-- Title to enable payment lock -->
-    <string name="PaymentsSecuritySetupFragment__protect_your_funds">Protect your funds</string>
+    <string name="PaymentsSecuritySetupFragment__protect_your_funds">Varojen suojaaminen</string>
     <!-- Description as to why payment lock is required -->
-    <string name="PaymentsSecuritySetupFragment__help_prevent">Help prevent a person with your phone from accessing your funds by adding another layer of security. You can disable this option in Settings.</string>
+    <string name="PaymentsSecuritySetupFragment__help_prevent">Ota käyttöön lisäsuojaus, joka estää puhelinta käyttävää henkilöä käyttämästä varojasi luvattomasti. Voit poistaa tämän asetuksen käytöstä asetuksissa.</string>
     <!-- Option to enable payment lock -->
-    <string name="PaymentsSecuritySetupFragment__enable_payment_lock">Enable payment lock</string>
+    <string name="PaymentsSecuritySetupFragment__enable_payment_lock">Ota maksun lukitus käyttöön</string>
     <!-- Option to cancel -->
     <string name="PaymentsSecuritySetupFragment__not_now">Ei nyt</string>
     <!-- Dialog title to confirm skipping the step -->
-    <string name="PaymentsSecuritySetupFragment__skip_this_step">Skip this step?</string>
+    <string name="PaymentsSecuritySetupFragment__skip_this_step">Ohitetaanko tämä vaihe?</string>
     <!-- Dialog description to let users know why payment lock is required -->
-    <string name="PaymentsSecuritySetupFragment__skipping_this_step">Skipping this step could allow anyone who has physical access to your phone to transfer funds or view your recovery phrase.</string>
+    <string name="PaymentsSecuritySetupFragment__skipping_this_step">Jos ohitat tämän vaiheen, kuka tahansa puhelintasi käyttävä henkilö voi siirtää varoja tai nähdä palautuslauseesi.</string>
     <!-- Dialog option to cancel -->
     <string name="PaymentsSecuritySetupFragment__cancel">Peruuta</string>
     <!-- Dialog option to skip -->
@@ -4738,7 +4738,7 @@
     <!-- Context menu option to hide a story -->
     <string name="StoriesLandingItem__hide_story">Piilota tarina</string>
     <!-- Context menu option to unhide a story -->
-    <string name="StoriesLandingItem__unhide_story">Peru tarinan piilottaminen</string>
+    <string name="StoriesLandingItem__unhide_story">Näytä tarina</string>
     <!-- Context menu option to forward a story -->
     <string name="StoriesLandingItem__forward">Välitä</string>
     <!-- Context menu option to share a story -->
@@ -4758,7 +4758,7 @@
     <!-- Status label when a story fails to send indicating user action to retry -->
     <string name="StoriesLandingItem__tap_to_retry">Yritä uudelleen napauttamalla</string>
     <!-- Title of dialog confirming decision to hide a story -->
-    <string name="StoriesLandingFragment__hide_story">Piilota tarina?</string>
+    <string name="StoriesLandingFragment__hide_story">Piilotetaanko tarina?</string>
     <!-- Message of dialog confirming decision to hide a story -->
     <string name="StoriesLandingFragment__new_story_updates">Uudet tarinapäivitykset käyttäjältä %1$s eivät enää ilmesty tarinalistan alkupäähän.</string>
     <!-- Positive action of dialog confirming decision to hide a story -->
@@ -4777,7 +4777,7 @@
     <!-- Label for stories for a single user. Format is {given name}\'s Story -->
     <string name="MyStories__ss_story">Käyttäjän %1$s tarina</string>
     <!-- Title of dialog to confirm deletion of story -->
-    <string name="MyStories__delete_story">Poista tarina?</string>
+    <string name="MyStories__delete_story">Poistetaanko tarina?</string>
     <!-- Message of dialog to confirm deletion of story -->
     <string name="MyStories__this_story_will_be_deleted">Tämä tarina poistetaan sinulta ja kaikilta sen vastaanottaneilta.</string>
     <!-- Toast shown when story media cannot be saved -->
@@ -4825,7 +4825,7 @@
     <!-- Displayed when a story has no replies yet -->
     <string name="StoryGroupReplyFragment__no_replies_yet">Ei vastauksia vielä</string>
     <!-- Displayed when no longer a group member -->
-    <string name="StoryGroupReplyFragment__you_cant_reply">You can\'t reply to this story because you\'re no longer a member of this group.</string>
+    <string name="StoryGroupReplyFragment__you_cant_reply">Et voi vastata tähän tarinaan, koska et ole enää tämän ryhmän jäsen.</string>
     <!-- Displayed for each user that reacted to a story when viewing replies -->
     <string name="StoryGroupReactionReplyItem__reacted_to_the_story">Lähetti reaktion tarinaan</string>
     <!-- Label for story views tab -->
@@ -4843,7 +4843,7 @@
     <!-- Context menu item to delete a story response -->
     <string name="StoryGroupReplyItem__delete">Poista</string>
     <!-- Page title for My Story options -->
-    <string name="MyStorySettingsFragment__my_story">Minun tarinani</string>
+    <string name="MyStorySettingsFragment__my_story">Oma tarina</string>
     <!-- Number of total signal connections displayed in "All connections" row item -->
     <plurals name="MyStorySettingsFragment__viewers">
         <item quantity="one">%1$d viewer</item>
@@ -4854,7 +4854,7 @@
     <!-- Section heading for story visibility -->
     <string name="MyStorySettingsFragment__who_can_view_this_story">Kuka voi nähdä tämän tarinan</string>
     <!-- Clickable option for selecting people to hide your story from -->
-    <string name="MyStorySettingsFragment__hide_story_from">Piilota tarina näiltä</string>
+    <string name="MyStorySettingsFragment__hide_story_from">Piilota tarina seuraavilta</string>
     <!-- Privacy setting title for sending stories to all your signal connections -->
     <string name="MyStorySettingsFragment__all_signal_connections">Kaikki Signal-kontaktit</string>
     <!-- Privacy setting description for sending stories to all your signal connections -->
@@ -4885,8 +4885,6 @@
     <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Salli vastaukset ja reaktiot</string>
     <!-- Summary for switchable option allowing replies and reactions on your story -->
     <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Anna tarinasi katsoneiden ihmisten reagoida ja vastata</string>
-    <!-- Note about default sharing -->
-    <string name="MyStorySettingsFragment__hide_your_story_from">Piilota tarinasi tietyiltä ihmisiltä. Vakioasetuksena on, että tarinasi jaetaan %1$s</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
     <string name="SignalConnectionsBottomSheet___signal_connections">Signal-kontaktit</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
@@ -4898,7 +4896,7 @@
     <!-- Signal connections sheet bullet point 3 -->
     <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Lisäämällä heidät puhelimen järjestelmän yhteystietoihin</string>
     <!-- Note at the bottom of the Signal connections sheet -->
-    <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Kontaktisi näkevät nimesi ja valokuvasi, ja näet Omaan tarinaan lisäämäsi päivitykset, ellet piilota niitä heiltä."</string>
+    <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Kontaktisi näkevät nimesi ja valokuvasi sekä Omaan tarinaan lisäämäsi julkaisut, ellet piilota sitä heiltä."</string>
     <!-- Clickable option to add a viewer to a private story -->
     <string name="PrivateStorySettingsFragment__add_viewer">Lisää katsoja</string>
     <!-- Clickable option to delete a custom story -->
@@ -4948,21 +4946,21 @@
     <!-- Dialog title for removing a group story -->
     <string name="StoryDialogs__remove_group_story">Poistetaanko ryhmätarina?</string>
     <!-- Dialog message for removing a group story -->
-    <string name="StoryDialogs__s_will_be_removed">\"%1$s\" will be removed.</string>
+    <string name="StoryDialogs__s_will_be_removed">%1$s poistetaan.</string>
     <!-- Dialog positive action for removing a group story -->
     <string name="StoryDialogs__remove">Poista</string>
     <!-- Dialog title for deleting a private story -->
     <string name="StoryDialogs__delete_private_story">Poistetaanko yksityinen tarina?</string>
     <!-- Dialog message for deleting a private story -->
-    <string name="StoryDialogs__s_and_updates_shared">\"%1$s\" and updates shared to this story will be deleted.</string>
+    <string name="StoryDialogs__s_and_updates_shared">%1$s ja tähän tarinaan jaetut päivitykset poistetaan.</string>
     <!-- Dialog positive action for deleting a private story -->
     <string name="StoryDialogs__delete">Poista</string>
     <!-- Dialog title for first time sending something to a beta story -->
-    <string name="StoryDialogs__stories_is_available_to">Stories is available to Signal beta users only.</string>
+    <string name="StoryDialogs__stories_is_available_to">Tarinat ovat vain Signalin beetaversion käyttäjien saatavilla.</string>
     <!-- Dialog message for first time sending something to a beta story -->
-    <string name="StoryDialogs__if_you_share_a_story">If you share a story, it will only be available to people who are on Signal beta.</string>
+    <string name="StoryDialogs__if_you_share_a_story">Jos jaat tarinan, se on vain Signalin beetaversiota käyttävien henkilöiden saatavilla.</string>
     <!-- Dialog title for first time adding something to a story -->
-    <string name="StoryDialogs__add_to_story_q">Haluatko lisätä tarinaan?</string>
+    <string name="StoryDialogs__add_to_story_q">Lisätäänkö tarinaan?</string>
     <!-- Dialog message for first time adding something to a story -->
     <string name="StoryDialogs__adding_content">Kun lisäät sisältöä tarinaasi, Signal-kontaktisi näkevät sisällön 24 tunnin ajan. Voit valita asetuksissa, kuka näkee tarinasi.</string>
     <!-- First time share to story dialog: Positive action to go ahead and add to story -->
@@ -4974,11 +4972,11 @@
     <!-- Error message dialog button to resend a previously failed story send -->
     <string name="StoryDialogs__send">Lähetä</string>
     <!-- Action button for turning off stories when stories are present on the device -->
-    <string name="StoryDialogs__turn_off_and_delete">Turn off and delete</string>
+    <string name="StoryDialogs__turn_off_and_delete">Poista käytöstä ja poista</string>
     <!-- Privacy Settings toggle title for stories -->
     <string name="PrivacySettingsFragment__share_and_view_stories">Jaa ja katso tarinoita</string>
     <!-- Privacy Settings toggle summary for stories -->
-    <string name="PrivacySettingsFragment__you_will_no_longer_be_able">Et voi enää jakaa tai katsoa tarinoita, kun tämä valinta on valittuna.</string>
+    <string name="PrivacySettingsFragment__you_will_no_longer_be_able">Et voi enää jakaa tai katsoa tarinoita, kun tämä valinta on poistettu käytöstä.</string>
     <!-- New story viewer selection screen title -->
     <string name="CreateStoryViewerSelectionFragment__choose_viewers">Valitse katsojat</string>
     <!-- New story viewer selection action button label -->
@@ -4991,7 +4989,7 @@
     <!-- Name story screen title -->
     <string name="CreateStoryWithViewersFragment__name_story">Nimeä tarina</string>
     <!-- Name story screen label hint -->
-    <string name="CreateStoryWithViewersFragment__story_name_required">Tarinan nimi (vaaditaan)</string>
+    <string name="CreateStoryWithViewersFragment__story_name_required">Tarinan nimi (pakollinen)</string>
     <!-- Name story screen viewers subheading -->
     <string name="CreateStoryWithViewersFragment__viewers">Katsojat</string>
     <!-- Name story screen create button label -->
@@ -5045,9 +5043,9 @@
     <string name="TurnOffCircumventionMegaphone_turn_off">Poista käytöstä</string>
 
     <!-- Conversation Item label for when you react to someone else\'s story -->
-    <string name="ConversationItem__you_reacted_to_s_story">Reagoit käyttäjän%1$s tarinaan</string>
+    <string name="ConversationItem__you_reacted_to_s_story">Reagoit käyttäjän %1$s tarinaan</string>
     <!-- Conversation Item label for reactions to your story -->
-    <string name="ConversationItem__reacted_to_your_story">lähetti reaktion tarinaasi</string>
+    <string name="ConversationItem__reacted_to_your_story">Lähetti reaktion tarinaasi</string>
     <!-- Conversation Item label for reactions to an unavailable story -->
     <string name="ConversationItem__reacted_to_a_story">Lähetti reaktion tarinaan</string>
 
@@ -5148,7 +5146,7 @@
     <!-- Dialog action item for removing a group story -->
     <string name="ContactSearchMediator__remove">Poista</string>
     <!-- Dialog title for deleting a private story -->
-    <string name="ContactSearchMediator__delete_story">Poista tarina?</string>
+    <string name="ContactSearchMediator__delete_story">Poistetaanko tarina?</string>
     <!-- Dialog message for deleting a private story -->
     <string name="ContactSearchMediator__delete_the_private">Poistetaanko yksityinen tarina %1$s?</string>
     <!-- Dialog action item for deleting a private story -->
@@ -5263,7 +5261,7 @@
     <!-- Dialog title to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">Poistetaanko tarinat käytöstä?</string>
     <!-- Dialog message to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">You will no longer be able to share or view stories. Story updates you have recently shared will also be deleted.</string>
+    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">Et voi enää jakaa tai nähdä tarinoita. Myös viimeksi jakamasi tarinoiden päivitykset poistetaan.</string>
     <!-- Page title when launched from stories landing screen -->
     <string name="StoriesPrivacySettingsFragment__story_privacy">Tarinoiden yksityisyys</string>
 
@@ -5271,7 +5269,7 @@
     <!-- Section header for who can view a group story -->
     <string name="GroupStorySettingsFragment__who_can_view_this_story">Kuka voi nähdä tämän tarinan</string>
     <!-- Explanation of who can view a group story -->
-    <string name="GroupStorySettingsFragment__members_of_the_group_s">"Ryhmän \"%1$s\" jäsenet voivat nähdä tarinan ja vastata siihen. Voit päivittää tämän keskustelun jäsenyyden ryhmässä."</string>
+    <string name="GroupStorySettingsFragment__members_of_the_group_s">"Ryhmän %1$s jäsenet voivat nähdä tarinan ja vastata siihen. Voit päivittää tämän keskustelun jäsenyyden ryhmässä."</string>
     <!-- Preference label for removing this group story -->
     <string name="GroupStorySettingsFragment__remove_group_story">Poista ryhmätarina</string>
 

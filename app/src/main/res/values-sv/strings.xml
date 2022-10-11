@@ -2911,19 +2911,19 @@
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
-    <string name="PaymentsSecuritySetupFragment__security_setup">Security setup</string>
+    <string name="PaymentsSecuritySetupFragment__security_setup">Säkerhetsinställning</string>
     <!-- Title to enable payment lock -->
-    <string name="PaymentsSecuritySetupFragment__protect_your_funds">Protect your funds</string>
+    <string name="PaymentsSecuritySetupFragment__protect_your_funds">Skydda dina pengar</string>
     <!-- Description as to why payment lock is required -->
-    <string name="PaymentsSecuritySetupFragment__help_prevent">Help prevent a person with your phone from accessing your funds by adding another layer of security. You can disable this option in Settings.</string>
+    <string name="PaymentsSecuritySetupFragment__help_prevent">Förhindra att en person med din telefon får åtkomst till dina pengar genom att lägga till ytterligare ett säkerhetslager. Du kan inaktivera det här alternativet i Inställningar.</string>
     <!-- Option to enable payment lock -->
-    <string name="PaymentsSecuritySetupFragment__enable_payment_lock">Enable payment lock</string>
+    <string name="PaymentsSecuritySetupFragment__enable_payment_lock">Aktivera betalningslås</string>
     <!-- Option to cancel -->
     <string name="PaymentsSecuritySetupFragment__not_now">Inte nu</string>
     <!-- Dialog title to confirm skipping the step -->
-    <string name="PaymentsSecuritySetupFragment__skip_this_step">Skip this step?</string>
+    <string name="PaymentsSecuritySetupFragment__skip_this_step">Hoppa över det här steget?</string>
     <!-- Dialog description to let users know why payment lock is required -->
-    <string name="PaymentsSecuritySetupFragment__skipping_this_step">Skipping this step could allow anyone who has physical access to your phone to transfer funds or view your recovery phrase.</string>
+    <string name="PaymentsSecuritySetupFragment__skipping_this_step">Om du hoppar över det här steget kan alla som har fysisk åtkomst till din telefon överföra pengar eller se din återställningsfras.</string>
     <!-- Dialog option to cancel -->
     <string name="PaymentsSecuritySetupFragment__cancel">Avbryt</string>
     <!-- Dialog option to skip -->
@@ -4281,9 +4281,9 @@
     <string name="MultiselectForwardFragment__add_a_message">Lägg till ett meddelande</string>
     <string name="MultiselectForwardFragment__faster_forwards">Snabbare vidarebefordringar</string>
     <!-- Displayed when user selects a video that will be clipped before sharing to a story -->
-    <string name="MultiselectForwardFragment__videos_will_be_trimmed">Videor kommer kortas ner till klipp på 30 s och skickas som flera berättelser.</string>
+    <string name="MultiselectForwardFragment__videos_will_be_trimmed">Videor kommer kortas ner till klipp på 30 sek och skickas som flera berättelser.</string>
     <!-- Displayed when user selects a video that cannot be sent as a story -->
-    <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">Videor som skickas till berättelser kan inte vara längre än 30 s.</string>
+    <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">Videor som skickas till berättelser kan inte vara längre än 30 sek.</string>
     <string name="MultiselectForwardFragment__forwarded_messages_are_now">Vidarebefordrade meddelanden skickas nu omedelbart.</string>
     <plurals name="MultiselectForwardFragment_send_d_messages">
         <item quantity="one">Skicka %1$d meddelande</item>
@@ -4760,7 +4760,7 @@
     <!-- Title of dialog confirming decision to hide a story -->
     <string name="StoriesLandingFragment__hide_story">Dölj berättelse?</string>
     <!-- Message of dialog confirming decision to hide a story -->
-    <string name="StoriesLandingFragment__new_story_updates">Nya berättelse uppdateringar från %1$s kommer inte att visas först i berättelse listan längre.</string>
+    <string name="StoriesLandingFragment__new_story_updates">Nya berättelseuppdateringar från %1$s kommer inte att visas först i berättelse listan längre.</string>
     <!-- Positive action of dialog confirming decision to hide a story -->
     <string name="StoriesLandingFragment__hide">Dölj</string>
     <!-- Displayed in Snackbar after story is hidden -->
@@ -4775,7 +4775,7 @@
     <!-- Forward story label, displayed in My Stories context menu -->
     <string name="MyStories_forward">Vidarebefordra</string>
     <!-- Label for stories for a single user. Format is {given name}\'s Story -->
-    <string name="MyStories__ss_story">%1$ss berättelse</string>
+    <string name="MyStories__ss_story">Berättelse från %1$s</string>
     <!-- Title of dialog to confirm deletion of story -->
     <string name="MyStories__delete_story">Ta bort berättelse?</string>
     <!-- Message of dialog to confirm deletion of story -->
@@ -4811,7 +4811,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">Inga visningar ännu</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Aktivera läskvitton för att se vem som har sett din berättelse.</string>
+    <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Aktivera läskvitton för att se vem som har visat din berättelse.</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">Gå till inställningar</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -4825,7 +4825,7 @@
     <!-- Displayed when a story has no replies yet -->
     <string name="StoryGroupReplyFragment__no_replies_yet">Inga svar ännu</string>
     <!-- Displayed when no longer a group member -->
-    <string name="StoryGroupReplyFragment__you_cant_reply">You can\'t reply to this story because you\'re no longer a member of this group.</string>
+    <string name="StoryGroupReplyFragment__you_cant_reply">Du kan inte svara på den här berättelsen eftersom du inte längre är medlem i den här gruppen.</string>
     <!-- Displayed for each user that reacted to a story when viewing replies -->
     <string name="StoryGroupReactionReplyItem__reacted_to_the_story">Reagerade på berättelsen</string>
     <!-- Label for story views tab -->
@@ -4885,8 +4885,6 @@
     <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Tillåt svar &amp; reaktioner</string>
     <!-- Summary for switchable option allowing replies and reactions on your story -->
     <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Låt personer som kan se din berättelse reagera och svara</string>
-    <!-- Note about default sharing -->
-    <string name="MyStorySettingsFragment__hide_your_story_from">Dölj din berättelse från specifika personer. Som standard delas din berättelse med dina %1$s</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
     <string name="SignalConnectionsBottomSheet___signal_connections">Signal-förbindelser</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
@@ -4898,7 +4896,7 @@
     <!-- Signal connections sheet bullet point 3 -->
     <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Ha dem i dina systemkontakter</string>
     <!-- Note at the bottom of the Signal connections sheet -->
-    <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Dina förbindelser kan se ditt namn och foto, och kan se inlägg på \"Din berättelse\" om du inte döljer den från dem."</string>
+    <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Dina förbindelser kan se ditt namn och foto, och kan se inlägg på \"Min berättelse\" om du inte döljer den från dem."</string>
     <!-- Clickable option to add a viewer to a private story -->
     <string name="PrivateStorySettingsFragment__add_viewer">Lägg till tittare</string>
     <!-- Clickable option to delete a custom story -->
@@ -4948,23 +4946,23 @@
     <!-- Dialog title for removing a group story -->
     <string name="StoryDialogs__remove_group_story">Ta bort gruppberättelse?</string>
     <!-- Dialog message for removing a group story -->
-    <string name="StoryDialogs__s_will_be_removed">\"%1$s\" will be removed.</string>
+    <string name="StoryDialogs__s_will_be_removed">%1$s kommer att tas bort.</string>
     <!-- Dialog positive action for removing a group story -->
     <string name="StoryDialogs__remove">Ta bort</string>
     <!-- Dialog title for deleting a private story -->
     <string name="StoryDialogs__delete_private_story">Ta bort privat berättelse?</string>
     <!-- Dialog message for deleting a private story -->
-    <string name="StoryDialogs__s_and_updates_shared">\"%1$s\" and updates shared to this story will be deleted.</string>
+    <string name="StoryDialogs__s_and_updates_shared">%1$s och uppdateringar som delas till den här historien kommer att raderas.</string>
     <!-- Dialog positive action for deleting a private story -->
     <string name="StoryDialogs__delete">Ta bort</string>
     <!-- Dialog title for first time sending something to a beta story -->
-    <string name="StoryDialogs__stories_is_available_to">Stories is available to Signal beta users only.</string>
+    <string name="StoryDialogs__stories_is_available_to">Berättelser är endast tillgängligt för beta-användare av Signal.</string>
     <!-- Dialog message for first time sending something to a beta story -->
-    <string name="StoryDialogs__if_you_share_a_story">If you share a story, it will only be available to people who are on Signal beta.</string>
+    <string name="StoryDialogs__if_you_share_a_story">Om du delar en berättelse kommer den bara att vara tillgänglig för personer som använder betaversionen av Signal.</string>
     <!-- Dialog title for first time adding something to a story -->
     <string name="StoryDialogs__add_to_story_q">Lägg till i berättelse?</string>
     <!-- Dialog message for first time adding something to a story -->
-    <string name="StoryDialogs__adding_content">Att lägga till innehåll på din berättelse tillåter dina Signal-förbindelser att se det i 24 timmar. Du kan ändra vem som kan se din berättelse i Inställningar.</string>
+    <string name="StoryDialogs__adding_content">Att lägga till innehåll i din berättelse tillåter dina Signal-förbindelser att se det i 24 timmar. Du kan ändra vem som kan se din berättelse i Inställningar.</string>
     <!-- First time share to story dialog: Positive action to go ahead and add to story -->
     <string name="StoryDialogs__add_to_story">Lägg till i berättelse</string>
     <!-- First time share to story dialog: Neutral action to edit who can view "My Story" -->
@@ -4974,11 +4972,11 @@
     <!-- Error message dialog button to resend a previously failed story send -->
     <string name="StoryDialogs__send">Skicka</string>
     <!-- Action button for turning off stories when stories are present on the device -->
-    <string name="StoryDialogs__turn_off_and_delete">Turn off and delete</string>
+    <string name="StoryDialogs__turn_off_and_delete">Stäng av och radera</string>
     <!-- Privacy Settings toggle title for stories -->
-    <string name="PrivacySettingsFragment__share_and_view_stories">Dela &amp; visa berättelser</string>
+    <string name="PrivacySettingsFragment__share_and_view_stories">Dela och visa berättelser</string>
     <!-- Privacy Settings toggle summary for stories -->
-    <string name="PrivacySettingsFragment__you_will_no_longer_be_able">Du kommer inte längre kunna dela eller se berättelser när denna inställning är av.</string>
+    <string name="PrivacySettingsFragment__you_will_no_longer_be_able">Du kommer inte längre kunna dela eller visa berättelser när denna inställning är av.</string>
     <!-- New story viewer selection screen title -->
     <string name="CreateStoryViewerSelectionFragment__choose_viewers">Välj tittare</string>
     <!-- New story viewer selection action button label -->
@@ -5003,7 +5001,7 @@
     <!-- Text for select all action when editing recipients for a story -->
     <string name="BaseStoryRecipientSelectionFragment__select_all">Välj alla</string>
     <!-- Choose story type bottom sheet title -->
-    <string name="ChooseStoryTypeBottomSheet__choose_your_story_type">Välj din berättelse typ</string>
+    <string name="ChooseStoryTypeBottomSheet__choose_your_story_type">Välj din berättelsetyp</string>
     <!-- Choose story type bottom sheet new story row title -->
     <string name="ChooseStoryTypeBottomSheet__new_private_story">Ny privat berättelse</string>
     <!-- Choose story type bottom sheet new story row summary -->
@@ -5045,7 +5043,7 @@
     <string name="TurnOffCircumventionMegaphone_turn_off">Slå av</string>
 
     <!-- Conversation Item label for when you react to someone else\'s story -->
-    <string name="ConversationItem__you_reacted_to_s_story">Du reagerade på %1$ss berättelse</string>
+    <string name="ConversationItem__you_reacted_to_s_story">Du reagerade på berättelsen från %1$s</string>
     <!-- Conversation Item label for reactions to your story -->
     <string name="ConversationItem__reacted_to_your_story">Reagerade på din berättelse</string>
     <!-- Conversation Item label for reactions to an unavailable story -->
@@ -5136,7 +5134,7 @@
     <!-- Label under name for My Story when first sending to my story -->
     <string name="ContactSearchItems__tap_to_choose_your_viewers">Tryck för att välja dina tittare</string>
     <!-- Label for context menu item to open story settings -->
-    <string name="ContactSearchItems__story_settings">Berättelse inställningar</string>
+    <string name="ContactSearchItems__story_settings">Berättelseinställningar</string>
     <!-- Label for context menu item to remove a group story from contact results -->
     <string name="ContactSearchItems__remove_story">Ta bort berättelse</string>
     <!-- Label for context menu item to delete a private story -->
@@ -5257,13 +5255,13 @@
     <!-- Preference summary to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__if_you_opt_out">Du kommer inte längre kunna dela eller visa berättelser om du stänger av dem.</string>
     <!-- Preference title to turn on stories -->
-    <string name="StoriesPrivacySettingsFragment__turn_on_stories">Slå på berättelser</string>
+    <string name="StoriesPrivacySettingsFragment__turn_on_stories">Aktivera berättelser</string>
     <!-- Preference summary to turn on stories -->
     <string name="StoriesPrivacySettingsFragment__share_and_view">Dela och visa berättelser från andra. Berättelser försvinner automatiskt efter 24 timmar.</string>
     <!-- Dialog title to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">Stänga av berättelser?</string>
     <!-- Dialog message to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">You will no longer be able to share or view stories. Story updates you have recently shared will also be deleted.</string>
+    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">Du kommer inte längre att kunna dela eller visa berättelser. Berättelseuppdateringar som du nyligen har delat kommer också att raderas.</string>
     <!-- Page title when launched from stories landing screen -->
     <string name="StoriesPrivacySettingsFragment__story_privacy">Berättelseintegritet</string>
 

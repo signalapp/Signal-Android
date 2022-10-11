@@ -3083,19 +3083,19 @@
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
-    <string name="PaymentsSecuritySetupFragment__security_setup">Security setup</string>
+    <string name="PaymentsSecuritySetupFragment__security_setup">Saugumo konfigūracija</string>
     <!-- Title to enable payment lock -->
-    <string name="PaymentsSecuritySetupFragment__protect_your_funds">Protect your funds</string>
+    <string name="PaymentsSecuritySetupFragment__protect_your_funds">Apsaugok savo pinigus</string>
     <!-- Description as to why payment lock is required -->
-    <string name="PaymentsSecuritySetupFragment__help_prevent">Help prevent a person with your phone from accessing your funds by adding another layer of security. You can disable this option in Settings.</string>
+    <string name="PaymentsSecuritySetupFragment__help_prevent">Pridėk papildomą saugumo lygmenį, kad kitam žmogui perėmus tavo telefoną apsaugotum savo pinigus. Šią parinktį gali išjungti nustatymuose.</string>
     <!-- Option to enable payment lock -->
-    <string name="PaymentsSecuritySetupFragment__enable_payment_lock">Enable payment lock</string>
+    <string name="PaymentsSecuritySetupFragment__enable_payment_lock">Įjunk mokėjimo užraktą</string>
     <!-- Option to cancel -->
     <string name="PaymentsSecuritySetupFragment__not_now">Ne dabar</string>
     <!-- Dialog title to confirm skipping the step -->
-    <string name="PaymentsSecuritySetupFragment__skip_this_step">Skip this step?</string>
+    <string name="PaymentsSecuritySetupFragment__skip_this_step">Praleisti šį žingsnį?</string>
     <!-- Dialog description to let users know why payment lock is required -->
-    <string name="PaymentsSecuritySetupFragment__skipping_this_step">Skipping this step could allow anyone who has physical access to your phone to transfer funds or view your recovery phrase.</string>
+    <string name="PaymentsSecuritySetupFragment__skipping_this_step">Praleidus šį žingsnį yra rizika, kad kitas žmogus, turėdamas tavo telefoną, galės pervesti pinigus ar pažiūrėti tavo atkūrimo frazę.</string>
     <!-- Dialog option to cancel -->
     <string name="PaymentsSecuritySetupFragment__cancel">Atsisakyti</string>
     <!-- Dialog option to skip -->
@@ -5039,7 +5039,7 @@
     <!-- Displayed when a story has no replies yet -->
     <string name="StoryGroupReplyFragment__no_replies_yet">Atsakymų kol kas nėra</string>
     <!-- Displayed when no longer a group member -->
-    <string name="StoryGroupReplyFragment__you_cant_reply">You can\'t reply to this story because you\'re no longer a member of this group.</string>
+    <string name="StoryGroupReplyFragment__you_cant_reply">Negali atsakyti į šią istoriją, nes nebesi šios grupės narys.</string>
     <!-- Displayed for each user that reacted to a story when viewing replies -->
     <string name="StoryGroupReactionReplyItem__reacted_to_the_story">Sureagavo į istoriją</string>
     <!-- Label for story views tab -->
@@ -5105,8 +5105,6 @@
     <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Leisti atsakymus ir reakcijas</string>
     <!-- Summary for switchable option allowing replies and reactions on your story -->
     <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Leisti žmonėms, kurie gali peržiūrėti jūsų istoriją, reaguoti ir atsakyti</string>
-    <!-- Note about default sharing -->
-    <string name="MyStorySettingsFragment__hide_your_story_from">Slėpkite savo istoriją nuo konkrečių žmonių. Pagal numatymą, jūsų istorija yra bendrinama su jūsų %1$s</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
     <string name="SignalConnectionsBottomSheet___signal_connections">„Signal“ kontaktai</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
@@ -5168,19 +5166,19 @@
     <!-- Dialog title for removing a group story -->
     <string name="StoryDialogs__remove_group_story">Pašalinti grupės istoriją?</string>
     <!-- Dialog message for removing a group story -->
-    <string name="StoryDialogs__s_will_be_removed">\"%1$s\" will be removed.</string>
+    <string name="StoryDialogs__s_will_be_removed">„%1$s“ bus pašalinta.</string>
     <!-- Dialog positive action for removing a group story -->
     <string name="StoryDialogs__remove">Šalinti</string>
     <!-- Dialog title for deleting a private story -->
     <string name="StoryDialogs__delete_private_story">Ištrinti privačią istoriją?</string>
     <!-- Dialog message for deleting a private story -->
-    <string name="StoryDialogs__s_and_updates_shared">\"%1$s\" and updates shared to this story will be deleted.</string>
+    <string name="StoryDialogs__s_and_updates_shared">„%1$s“ ir šios istorijos atnaujinimai bus ištrinti.</string>
     <!-- Dialog positive action for deleting a private story -->
     <string name="StoryDialogs__delete">Ištrinti</string>
     <!-- Dialog title for first time sending something to a beta story -->
-    <string name="StoryDialogs__stories_is_available_to">Stories is available to Signal beta users only.</string>
+    <string name="StoryDialogs__stories_is_available_to">Istorijos prieinamos tik „Signal“ beta versijos naudotojams.</string>
     <!-- Dialog message for first time sending something to a beta story -->
-    <string name="StoryDialogs__if_you_share_a_story">If you share a story, it will only be available to people who are on Signal beta.</string>
+    <string name="StoryDialogs__if_you_share_a_story">Jei pasidalinsi istorija, ją matys tik „Signal“ beta versiją naudojantys žmonės.</string>
     <!-- Dialog title for first time adding something to a story -->
     <string name="StoryDialogs__add_to_story_q">Pridėti į istoriją?</string>
     <!-- Dialog message for first time adding something to a story -->
@@ -5194,7 +5192,7 @@
     <!-- Error message dialog button to resend a previously failed story send -->
     <string name="StoryDialogs__send">Siųsti</string>
     <!-- Action button for turning off stories when stories are present on the device -->
-    <string name="StoryDialogs__turn_off_and_delete">Turn off and delete</string>
+    <string name="StoryDialogs__turn_off_and_delete">Išjungti ir ištrinti</string>
     <!-- Privacy Settings toggle title for stories -->
     <string name="PrivacySettingsFragment__share_and_view_stories">Bendrinti ir žiūrėti istorijas</string>
     <!-- Privacy Settings toggle summary for stories -->
@@ -5355,8 +5353,8 @@
     <plurals name="ContactSearchItems__group_d_members">
         <item quantity="one">%1$d narys</item>
         <item quantity="few">%1$d nariai</item>
-        <item quantity="many">%1$d narių</item>
-        <item quantity="other">%1$d narys</item>
+        <item quantity="many">%1$d nario</item>
+        <item quantity="other">%1$d narių</item>
     </plurals>
     <!-- Label under name for my story -->
     <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
@@ -5503,7 +5501,7 @@
     <!-- Dialog title to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">Išjungti Istorijas?</string>
     <!-- Dialog message to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">You will no longer be able to share or view stories. Story updates you have recently shared will also be deleted.</string>
+    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">Nebegalėsi nei bendrinti, nei žiūrėti istorijų. Tai, ką pastaruoju metu bendrinai šioje istorijoje, taip pat bus ištrinta.</string>
     <!-- Page title when launched from stories landing screen -->
     <string name="StoriesPrivacySettingsFragment__story_privacy">Istorijų privatumas</string>
 

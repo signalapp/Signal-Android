@@ -1542,7 +1542,7 @@
     <string name="RedPhone_network_failed">Netwerk misluk!</string>
     <string name="RedPhone_number_not_registered">Nommer nie geregistreer nie!</string>
     <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Die nommer wat jy geskakel het, ondersteun nie veilige telefoonoproepe nie!</string>
-    <string name="RedPhone_got_it">Het dit</string>
+    <string name="RedPhone_got_it">Ek verstaan</string>
 
     <!-- Valentine\'s Day Megaphone -->
     <!-- Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons. -->
@@ -2911,19 +2911,19 @@
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
-    <string name="PaymentsSecuritySetupFragment__security_setup">Security setup</string>
+    <string name="PaymentsSecuritySetupFragment__security_setup">Sekuriteitsopstelling</string>
     <!-- Title to enable payment lock -->
-    <string name="PaymentsSecuritySetupFragment__protect_your_funds">Protect your funds</string>
+    <string name="PaymentsSecuritySetupFragment__protect_your_funds">Beskerm jou fondse</string>
     <!-- Description as to why payment lock is required -->
-    <string name="PaymentsSecuritySetupFragment__help_prevent">Help prevent a person with your phone from accessing your funds by adding another layer of security. You can disable this option in Settings.</string>
+    <string name="PaymentsSecuritySetupFragment__help_prevent">Help om te verhoed dat iemand met jou foon toegang tot jou fondse verkry deur nog \'n vlak van sekuriteit by te voeg. Jy kan hierdie opsie in Instellings deaktiveer.</string>
     <!-- Option to enable payment lock -->
-    <string name="PaymentsSecuritySetupFragment__enable_payment_lock">Enable payment lock</string>
+    <string name="PaymentsSecuritySetupFragment__enable_payment_lock">Aktiveer betalingsluiting</string>
     <!-- Option to cancel -->
     <string name="PaymentsSecuritySetupFragment__not_now">Nie nou nie</string>
     <!-- Dialog title to confirm skipping the step -->
-    <string name="PaymentsSecuritySetupFragment__skip_this_step">Skip this step?</string>
+    <string name="PaymentsSecuritySetupFragment__skip_this_step">Slaan hierdie stap oor?</string>
     <!-- Dialog description to let users know why payment lock is required -->
-    <string name="PaymentsSecuritySetupFragment__skipping_this_step">Skipping this step could allow anyone who has physical access to your phone to transfer funds or view your recovery phrase.</string>
+    <string name="PaymentsSecuritySetupFragment__skipping_this_step">As jy hierdie stap oorslaan, kan enigiemand wat fisiese toegang tot jou foon het, toegelaat word om fondse oor te plaas of jou herstelfrase te sien.</string>
     <!-- Dialog option to cancel -->
     <string name="PaymentsSecuritySetupFragment__cancel">Kanselleer</string>
     <!-- Dialog option to skip -->
@@ -4758,7 +4758,7 @@
     <!-- Status label when a story fails to send indicating user action to retry -->
     <string name="StoriesLandingItem__tap_to_retry">Tik om weer te probeer</string>
     <!-- Title of dialog confirming decision to hide a story -->
-    <string name="StoriesLandingFragment__hide_story">Versteek storie</string>
+    <string name="StoriesLandingFragment__hide_story">Versteek storie?</string>
     <!-- Message of dialog confirming decision to hide a story -->
     <string name="StoriesLandingFragment__new_story_updates">Nuwe storiebywerkings van %1$s sal nie meer boaan die storielys verskyn nie.</string>
     <!-- Positive action of dialog confirming decision to hide a story -->
@@ -4825,7 +4825,7 @@
     <!-- Displayed when a story has no replies yet -->
     <string name="StoryGroupReplyFragment__no_replies_yet">Nog geen antwoorde nie</string>
     <!-- Displayed when no longer a group member -->
-    <string name="StoryGroupReplyFragment__you_cant_reply">You can\'t reply to this story because you\'re no longer a member of this group.</string>
+    <string name="StoryGroupReplyFragment__you_cant_reply">Jy kan nie op hierdie storie antwoord nie, want jy is nie meer \'n lid van hierdie groep nie.</string>
     <!-- Displayed for each user that reacted to a story when viewing replies -->
     <string name="StoryGroupReactionReplyItem__reacted_to_the_story">Het op die storie gereageer</string>
     <!-- Label for story views tab -->
@@ -4862,7 +4862,7 @@
     <!-- Privacy setting title for sending stories to all except the specified connections -->
     <string name="MyStorySettingsFragment__all_except">Almal behalwe…</string>
     <!-- Privacy setting description for sending stories to all except the specified connections -->
-    <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Versteek jou storie van spesifieke persone</string>
+    <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Versteek jou storie vir spesifieke mense</string>
     <!-- Summary of clickable option displaying how many people you have excluded from your story -->
     <plurals name="MyStorySettingsFragment__d_people_excluded">
         <item quantity="one">%1$d persoon uitgesluit</item>
@@ -4885,8 +4885,6 @@
     <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Laat antwoorde &amp;amp toe; reaksies</string>
     <!-- Summary for switchable option allowing replies and reactions on your story -->
     <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Laat toe dat mense wat na jou storie kan kyk, daarop reageer en antwoord</string>
-    <!-- Note about default sharing -->
-    <string name="MyStorySettingsFragment__hide_your_story_from">Versteek jou storie vir spesifieke mense. By verstek word jou storie met jou %1$s gedeel</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
     <string name="SignalConnectionsBottomSheet___signal_connections">Signal-verbindings</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
@@ -4948,19 +4946,19 @@
     <!-- Dialog title for removing a group story -->
     <string name="StoryDialogs__remove_group_story">Verwyder groepstorie?</string>
     <!-- Dialog message for removing a group story -->
-    <string name="StoryDialogs__s_will_be_removed">\"%1$s\" will be removed.</string>
+    <string name="StoryDialogs__s_will_be_removed">“%1$s” sal verwyder word.</string>
     <!-- Dialog positive action for removing a group story -->
     <string name="StoryDialogs__remove">Verwyder</string>
     <!-- Dialog title for deleting a private story -->
     <string name="StoryDialogs__delete_private_story">Skrap privaatstorie?</string>
     <!-- Dialog message for deleting a private story -->
-    <string name="StoryDialogs__s_and_updates_shared">\"%1$s\" and updates shared to this story will be deleted.</string>
+    <string name="StoryDialogs__s_and_updates_shared">\"%1$s\" en opdaterings wat in hierdie storie gedeel word, sal uitgevee word.</string>
     <!-- Dialog positive action for deleting a private story -->
     <string name="StoryDialogs__delete">Skrap</string>
     <!-- Dialog title for first time sending something to a beta story -->
-    <string name="StoryDialogs__stories_is_available_to">Stories is available to Signal beta users only.</string>
+    <string name="StoryDialogs__stories_is_available_to">Stories is slegs vir Signal-beta-gebruikers beskikbaar.</string>
     <!-- Dialog message for first time sending something to a beta story -->
-    <string name="StoryDialogs__if_you_share_a_story">If you share a story, it will only be available to people who are on Signal beta.</string>
+    <string name="StoryDialogs__if_you_share_a_story">As jy \'n storie deel, sal dit slegs beskikbaar wees vir mense wat op Signal-beta is.</string>
     <!-- Dialog title for first time adding something to a story -->
     <string name="StoryDialogs__add_to_story_q">Voeg by jou storie by?</string>
     <!-- Dialog message for first time adding something to a story -->
@@ -4974,9 +4972,9 @@
     <!-- Error message dialog button to resend a previously failed story send -->
     <string name="StoryDialogs__send">Stuur</string>
     <!-- Action button for turning off stories when stories are present on the device -->
-    <string name="StoryDialogs__turn_off_and_delete">Turn off and delete</string>
+    <string name="StoryDialogs__turn_off_and_delete">Skakel af en vee uit</string>
     <!-- Privacy Settings toggle title for stories -->
-    <string name="PrivacySettingsFragment__share_and_view_stories">Deel &amp; Kyk na stories</string>
+    <string name="PrivacySettingsFragment__share_and_view_stories">Deel &amp; Kyk na Stories</string>
     <!-- Privacy Settings toggle summary for stories -->
     <string name="PrivacySettingsFragment__you_will_no_longer_be_able">Jy sal nie meer stories kan deel of daarna kyk wanneer hierdie opsie afgeskakel is nie.</string>
     <!-- New story viewer selection screen title -->
@@ -4991,7 +4989,7 @@
     <!-- Name story screen title -->
     <string name="CreateStoryWithViewersFragment__name_story">Benoem storie</string>
     <!-- Name story screen label hint -->
-    <string name="CreateStoryWithViewersFragment__story_name_required">Storie se naam (vereis)</string>
+    <string name="CreateStoryWithViewersFragment__story_name_required">Storie se naam (word vereis)</string>
     <!-- Name story screen viewers subheading -->
     <string name="CreateStoryWithViewersFragment__viewers">Kykers</string>
     <!-- Name story screen create button label -->
@@ -5029,7 +5027,7 @@
     <!-- Toasted when the user externally shares to a text story successfully -->
     <string name="TextStoryPostCreationFragment__sent_story">Storie gestuur</string>
     <!-- Toasted when the user external share to a text story fails -->
-    <string name="TextStoryPostCreationFragment__failed_to_send_story">Kon nie storie stuur nie.</string>
+    <string name="TextStoryPostCreationFragment__failed_to_send_story">Kon nie storie stuur nie</string>
     <!-- Displayed in a dialog to let the user select a given users story -->
     <string name="StoryDialogs__view_story">Kyk na storie</string>
     <!-- Displayed in a dialog to let the user select a given users profile photo -->
@@ -5115,8 +5113,8 @@
     <string name="ContactSearchItems__only_share_with">Deel slegs met</string>
     <!-- Label under name for private stories -->
     <plurals name="ContactSearchItems__private_story_d_viewers">
-        <item quantity="one">Private storie · %1$d kyker</item>
-        <item quantity="other">Privaatstorie · %1$d kykers</item>
+        <item quantity="one">Privaatstorie · %1$d kyker</item>
+        <item quantity="other">Private storie · %1$d kykers</item>
     </plurals>
     <!-- Label under name for group stories -->
     <plurals name="ContactSearchItems__group_story_d_viewers">
@@ -5196,7 +5194,7 @@
     <!-- Message of safety number changes bottom sheet when not showing individual records and user has seen review screen -->
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Alle verbindings is nagegaan, tik stuur om voort te gaan.</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
-    <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">Jy het %1$d verbindings wat moontlik Signal herinstalleer of van toestelle verander het. Voordat jy jou storie met hulle deel, gaan hulle veiligheidsnommers na of oorweeg dit om hulle uit jou storie te verwyder.</string>
+    <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">Jy het %1$d konneksies wat moontlik Signal herinstalleer of van toestelle verander het. Voordat jy jou storie met hulle deel, gaan hulle veiligheidsnommers na of oorweeg dit om hulle uit jou storie te verwyder.</string>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Verifieer veiligheidsnommer</string>
     <!-- Menu action to remove user from story -->
@@ -5263,7 +5261,7 @@
     <!-- Dialog title to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">Wil jy stories afskakel?</string>
     <!-- Dialog message to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">You will no longer be able to share or view stories. Story updates you have recently shared will also be deleted.</string>
+    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">Jy sal nie meer stories kan deel of sien nie. Storiebywerkings wat jy onlangs gedeel het, sal ook uitgevee word.</string>
     <!-- Page title when launched from stories landing screen -->
     <string name="StoriesPrivacySettingsFragment__story_privacy">Storieprivaatheid</string>
 

@@ -193,7 +193,7 @@
     <string name="ClientDeprecatedActivity_update">I-update</string>
     <string name="ClientDeprecatedActivity_dont_update">Huwag I-update</string>
     <string name="ClientDeprecatedActivity_warning">Babala</string>
-    <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Ang iyong version ng Signal ay expired na. Pwede mong makita ang iyong message history pero hindi ka na maaaring makapag-send o maka-receive ng messages hanggang sa i-update mo ito.</string>
+    <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Expired na ang iyong version ng Signal. Pwede mong makita ang iyong message history pero hindi ka na maaaring makapag-send o maka-receive ng messages hangga\'t hindi mo ito ina-update.</string>
 
     <!-- CommunicationActions -->
     <string name="CommunicationActions_no_browser_found">Walang mahanap na web browser.</string>
@@ -673,7 +673,7 @@
     <!-- GroupsV1MigrationLearnMoreBottomSheetDialogFragment -->
     <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Ano ang mga New Groups?</string>
     <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Ang Bagong Groups ay may features tulad ng @mentions at group admins, at magdadagdagan pa ito ng ibang features sa hinaharap.</string>
-    <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Lahat ng message history at media ay naingatan bago mangyari ang upgrade.</string>
+    <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Naingatan ang lahat ng message history at media bago nangyari ang upgrade.</string>
     <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">Kinakailangan mong mag-accept ng invite para maka-join ulit sa group na ito, at hindi ka makakatanggap ng group messages hanggang i-accept mo ito.</string>
     <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
         <item quantity="one">Ang member na ito\'y kinakailangang mag-accept ng invite para maka-join ulit sa group na ito at hindi siya makakatanggap ng group messages hanggang i-accept niya ito.</item>
@@ -688,7 +688,7 @@
     <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Mag-upgrade sa New Group</string>
     <string name="GroupsV1MigrationInitiation_upgrade_this_group">I-upgrade ang group na ito</string>
     <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">Ang Bagong Groups ay may features tulad ng @mentions at group admins, at magdadagdagan pa ito ng ibang features sa hinaharap.</string>
-    <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">Lahat ng message history at media ay iingatan bago mangyari ang upgrade.</string>
+    <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">Iingatan ang lahat ng message history at media bago mangyari ang upgrade.</string>
     <string name="GroupsV1MigrationInitiation_encountered_a_network_error">Encountered a network error. Subukan ulit mamaya.</string>
     <string name="GroupsV1MigrationInitiation_failed_to_upgrade">Failed to upgrade.</string>
     <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
@@ -1346,7 +1346,7 @@
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Like this new feature? Suportahan ang Signal sa pamamagitan ng one-time donation.</string>
     <!-- Update item message shown when we merge two threads together -->
-    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Pinagsama na ang iyong message history ni %1$s at ang kanyang number na %2$s.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Pinagsama na ang inyong message history ni %1$s at ang kanyang number na %2$s.</string>
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Pinagsama na ang iyong message history ni %1$s at isa pa niyang chat.</string>
 
@@ -2344,7 +2344,7 @@
     <!-- Displayed in a toast when user long presses an item in MyStories -->
     <string name="MyStoriesFragment__copied_sent_timestamp_to_clipboard">Copied sent timestamp to clipboard.</string>
     <!-- Displayed when there are no outgoing stories -->
-    <string name="MyStoriesFragment__updates_to_your_story_will_show_up_here">Lalabas dito ang mga update sa story mo.</string>
+    <string name="MyStoriesFragment__updates_to_your_story_will_show_up_here">Lalabas dito ang updates sa story mo.</string>
 
     <!-- GroupUtil -->
     <plurals name="GroupUtil_joined_the_group">
@@ -2606,7 +2606,7 @@
     <string name="preferences__one_time_donation">One-time Donation</string>
     <string name="preferences__privacy">Pagkapribado</string>
     <!-- Preference label for stories -->
-    <string name="preferences__stories">Mga Story</string>
+    <string name="preferences__stories">Stories</string>
     <string name="preferences__mms_user_agent">MMS User Agent</string>
     <string name="preferences__advanced_mms_access_point_names">Manwal na settings ng MMS</string>
     <string name="preferences__mmsc_url">MMSC URL</string>
@@ -2667,11 +2667,11 @@
     <string name="preferences_storage__review_storage">Suriin ang storage</string>
     <string name="preferences_storage__delete_older_messages">Gusto mo bang i-delete ang older messages?</string>
     <string name="preferences_storage__clear_message_history">Gusto mo bang i-clear ang message history?</string>
-    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">This will permanently delete all message history and media that are older than %1$s mula sa device mo.</string>
+    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Permanente nitong ide-delete ang lahat ng message history at media na humigit %1$s mula sa device mo.</string>
     <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">This will permanently trim all conversations sa %1$s na most recent messages.</string>
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">This will permanently delete all message history and media mula sa device mo.</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Permanente nitong ide-delete ang lahat ng message history at media mula sa device mo.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Sigurado ka bang gusto mong i-delete ang buong message history?</string>
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">All message history will be permanently removed. This action cannot be undone.</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Ang buong message history ay permanenteng mawawala. Hindi na pwedeng bawiin ang action na ito.</string>
     <string name="preferences_storage__delete_all_now">Delete all now</string>
     <string name="preferences_storage__forever">Forever</string>
     <string name="preferences_storage__one_year">1 year</string>
@@ -2913,17 +2913,17 @@
     <!-- Toolbar title -->
     <string name="PaymentsSecuritySetupFragment__security_setup">Security setup</string>
     <!-- Title to enable payment lock -->
-    <string name="PaymentsSecuritySetupFragment__protect_your_funds">Protect your funds</string>
+    <string name="PaymentsSecuritySetupFragment__protect_your_funds">Protektahan ang pera mo</string>
     <!-- Description as to why payment lock is required -->
-    <string name="PaymentsSecuritySetupFragment__help_prevent">Help prevent a person with your phone from accessing your funds by adding another layer of security. You can disable this option in Settings.</string>
+    <string name="PaymentsSecuritySetupFragment__help_prevent">Pigilang ma-access ng ibang taong may hawak ng phone mo ang pera mo gamit ang karagdagang layer ng seguridad. Pwede mong i-disable ang option na ito sa Settings.</string>
     <!-- Option to enable payment lock -->
-    <string name="PaymentsSecuritySetupFragment__enable_payment_lock">Enable payment lock</string>
+    <string name="PaymentsSecuritySetupFragment__enable_payment_lock">I-enable ang payment lock</string>
     <!-- Option to cancel -->
     <string name="PaymentsSecuritySetupFragment__not_now">Hindi ngayon</string>
     <!-- Dialog title to confirm skipping the step -->
-    <string name="PaymentsSecuritySetupFragment__skip_this_step">Skip this step?</string>
+    <string name="PaymentsSecuritySetupFragment__skip_this_step">Gusto mo bang i-skip ang step na ito?</string>
     <!-- Dialog description to let users know why payment lock is required -->
-    <string name="PaymentsSecuritySetupFragment__skipping_this_step">Skipping this step could allow anyone who has physical access to your phone to transfer funds or view your recovery phrase.</string>
+    <string name="PaymentsSecuritySetupFragment__skipping_this_step">Kapag ini-skip mo ang step na ito, pwedeng makapag-transfer ng pera o makita ang iyong recovery phrase ng taong may hawak ng phone mo.</string>
     <!-- Dialog option to cancel -->
     <string name="PaymentsSecuritySetupFragment__cancel">Kanselahin</string>
     <!-- Dialog option to skip -->
@@ -4001,7 +4001,7 @@
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">Default timer para sa new chats</string>
     <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Mag-set ng default disappearing message timer para sa lahat ng new chats na sinimulan mo.</string>
     <!-- Summary for stories preference to launch into story privacy settings -->
-    <string name="PrivacySettingsFragment__manage_your_stories">I-manage ang stories mo at kung sinong makakakita nito</string>
+    <string name="PrivacySettingsFragment__manage_your_stories">I-manage ang iyong stories at kung sinong makakakita nito</string>
     <string name="PrivacySettingsFragment__payment_lock_require_lock">Hingin ang Android screen lock o fingerprint para makapagpadala ng pera</string>
     <!-- Alert dialog title when payment lock cannot be enabled -->
     <string name="PrivacySettingsFragment__cant_enable_title">Hindi ma-on ang seguridad sa pagbayad</string>
@@ -4281,7 +4281,7 @@
     <string name="MultiselectForwardFragment__add_a_message">Mag-add ng message</string>
     <string name="MultiselectForwardFragment__faster_forwards">Faster towards</string>
     <!-- Displayed when user selects a video that will be clipped before sharing to a story -->
-    <string name="MultiselectForwardFragment__videos_will_be_trimmed">Ang videos ay naka-trim sa 30s clips at ise-send as multiple Stories.</string>
+    <string name="MultiselectForwardFragment__videos_will_be_trimmed">Hahatiin ang videos bilang tig-30s na clips at ise-send bilang multiple Stories.</string>
     <!-- Displayed when user selects a video that cannot be sent as a story -->
     <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">Ang videos na ise-send sa Stories ay hindi pwedeng lumagpas ng 30s.</string>
     <string name="MultiselectForwardFragment__forwarded_messages_are_now">Forwarded messages are now sent immediately.</string>
@@ -4728,7 +4728,7 @@
     <!-- String for counts above 99 in conversation list tabs -->
     <string name="ConversationListTabs__99p">99+</string>
     <!-- Menu item on stories landing page -->
-    <string name="StoriesLandingFragment__story_privacy">Pagkapribado ng story</string>
+    <string name="StoriesLandingFragment__story_privacy">Story privacy</string>
     <!-- Title for "My Stories" row item in Stories landing page -->
     <string name="StoriesLandingFragment__my_stories">Stories Ko</string>
     <!-- Subtitle for "My Stories" row item when user has not added stories -->
@@ -4738,7 +4738,7 @@
     <!-- Context menu option to hide a story -->
     <string name="StoriesLandingItem__hide_story">I-hide ang story</string>
     <!-- Context menu option to unhide a story -->
-    <string name="StoriesLandingItem__unhide_story">Unhide story</string>
+    <string name="StoriesLandingItem__unhide_story">I-unhide story</string>
     <!-- Context menu option to forward a story -->
     <string name="StoriesLandingItem__forward">Ipasa</string>
     <!-- Context menu option to share a story -->
@@ -4758,15 +4758,15 @@
     <!-- Status label when a story fails to send indicating user action to retry -->
     <string name="StoriesLandingItem__tap_to_retry">Tap to retry</string>
     <!-- Title of dialog confirming decision to hide a story -->
-    <string name="StoriesLandingFragment__hide_story">Gusto mo bang i-hide ang story na ito?</string>
+    <string name="StoriesLandingFragment__hide_story">I-hide ang story na ito?</string>
     <!-- Message of dialog confirming decision to hide a story -->
-    <string name="StoriesLandingFragment__new_story_updates">Ang new story updates mula kay %1$s ay hindi na lalabas sa top part ng stories list.</string>
+    <string name="StoriesLandingFragment__new_story_updates">Ang bagong story updates mula kay %1$s ay hindi na lalabas sa taas ng stories list.</string>
     <!-- Positive action of dialog confirming decision to hide a story -->
     <string name="StoriesLandingFragment__hide">I-hide</string>
     <!-- Displayed in Snackbar after story is hidden -->
-    <string name="StoriesLandingFragment__story_hidden">Story hidden</string>
+    <string name="StoriesLandingFragment__story_hidden">Naka-hide ang story</string>
     <!-- Section header for hidden stories -->
-    <string name="StoriesLandingFragment__hidden_stories">Hidden stories</string>
+    <string name="StoriesLandingFragment__hidden_stories">Mga nakatagong stories</string>
     <!-- Displayed on each sent story under My Stories -->
     <plurals name="MyStories__d_views">
         <item quantity="one">%1$d view</item>
@@ -4775,9 +4775,9 @@
     <!-- Forward story label, displayed in My Stories context menu -->
     <string name="MyStories_forward">Ipasa</string>
     <!-- Label for stories for a single user. Format is {given name}\'s Story -->
-    <string name="MyStories__ss_story">%1$s\'s Story</string>
+    <string name="MyStories__ss_story">Story ni %1$s</string>
     <!-- Title of dialog to confirm deletion of story -->
-    <string name="MyStories__delete_story">Gusto mo bang i-delete ang story na ito?</string>
+    <string name="MyStories__delete_story">I-delete ang story na ito?</string>
     <!-- Message of dialog to confirm deletion of story -->
     <string name="MyStories__this_story_will_be_deleted">Ang story na ito\'y made-delete sa\'yo at sa lahat ng naka-receive nito.</string>
     <!-- Toast shown when story media cannot be saved -->
@@ -4825,15 +4825,15 @@
     <!-- Displayed when a story has no replies yet -->
     <string name="StoryGroupReplyFragment__no_replies_yet">Wala pang replies</string>
     <!-- Displayed when no longer a group member -->
-    <string name="StoryGroupReplyFragment__you_cant_reply">You can\'t reply to this story because you\'re no longer a member of this group.</string>
+    <string name="StoryGroupReplyFragment__you_cant_reply">Hindi ka pwedeng mag-reply sa story na ito dahil hindi ka na member ng group.</string>
     <!-- Displayed for each user that reacted to a story when viewing replies -->
-    <string name="StoryGroupReactionReplyItem__reacted_to_the_story">Reacted to the story</string>
+    <string name="StoryGroupReactionReplyItem__reacted_to_the_story">Nag-react sa story</string>
     <!-- Label for story views tab -->
     <string name="StoryViewsAndRepliesDialogFragment__views">Views</string>
     <!-- Label for story replies tab -->
     <string name="StoryViewsAndRepliesDialogFragment__replies">Replies</string>
     <!-- Description of action for reaction button -->
-    <string name="StoryReplyComposer__react_to_this_story">React to this story</string>
+    <string name="StoryReplyComposer__react_to_this_story">Mag-react sa story na ito</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">Replying privately to %1$s</string>
     <!-- Context menu item to privately reply to a story response -->
@@ -4862,7 +4862,7 @@
     <!-- Privacy setting title for sending stories to all except the specified connections -->
     <string name="MyStorySettingsFragment__all_except">Lahat maliban kay…</string>
     <!-- Privacy setting description for sending stories to all except the specified connections -->
-    <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">I-hide ang iyong story mula sa specific na tao</string>
+    <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">I-hide ang iyong story mula sa specific na mga tao</string>
     <!-- Summary of clickable option displaying how many people you have excluded from your story -->
     <plurals name="MyStorySettingsFragment__d_people_excluded">
         <item quantity="one">%1$d person excluded</item>
@@ -4878,15 +4878,13 @@
         <item quantity="other">%1$d people</item>
     </plurals>
     <!-- My story privacy fine print about what the privacy settings are for -->
-    <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Piliin kung sinong makakapag-view ng story mo. Ang changes dito ay hindi makakaapekto sa stories na na-send mo na.</string>
+    <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Piliin kung sinong makakapag-view ng story mo. Hindi makakaapekto sa stories na na-send mo na ang mga pagbabago dito.</string>
     <!-- Section header for options related to replies and reactions -->
     <string name="MyStorySettingsFragment__replies_amp_reactions">Replies &amp; reactions</string>
     <!-- Switchable option for allowing replies and reactions on your stories -->
     <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Allow replies &amp; reactions</string>
     <!-- Summary for switchable option allowing replies and reactions on your story -->
-    <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Let people who can view your story react and reply</string>
-    <!-- Note about default sharing -->
-    <string name="MyStorySettingsFragment__hide_your_story_from">I-hide ang iyong story mula sa specific people. By default, ang story mo ay naka-share sa iyong %1$s</string>
+    <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Payagang mag-react at mag-reply ang mga taong nag-view ng story mo</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
     <string name="SignalConnectionsBottomSheet___signal_connections">Signal Connections</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
@@ -4898,7 +4896,7 @@
     <!-- Signal connections sheet bullet point 3 -->
     <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Having them in your system contacts</string>
     <!-- Note at the bottom of the Signal connections sheet -->
-    <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Makikita ng iyong connections ang name at photo mo, pati na rin ang iyong posts sa \"My Story\" maliban na lang kung i-hide mo ito sa kanila."</string>
+    <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Makikita ng iyong connections ang pangalan at photo mo, pati na rin ang iyong posts sa My Story maliban na lang kung i-hide mo ito sa kanila."</string>
     <!-- Clickable option to add a viewer to a private story -->
     <string name="PrivateStorySettingsFragment__add_viewer">Mag-add ng viewer</string>
     <!-- Clickable option to delete a custom story -->
@@ -4906,7 +4904,7 @@
     <!-- Dialog title when attempting to remove someone from a private story -->
     <string name="PrivateStorySettingsFragment__remove_s">Remove %1$s?</string>
     <!-- Dialog message when attempting to remove someone from a private story -->
-    <string name="PrivateStorySettingsFragment__this_person_will_no_longer">Hindi na niya makikita ang story mo.</string>
+    <string name="PrivateStorySettingsFragment__this_person_will_no_longer">Hindi na makikita ng taong ito ang story mo.</string>
     <!-- Positive action label when attempting to remove someone from a private story -->
     <string name="PrivateStorySettingsFragment__remove">Tanggalin</string>
     <!-- Dialog title when deleting a private story -->
@@ -4914,7 +4912,7 @@
     <!-- Dialog message when deleting a private story -->
     <string name="PrivateStorySettingsFragment__this_action_cannot">This action cannot be undone.</string>
     <!-- Page title for editing a private story name -->
-    <string name="EditPrivateStoryNameFragment__edit_story_name">Edit story name</string>
+    <string name="EditPrivateStoryNameFragment__edit_story_name">I-edit ang story name</string>
     <!-- Input field hint when editing a private story name -->
     <string name="EditPrivateStoryNameFragment__story_name">Story name</string>
     <!-- Save button label when editing a private story name -->
@@ -4934,7 +4932,7 @@
     <!-- Hint for entering a URL for a text post -->
     <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">Type or paste a URL</string>
     <!-- Displayed prior to the user entering a URL for a text post -->
-    <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">Mag-share ng link ng iyong story with viewers</string>
+    <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">Mag-share ng link ng iyong story sa viewers</string>
     <!-- Hint text for searching for a story text post recipient. -->
     <string name="TextStoryPostSendFragment__search">Maghanap</string>
     <!-- Toast shown when an unexpected error occurs while sending a text story -->
@@ -4948,23 +4946,23 @@
     <!-- Dialog title for removing a group story -->
     <string name="StoryDialogs__remove_group_story">Gusto mo bang tanggalin ang group story?</string>
     <!-- Dialog message for removing a group story -->
-    <string name="StoryDialogs__s_will_be_removed">\"%1$s\" will be removed.</string>
+    <string name="StoryDialogs__s_will_be_removed">Matatanggal ang \"%1$s\".</string>
     <!-- Dialog positive action for removing a group story -->
     <string name="StoryDialogs__remove">Tanggalin</string>
     <!-- Dialog title for deleting a private story -->
-    <string name="StoryDialogs__delete_private_story">Gusto mo bang burahin ang private story na ito?</string>
+    <string name="StoryDialogs__delete_private_story">Gusto mo bang i-delete ang private story na ito?</string>
     <!-- Dialog message for deleting a private story -->
-    <string name="StoryDialogs__s_and_updates_shared">\"%1$s\" and updates shared to this story will be deleted.</string>
+    <string name="StoryDialogs__s_and_updates_shared">Made-delete ang \"%1$s\" at ang updates na naka-share sa story na ito.</string>
     <!-- Dialog positive action for deleting a private story -->
     <string name="StoryDialogs__delete">Burahin</string>
     <!-- Dialog title for first time sending something to a beta story -->
-    <string name="StoryDialogs__stories_is_available_to">Stories is available to Signal beta users only.</string>
+    <string name="StoryDialogs__stories_is_available_to">Ang Stories ay available lang sa Signal beta users.</string>
     <!-- Dialog message for first time sending something to a beta story -->
-    <string name="StoryDialogs__if_you_share_a_story">If you share a story, it will only be available to people who are on Signal beta.</string>
+    <string name="StoryDialogs__if_you_share_a_story">Kapag mag-share ka ng story, makikita lang ito ng iba pang Signal beta users.</string>
     <!-- Dialog title for first time adding something to a story -->
-    <string name="StoryDialogs__add_to_story_q">I-add ito sa story?</string>
+    <string name="StoryDialogs__add_to_story_q">I-add ito sa story mo?</string>
     <!-- Dialog message for first time adding something to a story -->
-    <string name="StoryDialogs__adding_content">Ang pag-add ng content sa iyong story ay naga-allow sa Signal connections mo na i-view ito sa loob ng 24 hours. Pwede mong baguhin kung sinong makakapag-view ng iyong story sa Settings.</string>
+    <string name="StoryDialogs__adding_content">Kapag nag-add ka ng content sa story mo, makikita ito ng Signal connections mo sa loob ng 24 oras. Pwede mong baguhin sa Settings kung sinong makakakita ng iyong story.</string>
     <!-- First time share to story dialog: Positive action to go ahead and add to story -->
     <string name="StoryDialogs__add_to_story">I-add sa story</string>
     <!-- First time share to story dialog: Neutral action to edit who can view "My Story" -->
@@ -4974,11 +4972,11 @@
     <!-- Error message dialog button to resend a previously failed story send -->
     <string name="StoryDialogs__send">Ipadala</string>
     <!-- Action button for turning off stories when stories are present on the device -->
-    <string name="StoryDialogs__turn_off_and_delete">Turn off and delete</string>
+    <string name="StoryDialogs__turn_off_and_delete">I-off at i-delete</string>
     <!-- Privacy Settings toggle title for stories -->
     <string name="PrivacySettingsFragment__share_and_view_stories">Pag-share at Pag-view ng Stories</string>
     <!-- Privacy Settings toggle summary for stories -->
-    <string name="PrivacySettingsFragment__you_will_no_longer_be_able">Hindi ka na pwedeng mag-share o mag-view ng Stories kapag naka-turn off ang option na ito.</string>
+    <string name="PrivacySettingsFragment__you_will_no_longer_be_able">Hindi ka na pwedeng mag-share o mag-view ng Stories kapag naka-off ang option na ito.</string>
     <!-- New story viewer selection screen title -->
     <string name="CreateStoryViewerSelectionFragment__choose_viewers">Pumili ng viewers</string>
     <!-- New story viewer selection action button label -->
@@ -4989,9 +4987,9 @@
         <item quantity="other">%1$d viewers</item>
     </plurals>
     <!-- Name story screen title -->
-    <string name="CreateStoryWithViewersFragment__name_story">Name story</string>
+    <string name="CreateStoryWithViewersFragment__name_story">Bigyang pangalan ang story</string>
     <!-- Name story screen label hint -->
-    <string name="CreateStoryWithViewersFragment__story_name_required">Story name (required)</string>
+    <string name="CreateStoryWithViewersFragment__story_name_required">Pangalan ng story (required)</string>
     <!-- Name story screen viewers subheading -->
     <string name="CreateStoryWithViewersFragment__viewers">Viewers</string>
     <!-- Name story screen create button label -->
@@ -5005,7 +5003,7 @@
     <!-- Choose story type bottom sheet title -->
     <string name="ChooseStoryTypeBottomSheet__choose_your_story_type">Pumili ng iyong story type</string>
     <!-- Choose story type bottom sheet new story row title -->
-    <string name="ChooseStoryTypeBottomSheet__new_private_story">New private story</string>
+    <string name="ChooseStoryTypeBottomSheet__new_private_story">Bagong private story</string>
     <!-- Choose story type bottom sheet new story row summary -->
     <string name="ChooseStoryTypeBottomSheet__visible_only_to">Visible lang sa specific users</string>
     <!-- Choose story type bottom sheet group story title -->
@@ -5021,15 +5019,15 @@
     <!-- Displayed in toast after sending a direct reply -->
     <string name="StoryDirectReplyDialogFragment__sending_reply">Sending reply…</string>
     <!-- Displayed in the viewer when a story is no longer available -->
-    <string name="StorySlateView__this_story_is_no_longer_available">Ang story na ito\'y hindi na available.</string>
+    <string name="StorySlateView__this_story_is_no_longer_available">Hindi na available ang story na ito.</string>
     <!-- Displayed in the viewer when the network is not available -->
     <string name="StorySlateView__no_internet_connection">Walang Internet Connection</string>
     <!-- Displayed in the viewer when network is available but content could not be downloaded -->
     <string name="StorySlateView__couldnt_load_content">Couldn\'t Load Content</string>
     <!-- Toasted when the user externally shares to a text story successfully -->
-    <string name="TextStoryPostCreationFragment__sent_story">Sent story</string>
+    <string name="TextStoryPostCreationFragment__sent_story">Sinend na story</string>
     <!-- Toasted when the user external share to a text story fails -->
-    <string name="TextStoryPostCreationFragment__failed_to_send_story">Failed to send story</string>
+    <string name="TextStoryPostCreationFragment__failed_to_send_story">Hindi ma-send ang story</string>
     <!-- Displayed in a dialog to let the user select a given users story -->
     <string name="StoryDialogs__view_story">I-view ang story</string>
     <!-- Displayed in a dialog to let the user select a given users profile photo -->
@@ -5112,7 +5110,7 @@
     <!-- Expired gift sheet not now button -->
     <string name="ExpiredGiftSheetConfiguration__not_now">Hindi ngayon</string>
     <!-- My Story label designating that we will only share with the selected viewers. -->
-    <string name="ContactSearchItems__only_share_with">I-share lang sa…</string>
+    <string name="ContactSearchItems__only_share_with">I-share lang sa</string>
     <!-- Label under name for private stories -->
     <plurals name="ContactSearchItems__private_story_d_viewers">
         <item quantity="one">Private story · %1$d viewer</item>
@@ -5138,7 +5136,7 @@
     <!-- Label for context menu item to open story settings -->
     <string name="ContactSearchItems__story_settings">Story settings</string>
     <!-- Label for context menu item to remove a group story from contact results -->
-    <string name="ContactSearchItems__remove_story">I-remove ang story</string>
+    <string name="ContactSearchItems__remove_story">Tanggalin ang story</string>
     <!-- Label for context menu item to delete a private story -->
     <string name="ContactSearchItems__delete_story">I-delete ang story</string>
     <!-- Dialog title for removing a group story -->
@@ -5148,7 +5146,7 @@
     <!-- Dialog action item for removing a group story -->
     <string name="ContactSearchMediator__remove">Tanggalin</string>
     <!-- Dialog title for deleting a private story -->
-    <string name="ContactSearchMediator__delete_story">Gusto mo bang i-delete ang story na ito?</string>
+    <string name="ContactSearchMediator__delete_story">I-delete ang story na ito?</string>
     <!-- Dialog message for deleting a private story -->
     <string name="ContactSearchMediator__delete_the_private">Gusto mo bang i-delete ang private story \"%1$s\"?</string>
     <!-- Dialog action item for deleting a private story -->
@@ -5196,7 +5194,7 @@
     <!-- Message of safety number changes bottom sheet when not showing individual records and user has seen review screen -->
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Na-review na ang lahat ng connections, i-tap ang send para magpatuloy.</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
-    <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">Mayroon kang %1$d connections na maaaring nag-reinstall ng Signal o nagpalit ng devices. Reviewhin muna ang kanilang safety numbers bago mo i-share sa kanila ang story mo. Maaari mo rin silang tanggalin sa story mo.</string>
+    <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">Mayroon kang %1$d connections na maaaring nag-reinstall ng Signal o nagpalit ng device. Reviewhin muna ang kanilang safety numbers bago mo i-share sa kanila ang story mo. Maaari mo rin silang tanggalin sa story mo.</string>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Beripikahin ang numerong pangkaligtasan</string>
     <!-- Menu action to remove user from story -->
@@ -5224,9 +5222,9 @@
     <string name="SafetyNumberReviewConnectionsFragment__remove">Tanggalin</string>
 
     <!-- Title of initial My Story settings configuration shown when sending to My Story for the first time -->
-    <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">Pagkapribado ng Story Ko</string>
+    <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">Story Privacy Ko</string>
     <!-- Subtitle of initial My Story settings configuration shown when sending to My Story for the first time -->
-    <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">Piliin kung sinong makakakita ng posts sa Story Ko. Pwede mo itong baguhin anumang oras sa settings.</string>
+    <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">Piliin kung sinong makakakita ng posts sa Story Ko. Pwede mo itong baguhin sa settings anumang oras.</string>
     <!-- All connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">All Signal connections</string>
     <!-- All connections except option for initial My Story settings configuration shown when sending to My Story for the first time -->
@@ -5251,7 +5249,7 @@
 
     <!-- StoriesPrivacySettingsFragment -->
     <!-- Explanation about how stories are deleted and managed -->
-    <string name="StoriesPrivacySettingsFragment__stories_automatically_disappear">Automatic na maglalaho ang stories pagkatapos ng 24 oras. Piliin kung sinong makakakita ng iyong story o gumawa ng bagong stories na may partikular na viewers o groups.</string>
+    <string name="StoriesPrivacySettingsFragment__stories_automatically_disappear">Automatic na mawawala ang stories pagkatapos ng 24 oras. Piliin kung sinong makakakita ng iyong story o gumawa ng bagong stories na may specific na viewers o groups.</string>
     <!-- Preference title to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__turn_off_stories">I-off ang stories</string>
     <!-- Preference summary to turn off stories -->
@@ -5259,19 +5257,19 @@
     <!-- Preference title to turn on stories -->
     <string name="StoriesPrivacySettingsFragment__turn_on_stories">I-on ang stories</string>
     <!-- Preference summary to turn on stories -->
-    <string name="StoriesPrivacySettingsFragment__share_and_view">Mag-share at tingnan ang stories ng iba. Ang stories ay automatic na maglalaho pagkatapos ng 24 oras.</string>
+    <string name="StoriesPrivacySettingsFragment__share_and_view">Mag-share at mag-view ng stories mula sa ibang mga tao. Ang stories ay automatic na nawawala pagkatapos ng 24 oras.</string>
     <!-- Dialog title to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">Gusto mo bang i-off ang stories?</string>
     <!-- Dialog message to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">You will no longer be able to share or view stories. Story updates you have recently shared will also be deleted.</string>
+    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">Hindi ka na pwedeng mag-share o mag-view ng stories. Made-delete rin ang story updates na shinare mo.</string>
     <!-- Page title when launched from stories landing screen -->
-    <string name="StoriesPrivacySettingsFragment__story_privacy">Pagkapribado ng story</string>
+    <string name="StoriesPrivacySettingsFragment__story_privacy">Story privacy</string>
 
     <!-- GroupStorySettingsFragment -->
     <!-- Section header for who can view a group story -->
     <string name="GroupStorySettingsFragment__who_can_view_this_story">Sinong makakakita ng story na ito</string>
     <!-- Explanation of who can view a group story -->
-    <string name="GroupStorySettingsFragment__members_of_the_group_s">"Makikita at masasagot ang story na ito ang members ng group na \"%1$s\". Pwede mong i-update sa group ang membership ng chat na ito."</string>
+    <string name="GroupStorySettingsFragment__members_of_the_group_s">"Ang members ng group na \"%1$s\" ay pwedeng mag-view at mag-reply sa story na ito. Pwede mong i-update ang membership ng chat na ito sa loob ng group."</string>
     <!-- Preference label for removing this group story -->
     <string name="GroupStorySettingsFragment__remove_group_story">Tanggalin ang group story</string>
 

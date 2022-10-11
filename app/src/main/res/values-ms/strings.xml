@@ -192,7 +192,7 @@
     <string name="ClientDeprecatedActivity_update">Kemas Kini</string>
     <string name="ClientDeprecatedActivity_dont_update">Jangan Update</string>
     <string name="ClientDeprecatedActivity_warning">Amaran</string>
-    <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Versi aplikasi Signal anda telah tamat tempoh. Anda boleh melihat sejarah mesej anda tetapi anda tidak boleh untuk menghantar dan menerima mesej sehinggalah anda update.</string>
+    <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Versi aplikasi Signal anda telah tamat tempoh. Anda boleh melihat sejarah mesej anda tetapi tidak boleh menghantar dan menerima mesej sehinggalah anda mengemas kini.</string>
 
     <!-- CommunicationActions -->
     <string name="CommunicationActions_no_browser_found">Pelayar web tidak dijumpai.</string>
@@ -650,7 +650,7 @@
     <!-- GroupsV1MigrationLearnMoreBottomSheetDialogFragment -->
     <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Apakah Kumpulan Baru?</string>
     <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Kumpulan Baharu mempunyai ciri-ciri seperti @sebutan dan pentadbir kumpulan, dan akan menyokong lebih banyak ciri pada masa akan datang.</string>
-    <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Semua sejarah mesej dan media telah disimpan sebelum penaiktarafan.</string>
+    <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Semua sejarah mesej dan media telah disimpan sebelum naik taraf dibuat.</string>
     <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">Anda perlu menerima jemputan untuk menyertai kumpulan ini sekali lagi dan tidak akan mendapat mesej kumpulan sehingga anda menerimanya.</string>
     <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
         <item quantity="other">Ahli-ahli ini perlu menerima jemputan untuk menyertai kumpulan ini sekali lagi dan tidak akan mendapat mesej kumpulan sehingga mereka menerimanya:</item>
@@ -663,7 +663,7 @@
     <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Naik taraf ke Group Baru</string>
     <string name="GroupsV1MigrationInitiation_upgrade_this_group">Upgrade group ini</string>
     <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">Kumpulan Baharu mempunyai ciri-ciri seperti @sebutan dan pentadbir kumpulan, dan akan menyokong lebih banyak ciri pada masa akan datang.</string>
-    <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">Semua sejarah mesej dan media akan disimpan sebelum penaiktarafan.</string>
+    <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">Semua sejarah mesej dan media akan disimpan sebelum naik taraf dibuat.</string>
     <string name="GroupsV1MigrationInitiation_encountered_a_network_error">Menghadapi ralat network. Cuba lagi kemudian.</string>
     <string name="GroupsV1MigrationInitiation_failed_to_upgrade">Gagal menaik taraf</string>
     <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
@@ -2121,9 +2121,9 @@
     <string name="QuoteView_you">Anda</string>
     <string name="QuoteView_original_missing">Mesej asal tidak dijumpai</string>
     <!-- Author formatting for group stories -->
-    <string name="QuoteView_s_story">%1$s . Cerita</string>
+    <string name="QuoteView_s_story">%1$s · Cerita</string>
     <!-- Label indicating that a quote is for a reply to a story you created -->
-    <string name="QuoteView_your_story">Anda . Cerita</string>
+    <string name="QuoteView_your_story">Anda · Cerita</string>
     <!-- Label indicating that the story being replied to no longer exists -->
     <string name="QuoteView_no_longer_available">Tiada lagi</string>
     <!-- Label for quoted gift -->
@@ -2581,11 +2581,11 @@
     <string name="preferences_storage__review_storage">Semak simpanan</string>
     <string name="preferences_storage__delete_older_messages">Padamkan mesej lama?</string>
     <string name="preferences_storage__clear_message_history">Kosongkan sejarah mesej?</string>
-    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Tindakan ini akan memadamkan semua sejarah mesej dan media daripada peranti anda yang lebih lama dari %1$s.</string>
+    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Ini akan memadam semua sejarah mesej dan media daripada peranti anda yang lebih daripada %1$s.</string>
     <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Tindakan ini akan memotong semua perbualan sehingga %1$s mesej terkini secara kekal.</string>
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Tindakan ini akan memadamkan semua sejarah mesej dan media daripada peranti anda secara kekal.</string>
-    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Adakah anda pasti mahu memadamkan semua sejarah mesej?</string>
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Semua sejarah mesej akan dialih keluar secara kekal. Tindakan ini tidak dapat dibuat asal.</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Ini akan memadam semua sejarah mesej dan media daripada peranti anda secara kekal.</string>
+    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Adakah anda pasti mahu memadam semua sejarah mesej?</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Semua sejarah mesej akan dialih keluar secara kekal. Tindakan ini tidak boleh diulang.</string>
     <string name="preferences_storage__delete_all_now">Padamkan semua sekarang</string>
     <string name="preferences_storage__forever">Selama-lamanya</string>
     <string name="preferences_storage__one_year">1 tahun</string>
@@ -2825,19 +2825,19 @@
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
-    <string name="PaymentsSecuritySetupFragment__security_setup">Security setup</string>
+    <string name="PaymentsSecuritySetupFragment__security_setup">Persediaan keselamatan</string>
     <!-- Title to enable payment lock -->
-    <string name="PaymentsSecuritySetupFragment__protect_your_funds">Protect your funds</string>
+    <string name="PaymentsSecuritySetupFragment__protect_your_funds">Lindungi dana anda</string>
     <!-- Description as to why payment lock is required -->
-    <string name="PaymentsSecuritySetupFragment__help_prevent">Help prevent a person with your phone from accessing your funds by adding another layer of security. You can disable this option in Settings.</string>
+    <string name="PaymentsSecuritySetupFragment__help_prevent">Bantu menghalang seseorang yang mempunyai telefon anda daripada mengakses dana anda dengan menambah satu lagi lapisan keselamatan. Anda boleh nyahdayakan pilihan ini dalam Tetapan.</string>
     <!-- Option to enable payment lock -->
-    <string name="PaymentsSecuritySetupFragment__enable_payment_lock">Enable payment lock</string>
+    <string name="PaymentsSecuritySetupFragment__enable_payment_lock">Dayakan kunci pembayaran</string>
     <!-- Option to cancel -->
     <string name="PaymentsSecuritySetupFragment__not_now">Bukan sekarang</string>
     <!-- Dialog title to confirm skipping the step -->
-    <string name="PaymentsSecuritySetupFragment__skip_this_step">Skip this step?</string>
+    <string name="PaymentsSecuritySetupFragment__skip_this_step">Langkau langkah ini?</string>
     <!-- Dialog description to let users know why payment lock is required -->
-    <string name="PaymentsSecuritySetupFragment__skipping_this_step">Skipping this step could allow anyone who has physical access to your phone to transfer funds or view your recovery phrase.</string>
+    <string name="PaymentsSecuritySetupFragment__skipping_this_step">Melangkau langkah ini boleh membenarkan sesiapa sahaja yang mempunyai akses fizikal kepada telefon anda untuk memindahkan dana atau melihat frasa pemulihan anda.</string>
     <!-- Dialog option to cancel -->
     <string name="PaymentsSecuritySetupFragment__cancel">Batal</string>
     <!-- Dialog option to skip -->
@@ -4182,7 +4182,7 @@
     <string name="MultiselectForwardFragment__add_a_message">Tambah mesej</string>
     <string name="MultiselectForwardFragment__faster_forwards">Ciri ajuan lebih pantas</string>
     <!-- Displayed when user selects a video that will be clipped before sharing to a story -->
-    <string name="MultiselectForwardFragment__videos_will_be_trimmed">Video akan dipotong kepada klip 30s dan dihantar sebagai Cerita pelbagai.</string>
+    <string name="MultiselectForwardFragment__videos_will_be_trimmed">Video akan dipotong kepada klip 30s dan dihantar sebagai beberapa Cerita.</string>
     <!-- Displayed when user selects a video that cannot be sent as a story -->
     <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">Video yang dihantar ke Cerita tidak boleh melebihi 30s.</string>
     <string name="MultiselectForwardFragment__forwarded_messages_are_now">Mesej dimajukan kini dihantar serta-merta.</string>
@@ -4656,7 +4656,7 @@
     <!-- Title of dialog confirming decision to hide a story -->
     <string name="StoriesLandingFragment__hide_story">Sembunyikan cerita?</string>
     <!-- Message of dialog confirming decision to hide a story -->
-    <string name="StoriesLandingFragment__new_story_updates">Kemas kini cerita terbaru daripada %1$s tidak akan muncul di bahagian atas senarai cerita lagi.</string>
+    <string name="StoriesLandingFragment__new_story_updates">Kemas kini cerita terbaru daripada %1$s tidak akan muncul dalam senarai teratas cerita lagi.</string>
     <!-- Positive action of dialog confirming decision to hide a story -->
     <string name="StoriesLandingFragment__hide">Sembunyikan</string>
     <!-- Displayed in Snackbar after story is hidden -->
@@ -4674,7 +4674,7 @@
     <!-- Title of dialog to confirm deletion of story -->
     <string name="MyStories__delete_story">Padam cerita?</string>
     <!-- Message of dialog to confirm deletion of story -->
-    <string name="MyStories__this_story_will_be_deleted">Cerita ini akan dipadamkan untuk anda dan semua orang yang telah menerimanya.</string>
+    <string name="MyStories__this_story_will_be_deleted">Cerita ini akan dipadam untuk anda dan semua orang yang telah menerimanya.</string>
     <!-- Toast shown when story media cannot be saved -->
     <string name="MyStories__unable_to_save">Tidak boleh menyimpan</string>
     <!-- Displayed at bottom of story viewer when current item has views -->
@@ -4718,15 +4718,15 @@
     <!-- Displayed when a story has no replies yet -->
     <string name="StoryGroupReplyFragment__no_replies_yet">Tiada balasan lagi</string>
     <!-- Displayed when no longer a group member -->
-    <string name="StoryGroupReplyFragment__you_cant_reply">You can\'t reply to this story because you\'re no longer a member of this group.</string>
+    <string name="StoryGroupReplyFragment__you_cant_reply">Anda tidak boleh membalas cerita ini kerana anda bukan lagi ahli kumpulan ini.</string>
     <!-- Displayed for each user that reacted to a story when viewing replies -->
-    <string name="StoryGroupReactionReplyItem__reacted_to_the_story">Telah bereaksi kepada cerita</string>
+    <string name="StoryGroupReactionReplyItem__reacted_to_the_story">Telah menghantar reaksi kepada cerita</string>
     <!-- Label for story views tab -->
     <string name="StoryViewsAndRepliesDialogFragment__views">Tontonan</string>
     <!-- Label for story replies tab -->
     <string name="StoryViewsAndRepliesDialogFragment__replies">Balasan</string>
     <!-- Description of action for reaction button -->
-    <string name="StoryReplyComposer__react_to_this_story">Bereaksi kepada cerita ini</string>
+    <string name="StoryReplyComposer__react_to_this_story">Telah menghantar reaksi kepada cerita ini</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">Balas secara peribadi kepada %1$s</string>
     <!-- Context menu item to privately reply to a story response -->
@@ -4744,7 +4744,7 @@
     <!-- Button on all signal connections row to view all signal connections. Please keep as short as possible. -->
     <string name="MyStorySettingsFragment__view">View</string>
     <!-- Section heading for story visibility -->
-    <string name="MyStorySettingsFragment__who_can_view_this_story">Siapa yang boleh tonton cerita ini</string>
+    <string name="MyStorySettingsFragment__who_can_view_this_story">Siapa boleh tonton cerita ini</string>
     <!-- Clickable option for selecting people to hide your story from -->
     <string name="MyStorySettingsFragment__hide_story_from">Sembunyikan cerita daripada</string>
     <!-- Privacy setting title for sending stories to all your signal connections -->
@@ -4768,15 +4768,13 @@
         <item quantity="other">%1$d orang</item>
     </plurals>
     <!-- My story privacy fine print about what the privacy settings are for -->
-    <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Pilih siapa yang boleh lihat cerita anda. Perubahan tidak akan mempengaruhi cerita yang anda telah hantar.</string>
+    <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Pilih siapa yang boleh tonton cerita anda. Perubahan tidak akan mempengaruhi cerita yang anda telah hantar.</string>
     <!-- Section header for options related to replies and reactions -->
     <string name="MyStorySettingsFragment__replies_amp_reactions">Balasan &amp; reaksi</string>
     <!-- Switchable option for allowing replies and reactions on your stories -->
     <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Benarkan balasan &amp; reaksi</string>
     <!-- Summary for switchable option allowing replies and reactions on your story -->
-    <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Benarkan orang yang boleh melihat cerita anda bereaksi dan balas</string>
-    <!-- Note about default sharing -->
-    <string name="MyStorySettingsFragment__hide_your_story_from">Sembunyikan cerita anda daripada orang tertentu. Dengan lalai, cerita anda dikongsikan dengan %1$s anda</string>
+    <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Benarkan orang yang boleh menonton cerita anda menghantar reaksi dan membalas</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
     <string name="SignalConnectionsBottomSheet___signal_connections">Hubungan Signal</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
@@ -4796,7 +4794,7 @@
     <!-- Dialog title when attempting to remove someone from a private story -->
     <string name="PrivateStorySettingsFragment__remove_s">Alih keluar %1$s?</string>
     <!-- Dialog message when attempting to remove someone from a private story -->
-    <string name="PrivateStorySettingsFragment__this_person_will_no_longer">Orang ini tidak lagi akan dapat melihat cerita anda.</string>
+    <string name="PrivateStorySettingsFragment__this_person_will_no_longer">Orang ini tidak lagi dapat melihat cerita anda.</string>
     <!-- Positive action label when attempting to remove someone from a private story -->
     <string name="PrivateStorySettingsFragment__remove">Alih keluar</string>
     <!-- Dialog title when deleting a private story -->
@@ -4824,7 +4822,7 @@
     <!-- Hint for entering a URL for a text post -->
     <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">Taip atau tampal URL</string>
     <!-- Displayed prior to the user entering a URL for a text post -->
-    <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">Kongsi pautan dengan tontonan cerita anda</string>
+    <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">Kongsi pautan dengan penonton cerita anda</string>
     <!-- Hint text for searching for a story text post recipient. -->
     <string name="TextStoryPostSendFragment__search">Cari</string>
     <!-- Toast shown when an unexpected error occurs while sending a text story -->
@@ -4838,23 +4836,23 @@
     <!-- Dialog title for removing a group story -->
     <string name="StoryDialogs__remove_group_story">Alih keluar cerita kumpulan?</string>
     <!-- Dialog message for removing a group story -->
-    <string name="StoryDialogs__s_will_be_removed">\"%1$s\" will be removed.</string>
+    <string name="StoryDialogs__s_will_be_removed">\" %1$s \" akan dialih keluar.</string>
     <!-- Dialog positive action for removing a group story -->
     <string name="StoryDialogs__remove">Alih keluar</string>
     <!-- Dialog title for deleting a private story -->
     <string name="StoryDialogs__delete_private_story">Padam cerita peribadi?</string>
     <!-- Dialog message for deleting a private story -->
-    <string name="StoryDialogs__s_and_updates_shared">\"%1$s\" and updates shared to this story will be deleted.</string>
+    <string name="StoryDialogs__s_and_updates_shared">\" %1$s \" dan kemas kini yang dikongsi kepada cerita ini akan dipadamkan.</string>
     <!-- Dialog positive action for deleting a private story -->
     <string name="StoryDialogs__delete">Padam</string>
     <!-- Dialog title for first time sending something to a beta story -->
-    <string name="StoryDialogs__stories_is_available_to">Stories is available to Signal beta users only.</string>
+    <string name="StoryDialogs__stories_is_available_to">Cerita tersedia untuk pengguna beta Signal sahaja.</string>
     <!-- Dialog message for first time sending something to a beta story -->
-    <string name="StoryDialogs__if_you_share_a_story">If you share a story, it will only be available to people who are on Signal beta.</string>
+    <string name="StoryDialogs__if_you_share_a_story">Jika anda berkongsi cerita, ia hanya akan tersedia kepada orang yang menggunakan Signal beta.</string>
     <!-- Dialog title for first time adding something to a story -->
     <string name="StoryDialogs__add_to_story_q">Tambah ke cerita?</string>
     <!-- Dialog message for first time adding something to a story -->
-    <string name="StoryDialogs__adding_content">Menambah kandungan ke cerita anda membenarkan hubungan Signal melihat ia selama 24 jam. Anda boleg menukar siapa yang boleh melihat cerita anda dalam Tetapan.</string>
+    <string name="StoryDialogs__adding_content">Menambah kandungan ke cerita membenarkan hubungan Signal anda melihatnya selama 24 jam. Anda boleh menukar siapa yang boleh menonton cerita anda dalam Tetapan.</string>
     <!-- First time share to story dialog: Positive action to go ahead and add to story -->
     <string name="StoryDialogs__add_to_story">Tambah ke cerita</string>
     <!-- First time share to story dialog: Neutral action to edit who can view "My Story" -->
@@ -4864,11 +4862,11 @@
     <!-- Error message dialog button to resend a previously failed story send -->
     <string name="StoryDialogs__send">Hantar</string>
     <!-- Action button for turning off stories when stories are present on the device -->
-    <string name="StoryDialogs__turn_off_and_delete">Turn off and delete</string>
+    <string name="StoryDialogs__turn_off_and_delete">Matikan dan padam</string>
     <!-- Privacy Settings toggle title for stories -->
     <string name="PrivacySettingsFragment__share_and_view_stories">Kongsi &amp; Lihat Cerita</string>
     <!-- Privacy Settings toggle summary for stories -->
-    <string name="PrivacySettingsFragment__you_will_no_longer_be_able">Anda tidak lagi dapat berkongsi atau melihat Cerita apabila pilihan ini dimatikan.</string>
+    <string name="PrivacySettingsFragment__you_will_no_longer_be_able">Anda tidak lagi dapat berkongsi atau menonton Cerita apabila pilihan ini dimatikan.</string>
     <!-- New story viewer selection screen title -->
     <string name="CreateStoryViewerSelectionFragment__choose_viewers">Pilih penonton</string>
     <!-- New story viewer selection action button label -->
@@ -4910,7 +4908,7 @@
     <!-- Displayed in toast after sending a direct reply -->
     <string name="StoryDirectReplyDialogFragment__sending_reply">Menghantar balasan…</string>
     <!-- Displayed in the viewer when a story is no longer available -->
-    <string name="StorySlateView__this_story_is_no_longer_available">Cerita ini tidak tersedia lagi.</string>
+    <string name="StorySlateView__this_story_is_no_longer_available">Cerita ini tidak lagi tersedia.</string>
     <!-- Displayed in the viewer when the network is not available -->
     <string name="StorySlateView__no_internet_connection">Tiada Sambungan Internet</string>
     <!-- Displayed in the viewer when network is available but content could not be downloaded -->
@@ -4918,7 +4916,7 @@
     <!-- Toasted when the user externally shares to a text story successfully -->
     <string name="TextStoryPostCreationFragment__sent_story">Hantar cerita</string>
     <!-- Toasted when the user external share to a text story fails -->
-    <string name="TextStoryPostCreationFragment__failed_to_send_story">Gagal untuk menghantar cerita</string>
+    <string name="TextStoryPostCreationFragment__failed_to_send_story">Gagal menghantar cerita</string>
     <!-- Displayed in a dialog to let the user select a given users story -->
     <string name="StoryDialogs__view_story">Lihat cerita</string>
     <!-- Displayed in a dialog to let the user select a given users profile photo -->
@@ -4934,11 +4932,11 @@
     <string name="TurnOffCircumventionMegaphone_turn_off">Matikan</string>
 
     <!-- Conversation Item label for when you react to someone else\'s story -->
-    <string name="ConversationItem__you_reacted_to_s_story">Anda bereaksi kepada cerita %1$s</string>
+    <string name="ConversationItem__you_reacted_to_s_story">Anda menghantar reaksi kepada cerita %1$s</string>
     <!-- Conversation Item label for reactions to your story -->
-    <string name="ConversationItem__reacted_to_your_story">Bereaksi kepada cerita anda</string>
+    <string name="ConversationItem__reacted_to_your_story">Menghantar reaksi kepada cerita anda</string>
     <!-- Conversation Item label for reactions to an unavailable story -->
-    <string name="ConversationItem__reacted_to_a_story">Bereaksi kepada cerita</string>
+    <string name="ConversationItem__reacted_to_a_story">Menghantar reaksi kepada cerita</string>
 
     <!-- endregion -->
     <!-- Content description for expand contacts chevron -->
@@ -5003,11 +5001,11 @@
     <string name="ContactSearchItems__only_share_with">Hanya kongsi dengan</string>
     <!-- Label under name for private stories -->
     <plurals name="ContactSearchItems__private_story_d_viewers">
-        <item quantity="other">Cerita peribadi . %1$d tontonan</item>
+        <item quantity="other">Cerita peribadi · %1$d penonton</item>
     </plurals>
     <!-- Label under name for group stories -->
     <plurals name="ContactSearchItems__group_story_d_viewers">
-        <item quantity="other">Cerita kumpulan . %1$d tontonan</item>
+        <item quantity="other">Cerita kumpulan · %1$d penonton</item>
     </plurals>
     <!-- Label under name for groups -->
     <plurals name="ContactSearchItems__group_d_members">
@@ -5143,15 +5141,15 @@
     <!-- Dialog title to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">Matikan cerita?</string>
     <!-- Dialog message to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">You will no longer be able to share or view stories. Story updates you have recently shared will also be deleted.</string>
+    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">Anda tidak lagi boleh berkongsi atau menonton cerita. Cerita yang anda hantar baru-baru ini juga akan dipadam.</string>
     <!-- Page title when launched from stories landing screen -->
     <string name="StoriesPrivacySettingsFragment__story_privacy">Privasi cerita</string>
 
     <!-- GroupStorySettingsFragment -->
     <!-- Section header for who can view a group story -->
-    <string name="GroupStorySettingsFragment__who_can_view_this_story">Siapa yang boleh tonton cerita ini</string>
+    <string name="GroupStorySettingsFragment__who_can_view_this_story">Siapa boleh tonton cerita ini</string>
     <!-- Explanation of who can view a group story -->
-    <string name="GroupStorySettingsFragment__members_of_the_group_s">"Ahli kumpulan \"%1$s\" boleh menonton dan membalas cerita ini. Anda boleh kemas kini keahlian untuk sembang ini dalam kumpulan."</string>
+    <string name="GroupStorySettingsFragment__members_of_the_group_s">"Ahli kumpulan %1$s boleh menonton dan membalas cerita ini. Anda boleh kemas kini keahlian untuk sembang ini dalam kumpulan."</string>
     <!-- Preference label for removing this group story -->
     <string name="GroupStorySettingsFragment__remove_group_story">Alih keluar cerita kumpulan</string>
 

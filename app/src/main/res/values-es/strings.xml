@@ -1542,7 +1542,7 @@
     <string name="RedPhone_network_failed">¡Fallo de red!</string>
     <string name="RedPhone_number_not_registered">¡Número no registrado!</string>
     <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">¡El número marcado no admite llamadas seguras!</string>
-    <string name="RedPhone_got_it">Recibido</string>
+    <string name="RedPhone_got_it">Entendido</string>
 
     <!-- Valentine\'s Day Megaphone -->
     <!-- Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons. -->
@@ -2344,7 +2344,7 @@
     <!-- Displayed in a toast when user long presses an item in MyStories -->
     <string name="MyStoriesFragment__copied_sent_timestamp_to_clipboard">Tiempo de envío copiado al portapapeles.</string>
     <!-- Displayed when there are no outgoing stories -->
-    <string name="MyStoriesFragment__updates_to_your_story_will_show_up_here">Actualizaciones de tu historia se mostrarán aquí.</string>
+    <string name="MyStoriesFragment__updates_to_your_story_will_show_up_here">Las actualizaciones de tu historia se mostrarán aquí.</string>
 
     <!-- GroupUtil -->
     <plurals name="GroupUtil_joined_the_group">
@@ -2670,7 +2670,7 @@
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Esto eliminará permanentemente todos los mensajes y adjuntos de este dispositivo con más antigüedad de %1$s.</string>
     <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Esto recortará permanentemente todos los chat y mantendrá los %1$s mensajes más recientes.</string>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Esto eliminará permanentemente todos los mensajes y adjuntos de este dispositivo.</string>
-    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">¿Estás segur@ que deseas eliminar todo tu historial de mensajes?</string>
+    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">¿Estás segur@ de que deseas eliminar todo tu historial de mensajes?</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">El historial completo de mensajes se eliminará permanentemente. Esta acción no se puede deshacer.</string>
     <string name="preferences_storage__delete_all_now">Borrar todos ahora</string>
     <string name="preferences_storage__forever">Siempre</string>
@@ -2911,19 +2911,19 @@
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
-    <string name="PaymentsSecuritySetupFragment__security_setup">Security setup</string>
+    <string name="PaymentsSecuritySetupFragment__security_setup">Configuración de seguridad</string>
     <!-- Title to enable payment lock -->
-    <string name="PaymentsSecuritySetupFragment__protect_your_funds">Protect your funds</string>
+    <string name="PaymentsSecuritySetupFragment__protect_your_funds">Protege tus fondos</string>
     <!-- Description as to why payment lock is required -->
-    <string name="PaymentsSecuritySetupFragment__help_prevent">Help prevent a person with your phone from accessing your funds by adding another layer of security. You can disable this option in Settings.</string>
+    <string name="PaymentsSecuritySetupFragment__help_prevent">Ayuda a evitar que una persona que tenga tu teléfono pueda accedes a tus fondos añadiendo otra capa de seguridad. Puedes desactivar esta opción en Ajustes.</string>
     <!-- Option to enable payment lock -->
-    <string name="PaymentsSecuritySetupFragment__enable_payment_lock">Enable payment lock</string>
+    <string name="PaymentsSecuritySetupFragment__enable_payment_lock">Habilitar bloqueo de pago</string>
     <!-- Option to cancel -->
     <string name="PaymentsSecuritySetupFragment__not_now">Ahora no</string>
     <!-- Dialog title to confirm skipping the step -->
-    <string name="PaymentsSecuritySetupFragment__skip_this_step">Skip this step?</string>
+    <string name="PaymentsSecuritySetupFragment__skip_this_step">¿Omitir este paso?</string>
     <!-- Dialog description to let users know why payment lock is required -->
-    <string name="PaymentsSecuritySetupFragment__skipping_this_step">Skipping this step could allow anyone who has physical access to your phone to transfer funds or view your recovery phrase.</string>
+    <string name="PaymentsSecuritySetupFragment__skipping_this_step">Omitir este paso podría permitir que cualquier persona que tenga acceso físico a tu teléfono pueda transferir fondos o ver tu frase de recuperación.</string>
     <!-- Dialog option to cancel -->
     <string name="PaymentsSecuritySetupFragment__cancel">Cancelar</string>
     <!-- Dialog option to skip -->
@@ -4825,7 +4825,7 @@
     <!-- Displayed when a story has no replies yet -->
     <string name="StoryGroupReplyFragment__no_replies_yet">Sin respuestas por ahora</string>
     <!-- Displayed when no longer a group member -->
-    <string name="StoryGroupReplyFragment__you_cant_reply">You can\'t reply to this story because you\'re no longer a member of this group.</string>
+    <string name="StoryGroupReplyFragment__you_cant_reply">No puedes responder a esta historia porque ya no perteneces a este grupo.</string>
     <!-- Displayed for each user that reacted to a story when viewing replies -->
     <string name="StoryGroupReactionReplyItem__reacted_to_the_story">Reaccionó a la historia</string>
     <!-- Label for story views tab -->
@@ -4885,8 +4885,6 @@
     <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Permitir respuestas y reacciones</string>
     <!-- Summary for switchable option allowing replies and reactions on your story -->
     <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Permite a personas que pueden ver tu historia responder y reaccionar</string>
-    <!-- Note about default sharing -->
-    <string name="MyStorySettingsFragment__hide_your_story_from">Oculta tu historia para personas específicas. Por defecto, tu historia se compartirá con %1$s</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
     <string name="SignalConnectionsBottomSheet___signal_connections">Contactos de Signal</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
@@ -4934,7 +4932,7 @@
     <!-- Hint for entering a URL for a text post -->
     <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">Escribe o añade una URL</string>
     <!-- Displayed prior to the user entering a URL for a text post -->
-    <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">Comparte tu historia via enlace con quien tú quieras</string>
+    <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">Comparte tu historia por un enlace con quien tú quieras</string>
     <!-- Hint text for searching for a story text post recipient. -->
     <string name="TextStoryPostSendFragment__search">Buscar</string>
     <!-- Toast shown when an unexpected error occurs while sending a text story -->
@@ -4948,19 +4946,19 @@
     <!-- Dialog title for removing a group story -->
     <string name="StoryDialogs__remove_group_story">¿Quitar la historia de grupo?</string>
     <!-- Dialog message for removing a group story -->
-    <string name="StoryDialogs__s_will_be_removed">\"%1$s\" will be removed.</string>
+    <string name="StoryDialogs__s_will_be_removed">Se eliminará \"%1$s\".</string>
     <!-- Dialog positive action for removing a group story -->
     <string name="StoryDialogs__remove">Eliminar</string>
     <!-- Dialog title for deleting a private story -->
     <string name="StoryDialogs__delete_private_story">¿Eliminar historia privada?</string>
     <!-- Dialog message for deleting a private story -->
-    <string name="StoryDialogs__s_and_updates_shared">\"%1$s\" and updates shared to this story will be deleted.</string>
+    <string name="StoryDialogs__s_and_updates_shared">Se eliminará \"%1$s\" y todas las actualizaciones compartidas en esta historia.</string>
     <!-- Dialog positive action for deleting a private story -->
     <string name="StoryDialogs__delete">Eliminar</string>
     <!-- Dialog title for first time sending something to a beta story -->
-    <string name="StoryDialogs__stories_is_available_to">Stories is available to Signal beta users only.</string>
+    <string name="StoryDialogs__stories_is_available_to">Las historias solo están disponibles para las personas que tengan la versión beta de Signal.</string>
     <!-- Dialog message for first time sending something to a beta story -->
-    <string name="StoryDialogs__if_you_share_a_story">If you share a story, it will only be available to people who are on Signal beta.</string>
+    <string name="StoryDialogs__if_you_share_a_story">Si compartes una historia, solo estará disponible para las personas que tengan la versión beta de Signal.</string>
     <!-- Dialog title for first time adding something to a story -->
     <string name="StoryDialogs__add_to_story_q">¿Añadir a la historia?</string>
     <!-- Dialog message for first time adding something to a story -->
@@ -4974,7 +4972,7 @@
     <!-- Error message dialog button to resend a previously failed story send -->
     <string name="StoryDialogs__send">Enviar</string>
     <!-- Action button for turning off stories when stories are present on the device -->
-    <string name="StoryDialogs__turn_off_and_delete">Turn off and delete</string>
+    <string name="StoryDialogs__turn_off_and_delete">Desactivar y eliminar</string>
     <!-- Privacy Settings toggle title for stories -->
     <string name="PrivacySettingsFragment__share_and_view_stories">Compartir y ver historias</string>
     <!-- Privacy Settings toggle summary for stories -->
@@ -5115,13 +5113,13 @@
     <string name="ContactSearchItems__only_share_with">Compartir solo con</string>
     <!-- Label under name for private stories -->
     <plurals name="ContactSearchItems__private_story_d_viewers">
-        <item quantity="one">Historia privada · %1$d vista</item>
-        <item quantity="other">Historia privada · %1$d vistas</item>
+        <item quantity="one">Historia privada · %1$d persona</item>
+        <item quantity="other">Historia privada · %1$d personas</item>
     </plurals>
     <!-- Label under name for group stories -->
     <plurals name="ContactSearchItems__group_story_d_viewers">
-        <item quantity="one">Historia de grupo · %1$d vista</item>
-        <item quantity="other">Historia de grupo · %1$d vistas</item>
+        <item quantity="one">Historia de grupo · %1$d persona</item>
+        <item quantity="other">Historia de grupo · %1$d personas</item>
     </plurals>
     <!-- Label under name for groups -->
     <plurals name="ContactSearchItems__group_d_members">
@@ -5259,11 +5257,11 @@
     <!-- Preference title to turn on stories -->
     <string name="StoriesPrivacySettingsFragment__turn_on_stories">Activar historias</string>
     <!-- Preference summary to turn on stories -->
-    <string name="StoriesPrivacySettingsFragment__share_and_view">Comparte y visualiza las historias de otros. Las historias desparecerán automáticamente después de 24 horas.</string>
+    <string name="StoriesPrivacySettingsFragment__share_and_view">Comparte y visualiza las historias de otras personas. Las historias desparecerán automáticamente después de 24 horas.</string>
     <!-- Dialog title to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">¿Desactivar historias?</string>
     <!-- Dialog message to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">You will no longer be able to share or view stories. Story updates you have recently shared will also be deleted.</string>
+    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">Ya no podrás compartir o ver historias. Las historias que hayas compartido recientemente también serán eliminadas.</string>
     <!-- Page title when launched from stories landing screen -->
     <string name="StoriesPrivacySettingsFragment__story_privacy">Privacidad de la historia</string>
 

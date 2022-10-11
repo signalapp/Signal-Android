@@ -193,7 +193,7 @@
     <string name="ClientDeprecatedActivity_update">Aжурирај</string>
     <string name="ClientDeprecatedActivity_dont_update">Не ажурирај</string>
     <string name="ClientDeprecatedActivity_warning">Предупредување</string>
-    <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Вашата верзија на Signal е истечена. Можете да ја видите историјата на пораки, но нема да можете да испраќате и примате пораки додека не ажурирате.</string>
+    <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Вашата верзија на Signal е застарена. Можете да ја видите историјата на вашите пораки, но нема да можете да испраќате или примате пораки сè додека не ја ажурирате апликацијата.</string>
 
     <!-- CommunicationActions -->
     <string name="CommunicationActions_no_browser_found">Не е пронајден веб прелистувач.</string>
@@ -2344,7 +2344,7 @@
     <!-- Displayed in a toast when user long presses an item in MyStories -->
     <string name="MyStoriesFragment__copied_sent_timestamp_to_clipboard">Времето на испраќање е копирано во таблата со исечоци.</string>
     <!-- Displayed when there are no outgoing stories -->
-    <string name="MyStoriesFragment__updates_to_your_story_will_show_up_here">Новостите за Вашата приказна ќе бидат прикажани овде.</string>
+    <string name="MyStoriesFragment__updates_to_your_story_will_show_up_here">Новостите на вашата приказна ќе бидат прикажани овде.</string>
 
     <!-- GroupUtil -->
     <plurals name="GroupUtil_joined_the_group">
@@ -2666,10 +2666,10 @@
     <string name="preferences_storage__audio">Аудио</string>
     <string name="preferences_storage__review_storage">Прегледај склад</string>
     <string name="preferences_storage__delete_older_messages">Да ги отстранам старите пораки?</string>
-    <string name="preferences_storage__clear_message_history">Да ја избришам историјата на пораки?</string>
-    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Ова трајно ќе ја избрише цела историја на разговори и медија од Вашиот уред постари од %1$s.</string>
+    <string name="preferences_storage__clear_message_history">Сакате да ја исчистите историјата на пораки?</string>
+    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Ова трајно ќе ја избрише цела историја на пораки и медија од вашиот уред постари од %1$s.</string>
     <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Ова трајно ќе ги скрати сите разговори до %1$s најскорешни пораки.</string>
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Ова трајно ќе ја избрише цела историја на пораки и медија од Вашиот уред.</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Ова трајно ќе ја избрише цела историја на пораки и медија од вашиот уред.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Дали сте сигурни дека сакате да ја избришете цела историја на пораки?</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Целата историја на пораки ќе биде трајно отстранета. Ова дејство е неповратно.</string>
     <string name="preferences_storage__delete_all_now">Избриши сѐ веднаш</string>
@@ -2911,19 +2911,19 @@
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
-    <string name="PaymentsSecuritySetupFragment__security_setup">Security setup</string>
+    <string name="PaymentsSecuritySetupFragment__security_setup">Поставувања за безбедност</string>
     <!-- Title to enable payment lock -->
-    <string name="PaymentsSecuritySetupFragment__protect_your_funds">Protect your funds</string>
+    <string name="PaymentsSecuritySetupFragment__protect_your_funds">Заштитете ги вашите средства</string>
     <!-- Description as to why payment lock is required -->
-    <string name="PaymentsSecuritySetupFragment__help_prevent">Help prevent a person with your phone from accessing your funds by adding another layer of security. You can disable this option in Settings.</string>
+    <string name="PaymentsSecuritySetupFragment__help_prevent">Додајте дополнително ниво на безбедност за да спречите личност со вашиот телефон да има пристап до вашите средства. Можете да ја оневозможите оваа опција во Поставувањата.</string>
     <!-- Option to enable payment lock -->
-    <string name="PaymentsSecuritySetupFragment__enable_payment_lock">Enable payment lock</string>
+    <string name="PaymentsSecuritySetupFragment__enable_payment_lock">Овозможете заклучување за плаќање</string>
     <!-- Option to cancel -->
     <string name="PaymentsSecuritySetupFragment__not_now">Не сега</string>
     <!-- Dialog title to confirm skipping the step -->
-    <string name="PaymentsSecuritySetupFragment__skip_this_step">Skip this step?</string>
+    <string name="PaymentsSecuritySetupFragment__skip_this_step">Сакате да го прескокнете овој чекор?</string>
     <!-- Dialog description to let users know why payment lock is required -->
-    <string name="PaymentsSecuritySetupFragment__skipping_this_step">Skipping this step could allow anyone who has physical access to your phone to transfer funds or view your recovery phrase.</string>
+    <string name="PaymentsSecuritySetupFragment__skipping_this_step">Прескокнувањето на овој чекор овозможува секој што има физички пристап до вашиот телефон да префрла средства или да ја види вашата резервна фраза.</string>
     <!-- Dialog option to cancel -->
     <string name="PaymentsSecuritySetupFragment__cancel">Откажи</string>
     <!-- Dialog option to skip -->
@@ -4001,7 +4001,7 @@
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">Стандарден тајмер за нови разговори</string>
     <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Поставете стандарден тајмер за пораки што исчезнуваат за сите нови разговори започнати од Вас.</string>
     <!-- Summary for stories preference to launch into story privacy settings -->
-    <string name="PrivacySettingsFragment__manage_your_stories">Смени ги поставувањата за приказните и одреди кој може да ги види</string>
+    <string name="PrivacySettingsFragment__manage_your_stories">Сменете ги поставувањата за приказните и одредете кој може да ги види</string>
     <string name="PrivacySettingsFragment__payment_lock_require_lock">Барајте заклучување на екранот на Android или отпечаток од прст за префрлање средства.</string>
     <!-- Alert dialog title when payment lock cannot be enabled -->
     <string name="PrivacySettingsFragment__cant_enable_title">Не може да се овозможи заклучување за плаќање</string>
@@ -4736,9 +4736,9 @@
     <!-- Displayed when there are no stories to display -->
     <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now">Нема скорешни ажурирања за прикажување во моментов.</string>
     <!-- Context menu option to hide a story -->
-    <string name="StoriesLandingItem__hide_story">Сокриј приказна</string>
+    <string name="StoriesLandingItem__hide_story">Скријте ја приказна</string>
     <!-- Context menu option to unhide a story -->
-    <string name="StoriesLandingItem__unhide_story">Врати приказна</string>
+    <string name="StoriesLandingItem__unhide_story">Вратете ја видливоста на приказната</string>
     <!-- Context menu option to forward a story -->
     <string name="StoriesLandingItem__forward">Препрати</string>
     <!-- Context menu option to share a story -->
@@ -4758,9 +4758,9 @@
     <!-- Status label when a story fails to send indicating user action to retry -->
     <string name="StoriesLandingItem__tap_to_retry">Допрете за да се обидете повторно</string>
     <!-- Title of dialog confirming decision to hide a story -->
-    <string name="StoriesLandingFragment__hide_story">Да се сокрие приказната?</string>
+    <string name="StoriesLandingFragment__hide_story">Сакате да ја скриете приказната?</string>
     <!-- Message of dialog confirming decision to hide a story -->
-    <string name="StoriesLandingFragment__new_story_updates">Новите ажурирања на приказната од %1$s повеќе нема да се појавуваат на врвот на листата со приказни.</string>
+    <string name="StoriesLandingFragment__new_story_updates">Новостите на приказната од %1$s повеќе нема да се појавуваат на врвот на листата со приказни.</string>
     <!-- Positive action of dialog confirming decision to hide a story -->
     <string name="StoriesLandingFragment__hide">Сокриј</string>
     <!-- Displayed in Snackbar after story is hidden -->
@@ -4777,9 +4777,9 @@
     <!-- Label for stories for a single user. Format is {given name}\'s Story -->
     <string name="MyStories__ss_story">Приказна на %1$s</string>
     <!-- Title of dialog to confirm deletion of story -->
-    <string name="MyStories__delete_story">Да се избрише приказната?</string>
+    <string name="MyStories__delete_story">Сакате да ја избришете приказната?</string>
     <!-- Message of dialog to confirm deletion of story -->
-    <string name="MyStories__this_story_will_be_deleted">Оваа приказна ќе биде избришана за Вас и сите кои ја примиле.</string>
+    <string name="MyStories__this_story_will_be_deleted">Оваа приказна ќе биде избришана за вас и сите кои ја примиле.</string>
     <!-- Toast shown when story media cannot be saved -->
     <string name="MyStories__unable_to_save">Неуспешно зачувување</string>
     <!-- Displayed at bottom of story viewer when current item has views -->
@@ -4825,7 +4825,7 @@
     <!-- Displayed when a story has no replies yet -->
     <string name="StoryGroupReplyFragment__no_replies_yet">Сè уште нема одговори</string>
     <!-- Displayed when no longer a group member -->
-    <string name="StoryGroupReplyFragment__you_cant_reply">You can\'t reply to this story because you\'re no longer a member of this group.</string>
+    <string name="StoryGroupReplyFragment__you_cant_reply">Не можете да одговорите на приказната бидејќи повеќе не сте член на оваа група.</string>
     <!-- Displayed for each user that reacted to a story when viewing replies -->
     <string name="StoryGroupReactionReplyItem__reacted_to_the_story">Реагираше на приказната</string>
     <!-- Label for story views tab -->
@@ -4854,7 +4854,7 @@
     <!-- Section heading for story visibility -->
     <string name="MyStorySettingsFragment__who_can_view_this_story">Кој може да ја види оваа приказна</string>
     <!-- Clickable option for selecting people to hide your story from -->
-    <string name="MyStorySettingsFragment__hide_story_from">Сокриј приказна од</string>
+    <string name="MyStorySettingsFragment__hide_story_from">Скријте ја приказната од</string>
     <!-- Privacy setting title for sending stories to all your signal connections -->
     <string name="MyStorySettingsFragment__all_signal_connections">Сите Signal врски</string>
     <!-- Privacy setting description for sending stories to all your signal connections -->
@@ -4884,9 +4884,7 @@
     <!-- Switchable option for allowing replies and reactions on your stories -->
     <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Дозволи одговори и реакции</string>
     <!-- Summary for switchable option allowing replies and reactions on your story -->
-    <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Дозволете им на луѓето кои можат да ја видат Вашата приказна да реагираат и одговорат</string>
-    <!-- Note about default sharing -->
-    <string name="MyStorySettingsFragment__hide_your_story_from">Сокриј ја приказната од одредени луѓе. Стандардно, Вашата приказна се споделува со Вашите %1$s</string>
+    <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Дозволете им на луѓето кои можат да ја видат вашата приказна да реагираат и одговорат</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
     <string name="SignalConnectionsBottomSheet___signal_connections">Signal врски</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
@@ -4898,7 +4896,7 @@
     <!-- Signal connections sheet bullet point 3 -->
     <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Ги имате во контактите на телефонот</string>
     <!-- Note at the bottom of the Signal connections sheet -->
-    <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Вашите врски можат да го видат Вашето име и слика и да ги гледаат објавите во „Моја приказна”, освен ако не го сокриете тоа од нив."</string>
+    <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Вашите врски можат да ги видат вашето име и слика и да ги гледаат објавите во „Моја приказна”, освен ако не ги скриете од нив."</string>
     <!-- Clickable option to add a viewer to a private story -->
     <string name="PrivateStorySettingsFragment__add_viewer">Додај гледач</string>
     <!-- Clickable option to delete a custom story -->
@@ -4906,7 +4904,7 @@
     <!-- Dialog title when attempting to remove someone from a private story -->
     <string name="PrivateStorySettingsFragment__remove_s">Да се отстрани %1$s?</string>
     <!-- Dialog message when attempting to remove someone from a private story -->
-    <string name="PrivateStorySettingsFragment__this_person_will_no_longer">Оваа личност повеќе нема да ја види Вашата приказна.</string>
+    <string name="PrivateStorySettingsFragment__this_person_will_no_longer">Оваа личност повеќе нема да ја гледа вашата приказна.</string>
     <!-- Positive action label when attempting to remove someone from a private story -->
     <string name="PrivateStorySettingsFragment__remove">Отстрани</string>
     <!-- Dialog title when deleting a private story -->
@@ -4934,7 +4932,7 @@
     <!-- Hint for entering a URL for a text post -->
     <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">Внеси или залепи URL</string>
     <!-- Displayed prior to the user entering a URL for a text post -->
-    <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">Споделете линк со гледачите на Вашата приказна</string>
+    <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">Споделете линк со гледачите на вашата приказна</string>
     <!-- Hint text for searching for a story text post recipient. -->
     <string name="TextStoryPostSendFragment__search">Барај</string>
     <!-- Toast shown when an unexpected error occurs while sending a text story -->
@@ -4946,37 +4944,37 @@
     <!-- Done button label for hide story from screen -->
     <string name="HideStoryFromFragment__done">Готово</string>
     <!-- Dialog title for removing a group story -->
-    <string name="StoryDialogs__remove_group_story">Дали сакате да ја отстраните приказната на групата?</string>
+    <string name="StoryDialogs__remove_group_story">Дали сакате да ја отстраните групната приказна?</string>
     <!-- Dialog message for removing a group story -->
-    <string name="StoryDialogs__s_will_be_removed">\"%1$s\" will be removed.</string>
+    <string name="StoryDialogs__s_will_be_removed">„%1$s“ ќе се отстрани.</string>
     <!-- Dialog positive action for removing a group story -->
     <string name="StoryDialogs__remove">Отстрани</string>
     <!-- Dialog title for deleting a private story -->
     <string name="StoryDialogs__delete_private_story">Сакате да ја избришете приватната приказна?</string>
     <!-- Dialog message for deleting a private story -->
-    <string name="StoryDialogs__s_and_updates_shared">\"%1$s\" and updates shared to this story will be deleted.</string>
+    <string name="StoryDialogs__s_and_updates_shared">„%1$s“ и новостите споделени на оваа приказна ќе бидат избришани.</string>
     <!-- Dialog positive action for deleting a private story -->
     <string name="StoryDialogs__delete">Избриши</string>
     <!-- Dialog title for first time sending something to a beta story -->
-    <string name="StoryDialogs__stories_is_available_to">Stories is available to Signal beta users only.</string>
+    <string name="StoryDialogs__stories_is_available_to">Приказните се достапни само за бета корисниците на Signal.</string>
     <!-- Dialog message for first time sending something to a beta story -->
-    <string name="StoryDialogs__if_you_share_a_story">If you share a story, it will only be available to people who are on Signal beta.</string>
+    <string name="StoryDialogs__if_you_share_a_story">Ако споделите приказна, таа ќе биде достапна само за корисниците на Signal бета.</string>
     <!-- Dialog title for first time adding something to a story -->
-    <string name="StoryDialogs__add_to_story_q">Да се додаде во приказната?</string>
+    <string name="StoryDialogs__add_to_story_q">Сакате да се додаде на приказна?</string>
     <!-- Dialog message for first time adding something to a story -->
-    <string name="StoryDialogs__adding_content">Со додавање содржина во Вашата приказна им овозможувате на Вашите Signal врски да ја гледаат следните 24 часа. Можете да промените кој може да ја гледа Вашата приказна во поставките.</string>
+    <string name="StoryDialogs__adding_content">Со додавање содржина на вашата приказна им овозможувате на вашите Signal врски да ја гледаат следните 24 часа. Можете да промените кој може да ја гледа вашата приказна во поставувањата.</string>
     <!-- First time share to story dialog: Positive action to go ahead and add to story -->
-    <string name="StoryDialogs__add_to_story">Додај во приказна</string>
+    <string name="StoryDialogs__add_to_story">Додајте како приказна</string>
     <!-- First time share to story dialog: Neutral action to edit who can view "My Story" -->
     <string name="StoryDialogs__edit_viewers">Уреди гледачи</string>
     <!-- Error message shown when a failure occurs during story send -->
-    <string name="StoryDialogs__story_could_not_be_sent">Приказната не може да се испрати. Проверете ја Вашата интернет конекција и обидете се повторно.</string>
+    <string name="StoryDialogs__story_could_not_be_sent">Приказната не можеше да се испрати. Проверете ја интернет врската и обидете се повторно.</string>
     <!-- Error message dialog button to resend a previously failed story send -->
     <string name="StoryDialogs__send">Испрати</string>
     <!-- Action button for turning off stories when stories are present on the device -->
-    <string name="StoryDialogs__turn_off_and_delete">Turn off and delete</string>
+    <string name="StoryDialogs__turn_off_and_delete">Исклучи и избриши</string>
     <!-- Privacy Settings toggle title for stories -->
-    <string name="PrivacySettingsFragment__share_and_view_stories">Сподели и гледај приказни</string>
+    <string name="PrivacySettingsFragment__share_and_view_stories">Споделувајте и гледајте приказни</string>
     <!-- Privacy Settings toggle summary for stories -->
     <string name="PrivacySettingsFragment__you_will_no_longer_be_able">Кога оваа опција е исклучена нема да можете да споделувате и гледате приказни.</string>
     <!-- New story viewer selection screen title -->
@@ -4989,7 +4987,7 @@
         <item quantity="other">%1$d гледачи</item>
     </plurals>
     <!-- Name story screen title -->
-    <string name="CreateStoryWithViewersFragment__name_story">Именувај ја приказната</string>
+    <string name="CreateStoryWithViewersFragment__name_story">Именувајте ја приказната</string>
     <!-- Name story screen label hint -->
     <string name="CreateStoryWithViewersFragment__story_name_required">Име на приказна (задолжително)</string>
     <!-- Name story screen viewers subheading -->
@@ -5003,7 +5001,7 @@
     <!-- Text for select all action when editing recipients for a story -->
     <string name="BaseStoryRecipientSelectionFragment__select_all">Избери сѐ</string>
     <!-- Choose story type bottom sheet title -->
-    <string name="ChooseStoryTypeBottomSheet__choose_your_story_type">Изберете го Вашиот тип на приказна</string>
+    <string name="ChooseStoryTypeBottomSheet__choose_your_story_type">Изберете го типот на вашата приказна</string>
     <!-- Choose story type bottom sheet new story row title -->
     <string name="ChooseStoryTypeBottomSheet__new_private_story">Нова приватна приказна</string>
     <!-- Choose story type bottom sheet new story row summary -->
@@ -5029,9 +5027,9 @@
     <!-- Toasted when the user externally shares to a text story successfully -->
     <string name="TextStoryPostCreationFragment__sent_story">Приказната е испратена</string>
     <!-- Toasted when the user external share to a text story fails -->
-    <string name="TextStoryPostCreationFragment__failed_to_send_story">Не успеа да се испрати приказната</string>
+    <string name="TextStoryPostCreationFragment__failed_to_send_story">Испраќањето на приказната е неуспешно</string>
     <!-- Displayed in a dialog to let the user select a given users story -->
-    <string name="StoryDialogs__view_story">Види приказна</string>
+    <string name="StoryDialogs__view_story">Видете ја приказната</string>
     <!-- Displayed in a dialog to let the user select a given users profile photo -->
     <string name="StoryDialogs__view_profile_photo">Види профилна слика</string>
 
@@ -5047,7 +5045,7 @@
     <!-- Conversation Item label for when you react to someone else\'s story -->
     <string name="ConversationItem__you_reacted_to_s_story">Реагиравте на приказната на %1$s</string>
     <!-- Conversation Item label for reactions to your story -->
-    <string name="ConversationItem__reacted_to_your_story">Реагираше на Вашата приказна</string>
+    <string name="ConversationItem__reacted_to_your_story">Реагираше на вашата приказна</string>
     <!-- Conversation Item label for reactions to an unavailable story -->
     <string name="ConversationItem__reacted_to_a_story">Реагираше на приказна</string>
 
@@ -5112,10 +5110,10 @@
     <!-- Expired gift sheet not now button -->
     <string name="ExpiredGiftSheetConfiguration__not_now">Не сега</string>
     <!-- My Story label designating that we will only share with the selected viewers. -->
-    <string name="ContactSearchItems__only_share_with">Споделете само со…</string>
+    <string name="ContactSearchItems__only_share_with">Споделете само со</string>
     <!-- Label under name for private stories -->
     <plurals name="ContactSearchItems__private_story_d_viewers">
-        <item quantity="one">Приватна приказна · %1$dгледач</item>
+        <item quantity="one">Приватна приказна · %1$d гледач</item>
         <item quantity="other">Приватна приказна · %1$d гледачи</item>
     </plurals>
     <!-- Label under name for group stories -->
@@ -5142,13 +5140,13 @@
     <!-- Label for context menu item to delete a private story -->
     <string name="ContactSearchItems__delete_story">Избришете ја приказната</string>
     <!-- Dialog title for removing a group story -->
-    <string name="ContactSearchMediator__remove_group_story">Дали сакате да ја отстраните приказната на групата?</string>
+    <string name="ContactSearchMediator__remove_group_story">Дали сакате да ја отстраните групната приказна?</string>
     <!-- Dialog message for removing a group story -->
-    <string name="ContactSearchMediator__this_will_remove">Со ова ќе се отстрани приказната од оваа листа. Ќе можете сè уште да ги видите приказните од оваа група.</string>
+    <string name="ContactSearchMediator__this_will_remove">Со ова ќе се отстрани приказната од оваа листа. Ќе можете сè уште да ги гледате приказните од оваа група.</string>
     <!-- Dialog action item for removing a group story -->
     <string name="ContactSearchMediator__remove">Отстрани</string>
     <!-- Dialog title for deleting a private story -->
-    <string name="ContactSearchMediator__delete_story">Да се избрише приказната?</string>
+    <string name="ContactSearchMediator__delete_story">Сакате да ја избришете приказната?</string>
     <!-- Dialog message for deleting a private story -->
     <string name="ContactSearchMediator__delete_the_private">Дали сакате да ја избришете приватната приказна „%1$s“?</string>
     <!-- Dialog action item for deleting a private story -->
@@ -5263,7 +5261,7 @@
     <!-- Dialog title to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">Дали сакате да ги исклучите приказните?</string>
     <!-- Dialog message to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">You will no longer be able to share or view stories. Story updates you have recently shared will also be deleted.</string>
+    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">Повеќе нема да можете да споделувате или гледате приказни. Неодамна споделените новости на приказната исто така ќе бидат избришани.</string>
     <!-- Page title when launched from stories landing screen -->
     <string name="StoriesPrivacySettingsFragment__story_privacy">Приватност на приказна</string>
 

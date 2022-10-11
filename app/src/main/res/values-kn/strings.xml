@@ -673,7 +673,7 @@
     <!-- GroupsV1MigrationLearnMoreBottomSheetDialogFragment -->
     <string name="GroupsV1MigrationLearnMore_what_are_new_groups">ಹೊಸ ಗುಂಪುಗಳೆಂದರೇನು?</string>
     <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">ಹೊಸ ಗುಂಪುಗಳು @ಉಲ್ಲೇಖಗಳು ಮತ್ತು ಗುಂಪು ನಿರ್ವಾಹಕರಂತಹ ವೈಶಿಷ್ಟ್ಯಗಳನ್ನು ಹೊಂದಿವೆ, ಮತ್ತು ಭವಿಷ್ಯದಲ್ಲಿ ಹೆಚ್ಚಿನ ವೈಶಿಷ್ಟ್ಯಗಳನ್ನು ಬೆಂಬಲಿಸುತ್ತದೆ.</string>
-    <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">ಎಲ್ಲಾ ಸಂದೇಶ ಇತಿಹಾಸ ಮತ್ತು ಮಾಧ್ಯಮವನ್ನು ನವೀಕರಣದ ಮೊದಲು ಇರಿಸಲಾಗಿದೆ.</string>
+    <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">ಎಲ್ಲಾ ಸಂದೇಶ ಇತಿಹಾಸ ಮತ್ತು ಮಾಧ್ಯಮವನ್ನು ನವೀಕರಣದ ಮೊದಲಿನಿಂದಲೂ ಇರಿಸಲಾಗಿದೆ.</string>
     <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">ಈ ಗುಂಪಿಗೆ ಮತ್ತೆ ಸೇರಲು ನೀವು ಆಹ್ವಾನವನ್ನು ಸ್ವೀಕರಿಸುವ ಅಗತ್ಯವಿದೆ, ಮತ್ತು ನೀವು ಸ್ವೀಕರಿಸುವವರೆಗೆ ಗುಂಪು ಸಂದೇಶಗಳನ್ನು ಸ್ವೀಕರಿಸುವುದಿಲ್ಲ.</string>
     <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
         <item quantity="one">ಈ ಸದಸ್ಯರು ಮತ್ತೆ ಈ ಗುಂಪಿಗೆ ಸೇರಲು ಆಹ್ವಾನವನ್ನು ಸ್ವೀಕರಿಸುವ ಅಗತ್ಯವಿದೆ ಮತ್ತು ಅವರು ಸ್ವೀಕರಿಸುವವರೆಗೆ ಗುಂಪು ಸಂದೇಶಗಳನ್ನು ಸ್ವೀಕರಿಸುವುದಿಲ್ಲ:</item>
@@ -688,7 +688,7 @@
     <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">ಹೊಸ ಗುಂಪಿಗೆ ಅಪ್‌ಗ್ರೇಡ್ ಮಾಡಿ</string>
     <string name="GroupsV1MigrationInitiation_upgrade_this_group">ಈ ಗುಂಪನ್ನು ಅಪ್‌ಗ್ರೇಡ್ ಮಾಡಿ</string>
     <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">ಹೊಸ ಗುಂಪುಗಳು @ಉಲ್ಲೇಖಗಳು ಮತ್ತು ಗುಂಪು ನಿರ್ವಾಹಕರಂತಹ ವೈಶಿಷ್ಟ್ಯಗಳನ್ನು ಹೊಂದಿವೆ, ಮತ್ತು ಭವಿಷ್ಯದಲ್ಲಿ ಹೆಚ್ಚಿನ ವೈಶಿಷ್ಟ್ಯಗಳನ್ನು ಬೆಂಬಲಿಸುತ್ತದೆ.</string>
-    <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">ಅಪ್‌ಗ್ರೇಡ್‌ಗೂ ಮೊದಲಿನ ಎಲ್ಲಾ ಸಂದೇಶ ಇತಿಹಾಸ ಮತ್ತು ಮಾಧ್ಯಮವನ್ನು ಇಡಲಾಗಿದೆ.</string>
+    <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">ಎಲ್ಲಾ ಸಂದೇಶ ಇತಿಹಾಸ ಮತ್ತು ಮಾಧ್ಯಮವನ್ನು ನವೀಕರಣದ ಮೊದಲಿನಿಂದಲೂ ಇರಿಸಲಾಗುತ್ತದೆ.</string>
     <string name="GroupsV1MigrationInitiation_encountered_a_network_error">ತಾತ್ಕಾಲಿಕ ನೆಟ್ವರ್ಕ್ ತೊಂದರೆ ಉಂಟಾಯಿತು . ನಂತರ ಮತ್ತೊಮ್ಮೆ ಪ್ರಯತ್ನಿಸಿ .</string>
     <string name="GroupsV1MigrationInitiation_failed_to_upgrade">ಅಪ್‌ಗ್ರೇಡ್ ಮಾಡಲು ವಿಫಲವಾಗಿದೆ.</string>
     <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
@@ -1346,9 +1346,9 @@
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">ಹೊಸ ಫೀಚರ್ ಇಷ್ಟವಾಯಿತೇ? ಒಂದು ಬಾರಿಯ ದೇಣಿಗೆಯೊಂದಿಗೆ Signal ಬೆಂಬಲಿಸಿ ನೆರವಾಗಿ.</string>
     <!-- Update item message shown when we merge two threads together -->
-    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">%1$s ನೊಂದಿಗಿನ ನಿಮ್ಮ ಮೆಸೇಜ್ ಇತಿಹಾಸ ಮತ್ತು %2$s ಅವರ ನಂಬರ್ ಅನ್ನು ವಿಲೀನಗೊಳಿಸಲಾಗಿದೆ.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">%1$s ಅವರೊಂದಿಗಿನ ನಿಮ್ಮ ಮೆಸೇಜ್ ಇತಿಹಾಸ ಮತ್ತು ಅವರ ನಂಬರ್ %2$s ಅನ್ನು ವಿಲೀನಗೊಳಿಸಲಾಗಿದೆ.</string>
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
-    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">%1$s ಮತ್ತು ಅವರಿಗೆ ಸೇರಿದ ಬೇರೊಂದು ಚಾಟ್ ನೊಂದಿಗಿನ ನಿಮ್ಮ ಮೆಸೇಜ್ ಇತಿಹಾಸವನ್ನು ವಿಲೀನಗೊಳಿಸಲಾಗಿದೆ.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">%1$s ಅವರೊಂದಿಗಿನ ನಿಮ್ಮ ಮೆಸೇಜ್ ಇತಿಹಾಸ ಮತ್ತು ಅವರಿಗೆ ಸೇರಿದ ಬೇರೊಂದು ಚಾಟ್ ಅನ್ನು ವಿಲೀನಗೊಳಿಸಲಾಗಿದೆ.</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s ಅವರು ಗ್ರೂಪ್ ಕಾಲ್ ಆರಂಭಿಸಿದ್ದಾರೆ · %2$s</string>
@@ -1857,7 +1857,7 @@
     <!-- Displayed in the conversation list when someone reacted to your story -->
     <string name="ThreadRecord__reacted_s_to_your_story">ನಿಮ್ಮ ಸ್ಟೋರಿಗೆ %1$s ಪ್ರತಿಕ್ರಿಯಿಸಿದ್ದಾರೆ</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
-    <string name="ThreadRecord__reacted_s_to_their_story">ತಮ್ಮ ಸ್ಟೋರಿಗೆ %1$s ಪ್ರತಿಕ್ರಿಯಿಸಿದ್ದಾರೆ</string>
+    <string name="ThreadRecord__reacted_s_to_their_story">ಅವರ ಸ್ಟೋರಿಗೆ %1$s ಪ್ರತಿಕ್ರಿಯಿಸಿದ್ದಾರೆ</string>
 
     <!-- UpdateApkReadyListener -->
     <string name="UpdateApkReadyListener_Signal_update">Signal ನವೀಕರಿಸಿ</string>
@@ -2667,10 +2667,10 @@
     <string name="preferences_storage__review_storage">ಸ್ಟೊರೇಜ್ ಪರಿಶೀಲಿಸಿ</string>
     <string name="preferences_storage__delete_older_messages">ಹಳೆಯ ಸಂದೇಶವನ್ನು ಅಳಿಸುವುದೇ?</string>
     <string name="preferences_storage__clear_message_history">ಸಂದೇಶ ಇತಿಹಾಸವನ್ನು ತೆರವುಗೊಳಿಸುವುದೇ?</string>
-    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">ಇದು ನಿಮ್ಮ ಸಾಧನದಿಂದ %1$s ಗಿಂತ ಹಳೆಯದಾಗಿರುವ ಎಲ್ಲಾ ಸಂದೇಶಗಳ ಇತಿಹಾಸ ಮತ್ತು ಮಾಧ್ಯಮವನ್ನು ಶಾಶ್ವತವಾಗಿ ಅಳಿಸುತ್ತದೆ.</string>
+    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">%1$s ಗಿಂತ ಹಳೆಯದಾಗಿರುವ ಎಲ್ಲಾ ಸಂದೇಶಗಳ ಇತಿಹಾಸ ಮತ್ತು ಮಾಧ್ಯಮವನ್ನು ಇದು ನಿಮ್ಮ ಸಾಧನದಿಂದ ಶಾಶ್ವತವಾಗಿ ಅಳಿಸಿಹಾಕುತ್ತದೆ.</string>
     <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">ಇದು ಎಲ್ಲಾ ಸಂಭಾಷಣೆಗಳನ್ನು %1$s ಇತ್ತೀಚಿನ ಸಂದೇಶಗಳಿಗೆ ಶಾಶ್ವತವಾಗಿ ಟ್ರಿಮ್ ಮಾಡುತ್ತದೆ.</string>
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">ಇದು ನಿಮ್ಮ ಸಾಧನದಿಂದ ಎಲ್ಲಾ ಸಂದೇಶಗಳ ಇತಿಹಾಸ ಮತ್ತು ಮಾಧ್ಯಮವನ್ನು ಶಾಶ್ವತವಾಗಿ ಅಳಿಸುತ್ತದೆ.</string>
-    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">ಎಲ್ಲಾ ಸಂದೇಶ ಇತಿಹಾಸವನ್ನು ಅಳಿಸಲು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">ಎಲ್ಲಾ ಸಂದೇಶಗಳ ಇತಿಹಾಸ ಮತ್ತು ಮಾಧ್ಯಮವನ್ನು ಇದು ನಿಮ್ಮ ಸಾಧನದಿಂದ ಶಾಶ್ವತವಾಗಿ ಅಳಿಸಿಹಾಕುತ್ತದೆ.</string>
+    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">ಎಲ್ಲಾ ಸಂದೇಶ ಇತಿಹಾಸವನ್ನು ನೀವು ಖಚಿತವಾಗಿ ಅಳಿಸಿಹಾಕಲು ಬಯಸುವಿರಾ?</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">ಎಲ್ಲಾ ಸಂದೇಶ ಇತಿಹಾಸವನ್ನು ಶಾಶ್ವತವಾಗಿ ತೆಗೆದುಹಾಕಲಾಗುತ್ತದೆ. ಈ ಕ್ರಿಯೆಯನ್ನು ರದ್ದುಗೊಳಿಸಲಾಗುವುದಿಲ್ಲ.</string>
     <string name="preferences_storage__delete_all_now">ಎಲ್ಲವನ್ನು ಈಗಲೇ ಅಳಿಸಿ</string>
     <string name="preferences_storage__forever">ಎಂದೆಂದಿಗೂ</string>
@@ -2911,19 +2911,19 @@
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
-    <string name="PaymentsSecuritySetupFragment__security_setup">Security setup</string>
+    <string name="PaymentsSecuritySetupFragment__security_setup">ಭದ್ರತಾ ಸೆಟ್ ಅಪ್</string>
     <!-- Title to enable payment lock -->
-    <string name="PaymentsSecuritySetupFragment__protect_your_funds">Protect your funds</string>
+    <string name="PaymentsSecuritySetupFragment__protect_your_funds">ನಿಮ್ಮ ಹಣವನ್ನು ರಕ್ಷಿಸಿಕೊಳ್ಳಿರಿ</string>
     <!-- Description as to why payment lock is required -->
-    <string name="PaymentsSecuritySetupFragment__help_prevent">Help prevent a person with your phone from accessing your funds by adding another layer of security. You can disable this option in Settings.</string>
+    <string name="PaymentsSecuritySetupFragment__help_prevent">ಭದ್ರತೆಯ ಮತ್ತೊಂದು ಮಟ್ಟವನ್ನು ಸೇರಿಸುವ ಮೂಲಕ ನಿಮ್ಮ ಫೋನ್ ಹೊಂದಿರುವ ವ್ಯಕ್ತಿಯು ನಿಮ್ಮ ಹಣ ಮುಟ್ಟುವುದನ್ನು ತಡೆಯಲು ಸಹಾಯ ಮಾಡಿ. ಈ ಆಯ್ಕೆಯನ್ನು ನೀವು ಸೆಟ್ಟಿಂಗ್ ಗಳಲ್ಲಿ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಬಹುದು.</string>
     <!-- Option to enable payment lock -->
-    <string name="PaymentsSecuritySetupFragment__enable_payment_lock">Enable payment lock</string>
+    <string name="PaymentsSecuritySetupFragment__enable_payment_lock">ಪಾವತಿ ಲಾಕ್ ಅನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ</string>
     <!-- Option to cancel -->
     <string name="PaymentsSecuritySetupFragment__not_now">ಈಗಲ್ಲ</string>
     <!-- Dialog title to confirm skipping the step -->
-    <string name="PaymentsSecuritySetupFragment__skip_this_step">Skip this step?</string>
+    <string name="PaymentsSecuritySetupFragment__skip_this_step">ಈ ಹಂತವನ್ನು ಬಿಟ್ಟುಬಿಡಲೇ?</string>
     <!-- Dialog description to let users know why payment lock is required -->
-    <string name="PaymentsSecuritySetupFragment__skipping_this_step">Skipping this step could allow anyone who has physical access to your phone to transfer funds or view your recovery phrase.</string>
+    <string name="PaymentsSecuritySetupFragment__skipping_this_step">ಈ ಹಂತವನ್ನು ಬಿಟ್ಟುಬಿಡುವುದರಿಂದ ನಿಮ್ಮ ಫೋನ್ ಮುಟ್ಟಲು ಸಾಧ್ಯವಿರುವ ಯಾರಾದರೂ ಹಣವನ್ನು ವರ್ಗಾಯಿಸಬಹುದು ಅಥಾ ನಿಮ್ಮ ರಿಕವರಿ ಪದಗುಚ್ಛವನ್ನು ವೀಕ್ಷಿಸಬಹುದು.</string>
     <!-- Dialog option to cancel -->
     <string name="PaymentsSecuritySetupFragment__cancel">ರದ್ದುಮಾಡಿ</string>
     <!-- Dialog option to skip -->
@@ -4281,9 +4281,9 @@
     <string name="MultiselectForwardFragment__add_a_message">ಮೆಸೇಜ್ ಸೇರಿಸಿ</string>
     <string name="MultiselectForwardFragment__faster_forwards">ಫಾಸ್ಟರ್ ಫಾರ್ವರ್ಡ್‌ಗಳು</string>
     <!-- Displayed when user selects a video that will be clipped before sharing to a story -->
-    <string name="MultiselectForwardFragment__videos_will_be_trimmed">ವಿಡಿಯೋಗಳನ್ನು 30s ಕ್ಲಿಪ್‌ಗಳಿಗೆ ಟ್ರಿಮ್ ಮಾಡಲಾಗುತ್ತದೆ ಮತ್ತು ಅನೇಕ ಸ್ಟೋರೀಸ್ ಆಗಿ ಕಳುಹಿಸಲಾಗುತ್ತದೆ.</string>
+    <string name="MultiselectForwardFragment__videos_will_be_trimmed">ವಿಡಿಯೋಗಳನ್ನು 30s ಕ್ಲಿಪ್ ಗಳಾಗಿ ಟ್ರಿಮ್ ಮಾಡಲಾಗುತ್ತದೆ ಮತ್ತು ಅನೇಕ ಸ್ಟೋರೀಸ್ ಆಗಿ ಕಳುಹಿಸಲಾಗುತ್ತದೆ.</string>
     <!-- Displayed when user selects a video that cannot be sent as a story -->
-    <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">ಸ್ಟೋರೀಸ್‌ಗೆ ಕಳುಹಿಸಿದ ವಿಡಿಯೋಗಳು 30s ಗಿಂತ ದೀರ್ಘವಾಗಿರುವಂತಿಲ್ಲ.</string>
+    <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">ಸ್ಟೋರೀಸ್ ಗೆ ಕಳುಹಿಸಿದ ವಿಡಿಯೋಗಳು 30s ಗಿಂತ ದೀರ್ಘವಾಗಿರುವಂತಿಲ್ಲ.</string>
     <string name="MultiselectForwardFragment__forwarded_messages_are_now">ಫಾರ್ವರ್ಡ್ ಮಾಡಲಾದ ಮೆಸೇಜ್‌ಗಳನ್ನು ಈಗ ತಕ್ಷಣವೇ ಕಳುಹಿಸಲಾಗುತ್ತದೆ.</string>
     <plurals name="MultiselectForwardFragment_send_d_messages">
         <item quantity="one">%1$d ಮೆಸೇಜ್‌ಗಳನ್ನು ಕಳುಹಿಸಿ</item>
@@ -4758,9 +4758,9 @@
     <!-- Status label when a story fails to send indicating user action to retry -->
     <string name="StoriesLandingItem__tap_to_retry">ಮರುಪ್ರಯತ್ನಿಸಲು ಟ್ಯಾಪ್ ಮಾಡಿ</string>
     <!-- Title of dialog confirming decision to hide a story -->
-    <string name="StoriesLandingFragment__hide_story">ಸ್ಟೋರಿ ಮರೆ ಮಾಡಲೇ?</string>
+    <string name="StoriesLandingFragment__hide_story">ಸ್ಟೋರಿ ಮರೆ ಮಾಡಬೇಕೇ?</string>
     <!-- Message of dialog confirming decision to hide a story -->
-    <string name="StoriesLandingFragment__new_story_updates">%1$s ಅವರಿಂದ ಹೊಸ ಸ್ಟೋರ್ ಅಪ್ಡೇಟ್‌ಗಳು ಇನ್ನುಮುಂದೆ ಸ್ಟೋರೀಸ್‌ ಲಿಸ್ಟ್‌ನ ಮೇಲ್ಭಾಗದಲ್ಲಿ ಕಾಣಿಸುವುದಿಲ್ಲ.</string>
+    <string name="StoriesLandingFragment__new_story_updates">%1$s ಅವರಿಂದ ಸ್ಟೋರೀ ಅಪ್ಡೇಟ್ ಗಳು ಇನ್ನುಮುಂದೆ ಸ್ಟೋರೀಸ್ ಲಿಸ್ಟ್ ನ ಮೇಲ್ಭಾಗದಲ್ಲಿ ಕಾಣಿಸುವುದಿಲ್ಲ.</string>
     <!-- Positive action of dialog confirming decision to hide a story -->
     <string name="StoriesLandingFragment__hide">ಅಡಗಿಸು</string>
     <!-- Displayed in Snackbar after story is hidden -->
@@ -4777,9 +4777,9 @@
     <!-- Label for stories for a single user. Format is {given name}\'s Story -->
     <string name="MyStories__ss_story">%1$s ಅವರ ಸ್ಟೋರಿ</string>
     <!-- Title of dialog to confirm deletion of story -->
-    <string name="MyStories__delete_story">ಸ್ಟೋರಿ ಅಳಿಸುವುದೇ?</string>
+    <string name="MyStories__delete_story">ಸ್ಟೋರಿ ಅಳಿಸಿಹಾಕಬೇಕೇ?</string>
     <!-- Message of dialog to confirm deletion of story -->
-    <string name="MyStories__this_story_will_be_deleted">ಈ ಸ್ಟೋರಿಯನ್ನು ನಿಮಗೆ ಹಾಗೂ ಇದನ್ನು ಸ್ವೀಕರಿಸಿದ ಎಲ್ಲರಿಗೂ ಅಳಿಸಲಾಗುತ್ತದೆ.</string>
+    <string name="MyStories__this_story_will_be_deleted">ಈ ಸ್ಟೋರಿಯನ್ನು ನಿಮಗೂ ಹಾಗು ಇದನ್ನು ಸ್ವೀಕರಿಸಿದ ಎಲ್ಲರಿಗೂ ಅಳಿಸಿಹಾಕಲಾಗುತ್ತದೆ.</string>
     <!-- Toast shown when story media cannot be saved -->
     <string name="MyStories__unable_to_save">ಉಳಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ</string>
     <!-- Displayed at bottom of story viewer when current item has views -->
@@ -4825,7 +4825,7 @@
     <!-- Displayed when a story has no replies yet -->
     <string name="StoryGroupReplyFragment__no_replies_yet">ಇನ್ನೂ ಯಾವುದೇ ಪ್ರತ್ಯುತ್ತರವಿಲ್ಲ</string>
     <!-- Displayed when no longer a group member -->
-    <string name="StoryGroupReplyFragment__you_cant_reply">You can\'t reply to this story because you\'re no longer a member of this group.</string>
+    <string name="StoryGroupReplyFragment__you_cant_reply">ಈ ಸ್ಟೋರಿಗೆ ನೀವು ಉತ್ತರಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ, ಯಾಕೆಂದರೆ ನೀವೀಗ ಈ ಗ್ರೂಪ್ ನ  ಸದಸ್ಯರಾಗಿ ಉಳಿದಿಲ್ಲ.</string>
     <!-- Displayed for each user that reacted to a story when viewing replies -->
     <string name="StoryGroupReactionReplyItem__reacted_to_the_story">ಸ್ಟೋರಿಗೆ ಪ್ರತಿಕ್ರಿಯಿಸಲಾಗಿದೆ</string>
     <!-- Label for story views tab -->
@@ -4885,8 +4885,6 @@
     <string name="MyStorySettingsFragment__allow_replies_amp_reactions">ಉತ್ತರಗಳು &amp; ಪ್ರತಿಕ್ರಿಯೆಗಳನ್ನು ಅನುಮತಿಸಿ</string>
     <!-- Summary for switchable option allowing replies and reactions on your story -->
     <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">ನಿಮ್ಮ ಸ್ಟೋರಿಯನ್ನು ವೀಕ್ಷಿಸಬಹುದಾದ ಜನರು ಪ್ರತಿಕ್ರಿಯಿಸಲಿ ಮತ್ತು ಉತ್ತರಿಸಲಿ</string>
-    <!-- Note about default sharing -->
-    <string name="MyStorySettingsFragment__hide_your_story_from">ನಿರ್ದಿಷ್ಟ ಜನರಿಂದ ನಿಮ್ಮ ಸ್ಟೋರಿಯನ್ನು ಮರೆಮಾಡಿ. ಡೀಫಾಲ್ಟ್ ಆಗಿ, ನಿಮ್ಮ ಸ್ಟೋರಿಯನ್ನು ನಿಮ್ಮ %1$s ಅವರೊಂದಿಗೆ ಹಂಚಿಕೊಳ್ಳಲಾಗುತ್ತದೆ</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
     <string name="SignalConnectionsBottomSheet___signal_connections">Signal ಸಂಪರ್ಕಗಳು</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
@@ -4898,11 +4896,11 @@
     <!-- Signal connections sheet bullet point 3 -->
     <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">ನಿಮ್ಮ ಸಿಸ್ಟಮ್ ಸಂಪರ್ಕಗಳಲ್ಲಿ ಅವರನ್ನು ಹೊಂದಲಾಗುತ್ತಿದೆ</string>
     <!-- Note at the bottom of the Signal connections sheet -->
-    <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"ನಿಮ್ಮ ಸಂಪರ್ಕಗಳು ನಿಮ್ಮ ಹೆಸರು ಮತ್ತು ಫೊಟೋವನ್ನು ನೋಡಬಹುದು ಮತ್ತು ನೀವು ಮರೆಮಾಡದ ಹೊರತಾಗಿ \"ನನ್ನ ಸ್ಟೋರಿ\" ಯ ಪೋಸ್ಟ್‌ಗಳನ್ನು ನೋಡಬಹುದು"</string>
+    <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"ನಿಮ್ಮ ಸಂಪರ್ಕಗಳು ನಿಮ್ಮ ಹೆಸರು ಮತ್ತು ಫೊಟೋವನ್ನು ನೋಡಬಹುದು ಮತ್ತು ನೀವು ಮರೆಮಾಡದ ಹೊರತಾಗಿ \"ನನ್ನ ಸ್ಟೋರಿ\" ಯ ಪೋಸ್ಟ್ ಗಳನ್ನು ನೋಡಬಹುದು"</string>
     <!-- Clickable option to add a viewer to a private story -->
     <string name="PrivateStorySettingsFragment__add_viewer">ವೀಕ್ಷಕರನ್ನು ಸೇರಿಸಿ</string>
     <!-- Clickable option to delete a custom story -->
-    <string name="PrivateStorySettingsFragment__delete_private_story">ಖಾಸಗಿ ಸ್ಟೋರಿ ಅಳಿಸಿ</string>
+    <string name="PrivateStorySettingsFragment__delete_private_story">ಖಾಸಗಿ ಸ್ಟೋರಿ ಅಳಿಸಿಹಾಕಿರಿ</string>
     <!-- Dialog title when attempting to remove someone from a private story -->
     <string name="PrivateStorySettingsFragment__remove_s">%1$s ತೆಗೆದುಹಾಕಲೇ?</string>
     <!-- Dialog message when attempting to remove someone from a private story -->
@@ -4948,23 +4946,23 @@
     <!-- Dialog title for removing a group story -->
     <string name="StoryDialogs__remove_group_story">ಗ್ರೂಪ್ ಸ್ಟೋರಿ ತೆಗೆದುಹಾಕೋಣವೇ?</string>
     <!-- Dialog message for removing a group story -->
-    <string name="StoryDialogs__s_will_be_removed">\"%1$s\" will be removed.</string>
+    <string name="StoryDialogs__s_will_be_removed">\"%1$s\" ಅವರನ್ನು ತೆಗೆದುಹಾಕಲಾಗುತ್ತದೆ.</string>
     <!-- Dialog positive action for removing a group story -->
     <string name="StoryDialogs__remove">ತೆಗೆದುಹಾಕಿ</string>
     <!-- Dialog title for deleting a private story -->
-    <string name="StoryDialogs__delete_private_story">ಖಾಸಗಿ ಸ್ಟೋರಿ ಅಳಿಸುವುದೇ?</string>
+    <string name="StoryDialogs__delete_private_story">ಖಾಸಗಿ ಸ್ಟೋರಿ ಅಳಿಸಿಹಾಕುವುದೇ?</string>
     <!-- Dialog message for deleting a private story -->
-    <string name="StoryDialogs__s_and_updates_shared">\"%1$s\" and updates shared to this story will be deleted.</string>
+    <string name="StoryDialogs__s_and_updates_shared">\"%1$s\" ಮತ್ತು ಈ ಸ್ಟೋರಿಗೆ ಹಂಚಿಕೊಂಡ ಅಪ್ಡೇಟ್ ಗಳನ್ನು ಅಳಿಸಿಹಾಕಲಾಗುತ್ತದೆ.</string>
     <!-- Dialog positive action for deleting a private story -->
     <string name="StoryDialogs__delete">ಅಳಿಸು</string>
     <!-- Dialog title for first time sending something to a beta story -->
-    <string name="StoryDialogs__stories_is_available_to">Stories is available to Signal beta users only.</string>
+    <string name="StoryDialogs__stories_is_available_to">Signal ಬೀಟಾ ಬಳಕೆದಾರರಿಗೆ ಮಾತ್ರ ಸ್ಟೋರೀಸ್ ಲಭ್ಯ ಇವೆ.</string>
     <!-- Dialog message for first time sending something to a beta story -->
-    <string name="StoryDialogs__if_you_share_a_story">If you share a story, it will only be available to people who are on Signal beta.</string>
+    <string name="StoryDialogs__if_you_share_a_story">ನೀವೊಂದು ಸ್ಟೋರಿ ಹಂಚಿಕೊಂಡರೆ, Signal ಬೀಟಾದಲ್ಲಿರುವ ಜನರಿಗೆ ಮಾತ್ರ ಅದು ಲಭ್ಯವಾಗಲಿದೆ.</string>
     <!-- Dialog title for first time adding something to a story -->
     <string name="StoryDialogs__add_to_story_q">ಸ್ಟೋರಿಗೆ ಸೇರಿಸುವುದೇ?</string>
     <!-- Dialog message for first time adding something to a story -->
-    <string name="StoryDialogs__adding_content">ನಿಮ್ಮ ಸ್ಟೋರಿಗೆ ವಿಷಯ ಸೇರಿಸುವುದು 24 ಗಂಟೆಗಳ ಕಾಲ ನಿಮ್ಮ Signal ಸಂಪರ್ಕಗಳು ಅದನ್ನು ವೀಕ್ಷಿಸಲು ಅನುಮತಿಸುತ್ತವೆ. ನಿಮ್ಮ ಸ್ಟೋರಿಯನ್ನು ಯಾರು ವೀಕ್ಷಿಸಬಹುದು ಎಂಬುದನ್ನು ಸೆಟ್ಟಿಂಗ್‌ಗಳು ನಲ್ಲಿ ನೀವು ಬದಲಾಯಿಸಬಹುದು.</string>
+    <string name="StoryDialogs__adding_content">ನಿಮ್ಮ ಸ್ಟೋರಿಗೆ ವಿಷಯಗಳನ್ನು ಸೇರಿಸಿದಾಗ 24 ಗಂಟೆಗಳ ಕಾಲ ನಿಮ್ಮ Signal ಸಂಪರ್ಕಗಳು ಅದನ್ನು ವೀಕ್ಷಿಸಲು ಅನುಮತಿ ಇರುತ್ತದೆ. ನಿಮ್ಮ ಸ್ಟೋರಿಯನ್ನು ಯಾರು ವೀಕ್ಷಿಸಬಹುದು ಎಂಬುದನ್ನುಸೆಟ್ಟಿಂಗ್ ಗಳಲ್ಲಿ ನೀವು ಬದಲಾಯಿಸಬಹುದು.</string>
     <!-- First time share to story dialog: Positive action to go ahead and add to story -->
     <string name="StoryDialogs__add_to_story">ಸ್ಟೋರಿಗೆ ಸೇರಿಸಿ</string>
     <!-- First time share to story dialog: Neutral action to edit who can view "My Story" -->
@@ -4974,9 +4972,9 @@
     <!-- Error message dialog button to resend a previously failed story send -->
     <string name="StoryDialogs__send">ಕಳುಹಿಸು</string>
     <!-- Action button for turning off stories when stories are present on the device -->
-    <string name="StoryDialogs__turn_off_and_delete">Turn off and delete</string>
+    <string name="StoryDialogs__turn_off_and_delete">ಆಫ್ ಮಾಡಿ ಮತ್ತು ಅಳಿಸಿಹಾಕಿರಿ</string>
     <!-- Privacy Settings toggle title for stories -->
-    <string name="PrivacySettingsFragment__share_and_view_stories">ಸ್ಟೋರೀಸ್ ಹಂಚಿಕೊಳ್ಳಿ &amp; ವೀಕ್ಷಿಸಿ</string>
+    <string name="PrivacySettingsFragment__share_and_view_stories">ಸ್ಟೋರೀಸ್ ಹಂಚಿಕೊಳ್ಳಿ ಮತ್ತು ವೀಕ್ಷಿಸಿ</string>
     <!-- Privacy Settings toggle summary for stories -->
     <string name="PrivacySettingsFragment__you_will_no_longer_be_able">ಈ ಆಯ್ಕೆಯನ್ನು ಆಫ್ ಮಾಡಿದಾಗ ಸ್ಟೋರೀಸ್ ಅನ್ನು ಹಂಚಿಕೊಳ್ಳಲು ಅಥವಾ ವೀಕ್ಷಿಸಲು ನಿಮಗೆ ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ.</string>
     <!-- New story viewer selection screen title -->
@@ -5049,7 +5047,7 @@
     <!-- Conversation Item label for reactions to your story -->
     <string name="ConversationItem__reacted_to_your_story">ನಿಮ್ಮ ಸ್ಟೋರಿಗೆ ಪ್ರತಿಕ್ರಿಯಿಸಿದ್ದಾರೆ</string>
     <!-- Conversation Item label for reactions to an unavailable story -->
-    <string name="ConversationItem__reacted_to_a_story">ಸ್ಟೋರಿಗೆ ಪ್ರತಿಕ್ರಿಯಿಸಲಾಗಿದೆ</string>
+    <string name="ConversationItem__reacted_to_a_story">ಒಂದು ಸ್ಟೋರಿಗೆ ಪ್ರತಿಕ್ರಿಯಿಸಲಾಗಿದೆ</string>
 
     <!-- endregion -->
     <!-- Content description for expand contacts chevron -->
@@ -5112,20 +5110,20 @@
     <!-- Expired gift sheet not now button -->
     <string name="ExpiredGiftSheetConfiguration__not_now">ಈಗಲ್ಲ</string>
     <!-- My Story label designating that we will only share with the selected viewers. -->
-    <string name="ContactSearchItems__only_share_with">ಇವರೊಂದಿಗೆ ಮಾತ್ರ ಹಂಚಿಕೊಳ್ಳಿ</string>
+    <string name="ContactSearchItems__only_share_with">ಇವರಿಗಷ್ಟೇ ಶೇರ್ ಮಾಡಿ</string>
     <!-- Label under name for private stories -->
     <plurals name="ContactSearchItems__private_story_d_viewers">
-        <item quantity="one">Private story · %1$d viewer</item>
+        <item quantity="one">ಖಾಸಗಿ ಸ್ಟೋರಿ · %1$d ವೀಕ್ಷಕ</item>
         <item quantity="other">ಖಾಸಗಿ ಸ್ಟೋರಿ · %1$d ವೀಕ್ಷಕರು</item>
     </plurals>
     <!-- Label under name for group stories -->
     <plurals name="ContactSearchItems__group_story_d_viewers">
-        <item quantity="one">Group story · %1$d viewer</item>
+        <item quantity="one">ಗ್ರೂಪ್ ಸ್ಟೋರಿ · %1$d ವೀಕ್ಷಕ</item>
         <item quantity="other">ಗ್ರೂಪ್ ಸ್ಟೋರಿ · %1$d ವೀಕ್ಷಕರು</item>
     </plurals>
     <!-- Label under name for groups -->
     <plurals name="ContactSearchItems__group_d_members">
-        <item quantity="one">%1$d ಸದಸ್ಯರು</item>
+        <item quantity="one">%1$d ಸದಸ್ಯ</item>
         <item quantity="other">%1$d ಸದಸ್ಯರು</item>
     </plurals>
     <!-- Label under name for my story -->
@@ -5136,11 +5134,11 @@
     <!-- Label under name for My Story when first sending to my story -->
     <string name="ContactSearchItems__tap_to_choose_your_viewers">ನಿಮ್ಮ ವೀಕ್ಷಕರನ್ನು ಆಯ್ಕೆ ಮಾಡಲು ಟ್ಯಾಪ್ ಮಾಡಿ</string>
     <!-- Label for context menu item to open story settings -->
-    <string name="ContactSearchItems__story_settings">ಸ್ಟೋರಿ ಸೆಟ್ಟಿಂಗ್‌ಗಳು</string>
+    <string name="ContactSearchItems__story_settings">ಸ್ಟೋರಿ ಸೆಟ್ಟಿಂಗ್‌ ಗಳು</string>
     <!-- Label for context menu item to remove a group story from contact results -->
     <string name="ContactSearchItems__remove_story">ಸ್ಟೋರಿ ತೆಗೆದುಹಾಕಿ</string>
     <!-- Label for context menu item to delete a private story -->
-    <string name="ContactSearchItems__delete_story">ಸ್ಟೋರಿ ಅಳಿಸಿ</string>
+    <string name="ContactSearchItems__delete_story">ಸ್ಟೋರಿ ಅಳಿಸಿಹಾಕಿರಿ</string>
     <!-- Dialog title for removing a group story -->
     <string name="ContactSearchMediator__remove_group_story">ಗ್ರೂಪ್ ಸ್ಟೋರಿ ತೆಗೆದುಹಾಕೋಣವೇ?</string>
     <!-- Dialog message for removing a group story -->
@@ -5148,9 +5146,9 @@
     <!-- Dialog action item for removing a group story -->
     <string name="ContactSearchMediator__remove">ತೆಗೆದುಹಾಕಿ</string>
     <!-- Dialog title for deleting a private story -->
-    <string name="ContactSearchMediator__delete_story">ಸ್ಟೋರಿ ಅಳಿಸುವುದೇ?</string>
+    <string name="ContactSearchMediator__delete_story">ಸ್ಟೋರಿ ಅಳಿಸಿಹಾಕಬೇಕೇ?</string>
     <!-- Dialog message for deleting a private story -->
-    <string name="ContactSearchMediator__delete_the_private">ಖಾಸಗಿ ಸ್ಟೋರಿ \"%1$s\" ಅಳಿಸುವುದೇ?</string>
+    <string name="ContactSearchMediator__delete_the_private">ಖಾಸಗಿ ಸ್ಟೋರಿ \"%1$s\" ಅಳಿಸಿಹಾಕಬೇಕೇ?</string>
     <!-- Dialog action item for deleting a private story -->
     <string name="ContactSearchMediator__delete">ಅಳಿಸು</string>
     <!-- Gift expiry days remaining -->
@@ -5226,7 +5224,7 @@
     <!-- Title of initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">ನನ್ನ ಸ್ಟೋರಿ ಗೌಪ್ಯತೆ</string>
     <!-- Subtitle of initial My Story settings configuration shown when sending to My Story for the first time -->
-    <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">ಮೈ ಸ್ಟೋರಿ ಪೋಸ್ಟ್‌ಗಳನ್ನು ಯಾರು ನೋಡಬಹುದು ಎಂದು ಆಯ್ಕೆ ಮಾಡಿರಿ. ನೀವು ಸೆಟ್ಟಿಂಗ್‌‍ ಗಳಲ್ಲಿ ಯಾವಾಗ ಬೇಕಾದರೂ ಬದಲಾವಣೆ ಮಾಡಬಹುದು.</string>
+    <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">ಮೈ ಸ್ಟೋರಿ ಪೋಸ್ಟ್ ಗಳನ್ನು ಯಾರು ನೋಡಬಹುದು ಎಂದು ಆಯ್ಕೆ ಮಾಡಿರಿ. ನೀವು ಸೆಟ್ಟಿಂಗ್ ಗಳಲ್ಲಿ ಯಾವಾಗ ಬೇಕಾದರೂ ಬದಲಾವಣೆ ಮಾಡಬಹುದು.</string>
     <!-- All connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">ಎಲ್ಲಾ Signal ಸಂಪರ್ಕಗಳು</string>
     <!-- All connections except option for initial My Story settings configuration shown when sending to My Story for the first time -->
@@ -5251,11 +5249,11 @@
 
     <!-- StoriesPrivacySettingsFragment -->
     <!-- Explanation about how stories are deleted and managed -->
-    <string name="StoriesPrivacySettingsFragment__stories_automatically_disappear">24 ಗಂಟೆಗಳ ನಂತರ ಸ್ಟೋರೀಸ್ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಮರೆಯಾಗುತ್ತವೆ. ನಿಮ್ಮ ಸ್ಟೋರಿಯನ್ನು ಯಾರು ವೀಕ್ಷಿಸಬಹುದು ಎಂದು ಆಯ್ಕೆ ಮಾಡಿ ಅಥವಾ ನಿರ್ದಿಷ್ಟ ವೀಕ್ಷಕರು ಅಥವಾ ಗ್ರೂಪ್‌ಗಳೊಂದಿಗೆ ಹೊಸ ಸ್ಟೋರೀಸ್ ರಚಿಸಿ.</string>
+    <string name="StoriesPrivacySettingsFragment__stories_automatically_disappear">24 ಗಂಟೆಗಳ ನಂತರ ಸ್ಟೋರೀಸ್ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಮರೆಯಾಗುತ್ತವೆ. ನಿಮ್ಮ ಸ್ಟೋರಿಯನ್ನು ಯಾರು ವೀಕ್ಷಿಸಬಹುದು ಎಂದು ಆಯ್ಕೆ ಮಾಡಿ ಅಥವಾ ನಿರ್ದಿಷ್ಟ ವೀಕ್ಷಕರು ಅಥವಾ ಗ್ರೂಪ್ ಗಳೊಂದಿಗೆ ಹೊಸ ಸ್ಟೋರೀಸ್ ರಚಿಸಿ.</string>
     <!-- Preference title to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__turn_off_stories">ಸ್ಟೋರೀಸ್ ಆಫ್ ಮಾಡಿ</string>
     <!-- Preference summary to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__if_you_opt_out">ಸ್ಟೋರೀಸ್‌ನಿಂದ ಹೊರಗುಳಿಯಲು ನೀವು ಆಯ್ಕೆ ಮಾಡಿದರೆ, ನಿಮಗೆ ಇನ್ನು ಸ್ಟೋರೀಸ್ ಹಂಚಿಕೊಳ್ಳಲು ಅಥವಾ ವೀಕ್ಷಿಸಲು ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ.</string>
+    <string name="StoriesPrivacySettingsFragment__if_you_opt_out">ಸ್ಟೋರೀಸ್ ನಿಂದ ಹೊರಗುಳಿಯಲು ನೀವು ಆಯ್ಕೆ ಮಾಡಿದರೆ, ಇನ್ನು ನಿಮಗೆ ಸ್ಟೋರೀಸ್ ಹಂಚಿಕೊಳ್ಳಲು ಅಥವಾ ವೀಕ್ಷಿಸಲು ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ.</string>
     <!-- Preference title to turn on stories -->
     <string name="StoriesPrivacySettingsFragment__turn_on_stories">ಸ್ಟೋರೀಸ್ ಆನ್ ಮಾಡಿ</string>
     <!-- Preference summary to turn on stories -->
@@ -5263,7 +5261,7 @@
     <!-- Dialog title to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">ಸ್ಟೋರೀಸ್ ಆಫ್ ಮಾಡಬಹುದೇ?</string>
     <!-- Dialog message to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">You will no longer be able to share or view stories. Story updates you have recently shared will also be deleted.</string>
+    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">ಸ್ಟೋರೀಸ್ ಹಂಚಿಕೊಳ್ಳಲು ಅಥವಾ ವೀಕ್ಷಿಸಲು ನಿಮಗೆ ಇನ್ನು ಸಾಧ್ಯವಿಲ್ಲ. ನೀವು ಇತ್ತೀಚೆಗೆ ಹಂಚಿಕೊಂಡ ಸ್ಟೋರಿ ಅಪ್ಡೇಟ್ ಗಳನ್ನು ಕೂಡಾ ಅಳಿಸಿಹಾಕಲಾಗುತ್ತದೆ.</string>
     <!-- Page title when launched from stories landing screen -->
     <string name="StoriesPrivacySettingsFragment__story_privacy">ಸ್ಟೋರಿ ಗೌಪ್ಯತೆ</string>
 
@@ -5271,7 +5269,7 @@
     <!-- Section header for who can view a group story -->
     <string name="GroupStorySettingsFragment__who_can_view_this_story">ಈ ಸ್ಟೋರಿಯನ್ನು ಯಾರು ವೀಕ್ಷಿಸಬಹುದು</string>
     <!-- Explanation of who can view a group story -->
-    <string name="GroupStorySettingsFragment__members_of_the_group_s">"ಗ್ರೂಪ್ \"%1$s\" ನ ಸದಸ್ಯರು ಈ ಸ್ಟೋರಿಯನ್ನು ವೀಕ್ಷಿಸಬಹುದು ಮತ್ತು ಉತ್ತರಿಸಬಹುದು. ಈ ಗ್ರೂಪ್‌ನಲ್ಲಿನ ಈ ಚಾಟ್‌ಗೆ ನೀವು ಸದಸ್ಯತ್ವವನ್ನು ಅಪ್ಡೇಟ್ ಮಾಡಬಹುದು."</string>
+    <string name="GroupStorySettingsFragment__members_of_the_group_s">"ಗ್ರೂಪ್ %1$s ನ ಸದಸ್ಯರು ಈ ಸ್ಟೋರಿಯನ್ನು ವೀಕ್ಷಿಸಬಹುದು ಮತ್ತು ಉತ್ತರಿಸಬಹುದು. ಈ ಗ್ರೂಪ್ ನಲ್ಲಿನ ಈ ಚಾಟ್ ಗೆ ನೀವು ಸದಸ್ಯತ್ವವನ್ನು ಅಪ್ಡೇಟ್ ಮಾಡಬಹುದು."</string>
     <!-- Preference label for removing this group story -->
     <string name="GroupStorySettingsFragment__remove_group_story">ಗ್ರೂಪ್ ಸ್ಟೋರಿ ತೆಗೆದುಹಾಕಿ</string>
 

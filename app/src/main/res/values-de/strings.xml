@@ -218,7 +218,7 @@
     <!-- Header for username search -->
     <string name="ContactsCursorLoader_find_by_username">Nach Nutzernamen suchen</string>
     <!-- Label for my stories when selecting who to send media to -->
-    <string name="ContactsCursorLoader_my_stories">Meine Stories</string>
+    <string name="ContactsCursorLoader_my_stories">Meine Storys</string>
     <!-- Action for creating a new story -->
     <string name="ContactsCursorLoader_new_story">Neue Story</string>
 
@@ -1983,14 +1983,14 @@
     <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Öffne Signal, um nach neuen Benachrichtigungen zu sehen.</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">Kontakt</string>
-    <string name="MessageNotifier_reacted_s_to_s">Hat mit %1$s reagiert auf: »%2$s«.</string>
-    <string name="MessageNotifier_reacted_s_to_your_video">Hat mit %1$s auf dein Video reagiert.</string>
-    <string name="MessageNotifier_reacted_s_to_your_image">Hat mit %1$s auf dein Bild reagiert.</string>
-    <string name="MessageNotifier_reacted_s_to_your_gif">Hat mit %1$s auf dein GIF reagiert.</string>
-    <string name="MessageNotifier_reacted_s_to_your_file">Hat mit %1$s auf deine Datei reagiert.</string>
-    <string name="MessageNotifier_reacted_s_to_your_audio">Hat mit %1$s auf dein Audio reagiert.</string>
-    <string name="MessageNotifier_reacted_s_to_your_view_once_media">Hat mit %1$s auf deine einmalig anzeigbaren Medieninhalte reagiert.</string>
-    <string name="MessageNotifier_reacted_s_to_your_sticker">Hat mit %1$s auf deinen Sticker reagiert.</string>
+    <string name="MessageNotifier_reacted_s_to_s">Mit %1$s reagiert auf: »%2$s«.</string>
+    <string name="MessageNotifier_reacted_s_to_your_video">Mit %1$s auf dein Video reagiert.</string>
+    <string name="MessageNotifier_reacted_s_to_your_image">Mit %1$s auf dein Bild reagiert.</string>
+    <string name="MessageNotifier_reacted_s_to_your_gif">Mit %1$s auf dein GIF reagiert.</string>
+    <string name="MessageNotifier_reacted_s_to_your_file">Mit %1$s auf deine Datei reagiert.</string>
+    <string name="MessageNotifier_reacted_s_to_your_audio">Mit %1$s auf dein Audio reagiert.</string>
+    <string name="MessageNotifier_reacted_s_to_your_view_once_media">Mit %1$s auf deine einmalig anzeigbaren Medieninhalte reagiert.</string>
+    <string name="MessageNotifier_reacted_s_to_your_sticker">Mit %1$s auf deinen Sticker reagiert.</string>
     <string name="MessageNotifier_this_message_was_deleted">Diese Nachricht wurde gelöscht.</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Benachrichtigungen über neue Signal-Kontakte ausschalten? Du kannst sie wieder einschalten in Signal → Einstellungen → Benachrichtigungen.</string>
@@ -2911,19 +2911,19 @@
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
-    <string name="PaymentsSecuritySetupFragment__security_setup">Security setup</string>
+    <string name="PaymentsSecuritySetupFragment__security_setup">Sicherheitseinstellungen</string>
     <!-- Title to enable payment lock -->
-    <string name="PaymentsSecuritySetupFragment__protect_your_funds">Protect your funds</string>
+    <string name="PaymentsSecuritySetupFragment__protect_your_funds">Schütze dein Geld</string>
     <!-- Description as to why payment lock is required -->
-    <string name="PaymentsSecuritySetupFragment__help_prevent">Help prevent a person with your phone from accessing your funds by adding another layer of security. You can disable this option in Settings.</string>
+    <string name="PaymentsSecuritySetupFragment__help_prevent">Verhindere, dass eine Person mit deinem Smartphone auf dein Geld zugreifen kann, indem du eine weitere Sicherheitsebene hinzufügst. Du kannst diese Option in Einstellungen deaktivieren.</string>
     <!-- Option to enable payment lock -->
-    <string name="PaymentsSecuritySetupFragment__enable_payment_lock">Enable payment lock</string>
+    <string name="PaymentsSecuritySetupFragment__enable_payment_lock">Zahlungssperre aktivieren</string>
     <!-- Option to cancel -->
     <string name="PaymentsSecuritySetupFragment__not_now">Jetzt nicht</string>
     <!-- Dialog title to confirm skipping the step -->
-    <string name="PaymentsSecuritySetupFragment__skip_this_step">Skip this step?</string>
+    <string name="PaymentsSecuritySetupFragment__skip_this_step">Diesen Schritt überspringen?</string>
     <!-- Dialog description to let users know why payment lock is required -->
-    <string name="PaymentsSecuritySetupFragment__skipping_this_step">Skipping this step could allow anyone who has physical access to your phone to transfer funds or view your recovery phrase.</string>
+    <string name="PaymentsSecuritySetupFragment__skipping_this_step">Wenn du diesen Schritt überspringst, kann jeder, der Zugriff auf dein Smartphone hat, Geld überweisen oder deine Wiederherstellungsphrase einsehen.</string>
     <!-- Dialog option to cancel -->
     <string name="PaymentsSecuritySetupFragment__cancel">Abbrechen</string>
     <!-- Dialog option to skip -->
@@ -4724,13 +4724,13 @@
     <!-- Label for Chats tab in home app screen -->
     <string name="ConversationListTabs__chats">Unterhaltungen</string>
     <!-- Label for Stories tab in home app screen -->
-    <string name="ConversationListTabs__stories">Stories</string>
+    <string name="ConversationListTabs__stories">Storys</string>
     <!-- String for counts above 99 in conversation list tabs -->
     <string name="ConversationListTabs__99p">99+</string>
     <!-- Menu item on stories landing page -->
     <string name="StoriesLandingFragment__story_privacy">Story-Datenschutz</string>
     <!-- Title for "My Stories" row item in Stories landing page -->
-    <string name="StoriesLandingFragment__my_stories">Meine Stories</string>
+    <string name="StoriesLandingFragment__my_stories">Meine Storys</string>
     <!-- Subtitle for "My Stories" row item when user has not added stories -->
     <string name="StoriesLandingFragment__tap_to_add_a_story">Antippen, um eine Story hinzuzufügen</string>
     <!-- Displayed when there are no stories to display -->
@@ -4766,7 +4766,7 @@
     <!-- Displayed in Snackbar after story is hidden -->
     <string name="StoriesLandingFragment__story_hidden">Story ausgeblendet</string>
     <!-- Section header for hidden stories -->
-    <string name="StoriesLandingFragment__hidden_stories">Ausgeblendete Stories</string>
+    <string name="StoriesLandingFragment__hidden_stories">Ausgeblendete Storys</string>
     <!-- Displayed on each sent story under My Stories -->
     <plurals name="MyStories__d_views">
         <item quantity="one">%1$d Aufruf</item>
@@ -4825,7 +4825,7 @@
     <!-- Displayed when a story has no replies yet -->
     <string name="StoryGroupReplyFragment__no_replies_yet">Bisher keine Antworten</string>
     <!-- Displayed when no longer a group member -->
-    <string name="StoryGroupReplyFragment__you_cant_reply">You can\'t reply to this story because you\'re no longer a member of this group.</string>
+    <string name="StoryGroupReplyFragment__you_cant_reply">Du kannst nicht auf diese Story antworten, weil du nicht mehr Mitglied in dieser Gruppe bist.</string>
     <!-- Displayed for each user that reacted to a story when viewing replies -->
     <string name="StoryGroupReactionReplyItem__reacted_to_the_story">Auf Story reagiert</string>
     <!-- Label for story views tab -->
@@ -4843,7 +4843,7 @@
     <!-- Context menu item to delete a story response -->
     <string name="StoryGroupReplyItem__delete">Löschen</string>
     <!-- Page title for My Story options -->
-    <string name="MyStorySettingsFragment__my_story">Mein Story</string>
+    <string name="MyStorySettingsFragment__my_story">Meine Story</string>
     <!-- Number of total signal connections displayed in "All connections" row item -->
     <plurals name="MyStorySettingsFragment__viewers">
         <item quantity="one">%1$d viewer</item>
@@ -4885,8 +4885,6 @@
     <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Antworten &amp; Reaktionen erlauben</string>
     <!-- Summary for switchable option allowing replies and reactions on your story -->
     <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Erlaube Personen, die deine Story sehen können, auf sie zu antworten und zu reagieren</string>
-    <!-- Note about default sharing -->
-    <string name="MyStorySettingsFragment__hide_your_story_from">Verberge deine Story vor bestimmten Personen. Standardmäßig wird deine Story geteilt mit deinen %1$s</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
     <string name="SignalConnectionsBottomSheet___signal_connections">Signal-Verbindungen</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
@@ -4898,7 +4896,7 @@
     <!-- Signal connections sheet bullet point 3 -->
     <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Speicherung in den Systemkontakten</string>
     <!-- Note at the bottom of the Signal connections sheet -->
-    <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Deine Beziehungen können deinen Namen und dein Foto sowie Beiträge unter »Meine Story« sehen, es sei denn, du verbirgst sie vor ihnen."</string>
+    <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Deine Verbindungen können deinen Namen und dein Foto sowie Beiträge unter »Meine Story« sehen, es sei denn, du verbirgst sie vor ihnen."</string>
     <!-- Clickable option to add a viewer to a private story -->
     <string name="PrivateStorySettingsFragment__add_viewer">Betrachter hinzufügen</string>
     <!-- Clickable option to delete a custom story -->
@@ -4948,23 +4946,23 @@
     <!-- Dialog title for removing a group story -->
     <string name="StoryDialogs__remove_group_story">Deine Gruppen-Story entfernen?</string>
     <!-- Dialog message for removing a group story -->
-    <string name="StoryDialogs__s_will_be_removed">\"%1$s\" will be removed.</string>
+    <string name="StoryDialogs__s_will_be_removed">»%1$s« wird entfernt.</string>
     <!-- Dialog positive action for removing a group story -->
     <string name="StoryDialogs__remove">Entfernen</string>
     <!-- Dialog title for deleting a private story -->
     <string name="StoryDialogs__delete_private_story">Private Story löschen?</string>
     <!-- Dialog message for deleting a private story -->
-    <string name="StoryDialogs__s_and_updates_shared">\"%1$s\" and updates shared to this story will be deleted.</string>
+    <string name="StoryDialogs__s_and_updates_shared">»%1$s« und Aktualisierungen, die im Rahmen dieser Story geteilt werden, werden gelöscht.</string>
     <!-- Dialog positive action for deleting a private story -->
     <string name="StoryDialogs__delete">Löschen</string>
     <!-- Dialog title for first time sending something to a beta story -->
-    <string name="StoryDialogs__stories_is_available_to">Stories is available to Signal beta users only.</string>
+    <string name="StoryDialogs__stories_is_available_to">Storys ist nur für Signal Beta User verfügbar.</string>
     <!-- Dialog message for first time sending something to a beta story -->
-    <string name="StoryDialogs__if_you_share_a_story">If you share a story, it will only be available to people who are on Signal beta.</string>
+    <string name="StoryDialogs__if_you_share_a_story">Wenn du eine Story teilst, ist sie nur für Personen zugänglich, die an Signal Beta teilnehmen.</string>
     <!-- Dialog title for first time adding something to a story -->
     <string name="StoryDialogs__add_to_story_q">Zu Story hinzufügen?</string>
     <!-- Dialog message for first time adding something to a story -->
-    <string name="StoryDialogs__adding_content">Wenn du deiner Story Inhalte hinzufügst, können deine Signal-Beziehungen diese 24 Stunden lang ansehen. Du kannst in den Einstellungen ändern, wer deine Story sehen kann.</string>
+    <string name="StoryDialogs__adding_content">Wenn du deiner Story Inhalte hinzufügst, können deine Signal-Verbindungen diese 24 Stunden lang ansehen. Du kannst in den Einstellungen ändern, wer deine Story sehen kann.</string>
     <!-- First time share to story dialog: Positive action to go ahead and add to story -->
     <string name="StoryDialogs__add_to_story">Zu Story hinzufügen</string>
     <!-- First time share to story dialog: Neutral action to edit who can view "My Story" -->
@@ -4974,11 +4972,11 @@
     <!-- Error message dialog button to resend a previously failed story send -->
     <string name="StoryDialogs__send">Senden</string>
     <!-- Action button for turning off stories when stories are present on the device -->
-    <string name="StoryDialogs__turn_off_and_delete">Turn off and delete</string>
+    <string name="StoryDialogs__turn_off_and_delete">Ausschalten und löschen</string>
     <!-- Privacy Settings toggle title for stories -->
-    <string name="PrivacySettingsFragment__share_and_view_stories">Stories teilen &amp; betrachten</string>
+    <string name="PrivacySettingsFragment__share_and_view_stories">Storys teilen und betrachten</string>
     <!-- Privacy Settings toggle summary for stories -->
-    <string name="PrivacySettingsFragment__you_will_no_longer_be_able">Wenn diese Option deaktiviert ist, können keine Stories geteilt und angesehen werden.</string>
+    <string name="PrivacySettingsFragment__you_will_no_longer_be_able">Wenn diese Option deaktiviert ist, können keine Storys geteilt und betrachtet werden.</string>
     <!-- New story viewer selection screen title -->
     <string name="CreateStoryViewerSelectionFragment__choose_viewers">Betrachter auswählen</string>
     <!-- New story viewer selection action button label -->
@@ -4999,7 +4997,7 @@
     <!-- Name story screen error when save attempted with no label -->
     <string name="CreateStoryWithViewersFragment__this_field_is_required">Dieses Feld ist erforderlich.</string>
     <!-- Name story screen error when save attempted but label is duplicate -->
-    <string name="CreateStoryWithViewersFragment__there_is_already_a_story_with_this_name">Es existiert bereits eine Story dieses Namens</string>
+    <string name="CreateStoryWithViewersFragment__there_is_already_a_story_with_this_name">Es existiert bereits eine Story mit diesem Namen</string>
     <!-- Text for select all action when editing recipients for a story -->
     <string name="BaseStoryRecipientSelectionFragment__select_all">Alle auswählen</string>
     <!-- Choose story type bottom sheet title -->
@@ -5150,7 +5148,7 @@
     <!-- Dialog title for deleting a private story -->
     <string name="ContactSearchMediator__delete_story">Story löschen?</string>
     <!-- Dialog message for deleting a private story -->
-    <string name="ContactSearchMediator__delete_the_private">Private Story \"%1$s\" löschen?</string>
+    <string name="ContactSearchMediator__delete_the_private">Private Story »%1$s« löschen?</string>
     <!-- Dialog action item for deleting a private story -->
     <string name="ContactSearchMediator__delete">Löschen</string>
     <!-- Gift expiry days remaining -->
@@ -5226,7 +5224,7 @@
     <!-- Title of initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">Meine Story-Datenschutz</string>
     <!-- Subtitle of initial My Story settings configuration shown when sending to My Story for the first time -->
-    <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">Wähle aus, wer Posts zu deiner Story sehen kann. In „Einstellungen“ kannst du jederzeit Änderungen vornehmen.</string>
+    <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">Wähle aus, wer Posts zu deiner Story sehen kann. In »Einstellungen« kannst du jederzeit Änderungen vornehmen.</string>
     <!-- All connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Alle Signal-Verbindungen</string>
     <!-- All connections except option for initial My Story settings configuration shown when sending to My Story for the first time -->
@@ -5263,7 +5261,7 @@
     <!-- Dialog title to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">Storys ausschalten?</string>
     <!-- Dialog message to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">You will no longer be able to share or view stories. Story updates you have recently shared will also be deleted.</string>
+    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">Du wirst keine Storys mehr teilen oder betrachten können. Story-Updates, die du kürzlich geteilt hast, werden ebenfalls gelöscht.</string>
     <!-- Page title when launched from stories landing screen -->
     <string name="StoriesPrivacySettingsFragment__story_privacy">Story-Datenschutz</string>
 

@@ -2667,11 +2667,11 @@
     <string name="preferences_storage__review_storage">Alle bestanden weergeven</string>
     <string name="preferences_storage__delete_older_messages">Oude berichten wissen?</string>
     <string name="preferences_storage__clear_message_history">Berichtengeschiedenis wissen?</string>
-    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Dit zal pertinent alle gespreksgeschiedenis en media ouder dan %1$s van dit apparaat wissen.</string>
+    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Dit zal alle gespreksgeschiedenis en media ouder dan %1$s permanent van dit apparaat wissen.</string>
     <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Dit zal direct alle gesprekken inkorten tot de %1$s meest recente berichten.</string>
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Dit zal pertinent al je gespreksgeschiedenis en media van dit apparaat wissen.</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Dit zal al je gespreksgeschiedenis en media van dit apparaat permanent wissen.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Weet je zeker dat je alle gespreksgeschiedenis wilt wissen?</string>
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Alle gespreksgeschiedenis zal pertinent worden gewist. Dit kan niet ongedaan worden gemaakt.</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Alle gespreksgeschiedenis zal permanent worden gewist. Dit kan niet ongedaan worden gemaakt.</string>
     <string name="preferences_storage__delete_all_now">Nu alles wissen</string>
     <string name="preferences_storage__forever">Voor altijd</string>
     <string name="preferences_storage__one_year">1 jaar</string>
@@ -2911,19 +2911,19 @@
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
-    <string name="PaymentsSecuritySetupFragment__security_setup">Security setup</string>
+    <string name="PaymentsSecuritySetupFragment__security_setup">Veiligheidsinstellingen</string>
     <!-- Title to enable payment lock -->
-    <string name="PaymentsSecuritySetupFragment__protect_your_funds">Protect your funds</string>
+    <string name="PaymentsSecuritySetupFragment__protect_your_funds">Bescherm je geld</string>
     <!-- Description as to why payment lock is required -->
-    <string name="PaymentsSecuritySetupFragment__help_prevent">Help prevent a person with your phone from accessing your funds by adding another layer of security. You can disable this option in Settings.</string>
+    <string name="PaymentsSecuritySetupFragment__help_prevent">Voorkom met een extra beveiligingslaag dat iemand anders dan jij via jouw telefoon toegang heeft tot je geld. In instellingen kun je deze optie uitschakelen.</string>
     <!-- Option to enable payment lock -->
-    <string name="PaymentsSecuritySetupFragment__enable_payment_lock">Enable payment lock</string>
+    <string name="PaymentsSecuritySetupFragment__enable_payment_lock">Betalingsvergrendeling inschakelen</string>
     <!-- Option to cancel -->
     <string name="PaymentsSecuritySetupFragment__not_now">Niet nu</string>
     <!-- Dialog title to confirm skipping the step -->
-    <string name="PaymentsSecuritySetupFragment__skip_this_step">Skip this step?</string>
+    <string name="PaymentsSecuritySetupFragment__skip_this_step">Deze stap overslaan?</string>
     <!-- Dialog description to let users know why payment lock is required -->
-    <string name="PaymentsSecuritySetupFragment__skipping_this_step">Skipping this step could allow anyone who has physical access to your phone to transfer funds or view your recovery phrase.</string>
+    <string name="PaymentsSecuritySetupFragment__skipping_this_step">Als je deze stap overslaat, kan iemand met fysieke toegang tot je telefoon geld overmaken of je herstelzin bekijken.</string>
     <!-- Dialog option to cancel -->
     <string name="PaymentsSecuritySetupFragment__cancel">Annuleren</string>
     <!-- Dialog option to skip -->
@@ -4825,7 +4825,7 @@
     <!-- Displayed when a story has no replies yet -->
     <string name="StoryGroupReplyFragment__no_replies_yet">Nog geen reacties</string>
     <!-- Displayed when no longer a group member -->
-    <string name="StoryGroupReplyFragment__you_cant_reply">You can\'t reply to this story because you\'re no longer a member of this group.</string>
+    <string name="StoryGroupReplyFragment__you_cant_reply">Je kunt niet reageren op dit verhaal, omdat je geen lid van deze groep meer bent.</string>
     <!-- Displayed for each user that reacted to a story when viewing replies -->
     <string name="StoryGroupReactionReplyItem__reacted_to_the_story">Reageerde op dit verhaal</string>
     <!-- Label for story views tab -->
@@ -4885,8 +4885,6 @@
     <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Reacties toelaten</string>
     <!-- Summary for switchable option allowing replies and reactions on your story -->
     <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Sta personen die je verhaal mogen zien ook toe om te reageren</string>
-    <!-- Note about default sharing -->
-    <string name="MyStorySettingsFragment__hide_your_story_from">Met deze optie kun je je verhaal voor specifieke personen verbergen. Je verhaal is standaard zichtbaar voor al je %1$s</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
     <string name="SignalConnectionsBottomSheet___signal_connections">Signal-contacten</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
@@ -4898,7 +4896,7 @@
     <!-- Signal connections sheet bullet point 3 -->
     <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Hem of haar in je systeemcontactenlijst te hebben staan</string>
     <!-- Note at the bottom of the Signal connections sheet -->
-    <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Je Signal-kennissen kunnen jouw profielnaam en -foto zien en kunnen je “Mijn verhaal”-plaatsingen zien tenzij je die specifiek voor hem of haar verbergt."</string>
+    <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Je Signal-contacten kunnen jouw profielnaam en -foto zien en kunnen je “Mijn verhaal”-plaatsingen zien tenzij je die specifiek voor hem of haar verbergt."</string>
     <!-- Clickable option to add a viewer to a private story -->
     <string name="PrivateStorySettingsFragment__add_viewer">Persoon toevoegen</string>
     <!-- Clickable option to delete a custom story -->
@@ -4948,23 +4946,23 @@
     <!-- Dialog title for removing a group story -->
     <string name="StoryDialogs__remove_group_story">Verhaal verwijderen?</string>
     <!-- Dialog message for removing a group story -->
-    <string name="StoryDialogs__s_will_be_removed">\"%1$s\" will be removed.</string>
+    <string name="StoryDialogs__s_will_be_removed">\"%1$s\" wordt verwijderd.</string>
     <!-- Dialog positive action for removing a group story -->
     <string name="StoryDialogs__remove">Overschrijvingsdetails wissen</string>
     <!-- Dialog title for deleting a private story -->
     <string name="StoryDialogs__delete_private_story">Privéverhaal verwijderen?</string>
     <!-- Dialog message for deleting a private story -->
-    <string name="StoryDialogs__s_and_updates_shared">\"%1$s\" and updates shared to this story will be deleted.</string>
+    <string name="StoryDialogs__s_and_updates_shared">\"%1$s\" en updates die op dit verhaal zijn gedeeld, worden verwijderd.</string>
     <!-- Dialog positive action for deleting a private story -->
     <string name="StoryDialogs__delete">Wissen</string>
     <!-- Dialog title for first time sending something to a beta story -->
-    <string name="StoryDialogs__stories_is_available_to">Stories is available to Signal beta users only.</string>
+    <string name="StoryDialogs__stories_is_available_to">Verhalen is alleen beschikbaar voor Signal-beta-gebruikers.</string>
     <!-- Dialog message for first time sending something to a beta story -->
-    <string name="StoryDialogs__if_you_share_a_story">If you share a story, it will only be available to people who are on Signal beta.</string>
+    <string name="StoryDialogs__if_you_share_a_story">Als je een verhaal deelt, is dit alleen beschikbaar voor mensen die op Signal-beta zitten.</string>
     <!-- Dialog title for first time adding something to a story -->
     <string name="StoryDialogs__add_to_story_q">Toevoegen aan verhaal?</string>
     <!-- Dialog message for first time adding something to a story -->
-    <string name="StoryDialogs__adding_content">Wanneer je een nieuw deel aan je verhaal toevoegt dan kunnen je Signal-kennissen dat deel van je verhaal voor de komende 24 uur bekijken. Je kunt in de instellingen aanpassen welke personen je verhaal kunnen bekijken.</string>
+    <string name="StoryDialogs__adding_content">Wanneer je een nieuw deel aan je verhaal toevoegt dan kunnen je Signal-contacten dat deel van je verhaal voor de komende 24 uur bekijken. Je kunt in de instellingen aanpassen welke personen je verhaal kunnen bekijken.</string>
     <!-- First time share to story dialog: Positive action to go ahead and add to story -->
     <string name="StoryDialogs__add_to_story">Een verhaal toevoegen</string>
     <!-- First time share to story dialog: Neutral action to edit who can view "My Story" -->
@@ -4974,7 +4972,7 @@
     <!-- Error message dialog button to resend a previously failed story send -->
     <string name="StoryDialogs__send">Uploaden</string>
     <!-- Action button for turning off stories when stories are present on the device -->
-    <string name="StoryDialogs__turn_off_and_delete">Turn off and delete</string>
+    <string name="StoryDialogs__turn_off_and_delete">Uitschakelen en verwijderen</string>
     <!-- Privacy Settings toggle title for stories -->
     <string name="PrivacySettingsFragment__share_and_view_stories">Verhaal weergeven &amp; doorsturen</string>
     <!-- Privacy Settings toggle summary for stories -->
@@ -5263,7 +5261,7 @@
     <!-- Dialog title to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">Verhalen uitzetten?</string>
     <!-- Dialog message to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">You will no longer be able to share or view stories. Story updates you have recently shared will also be deleted.</string>
+    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">Je kunt geen verhalen meer delen of bekijken. Updates die je recent op je verhaal hebt gedeeld, worden ook gewist.</string>
     <!-- Page title when launched from stories landing screen -->
     <string name="StoriesPrivacySettingsFragment__story_privacy">Verhaalprivacy</string>
 

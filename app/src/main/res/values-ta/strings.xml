@@ -193,7 +193,7 @@
     <string name="ClientDeprecatedActivity_update">புதுப்பிக்கப்பட்டது</string>
     <string name="ClientDeprecatedActivity_dont_update">புதுப்பிக்க வேண்டாம்</string>
     <string name="ClientDeprecatedActivity_warning">எச்சரிக்கை</string>
-    <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Signal லின் உங்கள் பதிப்பு காலாவதியானது. உங்கள் செய்தி வரலாற்றை நீங்கள் காணலாம், ஆனால் நீங்கள் புதுப்பிக்கும் வரை செய்திகளை அனுப்பவோ பெறவோ முடியாது.</string>
+    <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">உங்கள் சிக்னலின் பதிப்பு காலாவதியானது. உங்கள் செய்தி வரலாற்றை நீங்கள் காணலாம், ஆனால் நீங்கள் புதுப்பிக்கும் வரை செய்திகளை அனுப்பவோ பெறவோ முடியாது.</string>
 
     <!-- CommunicationActions -->
     <string name="CommunicationActions_no_browser_found">இணைய உலாவி இல்லை.</string>
@@ -673,7 +673,7 @@
     <!-- GroupsV1MigrationLearnMoreBottomSheetDialogFragment -->
     <string name="GroupsV1MigrationLearnMore_what_are_new_groups">புதிய குழுக்கள் என்றால் என்ன?</string>
     <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">புதிய குழுக்களில் @குறிப்புகள் மற்றும் குழு நிர்வாகிகள் போன்ற அம்சங்கள் உள்ளன. எதிர்காலத்தில் கூடுதல் அம்சங்கள் இருக்கும்.</string>
-    <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">மேம்படுத்தலுக்கு முன்பிருந்தே அனைத்து செய்தி வரலாறும் ஊடகமும் தக்கவைக்கப்பட்டுள்ளன.</string>
+    <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">அனைத்து செய்தி வரலாறும் மீடியாவும் மேம்படுத்தப்படுவதற்கு முன்பிருந்தே வைக்கப்பட்டுள்ளன.</string>
     <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">இந்த குழுவில் மீண்டும் சேர நீங்கள் அழைப்பை ஏற்க வேண்டும், நீங்கள் ஏற்றுக்கொள்ளும் வரை குழு செய்திகளைப் பெற மாட்டீர்கள்.</string>
     <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
         <item quantity="one">இந்த உறுப்பினர் மீண்டும் இந்த குழுவில் சேர அழைப்பை ஏற்க வேண்டும், அவர்கள் ஏற்றுக்கொள்ளும் வரை குழு செய்திகளைப் பெற மாட்டார்கள்:</item>
@@ -688,7 +688,7 @@
     <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">புதிய குழுவிற்கு மேம்படுத்தவும்</string>
     <string name="GroupsV1MigrationInitiation_upgrade_this_group">இந்த குழுவைப் புதுப்பிக்கவும்</string>
     <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">புதிய குழுக்களில் @குறிப்புகள் மற்றும் குழு நிர்வாகிகள் போன்ற அம்சங்கள் உள்ளன. எதிர்காலத்தில் கூடுதல் அம்சங்கள் இருக்கும்.</string>
-    <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">மேம்படுத்தலுக்கு முன்பிருந்தே அனைத்து செய்தி வரலாறும் ஊடகமும் தக்கவைக்கப்பட்டுள்ளன.</string>
+    <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">அனைத்து செய்தி வரலாறும் மீடியாவும் மேம்படுத்தப்படுவதற்கு முன்பிருந்தே வைக்கப்படும்.</string>
     <string name="GroupsV1MigrationInitiation_encountered_a_network_error">பிணைய பிழை ஏற்பட்டது. பின்னர் மீண்டும் முயற்சிக்கவும்.</string>
     <string name="GroupsV1MigrationInitiation_failed_to_upgrade">மேம்பாடு தோல்வியடைந்தது</string>
     <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
@@ -1346,9 +1346,9 @@
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">இந்த புதிய அம்சம் பிடித்திருக்கிறதா? ஒரு முறைக்கான நன்கொடை மூலம் சிக்னலை ஆதரிக்க உதவுங்கள்.</string>
     <!-- Update item message shown when we merge two threads together -->
-    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">%1$s உடனான உங்கள் செய்தி வரலாறு மற்றும் அவற்றின் எண் %2$s இணைக்கப்பட்டது.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">%1$s உடனான உங்கள் செய்தி வரலாறு மற்றும் அவர்களின் எண் %2$s இணைக்கப்பட்டது.</string>
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
-    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">%1$s உடனான உங்கள் செய்தி வரலாறும் அவர்களுக்குச் சொந்தமான மற்றொரு அரட்டையும் இணைக்கப்பட்டது.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">%1$s உடனான உங்கள் செய்தி வரலாறும் அவர்களுக்குச் சொந்தமான மற்றொரு சாட்டும் இணைக்கப்பட்டது.</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$sகுழு அழைப்பைத் தொடங்கினார்%2$s</string>
@@ -1542,7 +1542,7 @@
     <string name="RedPhone_network_failed">பிணையம் தோல்வியுற்றது!</string>
     <string name="RedPhone_number_not_registered">எண் பதிவிலில்லை.</string>
     <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">நீங்கள் டயல் செய்த எண் பாதுகாப்பான குரலை ஆதரிக்காது!</string>
-    <string name="RedPhone_got_it">அறிந்துகொண்டேன் .</string>
+    <string name="RedPhone_got_it">அறிந்துகொண்டேன்</string>
 
     <!-- Valentine\'s Day Megaphone -->
     <!-- Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons. -->
@@ -1855,9 +1855,9 @@
     <!-- Displayed in the notification when the user has opened a received gift -->
     <string name="ThreadRecord__you_redeemed_a_gift_badge">நீங்கள் ஒரு பரிசு பேட்ஜை மீட்டெடுத்துள்ளீர்கள்</string>
     <!-- Displayed in the conversation list when someone reacted to your story -->
-    <string name="ThreadRecord__reacted_s_to_your_story">உங்கள் ஸ்டோரி-க்கு %1$s என்று பதிலளித்துள்ளார்</string>
+    <string name="ThreadRecord__reacted_s_to_your_story">உங்கள் ஸ்டோரிக்கு %1$s என்று எதிர்வினையாற்றினார்</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
-    <string name="ThreadRecord__reacted_s_to_their_story">அவர்கள் ஸ்டோரி-க்கு %1$s என்று பதிலளித்துள்ளீர்கள்</string>
+    <string name="ThreadRecord__reacted_s_to_their_story">அவர்கள் ஸ்டோரிக்கு %1$s என்று எதிர்வினையாற்றி உள்ளீர்கள்</string>
 
     <!-- UpdateApkReadyListener -->
     <string name="UpdateApkReadyListener_Signal_update">Signal புதுப்பிப்பு</string>
@@ -2666,12 +2666,12 @@
     <string name="preferences_storage__audio">ஒலி</string>
     <string name="preferences_storage__review_storage">விமர்சனம் சேமிப்பு</string>
     <string name="preferences_storage__delete_older_messages">பழைய செய்திகளை நீக்கவா?</string>
-    <string name="preferences_storage__clear_message_history">செய்தி வரலாற்றை அழிக்கவா?</string>
-    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">இது உங்கள் சாதனத்திலிருந்து %1$s விட பழைய செய்தி மற்றும் ஊடகங்களை நிரந்தரமாக நீக்கும்.</string>
+    <string name="preferences_storage__clear_message_history">செய்தி வரலாற்றை அழிப்பதா?</string>
+    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">இது உங்கள் டிவைஸில் இருந்து %1$s ஐ விட பழையதாக உள்ள அனைத்து செய்தி வரலாறு மற்றும் மீடியாவை நிரந்தரமாக நீக்கும்.</string>
     <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">இது எல்லா உரையாடல்களையும் மிக சமீபத்திய %1$s செய்திகளுக்கு நிரந்தரமாக நேர்த்தி செய்யும்.</string>
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">இது உங்கள் சாதனத்திலிருந்து எல்லா செய்தி வரலாற்றையும் ஊடகத்தையும் நிரந்தரமாக நீக்கும்.</string>
-    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">எல்லா செய்தி வரலாற்றையும் நீக்க விரும்புகிறீர்களா?</string>
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">அனைத்து செய்தி வரலாறும் நிரந்தரமாக அகற்றப்படும். பின்னர், இந்த செயலைச் செயல்தவிர்க்க முடியாது.</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">இது உங்கள் டிவைஸில் இருந்து அனைத்து செய்தி வரலாறு மற்றும் மீடியாவை நிரந்தரமாக நீக்கும்.</string>
+    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">அனைத்து செய்தி வரலாற்றையும் நீக்க விரும்புகிறீர்களா?</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">அனைத்து செய்தி வரலாறும் நிரந்தரமாக அகற்றப்படும். இந்த செயலைச் செயல்தவிர்க்க முடியாது.</string>
     <string name="preferences_storage__delete_all_now">அனைத்தையும் இப்போது நீக்கு</string>
     <string name="preferences_storage__forever">என்றென்றும்</string>
     <string name="preferences_storage__one_year">1 வருடம்</string>
@@ -2911,19 +2911,19 @@
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
-    <string name="PaymentsSecuritySetupFragment__security_setup">Security setup</string>
+    <string name="PaymentsSecuritySetupFragment__security_setup">பாதுகாப்பு அமைப்பு</string>
     <!-- Title to enable payment lock -->
-    <string name="PaymentsSecuritySetupFragment__protect_your_funds">Protect your funds</string>
+    <string name="PaymentsSecuritySetupFragment__protect_your_funds">உங்கள் நிதியைப் பாதுகாக்கவும்</string>
     <!-- Description as to why payment lock is required -->
-    <string name="PaymentsSecuritySetupFragment__help_prevent">Help prevent a person with your phone from accessing your funds by adding another layer of security. You can disable this option in Settings.</string>
+    <string name="PaymentsSecuritySetupFragment__help_prevent">மற்றொரு பாதுகாப்பு அடுக்கைச் சேர்ப்பதன் மூலம், உங்கள் மொபைலைக் கொண்டுள்ள நபர் உங்கள் நிதியை அணுகுவதைத் தடுக்க உதவுங்கள். இந்த விருப்பத்தை அமைப்புகளில் முடக்கலாம்.</string>
     <!-- Option to enable payment lock -->
-    <string name="PaymentsSecuritySetupFragment__enable_payment_lock">Enable payment lock</string>
+    <string name="PaymentsSecuritySetupFragment__enable_payment_lock">கட்டண பூட்டை இயக்கவும்</string>
     <!-- Option to cancel -->
     <string name="PaymentsSecuritySetupFragment__not_now">இப்போது இல்லை</string>
     <!-- Dialog title to confirm skipping the step -->
-    <string name="PaymentsSecuritySetupFragment__skip_this_step">Skip this step?</string>
+    <string name="PaymentsSecuritySetupFragment__skip_this_step">இந்த படிநிலையைத் தவிர்ப்பதா?</string>
     <!-- Dialog description to let users know why payment lock is required -->
-    <string name="PaymentsSecuritySetupFragment__skipping_this_step">Skipping this step could allow anyone who has physical access to your phone to transfer funds or view your recovery phrase.</string>
+    <string name="PaymentsSecuritySetupFragment__skipping_this_step">இந்தப் படிநிலையைத் தவிர்த்தால், உங்கள் மொபைலுக்கான அணுகல் உள்ள எவரும் நிதியை மாற்ற அல்லது உங்கள் மீட்பு சொற்றொடரைப் பார்க்க அனுமதிக்கப்படலாம்.</string>
     <!-- Dialog option to cancel -->
     <string name="PaymentsSecuritySetupFragment__cancel">ரத்து</string>
     <!-- Dialog option to skip -->
@@ -4001,7 +4001,7 @@
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">இயல்புநிலை நேரக்குறிப்பான் புதிய அரட்டைகளுக்கு</string>
     <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">நீங்கள் தொடங்கும் அனைத்து புதிய அரட்டைகளுக்கும் இயல்புநிலை காணாமல் போகும் செய்திகள் நேரக்குறிப்பானை அமைக்கவும்.</string>
     <!-- Summary for stories preference to launch into story privacy settings -->
-    <string name="PrivacySettingsFragment__manage_your_stories">உங்கள் ஸ்டோரீக்கள் மற்றும் அவற்றை யார் பார்க்கலாம் என்பதை நிர்வகிக்கவும்</string>
+    <string name="PrivacySettingsFragment__manage_your_stories">உங்கள் ஸ்டோரீக்களையும் மற்றும் அவற்றை யார் பார்வையிடலாம் என்பதையும் நிர்வகிக்கவும்</string>
     <string name="PrivacySettingsFragment__payment_lock_require_lock">நிதியை மாற்ற ஆண்ட்ராய்டு திரைப் பூட்டு அல்லது கைரேகை தேவை</string>
     <!-- Alert dialog title when payment lock cannot be enabled -->
     <string name="PrivacySettingsFragment__cant_enable_title">கட்டண பூட்டை இயக்க முடியவில்லை</string>
@@ -4760,7 +4760,7 @@
     <!-- Title of dialog confirming decision to hide a story -->
     <string name="StoriesLandingFragment__hide_story">ஸ்டோரியை மறைப்பதா?</string>
     <!-- Message of dialog confirming decision to hide a story -->
-    <string name="StoriesLandingFragment__new_story_updates">%1$s-இடமிருந்து புதிய ஸ்டோரி புதுப்பிப்புகள் இனி ஸ்டோரீக்கள் பட்டியலின் மேலே தோன்றாது.</string>
+    <string name="StoriesLandingFragment__new_story_updates">%1$s -இடமிருந்து புதிய ஸ்டோரி புதுப்பிப்புகள் இனி ஸ்டோரீக்கள் பட்டியலின் மேலே தோன்றாது.</string>
     <!-- Positive action of dialog confirming decision to hide a story -->
     <string name="StoriesLandingFragment__hide">மறை</string>
     <!-- Displayed in Snackbar after story is hidden -->
@@ -4811,7 +4811,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">இதுவரை பார்வைகள் ஏதுமில்லை</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">உங்கள் ஸ்டோரீஸ்-ஐ யார் பார்த்தார்கள் என்பதைக் காண, வாசித்ததற்கான அறிவிப்புகளை இயக்கவும்.</string>
+    <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">உங்கள் ஸ்டோரீஸ் -ஐ யார் பார்வையிட்டனர் என்பதைக் காண, வாசித்ததற்கான அறிவிப்புகளை இயக்கவும்.</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">அமைப்புகளுக்குச் செல்</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -4825,15 +4825,15 @@
     <!-- Displayed when a story has no replies yet -->
     <string name="StoryGroupReplyFragment__no_replies_yet">இதுவரை பதில்கள் ஏதுமில்லை</string>
     <!-- Displayed when no longer a group member -->
-    <string name="StoryGroupReplyFragment__you_cant_reply">You can\'t reply to this story because you\'re no longer a member of this group.</string>
+    <string name="StoryGroupReplyFragment__you_cant_reply">இந்த குழுவில் உறுப்பினராக இல்லாததால் உங்களால் இந்த ஸ்டோரிக்கு பதிலளிக்க முடியாது.</string>
     <!-- Displayed for each user that reacted to a story when viewing replies -->
-    <string name="StoryGroupReactionReplyItem__reacted_to_the_story">ஸ்டோரிக்கு பதிலளிக்கப்பட்டது</string>
+    <string name="StoryGroupReactionReplyItem__reacted_to_the_story">ஸ்டோரிக்கு எதிர்வினையாற்றப்பட்டது</string>
     <!-- Label for story views tab -->
     <string name="StoryViewsAndRepliesDialogFragment__views">பார்வைகள்</string>
     <!-- Label for story replies tab -->
     <string name="StoryViewsAndRepliesDialogFragment__replies">பதில்கள்</string>
     <!-- Description of action for reaction button -->
-    <string name="StoryReplyComposer__react_to_this_story">இந்த ஸ்டோரிக்கு பதிலளிக்கவும்</string>
+    <string name="StoryReplyComposer__react_to_this_story">இந்த ஸ்டோரிக்கு எதிர்வினையாற்றவும்</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">%1$s-க்கு தனிப்பட்ட முறையில் பதிலளிக்கிறது</string>
     <!-- Context menu item to privately reply to a story response -->
@@ -4852,7 +4852,7 @@
     <!-- Button on all signal connections row to view all signal connections. Please keep as short as possible. -->
     <string name="MyStorySettingsFragment__view">View</string>
     <!-- Section heading for story visibility -->
-    <string name="MyStorySettingsFragment__who_can_view_this_story">இந்த ஸ்டோரியை யார் பார்க்க முடியும்</string>
+    <string name="MyStorySettingsFragment__who_can_view_this_story">இந்த ஸ்டோரியை யார் பார்வையிட முடியும்</string>
     <!-- Clickable option for selecting people to hide your story from -->
     <string name="MyStorySettingsFragment__hide_story_from">-இடமிருந்து ஸ்டோரியை மறைக்கவும்</string>
     <!-- Privacy setting title for sending stories to all your signal connections -->
@@ -4878,15 +4878,13 @@
         <item quantity="other">%1$d நபர்கள்</item>
     </plurals>
     <!-- My story privacy fine print about what the privacy settings are for -->
-    <string name="MyStorySettingsFragment__choose_who_can_view_your_story">உங்கள் ஸ்டோரியை யார் பார்க்கலாம் என்பதைத் தேர்வுசெய்யவும். நீங்கள் ஏற்கனவே அனுப்பிய ஸ்டோரீக்களை மாற்றங்கள் பாதிக்காது.</string>
+    <string name="MyStorySettingsFragment__choose_who_can_view_your_story">உங்கள் ஸ்டோரியை யார் பார்வையிடலாம் என்பதைத் தேர்வுசெய்யவும். நீங்கள் ஏற்கனவே அனுப்பிய ஸ்டோரீக்களை மாற்றங்கள் பாதிக்காது.</string>
     <!-- Section header for options related to replies and reactions -->
     <string name="MyStorySettingsFragment__replies_amp_reactions">பதில்கள் &amp;ஆம்ப்; எதிர்வினைகள்</string>
     <!-- Switchable option for allowing replies and reactions on your stories -->
     <string name="MyStorySettingsFragment__allow_replies_amp_reactions">பதில்களை அனுமதிக்கவும் &amp;ஆம்ப்; எதிர்வினைகள்</string>
     <!-- Summary for switchable option allowing replies and reactions on your story -->
     <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">உங்கள் ஸ்டோரியைப் பார்க்கக்கூடியவர்கள் எதிர்வினையாற்றி பதிலளிக்கட்டும்</string>
-    <!-- Note about default sharing -->
-    <string name="MyStorySettingsFragment__hide_your_story_from">குறிப்பிட்ட நபர்களிடமிருந்து உங்கள் ஸ்டோரியை மறைக்கவும். இயல்பாக, உங்கள் ஸ்டோரி உங்கள் %1$s உடன் பகிரப்படும்</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
     <string name="SignalConnectionsBottomSheet___signal_connections">சிக்னல் இணைப்புகள்</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
@@ -4948,23 +4946,23 @@
     <!-- Dialog title for removing a group story -->
     <string name="StoryDialogs__remove_group_story">குழு ஸ்டோரியை அகற்றுவதா?</string>
     <!-- Dialog message for removing a group story -->
-    <string name="StoryDialogs__s_will_be_removed">\"%1$s\" will be removed.</string>
+    <string name="StoryDialogs__s_will_be_removed">\"%1$s\" அகற்றப்படும்.</string>
     <!-- Dialog positive action for removing a group story -->
     <string name="StoryDialogs__remove">நீக்கு</string>
     <!-- Dialog title for deleting a private story -->
     <string name="StoryDialogs__delete_private_story">தனிப்பட்ட ஸ்டோரியை நீக்குவதா?</string>
     <!-- Dialog message for deleting a private story -->
-    <string name="StoryDialogs__s_and_updates_shared">\"%1$s\" and updates shared to this story will be deleted.</string>
+    <string name="StoryDialogs__s_and_updates_shared">\"%1$s\" மற்றும் இந்த ஸ்டோரிக்கு பகிரப்பட்ட புதுப்பிப்புகள் நீக்கப்படும்.</string>
     <!-- Dialog positive action for deleting a private story -->
     <string name="StoryDialogs__delete">அழி</string>
     <!-- Dialog title for first time sending something to a beta story -->
-    <string name="StoryDialogs__stories_is_available_to">Stories is available to Signal beta users only.</string>
+    <string name="StoryDialogs__stories_is_available_to">சிக்னல் பீட்டா பயனர்களுக்கு மட்டுமே ஸ்டோரீஸ் கிடைக்கின்றன.</string>
     <!-- Dialog message for first time sending something to a beta story -->
-    <string name="StoryDialogs__if_you_share_a_story">If you share a story, it will only be available to people who are on Signal beta.</string>
+    <string name="StoryDialogs__if_you_share_a_story">நீங்கள் ஒரு ஸ்டோரியைப் பகிர்ந்தால், அது சிக்னல் பீட்டாவில் உள்ளவர்களுக்கு மட்டுமே கிடைக்கும்.</string>
     <!-- Dialog title for first time adding something to a story -->
     <string name="StoryDialogs__add_to_story_q">ஸ்டோரியில் சேர்ப்பதா?</string>
     <!-- Dialog message for first time adding something to a story -->
-    <string name="StoryDialogs__adding_content">உங்கள் ஸ்டோரியில் பொருளடக்கத்தைச் சேர்ப்பதன் மூலம் உங்கள் சிக்னல் இணைப்புகளை 24 மணிநேரம் அதைப் பார்க்க அனுமதிக்கிறது. உங்கள் ஸ்டோரியை யார் பார்க்கலாம் என்பதை அமைப்புகளில் மாற்றலாம்.</string>
+    <string name="StoryDialogs__adding_content">உங்கள் ஸ்டோரியில் பொருளடக்கத்தைச் சேர்ப்பதன் மூலம் 24 மணிநேரம் அதைப் பார்வையிட உங்கள் சிக்னல் இணைப்புகளுக்கு அனுமதிக்கிறது. உங்கள் ஸ்டோரியை யார் பார்வையிடலாம் என்பதை அமைப்புகளில் மாற்றலாம்.</string>
     <!-- First time share to story dialog: Positive action to go ahead and add to story -->
     <string name="StoryDialogs__add_to_story">ஸ்டோரியில் சேர்க்கவும்</string>
     <!-- First time share to story dialog: Neutral action to edit who can view "My Story" -->
@@ -4974,11 +4972,11 @@
     <!-- Error message dialog button to resend a previously failed story send -->
     <string name="StoryDialogs__send">அனுப்புக</string>
     <!-- Action button for turning off stories when stories are present on the device -->
-    <string name="StoryDialogs__turn_off_and_delete">Turn off and delete</string>
+    <string name="StoryDialogs__turn_off_and_delete">ஆஃப் செய்துவிட்டு நீக்கவும்</string>
     <!-- Privacy Settings toggle title for stories -->
-    <string name="PrivacySettingsFragment__share_and_view_stories">பகிரவும் &amp;ஆம்ப்; ஸ்டோரீக்களை காணவும்</string>
+    <string name="PrivacySettingsFragment__share_and_view_stories">ஸ்டோரீக்களை பகிரவும் மற்றும் பார்வையிடவும்</string>
     <!-- Privacy Settings toggle summary for stories -->
-    <string name="PrivacySettingsFragment__you_will_no_longer_be_able">இந்த விருப்பத்தேர்வு முடக்கப்பட்டிருக்கும் போது உங்களால் இனி ஸ்டோரீக்களைப் பகிரவோ பார்க்கவோ முடியாது.</string>
+    <string name="PrivacySettingsFragment__you_will_no_longer_be_able">இந்த விருப்பத்தேர்வு முடக்கப்பட்டிருக்கும் போது உங்களால் இனி ஸ்டோரீக்களைப் பகிரவும் பார்வையிடவும் முடியாது.</string>
     <!-- New story viewer selection screen title -->
     <string name="CreateStoryViewerSelectionFragment__choose_viewers">பார்வையாளர்களைத் தேர்ந்தெடுக்கவும்</string>
     <!-- New story viewer selection action button label -->
@@ -5029,9 +5027,9 @@
     <!-- Toasted when the user externally shares to a text story successfully -->
     <string name="TextStoryPostCreationFragment__sent_story">ஸ்டோரி அனுப்பப்பட்டது</string>
     <!-- Toasted when the user external share to a text story fails -->
-    <string name="TextStoryPostCreationFragment__failed_to_send_story">ஸ்டோரியை அனுப்புவதில் தோல்வி</string>
+    <string name="TextStoryPostCreationFragment__failed_to_send_story">ஸ்டோரியை அனுப்புவது தோல்வியுற்றது</string>
     <!-- Displayed in a dialog to let the user select a given users story -->
-    <string name="StoryDialogs__view_story">ஸ்டோரியைக் காணவும்</string>
+    <string name="StoryDialogs__view_story">ஸ்டோரியை பார்வையிடவும்</string>
     <!-- Displayed in a dialog to let the user select a given users profile photo -->
     <string name="StoryDialogs__view_profile_photo">சுயவிவர புகைப்படத்தைக் காணவும்</string>
 
@@ -5045,11 +5043,11 @@
     <string name="TurnOffCircumventionMegaphone_turn_off">அணைக்க</string>
 
     <!-- Conversation Item label for when you react to someone else\'s story -->
-    <string name="ConversationItem__you_reacted_to_s_story">%1$s-யின் ஸ்டோரிக்கு நீங்கள் பதிலளித்துள்ளீர்கள்</string>
+    <string name="ConversationItem__you_reacted_to_s_story">%1$s-யின் ஸ்டோரிக்கு நீங்கள் எதிர்வினையாற்றி உள்ளீர்கள்</string>
     <!-- Conversation Item label for reactions to your story -->
-    <string name="ConversationItem__reacted_to_your_story">உங்கள் ஸ்டோரிக்கு பதிலளித்துள்ளார்</string>
+    <string name="ConversationItem__reacted_to_your_story">உங்கள் ஸ்டோரிக்கு எதிர்வினையாற்றினார்</string>
     <!-- Conversation Item label for reactions to an unavailable story -->
-    <string name="ConversationItem__reacted_to_a_story">ஒரு ஸ்டோரிக்கு பதிலளித்துள்ளார்</string>
+    <string name="ConversationItem__reacted_to_a_story">ஒரு ஸ்டோரிக்கு எதிர்வினையாற்றப்பட்டது</string>
 
     <!-- endregion -->
     <!-- Content description for expand contacts chevron -->
@@ -5112,7 +5110,7 @@
     <!-- Expired gift sheet not now button -->
     <string name="ExpiredGiftSheetConfiguration__not_now">இப்போது இல்லை</string>
     <!-- My Story label designating that we will only share with the selected viewers. -->
-    <string name="ContactSearchItems__only_share_with">- உடன் மட்டும் பகிரவும்</string>
+    <string name="ContactSearchItems__only_share_with">-உடன் மட்டும் பகிர்க</string>
     <!-- Label under name for private stories -->
     <plurals name="ContactSearchItems__private_story_d_viewers">
         <item quantity="one">தனிப்பட்ட ஸ்டோரி · %1$d பார்வையாளர்</item>
@@ -5125,7 +5123,7 @@
     </plurals>
     <!-- Label under name for groups -->
     <plurals name="ContactSearchItems__group_d_members">
-        <item quantity="one">%1$d உறுப்பினர்கள்</item>
+        <item quantity="one">%1$d உறுப்பினர்</item>
         <item quantity="other">%1$d உறுப்பினர்கள்</item>
     </plurals>
     <!-- Label under name for my story -->
@@ -5144,13 +5142,13 @@
     <!-- Dialog title for removing a group story -->
     <string name="ContactSearchMediator__remove_group_story">குழு ஸ்டோரியை அகற்றுவதா?</string>
     <!-- Dialog message for removing a group story -->
-    <string name="ContactSearchMediator__this_will_remove">இது இந்த பட்டியலிலிருந்து ஸ்டோரியை அகற்றும். இந்தக் குழுவின் ஸ்டோரீக்களை நீங்கள் இன்னும் பார்க்க முடியும்.</string>
+    <string name="ContactSearchMediator__this_will_remove">இது இந்த பட்டியலிலிருந்து ஸ்டோரியை அகற்றும். இந்தக் குழுவின் ஸ்டோரீக்களை நீங்கள் இன்னும் பார்வையிடவும் முடியும்.</string>
     <!-- Dialog action item for removing a group story -->
     <string name="ContactSearchMediator__remove">நீக்கு</string>
     <!-- Dialog title for deleting a private story -->
     <string name="ContactSearchMediator__delete_story">ஸ்டோரியை நீக்குவதா?</string>
     <!-- Dialog message for deleting a private story -->
-    <string name="ContactSearchMediator__delete_the_private">\"%1$s\" தனிப்பட்ட ஸ்டோரியை நீக்குவதா?</string>
+    <string name="ContactSearchMediator__delete_the_private">தனிப்பட்ட ஸ்டோரியை நீக்குவதா \"%1$s\"?</string>
     <!-- Dialog action item for deleting a private story -->
     <string name="ContactSearchMediator__delete">நீக்கு</string>
     <!-- Gift expiry days remaining -->
@@ -5178,7 +5176,7 @@
     <!-- Label indicating swipe direction to exit story viewer -->
     <string name="StoryFirstTimeNavigationView__swipe_right_to_exit">வெளியேற வலதுபுறமாக ஸ்வைப் செய்யவும்</string>
     <!-- Button label to confirm understanding of story navigation -->
-    <string name="StoryFirstTimeNagivationView__got_it">அறிந்துகொண்டேன்</string>
+    <string name="StoryFirstTimeNagivationView__got_it">அறிந்துகொண்டேன்</string>
     <!-- Content description for vertical context menu button in safety number sheet rows -->
     <string name="SafetyNumberRecipientRowItem__open_context_menu">சூழல் மெனுவைத் திறக்கவும்</string>
     <!-- Sub-line when a user is verified. -->
@@ -5196,11 +5194,11 @@
     <!-- Message of safety number changes bottom sheet when not showing individual records and user has seen review screen -->
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">அனைத்து இணைப்புகளும் மதிப்பாய்வு செய்யப்பட்டுள்ளன, தொடர அனுப்பு என்பதைத் தட்டவும்.</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
-    <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">சிக்னலை மீண்டும் நிறுவிய அல்லது சாதனங்களை மாற்றிய %1$d இணைப்புகள் உங்களிடம் உள்ளன. உங்கள் ஸ்டோரியை அவர்களுடன் பகிர்ந்து கொள்வதற்கு முன் அவர்களது பாதுகாப்பு எண்களை மதிப்பாய்வு செய்யவும் அல்லது உங்கள் ஸ்டோரியிலிருந்து அவற்றை அகற்றவும்.</string>
+    <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">சிக்னலை மீண்டும் நிறுவிய அல்லது டிவைஸ்களை மாற்றிய %1$d இணைப்புகள் உங்களிடம் உள்ளன. உங்கள் ஸ்டோரியை அவர்களுடன் பகிர்ந்து கொள்வதற்கு முன் அவர்களது பாதுகாப்பு எண்களை மதிப்பாய்வு செய்யவும் அல்லது உங்கள் ஸ்டோரியிலிருந்து அவர்களை அகற்றவும்.</string>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">பாதுகாப்பு எண்ணைச் சரிபார்க்கவும்</string>
     <!-- Menu action to remove user from story -->
-    <string name="SafetyNumberBottomSheetFragment__remove_from_story">ஸ்டோரியிலிருந்து அகற்று</string>
+    <string name="SafetyNumberBottomSheetFragment__remove_from_story">ஸ்டோரியிலிருந்து அகற்றவும்</string>
     <!-- Action button at bottom of SafetyNumberBottomSheetFragment to send anyway -->
     <string name="SafetyNumberBottomSheetFragment__send_anyway">இருந்தாலும் அனுப்பு</string>
     <!-- Action button at bottom of SafetyNumberBottomSheetFragment to review connections -->
@@ -5226,7 +5224,7 @@
     <!-- Title of initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">எனது ஸ்டோரி தனியுரிமை</string>
     <!-- Subtitle of initial My Story settings configuration shown when sending to My Story for the first time -->
-    <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">எனது ஸ்டோரிக்கான போஸ்டுகளை யார் பார்க்கலாம் என்பதைத் தேர்ந்தெடுக்கவும். நீங்கள் எப்போதும் அமைப்புகளில் மாற்றங்களைச் செய்யலாம்.</string>
+    <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">எனது ஸ்டோரிக்கான இடுகைகளை யார் பார்க்கலாம் என்பதைத் தேர்ந்தெடுக்கவும். நீங்கள் எப்போதும் அமைப்புகளில் மாற்றங்களைச் செய்யலாம்.</string>
     <!-- All connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">அனைத்து சிக்னல் இணைப்புகள்</string>
     <!-- All connections except option for initial My Story settings configuration shown when sending to My Story for the first time -->
@@ -5251,29 +5249,29 @@
 
     <!-- StoriesPrivacySettingsFragment -->
     <!-- Explanation about how stories are deleted and managed -->
-    <string name="StoriesPrivacySettingsFragment__stories_automatically_disappear">24 மணிநேரத்திற்குப் பிறகு ஸ்டோரீஸ் தானாகவே மறைந்துவிடும். உங்கள் ஸ்டோரியை யார் பார்க்கலாம் அல்லது குறிப்பிட்ட பார்வையாளர்கள் அல்லது குழுக்களுடன் புதிய ஸ்டோரீக்களை உருவாக்கலாம் என்பதைத் தேர்வுசெய்யவும்.</string>
+    <string name="StoriesPrivacySettingsFragment__stories_automatically_disappear">24 மணிநேரத்திற்குப் பிறகு ஸ்டோரீக்கள் தானாகவே மறைந்துவிடும். உங்கள் ஸ்டோரியை யார் பார்வையிடலாம் அல்லது குறிப்பிட்ட பார்வையாளர்கள் அல்லது குழுக்களுடன் புதிய கதைகளை உருவாக்கவும்.</string>
     <!-- Preference title to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__turn_off_stories">ஸ்டோரீக்களை முடக்கு</string>
+    <string name="StoriesPrivacySettingsFragment__turn_off_stories">ஸ்டோரீக்களை முடக்கவும்</string>
     <!-- Preference summary to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__if_you_opt_out">நீங்கள் ஸ்டோரீக்களில் இருந்து விலகினால், இனி உங்களால் ஸ்டோரீக்களைப் பகிரவோ அல்லது பார்க்கவோ முடியாது.</string>
     <!-- Preference title to turn on stories -->
     <string name="StoriesPrivacySettingsFragment__turn_on_stories">ஸ்டோரீக்களை இயக்கவும்</string>
     <!-- Preference summary to turn on stories -->
-    <string name="StoriesPrivacySettingsFragment__share_and_view">மற்றவர்களின் ஸ்டோரீக்களைப் பகிரவும் மற்றும் பார்க்கவும். 24 மணிநேரத்திற்குப் பிறகு ஸ்டோரீக்கள் தானாகவே மறைந்துவிடும்.</string>
+    <string name="StoriesPrivacySettingsFragment__share_and_view">மற்றவர்களின் ஸ்டோரீக்களைப் பகிரவும் மற்றும் பார்வையிடவும். 24 மணிநேரத்திற்குப் பிறகு ஸ்டோரீக்கள் தானாகவே மறைந்துவிடும்.</string>
     <!-- Dialog title to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">ஸ்டோரீக்களை முடக்குவதா?</string>
     <!-- Dialog message to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">You will no longer be able to share or view stories. Story updates you have recently shared will also be deleted.</string>
+    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">இனி உங்களால் ஸ்டோரீக்களைப் பகிரவோ பார்க்கவோ முடியாது. சமீபத்தில் நீங்கள் பகிர்ந்த ஸ்டோரி புதுப்பிப்புகளும் நீக்கப்படும்.</string>
     <!-- Page title when launched from stories landing screen -->
     <string name="StoriesPrivacySettingsFragment__story_privacy">ஸ்டோரி தனியுரிமை</string>
 
     <!-- GroupStorySettingsFragment -->
     <!-- Section header for who can view a group story -->
-    <string name="GroupStorySettingsFragment__who_can_view_this_story">இந்த ஸ்டோரியை யார் பார்க்க முடியும்</string>
+    <string name="GroupStorySettingsFragment__who_can_view_this_story">இந்த ஸ்டோரியை யார் பார்வையிட முடியும்</string>
     <!-- Explanation of who can view a group story -->
-    <string name="GroupStorySettingsFragment__members_of_the_group_s">"\"%1$s\" குழுவின் உறுப்பினர்கள் இந்த ஸ்டோரியைப் பார்த்து பதிலளிக்கலாம். இந்த சாட்டிற்க்கான உறுப்பினர் உரிமையை குழுவில் நீங்கள் புதுப்பிக்கலாம்."</string>
+    <string name="GroupStorySettingsFragment__members_of_the_group_s">"%1$s குழுவின் உறுப்பினர்கள் இந்த ஸ்டோரியைப் பார்த்து பதிலளிக்கலாம். இந்த சாட்டிற்க்கான உறுப்பினர் உரிமையை குழுவில் நீங்கள் புதுப்பிக்கலாம்."</string>
     <!-- Preference label for removing this group story -->
-    <string name="GroupStorySettingsFragment__remove_group_story">குழு ஸ்டோரியை அகற்று</string>
+    <string name="GroupStorySettingsFragment__remove_group_story">குழு ஸ்டோரியை அகற்றவும்</string>
 
     <!-- Generic title for overflow menus -->
     <string name="OverflowMenu__overflow_menu">ஓவர்ஃப்ளோ மெனு</string>
@@ -5286,7 +5284,7 @@
     <!-- Title of the screen -->
     <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">உங்கள் எஸ்.எம்.எஸ் செய்திகளை ஏற்றுமதி செய்யுங்கள்</string>
     <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">உங்கள் எஸ்.எம்.எஸ் செய்திகளை உங்கள் தொலைபேசியின் எஸ்.எம்.எஸ் தரவுத்தளத்திற்கு ஏற்றுமதி செய்யலாம். இது உங்கள் மொபைலில் உள்ள பிற எஸ்.எம்.எஸ் பயன்பாடுகளை அணுகவும் அவற்றை இறக்குமதி செய்யவும் அனுமதிக்கிறது. இது உங்கள் எஸ்.எம்.எஸ் செய்தி வரலாற்றின் பகிரக்கூடிய கோப்பை உருவாக்காது.</string>
+    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">உங்கள் எஸ்.எம்.எஸ் செய்திகளை உங்கள் தொலைபேசியின் எஸ்.எம்.எஸ் தரவுத்தளத்திற்கு ஏற்றுமதி செய்யலாம். இது உங்கள் மொபைலில் உள்ள பிற எஸ்.எம்.எஸ் ஆப்புகளை அணுகவும் அவற்றை இறக்குமதி செய்யவும் அனுமதிக்கிறது. இது உங்கள் எஸ்.எம்.எஸ் செய்தி வரலாற்றின் பகிரக்கூடிய கோப்பை உருவாக்காது.</string>
     <!-- Button label to begin export -->
     <string name="ExportYourSmsMessagesFragment__continue">தொடரவும்</string>
 

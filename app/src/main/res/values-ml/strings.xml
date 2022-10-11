@@ -218,7 +218,7 @@
     <!-- Header for username search -->
     <string name="ContactsCursorLoader_find_by_username">ഉപയോക്തൃനാമം ഉപയോഗിച്ച് കണ്ടെത്തുക</string>
     <!-- Label for my stories when selecting who to send media to -->
-    <string name="ContactsCursorLoader_my_stories">എന്റെ സ്റ്റോറീസ്</string>
+    <string name="ContactsCursorLoader_my_stories">എന്റെ സ്റ്റോറികൾ</string>
     <!-- Action for creating a new story -->
     <string name="ContactsCursorLoader_new_story">പുതിയ സ്റ്റോറി</string>
 
@@ -673,7 +673,7 @@
     <!-- GroupsV1MigrationLearnMoreBottomSheetDialogFragment -->
     <string name="GroupsV1MigrationLearnMore_what_are_new_groups">പുതിയ ഗ്രൂപ്പുകൾ എന്താണ്?</string>
     <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">പുതിയ ഗ്രൂപ്പുകൾക്ക് @സൂചനകള്‍, ഗ്രൂപ്പ് അഡ്മിനുകൾ എന്നിവ പോലുള്ള സവിശേഷതകളുണ്ട്, മാത്രമല്ല ഭാവിയിൽ കൂടുതൽ സവിശേഷതകളെ പിന്തുണയ്ക്കുകയും ചെയ്യും.</string>
-    <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">എല്ലാ സന്ദേശ ചരിത്രവും മീഡിയയും നവീകരിക്കുന്നതിന് മുമ്പായി സൂക്ഷിച്ചിരിക്കുന്നു.</string>
+    <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">അപ്‌ഗ്രേഡിന് മുമ്പുള്ള എല്ലാ സന്ദേശ ചരിത്രവും മീഡിയയും സൂക്ഷിച്ചിരിക്കുന്നു.</string>
     <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">ഈ ഗ്രൂപ്പിൽ വീണ്ടും ചേരുന്നതിനുള്ള ഒരു ക്ഷണം നിങ്ങൾ സ്വീകരിക്കേണ്ടതുണ്ട്, നിങ്ങൾ സ്വീകരിക്കുന്നതുവരെ ഗ്രൂപ്പ് സന്ദേശങ്ങൾ ലഭിക്കില്ല.</string>
     <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
         <item quantity="one">ഈ അംഗത്തിന് ഈ ഗ്രൂപ്പിൽ വീണ്ടും ചേരുന്നതിനുള്ള ക്ഷണം സ്വീകരിക്കേണ്ടതുണ്ട്, മാത്രമല്ല അവർ അംഗീകരിക്കുന്നതുവരെ ഗ്രൂപ്പ് സന്ദേശങ്ങൾ ലഭിക്കുകയുമില്ല:</item>
@@ -688,7 +688,7 @@
     <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">പുതിയ ഗ്രൂപ്പിലേക്ക് അപ്‌ഗ്രേഡുചെയ്യുക</string>
     <string name="GroupsV1MigrationInitiation_upgrade_this_group">ഈ ഗ്രൂപ്പ് അപ്‌ഗ്രേഡുചെയ്യുക</string>
     <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">പുതിയ ഗ്രൂപ്പുകൾക്ക് @സൂചനകള്‍, ഗ്രൂപ്പ് അഡ്മിനുകൾ എന്നിവ പോലുള്ള സവിശേഷതകളുണ്ട്, മാത്രമല്ല ഭാവിയിൽ കൂടുതൽ സവിശേഷതകളെ പിന്തുണയ്ക്കുകയും ചെയ്യും.</string>
-    <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">എല്ലാ സന്ദേശ ചരിത്രവും മീഡിയയും നവീകരിക്കുന്നതിന് മുമ്പായി സൂക്ഷിച്ച് വയ്ക്കും.</string>
+    <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">അപ്‌ഗ്രേഡിന് മുമ്പുള്ള എല്ലാ സന്ദേശ ചരിത്രവും മീഡിയയും സൂക്ഷിച്ച് വയ്ക്കുന്നതാണ്.</string>
     <string name="GroupsV1MigrationInitiation_encountered_a_network_error">ഒരു നെറ്റ്‌വർക്ക് പിശക് നേരിട്ടു. പിന്നീട് വീണ്ടും ശ്രമിക്കുക.</string>
     <string name="GroupsV1MigrationInitiation_failed_to_upgrade">അപ്‌ഗ്രേഡുചെയ്യുന്നതിൽ പരാജയപ്പെട്ടു</string>
     <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
@@ -1524,7 +1524,7 @@
     <!-- Recipient -->
     <string name="Recipient_you">നിങ്ങൾ</string>
     <!-- Name of recipient representing user\'s \'My Story\' -->
-    <string name="Recipient_my_story">എന്റെ കഥ</string>
+    <string name="Recipient_my_story">എന്റെ സ്റ്റോറി</string>
 
     <!-- RecipientPreferencesActivity -->
     <string name="RecipientPreferenceActivity_block">തടയുക</string>
@@ -2201,7 +2201,7 @@
     <!-- Author formatting for group stories -->
     <string name="QuoteView_s_story">%1$s · സ്റ്റോറി</string>
     <!-- Label indicating that a quote is for a reply to a story you created -->
-    <string name="QuoteView_your_story">നിങ്ങൾ · സ്റ്റോറി</string>
+    <string name="QuoteView_your_story">നിങ്ങളുടെ · സ്റ്റോറി</string>
     <!-- Label indicating that the story being replied to no longer exists -->
     <string name="QuoteView_no_longer_available">ഇനി ലഭ്യമല്ല</string>
     <!-- Label for quoted gift -->
@@ -2606,7 +2606,7 @@
     <string name="preferences__one_time_donation">ഒറ്റത്തവണ സംഭാവന</string>
     <string name="preferences__privacy">സ്വകാര്യത</string>
     <!-- Preference label for stories -->
-    <string name="preferences__stories">സ്റ്റോറീസ്</string>
+    <string name="preferences__stories">സ്റ്റോറികൾ</string>
     <string name="preferences__mms_user_agent">MMS യൂസർ ഏജൻറ്</string>
     <string name="preferences__advanced_mms_access_point_names">സ്വമേധയാലുള്ള MMS ക്രമീകരണങ്ങൾ</string>
     <string name="preferences__mmsc_url">MMSC URL</string>
@@ -2667,11 +2667,11 @@
     <string name="preferences_storage__review_storage">സ്റ്റോറജ് അവലോകനം ചെയ്യുക</string>
     <string name="preferences_storage__delete_older_messages">പഴയ സന്ദേശങ്ങൾ ഇല്ലാതാക്കണോ?</string>
     <string name="preferences_storage__clear_message_history">സന്ദേശ ചരിത്രം മായ്‌ക്കണോ?</string>
-    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">നിങ്ങളുടെ ഉപകരണത്തിൽ നിന്നുള്ള %1$s-നേക്കാൾ പഴയ എല്ലാ സന്ദേശ ചരിത്രവും മീഡിയയും ഇത് ശാശ്വതമായി ഇല്ലാതാക്കും.</string>
+    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">നിങ്ങളുടെ ഉപകരണത്തിൽ നിന്നുള്ള %1$s എന്നതിൽ കൂടുതൽ പഴക്കമുള്ള എല്ലാ സന്ദേശ ചരിത്രവും മീഡിയയും ഇത് ശാശ്വതമായി ഇല്ലാതാക്കും.</string>
     <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">ഇത് ഏറ്റവും പുതിയ %1$s സന്ദേശങ്ങളിലേക്ക് എല്ലാ സംഭാഷണങ്ങളും ശാശ്വതമായി കുറയ്ക്കും (ട്രിം ചെയ്യും).</string>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">ഇത് നിങ്ങളുടെ ഉപകരണത്തിൽ നിന്ന് എല്ലാ സന്ദേശ ചരിത്രവും മീഡിയയും ശാശ്വതമായി ഇല്ലാതാക്കും</string>
-    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">എല്ലാ സന്ദേശ ചരിത്രവും നീക്കംചെയ്യണം എന്ന് നിങ്ങൾക്ക് ഉറപ്പാണോ?</string>
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">എല്ലാ സന്ദേശ ചരിത്രവും ശാശ്വതമായി നീക്കംചെയ്യപ്പെടും. പിന്നെ ഇത് പഴയപടിയാക്കാൻ കഴിയില്ല.</string>
+    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">എല്ലാ സന്ദേശ ചരിത്രവും നീക്കം ചെയ്യണം എന്ന് നിങ്ങൾക്ക് തീർച്ചയാണോ?</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">എല്ലാ സന്ദേശ ചരിത്രവും ശാശ്വതമായി നീക്കം ചെയ്യപ്പെടും. പിന്നെ ഇത് പഴയപടിയാക്കാൻ കഴിയില്ല.</string>
     <string name="preferences_storage__delete_all_now">എല്ലാം ഇപ്പോൾ ഇല്ലാതാക്കുക</string>
     <string name="preferences_storage__forever">എന്നേക്കും</string>
     <string name="preferences_storage__one_year">1 വർഷം</string>
@@ -2911,19 +2911,19 @@
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
-    <string name="PaymentsSecuritySetupFragment__security_setup">Security setup</string>
+    <string name="PaymentsSecuritySetupFragment__security_setup">സുരക്ഷാ സജ്ജീകരണം</string>
     <!-- Title to enable payment lock -->
-    <string name="PaymentsSecuritySetupFragment__protect_your_funds">Protect your funds</string>
+    <string name="PaymentsSecuritySetupFragment__protect_your_funds">നിങ്ങളുടെ ഫണ്ടുകൾ സംരക്ഷിക്കുക</string>
     <!-- Description as to why payment lock is required -->
-    <string name="PaymentsSecuritySetupFragment__help_prevent">Help prevent a person with your phone from accessing your funds by adding another layer of security. You can disable this option in Settings.</string>
+    <string name="PaymentsSecuritySetupFragment__help_prevent">സുരക്ഷയുടെ മറ്റൊരു തലം ചേർത്തുകൊണ്ട് നിങ്ങളുടെ ഫണ്ട് ആക്‌സസ് ചെയ്യുന്നതിൽ നിന്നും നിങ്ങളുടെ ഫോൺ കൈവശമുള്ള ഒരു വ്യക്തിയെ തടയുക. നിങ്ങൾ ഈ ഓപ്‌ഷൻ ക്രമീകരണങ്ങളിൽ പ്രവർത്തനരഹിതമാക്കാൻ കഴിയുന്നതാണ്.</string>
     <!-- Option to enable payment lock -->
-    <string name="PaymentsSecuritySetupFragment__enable_payment_lock">Enable payment lock</string>
+    <string name="PaymentsSecuritySetupFragment__enable_payment_lock">പേയ്‌മെന്റ് ലോക്ക് പ്രവർത്തനക്ഷമമാക്കുക</string>
     <!-- Option to cancel -->
     <string name="PaymentsSecuritySetupFragment__not_now">ഇപ്പോൾ വേണ്ട</string>
     <!-- Dialog title to confirm skipping the step -->
-    <string name="PaymentsSecuritySetupFragment__skip_this_step">Skip this step?</string>
+    <string name="PaymentsSecuritySetupFragment__skip_this_step">ഈ ഘട്ടം ഒഴിവാക്കണോ?</string>
     <!-- Dialog description to let users know why payment lock is required -->
-    <string name="PaymentsSecuritySetupFragment__skipping_this_step">Skipping this step could allow anyone who has physical access to your phone to transfer funds or view your recovery phrase.</string>
+    <string name="PaymentsSecuritySetupFragment__skipping_this_step">ഈ ഘട്ടം ഒഴിവാക്കിയാൽ, നിങ്ങളുടെ ഫോണിലേക്ക് നേരിട്ട് ആക്‌സസ് ഉള്ള ആർക്കും ഫണ്ട് കൈമാറ്റം ചെയ്യാനോ നിങ്ങളുടെ വീണ്ടെടുക്കൽ പദം കാണാനോ കഴിഞ്ഞേക്കാം.</string>
     <!-- Dialog option to cancel -->
     <string name="PaymentsSecuritySetupFragment__cancel">റദ്ദാക്കുക</string>
     <!-- Dialog option to skip -->
@@ -4281,7 +4281,7 @@
     <string name="MultiselectForwardFragment__add_a_message">ഒരു സന്ദേശം ചേര്‍ക്കുക</string>
     <string name="MultiselectForwardFragment__faster_forwards">അതിവേഗ ഫോര്‍വേഡുകള്‍</string>
     <!-- Displayed when user selects a video that will be clipped before sharing to a story -->
-    <string name="MultiselectForwardFragment__videos_will_be_trimmed">വീഡിയോകൾ 30 സെക്കൻഡ് ദൈർഘ്യമുള്ള ക്ലിപ്പുകളായി ട്രിം ചെയ്ത് ഒന്നിലധികം സ്റ്റോറീസായി അയയ്‌ക്കും.</string>
+    <string name="MultiselectForwardFragment__videos_will_be_trimmed">വീഡിയോകൾ 30 സെക്കൻഡ് ദൈർഘ്യമുള്ള ക്ലിപ്പുകളായി ട്രിം ചെയ്‌ത് ഒന്നിലധികം സ്റ്റോറീസായി അയയ്‌ക്കും.</string>
     <!-- Displayed when user selects a video that cannot be sent as a story -->
     <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">സ്‌റ്റോറികളിലേക്ക് അയയ്‌ക്കുന്ന വീഡിയോകളുടെ ദൈർഘ്യം 30 സെക്കൻഡിൽ കൂടരുത്.</string>
     <string name="MultiselectForwardFragment__forwarded_messages_are_now">കൈമാറിയ സന്ദേശങ്ങള്‍ ഇപ്പോൾ ഉടനടി അയയ്‌ക്കുന്നു.</string>
@@ -4724,13 +4724,13 @@
     <!-- Label for Chats tab in home app screen -->
     <string name="ConversationListTabs__chats">ചാറ്റുകൾ</string>
     <!-- Label for Stories tab in home app screen -->
-    <string name="ConversationListTabs__stories">സ്റ്റോറീസ്</string>
+    <string name="ConversationListTabs__stories">സ്റ്റോറികൾ</string>
     <!-- String for counts above 99 in conversation list tabs -->
     <string name="ConversationListTabs__99p">99+</string>
     <!-- Menu item on stories landing page -->
-    <string name="StoriesLandingFragment__story_privacy">സ്റ്റോറി സ്വകാര്യത</string>
+    <string name="StoriesLandingFragment__story_privacy">സ്റ്റോറിയുടെ സ്വകാര്യത</string>
     <!-- Title for "My Stories" row item in Stories landing page -->
-    <string name="StoriesLandingFragment__my_stories">എന്റെ കഥകള്‍</string>
+    <string name="StoriesLandingFragment__my_stories">എന്റെ സ്റ്റോറികൾ</string>
     <!-- Subtitle for "My Stories" row item when user has not added stories -->
     <string name="StoriesLandingFragment__tap_to_add_a_story">ഒരു സ്റ്റോറി ചേർക്കാൻ ടാപ്പ് ചെയ്യുക</string>
     <!-- Displayed when there are no stories to display -->
@@ -4760,13 +4760,13 @@
     <!-- Title of dialog confirming decision to hide a story -->
     <string name="StoriesLandingFragment__hide_story">സ്റ്റോറി മറയ്ക്കണോ?</string>
     <!-- Message of dialog confirming decision to hide a story -->
-    <string name="StoriesLandingFragment__new_story_updates">%1$s എന്നയാളിൽ നിന്നുള്ള പുതിയ സ്റ്റോറി അപ്ഡേറ്റുകൾ ഇനി സ്റ്റോറീസ് ലിസ്റ്റിന്‍റെ മുകളിൽ വരില്ല.</string>
+    <string name="StoriesLandingFragment__new_story_updates">%1$s എന്നയാളിൽ നിന്നുള്ള പുതിയ സ്റ്റോറി അപ്ഡേറ്റുകൾ ഇനിമുതൽ സ്റ്റോറീസ് ലിസ്റ്റിന്റെ മുകളിൽ ദൃശ്യമാകുന്നതല്ല.</string>
     <!-- Positive action of dialog confirming decision to hide a story -->
     <string name="StoriesLandingFragment__hide">മറയ്ക്കുക</string>
     <!-- Displayed in Snackbar after story is hidden -->
     <string name="StoriesLandingFragment__story_hidden">സ്റ്റോറി മറച്ചു</string>
     <!-- Section header for hidden stories -->
-    <string name="StoriesLandingFragment__hidden_stories">മറച്ച സ്റ്റോറീസ്</string>
+    <string name="StoriesLandingFragment__hidden_stories">മറച്ച സ്റ്റോറികൾ</string>
     <!-- Displayed on each sent story under My Stories -->
     <plurals name="MyStories__d_views">
         <item quantity="one">%1$d കാഴ്‌ച</item>
@@ -4779,7 +4779,7 @@
     <!-- Title of dialog to confirm deletion of story -->
     <string name="MyStories__delete_story">സ്റ്റോറി ഇല്ലാതാക്കണോ?</string>
     <!-- Message of dialog to confirm deletion of story -->
-    <string name="MyStories__this_story_will_be_deleted">നിങ്ങൾക്കും ഇത് ലഭിച്ച എല്ലാവർക്കുമായി ഈ സ്റ്റോറി ഇല്ലാതാക്കപ്പെടും.</string>
+    <string name="MyStories__this_story_will_be_deleted">നിങ്ങൾക്കും ഇത് ലഭിച്ച എല്ലാവർക്കും ഈ സ്റ്റോറി ഇല്ലാതാക്കപ്പെടും.</string>
     <!-- Toast shown when story media cannot be saved -->
     <string name="MyStories__unable_to_save">സംരക്ഷിക്കാനായില്ല</string>
     <!-- Displayed at bottom of story viewer when current item has views -->
@@ -4825,7 +4825,7 @@
     <!-- Displayed when a story has no replies yet -->
     <string name="StoryGroupReplyFragment__no_replies_yet">ഇതുവരെ മറുപടികളൊന്നുമില്ല</string>
     <!-- Displayed when no longer a group member -->
-    <string name="StoryGroupReplyFragment__you_cant_reply">You can\'t reply to this story because you\'re no longer a member of this group.</string>
+    <string name="StoryGroupReplyFragment__you_cant_reply">നിങ്ങൾ നിലവിൽ ഈ ഗ്രൂപ്പിൽ അംഗമല്ലാത്തതിനാൽ, നിങ്ങൾക്ക് ഈ സ്റ്റോറിക്ക് മറുപടി അയയ്‌ക്കാൻ കഴിയില്ല.</string>
     <!-- Displayed for each user that reacted to a story when viewing replies -->
     <string name="StoryGroupReactionReplyItem__reacted_to_the_story">സ്റ്റോറിയോട് പ്രതികരിച്ചു</string>
     <!-- Label for story views tab -->
@@ -4833,7 +4833,7 @@
     <!-- Label for story replies tab -->
     <string name="StoryViewsAndRepliesDialogFragment__replies">മറുപടികൾ</string>
     <!-- Description of action for reaction button -->
-    <string name="StoryReplyComposer__react_to_this_story">ഈ സ്റ്റോറിയോട് പ്രതികരിച്ചു</string>
+    <string name="StoryReplyComposer__react_to_this_story">ഈ സ്റ്റോറിയോട് പ്രതികരിക്കുക</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">%1$s എന്നയാൾക്ക് സ്വകാര്യമായി മറുപടി നൽകുന്നു</string>
     <!-- Context menu item to privately reply to a story response -->
@@ -4843,7 +4843,7 @@
     <!-- Context menu item to delete a story response -->
     <string name="StoryGroupReplyItem__delete">ഇല്ലാതാക്കൂ</string>
     <!-- Page title for My Story options -->
-    <string name="MyStorySettingsFragment__my_story">എന്റെ കഥ</string>
+    <string name="MyStorySettingsFragment__my_story">എന്റെ സ്റ്റോറി</string>
     <!-- Number of total signal connections displayed in "All connections" row item -->
     <plurals name="MyStorySettingsFragment__viewers">
         <item quantity="one">%1$d viewer</item>
@@ -4862,7 +4862,7 @@
     <!-- Privacy setting title for sending stories to all except the specified connections -->
     <string name="MyStorySettingsFragment__all_except">ഇനിപ്പറയുന്നവര്‍ ഒഴികെ എല്ലാവരും…</string>
     <!-- Privacy setting description for sending stories to all except the specified connections -->
-    <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">നിർദ്ദിഷ്‌ട ആളുകളിൽ നിന്ന് നിങ്ങളുടെ സ്റ്റോറി മറയ്ക്കുക</string>
+    <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">കുറച്ച് ആളുകളിൽ നിന്ന് നിങ്ങളുടെ സ്റ്റോറി മറയ്ക്കുക</string>
     <!-- Summary of clickable option displaying how many people you have excluded from your story -->
     <plurals name="MyStorySettingsFragment__d_people_excluded">
         <item quantity="one">%1$d ആളെ ഒഴിവാക്കി</item>
@@ -4885,8 +4885,6 @@
     <string name="MyStorySettingsFragment__allow_replies_amp_reactions">മറുപടികളും പ്രതികരണങ്ങളും അനുവദിക്കുക</string>
     <!-- Summary for switchable option allowing replies and reactions on your story -->
     <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">നിങ്ങളുടെ സ്റ്റോറി കാണാൻ കഴിയുന്ന ആളുകളെ പ്രതികരിക്കാനും മറുപടി നൽകാനും അനുവദിക്കുക</string>
-    <!-- Note about default sharing -->
-    <string name="MyStorySettingsFragment__hide_your_story_from">നിർദ്ദിഷ്ട ആളുകളിൽ നിന്ന് നിങ്ങളുടെ സ്റ്റോറി മറയ്ക്കുക. ഡിഫോൾട്ടായി നിങ്ങളുടെ സ്റ്റോറി നിങ്ങളുടെ %1$s എന്നതുമായി പങ്കിട്ട നിലയിലായിരിക്കും</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
     <string name="SignalConnectionsBottomSheet___signal_connections">Signal കണക്ഷനുകൾ</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
@@ -4898,7 +4896,7 @@
     <!-- Signal connections sheet bullet point 3 -->
     <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">നിങ്ങളുടെ സിസ്റ്റം കോൺടാക്റ്റുകളിൽ ചേർത്ത്</string>
     <!-- Note at the bottom of the Signal connections sheet -->
-    <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"നിങ്ങളുടെ കണക്ഷനുകൾക്ക് നിങ്ങളുടെ പേരും ഫോട്ടോയും കാണാനാകും, നിങ്ങൾ മറയ്ക്കാത്ത പക്ഷം അവർക്ക് നിങ്ങൾ \"എന്‍റെ സ്റ്റോറിയിൽ\" ചേർക്കുന്ന പോസ്റ്റുകളും കാണാനാകും."</string>
+    <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"നിങ്ങളുടെ കണക്ഷനുകൾക്ക് നിങ്ങളുടെ പേരും ഫോട്ടോയും കാണാനാകും, മാത്രമല്ല നിങ്ങൾ മറയ്ക്കാത്ത പക്ഷം അവർക്ക് നിങ്ങൾ \"എന്‍റെ സ്റ്റോറിയിൽ\" ചേർക്കുന്ന പോസ്റ്റുകളും കാണാനാകും."</string>
     <!-- Clickable option to add a viewer to a private story -->
     <string name="PrivateStorySettingsFragment__add_viewer">കാഴ്ച്ചക്കാരെ ചേർക്കുക</string>
     <!-- Clickable option to delete a custom story -->
@@ -4906,7 +4904,7 @@
     <!-- Dialog title when attempting to remove someone from a private story -->
     <string name="PrivateStorySettingsFragment__remove_s">%1$sഎന്നയാളെ നീക്കം ചെയ്യണോ?</string>
     <!-- Dialog message when attempting to remove someone from a private story -->
-    <string name="PrivateStorySettingsFragment__this_person_will_no_longer">ഈ വ്യക്തിക്ക് ഇനി നിങ്ങളുടെ സ്റ്റോറി കാണാനാകില്ല.</string>
+    <string name="PrivateStorySettingsFragment__this_person_will_no_longer">ഈ വ്യക്തിക്ക് ഇനിമുതൽ നിങ്ങളുടെ സ്റ്റോറി കാണാൻ കഴിയുന്നതല്ല.</string>
     <!-- Positive action label when attempting to remove someone from a private story -->
     <string name="PrivateStorySettingsFragment__remove">നീക്കംചെയ്യൂ</string>
     <!-- Dialog title when deleting a private story -->
@@ -4934,7 +4932,7 @@
     <!-- Hint for entering a URL for a text post -->
     <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">ഒരു യുആർഎൽ ടൈപ്പ് ചെയ്യുകയോ ഒട്ടിക്കുകയോ ചെയ്യുക</string>
     <!-- Displayed prior to the user entering a URL for a text post -->
-    <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">നിങ്ങളുടെ സ്റ്റോറിയുടെ കാഴ്ച്ചക്കാർക്കായി ഒരു ലിങ്ക് പങ്കിടുക</string>
+    <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">നിങ്ങളുടെ സ്റ്റോറിയുടെ കാഴ്ച്ചക്കാരുമായി ഒരു ലിങ്ക് പങ്കിടുക</string>
     <!-- Hint text for searching for a story text post recipient. -->
     <string name="TextStoryPostSendFragment__search">തിരയുക</string>
     <!-- Toast shown when an unexpected error occurs while sending a text story -->
@@ -4948,37 +4946,37 @@
     <!-- Dialog title for removing a group story -->
     <string name="StoryDialogs__remove_group_story">ഗ്രൂപ്പ് സ്റ്റോറി ഇല്ലാതാക്കണോ?</string>
     <!-- Dialog message for removing a group story -->
-    <string name="StoryDialogs__s_will_be_removed">\"%1$s\" will be removed.</string>
+    <string name="StoryDialogs__s_will_be_removed">\"%1$s\" നീക്കം ചെയ്യപ്പെടും.</string>
     <!-- Dialog positive action for removing a group story -->
     <string name="StoryDialogs__remove">നീക്കംചെയ്യൂ</string>
     <!-- Dialog title for deleting a private story -->
     <string name="StoryDialogs__delete_private_story">സ്വകാര്യ സ്റ്റോറി ഇല്ലാതാക്കണോ?</string>
     <!-- Dialog message for deleting a private story -->
-    <string name="StoryDialogs__s_and_updates_shared">\"%1$s\" and updates shared to this story will be deleted.</string>
+    <string name="StoryDialogs__s_and_updates_shared">ഈ സ്റ്റോറിയിലേക്ക് പങ്കിട്ട \"%1$s\" എന്നതും അപ്‌ഡേറ്റുകളും ഇല്ലാതാക്കപ്പെടും.</string>
     <!-- Dialog positive action for deleting a private story -->
     <string name="StoryDialogs__delete">ഇല്ലാതാക്കൂ</string>
     <!-- Dialog title for first time sending something to a beta story -->
-    <string name="StoryDialogs__stories_is_available_to">Stories is available to Signal beta users only.</string>
+    <string name="StoryDialogs__stories_is_available_to">Signal ബീറ്റ ഉപയോക്താക്കൾക്ക് മാത്രമേ സ്റ്റോറികൾ ലഭ്യമാകൂ.</string>
     <!-- Dialog message for first time sending something to a beta story -->
-    <string name="StoryDialogs__if_you_share_a_story">If you share a story, it will only be available to people who are on Signal beta.</string>
+    <string name="StoryDialogs__if_you_share_a_story">നിങ്ങൾ ഒരു സ്റ്റോറി പങ്കിടുകയാണെങ്കിൽ, അത് Signal ബീറ്റയിലുള്ള ആളുകൾക്ക് മാത്രമേ ലഭ്യമാകൂ.</string>
     <!-- Dialog title for first time adding something to a story -->
     <string name="StoryDialogs__add_to_story_q">സ്റ്റോറിയിലേക്ക് ചേർക്കണോ?</string>
     <!-- Dialog message for first time adding something to a story -->
-    <string name="StoryDialogs__adding_content">നിങ്ങളുടെ സ്റ്റോറിയിലേക്ക് ഉള്ളടക്കം ചേർക്കുന്നതിലൂടെ നിങ്ങളുടെ Signal കണക്ഷനുകളെ നിങ്ങൾ 24 മണിക്കൂർ നേരത്തേക്ക് അത് കാണാൻ അനുവദിക്കുന്നു. നിങ്ങളുടെ സ്റ്റോറി ആർക്കൊക്കെ കാണാമെന്നത് നിങ്ങൾക്ക് ക്രമീകരണങ്ങളിൽ നിന്ന് എഡിറ്റ് ചെയ്യാം.</string>
+    <string name="StoryDialogs__adding_content">നിങ്ങളുടെ സ്റ്റോറിയിലേക്ക് ഉള്ളടക്കം ചേർക്കുന്നതിലൂടെ നിങ്ങളുടെ Signal കണക്ഷനുകളെ 24 മണിക്കൂർ നേരത്തേക്ക് അത് കാണാൻ നിങ്ങൾ അനുവദിക്കുന്നു. നിങ്ങളുടെ സ്റ്റോറി ആർക്കൊക്കെ കാണാമെന്ന് നിങ്ങൾക്ക് ക്രമീകരണങ്ങളിൽ മാറ്റാൻ കഴിയുന്നതാണ്.</string>
     <!-- First time share to story dialog: Positive action to go ahead and add to story -->
     <string name="StoryDialogs__add_to_story">സ്റ്റോറിയിലേക്ക് ചേർക്കുക</string>
     <!-- First time share to story dialog: Neutral action to edit who can view "My Story" -->
     <string name="StoryDialogs__edit_viewers">കാഴ്ച്ചക്കാരെ എഡിറ്റ് ചെയ്യുക</string>
     <!-- Error message shown when a failure occurs during story send -->
-    <string name="StoryDialogs__story_could_not_be_sent">സ്റ്റോറി അയയ്ക്കാനായില്ല. നിങ്ങളുടെ കണക്ഷൻ പരിശോധിച്ച ശേഷം വീണ്ടും ശ്രമിക്കുക.</string>
+    <string name="StoryDialogs__story_could_not_be_sent">സ്റ്റോറി അയയ്ക്കാൻ കഴിഞ്ഞില്ല. നിങ്ങളുടെ കണക്ഷൻ പരിശോധിച്ച ശേഷം വീണ്ടും ശ്രമിക്കുക.</string>
     <!-- Error message dialog button to resend a previously failed story send -->
     <string name="StoryDialogs__send">അയയ്‌ക്കുക</string>
     <!-- Action button for turning off stories when stories are present on the device -->
-    <string name="StoryDialogs__turn_off_and_delete">Turn off and delete</string>
+    <string name="StoryDialogs__turn_off_and_delete">ഓഫ് ചെയ്‌ത ശേഷം ഇല്ലാതാക്കുക</string>
     <!-- Privacy Settings toggle title for stories -->
-    <string name="PrivacySettingsFragment__share_and_view_stories">സ്റ്റോറീസ് പങ്കിടുകയും കാണുകയും ചെയ്യുക</string>
+    <string name="PrivacySettingsFragment__share_and_view_stories">സ്റ്റോറികൾ പങ്കിടുകയും കാണുകയും ചെയ്യുക</string>
     <!-- Privacy Settings toggle summary for stories -->
-    <string name="PrivacySettingsFragment__you_will_no_longer_be_able">ഈ ഓപ്ഷൻ ഓഫായിരിക്കുമ്പോൾ നിങ്ങൾക്ക് സ്റ്റോറീസ് കാണാനോ അത് പങ്കിടാനോ കഴിയില്ല.</string>
+    <string name="PrivacySettingsFragment__you_will_no_longer_be_able">ഈ ഓപ്ഷൻ ഓഫായിരിക്കുമ്പോൾ നിങ്ങൾക്ക് സ്റ്റോറികൾ കാണാനോ അത് പങ്കിടാനോ കഴിയില്ല.</string>
     <!-- New story viewer selection screen title -->
     <string name="CreateStoryViewerSelectionFragment__choose_viewers">കാഴ്ച്ചക്കാരെ തിരഞ്ഞെടുക്കുക</string>
     <!-- New story viewer selection action button label -->
@@ -5029,7 +5027,7 @@
     <!-- Toasted when the user externally shares to a text story successfully -->
     <string name="TextStoryPostCreationFragment__sent_story">അയച്ച സ്റ്റോറി</string>
     <!-- Toasted when the user external share to a text story fails -->
-    <string name="TextStoryPostCreationFragment__failed_to_send_story">സ്റ്റോറി അയയ്ക്കാനായില്ല</string>
+    <string name="TextStoryPostCreationFragment__failed_to_send_story">സ്റ്റോറി അയയ്ക്കാൻ കഴിഞ്ഞില്ല</string>
     <!-- Displayed in a dialog to let the user select a given users story -->
     <string name="StoryDialogs__view_story">സ്റ്റോറി കാണുക</string>
     <!-- Displayed in a dialog to let the user select a given users profile photo -->
@@ -5112,7 +5110,7 @@
     <!-- Expired gift sheet not now button -->
     <string name="ExpiredGiftSheetConfiguration__not_now">ഇപ്പോൾ വേണ്ട</string>
     <!-- My Story label designating that we will only share with the selected viewers. -->
-    <string name="ContactSearchItems__only_share_with">ഇനിപ്പറയുന്നവരുമായി മാത്രം പങ്കിടുക</string>
+    <string name="ContactSearchItems__only_share_with">ഇവർക്ക് പങ്കിടൂ</string>
     <!-- Label under name for private stories -->
     <plurals name="ContactSearchItems__private_story_d_viewers">
         <item quantity="one">സ്വകാര്യ സ്റ്റോറി · %1$d ആൾ കണ്ടു</item>
@@ -5144,7 +5142,7 @@
     <!-- Dialog title for removing a group story -->
     <string name="ContactSearchMediator__remove_group_story">ഗ്രൂപ്പ് സ്റ്റോറി ഇല്ലാതാക്കണോ?</string>
     <!-- Dialog message for removing a group story -->
-    <string name="ContactSearchMediator__this_will_remove">ഇത് ഈ ലിസ്റ്റിൽ നിന്ന് സ്റ്റോറി നീക്കം ചെയ്യും. എന്നിരുന്നാലും, ഈ ഗ്രൂപ്പിൽ നിന്നുള്ള സ്റ്റോറികൾ നിങ്ങൾക്ക് തുടർന്നും കാണാനാകും.</string>
+    <string name="ContactSearchMediator__this_will_remove">ഇത് ഈ ലിസ്റ്റിൽ നിന്ന് സ്റ്റോറി നീക്കം ചെയ്യും. എന്നിരുന്നാലും, ഈ ഗ്രൂപ്പിൽ നിന്നുള്ള സ്റ്റോറികൾ നിങ്ങൾക്ക് തുടർന്നും കാണാൻ കഴിയും.</string>
     <!-- Dialog action item for removing a group story -->
     <string name="ContactSearchMediator__remove">നീക്കം ചെയ്യുക</string>
     <!-- Dialog title for deleting a private story -->
@@ -5196,7 +5194,7 @@
     <!-- Message of safety number changes bottom sheet when not showing individual records and user has seen review screen -->
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">എല്ലാ കണക്ഷനുകളും അവലോകനം ചെയ്‌തു, തുടരുന്നതിന് അയയ്ക്കുക എന്നതിൽ ടാപ്പ് ചെയ്യുക.</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
-    <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">Signal വീണ്ടും ഇൻസ്റ്റാൾ ചെയ്യുകയോ ഉപകരണങ്ങൾ മാറുകയോ ചെയ്‌തിട്ടുണ്ടാകാവുന്ന %1$d കണക്ഷനുകൾ നിങ്ങൾക്കുണ്ട്. നിങ്ങളുടെ സ്റ്റോറി അവരുമായി പങ്കിടുന്നതിന് മുമ്പ് അവരുടെ സുരക്ഷാ നമ്പറുകൾ അവലോകനം ചെയ്യുകയോ അവരെ നിങ്ങളുടെ സ്റ്റോറിയിൽ നിന്ന് നീക്കം ചെയ്യുന്നത് പരിഗണിക്കുകയോ ചെയ്യുക.</string>
+    <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">Signal വീണ്ടും ഇൻസ്റ്റാൾ ചെയ്യുകയോ ഉപകരണങ്ങൾ മാറുകയോ ചെയ്‌തിട്ടുണ്ടാകാവുന്ന %1$d കണക്ഷനുകൾ നിങ്ങൾക്കുണ്ട്. നിങ്ങളുടെ സ്റ്റോറി അവരുമായി പങ്കിടുന്നതിന് മുമ്പ് അവരുടെ സുരക്ഷാ നമ്പറുകൾ അവലോകനം ചെയ്യുകയോ അവരെ നിങ്ങളുടെ സ്റ്റോറിയിൽ നിന്ന് നീക്കം ചെയ്യുന്നതിനെ കുറിച്ച് ചിന്തിക്കുകയോ ചെയ്യുക.</string>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">സുരക്ഷാ നമ്പർ ഉറപ്പാക്കു</string>
     <!-- Menu action to remove user from story -->
@@ -5226,7 +5224,7 @@
     <!-- Title of initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">എന്‍റെ സ്റ്റോറിയുടെ സ്വകാര്യത</string>
     <!-- Subtitle of initial My Story settings configuration shown when sending to My Story for the first time -->
-    <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">എന്‍റെ സ്റ്റോറിയിലേക്കുള്ള പോസ്റ്റുകൾ ആർക്കൊക്കെ കാണാനാകും എന്ന് തിരഞ്ഞെടുക്കുക. നിങ്ങൾക്ക് എപ്പോൾ വേണമെങ്കിലും ക്രമീകരണങ്ങളിൽ മാറ്റം വരുത്താവുന്നതാണ്.</string>
+    <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">എന്‍റെ സ്റ്റോറിയിലേക്കുള്ള പോസ്റ്റുകൾ ആർക്കൊക്കെ കാണാൻ കഴിയുമെന്ന് തിരഞ്ഞെടുക്കുക. നിങ്ങൾക്ക് എപ്പോൾ വേണമെങ്കിലും ക്രമീകരണങ്ങളിൽ മാറ്റം വരുത്താവുന്നതാണ്.</string>
     <!-- All connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">എല്ലാ Signal കണക്ഷനുകളും</string>
     <!-- All connections except option for initial My Story settings configuration shown when sending to My Story for the first time -->
@@ -5251,7 +5249,7 @@
 
     <!-- StoriesPrivacySettingsFragment -->
     <!-- Explanation about how stories are deleted and managed -->
-    <string name="StoriesPrivacySettingsFragment__stories_automatically_disappear">24 മണിക്കൂറിന് ശേഷം സ്റ്റോറികൾ സ്വയമേവ അപ്രത്യക്ഷമാകും. നിങ്ങളുടെ സ്റ്റോറി ആർക്കൊക്കെ കാണാനാകുമെന്ന് തിരഞ്ഞെടുക്കുകയോ നിർദ്ദിഷ്‌ട കാഴ്‌ചക്കാരെയോ ഗ്രൂപ്പുകളെയോ ഉപയോഗിച്ച് പുതിയ സ്റ്റോറികൾ സൃഷ്‌ടിക്കുകയോ ചെയ്യുക.</string>
+    <string name="StoriesPrivacySettingsFragment__stories_automatically_disappear">24 മണിക്കൂറിന് ശേഷം സ്റ്റോറികൾ സ്വയമേവ അപ്രത്യക്ഷമാകും. നിങ്ങളുടെ സ്റ്റോറി ആർക്കൊക്കെ കാണാൻ കഴിയുമെന്ന് തീരുമാനിക്കുകയോ കുറച്ച് കാഴ്‌ചക്കാരെയോ ഗ്രൂപ്പുകളെയോ ഉപയോഗിച്ച് പുതിയ സ്റ്റോറികൾ സൃഷ്‌ടിക്കുകയോ ചെയ്യുക.</string>
     <!-- Preference title to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__turn_off_stories">സ്റ്റോറികൾ ഓഫാക്കുക</string>
     <!-- Preference summary to turn off stories -->
@@ -5263,9 +5261,9 @@
     <!-- Dialog title to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">സ്റ്റോറികൾ ഓഫാക്കണോ?</string>
     <!-- Dialog message to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">You will no longer be able to share or view stories. Story updates you have recently shared will also be deleted.</string>
+    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">നിങ്ങൾക്ക് ഇനിമുതൽ സ്റ്റോറികൾ പങ്കിടാനോ കാണാനോ കഴിയില്ല. നിങ്ങൾ അടുത്തിടെ പങ്കിട്ട സ്റ്റോറി അപ്‌ഡേറ്റുകളും ഇല്ലാതാക്കപ്പെടും.</string>
     <!-- Page title when launched from stories landing screen -->
-    <string name="StoriesPrivacySettingsFragment__story_privacy">സ്റ്റോറി സ്വകാര്യത</string>
+    <string name="StoriesPrivacySettingsFragment__story_privacy">സ്റ്റോറിയുടെ സ്വകാര്യത</string>
 
     <!-- GroupStorySettingsFragment -->
     <!-- Section header for who can view a group story -->

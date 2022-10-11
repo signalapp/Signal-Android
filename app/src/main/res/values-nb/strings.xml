@@ -218,7 +218,7 @@
     <!-- Header for username search -->
     <string name="ContactsCursorLoader_find_by_username">Søk på brukernavn</string>
     <!-- Label for my stories when selecting who to send media to -->
-    <string name="ContactsCursorLoader_my_stories">Mine stories</string>
+    <string name="ContactsCursorLoader_my_stories">Mine storyer</string>
     <!-- Action for creating a new story -->
     <string name="ContactsCursorLoader_new_story">Ny story</string>
 
@@ -673,7 +673,7 @@
     <!-- GroupsV1MigrationLearnMoreBottomSheetDialogFragment -->
     <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Hva er en \"ny\" gruppe?</string>
     <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Nye grupper har funksjoner som @mentions og gruppeadministratorer, og vil støtte enda flere i fremtiden.</string>
-    <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">All meldingshistorikk og alle mediefiler fra før oppgradering har blitt tatt vare på.</string>
+    <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Alle meldingslogger og mediefiler fra før oppgraderingen, har blitt tatt vare på.</string>
     <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">Du må akseptere en invitasjon for å bli med i gruppen igjen, og vil ikke få gruppemeldinger før du har akseptert.</string>
     <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
         <item quantity="one">Dette medlemmet må akseptere en invitasjon for å bli med i gruppen igjen, og vil ikke få gruppemeldinger før det har akseptert:</item>
@@ -688,7 +688,7 @@
     <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Oppgrader til \"ny\" gruppe</string>
     <string name="GroupsV1MigrationInitiation_upgrade_this_group">Oppgrader denne gruppen</string>
     <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">Nye grupper har funksjoner som @mentions og gruppeadministratorer, og vil støtte enda flere i fremtiden.</string>
-    <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">All meldingshistorikk og alle mediefiler fra før oppgraderingen blir tatt vare på.</string>
+    <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">Alle meldingslogger og mediefiler fra før oppgraderingen, blir tatt vare på.</string>
     <string name="GroupsV1MigrationInitiation_encountered_a_network_error">Det oppstod en nettverksfeil. Prøv igjen senere.</string>
     <string name="GroupsV1MigrationInitiation_failed_to_upgrade">Kunne ikke oppgradere.</string>
     <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
@@ -1542,7 +1542,7 @@
     <string name="RedPhone_network_failed">Nettverk mislyktes.</string>
     <string name="RedPhone_number_not_registered">Nummer ikke registrert.</string>
     <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Nummeret du ringte støtter ikke krypterte samtaler.</string>
-    <string name="RedPhone_got_it">Ålreit</string>
+    <string name="RedPhone_got_it">Skjønner</string>
 
     <!-- Valentine\'s Day Megaphone -->
     <!-- Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons. -->
@@ -2344,7 +2344,7 @@
     <!-- Displayed in a toast when user long presses an item in MyStories -->
     <string name="MyStoriesFragment__copied_sent_timestamp_to_clipboard">Tidsstempelet er kopiert til utklippstavlen.</string>
     <!-- Displayed when there are no outgoing stories -->
-    <string name="MyStoriesFragment__updates_to_your_story_will_show_up_here">Varsler om storyen din vil vises her.</string>
+    <string name="MyStoriesFragment__updates_to_your_story_will_show_up_here">Oppdateringer av storyen din vises her.</string>
 
     <!-- GroupUtil -->
     <plurals name="GroupUtil_joined_the_group">
@@ -2606,7 +2606,7 @@
     <string name="preferences__one_time_donation">Engangsbeløp</string>
     <string name="preferences__privacy">Personvern</string>
     <!-- Preference label for stories -->
-    <string name="preferences__stories">Stories</string>
+    <string name="preferences__stories">Storyer</string>
     <string name="preferences__mms_user_agent">MMS-brukeragent</string>
     <string name="preferences__advanced_mms_access_point_names">Manuelt MMS-oppsett</string>
     <string name="preferences__mmsc_url">MMSC-adresse</string>
@@ -2624,7 +2624,7 @@
     <string name="preferences__payments_beta">Betalinger (Beta)</string>
     <string name="preferences__conversation_length_limit">Lengdegrense for samtaler</string>
     <string name="preferences__keep_messages">Behold meldinger</string>
-    <string name="preferences__clear_message_history">Slett meldingshistorikk</string>
+    <string name="preferences__clear_message_history">Slett meldingslogg</string>
     <string name="preferences__linked_devices">Koblede enheter</string>
     <string name="preferences__light_theme">Lys</string>
     <string name="preferences__dark_theme">Mørk</string>
@@ -2658,7 +2658,7 @@
     <string name="preferences_chats__when_using_wifi">Ved bruk av Wi-Fi</string>
     <string name="preferences_chats__when_roaming">Ved bruk av dataroaming</string>
     <string name="preferences_chats__media_auto_download">Automatisk nedlasting av medier</string>
-    <string name="preferences_chats__message_history">Meldingshistorikk</string>
+    <string name="preferences_chats__message_history">Meldingslogg</string>
     <string name="preferences_storage__storage_usage">Lagringsbruk</string>
     <string name="preferences_storage__photos">Bilder</string>
     <string name="preferences_storage__videos">Videoer</string>
@@ -2666,12 +2666,12 @@
     <string name="preferences_storage__audio">Lyd</string>
     <string name="preferences_storage__review_storage">Se gjennom lagring</string>
     <string name="preferences_storage__delete_older_messages">Slett eldre meldinger?</string>
-    <string name="preferences_storage__clear_message_history">Slett meldingshistorikk?</string>
-    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Dette vil permanent slette all meldingshistorikk og media som er eldre enn %1$sfra denne din enhet.</string>
+    <string name="preferences_storage__clear_message_history">Vil du slette meldingsloggen?</string>
+    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Dette vil permanent slette alle meldingslogger og mediefiler som er eldre enn %1$s fra denne enheten.</string>
     <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Dette vil umiddelbart forkorte alle samtaler til de %1$s siste meldingene.</string>
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Dette vil permanent slette all meldingshistorikk og media fra denne din enhet.</string>
-    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Er du sikker på at du vil slette all meldingshistorikk?</string>
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">All meldingshistorikk vil bli permanent slettet. Denne handlingen kan ikke angres.</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Dette vil permanent slette alle meldingslogger og mediefiler fra denne enheten.</string>
+    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Er du sikker på at du vil slette alle meldingslogger?</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Alle meldingslogger slettes permanent. Denne handlingen kan ikke angres.</string>
     <string name="preferences_storage__delete_all_now">Slett alt nå</string>
     <string name="preferences_storage__forever">For alltid</string>
     <string name="preferences_storage__one_year">1 år</string>
@@ -2911,19 +2911,19 @@
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
-    <string name="PaymentsSecuritySetupFragment__security_setup">Security setup</string>
+    <string name="PaymentsSecuritySetupFragment__security_setup">Sikkerhetsoppsett</string>
     <!-- Title to enable payment lock -->
-    <string name="PaymentsSecuritySetupFragment__protect_your_funds">Protect your funds</string>
+    <string name="PaymentsSecuritySetupFragment__protect_your_funds">Beskytt pengene dine</string>
     <!-- Description as to why payment lock is required -->
-    <string name="PaymentsSecuritySetupFragment__help_prevent">Help prevent a person with your phone from accessing your funds by adding another layer of security. You can disable this option in Settings.</string>
+    <string name="PaymentsSecuritySetupFragment__help_prevent">Legg til ekstra sikkerhetstiltak for å forhindre at uvedkommende som får tak i telefonen din, får tilgang til pengene dine. Du kan slå dette av i innstillingene.</string>
     <!-- Option to enable payment lock -->
-    <string name="PaymentsSecuritySetupFragment__enable_payment_lock">Enable payment lock</string>
+    <string name="PaymentsSecuritySetupFragment__enable_payment_lock">Aktiver betalingslås</string>
     <!-- Option to cancel -->
     <string name="PaymentsSecuritySetupFragment__not_now">Ikke nå</string>
     <!-- Dialog title to confirm skipping the step -->
-    <string name="PaymentsSecuritySetupFragment__skip_this_step">Skip this step?</string>
+    <string name="PaymentsSecuritySetupFragment__skip_this_step">Vil du hoppe over dette trinnet?</string>
     <!-- Dialog description to let users know why payment lock is required -->
-    <string name="PaymentsSecuritySetupFragment__skipping_this_step">Skipping this step could allow anyone who has physical access to your phone to transfer funds or view your recovery phrase.</string>
+    <string name="PaymentsSecuritySetupFragment__skipping_this_step">Hvis du hopper over dette trinnet, kan alle som har fysisk tilgang til telefonen din overføre penger og se gjenopprettingsfrasen din.</string>
     <!-- Dialog option to cancel -->
     <string name="PaymentsSecuritySetupFragment__cancel">Avbryt</string>
     <!-- Dialog option to skip -->
@@ -4001,7 +4001,7 @@
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">Standard nedtelling for nye samtaler</string>
     <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Sett standard utløpstid for tidsavgrensede meldinger, for nye samtaler startet av deg.</string>
     <!-- Summary for stories preference to launch into story privacy settings -->
-    <string name="PrivacySettingsFragment__manage_your_stories">Styr storiesene dine og hvem som kan se dem</string>
+    <string name="PrivacySettingsFragment__manage_your_stories">Administrer storyene dine og hvem som kan se dem</string>
     <string name="PrivacySettingsFragment__payment_lock_require_lock">Sett opp krav om Android-skjermlås eller fingeravtrykk for å overføre penger</string>
     <!-- Alert dialog title when payment lock cannot be enabled -->
     <string name="PrivacySettingsFragment__cant_enable_title">Kan ikke slå på betalingslås</string>
@@ -4281,9 +4281,9 @@
     <string name="MultiselectForwardFragment__add_a_message">Legg til en melding</string>
     <string name="MultiselectForwardFragment__faster_forwards">Raskere videresending</string>
     <!-- Displayed when user selects a video that will be clipped before sharing to a story -->
-    <string name="MultiselectForwardFragment__videos_will_be_trimmed">Videoene vil kuttes ned til klipp på 30 sekunder og sendes som flere stories.</string>
+    <string name="MultiselectForwardFragment__videos_will_be_trimmed">Videoene trimmes ned til klipp på 30 sekunder og sendes som flere storyer.</string>
     <!-- Displayed when user selects a video that cannot be sent as a story -->
-    <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">Videoer som legges ut på stories kan ikke være lengre enn 30 sekunder.</string>
+    <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">Videoer som legges ut på Storyer kan ikke være lenger enn 30 sekunder.</string>
     <string name="MultiselectForwardFragment__forwarded_messages_are_now">Videresendte meldinger sendes nå umiddelbart.</string>
     <plurals name="MultiselectForwardFragment_send_d_messages">
         <item quantity="one">Send %1$d melding</item>
@@ -4724,15 +4724,15 @@
     <!-- Label for Chats tab in home app screen -->
     <string name="ConversationListTabs__chats">Samtaler</string>
     <!-- Label for Stories tab in home app screen -->
-    <string name="ConversationListTabs__stories">Stories</string>
+    <string name="ConversationListTabs__stories">Storyer</string>
     <!-- String for counts above 99 in conversation list tabs -->
     <string name="ConversationListTabs__99p">99+</string>
     <!-- Menu item on stories landing page -->
-    <string name="StoriesLandingFragment__story_privacy">Personvern for stories</string>
+    <string name="StoriesLandingFragment__story_privacy">Personvern for storyer</string>
     <!-- Title for "My Stories" row item in Stories landing page -->
-    <string name="StoriesLandingFragment__my_stories">Mine stories</string>
+    <string name="StoriesLandingFragment__my_stories">Mine storyer</string>
     <!-- Subtitle for "My Stories" row item when user has not added stories -->
-    <string name="StoriesLandingFragment__tap_to_add_a_story">Trykk for å legge til en ny story</string>
+    <string name="StoriesLandingFragment__tap_to_add_a_story">Trykk for å legge til en story</string>
     <!-- Displayed when there are no stories to display -->
     <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now">Ingen nylige oppdateringer å vise.</string>
     <!-- Context menu option to hide a story -->
@@ -4758,9 +4758,9 @@
     <!-- Status label when a story fails to send indicating user action to retry -->
     <string name="StoriesLandingItem__tap_to_retry">Trykk for å prøve igjen</string>
     <!-- Title of dialog confirming decision to hide a story -->
-    <string name="StoriesLandingFragment__hide_story">Skjule storyen?</string>
+    <string name="StoriesLandingFragment__hide_story">Vil du skjule storyen?</string>
     <!-- Message of dialog confirming decision to hide a story -->
-    <string name="StoriesLandingFragment__new_story_updates">Nye oppdateringer fra %1$s vises ikke øverst på listen over storyer lenger.</string>
+    <string name="StoriesLandingFragment__new_story_updates">Nye oppdateringer av storyer fra %1$s vises ikke øverst på listen over storyer lenger.</string>
     <!-- Positive action of dialog confirming decision to hide a story -->
     <string name="StoriesLandingFragment__hide">Skjul</string>
     <!-- Displayed in Snackbar after story is hidden -->
@@ -4777,7 +4777,7 @@
     <!-- Label for stories for a single user. Format is {given name}\'s Story -->
     <string name="MyStories__ss_story">Story fra %1$s</string>
     <!-- Title of dialog to confirm deletion of story -->
-    <string name="MyStories__delete_story">Slette storyen?</string>
+    <string name="MyStories__delete_story">Vil du slette storyen?</string>
     <!-- Message of dialog to confirm deletion of story -->
     <string name="MyStories__this_story_will_be_deleted">Dette vil slette storyen for deg og alle du har delt den med.</string>
     <!-- Toast shown when story media cannot be saved -->
@@ -4825,7 +4825,7 @@
     <!-- Displayed when a story has no replies yet -->
     <string name="StoryGroupReplyFragment__no_replies_yet">Ingen svar ennå</string>
     <!-- Displayed when no longer a group member -->
-    <string name="StoryGroupReplyFragment__you_cant_reply">You can\'t reply to this story because you\'re no longer a member of this group.</string>
+    <string name="StoryGroupReplyFragment__you_cant_reply">Du kan ikke svare på denne storyen fordi du ikke er medlem av denne gruppen lenger.</string>
     <!-- Displayed for each user that reacted to a story when viewing replies -->
     <string name="StoryGroupReactionReplyItem__reacted_to_the_story">Reagerte på storyen</string>
     <!-- Label for story views tab -->
@@ -4878,15 +4878,13 @@
         <item quantity="other">%1$d personer</item>
     </plurals>
     <!-- My story privacy fine print about what the privacy settings are for -->
-    <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Velg ut hvem som kan se storyen din. Dette vil ikke påvirke stories som du allerede har delt.</string>
+    <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Velg hvem som kan se storyen din. Dette vil ikke påvirke storyer som du allerede har delt.</string>
     <!-- Section header for options related to replies and reactions -->
     <string name="MyStorySettingsFragment__replies_amp_reactions">Svar og reaksjoner</string>
     <!-- Switchable option for allowing replies and reactions on your stories -->
     <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Tillat svar og reaksjoner</string>
     <!-- Summary for switchable option allowing replies and reactions on your story -->
     <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Gjør det mulig for de som kan se storyen din å reagere og svare</string>
-    <!-- Note about default sharing -->
-    <string name="MyStorySettingsFragment__hide_your_story_from">Skjul storyen din fra utvalgte personer. Storyen din deles automatisk med dine %1$s</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
     <string name="SignalConnectionsBottomSheet___signal_connections">Signal-kontakter</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
@@ -4906,7 +4904,7 @@
     <!-- Dialog title when attempting to remove someone from a private story -->
     <string name="PrivateStorySettingsFragment__remove_s">Vil du fjerne %1$s?</string>
     <!-- Dialog message when attempting to remove someone from a private story -->
-    <string name="PrivateStorySettingsFragment__this_person_will_no_longer">Denne personen vil ikke kunne se storyen din lenger.</string>
+    <string name="PrivateStorySettingsFragment__this_person_will_no_longer">Denne personen kan ikke lenger se storyen din.</string>
     <!-- Positive action label when attempting to remove someone from a private story -->
     <string name="PrivateStorySettingsFragment__remove">Fjern</string>
     <!-- Dialog title when deleting a private story -->
@@ -4914,7 +4912,7 @@
     <!-- Dialog message when deleting a private story -->
     <string name="PrivateStorySettingsFragment__this_action_cannot">Dette kan ikke gjøres om.</string>
     <!-- Page title for editing a private story name -->
-    <string name="EditPrivateStoryNameFragment__edit_story_name">Endre navn på story</string>
+    <string name="EditPrivateStoryNameFragment__edit_story_name">Endre navnet på storyen</string>
     <!-- Input field hint when editing a private story name -->
     <string name="EditPrivateStoryNameFragment__story_name">Navn på story</string>
     <!-- Save button label when editing a private story name -->
@@ -4934,7 +4932,7 @@
     <!-- Hint for entering a URL for a text post -->
     <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">Skriv eller lim inn en nettadresse</string>
     <!-- Displayed prior to the user entering a URL for a text post -->
-    <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">Del en link med de som ser storyen din</string>
+    <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">Del en lenke med de som ser storyen din</string>
     <!-- Hint text for searching for a story text post recipient. -->
     <string name="TextStoryPostSendFragment__search">Søk</string>
     <!-- Toast shown when an unexpected error occurs while sending a text story -->
@@ -4948,33 +4946,33 @@
     <!-- Dialog title for removing a group story -->
     <string name="StoryDialogs__remove_group_story">Vil du fjerne gruppestoryen?</string>
     <!-- Dialog message for removing a group story -->
-    <string name="StoryDialogs__s_will_be_removed">\"%1$s\" will be removed.</string>
+    <string name="StoryDialogs__s_will_be_removed">«%1$s» fjernes.</string>
     <!-- Dialog positive action for removing a group story -->
     <string name="StoryDialogs__remove">Fjern</string>
     <!-- Dialog title for deleting a private story -->
     <string name="StoryDialogs__delete_private_story">Vil du slette den private storyen?</string>
     <!-- Dialog message for deleting a private story -->
-    <string name="StoryDialogs__s_and_updates_shared">\"%1$s\" and updates shared to this story will be deleted.</string>
+    <string name="StoryDialogs__s_and_updates_shared">«%1$s» slettes, sammen med alle tilknyttede oppdateringer.</string>
     <!-- Dialog positive action for deleting a private story -->
     <string name="StoryDialogs__delete">Slett</string>
     <!-- Dialog title for first time sending something to a beta story -->
-    <string name="StoryDialogs__stories_is_available_to">Stories is available to Signal beta users only.</string>
+    <string name="StoryDialogs__stories_is_available_to">Storyer er kun tilgjengelig for Signal beta-brukere.</string>
     <!-- Dialog message for first time sending something to a beta story -->
-    <string name="StoryDialogs__if_you_share_a_story">If you share a story, it will only be available to people who are on Signal beta.</string>
+    <string name="StoryDialogs__if_you_share_a_story">Hvis du deler en story, vises den kun for personer som bruker Signal beta.</string>
     <!-- Dialog title for first time adding something to a story -->
-    <string name="StoryDialogs__add_to_story_q">Legge til i story?</string>
+    <string name="StoryDialogs__add_to_story_q">Vil du legge til i storyen?</string>
     <!-- Dialog message for first time adding something to a story -->
-    <string name="StoryDialogs__adding_content">Signal-kontaktene dine kan se det du legger til i story i 24 timer. Du kan velge hvem som kan se storyen din i Innstillinger.</string>
+    <string name="StoryDialogs__adding_content">Signal-kontaktene dine kan se det du legger til i storyen din i 24 timer. Du kan velge hvem som kan se storyen din, i Innstillinger.</string>
     <!-- First time share to story dialog: Positive action to go ahead and add to story -->
     <string name="StoryDialogs__add_to_story">Legg til i story</string>
     <!-- First time share to story dialog: Neutral action to edit who can view "My Story" -->
     <string name="StoryDialogs__edit_viewers">Rediger seerlisten</string>
     <!-- Error message shown when a failure occurs during story send -->
-    <string name="StoryDialogs__story_could_not_be_sent">Storyen kunne ikke sendes. Sjekk internettilkoblingen din og prøv igjen.</string>
+    <string name="StoryDialogs__story_could_not_be_sent">Storyen kunne ikke sendes. Sjekk internettilkoblingen og prøv igjen.</string>
     <!-- Error message dialog button to resend a previously failed story send -->
     <string name="StoryDialogs__send">Send</string>
     <!-- Action button for turning off stories when stories are present on the device -->
-    <string name="StoryDialogs__turn_off_and_delete">Turn off and delete</string>
+    <string name="StoryDialogs__turn_off_and_delete">Slå av og slett</string>
     <!-- Privacy Settings toggle title for stories -->
     <string name="PrivacySettingsFragment__share_and_view_stories">Del og se storyer</string>
     <!-- Privacy Settings toggle summary for stories -->
@@ -5112,7 +5110,7 @@
     <!-- Expired gift sheet not now button -->
     <string name="ExpiredGiftSheetConfiguration__not_now">Ikke nå</string>
     <!-- My Story label designating that we will only share with the selected viewers. -->
-    <string name="ContactSearchItems__only_share_with">Del storyen kun med</string>
+    <string name="ContactSearchItems__only_share_with">Del kun med</string>
     <!-- Label under name for private stories -->
     <plurals name="ContactSearchItems__private_story_d_viewers">
         <item quantity="one">Privat story · Sett av %1$d</item>
@@ -5144,11 +5142,11 @@
     <!-- Dialog title for removing a group story -->
     <string name="ContactSearchMediator__remove_group_story">Vil du fjerne gruppestoryen?</string>
     <!-- Dialog message for removing a group story -->
-    <string name="ContactSearchMediator__this_will_remove">Dette vil fjerne storyen fra listen. Du vil fremdeles se de andre storyene fra denne gruppen.</string>
+    <string name="ContactSearchMediator__this_will_remove">Dette vil fjerne storyen fra listen. Du kan fremdeles se de andre storyene fra denne gruppen.</string>
     <!-- Dialog action item for removing a group story -->
     <string name="ContactSearchMediator__remove">Fjern</string>
     <!-- Dialog title for deleting a private story -->
-    <string name="ContactSearchMediator__delete_story">Slette storyen?</string>
+    <string name="ContactSearchMediator__delete_story">Vil du slette storyen?</string>
     <!-- Dialog message for deleting a private story -->
     <string name="ContactSearchMediator__delete_the_private">Vil du slette den private storyen «%1$s»?</string>
     <!-- Dialog action item for deleting a private story -->
@@ -5196,7 +5194,7 @@
     <!-- Message of safety number changes bottom sheet when not showing individual records and user has seen review screen -->
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Alle kontaktene er gjennomgått, trykk på Send for å fortsette.</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
-    <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">Du har %1$d kontakter som kan ha installert Signal på nytt eller byttet enhet. Sjekk sikkerhetsnumrene deres eller fjern dem fra storyen din før du deler storyen din med dem.</string>
+    <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">Du har %1$d kontakter som kan ha installert Signal på nytt eller byttet enhet. Du bør sjekke sikkerhetsnumrene deres eller fjern dem fra storyen din før du eventuelt deler den med dem.</string>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Bekreft sikkerhetsnummer</string>
     <!-- Menu action to remove user from story -->
@@ -5251,27 +5249,27 @@
 
     <!-- StoriesPrivacySettingsFragment -->
     <!-- Explanation about how stories are deleted and managed -->
-    <string name="StoriesPrivacySettingsFragment__stories_automatically_disappear">Stories forsvinner automatisk etter 24 timer. Velg hvem som kan se storyen din, eller del nye stories med utvalgte personer og grupper.</string>
+    <string name="StoriesPrivacySettingsFragment__stories_automatically_disappear">Storyer forsvinner automatisk etter 24 timer. Velg hvem som kan se storyen din, eller del nye storyer med utvalgte personer og grupper.</string>
     <!-- Preference title to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__turn_off_stories">Skru av stories</string>
+    <string name="StoriesPrivacySettingsFragment__turn_off_stories">Slå av storyer</string>
     <!-- Preference summary to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__if_you_opt_out">Hvis du velger å skru av stories, kan du verken se eller dele stories.</string>
+    <string name="StoriesPrivacySettingsFragment__if_you_opt_out">Hvis du velger å slå av storyer, kan du verken se eller dele storyer.</string>
     <!-- Preference title to turn on stories -->
-    <string name="StoriesPrivacySettingsFragment__turn_on_stories">Skru på stories</string>
+    <string name="StoriesPrivacySettingsFragment__turn_on_stories">Slå på storyer</string>
     <!-- Preference summary to turn on stories -->
-    <string name="StoriesPrivacySettingsFragment__share_and_view">Del dine egne og se andre personers stories. De forsvinner automatisk etter 24 timer.</string>
+    <string name="StoriesPrivacySettingsFragment__share_and_view">Del dine egne og se andre personers storyer. De forsvinner automatisk etter 24 timer.</string>
     <!-- Dialog title to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">Vil du skru av stories?</string>
+    <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">Vil du slå av storyer?</string>
     <!-- Dialog message to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">You will no longer be able to share or view stories. Story updates you have recently shared will also be deleted.</string>
+    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">Du kan ikke lenger dele eller se storyer. Oppdateringer av storyer som du nylig har delt, slettes også.</string>
     <!-- Page title when launched from stories landing screen -->
-    <string name="StoriesPrivacySettingsFragment__story_privacy">Personvern for stories</string>
+    <string name="StoriesPrivacySettingsFragment__story_privacy">Personvern for storyer</string>
 
     <!-- GroupStorySettingsFragment -->
     <!-- Section header for who can view a group story -->
     <string name="GroupStorySettingsFragment__who_can_view_this_story">Disse kan se denne storyen</string>
     <!-- Explanation of who can view a group story -->
-    <string name="GroupStorySettingsFragment__members_of_the_group_s">"Medlemmene av %1$s kan se og svare på denne storyen. Du kan endre hvem som er med i denne samtalen inne i gruppen."</string>
+    <string name="GroupStorySettingsFragment__members_of_the_group_s">"Medlemmene av %1$s kan se og svare på denne storyen. Du kan endre hvem som er med i denne samtalen, inne i gruppen."</string>
     <!-- Preference label for removing this group story -->
     <string name="GroupStorySettingsFragment__remove_group_story">Fjern gruppestoryen</string>
 
@@ -5286,7 +5284,7 @@
     <!-- Title of the screen -->
     <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">Overfør SMS-meldingene dine</string>
     <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">Du kan eksportere SMS-meldingene dine til minnet på telefonen din. Dette gir andre SMS-apper på telefonen din tilgang til og mulighet til å importere dem. Dette oppretter ikke en delbar fil av SMS-meldingsloggen din.</string>
+    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">Du kan eksportere SMS-meldingene dine til minnet på telefonen din. Dette gir andre SMS-apper på telefonen din tilgang til og mulighet til å importere dem. Det oppretter ikke en delbar fil av SMS-meldingsloggen din.</string>
     <!-- Button label to begin export -->
     <string name="ExportYourSmsMessagesFragment__continue">Fortsett</string>
 

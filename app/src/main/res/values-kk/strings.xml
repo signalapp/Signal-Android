@@ -218,7 +218,7 @@
     <!-- Header for username search -->
     <string name="ContactsCursorLoader_find_by_username">Пайдаланушы аты бойынша іздеу</string>
     <!-- Label for my stories when selecting who to send media to -->
-    <string name="ContactsCursorLoader_my_stories">Менің сторилерім</string>
+    <string name="ContactsCursorLoader_my_stories">Менің стористерім</string>
     <!-- Action for creating a new story -->
     <string name="ContactsCursorLoader_new_story">Жаңа сторис</string>
 
@@ -673,7 +673,7 @@
     <!-- GroupsV1MigrationLearnMoreBottomSheetDialogFragment -->
     <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Жаңа топтар деген не?</string>
     <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Жаңа топтарда @атап өту және топ әкімшілері сияқты функциялар бар және болашақта басқа функциялар да қосылады.</string>
-    <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Жаңартылғанға дейінгі барлық хат тарихы және мультимедиа сақталды.</string>
+    <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Жаңартылғанға дейінгі барлық хаттар тарихы және мультимедиа сақталды.</string>
     <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">Осы топқа қосылуға жіберілген шақыруды қайта қабылдауыңыз керек. Оны қабылдамайынша, топтағы хаттарды ала алмайсыз.</string>
     <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
         <item quantity="one">Бұл топ мүшесі топқа қосылуға жіберілген шақыруды қайта қабылдауы керек. Оны қабылдамайынша, топтағы хаттарды ала алмайды.</item>
@@ -1346,7 +1346,7 @@
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Бұл жаңа функция ұнады ма? Бір реттік демеу жіберіп, Signal-ға қолдау көрсетіңіз.</string>
     <!-- Update item message shown when we merge two threads together -->
-    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">%1$s чаты және оның %2$s нөмірінен тұратын хаттар тарихы біріктірілді.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">%1$s деген кісімен жазған хаттарыңыз және оның %2$s деген нөмірі біріктірілді.</string>
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">%1$s чаты бар хаттар тарихы мен оған тиесілі тағы бір чат біріктірілді.</string>
 
@@ -1524,7 +1524,7 @@
     <!-- Recipient -->
     <string name="Recipient_you">Сіз</string>
     <!-- Name of recipient representing user\'s \'My Story\' -->
-    <string name="Recipient_my_story">Менің сториім</string>
+    <string name="Recipient_my_story">Менің сторисім</string>
 
     <!-- RecipientPreferencesActivity -->
     <string name="RecipientPreferenceActivity_block">Бұғаттау</string>
@@ -2344,7 +2344,7 @@
     <!-- Displayed in a toast when user long presses an item in MyStories -->
     <string name="MyStoriesFragment__copied_sent_timestamp_to_clipboard">Жіберілген уақыт белгісі буферге көшірілді.</string>
     <!-- Displayed when there are no outgoing stories -->
-    <string name="MyStoriesFragment__updates_to_your_story_will_show_up_here">Сториіңізде жаңартулар осы жерде көрініс табады.</string>
+    <string name="MyStoriesFragment__updates_to_your_story_will_show_up_here">Сторисіңізде жаңартулар осы жерде көрсетіледі.</string>
 
     <!-- GroupUtil -->
     <plurals name="GroupUtil_joined_the_group">
@@ -2911,19 +2911,19 @@
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
-    <string name="PaymentsSecuritySetupFragment__security_setup">Security setup</string>
+    <string name="PaymentsSecuritySetupFragment__security_setup">Қауіпсіздік параметрлерін реттеу</string>
     <!-- Title to enable payment lock -->
-    <string name="PaymentsSecuritySetupFragment__protect_your_funds">Protect your funds</string>
+    <string name="PaymentsSecuritySetupFragment__protect_your_funds">Қаражатыңызды қорғаңыз</string>
     <!-- Description as to why payment lock is required -->
-    <string name="PaymentsSecuritySetupFragment__help_prevent">Help prevent a person with your phone from accessing your funds by adding another layer of security. You can disable this option in Settings.</string>
+    <string name="PaymentsSecuritySetupFragment__help_prevent">Қосымша қауіпсіздік шарасын қосу арқылы телефоныңызды ұстап отырған адамның қаражатыңызды пайдаланбауын қадағалаңыз. Бұл опцияны \"Параметрлер\" бөлімінен өшіріп қоюыңызға болады.</string>
     <!-- Option to enable payment lock -->
-    <string name="PaymentsSecuritySetupFragment__enable_payment_lock">Enable payment lock</string>
+    <string name="PaymentsSecuritySetupFragment__enable_payment_lock">Төлем құлпын қосу</string>
     <!-- Option to cancel -->
     <string name="PaymentsSecuritySetupFragment__not_now">Кейін</string>
     <!-- Dialog title to confirm skipping the step -->
-    <string name="PaymentsSecuritySetupFragment__skip_this_step">Skip this step?</string>
+    <string name="PaymentsSecuritySetupFragment__skip_this_step">Осы қадамды өткізіп жіберу керек пе?</string>
     <!-- Dialog description to let users know why payment lock is required -->
-    <string name="PaymentsSecuritySetupFragment__skipping_this_step">Skipping this step could allow anyone who has physical access to your phone to transfer funds or view your recovery phrase.</string>
+    <string name="PaymentsSecuritySetupFragment__skipping_this_step">Бұл қадамды өткізіп жіберсеңіз, телефоныңызды ұстап отырған кез келген адам ақша аудара алады немесе қалпына келтіру сөйлеміңізді көре алады.</string>
     <!-- Dialog option to cancel -->
     <string name="PaymentsSecuritySetupFragment__cancel">Болдырмау</string>
     <!-- Dialog option to skip -->
@@ -4283,7 +4283,7 @@
     <!-- Displayed when user selects a video that will be clipped before sharing to a story -->
     <string name="MultiselectForwardFragment__videos_will_be_trimmed">Видеолар 30 секундтық клиптерге бөлінеді және бірнеше сторис ретінде жіберіледі.</string>
     <!-- Displayed when user selects a video that cannot be sent as a story -->
-    <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">Сториске жіберілетін видеолардың ұзақтығы 30 секундтан аспау керек.</string>
+    <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">Сториске жіберілетін видеолардың ұзақтығы 30 секундтан аспауы керек.</string>
     <string name="MultiselectForwardFragment__forwarded_messages_are_now">Басқаға жіберілген хаттар енді дереу кетеді.</string>
     <plurals name="MultiselectForwardFragment_send_d_messages">
         <item quantity="one">%1$d хат жіберу</item>
@@ -4724,13 +4724,13 @@
     <!-- Label for Chats tab in home app screen -->
     <string name="ConversationListTabs__chats">Чаттар</string>
     <!-- Label for Stories tab in home app screen -->
-    <string name="ConversationListTabs__stories">Сторилер</string>
+    <string name="ConversationListTabs__stories">Стористер</string>
     <!-- String for counts above 99 in conversation list tabs -->
     <string name="ConversationListTabs__99p">99+</string>
     <!-- Menu item on stories landing page -->
-    <string name="StoriesLandingFragment__story_privacy">Сторис құпиялығы</string>
+    <string name="StoriesLandingFragment__story_privacy">Сторис құпиялылығы</string>
     <!-- Title for "My Stories" row item in Stories landing page -->
-    <string name="StoriesLandingFragment__my_stories">Менің сторилерім</string>
+    <string name="StoriesLandingFragment__my_stories">Менің стористерім</string>
     <!-- Subtitle for "My Stories" row item when user has not added stories -->
     <string name="StoriesLandingFragment__tap_to_add_a_story">Сторис қосу үшін түртіңіз</string>
     <!-- Displayed when there are no stories to display -->
@@ -4825,7 +4825,7 @@
     <!-- Displayed when a story has no replies yet -->
     <string name="StoryGroupReplyFragment__no_replies_yet">Ешкім жауап жазбаған</string>
     <!-- Displayed when no longer a group member -->
-    <string name="StoryGroupReplyFragment__you_cant_reply">You can\'t reply to this story because you\'re no longer a member of this group.</string>
+    <string name="StoryGroupReplyFragment__you_cant_reply">Бұл сториске жауап бере алмайсыз, себебі сіз ендігәрі бұл топтың мүшесі емессіз.</string>
     <!-- Displayed for each user that reacted to a story when viewing replies -->
     <string name="StoryGroupReactionReplyItem__reacted_to_the_story">Осы сториске реакция қалдырды</string>
     <!-- Label for story views tab -->
@@ -4843,7 +4843,7 @@
     <!-- Context menu item to delete a story response -->
     <string name="StoryGroupReplyItem__delete">Жою</string>
     <!-- Page title for My Story options -->
-    <string name="MyStorySettingsFragment__my_story">Менің сториім</string>
+    <string name="MyStorySettingsFragment__my_story">Менің сторисім</string>
     <!-- Number of total signal connections displayed in "All connections" row item -->
     <plurals name="MyStorySettingsFragment__viewers">
         <item quantity="one">%1$d viewer</item>
@@ -4862,7 +4862,7 @@
     <!-- Privacy setting title for sending stories to all except the specified connections -->
     <string name="MyStorySettingsFragment__all_except">Мыналардан басқалары…</string>
     <!-- Privacy setting description for sending stories to all except the specified connections -->
-    <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Белгілі бір адамдардан стористеріңізді жасыру</string>
+    <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Кейбір адамдардан стористеріңізді жасыру</string>
     <!-- Summary of clickable option displaying how many people you have excluded from your story -->
     <plurals name="MyStorySettingsFragment__d_people_excluded">
         <item quantity="one">%1$d адам шығарылды</item>
@@ -4885,8 +4885,6 @@
     <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Жауаптар мен реакцияларға рұқсат ету</string>
     <!-- Summary for switchable option allowing replies and reactions on your story -->
     <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Сторисіңізді көре алатын адамдарға реакция қалдыруға және жауап жазуға рұқсат ету</string>
-    <!-- Note about default sharing -->
-    <string name="MyStorySettingsFragment__hide_your_story_from">Стористеріңізді белгілі бір адамдардан жасырыңыз. Әдепкіде сторисіңізді %1$s көре алады</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
     <string name="SignalConnectionsBottomSheet___signal_connections">Signal байланыстары</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
@@ -4948,23 +4946,23 @@
     <!-- Dialog title for removing a group story -->
     <string name="StoryDialogs__remove_group_story">Топтағы стористі өшіру керек пе?</string>
     <!-- Dialog message for removing a group story -->
-    <string name="StoryDialogs__s_will_be_removed">\"%1$s\" will be removed.</string>
+    <string name="StoryDialogs__s_will_be_removed">\"%1$s\" өшіп қалады.</string>
     <!-- Dialog positive action for removing a group story -->
     <string name="StoryDialogs__remove">Жою</string>
     <!-- Dialog title for deleting a private story -->
     <string name="StoryDialogs__delete_private_story">Жеке стористі жою керек пе?</string>
     <!-- Dialog message for deleting a private story -->
-    <string name="StoryDialogs__s_and_updates_shared">\"%1$s\" and updates shared to this story will be deleted.</string>
+    <string name="StoryDialogs__s_and_updates_shared">\"%1$s\" және осы сториске салынған жаңартулар жойылады.</string>
     <!-- Dialog positive action for deleting a private story -->
     <string name="StoryDialogs__delete">Жою</string>
     <!-- Dialog title for first time sending something to a beta story -->
-    <string name="StoryDialogs__stories_is_available_to">Stories is available to Signal beta users only.</string>
+    <string name="StoryDialogs__stories_is_available_to">Сторис тек Signal-дың бета нұсқасын пайдаланатындарға ғана қолжетімді.</string>
     <!-- Dialog message for first time sending something to a beta story -->
-    <string name="StoryDialogs__if_you_share_a_story">If you share a story, it will only be available to people who are on Signal beta.</string>
+    <string name="StoryDialogs__if_you_share_a_story">Сторис бөліссеңіз, оны Signal-дың бета нұсқасын пайдаланатындар көре алады.</string>
     <!-- Dialog title for first time adding something to a story -->
     <string name="StoryDialogs__add_to_story_q">Сторис қосу керек пе?</string>
     <!-- Dialog message for first time adding something to a story -->
-    <string name="StoryDialogs__adding_content">Сторисіңізге контент қоссаңыз, Signal-дағы контактілеріңіз оны 24 сағат көре алады. Параметрлер бөліміне кіріп, стористеріңізді кім көре алатынын өзгертуіңізге болады.</string>
+    <string name="StoryDialogs__adding_content">Сторис салсаңыз, Signal-дағы контактілеріңіз оны 24 сағат ішінде көре алады. Параметрлер бөліміне кіріп, стористеріңізді кім көре алатынын өзгертуіңізге болады.</string>
     <!-- First time share to story dialog: Positive action to go ahead and add to story -->
     <string name="StoryDialogs__add_to_story">Сторис қосу</string>
     <!-- First time share to story dialog: Neutral action to edit who can view "My Story" -->
@@ -4974,7 +4972,7 @@
     <!-- Error message dialog button to resend a previously failed story send -->
     <string name="StoryDialogs__send">Жіберу</string>
     <!-- Action button for turning off stories when stories are present on the device -->
-    <string name="StoryDialogs__turn_off_and_delete">Turn off and delete</string>
+    <string name="StoryDialogs__turn_off_and_delete">Өшіру және жою</string>
     <!-- Privacy Settings toggle title for stories -->
     <string name="PrivacySettingsFragment__share_and_view_stories">Стористерді бөлісу және көру</string>
     <!-- Privacy Settings toggle summary for stories -->
@@ -5112,7 +5110,7 @@
     <!-- Expired gift sheet not now button -->
     <string name="ExpiredGiftSheetConfiguration__not_now">Кейін</string>
     <!-- My Story label designating that we will only share with the selected viewers. -->
-    <string name="ContactSearchItems__only_share_with">Тек мына көрермендермен бөлісу</string>
+    <string name="ContactSearchItems__only_share_with">Көре алатындар</string>
     <!-- Label under name for private stories -->
     <plurals name="ContactSearchItems__private_story_d_viewers">
         <item quantity="one">Жеке стористе · %1$d көрермен</item>
@@ -5148,9 +5146,9 @@
     <!-- Dialog action item for removing a group story -->
     <string name="ContactSearchMediator__remove">Өшіру</string>
     <!-- Dialog title for deleting a private story -->
-    <string name="ContactSearchMediator__delete_story">Стористі жою керек пе</string>
+    <string name="ContactSearchMediator__delete_story">Стористі жою керек пе?</string>
     <!-- Dialog message for deleting a private story -->
-    <string name="ContactSearchMediator__delete_the_private">\"%1$s\" жеке сторисін өшіру керек пе?</string>
+    <string name="ContactSearchMediator__delete_the_private">\"%1$s\" жеке сторисін жою керек пе?</string>
     <!-- Dialog action item for deleting a private story -->
     <string name="ContactSearchMediator__delete">Жою</string>
     <!-- Gift expiry days remaining -->
@@ -5251,9 +5249,9 @@
 
     <!-- StoriesPrivacySettingsFragment -->
     <!-- Explanation about how stories are deleted and managed -->
-    <string name="StoriesPrivacySettingsFragment__stories_automatically_disappear">Сторис 24 сағаттан кейін өшіп қалады. Сторисіңізді кім көре алатынын таңдаңыз немесе белгілі бір көрермендер немесе топтар ғана көре алатын жаңа стористер жасаңыз.</string>
+    <string name="StoriesPrivacySettingsFragment__stories_automatically_disappear">Сторис 24 сағаттан кейін өшіп қалады. Сторисіңізді кім көре алатынын таңдаңыз немесе кейбір көрермендер немесе топтар ғана көре алатын жаңа стористер жасаңыз.</string>
     <!-- Preference title to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__turn_off_stories">Стористерді өшіру</string>
+    <string name="StoriesPrivacySettingsFragment__turn_off_stories">Стористерді өшіріп қою</string>
     <!-- Preference summary to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__if_you_opt_out">Стористерді өшіріп қойсаңыз, бұдан былай стористерді бөлісе немесе көре алмайтын боласыз.</string>
     <!-- Preference title to turn on stories -->
@@ -5263,7 +5261,7 @@
     <!-- Dialog title to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">Стористерді өшіру керек пе?</string>
     <!-- Dialog message to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">You will no longer be able to share or view stories. Story updates you have recently shared will also be deleted.</string>
+    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">Ендігәрі стористерді бөлісе немесе көре алмайсыз. Жақында бөліскен сторис жаңалықтары да жойылады.</string>
     <!-- Page title when launched from stories landing screen -->
     <string name="StoriesPrivacySettingsFragment__story_privacy">Сторис құпиялылығы</string>
 
@@ -5271,7 +5269,7 @@
     <!-- Section header for who can view a group story -->
     <string name="GroupStorySettingsFragment__who_can_view_this_story">Бұл стористі кім көре алады</string>
     <!-- Explanation of who can view a group story -->
-    <string name="GroupStorySettingsFragment__members_of_the_group_s">"\"%1$s\" тобының мүшелері бұл стористі көре алады және оған жауап бере алады. Топтағы осы чат үшін мүшелік параметрлерін өзгерте аласыз."</string>
+    <string name="GroupStorySettingsFragment__members_of_the_group_s">"%1$s тобының мүшелері бұл стористі көре алады және оған жауап бере алады. Топтағы осы чат үшін мүшелік параметрлерін өзгерте аласыз."</string>
     <!-- Preference label for removing this group story -->
     <string name="GroupStorySettingsFragment__remove_group_story">Топтық стористі өшіріп тастау</string>
 

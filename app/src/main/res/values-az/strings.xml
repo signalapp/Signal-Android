@@ -688,7 +688,7 @@
     <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Yeni Qrupa yüksəlt</string>
     <string name="GroupsV1MigrationInitiation_upgrade_this_group">Bu qrupu yüksəlt</string>
     <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">Yeni Qrupların @adçəkmə və qrup adminləri kimi özəllikləri var və gələcəkdə daha çox özəlliyi dəstəkləyəcək.</string>
-    <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">Bütün mesaj tarixçəsi və media, yüksəldilməzdən əvvəl saxlanılacaq.</string>
+    <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">Bütün mesaj tarixçəsi və media yenilənmədən əvvəl saxlanılacaq.</string>
     <string name="GroupsV1MigrationInitiation_encountered_a_network_error">Şəbəkə xətası ilə qarşılaşıldı. Daha sonra yenidən sınayın.</string>
     <string name="GroupsV1MigrationInitiation_failed_to_upgrade">Yüksəldilmədi.</string>
     <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
@@ -1855,9 +1855,9 @@
     <!-- Displayed in the notification when the user has opened a received gift -->
     <string name="ThreadRecord__you_redeemed_a_gift_badge">Bir hədiyyə nişanı aldınız</string>
     <!-- Displayed in the conversation list when someone reacted to your story -->
-    <string name="ThreadRecord__reacted_s_to_your_story">Hekayənizə %1$sreaksiyası verdi</string>
+    <string name="ThreadRecord__reacted_s_to_your_story">Hekayənizə %1$s reaksiyası verdi</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
-    <string name="ThreadRecord__reacted_s_to_their_story">Hekayəyə %1$s reaksiyası verdiniz</string>
+    <string name="ThreadRecord__reacted_s_to_their_story">Onun hekayəsinə %1$s reaksiyası verdiniz</string>
 
     <!-- UpdateApkReadyListener -->
     <string name="UpdateApkReadyListener_Signal_update">Signal yeniləməsi</string>
@@ -2671,7 +2671,7 @@
     <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Bu, bütün mesajları ən son %1$s mesaja qədər kəsəcək.</string>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Bu, bütün mesaj tarixçəsini və mediaları cihazınızdan birdəfəlik siləcək.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Bütün mesaj tarixçənizi silmək istədiyinizə əminsiniz?</string>
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Bütün mesaj tarixçəniz birdəfəlik silənəcək. Bu əməliyyatın geri dönüşü yoxdur.</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Bütün mesaj tarixçəniz birdəfəlik silənəcək. Bu əməliyyat geri qaytarıla bilməz.</string>
     <string name="preferences_storage__delete_all_now">Hamısını indi sil</string>
     <string name="preferences_storage__forever">Həmişəlik</string>
     <string name="preferences_storage__one_year">1 il</string>
@@ -2911,19 +2911,19 @@
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
-    <string name="PaymentsSecuritySetupFragment__security_setup">Security setup</string>
+    <string name="PaymentsSecuritySetupFragment__security_setup">Təhlükəsizlik quraşdırması</string>
     <!-- Title to enable payment lock -->
-    <string name="PaymentsSecuritySetupFragment__protect_your_funds">Protect your funds</string>
+    <string name="PaymentsSecuritySetupFragment__protect_your_funds">Vəsaitlərinizi qoruyun</string>
     <!-- Description as to why payment lock is required -->
-    <string name="PaymentsSecuritySetupFragment__help_prevent">Help prevent a person with your phone from accessing your funds by adding another layer of security. You can disable this option in Settings.</string>
+    <string name="PaymentsSecuritySetupFragment__help_prevent">Əlavə təhlükəsizlik səviyyəsi ilə başqa bir şəxsin telefonunuzdan vəsaitlərinizə daxil olmasının qarşısnı alın. Parametrlərdən bu seçimi qeyri-aktiv edə bilərsiniz.</string>
     <!-- Option to enable payment lock -->
-    <string name="PaymentsSecuritySetupFragment__enable_payment_lock">Enable payment lock</string>
+    <string name="PaymentsSecuritySetupFragment__enable_payment_lock">Ödəniş kilidini aktivləşdirin</string>
     <!-- Option to cancel -->
     <string name="PaymentsSecuritySetupFragment__not_now">İndi yox</string>
     <!-- Dialog title to confirm skipping the step -->
-    <string name="PaymentsSecuritySetupFragment__skip_this_step">Skip this step?</string>
+    <string name="PaymentsSecuritySetupFragment__skip_this_step">Bu addım ötürülsün?</string>
     <!-- Dialog description to let users know why payment lock is required -->
-    <string name="PaymentsSecuritySetupFragment__skipping_this_step">Skipping this step could allow anyone who has physical access to your phone to transfer funds or view your recovery phrase.</string>
+    <string name="PaymentsSecuritySetupFragment__skipping_this_step">Bu addımı ötürməklə telefonunuza fiziki girişi olan hər kəsin vəsaitlərinizi köçürmək və ya bərpa parolunuza baxmaq imkanı olacaq.</string>
     <!-- Dialog option to cancel -->
     <string name="PaymentsSecuritySetupFragment__cancel">İmtina</string>
     <!-- Dialog option to skip -->
@@ -4775,11 +4775,11 @@
     <!-- Forward story label, displayed in My Stories context menu -->
     <string name="MyStories_forward">Yönləndir</string>
     <!-- Label for stories for a single user. Format is {given name}\'s Story -->
-    <string name="MyStories__ss_story">%1$s paylaşan hekayə</string>
+    <string name="MyStories__ss_story">%1$s hekayə</string>
     <!-- Title of dialog to confirm deletion of story -->
     <string name="MyStories__delete_story">Hekayə silinsin?</string>
     <!-- Message of dialog to confirm deletion of story -->
-    <string name="MyStories__this_story_will_be_deleted">Bu hekayə sizin və bunu alan hər kəs üçün silinəcək</string>
+    <string name="MyStories__this_story_will_be_deleted">Bu hekayə siz və bunu alan hər kəs üçün silinəcək.</string>
     <!-- Toast shown when story media cannot be saved -->
     <string name="MyStories__unable_to_save">Yaddaşda saxlamaq mümkün deyil</string>
     <!-- Displayed at bottom of story viewer when current item has views -->
@@ -4825,7 +4825,7 @@
     <!-- Displayed when a story has no replies yet -->
     <string name="StoryGroupReplyFragment__no_replies_yet">Hələ ki, cavab yoxdur</string>
     <!-- Displayed when no longer a group member -->
-    <string name="StoryGroupReplyFragment__you_cant_reply">You can\'t reply to this story because you\'re no longer a member of this group.</string>
+    <string name="StoryGroupReplyFragment__you_cant_reply">Artıq bu qrupun üzvü olmadığınız üçün bu hekayəyə cavab verə bilmirsiniz.</string>
     <!-- Displayed for each user that reacted to a story when viewing replies -->
     <string name="StoryGroupReactionReplyItem__reacted_to_the_story">Hekayəyə reaksiya verildi</string>
     <!-- Label for story views tab -->
@@ -4885,8 +4885,6 @@
     <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Cavablara &amp; reaksiyalara icazə ver</string>
     <!-- Summary for switchable option allowing replies and reactions on your story -->
     <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Hekayələrinizi görən şəxslərin reaksiya və cavab verməsinə icazə verin</string>
-    <!-- Note about default sharing -->
-    <string name="MyStorySettingsFragment__hide_your_story_from">Hekayələrinizi müəyyən şəxslərdən gizlədin. İlkin olaraq hekayələriniz %1$s ilə paylaşılır</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
     <string name="SignalConnectionsBottomSheet___signal_connections">Signal Bağlantıları</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
@@ -4898,11 +4896,11 @@
     <!-- Signal connections sheet bullet point 3 -->
     <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Sistem əlaqə kitabçanızda mövcud olan</string>
     <!-- Note at the bottom of the Signal connections sheet -->
-    <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Bağlantılarınız, adınızı və fotonuzu görə bilər, onlardan gizlətmədiyiniz müddətcə hekayələrinizdəki göndərişləri də görə bilər."</string>
+    <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Bağlantılarınız adınızı və fotonuzu görə bilər, onlardan gizlətmədiyiniz müddətcə Hekayələrinizdəki göndərişləri də görə bilər."</string>
     <!-- Clickable option to add a viewer to a private story -->
     <string name="PrivateStorySettingsFragment__add_viewer">İzləyici əlavə et</string>
     <!-- Clickable option to delete a custom story -->
-    <string name="PrivateStorySettingsFragment__delete_private_story">Özəl hekayəni sil</string>
+    <string name="PrivateStorySettingsFragment__delete_private_story">Şəxsi hekayəni sil</string>
     <!-- Dialog title when attempting to remove someone from a private story -->
     <string name="PrivateStorySettingsFragment__remove_s">%1$s çıxarılsın?</string>
     <!-- Dialog message when attempting to remove someone from a private story -->
@@ -4934,7 +4932,7 @@
     <!-- Hint for entering a URL for a text post -->
     <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">Yazın və ya bir URL yapışdırın</string>
     <!-- Displayed prior to the user entering a URL for a text post -->
-    <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">Hekayənizin bir bağlantısını izləyicilərlə paylaşın</string>
+    <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">Hekayənizin bir keçidini izləyicilərlə paylaşın</string>
     <!-- Hint text for searching for a story text post recipient. -->
     <string name="TextStoryPostSendFragment__search">Axtar</string>
     <!-- Toast shown when an unexpected error occurs while sending a text story -->
@@ -4948,35 +4946,35 @@
     <!-- Dialog title for removing a group story -->
     <string name="StoryDialogs__remove_group_story">Qrup hekayəsi silinsin?</string>
     <!-- Dialog message for removing a group story -->
-    <string name="StoryDialogs__s_will_be_removed">\"%1$s\" will be removed.</string>
+    <string name="StoryDialogs__s_will_be_removed">\"%1$s\" silinəcək.</string>
     <!-- Dialog positive action for removing a group story -->
     <string name="StoryDialogs__remove">Çıxart</string>
     <!-- Dialog title for deleting a private story -->
     <string name="StoryDialogs__delete_private_story">Şəxsi hekayə silinsin?</string>
     <!-- Dialog message for deleting a private story -->
-    <string name="StoryDialogs__s_and_updates_shared">\"%1$s\" and updates shared to this story will be deleted.</string>
+    <string name="StoryDialogs__s_and_updates_shared">\"%1$s\" və bu hekayədə paylaşılan yeniləmələr silinəcək.</string>
     <!-- Dialog positive action for deleting a private story -->
     <string name="StoryDialogs__delete">Sil</string>
     <!-- Dialog title for first time sending something to a beta story -->
-    <string name="StoryDialogs__stories_is_available_to">Stories is available to Signal beta users only.</string>
+    <string name="StoryDialogs__stories_is_available_to">Hekayələr yalnız Signal beta üzvlərinə açıqdır.</string>
     <!-- Dialog message for first time sending something to a beta story -->
-    <string name="StoryDialogs__if_you_share_a_story">If you share a story, it will only be available to people who are on Signal beta.</string>
+    <string name="StoryDialogs__if_you_share_a_story">Bir hekayə paylaşsanız, onu yalnız Signal beta üzvləri görə biləcək.</string>
     <!-- Dialog title for first time adding something to a story -->
-    <string name="StoryDialogs__add_to_story_q">Bir hekayə əlavə edilsin?</string>
+    <string name="StoryDialogs__add_to_story_q">Hekayəyə əlavə edilsin?</string>
     <!-- Dialog message for first time adding something to a story -->
-    <string name="StoryDialogs__adding_content">Hekayənizə məzmun əlavə etmək, Signal bağlantılarınızın 24 saat ərzində ona baxmasını təmin edir. Hekayələrinizə kimlərin baxa biləcəyini tənzimləmələrdən dəyişdirə bilərsiniz.</string>
+    <string name="StoryDialogs__adding_content">Hekayənizə məzmun əlavə etmək, Signal əlaqələrinizin 24 saat ərzində ona baxmasına imkan verir. Hekayələrinizə kimlərin baxa biləcəyini Parametrlərdən dəyişdirə bilərsiniz.</string>
     <!-- First time share to story dialog: Positive action to go ahead and add to story -->
     <string name="StoryDialogs__add_to_story">Hekayəyə əlavə et</string>
     <!-- First time share to story dialog: Neutral action to edit who can view "My Story" -->
     <string name="StoryDialogs__edit_viewers">İzləyicilərə düzəliş et</string>
     <!-- Error message shown when a failure occurs during story send -->
-    <string name="StoryDialogs__story_could_not_be_sent">Hekayə göndərilə bilmədi. Bağlantınızı yoxlayıb yenidən sınayın.</string>
+    <string name="StoryDialogs__story_could_not_be_sent">Hekayə göndərilə bilmədi. Əlaqənizi yoxlayıb yenidən sınayın.</string>
     <!-- Error message dialog button to resend a previously failed story send -->
     <string name="StoryDialogs__send">Göndər</string>
     <!-- Action button for turning off stories when stories are present on the device -->
-    <string name="StoryDialogs__turn_off_and_delete">Turn off and delete</string>
+    <string name="StoryDialogs__turn_off_and_delete">Söndür və sil</string>
     <!-- Privacy Settings toggle title for stories -->
-    <string name="PrivacySettingsFragment__share_and_view_stories">Hekayələrə bax &amp; onları paylaş</string>
+    <string name="PrivacySettingsFragment__share_and_view_stories">Hekayələrə bax və onları paylaş</string>
     <!-- Privacy Settings toggle summary for stories -->
     <string name="PrivacySettingsFragment__you_will_no_longer_be_able">Bu seçim bağlı olduqda hekayələrə baxa və ya onları paylaşa bilməyəcəksiniz.</string>
     <!-- New story viewer selection screen title -->
@@ -4989,7 +4987,7 @@
         <item quantity="other">%1$d izləyici</item>
     </plurals>
     <!-- Name story screen title -->
-    <string name="CreateStoryWithViewersFragment__name_story">Hekayə adı</string>
+    <string name="CreateStoryWithViewersFragment__name_story">Hekayəni adlandır</string>
     <!-- Name story screen label hint -->
     <string name="CreateStoryWithViewersFragment__story_name_required">Hekayə adı (tələb olunur)</string>
     <!-- Name story screen viewers subheading -->
@@ -5003,7 +5001,7 @@
     <!-- Text for select all action when editing recipients for a story -->
     <string name="BaseStoryRecipientSelectionFragment__select_all">Hamısını seç</string>
     <!-- Choose story type bottom sheet title -->
-    <string name="ChooseStoryTypeBottomSheet__choose_your_story_type">Hekayə növünü seçin</string>
+    <string name="ChooseStoryTypeBottomSheet__choose_your_story_type">Hekayənizin növünü seçin</string>
     <!-- Choose story type bottom sheet new story row title -->
     <string name="ChooseStoryTypeBottomSheet__new_private_story">Yeni özəl hekayə</string>
     <!-- Choose story type bottom sheet new story row summary -->
@@ -5112,7 +5110,7 @@
     <!-- Expired gift sheet not now button -->
     <string name="ExpiredGiftSheetConfiguration__not_now">İndi yox</string>
     <!-- My Story label designating that we will only share with the selected viewers. -->
-    <string name="ContactSearchItems__only_share_with">Yalnız bununla paylaş:</string>
+    <string name="ContactSearchItems__only_share_with">Bununla paylaş:</string>
     <!-- Label under name for private stories -->
     <plurals name="ContactSearchItems__private_story_d_viewers">
         <item quantity="one">Məxfi hekayə · %1$d baxış</item>
@@ -5136,11 +5134,11 @@
     <!-- Label under name for My Story when first sending to my story -->
     <string name="ContactSearchItems__tap_to_choose_your_viewers">İzləyicilərinizi seçmək üçün toxunun</string>
     <!-- Label for context menu item to open story settings -->
-    <string name="ContactSearchItems__story_settings">Hekayə tənzimləmələri</string>
+    <string name="ContactSearchItems__story_settings">Hekayə parametrləri</string>
     <!-- Label for context menu item to remove a group story from contact results -->
-    <string name="ContactSearchItems__remove_story">Hekayəni çıxarın</string>
+    <string name="ContactSearchItems__remove_story">Hekayəni sil</string>
     <!-- Label for context menu item to delete a private story -->
-    <string name="ContactSearchItems__delete_story">Hekayəni silin</string>
+    <string name="ContactSearchItems__delete_story">Hekayəni sil</string>
     <!-- Dialog title for removing a group story -->
     <string name="ContactSearchMediator__remove_group_story">Qrup hekayəsi silinsin?</string>
     <!-- Dialog message for removing a group story -->
@@ -5196,11 +5194,11 @@
     <!-- Message of safety number changes bottom sheet when not showing individual records and user has seen review screen -->
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Bütün əlaqələr nəzərdən keçirilib, davam etmək üçün \"Göndər\" düyməsinə toxunun.</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
-    <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">%1$d əlaqəniz Signal-ı yenidən quraşdırmış və ya cihazlarını dəyişmiş ola bilər. Hekayənizi onlarla paylaşmazdan əvvəl, onların təhlükəsizlik nömrələrini nəzərdən keçirin və ya onları hekayə izləyiciləri siyahınızdan çıxarın.</string>
+    <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">%1$d əlaqəniz Signal-ı yenidən quraşdırmış və ya cihazlarını dəyişmiş ola bilər. Hekayənizi onlarla paylaşmazdan əvvəl onların təhlükəsizlik nömrələrini nəzərdən keçirin və ya onları hekayə izləyiciləri siyahınızdan çıxarın.</string>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Güvənlik nömrəsini təsdiqlə</string>
     <!-- Menu action to remove user from story -->
-    <string name="SafetyNumberBottomSheetFragment__remove_from_story">Hekayədən çıxarın</string>
+    <string name="SafetyNumberBottomSheetFragment__remove_from_story">Hekayədən çıxart</string>
     <!-- Action button at bottom of SafetyNumberBottomSheetFragment to send anyway -->
     <string name="SafetyNumberBottomSheetFragment__send_anyway">Yenə də göndər</string>
     <!-- Action button at bottom of SafetyNumberBottomSheetFragment to review connections -->
@@ -5251,19 +5249,19 @@
 
     <!-- StoriesPrivacySettingsFragment -->
     <!-- Explanation about how stories are deleted and managed -->
-    <string name="StoriesPrivacySettingsFragment__stories_automatically_disappear">Hekayələr 24 saat sonra avtomatik yox olur. Hekayənizə baxanları seçin, yaxud da konkret istifadəçi və ya qrupu olan yeni hekayələr yaradın.</string>
+    <string name="StoriesPrivacySettingsFragment__stories_automatically_disappear">Hekayələr 24 saat sonra avtomatik yox olur. Hekayənizə baxanları seçin, yaxud da xüsusi istifadəçi və ya qrupu olan yeni hekayələr yaradın.</string>
     <!-- Preference title to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__turn_off_stories">Hekayələr xüsusiyyətini söndür</string>
     <!-- Preference summary to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__if_you_opt_out">Hekayələr xüsusiyyətini söndürsəniz, artıq hekayələri paylaşa və ya onlara baxa bilməyəcəksiniz.</string>
+    <string name="StoriesPrivacySettingsFragment__if_you_opt_out">Hekayələr xüsusiyyətini söndürsəniz, artıq hekayələri paylaşa və ya aça bilməyəcəksiniz.</string>
     <!-- Preference title to turn on stories -->
     <string name="StoriesPrivacySettingsFragment__turn_on_stories">Hekayələr xüsusiyyətini yandır</string>
     <!-- Preference summary to turn on stories -->
-    <string name="StoriesPrivacySettingsFragment__share_and_view">Digərlərinin hekayələrinə baxın və onları paylaşın. Hekayələr 24 saat sonra avtomatik yox olur.</string>
+    <string name="StoriesPrivacySettingsFragment__share_and_view">Digərlərinin hekayələrini paylaşın və açın. Hekayələr 24 saat sonra avtomatik yox olur.</string>
     <!-- Dialog title to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">Hekayələr xüsusiyyəti söndürülsün?</string>
     <!-- Dialog message to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">You will no longer be able to share or view stories. Story updates you have recently shared will also be deleted.</string>
+    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">Artıq hekayələri paylaşa və onlara baxa bilməyəcəksiniz. Ən son paylaşdığınız hekayə yeniləmələri də silinəcək.</string>
     <!-- Page title when launched from stories landing screen -->
     <string name="StoriesPrivacySettingsFragment__story_privacy">Hekayənin məxfiliyi</string>
 
@@ -5271,7 +5269,7 @@
     <!-- Section header for who can view a group story -->
     <string name="GroupStorySettingsFragment__who_can_view_this_story">Bu hekayəni kimlər görə bilər</string>
     <!-- Explanation of who can view a group story -->
-    <string name="GroupStorySettingsFragment__members_of_the_group_s">"\"%1$s\" qrupunun üzvləri bu hekayəni görə və cavablandıra bilər. Qrupda bu çat üzvlüyünü yeniləyə bilərsiniz."</string>
+    <string name="GroupStorySettingsFragment__members_of_the_group_s">"%1$s qrupunun üzvləri bu hekayəni görə və cavablandıra bilər. Qrupda bu çat üzvlüyünü yeniləyə bilərsiniz."</string>
     <!-- Preference label for removing this group story -->
     <string name="GroupStorySettingsFragment__remove_group_story">Qrup hekayəsini sil</string>
 

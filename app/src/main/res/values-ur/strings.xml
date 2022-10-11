@@ -193,7 +193,7 @@
     <string name="ClientDeprecatedActivity_update">اَپ ڈیٹ</string>
     <string name="ClientDeprecatedActivity_dont_update">اپ ڈیٹ مت کریں</string>
     <string name="ClientDeprecatedActivity_warning">انتباہ</string>
-    <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">آپ کے Signal کا ورژن ختم ہوچکا ہے۔ آپ اپنے میسج کی تاریخ دیکھ سکتے ہیں لیکن جب تک آپ اپ ڈیٹ نہیں ہوتے تب تک آپ میسجز بھیج یا وصول نہیں کرسکیں گے۔</string>
+    <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">آپ کے Signal ورژن کی میعاد ختم ہو چکی ہے۔ آپ اپنے میسج کی ہسٹری دیکھ سکتے ہیں لیکن جب تک آپ اپ ڈیٹ نہیں کرتے تب تک آپ میسجز بھیج یا وصول نہیں کر پائیں گے۔</string>
 
     <!-- CommunicationActions -->
     <string name="CommunicationActions_no_browser_found">کوئی ویب براؤزر نہیں ملا۔</string>
@@ -218,7 +218,7 @@
     <!-- Header for username search -->
     <string name="ContactsCursorLoader_find_by_username">صارفی نام سے تلاش کریں</string>
     <!-- Label for my stories when selecting who to send media to -->
-    <string name="ContactsCursorLoader_my_stories">میری اسٹوریز</string>
+    <string name="ContactsCursorLoader_my_stories">میری سٹوریز</string>
     <!-- Action for creating a new story -->
     <string name="ContactsCursorLoader_new_story">نئی سٹوری</string>
 
@@ -673,7 +673,7 @@
     <!-- GroupsV1MigrationLearnMoreBottomSheetDialogFragment -->
     <string name="GroupsV1MigrationLearnMore_what_are_new_groups">نئے گروپس کیا ہیں؟</string>
     <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">نئے گروپس میں @ ذکر اور گروپ منتظمین کی طرح کی خصوصیات ہیں ، اور آئندہ وہ مزید خصوصیات کی حمایت کریں گی۔</string>
-    <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">اپ ڈیٹ کرنے سے پہلے ہی پیغام کی تمام تاریخ اور میڈیا کو رکھا گیا ہے۔</string>
+    <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">اپ ڈیٹ کرنے سے پہلے میسج کی تمام ہسٹری اور میڈیا کو رکھا گیا ہے۔</string>
     <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">آپ کو دوبارہ اس گروپ میں شامل ہونے کے لئے دعوت نامہ قبول کرنے کی ضرورت ہوگی ، اور جب تک آپ قبول نہ کریں گروپ پیغامات موصول نہیں ہوں گے۔</string>
     <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
         <item quantity="one">اس ممبر کو دوبارہ اس گروپ میں شامل ہونے کے لئے ایک دعوت نامہ قبول کرنے کی ضرورت ہوگی اور وہ گروپ پیغامات وصول نہیں کریں گے جب تک کہ وہ قبول نہ کریں:</item>
@@ -688,7 +688,7 @@
     <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">نئے گروپ میں اپ گریڈ کریں</string>
     <string name="GroupsV1MigrationInitiation_upgrade_this_group">اس گروپ کو اپ گریڈ کریں</string>
     <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">نئے گروپس میں @ ذکر اور گروپ منتظمین کی طرح کی خصوصیات ہیں ، اور آئندہ وہ مزید خصوصیات کی حمایت کریں گی۔</string>
-    <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">اپ گریڈ کرنے سے پہلے ہی پیغام کی تمام تاریخ اور میڈیا کو رکھا جائے گا۔</string>
+    <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">اپ گریڈ کرنے سے پہلے میسج کی تمام ہسٹری اور میڈیا کو محفوظ رکھا جائے گا۔</string>
     <string name="GroupsV1MigrationInitiation_encountered_a_network_error">نیٹ ورک کی خرابی کا سامنا کرنا پڑا۔ بعد میں دوبارہ کوشش کریں۔</string>
     <string name="GroupsV1MigrationInitiation_failed_to_upgrade">اپ گریڈ کرنے میں ناکام۔</string>
     <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
@@ -1524,7 +1524,7 @@
     <!-- Recipient -->
     <string name="Recipient_you">آپ</string>
     <!-- Name of recipient representing user\'s \'My Story\' -->
-    <string name="Recipient_my_story">میری اسٹوری</string>
+    <string name="Recipient_my_story">میری سٹوری</string>
 
     <!-- RecipientPreferencesActivity -->
     <string name="RecipientPreferenceActivity_block">بلاک</string>
@@ -1542,7 +1542,7 @@
     <string name="RedPhone_network_failed">نیٹ ورک ناکام ہوگیا!</string>
     <string name="RedPhone_number_not_registered">نمبر رجسٹر نہیں ہے!</string>
     <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">جو نمبر آپ نے ڈائل کیا ہے محفوظ آواز سپورٹ نہیں کر رہا!</string>
-    <string name="RedPhone_got_it">یہ مل گیا</string>
+    <string name="RedPhone_got_it">سمجھ گیا</string>
 
     <!-- Valentine\'s Day Megaphone -->
     <!-- Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons. -->
@@ -1855,9 +1855,9 @@
     <!-- Displayed in the notification when the user has opened a received gift -->
     <string name="ThreadRecord__you_redeemed_a_gift_badge">آپ نے گفٹ بیج ریڈیم کیا</string>
     <!-- Displayed in the conversation list when someone reacted to your story -->
-    <string name="ThreadRecord__reacted_s_to_your_story">%1$s نے آپ کی اسٹوری پر ردعمل دیا</string>
+    <string name="ThreadRecord__reacted_s_to_your_story">آپ کی سٹوری پر %1$s ردعمل دیا</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
-    <string name="ThreadRecord__reacted_s_to_their_story">%1$s نے ان کی اسٹوری پر ردعمل دیا</string>
+    <string name="ThreadRecord__reacted_s_to_their_story">ان کی سٹوری پر %1$s ردعمل دیا</string>
 
     <!-- UpdateApkReadyListener -->
     <string name="UpdateApkReadyListener_Signal_update">Signal اپ ڈیٹ</string>
@@ -2039,7 +2039,7 @@
     <string name="SingleRecipientNotificationBuilder_message_request">پیغام کی درخواست</string>
     <string name="SingleRecipientNotificationBuilder_you">آپ</string>
     <!-- Notification subtext for group stories -->
-    <string name="SingleRecipientNotificationBuilder__s_dot_story">%1$s • اسٹوری</string>
+    <string name="SingleRecipientNotificationBuilder__s_dot_story">%1$s • سٹوری</string>
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">ویڈیو چلائیں</string>
@@ -2199,9 +2199,9 @@
     <string name="QuoteView_you">تم</string>
     <string name="QuoteView_original_missing">اصل میسج نہیں ملا</string>
     <!-- Author formatting for group stories -->
-    <string name="QuoteView_s_story">%1$s · اسٹوری</string>
+    <string name="QuoteView_s_story">%1$s · سٹوری</string>
     <!-- Label indicating that a quote is for a reply to a story you created -->
-    <string name="QuoteView_your_story">آپ · اسٹوری</string>
+    <string name="QuoteView_your_story">آپ · سٹوری</string>
     <!-- Label indicating that the story being replied to no longer exists -->
     <string name="QuoteView_no_longer_available">مزید دستیاب نہیں</string>
     <!-- Label for quoted gift -->
@@ -2344,7 +2344,7 @@
     <!-- Displayed in a toast when user long presses an item in MyStories -->
     <string name="MyStoriesFragment__copied_sent_timestamp_to_clipboard">بھیجا گیا ٹائم اسٹیمپ کلپ بورڈ پر کاپی کر دیا گیا۔</string>
     <!-- Displayed when there are no outgoing stories -->
-    <string name="MyStoriesFragment__updates_to_your_story_will_show_up_here">آپ کی اسٹوری کی اپ ڈیٹس یہاں دکھائی جائیں گی۔</string>
+    <string name="MyStoriesFragment__updates_to_your_story_will_show_up_here">آپ کی سٹوری کی اپ ڈیٹس یہاں دکھائی جائیں گی۔</string>
 
     <!-- GroupUtil -->
     <plurals name="GroupUtil_joined_the_group">
@@ -2606,7 +2606,7 @@
     <string name="preferences__one_time_donation">ایک وقتی عطیہ</string>
     <string name="preferences__privacy">رازداری</string>
     <!-- Preference label for stories -->
-    <string name="preferences__stories">اسٹوریز</string>
+    <string name="preferences__stories">سٹوریز</string>
     <string name="preferences__mms_user_agent">ایم ایم ایس صارف ایجنٹ</string>
     <string name="preferences__advanced_mms_access_point_names">مختصر ایم ایم ایس کی ترتیبات</string>
     <string name="preferences__mmsc_url">ایم ایم ایس سی یو آر ایل</string>
@@ -2624,7 +2624,7 @@
     <string name="preferences__payments_beta">ادائیگی (بیٹا)</string>
     <string name="preferences__conversation_length_limit">گفتگو کی لمبائی کی حد</string>
     <string name="preferences__keep_messages">پیغامات رکھیں</string>
-    <string name="preferences__clear_message_history">پیغام کی تاریخ صاف کریں</string>
+    <string name="preferences__clear_message_history">میسج کی ہسٹری صاف کریں</string>
     <string name="preferences__linked_devices">منسلک مشینیں</string>
     <string name="preferences__light_theme">روشنی</string>
     <string name="preferences__dark_theme">اندھیرا</string>
@@ -2658,7 +2658,7 @@
     <string name="preferences_chats__when_using_wifi">جب وائی فائی استعمال کریں</string>
     <string name="preferences_chats__when_roaming">جب رومنگ ہو رہی ہو</string>
     <string name="preferences_chats__media_auto_download">میڈیا آٹو ڈاون لوڈ</string>
-    <string name="preferences_chats__message_history">پیغام کی تاریخ</string>
+    <string name="preferences_chats__message_history">میسج کی ہسٹری</string>
     <string name="preferences_storage__storage_usage">اسٹوریج استعمال</string>
     <string name="preferences_storage__photos">فوٹوز</string>
     <string name="preferences_storage__videos">ویڈیوز</string>
@@ -2666,12 +2666,12 @@
     <string name="preferences_storage__audio">آڈیو</string>
     <string name="preferences_storage__review_storage">اسٹورج جائزہ</string>
     <string name="preferences_storage__delete_older_messages">پرانے پیغامات کو حذف کریں؟</string>
-    <string name="preferences_storage__clear_message_history">پیغام کی تاریخ صاف کریں؟</string>
-    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">یہ آپ کے آلے سے پیغام کی تاریخ اور میڈیا کو مستقل طور پر حذف کردے گا جو %1$s سے زیادہ پرانے ہیں۔</string>
+    <string name="preferences_storage__clear_message_history">میسج کی ہسٹری صاف کریں؟</string>
+    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">یہ آپ کی ڈیوائس سے میسج کی تمام ہسٹری اور میڈیا کو مستقل طور پر ڈیلیٹ کر دے گا جو %1$s سے زیادہ پرانے ہیں۔</string>
     <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">اس سے تمام مکالموں کو %1$s حالیہ پیغامات میں مستقل طور پر ٹرم کیا جائے گا۔</string>
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">یہ آپ کے آلے سے پیغام کی تمام تاریخ اور میڈیا کو مستقل طور پر حذف کردے گا۔</string>
-    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">کیا آپ واقعی پیغام کی پوری تاریخ کو حذف کرنا چاہتے ہیں؟</string>
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">پیغام کی تمام تاریخ کو مستقل طور پر ختم کردیا جائے گا۔ اس کارروائی کو کالعدم نہیں کیا جاسکتا۔</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">یہ آپ کی ڈیوائس سے میسج کی تمام ہسٹری اور میڈیا کو مستقل طور پر ڈیلیٹ کردے گا۔</string>
+    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">کیا آپ واقعی میسج کی ساری ہسٹری کو ڈیلیٹ کرنا چاہتے ہیں؟</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">میسج کی ساری ہسٹری کو مستقل طور پر ختم کر دیا جائے گا۔ اس کارروائی کو کالعدم نہیں کیا جا سکتا۔</string>
     <string name="preferences_storage__delete_all_now">اب سب کو حذف کریں</string>
     <string name="preferences_storage__forever">ہمیشہ کے لئے</string>
     <string name="preferences_storage__one_year">1 سال</string>
@@ -4281,9 +4281,9 @@
     <string name="MultiselectForwardFragment__add_a_message">پیغام شامل کریں</string>
     <string name="MultiselectForwardFragment__faster_forwards">زیادہ تیز فارورڈز</string>
     <!-- Displayed when user selects a video that will be clipped before sharing to a story -->
-    <string name="MultiselectForwardFragment__videos_will_be_trimmed">ویڈیوز کو کاٹ کر 30 سیکنڈ کے کلپس بنا دیے جائیں گے اور متعدد اسٹوریز کے طور پر بھیجا جائے گا۔</string>
+    <string name="MultiselectForwardFragment__videos_will_be_trimmed">ویڈیوز کو کاٹ کر 30 سیکنڈ کے کلپس بنا دیے جائیں گے اور متعدد سٹوریز کے طور پر بھیجا جائے گا۔</string>
     <!-- Displayed when user selects a video that cannot be sent as a story -->
-    <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">اسٹوریز پر بھیجی جانے والی ویڈیوز 30 سیکنڈ سے لمبی نہیں ہو سکتیں۔</string>
+    <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">سٹوریز پر بھیجی جانے والی ویڈیوز 30 سیکنڈ سے لمبی نہیں ہو سکتیں۔</string>
     <string name="MultiselectForwardFragment__forwarded_messages_are_now">فارورڈ کردہ پیغامات اب فوری طور پر بھیجے جاتے ہیں۔</string>
     <plurals name="MultiselectForwardFragment_send_d_messages">
         <item quantity="one">%1$d پیغام بھیجیں</item>
@@ -4724,21 +4724,21 @@
     <!-- Label for Chats tab in home app screen -->
     <string name="ConversationListTabs__chats">باتیں</string>
     <!-- Label for Stories tab in home app screen -->
-    <string name="ConversationListTabs__stories">اسٹوریز</string>
+    <string name="ConversationListTabs__stories">سٹوریز</string>
     <!-- String for counts above 99 in conversation list tabs -->
     <string name="ConversationListTabs__99p">99+</string>
     <!-- Menu item on stories landing page -->
     <string name="StoriesLandingFragment__story_privacy">سٹوری کی پرائیویسی</string>
     <!-- Title for "My Stories" row item in Stories landing page -->
-    <string name="StoriesLandingFragment__my_stories">میری اسٹوریز</string>
+    <string name="StoriesLandingFragment__my_stories">میری سٹوریز</string>
     <!-- Subtitle for "My Stories" row item when user has not added stories -->
     <string name="StoriesLandingFragment__tap_to_add_a_story">سٹوری شامل کرنے کے لیے ٹیپ کریں</string>
     <!-- Displayed when there are no stories to display -->
     <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now">فی الوقت دکھانے کے لیے کوئی حالیہ اپ ڈیٹس نہیں ہیں۔</string>
     <!-- Context menu option to hide a story -->
-    <string name="StoriesLandingItem__hide_story">اسٹوری مخفی کریں</string>
+    <string name="StoriesLandingItem__hide_story">سٹوری مخفی کریں</string>
     <!-- Context menu option to unhide a story -->
-    <string name="StoriesLandingItem__unhide_story">اسٹوری غیر مخفی کریں</string>
+    <string name="StoriesLandingItem__unhide_story">سٹوری غیر مخفی کریں</string>
     <!-- Context menu option to forward a story -->
     <string name="StoriesLandingItem__forward">آگے</string>
     <!-- Context menu option to share a story -->
@@ -4758,15 +4758,15 @@
     <!-- Status label when a story fails to send indicating user action to retry -->
     <string name="StoriesLandingItem__tap_to_retry">دوبارہ کوشش کرنے کے لیے ٹیپ کریں</string>
     <!-- Title of dialog confirming decision to hide a story -->
-    <string name="StoriesLandingFragment__hide_story">اسٹوری مخفی کریں؟</string>
+    <string name="StoriesLandingFragment__hide_story">سٹوری مخفی کریں؟</string>
     <!-- Message of dialog confirming decision to hide a story -->
-    <string name="StoriesLandingFragment__new_story_updates">%1$s سے نئی اسٹوری کی اپ ڈیٹس اسٹوریز کی فہرست کے بالائی حصے میں ظاہر نہیں ہوں گی۔</string>
+    <string name="StoriesLandingFragment__new_story_updates">%1$s کی سٹوری کی نئی اپ ڈیٹس سٹوریز کی فہرست کے بالائی حصے میں ظاہر نہیں ہوں گی۔</string>
     <!-- Positive action of dialog confirming decision to hide a story -->
     <string name="StoriesLandingFragment__hide">پوشیدہ کریں</string>
     <!-- Displayed in Snackbar after story is hidden -->
-    <string name="StoriesLandingFragment__story_hidden">اسٹوری مخفی ہے</string>
+    <string name="StoriesLandingFragment__story_hidden">سٹوری مخفی ہے</string>
     <!-- Section header for hidden stories -->
-    <string name="StoriesLandingFragment__hidden_stories">مخفی اسٹوریز</string>
+    <string name="StoriesLandingFragment__hidden_stories">مخفی سٹوریز</string>
     <!-- Displayed on each sent story under My Stories -->
     <plurals name="MyStories__d_views">
         <item quantity="one">%1$d ویو</item>
@@ -4775,11 +4775,11 @@
     <!-- Forward story label, displayed in My Stories context menu -->
     <string name="MyStories_forward">آگے</string>
     <!-- Label for stories for a single user. Format is {given name}\'s Story -->
-    <string name="MyStories__ss_story">%1$s کی اسٹوری</string>
+    <string name="MyStories__ss_story">%1$s کی سٹوری</string>
     <!-- Title of dialog to confirm deletion of story -->
-    <string name="MyStories__delete_story">اسٹوری حذف کریں؟</string>
+    <string name="MyStories__delete_story">سٹوری ڈیلیٹ کریں؟</string>
     <!-- Message of dialog to confirm deletion of story -->
-    <string name="MyStories__this_story_will_be_deleted">یہ اسٹوری آپ اور اسے وصول کرنے والے ہر ایک کے لیے حذف کر دی جائے گی۔</string>
+    <string name="MyStories__this_story_will_be_deleted">یہ سٹوری آپ اور اسے وصول کرنے والے ہر ایک کے لیے ڈیلیٹ کر دی جائے گی۔</string>
     <!-- Toast shown when story media cannot be saved -->
     <string name="MyStories__unable_to_save">محفوظ کرنے سے قاصر ہیں</string>
     <!-- Displayed at bottom of story viewer when current item has views -->
@@ -4811,7 +4811,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">ابھی تک کوئی ویوز نہیں</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">میسج پڑھنے کا ثبوت فعال کریں تاکہ دیکھ سکیں کہ کس نے آپ کی اسٹوریز دیکھی ہیں۔</string>
+    <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">میسج پڑھنے کا ثبوت فعال کریں تاکہ دیکھ سکیں کہ کس نے آپ کی سٹوریز دیکھی ہیں۔</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">سیٹنگز پر جائیں</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -4827,13 +4827,13 @@
     <!-- Displayed when no longer a group member -->
     <string name="StoryGroupReplyFragment__you_cant_reply">آپ اس سٹوری کا جواب نہیں دے سکتے کیونکہ آپ اس گروپ کے ممبر نہیں رہے۔</string>
     <!-- Displayed for each user that reacted to a story when viewing replies -->
-    <string name="StoryGroupReactionReplyItem__reacted_to_the_story">اسٹوری پر ردعمل دیا</string>
+    <string name="StoryGroupReactionReplyItem__reacted_to_the_story">سٹوری پر ردعمل دیا</string>
     <!-- Label for story views tab -->
     <string name="StoryViewsAndRepliesDialogFragment__views">ویوز</string>
     <!-- Label for story replies tab -->
     <string name="StoryViewsAndRepliesDialogFragment__replies">جوابات</string>
     <!-- Description of action for reaction button -->
-    <string name="StoryReplyComposer__react_to_this_story">اس اسٹوری پر ردعمل دیں</string>
+    <string name="StoryReplyComposer__react_to_this_story">اس سٹوری پر ردعمل دیں</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">%1$s کو نجی طور پر جواب دینا</string>
     <!-- Context menu item to privately reply to a story response -->
@@ -4843,7 +4843,7 @@
     <!-- Context menu item to delete a story response -->
     <string name="StoryGroupReplyItem__delete">حذف کریں</string>
     <!-- Page title for My Story options -->
-    <string name="MyStorySettingsFragment__my_story">میری اسٹوری</string>
+    <string name="MyStorySettingsFragment__my_story">میری سٹوری</string>
     <!-- Number of total signal connections displayed in "All connections" row item -->
     <plurals name="MyStorySettingsFragment__viewers">
         <item quantity="one">%1$d viewer</item>
@@ -4854,7 +4854,7 @@
     <!-- Section heading for story visibility -->
     <string name="MyStorySettingsFragment__who_can_view_this_story">کون یہ سٹوری دیکھ سکتا ہے</string>
     <!-- Clickable option for selecting people to hide your story from -->
-    <string name="MyStorySettingsFragment__hide_story_from">اس سے اسٹوری مخفی کریں</string>
+    <string name="MyStorySettingsFragment__hide_story_from">اس سے سٹوری مخفی کریں</string>
     <!-- Privacy setting title for sending stories to all your signal connections -->
     <string name="MyStorySettingsFragment__all_signal_connections">تمام Signal کنکشنز</string>
     <!-- Privacy setting description for sending stories to all your signal connections -->
@@ -4862,7 +4862,7 @@
     <!-- Privacy setting title for sending stories to all except the specified connections -->
     <string name="MyStorySettingsFragment__all_except">تمام ماسوائے…</string>
     <!-- Privacy setting description for sending stories to all except the specified connections -->
-    <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">منتخب لوگوں کو اپنی سٹوری مت دکھائیں</string>
+    <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">منتخب لوگوں سے اپنی سٹوری مخفی کریں</string>
     <!-- Summary of clickable option displaying how many people you have excluded from your story -->
     <plurals name="MyStorySettingsFragment__d_people_excluded">
         <item quantity="one">%1$d فرد خارج کر دیا گیا</item>
@@ -4878,15 +4878,13 @@
         <item quantity="other">%1$d افراد</item>
     </plurals>
     <!-- My story privacy fine print about what the privacy settings are for -->
-    <string name="MyStorySettingsFragment__choose_who_can_view_your_story">انتخاب کریں کہ کون آپ کی اسٹوری دیکھ سکتا ہے۔ تبدیلیاں ان اسٹوریز کو متاثر نہیں کریں گی جو آپ پہلے ہی بھیج چکے ہیں۔</string>
+    <string name="MyStorySettingsFragment__choose_who_can_view_your_story">انتخاب کریں کہ کون آپ کی سٹوری دیکھ سکتا ہے۔ تبدیلیاں ان سٹوریز کو متاثر نہیں کریں گی جو آپ پہلے ہی بھیج چکے ہیں۔</string>
     <!-- Section header for options related to replies and reactions -->
     <string name="MyStorySettingsFragment__replies_amp_reactions">جوابات &amp; ردعمل</string>
     <!-- Switchable option for allowing replies and reactions on your stories -->
     <string name="MyStorySettingsFragment__allow_replies_amp_reactions">جوابات &amp;ردعمل کو اجازت دیں</string>
     <!-- Summary for switchable option allowing replies and reactions on your story -->
-    <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">اپنی اسٹوری دیکھنے والے لوگوں کو ردعمل اور جواب دینے کی اجازت دیں</string>
-    <!-- Note about default sharing -->
-    <string name="MyStorySettingsFragment__hide_your_story_from">مخصوص لوگوں سے اپنی اسٹوری مخفی کریں۔ ڈیفالٹ کے طور پر، آپ کی اسٹوری آپ کے %1$s کے ساتھ شیئر کی جاتی ہے</string>
+    <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">اپنی سٹوری دیکھنے والے لوگوں کو ردعمل اور جواب دینے کی اجازت دیں</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
     <string name="SignalConnectionsBottomSheet___signal_connections">Signal کنکشنز</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
@@ -4898,15 +4896,15 @@
     <!-- Signal connections sheet bullet point 3 -->
     <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">اپنے سسٹم کے روابط میں انہیں رکھنے سے</string>
     <!-- Note at the bottom of the Signal connections sheet -->
-    <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"آپ کے کنکشنز آپ کا نام اور تصویر دیکھ سکتے ہیں، اور \"میری اسٹوری\" پر پوسٹس کو دیکھ سکتے ہیں تاوقتیکہ آپ ان سے مخفی کریں۔"</string>
+    <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"آپ کے کنکشنز آپ کا نام اور تصویر دیکھ سکتے ہیں، اور \"میری سٹوری\" پر پوسٹس کو دیکھ سکتے ہیں تاوقتیکہ آپ ان سے مخفی کریں۔"</string>
     <!-- Clickable option to add a viewer to a private story -->
     <string name="PrivateStorySettingsFragment__add_viewer">ناظر شامل کریں</string>
     <!-- Clickable option to delete a custom story -->
-    <string name="PrivateStorySettingsFragment__delete_private_story">نجی اسٹوری حذف کریں</string>
+    <string name="PrivateStorySettingsFragment__delete_private_story">نجی سٹوری ڈیلیٹ کریں</string>
     <!-- Dialog title when attempting to remove someone from a private story -->
     <string name="PrivateStorySettingsFragment__remove_s">%1$s ہٹائیں؟</string>
     <!-- Dialog message when attempting to remove someone from a private story -->
-    <string name="PrivateStorySettingsFragment__this_person_will_no_longer">یہ فرد مزید آپ کی اسٹوری نہیں دیکھے گا۔</string>
+    <string name="PrivateStorySettingsFragment__this_person_will_no_longer">یہ فرد مزید آپ کی سٹوری نہیں دیکھے گا۔</string>
     <!-- Positive action label when attempting to remove someone from a private story -->
     <string name="PrivateStorySettingsFragment__remove">ہٹا دیں</string>
     <!-- Dialog title when deleting a private story -->
@@ -4914,9 +4912,9 @@
     <!-- Dialog message when deleting a private story -->
     <string name="PrivateStorySettingsFragment__this_action_cannot">یہ ایکشن کالعدم نہیں کیا جا سکتا۔</string>
     <!-- Page title for editing a private story name -->
-    <string name="EditPrivateStoryNameFragment__edit_story_name">اسٹوری کے نام میں ترمیم کریں</string>
+    <string name="EditPrivateStoryNameFragment__edit_story_name">سٹوری کے نام میں ترمیم کریں</string>
     <!-- Input field hint when editing a private story name -->
-    <string name="EditPrivateStoryNameFragment__story_name">اسٹوری کا نام</string>
+    <string name="EditPrivateStoryNameFragment__story_name">سٹوری کا نام</string>
     <!-- Save button label when editing a private story name -->
     <string name="EditPrivateStoryNameFragment__save">محفوظ کریں</string>
     <!-- Displayed in text post creator before user enters text -->
@@ -4934,7 +4932,7 @@
     <!-- Hint for entering a URL for a text post -->
     <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">URL ٹائپ یا پیسٹ کریں</string>
     <!-- Displayed prior to the user entering a URL for a text post -->
-    <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">ناظرین کے ساتھ اپنی اسٹوری کا لنک شیئر کریں</string>
+    <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">ناظرین کے ساتھ اپنی سٹوری کا لنک شیئر کریں</string>
     <!-- Hint text for searching for a story text post recipient. -->
     <string name="TextStoryPostSendFragment__search">تلاش کریں</string>
     <!-- Toast shown when an unexpected error occurs while sending a text story -->
@@ -4946,13 +4944,13 @@
     <!-- Done button label for hide story from screen -->
     <string name="HideStoryFromFragment__done">ہو گیا</string>
     <!-- Dialog title for removing a group story -->
-    <string name="StoryDialogs__remove_group_story">گروپ اسٹوری ہٹائیں؟</string>
+    <string name="StoryDialogs__remove_group_story">گروپ سٹوری ہٹائیں؟</string>
     <!-- Dialog message for removing a group story -->
     <string name="StoryDialogs__s_will_be_removed">\"%1$s\" کو ہٹا دیا جائے گا۔</string>
     <!-- Dialog positive action for removing a group story -->
     <string name="StoryDialogs__remove">ہٹا دیں</string>
     <!-- Dialog title for deleting a private story -->
-    <string name="StoryDialogs__delete_private_story">پرائیویٹ اسٹوری ڈیلیٹ کرنی ہے؟</string>
+    <string name="StoryDialogs__delete_private_story">پرائیویٹ سٹوری ڈیلیٹ کرنی ہے؟</string>
     <!-- Dialog message for deleting a private story -->
     <string name="StoryDialogs__s_and_updates_shared">\"%1$s\" اور اس سٹوری پر شیئر کردہ اپ ڈیٹس ڈیلیٹ کر دی جائیں گی۔</string>
     <!-- Dialog positive action for deleting a private story -->
@@ -4962,23 +4960,23 @@
     <!-- Dialog message for first time sending something to a beta story -->
     <string name="StoryDialogs__if_you_share_a_story">اگر آپ سٹوری شیئر کرتے ہیں، تو یہ صرف Signal بی ٹا پر موجود لوگوں کو دستیاب ہو گی۔</string>
     <!-- Dialog title for first time adding something to a story -->
-    <string name="StoryDialogs__add_to_story_q">اسٹوری میں شامل کریں؟</string>
+    <string name="StoryDialogs__add_to_story_q">سٹوری میں شامل کریں؟</string>
     <!-- Dialog message for first time adding something to a story -->
-    <string name="StoryDialogs__adding_content">اپنی اسٹوری میں مواد شامل کرنا آپ کے Signal کنکشنز کو 24 گھنٹوں کے لیے اسے دیکھنے کی اجازت دیتا ہے۔ آپ ترتیبات میں یہ تبدیل کر سکتے ہیں کہ آپ کی اسٹوری کون دیکھ سکتا ہے۔</string>
+    <string name="StoryDialogs__adding_content">اپنی سٹوری میں مواد شامل کرنا آپ کے Signal کنکشنز کو 24 گھنٹوں کے لیے اسے دیکھنے کی اجازت دیتا ہے۔ آپ سیٹنگز میں یہ تبدیل کر سکتے ہیں کہ آپ کی سٹوری کون دیکھ سکتا ہے۔</string>
     <!-- First time share to story dialog: Positive action to go ahead and add to story -->
-    <string name="StoryDialogs__add_to_story">اسٹوری میں شامل کریں</string>
+    <string name="StoryDialogs__add_to_story">سٹوری میں شامل کریں</string>
     <!-- First time share to story dialog: Neutral action to edit who can view "My Story" -->
     <string name="StoryDialogs__edit_viewers">ناظرین میں ترمیم کریں</string>
     <!-- Error message shown when a failure occurs during story send -->
-    <string name="StoryDialogs__story_could_not_be_sent">اسٹوری بھیجی نہیں جا سکی۔ اپنا کنکشن چیک کریں اور دوبارہ کوشش کریں۔</string>
+    <string name="StoryDialogs__story_could_not_be_sent">سٹوری بھیجی نہیں جا سکی۔ اپنا انٹرنیٹ چیک کریں اور دوبارہ کوشش کریں۔</string>
     <!-- Error message dialog button to resend a previously failed story send -->
     <string name="StoryDialogs__send">بھیجیں</string>
     <!-- Action button for turning off stories when stories are present on the device -->
     <string name="StoryDialogs__turn_off_and_delete">آف اور ڈیلیٹ کریں</string>
     <!-- Privacy Settings toggle title for stories -->
-    <string name="PrivacySettingsFragment__share_and_view_stories">اسٹوریز شیئر کریں &amp; دیکھیں</string>
+    <string name="PrivacySettingsFragment__share_and_view_stories">سٹوریز شیئر کریں اور دیکھیں</string>
     <!-- Privacy Settings toggle summary for stories -->
-    <string name="PrivacySettingsFragment__you_will_no_longer_be_able">آپ اس آپشن کے آف ہوتے ہوئے اسٹوریز شیئر کرنے یا دیکھنے کے مزید قابل نہیں ہوں گے۔</string>
+    <string name="PrivacySettingsFragment__you_will_no_longer_be_able">آپ اس آپشن کے آف ہوتے ہوئے مزید سٹوریز شیئر کرنے یا دیکھنے کے قابل نہیں ہوں گے۔</string>
     <!-- New story viewer selection screen title -->
     <string name="CreateStoryViewerSelectionFragment__choose_viewers">ناظرین کا انتخاب کریں</string>
     <!-- New story viewer selection action button label -->
@@ -4989,9 +4987,9 @@
         <item quantity="other">%1$d ناظرین</item>
     </plurals>
     <!-- Name story screen title -->
-    <string name="CreateStoryWithViewersFragment__name_story">اسٹوری کو نام دیں</string>
+    <string name="CreateStoryWithViewersFragment__name_story">سٹوری کو نام دیں</string>
     <!-- Name story screen label hint -->
-    <string name="CreateStoryWithViewersFragment__story_name_required">اسٹوری کا نام (درکار ہے)</string>
+    <string name="CreateStoryWithViewersFragment__story_name_required">سٹوری کا نام (درکار ہے)</string>
     <!-- Name story screen viewers subheading -->
     <string name="CreateStoryWithViewersFragment__viewers">ناظرین</string>
     <!-- Name story screen create button label -->
@@ -4999,17 +4997,17 @@
     <!-- Name story screen error when save attempted with no label -->
     <string name="CreateStoryWithViewersFragment__this_field_is_required">اس کو پر کرنا ضروری ہے.</string>
     <!-- Name story screen error when save attempted but label is duplicate -->
-    <string name="CreateStoryWithViewersFragment__there_is_already_a_story_with_this_name">اس نام کے ساتھ ایک اسٹوری پہلے سے موجود ہے۔</string>
+    <string name="CreateStoryWithViewersFragment__there_is_already_a_story_with_this_name">اس نام کے ساتھ ایک سٹوری پہلے سے موجود ہے۔</string>
     <!-- Text for select all action when editing recipients for a story -->
     <string name="BaseStoryRecipientSelectionFragment__select_all">تمام منتخب کریں</string>
     <!-- Choose story type bottom sheet title -->
-    <string name="ChooseStoryTypeBottomSheet__choose_your_story_type">اپنی اسٹوری کی قسم منتخب کریں</string>
+    <string name="ChooseStoryTypeBottomSheet__choose_your_story_type">اپنی سٹوری کی قسم منتخب کریں</string>
     <!-- Choose story type bottom sheet new story row title -->
-    <string name="ChooseStoryTypeBottomSheet__new_private_story">نئی نجی اسٹوری</string>
+    <string name="ChooseStoryTypeBottomSheet__new_private_story">نئی نجی سٹوری</string>
     <!-- Choose story type bottom sheet new story row summary -->
     <string name="ChooseStoryTypeBottomSheet__visible_only_to">صرف مخصوص لوگوں کو دکھائی دیتی ہے</string>
     <!-- Choose story type bottom sheet group story title -->
-    <string name="ChooseStoryTypeBottomSheet__group_story">گروپ اسٹوری</string>
+    <string name="ChooseStoryTypeBottomSheet__group_story">گروپ سٹوری</string>
     <!-- Choose story type bottom sheet group story summary -->
     <string name="ChooseStoryTypeBottomSheet__share_to_an_existing_group">موجودہ گروپ پر شیئر کریں</string>
     <!-- Choose groups bottom sheet title -->
@@ -5021,17 +5019,17 @@
     <!-- Displayed in toast after sending a direct reply -->
     <string name="StoryDirectReplyDialogFragment__sending_reply">جواب بھیجا جا رہا ہے…</string>
     <!-- Displayed in the viewer when a story is no longer available -->
-    <string name="StorySlateView__this_story_is_no_longer_available">یہ اسٹوری مزید دستیاب نہیں۔</string>
+    <string name="StorySlateView__this_story_is_no_longer_available">یہ سٹوری مزید دستیاب نہیں۔</string>
     <!-- Displayed in the viewer when the network is not available -->
     <string name="StorySlateView__no_internet_connection">کوئی انٹرنیٹ کنکشن نہیں</string>
     <!-- Displayed in the viewer when network is available but content could not be downloaded -->
     <string name="StorySlateView__couldnt_load_content">مواد لوڈ نہیں کر سکے</string>
     <!-- Toasted when the user externally shares to a text story successfully -->
-    <string name="TextStoryPostCreationFragment__sent_story">اسٹوری بھیج دی گئی</string>
+    <string name="TextStoryPostCreationFragment__sent_story">سٹوری بھیج دی گئی</string>
     <!-- Toasted when the user external share to a text story fails -->
-    <string name="TextStoryPostCreationFragment__failed_to_send_story">اسٹوری بھیجنے میں ناکامی ہوئی</string>
+    <string name="TextStoryPostCreationFragment__failed_to_send_story">سٹوری بھیجنے میں ناکامی ہوئی</string>
     <!-- Displayed in a dialog to let the user select a given users story -->
-    <string name="StoryDialogs__view_story">اسٹوری دیکھیں</string>
+    <string name="StoryDialogs__view_story">سٹوری دیکھیں</string>
     <!-- Displayed in a dialog to let the user select a given users profile photo -->
     <string name="StoryDialogs__view_profile_photo">پروفائل تصویر دیکھیں</string>
 
@@ -5045,11 +5043,11 @@
     <string name="TurnOffCircumventionMegaphone_turn_off">بند کریں</string>
 
     <!-- Conversation Item label for when you react to someone else\'s story -->
-    <string name="ConversationItem__you_reacted_to_s_story">آپ نے %1$s کی اسٹوری پر ردعمل دیا</string>
+    <string name="ConversationItem__you_reacted_to_s_story">آپ نے %1$s کی سٹوری پر ردعمل دیا</string>
     <!-- Conversation Item label for reactions to your story -->
-    <string name="ConversationItem__reacted_to_your_story">آپ کی اسٹوری پر ردعمل دیا</string>
+    <string name="ConversationItem__reacted_to_your_story">آپ کی سٹوری پر ردعمل دیا</string>
     <!-- Conversation Item label for reactions to an unavailable story -->
-    <string name="ConversationItem__reacted_to_a_story">اسٹوری پر ردعمل دیا</string>
+    <string name="ConversationItem__reacted_to_a_story">سٹوری پر ردعمل دیا</string>
 
     <!-- endregion -->
     <!-- Content description for expand contacts chevron -->
@@ -5112,16 +5110,16 @@
     <!-- Expired gift sheet not now button -->
     <string name="ExpiredGiftSheetConfiguration__not_now">ابھی نہیں</string>
     <!-- My Story label designating that we will only share with the selected viewers. -->
-    <string name="ContactSearchItems__only_share_with">صرف ان کے ساتھ شیئر کریں</string>
+    <string name="ContactSearchItems__only_share_with">صرف ان سے شیئر کریں</string>
     <!-- Label under name for private stories -->
     <plurals name="ContactSearchItems__private_story_d_viewers">
-        <item quantity="one">نجی اسٹوری · %1$d ویور</item>
-        <item quantity="other">نجی سٹوری · %1$d ویورز</item>
+        <item quantity="one">نجی سٹوری · %1$d ناظر</item>
+        <item quantity="other">نجی سٹوری · %1$d ناظرین</item>
     </plurals>
     <!-- Label under name for group stories -->
     <plurals name="ContactSearchItems__group_story_d_viewers">
-        <item quantity="one">گروپ اسٹوری · %1$d ویور</item>
-        <item quantity="other">گروپ سٹوری · %1$d ویورز</item>
+        <item quantity="one">گروپ سٹوری · %1$d ناظر</item>
+        <item quantity="other">گروپ سٹوری · %1$d ناظرین</item>
     </plurals>
     <!-- Label under name for groups -->
     <plurals name="ContactSearchItems__group_d_members">
@@ -5136,21 +5134,21 @@
     <!-- Label under name for My Story when first sending to my story -->
     <string name="ContactSearchItems__tap_to_choose_your_viewers">اپنے ناظرین کے انتخاب کے لیے ٹیپ کریں</string>
     <!-- Label for context menu item to open story settings -->
-    <string name="ContactSearchItems__story_settings">اسٹوری کی ترتیبات</string>
+    <string name="ContactSearchItems__story_settings">سٹوری کی سیٹنگز</string>
     <!-- Label for context menu item to remove a group story from contact results -->
-    <string name="ContactSearchItems__remove_story">اسٹوری ہٹائیں</string>
+    <string name="ContactSearchItems__remove_story">سٹوری ہٹائیں</string>
     <!-- Label for context menu item to delete a private story -->
-    <string name="ContactSearchItems__delete_story">اسٹوری ڈیلیٹ کریں</string>
+    <string name="ContactSearchItems__delete_story">سٹوری ڈیلیٹ کریں</string>
     <!-- Dialog title for removing a group story -->
-    <string name="ContactSearchMediator__remove_group_story">گروپ اسٹوری ہٹائیں؟</string>
+    <string name="ContactSearchMediator__remove_group_story">گروپ سٹوری ہٹائیں؟</string>
     <!-- Dialog message for removing a group story -->
-    <string name="ContactSearchMediator__this_will_remove">اس سے سٹوری آپ کی فہرست سے ہٹ جائے گی۔ آپ پھر بھی اس گروپ سے اسٹوریز دیکھنے سکیں گے۔</string>
+    <string name="ContactSearchMediator__this_will_remove">اس سے سٹوری اس فہرست سے ہٹ جائے گی۔ آپ پھر بھی اس گروپ سے سٹوریز دیکھ سکیں گے۔</string>
     <!-- Dialog action item for removing a group story -->
     <string name="ContactSearchMediator__remove">ہٹا دیں</string>
     <!-- Dialog title for deleting a private story -->
-    <string name="ContactSearchMediator__delete_story">اسٹوری حذف کریں؟</string>
+    <string name="ContactSearchMediator__delete_story">سٹوری ڈیلیٹ کریں؟</string>
     <!-- Dialog message for deleting a private story -->
-    <string name="ContactSearchMediator__delete_the_private">پرائیویٹ اسٹوری \"%1$s\" ڈیلیٹ کریں؟</string>
+    <string name="ContactSearchMediator__delete_the_private">پرائیویٹ سٹوری \"%1$s\" ڈیلیٹ کریں؟</string>
     <!-- Dialog action item for deleting a private story -->
     <string name="ContactSearchMediator__delete">حذف کریں</string>
     <!-- Gift expiry days remaining -->
@@ -5178,7 +5176,7 @@
     <!-- Label indicating swipe direction to exit story viewer -->
     <string name="StoryFirstTimeNavigationView__swipe_right_to_exit">اخراج کے لیے دائیں سوائپ کریں</string>
     <!-- Button label to confirm understanding of story navigation -->
-    <string name="StoryFirstTimeNagivationView__got_it">یہ مل گیا</string>
+    <string name="StoryFirstTimeNagivationView__got_it">سمجھ گیا</string>
     <!-- Content description for vertical context menu button in safety number sheet rows -->
     <string name="SafetyNumberRecipientRowItem__open_context_menu">عبارتی مینو کھولیں</string>
     <!-- Sub-line when a user is verified. -->
@@ -5196,11 +5194,11 @@
     <!-- Message of safety number changes bottom sheet when not showing individual records and user has seen review screen -->
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">تمام کنکشنز کا جائزہ لیا گیا ہے، جاری رکھنے کے لیے بھیجیں پر ٹیپ کریں۔</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
-    <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">آپ کے %1$d کنکشنز نے شاید Signal کو دوبارہ انسٹال یا ڈیوائسز کو تبدیل کیا ہو گا۔ ان کے ساتھ اپنی اسٹوری شیئر کرنے سے پہلے ان کے حفاظتی نمبرز کا جائزہ لیں یا انہیں اپنی اسٹوری سے ہٹانے پر غور کریں۔</string>
+    <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">آپ کے %1$d کنکشنز نے شاید Signal کو دوبارہ انسٹال یا ڈیوائسزکو تبدیل کیا ہو گا۔ ان کے ساتھ اپنی سٹوری شیئر کرنے سے پہلے ان کے حفاظتی نمبرز کا جائزہ لیں یا انہیں اپنی سٹوری سے ہٹانے پر غور کریں۔</string>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">حفاظتی نمبر کی تصدیق کریں</string>
     <!-- Menu action to remove user from story -->
-    <string name="SafetyNumberBottomSheetFragment__remove_from_story">اسٹوری سے ہٹائیں</string>
+    <string name="SafetyNumberBottomSheetFragment__remove_from_story">سٹوری سے ہٹائیں</string>
     <!-- Action button at bottom of SafetyNumberBottomSheetFragment to send anyway -->
     <string name="SafetyNumberBottomSheetFragment__send_anyway">بہر حال بھیجیں</string>
     <!-- Action button at bottom of SafetyNumberBottomSheetFragment to review connections -->
@@ -5224,9 +5222,9 @@
     <string name="SafetyNumberReviewConnectionsFragment__remove">ہٹا دیں</string>
 
     <!-- Title of initial My Story settings configuration shown when sending to My Story for the first time -->
-    <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">میری اسٹوری کی پرائیویسی</string>
+    <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">میری سٹوری کی پرائیویسی</string>
     <!-- Subtitle of initial My Story settings configuration shown when sending to My Story for the first time -->
-    <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">ان کا انتخاب کریں جو میری اسٹوری پر پوسٹس دیکھ سکتے ہیں۔ آپ سیٹنگز میں ہمیشہ تبدیلیاں کر سکتے ہیں۔</string>
+    <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">ان کا انتخاب کریں جو میری سٹوری پر پوسٹس دیکھ سکتے ہیں۔ آپ سیٹنگز میں ہمیشہ تبدیلیاں کر سکتے ہیں۔</string>
     <!-- All connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">تمام Signal کنکشنز</string>
     <!-- All connections except option for initial My Story settings configuration shown when sending to My Story for the first time -->

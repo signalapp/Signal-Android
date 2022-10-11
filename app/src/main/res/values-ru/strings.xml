@@ -195,7 +195,7 @@
     <string name="ClientDeprecatedActivity_update">Обновить</string>
     <string name="ClientDeprecatedActivity_dont_update">Не обновлять</string>
     <string name="ClientDeprecatedActivity_warning">Предупреждение</string>
-    <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Ваша версия Signal устарела. Вы можете просматривать свою историю сообщений, но не сможете отправлять или получать сообщения, пока не обновитесь.</string>
+    <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Ваша версия Signal устарела. Вы можете просматривать свою историю сообщений, но не сможете отправлять или получать сообщения, пока не обновите версию Signal.</string>
 
     <!-- CommunicationActions -->
     <string name="CommunicationActions_no_browser_found">Браузер не найден.</string>
@@ -2839,7 +2839,7 @@
     <string name="preferences_storage__review_storage">Просмотреть содержимое</string>
     <string name="preferences_storage__delete_older_messages">Удалить старые сообщения?</string>
     <string name="preferences_storage__clear_message_history">Очистить историю сообщений?</string>
-    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Все сообщения и медиа, которые старее, чем %1$s, будут безвозвратно удалены с вашего устройства.</string>
+    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Все сообщения и медиафайлы, которые старее, чем %1$s, будут безвозвратно удалены с вашего устройства.</string>
     <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Все разговоры будут безвозвратно обрезаны до %1$s самых новых сообщений.</string>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Все сообщения и медиафайлы будут безвозвратно удалены с вашего устройства.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Вы действительно хотите удалить всю историю сообщений?</string>
@@ -3083,19 +3083,19 @@
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
-    <string name="PaymentsSecuritySetupFragment__security_setup">Security setup</string>
+    <string name="PaymentsSecuritySetupFragment__security_setup">Настройки безопасности</string>
     <!-- Title to enable payment lock -->
-    <string name="PaymentsSecuritySetupFragment__protect_your_funds">Protect your funds</string>
+    <string name="PaymentsSecuritySetupFragment__protect_your_funds">Защитите свои средства</string>
     <!-- Description as to why payment lock is required -->
-    <string name="PaymentsSecuritySetupFragment__help_prevent">Help prevent a person with your phone from accessing your funds by adding another layer of security. You can disable this option in Settings.</string>
+    <string name="PaymentsSecuritySetupFragment__help_prevent">Предотвратите доступ человека, завладевшего вашим телефоном, к вашим денежным средствам, добавив ещё один уровень безопасности. Вы можете отключить эту опцию в настройках.</string>
     <!-- Option to enable payment lock -->
-    <string name="PaymentsSecuritySetupFragment__enable_payment_lock">Enable payment lock</string>
+    <string name="PaymentsSecuritySetupFragment__enable_payment_lock">Включить блокировку платежа</string>
     <!-- Option to cancel -->
     <string name="PaymentsSecuritySetupFragment__not_now">Не сейчас</string>
     <!-- Dialog title to confirm skipping the step -->
-    <string name="PaymentsSecuritySetupFragment__skip_this_step">Skip this step?</string>
+    <string name="PaymentsSecuritySetupFragment__skip_this_step">Пропустить этот шаг?</string>
     <!-- Dialog description to let users know why payment lock is required -->
-    <string name="PaymentsSecuritySetupFragment__skipping_this_step">Skipping this step could allow anyone who has physical access to your phone to transfer funds or view your recovery phrase.</string>
+    <string name="PaymentsSecuritySetupFragment__skipping_this_step">Пропуск этого шага может позволить любому, кто имеет физический доступ к вашему телефону, перевести средства или узнать вашу фразу восстановления.</string>
     <!-- Dialog option to cancel -->
     <string name="PaymentsSecuritySetupFragment__cancel">Отменить</string>
     <!-- Dialog option to skip -->
@@ -5039,7 +5039,7 @@
     <!-- Displayed when a story has no replies yet -->
     <string name="StoryGroupReplyFragment__no_replies_yet">Ещё нет ответов</string>
     <!-- Displayed when no longer a group member -->
-    <string name="StoryGroupReplyFragment__you_cant_reply">You can\'t reply to this story because you\'re no longer a member of this group.</string>
+    <string name="StoryGroupReplyFragment__you_cant_reply">Вы не можете отвечать на эту историю, потому что уже не являетесь участником группы.</string>
     <!-- Displayed for each user that reacted to a story when viewing replies -->
     <string name="StoryGroupReactionReplyItem__reacted_to_the_story">Отреагировал(-а) на историю</string>
     <!-- Label for story views tab -->
@@ -5105,8 +5105,6 @@
     <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Разрешить ответы и реакции</string>
     <!-- Summary for switchable option allowing replies and reactions on your story -->
     <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Разрешить людям, которые могут видеть вашу историю, реагировать и отвечать</string>
-    <!-- Note about default sharing -->
-    <string name="MyStorySettingsFragment__hide_your_story_from">Скрыть вашу историю от определённых людей. По умолчанию ваша история видна вашим %1$s</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
     <string name="SignalConnectionsBottomSheet___signal_connections">Контакты Signal</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
@@ -5118,7 +5116,7 @@
     <!-- Signal connections sheet bullet point 3 -->
     <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Имея их в своих системных контактах</string>
     <!-- Note at the bottom of the Signal connections sheet -->
-    <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Ваши связи могут видеть ваше имя и фото, а также обновления истории «Моя история», если вы не скроете её от них."</string>
+    <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Ваши контакты могут видеть ваше имя и фото, а также обновления истории «Моя история», если вы не скроете её от них."</string>
     <!-- Clickable option to add a viewer to a private story -->
     <string name="PrivateStorySettingsFragment__add_viewer">Добавить зрителя</string>
     <!-- Clickable option to delete a custom story -->
@@ -5166,25 +5164,25 @@
     <!-- Done button label for hide story from screen -->
     <string name="HideStoryFromFragment__done">Готово</string>
     <!-- Dialog title for removing a group story -->
-    <string name="StoryDialogs__remove_group_story">Удалить групповую историю?</string>
+    <string name="StoryDialogs__remove_group_story">Удалить историю группы?</string>
     <!-- Dialog message for removing a group story -->
-    <string name="StoryDialogs__s_will_be_removed">\"%1$s\" will be removed.</string>
+    <string name="StoryDialogs__s_will_be_removed">«%1$s» будет удалена.</string>
     <!-- Dialog positive action for removing a group story -->
     <string name="StoryDialogs__remove">Удалить</string>
     <!-- Dialog title for deleting a private story -->
     <string name="StoryDialogs__delete_private_story">Удалить частную историю?</string>
     <!-- Dialog message for deleting a private story -->
-    <string name="StoryDialogs__s_and_updates_shared">\"%1$s\" and updates shared to this story will be deleted.</string>
+    <string name="StoryDialogs__s_and_updates_shared">«%1$s» и её обновления будут удалены.</string>
     <!-- Dialog positive action for deleting a private story -->
     <string name="StoryDialogs__delete">Удалить</string>
     <!-- Dialog title for first time sending something to a beta story -->
-    <string name="StoryDialogs__stories_is_available_to">Stories is available to Signal beta users only.</string>
+    <string name="StoryDialogs__stories_is_available_to">Истории доступны только для пользователей бета-версии Signal.</string>
     <!-- Dialog message for first time sending something to a beta story -->
-    <string name="StoryDialogs__if_you_share_a_story">If you share a story, it will only be available to people who are on Signal beta.</string>
+    <string name="StoryDialogs__if_you_share_a_story">Если вы поделитесь историей, она будет доступна только тем, кто пользуется бета-версией Signal.</string>
     <!-- Dialog title for first time adding something to a story -->
     <string name="StoryDialogs__add_to_story_q">Добавить в историю?</string>
     <!-- Dialog message for first time adding something to a story -->
-    <string name="StoryDialogs__adding_content">Добавление содержимого в историю позволит вашим связям Signal просматривать её в течение 24 часов. Вы можете изменить, кто может видеть вашу историю, в настройках.</string>
+    <string name="StoryDialogs__adding_content">Добавление содержимого в историю позволит вашим контактам Signal просматривать её в течение 24 часов. Вы можете изменить, кто может видеть вашу историю, в настройках.</string>
     <!-- First time share to story dialog: Positive action to go ahead and add to story -->
     <string name="StoryDialogs__add_to_story">Добавить в историю</string>
     <!-- First time share to story dialog: Neutral action to edit who can view "My Story" -->
@@ -5194,7 +5192,7 @@
     <!-- Error message dialog button to resend a previously failed story send -->
     <string name="StoryDialogs__send">Отправить</string>
     <!-- Action button for turning off stories when stories are present on the device -->
-    <string name="StoryDialogs__turn_off_and_delete">Turn off and delete</string>
+    <string name="StoryDialogs__turn_off_and_delete">Отключить и удалить</string>
     <!-- Privacy Settings toggle title for stories -->
     <string name="PrivacySettingsFragment__share_and_view_stories">Делиться историями и просматривать их</string>
     <!-- Privacy Settings toggle summary for stories -->
@@ -5356,7 +5354,7 @@
         <item quantity="one">%1$d участник</item>
         <item quantity="few">%1$d участника</item>
         <item quantity="many">%1$d участников</item>
-        <item quantity="other">%1$d участников</item>
+        <item quantity="other">%1$d участника</item>
     </plurals>
     <!-- Label under name for my story -->
     <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
@@ -5374,7 +5372,7 @@
     <!-- Label for context menu item to delete a private story -->
     <string name="ContactSearchItems__delete_story">Удалить историю</string>
     <!-- Dialog title for removing a group story -->
-    <string name="ContactSearchMediator__remove_group_story">Удалить групповую историю?</string>
+    <string name="ContactSearchMediator__remove_group_story">Удалить историю группы?</string>
     <!-- Dialog message for removing a group story -->
     <string name="ContactSearchMediator__this_will_remove">Это приведет к удалению истории из этого списка. Вы по-прежнему сможете просматривать истории этой группы.</string>
     <!-- Dialog action item for removing a group story -->
@@ -5503,7 +5501,7 @@
     <!-- Dialog title to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">Отключить истории?</string>
     <!-- Dialog message to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">You will no longer be able to share or view stories. Story updates you have recently shared will also be deleted.</string>
+    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">Вы больше не сможете делиться историями или просматривать их. Все истории, которыми вы недавно поделились, будут также удалены.</string>
     <!-- Page title when launched from stories landing screen -->
     <string name="StoriesPrivacySettingsFragment__story_privacy">Настройки приватности историй</string>
 

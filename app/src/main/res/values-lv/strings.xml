@@ -696,7 +696,7 @@
     <!-- GroupsV1MigrationLearnMoreBottomSheetDialogFragment -->
     <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Kas ir \"Jaunās grupas\"</string>
     <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Jaunajām grupām ir funkcijas kā @pieminēšana un grupu administratori, un nākotnē atbalstīs papildus funkcijas.</string>
-    <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Visa ziņu vēsure un faili tika paturēti.</string>
+    <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Visa ziņu vēsure un faili tika saglabāta pirms atjaunināšanas.</string>
     <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">Jums būs jāpieņem uzaicinājums vēlreiz pievienoties šai grupai un nesaņemsiet šīs grupas ziņas, kamēr uzaicinājumu nepieņemsiet.</string>
     <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
         <item quantity="zero">Šim dalībniekam būs jāpieņem uzaicinājums vēlreiz pievienoties šai grupai, un dalībnieks nesaņems šīs grupas ziņas, kamēr nepieņems uzaicinājumu:</item>
@@ -713,7 +713,7 @@
     <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Pārveidot par jauno grupu</string>
     <string name="GroupsV1MigrationInitiation_upgrade_this_group">Pārveidot šo grupu</string>
     <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">Jaunajām grupām ir funkcijas kā @pieminēšana un grupu administratori, un nākotnē atbalstīs papildus funkcijas.</string>
-    <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">Visa ziņu vēsture un multivide tiks saglabāta kā bija pirms pārveidošanas.</string>
+    <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">Visa ziņu vēsture un multivide tiks saglabāta pirms atjaunināšanas.</string>
     <string name="GroupsV1MigrationInitiation_encountered_a_network_error">Radās tīkla kļūda. Vēlāk mēģiniet vēlreiz.</string>
     <string name="GroupsV1MigrationInitiation_failed_to_upgrade">Neizdevās jaunināt.</string>
     <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
@@ -2744,7 +2744,7 @@
     <string name="preferences_chats__when_using_wifi">Izmantojot Wi-Fi</string>
     <string name="preferences_chats__when_roaming">Izmantojot viesabonēšanau</string>
     <string name="preferences_chats__media_auto_download">Multivides automātiskā lejupielāde</string>
-    <string name="preferences_chats__message_history">Ziņas vēsture</string>
+    <string name="preferences_chats__message_history">Ziņu vēsture</string>
     <string name="preferences_storage__storage_usage">Krātuves lietojums</string>
     <string name="preferences_storage__photos">Attēli</string>
     <string name="preferences_storage__videos">Video</string>
@@ -2997,19 +2997,19 @@
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
-    <string name="PaymentsSecuritySetupFragment__security_setup">Security setup</string>
+    <string name="PaymentsSecuritySetupFragment__security_setup">Drošības iestatījumi</string>
     <!-- Title to enable payment lock -->
-    <string name="PaymentsSecuritySetupFragment__protect_your_funds">Protect your funds</string>
+    <string name="PaymentsSecuritySetupFragment__protect_your_funds">Aizsargājiet savu naudu</string>
     <!-- Description as to why payment lock is required -->
-    <string name="PaymentsSecuritySetupFragment__help_prevent">Help prevent a person with your phone from accessing your funds by adding another layer of security. You can disable this option in Settings.</string>
+    <string name="PaymentsSecuritySetupFragment__help_prevent">Palīdziet nepieļaut, lai cita persona ar jūsu tālruni piekļūtu jūsu naudas līdzekļiem, pievienojot vēl vienu drošības līmeni. Šo opciju varat izslēgt iestatījumos.</string>
     <!-- Option to enable payment lock -->
-    <string name="PaymentsSecuritySetupFragment__enable_payment_lock">Enable payment lock</string>
+    <string name="PaymentsSecuritySetupFragment__enable_payment_lock">Ieslēgt maksājumu bloķēšanu</string>
     <!-- Option to cancel -->
     <string name="PaymentsSecuritySetupFragment__not_now">Ne tagad</string>
     <!-- Dialog title to confirm skipping the step -->
-    <string name="PaymentsSecuritySetupFragment__skip_this_step">Skip this step?</string>
+    <string name="PaymentsSecuritySetupFragment__skip_this_step">Vai izlaist šo darbību?</string>
     <!-- Dialog description to let users know why payment lock is required -->
-    <string name="PaymentsSecuritySetupFragment__skipping_this_step">Skipping this step could allow anyone who has physical access to your phone to transfer funds or view your recovery phrase.</string>
+    <string name="PaymentsSecuritySetupFragment__skipping_this_step">Izlaižot šo darbību, ikviens, kam ir fiziska piekļuve jūsu tālrunim, var pārskaitīt naudas līdzekļus vai skatīt jūsu atgūšanas frāzi.</string>
     <!-- Dialog option to cancel -->
     <string name="PaymentsSecuritySetupFragment__cancel">Atcelt</string>
     <!-- Dialog option to skip -->
@@ -4862,9 +4862,9 @@
     <!-- Status label when a story fails to send indicating user action to retry -->
     <string name="StoriesLandingItem__tap_to_retry">Pieskarieties, lai mēģinātu vēlreiz</string>
     <!-- Title of dialog confirming decision to hide a story -->
-    <string name="StoriesLandingFragment__hide_story">Paslēpt stāstu?</string>
+    <string name="StoriesLandingFragment__hide_story">Vai paslēpt stāstu?</string>
     <!-- Message of dialog confirming decision to hide a story -->
-    <string name="StoriesLandingFragment__new_story_updates">Stāstu atjauninājumi no %1$s vairs neparādīsies stāstu saraktsta augšgalā.</string>
+    <string name="StoriesLandingFragment__new_story_updates">%1$s stāstu atjauninājumi vairs neparādīsies stāstu saraksta augšgalā.</string>
     <!-- Positive action of dialog confirming decision to hide a story -->
     <string name="StoriesLandingFragment__hide">Slēpt</string>
     <!-- Displayed in Snackbar after story is hidden -->
@@ -4918,7 +4918,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">Vēl nav skatījumu</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Iespējojiet skatīšanas apliecinājumus, lai uzzinātu, kuri lietotāji ir redzējuši jūsu stāstus.</string>
+    <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Ieslēdziet lasīšanas apliecinājumus, lai uzzinātu, kuri lietotāji ir redzējuši jūsu stāstus.</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">Atvērt iestatījumus</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -4932,7 +4932,7 @@
     <!-- Displayed when a story has no replies yet -->
     <string name="StoryGroupReplyFragment__no_replies_yet">Vēl nav atbilžu</string>
     <!-- Displayed when no longer a group member -->
-    <string name="StoryGroupReplyFragment__you_cant_reply">You can\'t reply to this story because you\'re no longer a member of this group.</string>
+    <string name="StoryGroupReplyFragment__you_cant_reply">Jūs nevarat atbildēt uz šo stāstu, jo vairs neesat šīs grupas dalībnieks.</string>
     <!-- Displayed for each user that reacted to a story when viewing replies -->
     <string name="StoryGroupReactionReplyItem__reacted_to_the_story">Reaģēja uz stāstu</string>
     <!-- Label for story views tab -->
@@ -4994,9 +4994,7 @@
     <!-- Switchable option for allowing replies and reactions on your stories -->
     <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Atļaut atbildes un reakcijas</string>
     <!-- Summary for switchable option allowing replies and reactions on your story -->
-    <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Ļaut cilvēkiem, kuri var skatīt jūsu stāstu, reaģēt un atbildēt</string>
-    <!-- Note about default sharing -->
-    <string name="MyStorySettingsFragment__hide_your_story_from">Paslēpt jūsu stāstu no specifiskiem cilvēkiem. Pēc noklusējuma, jūsu stāsts ir kopīgots ar jūsu %1$s</string>
+    <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Ļaut reaģēt un atbildēt tiem cilvēkiem, kuri var skatīt jūsu stāstu</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
     <string name="SignalConnectionsBottomSheet___signal_connections">Signal draugi</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
@@ -5008,7 +5006,7 @@
     <!-- Signal connections sheet bullet point 3 -->
     <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Pievienošanas savā kontaktu sarakstā</string>
     <!-- Note at the bottom of the Signal connections sheet -->
-    <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Jūsu pazīstamie var redzēt jūsu vārdu un bildi, un var redzēt jaunumus \"Mani stāsti\" sadaļā, ja vien jūs to neesat paslēpis no viņiem."</string>
+    <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Jūsu kontakti var redzēt jūsu vārdu un attēlu, un var redzēt jaunumus \"Mani stāsti\" sadaļā, ja vien jūs to neesat paslēpis no viņiem."</string>
     <!-- Clickable option to add a viewer to a private story -->
     <string name="PrivateStorySettingsFragment__add_viewer">Pievienot skatītāju</string>
     <!-- Clickable option to delete a custom story -->
@@ -5058,37 +5056,37 @@
     <!-- Dialog title for removing a group story -->
     <string name="StoryDialogs__remove_group_story">Vai noņemt grupas stāstu?</string>
     <!-- Dialog message for removing a group story -->
-    <string name="StoryDialogs__s_will_be_removed">\"%1$s\" will be removed.</string>
+    <string name="StoryDialogs__s_will_be_removed">\"%1$s\" tiks noņemts.</string>
     <!-- Dialog positive action for removing a group story -->
     <string name="StoryDialogs__remove">Noņemt</string>
     <!-- Dialog title for deleting a private story -->
     <string name="StoryDialogs__delete_private_story">Vai dzēst privāto stāstu?</string>
     <!-- Dialog message for deleting a private story -->
-    <string name="StoryDialogs__s_and_updates_shared">\"%1$s\" and updates shared to this story will be deleted.</string>
+    <string name="StoryDialogs__s_and_updates_shared">\"%1$s\" un ar šo stāstu saistītie ieraksti tiks dzēsti.</string>
     <!-- Dialog positive action for deleting a private story -->
     <string name="StoryDialogs__delete">Dzēst</string>
     <!-- Dialog title for first time sending something to a beta story -->
-    <string name="StoryDialogs__stories_is_available_to">Stories is available to Signal beta users only.</string>
+    <string name="StoryDialogs__stories_is_available_to">Stāsti ir pieejami tikai Signal beta lietotājiem.</string>
     <!-- Dialog message for first time sending something to a beta story -->
-    <string name="StoryDialogs__if_you_share_a_story">If you share a story, it will only be available to people who are on Signal beta.</string>
+    <string name="StoryDialogs__if_you_share_a_story">Ja kopīgosiet stāstu, tas būs pieejams tikai personām, kuras izmanto Signal beta versiju.</string>
     <!-- Dialog title for first time adding something to a story -->
     <string name="StoryDialogs__add_to_story_q">Pievienot stāstam?</string>
     <!-- Dialog message for first time adding something to a story -->
-    <string name="StoryDialogs__adding_content">Pievienojot saturu jūsu stāstam ļauj Signal pazīstamajiem to apskatīt 24 stundas. Iestatījumos jūs varat mainīt to, kurš var apskatīt jūsu stāstu.</string>
+    <string name="StoryDialogs__adding_content">Satura pievienošana jūsu stāstam ļauj Signal kontaktiem to apskatīt 24 stundas. Iestatījumos varat mainīt to, kas var apskatīt jūsu stāstu.</string>
     <!-- First time share to story dialog: Positive action to go ahead and add to story -->
     <string name="StoryDialogs__add_to_story">Pievienot stāstam</string>
     <!-- First time share to story dialog: Neutral action to edit who can view "My Story" -->
     <string name="StoryDialogs__edit_viewers">Rediģēt skatītājus</string>
     <!-- Error message shown when a failure occurs during story send -->
-    <string name="StoryDialogs__story_could_not_be_sent">Stāstu nevarēja nosūtīt. Pārbaudiet jūsu pieslēgumu un mēģiniet vēlreiz.</string>
+    <string name="StoryDialogs__story_could_not_be_sent">Stāstu nevarēja nosūtīt. Pārbaudiet pieslēgumu un mēģiniet vēlreiz.</string>
     <!-- Error message dialog button to resend a previously failed story send -->
     <string name="StoryDialogs__send">Sūtīt</string>
     <!-- Action button for turning off stories when stories are present on the device -->
-    <string name="StoryDialogs__turn_off_and_delete">Turn off and delete</string>
+    <string name="StoryDialogs__turn_off_and_delete">Izslēgt un izdzēst</string>
     <!-- Privacy Settings toggle title for stories -->
-    <string name="PrivacySettingsFragment__share_and_view_stories">Kopīgot &amp; skatīt stāstus</string>
+    <string name="PrivacySettingsFragment__share_and_view_stories">Kopīgot un skatīt stāstus</string>
     <!-- Privacy Settings toggle summary for stories -->
-    <string name="PrivacySettingsFragment__you_will_no_longer_be_able">Jūs vairs nevarēsiet kopīgot un skatīt stāstus, kad šī opcija ir izslēgta.</string>
+    <string name="PrivacySettingsFragment__you_will_no_longer_be_able">Jūs vairs nevarēsiet kopīgot un skatīt stāstus, ja šī opcija būs izslēgta.</string>
     <!-- New story viewer selection screen title -->
     <string name="CreateStoryViewerSelectionFragment__choose_viewers">Izvēlēties skatītājus</string>
     <!-- New story viewer selection action button label -->
@@ -5102,7 +5100,7 @@
     <!-- Name story screen title -->
     <string name="CreateStoryWithViewersFragment__name_story">Stāsta nosaukums</string>
     <!-- Name story screen label hint -->
-    <string name="CreateStoryWithViewersFragment__story_name_required">Stāsta nosaukums (nepieciešams)</string>
+    <string name="CreateStoryWithViewersFragment__story_name_required">Stāsta nosaukums (obligāts)</string>
     <!-- Name story screen viewers subheading -->
     <string name="CreateStoryWithViewersFragment__viewers">Skatītāji</string>
     <!-- Name story screen create button label -->
@@ -5227,19 +5225,19 @@
     <string name="ContactSearchItems__only_share_with">Kopīgot tikai ar</string>
     <!-- Label under name for private stories -->
     <plurals name="ContactSearchItems__private_story_d_viewers">
-        <item quantity="zero">Privāts stāsts · %1$d skatītājs</item>
+        <item quantity="zero">Privāts stāsts · %1$d skatītāji</item>
         <item quantity="one">Privāts stāsts · %1$d skatītājs</item>
         <item quantity="other">Privāts stāsts · %1$d skatītāji</item>
     </plurals>
     <!-- Label under name for group stories -->
     <plurals name="ContactSearchItems__group_story_d_viewers">
-        <item quantity="zero">Grupas stāsts · %1$d skatītājs</item>
+        <item quantity="zero">Grupas stāsts · %1$d skatītāji</item>
         <item quantity="one">Grupas stāsts · %1$d skatītājs</item>
         <item quantity="other">Grupas stāsts · %1$d skatītāji</item>
     </plurals>
     <!-- Label under name for groups -->
     <plurals name="ContactSearchItems__group_d_members">
-        <item quantity="zero">%1$d dalībnieks</item>
+        <item quantity="zero">%1$d dalībnieki</item>
         <item quantity="one">%1$d dalībnieks</item>
         <item quantity="other">%1$d dalībnieki</item>
     </plurals>
@@ -5383,7 +5381,7 @@
     <!-- Dialog title to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">Vai izslēgt stāstus?</string>
     <!-- Dialog message to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">You will no longer be able to share or view stories. Story updates you have recently shared will also be deleted.</string>
+    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">Jūs nevarēsiet kopīgot vai skatīt stāstus. Tiks dzēsti arī jūsu nesen veiktie ar stāstu saistītie ieraksti.</string>
     <!-- Page title when launched from stories landing screen -->
     <string name="StoriesPrivacySettingsFragment__story_privacy">Stāsta privātums</string>
 
@@ -5406,7 +5404,7 @@
     <!-- Title of the screen -->
     <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">Eksportējiet SMS ziņas</string>
     <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">Varat eksportēt SMS ziņas uz tālruņa SMS datu bāzi. Tas ļauj citām jūsu tālruņa SMS lietotnēm piekļūt tām un importēt tās. Tādējādi netiek izveidots koplietojams SMS ziņu vēstures fails.</string>
+    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">Varat eksportēt SMS ziņas uz tālruņa SMS datu bāzi. Tas ļauj citām jūsu tālruņa SMS lietotnēm tām piekļūt un importēt. Tādējādi netiek izveidots koplietojams SMS ziņu vēstures fails.</string>
     <!-- Button label to begin export -->
     <string name="ExportYourSmsMessagesFragment__continue">Turpināt</string>
 

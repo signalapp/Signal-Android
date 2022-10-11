@@ -192,7 +192,7 @@
     <string name="ClientDeprecatedActivity_update">အပ်ဒိတ် လုပ်</string>
     <string name="ClientDeprecatedActivity_dont_update">အပ်ဒိတ် မလုပ်</string>
     <string name="ClientDeprecatedActivity_warning">သတိပေးချက်</string>
-    <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">သင်၏ Signal ဗားရှင်း သက်တမ်းကုန်သွားပြီ။ သင်၏ မက်ဆေ့ခ်ျမှတ်တမ်းကို သင်ကြည့်နိုင်သည်။ သို့သော် အပ်ဒိတ် မလုပ်မချင်း မက်ဆေ့ခ်ျများပို့ခြင်း သို့မဟုတ် လက်ခံခြင်း မလုပ်နိုင်ပါ။</string>
+    <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">သင်၏ Signal ဗားရှင်း သက်တမ်းကုန်သွားပြီ။ သင်၏ မက်ဆေ့ချ်မှတ်တမ်းကို သင်ကြည့်နိုင်သော်လည်း အပ်ဒိတ် မလုပ်မချင်း မက်ဆေ့ချ်များပို့ခြင်း သို့မဟုတ် လက်ခံခြင်း မလုပ်နိုင်ပါ။</string>
 
     <!-- CommunicationActions -->
     <string name="CommunicationActions_no_browser_found">Web browser ကိုရှာမတွေ့ပါ</string>
@@ -650,7 +650,7 @@
     <!-- GroupsV1MigrationLearnMoreBottomSheetDialogFragment -->
     <string name="GroupsV1MigrationLearnMore_what_are_new_groups">အဖွဲ့အသစ်များ ဆိုတာဘာလဲ။</string>
     <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">အဖွဲ့အသစ်များတွင် @mentions နှင့် အုပ်စု အက်မင်များ ကဲ့သို့သော အင်္ဂါရပ်များရှိသည်။ နောင်တွင်လည်း ပို၍ များပြားသော အင်္ဂါရပ်များကို ထောက်ပံ့လိမ့်မည်။</string>
-    <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">မက်ဆေ့ခ်ျ သမိုင်းနှင့် မီဒီယာ အားလုံးကို အဆင့်မြှင့်တင်ခြင်း မပြုမီ သိမ်းဆည်းထားသည်။</string>
+    <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">မက်ဆေ့ချ်မှတ်တမ်းနှင့် မီဒီယာ အားလုံးကို အဆင့်မြှင့်တင်ခြင်း မပြုမီ သိမ်းဆည်းထားပါသည်။</string>
     <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">သင် ဤအုပ်စုထဲသို့ ပြန်ဝင်ရန် ဖိတ်ကြားချက်ကို လက်ခံရန် လိုလိမ့်မည်။ သင်လက်ခံပြီးမှ အဖွဲ့လိုက် မက်ဆေ့ခ်ျများကို ရရှိမည် ဖြစ်သည်။</string>
     <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
         <item quantity="other">အဖွဲ့ဝင်များသည် ဤအုပ်စုထဲသို့ ပြန်ဝင်ရန် ဖိတ်ကြားချက်ကိုလက်ခံရန်လိုလိမ့်မည်။ ထိုသူတို့ လက်ခံပြီးမှ အဖွဲ့လိုက် မက်ဆေ့ခ်ျများကို ရရှိမည် ဖြစ်သည်။</item>
@@ -663,7 +663,7 @@
     <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">အုပ်စု အသစ်သို့ အဆင့်မြှင့်တင်ပါ။</string>
     <string name="GroupsV1MigrationInitiation_upgrade_this_group">ဤအုပ်စုကို အဆင့်မြှင့်တင်ပါ။</string>
     <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">အဖွဲ့အသစ်များတွင် @mentions နှင့် အုပ်စု အက်မင်များ ကဲ့သို့သော အင်္ဂါရပ်များရှိသည်။ နောင်တွင်လည်း ပို၍ များပြားသော အင်္ဂါရပ်များကို ထောက်ပံ့လိမ့်မည်။</string>
-    <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">မက်ဆေ့ခ်ျ သမိုင်းနှင့် မီဒီယာ အားလုံးကို အဆင့်မြှင့်ခြင်း မပြုမီ သိမ်းဆည်းထားသည်။</string>
+    <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">မက်ဆေ့ချ်မှတ်တမ်းနှင့် မီဒီယာ အားလုံးကို အဆင့်မြှင့်တင်ခြင်း မပြုမီ သိမ်းဆည်းသွားပါမည်။</string>
     <string name="GroupsV1MigrationInitiation_encountered_a_network_error">ကွန်ယက် အမှားတစ်ခုနှင့် ကြုံတွေ့ခဲ့သည်။ နောက်မှ ပြန်လည် ကြိုးစားပါ။</string>
     <string name="GroupsV1MigrationInitiation_failed_to_upgrade">အဆင့်မြှင့်ခြင်း မအောင်မြင်ပါ။</string>
     <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
@@ -2538,7 +2538,7 @@
     <string name="preferences__payments_beta">ငွေပေးချေမှုများ (စမ်းသပ်သည့် Beta ဗားရှင်း)</string>
     <string name="preferences__conversation_length_limit">စာလုံးရေ အကန့်အသတ်</string>
     <string name="preferences__keep_messages">မက်ဆေ့များကို သိမ်းထားပါ</string>
-    <string name="preferences__clear_message_history">မက်ဆေ့ရာဇဝင်ရှင်းလင်းမယ်</string>
+    <string name="preferences__clear_message_history">မက်ဆေ့ချ်မှတ်တမ်း ရှင်းလင်းရန်</string>
     <string name="preferences__linked_devices">ချိတ်ဆက်ထားသော စက်ပစ္စည်းများ</string>
     <string name="preferences__light_theme">အလင်း</string>
     <string name="preferences__dark_theme">အမှောင်</string>
@@ -2572,7 +2572,7 @@
     <string name="preferences_chats__when_using_wifi">ဝိုင်ဖိုင်ကို အသုံးပြုသည့်အခါ</string>
     <string name="preferences_chats__when_roaming">Roaming လုပ်သည့်အခါ</string>
     <string name="preferences_chats__media_auto_download">ရုပ်/သံ/ပုံကို အလိုအလျောက် ဒေါင်းလုတ်လုပ်ပါ</string>
-    <string name="preferences_chats__message_history">မက်ဆေ့ခ်ျရာဇဝင်</string>
+    <string name="preferences_chats__message_history">မက်ဆေ့ချ်မှတ်တမ်း</string>
     <string name="preferences_storage__storage_usage">သိုလှောင်မှုအသုံးပြုမှု</string>
     <string name="preferences_storage__photos">ဓါတ်ပုံများ</string>
     <string name="preferences_storage__videos">ဗီဒီယိုများ</string>
@@ -2580,12 +2580,12 @@
     <string name="preferences_storage__audio">အသံ</string>
     <string name="preferences_storage__review_storage">သိုလှောင်မှုကို ပြန်သုံးသပ်မယ်</string>
     <string name="preferences_storage__delete_older_messages">မက်ဆေ့ခ်ျအဟောင်းများကို ဖျက်မည်လား?</string>
-    <string name="preferences_storage__clear_message_history">မက်ဆေ့ရာဇဝင်ကို ရှင်းလင်းမည်လား?</string>
-    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">၎င်းလုပ်ဆောင်ချက်သည် သင့်စက်ပေါ်ရှိ %1$s ထက်ကြာသော မက်ဆေ့ချ်ရာဇဝင် နှင့် မီဒီယာများကို ဖျက်သိမ်းလိုက်ပါမည်။</string>
+    <string name="preferences_storage__clear_message_history">မက်ဆေ့ချ်မှတ်တမ်းကို ရှင်းလင်းမည်လား။</string>
+    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">၎င်းသည် သင့်စက်ရှိ %1$s ထက်ကြာသော မက်ဆေ့ချ်မှတ်တမ်းနှင့် မီဒီယာများကို အပြီးဖျက်ပစ်လိုက်ပါမည်။</string>
     <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">၎င်းလုပ်ဆောင်ချက်သည် သင်၏ စကားပြောဆိုမှုများအားလုံးကို နောက်ဆုံးမက်ဆေ့ချ် %1$s ခုထိ ဖြတ်လိုက်ပါမည်။</string>
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">၎င်းလုပ်ဆောင်ချက်သည် သင့်စက်ပေါ်ရှိ မက်ဆေ့ချ်ရာဇဝင် နှင့် မီဒီယာများ အားလုံးကို ဖျက်သိမ်းလိုက်ပါမည်။</string>
-    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">သင်မှ မက်ဆေ့ချ်ရာဇဝင် များအားလုံးကို ဖျက်မည်ဆိုတာ သေချာပါသလား?</string>
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">မက်ဆေ့ချ်ရာဇဝင်များအားလုံးကို အမြဲတမ်းဖျက်သိမ်းလုပ်ပါမည်။ ၎င်းလုပ်ဆောင်ချက်ကို ပြန်ရုပ်သိမ်းလို့် မရပါ။</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">၎င်းသည် သင့်စက်ရှိ မက်ဆေ့ချ်မှတ်တမ်းနှင့် မီဒီယာများ အားလုံးကို အပြီးဖျက်ပစ်လိုက်ပါမည်။</string>
+    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">မက်ဆေ့ချ်မှတ်တမ်းများ အားလုံးကို ဖျက်လိုသည်မှာ သေချာပါသလား။</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">မက်ဆေ့ချ်မှတ်တမ်းများ အားလုံးကို အပြီးဖယ်ရှားလိုက်ပါမည်။ ဤလုပ်ဆောင်ချက်ကို ပြန်ရုပ်သိမ်း၍ မရပါ။</string>
     <string name="preferences_storage__delete_all_now">အားလုံးကို ယခု ဖျက်သိမ်းမယ်</string>
     <string name="preferences_storage__forever">အမြဲတမ်း</string>
     <string name="preferences_storage__one_year">1 နှစ်</string>
@@ -2825,19 +2825,19 @@
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
-    <string name="PaymentsSecuritySetupFragment__security_setup">Security setup</string>
+    <string name="PaymentsSecuritySetupFragment__security_setup">လုံခြုံရေး သတ်မှတ်ချိန်ညှိမှု</string>
     <!-- Title to enable payment lock -->
-    <string name="PaymentsSecuritySetupFragment__protect_your_funds">Protect your funds</string>
+    <string name="PaymentsSecuritySetupFragment__protect_your_funds">သင်၏ ငွေကြေးကို ကာကွယ်ပါ</string>
     <!-- Description as to why payment lock is required -->
-    <string name="PaymentsSecuritySetupFragment__help_prevent">Help prevent a person with your phone from accessing your funds by adding another layer of security. You can disable this option in Settings.</string>
+    <string name="PaymentsSecuritySetupFragment__help_prevent">နောက်ထပ် လုံခြုံရေးအလွှာ ပေါင်းထည့်ခြင်းဖြင့် သင်၏ငွေကြေးကို အခြားတစ်ယောက်က ရယူသုံးစွဲခြင်းအား ကူညီတားဆီးပေးပါသည်။ ဤသည်ကို ဆက်တင်တွင် ပိတ်နိုင်ပါသည်။</string>
     <!-- Option to enable payment lock -->
-    <string name="PaymentsSecuritySetupFragment__enable_payment_lock">Enable payment lock</string>
+    <string name="PaymentsSecuritySetupFragment__enable_payment_lock">ငွေပေးချေမှုလော့ခ်ကို ဖွင့်ရန်</string>
     <!-- Option to cancel -->
     <string name="PaymentsSecuritySetupFragment__not_now">ယခု မလုပ်ဆောင်သေးပါ။</string>
     <!-- Dialog title to confirm skipping the step -->
-    <string name="PaymentsSecuritySetupFragment__skip_this_step">Skip this step?</string>
+    <string name="PaymentsSecuritySetupFragment__skip_this_step">ဤအဆင့်ကို ကျော်မည်လား။</string>
     <!-- Dialog description to let users know why payment lock is required -->
-    <string name="PaymentsSecuritySetupFragment__skipping_this_step">Skipping this step could allow anyone who has physical access to your phone to transfer funds or view your recovery phrase.</string>
+    <string name="PaymentsSecuritySetupFragment__skipping_this_step">ဤအဆင့်ကို ကျော်လိုက်ခြင်းဖြင့် သင့်ဖုန်းကို ဝင်ရောက်ကြည့်ရှုခွင့်ရှိသည့် မည်သူမဆိုအား ငွေလွှဲရန် သို့မဟုတ် သင်၏ ပြန်လည်ရယူရေး စကားစုကို ကြည့်ရန် ခွင့်ပြုပေးပါသည်။</string>
     <!-- Dialog option to cancel -->
     <string name="PaymentsSecuritySetupFragment__cancel">မလုပ်တော့ပါ</string>
     <!-- Dialog option to skip -->
@@ -4704,7 +4704,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">ကြည့်ရှုမှုများ မရှိသေးပါ</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">သင့်စတိုရီများအား မည်သူ ကြည့်ပြီးပြီလဲကို မြင်နိုင်ရန် ဖတ်ပြီးကြောင်းညွှန်ပြမှုကို ဖွင့်ပါ။</string>
+    <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">သင့်စတိုရီများအား ကြည့်ပြီးသူများကို မြင်နိုင်ရန် ဖတ်ပြီးကြောင်းညွှန်ပြမှုကို ဖွင့်ပါ။</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">ဆက်တင်သို့ သွားရန်</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -4718,7 +4718,7 @@
     <!-- Displayed when a story has no replies yet -->
     <string name="StoryGroupReplyFragment__no_replies_yet">ပြန်စာများ မရှိသေးပါ</string>
     <!-- Displayed when no longer a group member -->
-    <string name="StoryGroupReplyFragment__you_cant_reply">You can\'t reply to this story because you\'re no longer a member of this group.</string>
+    <string name="StoryGroupReplyFragment__you_cant_reply">သင်သည် ဤအဖွဲ့ဝင် မဟုတ်တော့သောကြောင့် ဤစတိုရီကို စာပြန်နိုင်တော့မည် မဟုတ်ပါ။</string>
     <!-- Displayed for each user that reacted to a story when viewing replies -->
     <string name="StoryGroupReactionReplyItem__reacted_to_the_story">စတိုရီကို တုံ့ပြန်မှု ပေးခဲ့ပါသည်</string>
     <!-- Label for story views tab -->
@@ -4775,8 +4775,6 @@
     <string name="MyStorySettingsFragment__allow_replies_amp_reactions">ပြန်စာများနှင့် တုံ့ပြန်မှုများကို ခွင့်ပြုရန်</string>
     <!-- Summary for switchable option allowing replies and reactions on your story -->
     <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">သင့်စတိုရီကို ကြည့်နိုင်သူများအား တုံ့ပြန်မှု ပေးရန်နှင့် ပြန်စာပို့ရန် ခွင့်ပြုပါ</string>
-    <!-- Note about default sharing -->
-    <string name="MyStorySettingsFragment__hide_your_story_from">သင့်စတိုရီကို အချို့သူများအတွက် ဝှက်ပါ။ ပုံသေအားဖြင့် သင့်စတိုရီကို သင့် %1$s နှင့် မျှဝေပါသည်</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
     <string name="SignalConnectionsBottomSheet___signal_connections">Signal အဆက်အသွယ်များ</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
@@ -4838,23 +4836,23 @@
     <!-- Dialog title for removing a group story -->
     <string name="StoryDialogs__remove_group_story">အဖွဲ့ စတိုရီကို ဖယ်ရှားမည်လား။</string>
     <!-- Dialog message for removing a group story -->
-    <string name="StoryDialogs__s_will_be_removed">\"%1$s\" will be removed.</string>
+    <string name="StoryDialogs__s_will_be_removed">\"%1$s\" ကို ဖယ်ရှားသွားပါမည်။</string>
     <!-- Dialog positive action for removing a group story -->
     <string name="StoryDialogs__remove">ဖယ်ရှားမယ်</string>
     <!-- Dialog title for deleting a private story -->
     <string name="StoryDialogs__delete_private_story">သီးသန့် စတိုရီကို ဖျက်မည်လား။</string>
     <!-- Dialog message for deleting a private story -->
-    <string name="StoryDialogs__s_and_updates_shared">\"%1$s\" and updates shared to this story will be deleted.</string>
+    <string name="StoryDialogs__s_and_updates_shared">\"%1$s\" နှင့် ဤစတိုရီအတွက် ဝေမျှထားသည့် အပ်ဒိတ်များကို ဖျက်သွားပါမည်။</string>
     <!-- Dialog positive action for deleting a private story -->
     <string name="StoryDialogs__delete">ဖျက်ပါ</string>
     <!-- Dialog title for first time sending something to a beta story -->
-    <string name="StoryDialogs__stories_is_available_to">Stories is available to Signal beta users only.</string>
+    <string name="StoryDialogs__stories_is_available_to">စတိုရီများကို Signal Beta သုံးစွဲသူများအတွက်သာ ရရှိနိုင်ပါသည်။</string>
     <!-- Dialog message for first time sending something to a beta story -->
-    <string name="StoryDialogs__if_you_share_a_story">If you share a story, it will only be available to people who are on Signal beta.</string>
+    <string name="StoryDialogs__if_you_share_a_story">သင်သည် စတိုရီတစ်ခုကို ဝေမျှပါက Signal Beta ရှိ လူများသည် ၎င်းကို မြင်ရပါမည်။</string>
     <!-- Dialog title for first time adding something to a story -->
     <string name="StoryDialogs__add_to_story_q">စတိုရီတွင် ပေါင်းထည့်မည်လား။</string>
     <!-- Dialog message for first time adding something to a story -->
-    <string name="StoryDialogs__adding_content">သင့်စတိုရီတွင် အကြောင်းအရာ ထည့်ခြင်းဖြင့် သင်၏ Signal အဆက်အသွယ်များအား ၎င်းကို ၂၄ နာရီ ကြည့်ရှုခွင့်ပြုပါသည်။ သင့်စတိုရီအား ကြည့်ရှုနိုင်သူများကို ဆက်တင်တွင် ပြောင်းနိုင်ပါသည်။</string>
+    <string name="StoryDialogs__adding_content">သင့်စတိုရီတွင် ပေါင်းထည့်လိုက်သော အကြောင်းအရာကို သင်၏ Signal အဆက်အသွယ်များအား ၂၄ နာရီ ကြည့်ရှုခွင့်ပြုပါသည်။ သင့်စတိုရီအား ကြည့်ရှုနိုင်သူများကို ဆက်တင်တွင် ပြောင်းနိုင်ပါသည်။</string>
     <!-- First time share to story dialog: Positive action to go ahead and add to story -->
     <string name="StoryDialogs__add_to_story">စတိုရီတွင် ပေါင်းထည့်ရန်</string>
     <!-- First time share to story dialog: Neutral action to edit who can view "My Story" -->
@@ -4864,7 +4862,7 @@
     <!-- Error message dialog button to resend a previously failed story send -->
     <string name="StoryDialogs__send">ပေးပို့မယ်</string>
     <!-- Action button for turning off stories when stories are present on the device -->
-    <string name="StoryDialogs__turn_off_and_delete">Turn off and delete</string>
+    <string name="StoryDialogs__turn_off_and_delete">ပိတ်ပြီး ဖျက်ရန်</string>
     <!-- Privacy Settings toggle title for stories -->
     <string name="PrivacySettingsFragment__share_and_view_stories">စတိုရီများကို မျှဝေကြည့်ရှုရန်</string>
     <!-- Privacy Settings toggle summary for stories -->
@@ -5000,7 +4998,7 @@
     <!-- Expired gift sheet not now button -->
     <string name="ExpiredGiftSheetConfiguration__not_now">ယခု မလုပ်ဆောင်သေးပါ။</string>
     <!-- My Story label designating that we will only share with the selected viewers. -->
-    <string name="ContactSearchItems__only_share_with">ဖော်ပြထားသူများထံသာ ဝေမျှရန်</string>
+    <string name="ContactSearchItems__only_share_with">ဖော်ပြပါထံသာဝေမျှရန်</string>
     <!-- Label under name for private stories -->
     <plurals name="ContactSearchItems__private_story_d_viewers">
         <item quantity="other">သီးသန့် စတိုရီ · ကြည့်ရှုသူ · %1$d ဦး</item>
@@ -5143,7 +5141,7 @@
     <!-- Dialog title to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">စတိုရီများကို ပိတ်မည်လား။</string>
     <!-- Dialog message to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">You will no longer be able to share or view stories. Story updates you have recently shared will also be deleted.</string>
+    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">သင်သည် စတိုရီများ ဝေမျှရန် သို့မဟုတ် ကြည့်ရန် လုပ်ဆောင်နိုင်တော့မည် မဟုတ်ပါ။ မကြာသေးမီက သင် ဝေမျှထားသည့် အပ်ဒိတ်များကိုလည်း ဖျက်ပစ်ပါမည်။</string>
     <!-- Page title when launched from stories landing screen -->
     <string name="StoriesPrivacySettingsFragment__story_privacy">စတိုရီ ကိုယ်ပိုင်အချက်အလက်</string>
 
@@ -5151,7 +5149,7 @@
     <!-- Section header for who can view a group story -->
     <string name="GroupStorySettingsFragment__who_can_view_this_story">ဤစတိုရီကို ကြည့်နိုင်မည့်သူများ</string>
     <!-- Explanation of who can view a group story -->
-    <string name="GroupStorySettingsFragment__members_of_the_group_s">"\"%1$s\" အဖွဲ့ဝင်များသည် ဤစတိုရီကို ကြည့်ခြင်း၊ အကြောင်းပြန်ခြင်းများ လုပ်နိုင်ပါသည်။ အဖွဲ့အတွင်းရှိ ဤချက်(တ်)အတွက် မန်ဘာပလန်ကို အပ်ဒိတ်လုပ်နိုင်ပါသည်။"</string>
+    <string name="GroupStorySettingsFragment__members_of_the_group_s">"%1$s အဖွဲ့ဝင်များသည် ဤစတိုရီကို ကြည့်ခြင်း၊ အကြောင်းပြန်ခြင်းများ လုပ်နိုင်ပါသည်။ အဖွဲ့အတွင်းရှိ ဤချက်(တ်)အတွက် မန်ဘာပလန်ကို အပ်ဒိတ်လုပ်နိုင်ပါသည်။"</string>
     <!-- Preference label for removing this group story -->
     <string name="GroupStorySettingsFragment__remove_group_story">အဖွဲ့စတိုရီကို ဖယ်ရှားရန်</string>
 

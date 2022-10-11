@@ -192,7 +192,7 @@
     <string name="ClientDeprecatedActivity_update">업데이트</string>
     <string name="ClientDeprecatedActivity_dont_update">업데이트하지 않음</string>
     <string name="ClientDeprecatedActivity_warning">경고</string>
-    <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Signal 버전이 만료되었습니다. 지금까지의 메세지를 읽을 수는 있지만 업데이트 하기 전까지 메세지를 보내거나 받을 수 없습니다.</string>
+    <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Signal 버전이 만료되었습니다. 이전 메세지 기록은 읽을 수 있지만 업데이트하기 전까지 메세지를 보내거나 받을 수 없습니다.</string>
 
     <!-- CommunicationActions -->
     <string name="CommunicationActions_no_browser_found">웹 브라우저를 찾을 수 없습니다.</string>
@@ -650,7 +650,7 @@
     <!-- GroupsV1MigrationLearnMoreBottomSheetDialogFragment -->
     <string name="GroupsV1MigrationLearnMore_what_are_new_groups">새 그룹이 무엇인가요?</string>
     <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">새 그룹에는 @멘션 및 그룹 관리자와 같은 기능이 있으며 향후 더 많은 기능을 지원할 예정입니다.</string>
-    <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">모든 메시지 기록 및 미디어는 업그레이드 전에 보관되었습니다.</string>
+    <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">모든 업그레이드 전 메시지 기록과 미디어를 보관했습니다.</string>
     <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">그룹에 다시 가입하려면 초대를 수락해야 하며 수락할 때까지 그룹 메시지를 받지 않습니다.</string>
     <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
         <item quantity="other">이 멤버들이 그룹에 다시 가입하려면 초대를 수락해야 하며 수락할 때까지 그룹 메시지를 받지 않습니다.</item>
@@ -663,7 +663,7 @@
     <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">새 그룹으로 업그레이드</string>
     <string name="GroupsV1MigrationInitiation_upgrade_this_group">그룹 업그레이드</string>
     <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">새 그룹에는 @멘션 및 그룹 관리자와 같은 기능이 있으며 향후 더 많은 기능을 지원할 예정입니다.</string>
-    <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">모든 메시지 기록 및 미디어는 업그레이드 전에 보관됩니다.</string>
+    <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">모든 업그레이드 전 메시지 기록과 미디어를 보관합니다.</string>
     <string name="GroupsV1MigrationInitiation_encountered_a_network_error">네트워크 오류가 발생했습니다. 나중에 다시 시도하세요.</string>
     <string name="GroupsV1MigrationInitiation_failed_to_upgrade">업그레이드하지 못했습니다.</string>
     <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
@@ -1288,9 +1288,9 @@
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">새로운 기능이 마음에 드시나요? 1회성 기부로 Signal을 지원해 주세요.</string>
     <!-- Update item message shown when we merge two threads together -->
-    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">%1$s 님과 해당 사용자 번호 %2$s의 메시지 기록이 병합되었습니다.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">%1$s 님과 해당 사용자 번호 %2$s의 메시지 기록을 병합했습니다.</string>
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
-    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">%1$s 님 및 해당 사용자에게 속하는 다른 채팅이 병합되었습니다.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">%1$s 님과의 메시지 기록과 해당 사용자가 속하는 다른 채팅의 메시지 기록을 병합했습니다.</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s 님이 그룹 통화를 시작했습니다(%2$s).</string>
@@ -2580,12 +2580,12 @@
     <string name="preferences_storage__audio">오디오</string>
     <string name="preferences_storage__review_storage">저장 공간 검토</string>
     <string name="preferences_storage__delete_older_messages">오래된 메시지를 삭제하시겠습니까?</string>
-    <string name="preferences_storage__clear_message_history">메시기 기록을 지우시겠습니까?</string>
-    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">이를 통해 %1$s보다 오래된 모든 메시지 기록과 미디어가 기기에서 영구적으로 삭제됩니다.</string>
+    <string name="preferences_storage__clear_message_history">메시기 기록을 삭제할까요?</string>
+    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">%1$s보다 오래된 모든 메시지 기록과 미디어를 기기에서 영구적으로 삭제합니다.</string>
     <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">이를 통해 모든 대화가 %1$s개의 가장 최근 메시지만 제외하고 영구적으로 삭제됩니다.</string>
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">이 대화의 모든 메시지와 미디어가 영구 삭제됩니다.</string>
-    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">모든 메시지 기록을 삭제하시겠습니까?</string>
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">모든 메시지 기록이 영구 삭제됩니다. 다시 되돌릴 수 없습니다.</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">이 기기의 모든 메시지 기록과 미디어를 영구 삭제합니다.</string>
+    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">모든 메시지 기록을 삭제할까요?</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">모든 메시지 기록을 영구 삭제합니다. 이 작업은 다시 되돌릴 수 없습니다.</string>
     <string name="preferences_storage__delete_all_now">모두 지우기</string>
     <string name="preferences_storage__forever">영원히</string>
     <string name="preferences_storage__one_year">1년</string>
@@ -2825,19 +2825,19 @@
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
-    <string name="PaymentsSecuritySetupFragment__security_setup">Security setup</string>
+    <string name="PaymentsSecuritySetupFragment__security_setup">보안 설정</string>
     <!-- Title to enable payment lock -->
-    <string name="PaymentsSecuritySetupFragment__protect_your_funds">Protect your funds</string>
+    <string name="PaymentsSecuritySetupFragment__protect_your_funds">자금 보호</string>
     <!-- Description as to why payment lock is required -->
-    <string name="PaymentsSecuritySetupFragment__help_prevent">Help prevent a person with your phone from accessing your funds by adding another layer of security. You can disable this option in Settings.</string>
+    <string name="PaymentsSecuritySetupFragment__help_prevent">사용자의 휴대폰을 손에 넣은 사람이 자금에 액세스할 수 없도록 보안을 한층 강화하세요. 이 옵션은 설정에서 비활성화 할 수 있습니다.</string>
     <!-- Option to enable payment lock -->
-    <string name="PaymentsSecuritySetupFragment__enable_payment_lock">Enable payment lock</string>
+    <string name="PaymentsSecuritySetupFragment__enable_payment_lock">결제 잠금 사용</string>
     <!-- Option to cancel -->
     <string name="PaymentsSecuritySetupFragment__not_now">나중에</string>
     <!-- Dialog title to confirm skipping the step -->
-    <string name="PaymentsSecuritySetupFragment__skip_this_step">Skip this step?</string>
+    <string name="PaymentsSecuritySetupFragment__skip_this_step">이 단계를 건너뛸까요?</string>
     <!-- Dialog description to let users know why payment lock is required -->
-    <string name="PaymentsSecuritySetupFragment__skipping_this_step">Skipping this step could allow anyone who has physical access to your phone to transfer funds or view your recovery phrase.</string>
+    <string name="PaymentsSecuritySetupFragment__skipping_this_step">이 단계를 건너 뛰면 사용자의 휴대폰 기기를 손에 넣은 사람이 자금을 이체하거나 복구 단계를 볼 수 있습니다.</string>
     <!-- Dialog option to cancel -->
     <string name="PaymentsSecuritySetupFragment__cancel">취소</string>
     <!-- Dialog option to skip -->
@@ -4674,7 +4674,7 @@
     <!-- Title of dialog to confirm deletion of story -->
     <string name="MyStories__delete_story">스토리를 삭제할까요?</string>
     <!-- Message of dialog to confirm deletion of story -->
-    <string name="MyStories__this_story_will_be_deleted">나를 포함해 이 스토리를 받은 모든 사람에게서 해당 스토리가 삭제됩니다.</string>
+    <string name="MyStories__this_story_will_be_deleted">나를 포함해 이 스토리를 받은 모든 사람에게서 해당 스토리를 삭제합니다.</string>
     <!-- Toast shown when story media cannot be saved -->
     <string name="MyStories__unable_to_save">저장할 수 없음</string>
     <!-- Displayed at bottom of story viewer when current item has views -->
@@ -4718,7 +4718,7 @@
     <!-- Displayed when a story has no replies yet -->
     <string name="StoryGroupReplyFragment__no_replies_yet">답장 없음</string>
     <!-- Displayed when no longer a group member -->
-    <string name="StoryGroupReplyFragment__you_cant_reply">You can\'t reply to this story because you\'re no longer a member of this group.</string>
+    <string name="StoryGroupReplyFragment__you_cant_reply">더 이상 이 그룹의 멤버가 아니므로 이 스토리에 답장할 수 없습니다.</string>
     <!-- Displayed for each user that reacted to a story when viewing replies -->
     <string name="StoryGroupReactionReplyItem__reacted_to_the_story">스토리에 반응함</string>
     <!-- Label for story views tab -->
@@ -4746,7 +4746,7 @@
     <!-- Section heading for story visibility -->
     <string name="MyStorySettingsFragment__who_can_view_this_story">이 스토리를 볼 수 있는 사람</string>
     <!-- Clickable option for selecting people to hide your story from -->
-    <string name="MyStorySettingsFragment__hide_story_from">스토리 숨길 대상</string>
+    <string name="MyStorySettingsFragment__hide_story_from">다음 사용자에게서 스토리 숨기기</string>
     <!-- Privacy setting title for sending stories to all your signal connections -->
     <string name="MyStorySettingsFragment__all_signal_connections">모든 Signal 커넥션</string>
     <!-- Privacy setting description for sending stories to all your signal connections -->
@@ -4775,8 +4775,6 @@
     <string name="MyStorySettingsFragment__allow_replies_amp_reactions">답장 및 반응 허용</string>
     <!-- Summary for switchable option allowing replies and reactions on your story -->
     <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">스토리를 볼 수 있는 사용자의 반응 및 답장 허용</string>
-    <!-- Note about default sharing -->
-    <string name="MyStorySettingsFragment__hide_your_story_from">특정 사용자에게 내 스토리가 표시되지 않습니다. 내 스토리는 기본적으로 %1$s와(과) 공유됩니다.</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
     <string name="SignalConnectionsBottomSheet___signal_connections">Signal 커넥션</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
@@ -4796,7 +4794,7 @@
     <!-- Dialog title when attempting to remove someone from a private story -->
     <string name="PrivateStorySettingsFragment__remove_s">%1$s 님을 제거할까요?</string>
     <!-- Dialog message when attempting to remove someone from a private story -->
-    <string name="PrivateStorySettingsFragment__this_person_will_no_longer">이 사용자는 더 이상 내 스토리를 볼 수 없게 됩니다.</string>
+    <string name="PrivateStorySettingsFragment__this_person_will_no_longer">이 사용자는 더 이상 내 스토리를 볼 수 없습니다.</string>
     <!-- Positive action label when attempting to remove someone from a private story -->
     <string name="PrivateStorySettingsFragment__remove">삭제</string>
     <!-- Dialog title when deleting a private story -->
@@ -4824,7 +4822,7 @@
     <!-- Hint for entering a URL for a text post -->
     <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">URL 입력 또는 붙여넣기</string>
     <!-- Displayed prior to the user entering a URL for a text post -->
-    <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">스토리를 볼 수 있도록 링크 공유</string>
+    <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">내 스토리를 볼 수 있는 사람과 링크 공유</string>
     <!-- Hint text for searching for a story text post recipient. -->
     <string name="TextStoryPostSendFragment__search">검색</string>
     <!-- Toast shown when an unexpected error occurs while sending a text story -->
@@ -4838,19 +4836,19 @@
     <!-- Dialog title for removing a group story -->
     <string name="StoryDialogs__remove_group_story">그룹 스토리를 제거할까요?</string>
     <!-- Dialog message for removing a group story -->
-    <string name="StoryDialogs__s_will_be_removed">\"%1$s\" will be removed.</string>
+    <string name="StoryDialogs__s_will_be_removed">\'%1$s\'을(를) 제거합니다.</string>
     <!-- Dialog positive action for removing a group story -->
     <string name="StoryDialogs__remove">삭제</string>
     <!-- Dialog title for deleting a private story -->
     <string name="StoryDialogs__delete_private_story">비공개 스토리를 삭제할까요?</string>
     <!-- Dialog message for deleting a private story -->
-    <string name="StoryDialogs__s_and_updates_shared">\"%1$s\" and updates shared to this story will be deleted.</string>
+    <string name="StoryDialogs__s_and_updates_shared">\'%1$s\' 및 이 스토리에 공유된 업데이트를 삭제합니다.</string>
     <!-- Dialog positive action for deleting a private story -->
     <string name="StoryDialogs__delete">삭제</string>
     <!-- Dialog title for first time sending something to a beta story -->
-    <string name="StoryDialogs__stories_is_available_to">Stories is available to Signal beta users only.</string>
+    <string name="StoryDialogs__stories_is_available_to">스토리는 Signal 베타 사용자에게만 제공됩니다.</string>
     <!-- Dialog message for first time sending something to a beta story -->
-    <string name="StoryDialogs__if_you_share_a_story">If you share a story, it will only be available to people who are on Signal beta.</string>
+    <string name="StoryDialogs__if_you_share_a_story">스토리를 공유하면 Signal 베타를 사용 중인 사용자에게만 스토리가 제공됩니다.</string>
     <!-- Dialog title for first time adding something to a story -->
     <string name="StoryDialogs__add_to_story_q">스토리에 추가할까요?</string>
     <!-- Dialog message for first time adding something to a story -->
@@ -4864,7 +4862,7 @@
     <!-- Error message dialog button to resend a previously failed story send -->
     <string name="StoryDialogs__send">보내기</string>
     <!-- Action button for turning off stories when stories are present on the device -->
-    <string name="StoryDialogs__turn_off_and_delete">Turn off and delete</string>
+    <string name="StoryDialogs__turn_off_and_delete">끄기 및 삭제</string>
     <!-- Privacy Settings toggle title for stories -->
     <string name="PrivacySettingsFragment__share_and_view_stories">스토리 공유 및 보기</string>
     <!-- Privacy Settings toggle summary for stories -->
@@ -4878,7 +4876,7 @@
         <item quantity="other">볼 수 있는 사람 %1$d명</item>
     </plurals>
     <!-- Name story screen title -->
-    <string name="CreateStoryWithViewersFragment__name_story">스토리 이름 짓기</string>
+    <string name="CreateStoryWithViewersFragment__name_story">스토리 이름 지정</string>
     <!-- Name story screen label hint -->
     <string name="CreateStoryWithViewersFragment__story_name_required">스토리 이름(필수)</string>
     <!-- Name story screen viewers subheading -->
@@ -4938,7 +4936,7 @@
     <!-- Conversation Item label for reactions to your story -->
     <string name="ConversationItem__reacted_to_your_story">내 스토리에 반응함</string>
     <!-- Conversation Item label for reactions to an unavailable story -->
-    <string name="ConversationItem__reacted_to_a_story">스토리에 반응했습니다.</string>
+    <string name="ConversationItem__reacted_to_a_story">스토리에 반응함</string>
 
     <!-- endregion -->
     <!-- Content description for expand contacts chevron -->
@@ -5028,7 +5026,7 @@
     <!-- Dialog title for removing a group story -->
     <string name="ContactSearchMediator__remove_group_story">그룹 스토리를 제거할까요?</string>
     <!-- Dialog message for removing a group story -->
-    <string name="ContactSearchMediator__this_will_remove">이 목록에서 스토리를 지웁니다. 이 그룹의 스토리는 계속 볼 수 있습니다.</string>
+    <string name="ContactSearchMediator__this_will_remove">이 목록에서 스토리를 제거합니다. 이 그룹의 스토리는 계속 볼 수 있습니다.</string>
     <!-- Dialog action item for removing a group story -->
     <string name="ContactSearchMediator__remove">삭제</string>
     <!-- Dialog title for deleting a private story -->
@@ -5077,7 +5075,7 @@
     <!-- Message of safety number changes bottom sheet when not showing individual records and user has seen review screen -->
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">모든 커넥션을 검토했습니다. 보내기를 탭하여 계속하세요.</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
-    <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">Signal을 다시 설치했거나 기기를 변경했을 수 있는 커넥션이 %1$d개 있습니다. 스토리를 공유하기 전에 해당 사용자의 안전 번호를 검토하거나 스토리에서 이들을 제거하세요.</string>
+    <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">Signal을 다시 설치하거나 기기를 변경했을 수 있는 커넥션이 %1$d개 있습니다. 스토리를 공유하기 전에 해당 사용자의 안전 번호를 검토하거나 스토리에서 이들을 제거하세요.</string>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">안전 번호 확인</string>
     <!-- Menu action to remove user from story -->
@@ -5131,11 +5129,11 @@
 
     <!-- StoriesPrivacySettingsFragment -->
     <!-- Explanation about how stories are deleted and managed -->
-    <string name="StoriesPrivacySettingsFragment__stories_automatically_disappear">스토리는 24시간이 지나면 자동으로 사라집니다. 스토리를 볼 수 있는 사람을 선택하거나, 스토리룰 볼 수 있는 사람이나 그룹을 지정하여 새 스토리를 만드세요.</string>
+    <string name="StoriesPrivacySettingsFragment__stories_automatically_disappear">스토리는 24시간이 지나면 자동으로 사라집니다. 스토리를 볼 수 있는 사람을 선택하거나, 스토리를 볼 수 있는 사람이나 그룹을 지정하여 새 스토리를 만드세요.</string>
     <!-- Preference title to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__turn_off_stories">스토리 끄기</string>
     <!-- Preference summary to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__if_you_opt_out">스토리 기능을 끄면 더 이상 스토리를 보거나 공유할 수 없게 됩니다.</string>
+    <string name="StoriesPrivacySettingsFragment__if_you_opt_out">스토리 기능을 끄면 더 이상 스토리를 보거나 공유할 수 없습니다.</string>
     <!-- Preference title to turn on stories -->
     <string name="StoriesPrivacySettingsFragment__turn_on_stories">스토리 켜기</string>
     <!-- Preference summary to turn on stories -->
@@ -5143,7 +5141,7 @@
     <!-- Dialog title to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">스토리를 끌까요?</string>
     <!-- Dialog message to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">You will no longer be able to share or view stories. Story updates you have recently shared will also be deleted.</string>
+    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">더 이상 스토리를 공유하거나 볼 수 없습니다. 최근 공유한 스토리 업데이트도 삭제합니다.</string>
     <!-- Page title when launched from stories landing screen -->
     <string name="StoriesPrivacySettingsFragment__story_privacy">스토리 개인정보보호</string>
 
@@ -5151,7 +5149,7 @@
     <!-- Section header for who can view a group story -->
     <string name="GroupStorySettingsFragment__who_can_view_this_story">이 스토리를 볼 수 있는 사람</string>
     <!-- Explanation of who can view a group story -->
-    <string name="GroupStorySettingsFragment__members_of_the_group_s">"\"%1$s\" 그룹 멤버는 이 스토리를 보고 답장할 수 있습니다. 그룹에서 이 채팅에 대한 멤버십을 업데이트할 수 있습니다."</string>
+    <string name="GroupStorySettingsFragment__members_of_the_group_s">"'%1$s' 그룹 멤버는 이 스토리를 보고 여기에 답장할 수 있습니다. 그룹에서 이 채팅에 대한 멤버십을 업데이트할 수 있습니다."</string>
     <!-- Preference label for removing this group story -->
     <string name="GroupStorySettingsFragment__remove_group_story">그룹 스토리 제거</string>
 

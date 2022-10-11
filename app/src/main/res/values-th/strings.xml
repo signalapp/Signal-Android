@@ -192,7 +192,7 @@
     <string name="ClientDeprecatedActivity_update">ปรับรุ่น</string>
     <string name="ClientDeprecatedActivity_dont_update">ไม่ปรับรุ่น</string>
     <string name="ClientDeprecatedActivity_warning">คำเตือน</string>
-    <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Signal รุ่นที่คุณใช้อยู่หมดอายุแล้ว คุณสามารถดูประวัติข้อความของคุณได้ แต่จะไม่สามารถส่งหรือรับข้อความได้อีก จนกว่าคุณจะปรับรุ่นแอป</string>
+    <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Signal เวอร์ชันที่คุณใช้อยู่หมดอายุแล้ว คุณสามารถดูประวัติการส่งข้อความได้ แต่จะไม่สามารถส่งหรือรับข้อความได้อีกจนกว่าจะอัปเดต</string>
 
     <!-- CommunicationActions -->
     <string name="CommunicationActions_no_browser_found">ไม่เจอเว็บเบราว์เซอร์</string>
@@ -650,7 +650,7 @@
     <!-- GroupsV1MigrationLearnMoreBottomSheetDialogFragment -->
     <string name="GroupsV1MigrationLearnMore_what_are_new_groups">อะไรคือกลุ่มแบบใหม่?</string>
     <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">กลุ่มแบบใหม่มีความสามารถเช่นการ @กล่าวถึง และระบบผู้ดูแลกลุ่ม และจะมีความสามารถเพิ่มเติมในอนาคต</string>
-    <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">ประวัติข้อความและสื่อทั้งหมดได้ถูกรักษาไว้ก่อนการปรับรุ่น</string>
+    <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">ประวัติการส่งข้อความและสื่อทั้งหมดได้ถูกบันทึกไว้ก่อนการอัปเกรด</string>
     <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">คุณต้องตอบรับคำเชิญเข้ากลุ่มนี้อีกครั้ง และคุณจะไม่ได้รับข้อความในกลุ่มจนกว่าคุณจะตอบรับ</string>
     <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
         <item quantity="other">สมาชิกเหล่านี้จะต้องตอบรับคำเชิญเข้ากลุ่มนี้อีกครั้ง และพวกเขาจะไม่ได้รับข้อความในกลุ่มจนกว่าพวกเขาจะตอบรับ:</item>
@@ -663,7 +663,7 @@
     <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">ปรับรุ่นเป็นกลุ่มแบบใหม่</string>
     <string name="GroupsV1MigrationInitiation_upgrade_this_group">ปรับรุ่นกลุ่มนี้</string>
     <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">กลุ่มแบบใหม่มีความสามารถเช่นการ @กล่าวถึง และระบบผู้ดูแลกลุ่ม และจะมีความสามารถเพิ่มเติมในอนาคต</string>
-    <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">ประวัติข้อความและสื่อทั้งหมดจะถูกรักษาไว้ก่อนการปรับรุ่น</string>
+    <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">ประวัติการส่งข้อความและสื่อทั้งหมดจะได้รับการบันทึกไว้ก่อนการอัปเกรด</string>
     <string name="GroupsV1MigrationInitiation_encountered_a_network_error">พบความผิดพลาดของเครือข่าย ลองอีกครั้งในภายหลัง</string>
     <string name="GroupsV1MigrationInitiation_failed_to_upgrade">ไม่สามารถปรับรุ่น</string>
     <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
@@ -2538,7 +2538,7 @@
     <string name="preferences__payments_beta">การชำระเงิน (รุ่นทดสอบ)</string>
     <string name="preferences__conversation_length_limit">ขีดจำกัดความยาวของการสนทนา</string>
     <string name="preferences__keep_messages">เก็บข้อความ</string>
-    <string name="preferences__clear_message_history">ล้างประวัติข้อความ</string>
+    <string name="preferences__clear_message_history">ล้างประวัติการส่งข้อความ</string>
     <string name="preferences__linked_devices">อุปกรณ์ที่เชื่อมโยงอยู่</string>
     <string name="preferences__light_theme">สว่าง</string>
     <string name="preferences__dark_theme">มืด</string>
@@ -2580,12 +2580,12 @@
     <string name="preferences_storage__audio">เสียง</string>
     <string name="preferences_storage__review_storage">ดูพื้นที่จัดเก็บ</string>
     <string name="preferences_storage__delete_older_messages">ลบข้อความเก่าหรือไม่?</string>
-    <string name="preferences_storage__clear_message_history">ล้างประวัติข้อความหรือไม่?</string>
-    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">การกระทำนี้จะทำให้ประวัติการส่งข้อความและสื่อในอุปกรณ์ของคุณซึ่งเก่ากว่า %1$s ถูกลบอย่างถาวร</string>
+    <string name="preferences_storage__clear_message_history">ล้างประวัติการส่งข้อความหรือไม่</string>
+    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">การดำเนินการนี้จะทำให้ประวัติการส่งข้อความและสื่อในอุปกรณ์ของคุณซึ่งเก่ากว่า %1$s ถูกลบอย่างถาวร</string>
     <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">นี่จะตัดการสนทนาทั้งหมดให้เหลือแค่ %1$s ข้อความล่าสุดโดยทันที</string>
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">การกระทำนี้จะทำให้ประวัติการส่งข้อความและสื่อในอุปกรณ์ของคุณถูกลบอย่างถาวร</string>
-    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">คุณแน่ใจหรือไม่ว่าคุณต้องการลบประวัติการส่งข้อความทั้งหมด?</string>
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">ประวัติการส่งข้อความทั้งหมดจะถูกลบอย่างถาวร การกระทำนี้ไม่สามารถเลิกทำได้</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">การดำเนินการนี้จะทำให้ประวัติการส่งข้อความและสื่อในอุปกรณ์ของคุณถูกลบอย่างถาวร</string>
+    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">คุณแน่ใจหรือไม่ว่าคุณต้องการลบประวัติการส่งข้อความทั้งหมด</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">ประวัติการส่งข้อความทั้งหมดจะถูกลบอย่างถาวร การดำเนินการนี้ไม่สามารถยกเลิกได้</string>
     <string name="preferences_storage__delete_all_now">ลบทั้งหมดเดี๋ยวนี้</string>
     <string name="preferences_storage__forever">ตลอดไป</string>
     <string name="preferences_storage__one_year">1 ปี</string>
@@ -4654,13 +4654,13 @@
     <!-- Status label when a story fails to send indicating user action to retry -->
     <string name="StoriesLandingItem__tap_to_retry">แตะเพื่อลองใหม่</string>
     <!-- Title of dialog confirming decision to hide a story -->
-    <string name="StoriesLandingFragment__hide_story">ซ่อนสตอรี่</string>
+    <string name="StoriesLandingFragment__hide_story">ซ่อนสตอรี่ใช่หรือไม่</string>
     <!-- Message of dialog confirming decision to hide a story -->
-    <string name="StoriesLandingFragment__new_story_updates">สตอรี่อัปเดตใหม่จาก %1$s จะไม่ปรากฎที่ด้านบนของรายการสตอรี่อีกต่อไป</string>
+    <string name="StoriesLandingFragment__new_story_updates">สตอรี่อัปเดตใหม่จาก %1$s จะไม่ปรากฏที่ด้านบนของรายการสตอรี่อีกต่อไป</string>
     <!-- Positive action of dialog confirming decision to hide a story -->
     <string name="StoriesLandingFragment__hide">ซ่อน</string>
     <!-- Displayed in Snackbar after story is hidden -->
-    <string name="StoriesLandingFragment__story_hidden">สตอรี่ที่ซ่อนอยู่</string>
+    <string name="StoriesLandingFragment__story_hidden">ซ่อนสตอรี่แล้ว</string>
     <!-- Section header for hidden stories -->
     <string name="StoriesLandingFragment__hidden_stories">สตอรี่ที่ซ่อนไว้</string>
     <!-- Displayed on each sent story under My Stories -->
@@ -4672,7 +4672,7 @@
     <!-- Label for stories for a single user. Format is {given name}\'s Story -->
     <string name="MyStories__ss_story">สตอรี่ของ %1$s</string>
     <!-- Title of dialog to confirm deletion of story -->
-    <string name="MyStories__delete_story">ลบสตอรี่</string>
+    <string name="MyStories__delete_story">ลบสตอรี่ใช่หรือไม่</string>
     <!-- Message of dialog to confirm deletion of story -->
     <string name="MyStories__this_story_will_be_deleted">สตอรี่จะถูกลบสำหรับคุณและทุกคนที่ได้รับ</string>
     <!-- Toast shown when story media cannot be saved -->
@@ -4720,13 +4720,13 @@
     <!-- Displayed when no longer a group member -->
     <string name="StoryGroupReplyFragment__you_cant_reply">คุณไม่สามารถตอบกลับสตอรี่นี้ได้ เนื่องจากคุณไม่ได้เป็นสมาชิกในกลุ่มนี้แล้ว</string>
     <!-- Displayed for each user that reacted to a story when viewing replies -->
-    <string name="StoryGroupReactionReplyItem__reacted_to_the_story">ตอบสนองสตอรี่ของคุณ</string>
+    <string name="StoryGroupReactionReplyItem__reacted_to_the_story">แสดงความรู้สึกต่อสตอรี่</string>
     <!-- Label for story views tab -->
     <string name="StoryViewsAndRepliesDialogFragment__views">รับชม</string>
     <!-- Label for story replies tab -->
     <string name="StoryViewsAndRepliesDialogFragment__replies">ตอบกลับ</string>
     <!-- Description of action for reaction button -->
-    <string name="StoryReplyComposer__react_to_this_story">ตอบสนองสตอรี่นี้</string>
+    <string name="StoryReplyComposer__react_to_this_story">แสดงความรู้สึกต่อสตอรี่นี้</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">ตอบกลับเป็นการส่วนตัวกับ %1$s</string>
     <!-- Context menu item to privately reply to a story response -->
@@ -4774,9 +4774,7 @@
     <!-- Switchable option for allowing replies and reactions on your stories -->
     <string name="MyStorySettingsFragment__allow_replies_amp_reactions">อนุญาตการตอบกลับ &amp; การตอบสนอง</string>
     <!-- Summary for switchable option allowing replies and reactions on your story -->
-    <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">ให้คนที่ดูสตอรี่คุณตอบสนองและตอบกลับ</string>
-    <!-- Note about default sharing -->
-    <string name="MyStorySettingsFragment__hide_your_story_from">ซ่อนสตอรี่จากคนบางคน ในค่าเริ่มต้น สตอรี่ของคุณจะถูกแชร์กับ %1$s ของคุณ</string>
+    <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">ให้คนที่ดูสตอรี่ของคุณแสดงความรู้สึกและตอบกลับได้</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
     <string name="SignalConnectionsBottomSheet___signal_connections">เครือข่าย Signal</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
@@ -4788,7 +4786,7 @@
     <!-- Signal connections sheet bullet point 3 -->
     <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">มีรายชื่ออยู่ในระบบผู้ติดต่อของคุณ</string>
     <!-- Note at the bottom of the Signal connections sheet -->
-    <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"เครือข่ายของคุณจะสามารถมองเห็นชื่อและรูปภาพของคุณ รวมถึงโพสต์ใน \"สตอรี่ของฉัน\" เว้นแต่ว่าคุณจะซ่อนสตอรี่นั้นจากพวกเขา"</string>
+    <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"เครือข่ายของคุณจะเห็นชื่อและรูปภาพของคุณ รวมถึงโพสต์ใน \"สตอรี่ของฉัน\" เว้นแต่ว่าคุณจะซ่อนสตอรี่นั้นจากพวกเขา"</string>
     <!-- Clickable option to add a viewer to a private story -->
     <string name="PrivateStorySettingsFragment__add_viewer">เพิ่มผู้ชม</string>
     <!-- Clickable option to delete a custom story -->
@@ -4796,7 +4794,7 @@
     <!-- Dialog title when attempting to remove someone from a private story -->
     <string name="PrivateStorySettingsFragment__remove_s">ลบ %1$sหรือไม่</string>
     <!-- Dialog message when attempting to remove someone from a private story -->
-    <string name="PrivateStorySettingsFragment__this_person_will_no_longer">คนคนนี้จะไม่เห็นสตอรี่ของคุณอีกต่อไป</string>
+    <string name="PrivateStorySettingsFragment__this_person_will_no_longer">บุคคลนี้จะไม่เห็นสตอรี่ของคุณอีกต่อไป</string>
     <!-- Positive action label when attempting to remove someone from a private story -->
     <string name="PrivateStorySettingsFragment__remove">ลบ</string>
     <!-- Dialog title when deleting a private story -->
@@ -4824,7 +4822,7 @@
     <!-- Hint for entering a URL for a text post -->
     <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">พิมพ์หรือวาง URL</string>
     <!-- Displayed prior to the user entering a URL for a text post -->
-    <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">แชร์ลิงก์กับผู้ที่รับชมสตอรี่ของคุณ</string>
+    <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">แชร์ลิงก์กับผู้ที่ชมสตอรี่ของคุณ</string>
     <!-- Hint text for searching for a story text post recipient. -->
     <string name="TextStoryPostSendFragment__search">ค้นหา</string>
     <!-- Toast shown when an unexpected error occurs while sending a text story -->
@@ -4854,21 +4852,21 @@
     <!-- Dialog title for first time adding something to a story -->
     <string name="StoryDialogs__add_to_story_q">เพิ่มไปยังสตอรี่หรือไม่</string>
     <!-- Dialog message for first time adding something to a story -->
-    <string name="StoryDialogs__adding_content">การเพิ่มเนื้อหาไปยังสตอรี่ของคุณจะช่วยให้สายสัมพันธ์ Signal ได้ดูเนื้อหานั้น 24 ชั่วโมง คุณสามารถเปลี่ยนผู้ที่สามารถรับชมสตอรี่ของคุณได้ในการตั้งค่า</string>
+    <string name="StoryDialogs__adding_content">การเพิ่มเนื้อหาไปยังสตอรี่ของคุณจะช่วยให้เครือข่าย Signal ได้ดูเนื้อหานั้น 24 ชั่วโมง คุณสามารถเปลี่ยนผู้ที่สามารถดูสตอรี่ของคุณได้ในการตั้งค่า</string>
     <!-- First time share to story dialog: Positive action to go ahead and add to story -->
     <string name="StoryDialogs__add_to_story">เพิ่มไปยังสตอรี่</string>
     <!-- First time share to story dialog: Neutral action to edit who can view "My Story" -->
     <string name="StoryDialogs__edit_viewers">แก้ไขผู้ชม</string>
     <!-- Error message shown when a failure occurs during story send -->
-    <string name="StoryDialogs__story_could_not_be_sent">ไม่สามารถส่งสตอรี่ได้ ตรวจสอบการเชื่อมต่อแล้วลองอีกครั้ง</string>
+    <string name="StoryDialogs__story_could_not_be_sent">ไม่สามารถส่งสตอรี่ได้ ตรวจสอบการเชื่อมต่อของคุณแล้วลองอีกครั้ง</string>
     <!-- Error message dialog button to resend a previously failed story send -->
     <string name="StoryDialogs__send">ส่ง</string>
     <!-- Action button for turning off stories when stories are present on the device -->
     <string name="StoryDialogs__turn_off_and_delete">ปิดใช้งานและลบ</string>
     <!-- Privacy Settings toggle title for stories -->
-    <string name="PrivacySettingsFragment__share_and_view_stories">แชร์ &amp; ดูสตอรี่</string>
+    <string name="PrivacySettingsFragment__share_and_view_stories">แชร์และดูสตอรี่</string>
     <!-- Privacy Settings toggle summary for stories -->
-    <string name="PrivacySettingsFragment__you_will_no_longer_be_able">คุณจะไม่สามารถแชร์หรือรับชมสตอรี่ได้อีกต่อไป ถ้าตัวเลือกนี้ถูกปิด</string>
+    <string name="PrivacySettingsFragment__you_will_no_longer_be_able">คุณจะไม่สามารถแชร์หรือดูสตอรี่ได้อีกต่อไป ถ้าตัวเลือกนี้ถูกปิด</string>
     <!-- New story viewer selection screen title -->
     <string name="CreateStoryViewerSelectionFragment__choose_viewers">เลือกผู้ชม</string>
     <!-- New story viewer selection action button label -->
@@ -4880,7 +4878,7 @@
     <!-- Name story screen title -->
     <string name="CreateStoryWithViewersFragment__name_story">ตั้งชื่อสตอรี่</string>
     <!-- Name story screen label hint -->
-    <string name="CreateStoryWithViewersFragment__story_name_required">ชื่อสตอรี่ (ต้องมี)</string>
+    <string name="CreateStoryWithViewersFragment__story_name_required">ชื่อสตอรี่ (ต้องระบุ)</string>
     <!-- Name story screen viewers subheading -->
     <string name="CreateStoryWithViewersFragment__viewers">ผู้ชม</string>
     <!-- Name story screen create button label -->
@@ -4918,7 +4916,7 @@
     <!-- Toasted when the user externally shares to a text story successfully -->
     <string name="TextStoryPostCreationFragment__sent_story">ส่งสตอรี่แล้ว</string>
     <!-- Toasted when the user external share to a text story fails -->
-    <string name="TextStoryPostCreationFragment__failed_to_send_story">การส่งสตอรี่ล้มเหลว</string>
+    <string name="TextStoryPostCreationFragment__failed_to_send_story">ส่งสตอรี่ไม่สำเร็จ</string>
     <!-- Displayed in a dialog to let the user select a given users story -->
     <string name="StoryDialogs__view_story">ดูสตอรี่</string>
     <!-- Displayed in a dialog to let the user select a given users profile photo -->
@@ -4934,11 +4932,11 @@
     <string name="TurnOffCircumventionMegaphone_turn_off">ปิด</string>
 
     <!-- Conversation Item label for when you react to someone else\'s story -->
-    <string name="ConversationItem__you_reacted_to_s_story">คุณตอบสนองกับสตอรี่ของ %1$s</string>
+    <string name="ConversationItem__you_reacted_to_s_story">คุณแสดงความรู้สึกต่อสตอรี่ของ %1$s</string>
     <!-- Conversation Item label for reactions to your story -->
-    <string name="ConversationItem__reacted_to_your_story">ตอบสนองกับสตอรี่ของคุณ</string>
+    <string name="ConversationItem__reacted_to_your_story">แสดงความรู้สึกต่อสตอรี่ของคุณ</string>
     <!-- Conversation Item label for reactions to an unavailable story -->
-    <string name="ConversationItem__reacted_to_a_story">ตอบสนองกับสตอรี่</string>
+    <string name="ConversationItem__reacted_to_a_story">แสดงความรู้สึกต่อสตอรี่</string>
 
     <!-- endregion -->
     <!-- Content description for expand contacts chevron -->
@@ -5028,11 +5026,11 @@
     <!-- Dialog title for removing a group story -->
     <string name="ContactSearchMediator__remove_group_story">ลบสตอรี่กลุ่มใช่หรือไม่</string>
     <!-- Dialog message for removing a group story -->
-    <string name="ContactSearchMediator__this_will_remove">สตอรี่จะถูกลบออกจากรายการนี้ คุณจะยังสามารถรับชมสตอรี่จากกลุ่มนี้ได้</string>
+    <string name="ContactSearchMediator__this_will_remove">สตอรี่จะถูกลบออกจากรายการนี้ คุณจะยังสามารถดูสตอรี่จากกลุ่มนี้ได้</string>
     <!-- Dialog action item for removing a group story -->
     <string name="ContactSearchMediator__remove">ลบ</string>
     <!-- Dialog title for deleting a private story -->
-    <string name="ContactSearchMediator__delete_story">ลบสตอรี่</string>
+    <string name="ContactSearchMediator__delete_story">ลบสตอรี่ใช่หรือไม่</string>
     <!-- Dialog message for deleting a private story -->
     <string name="ContactSearchMediator__delete_the_private">ลบสตอรี่ส่วนตัว \"%1$s\" ใช่หรือไม่</string>
     <!-- Dialog action item for deleting a private story -->
@@ -5077,7 +5075,7 @@
     <!-- Message of safety number changes bottom sheet when not showing individual records and user has seen review screen -->
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">ตรวจสอบผู้ติดต่อทั้งหมดแล้ว แตะส่งเพื่อดำเนินการต่อ</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
-    <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">คุณมีผู้ติดต่อ %1$d คน ที่อาจติดตั้ง Signal ใหม่หรือเปลี่ยนอุปกรณ์ ก่อนที่คุณจะแบ่งปันสตอรี่กับผู้ติดต่อดังกล่าว ลองตรวจสอบหมายเลขความปลอดภัยหรือลบผู้ติดต่อออกจากสตอรี่ของคุณ</string>
+    <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">คุณมีเครือข่าย %1$d คน ที่อาจติดตั้ง Signal ใหม่หรือเปลี่ยนอุปกรณ์ ก่อนที่จะแชร์สตอรี่กับเครือข่ายคนดังกล่าว ลองตรวจสอบหมายเลขความปลอดภัยหรือลบเครือข่ายคนนั้นออกจากสตอรี่ของคุณ</string>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">ตรวจยืนยันหมายเลขความปลอดภัย</string>
     <!-- Menu action to remove user from story -->
@@ -5131,17 +5129,17 @@
 
     <!-- StoriesPrivacySettingsFragment -->
     <!-- Explanation about how stories are deleted and managed -->
-    <string name="StoriesPrivacySettingsFragment__stories_automatically_disappear">สตอรี่จะหายไปอัตโนมัติภายใน 24 ชั่วโมง เลือกได้ว่าจะให้ใครเห็นสตอรี่ของคุณ หรือสร้างสตอรี่ใหม่พร้อมกำหนดผู้ชมหรือกลุ่มเฉพาะ</string>
+    <string name="StoriesPrivacySettingsFragment__stories_automatically_disappear">สตอรี่จะหายไปโดยอัตโนมัติหลังจากครบ 24 ชั่วโมง เลือกได้ว่าจะให้ใครเห็นสตอรี่ของคุณ หรือสร้างสตอรี่ใหม่พร้อมกำหนดผู้ชมหรือกลุ่มเฉพาะ</string>
     <!-- Preference title to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__turn_off_stories">ปิดสตอรี่</string>
+    <string name="StoriesPrivacySettingsFragment__turn_off_stories">ปิดใช้งานสตอรี่</string>
     <!-- Preference summary to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__if_you_opt_out">หากคุณปิดใช้งานสตอรี่ คุณจะไม่สามารถแชร์หรือรับชมสตอรี่ได้อีกต่อไป</string>
+    <string name="StoriesPrivacySettingsFragment__if_you_opt_out">หากปิดใช้งานสตอรี่ คุณจะไม่สามารถแชร์หรือดูสตอรี่ได้อีกต่อไป</string>
     <!-- Preference title to turn on stories -->
-    <string name="StoriesPrivacySettingsFragment__turn_on_stories">เปิดสตอรี่</string>
+    <string name="StoriesPrivacySettingsFragment__turn_on_stories">เปิดใช้งานสตอรี่</string>
     <!-- Preference summary to turn on stories -->
     <string name="StoriesPrivacySettingsFragment__share_and_view">แชร์และดูสตอรี่ของผู้อื่น สตอรี่จะหายไปโดยอัตโนมัติภายใน 24 ชั่วโมง</string>
     <!-- Dialog title to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">ปิดสตอรี่ใช่ไหม</string>
+    <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">ปิดใช้งานสตอรี่ใช่ไหม</string>
     <!-- Dialog message to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">คุณจะไม่สามารถแชร์หรือดูสตอรี่ได้อีกต่อไป การอัปเดตสตอรี่ที่คุณเพิ่งแชร์จะถูกลบด้วยเช่นกัน</string>
     <!-- Page title when launched from stories landing screen -->
@@ -5151,7 +5149,7 @@
     <!-- Section header for who can view a group story -->
     <string name="GroupStorySettingsFragment__who_can_view_this_story">ใครเห็นสตอรี่นี้บ้าง</string>
     <!-- Explanation of who can view a group story -->
-    <string name="GroupStorySettingsFragment__members_of_the_group_s">"สมาชิกในกลุ่ม \"%1$s\" จะดูและตอบกลับสตอรี่นี้ได้ คุณสามารถปรับเปลี่ยนการเป็นสมาชิกของแชทนี้ภายในกลุ่มได้"</string>
+    <string name="GroupStorySettingsFragment__members_of_the_group_s">"สมาชิกในกลุ่ม %1$s จะดูและตอบกลับสตอรี่นี้ได้ คุณสามารถอัปเดตการเป็นสมาชิกของแชทนี้ได้ภายในกลุ่ม"</string>
     <!-- Preference label for removing this group story -->
     <string name="GroupStorySettingsFragment__remove_group_story">ลบสตอรี่กลุ่ม</string>
 

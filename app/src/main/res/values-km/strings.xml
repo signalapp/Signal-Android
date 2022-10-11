@@ -192,7 +192,7 @@
     <string name="ClientDeprecatedActivity_update">បច្ចុប្បន្នភាព</string>
     <string name="ClientDeprecatedActivity_dont_update">កុំធ្វើបច្ចុប្បន្នភាព</string>
     <string name="ClientDeprecatedActivity_warning">ព្រមាន</string>
-    <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Signal របស់អ្នកបានផុតកំណត់ហើយ។ អ្នកអាចមើលប្រវត្តិសាររបស់អ្នកប៉ុន្តែអ្នកនឹងមិនអាចផ្ញើរឬទទួលសាររហូតដល់អ្នកធ្វើបច្ចុប្បន្នភាព។</string>
+    <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">កំណែ Signal របស់អ្នកបានផុតកំណត់ហើយ។ អ្នកអាចមើលប្រវត្តិសាររបស់អ្នកបាន ប៉ុន្តែអ្នកនឹងមិនអាចផ្ញើ ឬទទួលសារបានទេ រហូតទាល់តែអ្នកដំឡើងកំណែសិន។</string>
 
     <!-- CommunicationActions -->
     <string name="CommunicationActions_no_browser_found">ទំព័រវែបសាយរកមិនឃើញ.</string>
@@ -650,7 +650,7 @@
     <!-- GroupsV1MigrationLearnMoreBottomSheetDialogFragment -->
     <string name="GroupsV1MigrationLearnMore_what_are_new_groups">តើអ្វីជាក្រុមថ្មី?</string>
     <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">ក្រុមថ្មី មានមុខងារដូចជា @mentions និងអ្នកគ្រប់គ្រងក្រុម ហើយនឹងគាំទ្រមុខងារបន្ថែមនៅពេលអនាគត។</string>
-    <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">ប្រវត្តិសារ​ និងឯកសារមេឌាទាំងអស់ ត្រូវបានរក្សាទុកមុនពេលដំឡើង។</string>
+    <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">ប្រវត្តិសារ និងឯកសារមេឌៀទាំងអស់ត្រូវបានរក្សាទុកមុនពេលដំឡើងកម្រិត។</string>
     <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">អ្នកនឹងត្រូវយល់ព្រមការអញ្ជើញចួលរួមក្រុមនេះម្តងទៀត ហើយនឹងមិនអាចទទួលសារក្នុងក្រុម រហូតដល់អ្នកយល់ព្រម។</string>
     <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
         <item quantity="other">សមាជិកទាំងនេះ នឹងត្រូវយល់ព្រមការអញ្ជើញចួលរួមក្រុមនេះម្តងទៀត ហើយនឹងមិនអាចទទួលសារក្នុងក្រុម រហូតដល់ពួកគេយល់ព្រម៖</item>
@@ -663,7 +663,7 @@
     <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">ដំឡើងទៅក្រុមថ្មី</string>
     <string name="GroupsV1MigrationInitiation_upgrade_this_group">ដំឡើងក្រុមនេះ</string>
     <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">ក្រុមថ្មី មានមុខងារដូចជា @mentions និងអ្នកគ្រប់គ្រងក្រុម ហើយនឹងគាំទ្រមុខងារបន្ថែមនៅពេលអនាគត។</string>
-    <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">ប្រវត្តិសារ​ និងឯកសារមេឌាទាំងអស់ នឹងត្រូវរក្សាទុកមុនពេលដំឡើង។</string>
+    <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">ប្រវត្តិសារ និងឯកសារមេឌៀទាំងអស់នឹងត្រូវបានរក្សាទុកមុនពេលដំឡើងកម្រិត។</string>
     <string name="GroupsV1MigrationInitiation_encountered_a_network_error">បានជួបប្រទះបញ្ហាបណ្តាញ។ សាកល្បងម្តងទៀតពេលក្រោយ។</string>
     <string name="GroupsV1MigrationInitiation_failed_to_upgrade">បរាជ័យក្នុងការដំឡើង។</string>
     <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
@@ -1476,7 +1476,7 @@
     <string name="RedPhone_network_failed">បណ្តាញបរាជ័យ!</string>
     <string name="RedPhone_number_not_registered">លេខមិនទាន់ចុះឈ្មោះ!</string>
     <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">លេខដែលអ្នកកំពុងហៅ មិនគាំទ្រសំឡេងសុវត្ថិភាពទេ!</string>
-    <string name="RedPhone_got_it">ទទួលបាន</string>
+    <string name="RedPhone_got_it">យល់ហើយ</string>
 
     <!-- Valentine\'s Day Megaphone -->
     <!-- Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons. -->
@@ -2260,7 +2260,7 @@
     <!-- Displayed in a toast when user long presses an item in MyStories -->
     <string name="MyStoriesFragment__copied_sent_timestamp_to_clipboard">បាន​ចម្លង​ត្រា​ពេល​វេលាដែលបាន​​ផ្ញើ ទៅឃ្លីបបត។</string>
     <!-- Displayed when there are no outgoing stories -->
-    <string name="MyStoriesFragment__updates_to_your_story_will_show_up_here">ការធ្វើបច្ចុប្បន្នភាពចំពោះរឿងរ៉ាវរបស់អ្នកនឹងបង្ហាញនៅទីនេះ។</string>
+    <string name="MyStoriesFragment__updates_to_your_story_will_show_up_here">បច្ចុប្បន្នភាពចំពោះរឿងរ៉ាវរបស់អ្នកនឹងបង្ហាញនៅទីនេះ។</string>
 
     <!-- GroupUtil -->
     <plurals name="GroupUtil_joined_the_group">
@@ -2538,7 +2538,7 @@
     <string name="preferences__payments_beta">ការទូទាត់ (បេតា)</string>
     <string name="preferences__conversation_length_limit">ប្រវែងការសន្ទនាមានកំណត់</string>
     <string name="preferences__keep_messages">រក្សាសារ</string>
-    <string name="preferences__clear_message_history">សំអាតប្រវត្តិសារ</string>
+    <string name="preferences__clear_message_history">លុបប្រវត្តិសារ</string>
     <string name="preferences__linked_devices">ភ្ជាប់ឧបករណ៍</string>
     <string name="preferences__light_theme">ភ្លឺ</string>
     <string name="preferences__dark_theme">ងងឹត</string>
@@ -2580,12 +2580,12 @@
     <string name="preferences_storage__audio">សំឡេង</string>
     <string name="preferences_storage__review_storage">បង្ហាញឧបករណ៍ផ្ទុក</string>
     <string name="preferences_storage__delete_older_messages">លុបសារចាស់ៗ?</string>
-    <string name="preferences_storage__clear_message_history">សំអាតប្រវត្តិសារ?</string>
-    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">នេះនឹងលុបប្រវត្តិសារ និងឯកសារមេឌៀទាំងអស់ចោលរហូត ចេញពីឧបករណ៍របស់អ្នក ដែលចាស់ជាង %1$s។</string>
+    <string name="preferences_storage__clear_message_history">លុបប្រវត្តិសារឬ?</string>
+    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">ការធ្វើបែបនេះនឹងលុបប្រវត្តិសារ និងឯកសារមេឌៀទាំងអស់ជាអចិន្ត្រៃយ៍ ពីឧបករណ៍របស់អ្នក ដែលមានរយៈពេលលើសពី %1$s។</string>
     <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">នេះ នឹងតម្រឹមការសន្ទនាទាំងអស់ទៅ %1$s សារថ្មីៗបំផុត។</string>
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">នេះនឹងលុបប្រវត្តិសារ និងឯកសារមេឌៀទាំងអស់ចោលរហូត។</string>
-    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">តើអ្នកប្រាកដថាចង់លុបប្រវត្តិសារទាំងអស់?</string>
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">ប្រវត្តិសារទាំងអស់នឹងត្រូវលុបចោលរហូត។ សកម្មភាពនេះ មិនអាចត្រឡប់ក្រោយទេ។</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">ការធ្វើបែបនេះនឹងលុបប្រវត្តិសារ និងឯកសារមេឌៀទាំងអស់ពីឧបករណ៍របស់អ្នកជាអចិន្ត្រៃយ៍។</string>
+    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">តើអ្នកប្រាកដថាចង់លុបប្រវត្តិសារទាំងអស់ឬ?</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">ប្រវត្តិសារទាំងអស់នឹងត្រូវលុបចោលជាអចិន្ត្រៃយ៍។ សកម្មភាពនេះមិនអាចត្រឡប់ក្រោយទេ។</string>
     <string name="preferences_storage__delete_all_now">លុបទាំងអស់ឥឡូវនេះ</string>
     <string name="preferences_storage__forever">ជារៀងរហូត</string>
     <string name="preferences_storage__one_year">1 ឆ្នាំ</string>
@@ -2825,19 +2825,19 @@
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
-    <string name="PaymentsSecuritySetupFragment__security_setup">Security setup</string>
+    <string name="PaymentsSecuritySetupFragment__security_setup">ការរៀបចំប្រព័ន្ធសុវត្ថិភាព</string>
     <!-- Title to enable payment lock -->
-    <string name="PaymentsSecuritySetupFragment__protect_your_funds">Protect your funds</string>
+    <string name="PaymentsSecuritySetupFragment__protect_your_funds">ការពារប្រាក់របស់អ្នក</string>
     <!-- Description as to why payment lock is required -->
-    <string name="PaymentsSecuritySetupFragment__help_prevent">Help prevent a person with your phone from accessing your funds by adding another layer of security. You can disable this option in Settings.</string>
+    <string name="PaymentsSecuritySetupFragment__help_prevent">បន្ថែមស្រទាប់សុវត្ថិភាពមួយទៀត ដើម្បីជួយការពារកុំឲ្យនរណាម្នាក់ដែលមានទូរសព្ទរបស់អ្នកចូលប្រើប្រាស់នូវប្រាក់របស់អ្នកបាន។ អ្នកអាចបិទជម្រើសនេះនៅក្នុងការកំណត់។</string>
     <!-- Option to enable payment lock -->
-    <string name="PaymentsSecuritySetupFragment__enable_payment_lock">Enable payment lock</string>
+    <string name="PaymentsSecuritySetupFragment__enable_payment_lock">បើកការចាក់សោការទូទាត់</string>
     <!-- Option to cancel -->
     <string name="PaymentsSecuritySetupFragment__not_now">ពេលក្រោយ</string>
     <!-- Dialog title to confirm skipping the step -->
-    <string name="PaymentsSecuritySetupFragment__skip_this_step">Skip this step?</string>
+    <string name="PaymentsSecuritySetupFragment__skip_this_step">រំលងជំហាននេះឬ?</string>
     <!-- Dialog description to let users know why payment lock is required -->
-    <string name="PaymentsSecuritySetupFragment__skipping_this_step">Skipping this step could allow anyone who has physical access to your phone to transfer funds or view your recovery phrase.</string>
+    <string name="PaymentsSecuritySetupFragment__skipping_this_step">ការរំលងជំហាននេះអាចអនុញ្ញាតឲ្យនរណាម្នាក់ដែលមានសិទ្ធិចូលប្រើទូរសព្ទរបស់អ្នក ផ្ទេរប្រាក់ ឬមើលឃ្លាស្តាររបស់អ្នកបាន។</string>
     <!-- Dialog option to cancel -->
     <string name="PaymentsSecuritySetupFragment__cancel">បោះបង់</string>
     <!-- Dialog option to skip -->
@@ -3904,7 +3904,7 @@
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">ពេលវេលាតាមលំនាំដើមសម្រាប់ការសន្ទនាថ្មីៗ</string>
     <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">កំណត់ថេរវេលានៃការលុបសារសម្រាប់រាល់ការសន្ទនាថ្មីៗដែលចាប់ផ្ដើមដោយអ្នក</string>
     <!-- Summary for stories preference to launch into story privacy settings -->
-    <string name="PrivacySettingsFragment__manage_your_stories">គ្រប់គ្រងរឿងរ៉ាវរបស់អ្នក និងអ្នកដែលអាចមើលពួកវា</string>
+    <string name="PrivacySettingsFragment__manage_your_stories">គ្រប់គ្រងរឿងរ៉ាវរបស់អ្នក និងអ្នកដែលអាចមើលវាបាន</string>
     <string name="PrivacySettingsFragment__payment_lock_require_lock">តម្រូវឲ្យចាក់សោអេក្រង់ Android ឬប្រើស្នាមម្រាមដៃដើម្បីផ្ទេរប្រាក់</string>
     <!-- Alert dialog title when payment lock cannot be enabled -->
     <string name="PrivacySettingsFragment__cant_enable_title">មិនអាចបើកមុខងារចាក់សោការបង់ប្រាក់បាន</string>
@@ -4182,7 +4182,7 @@
     <string name="MultiselectForwardFragment__add_a_message">បន្ថែមសារ</string>
     <string name="MultiselectForwardFragment__faster_forwards">ការបញ្ជូនសារបន្តលឿនជាងមុន</string>
     <!-- Displayed when user selects a video that will be clipped before sharing to a story -->
-    <string name="MultiselectForwardFragment__videos_will_be_trimmed">វីដេអូ​នឹង​ត្រូវ​បានកាត់​តម្រឹមជាឃ្លីបខ្លី​ៗដែលមានរយៈពេល 30 វិនាទី ហើយ​ផ្ញើ​ទៅជា​រឿងរ៉ាវជា​ច្រើន។</string>
+    <string name="MultiselectForwardFragment__videos_will_be_trimmed">វីដេអូនឹងត្រូវបានតម្រឹមជាឃ្លីបដែលមានរយៈពេល 30 វិនាទី ហើយផ្ញើជារឿងរ៉ាវជាច្រើន។</string>
     <!-- Displayed when user selects a video that cannot be sent as a story -->
     <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">វីដេអូដែលបានផ្ញើទៅរឿងរ៉ាវមិនអាចវែងជាង 30 វិនាទីទេ។</string>
     <string name="MultiselectForwardFragment__forwarded_messages_are_now">ការបញ្ជូនសារបន្តនឹងផ្ញើចេញទៅភ្លាមៗ</string>
@@ -4656,7 +4656,7 @@
     <!-- Title of dialog confirming decision to hide a story -->
     <string name="StoriesLandingFragment__hide_story">លាក់រឿងរ៉ាវឬ?</string>
     <!-- Message of dialog confirming decision to hide a story -->
-    <string name="StoriesLandingFragment__new_story_updates">បច្ចុប្បន្នភាពអំពីរឿងរ៉ាវថ្មីៗពី %1$s នឹងមិនបង្ហាញនៅផ្នែកខាងលើបំផុតនៃបញ្ជីរឿងរ៉ាវ​ទៀតទេ។</string>
+    <string name="StoriesLandingFragment__new_story_updates">បច្ចុប្បន្នភាពរឿងរ៉ាវថ្មីៗពី %1$s នឹងមិនបង្ហាញនៅផ្នែកខាងលើបំផុតនៃបញ្ជីរឿងរ៉ាវទៀតទេ។</string>
     <!-- Positive action of dialog confirming decision to hide a story -->
     <string name="StoriesLandingFragment__hide">លាក់</string>
     <!-- Displayed in Snackbar after story is hidden -->
@@ -4674,7 +4674,7 @@
     <!-- Title of dialog to confirm deletion of story -->
     <string name="MyStories__delete_story">លុបរឿងរ៉ាវឬ?</string>
     <!-- Message of dialog to confirm deletion of story -->
-    <string name="MyStories__this_story_will_be_deleted">រឿង​រ៉ាវនេះ​នឹង​ត្រូវ​លុប​ចេញសម្រាប់​អ្នក និង​អ្នក​រាល់​គ្នា​ដែល​បាន​ទទួល​វា។</string>
+    <string name="MyStories__this_story_will_be_deleted">រឿងរ៉ាវនេះនឹងត្រូវបានលុបចោលសម្រាប់អ្នក និងមនុស្សគ្រប់គ្នាដែលបានទទួលវា។</string>
     <!-- Toast shown when story media cannot be saved -->
     <string name="MyStories__unable_to_save">មិនអាចរក្សាទុក</string>
     <!-- Displayed at bottom of story viewer when current item has views -->
@@ -4718,7 +4718,7 @@
     <!-- Displayed when a story has no replies yet -->
     <string name="StoryGroupReplyFragment__no_replies_yet">មិនទាន់មានការឆ្លើយតបទេ</string>
     <!-- Displayed when no longer a group member -->
-    <string name="StoryGroupReplyFragment__you_cant_reply">You can\'t reply to this story because you\'re no longer a member of this group.</string>
+    <string name="StoryGroupReplyFragment__you_cant_reply">អ្នកមិនអាចឆ្លើយតបទៅនឹងរឿងរ៉ាវនេះទេ ដោយសារអ្នកលែងជាសមាជិកនៃក្រុមនេះទៀតហើយ។</string>
     <!-- Displayed for each user that reacted to a story when viewing replies -->
     <string name="StoryGroupReactionReplyItem__reacted_to_the_story">បានប្រតិកម្មនឹងរឿងរ៉ាវ</string>
     <!-- Label for story views tab -->
@@ -4774,9 +4774,7 @@
     <!-- Switchable option for allowing replies and reactions on your stories -->
     <string name="MyStorySettingsFragment__allow_replies_amp_reactions">អនុញ្ញាតការឆ្លើយតប និងការប្រតិកម្ម</string>
     <!-- Summary for switchable option allowing replies and reactions on your story -->
-    <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">អនុញ្ញាតឲ្យមនុស្សដែលអាចមើលរឿងរបស់អ្នកប្រតិកម្ម និងឆ្លើយតប</string>
-    <!-- Note about default sharing -->
-    <string name="MyStorySettingsFragment__hide_your_story_from">លាក់រឿងរ៉ាវរបស់អ្នកពីមនុស្សជាក់លាក់។ តាមលំនាំដើម រឿងរ៉ាវរបស់អ្នកត្រូវបានចែករំលែកជាមួយ %1$s របស់អ្នក</string>
+    <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">អនុញ្ញាតឲ្យមនុស្សដែលអាចមើលរឿងរ៉ាវរបស់អ្នក ប្រតិកម្ម និងឆ្លើយតបបាន</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
     <string name="SignalConnectionsBottomSheet___signal_connections">អ្នកភ្ជាប់ទំនាក់ទំនងក្នុង Signal</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
@@ -4788,7 +4786,7 @@
     <!-- Signal connections sheet bullet point 3 -->
     <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">មានពួកគេនៅក្នុងប្រព័ន្ធទំនាក់ទំនងរបស់អ្នក</string>
     <!-- Note at the bottom of the Signal connections sheet -->
-    <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"មនុស្សដែលអ្នកភ្ជាប់ជាមួយអាចមើលឃើញឈ្មោះ និងរូបថតរបស់អ្នក ហើយអាចមើលឃើញការបង្ហោះទៅកាន់ \"រឿងរ៉ាវរបស់ខ្ញុំ\" លុះត្រាតែអ្នកលាក់វាពីពួកគេ។"</string>
+    <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"អ្នកភ្ជាប់ទំនាក់ទំនងជាមួយអ្នកអាចមើលឃើញឈ្មោះ និងរូបថតរបស់អ្នក ហើយអាចមើលឃើញសារបង្ហោះទៅកាន់រឿងរ៉ាវរបស់ខ្ញុំ លើកលែងតែអ្នកលាក់វាមិនឲ្យពួកគេឃើញ។"</string>
     <!-- Clickable option to add a viewer to a private story -->
     <string name="PrivateStorySettingsFragment__add_viewer">បញ្ចូលអ្នកមើល</string>
     <!-- Clickable option to delete a custom story -->
@@ -4838,33 +4836,33 @@
     <!-- Dialog title for removing a group story -->
     <string name="StoryDialogs__remove_group_story">ដករឿងរ៉ាវក្រុមចេញឬ?</string>
     <!-- Dialog message for removing a group story -->
-    <string name="StoryDialogs__s_will_be_removed">\"%1$s\" will be removed.</string>
+    <string name="StoryDialogs__s_will_be_removed">\"%1$s\" នឹងត្រូវបានដកចេញ។</string>
     <!-- Dialog positive action for removing a group story -->
     <string name="StoryDialogs__remove">លុបចេញ</string>
     <!-- Dialog title for deleting a private story -->
     <string name="StoryDialogs__delete_private_story">លុបរឿងរ៉ាវឯកជនឬ?</string>
     <!-- Dialog message for deleting a private story -->
-    <string name="StoryDialogs__s_and_updates_shared">\"%1$s\" and updates shared to this story will be deleted.</string>
+    <string name="StoryDialogs__s_and_updates_shared">\"%1$s\" និងបច្ចុប្បន្នភាពដែលបានចែករំលែកចំពោះរឿងរ៉ាវនេះនឹងត្រូវបានលុប។</string>
     <!-- Dialog positive action for deleting a private story -->
     <string name="StoryDialogs__delete">លុប</string>
     <!-- Dialog title for first time sending something to a beta story -->
-    <string name="StoryDialogs__stories_is_available_to">Stories is available to Signal beta users only.</string>
+    <string name="StoryDialogs__stories_is_available_to">រឿងរ៉ាវមានសម្រាប់តែអ្នកប្រើ Signal Beta ប៉ុណ្ណោះ។</string>
     <!-- Dialog message for first time sending something to a beta story -->
-    <string name="StoryDialogs__if_you_share_a_story">If you share a story, it will only be available to people who are on Signal beta.</string>
+    <string name="StoryDialogs__if_you_share_a_story">ប្រសិនបើអ្នកចែករំលែករឿងរ៉ាវមួយ វានឹងអាចមើលឃើញដោយមនុស្សដែលនៅលើ Signal Beta ប៉ុណ្ណោះ។</string>
     <!-- Dialog title for first time adding something to a story -->
     <string name="StoryDialogs__add_to_story_q">បញ្ចូលទៅក្នុងរឿងរ៉ាវឬទេ?</string>
     <!-- Dialog message for first time adding something to a story -->
-    <string name="StoryDialogs__adding_content">ការបញ្ចូលខ្លឹមសារទៅក្នុងរឿងរ៉ាវរបស់អ្នកអនុញ្ញាតឲ្យមនុស្សដែលអ្នកបានភ្ជាប់ជាមួយក្នុង Signal មើលវារយៈពេល 24 ម៉ោង។ អ្នកអាចផ្លាស់ប្តូរនៅក្នុងការកំណត់បាន ដើម្បីកំណត់ថាតើនរណាខ្លះដែលអាចមើល​រឿងរ៉ាវរបស់អ្នកបាន។</string>
+    <string name="StoryDialogs__adding_content">ការបញ្ចូលខ្លឹមសារទៅក្នុងរឿងរ៉ាវរបស់អ្នកអនុញ្ញាតឲ្យអ្នកភ្ជាប់ទំនាក់ទំនងក្នុង Signal អាចមើលវាបានរយៈពេល 24 ម៉ោង។ អ្នកអាចផ្លាស់ប្តូរអ្នកដែលអាចមើលរឿងរ៉ាវរបស់អ្នកនៅក្នុងការកំណត់។</string>
     <!-- First time share to story dialog: Positive action to go ahead and add to story -->
     <string name="StoryDialogs__add_to_story">បញ្ចូលទៅរឿងរ៉ាវ</string>
     <!-- First time share to story dialog: Neutral action to edit who can view "My Story" -->
     <string name="StoryDialogs__edit_viewers">កែអ្នកមើល</string>
     <!-- Error message shown when a failure occurs during story send -->
-    <string name="StoryDialogs__story_could_not_be_sent">មិនអាចផ្ញើរឿងរ៉ាវទេ។ សូមពិនិត្យមើលសេវាអ៊ីនធឺណិតរបស់អ្នក ហើយព្យាយាមម្តងទៀត។</string>
+    <string name="StoryDialogs__story_could_not_be_sent">មិនអាចផ្ញើរឿងរ៉ាវបានទេ។ សូមពិនិត្យមើលសេវាអ៊ីនធឺណិតរបស់អ្នក រួចព្យាយាមម្តងទៀត។</string>
     <!-- Error message dialog button to resend a previously failed story send -->
     <string name="StoryDialogs__send">ផ្ញើ</string>
     <!-- Action button for turning off stories when stories are present on the device -->
-    <string name="StoryDialogs__turn_off_and_delete">Turn off and delete</string>
+    <string name="StoryDialogs__turn_off_and_delete">បិទ និងលុប</string>
     <!-- Privacy Settings toggle title for stories -->
     <string name="PrivacySettingsFragment__share_and_view_stories">ចែករំលែក និងមើលរឿងរ៉ាវ</string>
     <!-- Privacy Settings toggle summary for stories -->
@@ -5011,7 +5009,7 @@
     </plurals>
     <!-- Label under name for groups -->
     <plurals name="ContactSearchItems__group_d_members">
-        <item quantity="other">%1$d សមាជិក</item>
+        <item quantity="other">សមាជិក %1$d នាក់</item>
     </plurals>
     <!-- Label under name for my story -->
     <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
@@ -5059,7 +5057,7 @@
     <!-- Label indicating swipe direction to exit story viewer -->
     <string name="StoryFirstTimeNavigationView__swipe_right_to_exit">អូសទៅស្តាំដើម្បីចាកចេញ</string>
     <!-- Button label to confirm understanding of story navigation -->
-    <string name="StoryFirstTimeNagivationView__got_it">ទទួលបាន</string>
+    <string name="StoryFirstTimeNagivationView__got_it">យល់ហើយ</string>
     <!-- Content description for vertical context menu button in safety number sheet rows -->
     <string name="SafetyNumberRecipientRowItem__open_context_menu">បើកម៉ឺនុយបរិបទ</string>
     <!-- Sub-line when a user is verified. -->
@@ -5143,7 +5141,7 @@
     <!-- Dialog title to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">បិទរឿងរ៉ាវឬ?</string>
     <!-- Dialog message to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">You will no longer be able to share or view stories. Story updates you have recently shared will also be deleted.</string>
+    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">អ្នកនឹងមិនអាចចែករំលែក ឬមើលរឿងរ៉ាវបានទៀតទេ។ បច្ចុប្បន្នភាពរឿងរ៉ាវដែលអ្នកបានចែករំលែកនាពេលថ្មីៗនេះក៏នឹងត្រូវបានលុបចោលផងដែរ។</string>
     <!-- Page title when launched from stories landing screen -->
     <string name="StoriesPrivacySettingsFragment__story_privacy">ឯកជនភាពនៃរឿងរ៉ាវ</string>
 

@@ -1476,7 +1476,7 @@
     <string name="RedPhone_network_failed">Lỗi mạng!</string>
     <string name="RedPhone_number_not_registered">Số điện thoại chưa đăng ký!</string>
     <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Số điện thoại vừa rồi không hỗ trợ cuộc gọi bảo mật!</string>
-    <string name="RedPhone_got_it">Đã rõ</string>
+    <string name="RedPhone_got_it">Đã hiểu</string>
 
     <!-- Valentine\'s Day Megaphone -->
     <!-- Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons. -->
@@ -2825,19 +2825,19 @@
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
-    <string name="PaymentsSecuritySetupFragment__security_setup">Security setup</string>
+    <string name="PaymentsSecuritySetupFragment__security_setup">Thiết lập bảo mật</string>
     <!-- Title to enable payment lock -->
-    <string name="PaymentsSecuritySetupFragment__protect_your_funds">Protect your funds</string>
+    <string name="PaymentsSecuritySetupFragment__protect_your_funds">Bảo vệ tài khoản thanh toán của bạn</string>
     <!-- Description as to why payment lock is required -->
-    <string name="PaymentsSecuritySetupFragment__help_prevent">Help prevent a person with your phone from accessing your funds by adding another layer of security. You can disable this option in Settings.</string>
+    <string name="PaymentsSecuritySetupFragment__help_prevent">Giúp ngăn việc người khác sử dụng điện thoại của bạn và truy cập tài khoản thanh toán bằng cách thêm một lớp bảo mật. Bạn có thể tắt tùy chọn này trong mục Cài đặt.</string>
     <!-- Option to enable payment lock -->
-    <string name="PaymentsSecuritySetupFragment__enable_payment_lock">Enable payment lock</string>
+    <string name="PaymentsSecuritySetupFragment__enable_payment_lock">Bật khóa thanh toán</string>
     <!-- Option to cancel -->
     <string name="PaymentsSecuritySetupFragment__not_now">Để sau</string>
     <!-- Dialog title to confirm skipping the step -->
-    <string name="PaymentsSecuritySetupFragment__skip_this_step">Skip this step?</string>
+    <string name="PaymentsSecuritySetupFragment__skip_this_step">Bỏ qua bước này?</string>
     <!-- Dialog description to let users know why payment lock is required -->
-    <string name="PaymentsSecuritySetupFragment__skipping_this_step">Skipping this step could allow anyone who has physical access to your phone to transfer funds or view your recovery phrase.</string>
+    <string name="PaymentsSecuritySetupFragment__skipping_this_step">Nếu bạn bỏ qua bước này, bất kỳ ai sử dụng điện thoại của bạn cũng có thể thực hiện việc thanh toán hoặc xem cụm từ khôi phục của bạn.</string>
     <!-- Dialog option to cancel -->
     <string name="PaymentsSecuritySetupFragment__cancel">Hủy</string>
     <!-- Dialog option to skip -->
@@ -4718,7 +4718,7 @@
     <!-- Displayed when a story has no replies yet -->
     <string name="StoryGroupReplyFragment__no_replies_yet">Chưa có phản hồi</string>
     <!-- Displayed when no longer a group member -->
-    <string name="StoryGroupReplyFragment__you_cant_reply">You can\'t reply to this story because you\'re no longer a member of this group.</string>
+    <string name="StoryGroupReplyFragment__you_cant_reply">Bạn không thể trả lời story này vì bạn không còn là thành viên của nhóm này.</string>
     <!-- Displayed for each user that reacted to a story when viewing replies -->
     <string name="StoryGroupReactionReplyItem__reacted_to_the_story">Đã bày tỏ cảm xúc với story</string>
     <!-- Label for story views tab -->
@@ -4775,8 +4775,6 @@
     <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Cho phép trả lời &amp; bày tỏ cảm xúc</string>
     <!-- Summary for switchable option allowing replies and reactions on your story -->
     <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Cho phép những người có thể xem story của bạn bày tỏ cảm xúc và trả lời</string>
-    <!-- Note about default sharing -->
-    <string name="MyStorySettingsFragment__hide_your_story_from">Ẩn story của bạn với một số người nhất định. Theo mặc định, story của bạn được chia sẻ với %1$s của bạn</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
     <string name="SignalConnectionsBottomSheet___signal_connections">Các Liên hệ Signal</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
@@ -4838,19 +4836,19 @@
     <!-- Dialog title for removing a group story -->
     <string name="StoryDialogs__remove_group_story">Gỡ story nhóm?</string>
     <!-- Dialog message for removing a group story -->
-    <string name="StoryDialogs__s_will_be_removed">\"%1$s\" will be removed.</string>
+    <string name="StoryDialogs__s_will_be_removed">\"%1$s\" sẽ được xóa.</string>
     <!-- Dialog positive action for removing a group story -->
     <string name="StoryDialogs__remove">Xóa</string>
     <!-- Dialog title for deleting a private story -->
     <string name="StoryDialogs__delete_private_story">Xóa story riêng tư?</string>
     <!-- Dialog message for deleting a private story -->
-    <string name="StoryDialogs__s_and_updates_shared">\"%1$s\" and updates shared to this story will be deleted.</string>
+    <string name="StoryDialogs__s_and_updates_shared">\"%1$s\" và các cập nhật cho story này sẽ được xóa.</string>
     <!-- Dialog positive action for deleting a private story -->
     <string name="StoryDialogs__delete">Xóa</string>
     <!-- Dialog title for first time sending something to a beta story -->
-    <string name="StoryDialogs__stories_is_available_to">Stories is available to Signal beta users only.</string>
+    <string name="StoryDialogs__stories_is_available_to">Story chỉ khả dụng cho những người sử dụng phiên bản beta của Signal.</string>
     <!-- Dialog message for first time sending something to a beta story -->
-    <string name="StoryDialogs__if_you_share_a_story">If you share a story, it will only be available to people who are on Signal beta.</string>
+    <string name="StoryDialogs__if_you_share_a_story">Nếu bạn chia sẻ một story, story đó sẽ chỉ có thể được xem bởi những người sử dụng phiên bản beta của Signal.</string>
     <!-- Dialog title for first time adding something to a story -->
     <string name="StoryDialogs__add_to_story_q">Thêm vào story?</string>
     <!-- Dialog message for first time adding something to a story -->
@@ -4860,11 +4858,11 @@
     <!-- First time share to story dialog: Neutral action to edit who can view "My Story" -->
     <string name="StoryDialogs__edit_viewers">Chỉnh người xem</string>
     <!-- Error message shown when a failure occurs during story send -->
-    <string name="StoryDialogs__story_could_not_be_sent">Không thể gửi story. Hãy kiểm tra kết nối và thử lại.</string>
+    <string name="StoryDialogs__story_could_not_be_sent">Không thể gửi story. Kiểm tra kết nối và thử lại.</string>
     <!-- Error message dialog button to resend a previously failed story send -->
     <string name="StoryDialogs__send">Gửi</string>
     <!-- Action button for turning off stories when stories are present on the device -->
-    <string name="StoryDialogs__turn_off_and_delete">Turn off and delete</string>
+    <string name="StoryDialogs__turn_off_and_delete">Tắt và xóa</string>
     <!-- Privacy Settings toggle title for stories -->
     <string name="PrivacySettingsFragment__share_and_view_stories">Chia sẻ &amp; Xem Story</string>
     <!-- Privacy Settings toggle summary for stories -->
@@ -5059,7 +5057,7 @@
     <!-- Label indicating swipe direction to exit story viewer -->
     <string name="StoryFirstTimeNavigationView__swipe_right_to_exit">Vuốt phải để thoát</string>
     <!-- Button label to confirm understanding of story navigation -->
-    <string name="StoryFirstTimeNagivationView__got_it">Đã cài đặt xong</string>
+    <string name="StoryFirstTimeNagivationView__got_it">Đã hiểu</string>
     <!-- Content description for vertical context menu button in safety number sheet rows -->
     <string name="SafetyNumberRecipientRowItem__open_context_menu">Mở menu chuột phải</string>
     <!-- Sub-line when a user is verified. -->
@@ -5106,7 +5104,7 @@
     <!-- Title of initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">Sự Riêng tư của Story của tôi</string>
     <!-- Subtitle of initial My Story settings configuration shown when sending to My Story for the first time -->
-    <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">Chọn người có thể xem bài đăng trong mục Story Của Tôi. Bạn luôn có thể thay đổi trong mục cài đặt.</string>
+    <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">Chọn người có thể xem bài đăng trong mục Story của tôi. Bạn luôn có thể thay đổi trong mục cài đặt.</string>
     <!-- All connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Tất cả liên hệ Signal</string>
     <!-- All connections except option for initial My Story settings configuration shown when sending to My Story for the first time -->
@@ -5143,7 +5141,7 @@
     <!-- Dialog title to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">Tắt story?</string>
     <!-- Dialog message to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">You will no longer be able to share or view stories. Story updates you have recently shared will also be deleted.</string>
+    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">Bạn sẽ không thể tiếp tục chia sẻ hoặc xem story. Các cập nhật story gần đây của bạn cũng sẽ được xóa.</string>
     <!-- Page title when launched from stories landing screen -->
     <string name="StoriesPrivacySettingsFragment__story_privacy">Sự Riêng tư của Story</string>
 
