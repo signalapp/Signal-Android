@@ -39,13 +39,13 @@
             <View
                 android:id="@+id/story_gradient_top"
                 android:layout_width="match_parent"
-                android:layout_height="160dp"
+                android:layout_height="120dp"
                 android:background="@drawable/story_gradient_top" />
 
             <View
                 android:id="@+id/story_gradient_bottom"
                 android:layout_width="match_parent"
-                android:layout_height="160dp"
+                android:layout_height="200dp"
                 android:layout_gravity="bottom"
                 android:background="@drawable/story_gradient_bottom" />
 
