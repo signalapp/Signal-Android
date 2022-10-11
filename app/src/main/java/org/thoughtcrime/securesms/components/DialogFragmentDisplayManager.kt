@@ -24,7 +24,7 @@ class DialogFragmentDisplayManager(private val builder: () -> DialogFragment) : 
   }
 
   fun hide() {
-    dialogFragment?.dismissNow()
+    dialogFragment?.dismissAllowingStateLoss()
     dialogFragment = null
   }
 
