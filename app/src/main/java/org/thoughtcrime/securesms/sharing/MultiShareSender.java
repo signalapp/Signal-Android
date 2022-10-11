@@ -156,6 +156,10 @@ public final class MultiShareSender {
         results.add(new MultiShareSendResult(recipientSearchKey, MultiShareSendResult.Type.SUCCESS));
       }
 
+      if (!recipientSearchKey.isStory()) {
+        SignalDatabase.threads().setRead(threadId, true);
+      }
+
       // XXX We must do this to avoid sending out messages to the same recipient with the same
       //     sentTimestamp. If we do this, they'll be considered dupes by the receiver.
       ThreadUtil.sleep(5);

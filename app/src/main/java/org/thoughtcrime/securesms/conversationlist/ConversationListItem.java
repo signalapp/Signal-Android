@@ -462,7 +462,7 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
   }
 
   private void setUnreadIndicator(ThreadRecord thread) {
-    if ((thread.isOutgoing() && !thread.isForcedUnread()) || thread.isRead()) {
+    if (thread.isRead()) {
       unreadIndicator.setVisibility(View.GONE);
       return;
     }
