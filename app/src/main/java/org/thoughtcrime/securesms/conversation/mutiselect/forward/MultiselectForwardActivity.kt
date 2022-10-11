@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContract
 import androidx.appcompat.widget.Toolbar
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import org.signal.core.util.logging.Log
@@ -43,7 +44,7 @@ open class MultiselectForwardActivity : FragmentWrapperActivity(), MultiselectFo
 
   override fun exitFlow() {
     Log.d(TAG, "Exiting flow...")
-    onBackPressedDispatcher.onBackPressed()
+    ActivityCompat.finishAfterTransition(this)
   }
 
   override fun onSearchInputFocused() = Unit
