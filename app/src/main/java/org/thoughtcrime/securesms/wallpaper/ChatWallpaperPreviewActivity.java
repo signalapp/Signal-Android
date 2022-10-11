@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -29,7 +30,6 @@ import org.thoughtcrime.securesms.util.WindowUtil;
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel;
 
 import java.util.Collections;
-import java.util.Objects;
 
 public class ChatWallpaperPreviewActivity extends PassphraseRequiredActivity {
 
@@ -94,25 +94,17 @@ public class ChatWallpaperPreviewActivity extends PassphraseRequiredActivity {
 
     RecipientId recipientId = getIntent().getParcelableExtra(EXTRA_RECIPIENT_ID);
 
-    final ChatColors chatColors;
-    if (recipientId != null && Recipient.live(recipientId).get().hasOwnChatColors()) {
-      Recipient recipient = Recipient.live(recipientId).get();
-      bubble2Text.setText(getString(R.string.ChatWallpaperPreviewActivity__set_wallpaper_for_s,
-                                    recipient.isSelf() ? getString(R.string.note_to_self)
-                                                       : recipient.getDisplayName(this)));
-      chatColors = recipient.getChatColors();
-      bubble2.addOnLayoutChangeListener((v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
-        updateChatColors(chatColors);
-      });
-    } else if (SignalStore.chatColorsValues().hasChatColors()) {
-      chatColors = Objects.requireNonNull(SignalStore.chatColorsValues().getChatColors());
-      bubble2.addOnLayoutChangeListener((v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
-        updateChatColors(chatColors);
-      });
+    if (recipientId != null) {
+      Recipient.live(recipientId)
+               .getLiveDataResolved()
+               .observe(this, recipient -> {
+                 bubble2Text.setText(getString(R.string.ChatWallpaperPreviewActivity__set_wallpaper_for_s,
+                                               recipient.isSelf() ? getString(R.string.note_to_self)
+                                                                  : recipient.getDisplayName(this)));
+                 addUpdateBubbleColorListeners(recipient.getChatColors(), selected.getAutoChatColors());
+               });
     } else {
-      onPageChanged = new OnPageChanged();
-      viewPager.registerOnPageChangeCallback(onPageChanged);
-      bubble2.addOnLayoutChangeListener(new UpdateChatColorsOnNextLayoutChange(selected.getAutoChatColors()));
+      addUpdateBubbleColorListeners(SignalStore.chatColorsValues().getChatColors(), selected.getAutoChatColors());
     }
 
     new FullscreenHelper(this).showSystemUI();
@@ -120,12 +112,25 @@ public class ChatWallpaperPreviewActivity extends PassphraseRequiredActivity {
     WindowUtil.setLightNavigationBarFromTheme(this);
   }
 
-  @Override protected void onDestroy() {
+  @Override
+  protected void onDestroy() {
     if (onPageChanged != null) {
       viewPager.unregisterOnPageChangeCallback(onPageChanged);
     }
 
     super.onDestroy();
+  }
+
+  private void addUpdateBubbleColorListeners(@Nullable ChatColors chatColors, @NonNull ChatColors selectedWallpaperAutoColors) {
+    if (chatColors == null || chatColors.getId().equals(ChatColors.Id.Auto.INSTANCE)) {
+      onPageChanged = new OnPageChanged();
+      viewPager.registerOnPageChangeCallback(onPageChanged);
+      bubble2.addOnLayoutChangeListener(new UpdateChatColorsOnNextLayoutChange(selectedWallpaperAutoColors));
+    } else {
+      bubble2.addOnLayoutChangeListener((v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
+        updateChatColors(chatColors);
+      });
+    }
   }
 
   private class OnPageChanged extends ViewPager2.OnPageChangeCallback {

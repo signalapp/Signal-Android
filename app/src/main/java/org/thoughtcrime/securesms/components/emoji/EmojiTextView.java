@@ -98,7 +98,7 @@ public class EmojiTextView extends AppCompatTextView {
 
     textDirection = getLayoutDirection() == LAYOUT_DIRECTION_LTR ? TextDirectionHeuristics.FIRSTSTRONG_RTL : TextDirectionHeuristics.ANYRTL_LTR;
 
-    setEmojiCompatEnabled(SignalStore.settings().isPreferSystemEmoji() && !forceCustom);
+    setEmojiCompatEnabled(useSystemEmoji());
   }
 
   @Override
@@ -357,7 +357,7 @@ public class EmojiTextView extends AppCompatTextView {
   }
 
   private boolean useSystemEmoji() {
-   return !forceCustom && SignalStore.settings().isPreferSystemEmoji();
+   return isInEditMode() || (!forceCustom && SignalStore.settings().isPreferSystemEmoji());
   }
 
   @Override
