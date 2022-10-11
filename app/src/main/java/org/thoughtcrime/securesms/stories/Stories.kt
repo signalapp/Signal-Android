@@ -54,6 +54,7 @@ object Stories {
   private val TAG = Log.tag(Stories::class.java)
 
   const val MAX_TEXT_STORY_SIZE = 700
+  const val MAX_TEXT_STORY_LINE_COUNT = 13
   const val MAX_CAPTION_SIZE = 1500
 
   @JvmField
