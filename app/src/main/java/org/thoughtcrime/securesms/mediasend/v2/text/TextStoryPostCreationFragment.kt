@@ -17,8 +17,10 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs
 import org.thoughtcrime.securesms.databinding.StoriesTextPostCreationFragmentBinding
+import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel
+import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel.LinkPreviewState
 import org.thoughtcrime.securesms.mediasend.CameraDisplay
 import org.thoughtcrime.securesms.mediasend.v2.HudCommand
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionViewModel
@@ -30,6 +32,7 @@ import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil
 import org.thoughtcrime.securesms.util.visible
+import java.util.Optional
 
 class TextStoryPostCreationFragment : Fragment(R.layout.stories_text_post_creation_fragment), TextStoryPostTextEntryFragment.Callback, SafetyNumberBottomSheet.Callbacks {
 
@@ -212,7 +215,7 @@ class TextStoryPostCreationFragment : Fragment(R.layout.stories_text_post_creati
   private fun performSend(contacts: Set<ContactSearchKey>) {
     lifecycleDisposable += viewModel.send(
       contacts = contacts,
-      linkPreviewViewModel.linkPreviewState.value?.linkPreview?.orElse(null)
+      getLinkPreview()
     ).observeOn(AndroidSchedulers.mainThread()).subscribe { result ->
       when (result) {
         TextStoryPostSendResult.Success -> {
@@ -232,6 +235,18 @@ class TextStoryPostCreationFragment : Fragment(R.layout.stories_text_post_creati
             .show(childFragmentManager)
         }
       }
+    }
+  }
+
+  private fun getLinkPreview(): LinkPreview? {
+    val linkPreviewState: LinkPreviewState = linkPreviewViewModel.linkPreviewState.value ?: return null
+
+    return if (linkPreviewState.linkPreview.isPresent) {
+      linkPreviewState.linkPreview.get()
+    } else if (!linkPreviewState.activeUrlForError.isNullOrEmpty()) {
+      LinkPreview(linkPreviewState.activeUrlForError!!, "", "", 0L, Optional.empty())
+    } else {
+      null
     }
   }
 
