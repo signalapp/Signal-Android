@@ -2536,21 +2536,18 @@ public final class MessageContentProcessor {
                                    @NonNull SignalServiceReceiptMessage message,
                                    @NonNull Recipient senderRecipient)
   {
-    boolean shouldOnlyProcessStories = Stories.isFeatureFlagEnabled() && !SignalStore.storyValues().isFeatureDisabled() && !TextSecurePreferences.isReadReceiptsEnabled(context);
-
-    if (!TextSecurePreferences.isReadReceiptsEnabled(context) && !shouldOnlyProcessStories) {
+    if (!TextSecurePreferences.isReadReceiptsEnabled(context)) {
       log("Ignoring viewed receipts for IDs: " + Util.join(message.getTimestamps(), ", "));
       return;
     }
 
-    log(TAG, "Processing viewed receipts. Sender: " +  senderRecipient.getId() + ", Device: " + content.getSenderDevice() + ", Only Stories: " + shouldOnlyProcessStories + ", Timestamps: " + Util.join(message.getTimestamps(), ", "));
+    log(TAG, "Processing viewed receipts. Sender: " +  senderRecipient.getId() + ", Device: " + content.getSenderDevice() + ", Timestamps: " + Util.join(message.getTimestamps(), ", "));
 
     List<SyncMessageId> ids = Stream.of(message.getTimestamps())
                                     .map(t -> new SyncMessageId(senderRecipient.getId(), t))
                                     .toList();
 
-    Collection<SyncMessageId> unhandled = shouldOnlyProcessStories ? SignalDatabase.mmsSms().incrementViewedStoryReceiptCounts(ids, content.getTimestamp())
-                                                                   : SignalDatabase.mmsSms().incrementViewedReceiptCounts(ids, content.getTimestamp());
+    Collection<SyncMessageId> unhandled = SignalDatabase.mmsSms().incrementViewedReceiptCounts(ids, content.getTimestamp());
 
     Set<SyncMessageId> handled = new HashSet<>(ids);
     handled.removeAll(unhandled);
