@@ -1193,7 +1193,8 @@ public class SmsDatabase extends MessageDatabase {
     boolean silent = message.isIdentityUpdate()   ||
                      message.isIdentityVerified() ||
                      message.isIdentityDefault()  ||
-                     message.isJustAGroupLeave();
+                     message.isJustAGroupLeave()  ||
+                     (type & Types.GROUP_UPDATE_BIT) > 0;
 
     boolean unread = !silent && (Util.isDefaultSmsProvider(context) ||
                                  message.isSecureMessage()          ||

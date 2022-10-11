@@ -13,10 +13,6 @@ public final class IncomingGroupUpdateMessage extends IncomingTextMessage {
 
   private final MessageGroupContext groupContext;
 
-  public IncomingGroupUpdateMessage(IncomingTextMessage base, GroupContext groupContext, String body) {
-    this(base, new MessageGroupContext(groupContext));
-  }
-
   public IncomingGroupUpdateMessage(IncomingTextMessage base, DecryptedGroupV2Context groupV2Context) {
     this(base, new MessageGroupContext(groupV2Context));
   }
