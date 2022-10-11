@@ -26,10 +26,10 @@ import androidx.camera.core.CameraSelector;
 import androidx.camera.core.ImageCapture;
 import androidx.camera.core.ImageProxy;
 
+import org.signal.core.util.Stopwatch;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
-import org.signal.core.util.Stopwatch;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -218,8 +218,13 @@ public class CameraXUtil {
       int supported = maxHardwareLevel();
 
       for (String cameraId : cameraManager.getCameraIdList()) {
-        CameraCharacteristics characteristics = cameraManager.getCameraCharacteristics(cameraId);
-        Integer               hwLevel         = characteristics.get(CameraCharacteristics.INFO_SUPPORTED_HARDWARE_LEVEL);
+        Integer hwLevel = null;
+
+        try {
+          hwLevel = cameraManager.getCameraCharacteristics(cameraId).get(CameraCharacteristics.INFO_SUPPORTED_HARDWARE_LEVEL);
+        } catch (NullPointerException e) {
+          // redmi device crash, assume lowest
+        }
 
         if (hwLevel == null || hwLevel == CameraMetadata.INFO_SUPPORTED_HARDWARE_LEVEL_LEGACY) {
           return CameraMetadata.INFO_SUPPORTED_HARDWARE_LEVEL_LEGACY;
