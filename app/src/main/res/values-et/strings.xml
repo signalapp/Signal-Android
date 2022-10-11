@@ -673,7 +673,7 @@
     <!-- GroupsV1MigrationLearnMoreBottomSheetDialogFragment -->
     <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Mis on uued grupid?</string>
     <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Uutel gruppidel on funktsioonid nagu @mainimised ja grupiadminid, ning need toetavad tulevikus veel rohkem funktsioone.</string>
-    <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Kogu täienduse-eelne sõnumiajalugu ja -meedia on alles.</string>
+    <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Kogu uuenduse-eelne sõnumiajalugu ja -meedia on alles.</string>
     <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">Selle grupiga uuesti liitumiseks pead nõustuma kutsega ja sa ei saa grupi sõnumeid senikaua kuni oled nõustunud.</string>
     <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
         <item quantity="one">See liige peab grupiga liitumise kutse uuesti vastu võtma ning ei saa enne seda sõnumeid näha:</item>
@@ -1348,7 +1348,7 @@
     <!-- Update item message shown when we merge two threads together -->
     <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Sinu sõnumiajalugu kasutajaga %1$s ja tema numbriga %2$s on liidetud.</string>
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
-    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Sinu sõnumiajalugu kasutajaga %1$s ja teise tema vestlusega on liidetud.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Sinu sõnumiajalugu kasutajaga %1$s ja tema teise vestlusega on liidetud.</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s alustas grupikõne · %2$s</string>
@@ -1542,7 +1542,7 @@
     <string name="RedPhone_network_failed">Võrk ebaõnnestus!</string>
     <string name="RedPhone_number_not_registered">Number pole registreeritud!</string>
     <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Number, kuhu helistasid ei toeta turvalist kõnet!</string>
-    <string name="RedPhone_got_it">Selge</string>
+    <string name="RedPhone_got_it">Sain aru</string>
 
     <!-- Valentine\'s Day Megaphone -->
     <!-- Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons. -->
@@ -2666,12 +2666,12 @@
     <string name="preferences_storage__audio">Audio</string>
     <string name="preferences_storage__review_storage">Vaata mäluruum üle</string>
     <string name="preferences_storage__delete_older_messages">Kustutad vanemad sõnumid?</string>
-    <string name="preferences_storage__clear_message_history">Tühjendad sõnumiajaloo?</string>
-    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">See kustutab püsivalt kõik sõnumid ja meediafailid sellest seadmest, mis on vanemad kui %1$s.</string>
+    <string name="preferences_storage__clear_message_history">Kas tühjendada sõnumiajalugu?</string>
+    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Sellega kustutad seadmest püsivalt kõik sõnumid ja meediafailid, mis on vanemad kui %1$s.</string>
     <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">See lühendab kõik vestlused %1$s viimase sõnumi pikkusteks.</string>
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">See kustutab püsivalt kõik sõnumid ja meediafailid sellest seadmest.</string>
-    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Kas sa tõesti soovid kogu sõnumite ajalugu kustutada?</string>
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Kõikide sõnumite ajalugu kustutatakse püsivalt. Seda tegevust ei saa tagasi võtta.</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Sellega kustutad seadmest püsivalt kõik sõnumid ja meediafailid.</string>
+    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Kas soovid tõesti kogu sõnumiajalugu kustutada?</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Kogu sõnumiajalugu kustutatakse püsivalt. Seda tegevust ei saa tagasi võtta.</string>
     <string name="preferences_storage__delete_all_now">Kustuta kõik kohe</string>
     <string name="preferences_storage__forever">Igaveseks</string>
     <string name="preferences_storage__one_year">1 aasta</string>
@@ -4779,7 +4779,7 @@
     <!-- Title of dialog to confirm deletion of story -->
     <string name="MyStories__delete_story">Kas kustutada lugu?</string>
     <!-- Message of dialog to confirm deletion of story -->
-    <string name="MyStories__this_story_will_be_deleted">Lugu kustutatakse nii sinu kui kõigi jaoks, kellele see saadeti.</string>
+    <string name="MyStories__this_story_will_be_deleted">Lugu kustutatakse nii sinu kui kõigi nende jaoks, kellele see saadeti.</string>
     <!-- Toast shown when story media cannot be saved -->
     <string name="MyStories__unable_to_save">Salvestamine ei ole võimalik</string>
     <!-- Displayed at bottom of story viewer when current item has views -->
@@ -4878,7 +4878,7 @@
         <item quantity="other">%1$d inimest</item>
     </plurals>
     <!-- My story privacy fine print about what the privacy settings are for -->
-    <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Vali, kes saavad sinu lugu vaadata. Muudatused ei mõjuta lugusid, mida oled juba enne jaganud.</string>
+    <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Vali, kes saavad sinu lugu vaadata. Muudatused ei mõjuta lugusid, mida oled juba jaganud.</string>
     <!-- Section header for options related to replies and reactions -->
     <string name="MyStorySettingsFragment__replies_amp_reactions">Vastused &amp; reaktsioonid</string>
     <!-- Switchable option for allowing replies and reactions on your stories -->
@@ -4896,7 +4896,7 @@
     <!-- Signal connections sheet bullet point 3 -->
     <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">olles salvestanud nende kontakti oma telefoni</string>
     <!-- Note at the bottom of the Signal connections sheet -->
-    <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Sinu kontaktid näevad sinu nime ja fotot ning postitusi \"Minu loosse\", kui sa neid nende eest ei peida."</string>
+    <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Sinu kontaktid näevad sinu nime ja fotot ning postitusi „Minu loo“ alla, kui sa neid nende eest ei peida."</string>
     <!-- Clickable option to add a viewer to a private story -->
     <string name="PrivateStorySettingsFragment__add_viewer">Lisa vaataja</string>
     <!-- Clickable option to delete a custom story -->
@@ -4974,7 +4974,7 @@
     <!-- Action button for turning off stories when stories are present on the device -->
     <string name="StoryDialogs__turn_off_and_delete">Lülita välja ja kustuta</string>
     <!-- Privacy Settings toggle title for stories -->
-    <string name="PrivacySettingsFragment__share_and_view_stories">Jaga &amp; Vaata lugusid</string>
+    <string name="PrivacySettingsFragment__share_and_view_stories">Jaga &amp; vaata lugusid</string>
     <!-- Privacy Settings toggle summary for stories -->
     <string name="PrivacySettingsFragment__you_will_no_longer_be_able">Kui see valik välja on lülitatud, ei saa sa enam lugusid jagada ega vaadata.</string>
     <!-- New story viewer selection screen title -->
@@ -5148,7 +5148,7 @@
     <!-- Dialog title for deleting a private story -->
     <string name="ContactSearchMediator__delete_story">Kas kustutada lugu?</string>
     <!-- Dialog message for deleting a private story -->
-    <string name="ContactSearchMediator__delete_the_private">Kas kustutada see privaatne lugu \"%1$s\"?</string>
+    <string name="ContactSearchMediator__delete_the_private">Kas kustutada see privaatne lugu „%1$s“?</string>
     <!-- Dialog action item for deleting a private story -->
     <string name="ContactSearchMediator__delete">Kustuta</string>
     <!-- Gift expiry days remaining -->
@@ -5194,7 +5194,7 @@
     <!-- Message of safety number changes bottom sheet when not showing individual records and user has seen review screen -->
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Kõik kontaktid on kontrollitud, jätkamiseks toksa \"Saada\".</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
-    <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">Sul on %1$d kontakti, kes võivad olla Signali uuesti paigaldanud või oma seadme välja vahetanud. Enne kui jagad nendega oma lugu, soovitame kontrollida nende turvakoodi, või nad oma loo nägijate hulgast eemaldada.</string>
+    <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">Sul on %1$d kontakti, kes võivad olla Signali uuesti paigaldanud või oma seadme välja vahetanud. Enne kui jagad nendega oma lugu, soovitame kontrollida nende turvakoodi või nad oma loo nägijate hulgast eemaldada.</string>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Kinnita turvanumbrit</string>
     <!-- Menu action to remove user from story -->
@@ -5224,7 +5224,7 @@
     <!-- Title of initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">Minu loo privaatsus</string>
     <!-- Subtitle of initial My Story settings configuration shown when sending to My Story for the first time -->
-    <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">Vali, kes näevad, mida sa \"Minu loo\" alla postitad. Saad neid sätteid alati hiljem muuta.</string>
+    <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">Vali, kes näevad, mida sa „Minu loo“ alla postitad. Saad neid sätteid alati hiljem muuta.</string>
     <!-- All connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Kõik Signali kontaktid</string>
     <!-- All connections except option for initial My Story settings configuration shown when sending to My Story for the first time -->
