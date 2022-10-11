@@ -124,6 +124,7 @@ public class WebRtcCallView extends ConstraintLayout {
   private ConstraintSet                 largeHeaderConstraints;
   private ConstraintSet                 smallHeaderConstraints;
   private Guideline                     statusBarGuideline;
+  private Guideline                     navigationBarGuideline;
   private int                           navBarBottomInset;
   private View                          fullScreenShade;
 
@@ -205,6 +206,7 @@ public class WebRtcCallView extends ConstraintLayout {
     foldParticipantCount          = findViewById(R.id.fold_show_participants_menu_counter);
     largeHeaderAvatar             = findViewById(R.id.call_screen_header_avatar);
     statusBarGuideline            = findViewById(R.id.call_screen_status_bar_guideline);
+    navigationBarGuideline        = findViewById(R.id.call_screen_navigation_bar_guideline);
     fullScreenShade               = findViewById(R.id.call_screen_full_shade);
 
     View      decline                = findViewById(R.id.call_screen_decline_call);
@@ -330,9 +332,9 @@ public class WebRtcCallView extends ConstraintLayout {
 
   @Override
   protected boolean fitSystemWindows(Rect insets) {
-    Guideline navigationBarGuideline = findViewById(R.id.call_screen_navigation_bar_guideline);
-
-    statusBarGuideline.setGuidelineBegin(insets.top);
+    if (insets.top != 0) {
+      statusBarGuideline.setGuidelineBegin(insets.top);
+    }
     navigationBarGuideline.setGuidelineEnd(insets.bottom);
 
     return true;
