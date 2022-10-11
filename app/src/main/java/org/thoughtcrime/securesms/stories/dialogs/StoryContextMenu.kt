@@ -130,7 +130,8 @@ object StoryContextMenu {
     onInfo: (StoryPost) -> Unit,
     onDismiss: () -> Unit
   ) {
-    val selectedStory: StoryPost = storyViewerPageState.posts[storyViewerPageState.selectedPostIndex]
+    val selectedStory: StoryPost = storyViewerPageState.posts.getOrNull(storyViewerPageState.selectedPostIndex) ?: return
+
     show(
       context = context,
       anchorView = anchorView,
