@@ -18,6 +18,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.viewpager2.widget.ViewPager2.OFFSCREEN_PAGE_LIMIT_DEFAULT
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -26,7 +27,7 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.animation.DepthPageTransformer
+import org.thoughtcrime.securesms.animation.DepthPageTransformer2
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragment
@@ -69,16 +70,7 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
 
     initializeViewModel(args)
     initializeToolbar(binding.toolbar, args)
-    binding.mediaPager.offscreenPageLimit = 1
-    binding.mediaPager.setPageTransformer(DepthPageTransformer())
-    val adapter = MediaPreviewV2Adapter(this)
-    binding.mediaPager.adapter = adapter
-    binding.mediaPager.registerOnPageChangeCallback(object : OnPageChangeCallback() {
-      override fun onPageSelected(position: Int) {
-        super.onPageSelected(position)
-        viewModel.setCurrentPage(position)
-      }
-    })
+    initializeViewPager()
     initializeFullScreenUi()
     initializeAlbumRail()
     anchorMarginsToBottomInsets(binding.mediaPreviewDetailsContainer)
@@ -100,6 +92,21 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
     if (args.hideAllMedia) {
       binding.toolbar.menu.findItem(R.id.media_preview__overview).isVisible = false
     }
+  }
+
+  private fun initializeViewPager() {
+    binding.mediaPager.offscreenPageLimit = OFFSCREEN_PAGE_LIMIT_DEFAULT
+    if (Build.VERSION.SDK_INT >= 21) {
+      binding.mediaPager.setPageTransformer(DepthPageTransformer2())
+    }
+    val adapter = MediaPreviewV2Adapter(this)
+    binding.mediaPager.adapter = adapter
+    binding.mediaPager.registerOnPageChangeCallback(object : OnPageChangeCallback() {
+      override fun onPageSelected(position: Int) {
+        super.onPageSelected(position)
+        viewModel.setCurrentPage(position)
+      }
+    })
   }
 
   private fun initializeAlbumRail() {
