@@ -3,11 +3,10 @@ package org.thoughtcrime.securesms.video.exo
 import android.content.Context
 import androidx.annotation.MainThread
 import com.google.android.exoplayer2.ExoPlayer
-import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.mediacodec.MediaCodecUtil
 import com.google.android.exoplayer2.mediacodec.MediaCodecUtil.DecoderQueryException
-import com.google.android.exoplayer2.source.MediaSourceFactory
-import com.google.android.exoplayer2.source.ProgressiveMediaSource
+import com.google.android.exoplayer2.source.DefaultMediaSourceFactory
+import com.google.android.exoplayer2.source.MediaSource
 import com.google.android.exoplayer2.upstream.DataSource
 import com.google.android.exoplayer2.util.MimeTypes
 import org.signal.core.util.logging.Log
@@ -19,11 +18,11 @@ import org.thoughtcrime.securesms.util.DeviceProperties
 /**
  * ExoPlayerPool concrete instance which helps to manage a pool of SimpleExoPlayer objects
  */
-class SimpleExoPlayerPool(context: Context) : ExoPlayerPool<SimpleExoPlayer>(MAXIMUM_RESERVED_PLAYERS) {
+class SimpleExoPlayerPool(context: Context) : ExoPlayerPool<ExoPlayer>(MAXIMUM_RESERVED_PLAYERS) {
   private val context: Context = context.applicationContext
   private val okHttpClient = ApplicationDependencies.getOkHttpClient().newBuilder().proxySelector(ContentProxySelector()).build()
   private val dataSourceFactory: DataSource.Factory = SignalDataSource.Factory(ApplicationDependencies.getApplication(), okHttpClient, null)
-  private val mediaSourceFactory: MediaSourceFactory = ProgressiveMediaSource.Factory(dataSourceFactory)
+  private val mediaSourceFactory: MediaSource.Factory = DefaultMediaSourceFactory(dataSourceFactory)
 
   init {
     ApplicationDependencies.getAppForegroundObserver().addListener(this)
@@ -57,8 +56,8 @@ class SimpleExoPlayerPool(context: Context) : ExoPlayerPool<SimpleExoPlayer>(MAX
   }
 
   @MainThread
-  override fun createPlayer(): SimpleExoPlayer {
-    return SimpleExoPlayer.Builder(context)
+  override fun createPlayer(): ExoPlayer {
+    return ExoPlayer.Builder(context)
       .setMediaSourceFactory(mediaSourceFactory)
       .build()
   }

@@ -13,9 +13,9 @@ import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
 
+import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.Player;
-import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 
 import org.signal.core.util.logging.Log;
@@ -54,7 +54,7 @@ public final class GiphyMp4ProjectionPlayerHolder implements Player.Listener, De
     this.policyEnforcer = policyEnforcer;
 
     if (player.getExoPlayer() == null) {
-      SimpleExoPlayer fromPool = ApplicationDependencies.getExoPlayerPool().get(TAG);
+      ExoPlayer fromPool = ApplicationDependencies.getExoPlayerPool().get(TAG);
 
       if (fromPool == null) {
         Log.i(TAG, "Could not get exoplayer from pool.");
@@ -75,7 +75,7 @@ public final class GiphyMp4ProjectionPlayerHolder implements Player.Listener, De
     this.mediaItem      = null;
     this.policyEnforcer = null;
 
-    SimpleExoPlayer exoPlayer = player.getExoPlayer();
+    ExoPlayer exoPlayer = player.getExoPlayer();
     if (exoPlayer != null) {
       player.stop();
       player.setExoPlayer(null);
@@ -142,7 +142,7 @@ public final class GiphyMp4ProjectionPlayerHolder implements Player.Listener, De
   @Override
   public void onResume(@NonNull LifecycleOwner owner) {
     if (mediaItem != null) {
-      SimpleExoPlayer fromPool = ApplicationDependencies.getExoPlayerPool().get(TAG);
+      ExoPlayer fromPool = ApplicationDependencies.getExoPlayerPool().get(TAG);
       if (fromPool != null) {
         ExoPlayerKt.configureForGifPlayback(fromPool);
         fromPool.addListener(this);

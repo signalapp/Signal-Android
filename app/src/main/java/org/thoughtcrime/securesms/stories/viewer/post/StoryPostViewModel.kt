@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.StoryTextPost
 import org.thoughtcrime.securesms.stories.viewer.page.StoryPost
 import org.thoughtcrime.securesms.util.Base64
 import org.thoughtcrime.securesms.util.rx.RxStore
+import kotlin.time.Duration.Companion.microseconds
 
 class StoryPostViewModel(private val repository: StoryTextPostRepository) : ViewModel() {
 
@@ -38,7 +39,14 @@ class StoryPostViewModel(private val repository: StoryTextPostRepository) : View
         if (storyPostContent.uri == null) {
           store.update { StoryPostState.None() }
         } else if (storyPostContent.isVideo()) {
-          store.update { StoryPostState.VideoPost(videoUri = storyPostContent.uri, storyPostContent.attachment.size) }
+          store.update {
+            StoryPostState.VideoPost(
+              videoUri = storyPostContent.uri,
+              size = storyPostContent.attachment.size,
+              clipStart = storyPostContent.attachment.transformProperties.videoTrimStartTimeUs.microseconds,
+              clipEnd = storyPostContent.attachment.transformProperties.videoTrimEndTimeUs.microseconds
+            )
+          }
         } else {
           store.update { StoryPostState.ImagePost(storyPostContent.uri, storyPostContent.attachment.blurHash) }
         }

@@ -22,7 +22,7 @@ class StoryVideoLoader(
 
   fun load() {
     fragment.viewLifecycleOwner.lifecycle.addObserver(this)
-    videoPlayer.setVideoSource(VideoSlide(fragment.requireContext(), videoPost.videoUri, videoPost.size, false), true, TAG)
+    videoPlayer.setVideoSource(VideoSlide(fragment.requireContext(), videoPost.videoUri, videoPost.size, false), true, TAG, videoPost.clipStart.inWholeMilliseconds, videoPost.clipEnd.inWholeMilliseconds)
   }
 
   fun clear() {

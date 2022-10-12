@@ -43,6 +43,7 @@ import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 import kotlin.math.max
 import kotlin.math.min
+import kotlin.time.Duration.Companion.microseconds
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
 
@@ -368,6 +369,7 @@ object Stories {
     }
 
     private fun transformMedia(media: Media, transformProperties: AttachmentDatabase.TransformProperties): Media {
+      Log.d(TAG, "Transforming media clip: ${transformProperties.videoTrimStartTimeUs.microseconds.inWholeSeconds}s to ${transformProperties.videoTrimEndTimeUs.microseconds.inWholeSeconds}s")
       return Media(
         media.uri,
         media.mimeType,

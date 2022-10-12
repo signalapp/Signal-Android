@@ -13,8 +13,8 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.DefaultLifecycleObserver;
 
 import com.google.android.exoplayer2.C;
+import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.MediaItem;
-import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.android.exoplayer2.ui.PlayerView;
 
@@ -31,10 +31,10 @@ public final class GiphyMp4VideoPlayer extends FrameLayout implements DefaultLif
   @SuppressWarnings("unused")
   private static final String TAG = Log.tag(GiphyMp4VideoPlayer.class);
 
-  private final PlayerView      exoView;
-  private       SimpleExoPlayer exoPlayer;
-  private       CornerMask      cornerMask;
-  private       MediaItem       mediaItem;
+  private final PlayerView exoView;
+  private       ExoPlayer  exoPlayer;
+  private       CornerMask cornerMask;
+  private       MediaItem  mediaItem;
 
   public GiphyMp4VideoPlayer(Context context) {
     this(context, null);
@@ -61,11 +61,11 @@ public final class GiphyMp4VideoPlayer extends FrameLayout implements DefaultLif
     }
   }
 
-  @Nullable SimpleExoPlayer getExoPlayer() {
+  @Nullable ExoPlayer getExoPlayer() {
     return exoPlayer;
   }
 
-  void setExoPlayer(@Nullable SimpleExoPlayer exoPlayer) {
+  void setExoPlayer(@Nullable ExoPlayer exoPlayer) {
     exoView.setPlayer(exoPlayer);
     this.exoPlayer = exoPlayer;
   }

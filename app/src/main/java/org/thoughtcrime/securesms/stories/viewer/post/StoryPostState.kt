@@ -5,6 +5,7 @@ import android.net.Uri
 import org.thoughtcrime.securesms.blurhash.BlurHash
 import org.thoughtcrime.securesms.database.model.databaseprotos.StoryTextPost
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
+import kotlin.time.Duration
 
 sealed class StoryPostState {
   data class TextPost(
@@ -21,7 +22,9 @@ sealed class StoryPostState {
 
   data class VideoPost(
     val videoUri: Uri,
-    val size: Long
+    val size: Long,
+    val clipStart: Duration,
+    val clipEnd: Duration
   ) : StoryPostState()
 
   data class None(private val ts: Long = System.currentTimeMillis()) : StoryPostState()

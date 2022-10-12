@@ -42,7 +42,7 @@ object NotificationStateProvider {
             val parentRecord = conversationId.groupStoryId?.let {
               try {
                 SignalDatabase.mms.getMessageRecord(it)
-              } catch (e : NoSuchMessageException) {
+              } catch (e: NoSuchMessageException) {
                 null
               }
             }

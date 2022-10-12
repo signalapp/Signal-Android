@@ -55,7 +55,7 @@ class StoryPostFragment : Fragment(R.layout.stories_post_fragment) {
         postViewModel.onPostContentChanged(it)
       }
 
-    disposables += postViewModel.state.subscribe { state ->
+    disposables += postViewModel.state.distinctUntilChanged().subscribe { state ->
       when (state) {
         is StoryPostState.None -> presentNone()
         is StoryPostState.TextPost -> presentTextPost(state)
