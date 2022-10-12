@@ -68,7 +68,6 @@
             android:layout_height="wrap_content"
             android:textAlignment="viewStart"
             android:textColor="@color/signal_colorOnSurfaceVariant"
-            android:textDirection="ltr"
             tools:text="+1 (999) 555-1234" />
 
     </LinearLayout>
