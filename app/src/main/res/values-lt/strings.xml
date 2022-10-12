@@ -2839,7 +2839,7 @@
     <string name="preferences_storage__review_storage">Peržiūrėti saugyklą</string>
     <string name="preferences_storage__delete_older_messages">Ištrinti senesnes žinutes?</string>
     <string name="preferences_storage__clear_message_history">Išvalyti žinučių istoriją?</string>
-    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Tai visam laikui iš tavo įrenginio ištrins visą žinučių istoriją ir įrašus, kurie senesni nei %1$s</string>
+    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Tai visam laikui iš tavo įrenginio ištrins visą žinučių istoriją ir įrašus, kurie senesni nei %1$s.</string>
     <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Tai visam laikui išvalys visus pokalbius iki %1$s naujausių žinučių.</string>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Tai visam laikui iš tavo įrenginio ištrins visą žinučių istoriją ir įrašus.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Ar tikrai nori ištrinti visą žinučių istoriją?</string>
@@ -5338,7 +5338,7 @@
     <!-- Label under name for private stories -->
     <plurals name="ContactSearchItems__private_story_d_viewers">
         <item quantity="one">Privati istorija · %1$d žiūrovas</item>
-        <item quantity="few">Privati istorija · %1$d žiūriovai</item>
+        <item quantity="few">Privati istorija · %1$d žiūrovai</item>
         <item quantity="many">Privati istorija · %1$d žiūrovo</item>
         <item quantity="other">Privati istorija · %1$d žiūrovų</item>
     </plurals>
@@ -5432,7 +5432,7 @@
     <!-- Message of safety number changes bottom sheet when not showing individual records and user has seen review screen -->
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Visi kontaktai peržiūrėti; bakstelėkite „Siųsti“, jei norite tęsti.</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
-    <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">Turi kontaktų (%1$d), kurie galbūt iš naujo įdiegė „Signal“ arba pakeitė įrenginius. Prieš bendrindamas su jais savo istoriją, peržiūrėk jų saugumo numerius, arba galbūt pašalink iš savo istorijos.</string>
+    <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">Turi kontaktų (%1$d), kurie galbūt iš naujo įdiegė „Signal“ arba pakeitė įrenginius. Prieš bendrindamas su jais savo istoriją, peržiūrėk jų saugumo numerius arba galbūt pašalink iš savo istorijos.</string>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Patvirtinti saugumo numerį</string>
     <!-- Menu action to remove user from story -->
@@ -5579,6 +5579,24 @@
     <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">Jei nori eksportuoti SMS žinutes, turi padaryti „Signal“ numatytąja SMS programėle.</string>
     <!-- Button label to start export -->
     <string name="SetSignalAsDefaultSmsAppFragment__next">Kitas</string>
+
+    <!-- BackupSchedulePermission Megaphone -->
+    <!-- Can't backup chats megaphone title -->
+    <string name="BackupSchedulePermissionMegaphone__cant_back_up_chats">Can\'t back up chats</string>
+    <!-- Can't backup chats megaphone message -->
+    <string name="BackupSchedulePermissionMegaphone__your_chats_are_no_longer_being_automatically_backed_up">Your chats are no longer being automatically backed up.</string>
+    <!-- Can't backup chats megaphone button text to take steps to re-enable -->
+    <string name="BackupSchedulePermissionMegaphone__back_up_chats">Back up chats</string>
+    <!-- Can't backup chats megaphone button to snooze megaphone and be reshown later -->
+    <string name="BackupSchedulePermissionMegaphone__not_now">Not now</string>
+    <!-- Re-enable backup permission bottom sheet title -->
+    <string name="BackupSchedulePermissionMegaphone__to_reenable_backups">To re-enable backups:</string>
+    <!-- Re-enable backups permission bottom sheet instruction 1 text -->
+    <string name="BackupSchedulePermissionMegaphone__tap_the_go_to_settings_button_below">Tap the \"Go to settings\" button below</string>
+    <!-- Re-enable backups permission bottom sheet instruction 2 text -->
+    <string name="BackupSchedulePermissionMegaphone__turn_on_allow_settings_alarms_and_reminders">Turn on \"Allow settings alarms and reminders.\"</string>
+    <!-- Re-enable backups permission bottom sheet call to action button to open settings -->
+    <string name="BackupSchedulePermissionMegaphone__go_to_settings">Go to settings</string>
 
     <!-- EOF -->
 

@@ -4001,7 +4001,7 @@
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">இயல்புநிலை நேரக்குறிப்பான் புதிய அரட்டைகளுக்கு</string>
     <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">நீங்கள் தொடங்கும் அனைத்து புதிய அரட்டைகளுக்கும் இயல்புநிலை காணாமல் போகும் செய்திகள் நேரக்குறிப்பானை அமைக்கவும்.</string>
     <!-- Summary for stories preference to launch into story privacy settings -->
-    <string name="PrivacySettingsFragment__manage_your_stories">உங்கள் ஸ்டோரீக்களையும் மற்றும் அவற்றை யார் பார்வையிடலாம் என்பதையும் நிர்வகிக்கவும்</string>
+    <string name="PrivacySettingsFragment__manage_your_stories">உங்கள் ஸ்டோரீஸ்-ஐயும் மற்றும் அவற்றை யார் பார்வையிடலாம் என்பதையும் நிர்வகிக்கவும்</string>
     <string name="PrivacySettingsFragment__payment_lock_require_lock">நிதியை மாற்ற ஆண்ட்ராய்டு திரைப் பூட்டு அல்லது கைரேகை தேவை</string>
     <!-- Alert dialog title when payment lock cannot be enabled -->
     <string name="PrivacySettingsFragment__cant_enable_title">கட்டண பூட்டை இயக்க முடியவில்லை</string>
@@ -4281,9 +4281,9 @@
     <string name="MultiselectForwardFragment__add_a_message">கூட்டு ஒரு செய்தி</string>
     <string name="MultiselectForwardFragment__faster_forwards">வேகமான முன்னோக்கிகள்</string>
     <!-- Displayed when user selects a video that will be clipped before sharing to a story -->
-    <string name="MultiselectForwardFragment__videos_will_be_trimmed">வீடியோக்கள் 30 நொடிகளுக்கான கிளிப்களாக ட்ரிம் செய்யப்பட்டு பல ஸ்டோரீக்களாக அனுப்பப்படும்.</string>
+    <string name="MultiselectForwardFragment__videos_will_be_trimmed">வீடியோக்கள் 30 நொடிகளுக்கான கிளிப்களாக ட்ரிம் செய்யப்பட்டு பல ஸ்டோரீஸ்-களாக அனுப்பப்படும்.</string>
     <!-- Displayed when user selects a video that cannot be sent as a story -->
-    <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">ஸ்டோரீக்களுக்கு அனுப்பப்படும் வீடியோக்கள் 30 வினாடிகளுக்கு மேல் இருக்கக்கூடாது.</string>
+    <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">ஸ்டோரீஸ்-இல் அனுப்பப்படும் வீடியோக்கள் 30 வினாடிகளுக்கு மேல் இருக்கக்கூடாது.</string>
     <string name="MultiselectForwardFragment__forwarded_messages_are_now">முன்னனுப்பப்பட்ட செய்திகள் இப்போது உடனடியாக அனுப்பப்படுகின்றன.</string>
     <plurals name="MultiselectForwardFragment_send_d_messages">
         <item quantity="one">%1$d செய்தி அனுப்பவும்</item>
@@ -4760,13 +4760,13 @@
     <!-- Title of dialog confirming decision to hide a story -->
     <string name="StoriesLandingFragment__hide_story">ஸ்டோரியை மறைப்பதா?</string>
     <!-- Message of dialog confirming decision to hide a story -->
-    <string name="StoriesLandingFragment__new_story_updates">%1$s -இடமிருந்து புதிய ஸ்டோரி புதுப்பிப்புகள் இனி ஸ்டோரீக்கள் பட்டியலின் மேலே தோன்றாது.</string>
+    <string name="StoriesLandingFragment__new_story_updates">%1$s -இடமிருந்து புதிய ஸ்டோரி புதுப்பிப்புகள் இனி ஸ்டோரீஸ்-இன் பட்டியலின் மேலே தோன்றாது.</string>
     <!-- Positive action of dialog confirming decision to hide a story -->
     <string name="StoriesLandingFragment__hide">மறை</string>
     <!-- Displayed in Snackbar after story is hidden -->
     <string name="StoriesLandingFragment__story_hidden">ஸ்டோரி மறைக்கப்பட்டது</string>
     <!-- Section header for hidden stories -->
-    <string name="StoriesLandingFragment__hidden_stories">மறைக்கப்பட்ட ஸ்டோரீக்கள்</string>
+    <string name="StoriesLandingFragment__hidden_stories">மறைக்கப்பட்ட ஸ்டோரீஸ்</string>
     <!-- Displayed on each sent story under My Stories -->
     <plurals name="MyStories__d_views">
         <item quantity="one">%1$d பார்வை</item>
@@ -4811,7 +4811,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">இதுவரை பார்வைகள் ஏதுமில்லை</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">உங்கள் ஸ்டோரீஸ் -ஐ யார் பார்வையிட்டனர் என்பதைக் காண, வாசித்ததற்கான அறிவிப்புகளை இயக்கவும்.</string>
+    <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">உங்கள் ஸ்டோரீஸ்-ஐ யார் பார்வையிட்டனர் என்பதைக் காண, வாசித்ததற்கான அறிவிப்புகளை இயக்கவும்.</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">அமைப்புகளுக்குச் செல்</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -4878,7 +4878,7 @@
         <item quantity="other">%1$d நபர்கள்</item>
     </plurals>
     <!-- My story privacy fine print about what the privacy settings are for -->
-    <string name="MyStorySettingsFragment__choose_who_can_view_your_story">உங்கள் ஸ்டோரியை யார் பார்வையிடலாம் என்பதைத் தேர்வுசெய்யவும். நீங்கள் ஏற்கனவே அனுப்பிய ஸ்டோரீக்களை மாற்றங்கள் பாதிக்காது.</string>
+    <string name="MyStorySettingsFragment__choose_who_can_view_your_story">உங்கள் ஸ்டோரியை யார் பார்வையிடலாம் என்பதைத் தேர்வுசெய்யவும். நீங்கள் ஏற்கனவே அனுப்பிய ஸ்டோரீஸ்-ஐ மாற்றங்கள் பாதிக்காது.</string>
     <!-- Section header for options related to replies and reactions -->
     <string name="MyStorySettingsFragment__replies_amp_reactions">பதில்கள் &amp;ஆம்ப்; எதிர்வினைகள்</string>
     <!-- Switchable option for allowing replies and reactions on your stories -->
@@ -4974,9 +4974,9 @@
     <!-- Action button for turning off stories when stories are present on the device -->
     <string name="StoryDialogs__turn_off_and_delete">ஆஃப் செய்துவிட்டு நீக்கவும்</string>
     <!-- Privacy Settings toggle title for stories -->
-    <string name="PrivacySettingsFragment__share_and_view_stories">ஸ்டோரீக்களை பகிரவும் மற்றும் பார்வையிடவும்</string>
+    <string name="PrivacySettingsFragment__share_and_view_stories">ஸ்டோரீஸ்-ஐ பகிரவும் மற்றும் பார்வையிடவும்</string>
     <!-- Privacy Settings toggle summary for stories -->
-    <string name="PrivacySettingsFragment__you_will_no_longer_be_able">இந்த விருப்பத்தேர்வு முடக்கப்பட்டிருக்கும் போது உங்களால் இனி ஸ்டோரீக்களைப் பகிரவும் பார்வையிடவும் முடியாது.</string>
+    <string name="PrivacySettingsFragment__you_will_no_longer_be_able">இந்த விருப்பத்தேர்வு முடக்கப்பட்டிருக்கும் போது உங்களால் இனி ஸ்டோரீஸ்-ஐ பகிரவும் பார்வையிடவும் முடியாது.</string>
     <!-- New story viewer selection screen title -->
     <string name="CreateStoryViewerSelectionFragment__choose_viewers">பார்வையாளர்களைத் தேர்ந்தெடுக்கவும்</string>
     <!-- New story viewer selection action button label -->
@@ -5142,7 +5142,7 @@
     <!-- Dialog title for removing a group story -->
     <string name="ContactSearchMediator__remove_group_story">குழு ஸ்டோரியை அகற்றுவதா?</string>
     <!-- Dialog message for removing a group story -->
-    <string name="ContactSearchMediator__this_will_remove">இது இந்த பட்டியலிலிருந்து ஸ்டோரியை அகற்றும். இந்தக் குழுவின் ஸ்டோரீக்களை நீங்கள் இன்னும் பார்வையிடவும் முடியும்.</string>
+    <string name="ContactSearchMediator__this_will_remove">இது இந்த பட்டியலிலிருந்து ஸ்டோரியை அகற்றும். இந்தக் குழுவின் ஸ்டோரீஸ்-ஐ நீங்கள் இன்னும் பார்வையிடவும் முடியும்.</string>
     <!-- Dialog action item for removing a group story -->
     <string name="ContactSearchMediator__remove">நீக்கு</string>
     <!-- Dialog title for deleting a private story -->
@@ -5224,7 +5224,7 @@
     <!-- Title of initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">எனது ஸ்டோரி தனியுரிமை</string>
     <!-- Subtitle of initial My Story settings configuration shown when sending to My Story for the first time -->
-    <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">எனது ஸ்டோரிக்கான இடுகைகளை யார் பார்க்கலாம் என்பதைத் தேர்ந்தெடுக்கவும். நீங்கள் எப்போதும் அமைப்புகளில் மாற்றங்களைச் செய்யலாம்.</string>
+    <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">எனது ஸ்டோரிக்கான போஸ்டுகளை யார் பார்க்கலாம் என்பதைத் தேர்ந்தெடுக்கவும். நீங்கள் எப்போதும் அமைப்புகளில் மாற்றங்களைச் செய்யலாம்.</string>
     <!-- All connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">அனைத்து சிக்னல் இணைப்புகள்</string>
     <!-- All connections except option for initial My Story settings configuration shown when sending to My Story for the first time -->
@@ -5249,17 +5249,17 @@
 
     <!-- StoriesPrivacySettingsFragment -->
     <!-- Explanation about how stories are deleted and managed -->
-    <string name="StoriesPrivacySettingsFragment__stories_automatically_disappear">24 மணிநேரத்திற்குப் பிறகு ஸ்டோரீக்கள் தானாகவே மறைந்துவிடும். உங்கள் ஸ்டோரியை யார் பார்வையிடலாம் அல்லது குறிப்பிட்ட பார்வையாளர்கள் அல்லது குழுக்களுடன் புதிய கதைகளை உருவாக்கவும்.</string>
+    <string name="StoriesPrivacySettingsFragment__stories_automatically_disappear">24 மணிநேரத்திற்குப் பிறகு ஸ்டோரீஸ் தானாகவே மறைந்துவிடும். உங்கள் ஸ்டோரியை யார் பார்வையிடலாம் அல்லது குறிப்பிட்ட பார்வையாளர்கள் அல்லது குழுக்களுடன் புதிய ஸ்டோரீஸ்-ஐ உருவாக்கவும்.</string>
     <!-- Preference title to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__turn_off_stories">ஸ்டோரீக்களை முடக்கவும்</string>
+    <string name="StoriesPrivacySettingsFragment__turn_off_stories">ஸ்டோரீஸ்-ஐ முடக்கவும்</string>
     <!-- Preference summary to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__if_you_opt_out">நீங்கள் ஸ்டோரீக்களில் இருந்து விலகினால், இனி உங்களால் ஸ்டோரீக்களைப் பகிரவோ அல்லது பார்க்கவோ முடியாது.</string>
+    <string name="StoriesPrivacySettingsFragment__if_you_opt_out">நீங்கள் ஸ்டோரீஸ்-இல் இருந்து விலகினால், இனி உங்களால் ஸ்டோரீஸ்-ஐ பகிரவோ அல்லது பார்க்கவோ முடியாது.</string>
     <!-- Preference title to turn on stories -->
-    <string name="StoriesPrivacySettingsFragment__turn_on_stories">ஸ்டோரீக்களை இயக்கவும்</string>
+    <string name="StoriesPrivacySettingsFragment__turn_on_stories">ஸ்டோரீஸ்-ஐ இயக்கவும்</string>
     <!-- Preference summary to turn on stories -->
-    <string name="StoriesPrivacySettingsFragment__share_and_view">மற்றவர்களின் ஸ்டோரீக்களைப் பகிரவும் மற்றும் பார்வையிடவும். 24 மணிநேரத்திற்குப் பிறகு ஸ்டோரீக்கள் தானாகவே மறைந்துவிடும்.</string>
+    <string name="StoriesPrivacySettingsFragment__share_and_view">மற்றவர்களின் ஸ்டோரீஸ்-ஐ பகிரவும் மற்றும் பார்வையிடவும். 24 மணிநேரத்திற்குப் பிறகு ஸ்டோரீஸ் தானாகவே மறைந்துவிடும்.</string>
     <!-- Dialog title to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">ஸ்டோரீக்களை முடக்குவதா?</string>
+    <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">ஸ்டோரீஸ்-ஐ முடக்குவதா?</string>
     <!-- Dialog message to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">இனி உங்களால் ஸ்டோரீக்களைப் பகிரவோ பார்க்கவோ முடியாது. சமீபத்தில் நீங்கள் பகிர்ந்த ஸ்டோரி புதுப்பிப்புகளும் நீக்கப்படும்.</string>
     <!-- Page title when launched from stories landing screen -->
@@ -5339,6 +5339,24 @@
     <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">உங்கள் எஸ்.எம்.எஸ் செய்திகளை ஏற்றுமதி செய்ய, இயல்புநிலை எஸ்.எம்.எஸ் பயன்பாடாக சிக்னலை அமைக்க வேண்டும்.</string>
     <!-- Button label to start export -->
     <string name="SetSignalAsDefaultSmsAppFragment__next">அடுத்தது</string>
+
+    <!-- BackupSchedulePermission Megaphone -->
+    <!-- Can't backup chats megaphone title -->
+    <string name="BackupSchedulePermissionMegaphone__cant_back_up_chats">Can\'t back up chats</string>
+    <!-- Can't backup chats megaphone message -->
+    <string name="BackupSchedulePermissionMegaphone__your_chats_are_no_longer_being_automatically_backed_up">Your chats are no longer being automatically backed up.</string>
+    <!-- Can't backup chats megaphone button text to take steps to re-enable -->
+    <string name="BackupSchedulePermissionMegaphone__back_up_chats">Back up chats</string>
+    <!-- Can't backup chats megaphone button to snooze megaphone and be reshown later -->
+    <string name="BackupSchedulePermissionMegaphone__not_now">Not now</string>
+    <!-- Re-enable backup permission bottom sheet title -->
+    <string name="BackupSchedulePermissionMegaphone__to_reenable_backups">To re-enable backups:</string>
+    <!-- Re-enable backups permission bottom sheet instruction 1 text -->
+    <string name="BackupSchedulePermissionMegaphone__tap_the_go_to_settings_button_below">Tap the \"Go to settings\" button below</string>
+    <!-- Re-enable backups permission bottom sheet instruction 2 text -->
+    <string name="BackupSchedulePermissionMegaphone__turn_on_allow_settings_alarms_and_reminders">Turn on \"Allow settings alarms and reminders.\"</string>
+    <!-- Re-enable backups permission bottom sheet call to action button to open settings -->
+    <string name="BackupSchedulePermissionMegaphone__go_to_settings">Go to settings</string>
 
     <!-- EOF -->
 

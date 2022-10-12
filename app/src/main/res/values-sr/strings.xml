@@ -2911,19 +2911,19 @@
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
-    <string name="PaymentsSecuritySetupFragment__security_setup">Security setup</string>
+    <string name="PaymentsSecuritySetupFragment__security_setup">Сигурносна подешавања</string>
     <!-- Title to enable payment lock -->
-    <string name="PaymentsSecuritySetupFragment__protect_your_funds">Protect your funds</string>
+    <string name="PaymentsSecuritySetupFragment__protect_your_funds">Заштитите своја средства</string>
     <!-- Description as to why payment lock is required -->
-    <string name="PaymentsSecuritySetupFragment__help_prevent">Help prevent a person with your phone from accessing your funds by adding another layer of security. You can disable this option in Settings.</string>
+    <string name="PaymentsSecuritySetupFragment__help_prevent">Додајте још један слој сигурности да бисте спречили особу која има приступ вашем телефону да приступи и вашим средствима. Ту опцију можете деактивирати у подешавањима.</string>
     <!-- Option to enable payment lock -->
-    <string name="PaymentsSecuritySetupFragment__enable_payment_lock">Enable payment lock</string>
+    <string name="PaymentsSecuritySetupFragment__enable_payment_lock">Активирајте закључавање плаћања</string>
     <!-- Option to cancel -->
     <string name="PaymentsSecuritySetupFragment__not_now">Не сада</string>
     <!-- Dialog title to confirm skipping the step -->
-    <string name="PaymentsSecuritySetupFragment__skip_this_step">Skip this step?</string>
+    <string name="PaymentsSecuritySetupFragment__skip_this_step">Желите ли да прескочите овај корак?</string>
     <!-- Dialog description to let users know why payment lock is required -->
-    <string name="PaymentsSecuritySetupFragment__skipping_this_step">Skipping this step could allow anyone who has physical access to your phone to transfer funds or view your recovery phrase.</string>
+    <string name="PaymentsSecuritySetupFragment__skipping_this_step">Ако прескочите овај корак то значи да свако ко има физички приступ вашем телефону може да пренесе ваша средства или види вашу фразу за опоравак.</string>
     <!-- Dialog option to cancel -->
     <string name="PaymentsSecuritySetupFragment__cancel">Одустани</string>
     <!-- Dialog option to skip -->
@@ -4283,7 +4283,7 @@
     <!-- Displayed when user selects a video that will be clipped before sharing to a story -->
     <string name="MultiselectForwardFragment__videos_will_be_trimmed">Видео снимци ће бити скраћени на клипове од 30 секунди и послати као више прича.</string>
     <!-- Displayed when user selects a video that cannot be sent as a story -->
-    <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">Видео снимци који се шаљу у причама не могу бити дужи од 30 секунди.</string>
+    <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">Видео снимци објављени у причама не могу бити дужи од 30 секунди.</string>
     <string name="MultiselectForwardFragment__forwarded_messages_are_now">Прослеђивање поруке је сада урађено сместа.</string>
     <plurals name="MultiselectForwardFragment_send_d_messages">
         <item quantity="one">Send %1$d message</item>
@@ -4825,7 +4825,7 @@
     <!-- Displayed when a story has no replies yet -->
     <string name="StoryGroupReplyFragment__no_replies_yet">Без одговора</string>
     <!-- Displayed when no longer a group member -->
-    <string name="StoryGroupReplyFragment__you_cant_reply">You can\'t reply to this story because you\'re no longer a member of this group.</string>
+    <string name="StoryGroupReplyFragment__you_cant_reply">Не можете да одговорите на ову причу јер више нисте члан ове групе.</string>
     <!-- Displayed for each user that reacted to a story when viewing replies -->
     <string name="StoryGroupReactionReplyItem__reacted_to_the_story">Реаговао/ла је на причу</string>
     <!-- Label for story views tab -->
@@ -4946,19 +4946,19 @@
     <!-- Dialog title for removing a group story -->
     <string name="StoryDialogs__remove_group_story">Желите ли да уклоните групну причу?</string>
     <!-- Dialog message for removing a group story -->
-    <string name="StoryDialogs__s_will_be_removed">\"%1$s\" will be removed.</string>
+    <string name="StoryDialogs__s_will_be_removed">Прича „%1$s“ биће уклоњена.</string>
     <!-- Dialog positive action for removing a group story -->
     <string name="StoryDialogs__remove">Уклони</string>
     <!-- Dialog title for deleting a private story -->
     <string name="StoryDialogs__delete_private_story">Желите ли да избришете приватну причу?</string>
     <!-- Dialog message for deleting a private story -->
-    <string name="StoryDialogs__s_and_updates_shared">\"%1$s\" and updates shared to this story will be deleted.</string>
+    <string name="StoryDialogs__s_and_updates_shared">Прича „%1$s“ и све подељено у њој биће уклоњени.</string>
     <!-- Dialog positive action for deleting a private story -->
     <string name="StoryDialogs__delete">Обриши</string>
     <!-- Dialog title for first time sending something to a beta story -->
-    <string name="StoryDialogs__stories_is_available_to">Stories is available to Signal beta users only.</string>
+    <string name="StoryDialogs__stories_is_available_to">Приче су доступне само бета корисницима Signal-а.</string>
     <!-- Dialog message for first time sending something to a beta story -->
-    <string name="StoryDialogs__if_you_share_a_story">If you share a story, it will only be available to people who are on Signal beta.</string>
+    <string name="StoryDialogs__if_you_share_a_story">Ако поделите причу, она ће бити доступна само људима који су на бета верзији Signal-а.</string>
     <!-- Dialog title for first time adding something to a story -->
     <string name="StoryDialogs__add_to_story_q">Желите ли да додате садржај у причу?</string>
     <!-- Dialog message for first time adding something to a story -->
@@ -4972,7 +4972,7 @@
     <!-- Error message dialog button to resend a previously failed story send -->
     <string name="StoryDialogs__send">Пошаљи</string>
     <!-- Action button for turning off stories when stories are present on the device -->
-    <string name="StoryDialogs__turn_off_and_delete">Turn off and delete</string>
+    <string name="StoryDialogs__turn_off_and_delete">Искључи и избриши</string>
     <!-- Privacy Settings toggle title for stories -->
     <string name="PrivacySettingsFragment__share_and_view_stories">Поделите и видите приче</string>
     <!-- Privacy Settings toggle summary for stories -->
@@ -5113,18 +5113,18 @@
     <string name="ContactSearchItems__only_share_with">Само подели са</string>
     <!-- Label under name for private stories -->
     <plurals name="ContactSearchItems__private_story_d_viewers">
-        <item quantity="one">Private story · %1$d viewer</item>
-        <item quantity="other">Private story · %1$d viewers</item>
+        <item quantity="one">Приватна прича · Гледалаца: %1$d</item>
+        <item quantity="other">Приватна прича · Гледалаца: %1$d</item>
     </plurals>
     <!-- Label under name for group stories -->
     <plurals name="ContactSearchItems__group_story_d_viewers">
-        <item quantity="one">Group story · %1$d viewer</item>
-        <item quantity="other">Group story · %1$d viewers</item>
+        <item quantity="one">Групна прича · Гледалаца: %1$d</item>
+        <item quantity="other">Групна прича · Гледалаца: %1$d</item>
     </plurals>
     <!-- Label under name for groups -->
     <plurals name="ContactSearchItems__group_d_members">
-        <item quantity="one">%1$d member</item>
-        <item quantity="other">%1$d members</item>
+        <item quantity="one">Број чланова: 1</item>
+        <item quantity="other">Број чланова: %1$d</item>
     </plurals>
     <!-- Label under name for my story -->
     <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
@@ -5261,7 +5261,7 @@
     <!-- Dialog title to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">Желите ли да искључите приче?</string>
     <!-- Dialog message to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">You will no longer be able to share or view stories. Story updates you have recently shared will also be deleted.</string>
+    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">Више нећете моћи да делите или видите приче. Све што сте поделили у причама ће такође бити избрисано.</string>
     <!-- Page title when launched from stories landing screen -->
     <string name="StoriesPrivacySettingsFragment__story_privacy">Приватност прича</string>
 
@@ -5339,6 +5339,24 @@
     <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">Да бисте извезли SMS поруке, потребно је да подесите Signal као подразумевану апликацију за SMS.</string>
     <!-- Button label to start export -->
     <string name="SetSignalAsDefaultSmsAppFragment__next">Даље</string>
+
+    <!-- BackupSchedulePermission Megaphone -->
+    <!-- Can't backup chats megaphone title -->
+    <string name="BackupSchedulePermissionMegaphone__cant_back_up_chats">Can\'t back up chats</string>
+    <!-- Can't backup chats megaphone message -->
+    <string name="BackupSchedulePermissionMegaphone__your_chats_are_no_longer_being_automatically_backed_up">Your chats are no longer being automatically backed up.</string>
+    <!-- Can't backup chats megaphone button text to take steps to re-enable -->
+    <string name="BackupSchedulePermissionMegaphone__back_up_chats">Back up chats</string>
+    <!-- Can't backup chats megaphone button to snooze megaphone and be reshown later -->
+    <string name="BackupSchedulePermissionMegaphone__not_now">Not now</string>
+    <!-- Re-enable backup permission bottom sheet title -->
+    <string name="BackupSchedulePermissionMegaphone__to_reenable_backups">To re-enable backups:</string>
+    <!-- Re-enable backups permission bottom sheet instruction 1 text -->
+    <string name="BackupSchedulePermissionMegaphone__tap_the_go_to_settings_button_below">Tap the \"Go to settings\" button below</string>
+    <!-- Re-enable backups permission bottom sheet instruction 2 text -->
+    <string name="BackupSchedulePermissionMegaphone__turn_on_allow_settings_alarms_and_reminders">Turn on \"Allow settings alarms and reminders.\"</string>
+    <!-- Re-enable backups permission bottom sheet call to action button to open settings -->
+    <string name="BackupSchedulePermissionMegaphone__go_to_settings">Go to settings</string>
 
     <!-- EOF -->
 

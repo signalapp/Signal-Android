@@ -5164,7 +5164,7 @@
     <!-- Done button label for hide story from screen -->
     <string name="HideStoryFromFragment__done">Готово</string>
     <!-- Dialog title for removing a group story -->
-    <string name="StoryDialogs__remove_group_story">Удалить историю группы?</string>
+    <string name="StoryDialogs__remove_group_story">Удалить историю в группе?</string>
     <!-- Dialog message for removing a group story -->
     <string name="StoryDialogs__s_will_be_removed">«%1$s» будет удалена.</string>
     <!-- Dialog positive action for removing a group story -->
@@ -5229,7 +5229,7 @@
     <!-- Choose story type bottom sheet new story row summary -->
     <string name="ChooseStoryTypeBottomSheet__visible_only_to">Видна только определённым людям</string>
     <!-- Choose story type bottom sheet group story title -->
-    <string name="ChooseStoryTypeBottomSheet__group_story">История группы</string>
+    <string name="ChooseStoryTypeBottomSheet__group_story">История в группе</string>
     <!-- Choose story type bottom sheet group story summary -->
     <string name="ChooseStoryTypeBottomSheet__share_to_an_existing_group">Поделитесь с существующей группой</string>
     <!-- Choose groups bottom sheet title -->
@@ -5344,10 +5344,10 @@
     </plurals>
     <!-- Label under name for group stories -->
     <plurals name="ContactSearchItems__group_story_d_viewers">
-        <item quantity="one">История группы · %1$d зритель</item>
-        <item quantity="few">История группы · %1$d зрителя</item>
-        <item quantity="many">История группы · %1$d зрителей</item>
-        <item quantity="other">История группы · %1$d зрителя</item>
+        <item quantity="one">История в группе · %1$d зритель</item>
+        <item quantity="few">История в группе · %1$d зрителя</item>
+        <item quantity="many">История в группе · %1$d зрителей</item>
+        <item quantity="other">История в группе · %1$d зрителя</item>
     </plurals>
     <!-- Label under name for groups -->
     <plurals name="ContactSearchItems__group_d_members">
@@ -5372,7 +5372,7 @@
     <!-- Label for context menu item to delete a private story -->
     <string name="ContactSearchItems__delete_story">Удалить историю</string>
     <!-- Dialog title for removing a group story -->
-    <string name="ContactSearchMediator__remove_group_story">Удалить историю группы?</string>
+    <string name="ContactSearchMediator__remove_group_story">Удалить историю в группе?</string>
     <!-- Dialog message for removing a group story -->
     <string name="ContactSearchMediator__this_will_remove">Это приведет к удалению истории из этого списка. Вы по-прежнему сможете просматривать истории этой группы.</string>
     <!-- Dialog action item for removing a group story -->
@@ -5509,9 +5509,9 @@
     <!-- Section header for who can view a group story -->
     <string name="GroupStorySettingsFragment__who_can_view_this_story">Кто может просматривать эту историю</string>
     <!-- Explanation of who can view a group story -->
-    <string name="GroupStorySettingsFragment__members_of_the_group_s">"Члены группы «%1$s» могут просматривать эту историю и отвечать на неё. Вы можете обновить членство в этом чате в группе."</string>
+    <string name="GroupStorySettingsFragment__members_of_the_group_s">"Участники группы «%1$s» могут просматривать эту историю и отвечать на неё. Вы можете обновить членство в этом чате в группе."</string>
     <!-- Preference label for removing this group story -->
-    <string name="GroupStorySettingsFragment__remove_group_story">Удалить историю группы</string>
+    <string name="GroupStorySettingsFragment__remove_group_story">Удалить историю в группе</string>
 
     <!-- Generic title for overflow menus -->
     <string name="OverflowMenu__overflow_menu">Меню переполнения</string>
@@ -5579,6 +5579,24 @@
     <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">Чтобы экспортировать SMS-сообщения, необходимо сделать Signal приложением для SMS по умолчанию.</string>
     <!-- Button label to start export -->
     <string name="SetSignalAsDefaultSmsAppFragment__next">Далее</string>
+
+    <!-- BackupSchedulePermission Megaphone -->
+    <!-- Can't backup chats megaphone title -->
+    <string name="BackupSchedulePermissionMegaphone__cant_back_up_chats">Can\'t back up chats</string>
+    <!-- Can't backup chats megaphone message -->
+    <string name="BackupSchedulePermissionMegaphone__your_chats_are_no_longer_being_automatically_backed_up">Your chats are no longer being automatically backed up.</string>
+    <!-- Can't backup chats megaphone button text to take steps to re-enable -->
+    <string name="BackupSchedulePermissionMegaphone__back_up_chats">Back up chats</string>
+    <!-- Can't backup chats megaphone button to snooze megaphone and be reshown later -->
+    <string name="BackupSchedulePermissionMegaphone__not_now">Not now</string>
+    <!-- Re-enable backup permission bottom sheet title -->
+    <string name="BackupSchedulePermissionMegaphone__to_reenable_backups">To re-enable backups:</string>
+    <!-- Re-enable backups permission bottom sheet instruction 1 text -->
+    <string name="BackupSchedulePermissionMegaphone__tap_the_go_to_settings_button_below">Tap the \"Go to settings\" button below</string>
+    <!-- Re-enable backups permission bottom sheet instruction 2 text -->
+    <string name="BackupSchedulePermissionMegaphone__turn_on_allow_settings_alarms_and_reminders">Turn on \"Allow settings alarms and reminders.\"</string>
+    <!-- Re-enable backups permission bottom sheet call to action button to open settings -->
+    <string name="BackupSchedulePermissionMegaphone__go_to_settings">Go to settings</string>
 
     <!-- EOF -->
 

@@ -218,9 +218,9 @@
     <!-- Header for username search -->
     <string name="ContactsCursorLoader_find_by_username">యూజర్‌నేమ్ ద్వారా కనుగొనండి</string>
     <!-- Label for my stories when selecting who to send media to -->
-    <string name="ContactsCursorLoader_my_stories">నా కథలు</string>
+    <string name="ContactsCursorLoader_my_stories">నా స్టోరీస్</string>
     <!-- Action for creating a new story -->
-    <string name="ContactsCursorLoader_new_story">కొత్త కథ</string>
+    <string name="ContactsCursorLoader_new_story">కొత్త స్టోరీ</string>
 
     <!-- ContactsDatabase -->
     <string name="ContactsDatabase_message_s">%1$sకి సందేశం పంపు</string>
@@ -1524,7 +1524,7 @@
     <!-- Recipient -->
     <string name="Recipient_you">మీరు</string>
     <!-- Name of recipient representing user\'s \'My Story\' -->
-    <string name="Recipient_my_story">నా కథ</string>
+    <string name="Recipient_my_story">నా స్టోరీ</string>
 
     <!-- RecipientPreferencesActivity -->
     <string name="RecipientPreferenceActivity_block">నిరోధించు</string>
@@ -1855,9 +1855,9 @@
     <!-- Displayed in the notification when the user has opened a received gift -->
     <string name="ThreadRecord__you_redeemed_a_gift_badge">మీరు ఒక గిఫ్ట్ బ్యాడ్జీని రీడిమ్ చేసుకున్నారు</string>
     <!-- Displayed in the conversation list when someone reacted to your story -->
-    <string name="ThreadRecord__reacted_s_to_your_story">మీ కథకు %1$s ప్రతిస్పందించారు</string>
+    <string name="ThreadRecord__reacted_s_to_your_story">మీ స్టోరీకు %1$s ప్రతిస్పందించారు</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
-    <string name="ThreadRecord__reacted_s_to_their_story">వారి కథకు %1$s ప్రతిస్పందించారు</string>
+    <string name="ThreadRecord__reacted_s_to_their_story">వారి స్టోరీకు %1$s ప్రతిస్పందించారు</string>
 
     <!-- UpdateApkReadyListener -->
     <string name="UpdateApkReadyListener_Signal_update">Signal నవీకరణ</string>
@@ -2039,7 +2039,7 @@
     <string name="SingleRecipientNotificationBuilder_message_request">సందేశ అభ్యర్థన</string>
     <string name="SingleRecipientNotificationBuilder_you">మీరు</string>
     <!-- Notification subtext for group stories -->
-    <string name="SingleRecipientNotificationBuilder__s_dot_story">%1$s • కథ</string>
+    <string name="SingleRecipientNotificationBuilder__s_dot_story">%1$s • స్టోరీ</string>
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">వీడియో ప్లే చేయండి</string>
@@ -2199,9 +2199,9 @@
     <string name="QuoteView_you">మీరు</string>
     <string name="QuoteView_original_missing">అసలు సందేశం కనుగొనబడలేదు</string>
     <!-- Author formatting for group stories -->
-    <string name="QuoteView_s_story">%1$s · కథ</string>
+    <string name="QuoteView_s_story">%1$s · స్టోరీ</string>
     <!-- Label indicating that a quote is for a reply to a story you created -->
-    <string name="QuoteView_your_story">మీ కథ</string>
+    <string name="QuoteView_your_story">మీ స్టోరీ</string>
     <!-- Label indicating that the story being replied to no longer exists -->
     <string name="QuoteView_no_longer_available">ఇక ఏమాత్రం లభ్యం కాదు</string>
     <!-- Label for quoted gift -->
@@ -2344,7 +2344,7 @@
     <!-- Displayed in a toast when user long presses an item in MyStories -->
     <string name="MyStoriesFragment__copied_sent_timestamp_to_clipboard">పంపిన టైమ్‌స్టాంప్ క్లిప్‌బోర్డ్‌కు కాపీ చేయబడింది.</string>
     <!-- Displayed when there are no outgoing stories -->
-    <string name="MyStoriesFragment__updates_to_your_story_will_show_up_here">మీ కథకు అప్‌డేట్స్ ఇక్కడ కనిపిస్తాయి.</string>
+    <string name="MyStoriesFragment__updates_to_your_story_will_show_up_here">మీ స్టోరీకు అప్‌డేట్స్ ఇక్కడ కనిపిస్తాయి.</string>
 
     <!-- GroupUtil -->
     <plurals name="GroupUtil_joined_the_group">
@@ -2606,7 +2606,7 @@
     <string name="preferences__one_time_donation">ఒక్కసారి విరాళం</string>
     <string name="preferences__privacy">గోప్యత</string>
     <!-- Preference label for stories -->
-    <string name="preferences__stories">కథలు</string>
+    <string name="preferences__stories">స్టోరీస్</string>
     <string name="preferences__mms_user_agent">ఎమ్మెమ్మెస్ వినియోగ ప్రతినిధి</string>
     <string name="preferences__advanced_mms_access_point_names">కరదీపిక తో ఎమ్మెమ్మెస్ సర్దుబాటు చేయి</string>
     <string name="preferences__mmsc_url">ఎమ్మెమ్మెస్సి యు.అర్.ల్</string>
@@ -2666,7 +2666,7 @@
     <string name="preferences_storage__audio">ఆడియో</string>
     <string name="preferences_storage__review_storage">నిల్వను సమీక్షించండి</string>
     <string name="preferences_storage__delete_older_messages">పాత సందేశాలను తొలగించాలా?</string>
-    <string name="preferences_storage__clear_message_history">సందేశ చరిత్రను తొలగించేదా?</string>
+    <string name="preferences_storage__clear_message_history">సందేశ చరిత్రను తొలగించాలా?</string>
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">ఇది మీ పరికరం నుండి %1$s కంటే పాత సందేశ చరిత్ర మరియు మీడియాను అంతటిని శాశ్వతంగా తొలగిస్తుంది.</string>
     <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">ఇది ఇటీవలి %1$s సందేశాలకు అన్ని సంభాషణలను శాశ్వతంగా ట్రిమ్ చేస్తుంది.</string>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">ఇది మీ పరికరం నుండి సందేశ చరిత్ర మరియు మీడియాను అంతటిని శాశ్వతంగా తొలగిస్తుంది.</string>
@@ -4001,7 +4001,7 @@
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">క్రొత్త మాటామంతిల కోసం అప్రమేయ టైమర్</string>
     <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">మీరు ప్రారంభించిన అన్ని క్రొత్త మాటామంతిల కోసం అప్రమేయంగా అదృశ్యమయ్యే సందేశ టైమర్‌ను సెట్ చేయండి.</string>
     <!-- Summary for stories preference to launch into story privacy settings -->
-    <string name="PrivacySettingsFragment__manage_your_stories">మీరు కథలను మరియు వాటిని ఎవరు వీక్షించవచ్చు అనేది నిర్వహించండి</string>
+    <string name="PrivacySettingsFragment__manage_your_stories">మీరు స్టోరీలను మరియు వాటిని ఎవరు వీక్షించవచ్చు అనేది నిర్వహించండి</string>
     <string name="PrivacySettingsFragment__payment_lock_require_lock">నిధులు బదిలీ చేయడానికి Android స్క్రీన్ లాక్ లేదా వేలిముద్ర అవసరం</string>
     <!-- Alert dialog title when payment lock cannot be enabled -->
     <string name="PrivacySettingsFragment__cant_enable_title">చెల్లింపు లాక్‌ని ప్రారంభించలేరు</string>
@@ -4281,9 +4281,9 @@
     <string name="MultiselectForwardFragment__add_a_message">ఒక సందేశాన్ని జోడించండి</string>
     <string name="MultiselectForwardFragment__faster_forwards">వేగవంతమైన ఫార్వర్డ్‌లు</string>
     <!-- Displayed when user selects a video that will be clipped before sharing to a story -->
-    <string name="MultiselectForwardFragment__videos_will_be_trimmed">వీడియోలు 30 సెకండ్ల క్లిప్‌లకు ట్రిమ్ చేయబడి, అనేక కథల లాగా పంపబడతాయి.</string>
+    <string name="MultiselectForwardFragment__videos_will_be_trimmed">వీడియోలు 30 సెకండ్ల క్లిప్‌లకు ట్రిమ్ చేయబడి, అనేక స్టోరీల వలే పంపబడతాయి.</string>
     <!-- Displayed when user selects a video that cannot be sent as a story -->
-    <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">కథలకు పంపబడిన వీడియోలు 30 సెకండ్లు మించి ఉండరాదు.</string>
+    <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">స్టోరీలకు పంపిన వీడియోలు 30 సెకండ్లు మించి ఉండరాదు.</string>
     <string name="MultiselectForwardFragment__forwarded_messages_are_now">ఫార్వర్డ్ చేయబడ్డ సందేశాలు ఇప్పుడు వెంటనే పంపబడతాయి.</string>
     <plurals name="MultiselectForwardFragment_send_d_messages">
         <item quantity="one">%1$d సందేశం పంపండి</item>
@@ -4724,21 +4724,21 @@
     <!-- Label for Chats tab in home app screen -->
     <string name="ConversationListTabs__chats">మాటామంతి</string>
     <!-- Label for Stories tab in home app screen -->
-    <string name="ConversationListTabs__stories">కథలు</string>
+    <string name="ConversationListTabs__stories">స్టోరీస్</string>
     <!-- String for counts above 99 in conversation list tabs -->
     <string name="ConversationListTabs__99p">99+</string>
     <!-- Menu item on stories landing page -->
-    <string name="StoriesLandingFragment__story_privacy">కథ గోప్యత</string>
+    <string name="StoriesLandingFragment__story_privacy">స్టోరీ గోప్యత</string>
     <!-- Title for "My Stories" row item in Stories landing page -->
-    <string name="StoriesLandingFragment__my_stories">నా కథలు</string>
+    <string name="StoriesLandingFragment__my_stories">నా స్టోరీస్</string>
     <!-- Subtitle for "My Stories" row item when user has not added stories -->
-    <string name="StoriesLandingFragment__tap_to_add_a_story">ఒక కథను జోడించేందుకు తట్టండి</string>
+    <string name="StoriesLandingFragment__tap_to_add_a_story">ఒక స్టోరీను జోడించేందుకు తట్టండి</string>
     <!-- Displayed when there are no stories to display -->
     <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now">ప్రస్తుతం చూపించడానికి ఇటీవల అప్‌డేట్‌లు ఏవీ లేవు.</string>
     <!-- Context menu option to hide a story -->
-    <string name="StoriesLandingItem__hide_story">కథను దాయండి</string>
+    <string name="StoriesLandingItem__hide_story">స్టోరీను దాయండి</string>
     <!-- Context menu option to unhide a story -->
-    <string name="StoriesLandingItem__unhide_story">కథను దాయకుండా ఉండండి</string>
+    <string name="StoriesLandingItem__unhide_story">స్టోరీను దాచిపెట్టకుండా ఉండండి</string>
     <!-- Context menu option to forward a story -->
     <string name="StoriesLandingItem__forward">బదలాయించు</string>
     <!-- Context menu option to share a story -->
@@ -4758,15 +4758,15 @@
     <!-- Status label when a story fails to send indicating user action to retry -->
     <string name="StoriesLandingItem__tap_to_retry">మళ్లీ ప్రయత్నించడానికి తట్టండి</string>
     <!-- Title of dialog confirming decision to hide a story -->
-    <string name="StoriesLandingFragment__hide_story">కథను దాచేదా?</string>
+    <string name="StoriesLandingFragment__hide_story">స్టోరీను దాచేదా?</string>
     <!-- Message of dialog confirming decision to hide a story -->
-    <string name="StoriesLandingFragment__new_story_updates">%1$s నుంచి కొత్త కథ అప్‌డేట్స్ కథల జాబితాలో పైన ఇక ఏమాత్రం కనిపించవు.</string>
+    <string name="StoriesLandingFragment__new_story_updates">%1$s నుంచి కొత్త స్టోరీ అప్‌డేట్స్ స్టోరీల జాబితాలో పైన ఇక ఏమాత్రం కనిపించవు.</string>
     <!-- Positive action of dialog confirming decision to hide a story -->
     <string name="StoriesLandingFragment__hide">దాచు</string>
     <!-- Displayed in Snackbar after story is hidden -->
-    <string name="StoriesLandingFragment__story_hidden">కథ దాయబడింది</string>
+    <string name="StoriesLandingFragment__story_hidden">స్టోరీ దాయబడింది</string>
     <!-- Section header for hidden stories -->
-    <string name="StoriesLandingFragment__hidden_stories">దాయబడిన కథలు</string>
+    <string name="StoriesLandingFragment__hidden_stories">దాయబడిన స్టోరీస్</string>
     <!-- Displayed on each sent story under My Stories -->
     <plurals name="MyStories__d_views">
         <item quantity="one">%1$d వీక్షణ</item>
@@ -4775,11 +4775,11 @@
     <!-- Forward story label, displayed in My Stories context menu -->
     <string name="MyStories_forward">బదలాయించు</string>
     <!-- Label for stories for a single user. Format is {given name}\'s Story -->
-    <string name="MyStories__ss_story">%1$s యొక్క కథ</string>
+    <string name="MyStories__ss_story">%1$s యొక్క స్టోరీ</string>
     <!-- Title of dialog to confirm deletion of story -->
-    <string name="MyStories__delete_story">కథను తొలగించేదా?</string>
+    <string name="MyStories__delete_story">స్టోరీను తొలగించాలా?</string>
     <!-- Message of dialog to confirm deletion of story -->
-    <string name="MyStories__this_story_will_be_deleted">ఈ కథ మీకు మరియు దీనిని అందుకున్న ప్రతిఒక్కరికి తొలగించబడుతుంది.</string>
+    <string name="MyStories__this_story_will_be_deleted">ఈ స్టోరీ మీకు మరియు దీనిని అందుకున్న ప్రతిఒక్కరికి తొలగించబడుతుంది.</string>
     <!-- Toast shown when story media cannot be saved -->
     <string name="MyStories__unable_to_save">సేవ్ చేయలేకపోయింది</string>
     <!-- Displayed at bottom of story viewer when current item has views -->
@@ -4811,7 +4811,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">ఇంకా ఎలాంటి వీక్షణలు లేవు</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">మీ కథలను ఎవరు వీక్షించారనేది చూడటానికి రీడ్ రిసిప్ట్స్ ప్రారంభించండి.</string>
+    <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">మీ స్టోరీలను ఎవరు వీక్షించారనేది చూడటానికి రీడ్ రిసిప్ట్స్ ప్రారంభించండి.</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">సెట్టింగ్‌లకు వెళ్లండి</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -4827,13 +4827,13 @@
     <!-- Displayed when no longer a group member -->
     <string name="StoryGroupReplyFragment__you_cant_reply">ఈ గ్రూప్‌లో మీరు ఇక ఏమాత్రం సభ్యులు కానందు వల్ల, ఈ కథకు మీరు బదులివ్వలేరు.</string>
     <!-- Displayed for each user that reacted to a story when viewing replies -->
-    <string name="StoryGroupReactionReplyItem__reacted_to_the_story">కథకు ప్రతిస్పందించారు</string>
+    <string name="StoryGroupReactionReplyItem__reacted_to_the_story">స్టోరీకు ప్రతిస్పందించారు</string>
     <!-- Label for story views tab -->
     <string name="StoryViewsAndRepliesDialogFragment__views">వీక్షణలు</string>
     <!-- Label for story replies tab -->
     <string name="StoryViewsAndRepliesDialogFragment__replies">రిప్లైలు</string>
     <!-- Description of action for reaction button -->
-    <string name="StoryReplyComposer__react_to_this_story">ఈ కథకు ప్రతిస్పందించండి</string>
+    <string name="StoryReplyComposer__react_to_this_story">ఈ స్టోరీకు ప్రతిస్పందించండి</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">%1$sకు ప్రైవేట్‌గా బదులివ్వడం</string>
     <!-- Context menu item to privately reply to a story response -->
@@ -4843,7 +4843,7 @@
     <!-- Context menu item to delete a story response -->
     <string name="StoryGroupReplyItem__delete">తొలగించండి</string>
     <!-- Page title for My Story options -->
-    <string name="MyStorySettingsFragment__my_story">నా కథ</string>
+    <string name="MyStorySettingsFragment__my_story">నా స్టోరీ</string>
     <!-- Number of total signal connections displayed in "All connections" row item -->
     <plurals name="MyStorySettingsFragment__viewers">
         <item quantity="one">%1$d viewer</item>
@@ -4852,9 +4852,9 @@
     <!-- Button on all signal connections row to view all signal connections. Please keep as short as possible. -->
     <string name="MyStorySettingsFragment__view">View</string>
     <!-- Section heading for story visibility -->
-    <string name="MyStorySettingsFragment__who_can_view_this_story">ఈ కథను ఎవరు వీక్షించవచ్చు</string>
+    <string name="MyStorySettingsFragment__who_can_view_this_story">ఈ స్టోరీను ఎవరు వీక్షించవచ్చు</string>
     <!-- Clickable option for selecting people to hide your story from -->
-    <string name="MyStorySettingsFragment__hide_story_from">వీరి నుంచి కథను దాయండి</string>
+    <string name="MyStorySettingsFragment__hide_story_from">వీరి నుంచి స్టోరీను దాయండి</string>
     <!-- Privacy setting title for sending stories to all your signal connections -->
     <string name="MyStorySettingsFragment__all_signal_connections">అన్ని Signal కనెక్షన్‌లు</string>
     <!-- Privacy setting description for sending stories to all your signal connections -->
@@ -4862,7 +4862,7 @@
     <!-- Privacy setting title for sending stories to all except the specified connections -->
     <string name="MyStorySettingsFragment__all_except">వీరు తప్ప అందరూ…</string>
     <!-- Privacy setting description for sending stories to all except the specified connections -->
-    <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">నిర్ధిష్ట వ్యక్తుల నుంచి మీ కథను దాయండి</string>
+    <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">నిర్ధిష్ట వ్యక్తుల నుంచి మీ స్టోరీను దాయండి</string>
     <!-- Summary of clickable option displaying how many people you have excluded from your story -->
     <plurals name="MyStorySettingsFragment__d_people_excluded">
         <item quantity="one">%1$d వ్యక్తులు మినహాయించబడ్డారు</item>
@@ -4878,13 +4878,13 @@
         <item quantity="other">%1$dవ్యక్తులు</item>
     </plurals>
     <!-- My story privacy fine print about what the privacy settings are for -->
-    <string name="MyStorySettingsFragment__choose_who_can_view_your_story">మీ కథను ఎవరు చూడవచ్చు అనేది ఎంచుకోండి. మీరు ఇప్పటికే పంపిన కథలను మార్పులు ప్రభావితం చేయవు.</string>
+    <string name="MyStorySettingsFragment__choose_who_can_view_your_story">మీ స్టోరీను ఎవరు చూడవచ్చు అనేది ఎంచుకోండి. మీరు ఇప్పటికే పంపిన స్టోరీలను మార్పులు ప్రభావితం చేయవు.</string>
     <!-- Section header for options related to replies and reactions -->
     <string name="MyStorySettingsFragment__replies_amp_reactions">రిప్లైలు &amp; రియాక్షన్‌లు</string>
     <!-- Switchable option for allowing replies and reactions on your stories -->
     <string name="MyStorySettingsFragment__allow_replies_amp_reactions">రిప్లైలు &amp; రియాక్షన్‌లు అనుమతించండి</string>
     <!-- Summary for switchable option allowing replies and reactions on your story -->
-    <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">మీ కథను వీక్షించగల వ్యక్తులను ప్రతిస్పందించడానికి మరియు ప్రత్యుత్తరం ఇచ్చేందుకు అనుమతించండి</string>
+    <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">మీ స్టోరీను వీక్షించగల వ్యక్తులను ప్రతిస్పందించడానికి మరియు ప్రత్యుత్తరం ఇచ్చేందుకు అనుమతించండి</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
     <string name="SignalConnectionsBottomSheet___signal_connections">Signal కనెక్షన్‌లు</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
@@ -4896,15 +4896,15 @@
     <!-- Signal connections sheet bullet point 3 -->
     <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">మీ సిస్టమ్ కాంటాక్ట్‌ల్లో వారు ఉండటం</string>
     <!-- Note at the bottom of the Signal connections sheet -->
-    <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"మీ కనెక్షన్స్ మీ పేరు మరియు ఫోటోను చూడవచ్చు, మరియు వారి నుంచి మీరు దాచిపెడితే తప్ప నా కథకు పోస్ట్‌లను చూడవచ్చు."</string>
+    <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"మీ కనెక్షన్స్ మీ పేరు మరియు ఫోటోను చూడవచ్చు, మరియు వారి నుంచి మీరు దాచిపెడితే తప్ప నా స్టోరీకు పోస్ట్‌లను చూడవచ్చు."</string>
     <!-- Clickable option to add a viewer to a private story -->
     <string name="PrivateStorySettingsFragment__add_viewer">వీక్షకుడిని జోడించండి</string>
     <!-- Clickable option to delete a custom story -->
-    <string name="PrivateStorySettingsFragment__delete_private_story">ప్రైవేట్ కథను తొలగించండి</string>
+    <string name="PrivateStorySettingsFragment__delete_private_story">ప్రైవేట్ స్టోరీను తొలగించండి</string>
     <!-- Dialog title when attempting to remove someone from a private story -->
     <string name="PrivateStorySettingsFragment__remove_s">%1$s తొలగించాలా?</string>
     <!-- Dialog message when attempting to remove someone from a private story -->
-    <string name="PrivateStorySettingsFragment__this_person_will_no_longer">ఈ వ్యక్తి మీ కథను ఇక ఏమాత్రం చూడలేరు.</string>
+    <string name="PrivateStorySettingsFragment__this_person_will_no_longer">ఈ వ్యక్తి మీ స్టోరీను ఇక ఏమాత్రం చూడలేరు.</string>
     <!-- Positive action label when attempting to remove someone from a private story -->
     <string name="PrivateStorySettingsFragment__remove">తొలగించు</string>
     <!-- Dialog title when deleting a private story -->
@@ -4912,9 +4912,9 @@
     <!-- Dialog message when deleting a private story -->
     <string name="PrivateStorySettingsFragment__this_action_cannot">ఈ యాక్షన్‌ని అన్‌డ్యూ చేయలేం.</string>
     <!-- Page title for editing a private story name -->
-    <string name="EditPrivateStoryNameFragment__edit_story_name">కథ పేరును సవరించండి</string>
+    <string name="EditPrivateStoryNameFragment__edit_story_name">స్టోరీ పేరును సవరించండి</string>
     <!-- Input field hint when editing a private story name -->
-    <string name="EditPrivateStoryNameFragment__story_name">కథ పేరు</string>
+    <string name="EditPrivateStoryNameFragment__story_name">స్టోరీ పేరు</string>
     <!-- Save button label when editing a private story name -->
     <string name="EditPrivateStoryNameFragment__save">భద్రపరుచు</string>
     <!-- Displayed in text post creator before user enters text -->
@@ -4932,7 +4932,7 @@
     <!-- Hint for entering a URL for a text post -->
     <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">URLని టైప్ చేయండి లేదా పేస్ట్ చేయండి</string>
     <!-- Displayed prior to the user entering a URL for a text post -->
-    <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">మీ కథ యొక్క వీక్షకులతో లింక్‌ను పంచుకోండి</string>
+    <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">మీ స్టోరీ యొక్క వీక్షకులతో లింక్‌ను పంచుకోండి</string>
     <!-- Hint text for searching for a story text post recipient. -->
     <string name="TextStoryPostSendFragment__search">వెతకండి</string>
     <!-- Toast shown when an unexpected error occurs while sending a text story -->
@@ -4944,13 +4944,13 @@
     <!-- Done button label for hide story from screen -->
     <string name="HideStoryFromFragment__done">పూర్తయింది</string>
     <!-- Dialog title for removing a group story -->
-    <string name="StoryDialogs__remove_group_story">గ్రూప్ కథను తొలగించేదా?</string>
+    <string name="StoryDialogs__remove_group_story">గ్రూప్ స్టోరీను తొలగించేదా?</string>
     <!-- Dialog message for removing a group story -->
     <string name="StoryDialogs__s_will_be_removed">\"%1$s\" తొలగించబడుతుంది.</string>
     <!-- Dialog positive action for removing a group story -->
     <string name="StoryDialogs__remove">తొలగించు</string>
     <!-- Dialog title for deleting a private story -->
-    <string name="StoryDialogs__delete_private_story">ప్రైవేట్ కథను తొలగించేదా?</string>
+    <string name="StoryDialogs__delete_private_story">ప్రైవేట్ స్టోరీను తొలగించేదా?</string>
     <!-- Dialog message for deleting a private story -->
     <string name="StoryDialogs__s_and_updates_shared">ఈ కథకు పంచుకోబడ్డ \"%1$s\" మరియు అప్‌డేట్స్ తొలగించబడతాయి.</string>
     <!-- Dialog positive action for deleting a private story -->
@@ -4960,23 +4960,23 @@
     <!-- Dialog message for first time sending something to a beta story -->
     <string name="StoryDialogs__if_you_share_a_story">ఒకవేళ మీరు ఒక కథను పంచుకున్నట్లయితే, Signal బీటా ఉన్న వ్యక్తులకు మాత్రమే అది లభ్యమౌతుంది.</string>
     <!-- Dialog title for first time adding something to a story -->
-    <string name="StoryDialogs__add_to_story_q">కథకు జోడించేదా?</string>
+    <string name="StoryDialogs__add_to_story_q">స్టోరీకు జోడించేదా?</string>
     <!-- Dialog message for first time adding something to a story -->
-    <string name="StoryDialogs__adding_content">మీ కథకు విషయాన్ని జోడించడం వల్ల మీ Signal కనెక్షన్స్ దానిని 24 గంటలపాటు చూడటానికి అనుమతిస్తుంది. మీ కథను ఎవరు చూడవచ్చు అనేదానిని మీరు సెట్టింగ్‌లలో మార్చవచ్చు.</string>
+    <string name="StoryDialogs__adding_content">మీ స్టోరీకు విషయాన్ని జోడించడం వల్ల మీ Signal కనెక్షన్స్ దానిని 24 గంటలపాటు చూడటానికి అనుమతిస్తుంది. మీ స్టోరీను ఎవరు చూడవచ్చు అనేదానిని మీరు సెట్టింగ్‌లలో మార్చవచ్చు.</string>
     <!-- First time share to story dialog: Positive action to go ahead and add to story -->
-    <string name="StoryDialogs__add_to_story">కథకు జోడించండి</string>
+    <string name="StoryDialogs__add_to_story">స్టోరీకు జోడించండి</string>
     <!-- First time share to story dialog: Neutral action to edit who can view "My Story" -->
     <string name="StoryDialogs__edit_viewers">వీక్షకులను ఎడిట్ చేయండి</string>
     <!-- Error message shown when a failure occurs during story send -->
-    <string name="StoryDialogs__story_could_not_be_sent">కథను పంపడం వీలుకాలేదు. మీ కనెక్షన్ తనిఖీ చేసి, మళ్లీ ప్రయత్నించండి.</string>
+    <string name="StoryDialogs__story_could_not_be_sent">స్టోరీను పంపడం వీలుకాలేదు. మీ కనెక్షన్ తనిఖీ చేసి, మళ్లీ ప్రయత్నించండి.</string>
     <!-- Error message dialog button to resend a previously failed story send -->
     <string name="StoryDialogs__send">పంపు</string>
     <!-- Action button for turning off stories when stories are present on the device -->
     <string name="StoryDialogs__turn_off_and_delete">ఆఫ్ చేయండి మరియు తొలగించండి</string>
     <!-- Privacy Settings toggle title for stories -->
-    <string name="PrivacySettingsFragment__share_and_view_stories">కథలను పంచుకోండి &amp; వీక్షించండి</string>
+    <string name="PrivacySettingsFragment__share_and_view_stories">స్టోరీలను పంచుకోండి &amp; వీక్షించండి</string>
     <!-- Privacy Settings toggle summary for stories -->
-    <string name="PrivacySettingsFragment__you_will_no_longer_be_able">ఈ వికల్పం ఆఫ్ చేయబడినప్పుడు, మీరు ఇక ఏమాత్రం కథలను పంచుకోలేరు లేదా వీక్షించలేరు.</string>
+    <string name="PrivacySettingsFragment__you_will_no_longer_be_able">ఈ ఆప్షన్ ఆఫ్ చేయబడినప్పుడు, మీరు ఇక ఏమాత్రం స్టోరీలను పంచుకోలేరు లేదా వీక్షించలేరు.</string>
     <!-- New story viewer selection screen title -->
     <string name="CreateStoryViewerSelectionFragment__choose_viewers">వీక్షకులను ఎంచుకోండి</string>
     <!-- New story viewer selection action button label -->
@@ -4987,9 +4987,9 @@
         <item quantity="other">%1$d వీక్షకులు</item>
     </plurals>
     <!-- Name story screen title -->
-    <string name="CreateStoryWithViewersFragment__name_story">కథకు పేరుపెట్టండి</string>
+    <string name="CreateStoryWithViewersFragment__name_story">స్టోరీకు పేరుపెట్టండి</string>
     <!-- Name story screen label hint -->
-    <string name="CreateStoryWithViewersFragment__story_name_required">కథ పేరు (అవసరం)</string>
+    <string name="CreateStoryWithViewersFragment__story_name_required">స్టోరీ పేరు (అవసరం)</string>
     <!-- Name story screen viewers subheading -->
     <string name="CreateStoryWithViewersFragment__viewers">వీక్షకులు</string>
     <!-- Name story screen create button label -->
@@ -4997,17 +4997,17 @@
     <!-- Name story screen error when save attempted with no label -->
     <string name="CreateStoryWithViewersFragment__this_field_is_required">ఈ ఖాళీని తప్పనిసరిగా పూరించవలెను.</string>
     <!-- Name story screen error when save attempted but label is duplicate -->
-    <string name="CreateStoryWithViewersFragment__there_is_already_a_story_with_this_name">ఈ పేరుతో ఇప్పటికే ఒక కథ ఉంది.</string>
+    <string name="CreateStoryWithViewersFragment__there_is_already_a_story_with_this_name">ఈ పేరుతో ఇప్పటికే ఒక స్టోరీ ఉంది.</string>
     <!-- Text for select all action when editing recipients for a story -->
     <string name="BaseStoryRecipientSelectionFragment__select_all">అన్నీ ఎంచుకో</string>
     <!-- Choose story type bottom sheet title -->
-    <string name="ChooseStoryTypeBottomSheet__choose_your_story_type">మీ కథ రకాన్ని ఎంచుకోండి</string>
+    <string name="ChooseStoryTypeBottomSheet__choose_your_story_type">మీ స్టోరీ రకాన్ని ఎంచుకోండి</string>
     <!-- Choose story type bottom sheet new story row title -->
-    <string name="ChooseStoryTypeBottomSheet__new_private_story">కొత్త ప్రైవేట్ కథ</string>
+    <string name="ChooseStoryTypeBottomSheet__new_private_story">కొత్త ప్రైవేట్ స్టోరీ</string>
     <!-- Choose story type bottom sheet new story row summary -->
     <string name="ChooseStoryTypeBottomSheet__visible_only_to">నిర్ధిష్ట వ్యక్తులకు మాత్రమే కనిపిస్తుంది</string>
     <!-- Choose story type bottom sheet group story title -->
-    <string name="ChooseStoryTypeBottomSheet__group_story">గ్రూప్ కథ</string>
+    <string name="ChooseStoryTypeBottomSheet__group_story">గ్రూప్ స్టోరీ</string>
     <!-- Choose story type bottom sheet group story summary -->
     <string name="ChooseStoryTypeBottomSheet__share_to_an_existing_group">ఇప్పటికే ఉన్న గ్రూపుతో పంచుకోండి</string>
     <!-- Choose groups bottom sheet title -->
@@ -5019,17 +5019,17 @@
     <!-- Displayed in toast after sending a direct reply -->
     <string name="StoryDirectReplyDialogFragment__sending_reply">రిప్లై పంపుతోంది…</string>
     <!-- Displayed in the viewer when a story is no longer available -->
-    <string name="StorySlateView__this_story_is_no_longer_available">ఈ కథ ఇక ఏమాత్రం అందుబాటులో లేదు.</string>
+    <string name="StorySlateView__this_story_is_no_longer_available">ఈ స్టోరీ ఇక ఏమాత్రం అందుబాటులో లేదు.</string>
     <!-- Displayed in the viewer when the network is not available -->
     <string name="StorySlateView__no_internet_connection">ఇంటర్నెట్ కనెక్షన్ లేదు</string>
     <!-- Displayed in the viewer when network is available but content could not be downloaded -->
     <string name="StorySlateView__couldnt_load_content">కంటెంట్‌ని లోడ్ చేయలేకపోయింది</string>
     <!-- Toasted when the user externally shares to a text story successfully -->
-    <string name="TextStoryPostCreationFragment__sent_story">కథను పంపారు</string>
+    <string name="TextStoryPostCreationFragment__sent_story">స్టోరీను పంపారు</string>
     <!-- Toasted when the user external share to a text story fails -->
-    <string name="TextStoryPostCreationFragment__failed_to_send_story">కథను పంపడం విఫలమైంది</string>
+    <string name="TextStoryPostCreationFragment__failed_to_send_story">స్టోరీను పంపడం విఫలమైంది</string>
     <!-- Displayed in a dialog to let the user select a given users story -->
-    <string name="StoryDialogs__view_story">కథను వీక్షించండి</string>
+    <string name="StoryDialogs__view_story">స్టోరీను వీక్షించండి</string>
     <!-- Displayed in a dialog to let the user select a given users profile photo -->
     <string name="StoryDialogs__view_profile_photo">ప్రొఫైల్ ఫోటోని వీక్షించండి</string>
 
@@ -5043,11 +5043,11 @@
     <string name="TurnOffCircumventionMegaphone_turn_off">తీసివేయు</string>
 
     <!-- Conversation Item label for when you react to someone else\'s story -->
-    <string name="ConversationItem__you_reacted_to_s_story">మీరు %1$s యొక్క కథకు ప్రతిస్పందించారు</string>
+    <string name="ConversationItem__you_reacted_to_s_story">మీరు %1$s యొక్క స్టోరీకు ప్రతిస్పందించారు</string>
     <!-- Conversation Item label for reactions to your story -->
-    <string name="ConversationItem__reacted_to_your_story">మీ కథకు ప్రతిస్పందించారు</string>
+    <string name="ConversationItem__reacted_to_your_story">మీ స్టోరీకు ప్రతిస్పందించారు</string>
     <!-- Conversation Item label for reactions to an unavailable story -->
-    <string name="ConversationItem__reacted_to_a_story">ఒక కథకు ప్రతిస్పందించారు</string>
+    <string name="ConversationItem__reacted_to_a_story">ఒక స్టోరీకు ప్రతిస్పందించారు</string>
 
     <!-- endregion -->
     <!-- Content description for expand contacts chevron -->
@@ -5113,13 +5113,13 @@
     <string name="ContactSearchItems__only_share_with">వీరితోనే పంచుకోండి</string>
     <!-- Label under name for private stories -->
     <plurals name="ContactSearchItems__private_story_d_viewers">
-        <item quantity="one">ప్రైవేట్ కథ · %1$d వీక్షకుడు</item>
-        <item quantity="other">ప్రైవేట్ కథ · %1$d వీక్షకులు</item>
+        <item quantity="one">ప్రైవేట్ స్టోరీ · %1$d వీక్షకుడు</item>
+        <item quantity="other">ప్రైవేట్ స్టోరీ · %1$d వీక్షకులు</item>
     </plurals>
     <!-- Label under name for group stories -->
     <plurals name="ContactSearchItems__group_story_d_viewers">
-        <item quantity="one">గ్రూప్ కథ· %1$d వీక్షకుడు</item>
-        <item quantity="other">గ్రూప్ కథ · %1$d వీక్షకులు</item>
+        <item quantity="one">గ్రూప్ స్టోరీ· %1$d వీక్షకుడు</item>
+        <item quantity="other">గ్రూప్ స్టోరీ · %1$d వీక్షకులు</item>
     </plurals>
     <!-- Label under name for groups -->
     <plurals name="ContactSearchItems__group_d_members">
@@ -5134,21 +5134,21 @@
     <!-- Label under name for My Story when first sending to my story -->
     <string name="ContactSearchItems__tap_to_choose_your_viewers">మీ వీక్షకులను ఎంచుకోవడానికి తట్టండి</string>
     <!-- Label for context menu item to open story settings -->
-    <string name="ContactSearchItems__story_settings">కథ సెట్టింగ్స్</string>
+    <string name="ContactSearchItems__story_settings">స్టోరీ సెట్టింగ్స్</string>
     <!-- Label for context menu item to remove a group story from contact results -->
-    <string name="ContactSearchItems__remove_story">కథను తొలగించండి</string>
+    <string name="ContactSearchItems__remove_story">స్టోరీను తొలగించండి</string>
     <!-- Label for context menu item to delete a private story -->
-    <string name="ContactSearchItems__delete_story">కథను తొలగించండి</string>
+    <string name="ContactSearchItems__delete_story">స్టోరీను తొలగించండి</string>
     <!-- Dialog title for removing a group story -->
-    <string name="ContactSearchMediator__remove_group_story">గ్రూప్ కథను తొలగించేదా?</string>
+    <string name="ContactSearchMediator__remove_group_story">గ్రూప్ స్టోరీను తొలగించేదా?</string>
     <!-- Dialog message for removing a group story -->
-    <string name="ContactSearchMediator__this_will_remove">ఇది ఈ జాబితా నుంచి కథను తొలగిస్తుంది. మీరు ఇంకా ఈ గ్రూప్ నుంచి కథలను వీక్షించగలుగుతారు.</string>
+    <string name="ContactSearchMediator__this_will_remove">ఇది ఈ జాబితా నుంచి స్టోరీను తొలగిస్తుంది. మీరు ఇంకా ఈ గ్రూప్ నుంచి స్టోరీలను వీక్షించగలుగుతారు.</string>
     <!-- Dialog action item for removing a group story -->
     <string name="ContactSearchMediator__remove">తొలగించు</string>
     <!-- Dialog title for deleting a private story -->
-    <string name="ContactSearchMediator__delete_story">కథను తొలగించేదా?</string>
+    <string name="ContactSearchMediator__delete_story">స్టోరీను తొలగించాలా?</string>
     <!-- Dialog message for deleting a private story -->
-    <string name="ContactSearchMediator__delete_the_private">ప్రైవేట్ కథ \"%1$s\" ను తొలగించేదా?</string>
+    <string name="ContactSearchMediator__delete_the_private">ప్రైవేట్ స్టోరీ \"%1$s\" ను తొలగించేదా?</string>
     <!-- Dialog action item for deleting a private story -->
     <string name="ContactSearchMediator__delete">తొలగించండి</string>
     <!-- Gift expiry days remaining -->
@@ -5194,11 +5194,11 @@
     <!-- Message of safety number changes bottom sheet when not showing individual records and user has seen review screen -->
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">అన్ని కనెక్షన్‌లు సమీక్షించబడ్డాయి, కొనసాగడానికి పంపండి మీద తట్టండి.</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
-    <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">Signal ను తిరిగి ఇన్‌స్టాల్ చేసిన లేదా పరికరాలను మార్చిన %1$d కనెక్షన్స్ మీకు ఉన్నాయి. వారితో మీ కథను పంచుకోవడానికి ముందు వారి భద్రతా సంఖ్యలను సమీక్షించండి లేదా వారిని మీ కథ నుంచి తొలగించడానికి పరిగణించండి.</string>
+    <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">Signal ను తిరిగి ఇన్‌స్టాల్ చేసిన లేదా పరికరాలను మార్చిన %1$d కనెక్షన్స్ మీకు ఉన్నాయి. వారితో మీ స్టోరీను పంచుకోవడానికి ముందు వారి భద్రతా సంఖ్యలను సమీక్షించండి లేదా వారిని మీ స్టోరీ నుంచి తొలగించడానికి పరిగణించండి.</string>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">భద్రత సంఖ్యను ధృవీకరించండి</string>
     <!-- Menu action to remove user from story -->
-    <string name="SafetyNumberBottomSheetFragment__remove_from_story">కథ నుంచి తొలగించండి</string>
+    <string name="SafetyNumberBottomSheetFragment__remove_from_story">స్టోరీ నుంచి తొలగించండి</string>
     <!-- Action button at bottom of SafetyNumberBottomSheetFragment to send anyway -->
     <string name="SafetyNumberBottomSheetFragment__send_anyway">ఏదేమైనా పంపు</string>
     <!-- Action button at bottom of SafetyNumberBottomSheetFragment to review connections -->
@@ -5222,9 +5222,9 @@
     <string name="SafetyNumberReviewConnectionsFragment__remove">తొలగించు</string>
 
     <!-- Title of initial My Story settings configuration shown when sending to My Story for the first time -->
-    <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">నా కథ గోప్యత</string>
+    <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">నా స్టోరీ గోప్యత</string>
     <!-- Subtitle of initial My Story settings configuration shown when sending to My Story for the first time -->
-    <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">నా కథకు పోస్ట్‌లను ఎవరు చూడవచ్చ అనేది ఎంచుకోండి. మీరు ఎల్లప్పుడూ సెట్టింగ్‌లలో మార్పులు చేయవచ్చు.</string>
+    <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">నా స్టోరీకు పోస్ట్‌లను ఎవరు చూడవచ్చ అనేది ఎంచుకోండి. మీరు ఎల్లప్పుడూ సెట్టింగ్‌లలో మార్పులు చేయవచ్చు.</string>
     <!-- All connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">అన్ని Signal కనెక్షన్‌లు</string>
     <!-- All connections except option for initial My Story settings configuration shown when sending to My Story for the first time -->
@@ -5249,29 +5249,29 @@
 
     <!-- StoriesPrivacySettingsFragment -->
     <!-- Explanation about how stories are deleted and managed -->
-    <string name="StoriesPrivacySettingsFragment__stories_automatically_disappear">24 గంటల తరువాత కథలు ఆటోమేటిక్‌గా అదృశ్యమౌతాయి. నిర్దిష్ట వీక్షకులు లేదా గ్రూప్‌లతో మీ కథను ఎవరు వీక్షించవచ్చు లేదా ఎవరు కొత్త కథలను సృష్టించవచ్చ అనేది ఎంచుకోండి.</string>
+    <string name="StoriesPrivacySettingsFragment__stories_automatically_disappear">24 గంటల తరువాత స్టోరీస్ ఆటోమేటిక్‌గా అదృశ్యమౌతాయి. నిర్దిష్ట వీక్షకులు లేదా గ్రూప్‌లతో మీ స్టోరీను ఎవరు వీక్షించవచ్చు లేదా ఎవరు కొత్త స్టోరీలను సృష్టించవచ్చ అనేది ఎంచుకోండి.</string>
     <!-- Preference title to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__turn_off_stories">కథలను ఆఫ్ చేయండి</string>
+    <string name="StoriesPrivacySettingsFragment__turn_off_stories">స్టోరీలను ఆఫ్ చేయండి</string>
     <!-- Preference summary to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__if_you_opt_out">మీరు కథలను వద్దని ఎంచుకుంటే, మీరు ఇక ఏమాత్రం కథలను పంచుకోలేరు లేదా వీక్షించలేరు.</string>
+    <string name="StoriesPrivacySettingsFragment__if_you_opt_out">మీరు స్టోరీలను వద్దని ఎంచుకుంటే, మీరు ఇక ఏమాత్రం స్టోరీలను పంచుకోలేరు లేదా వీక్షించలేరు.</string>
     <!-- Preference title to turn on stories -->
-    <string name="StoriesPrivacySettingsFragment__turn_on_stories">కథలను ఆన్ చేయండి</string>
+    <string name="StoriesPrivacySettingsFragment__turn_on_stories">స్టోరీలను ఆన్ చేయండి</string>
     <!-- Preference summary to turn on stories -->
-    <string name="StoriesPrivacySettingsFragment__share_and_view">ఇతరుల నుంచి కథలను పంచుకోండి మరియు వీక్షించండి. 24 గంటల తరువాత కథలు ఆటోమేటిక్‌గా అదృశ్యమౌతాయి.</string>
+    <string name="StoriesPrivacySettingsFragment__share_and_view">ఇతరుల నుంచి స్టోరీలను పంచుకోండి మరియు వీక్షించండి. 24 గంటల తరువాత స్టోరీస్ ఆటోమేటిక్‌గా అదృశ్యమౌతాయి.</string>
     <!-- Dialog title to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">కథలను ఆఫ్ చేసేదా?</string>
+    <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">స్టోరీలను ఆఫ్ చేసేదా?</string>
     <!-- Dialog message to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">మీరు ఇక ఏమాత్రం కథలను పంచుకోలేరు లేదా వీక్షించలేరు. మీరు ఇటీవల పంచుకున్న కథ అప్‌డేట్స్ కూడా తొలగించబడతాయి.</string>
     <!-- Page title when launched from stories landing screen -->
-    <string name="StoriesPrivacySettingsFragment__story_privacy">కథ గోప్యత</string>
+    <string name="StoriesPrivacySettingsFragment__story_privacy">స్టోరీ గోప్యత</string>
 
     <!-- GroupStorySettingsFragment -->
     <!-- Section header for who can view a group story -->
-    <string name="GroupStorySettingsFragment__who_can_view_this_story">ఈ కథను ఎవరు వీక్షించవచ్చు</string>
+    <string name="GroupStorySettingsFragment__who_can_view_this_story">ఈ స్టోరీను ఎవరు వీక్షించవచ్చు</string>
     <!-- Explanation of who can view a group story -->
-    <string name="GroupStorySettingsFragment__members_of_the_group_s">"%1$s గ్రూప్ సభ్యులు ఈ కథను వీక్షించవచ్చు మరియు ప్రత్యుత్తరం ఇవ్వవచ్చు. గ్రూప్‌లో ఈ చాట్ కొరకు మీరు సభ్యత్వాన్ని అప్‌డేట్ చేయవచ్చు."</string>
+    <string name="GroupStorySettingsFragment__members_of_the_group_s">"%1$s గ్రూప్ సభ్యులు ఈ స్టోరీను వీక్షించవచ్చు మరియు ప్రత్యుత్తరం ఇవ్వవచ్చు. గ్రూప్‌లో ఈ చాట్ కొరకు మీరు సభ్యత్వాన్ని అప్‌డేట్ చేయవచ్చు."</string>
     <!-- Preference label for removing this group story -->
-    <string name="GroupStorySettingsFragment__remove_group_story">గ్రూప్ కథను తొలగించండి</string>
+    <string name="GroupStorySettingsFragment__remove_group_story">గ్రూప్ స్టోరీను తొలగించండి</string>
 
     <!-- Generic title for overflow menus -->
     <string name="OverflowMenu__overflow_menu">ఓవర్‌ఫ్లో మెనూ</string>
@@ -5339,6 +5339,24 @@
     <string name="SetSignalAsDefaultSmsAppFragment__to_export_your_sms_messages">మీ SMS సందేశాలను ఎగుమతి చేయడానికి, మీరు Signal ను డిఫాల్ట్ SMS యాప్‌గా సెట్ చేయాల్సి ఉంటుంది.</string>
     <!-- Button label to start export -->
     <string name="SetSignalAsDefaultSmsAppFragment__next">తరువాత</string>
+
+    <!-- BackupSchedulePermission Megaphone -->
+    <!-- Can't backup chats megaphone title -->
+    <string name="BackupSchedulePermissionMegaphone__cant_back_up_chats">Can\'t back up chats</string>
+    <!-- Can't backup chats megaphone message -->
+    <string name="BackupSchedulePermissionMegaphone__your_chats_are_no_longer_being_automatically_backed_up">Your chats are no longer being automatically backed up.</string>
+    <!-- Can't backup chats megaphone button text to take steps to re-enable -->
+    <string name="BackupSchedulePermissionMegaphone__back_up_chats">Back up chats</string>
+    <!-- Can't backup chats megaphone button to snooze megaphone and be reshown later -->
+    <string name="BackupSchedulePermissionMegaphone__not_now">Not now</string>
+    <!-- Re-enable backup permission bottom sheet title -->
+    <string name="BackupSchedulePermissionMegaphone__to_reenable_backups">To re-enable backups:</string>
+    <!-- Re-enable backups permission bottom sheet instruction 1 text -->
+    <string name="BackupSchedulePermissionMegaphone__tap_the_go_to_settings_button_below">Tap the \"Go to settings\" button below</string>
+    <!-- Re-enable backups permission bottom sheet instruction 2 text -->
+    <string name="BackupSchedulePermissionMegaphone__turn_on_allow_settings_alarms_and_reminders">Turn on \"Allow settings alarms and reminders.\"</string>
+    <!-- Re-enable backups permission bottom sheet call to action button to open settings -->
+    <string name="BackupSchedulePermissionMegaphone__go_to_settings">Go to settings</string>
 
     <!-- EOF -->
 
