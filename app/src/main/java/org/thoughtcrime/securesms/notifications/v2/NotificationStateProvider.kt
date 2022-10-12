@@ -5,6 +5,7 @@ import org.signal.core.util.CursorUtil
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.MmsSmsColumns
 import org.thoughtcrime.securesms.database.MmsSmsDatabase
+import org.thoughtcrime.securesms.database.NoSuchMessageException
 import org.thoughtcrime.securesms.database.RecipientDatabase
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MessageId
@@ -39,7 +40,11 @@ object NotificationStateProvider {
             val conversationId = ConversationId.fromMessageRecord(record)
 
             val parentRecord = conversationId.groupStoryId?.let {
-              SignalDatabase.mms.getMessageRecord(it)
+              try {
+                SignalDatabase.mms.getMessageRecord(it)
+              } catch (e : NoSuchMessageException) {
+                null
+              }
             }
 
             val hasSelfRepliedToGroupStory = conversationId.groupStoryId?.let {

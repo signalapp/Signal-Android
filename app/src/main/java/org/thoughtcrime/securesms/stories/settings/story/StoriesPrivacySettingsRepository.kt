@@ -28,10 +28,18 @@ class StoriesPrivacySettingsRepository {
       Stories.onStorySettingsChanged(Recipient.self().id)
       ApplicationDependencies.resetAllNetworkConnections()
 
-      SignalDatabase.mms.getAllOutgoingStories(false, -1).use { reader ->
-        reader.map { record -> record.id }
-      }.forEach { messageId ->
-        MessageSender.sendRemoteDelete(messageId, true)
+      if (!isEnabled) {
+        SignalDatabase.mms.getAllOutgoingStories(false, -1).use { reader ->
+          reader.map { record -> record.id }
+        }.forEach { messageId ->
+          MessageSender.sendRemoteDelete(messageId, true)
+        }
+
+        SignalDatabase.mms.allIncomingStoriesExceptOnboarding.use { reader ->
+          reader.map { record -> record.id }
+        }.forEach { messageId ->
+          SignalDatabase.mms.deleteMessage(messageId)
+        }
       }
     }.subscribeOn(Schedulers.io())
   }

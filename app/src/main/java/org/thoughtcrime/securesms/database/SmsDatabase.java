@@ -1449,6 +1449,11 @@ public class SmsDatabase extends MessageDatabase {
   }
 
   @Override
+  public @NonNull MessageDatabase.Reader getAllIncomingStoriesExceptOnboarding() {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
   public @NonNull MessageDatabase.Reader getAllOutgoingStoriesAt(long sentTimestamp) {
     throw new UnsupportedOperationException();
   }

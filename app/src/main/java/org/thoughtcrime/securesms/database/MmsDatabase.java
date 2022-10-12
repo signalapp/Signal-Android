@@ -636,6 +636,17 @@ public class MmsDatabase extends MessageDatabase {
   }
 
   @Override
+  public @NonNull MessageDatabase.Reader getAllIncomingStoriesExceptOnboarding() {
+    RecipientId onboardingRecipientId = SignalStore.releaseChannelValues().getReleaseChannelRecipientId();
+    String where = IS_STORY_CLAUSE + " AND NOT (" + getOutgoingTypeClause() + ")";
+    if (onboardingRecipientId != null) {
+      where += " AND " + RECIPIENT_ID + " != " + onboardingRecipientId.serialize();
+    }
+
+    return new Reader(rawQuery(where, null, false, -1L));
+  }
+
+  @Override
   public @NonNull MessageDatabase.Reader getAllOutgoingStoriesAt(long sentTimestamp) {
     String   where      = IS_STORY_CLAUSE + " AND " + DATE_SENT + " = ? AND (" + getOutgoingTypeClause() + ")";
     String[] whereArgs  = SqlUtil.buildArgs(sentTimestamp);
