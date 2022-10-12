@@ -159,7 +159,12 @@ public final class AttachmentUploadJob extends BaseJob {
 
   private @Nullable NotificationController getNotificationForAttachment(@NonNull Attachment attachment) {
     if (attachment.getSize() >= FOREGROUND_LIMIT) {
-      return GenericForegroundService.startForegroundTask(context, context.getString(R.string.AttachmentUploadJob_uploading_media));
+      try {
+        return ForegroundUtil.requireForegroundTask(context, context.getString(R.string.AttachmentUploadJob_uploading_media));
+      } catch (GenericForegroundService.UnableToStartException e) {
+        Log.w(TAG, "Unable to start foreground service", e);
+        return null;
+      }
     } else {
       return null;
     }

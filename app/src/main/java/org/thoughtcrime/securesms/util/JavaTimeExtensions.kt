@@ -26,6 +26,7 @@ fun ZoneId.toOffset(): ZoneOffset {
 /**
  * Convert [LocalDateTime] to be same as [System.currentTimeMillis]
  */
+@JvmOverloads
 fun LocalDateTime.toMillis(zoneOffset: ZoneOffset = ZoneId.systemDefault().toOffset()): Long {
   return TimeUnit.SECONDS.toMillis(toEpochSecond(zoneOffset))
 }

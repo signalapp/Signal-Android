@@ -1,7 +1,9 @@
 package org.thoughtcrime.securesms.megaphone;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
 
@@ -34,6 +36,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.LocaleFeatureFlags;
 import org.thoughtcrime.securesms.util.PlayServicesUtil;
+import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.VersionTracker;
 import org.thoughtcrime.securesms.util.dynamiclanguage.DynamicLanguageContextWrapper;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaperActivity;
@@ -105,6 +108,7 @@ public final class Megaphones {
       put(Event.PINS_FOR_ALL, new PinsForAllSchedule());
       put(Event.CLIENT_DEPRECATED, SignalStore.misc().isClientDeprecated() ? ALWAYS : NEVER);
       put(Event.NOTIFICATIONS, shouldShowNotificationsMegaphone(context) ? RecurringSchedule.every(TimeUnit.DAYS.toMillis(30)) : NEVER);
+      put(Event.BACKUP_SCHEDULE_PERMISSION, shouldShowBackupSchedulePermissionMegaphone(context) ? RecurringSchedule.every(TimeUnit.DAYS.toMillis(3)) : NEVER);
       put(Event.ONBOARDING, shouldShowOnboardingMegaphone(context) ? ALWAYS : NEVER);
       put(Event.TURN_OFF_CENSORSHIP_CIRCUMVENTION, shouldShowTurnOffCircumventionMegaphone() ? RecurringSchedule.every(TimeUnit.DAYS.toMillis(7)) : NEVER);
       put(Event.DONATE_Q2_2022, shouldShowDonateMegaphone(context, Event.DONATE_Q2_2022, records) ? ShowForDurationSchedule.showForDays(7) : NEVER);
@@ -138,6 +142,8 @@ public final class Megaphones {
         return buildTurnOffCircumventionMegaphone(context);
       case REMOTE_MEGAPHONE:
         return buildRemoteMegaphone(context);
+      case BACKUP_SCHEDULE_PERMISSION:
+        return buildBackupPermissionMegaphone(context);
       default:
         throw new IllegalArgumentException("Event not handled!");
     }
@@ -335,6 +341,21 @@ public final class Megaphones {
     }
   }
 
+  @SuppressLint("InlinedApi")
+  private static Megaphone buildBackupPermissionMegaphone(@NonNull Context context) {
+    return new Megaphone.Builder(Event.BACKUP_SCHEDULE_PERMISSION, Megaphone.Style.BASIC)
+        .setTitle(R.string.BackupSchedulePermissionMegaphone__cant_back_up_chats)
+        .setImage(R.drawable.ic_cant_backup_megaphone)
+        .setBody(R.string.BackupSchedulePermissionMegaphone__your_chats_are_no_longer_being_automatically_backed_up)
+        .setActionButton(R.string.BackupSchedulePermissionMegaphone__back_up_chats, (megaphone, controller) -> {
+          controller.onMegaphoneDialogFragmentRequested(new ReenableBackupsDialogFragment());
+        })
+        .setSecondaryButton(R.string.BackupSchedulePermissionMegaphone__not_now, (megaphone, controller) -> {
+          controller.onMegaphoneSnooze(Event.BACKUP_SCHEDULE_PERMISSION);
+        })
+        .build();
+  }
+
   private static boolean shouldShowDonateMegaphone(@NonNull Context context, @NonNull Event event, @NonNull Map<Event, MegaphoneRecord> records) {
     long timeSinceLastDonatePrompt = timeSinceLastDonatePrompt(event, records);
 
@@ -398,6 +419,10 @@ public final class Megaphones {
     return RemoteMegaphoneRepository.hasRemoteMegaphoneToShow(canShowLocalDonate);
   }
 
+  private static boolean shouldShowBackupSchedulePermissionMegaphone(@NonNull Context context) {
+    return Build.VERSION.SDK_INT >= 31 && SignalStore.settings().isBackupEnabled() && !ServiceUtil.getAlarmManager(context).canScheduleExactAlarms();
+  }
+
   /**
    * Unfortunately lastSeen is only set today upon snoozing, which never happens to donate prompts.
    * So we use firstVisible as a proxy.
@@ -426,7 +451,8 @@ public final class Megaphones {
     BECOME_A_SUSTAINER("become_a_sustainer"),
     DONATE_Q2_2022("donate_q2_2022"),
     TURN_OFF_CENSORSHIP_CIRCUMVENTION("turn_off_censorship_circumvention"),
-    REMOTE_MEGAPHONE("remote_megaphone");
+    REMOTE_MEGAPHONE("remote_megaphone"),
+    BACKUP_SCHEDULE_PERMISSION("backup_schedule_permission");
 
     private final String key;
 

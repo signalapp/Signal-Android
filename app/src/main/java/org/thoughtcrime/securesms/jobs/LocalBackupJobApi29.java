@@ -171,6 +171,9 @@ public final class LocalBackupJobApi29 extends BaseJob {
       }
 
       BackupUtil.deleteOldBackups();
+    } catch (GenericForegroundService.UnableToStartException e) {
+      Log.w(TAG, "Unable to start foreground backup service", e);
+      BackupFileIOError.UNKNOWN.postNotification(context);
     } finally {
       EventBus.getDefault().unregister(updater);
       updater.setNotification(null);

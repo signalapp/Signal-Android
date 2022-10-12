@@ -24,6 +24,7 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.migrations.LegacyMigrationJob;
 import org.thoughtcrime.securesms.service.GenericForegroundService;
+import org.thoughtcrime.securesms.service.NotificationController;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
@@ -43,17 +44,17 @@ public class SQLCipherMigrationHelper {
                                       @NonNull SQLiteDatabase modernDb)
   {
     modernDb.beginTransaction();
-    int foregroundId = GenericForegroundService.startForegroundTask(context, context.getString(R.string.SQLCipherMigrationHelper_migrating_signal_database)).getId();
-    try {
+    try (NotificationController controller = GenericForegroundService.startForegroundTask(context, context.getString(R.string.SQLCipherMigrationHelper_migrating_signal_database))) {
       copyTable("identities", legacyDb, modernDb, null);
       copyTable("push", legacyDb, modernDb, null);
       copyTable("groups", legacyDb, modernDb, null);
       copyTable("recipient_preferences", legacyDb, modernDb, null);
       copyTable("group_receipts", legacyDb, modernDb, null);
       modernDb.setTransactionSuccessful();
+    } catch (GenericForegroundService.UnableToStartException e) {
+      throw new IllegalStateException(e);
     } finally {
       modernDb.endTransaction();
-      GenericForegroundService.stopForegroundTask(context, foregroundId);
     }
   }
 
@@ -68,8 +69,7 @@ public class SQLCipherMigrationHelper {
 
     modernDb.beginTransaction();
 
-    int foregroundId = GenericForegroundService.startForegroundTask(context, context.getString(R.string.SQLCipherMigrationHelper_migrating_signal_database)).getId();
-    try {
+    try (NotificationController controller = GenericForegroundService.startForegroundTask(context, context.getString(R.string.SQLCipherMigrationHelper_migrating_signal_database))) {
       int total = 5000;
 
       copyTable("sms", legacyDb, modernDb, (row, progress) -> {
@@ -176,9 +176,10 @@ public class SQLCipherMigrationHelper {
       AttachmentSecretProvider.getInstance(context).setClassicKey(context, masterSecret.getEncryptionKey().getEncoded(), masterSecret.getMacKey().getEncoded());
       TextSecurePreferences.setNeedsSqlCipherMigration(context, false);
       modernDb.setTransactionSuccessful();
+    } catch (GenericForegroundService.UnableToStartException e) {
+      throw new IllegalStateException(e);
     } finally {
       modernDb.endTransaction();
-      GenericForegroundService.stopForegroundTask(context, foregroundId);
     }
   }
 
