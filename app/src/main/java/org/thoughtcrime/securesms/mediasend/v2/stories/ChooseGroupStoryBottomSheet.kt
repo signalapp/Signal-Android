@@ -16,6 +16,7 @@ import org.signal.core.util.DimensionUnit
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.FixedRoundedCornerBottomSheetDialogFragment
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchConfiguration
+import org.thoughtcrime.securesms.contacts.paged.ContactSearchItems
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchMediator
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchSortOrder
@@ -66,6 +67,7 @@ class ChooseGroupStoryBottomSheet : FixedRoundedCornerBottomSheetDialogFragment(
       recyclerView = contactRecycler,
       selectionLimits = FeatureFlags.shareSelectionLimit(),
       displayCheckBox = true,
+      displaySmsTag = ContactSearchItems.DisplaySmsTag.DEFAULT,
       mapStateToConfiguration = { state ->
         ContactSearchConfiguration.build {
           query = state.query

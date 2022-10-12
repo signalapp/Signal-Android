@@ -25,6 +25,7 @@ class ContactSearchMediator(
   recyclerView: RecyclerView,
   selectionLimits: SelectionLimits,
   displayCheckBox: Boolean,
+  displaySmsTag: ContactSearchItems.DisplaySmsTag,
   mapStateToConfiguration: (ContactSearchState) -> ContactSearchConfiguration,
   private val contactSelectionPreFilter: (View?, Set<ContactSearchKey>) -> Set<ContactSearchKey> = { _, s -> s },
   performSafetyNumberChecks: Boolean = true
@@ -40,6 +41,7 @@ class ContactSearchMediator(
     ContactSearchItems.register(
       mappingAdapter = adapter,
       displayCheckBox = displayCheckBox,
+      displaySmsTag = displaySmsTag,
       recipientListener = this::toggleSelection,
       storyListener = this::toggleStorySelection,
       storyContextMenuCallbacks = StoryContextMenuCallbacks(),

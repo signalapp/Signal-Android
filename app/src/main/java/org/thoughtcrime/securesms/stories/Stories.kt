@@ -4,10 +4,10 @@ import android.content.Context
 import android.net.Uri
 import androidx.annotation.WorkerThread
 import androidx.fragment.app.FragmentManager
+import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.PlaybackException
 import com.google.android.exoplayer2.Player
-import com.google.android.exoplayer2.SimpleExoPlayer
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.ThreadUtil
@@ -299,7 +299,7 @@ object Stories {
     @WorkerThread
     fun getVideoDuration(uri: Uri): Long {
       var duration = 0L
-      var player: SimpleExoPlayer? = null
+      var player: ExoPlayer? = null
       val countDownLatch = CountDownLatch(1)
       ThreadUtil.runOnMainSync {
         val mainThreadPlayer = ApplicationDependencies.getExoPlayerPool().get("stories_duration_check")

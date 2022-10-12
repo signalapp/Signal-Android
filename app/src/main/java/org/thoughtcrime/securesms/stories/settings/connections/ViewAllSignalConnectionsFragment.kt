@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.components.WrapperDialogFragment
 import org.thoughtcrime.securesms.contacts.LetterHeaderDecoration
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchConfiguration
+import org.thoughtcrime.securesms.contacts.paged.ContactSearchItems
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchMediator
 import org.thoughtcrime.securesms.databinding.ViewAllSignalConnectionsFragmentBinding
 import org.thoughtcrime.securesms.groups.SelectionLimits
@@ -28,6 +29,7 @@ class ViewAllSignalConnectionsFragment : Fragment(R.layout.view_all_signal_conne
       recyclerView = binding.recycler,
       selectionLimits = SelectionLimits(0, 0),
       displayCheckBox = false,
+      displaySmsTag = ContactSearchItems.DisplaySmsTag.IF_NOT_REGISTERED,
       mapStateToConfiguration = { getConfiguration() },
       performSafetyNumberChecks = false
     )
