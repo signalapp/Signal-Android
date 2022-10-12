@@ -65,6 +65,7 @@ public class VideoPlayer extends FrameLayout {
   private long                                clippedStartUs;
   private ExoPlayerListener                   exoPlayerListener;
   private Player.Listener                     playerListener;
+  private boolean                             muted;
 
   public VideoPlayer(Context context) {
     this(context, null);
@@ -130,6 +131,9 @@ public class VideoPlayer extends FrameLayout {
       exoPlayer.addListener(playerListener);
       exoView.setPlayer(exoPlayer);
       exoControls.setPlayer(exoPlayer);
+      if (muted) {
+        mute();
+      }
     }
 
     mediaItem = MediaItem.fromUri(Objects.requireNonNull(videoSource.getUri()));
@@ -139,12 +143,14 @@ public class VideoPlayer extends FrameLayout {
   }
 
   public void mute() {
+    this.muted = true;
     if (exoPlayer != null && exoPlayer.getAudioComponent() != null) {
       exoPlayer.getAudioComponent().setVolume(0f);
     }
   }
 
   public void unmute() {
+    this.muted = false;
     if (exoPlayer != null && exoPlayer.getAudioComponent() != null) {
       exoPlayer.getAudioComponent().setVolume(1f);
     }

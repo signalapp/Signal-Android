@@ -10,7 +10,6 @@ import android.graphics.RenderEffect
 import android.graphics.Shader
 import android.graphics.drawable.Drawable
 import android.media.AudioManager
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
@@ -71,11 +70,11 @@ import org.thoughtcrime.securesms.stories.dialogs.StoryDialogs
 import org.thoughtcrime.securesms.stories.viewer.StoryViewerViewModel
 import org.thoughtcrime.securesms.stories.viewer.StoryVolumeViewModel
 import org.thoughtcrime.securesms.stories.viewer.info.StoryInfoBottomSheetDialogFragment
+import org.thoughtcrime.securesms.stories.viewer.post.StoryPostFragment
 import org.thoughtcrime.securesms.stories.viewer.reply.direct.StoryDirectReplyDialogFragment
 import org.thoughtcrime.securesms.stories.viewer.reply.group.StoryGroupReplyBottomSheetDialogFragment
 import org.thoughtcrime.securesms.stories.viewer.reply.reaction.OnReactionSentView
 import org.thoughtcrime.securesms.stories.viewer.reply.tabs.StoryViewsAndRepliesDialogFragment
-import org.thoughtcrime.securesms.stories.viewer.text.StoryTextPostPreviewFragment
 import org.thoughtcrime.securesms.stories.viewer.views.StoryViewsBottomSheetDialogFragment
 import org.thoughtcrime.securesms.util.AvatarUtil
 import org.thoughtcrime.securesms.util.BottomSheetUtil
@@ -95,10 +94,9 @@ import kotlin.math.min
 
 class StoryViewerPageFragment :
   Fragment(R.layout.stories_viewer_fragment_page),
-  MediaPreviewFragment.Events,
+  StoryPostFragment.Callback,
   MultiselectForwardBottomSheet.Callback,
   StorySlateView.Callback,
-  StoryTextPostPreviewFragment.Callback,
   StoryFirstTimeNavigationView.Callback,
   StoryInfoBottomSheetDialogFragment.OnInfoSheetDismissedListener,
   SafetyNumberBottomSheet.Callbacks {
@@ -232,7 +230,7 @@ class StoryViewerPageFragment :
       scaleListener
     )
 
-    cardWrapper.setOnInterceptTouchEventListener { !storySlate.state.hasClickableContent && childFragmentManager.findFragmentById(R.id.story_content_container) !is StoryTextPostPreviewFragment }
+    cardWrapper.setOnInterceptTouchEventListener { !storySlate.state.hasClickableContent && viewModel.getPost()?.content?.isText() != true }
     cardWrapper.setOnTouchListener { _, event ->
       scaleDetector.onTouchEvent(event)
       val result = if (scaleDetector.isInProgress || scaleListener.isPerformingEndAnimation) {
@@ -711,16 +709,6 @@ class StoryViewerPageFragment :
   }
 
   private fun presentStory(post: StoryPost, index: Int) {
-    val fragment = childFragmentManager.findFragmentById(R.id.story_content_container)
-    if (fragment != null && fragment.requireArguments().getParcelable<Uri>(MediaPreviewFragment.DATA_URI) == post.content.uri) {
-      progressBar.setPosition(index)
-      return
-    }
-
-    if (fragment is MediaPreviewFragment) {
-      fragment.cleanUp()
-    }
-
     if (post.content.uri == null) {
       progressBar.setPosition(index)
       progressBar.invalidate()
@@ -728,9 +716,6 @@ class StoryViewerPageFragment :
       progressBar.setPosition(index)
       storySlate.moveToState(StorySlateView.State.HIDDEN, post.id)
       viewModel.setIsDisplayingSlate(false)
-      childFragmentManager.beginTransaction()
-        .replace(R.id.story_content_container, createFragmentForPost(post))
-        .commitNow()
     }
   }
 
@@ -1009,21 +994,6 @@ class StoryViewerPageFragment :
       viewsAndReplies.iconSize = DimensionUnit.DP.toPixels(20f).toInt()
       viewsAndReplies.iconGravity = MaterialButton.ICON_GRAVITY_TEXT_START
       viewsAndReplies.setText(R.string.StoryViewerPageFragment__reply)
-    }
-  }
-
-  private fun createFragmentForPost(storyPost: StoryPost): Fragment {
-    return when (storyPost.content) {
-      is StoryPost.Content.AttachmentContent -> createFragmentForAttachmentContent(storyPost.content)
-      is StoryPost.Content.TextContent -> StoryTextPostPreviewFragment.create(storyPost.content)
-    }
-  }
-
-  private fun createFragmentForAttachmentContent(attachmentContent: StoryPost.Content.AttachmentContent): Fragment {
-    return if (attachmentContent.isVideo()) {
-      MediaPreviewFragment.newInstance(attachmentContent.attachment, false)
-    } else {
-      StoryImageContentFragment.create(attachmentContent.attachment)
     }
   }
 
@@ -1306,15 +1276,11 @@ class StoryViewerPageFragment :
     }
   }
 
-  override fun singleTapOnMedia(): Boolean {
-    return false
-  }
-
-  override fun onMediaReady() {
+  override fun onContentReady() {
     sharedViewModel.setContentIsReady()
   }
 
-  override fun mediaNotAvailable() {
+  override fun onContentNotAvailable() {
     sharedViewModel.setContentIsReady()
   }
 

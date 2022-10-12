@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.stories.viewer.text
+package org.thoughtcrime.securesms.stories.viewer.post
 
 import android.graphics.Typeface
 import io.reactivex.rxjava3.core.Single

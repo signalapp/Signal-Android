@@ -32,6 +32,7 @@
 
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/story_content_container"
+                android:name="org.thoughtcrime.securesms.stories.viewer.post.StoryPostFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 tools:background="@drawable/test_gradient" />
