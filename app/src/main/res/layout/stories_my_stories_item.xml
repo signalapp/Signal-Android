@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:viewBindingIgnore="true"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -9,7 +8,8 @@
     android:paddingStart="@dimen/dsl_settings_gutter"
     android:paddingTop="12dp"
     android:paddingEnd="@dimen/dsl_settings_gutter"
-    android:paddingBottom="12dp">
+    android:paddingBottom="12dp"
+    tools:viewBindingIgnore="true">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/story"
@@ -41,8 +41,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
+        android:ellipsize="end"
         android:textAppearance="@style/Signal.Text.BodyLarge"
+        app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toTopOf="@id/date"
+        app:layout_constraintEnd_toStartOf="@+id/download_touch"
         app:layout_constraintStart_toEndOf="@+id/error_indicator"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
@@ -54,6 +57,7 @@
         android:layout_width="14dp"
         android:layout_height="14dp"
         android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:importantForAccessibility="no"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@id/date"
@@ -67,9 +71,12 @@
         android:id="@+id/date"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:ellipsize="end"
         android:textAppearance="@style/Signal.Text.BodyMedium"
         android:textColor="@color/signal_text_secondary"
+        app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/download_touch"
         app:layout_constraintStart_toStartOf="@+id/view_count"
         app:layout_constraintTop_toBottomOf="@id/view_count"
         app:layout_goneMarginStart="16dp"
