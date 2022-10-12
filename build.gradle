@@ -31,7 +31,7 @@ ext {
     BUILD_TOOL_VERSION = '32.0.0'
 
     COMPILE_SDK = 32
-    TARGET_SDK  = 30
+    TARGET_SDK  = 31
     MINIMUM_SDK = 19
 
     JAVA_VERSION = JavaVersion.VERSION_1_8
