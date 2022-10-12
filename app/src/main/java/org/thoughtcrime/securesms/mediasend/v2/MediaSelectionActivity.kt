@@ -431,7 +431,8 @@ class MediaSelectionActivity :
         destination = MediaSelectionDestination.MultipleRecipients(recipientSearchKeys),
         message = message,
         asTextStory = asTextStory,
-        startAction = if (asTextStory) R.id.action_directly_to_textPostCreationFragment else -1
+        startAction = if (asTextStory) R.id.action_directly_to_textPostCreationFragment else -1,
+        isStory = recipientSearchKeys.any { it.isStory }
       )
     }
 
