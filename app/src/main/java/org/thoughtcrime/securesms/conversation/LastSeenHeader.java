@@ -30,7 +30,7 @@ class LastSeenHeader extends StickyHeaderDecoration {
 
   @Override
   protected boolean hasHeader(RecyclerView parent, StickyHeaderAdapter stickyAdapter, int position) {
-    if (lastSeenTimestamp <= 0) {
+    if (lastSeenTimestamp <= 0 || unreadCount <= 0) {
       return false;
     }
 

@@ -1380,7 +1380,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     }
 
     int position = getListLayoutManager().findFirstVisibleItemPosition();
-    if (position == getListAdapter().getItemCount() - 1) {
+    if (position == -1 || position == getListAdapter().getItemCount() - 1) {
       return;
     }
 
