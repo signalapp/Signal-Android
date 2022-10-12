@@ -236,10 +236,10 @@ public class SubmitDebugLogRepository {
 
   @WorkerThread
   private @NonNull String uploadContent(@NonNull String contentType, @NonNull RequestBody requestBody) throws IOException {
-    try {
-      OkHttpClient client   = new OkHttpClient.Builder().addInterceptor(new StandardUserAgentInterceptor()).dns(SignalServiceNetworkAccess.DNS).build();
-      Response     response = client.newCall(new Request.Builder().url(API_ENDPOINT).get().build()).execute();
-      ResponseBody body     = response.body();
+    OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new StandardUserAgentInterceptor()).dns(SignalServiceNetworkAccess.DNS).build();
+
+    try (Response response = client.newCall(new Request.Builder().url(API_ENDPOINT).get().build()).execute()) {
+      ResponseBody body = response.body();
 
       if (!response.isSuccessful() || body == null) {
         throw new IOException("Unsuccessful response: " + response);
@@ -261,10 +261,10 @@ public class SubmitDebugLogRepository {
 
       post.addFormDataPart("file", "file", requestBody);
 
-      Response postResponse = client.newCall(new Request.Builder().url(url).post(post.build()).build()).execute();
-
-      if (!postResponse.isSuccessful()) {
-        throw new IOException("Bad response: " + postResponse);
+      try (Response postResponse = client.newCall(new Request.Builder().url(url).post(post.build()).build()).execute()) {
+        if (!postResponse.isSuccessful()) {
+          throw new IOException("Bad response: " + postResponse);
+        }
       }
 
       return API_ENDPOINT + "/" + item;
