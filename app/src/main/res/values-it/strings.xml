@@ -401,7 +401,6 @@ scambia un altro messaggio!</string>
     </plurals>
     <!-- preferences.xml -->
     <string name="preferences__pref_enter_sends_title">Spedisci premendo Invio</string>
-    <string name="preferences__pressing_the_enter_key_will_send_text_messages">Il tasto Invio manderà il messaggio</string>
     <string name="preferences__send_link_previews">Invia anteprime dei link</string>
     <string name="preferences__previews_are_supported_for">Le anteprime sono supportate per link di Imgur, Instagram, Pinterest, Reddit e YouTube.</string>
     <string name="preferences__screen_security">Sicurezza schermo</string>
@@ -439,7 +438,6 @@ scambia un altro messaggio!</string>
     <string name="preferences__default">Predefinito</string>
     <string name="preferences__incognito_keyboard">Tastiera in incognito</string>
     <string name="preferences__read_receipts">Conferme di lettura</string>
-    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Se le conferme di lettura sono disabilitate, non sarai in grado di vedere le conferme di lettura da altri.</string>
     <string name="preferences__typing_indicators">Indicatori di scrittura</string>
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Se gli indicatori di scrittura sono disabilitati, non sarai in grado di vedere quando gli altri utenti stanno digitando.</string>
     <string name="preferences__request_keyboard_to_disable_personalized_learning">Richiedi alla tastiera di disattivare l\'apprendimento delle parole digitate</string>
@@ -448,12 +446,9 @@ scambia un altro messaggio!</string>
     <string name="preferences_chats__message_trimming">Cancellazione messaggi</string>
     <string name="preferences_advanced__use_system_emoji">Usa le emoji di sistema</string>
     <string name="preferences_advanced__disable_signal_built_in_emoji_support">Disattiva le emoji di Session</string>
-    <string name="preferences_app_protection__app_access">Accesso app</string>
-    <string name="preferences_app_protection__communication">Comunicazione</string>
     <string name="preferences_chats__chats">Conversazioni</string>
     <string name="preferences_notifications__messages">Messaggi</string>
     <string name="preferences_notifications__in_chat_sounds">Suoni in chat</string>
-    <string name="preferences_notifications__show">Mostra</string>
     <string name="preferences_notifications__priority">Priorità</string>
     <!-- **************************************** -->
     <!-- menus -->
@@ -619,7 +614,6 @@ scambia un altro messaggio!</string>
     <string name="activity_notification_settings_style_section_title">Stile della notifica</string>
     <string name="activity_notification_settings_content_section_title">Contenuto della notifica</string>
     <string name="activity_privacy_settings_title">Privacy</string>
-    <string name="activity_chat_settings_title">Chat</string>
     <string name="preferences_notifications_strategy_category_title">Strategia di notifica</string>
     <string name="preferences_notifications_strategy_category_fast_mode_title">Usa Modalità Veloce</string>
     <string name="preferences_notifications_strategy_category_fast_mode_summary">Riceverai notifiche di nuovi messaggi in modo affidabile e immediato utilizzando i server di notifica di Google.</string>

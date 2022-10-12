@@ -141,6 +141,12 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Session.DayNight.FlatActionBar" />
         <activity
+            android:name="org.thoughtcrime.securesms.preferences.BlockedContactsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Session.DayNight.FlatActionBar"
+            android:label="@string/blocked_contacts_title"
+            />
+        <activity
             android:name="org.thoughtcrime.securesms.groups.EditClosedGroupActivity"
             android:label="@string/activity_edit_closed_group_title"
             android:screenOrientation="portrait" />
@@ -160,6 +166,12 @@
         <activity
             android:name="org.thoughtcrime.securesms.preferences.ChatSettingsActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name="org.thoughtcrime.securesms.preferences.HelpSettingsActivity"
+            android:label="@string/activity_help_settings_title"
+            android:screenOrientation="portrait" />
+        <activity android:name="org.thoughtcrime.securesms.preferences.appearance.AppearanceSettingsActivity"
+            android:screenOrientation="portrait"/>
 
         <activity
             android:name="org.thoughtcrime.securesms.ShareActivity"
@@ -216,12 +228,12 @@
         <activity
             android:name="org.thoughtcrime.securesms.conversation.v2.MessageDetailActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.TextSecure.DayNight">
+            android:theme="@style/Theme.Session.DayNight">
         </activity>
         <activity
             android:name="org.thoughtcrime.securesms.longmessage.LongMessageActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.TextSecure.DayNight" />
+            android:theme="@style/Theme.Session.DayNight" />
         <activity
             android:name="org.thoughtcrime.securesms.DatabaseUpgradeActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
@@ -235,14 +247,14 @@
         <activity
             android:name="org.thoughtcrime.securesms.giph.ui.GiphyActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-            android:theme="@style/Theme.TextSecure.DayNight.NoActionBar"
+            android:theme="@style/Theme.Session.DayNight.NoActionBar"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name="org.thoughtcrime.securesms.mediasend.MediaSendActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.TextSecure.DayNight.NoActionBar"
+            android:theme="@style/Theme.Session.DayNight.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name="org.thoughtcrime.securesms.MediaPreviewActivity"
@@ -380,6 +392,10 @@
         <provider
             android:name="org.thoughtcrime.securesms.database.DatabaseContentProviders$StickerPack"
             android:authorities="network.loki.securesms.database.stickerpack"
+            android:exported="false" />
+        <provider
+            android:name="org.thoughtcrime.securesms.database.DatabaseContentProviders$Recipient"
+            android:authorities="network.loki.securesms.database.recipient"
             android:exported="false" />
 
         <receiver android:name="org.thoughtcrime.securesms.service.BootReceiver">

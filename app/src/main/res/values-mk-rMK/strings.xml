@@ -293,7 +293,6 @@
     <!-- plurals.xml -->
     <!-- preferences.xml -->
     <string name="preferences__pref_enter_sends_title">ထည့်ထားတဲ့ ကီးပို့ပါ</string>
-    <string name="preferences__pressing_the_enter_key_will_send_text_messages">စာပို့ရန်အတွက် Enter ကို နှိပ်ခြင်း</string>
     <string name="preferences__screen_security">အဖွင့်စာမျက်နှာ လုံခြုံရေး</string>
     <string name="preferences__disable_screen_security_to_allow_screen_shots">မကြာသေးမီ စာရင်းနှင့် app အတွင်း Screenshot များကို တားမြစ်ပါ</string>
     <string name="preferences__notifications">အသိပေးချက်များ</string>
@@ -329,19 +328,15 @@
     <string name="preferences__default">မူလ</string>
     <string name="preferences__incognito_keyboard">နောက်ယောင်ခံမှု မရှိသည့် ကီးဘုတ်</string>
     <string name="preferences__read_receipts">ဖတ်ပြီးပြီ</string>
-    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">စာဖတ်ပြီး​ကြောင်းပြသည်ကို ပိတ်ထားပါက တခြားသူများထံမှ ဖတ်ပြီး​ကြောင်းပြသည်ကိုလည်း မြင်ရမည်မဟုတ်ပါ။</string>
     <string name="preferences__request_keyboard_to_disable_personalized_learning">မိမိ၏လုပ်ဆောင်ချက်ပေါ်မူတည်၍ မှတ်သားထားမှုကို မလုပ်ဆောင်ရန် ကီးဘုတ်ကို တောင်းဆိုပါ</string>
     <string name="preferences__light_theme">အလင်း</string>
     <string name="preferences__dark_theme">အမှောင်</string>
     <string name="preferences_chats__message_trimming">စာများကို ညှိခြင်း</string>
     <string name="preferences_advanced__use_system_emoji">emoji စနစ်ကို သုံးပါ</string>
     <string name="preferences_advanced__disable_signal_built_in_emoji_support">Session ရဲ့ emoji ကို ပိတ်ပါ</string>
-    <string name="preferences_app_protection__app_access">App ကို အသုံးပြုခြင်း</string>
-    <string name="preferences_app_protection__communication">ဆက်သွယ်ရေး</string>
     <string name="preferences_chats__chats">စကားစမြည်များ</string>
     <string name="preferences_notifications__messages">စာများ</string>
     <string name="preferences_notifications__in_chat_sounds">စကားပြောနေစဥ် အသံ</string>
-    <string name="preferences_notifications__show">ပြပါ</string>
     <string name="preferences_notifications__priority">ဦးစားပေး</string>
     <!-- **************************************** -->
     <!-- menus -->

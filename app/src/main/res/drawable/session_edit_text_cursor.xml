@@ -4,6 +4,6 @@
 
     <size android:width="2dp" />
 
-    <solid android:color="@color/accent"  />
+    <solid android:color="?colorAccent"  />
 
 </shape>

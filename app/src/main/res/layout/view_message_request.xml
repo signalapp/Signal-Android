@@ -41,7 +41,7 @@
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:textAlignment="viewStart"
-                    android:textColor="@color/text"
+                    android:textColor="?android:textColorPrimary"
                     android:textSize="@dimen/medium_font_size"
                     android:textStyle="bold"
                     tools:text="I'm a very long display name. What are you going to do about it?" />
@@ -54,7 +54,7 @@
                     android:alpha="0.4"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:textColor="@color/text"
+                    android:textColor="?android:textColorPrimary"
                     android:textSize="@dimen/small_font_size"
                     tools:text="9:41 AM" />
 
@@ -66,7 +66,7 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:textColor="@color/text"
+                android:textColor="?android:textColorPrimary"
                 android:textSize="@dimen/medium_font_size"
                 tools:text="Sorry, gotta go fight crime again" />
 

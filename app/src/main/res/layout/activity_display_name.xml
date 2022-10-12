@@ -17,7 +17,7 @@
         android:layout_marginRight="@dimen/very_large_spacing"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:textColor="@color/text"
+        android:textColor="?android:textColorPrimary"
         android:text="@string/activity_display_name_title_2" />
 
     <TextView
@@ -27,7 +27,7 @@
         android:layout_marginTop="4dp"
         android:layout_marginRight="@dimen/very_large_spacing"
         android:textSize="@dimen/small_font_size"
-        android:textColor="@color/text"
+        android:textColor="?android:textColorPrimary"
         android:text="@string/activity_display_name_explanation" />
 
     <EditText

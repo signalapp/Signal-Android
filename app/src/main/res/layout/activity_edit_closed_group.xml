@@ -72,7 +72,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:textColor="@color/text"
+                    android:textColor="?android:textColorPrimary"
                     android:textSize="@dimen/very_large_font_size"
                     android:textStyle="bold"
                     android:textAlignment="center"
@@ -105,7 +105,7 @@
                 android:layout_marginBottom="@dimen/small_spacing"
                 android:layout_weight="1"
                 android:text="@string/activity_edit_closed_group_edit_members"
-                android:textColor="@color/text"
+                android:textColor="?android:textColorPrimary"
                 android:textSize="@dimen/medium_font_size" />
 
             <Button

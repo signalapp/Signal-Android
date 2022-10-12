@@ -9,6 +9,7 @@
     android:paddingBottom="@dimen/react_with_any_emoji_bottom_sheet_dialog_fragment_tabs_height">
 
     <com.google.android.material.tabs.TabLayout
+        style="@style/Widget.Session.TabLayout"
         android:id="@+id/emoji_tabs"
         android:layout_width="match_parent"
         android:layout_height="@dimen/react_with_any_emoji_bottom_sheet_dialog_fragment_tabs_height"
@@ -17,12 +18,14 @@
         app:tabMinWidth="48dp"
         app:tabMode="scrollable"
         app:tabPaddingEnd="5dp"
-        app:tabPaddingStart="5dp"
-        />
+        app:tabSelectedTextColor="?android:textColorPrimary"
+        app:tabTextColor="?android:textColorTertiary"
+        app:tabPaddingStart="5dp" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/reactions_bottom_view_recipient_pager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
+
 </LinearLayout>

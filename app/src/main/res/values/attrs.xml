@@ -28,6 +28,8 @@
     <attr name="ic_visibility_on" format="reference" />
     <attr name="ic_visibility_off" format="reference" />
 
+    <attr name="prominentButtonColor" format="reference|color"/>
+    <attr name="elementBorderColor" format="reference|color"/>
     <attr name="conversation_background" format="reference|color"/>
     <attr name="conversation_editor_background" format="reference|color"/>
     <attr name="conversation_editor_text_color" format="reference|color"/>
@@ -89,11 +91,24 @@
     <attr name="conversation_item_audio_seek_bar_color_outgoing" format="reference|color" />
     <attr name="conversation_item_audio_seek_bar_background_color" format="reference|color" />
     <attr name="conversation_pinned_background_color" format="reference|color" />
+    <attr name="conversation_unread_background_color" format="reference|color" />
     <attr name="conversation_pinned_icon_color" format="reference|color" />
 
     <attr name="dialog_info_icon" format="reference" />
     <attr name="dialog_alert_icon" format="reference" />
     <attr name="dialog_background_color" format="reference|color" />
+    <attr name="conversation_menu_background_color" format="reference|color" />
+    <attr name="conversation_menu_cell_color" format="reference|color"/>
+    <attr name="conversation_menu_border_color" format="reference|color"/>
+    <attr name="conversationMenuSearchBackgroundColor" format="reference|color"/>
+    <attr name="conversationMenuSearchTintColor" format="reference|color"/>
+    <attr name="dialog_border" format="reference|color" />
+    <attr name="sessionLogoTint" format="reference|color" />
+
+    <attr name="theme_preview_incoming" format="reference|color"/>
+    <attr name="theme_preview_outgoing" format="reference|color"/>
+    <attr name="theme_preview_background" format="reference|color"/>
+    <attr name="theme_preview_border" format="reference|color"/>
 
     <attr name="conversation_icon_attach_audio" format="reference"/>
     <attr name="conversation_icon_attach_video" format="reference" />
@@ -129,14 +144,45 @@
 
     <attr name="home_gradient_start" format="color|reference" />
     <attr name="home_gradient_end" format="color|reference" />
+    <attr name="conversation_color_non_main" format="color|reference"/>
+    <attr name="conversation_tint_non_main" format="color|reference"/>
+    <attr name="conversation_shadow_non_main" format="color|reference"/>
+    <attr name="conversation_shadow_main" format="color|reference"/>
+    <attr name="default_background_start" format="color|reference"/>
+    <attr name="default_background_end" format="color|reference"/>
+    <attr name="colorCellRipple" format="color|reference"/>
+    <attr name="colorCellBackground" format="color|reference" />
+    <attr name="colorSettingsBackground" format="color|reference" />
+    <attr name="colorDividerBackground" format="color|reference" />
+    <attr name="outlineButtonBorder" format="color|reference" />
+    <attr name="outlineButtonText" format="color|reference" />
+    <attr name="unreadIndicatorBackgroundColor" format="color|reference"/>
+    <attr name="unreadIndicatorTextColor" format="color|reference"/>
 
+    <attr name="message_selected" format="color|reference" />
     <attr name="message_received_background_color" format="color|reference" />
+    <attr name="message_received_text_color" format="color|reference" />
     <attr name="message_sent_background_color" format="color|reference" />
+    <attr name="message_sent_text_color" format="color|reference" />
+    <attr name="input_bar_background" format="color|reference"/>
+    <attr name="input_bar_text_hint" format="color|reference"/>
+    <attr name="input_bar_text_user" format="color|reference"/>
+    <attr name="input_bar_border" format="color|reference"/>
+    <attr name="input_bar_button_background" format="color|reference"/>
+    <attr name="input_bar_button_background_opaque" format="color|reference"/>
+    <attr name="input_bar_button_background_opaque_border" format="color|reference"/>
+    <attr name="input_bar_button_text_color" format="color|reference"/>
+    <attr name="input_bar_lock_view_background" format="color|reference"/>
+    <attr name="input_bar_lock_view_border" format="color|reference"/>
+    <attr name="mention_candidates_view_background" format="color|reference"/>
+    <attr name="mention_candidates_view_background_ripple" format="color|reference"/>
+    <attr name="scroll_to_bottom_button_background" format="color|reference"/>
+    <attr name="scroll_to_bottom_button_border" format="color|reference"/>
+    <attr name="conversation_unread_count_indicator_background" format="color|reference"/>
 
     <attr name="verification_background" format="color"/>
 
     <attr name="media_overview_toolbar_background" format="color"/>
-    <attr name="media_overview_header_foreground" format="color"/>
 
     <attr name="shared_contact_details_header_background" format="color"/>
     <attr name="shared_contact_details_titlebar" format="color"/>
@@ -322,5 +368,11 @@
         <attr name="search_hint" format="string|reference" />
         <attr name="click_only" format="boolean" />
     </declare-styleable>
+
+    <attr name="preferenceCornerRadius" format="dimension|reference"/>
+    <attr name="reactionsPillSelectedTextColor" format="color|reference"/>
+    <attr name="reactionsPillSelectedBackground" format="color|reference"/>
+    <attr name="reactionsPillNormalBackground" format="color|reference"/>
+    <attr name="reactionsPillNormalTextColor" format="color|reference"/>
 
 </resources>

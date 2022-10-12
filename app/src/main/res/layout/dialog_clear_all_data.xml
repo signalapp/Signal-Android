@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/default_dialog_background_inset"
     android:gravity="center_horizontal"
     android:orientation="vertical"
     android:elevation="4dp"
-    android:padding="32dp">
+    android:padding="@dimen/medium_spacing">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/dialog_clear_all_data_title"
-        android:textColor="@color/text"
+        android:textColor="?android:textColorPrimary"
         android:textStyle="bold"
         android:textSize="@dimen/medium_font_size" />
 
@@ -23,10 +22,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/large_spacing"
-        android:text="@string/dialog_clear_all_data_explanation"
-        android:textColor="@color/text"
-        android:textSize="@dimen/small_font_size"
-        android:textAlignment="center" />
+        android:text="@string/dialog_clear_all_data_message"
+        android:textAlignment="center"
+        android:textColor="?android:textColorPrimary"
+        android:textSize="@dimen/small_font_size" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/small_spacing"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:itemCount="2"
+        tools:listitem="@layout/item_selectable"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -35,21 +43,21 @@
         android:orientation="horizontal">
 
         <Button
-            style="@style/Widget.Session.Button.Dialog.Unimportant"
-            android:id="@+id/cancelButton"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/small_button_height"
-            android:layout_weight="1"
-            android:text="@string/cancel" />
-
-        <Button
-            style="@style/Widget.Session.Button.Dialog.Destructive"
+            style="@style/Widget.Session.Button.Dialog.DestructiveText"
             android:id="@+id/clearAllDataButton"
             android:layout_width="0dp"
             android:layout_height="@dimen/small_button_height"
             android:layout_weight="1"
             android:layout_marginStart="@dimen/medium_spacing"
-            android:text="@string/delete" />
+            android:text="@string/dialog_clear_all_data_clear" />
+
+        <Button
+            style="@style/Widget.Session.Button.Dialog.UnimportantText"
+            android:id="@+id/cancelButton"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/small_button_height"
+            android:layout_weight="1"
+            android:text="@string/cancel" />
 
         <com.github.ybq.android.spinkit.SpinKitView
             style="@style/SpinKitView.Small.ThreeBounce"
@@ -57,7 +65,7 @@
             android:layout_width="0dp"
             android:layout_height="@dimen/small_button_height"
             android:layout_weight="1"
-            app:SpinKit_Color="@color/accent"
+            app:SpinKit_Color="?colorAccent"
             android:visibility="gone" />
 
     </LinearLayout>

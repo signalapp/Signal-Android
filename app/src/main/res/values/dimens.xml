@@ -28,7 +28,7 @@
     <dimen name="fake_chat_view_bubble_width">224dp</dimen>
     <dimen name="fake_chat_view_bubble_corner_radius">10dp</dimen>
     <dimen name="fake_chat_view_height">250dp</dimen>
-    <dimen name="setting_button_height">56dp</dimen>
+    <dimen name="setting_button_height">64dp</dimen>
     <dimen name="dialog_corner_radius">8dp</dimen>
     <dimen name="dialog_button_corner_radius">4dp</dimen>
     <dimen name="pn_option_corner_radius">8dp</dimen>
@@ -146,5 +146,8 @@
     <dimen name="react_with_any_emoji_bottom_sheet_dialog_fragment_min_height">390dp</dimen>
     <dimen name="react_with_any_emoji_bottom_sheet_dialog_fragment_tabs_height">40dp</dimen>
     <dimen name="max_text_width">200dp</dimen>
+    <dimen name="preference_corner_radius" />
+    <dimen name="radial_size">34dp</dimen>
+    <dimen name="small_radial_size">24dp</dimen>
 
 </resources>

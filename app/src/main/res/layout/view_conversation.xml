@@ -12,7 +12,7 @@
         android:id="@+id/accentView"
         android:layout_width="@dimen/accent_line_thickness"
         android:layout_height="match_parent"
-        android:background="@color/accent" />
+        android:background="?colorAccent" />
 
     <include layout="@layout/view_profile_picture"
         android:id="@+id/profilePictureView"
@@ -57,7 +57,8 @@
                         android:textAlignment="viewStart"
                         android:textSize="@dimen/medium_font_size"
                         android:textStyle="bold"
-                        android:textColor="@color/text"
+                        android:textColor="?android:textColorPrimary"
+                        app:drawableTint="?conversation_pinned_icon_color"
                         tools:drawableRight="@drawable/ic_pin"
                         tools:text="I'm a very long display name. What are you going to do about it?" />
 
@@ -70,7 +71,7 @@
                         android:layout_height="20dp"
                         android:layout_marginStart="4dp"
                         android:background="@drawable/rounded_rectangle"
-                        android:backgroundTint="@color/conversation_unread_count_indicator_background">
+                        android:backgroundTint="?unreadIndicatorBackgroundColor">
 
                         <TextView
                             android:id="@+id/unreadCountTextView"
@@ -78,7 +79,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerInParent="true"
                             android:text="8"
-                            android:textColor="@color/text"
+                            android:textColor="?unreadIndicatorTextColor"
                             android:textSize="@dimen/very_small_font_size"
                             android:textStyle="bold" />
 
@@ -94,7 +95,7 @@
                     android:maxLines="1"
                     android:ellipsize="end"
                     android:textSize="@dimen/small_font_size"
-                    android:textColor="@color/text"
+                    android:textColor="?android:textColorPrimary"
                     android:alpha="0.4"
                     tools:text="9:41 AM" />
 
@@ -126,7 +127,7 @@
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
                         android:maxLines="1"
-                        android:textColor="@color/text"
+                        android:textColor="?android:textColorPrimary"
                         android:textSize="@dimen/medium_font_size"
                         tools:text="Sorry, gotta go fight crime again" />
 
@@ -135,7 +136,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        app:typingIndicator_tint="@color/text" />
+                        app:typingIndicator_tint="?android:textColorPrimary" />
 
                 </RelativeLayout>
 

@@ -228,7 +228,6 @@
     <string name="activity_notification_settings_title">දැනුම්දීම්</string>
     <string name="activity_notification_settings_content_section_title">දැනුම්දීමේ අන්තර්ගතය</string>
     <string name="activity_privacy_settings_title">පෞද්ගලිකත්වය</string>
-    <string name="activity_chat_settings_title">සංවාද</string>
     <string name="fragment_device_list_bottom_sheet_change_name_button_title">නම වෙනස් කරන්න</string>
     <string name="fragment_view_my_qr_code_title">මාව සුපිරික්සන්න</string>
     <string name="fragment_contact_selection_contacts_title">සබඳතා</string>

@@ -56,7 +56,7 @@ class JobQueue : JobDelegate {
                 handleJobFailedPermanently(job, NullPointerException("Open Group ID was null"))
             } else {
                 val groupChannel = if (!openGroupChannels.containsKey(openGroupId)) {
-                    Log.d("OpenGroupDispatcher", "Creating $openGroupId channel")
+                    Log.d("OpenGroupDispatcher", "Creating ${openGroupId.hashCode()} channel")
                     val newGroupChannel = Channel<Job>(UNLIMITED)
                     launch(dispatcher) {
                         for (groupJob in newGroupChannel) {

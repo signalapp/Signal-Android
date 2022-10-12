@@ -26,7 +26,7 @@
         android:paddingBottom="3dp"
         android:paddingTop="1dp"
         android:background="@color/transparent"
-        android:textColor="@color/text"
+        android:textColor="?android:textColorPrimary"
         android:textSize="10sp" />
 
 </FrameLayout>

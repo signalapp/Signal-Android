@@ -246,7 +246,6 @@ trao đổi chìa khóa bị hỏng!</string>
     </plurals>
     <!-- preferences.xml -->
     <string name="preferences__pref_enter_sends_title">Phím Enter gửi đi</string>
-    <string name="preferences__pressing_the_enter_key_will_send_text_messages">Nhấn phím Enter sẽ gửi tin nhắn đi</string>
     <string name="preferences__screen_security">An ninh màn hình</string>
     <string name="preferences__disable_screen_security_to_allow_screen_shots">Chặn không cho chụp màn hình trong danh sách mới nhất và bên trong ứng dụng</string>
     <string name="preferences__notifications">Thông báo</string>
@@ -411,7 +410,6 @@ trao đổi chìa khóa bị hỏng!</string>
     <string name="activity_notification_settings_style_section_title">Kiểu thông báo</string>
     <string name="activity_notification_settings_content_section_title">Nội dung thông báo</string>
     <string name="activity_privacy_settings_title">Riêng tưy</string>
-    <string name="activity_chat_settings_title">Trò chuyện</string>
     <string name="preferences_notifications_strategy_category_title">Chiến lược thông báo</string>
     <string name="fragment_device_list_bottom_sheet_change_name_button_title">Đổi tên</string>
     <string name="fragment_device_list_bottom_sheet_unlink_device_button_title">Hủy liên kết thiết bị</string>

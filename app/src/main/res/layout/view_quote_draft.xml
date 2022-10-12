@@ -6,7 +6,7 @@
     android:id="@+id/mainQuoteViewContainer"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/input_bar_background"
+    android:background="?input_bar_background"
     android:paddingHorizontal="@dimen/medium_spacing"
     android:paddingVertical="@dimen/small_spacing"
     app:quote_mode="draft">
@@ -17,7 +17,7 @@
         android:layout_height="0dp"
         android:layout_centerVertical="true"
         android:layout_marginVertical="4dp"
-        android:background="@color/text"
+        android:background="?android:textColorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="parent"
@@ -81,7 +81,7 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="1"
-            android:textColor="@color/text"
+            android:textColor="?android:textColorPrimary"
             android:textSize="@dimen/small_font_size"
             android:textStyle="bold"
             tools:text="Spiderman" />
@@ -92,7 +92,7 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="3"
-            android:textColor="@color/text"
+            android:textColor="?android:textColorPrimary"
             android:textSize="@dimen/small_font_size"
             tools:text="@tools:sample/lorem/random" />
     </LinearLayout>
@@ -109,6 +109,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/text" />
+        app:tint="?android:textColorPrimary" />
 
 </org.thoughtcrime.securesms.conversation.v2.messages.QuoteView>

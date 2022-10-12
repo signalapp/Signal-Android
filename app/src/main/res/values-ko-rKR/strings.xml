@@ -312,7 +312,6 @@
     </plurals>
     <!-- preferences.xml -->
     <string name="preferences__pref_enter_sends_title">Enter키로 메시지 보내기</string>
-    <string name="preferences__pressing_the_enter_key_will_send_text_messages">Enter키 사용하여 메시지 보냄</string>
     <string name="preferences__screen_security">화면 보안</string>
     <string name="preferences__disable_screen_security_to_allow_screen_shots">최근 사용 목록/개요 및 앱 안에서 스크린샷 차단</string>
     <string name="preferences__notifications">알림</string>
@@ -351,7 +350,6 @@
     <string name="preferences_chats__message_trimming">대화 줄이기</string>
     <string name="preferences_advanced__use_system_emoji">시스템 이모티콘 사용</string>
     <string name="preferences_advanced__disable_signal_built_in_emoji_support">Session 이모티콘 사용 중지</string>
-    <string name="preferences_app_protection__communication">대화</string>
     <string name="preferences_notifications__messages">메시지</string>
     <string name="preferences_notifications__priority">우선순위</string>
     <!-- **************************************** -->

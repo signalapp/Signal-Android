@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/bottom_sheet_item_background"
+    android:background="?conversation_menu_cell_color"
     android:orientation="vertical">
 
     <LinearLayout
@@ -34,10 +34,5 @@
             tools:text="Spiderman" />
 
     </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="?android:dividerHorizontal" />
 
 </LinearLayout>

@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.home
 import android.content.Context
 import android.content.res.Resources
 import android.graphics.Typeface
+import android.graphics.drawable.ColorDrawable
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.LayoutInflater
@@ -20,6 +21,7 @@ import org.thoughtcrime.securesms.database.RecipientDatabase.NOTIFY_TYPE_NONE
 import org.thoughtcrime.securesms.database.model.ThreadRecord
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.util.DateUtils
+import org.thoughtcrime.securesms.util.getAccentColor
 import java.util.Locale
 
 class ConversationView : LinearLayout {
@@ -41,11 +43,19 @@ class ConversationView : LinearLayout {
     // region Updating
     fun bind(thread: ThreadRecord, isTyping: Boolean, glide: GlideRequests) {
         this.thread = thread
-        background = if (thread.isPinned) {
-            binding.conversationViewDisplayNameTextView.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_pin, 0)
-            ContextCompat.getDrawable(context, R.drawable.conversation_pinned_background)
+        if (thread.isPinned) {
+            binding.conversationViewDisplayNameTextView.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                0,
+                0,
+                R.drawable.ic_pin,
+                0
+            )
         } else {
             binding.conversationViewDisplayNameTextView.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, 0, 0)
+        }
+        background = if (thread.unreadCount > 0) {
+            ContextCompat.getDrawable(context, R.drawable.conversation_unread_background)
+        } else {
             ContextCompat.getDrawable(context, R.drawable.conversation_view_background)
         }
         binding.profilePictureView.root.glide = glide
@@ -54,7 +64,9 @@ class ConversationView : LinearLayout {
             binding.accentView.setBackgroundResource(R.color.destructive)
             binding.accentView.visibility = View.VISIBLE
         } else {
-            binding.accentView.setBackgroundResource(R.color.accent)
+            val accentColor = context.getAccentColor()
+            val background = ColorDrawable(accentColor)
+            binding.accentView.background = background
             // Using thread.isRead we can determine if the last message was our own, and display it as 'read' even though previous messages may not be
             // This would also not trigger the disappearing message timer which may or may not be desirable
             binding.accentView.visibility = if (unreadCount > 0 && !thread.isRead) View.VISIBLE else View.INVISIBLE
@@ -65,9 +77,9 @@ class ConversationView : LinearLayout {
             if (unreadCount < 10000) unreadCount.toString() else "9999+"
         }
         binding.unreadCountTextView.text = formattedUnreadCount
-        val textSize = if (unreadCount < 10000) 12.0f else 9.0f
+        val textSize = if (unreadCount < 1000) 12.0f else 10.0f
         binding.unreadCountTextView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, textSize)
-        binding.unreadCountTextView.setTypeface(Typeface.DEFAULT, if (unreadCount < 100) Typeface.BOLD else Typeface.NORMAL)
+        binding.unreadCountIndicator.background.setTint(context.getAccentColor())
         binding.unreadCountIndicator.isVisible = (unreadCount != 0 && !thread.isRead)
         val senderDisplayName = getUserDisplayName(thread.recipient)
                 ?: thread.recipient.address.toString()

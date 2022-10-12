@@ -337,7 +337,6 @@
     </plurals>
     <!-- preferences.xml -->
     <string name="preferences__pref_enter_sends_title">ป้อนคีย์เพื่อส่ง</string>
-    <string name="preferences__pressing_the_enter_key_will_send_text_messages">การกดปุ่ม Enter จะเป็นการส่งข้อความตัวอักษร</string>
     <string name="preferences__screen_security">ความปลอดภัยหน้าจอ</string>
     <string name="preferences__disable_screen_security_to_allow_screen_shots">ปิดกั้นการจับภาพหน้าจอในรายการล่าสุดและภายในแอป</string>
     <string name="preferences__notifications">การแจ้งเตือน</string>
@@ -373,19 +372,15 @@
     <string name="preferences__default">ค่าเริ่มต้น</string>
     <string name="preferences__incognito_keyboard">แป้นพิมพ์แบบลับ</string>
     <string name="preferences__read_receipts">ใบตอบรับเมื่ออ่าน</string>
-    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">ถ้าใบตอบรับเมื่ออ่านถูกปิดใช้งาน คุณจะไม่เห็นใบตอบรับเมื่ออ่านที่ส่งมาจากผู้อื่น</string>
     <string name="preferences__request_keyboard_to_disable_personalized_learning">ร้องขอแป้นพิมพ์ให้ปิดใช้งานการเรียนรู้การแนะนำคำ</string>
     <string name="preferences__light_theme">สว่าง</string>
     <string name="preferences__dark_theme">มืด</string>
     <string name="preferences_chats__message_trimming">ตัดข้อความให้สั้นลง</string>
     <string name="preferences_advanced__use_system_emoji">ใช้อีโมจิของระบบ</string>
     <string name="preferences_advanced__disable_signal_built_in_emoji_support">ปิดใช้งานการรองรับอีโมจิของ Session เอง</string>
-    <string name="preferences_app_protection__app_access">การเข้าถึงแอป</string>
-    <string name="preferences_app_protection__communication">การสื่อสาร</string>
     <string name="preferences_chats__chats">แชต</string>
     <string name="preferences_notifications__messages">ข้อความ</string>
     <string name="preferences_notifications__in_chat_sounds">เสียงภายในแชต</string>
-    <string name="preferences_notifications__show">แสดง</string>
     <string name="preferences_notifications__priority">ความสำคัญ</string>
     <!-- **************************************** -->
     <!-- menus -->

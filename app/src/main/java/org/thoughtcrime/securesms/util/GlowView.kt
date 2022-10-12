@@ -3,7 +3,8 @@ package org.thoughtcrime.securesms.util
 import android.animation.ArgbEvaluator
 import android.animation.ValueAnimator
 import android.content.Context
-import android.graphics.*
+import android.graphics.Canvas
+import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
@@ -11,8 +12,6 @@ import android.widget.RelativeLayout
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import network.loki.messenger.R
-import org.thoughtcrime.securesms.util.getColorWithID
-import org.thoughtcrime.securesms.util.toPx
 import kotlin.math.roundToInt
 
 interface GlowView {
@@ -22,7 +21,7 @@ interface GlowView {
 
 object GlowViewUtilities {
 
-    fun animateColorChange(context: Context, view: GlowView, @ColorRes startColorID: Int, @ColorRes endColorID: Int) {
+    fun animateColorIdChange(context: Context, view: GlowView, @ColorRes startColorID: Int, @ColorRes endColorID: Int) {
         val startColor = context.resources.getColorWithID(startColorID, context.theme)
         val endColor = context.resources.getColorWithID(endColorID, context.theme)
         val animation = ValueAnimator.ofObject(ArgbEvaluator(), startColor, endColor)
@@ -34,7 +33,17 @@ object GlowViewUtilities {
         animation.start()
     }
 
-    fun animateShadowColorChange(context: Context, view: GlowView, @ColorRes startColorID: Int, @ColorRes endColorID: Int) {
+    fun animateColorChange(view: GlowView, @ColorInt startColor: Int, @ColorInt endColor: Int) {
+        val animation = ValueAnimator.ofObject(ArgbEvaluator(), startColor, endColor)
+        animation.duration = 250
+        animation.addUpdateListener { animator ->
+            val color = animator.animatedValue as Int
+            view.mainColor = color
+        }
+        animation.start()
+    }
+
+    fun animateShadowColorIdChange(context: Context, view: GlowView, @ColorRes startColorID: Int, @ColorRes endColorID: Int) {
         val startColor = context.resources.getColorWithID(startColorID, context.theme)
         val endColor = context.resources.getColorWithID(endColorID, context.theme)
         val animation = ValueAnimator.ofObject(ArgbEvaluator(), startColor, endColor)
@@ -45,6 +54,17 @@ object GlowViewUtilities {
         }
         animation.start()
     }
+
+    fun animateShadowColorChange(view: GlowView, @ColorInt startColor: Int, @ColorInt endColor: Int) {
+        val animation = ValueAnimator.ofObject(ArgbEvaluator(), startColor, endColor)
+        animation.duration = 250
+        animation.addUpdateListener { animator ->
+            val color = animator.animatedValue as Int
+            view.sessionShadowColor = color
+        }
+        animation.start()
+    }
+
 }
 
 class PNModeView : LinearLayout, GlowView {

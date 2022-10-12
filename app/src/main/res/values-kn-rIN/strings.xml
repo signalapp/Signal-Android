@@ -202,7 +202,6 @@
     <string name="preferences__light_theme">ಪ್ರಕಾಶ</string>
     <string name="preferences__dark_theme">ಕತ್ತಲು</string>
     <string name="preferences_notifications__messages">ಸಂದೇಶಗಳು</string>
-    <string name="preferences_notifications__show">ತೋರಿಸು</string>
     <string name="preferences_notifications__priority">ಆದ್ಯತೆ</string>
     <!-- **************************************** -->
     <!-- menus -->

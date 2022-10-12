@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 
 import java.io.Closeable;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class RecipientDatabase extends Database {
@@ -232,6 +233,7 @@ public class RecipientDatabase extends Database {
     values.put(COLOR, color.serialize());
     updateOrInsert(recipient.getAddress(), values);
     recipient.resolve().setColor(color);
+    notifyRecipientListeners();
   }
 
   public void setDefaultSubscriptionId(@NonNull Recipient recipient, int defaultSubscriptionId) {
@@ -239,6 +241,7 @@ public class RecipientDatabase extends Database {
     values.put(DEFAULT_SUBSCRIPTION_ID, defaultSubscriptionId);
     updateOrInsert(recipient.getAddress(), values);
     recipient.resolve().setDefaultSubscriptionId(Optional.of(defaultSubscriptionId));
+    notifyRecipientListeners();
   }
 
   public void setForceSmsSelection(@NonNull Recipient recipient, boolean forceSmsSelection) {
@@ -246,6 +249,7 @@ public class RecipientDatabase extends Database {
     contentValues.put(FORCE_SMS_SELECTION, forceSmsSelection ? 1 : 0);
     updateOrInsert(recipient.getAddress(), contentValues);
     recipient.resolve().setForceSmsSelection(forceSmsSelection);
+    notifyRecipientListeners();
   }
 
   public void setApproved(@NonNull Recipient recipient, boolean approved) {
@@ -253,6 +257,7 @@ public class RecipientDatabase extends Database {
     values.put(APPROVED, approved ? 1 : 0);
     updateOrInsert(recipient.getAddress(), values);
     recipient.resolve().setApproved(approved);
+    notifyRecipientListeners();
   }
 
   public void setApprovedMe(@NonNull Recipient recipient, boolean approvedMe) {
@@ -260,6 +265,7 @@ public class RecipientDatabase extends Database {
     values.put(APPROVED_ME, approvedMe ? 1 : 0);
     updateOrInsert(recipient.getAddress(), values);
     recipient.resolve().setHasApprovedMe(approvedMe);
+    notifyRecipientListeners();
   }
 
   public void setBlocked(@NonNull Recipient recipient, boolean blocked) {
@@ -267,6 +273,24 @@ public class RecipientDatabase extends Database {
     values.put(BLOCK, blocked ? 1 : 0);
     updateOrInsert(recipient.getAddress(), values);
     recipient.resolve().setBlocked(blocked);
+    notifyRecipientListeners();
+  }
+
+  public void setBlocked(@NonNull List<Recipient> recipients, boolean blocked) {
+    SQLiteDatabase db = getWritableDatabase();
+    db.beginTransaction();
+    try {
+      ContentValues values = new ContentValues();
+      values.put(BLOCK, blocked ? 1 : 0);
+      for (Recipient recipient : recipients) {
+        db.update(TABLE_NAME, values, ADDRESS + " = ?", new String[]{recipient.getAddress().serialize()});
+        recipient.resolve().setBlocked(blocked);
+      }
+      db.setTransactionSuccessful();
+    } finally {
+      db.endTransaction();
+    }
+    notifyRecipientListeners();
   }
 
   public void setMuted(@NonNull Recipient recipient, long until) {
@@ -274,6 +298,7 @@ public class RecipientDatabase extends Database {
     values.put(MUTE_UNTIL, until);
     updateOrInsert(recipient.getAddress(), values);
     recipient.resolve().setMuted(until);
+    notifyRecipientListeners();
   }
 
   /**
@@ -287,6 +312,7 @@ public class RecipientDatabase extends Database {
     updateOrInsert(recipient.getAddress(), values);
     recipient.resolve().setNotifyType(notifyType);
     notifyConversationListListeners();
+    notifyRecipientListeners();
   }
 
   public void setExpireMessages(@NonNull Recipient recipient, int expiration) {
@@ -296,6 +322,7 @@ public class RecipientDatabase extends Database {
     values.put(EXPIRE_MESSAGES, expiration);
     updateOrInsert(recipient.getAddress(), values);
     recipient.resolve().setExpireMessages(expiration);
+    notifyRecipientListeners();
   }
 
   public void setUnidentifiedAccessMode(@NonNull Recipient recipient, @NonNull UnidentifiedAccessMode unidentifiedAccessMode) {
@@ -303,6 +330,7 @@ public class RecipientDatabase extends Database {
     values.put(UNIDENTIFIED_ACCESS_MODE, unidentifiedAccessMode.getMode());
     updateOrInsert(recipient.getAddress(), values);
     recipient.resolve().setUnidentifiedAccessMode(unidentifiedAccessMode);
+    notifyRecipientListeners();
   }
 
   public void setProfileKey(@NonNull Recipient recipient, @Nullable byte[] profileKey) {
@@ -310,6 +338,7 @@ public class RecipientDatabase extends Database {
     values.put(PROFILE_KEY, profileKey == null ? null : Base64.encodeBytes(profileKey));
     updateOrInsert(recipient.getAddress(), values);
     recipient.resolve().setProfileKey(profileKey);
+    notifyRecipientListeners();
   }
 
   public void setProfileAvatar(@NonNull Recipient recipient, @Nullable String profileAvatar) {
@@ -317,6 +346,7 @@ public class RecipientDatabase extends Database {
     contentValues.put(SIGNAL_PROFILE_AVATAR, profileAvatar);
     updateOrInsert(recipient.getAddress(), contentValues);
     recipient.resolve().setProfileAvatar(profileAvatar);
+    notifyRecipientListeners();
   }
 
   public void setProfileName(@NonNull Recipient recipient, @Nullable String profileName) {
@@ -325,6 +355,7 @@ public class RecipientDatabase extends Database {
     updateOrInsert(recipient.getAddress(), contentValues);
     recipient.resolve().setName(profileName);
     recipient.resolve().setProfileName(profileName);
+    notifyRecipientListeners();
   }
 
   public void setProfileSharing(@NonNull Recipient recipient, boolean enabled) {
@@ -332,6 +363,7 @@ public class RecipientDatabase extends Database {
     contentValues.put(PROFILE_SHARING, enabled ? 1 : 0);
     updateOrInsert(recipient.getAddress(), contentValues);
     recipient.setProfileSharing(enabled);
+    notifyRecipientListeners();
   }
 
   public void setNotificationChannel(@NonNull Recipient recipient, @Nullable String notificationChannel) {
@@ -339,6 +371,7 @@ public class RecipientDatabase extends Database {
     contentValues.put(NOTIFICATION_CHANNEL, notificationChannel);
     updateOrInsert(recipient.getAddress(), contentValues);
     recipient.setNotificationChannel(notificationChannel);
+    notifyRecipientListeners();
   }
 
   public void setRegistered(@NonNull Recipient recipient, RegisteredState registeredState) {
@@ -346,6 +379,7 @@ public class RecipientDatabase extends Database {
     contentValues.put(REGISTERED, registeredState.getId());
     updateOrInsert(recipient.getAddress(), contentValues);
     recipient.setRegistered(registeredState);
+    notifyRecipientListeners();
   }
 
   private void updateOrInsert(Address address, ContentValues contentValues) {
@@ -363,6 +397,22 @@ public class RecipientDatabase extends Database {
 
     database.setTransactionSuccessful();
     database.endTransaction();
+  }
+
+  public List<Recipient> getBlockedContacts() {
+    SQLiteDatabase database = databaseHelper.getReadableDatabase();
+
+    Cursor         cursor   = database.query(TABLE_NAME, new String[] {ID, ADDRESS}, BLOCK + " = 1",
+            null, null, null, null, null);
+
+    RecipientReader reader = new RecipientReader(context, cursor);
+    List<Recipient> returnList = new ArrayList<>();
+    Recipient current;
+    while ((current = reader.getNext()) != null) {
+      returnList.add(current);
+    }
+    reader.close();
+    return returnList;
   }
 
   public static class RecipientReader implements Closeable {

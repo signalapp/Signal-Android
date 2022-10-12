@@ -4,10 +4,10 @@
     android:shape="rectangle" >
 
     <solid
-        android:color="@color/pn_option_background" />
+        android:color="?colorPrimary" />
 
     <stroke
-        android:color="@color/accent"
+        android:color="?colorAccent"
         android:width="@dimen/border_thickness" />
 
     <corners android:radius="@dimen/pn_option_corner_radius" />

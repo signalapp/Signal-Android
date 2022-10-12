@@ -392,7 +392,6 @@
     </plurals>
     <!-- preferences.xml -->
     <string name="preferences__pref_enter_sends_title">Tecla Intro para enviar</string>
-    <string name="preferences__pressing_the_enter_key_will_send_text_messages">Ao tocar na tecla Intro enviaranse as mensaxes</string>
     <string name="preferences__send_link_previews">Enviar previsualizacións das ligazóns.</string>
     <string name="preferences__previews_are_supported_for">As previsualizacións están dispoñibles para ligazóns a Imgur, Instagram, Pinterest, Reddit e YouTube</string>
     <string name="preferences__screen_security">Seguranza da pantalla</string>
@@ -429,7 +428,6 @@
     <string name="preferences__default">Por defecto</string>
     <string name="preferences__incognito_keyboard">Teclado de incógnito</string>
     <string name="preferences__read_receipts">Confirmacións de lectura</string>
-    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Se desactivas as confirmacións de lectura, non poderás ver as confirmacións dos demais.</string>
     <string name="preferences__typing_indicators">Indicador de escritura</string>
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Se os indicadores de escritura están desactivados non verás cando outras persoas está a escribir.</string>
     <string name="preferences__request_keyboard_to_disable_personalized_learning">Solicitude de teclado para desactivar a aprendizaxe personalizada</string>
@@ -438,12 +436,9 @@
     <string name="preferences_chats__message_trimming">Recorte das mensaxes</string>
     <string name="preferences_advanced__use_system_emoji">Utilizar sistema emoji</string>
     <string name="preferences_advanced__disable_signal_built_in_emoji_support">Desactiva o soporte emoji integrado en Session</string>
-    <string name="preferences_app_protection__app_access">Acceso á aplicación</string>
-    <string name="preferences_app_protection__communication">Comunicacións</string>
     <string name="preferences_chats__chats">Conversas</string>
     <string name="preferences_notifications__messages">Mensaxes</string>
     <string name="preferences_notifications__in_chat_sounds">Sons durante a conversa</string>
-    <string name="preferences_notifications__show">Mostrar</string>
     <string name="preferences_notifications__priority">Prioridade</string>
     <!-- **************************************** -->
     <!-- menus -->

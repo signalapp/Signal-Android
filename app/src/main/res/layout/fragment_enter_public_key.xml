@@ -2,6 +2,7 @@
 <org.thoughtcrime.securesms.components.NestedScrollableHost xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="?conversation_menu_background_color"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -52,7 +53,7 @@
                 android:alpha="0.6"
                 android:text="@string/fragment_enter_public_key_prompt"
                 android:textAlignment="center"
-                android:textColor="@color/text"
+                android:textColor="?android:textColorPrimary"
                 android:textSize="@dimen/very_small_font_size"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -92,7 +93,7 @@
                     android:layout_marginTop="@dimen/large_spacing"
                     android:fontFamily="@font/space_mono_regular"
                     android:textAlignment="center"
-                    android:textColor="@color/text"
+                    android:textColor="?android:textColorPrimary"
                     android:textSize="@dimen/medium_font_size"
                     tools:text="05987d601943c267879be41830888066c6a024cbdc9a548d06813924bf3372ea78" />
 

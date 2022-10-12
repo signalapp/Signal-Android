@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ripple
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:color="@color/cell_selected">
+    android:color="?colorCellRipple">
 
     <item>
-        <color android:color="@color/cell_background" />
+        <color android:color="?colorCellBackground" />
     </item>
 </ripple>

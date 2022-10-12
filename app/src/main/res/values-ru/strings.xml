@@ -425,7 +425,6 @@
     </plurals>
     <!-- preferences.xml -->
     <string name="preferences__pref_enter_sends_title">Отправка клавишей «Ввод»</string>
-    <string name="preferences__pressing_the_enter_key_will_send_text_messages">Нажатие клавиши ввода будет отправлять текстовые сообщения</string>
     <string name="preferences__send_link_previews">Отправлять предпросмотр ссылки</string>
     <string name="preferences__previews_are_supported_for">Предварительный просмотр поддерживается для ссылок Imgur, Instagram, Pinterest, Reddit и YouTube.</string>
     <string name="preferences__screen_security">Защита экрана</string>
@@ -463,7 +462,6 @@
     <string name="preferences__default">По умолчанию</string>
     <string name="preferences__incognito_keyboard">Инкогнито-клавиатура</string>
     <string name="preferences__read_receipts">Уведомления о прочтении</string>
-    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Если уведомления о прочтении отключены, вы не сможете просматривать уведомления о прочтении от других пользователей.</string>
     <string name="preferences__typing_indicators">Индикаторы ввода</string>
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Если индикаторы ввода отключены, вы не сможете видеть индикаторы ввода других.</string>
     <string name="preferences__request_keyboard_to_disable_personalized_learning">Запросить отключение персонализированного обучения клавиатуры</string>
@@ -472,12 +470,9 @@
     <string name="preferences_chats__message_trimming">Обрезка сообщений</string>
     <string name="preferences_advanced__use_system_emoji">Использовать системные эмодзи</string>
     <string name="preferences_advanced__disable_signal_built_in_emoji_support">Отключить встроенные эмодзи Session</string>
-    <string name="preferences_app_protection__app_access">Доступ приложения</string>
-    <string name="preferences_app_protection__communication">Переписка</string>
     <string name="preferences_chats__chats">Чаты</string>
     <string name="preferences_notifications__messages">Сообщения</string>
     <string name="preferences_notifications__in_chat_sounds">Звуки в чате</string>
-    <string name="preferences_notifications__show">Показать</string>
     <string name="preferences_notifications__priority">Приоритет</string>
     <!-- **************************************** -->
     <!-- menus -->
@@ -643,7 +638,6 @@
     <string name="activity_notification_settings_style_section_title">Стиль уведомлений</string>
     <string name="activity_notification_settings_content_section_title">Содержание уведомления</string>
     <string name="activity_privacy_settings_title">Конфиденциальность</string>
-    <string name="activity_chat_settings_title">Чаты</string>
     <string name="preferences_notifications_strategy_category_title">Метод уведомлений</string>
     <string name="preferences_notifications_strategy_category_fast_mode_title">Использовать быстрый режим</string>
     <string name="preferences_notifications_strategy_category_fast_mode_summary">Вы будете получать уведомления о новых сообщениях надежно и сразу же с помощью серверов уведомлений Google.</string>

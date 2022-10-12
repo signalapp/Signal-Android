@@ -18,7 +18,7 @@
         android:layout_marginRight="@dimen/very_large_spacing"
         android:textSize="@dimen/very_large_font_size"
         android:textStyle="bold"
-        android:textColor="@color/text"
+        android:textColor="?android:textColorPrimary"
         android:text="@string/activity_restore_title" />
 
     <TextView
@@ -28,7 +28,7 @@
         android:layout_marginTop="7dp"
         android:layout_marginRight="@dimen/very_large_spacing"
         android:textSize="@dimen/medium_font_size"
-        android:textColor="@color/text"
+        android:textColor="?android:textColorPrimary"
         android:text="@string/activity_restore_explanation" />
 
     <EditText

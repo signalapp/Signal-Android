@@ -399,7 +399,6 @@ on viallinen!</string>
     </plurals>
     <!-- preferences.xml -->
     <string name="preferences__pref_enter_sends_title">Rivinvaihto lähettää</string>
-    <string name="preferences__pressing_the_enter_key_will_send_text_messages">Rivinvaihdon painallus lähettää viestin</string>
     <string name="preferences__send_link_previews">Lähetä esikatselukuva linkeistä</string>
     <string name="preferences__previews_are_supported_for">Esikatselu tukee sivustoja Imgur, Instagram, Pinterest, Reddit ja YouTube.</string>
     <string name="preferences__screen_security">Näytön suojaus</string>
@@ -437,7 +436,6 @@ on viallinen!</string>
     <string name="preferences__default">Oletus</string>
     <string name="preferences__incognito_keyboard">Yksityinen näppäimistö</string>
     <string name="preferences__read_receipts">Lukukuittaukset</string>
-    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Jos lukukuittauksia ei ole otettu käyttöön, et tule näkemään lukukuittauksia muilta.</string>
     <string name="preferences__typing_indicators">Kirjoitustilaindikaattori</string>
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Jos et ole ottanut kirjoitustilaindikaattoria käyttöön, et tule näkemään kirjoitustilaindikaattoria muilta.</string>
     <string name="preferences__request_keyboard_to_disable_personalized_learning">Pyydä näppäimistöä kytkemään sanakirjan automaattinen päivittäminen pois päältä</string>
@@ -446,12 +444,9 @@ on viallinen!</string>
     <string name="preferences_chats__message_trimming">Keskustelujen karsiminen</string>
     <string name="preferences_advanced__use_system_emoji">Käytä järjestelmän hymiöitä</string>
     <string name="preferences_advanced__disable_signal_built_in_emoji_support">Ota Sessionin oletushymiöt pois käytöstä</string>
-    <string name="preferences_app_protection__app_access">Sovelluksen käyttö</string>
-    <string name="preferences_app_protection__communication">Kommunikointi</string>
     <string name="preferences_chats__chats">Keskustelut</string>
     <string name="preferences_notifications__messages">Viestit</string>
     <string name="preferences_notifications__in_chat_sounds">Keskustelun sisäiset äänet</string>
-    <string name="preferences_notifications__show">Näytä</string>
     <string name="preferences_notifications__priority">Prioriteetti</string>
     <!-- **************************************** -->
     <!-- menus -->
@@ -617,7 +612,6 @@ on viallinen!</string>
     <string name="activity_notification_settings_style_section_title">Ilmoitusten tyyli</string>
     <string name="activity_notification_settings_content_section_title">Ilmoituksen Sisältö</string>
     <string name="activity_privacy_settings_title">Yksityisyys</string>
-    <string name="activity_chat_settings_title">Keskustelut</string>
     <string name="preferences_notifications_strategy_category_title">Ilmoitusten Strategia</string>
     <string name="preferences_notifications_strategy_category_fast_mode_title">Käytä Nopeaa Tilaa</string>
     <string name="preferences_notifications_strategy_category_fast_mode_summary">Sinulle ilmoitetaan uusista viesteistä luotettavasti ja viivyttelemättä Applen ilmoituspalvelua käyttäen.</string>

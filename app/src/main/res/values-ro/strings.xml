@@ -415,7 +415,6 @@ schimbul de chei este corupt </string>
     </plurals>
     <!-- preferences.xml -->
     <string name="preferences__pref_enter_sends_title">Trimiteți cu Enter</string>
-    <string name="preferences__pressing_the_enter_key_will_send_text_messages">Apăsarea tastei Enter va trimite mesajele text</string>
     <string name="preferences__send_link_previews">Trimite previzualizarea link-urilor</string>
     <string name="preferences__previews_are_supported_for">Previzualizarea este suportată pentru link-uri Imgur, Instagram, Pinterest, Reddit și YouTube</string>
     <string name="preferences__screen_security">Securitate ecran</string>
@@ -453,7 +452,6 @@ schimbul de chei este corupt </string>
     <string name="preferences__default">Implicit</string>
     <string name="preferences__incognito_keyboard">Tastatură incognito</string>
     <string name="preferences__read_receipts">Confirmări de citire</string>
-    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Dacă confirmările de citire sunt dezactivate, nu veți putea vedea confirmările de citire de la ceilalți.</string>
     <string name="preferences__typing_indicators">Indicatori tastare</string>
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Dacă indicatorii de tastare sunt dezactivați, nu vei putea vedea indicatorii de tastare de la ceilalți.</string>
     <string name="preferences__request_keyboard_to_disable_personalized_learning">Solicitați tastaturii dezactivarea învățarii personalizate</string>
@@ -462,12 +460,9 @@ schimbul de chei este corupt </string>
     <string name="preferences_chats__message_trimming">Scurtarea mesajelor</string>
     <string name="preferences_advanced__use_system_emoji">Foloseşte emoji de sistem</string>
     <string name="preferences_advanced__disable_signal_built_in_emoji_support">Dezactivați icoanele emoji oferite de Session </string>
-    <string name="preferences_app_protection__app_access">Acces aplicație</string>
-    <string name="preferences_app_protection__communication">Comunicare</string>
     <string name="preferences_chats__chats">Conversații</string>
     <string name="preferences_notifications__messages">Mesaje</string>
     <string name="preferences_notifications__in_chat_sounds">Sunete în conversație</string>
-    <string name="preferences_notifications__show">Afișează</string>
     <string name="preferences_notifications__priority">Prioritate</string>
     <!-- **************************************** -->
     <!-- menus -->

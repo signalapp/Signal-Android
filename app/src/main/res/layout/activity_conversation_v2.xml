@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
+    android:focusable="false"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -21,6 +22,7 @@
     </androidx.appcompat.widget.Toolbar>
 
     <org.thoughtcrime.securesms.conversation.v2.ConversationRecyclerView
+        android:focusable="false"
         android:id="@+id/conversationRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -28,6 +30,7 @@
         android:layout_below="@id/toolbar" />
 
     <org.thoughtcrime.securesms.conversation.v2.components.TypingIndicatorViewContainer
+        android:focusable="false"
         android:id="@+id/typingIndicatorViewContainer"
         android:layout_width="match_parent"
         android:layout_height="36dp"
@@ -49,6 +52,7 @@
         android:visibility="gone"/>
 
     <FrameLayout
+        android:focusable="false"
         android:id="@+id/reactions_shade"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -57,6 +61,7 @@
         android:visibility="gone"/>
 
     <ViewStub
+        android:focusable="false"
         android:id="@+id/conversation_reaction_scrubber_stub"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -132,7 +137,7 @@
                 android:layout_centerInParent="true"
                 android:rotation="180"
                 android:src="@drawable/ic_chevron_up"
-                app:tint="@color/text" />
+                app:tint="?android:textColorPrimary" />
 
         </RelativeLayout>
 
@@ -146,7 +151,7 @@
             android:layout_centerHorizontal="true"
             android:layout_alignParentTop="true"
             android:background="@drawable/rounded_rectangle"
-            android:backgroundTint="@color/conversation_unread_count_indicator_background">
+            android:backgroundTint="?conversation_unread_count_indicator_background">
 
             <TextView
                 android:id="@+id/unreadCountTextView"
@@ -154,7 +159,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:textSize="@dimen/very_small_font_size"
-                android:textColor="@color/text"
+                android:textColor="?android:textColorPrimary"
                 android:text="8" />
 
         </RelativeLayout>
@@ -220,7 +225,7 @@
             android:alpha="0.6"
             android:gravity="center_horizontal"
             android:text="@string/message_requests_send_notice"
-            android:textColor="@color/text"
+            android:textColor="?android:textColorPrimary"
             android:textSize="@dimen/small_font_size" />
 
         <LinearLayout

@@ -5,6 +5,7 @@ import android.hardware.Camera
 import android.net.Uri
 import android.provider.Settings
 import androidx.annotation.ArrayRes
+import androidx.annotation.StyleRes
 import androidx.core.app.NotificationCompat
 import androidx.preference.PreferenceManager.getDefaultSharedPreferences
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -13,8 +14,16 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import org.session.libsession.BuildConfig
 import org.session.libsession.R
+import org.session.libsession.utilities.TextSecurePreferences.Companion.AUTOPLAY_AUDIO_MESSAGES
 import org.session.libsession.utilities.TextSecurePreferences.Companion.CALL_NOTIFICATIONS_ENABLED
+import org.session.libsession.utilities.TextSecurePreferences.Companion.CLASSIC_DARK
+import org.session.libsession.utilities.TextSecurePreferences.Companion.CLASSIC_LIGHT
+import org.session.libsession.utilities.TextSecurePreferences.Companion.FOLLOW_SYSTEM_SETTINGS
 import org.session.libsession.utilities.TextSecurePreferences.Companion.LAST_VACUUM_TIME
+import org.session.libsession.utilities.TextSecurePreferences.Companion.LEGACY_PREF_KEY_SELECTED_UI_MODE
+import org.session.libsession.utilities.TextSecurePreferences.Companion.OCEAN_DARK
+import org.session.libsession.utilities.TextSecurePreferences.Companion.OCEAN_LIGHT
+import org.session.libsession.utilities.TextSecurePreferences.Companion.SELECTED_STYLE
 import org.session.libsession.utilities.TextSecurePreferences.Companion.SHOWN_CALL_NOTIFICATION
 import org.session.libsession.utilities.TextSecurePreferences.Companion.SHOWN_CALL_WARNING
 import org.session.libsignal.utilities.Log
@@ -113,9 +122,7 @@ interface TextSecurePreferences {
     fun setNotificationRingtone(ringtone: String?)
     fun setNotificationVibrateEnabled(enabled: Boolean)
     fun isNotificationVibrateEnabled(): Boolean
-    fun getNotificationLedColor(): String?
-    fun getNotificationLedPattern(): String?
-    fun getNotificationLedPatternCustom(): String?
+    fun getNotificationLedColor(): Int
     fun isThreadLengthTrimmingEnabled(): Boolean
     fun isSystemEmojiPreferred(): Boolean
     fun getMobileMediaDownloadAllowed(): Set<String>?
@@ -164,6 +171,14 @@ interface TextSecurePreferences {
     fun setLastVacuumNow()
     fun getFingerprintKeyGenerated(): Boolean
     fun setFingerprintKeyGenerated()
+    @StyleRes fun getAccentColorStyle(): Int?
+    fun setAccentColorStyle(@StyleRes newColorStyle: Int?)
+    fun getThemeStyle(): String
+    fun getFollowSystemSettings(): Boolean
+    fun setThemeStyle(themeStyle: String)
+    fun setFollowSystemSettings(followSystemSettings: Boolean)
+    fun autoplayAudioMessages(): Boolean
+    fun hasPreference(key: String): Boolean
     fun clearAll()
 
     companion object {
@@ -180,6 +195,7 @@ interface TextSecurePreferences {
         const val VIBRATE_PREF = "pref_key_vibrate"
         const val NOTIFICATION_PREF = "pref_key_enable_notifications"
         const val LED_COLOR_PREF = "pref_led_color"
+        const val LED_COLOR_PREF_PRIMARY = "pref_led_color_primary"
         const val LED_BLINK_PREF = "pref_led_blink"
         const val LED_BLINK_PREF_CUSTOM = "pref_led_blink_custom"
         const val PASSPHRASE_TIMEOUT_INTERVAL_PREF = "pref_timeout_interval"
@@ -194,6 +210,7 @@ interface TextSecurePreferences {
         const val UPDATE_APK_DOWNLOAD_ID = "pref_update_apk_download_id"
         const val UPDATE_APK_DIGEST = "pref_update_apk_digest"
         const val IN_THREAD_NOTIFICATION_PREF = "pref_key_inthread_notifications"
+        const val IN_APP_NOTIFICATION_SOUNDS = "pref_sound_when_app_open"
         const val MESSAGE_BODY_TEXT_SIZE_PREF = "pref_message_body_text_size"
         const val LOCAL_REGISTRATION_ID_PREF = "pref_local_registration_id"
         const val REPEAT_ALERTS_PREF = "pref_repeat_alerts"
@@ -242,9 +259,27 @@ interface TextSecurePreferences {
         const val HAS_HIDDEN_MESSAGE_REQUESTS = "pref_message_requests_hidden"
         const val CALL_NOTIFICATIONS_ENABLED = "pref_call_notifications_enabled"
         const val SHOWN_CALL_WARNING = "pref_shown_call_warning" // call warning is user-facing warning of enabling calls
-        const val SHOWN_CALL_NOTIFICATION = "pref_shown_call_notification" // call notification is a promp to check privacy settings
+        const val SHOWN_CALL_NOTIFICATION = "pref_shown_call_notification" // call notification is a prompt to check privacy settings
         const val LAST_VACUUM_TIME = "pref_last_vacuum_time"
+        const val AUTOPLAY_AUDIO_MESSAGES = "pref_autoplay_audio"
         const val FINGERPRINT_KEY_GENERATED = "fingerprint_key_generated"
+        const val SELECTED_ACCENT_COLOR = "selected_accent_color"
+        const val GREEN_ACCENT = "accent_green"
+        const val BLUE_ACCENT = "accent_blue"
+        const val PURPLE_ACCENT = "accent_purple"
+        const val PINK_ACCENT = "accent_pink"
+        const val RED_ACCENT = "accent_red"
+        const val ORANGE_ACCENT = "accent_orange"
+        const val YELLOW_ACCENT = "accent_yellow"
+
+        const val SELECTED_STYLE = "pref_selected_style" // classic_dark/light, ocean_dark/light
+        const val FOLLOW_SYSTEM_SETTINGS = "pref_follow_system" // follow system day/night
+
+        const val LEGACY_PREF_KEY_SELECTED_UI_MODE = "SELECTED_UI_MODE" // this will be cleared upon launching app, for users migrating to theming build
+        const val CLASSIC_DARK = "classic.dark"
+        const val CLASSIC_LIGHT = "classic.light"
+        const val OCEAN_DARK = "ocean.dark"
+        const val OCEAN_LIGHT = "ocean.light"
 
         @JvmStatic
         fun getLastConfigurationSyncTime(context: Context): Long {
@@ -687,18 +722,8 @@ interface TextSecurePreferences {
         }
 
         @JvmStatic
-        fun getNotificationLedColor(context: Context): String? {
-            return getStringPreference(context, LED_COLOR_PREF, "blue")
-        }
-
-        @JvmStatic
-        fun getNotificationLedPattern(context: Context): String? {
-            return getStringPreference(context, LED_BLINK_PREF, "500,2000")
-        }
-
-        @JvmStatic
-        fun getNotificationLedPatternCustom(context: Context): String? {
-            return getStringPreference(context, LED_BLINK_PREF_CUSTOM, "500,2000")
+        fun getNotificationLedColor(context: Context): Int {
+            return getIntegerPreference(context, LED_COLOR_PREF_PRIMARY, ThemeUtil.getThemedColor(context, R.attr.colorAccent))
         }
 
         @JvmStatic
@@ -927,6 +952,34 @@ interface TextSecurePreferences {
         @JvmStatic
         fun setFingerprintKeyGenerated(context: Context) {
             setBooleanPreference(context, FINGERPRINT_KEY_GENERATED, true)
+        }
+
+        @JvmStatic @StyleRes
+        fun getAccentColorStyle(context: Context): Int? {
+            return when (getStringPreference(context, SELECTED_ACCENT_COLOR, ORANGE_ACCENT)) {
+                GREEN_ACCENT -> R.style.PrimaryGreen
+                BLUE_ACCENT -> R.style.PrimaryBlue
+                PURPLE_ACCENT -> R.style.PrimaryPurple
+                PINK_ACCENT -> R.style.PrimaryPink
+                RED_ACCENT -> R.style.PrimaryRed
+                ORANGE_ACCENT -> R.style.PrimaryOrange
+                YELLOW_ACCENT -> R.style.PrimaryYellow
+                else -> null
+            }
+        }
+
+        @JvmStatic
+        fun setAccentColorStyle(context: Context, @StyleRes newColor: Int?) {
+            setStringPreference(context, SELECTED_ACCENT_COLOR, when (newColor) {
+                R.style.PrimaryGreen -> GREEN_ACCENT
+                R.style.PrimaryBlue -> BLUE_ACCENT
+                R.style.PrimaryPurple -> PURPLE_ACCENT
+                R.style.PrimaryPink -> PINK_ACCENT
+                R.style.PrimaryRed -> RED_ACCENT
+                R.style.PrimaryOrange -> ORANGE_ACCENT
+                R.style.PrimaryYellow -> YELLOW_ACCENT
+                else -> null
+            })
         }
 
         @JvmStatic
@@ -1309,16 +1362,8 @@ class AppTextSecurePreferences @Inject constructor(
         return getBooleanPreference(TextSecurePreferences.VIBRATE_PREF, true)
     }
 
-    override fun getNotificationLedColor(): String? {
-        return getStringPreference(TextSecurePreferences.LED_COLOR_PREF, "blue")
-    }
-
-    override fun getNotificationLedPattern(): String? {
-        return getStringPreference(TextSecurePreferences.LED_BLINK_PREF, "500,2000")
-    }
-
-    override fun getNotificationLedPatternCustom(): String? {
-        return getStringPreference(TextSecurePreferences.LED_BLINK_PREF_CUSTOM, "500,2000")
+    override fun getNotificationLedColor(): Int {
+        return getIntegerPreference(TextSecurePreferences.LED_COLOR_PREF_PRIMARY, context.getColor(R.color.accent_green))
     }
 
     override fun isThreadLengthTrimmingEnabled(): Boolean {
@@ -1411,6 +1456,10 @@ class AppTextSecurePreferences @Inject constructor(
 
     override fun setLongPreference(key: String, value: Long) {
         getDefaultSharedPreferences(context).edit().putLong(key, value).apply()
+    }
+
+    override fun hasPreference(key: String): Boolean {
+        return getDefaultSharedPreferences(context).contains(key)
     }
 
     override fun removePreference(key: String) {
@@ -1533,6 +1582,92 @@ class AppTextSecurePreferences @Inject constructor(
         setBooleanPreference(TextSecurePreferences.FINGERPRINT_KEY_GENERATED, true)
     }
 
+    @StyleRes
+    override fun getAccentColorStyle(): Int? {
+        val prefColor = getStringPreference(
+            TextSecurePreferences.SELECTED_ACCENT_COLOR,
+            null
+        )
+        return when (prefColor) {
+            TextSecurePreferences.GREEN_ACCENT -> R.style.PrimaryGreen
+            TextSecurePreferences.BLUE_ACCENT -> R.style.PrimaryBlue
+            TextSecurePreferences.PURPLE_ACCENT -> R.style.PrimaryPurple
+            TextSecurePreferences.PINK_ACCENT -> R.style.PrimaryPink
+            TextSecurePreferences.RED_ACCENT -> R.style.PrimaryRed
+            TextSecurePreferences.ORANGE_ACCENT -> R.style.PrimaryOrange
+            TextSecurePreferences.YELLOW_ACCENT -> R.style.PrimaryYellow
+            else -> null
+        }
+    }
+
+    override fun setAccentColorStyle(@StyleRes newColorStyle: Int?) {
+        setStringPreference(
+            TextSecurePreferences.SELECTED_ACCENT_COLOR, when (newColorStyle) {
+                R.style.PrimaryGreen -> TextSecurePreferences.GREEN_ACCENT
+                R.style.PrimaryBlue -> TextSecurePreferences.BLUE_ACCENT
+                R.style.PrimaryPurple -> TextSecurePreferences.PURPLE_ACCENT
+                R.style.PrimaryPink -> TextSecurePreferences.PINK_ACCENT
+                R.style.PrimaryRed -> TextSecurePreferences.RED_ACCENT
+                R.style.PrimaryOrange -> TextSecurePreferences.ORANGE_ACCENT
+                R.style.PrimaryYellow -> TextSecurePreferences.YELLOW_ACCENT
+                else -> null
+            }
+        )
+    }
+
+    override fun getThemeStyle(): String {
+        val hasLegacy = getStringPreference(LEGACY_PREF_KEY_SELECTED_UI_MODE, null)
+        if (!hasLegacy.isNullOrEmpty()) {
+            migrateLegacyUiPref()
+        }
+
+        return getStringPreference(SELECTED_STYLE, CLASSIC_DARK)!!
+    }
+
+    override fun setThemeStyle(themeStyle: String) {
+        val safeTheme = if (themeStyle !in listOf(CLASSIC_DARK, CLASSIC_LIGHT, OCEAN_DARK, OCEAN_LIGHT)) CLASSIC_DARK else themeStyle
+        setStringPreference(SELECTED_STYLE, safeTheme)
+    }
+
+    override fun getFollowSystemSettings(): Boolean {
+        val hasLegacy = getStringPreference(LEGACY_PREF_KEY_SELECTED_UI_MODE, null)
+        if (!hasLegacy.isNullOrEmpty()) {
+            migrateLegacyUiPref()
+        }
+
+        return getBooleanPreference(FOLLOW_SYSTEM_SETTINGS, false)
+    }
+
+    private fun migrateLegacyUiPref() {
+        val legacy = getStringPreference(LEGACY_PREF_KEY_SELECTED_UI_MODE, null) ?: return
+        val (mode, followSystem) = when (legacy) {
+            "DAY" -> {
+                CLASSIC_LIGHT to false
+            }
+            "NIGHT" -> {
+                CLASSIC_DARK to false
+            }
+            "SYSTEM_DEFAULT" -> {
+                CLASSIC_DARK to true
+            }
+            else -> {
+                CLASSIC_DARK to false
+            }
+        }
+        if (!hasPreference(FOLLOW_SYSTEM_SETTINGS) && !hasPreference(SELECTED_STYLE)) {
+            setThemeStyle(mode)
+            setFollowSystemSettings(followSystem)
+        }
+        removePreference(LEGACY_PREF_KEY_SELECTED_UI_MODE)
+    }
+
+    override fun setFollowSystemSettings(followSystemSettings: Boolean) {
+        setBooleanPreference(FOLLOW_SYSTEM_SETTINGS, followSystemSettings)
+    }
+
+    override fun autoplayAudioMessages(): Boolean {
+        return getBooleanPreference(AUTOPLAY_AUDIO_MESSAGES, false)
+    }
 
     override fun clearAll() {
         getDefaultSharedPreferences(context).edit().clear().commit()

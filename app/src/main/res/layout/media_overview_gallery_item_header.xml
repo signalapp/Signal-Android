@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/action_bar_background"
+    android:background="?colorPrimary"
     android:padding="16dp">
 
     <TextView
@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="start|center_vertical"
-        android:textColor="?attr/media_overview_header_foreground"
+        android:textColor="?android:textColorPrimary"
         android:textSize="@dimen/small_font_size"
         tools:text="March 1, 2015" />
 

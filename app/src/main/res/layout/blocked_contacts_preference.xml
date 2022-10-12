@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<org.thoughtcrime.securesms.preferences.BlockedContactsLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_marginHorizontal="@dimen/large_spacing"
+    android:layout_marginVertical="@dimen/medium_spacing"
+    android:layout_height="wrap_content">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/medium_spacing"
+        android:text="@string/blocked_contacts_title"
+        android:textColor="@color/destructive"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        />
+</org.thoughtcrime.securesms.preferences.BlockedContactsLayout>

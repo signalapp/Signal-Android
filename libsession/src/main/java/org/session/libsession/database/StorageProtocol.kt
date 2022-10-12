@@ -196,4 +196,6 @@ interface StorageProtocol {
     fun removeReaction(emoji: String, messageTimestamp: Long, author: String, notifyUnread: Boolean)
     fun updateReactionIfNeeded(message: Message, sender: String, openGroupSentTimestamp: Long)
     fun deleteReactions(messageId: Long, mms: Boolean)
+    fun unblock(toUnblock: List<Recipient>)
+    fun blockedContacts(): List<Recipient>
 }

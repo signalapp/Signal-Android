@@ -50,10 +50,12 @@ import org.session.libsession.utilities.recipients.RecipientProvider.RecipientDe
 import org.session.libsignal.utilities.Log;
 import org.session.libsignal.utilities.guava.Optional;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.WeakHashMap;
 import java.util.concurrent.ExecutionException;
@@ -732,20 +734,19 @@ public class Recipient implements RecipientModifiedListener {
     return this;
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
-    if (o == null || !(o instanceof Recipient)) return false;
-
-    Recipient that = (Recipient) o;
-
-    return this.address.equals(that.address);
+    if (o == null || getClass() != o.getClass()) return false;
+    Recipient recipient = (Recipient) o;
+    return resolving == recipient.resolving && mutedUntil == recipient.mutedUntil && notifyType == recipient.notifyType && blocked == recipient.blocked && approved == recipient.approved && approvedMe == recipient.approvedMe && expireMessages == recipient.expireMessages && address.equals(recipient.address) && Objects.equals(name, recipient.name) && Objects.equals(customLabel, recipient.customLabel) && Objects.equals(groupAvatarId, recipient.groupAvatarId) && Arrays.equals(profileKey, recipient.profileKey) && Objects.equals(profileName, recipient.profileName) && Objects.equals(profileAvatar, recipient.profileAvatar);
   }
 
   @Override
   public int hashCode() {
-    return this.address.hashCode();
+    int result = Objects.hash(address, name, customLabel, resolving, groupAvatarId, mutedUntil, notifyType, blocked, approved, approvedMe, expireMessages, profileName, profileAvatar);
+    result = 31 * result + Arrays.hashCode(profileKey);
+    return result;
   }
 
   public void notifyListeners() {

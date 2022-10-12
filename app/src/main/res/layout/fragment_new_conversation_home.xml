@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bottom_sheet_background">
+    android:background="?conversation_menu_background_color">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -21,7 +21,7 @@
             android:paddingTop="@dimen/large_spacing"
             android:paddingBottom="@dimen/very_large_spacing"
             android:text="@string/dialog_new_conversation_title"
-            android:textColor="@color/text"
+            android:textColor="?android:textColorPrimary"
             android:textSize="@dimen/very_large_font_size"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -44,22 +44,28 @@
         <View
             android:id="@+id/title_divider"
             android:layout_width="match_parent"
-            android:layout_height="1px"
+            android:layout_height="1dp"
             android:layout_marginBottom="1dp"
-            android:background="?android:dividerHorizontal"
+            android:background="?conversation_menu_border_color"
             app:layout_constraintStart_toStartOf="@+id/titleText"
             app:layout_constraintTop_toBottomOf="@+id/titleText" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="@+id/createPrivateChatButton"
+            app:layout_constraintBottom_toBottomOf="@+id/joinCommunityButton"
+            android:background="?conversation_menu_cell_color"/>
 
         <TextView
             android:id="@+id/createPrivateChatButton"
             android:layout_width="match_parent"
             android:layout_height="@dimen/setting_button_height"
-            android:background="@color/bottom_sheet_item_background"
             android:drawablePadding="@dimen/large_spacing"
             android:gravity="center_vertical"
             android:paddingHorizontal="@dimen/large_spacing"
             android:text="@string/dialog_new_message_title"
-            android:textColor="@color/text"
+            android:textColor="?android:textColorPrimary"
             android:textSize="@dimen/medium_font_size"
             app:drawableStartCompat="@drawable/ic_message"
             app:layout_constraintBottom_toTopOf="@+id/new_message_divider"
@@ -70,9 +76,9 @@
         <View
             android:id="@+id/new_message_divider"
             android:layout_width="match_parent"
-            android:layout_height="1px"
+            android:layout_height="1dp"
             android:layout_marginStart="@dimen/massive_spacing"
-            android:background="?android:dividerHorizontal"
+            android:background="?conversation_menu_border_color"
             app:layout_constraintStart_toStartOf="@+id/createPrivateChatButton"
             app:layout_constraintTop_toBottomOf="@+id/createPrivateChatButton" />
 
@@ -80,12 +86,11 @@
             android:id="@+id/createClosedGroupButton"
             android:layout_width="match_parent"
             android:layout_height="@dimen/setting_button_height"
-            android:background="@color/bottom_sheet_item_background"
             android:drawablePadding="@dimen/large_spacing"
             android:gravity="center_vertical"
             android:paddingHorizontal="@dimen/large_spacing"
             android:text="@string/activity_create_group_title"
-            android:textColor="@color/text"
+            android:textColor="?android:textColorPrimary"
             android:textSize="@dimen/medium_font_size"
             app:drawableStartCompat="@drawable/ic_group"
             app:layout_constraintBottom_toTopOf="@+id/create_group_divider"
@@ -96,9 +101,9 @@
         <View
             android:id="@+id/create_group_divider"
             android:layout_width="match_parent"
-            android:layout_height="1px"
+            android:layout_height="1dp"
             android:layout_marginStart="@dimen/massive_spacing"
-            android:background="?android:dividerHorizontal"
+            android:background="?conversation_menu_border_color"
             app:layout_constraintStart_toStartOf="@+id/createClosedGroupButton"
             app:layout_constraintTop_toBottomOf="@+id/createClosedGroupButton" />
 
@@ -106,12 +111,11 @@
             android:id="@+id/joinCommunityButton"
             android:layout_width="match_parent"
             android:layout_height="@dimen/setting_button_height"
-            android:background="@color/bottom_sheet_item_background"
             android:drawablePadding="@dimen/large_spacing"
             android:gravity="center_vertical"
             android:paddingHorizontal="@dimen/large_spacing"
             android:text="@string/dialog_join_community_title"
-            android:textColor="@color/text"
+            android:textColor="?android:textColorPrimary"
             android:textSize="@dimen/medium_font_size"
             app:drawableStartCompat="@drawable/ic_globe"
             app:layout_constraintEnd_toEndOf="parent"
@@ -121,9 +125,9 @@
         <View
             android:id="@+id/join_community_divider"
             android:layout_width="match_parent"
-            android:layout_height="1px"
+            android:layout_height="1dp"
             android:layout_marginBottom="1dp"
-            android:background="?android:dividerHorizontal"
+            android:background="?conversation_menu_border_color"
             app:layout_constraintStart_toStartOf="@+id/joinCommunityButton"
             app:layout_constraintTop_toBottomOf="@+id/joinCommunityButton" />
 
@@ -136,7 +140,7 @@
             android:paddingTop="@dimen/medium_spacing"
             android:paddingBottom="@dimen/small_spacing"
             android:text="@string/new_conversation_contacts_title"
-            android:textColor="@color/text"
+            android:textColor="?android:textColorPrimary"
             android:textSize="@dimen/medium_font_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

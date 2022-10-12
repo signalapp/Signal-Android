@@ -385,7 +385,6 @@
     </plurals>
     <!-- preferences.xml -->
     <string name="preferences__pref_enter_sends_title">エンターキーで送信</string>
-    <string name="preferences__pressing_the_enter_key_will_send_text_messages">エンターキーを押すとテキストメッセージが送信されます</string>
     <string name="preferences__send_link_previews">リンクプレビューを送る</string>
     <string name="preferences__previews_are_supported_for">プレビューはImgur、Instagram、Pinterest、RedditおよびYouTubeリンクをサポートしています</string>
     <string name="preferences__screen_security">画面セキュリティ</string>
@@ -423,7 +422,6 @@
     <string name="preferences__default">初期設定の言語</string>
     <string name="preferences__incognito_keyboard">プライバシーキーボード</string>
     <string name="preferences__read_receipts">既読通知</string>
-    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">既読通知を無効にすると、相手の既読通知も受け取れません。</string>
     <string name="preferences__typing_indicators">入力中アイコン</string>
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">入力中アイコンが無効の場合、相手の入力中アイコンも表示されません。</string>
     <string name="preferences__request_keyboard_to_disable_personalized_learning">キーボード予測入力を無効化</string>
@@ -432,12 +430,9 @@
     <string name="preferences_chats__message_trimming">メッセージの削減</string>
     <string name="preferences_advanced__use_system_emoji">システムの絵文字を使う</string>
     <string name="preferences_advanced__disable_signal_built_in_emoji_support">Session独自の絵文字機能を無効にする</string>
-    <string name="preferences_app_protection__app_access">アプリのアクセス</string>
-    <string name="preferences_app_protection__communication">通信</string>
     <string name="preferences_chats__chats">チャット</string>
     <string name="preferences_notifications__messages">メッセージ</string>
     <string name="preferences_notifications__in_chat_sounds">チャット中の着信音</string>
-    <string name="preferences_notifications__show">表示</string>
     <string name="preferences_notifications__priority">優先度</string>
     <!-- **************************************** -->
     <!-- menus -->
@@ -603,7 +598,6 @@
     <string name="activity_notification_settings_style_section_title">通知スタイル</string>
     <string name="activity_notification_settings_content_section_title">通知内容</string>
     <string name="activity_privacy_settings_title">プライバシー</string>
-    <string name="activity_chat_settings_title">チャット</string>
     <string name="preferences_notifications_strategy_category_title">通知戦略</string>
     <string name="preferences_notifications_strategy_category_fast_mode_title">高速モードを使用する</string>
     <string name="preferences_notifications_strategy_category_fast_mode_summary">Googleの通知サーバーを使用して、新しいメッセージが確実かつ即座に通知されます。</string>

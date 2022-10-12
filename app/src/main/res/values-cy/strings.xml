@@ -416,7 +416,6 @@
     </plurals>
     <!-- preferences.xml -->
     <string name="preferences__pref_enter_sends_title">Pwyso Enter i anfon</string>
-    <string name="preferences__pressing_the_enter_key_will_send_text_messages">Pwyso Enter i anfon negeseuon testun</string>
     <string name="preferences__send_link_previews">Anfon rhagolwg dolen</string>
     <string name="preferences__previews_are_supported_for">Cefnogir rhagweld cynnwys trwy ddolenni Imgur, Instagram, Pinterest, Reddit a YouTube</string>
     <string name="preferences__screen_security">Diogelu\'r sgrin</string>
@@ -453,7 +452,6 @@
     <string name="preferences__default">Rhagosodiad</string>
     <string name="preferences__incognito_keyboard">Bysellfwrdd dirgel</string>
     <string name="preferences__read_receipts">Derbynebau darllen</string>
-    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Os yw derbynebau darllen wedi eu hanalluogi, fyddwch chi ddim yn gallu gweld derbynebau darllen gan eraill.</string>
     <string name="preferences__typing_indicators">Dangosyddion Teipio</string>
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Os yw dangosyddion teipio wedi eu hanalluogi, fyddwch chi ddim yn gweld dangosyddion teipio pobl eraill.</string>
     <string name="preferences__request_keyboard_to_disable_personalized_learning">Gofyn i\'r bysellfwrdd analluogi dysgu personol</string>
@@ -462,12 +460,9 @@
     <string name="preferences_chats__message_trimming">Tocio sgyrsiau</string>
     <string name="preferences_advanced__use_system_emoji">Defnyddio gwenogluniau\'r system</string>
     <string name="preferences_advanced__disable_signal_built_in_emoji_support">Analluogi cefnogaeth gwenogluniau Session</string>
-    <string name="preferences_app_protection__app_access">Mynediad i ap</string>
-    <string name="preferences_app_protection__communication">Cyfathrebu</string>
     <string name="preferences_chats__chats">Sgyrsiau</string>
     <string name="preferences_notifications__messages">Negeseuon</string>
     <string name="preferences_notifications__in_chat_sounds">Seiniau wrth sgwrsio</string>
-    <string name="preferences_notifications__show">Dangos</string>
     <string name="preferences_notifications__priority">Blaenoriaeth</string>
     <!-- **************************************** -->
     <!-- menus -->

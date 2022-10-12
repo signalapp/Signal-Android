@@ -12,12 +12,13 @@ import android.widget.Toast
 import network.loki.messenger.R
 import network.loki.messenger.databinding.ActivitySeedBinding
 import org.session.libsession.utilities.TextSecurePreferences
+import org.session.libsession.utilities.getColorFromAttr
 import org.session.libsignal.crypto.MnemonicCodec
 import org.session.libsignal.utilities.hexEncodedPrivateKey
 import org.thoughtcrime.securesms.BaseActionBarActivity
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.crypto.MnemonicUtilities
-import org.thoughtcrime.securesms.util.getColorWithID
+import org.thoughtcrime.securesms.util.getAccentColor
 
 class SeedActivity : BaseActionBarActivity() {
 
@@ -41,7 +42,7 @@ class SeedActivity : BaseActionBarActivity() {
         setContentView(binding.root)
         supportActionBar!!.title = resources.getString(R.string.activity_seed_title)
         val seedReminderViewTitle = SpannableString("You're almost finished! 90%") // Intentionally not yet translated
-        seedReminderViewTitle.setSpan(ForegroundColorSpan(resources.getColorWithID(R.color.accent, theme)), 24, 27, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        seedReminderViewTitle.setSpan(ForegroundColorSpan(getAccentColor()), 24, 27, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         with(binding) {
             seedReminderView.title = seedReminderViewTitle
             seedReminderView.subtitle = resources.getString(R.string.view_seed_reminder_subtitle_2)
@@ -55,7 +56,7 @@ class SeedActivity : BaseActionBarActivity() {
                 }
                 index += 1
             }
-            seedTextView.setTextColor(resources.getColorWithID(R.color.accent, theme))
+            seedTextView.setTextColor(getAccentColor())
             seedTextView.text = redactedSeed
             seedTextView.setOnLongClickListener { revealSeed(); true }
             revealButton.setOnLongClickListener { revealSeed(); true }
@@ -67,7 +68,7 @@ class SeedActivity : BaseActionBarActivity() {
     // region Updating
     private fun revealSeed() {
         val seedReminderViewTitle = SpannableString("Account secured! 100%") // Intentionally not yet translated
-        seedReminderViewTitle.setSpan(ForegroundColorSpan(resources.getColorWithID(R.color.accent, theme)), 17, 21, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        seedReminderViewTitle.setSpan(ForegroundColorSpan(getAccentColor()), 17, 21, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         with(binding) {
             seedReminderView.title = seedReminderViewTitle
             seedReminderView.subtitle = resources.getString(R.string.view_seed_reminder_subtitle_3)
@@ -75,7 +76,7 @@ class SeedActivity : BaseActionBarActivity() {
             val seedTextViewLayoutParams = seedTextView.layoutParams as LinearLayout.LayoutParams
             seedTextViewLayoutParams.height = seedTextView.height
             seedTextView.layoutParams = seedTextViewLayoutParams
-            seedTextView.setTextColor(resources.getColorWithID(R.color.text, theme))
+            seedTextView.setTextColor(getColorFromAttr(android.R.attr.textColorPrimary))
             seedTextView.text = seed
         }
         TextSecurePreferences.setHasViewedSeed(this, true)

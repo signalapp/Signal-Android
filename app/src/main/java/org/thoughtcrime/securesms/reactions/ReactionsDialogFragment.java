@@ -68,20 +68,14 @@ public final class ReactionsDialogFragment extends BottomSheetDialogFragment imp
 
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
-    if (ThemeUtil.isDarkTheme(requireContext())) {
-      setStyle(DialogFragment.STYLE_NORMAL, R.style.Theme_TextSecure_BottomSheetDialog_Fixed_ReactWithAny);
-    } else {
-      setStyle(DialogFragment.STYLE_NORMAL, R.style.Theme_TextSecure_Light_BottomSheetDialog_Fixed_ReactWithAny);
-    }
-
+//    setStyle(DialogFragment.STYLE_NORMAL, R.style.Theme_Session_BottomSheet);
     super.onCreate(savedInstanceState);
   }
 
   @Override
   public @Nullable View onCreateView(@NonNull LayoutInflater inflater,
                                      @Nullable ViewGroup container,
-                                     @Nullable Bundle savedInstanceState)
-  {
+                                     @Nullable Bundle savedInstanceState) {
     return inflater.inflate(R.layout.reactions_bottom_sheet_dialog_fragment, container, false);
   }
 
@@ -126,7 +120,7 @@ public final class ReactionsDialogFragment extends BottomSheetDialogFragment imp
           View customView = tab.getCustomView();
           TextView text = customView.findViewById(R.id.reactions_pill_count);
           customView.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.reaction_pill_background_selected));
-          text.setTextColor(ContextCompat.getColor(requireContext(), R.color.reactions_pill_selected_text_color));
+          text.setTextColor(ThemeUtil.getThemedColor(requireContext(), R.attr.reactionsPillSelectedTextColor));
         }
 
         @Override
@@ -134,7 +128,7 @@ public final class ReactionsDialogFragment extends BottomSheetDialogFragment imp
           View customView = tab.getCustomView();
           TextView text = customView.findViewById(R.id.reactions_pill_count);
           customView.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.reaction_pill_dialog_background));
-          text.setTextColor(ContextCompat.getColor(requireContext(), R.color.reactions_pill_text_color));
+          text.setTextColor(ThemeUtil.getThemedColor(requireContext(), R.attr.reactionsPillNormalTextColor));
         }
         @Override
         public void onTabReselected(TabLayout.Tab tab) {}

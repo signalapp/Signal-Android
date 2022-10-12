@@ -306,7 +306,6 @@ memproses pertukaran kunci korupsi.</string>
     <!-- plurals.xml -->
     <!-- preferences.xml -->
     <string name="preferences__pref_enter_sends_title">Enter untuk mengirim</string>
-    <string name="preferences__pressing_the_enter_key_will_send_text_messages">Menekan tombol Enter akan mengirimkan pesan teks</string>
     <string name="preferences__send_link_previews">Kirim pratinjau tautan</string>
     <string name="preferences__screen_security">Keamanan Layar</string>
     <string name="preferences__disable_screen_security_to_allow_screen_shots">Blokir tangkapan layar di daftar baru-baru saja dan di dalam aplikasi</string>
@@ -340,7 +339,6 @@ memproses pertukaran kunci korupsi.</string>
     <string name="preferences__default">Bawaan</string>
     <string name="preferences__incognito_keyboard">Papan ketik tersembunyi</string>
     <string name="preferences__read_receipts">Pesan terbaca</string>
-    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Jika tanda telah diterima di non aktifkan . anda tidak dapat melihat jika pesan sudah dibaca oleh orang lain</string>
     <string name="preferences__typing_indicators">Indikator penulisan</string>
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Jika indikator penulisan di non-aktifkan, kamu tidak akan mampu melihat indikator penulisan dari anggota lainnya.</string>
     <string name="preferences__request_keyboard_to_disable_personalized_learning">Permintaan papan ketik untuk non-aktif personalisasi</string>
@@ -349,12 +347,9 @@ memproses pertukaran kunci korupsi.</string>
     <string name="preferences_chats__message_trimming">Penyingkatan pesan</string>
     <string name="preferences_advanced__use_system_emoji">Gunakan emoji sistem</string>
     <string name="preferences_advanced__disable_signal_built_in_emoji_support">Nonaktifkan dukungan emoji Session bawaan</string>
-    <string name="preferences_app_protection__app_access">Akses aplikasi</string>
-    <string name="preferences_app_protection__communication">Komunikasi</string>
     <string name="preferences_chats__chats">Obrolan</string>
     <string name="preferences_notifications__messages">Pesan</string>
     <string name="preferences_notifications__in_chat_sounds">Suara dalam-obrolan</string>
-    <string name="preferences_notifications__show">Tampilkan</string>
     <string name="preferences_notifications__priority">Prioritas</string>
     <!-- **************************************** -->
     <!-- menus -->
@@ -507,7 +502,6 @@ memproses pertukaran kunci korupsi.</string>
     <string name="activity_notification_settings_style_section_title">Gaya notifikasi</string>
     <string name="activity_notification_settings_content_section_title">Isi notifikasi</string>
     <string name="activity_privacy_settings_title">Privasi</string>
-    <string name="activity_chat_settings_title">Percakapan</string>
     <string name="preferences_notifications_strategy_category_title">Strategi notofikasi</string>
     <string name="fragment_device_list_bottom_sheet_change_name_button_title">Ubah nama</string>
     <string name="fragment_device_list_bottom_sheet_unlink_device_button_title">Putuskan koneksi dengan perangkat</string>

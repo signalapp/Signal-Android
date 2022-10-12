@@ -11,8 +11,7 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"
-        android:background="@color/black"
-        android:alpha="0.2" />
+        android:background="@color/transparent_black_6" />
 
     <View
         android:layout_width="84dp"

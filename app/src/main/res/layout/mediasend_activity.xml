@@ -37,7 +37,7 @@
             android:paddingBottom="2dp"
             android:gravity="center"
             android:background="@drawable/media_count_number_background"
-            android:textColor="@color/accent"
+            android:textColor="?colorAccent"
             android:textSize="18sp"
             tools:text="3" />
 

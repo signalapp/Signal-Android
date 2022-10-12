@@ -21,7 +21,7 @@
             android:id="@+id/typingIndicator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:typingIndicator_tint="@color/text" />
+            app:typingIndicator_tint="?android:textColorPrimary" />
 
     </FrameLayout>
 

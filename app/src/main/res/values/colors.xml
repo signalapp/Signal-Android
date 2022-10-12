@@ -1,13 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-    <color name="accent">#00F782</color>
-    <color name="accent_alpha50">#8000F782</color>
-    <color name="text">#FFFFFF</color>
     <color name="destructive">#FF453A</color>
     <color name="unimportant">#D8D8D8</color>
     <color name="profile_picture_background">#353535</color>
-    <color name="cell_background">#1B1B1B</color>
-    <color name="cell_selected">#0C0C0C</color>
     <color name="action_bar_background">#161616</color>
     <color name="separator">#36383C</color>
     <color name="unimportant_button_background">#323232</color>
@@ -18,27 +13,9 @@
     <color name="compose_view_background">#1B1B1B</color>
     <color name="compose_text_view_background">#141414</color>
     <color name="quote_not_found_background">#80FFFFFF</color>
-    <color name="new_conversation_button_collapsed_background">#1F1F1F</color>
-    <color name="new_conversation_button_shadow">#077C44</color>
-    <color name="pn_option_background">#1B1B1B</color>
     <color name="pn_option_border">#212121</color>
     <color name="paths_building">#FFCE3A</color>
     <color name="open_group_chip_color">#0DFFFFFF</color>
-    <color name="message_selected">#888888</color>
-    <color name="input_bar_background">#171717</color>
-    <color name="input_bar_button_background">#0DFFFFFF</color>
-    <color name="input_bar_button_background_opaque">#232323</color>
-    <color name="input_bar_button_background_opaque_border">#33FFFFFF</color>
-    <color name="input_bar_lock_view_background">#171717</color>
-    <color name="input_bar_lock_view_border">#66FFFFFF</color>
-    <color name="mention_candidates_view_background">#171717</color>
-    <color name="mention_candidates_view_background_ripple">#0C0C0C</color>
-    <color name="link_preview_background">#000000</color>
-    <color name="scroll_to_bottom_button_background">#171717</color>
-    <color name="scroll_to_bottom_button_border">#99FFFFFF</color>
-    <color name="conversation_unread_count_indicator_background">#303030</color>
-    <color name="conversation_pinned_background">#404040</color>
-    <color name="conversation_pinned_icon">#B3B3B3</color>
 
     <color name="call_action_button">#DD353535</color>
     <color name="call_action_button_highlighted">#FFFFFF</color>
@@ -46,23 +23,17 @@
     <color name="call_action_foreground_highlighted">#171717</color>
     <color name="call_background">#171717</color>
 
-    <color name="bottom_sheet_background">#1B1B1B</color>
-    <color name="bottom_sheet_item_background">#1B1B1B</color>
-
     <array name="profile_picture_placeholder_colors">
-        <item>#5ff8b0</item>
-        <item>#26cdb9</item>
-        <item>#f3c615</item>
-        <item>#fcac5a</item>
+        <item>@color/accent_green</item>
+        <item>@color/accent_blue</item>
+        <item>@color/accent_yellow</item>
+        <item>@color/accent_pink</item>
+        <item>@color/accent_purple</item>
+        <item>@color/accent_orange</item>
+        <item>@color/accent_red</item>
     </array>
 
     <color name="loki_darkest_gray">#0a0a0a</color>
-
-    <color name="signal_primary">@color/accent</color>
-    <color name="signal_primary_dark">@color/accent</color>
-
-    <color name="textsecure_primary">@color/signal_primary</color>
-    <color name="textsecure_primary_dark">@color/signal_primary_dark</color>
 
     <color name="white">#ffffffff</color>
     <color name="black">#ff000000</color>
@@ -75,6 +46,7 @@
     <color name="gray70">#ff4d4d4d</color>
     <color name="gray78">#ff383838</color>
 
+    <color name="transparent_black_6">#0f000000</color>
     <color name="transparent_black_15">#26000000</color>
     <color name="transparent_black_30">#30000000</color>
     <color name="transparent_black_40">#40000000</color>
@@ -82,6 +54,7 @@
     <color name="transparent_white_87">#dfffffff</color>
     <color name="transparent_black_90">#90000000</color>
 
+    <color name="transparent_white_15">#26ffffff</color>
     <color name="transparent_white_20">#33ffffff</color>
     <color name="transparent_white_30">#30ffffff</color>
     <color name="transparent_white_40">#40ffffff</color>
@@ -125,10 +98,7 @@
     <color name="text_primary_disabled">@color/core_grey_60</color>
     <color name="signal_text_primary_dialog">@color/core_grey_25</color>
 
-    <color name="react_with_any_background">@color/core_grey_75</color>
-    <color name="react_with_any_search_background">@color/core_grey_65</color>
-    <color name="react_with_any_search_hint">@color/core_grey_25</color>
-    <color name="react_with_any_customize_background">@color/core_grey_65</color>
+    <color name="react_with_any_background">?colorPrimary</color>
 
 
     <color name="signal_inverse_transparent">@color/transparent</color>
@@ -150,5 +120,43 @@
     <color name="signal_button_secondary">@color/core_grey_75</color>
     <color name="signal_button_secondary_text_disabled">@color/core_grey_45</color>
     <color name="signal_button_secondary_stroke">@color/core_grey_45</color>
+
+    <color name="classic_accent">#31F196</color>
+
+    <color name="classic_dark_0">#111111</color>
+    <color name="classic_dark_1">#1B1B1B</color>
+    <color name="classic_dark_2">#2D2D2D</color>
+    <color name="classic_dark_3">#414141</color>
+    <color name="classic_dark_4">#767676</color>
+    <color name="classic_dark_5">#A1A2A1</color>
+    <color name="classic_dark_6">#FFFFFF</color>
+
+    <color name="classic_light_0">#000000</color>
+    <color name="classic_light_1">#6D6D6D</color>
+    <color name="classic_light_2">#A1A2A1</color>
+    <color name="classic_light_3">#DFDFDF</color>
+    <color name="classic_light_4">#F0F0F0</color>
+    <color name="classic_light_5">#F9F9F9</color>
+    <color name="classic_light_6">#FFFFFF</color>
+
+    <color name="ocean_accent">#57C9FA</color>
+
+    <color name="ocean_dark_0">#111111</color>
+    <color name="ocean_dark_1">#1A1C28</color>
+    <color name="ocean_dark_2">#252735</color>
+    <color name="ocean_dark_3">#2B2D40</color>
+    <color name="ocean_dark_4">#3D4A5D</color>
+    <color name="ocean_dark_5">#A6A9CE</color>
+    <color name="ocean_dark_6">#FFFFFF</color>
+
+    <color name="ocean_light_0">#19345D</color>
+    <color name="ocean_light_1">#6A6E90</color>
+    <color name="ocean_light_2">#5CAACC</color>
+    <color name="ocean_light_3">#B3EDF2</color>
+    <color name="ocean_light_4">#E7F3F4</color>
+    <color name="ocean_light_5">#ECFAFB</color>
+    <color name="ocean_light_6">#FCFFFF</color>
+
+    <color name="danger">#EA5545</color>
 
 </resources>

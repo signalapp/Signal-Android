@@ -68,18 +68,22 @@ class UserView : LinearLayout {
             }
             ActionIndicator.Tick -> {
                 binding.actionIndicatorImageView.visibility = View.VISIBLE
-                binding.actionIndicatorImageView.setImageResource(
-                    if (isSelected) R.drawable.ic_circle_check else R.drawable.ic_circle
-                )
+                if (isSelected) {
+                    binding.actionIndicatorImageView.setImageResource(R.drawable.padded_circle_accent)
+                } else {
+                    binding.actionIndicatorImageView.setImageDrawable(null)
+                }
             }
         }
     }
 
     fun toggleCheckbox(isSelected: Boolean = false) {
         binding.actionIndicatorImageView.visibility = View.VISIBLE
-        binding.actionIndicatorImageView.setImageResource(
-            if (isSelected) R.drawable.ic_circle_check else R.drawable.ic_circle
-        )
+        if (isSelected) {
+            binding.actionIndicatorImageView.setImageResource(R.drawable.padded_circle_accent)
+        } else {
+            binding.actionIndicatorImageView.setImageDrawable(null)
+        }
     }
 
     fun unbind() {

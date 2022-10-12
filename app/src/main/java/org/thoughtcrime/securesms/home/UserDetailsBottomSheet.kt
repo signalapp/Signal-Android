@@ -6,6 +6,7 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,7 +31,7 @@ import org.thoughtcrime.securesms.util.UiModeUtilities
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class UserDetailsBottomSheet : BottomSheetDialogFragment() {
+class UserDetailsBottomSheet: BottomSheetDialogFragment() {
 
     @Inject lateinit var threadDb: ThreadDatabase
 
@@ -41,7 +42,9 @@ class UserDetailsBottomSheet : BottomSheetDialogFragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        binding = FragmentUserDetailsBottomSheetBinding.inflate(inflater, container, false)
+        val wrappedContext = ContextThemeWrapper(requireActivity(), requireActivity().theme)
+        val themedInflater = inflater.cloneInContext(wrappedContext)
+        binding = FragmentUserDetailsBottomSheetBinding.inflate(themedInflater, container, false)
         return binding.root
     }
 

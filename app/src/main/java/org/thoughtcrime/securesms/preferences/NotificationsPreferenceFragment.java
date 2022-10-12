@@ -1,5 +1,7 @@
 package org.thoughtcrime.securesms.preferences;
 
+import static android.app.Activity.RESULT_OK;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -9,19 +11,18 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.text.TextUtils;
+
 import androidx.annotation.Nullable;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
-import android.text.TextUtils;
 
+import org.session.libsession.utilities.TextSecurePreferences;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.components.SwitchPreferenceCompat;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
-import org.session.libsession.utilities.TextSecurePreferences;
 
 import network.loki.messenger.R;
-
-import static android.app.Activity.RESULT_OK;
 
 public class NotificationsPreferenceFragment extends ListSummaryPreferenceFragment {
 
@@ -42,28 +43,14 @@ public class NotificationsPreferenceFragment extends ListSummaryPreferenceFragme
         return true;
       });
 
-    Preference ledBlinkPref = this.findPreference(TextSecurePreferences.LED_BLINK_PREF);
-
     if (NotificationChannels.supported()) {
-      ledBlinkPref.setVisible(false);
       TextSecurePreferences.setNotificationRingtone(getContext(), NotificationChannels.getMessageRingtone(getContext()).toString());
       TextSecurePreferences.setNotificationVibrateEnabled(getContext(), NotificationChannels.getMessageVibrate(getContext()));
-
-    } else {
-      ledBlinkPref.setOnPreferenceChangeListener(new ListSummaryListener());
-      initializeListSummary((ListPreference) ledBlinkPref);
     }
-
-    this.findPreference(TextSecurePreferences.LED_COLOR_PREF)
-        .setOnPreferenceChangeListener(new LedColorChangeListener());
     this.findPreference(TextSecurePreferences.RINGTONE_PREF)
         .setOnPreferenceChangeListener(new RingtoneSummaryListener());
-    this.findPreference(TextSecurePreferences.REPEAT_ALERTS_PREF)
-        .setOnPreferenceChangeListener(new ListSummaryListener());
     this.findPreference(TextSecurePreferences.NOTIFICATION_PRIVACY_PREF)
         .setOnPreferenceChangeListener(new NotificationPrivacyListener());
-    this.findPreference(TextSecurePreferences.NOTIFICATION_PRIORITY_PREF)
-        .setOnPreferenceChangeListener(new ListSummaryListener());
     this.findPreference(TextSecurePreferences.VIBRATE_PREF)
         .setOnPreferenceChangeListener((preference, newValue) -> {
           NotificationChannels.updateMessageVibrate(getContext(), (boolean) newValue);
@@ -86,8 +73,17 @@ public class NotificationsPreferenceFragment extends ListSummaryPreferenceFragme
           return true;
         });
 
-    initializeListSummary((ListPreference) findPreference(TextSecurePreferences.LED_COLOR_PREF));
-    initializeListSummary((ListPreference) findPreference(TextSecurePreferences.REPEAT_ALERTS_PREF));
+    this.findPreference(TextSecurePreferences.NOTIFICATION_PRIVACY_PREF)
+        .setOnPreferenceClickListener(preference -> {
+          ListPreference listPreference = (ListPreference) preference;
+          listPreference.setDialogMessage(R.string.preferences_notifications__content_message);
+          new ListPreferenceDialog(listPreference, () -> {
+              initializeListSummary((ListPreference) findPreference(TextSecurePreferences.NOTIFICATION_PRIVACY_PREF));
+              return null;
+          }).show(getChildFragmentManager(), "ListPreferenceDialog");
+          return true;
+        });
+
     initializeListSummary((ListPreference) findPreference(TextSecurePreferences.NOTIFICATION_PRIVACY_PREF));
 
     if (NotificationChannels.supported()) {
@@ -99,8 +95,6 @@ public class NotificationsPreferenceFragment extends ListSummaryPreferenceFragme
             startActivity(intent);
             return true;
           });
-    } else {
-      initializeListSummary((ListPreference) findPreference(TextSecurePreferences.NOTIFICATION_PRIORITY_PREF));
     }
 
     initializeRingtoneSummary(findPreference(TextSecurePreferences.RINGTONE_PREF));
@@ -183,20 +177,4 @@ public class NotificationsPreferenceFragment extends ListSummaryPreferenceFragme
     }
   }
 
-  @SuppressLint("StaticFieldLeak")
-  private class LedColorChangeListener extends ListSummaryListener {
-    @Override
-    public boolean onPreferenceChange(Preference preference, Object value) {
-      if (NotificationChannels.supported()) {
-        new AsyncTask<Void, Void, Void>() {
-          @Override
-          protected Void doInBackground(Void... voids) {
-            NotificationChannels.updateMessagesLedColor(getActivity(), (String) value);
-            return null;
-          }
-        }.execute();
-      }
-      return super.onPreferenceChange(preference, value);
-    }
-  }
 }

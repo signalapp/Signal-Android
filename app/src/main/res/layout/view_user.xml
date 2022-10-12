@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="64dp"
     android:background="@drawable/conversation_view_background"
     android:orientation="vertical">
 
@@ -12,12 +12,14 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:padding="@dimen/medium_spacing">
+        android:paddingHorizontal="@dimen/medium_spacing">
 
         <include layout="@layout/view_profile_picture"
             android:id="@+id/profilePictureView"
-            android:layout_width="@dimen/medium_profile_picture_size"
-            android:layout_height="@dimen/medium_profile_picture_size" />
+            android:layout_width="@dimen/small_profile_picture_size"
+            android:layout_height="@dimen/small_profile_picture_size"
+            android:layout_marginVertical="@dimen/medium_spacing"
+            />
 
         <TextView
             android:id="@+id/nameTextView"
@@ -37,7 +39,8 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginStart="@dimen/medium_spacing"
-            android:src="@drawable/ic_circle"/>
+            android:foreground="@drawable/radial_multi_select"
+            android:src="@drawable/padded_circle_accent_select"/>
 
     </LinearLayout>
 

@@ -312,7 +312,6 @@
     <!-- plurals.xml -->
     <!-- preferences.xml -->
     <string name="preferences__pref_enter_sends_title">Ingiza kutuma muhimu</string>
-    <string name="preferences__pressing_the_enter_key_will_send_text_messages">bonyeza kibodi ya kuingia ili kutuma ujumbe wa maandishi</string>
     <string name="preferences__send_link_previews">tuma kiungo kilichoonekana</string>
     <string name="preferences__screen_security">usalamaa wa skrini</string>
     <string name="preferences__disable_screen_security_to_allow_screen_shots">Zima viwambo vya skrini katika orodha ya rekodi na ndani ya programu</string>
@@ -349,7 +348,6 @@
     <string name="preferences__default">Chaguo Msingi</string>
     <string name="preferences__incognito_keyboard">Kibodi cha kuingia</string>
     <string name="preferences__read_receipts">Soma stakabadhi</string>
-    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Ikiwa stakabadhi zilizosomwa zimezuiliwa, huwezi kuona stakabadhi zilizosomwa kutoka kwa wengine</string>
     <string name="preferences__typing_indicators">andika viashiria</string>
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Ikiwa viashiria vya kuandika vimezimwa, huwezi kuona viashiria vya kuandika kutoka kwa wengine.</string>
     <string name="preferences__request_keyboard_to_disable_personalized_learning">Omba kibodi ili kuzima kujifunza kwa kibinafsi</string>
@@ -358,12 +356,9 @@
     <string name="preferences_chats__message_trimming">ujumbe unapunguza</string>
     <string name="preferences_advanced__use_system_emoji">kutumia emoji mfumo</string>
     <string name="preferences_advanced__disable_signal_built_in_emoji_support">kuzuia Session iliyojengwa kusaidia emoji</string>
-    <string name="preferences_app_protection__app_access">kutumia programu</string>
-    <string name="preferences_app_protection__communication">mawasiliano</string>
     <string name="preferences_chats__chats">mazungumzo</string>
     <string name="preferences_notifications__messages">ujumbe</string>
     <string name="preferences_notifications__in_chat_sounds">sauti wakati wa mazungumzo</string>
-    <string name="preferences_notifications__show">onyesha</string>
     <string name="preferences_notifications__priority">Kipaumbele</string>
     <!-- **************************************** -->
     <!-- menus -->

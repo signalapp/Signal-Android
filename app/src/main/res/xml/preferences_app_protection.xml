@@ -2,7 +2,9 @@
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory android:title="@string/preferences_app_protection__app_access">
+    <PreferenceCategory
+        android:title="@string/preferences_app_protection__screen_security"
+        >
 
         <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
             android:key="pref_android_screen_lock"
@@ -10,80 +12,41 @@
             android:title="@string/preferences_app_protection__screen_lock"
             android:summary="@string/preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint" />
 
-        <Preference
-            android:title="@string/preferences_app_protection__screen_lock_inactivity_timeout"
-            android:key="pref_android_screen_lock_timeout"
-            android:dependency="pref_android_screen_lock" />
-
-<!--        <org.thoughtcrime.securesms.components.SwitchPreferenceCompat-->
-<!--            android:key="pref_enable_passphrase_temporary"-->
-<!--            android:defaultValue="true"-->
-<!--            android:title="@string/preferences__enable_passphrase"-->
-<!--            android:summary="@string/preferences__lock_signal_and_message_notifications_with_a_passphrase" />-->
-
-<!--        <Preference-->
-<!--            android:key="pref_change_passphrase"-->
-<!--            android:title="@string/preferences__change_passphrase"-->
-<!--            android:summary="@string/preferences__change_your_passphrase"-->
-<!--            android:dependency="pref_enable_passphrase_temporary" />-->
-
-<!--        <org.thoughtcrime.securesms.components.SwitchPreferenceCompat-->
-<!--            android:defaultValue="false"-->
-<!--            android:key="pref_timeout_passphrase"-->
-<!--            android:title="@string/preferences__inactivity_timeout_passphrase"-->
-<!--            android:summary="@string/preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity"-->
-<!--            android:dependency="pref_enable_passphrase_temporary" />-->
-
-<!--        <Preference-->
-<!--            android:title="@string/preferences__inactivity_timeout_interval"-->
-<!--            android:key="pref_timeout_interval"-->
-<!--            android:dependency="pref_timeout_passphrase" />-->
-
+        <!-- TODO: check figure out what is needed for this -->
         <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
             android:defaultValue="true"
             android:key="pref_screen_security"
             android:title="@string/preferences__screen_security"
             android:summary="@string/preferences__disable_screen_security_to_allow_screen_shots" />
 
-        <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
-            android:defaultValue="true"
-            android:key="pref_incognito_keyboard"
-            android:title="@string/preferences__incognito_keyboard"
-            android:summary="@string/preferences__request_keyboard_to_disable_personalized_learning"/>
-
     </PreferenceCategory>
 
-    <PreferenceCategory android:layout="@layout/preference_divider" />
-
-    <PreferenceCategory android:title="@string/preferences_app_protection__communication">
-
-        <!-- <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
-            android:defaultValue="false"
-            android:key="pref_turn_only"
-            android:title="@string/preferences_advanced__always_relay_calls"
-            android:summary="@string/preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address"/> -->
-
+    <PreferenceCategory android:title="@string/preferences__read_receipts">
         <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
             android:defaultValue="false"
             android:key="pref_read_receipts"
             android:title="@string/preferences__read_receipts"
-            android:summary="@string/preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts"/>
+            android:summary="@string/preferences__read_receipts_summary"/>
+    </PreferenceCategory>
 
+    <PreferenceCategory android:title="@string/preferences__typing_indicators">
         <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
             android:defaultValue="false"
             android:key="pref_typing_indicators"
             android:title="@string/preferences__typing_indicators"
-            android:summary="@string/preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators"/>
+            android:summary="@string/preferences__typing_indicators_summary"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/preferences__link_previews">
 
         <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
             android:defaultValue="true"
             android:key="pref_link_previews"
-            android:summary="@string/preferences__previews_are_supported_for"
+            android:summary="@string/preferences__link_previews_summary"
             android:title="@string/preferences__send_link_previews"/>
+    </PreferenceCategory>
 
-        <!-- <Preference android:key="preference_category_blocked"
-                    android:title="@string/preferences_app_protection__blocked_contacts" /> -->
-
+    <PreferenceCategory android:title="@string/preferences__calls_beta">
         <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
             android:defaultValue="false"
             android:key="pref_call_notifications_enabled"
@@ -124,5 +87,13 @@
             android:summary="@string/preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required"/>
 
     </PreferenceCategory> -->
+
+    <PreferenceCategory android:title="@string/preferences__incognito_keyboard">
+        <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+            android:defaultValue="true"
+            android:key="pref_incognito_keyboard"
+            android:title="@string/preferences__incognito_keyboard"
+            android:summary="@string/preferences__request_keyboard_to_disable_personalized_learning"/>
+    </PreferenceCategory>
 
 </PreferenceScreen>

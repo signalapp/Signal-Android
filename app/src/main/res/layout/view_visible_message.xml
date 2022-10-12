@@ -11,11 +11,11 @@
         android:id="@+id/dateBreakTextView"
         android:layout_width="match_parent"
         android:layout_height="@dimen/large_spacing"
+        tools:text="@tools:sample/date/hhmmss"
         android:gravity="center"
-        android:textColor="@color/text"
+        android:textColor="?android:textColorPrimary"
         android:textSize="@dimen/very_small_font_size"
-        android:textStyle="bold"
-        tools:text="@tools:sample/date/hhmmss" />
+        android:textStyle="bold" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/mainContainer"
@@ -64,8 +64,8 @@
             android:layout_marginEnd="12dp"
             android:ellipsize="end"
             android:maxLines="1"
+            android:textColor="?android:textColorPrimary"
             android:paddingBottom="4dp"
-            android:textColor="@color/text"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/messageInnerContainer"
             app:layout_constraintTop_toTopOf="parent"

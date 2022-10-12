@@ -401,7 +401,6 @@
     </plurals>
     <!-- preferences.xml -->
     <string name="preferences__pref_enter_sends_title">Enter düyməsi ilə göndər</string>
-    <string name="preferences__pressing_the_enter_key_will_send_text_messages">Enter düyməsinə basanda, mətn mesajları göndəriləcək</string>
     <string name="preferences__send_link_previews">Bağlantı önbaxışlarını göndər</string>
     <string name="preferences__previews_are_supported_for">Imgur, Instagram, Pinterest, Reddit və YouTube bağlantıları üçün önbaxışlar dəstəklənir</string>
     <string name="preferences__screen_security">Ekran güvənliyi</string>
@@ -439,7 +438,6 @@
     <string name="preferences__default">İlkin</string>
     <string name="preferences__incognito_keyboard">Gizli klaviatura</string>
     <string name="preferences__read_receipts">Oxundu bildirişləri</string>
-    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Əgər oxundu bildirişləri sıradan çıxarılsa, başqalarından gələn oxundu bildirişlərini də görə bilməyəcəksiniz.</string>
     <string name="preferences__typing_indicators">Yazma göstəriciləri</string>
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Əgər yazma göstəricisi sıradan çıxarılsa, başqalarından gələn yazma göstəricilərini də görə bilməyəcəksiniz.</string>
     <string name="preferences__request_keyboard_to_disable_personalized_learning">Klaviaturanın fərdiləşdirilmiş öyrənməni sıradan çıxartmasını tələb et</string>
@@ -448,12 +446,9 @@
     <string name="preferences_chats__message_trimming">Mesajları kəsmə</string>
     <string name="preferences_advanced__use_system_emoji">Sistem ifadəsini istifadə et</string>
     <string name="preferences_advanced__disable_signal_built_in_emoji_support">Session-un daxili ifadə dəstəyini sıradan çıxart</string>
-    <string name="preferences_app_protection__app_access">Tətbiq müraciəti</string>
-    <string name="preferences_app_protection__communication">Rabitə</string>
     <string name="preferences_chats__chats">Söhbətlər</string>
     <string name="preferences_notifications__messages">Mesajlar</string>
     <string name="preferences_notifications__in_chat_sounds">Söhbət daxili səslər</string>
-    <string name="preferences_notifications__show">Göstər</string>
     <string name="preferences_notifications__priority">Prioritet</string>
     <!-- **************************************** -->
     <!-- menus -->
@@ -619,7 +614,6 @@
     <string name="activity_notification_settings_style_section_title">Bildiriş stili</string>
     <string name="activity_notification_settings_content_section_title">Bildiriş məzmunu</string>
     <string name="activity_privacy_settings_title">Gizlilik</string>
-    <string name="activity_chat_settings_title">Söhbətlər</string>
     <string name="preferences_notifications_strategy_category_title">Bildiriş Strategiyası</string>
     <string name="preferences_notifications_strategy_category_fast_mode_title">Sürətli rejimi istifadə et</string>
     <string name="preferences_notifications_strategy_category_fast_mode_summary">Google-un bildiriş serverlərini istifadə edərək yeni mesajlardan dərhal və etibarlı şəkildə xəbərdar olacaqsınız.</string>

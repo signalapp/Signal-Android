@@ -19,7 +19,7 @@
         android:layout_marginBottom="8dp"
         android:layout_gravity="center"
         android:visibility="visible"
-        app:SpinKit_Color="@color/text" />
+        app:SpinKit_Color="?android:textColorPrimary" />
 
     <TextView
         android:id="@+id/no_results"
@@ -27,7 +27,7 @@
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/text"
+        android:textColor="?android:textColorPrimary"
         android:textSize="@dimen/medium_font_size"
         android:visibility="gone"
         android:layout_gravity="center"/>

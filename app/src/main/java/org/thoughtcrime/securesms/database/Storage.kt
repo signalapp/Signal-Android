@@ -952,4 +952,14 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         DatabaseComponent.get(context).reactionDatabase().deleteMessageReactions(MessageId(messageId, mms))
     }
 
+    override fun unblock(toUnblock: List<Recipient>) {
+        val recipientDb = DatabaseComponent.get(context).recipientDatabase()
+        recipientDb.setBlocked(toUnblock, false)
+    }
+
+    override fun blockedContacts(): List<Recipient> {
+        val recipientDb = DatabaseComponent.get(context).recipientDatabase()
+        return recipientDb.blockedContacts
+    }
+
 }

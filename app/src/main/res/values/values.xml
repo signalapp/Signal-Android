@@ -3,6 +3,8 @@
     <bool name="enable_alarm_manager">true</bool>
     <bool name="enable_job_service">false</bool>
     <attr name="searchBackgroundColor" format="color"/>
-    <attr name="searchIconColor" format="color"/>
-    <attr name="searchHighlightTint" format="color"/>
+    <attr name="searchIconColor" format="color|reference"/>
+    <attr name="searchTextColor" format="color|reference"/>
+    <attr name="searchHintColor" format="color|reference"/>
+    <attr name="searchHighlightTint" format="color|reference"/>
 </resources>

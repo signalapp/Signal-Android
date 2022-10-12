@@ -29,7 +29,7 @@
                 android:layout_marginTop="@dimen/medium_spacing"
                 android:layout_marginRight="@dimen/large_spacing"
                 android:textSize="@dimen/massive_font_size"
-                android:textColor="@color/text"
+                android:textColor="?android:textColorPrimary"
                 android:textStyle="bold"
                 android:textAlignment="center"
                 android:text="@string/fragment_view_my_qr_code_title" />
@@ -57,7 +57,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="@dimen/large_spacing"
                 android:textSize="@dimen/medium_font_size"
-                android:textColor="@color/text"
+                android:textColor="?android:textColorPrimary"
                 android:textAlignment="center"
                 android:text="@string/fragment_view_my_qr_code_explanation" />
 

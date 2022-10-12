@@ -4,9 +4,9 @@ package org.thoughtcrime.securesms.preferences;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 
-import network.loki.messenger.R;
-
 import java.util.Arrays;
+
+import network.loki.messenger.R;
 
 public abstract class ListSummaryPreferenceFragment extends CorrectedPreferenceFragment {
 

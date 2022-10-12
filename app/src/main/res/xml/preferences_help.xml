@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory>
+        <Preference
+            android:key="export_logs"
+            android:title="@string/activity_help_settings__report_bug_title"
+            android:summary="@string/activity_help_settings__report_bug_summary"
+            android:widgetLayout="@layout/export_logs_widget"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory>
+        <Preference
+            android:key="translate_session"
+            android:title="@string/activity_help_settings__translate_session"
+            android:widgetLayout="@layout/preference_external_link"
+            />
+    </PreferenceCategory>
+
+    <PreferenceCategory>
+        <Preference
+            android:key="feedback"
+            android:title="@string/activity_help_settings__feedback"
+            android:widgetLayout="@layout/preference_external_link"
+            />
+    </PreferenceCategory>
+
+    <PreferenceCategory>
+        <Preference
+            android:key="faq"
+            android:title="@string/activity_help_settings__faq"
+            android:widgetLayout="@layout/preference_external_link"
+            />
+    </PreferenceCategory>
+
+    <PreferenceCategory>
+        <Preference
+            android:key="support"
+            android:title="@string/activity_help_settings__support"
+            android:widgetLayout="@layout/preference_external_link"
+            />
+    </PreferenceCategory>
+
+</PreferenceScreen>

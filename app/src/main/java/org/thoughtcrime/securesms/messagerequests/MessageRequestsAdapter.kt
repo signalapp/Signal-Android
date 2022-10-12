@@ -5,11 +5,11 @@ import android.content.res.ColorStateList
 import android.database.Cursor
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
+import android.view.ContextThemeWrapper
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import network.loki.messenger.R
-import org.session.libsignal.utilities.Log
 import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter
 import org.thoughtcrime.securesms.database.model.ThreadRecord
 import org.thoughtcrime.securesms.dependencies.DatabaseComponent
@@ -47,7 +47,7 @@ class MessageRequestsAdapter(
     }
 
     private fun showPopupMenu(view: MessageRequestView) {
-        val popupMenu = PopupMenu(context, view)
+        val popupMenu = PopupMenu(ContextThemeWrapper(context, R.style.PopupMenu_MessageRequests), view)
         popupMenu.menuInflater.inflate(R.menu.menu_message_request, popupMenu.menu)
         popupMenu.setOnMenuItemClickListener { menuItem ->
             if (menuItem.itemId == R.id.menu_delete_message_request) {

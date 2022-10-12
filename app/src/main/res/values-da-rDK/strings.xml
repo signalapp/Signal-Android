@@ -399,7 +399,6 @@ udveksel besked!</string>
     </plurals>
     <!-- preferences.xml -->
     <string name="preferences__pref_enter_sends_title">[Enter] sender besked</string>
-    <string name="preferences__pressing_the_enter_key_will_send_text_messages">Tap på [Enter] sender beskeden</string>
     <string name="preferences__send_link_previews">Send link eksempelvisning</string>
     <string name="preferences__previews_are_supported_for">Eksempelvisning er understøttet for Imgur, Instagram, Pinterest, Reddit og YouTube links</string>
     <string name="preferences__screen_security">Skærmsikkerhed</string>
@@ -437,7 +436,6 @@ udveksel besked!</string>
     <string name="preferences__default">Standard</string>
     <string name="preferences__incognito_keyboard">Inkognito tastatur</string>
     <string name="preferences__read_receipts">Læst af modtager</string>
-    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Hvis læst af modtager er deaktiverét, er det ikke muligt at se status for andre</string>
     <string name="preferences__typing_indicators">Skrive indikator</string>
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Hvis skrive indikator er deaktiverét, er det ikke muligt at se når andre skriver</string>
     <string name="preferences__request_keyboard_to_disable_personalized_learning">Deaktivér personaliseret læring fra tastaturet</string>
@@ -446,12 +444,9 @@ udveksel besked!</string>
     <string name="preferences_chats__message_trimming">Trimning af beskeder</string>
     <string name="preferences_advanced__use_system_emoji">Brug system-emoji</string>
     <string name="preferences_advanced__disable_signal_built_in_emoji_support">Deaktivér Sessions indbyggede emoji understøttelse</string>
-    <string name="preferences_app_protection__app_access">App adgang</string>
-    <string name="preferences_app_protection__communication">Kommunikation</string>
     <string name="preferences_chats__chats">Chats</string>
     <string name="preferences_notifications__messages">Beskeder</string>
     <string name="preferences_notifications__in_chat_sounds">Chat lyde</string>
-    <string name="preferences_notifications__show">Vis</string>
     <string name="preferences_notifications__priority">Prioritet</string>
     <!-- **************************************** -->
     <!-- menus -->
@@ -601,7 +596,6 @@ udveksel besked!</string>
     <string name="activity_notification_settings_style_section_title">Notifikationsstil</string>
     <string name="activity_notification_settings_content_section_title">Meddelelsesindhold</string>
     <string name="activity_privacy_settings_title">Privatliv</string>
-    <string name="activity_chat_settings_title">Chats</string>
     <string name="preferences_notifications_strategy_category_fast_mode_title">Brug Hurtig Tilstand</string>
     <string name="fragment_device_list_bottom_sheet_change_name_button_title">Rediger navn</string>
     <string name="fragment_device_list_bottom_sheet_unlink_device_button_title">Frakobl enhed</string>

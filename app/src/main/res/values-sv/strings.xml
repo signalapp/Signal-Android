@@ -400,7 +400,6 @@ för nyckelutbyte!</string>
     </plurals>
     <!-- preferences.xml -->
     <string name="preferences__pref_enter_sends_title">Entertangenten skickar</string>
-    <string name="preferences__pressing_the_enter_key_will_send_text_messages">Entertangenten skickar textmeddelanden</string>
     <string name="preferences__send_link_previews">Sicka länkförhandsvisning</string>
     <string name="preferences__previews_are_supported_for">Förhandsvisningar stöds för Imgur-, Instagram-, Pinterest-, Reddit- och YouTube-länkar.</string>
     <string name="preferences__screen_security">Skärmsäkerhet</string>
@@ -438,7 +437,6 @@ för nyckelutbyte!</string>
     <string name="preferences__default">Standard</string>
     <string name="preferences__incognito_keyboard">Inkognito-tangentbord</string>
     <string name="preferences__read_receipts">Läskvittenser</string>
-    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Om läskvittenser är avstängda kan du inte se läskvittenser från andra.</string>
     <string name="preferences__typing_indicators">Skrivindikatorer</string>
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Om skrivindikatorer är avstängda kan du inte se skrivindikatorer från andra.</string>
     <string name="preferences__request_keyboard_to_disable_personalized_learning">Begär att tangentbordet stänger av personlig inlärning</string>
@@ -447,12 +445,9 @@ för nyckelutbyte!</string>
     <string name="preferences_chats__message_trimming">Trimma meddelanden</string>
     <string name="preferences_advanced__use_system_emoji">Använd systemets emojier</string>
     <string name="preferences_advanced__disable_signal_built_in_emoji_support">Inaktivera Sessions inbyggda emojier</string>
-    <string name="preferences_app_protection__app_access">Appåtkomst</string>
-    <string name="preferences_app_protection__communication">Kommunikation</string>
     <string name="preferences_chats__chats">Konversationer</string>
     <string name="preferences_notifications__messages">Meddelanden</string>
     <string name="preferences_notifications__in_chat_sounds">Ljud i konversationer</string>
-    <string name="preferences_notifications__show">Visa</string>
     <string name="preferences_notifications__priority">Prioritet</string>
     <!-- **************************************** -->
     <!-- menus -->
@@ -618,7 +613,6 @@ för nyckelutbyte!</string>
     <string name="activity_notification_settings_style_section_title">Aviseringsutseende</string>
     <string name="activity_notification_settings_content_section_title">Aviseringsinnehåll</string>
     <string name="activity_privacy_settings_title">Integritet</string>
-    <string name="activity_chat_settings_title">Konversationer</string>
     <string name="preferences_notifications_strategy_category_title">Strategi för aviseringar</string>
     <string name="preferences_notifications_strategy_category_fast_mode_title">Använd snabbläge</string>
     <string name="preferences_notifications_strategy_category_fast_mode_summary">Du kommer att meddelas om nya meddelanden på ett tillförlitligt sätt och omedelbart genom att använda Googles aviseringsservrar.</string>

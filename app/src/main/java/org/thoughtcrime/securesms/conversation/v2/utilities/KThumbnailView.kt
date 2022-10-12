@@ -2,12 +2,14 @@ package org.thoughtcrime.securesms.conversation.v2.utilities
 
 import android.content.Context
 import android.graphics.Bitmap
+import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
@@ -64,6 +66,8 @@ open class KThumbnailView: FrameLayout {
 
             typedArray.recycle()
         }
+        val background = ContextCompat.getColor(context, R.color.transparent_black_6)
+        binding.root.background = ColorDrawable(background)
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {

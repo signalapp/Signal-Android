@@ -5,6 +5,6 @@
 
     <solid android:color="?attr/dialog_background_color" />
 
-    <corners android:radius="@dimen/dialog_corner_radius" />
+    <corners android:radius="?dialogCornerRadius" />
 
 </shape>

@@ -408,7 +408,6 @@
     </plurals>
     <!-- preferences.xml -->
     <string name="preferences__pref_enter_sends_title">Գրեք ուղարկողի բանալին</string>
-    <string name="preferences__pressing_the_enter_key_will_send_text_messages">Սեղմեք \"գրել բանալին\" ուղարկելու տեքստային հաղորդագրություն</string>
     <string name="preferences__send_link_previews">Ուղարկել հղման նախադիտումներ</string>
     <string name="preferences__previews_are_supported_for">Նախադիտումները աջակցվում են Imgur, Instagram, Pinterest, Reddit և YouTube հղումների համար</string>
     <string name="preferences__screen_security">Էկրանակադրի անվտանգություն</string>
@@ -446,7 +445,6 @@
     <string name="preferences__default">Սկզբնական</string>
     <string name="preferences__incognito_keyboard">Չհիշել բառերը</string>
     <string name="preferences__read_receipts">Կարդալու ազդանշաններ</string>
-    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Եթե կարդալու ազդանշանները անջատված են, Դուք չեք տեսնի երբ են մնացածները կարդացել Ձեր նամակները։</string>
     <string name="preferences__typing_indicators">Գրելու ինդիկատորներ</string>
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Եթե գրելու հնարավորությունը փակված է, դուք չեք կարող տեսնել մյուս օգտագործողների գրելը.</string>
     <string name="preferences__request_keyboard_to_disable_personalized_learning">Առաջարկել ստեղնաշարի հավելվածին, որ այն չհիշի նոր բառերը</string>
@@ -455,12 +453,9 @@
     <string name="preferences_chats__message_trimming">Նամակների կարճեցում</string>
     <string name="preferences_advanced__use_system_emoji">Օգտագործել համակարգի էմոջին</string>
     <string name="preferences_advanced__disable_signal_built_in_emoji_support">Անջատել Session-ի ներկառուցված էմոջիների ապահովումը</string>
-    <string name="preferences_app_protection__app_access">Հավելվածի հասանելիություն</string>
-    <string name="preferences_app_protection__communication">Հաղորդակցություն</string>
     <string name="preferences_chats__chats">Չատեր</string>
     <string name="preferences_notifications__messages">Նամակներ</string>
     <string name="preferences_notifications__in_chat_sounds">Ձայներ չատում</string>
-    <string name="preferences_notifications__show">Ցույց տալ</string>
     <string name="preferences_notifications__priority">Առաջնայնություն</string>
     <!-- **************************************** -->
     <!-- menus -->
@@ -626,7 +621,6 @@
     <string name="activity_notification_settings_style_section_title">Ծանուցումների Ոճ</string>
     <string name="activity_notification_settings_content_section_title">Ծանուցումների Բովանդակություն</string>
     <string name="activity_privacy_settings_title">Գաղտնիություն</string>
-    <string name="activity_chat_settings_title">Զրույցներ</string>
     <string name="preferences_notifications_strategy_category_title">Ծանուցումների ոճ</string>
     <string name="preferences_notifications_strategy_category_fast_mode_title">Օգտագործել արագ ռեժիմը</string>
     <string name="preferences_notifications_strategy_category_fast_mode_summary">Դուք մշտապես և անմիջապես կտեղեկացվեք նոր հաղորդագրությունների մասին՝ օգտագործելով Google-ի ծանուցումների սերվերները:</string>

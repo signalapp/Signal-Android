@@ -49,7 +49,7 @@
         android:layout_marginStart="1dp"
         android:text="@string/ReactionsConversationView_show_less"
         android:textSize="@dimen/very_small_font_size"
-        android:textColor="@color/text"
+        android:textColor="?android:textColorPrimary"
         tools:visibility="visible"
         app:layout_constraintStart_toEndOf="@id/image_view_show_less"
         app:layout_constraintHorizontal_chainStyle="packed"

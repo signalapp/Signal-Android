@@ -423,7 +423,6 @@
     </plurals>
     <!-- preferences.xml -->
     <string name="preferences__pref_enter_sends_title">Klávesa Enter odesílá</string>
-    <string name="preferences__pressing_the_enter_key_will_send_text_messages">Stisk tlačítka \'enter\' na klávesnici odešle zprávu</string>
     <string name="preferences__send_link_previews">Odesílat náhledy odkazu</string>
     <string name="preferences__previews_are_supported_for">Náhledy jsou podporovaný pro odkazy na Imgur, Instagram, Pinterest, Reddit a YouTube</string>
     <string name="preferences__screen_security">Zabezpečení obrazovky</string>
@@ -461,7 +460,6 @@
     <string name="preferences__default">Výchozí</string>
     <string name="preferences__incognito_keyboard">Inkognito klávesnice</string>
     <string name="preferences__read_receipts">Info o přečtení</string>
-    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Jestliže zakážete posílání potvrzení o přečtení zprávy, nebudete vidět tyto potvrzení ani od ostatních.</string>
     <string name="preferences__typing_indicators">Indikátory psaní</string>
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Pokud máte vypnuté indikátory psaní, neuvidíte je ani od ostatních.</string>
     <string name="preferences__request_keyboard_to_disable_personalized_learning">Vyžádat klávesnici s vypnutým učením</string>
@@ -470,12 +468,9 @@
     <string name="preferences_chats__message_trimming">Ořezávání práv</string>
     <string name="preferences_advanced__use_system_emoji">Použít systémové smajlíky</string>
     <string name="preferences_advanced__disable_signal_built_in_emoji_support">Zakázat použití interních smajlíků aplikace Session </string>
-    <string name="preferences_app_protection__app_access">Přístup aplikace</string>
-    <string name="preferences_app_protection__communication">Komunikace</string>
     <string name="preferences_chats__chats">Konverzace</string>
     <string name="preferences_notifications__messages">Zprávy</string>
     <string name="preferences_notifications__in_chat_sounds">Zvuk během konverzace</string>
-    <string name="preferences_notifications__show">Zobrazit</string>
     <string name="preferences_notifications__priority">Priorita</string>
     <!-- **************************************** -->
     <!-- menus -->
@@ -641,7 +636,6 @@
     <string name="activity_notification_settings_style_section_title">Styl oznámení</string>
     <string name="activity_notification_settings_content_section_title">Obsah oznámení</string>
     <string name="activity_privacy_settings_title">Soukromí</string>
-    <string name="activity_chat_settings_title">Konverzace</string>
     <string name="preferences_notifications_strategy_category_title">Styl oznámení</string>
     <string name="preferences_notifications_strategy_category_fast_mode_title">Použít rychlý režim</string>
     <string name="preferences_notifications_strategy_category_fast_mode_summary">Budete spolehlivě a okamžitě informováni o nových zprávách pomocí oznamovacích serverů Google.</string>

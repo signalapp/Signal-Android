@@ -12,6 +12,7 @@ import android.provider.Settings;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.fragment.app.Fragment;
 import androidx.preference.Preference;
 
@@ -23,14 +24,11 @@ import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.CallNotificationBuilder;
 import org.thoughtcrime.securesms.util.IntentUtils;
 
-import java.util.concurrent.TimeUnit;
-
 import kotlin.jvm.functions.Function1;
-import mobi.upod.timedurationpicker.TimeDurationPickerDialog;
 import network.loki.messenger.BuildConfig;
 import network.loki.messenger.R;
 
-public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment {
+public class PrivacySettingsPreferenceFragment extends ListSummaryPreferenceFragment {
 
   @Override
   public void onAttach(Activity activity) {
@@ -42,7 +40,6 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
     super.onCreate(paramBundle);
 
     this.findPreference(TextSecurePreferences.SCREEN_LOCK).setOnPreferenceChangeListener(new ScreenLockListener());
-    this.findPreference(TextSecurePreferences.SCREEN_LOCK_TIMEOUT).setOnPreferenceClickListener(new ScreenLockTimeoutListener());
 
     this.findPreference(TextSecurePreferences.READ_RECEIPTS_PREF).setOnPreferenceChangeListener(new ReadReceiptToggleListener());
     this.findPreference(TextSecurePreferences.TYPING_INDICATORS).setOnPreferenceChangeListener(new TypingIndicatorsToggleListener());
@@ -56,7 +53,7 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
     ((SwitchPreferenceCompat)findPreference(TextSecurePreferences.CALL_NOTIFICATIONS_ENABLED)).setChecked(isEnabled);
     if (isEnabled && !CallNotificationBuilder.areNotificationsEnabled(requireActivity())) {
       // show a dialog saying that calls won't work properly if you don't have notifications on at a system level
-      new AlertDialog.Builder(requireActivity())
+      new AlertDialog.Builder(new ContextThemeWrapper(requireActivity(), R.style.ThemeOverlay_Session_AlertDialog))
               .setTitle(R.string.CallNotificationBuilder_system_notification_title)
               .setMessage(R.string.CallNotificationBuilder_system_notification_message)
               .setPositiveButton(R.string.activity_notification_settings_title, (d, w) -> {
@@ -100,20 +97,6 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
   @Override
   public void onResume() {
     super.onResume();
-    if (TextSecurePreferences.isPasswordDisabled(getContext())) {
-      initializeScreenLockTimeoutSummary();
-    }
-  }
-
-  private void initializeScreenLockTimeoutSummary() {
-    long timeoutSeconds = TextSecurePreferences.getScreenLockTimeout(getContext());
-    long hours          = TimeUnit.SECONDS.toHours(timeoutSeconds);
-    long minutes        = TimeUnit.SECONDS.toMinutes(timeoutSeconds) - (TimeUnit.SECONDS.toHours(timeoutSeconds) * 60  );
-    long seconds        = TimeUnit.SECONDS.toSeconds(timeoutSeconds) - (TimeUnit.SECONDS.toMinutes(timeoutSeconds) * 60);
-
-    findPreference(TextSecurePreferences.SCREEN_LOCK_TIMEOUT)
-        .setSummary(timeoutSeconds <= 0 ? getString(R.string.AppProtectionPreferenceFragment_none) :
-                                          String.format("%02d:%02d:%02d", hours, minutes, seconds));
   }
 
   private void initializeVisibility() {
@@ -139,25 +122,6 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
       Intent intent = new Intent(getContext(), KeyCachingService.class);
       intent.setAction(KeyCachingService.LOCK_TOGGLED_EVENT);
       getContext().startService(intent);
-      return true;
-    }
-  }
-
-  private class ScreenLockTimeoutListener implements Preference.OnPreferenceClickListener {
-
-    @Override
-    public boolean onPreferenceClick(Preference preference) {
-      new TimeDurationPickerDialog(getContext(), (view, duration) -> {
-        if (duration == 0) {
-          TextSecurePreferences.setScreenLockTimeout(getContext(), 0);
-        } else {
-          long timeoutSeconds = TimeUnit.MILLISECONDS.toSeconds(duration);
-          TextSecurePreferences.setScreenLockTimeout(getContext(), timeoutSeconds);
-        }
-
-        initializeScreenLockTimeoutSummary();
-      }, 0).show();
-
       return true;
     }
   }
@@ -215,20 +179,16 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
       boolean val = (boolean) newValue;
       if (val) {
         // check if we've shown the info dialog and check for microphone permissions
-        if (TextSecurePreferences.setShownCallWarning(context.requireContext())) {
-          new AlertDialog.Builder(context.requireContext())
-                  .setTitle(R.string.dialog_voice_video_title)
-                  .setMessage(R.string.dialog_voice_video_message)
-                  .setPositiveButton(R.string.dialog_link_preview_enable_button_title, (d, w) -> {
-                    requestMicrophonePermission();
-                  })
-                  .setNegativeButton(R.string.cancel, (d, w) -> {
+        new AlertDialog.Builder(new ContextThemeWrapper(context.requireContext(), R.style.ThemeOverlay_Session_AlertDialog))
+                .setTitle(R.string.dialog_voice_video_title)
+                .setMessage(R.string.dialog_voice_video_message)
+                .setPositiveButton(R.string.dialog_link_preview_enable_button_title, (d, w) -> {
+                  requestMicrophonePermission();
+                })
+                .setNegativeButton(R.string.cancel, (d, w) -> {
 
-                  })
-                  .show();
-        } else {
-          requestMicrophonePermission();
-        }
+                })
+                .show();
         return false;
       } else {
         return true;

@@ -399,7 +399,6 @@
     </plurals>
     <!-- preferences.xml -->
     <string name="preferences__pref_enter_sends_title">Tasti Enter dërgon</string>
-    <string name="preferences__pressing_the_enter_key_will_send_text_messages">Shtypja e tastit Enter do të sjellë dërgim mesazhesh tekst</string>
     <string name="preferences__send_link_previews">Dërgo paraparje lidhjesh</string>
     <string name="preferences__previews_are_supported_for">Paraparjet mbulohen për lidhje Imgur, Instagram, Pinterest, Reddit, dhe YouTube.</string>
     <string name="preferences__screen_security">Siguri ekrani</string>
@@ -437,7 +436,6 @@
     <string name="preferences__default">Parazgjedhje</string>
     <string name="preferences__incognito_keyboard">Tastatur e fshehtë</string>
     <string name="preferences__read_receipts">Dëftesa leximi</string>
-    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Nëse dëftesat e leximit janë të çaktivizuara, s\’do të jeni në gjendje të shihni dëftesa leximi nga të tjerët</string>
     <string name="preferences__typing_indicators">Tregues shtypjeje</string>
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Nëse treguesit e shtypjeve janë të çaktivizuar, s\’do të jeni në gjendje të shihni tregues shtypjesh nga të tjerët</string>
     <string name="preferences__request_keyboard_to_disable_personalized_learning">Kërko për tastierët çaktivizim të të mësuarit të personalizuar</string>
@@ -446,12 +444,9 @@
     <string name="preferences_chats__message_trimming">Shkurtim mesazhesh</string>
     <string name="preferences_advanced__use_system_emoji">Përdor emoji të sistemit</string>
     <string name="preferences_advanced__disable_signal_built_in_emoji_support">Çaktivizo mbulimin e brendshëm të Session-it për emoji-t</string>
-    <string name="preferences_app_protection__app_access">Hyrje aplikacioni</string>
-    <string name="preferences_app_protection__communication">Komunikim</string>
     <string name="preferences_chats__chats">Biseda</string>
     <string name="preferences_notifications__messages">Mesazhe</string>
     <string name="preferences_notifications__in_chat_sounds">Tinguj në fjalosje</string>
-    <string name="preferences_notifications__show">Shfaq</string>
     <string name="preferences_notifications__priority">Përparësi</string>
     <!-- **************************************** -->
     <!-- menus -->

@@ -4,7 +4,7 @@
     android:shape="rectangle" >
 
     <stroke
-        android:color="@color/text"
+        android:color="?elementBorderColor"
         android:width="@dimen/border_thickness" />
 
     <corners android:radius="@dimen/text_view_corner_radius" />

@@ -23,20 +23,35 @@
     </style>
 
     <style name="ThemeOverlay.Session.AlertDialog" parent="ThemeOverlay.AppCompat.Dialog.Alert">
+        <item name="android:background">@drawable/default_dialog_background</item>
+        <item name="dialog_background_color">?colorPrimary</item>
+        <item name="android:colorBackgroundFloating">?colorPrimary</item>
+        <item name="backgroundTint">?colorPrimary</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">0.6</item>
         <item name="buttonBarNegativeButtonStyle">@style/Widget.Session.AlertDialog.NegativeButtonStyle</item>
         <item name="buttonBarPositiveButtonStyle">@style/Widget.Session.AlertDialog.PositiveButtonStyle</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowBackground">@null</item>
+        <item name="textColorAlertDialogListItem">?android:textColorPrimary</item>
+    </style>
+
+    <style name="PreferenceTitleStyle" parent="@android:style/Widget.TextView">
+        <item name="android:textColorPrimary">?android:textColorSecondary</item>
     </style>
 
     <style name="Widget.Session.BottomSheetDialog" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">0.6</item>
         <item name="android:background">@drawable/default_bottom_sheet_background</item>
     </style>
 
     <style name="Widget.Session.AlertDialog.NegativeButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
-        <item name="android:textColor">@color/accent</item>
+        <item name="android:textColor">?colorAccent</item>
     </style>
 
     <style name="Widget.Session.AlertDialog.PositiveButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
-        <item name="android:textColor">@color/accent</item>
+        <item name="android:textColor">?colorAccent</item>
     </style>
 
     <style name="Widget.Session.AppBarLayout" parent="@style/Widget.Design.AppBarLayout">
@@ -49,7 +64,7 @@
 
     <style name="Widget.Session.TabLayout" parent="Widget.Design.TabLayout">
         <item name="elevation">1dp</item>
-        <item name="tabIndicatorColor">?colorAccent</item>
+        <item name="tabIndicatorColor">@color/transparent</item>
         <item name="tabIndicatorHeight">@dimen/accent_line_thickness</item>
         <item name="tabRippleColor">@color/cell_selected</item>
         <item name="tabTextAppearance">@style/TextAppearance.Session.Tab</item>
@@ -58,6 +73,7 @@
     <style name="TextAppearance.Session.Tab" parent="TextAppearance.Design.Tab">
         <item name="android:textSize">@dimen/medium_font_size</item>
         <item name="textAllCaps">false</item>
+        <item name="android:textColor">@color/emoji_tab_text_color</item>
     </style>
 
     <!--  TODO These button styles require proper background selectors for up/down visual state.  -->
@@ -72,20 +88,14 @@
 
     <style name="Widget.Session.Button.Common.ProminentFilled">
         <item name="android:background">@drawable/prominent_filled_button_medium_background</item>
-        <item name="android:textColor">?android:textColorPrimary</item>
+        <item name="android:textColor">@color/black</item>
         <item name="android:drawableTint" tools:ignore="NewApi">?android:textColorPrimary</item>
     </style>
 
     <style name="Widget.Session.Button.Common.ProminentOutline">
         <item name="android:background">@drawable/prominent_outline_button_medium_background</item>
-        <item name="android:textColor">@color/accent</item>
-        <item name="android:drawableTint" tools:ignore="NewApi">@color/accent</item>
-    </style>
-
-    <style name="Widget.Session.Button.Common.ProminentOutline.Accent">
-        <item name="android:background">@drawable/prominent_outline_button_medium_background_accent</item>
-        <item name="android:textColor">@color/accent</item>
-        <item name="android:drawableTint" tools:ignore="NewApi">@color/accent</item>
+        <item name="android:textColorPrimary">?attr/prominentButtonColor</item>
+        <item name="android:drawableTint" tools:ignore="NewApi">?attr/prominentButtonColor</item>
     </style>
 
     <style name="Widget.Session.Button.Common.UnimportantFilled">
@@ -102,7 +112,7 @@
 
     <style name="Widget.Session.Button.Common.UnimportantDestructive">
         <item name="android:background">@drawable/unimportant_outline_button_medium_background</item>
-        <item name="android:textColor">@color/destructive</item>
+        <item name="android:textColor">?android:textColorPrimary</item>
         <item name="android:backgroundTint" tools:ignore="NewApi">@color/destructive</item>
         <item name="android:drawableTint" tools:ignore="NewApi">@color/destructive</item>
     </style>
@@ -123,9 +133,18 @@
         <item name="android:background">@drawable/unimportant_dialog_button_background</item>
     </style>
 
+    <style name="Widget.Session.Button.Dialog.UnimportantText">
+        <item name="android:background">@drawable/unimportant_dialog_text_button_background</item>
+    </style>
+
     <style name="Widget.Session.Button.Dialog.Destructive">
         <item name="android:background">@drawable/destructive_dialog_button_background</item>
-        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="Widget.Session.Button.Dialog.DestructiveText">
+        <item name="android:background">@drawable/destructive_dialog_text_button_background</item>
+        <item name="android:textColor">@color/destructive</item>
     </style>
 
     <style name="Widget.Session.EditText.Compose" parent="@style/Signal.Text.Body">
@@ -133,30 +152,32 @@
         <item name="android:background">@null</item>
         <item name="android:maxLines">4</item>
         <item name="android:maxLength">65536</item>
-        <item name="android:textColor">?android:textColorPrimary</item>
         <item name="android:capitalize">sentences</item>
         <item name="android:autoText">true</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:imeOptions">flagNoEnterAction</item>
         <item name="android:inputType">textAutoCorrect|textCapSentences|textMultiLine</item>
         <item name="android:contentDescription">@string/conversation_activity__compose_description</item>
-        <item name="android:textColorHint">?android:textColorHint</item>
         <item name="android:textSize">@dimen/small_font_size</item>
         <item name="android:textCursorDrawable">@drawable/session_edit_text_cursor</item>
         <item name="android:textAlignment">viewStart</item>
     </style>
 
-    <style name="ThemeOverlay.Session.Settings" parent="PreferenceThemeOverlay.v14.Material" >
-        <item name="android:textColor">@color/text</item>
-        <item name="android:textColorSecondary">#99FFFFFF</item>
+    <style name="PreferenceThemeOverlay.Fix.Settings">
         <item name="android:textSize">@dimen/medium_font_size</item>
+        <item name="preferenceCategoryStyle">@style/Preference.Category.Material.Session</item>
+        <item name="android:textColorSecondary">?android:textColorPrimary</item>
+    </style>
+
+    <style name="Preference.Category.Material.Session">
+        <item name="android:layout">@layout/preference_category_session</item>
     </style>
 
     <style name="SessionIDTextView">
         <item name="android:background">@drawable/session_id_text_view_background</item>
         <item name="android:padding">@dimen/medium_spacing</item>
         <item name="android:textSize">20sp</item>
-        <item name="android:textColor">@color/text</item>
+        <item name="android:textColor">?android:textColorPrimary</item>
         <item name="android:fontFamily">@font/space_mono_regular</item>
         <item name="android:textAlignment">viewStart</item>
     </style>
@@ -168,7 +189,7 @@
         <item name="android:paddingRight">@dimen/medium_spacing</item>
         <item name="android:paddingBottom">30dp</item>
         <item name="android:textSize">@dimen/small_font_size</item>
-        <item name="android:textColor">@color/text</item>
+        <item name="android:textColor">?android:textColorPrimary</item>
         <item name="android:textCursorDrawable">@drawable/session_edit_text_cursor</item>
         <item name="android:textAlignment">viewStart</item>
         <item name="android:maxLines">1</item>
@@ -181,7 +202,8 @@
         <item name="android:paddingRight">@dimen/medium_spacing</item>
         <item name="android:paddingBottom">@dimen/medium_spacing</item>
         <item name="android:textSize">@dimen/small_font_size</item>
-        <item name="android:textColor">@color/text</item>
+        <item name="android:textColor">?android:textColorPrimary</item>
+        <item name="android:textColorHint">?android:textColorTertiary</item>
         <item name="android:textCursorDrawable">@drawable/session_edit_text_cursor</item>
         <item name="android:textAlignment">viewStart</item>
         <item name="android:maxLines">1</item>
@@ -265,6 +287,10 @@
 
     <style name="PopupMenu.ConversationItem" parent="@style/Widget.AppCompat.PopupMenu">
         <item name="android:dropDownHorizontalOffset">@dimen/medium_spacing</item>
+    </style>
+
+    <style name="PopupMenu.MessageRequests" parent="@style/Widget.AppCompat.PopupMenu">
+        <item name="android:background">?attr/colorSettingsBackground</item>
     </style>
 
 </resources>

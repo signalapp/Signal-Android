@@ -10,7 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:minHeight="?attr/actionBarSize"
-        android:background="@color/action_bar_background"
         android:theme="?attr/actionBarStyle" />
 
     <androidx.recyclerview.widget.RecyclerView

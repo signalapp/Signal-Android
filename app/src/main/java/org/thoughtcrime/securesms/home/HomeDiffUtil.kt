@@ -28,10 +28,8 @@ class HomeDiffUtil(
         if (!sameUnreads) return false
         val samePinned = oldItem.isPinned == newItem.isPinned
         if (!samePinned) return false
-        val sameAvatar = oldItem.recipient.profileAvatar == newItem.recipient.profileAvatar
-        if (!sameAvatar) return false
-        val sameUsername = oldItem.recipient.name == newItem.recipient.name
-        if (!sameUsername) return false
+        val sameRecipientHash = oldItem.recipientHash == newItem.recipientHash
+        if (!sameRecipientHash) return false
         val sameSnippet = oldItem.getDisplayBody(context) == newItem.getDisplayBody(context)
         if (!sameSnippet) return false
         val sameSendStatus = oldItem.isFailed == newItem.isFailed && oldItem.isDelivered == newItem.isDelivered

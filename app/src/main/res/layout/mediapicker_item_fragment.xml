@@ -10,12 +10,11 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:minHeight="?attr/actionBarSize"
-        android:background="@color/action_bar_background"
         android:theme="?attr/actionBarStyle" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/mediapicker_item_list"
-        android:background="?android:attr/windowBackground"
+        android:background="?android:windowBackground"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="2dp"

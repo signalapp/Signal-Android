@@ -129,7 +129,7 @@
             style="@style/SpinKitView.Large.ThreeBounce"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:SpinKit_Color="@color/text"
+            app:SpinKit_Color="?android:textColorPrimary"
             android:layout_gravity="center"
             tools:visibility="visible"
             android:visibility="gone" />
@@ -215,7 +215,7 @@
         android:src="@drawable/ic_baseline_call_24"
         android:padding="@dimen/medium_spacing"
         android:foregroundTint="@color/call_action_foreground"
-        android:backgroundTint="@color/accent"
+        android:backgroundTint="?colorAccent"
         android:layout_width="@dimen/large_button_height"
         android:layout_height="@dimen/large_button_height"
         android:layout_marginBottom="@dimen/very_large_spacing"

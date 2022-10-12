@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/core_black"
-    android:theme="@style/Theme.Session.ForceDark"
     tools:context="org.thoughtcrime.securesms.mediasend.MediaSendActivity">
 
     <org.thoughtcrime.securesms.components.ControllableViewPager
@@ -96,6 +95,7 @@
 
                     <org.thoughtcrime.securesms.components.ComposeText
                         style="@style/Widget.Session.EditText.Compose"
+                        android:textColor="?android:textColorPrimary"
                         android:id="@+id/mediasend_compose_text"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -103,6 +103,7 @@
                         android:layout_weight="1"
                         android:nextFocusForward="@+id/send_button"
                         android:nextFocusRight="@+id/send_button"
+                        tools:text="Secret message"
                         tools:hint="Send TextSecure message" >
                         <requestFocus />
                     </org.thoughtcrime.securesms.components.ComposeText>

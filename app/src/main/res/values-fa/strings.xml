@@ -400,7 +400,6 @@
     </plurals>
     <!-- preferences.xml -->
     <string name="preferences__pref_enter_sends_title">ارسال با کلید Enter</string>
-    <string name="preferences__pressing_the_enter_key_will_send_text_messages">پیام‌ها با زدن کلید Enter ارسال شوند</string>
     <string name="preferences__send_link_previews">ارسال پیش نمایش لینک ها</string>
     <string name="preferences__previews_are_supported_for">پیش نمایش ها برای Imgur، Instagram، Pinterest، Reddit، و لینک های Youtube پشتیبانی می شود</string>
     <string name="preferences__screen_security">محافظ صفحه نمایش</string>
@@ -438,7 +437,6 @@
     <string name="preferences__default">پیش فرض</string>
     <string name="preferences__incognito_keyboard">کیبورد ناشناس</string>
     <string name="preferences__read_receipts">خواندن رسید ها</string>
-    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">اگر رسید خواندن غیرفعال باشد، شما نمی‌توانید رسید خواندن دیگران را ببینید.</string>
     <string name="preferences__typing_indicators">نشانگر های نوشته</string>
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">اگر نشانگر های نوشته غیرفعال می باشند، شما قادر نخواهید بود تا نشانگر های نوشته سایرین را ببینید.</string>
     <string name="preferences__request_keyboard_to_disable_personalized_learning">درخواست غیرفعال‌سازی یادگیری شخصی از صفحه‌کلید</string>
@@ -447,12 +445,9 @@
     <string name="preferences_chats__message_trimming">برش دادن پیام</string>
     <string name="preferences_advanced__use_system_emoji">سیستم استفاده از Emoji</string>
     <string name="preferences_advanced__disable_signal_built_in_emoji_support">غیرفعال کردن پشتیبانی از شکلک های ساخته شده Session</string>
-    <string name="preferences_app_protection__app_access">دسترسی برنامه</string>
-    <string name="preferences_app_protection__communication">ارتباطات</string>
     <string name="preferences_chats__chats">چت ها</string>
     <string name="preferences_notifications__messages">پیام ها</string>
     <string name="preferences_notifications__in_chat_sounds">صداهای درون گفت‌و‌گو</string>
-    <string name="preferences_notifications__show">نمایش</string>
     <string name="preferences_notifications__priority">اولویت</string>
     <!-- **************************************** -->
     <!-- menus -->
@@ -618,7 +613,6 @@
     <string name="activity_notification_settings_style_section_title">نحوه اطلاع‌رسانی</string>
     <string name="activity_notification_settings_content_section_title">محتوای اعلان</string>
     <string name="activity_privacy_settings_title">حریم خصوصی</string>
-    <string name="activity_chat_settings_title">گفت‌وگوها</string>
     <string name="preferences_notifications_strategy_category_title">استراتژی اعلان</string>
     <string name="preferences_notifications_strategy_category_fast_mode_title">استفاده از حالت سریع</string>
     <string name="preferences_notifications_strategy_category_fast_mode_summary">با استفاده از سرورهای گوگل، شما به صورت سریع و مطمئن از پیام‌های جدید مطلع می‌شوید.</string>

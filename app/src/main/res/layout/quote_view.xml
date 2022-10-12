@@ -25,7 +25,7 @@
                 android:id="@+id/quote_bar"
                 android:layout_width="@dimen/accent_line_thickness"
                 android:layout_height="match_parent"
-                android:src="@color/white"
+                android:src="?colorAccent"
                 tools:tint="@color/purple_400" />
 
             <LinearLayout
@@ -43,7 +43,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/Signal.Text.Caption"
-                    android:textColor="@color/text"
+                    android:textColor="?android:textColorPrimary"
                     android:fontFamily="sans-serif-medium"
                     android:textSize="@dimen/small_font_size"
                     android:maxLines="1"
@@ -72,7 +72,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         style="@style/Signal.Text.Body"
-                        android:textColor="@color/text"
                         android:textSize="@dimen/medium_font_size"
                         android:maxLines="1"
                         android:ellipsize="end"
@@ -111,6 +110,7 @@
                 android:layout_height="match_parent">
 
                 <ImageView
+                    android:background="@color/transparent_black_6"
                     android:id="@+id/quote_thumbnail"
                     android:layout_width="60dp"
                     android:layout_height="match_parent"
@@ -133,7 +133,7 @@
                         android:layout_height="16dp"
                         android:layout_marginStart="11dp"
                         android:layout_marginTop="8dp"
-                        app:tint="@color/core_blue"
+                        app:tint="?colorAccent"
                         android:scaleType="fitXY"
                         app:srcCompat="@drawable/triangle_right" />
 
@@ -157,7 +157,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:src="@drawable/ic_broken_link"
-                app:tint="@color/text"/>
+                app:tint="?android:textColorPrimary"/>
 
             <TextView
                 android:id="@+id/quote_missing_text"
@@ -165,7 +165,7 @@
                 android:layout_height="wrap_content"
                 style="@style/Signal.Text.Caption"
                 android:text="@string/QuoteView_original_missing"
-                android:textColor="@color/text"/>
+                android:textColor="?android:textColorPrimary"/>
 
         </LinearLayout>
 

@@ -401,7 +401,6 @@
     </plurals>
     <!-- preferences.xml -->
     <string name="preferences__pref_enter_sends_title">Enter-toets verzendt</string>
-    <string name="preferences__pressing_the_enter_key_will_send_text_messages">Gebruik de Enter-toets voor verzenden van tekstberichten</string>
     <string name="preferences__send_link_previews">Voorbeeldweergaven verzenden</string>
     <string name="preferences__previews_are_supported_for">Voorbeelden worden ondersteund voor koppelingen naar Imgur, Instagram, Pinterest, Reddit en YouTube</string>
     <string name="preferences__screen_security">Schermafdrukken blokkeren</string>
@@ -439,7 +438,6 @@
     <string name="preferences__default">Systeem-standaard</string>
     <string name="preferences__incognito_keyboard">Incognito toetsenbord</string>
     <string name="preferences__read_receipts">Leesbevestigingen</string>
-    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Als je leesbevestigingen zijn uitgeschakeld zullen anderen niet kunnen zien of je hun bericht hebt gelezen, maar je zult leesbevestigingen van anderen ook niet kunnen zien.</string>
     <string name="preferences__typing_indicators">Typindicatoren</string>
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Als typindicatoren zijn uitgeschakeld, kunnen anderen niet zien of je aan het typen bent, maar je kunt ook niet zien wanneer anderen aan het typen zijn.</string>
     <string name="preferences__request_keyboard_to_disable_personalized_learning">Schakel gepersonaliseerd leren van toetsenbord uit</string>
@@ -448,12 +446,9 @@
     <string name="preferences_chats__message_trimming">Beperk bewaartermijn</string>
     <string name="preferences_advanced__use_system_emoji">Gebruik systeem-emoji</string>
     <string name="preferences_advanced__disable_signal_built_in_emoji_support">Schakel de ingebouwde emoji-ondersteuning van Session uit.</string>
-    <string name="preferences_app_protection__app_access">Toegang tot app</string>
-    <string name="preferences_app_protection__communication">Communicatie</string>
     <string name="preferences_chats__chats">Gesprekken</string>
     <string name="preferences_notifications__messages">Berichten</string>
     <string name="preferences_notifications__in_chat_sounds">Ook geluid als Session al geopend is</string>
-    <string name="preferences_notifications__show">Laat zien</string>
     <string name="preferences_notifications__priority">Belangrijkheid</string>
     <!-- **************************************** -->
     <!-- menus -->
@@ -619,7 +614,6 @@
     <string name="activity_notification_settings_style_section_title">Notificatie stijl</string>
     <string name="activity_notification_settings_content_section_title">Notificatie inhoud</string>
     <string name="activity_privacy_settings_title">Privacy</string>
-    <string name="activity_chat_settings_title">Gesprekken</string>
     <string name="preferences_notifications_strategy_category_title">Notificatie strategie</string>
     <string name="preferences_notifications_strategy_category_fast_mode_title">Gebruik snelle modus</string>
     <string name="preferences_notifications_strategy_category_fast_mode_summary">U wordt op een op een betrouwbare manier direct op de hoogte gebracht van nieuwe berichten via de notificatieservers van Google.</string>

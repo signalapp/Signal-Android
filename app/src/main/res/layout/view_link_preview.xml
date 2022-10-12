@@ -8,6 +8,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
+        android:background="@color/transparent_black_6"
         android:id="@+id/mainLinkPreviewParent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,9 +24,10 @@
                 android:layout_height="24dp"
                 android:layout_centerInParent="true"
                 android:src="@drawable/ic_link"
-                app:tint="@color/text" />
+                app:tint="?android:textColorPrimary" />
 
             <org.thoughtcrime.securesms.conversation.v2.utilities.KThumbnailView
+                android:background="@color/transparent_black_6"
                 android:id="@+id/thumbnailImageView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -45,8 +47,7 @@
             android:minWidth="@dimen/media_bubble_min_width"
             android:maxLines="3"
             android:ellipsize="end"
-            android:textColor="@color/text"
-            android:background="@color/link_preview_background" />
+            android:textColor="?android:textColorPrimary"/>
 
     </LinearLayout>
 

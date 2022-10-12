@@ -24,7 +24,7 @@
                 android:layout_height="24dp"
                 android:layout_centerInParent="true"
                 android:src="@drawable/ic_link"
-                app:tint="@color/text" />
+                app:tint="?android:textColorPrimary" />
 
             <org.thoughtcrime.securesms.conversation.v2.utilities.ThumbnailView
                 android:id="@+id/thumbnailImageView"
@@ -47,7 +47,7 @@
             tools:text="The Day The Dinosaurs Died - Minute by Minute"
             android:maxLines="3"
             android:ellipsize="end"
-            android:textColor="@color/text" />
+            android:textColor="?android:textColorPrimary" />
 
         <ImageView
             android:id="@+id/linkPreviewDraftCancelButton"
@@ -57,7 +57,7 @@
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:src="@drawable/ic_close_white_48dp"
-            app:tint="@color/text" />
+            app:tint="?android:textColorPrimary" />
 
     </RelativeLayout>
 
@@ -66,7 +66,7 @@
         style="@style/SpinKitView.Large.ThreeBounce"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:SpinKit_Color="@color/text"
+        app:SpinKit_Color="?android:textColorPrimary"
         android:layout_centerInParent="true" />
 
 </RelativeLayout>

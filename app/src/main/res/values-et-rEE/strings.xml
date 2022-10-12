@@ -366,7 +366,6 @@
     </plurals>
     <!-- preferences.xml -->
     <string name="preferences__pref_enter_sends_title">Sisestusklahv saadab</string>
-    <string name="preferences__pressing_the_enter_key_will_send_text_messages">Sisestusklahvi vajutamine saadab tekstsõnumeid</string>
     <string name="preferences__send_link_previews">Saada linkide eelvaateid</string>
     <string name="preferences__previews_are_supported_for">Eelvaated on toetatud Imgur, Instagram, Pinterest, Reddit ja YouTube linkide puhul</string>
     <string name="preferences__screen_security">Kuva turvamine</string>
@@ -404,7 +403,6 @@
     <string name="preferences__default">Vaikimisi</string>
     <string name="preferences__incognito_keyboard">Inkognito klaviatuur</string>
     <string name="preferences__read_receipts">Lugemiskinnitused</string>
-    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Kui lugemiskinnitused on keelatud, siis pole sul võimalik teiste saadetud lugemiskinnitusi näha.</string>
     <string name="preferences__typing_indicators">Kirjutamisindikaatorid</string>
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Kui kirjutamisindikaatorid on keelatud, ei näe sa neid ka teiste puhul.</string>
     <string name="preferences__request_keyboard_to_disable_personalized_learning">Palu klaviatuuril keelata isikupärastatud õppimine</string>
@@ -413,12 +411,9 @@
     <string name="preferences_chats__message_trimming">Sõnumi piiramine</string>
     <string name="preferences_advanced__use_system_emoji">Kasuta süsteemi emojisid</string>
     <string name="preferences_advanced__disable_signal_built_in_emoji_support">Keela Sessionisse sisseehitatud emoji-tugi</string>
-    <string name="preferences_app_protection__app_access">Rakenduse ligipääs</string>
-    <string name="preferences_app_protection__communication">Suhtlus</string>
     <string name="preferences_chats__chats">Vestlused</string>
     <string name="preferences_notifications__messages">Sõnumid</string>
     <string name="preferences_notifications__in_chat_sounds">Vestlusesisesed helid</string>
-    <string name="preferences_notifications__show">Kuva</string>
     <string name="preferences_notifications__priority">Prioriteet</string>
     <!-- **************************************** -->
     <!-- menus -->

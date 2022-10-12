@@ -359,7 +359,6 @@
     </plurals>
     <!-- preferences.xml -->
     <string name="preferences__pref_enter_sends_title">ចុច Enter ដើម្បីផ្ញើ</string>
-    <string name="preferences__pressing_the_enter_key_will_send_text_messages">ចុចប៊ូតុង បញ្ចូន នឹងផ្ញើសារអក្សរ</string>
     <string name="preferences__send_link_previews">ការមើល ការផ្ញើតំណភ្ជាប់</string>
     <string name="preferences__screen_security">អេក្រង់សុវត្ថិភាព</string>
     <string name="preferences__disable_screen_security_to_allow_screen_shots">បិទថតរូបអេក្រង់ក្នុងបញ្ជីថ្មី និងក្នុងកម្មវិធី</string>
@@ -396,7 +395,6 @@
     <string name="preferences__default">លំនាំដើម</string>
     <string name="preferences__incognito_keyboard">ក្តារចុចអនាមឹក</string>
     <string name="preferences__read_receipts">ទទួលបានការអាន</string>
-    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">ប្រសិនបើការទទួលត្រូវបានបិទ អ្នកនឹងមិនអាចមើលការទទួលពីអ្នកផ្សេងទេ។</string>
     <string name="preferences__typing_indicators">វាស់ការវាយអក្សរ</string>
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">ប្រសិនបើ ការបង្ហាញការវាយត្រូវបានបិទ អ្នកនឹងមិនអាចមើលឃើញការវាយបញ្ចូលរបស់អ្នកដទៃទេ។</string>
     <string name="preferences__request_keyboard_to_disable_personalized_learning">ការស្នើសុំក្តារចុច ដើម្បីបិទការសិក្សាផ្ទាល់ខ្លួន</string>
@@ -405,12 +403,9 @@
     <string name="preferences_chats__message_trimming">តម្រឹមសារ</string>
     <string name="preferences_advanced__use_system_emoji">ប្រើរូបអារម្មណ៍emoji នៅក្នុងប្រព័ន្ធ</string>
     <string name="preferences_advanced__disable_signal_built_in_emoji_support">បិទមិនប្រើរូបអារម្មណ៍emoji របស់ Session</string>
-    <string name="preferences_app_protection__app_access">ចូលប្រើប្រាស់កម្មវិធី</string>
-    <string name="preferences_app_protection__communication">ការទំនាក់ទំនង</string>
     <string name="preferences_chats__chats">ការជជែក</string>
     <string name="preferences_notifications__messages">សារ</string>
     <string name="preferences_notifications__in_chat_sounds">សំឡេងក្នុងការជជែក</string>
-    <string name="preferences_notifications__show">បង្ហាញ</string>
     <string name="preferences_notifications__priority">អទិភាព</string>
     <!-- **************************************** -->
     <!-- menus -->

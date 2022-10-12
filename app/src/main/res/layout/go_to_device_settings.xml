@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<org.thoughtcrime.securesms.preferences.widgets.NotificationSettingsPreference
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:textColor="?colorAccent"
+        android:id="@+id/device_settings_text"
+        android:text="@string/go_to_device_notification_settings"
+        android:paddingTop="@dimen/medium_spacing"
+        android:paddingBottom="@dimen/medium_spacing"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</org.thoughtcrime.securesms.preferences.widgets.NotificationSettingsPreference>

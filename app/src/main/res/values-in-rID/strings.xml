@@ -334,7 +334,6 @@
         <item quantity="other">%d jam</item>
     </plurals>
     <!-- preferences.xml -->
-    <string name="preferences__pressing_the_enter_key_will_send_text_messages">Menekan tombol Enter akan mengirim pesan teks</string>
     <string name="preferences__notifications">Notifikasi</string>
     <string name="preferences__led_color">Warna LED</string>
     <string name="preferences__led_color_unknown">Tidak Dikenal</string>
@@ -353,14 +352,10 @@
     <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Pindai semua percakapan dan terapkan batas panjang percakapan</string>
     <string name="preferences__default">Baku</string>
     <string name="preferences__read_receipts">Laporan dibaca</string>
-    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Jika laporan dibaca dinonaktifkan, anda tidak akan dapat melihat tanda laporan dibaca dari orang lain.</string>
     <string name="preferences__typing_indicators">Indikator mengetik</string>
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Jika indikator mengetik dinonaktifkan, anda tidak akan dapat melihat indikator mengetik dari orang lain.</string>
-    <string name="preferences_app_protection__app_access">Akses Aplikasi</string>
-    <string name="preferences_app_protection__communication">Komunikasi</string>
     <string name="preferences_chats__chats">Percakapan</string>
     <string name="preferences_notifications__messages">Pesan</string>
-    <string name="preferences_notifications__show">Tampilkan</string>
     <!-- **************************************** -->
     <!-- menus -->
     <!-- **************************************** -->

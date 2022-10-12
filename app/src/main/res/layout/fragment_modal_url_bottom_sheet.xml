@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/dialog_open_url_title"
-        android:textColor="@color/text"
+        android:textColor="?android:textColorPrimary"
         android:textStyle="bold"
         android:textSize="@dimen/large_font_size" />
 
@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:text="@string/dialog_open_url_explanation"
         android:paddingHorizontal="@dimen/medium_spacing"
-        android:textColor="@color/text"
+        android:textColor="?android:textColorPrimary"
         android:textSize="@dimen/small_font_size"
         android:layout_margin="@dimen/large_spacing"
         android:textAlignment="center" />

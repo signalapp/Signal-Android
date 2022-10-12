@@ -4,7 +4,7 @@
     android:id="@+id/rootLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bottom_sheet_background">
+    android:background="?conversation_menu_background_color">
 
     <TextView
         android:id="@+id/titleText"
@@ -12,7 +12,7 @@
         android:layout_height="@dimen/setting_button_height"
         android:gravity="center_horizontal|center_vertical"
         android:text="@string/dialog_new_message_title"
-        android:textColor="@color/text"
+        android:textColor="?android:textColorPrimary"
         android:textSize="@dimen/very_large_font_size"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,6 +30,7 @@
         app:layout_constraintBottom_toBottomOf="@id/titleText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/titleText"
+        app:tint="?android:textColorPrimary"
         android:contentDescription="@string/new_conversation_dialog_back_button_content_description" />
 
     <ImageView

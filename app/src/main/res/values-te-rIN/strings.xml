@@ -363,7 +363,6 @@
     </plurals>
     <!-- preferences.xml -->
     <string name="preferences__pref_enter_sends_title">ఎంటర్ కీ పంపుతుంది </string>
-    <string name="preferences__pressing_the_enter_key_will_send_text_messages"> ప్రారంబించే కీ ని నొక్కడం ద్వారా సందేశాలను పంపుతోంది</string>
     <string name="preferences__screen_security">స్క్రీన్ భద్రత</string>
     <string name="preferences__disable_screen_security_to_allow_screen_shots">  నిరోధించు స్క్రీన్షాట్లు లో ది ఇటీవలి జాబితా మరియు లోపల ది అనువర్తనం</string>
     <string name="preferences__notifications">ప్రకటనలు</string>
@@ -399,19 +398,15 @@
     <string name="preferences__default">అప్రమేయ</string>
     <string name="preferences__incognito_keyboard">అజ్ఞాత కీబోర్డ్</string>
     <string name="preferences__read_receipts">చదివిన రసీదులు</string>
-    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">చదివే రసీదులను నిలిపివేస్తే, మీరు ఇతరుల నుండి చదివే రసీదులను చూడలేరు.</string>
     <string name="preferences__request_keyboard_to_disable_personalized_learning">వ్యక్తిగతీకరించిన అభ్యాసను ఆపివేయడానికి కీబోర్డ్ని అభ్యర్థించండి</string>
     <string name="preferences__light_theme">లైటు</string>
     <string name="preferences__dark_theme">గుప్తమైన</string>
     <string name="preferences_chats__message_trimming">సందేశం కత్తిరించి సరి చేయుట </string>
     <string name="preferences_advanced__use_system_emoji">యంత్రము యొక్క  ఎమొజిలను  ఉపయొగించు</string>
     <string name="preferences_advanced__disable_signal_built_in_emoji_support">Session యొక్క అంతర్నిర్మిత ఎమోజి మద్దతును నిలిపివేయి  </string>
-    <string name="preferences_app_protection__app_access">అనువర్తన ప్రాప్యత</string>
-    <string name="preferences_app_protection__communication">సమాచారం</string>
     <string name="preferences_chats__chats">మాటామంతి</string>
     <string name="preferences_notifications__messages">సందేశాలు</string>
     <string name="preferences_notifications__in_chat_sounds">చాట్ శబ్దాలు</string>
-    <string name="preferences_notifications__show">కనబర్చు</string>
     <string name="preferences_notifications__priority">ప్రాధాన్యత</string>
     <!-- **************************************** -->
     <!-- menus -->

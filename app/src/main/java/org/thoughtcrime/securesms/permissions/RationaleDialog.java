@@ -4,8 +4,6 @@ package org.thoughtcrime.securesms.permissions;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Color;
-import androidx.annotation.DrawableRes;
-import androidx.annotation.NonNull;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,13 +12,18 @@ import android.widget.ImageView;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 
-import network.loki.messenger.R;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
+
 import org.session.libsession.utilities.ViewUtil;
+
+import network.loki.messenger.R;
 
 public class RationaleDialog {
 
   public static AlertDialog.Builder createFor(@NonNull Context context, @NonNull String message, @DrawableRes int... drawables) {
     View      view   = LayoutInflater.from(context).inflate(R.layout.permissions_rationale_dialog, null);
+    view.setClipToOutline(true);
     ViewGroup header = view.findViewById(R.id.header_container);
     TextView  text   = view.findViewById(R.id.message);
 
@@ -47,7 +50,7 @@ public class RationaleDialog {
 
     text.setText(message);
 
-    return new AlertDialog.Builder(context, R.style.Theme_TextSecure_Dialog_Rationale).setView(view);
+    return new AlertDialog.Builder(context, R.style.ThemeOverlay_Session_AlertDialog).setView(view);
   }
 
 }

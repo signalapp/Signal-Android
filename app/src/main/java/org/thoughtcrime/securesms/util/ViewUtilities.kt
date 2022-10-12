@@ -7,8 +7,11 @@ import android.animation.ValueAnimator
 import android.content.Context
 import android.graphics.PointF
 import android.graphics.Rect
-import androidx.annotation.DimenRes
 import android.view.View
+import androidx.annotation.ColorInt
+import androidx.annotation.DimenRes
+import network.loki.messenger.R
+import org.session.libsession.utilities.getColorFromAttr
 import android.view.inputmethod.InputMethodManager
 
 fun View.contains(point: PointF): Boolean {
@@ -21,6 +24,9 @@ val View.hitRect: Rect
         getHitRect(rect)
         return rect
     }
+
+@ColorInt
+fun Context.getAccentColor() = getColorFromAttr(R.attr.colorAccent)
 
 fun View.animateSizeChange(@DimenRes startSizeID: Int, @DimenRes endSizeID: Int, animationDuration: Long = 250) {
     val startSize = resources.getDimension(startSizeID)

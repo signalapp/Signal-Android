@@ -16,7 +16,6 @@ import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
 import androidx.core.os.bundleOf
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
@@ -29,6 +28,7 @@ import org.session.libsession.messaging.contacts.Contact.ContactContext
 import org.session.libsession.messaging.open_groups.OpenGroupApi
 import org.session.libsession.utilities.Address
 import org.session.libsession.utilities.ViewUtil
+import org.session.libsession.utilities.getColorFromAttr
 import org.session.libsignal.utilities.IdPrefix
 import org.session.libsignal.utilities.ThreadUtils
 import org.thoughtcrime.securesms.ApplicationContext
@@ -45,7 +45,6 @@ import org.thoughtcrime.securesms.home.UserDetailsBottomSheet
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.disableClipping
-import org.thoughtcrime.securesms.util.getColorWithID
 import org.thoughtcrime.securesms.util.toDp
 import org.thoughtcrime.securesms.util.toPx
 import java.util.Date
@@ -280,7 +279,7 @@ class VisibleMessageView : LinearLayout {
         containerParams.horizontalBias = if (message.isOutgoing) 1f else 0f
         container.layoutParams = containerParams
         if (message.expiresIn > 0 && !message.isPending) {
-            binding.expirationTimerView.setColorFilter(ResourcesCompat.getColor(resources, R.color.text, context.theme))
+            binding.expirationTimerView.setColorFilter(context.getColorFromAttr(android.R.attr.textColorPrimary))
             binding.expirationTimerView.isInvisible = false
             binding.expirationTimerView.setPercentComplete(0.0f)
             if (message.expireStarted > 0) {
@@ -311,7 +310,7 @@ class VisibleMessageView : LinearLayout {
 
     private fun handleIsSelectedChanged() {
         background = if (snIsSelected) {
-            ColorDrawable(context.resources.getColorWithID(R.color.message_selected, context.theme))
+            ColorDrawable(context.getColorFromAttr(R.attr.message_selected))
         } else {
             null
         }

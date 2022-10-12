@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/backgroundContainer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?selectableItemBackground"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingHorizontal="@dimen/medium_spacing"
+    android:paddingVertical="@dimen/small_spacing">
+
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/medium_spacing"
+        android:layout_weight="1"
+        android:ellipsize="end"
+        android:lines="1"
+        android:textSize="@dimen/text_size"
+        tools:text="@tools:sample/full_names" />
+
+    <View
+        android:id="@+id/selectButton"
+        android:layout_width="@dimen/small_radial_size"
+        android:layout_height="@dimen/small_radial_size"
+        android:background="@drawable/padded_circle_accent_select"
+        android:foreground="@drawable/radial_multi_select" />
+
+</LinearLayout>

@@ -399,7 +399,6 @@
     </plurals>
     <!-- preferences.xml -->
     <string name="preferences__pref_enter_sends_title">La touche Entrée envoie</string>
-    <string name="preferences__pressing_the_enter_key_will_send_text_messages">Appuyer sur la touche Entrée enverra les textos</string>
     <string name="preferences__send_link_previews">Envoyer des aperçus de liens</string>
     <string name="preferences__previews_are_supported_for">Les aperçus sont pris en charge pour les liens Imgur, Instagram, Pinterest, Reddit et YouTube</string>
     <string name="preferences__screen_security">Sécurité de l’écran</string>
@@ -437,7 +436,6 @@
     <string name="preferences__default">Valeur par défaut</string>
     <string name="preferences__incognito_keyboard">Clavier incognito</string>
     <string name="preferences__read_receipts">Accusés de lecture</string>
-    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Si les accusés de lecture sont désactivés, vous ne pourrez pas voir les accusés de lecture d’autrui.</string>
     <string name="preferences__typing_indicators">Indicateurs de saisie</string>
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Si les indicateurs de saisie sont désactivés, vous ne serez pas en mesure de voir les indicateurs de saisie des autres.</string>
     <string name="preferences__request_keyboard_to_disable_personalized_learning">Demander au clavier de désactiver l’apprentissage personnalisé</string>
@@ -446,12 +444,9 @@
     <string name="preferences_chats__message_trimming">Élagage des messages</string>
     <string name="preferences_advanced__use_system_emoji">Utiliser les émojis du système</string>
     <string name="preferences_advanced__disable_signal_built_in_emoji_support">Désactiver la prise en charge des émojis intégrés à Session</string>
-    <string name="preferences_app_protection__app_access">Accès à l’appli</string>
-    <string name="preferences_app_protection__communication">Communication</string>
     <string name="preferences_chats__chats">Conversations</string>
     <string name="preferences_notifications__messages">Messages</string>
     <string name="preferences_notifications__in_chat_sounds">Sons des conversations</string>
-    <string name="preferences_notifications__show">Afficher</string>
     <string name="preferences_notifications__priority">Priorité</string>
     <!-- **************************************** -->
     <!-- menus -->
@@ -617,7 +612,6 @@
     <string name="activity_notification_settings_style_section_title">Style de notification</string>
     <string name="activity_notification_settings_content_section_title">Contenu de notification</string>
     <string name="activity_privacy_settings_title">Confidentialité</string>
-    <string name="activity_chat_settings_title">Conversations</string>
     <string name="preferences_notifications_strategy_category_title">Stratégie de notification</string>
     <string name="preferences_notifications_strategy_category_fast_mode_title">Utiliser le Mode Rapide</string>
     <string name="preferences_notifications_strategy_category_fast_mode_summary">Vous serez averti de nouveaux messages de manière fiable et immédiate en utilisant les serveurs de notification de Google.</string>

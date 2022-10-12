@@ -400,7 +400,6 @@
     </plurals>
     <!-- preferences.xml -->
     <string name="preferences__pref_enter_sends_title">La Eniga klavo kaŭzas sendon</string>
-    <string name="preferences__pressing_the_enter_key_will_send_text_messages">Premi la Enigan klavon sendos mesaĝojn</string>
     <string name="preferences__send_link_previews">Sendi antaŭrigardojn de ligilo</string>
     <string name="preferences__previews_are_supported_for">Antaŭrigardoj funkcias por ligiloj al Imgur, Instagram, Pinterest, Reddit kaj YouTube</string>
     <string name="preferences__screen_security">Ekrana sekurigo</string>
@@ -438,7 +437,6 @@
     <string name="preferences__default">Defaŭlta</string>
     <string name="preferences__incognito_keyboard">Inkognita klavaro</string>
     <string name="preferences__read_receipts">Legokonfirmoj</string>
-    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Se legokonfirmoj ne estas ŝaltitaj, vi ne vidos aliulajn legokonfirmojn.</string>
     <string name="preferences__typing_indicators">Tajp-indikiloj</string>
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Se tajp-indikiloj ne estas ŝaltitaj, vi ne vidos aliulajn tajp-indikilojn.</string>
     <string name="preferences__request_keyboard_to_disable_personalized_learning">Peti al la klavaro malŝalti personan lernadon</string>
@@ -447,12 +445,9 @@
     <string name="preferences_chats__message_trimming">Tondeto de mesaĝoj</string>
     <string name="preferences_advanced__use_system_emoji">Uzi sisteman emoĝiaron</string>
     <string name="preferences_advanced__disable_signal_built_in_emoji_support">Malebligi emoĝiaron de Session</string>
-    <string name="preferences_app_protection__app_access">Aliro al aplikaĵo</string>
-    <string name="preferences_app_protection__communication">Komunikado</string>
     <string name="preferences_chats__chats">Interparoloj</string>
     <string name="preferences_notifications__messages">Mesaĝoj</string>
     <string name="preferences_notifications__in_chat_sounds">Sonoj dum interparolado</string>
-    <string name="preferences_notifications__show">Montri</string>
     <string name="preferences_notifications__priority">Prioritato</string>
     <!-- **************************************** -->
     <!-- menus -->
@@ -615,7 +610,6 @@
     <string name="activity_notification_settings_style_section_title">Sciiga Stilo</string>
     <string name="activity_notification_settings_content_section_title">Sciiga Enhavo</string>
     <string name="activity_privacy_settings_title">Privateco</string>
-    <string name="activity_chat_settings_title">Interparoloj</string>
     <string name="preferences_notifications_strategy_category_title">Sciiga Strategio</string>
     <string name="preferences_notifications_strategy_category_fast_mode_title">Uzi Rapidan Reĝimon</string>
     <string name="fragment_device_list_bottom_sheet_change_name_button_title">Ŝanĝi nomon</string>

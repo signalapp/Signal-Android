@@ -5,13 +5,15 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:drawableTint="?android:textColorPrimary"
+        android:drawableLeft="@drawable/ic_baseline_arrow_drop_down_24"
         android:id="@+id/right_summary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right|center_vertical"
         android:gravity="right|center_vertical"
-        android:textSize="@dimen/medium_font_size"
-        android:textColor="@color/accent"
+        android:textSize="@dimen/very_small_font_size"
+        android:textColor="?android:textColorPrimary"
         tools:text="Preference Summary"/>
 
 </FrameLayout>

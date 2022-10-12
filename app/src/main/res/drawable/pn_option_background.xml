@@ -4,7 +4,7 @@
     android:shape="rectangle" >
 
     <solid
-        android:color="@color/pn_option_background" />
+        android:color="?colorPrimary" />
 
     <stroke
         android:color="@color/pn_option_border"

@@ -400,7 +400,6 @@
     </plurals>
     <!-- preferences.xml -->
     <string name="preferences__pref_enter_sends_title">दर्ज कुंजी भेजता है</string>
-    <string name="preferences__pressing_the_enter_key_will_send_text_messages">एंटर कुंजी दबाकर टेक्स्ट संदेश भेजे जाएंगे</string>
     <string name="preferences__send_link_previews">लिंक प्रिव्यू भेजें</string>
     <string name="preferences__previews_are_supported_for">Imgur, Instagram, Pinterest, Reddit, और YouTube के लिए लिंक प्रिव्यू उपलब्ध हैं</string>
     <string name="preferences__screen_security">स्क्रीन सुरक्षा</string>
@@ -438,7 +437,6 @@
     <string name="preferences__default">डिफ़ॉल्ट</string>
     <string name="preferences__incognito_keyboard">गुप्त कीबोर्ड</string>
     <string name="preferences__read_receipts">पढ़ने की रसीदें</string>
-    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">यदि रीड रसीद अक्षम हैं, तो आप दूसरों से पढ़ने की रसीदें नहीं देख पाएंगे।</string>
     <string name="preferences__typing_indicators">टाइपिंग सूचक</string>
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">अगर टाइपिंग सूचक बंद हैं तो आप दूसरों के टाइपिंग सूचक नहीं देख पाएंगे।</string>
     <string name="preferences__request_keyboard_to_disable_personalized_learning">व्यक्तिगत सीखने को अक्षम करने के लिए कीबोर्ड को अनुरोध करें</string>
@@ -447,12 +445,9 @@
     <string name="preferences_chats__message_trimming">संदेश ट्रिमिंग</string>
     <string name="preferences_advanced__use_system_emoji">सिस्टम इमोजी का प्रयोग करें</string>
     <string name="preferences_advanced__disable_signal_built_in_emoji_support">Session के अंतर्निहित इमोजी समर्थन को अक्षम करें</string>
-    <string name="preferences_app_protection__app_access">ऐप का उपयोग</string>
-    <string name="preferences_app_protection__communication">संचार</string>
     <string name="preferences_chats__chats">चैट</string>
     <string name="preferences_notifications__messages">संदेश</string>
     <string name="preferences_notifications__in_chat_sounds">चैट में आवाज</string>
-    <string name="preferences_notifications__show">दिखाएं</string>
     <string name="preferences_notifications__priority">प्राथमिकता</string>
     <!-- **************************************** -->
     <!-- menus -->
@@ -618,7 +613,6 @@
     <string name="activity_notification_settings_style_section_title">अधिसूचना शैली</string>
     <string name="activity_notification_settings_content_section_title">सूचना विषय सूची</string>
     <string name="activity_privacy_settings_title">गोपनियता</string>
-    <string name="activity_chat_settings_title">चैट</string>
     <string name="preferences_notifications_strategy_category_title">सूचना रणनीति</string>
     <string name="preferences_notifications_strategy_category_fast_mode_title">तीव्र मोड इस्तेमाल करे</string>
     <string name="preferences_notifications_strategy_category_fast_mode_summary">आपको नई सूचनाओं के बारे में google के नोटीफिकेशन servers से तत्काल सूचित किया जाएगा।</string>

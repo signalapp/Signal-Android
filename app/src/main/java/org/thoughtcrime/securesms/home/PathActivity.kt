@@ -20,6 +20,7 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import network.loki.messenger.R
 import network.loki.messenger.databinding.ActivityPathBinding
 import org.session.libsession.snode.OnionRequestAPI
+import org.session.libsession.utilities.getColorFromAttr
 import org.session.libsignal.utilities.Snode
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.util.GlowViewUtilities
@@ -30,6 +31,7 @@ import org.thoughtcrime.securesms.util.animateSizeChange
 import org.thoughtcrime.securesms.util.disableClipping
 import org.thoughtcrime.securesms.util.fadeIn
 import org.thoughtcrime.securesms.util.fadeOut
+import org.thoughtcrime.securesms.util.getAccentColor
 import org.thoughtcrime.securesms.util.getColorWithID
 
 class PathActivity : PassphraseRequiredActionBarActivity() {
@@ -131,7 +133,7 @@ class PathActivity : PassphraseRequiredActionBarActivity() {
         lineView.layoutParams = lineViewLayoutParams
         mainContainer.addView(lineView)
         val titleTextView = TextView(this)
-        titleTextView.setTextColor(resources.getColorWithID(R.color.text, theme))
+        titleTextView.setTextColor(getColorFromAttr(android.R.attr.textColorPrimary))
         titleTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, resources.getDimension(R.dimen.medium_font_size))
         titleTextView.text = title
         titleTextView.textAlignment = TextView.TEXT_ALIGNMENT_VIEW_START
@@ -144,7 +146,7 @@ class PathActivity : PassphraseRequiredActionBarActivity() {
         mainContainer.addView(titleContainer)
         if (subtitle != null) {
             val subtitleTextView = TextView(this)
-            subtitleTextView.setTextColor(resources.getColorWithID(R.color.text, theme))
+            subtitleTextView.setTextColor(getColorFromAttr(android.R.attr.textColorPrimary))
             subtitleTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, resources.getDimension(R.dimen.small_font_size))
             subtitleTextView.text = subtitle
             subtitleTextView.textAlignment = TextView.TEXT_ALIGNMENT_VIEW_START
@@ -185,7 +187,7 @@ class PathActivity : PassphraseRequiredActionBarActivity() {
         private val dotView by lazy {
             val result = PathDotView(context)
             result.setBackgroundResource(R.drawable.accent_dot)
-            result.mainColor = resources.getColorWithID(R.color.accent, context.theme)
+            result.mainColor = context.getAccentColor()
             result
         }
 
@@ -219,7 +221,7 @@ class PathActivity : PassphraseRequiredActionBarActivity() {
         private fun setUpViewHierarchy() {
             disableClipping()
             val lineView = View(context)
-            lineView.setBackgroundColor(resources.getColorWithID(R.color.text, context.theme))
+            lineView.setBackgroundColor(context.getColorFromAttr(android.R.attr.textColorPrimary))
             val lineViewHeight = when (location) {
                 Location.Top, Location.Bottom -> resources.getDimensionPixelSize(R.dimen.path_row_height) / 2
                 Location.Middle -> resources.getDimensionPixelSize(R.dimen.path_row_height)
@@ -255,13 +257,17 @@ class PathActivity : PassphraseRequiredActionBarActivity() {
         private fun expand() {
             dotView.animateSizeChange(R.dimen.path_row_dot_size, R.dimen.path_row_expanded_dot_size)
             @ColorRes val startColorID = if (UiModeUtilities.isDayUiMode(context)) R.color.transparent_black_30 else R.color.black
-            GlowViewUtilities.animateShadowColorChange(context, dotView, startColorID, R.color.accent)
+            val startColor = context.resources.getColorWithID(startColorID, context.theme)
+            val endColor = context.getAccentColor()
+            GlowViewUtilities.animateShadowColorChange(dotView, startColor, endColor)
         }
 
         private fun collapse() {
             dotView.animateSizeChange(R.dimen.path_row_expanded_dot_size, R.dimen.path_row_dot_size)
             @ColorRes val endColorID = if (UiModeUtilities.isDayUiMode(context)) R.color.transparent_black_30 else R.color.black
-            GlowViewUtilities.animateShadowColorChange(context, dotView, R.color.accent, endColorID)
+            val startColor = context.getAccentColor()
+            val endColor = context.resources.getColorWithID(endColorID, context.theme)
+            GlowViewUtilities.animateShadowColorChange(dotView, startColor, endColor)
         }
     }
     // endregion

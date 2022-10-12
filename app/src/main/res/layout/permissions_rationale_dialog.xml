@@ -8,7 +8,7 @@
 
     <LinearLayout
         android:id="@+id/header_container"
-        android:background="@color/accent"
+        android:background="@drawable/rationale_heading_background"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"

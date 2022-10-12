@@ -4,7 +4,7 @@
     <!-- Session -->
     <dimen name="medium_button_height">44dp</dimen>
     <dimen name="tab_bar_height">48dp</dimen>
-    <dimen name="setting_button_height">72dp</dimen>
+    <dimen name="setting_button_height">64dp</dimen>
     <dimen name="path_row_height">72dp</dimen>
     <!-- Session -->
 

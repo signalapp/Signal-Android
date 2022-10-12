@@ -14,7 +14,7 @@
         android:layout_marginTop="@dimen/large_spacing"
         android:layout_marginRight="@dimen/large_spacing"
         android:textSize="@dimen/small_font_size"
-        android:textColor="@color/text"
+        android:textColor="?android:textColorPrimary"
         android:alpha="0.6"
         android:textAlignment="center"
         android:text="@string/activity_path_explanation" />
@@ -39,7 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            app:SpinKit_Color="@color/text" />
+            app:SpinKit_Color="?android:textColorPrimary" />
 
     </RelativeLayout>
 

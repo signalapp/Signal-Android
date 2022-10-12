@@ -107,7 +107,7 @@ class ProfilePictureView @JvmOverloads constructor(
             if (profilePicturesCache.containsKey(publicKey) && profilePicturesCache[publicKey] == recipient.profileAvatar) return
             val signalProfilePicture = recipient.contactPhoto
             val avatar = (signalProfilePicture as? ProfileContactPhoto)?.avatarObject
-            val placeholder = PlaceholderAvatarPhoto(publicKey, displayName ?: "${publicKey.take(4)}...${publicKey.takeLast(4)}")
+            val placeholder = PlaceholderAvatarPhoto(context, publicKey, displayName ?: "${publicKey.take(4)}...${publicKey.takeLast(4)}")
             if (signalProfilePicture != null && avatar != "0" && avatar != "") {
                 glide.clear(imageView)
                 glide.load(signalProfilePicture)

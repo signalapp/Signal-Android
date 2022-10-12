@@ -420,7 +420,6 @@
     </plurals>
     <!-- preferences.xml -->
     <string name="preferences__pref_enter_sends_title">„Enter“ (Įvedimo) klavišas išsiunčia</string>
-    <string name="preferences__pressing_the_enter_key_will_send_text_messages">„Enter“ (Įvedimo) klavišo paspaudimas išsiųs tekstines žinutes</string>
     <string name="preferences__send_link_previews">Siųsti nuorodų peržiūras</string>
     <string name="preferences__previews_are_supported_for">Peržiūros yra palaikomos Imgur, Instagram, Pinterest, Reddit, ir YouTube nuorodoms</string>
     <string name="preferences__screen_security">Ekrano saugumas</string>
@@ -458,7 +457,6 @@
     <string name="preferences__default">Numatytoji</string>
     <string name="preferences__incognito_keyboard">Inkognito klaviatūra</string>
     <string name="preferences__read_receipts">Pranešimai apie žinučių skaitymą</string>
-    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Jeigu pranešimai apie žinučių skaitymą yra išjungti, jūs negalėsite matyti kitų žmonių pranešimų apie žinučių skaitymą.</string>
     <string name="preferences__typing_indicators">Rašymo indikatoriai</string>
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Išjungę rašymo indikatorius, nebegalėsite matyti kitų žmonių rašymo indikatorių.</string>
     <string name="preferences__request_keyboard_to_disable_personalized_learning">Prašyti klaviatūros išjungti suasmenintą mokymąsi</string>
@@ -467,12 +465,9 @@
     <string name="preferences_chats__message_trimming">Žinučių išvalymas</string>
     <string name="preferences_advanced__use_system_emoji">Naudoti sistemos jaustukus</string>
     <string name="preferences_advanced__disable_signal_built_in_emoji_support">Išjungti Session įtaisytą jaustukų palaikymą</string>
-    <string name="preferences_app_protection__app_access">Programėlės prieiga</string>
-    <string name="preferences_app_protection__communication">Susisiekimas</string>
     <string name="preferences_chats__chats">Pokalbiai</string>
     <string name="preferences_notifications__messages">Žinutės</string>
     <string name="preferences_notifications__in_chat_sounds">Garsai pokalbiuose</string>
-    <string name="preferences_notifications__show">Rodyti</string>
     <string name="preferences_notifications__priority">Pirmenybė</string>
     <!-- **************************************** -->
     <!-- menus -->
@@ -623,7 +618,6 @@
     <string name="activity_notification_settings_style_section_title">Pranešimų stilius</string>
     <string name="activity_notification_settings_content_section_title">Pranešimų turinys</string>
     <string name="activity_privacy_settings_title">Privatumas</string>
-    <string name="activity_chat_settings_title">Pokalbiai</string>
     <string name="preferences_notifications_strategy_category_title">Pranešimų strategija</string>
     <string name="preferences_notifications_strategy_category_fast_mode_title">Naudoti greitą veikseną</string>
     <string name="preferences_notifications_strategy_category_fast_mode_summary">Jums bus nedelsiant ir patikimai pranešama apie naujas žinutes, naudojant „Google“ pranešimų serverius.</string>

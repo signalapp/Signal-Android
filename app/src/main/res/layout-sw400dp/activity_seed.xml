@@ -23,7 +23,7 @@
         android:layout_marginRight="@dimen/very_large_spacing"
         android:textSize="26sp"
         android:textStyle="bold"
-        android:textColor="@color/text"
+        android:textColor="?android:textColorPrimary"
         android:text="@string/activity_seed_title_2" />
 
     <TextView
@@ -33,7 +33,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginRight="@dimen/very_large_spacing"
         android:textSize="16sp"
-        android:textColor="@color/text"
+        android:textColor="?android:textColorPrimary"
         android:text="@string/activity_seed_explanation" />
 
     <TextView
@@ -56,7 +56,7 @@
         android:layout_marginTop="12dp"
         android:textAlignment="center"
         android:textSize="16sp"
-        android:textColor="@color/text"
+        android:textColor="?android:textColorPrimary"
         android:alpha="0.6"
         android:text="@string/activity_seed_reveal_button_title" />
 

@@ -5,7 +5,7 @@
     android:id="@+id/searchBottomBarConstraintLayout"
     android:layout_width="match_parent"
     android:layout_height="@dimen/input_bar_height"
-    android:background="@color/input_bar_background"
+    android:background="?input_bar_background"
     android:orientation="vertical">
 
     <View
@@ -30,7 +30,7 @@
                 android:padding="4dp"
                 android:background="?selectableItemBackgroundBorderless"
                 android:src="@drawable/ic_baseline_keyboard_arrow_up_24"
-                android:tint="@color/accent"
+                android:tint="?colorAccent"
                 tools:ignore="UseAppTint" />
 
             <ImageView
@@ -41,7 +41,7 @@
                 android:layout_gravity="center_vertical"
                 android:background="?selectableItemBackgroundBorderless"
                 android:src="@drawable/ic_baseline_keyboard_arrow_down_24"
-                android:tint="@color/accent"
+                android:tint="?colorAccent"
                 tools:ignore="UseAppTint" />
 
         </LinearLayout>
@@ -61,7 +61,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="8dp"
-            android:background="@color/compose_view_background"
+            android:background="?colorPrimaryDark"
             app:SpinKit_Color="?android:textColorPrimary"
             android:visibility="gone"/>
 

@@ -7,9 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.AndroidEntryPoint
 import network.loki.messenger.R
 import network.loki.messenger.databinding.FragmentCreateGroupBinding
@@ -57,6 +60,12 @@ class CreateGroupFragment : Fragment() {
         }
         binding.createNewPrivateChatButton.setOnClickListener { delegate.onNewMessageSelected() }
         binding.recyclerView.adapter = adapter
+        val divider = ContextCompat.getDrawable(requireActivity(), R.drawable.conversation_menu_divider)!!.let {
+            DividerItemDecoration(requireActivity(), RecyclerView.VERTICAL).apply {
+                setDrawable(it)
+            }
+        }
+        binding.recyclerView.addItemDecoration(divider)
         var isLoading = false
         binding.createClosedGroupButton.setOnClickListener {
             if (isLoading) return@setOnClickListener

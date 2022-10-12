@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/unblockButton"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/preference_single_no_padding"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:layout_marginHorizontal="@dimen/medium_spacing"
+        android:layout_marginVertical="@dimen/large_spacing"
+        />
+
+    <TextView
+        android:id="@+id/emptyStateMessageTextView"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@+id/recyclerView"
+        android:layout_marginTop="@dimen/medium_spacing"
+        app:layout_constraintStart_toStartOf="@+id/recyclerView"
+        app:layout_constraintEnd_toEndOf="@+id/recyclerView"
+        android:text="@string/blocked_contacts_empty_state"
+        />
+
+    <TextView
+        style="@style/Widget.Session.Button.Common.DestructiveOutline"
+        android:paddingHorizontal="@dimen/large_spacing"
+        android:paddingVertical="@dimen/small_spacing"
+        android:text="@string/ConversationActivity_unblock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView"
+        android:id="@+id/unblockButton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginVertical="@dimen/large_spacing"
+        app:layout_constraintVertical_bias="1"
+        />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/nonEmptyStateGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="unblockButton,recyclerView"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

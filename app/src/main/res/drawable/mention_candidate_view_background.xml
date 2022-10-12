@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ripple
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:color="@color/mention_candidates_view_background_ripple">
+    android:color="?mention_candidates_view_background_ripple">
 
     <item>
-        <color android:color="@color/mention_candidates_view_background" />
+        <color android:color="?mention_candidates_view_background" />
     </item>
 </ripple>

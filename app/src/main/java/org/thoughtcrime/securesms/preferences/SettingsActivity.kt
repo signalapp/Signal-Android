@@ -8,10 +8,11 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.AsyncTask
-import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.os.Parcelable
+import android.util.SparseArray
 import android.view.ActionMode
 import android.view.Menu
 import android.view.MenuItem
@@ -39,11 +40,11 @@ import org.thoughtcrime.securesms.messagerequests.MessageRequestsActivity
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.permissions.Permissions
+import org.thoughtcrime.securesms.preferences.appearance.AppearanceSettingsActivity
 import org.thoughtcrime.securesms.profiles.ProfileMediaConstraints
 import org.thoughtcrime.securesms.util.BitmapDecodingException
 import org.thoughtcrime.securesms.util.BitmapUtil
 import org.thoughtcrime.securesms.util.ConfigurationMessageUtilities
-import org.thoughtcrime.securesms.util.UiModeUtilities
 import org.thoughtcrime.securesms.util.disableClipping
 import org.thoughtcrime.securesms.util.push
 import org.thoughtcrime.securesms.util.show
@@ -67,6 +68,7 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
 
     companion object {
         const val updatedProfileResultCode = 1234
+        private const val SCROLL_STATE = "SCROLL_STATE"
     }
 
     // region Lifecycle
@@ -94,24 +96,31 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
             notificationsButton.setOnClickListener { showNotificationSettings() }
             messageRequestsButton.setOnClickListener { showMessageRequests() }
             chatsButton.setOnClickListener { showChatSettings() }
-            sendInvitationButton.setOnClickListener { sendInvitation() }
-            faqButton.setOnClickListener { showFAQ() }
-            surveyButton.setOnClickListener { showSurvey() }
-            helpTranslateButton.setOnClickListener { helpTranslate() }
+            appearanceButton.setOnClickListener { showAppearanceSettings() }
+            inviteFriendButton.setOnClickListener { sendInvitation() }
+            helpButton.setOnClickListener { showHelp() }
             seedButton.setOnClickListener { showSeed() }
             clearAllDataButton.setOnClickListener { clearAllData() }
-            debugLogButton.setOnClickListener { shareLogs() }
-            val isLightMode = UiModeUtilities.isDayUiMode(this@SettingsActivity)
-            oxenLogoImageView.setImageResource(if (isLightMode) R.drawable.oxen_light_mode else R.drawable.oxen_dark_mode)
             versionTextView.text = String.format(getString(R.string.version_s), "${BuildConfig.VERSION_NAME} (${BuildConfig.VERSION_CODE})")
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        val scrollBundle = SparseArray<Parcelable>()
+        binding.scrollView.saveHierarchyState(scrollBundle)
+        outState.putSparseParcelableArray(SCROLL_STATE, scrollBundle)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        savedInstanceState.getSparseParcelableArray<Parcelable>(SCROLL_STATE)?.let { scrollBundle ->
+            binding.scrollView.restoreHierarchyState(scrollBundle)
         }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.settings_general, menu)
-        // Update UI mode menu icon
-        val uiMode = UiModeUtilities.getUserSelectedUiMode(this)
-        menu.findItem(R.id.action_change_theme).icon!!.level = uiMode.ordinal
         return true
     }
 
@@ -119,10 +128,6 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
         return when (item.itemId) {
             R.id.action_qr_code -> {
                 showQRCode()
-                true
-            }
-            R.id.action_change_theme -> {
-                ChangeUiModeDialog().show(supportFragmentManager, ChangeUiModeDialog.TAG)
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -295,6 +300,11 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
         push(intent)
     }
 
+    private fun showAppearanceSettings() {
+        val intent = Intent(this, AppearanceSettingsActivity::class.java)
+        push(intent)
+    }
+
     private fun sendInvitation() {
         val intent = Intent()
         intent.action = Intent.ACTION_SEND
@@ -305,39 +315,14 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
         startActivity(chooser)
     }
 
-    private fun showFAQ() {
-        try {
-            val url = "https://getsession.org/faq"
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-            startActivity(intent)
-        } catch (e: Exception) {
-            Toast.makeText(this, "Can't open URL", Toast.LENGTH_LONG).show()
-        }
+    private fun showHelp() {
+        val intent = Intent(this, HelpSettingsActivity::class.java)
+        push(intent)
     }
 
     private fun showPath() {
         val intent = Intent(this, PathActivity::class.java)
         show(intent)
-    }
-
-    private fun showSurvey() {
-        try {
-            val url = "https://getsession.org/survey"
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-            startActivity(intent)
-        } catch (e: Exception) {
-            Toast.makeText(this, "Can't open URL", Toast.LENGTH_LONG).show()
-        }
-    }
-
-    private fun helpTranslate() {
-        try {
-            val url = "https://crowdin.com/project/session-android"
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-            startActivity(intent)
-        } catch (e: Exception) {
-            Toast.makeText(this, "Can't open URL", Toast.LENGTH_LONG).show()
-        }
     }
 
     private fun showSeed() {
@@ -346,20 +331,6 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
 
     private fun clearAllData() {
         ClearAllDataDialog().show(supportFragmentManager, "Clear All Data Dialog")
-    }
-
-    private fun shareLogs() {
-        Permissions.with(this)
-            .request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-            .maxSdkVersion(Build.VERSION_CODES.P)
-            .withPermanentDenialDialog(getString(R.string.MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied))
-            .onAnyDenied {
-                Toast.makeText(this, R.string.MediaPreviewActivity_unable_to_write_to_external_storage_without_permission, Toast.LENGTH_LONG).show()
-            }
-            .onAllGranted {
-                ShareLogsDialog().show(supportFragmentManager,"Share Logs Dialog")
-            }
-            .execute()
     }
 
     // endregion

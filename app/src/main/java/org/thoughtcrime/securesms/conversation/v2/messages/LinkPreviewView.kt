@@ -12,6 +12,7 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.isVisible
 import network.loki.messenger.R
 import network.loki.messenger.databinding.ViewLinkPreviewBinding
+import org.session.libsession.utilities.getColorFromAttr
 import org.thoughtcrime.securesms.components.CornerMask
 import org.thoughtcrime.securesms.conversation.v2.ModalUrlBottomSheet
 import org.thoughtcrime.securesms.conversation.v2.utilities.MessageBubbleUtilities
@@ -52,14 +53,13 @@ class LinkPreviewView : LinearLayout {
         }
         // Title
         binding.titleTextView.text = linkPreview.title
-        val textColorID = if (message.isOutgoing && UiModeUtilities.isDayUiMode(context)) {
-            R.color.white
+        val textColorID = if (message.isOutgoing) {
+            R.attr.message_sent_text_color
         } else {
-            if (UiModeUtilities.isDayUiMode(context)) R.color.black else R.color.white
+            R.attr.message_received_text_color
         }
-        binding.titleTextView.setTextColor(ResourcesCompat.getColor(resources, textColorID, context.theme))
+        binding.titleTextView.setTextColor(context.getColorFromAttr(textColorID))
         // Body
-        binding.titleTextView.setTextColor(ResourcesCompat.getColor(resources, textColorID, context.theme))
         // Corner radii
         val cornerRadii = MessageBubbleUtilities.calculateRadii(context, isStartOfMessageCluster, isEndOfMessageCluster, message.isOutgoing)
         cornerMask.setTopLeftRadius(cornerRadii[0])

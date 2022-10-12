@@ -49,7 +49,9 @@
                         android:id="@+id/icon"
                         android:layout_width="38dp"
                         android:layout_height="50dp"
-                        android:src="?attachment_document_icon_large"/>
+                        android:src="?attachment_document_icon_large"
+                        app:tint="?android:textColorPrimary"
+                        />
 
                     <TextView android:id="@+id/document"
                               android:layout_width="wrap_content"
@@ -63,7 +65,7 @@
                               style="@style/Signal.Text.Caption"
                               android:textAllCaps="true"
                               android:textSize="10sp"
-                              android:textColor="?attachment_document_extension_text_color"
+                              android:textColor="?android:textColorPrimary"
                               tools:visibility="visible"
                               tools:text="PDF" />
 

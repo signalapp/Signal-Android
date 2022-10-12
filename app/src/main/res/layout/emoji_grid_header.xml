@@ -9,5 +9,5 @@
     android:minHeight="36dp"
     android:singleLine="true"
     android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-    android:textColor="@color/signal_text_hint"
+    android:textColor="?android:textColorSecondary"
     tools:text="@string/ReactWithAnyEmojiBottomSheetDialogFragment__activities" />

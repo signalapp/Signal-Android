@@ -10,6 +10,7 @@
     tools:menu="@menu/settings_general">
 
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scrollbars="none">
@@ -51,7 +52,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:textColor="@color/text"
+                    android:textColor="?android:textColorPrimary"
                     android:textSize="@dimen/very_large_font_size"
                     android:textStyle="bold" />
 
@@ -73,7 +74,7 @@
                 android:layout_marginTop="@dimen/large_spacing"
                 android:layout_marginRight="@dimen/large_spacing"
                 android:textSize="@dimen/large_font_size"
-                android:textColor="@color/text"
+                android:textColor="?android:textColorPrimary"
                 android:fontFamily="@font/space_mono_regular"
                 android:textAlignment="center"
                 tools:text="05987d601943c267879be41830888066c6a024cbdc9a548d06813924bf3372ea78" />
@@ -95,7 +96,7 @@
                     android:text="@string/copy" />
 
                 <Button
-                    style="@style/Widget.Session.Button.Common.UnimportantOutline"
+                    style="@style/Widget.Session.Button.Common.ProminentOutline"
                     android:id="@+id/shareButton"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/medium_button_height"
@@ -105,209 +106,350 @@
 
             </LinearLayout>
 
-            <View
+            <LinearLayout
+                android:background="@drawable/preference_single_no_padding"
                 android:layout_width="match_parent"
-                android:layout_height="1px"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/large_spacing"
-                android:background="?android:dividerHorizontal" />
+                android:layout_marginHorizontal="@dimen/large_spacing"
+                android:orientation="vertical">
 
-            <RelativeLayout
-                android:id="@+id/pathButton"
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                app:justifyContent="center"
-                app:alignItems="center"
-                android:layout_height="@dimen/setting_button_height"
-                android:background="@drawable/setting_button_background">
-                <TextView
-                    android:id="@+id/pathText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:textColor="@color/text"
-                    android:textSize="@dimen/medium_font_size"
-                    android:layout_centerInParent="true"
-                    android:textStyle="bold"
-                    android:gravity="center"
-                    android:text="@string/activity_path_title" />
-                <FrameLayout
-                    android:layout_toEndOf="@+id/pathText"
-                    android:layout_centerVertical="true"
-                    android:id="@+id/pathContainer"
-                    android:layout_width="@dimen/small_profile_picture_size"
-                    android:layout_height="@dimen/small_profile_picture_size">
-                    <org.thoughtcrime.securesms.home.PathStatusView
-                        android:layout_gravity="center"
-                        android:layout_width="@dimen/path_status_view_size"
-                        android:layout_height="@dimen/path_status_view_size"/>
-                </FrameLayout>
-            </RelativeLayout>
+                <!-- Path -->
+                <RelativeLayout
+                    android:id="@+id/pathButton"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:paddingHorizontal="@dimen/large_spacing"
+                    android:layout_height="@dimen/setting_button_height">
+                    <FrameLayout
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/pathContainer"
+                        android:layout_width="@dimen/small_profile_picture_size"
+                        android:layout_height="@dimen/small_profile_picture_size">
+                        <org.thoughtcrime.securesms.home.PathStatusView
+                            android:layout_gravity="center"
+                            android:layout_width="@dimen/path_status_view_size"
+                            android:layout_height="@dimen/path_status_view_size"/>
+                    </FrameLayout>
+                    <TextView
+                        android:id="@+id/pathText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textColor="?android:textColorPrimary"
+                        android:textSize="@dimen/medium_font_size"
+                        android:layout_marginHorizontal="@dimen/medium_spacing"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:layout_toEndOf="@+id/pathContainer"
+                        android:text="@string/activity_path_title" />
+                </RelativeLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="?android:dividerHorizontal" />
+                <View
+                    android:layout_marginHorizontal="@dimen/very_large_spacing"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="?colorDividerBackground" />
 
-            <TextView
-                android:id="@+id/privacyButton"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/setting_button_height"
-                android:background="@drawable/setting_button_background"
-                android:textColor="@color/text"
-                android:textSize="@dimen/medium_font_size"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:text="@string/activity_settings_privacy_button_title" />
+                <RelativeLayout
+                    android:id="@+id/privacyButton"
+                    android:paddingHorizontal="@dimen/large_spacing"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/setting_button_height">
+                    <ImageView
+                        android:id="@+id/privacyContainer"
+                        android:layout_width="@dimen/small_profile_picture_size"
+                        android:layout_height="@dimen/small_profile_picture_size"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_privacy_icon"
+                        android:scaleType="centerInside"
+                        app:tint="?android:textColorPrimary" />
+                    <TextView
+                        android:id="@+id/privacyText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textColor="?android:textColorPrimary"
+                        android:textSize="@dimen/medium_font_size"
+                        android:layout_marginHorizontal="@dimen/medium_spacing"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:layout_toEndOf="@+id/privacyContainer"
+                        android:text="@string/activity_settings_privacy_button_title" />
+                </RelativeLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="?android:dividerHorizontal" />
+                <View
+                    android:layout_marginHorizontal="@dimen/very_large_spacing"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="?colorDividerBackground" />
 
-            <TextView
-                android:id="@+id/notificationsButton"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/setting_button_height"
-                android:background="@drawable/setting_button_background"
-                android:textColor="@color/text"
-                android:textSize="@dimen/medium_font_size"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:text="@string/activity_settings_notifications_button_title" />
+                <RelativeLayout
+                    android:id="@+id/notificationsButton"
+                    android:paddingHorizontal="@dimen/large_spacing"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/setting_button_height">
+                    <ImageView
+                        android:id="@+id/notificationsContainer"
+                        android:layout_width="@dimen/small_profile_picture_size"
+                        android:layout_height="@dimen/small_profile_picture_size"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_speaker"
+                        android:scaleType="centerInside"
+                        app:tint="?android:textColorPrimary" />
+                    <TextView
+                        android:id="@+id/notificationsText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textColor="?android:textColorPrimary"
+                        android:textSize="@dimen/medium_font_size"
+                        android:layout_marginHorizontal="@dimen/medium_spacing"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:layout_toEndOf="@+id/notificationsContainer"
+                        android:text="@string/activity_settings_notifications_button_title" />
+                </RelativeLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="?android:dividerHorizontal" />
 
-            <TextView
-                android:id="@+id/messageRequestsButton"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/setting_button_height"
-                android:background="@drawable/setting_button_background"
-                android:textColor="@color/text"
-                android:textSize="@dimen/medium_font_size"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:text="@string/activity_settings_message_requests_button_title" />
+                <View
+                    android:layout_marginHorizontal="@dimen/very_large_spacing"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="?colorDividerBackground" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="?android:dividerHorizontal" />
+                <RelativeLayout
+                    android:id="@+id/chatsButton"
+                    android:paddingHorizontal="@dimen/large_spacing"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/setting_button_height">
+                    <ImageView
+                        android:id="@+id/chatsContainer"
+                        android:layout_width="@dimen/small_profile_picture_size"
+                        android:layout_height="@dimen/small_profile_picture_size"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_conversations"
+                        android:scaleType="centerInside"
+                        app:tint="?android:textColorPrimary" />
+                    <TextView
+                        android:id="@+id/chatsText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textColor="?android:textColorPrimary"
+                        android:textSize="@dimen/medium_font_size"
+                        android:layout_marginHorizontal="@dimen/medium_spacing"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:layout_toEndOf="@+id/chatsContainer"
+                        android:text="@string/activity_settings_conversations_button_title" />
+                </RelativeLayout>
 
-            <TextView
-                android:id="@+id/chatsButton"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/setting_button_height"
-                android:background="@drawable/setting_button_background"
-                android:textColor="@color/text"
-                android:textSize="@dimen/medium_font_size"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:text="@string/activity_settings_chats_button_title" />
+                <View
+                    android:layout_marginHorizontal="@dimen/very_large_spacing"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="?colorDividerBackground" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="?android:dividerHorizontal" />
+                <RelativeLayout
+                    android:id="@+id/messageRequestsButton"
+                    android:paddingHorizontal="@dimen/large_spacing"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/setting_button_height">
+                    <ImageView
+                        android:id="@+id/messageRequestsContainer"
+                        android:layout_width="@dimen/small_profile_picture_size"
+                        android:layout_height="@dimen/small_profile_picture_size"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_message_requests"
+                        android:scaleType="centerInside"
+                        app:tint="?android:textColorPrimary" />
+                    <TextView
+                        android:id="@+id/messageRequestsTexts"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textColor="?android:textColorPrimary"
+                        android:textSize="@dimen/medium_font_size"
+                        android:layout_marginHorizontal="@dimen/medium_spacing"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:layout_toEndOf="@+id/messageRequestsContainer"
+                        android:text="@string/activity_settings_message_requests_button_title" />
+                </RelativeLayout>
 
-            <TextView
-                android:id="@+id/seedButton"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/setting_button_height"
-                android:background="@drawable/setting_button_background"
-                android:textColor="@color/text"
-                android:textSize="@dimen/medium_font_size"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:text="@string/activity_settings_recovery_phrase_button_title" />
+                <View
+                    android:layout_marginHorizontal="@dimen/very_large_spacing"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="?colorDividerBackground" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="?android:dividerHorizontal" />
+                <RelativeLayout
+                    android:id="@+id/appearanceButton"
+                    android:paddingHorizontal="@dimen/large_spacing"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/setting_button_height">
+                    <ImageView
+                        android:id="@+id/appearanceContainer"
+                        android:layout_width="@dimen/small_profile_picture_size"
+                        android:layout_height="@dimen/small_profile_picture_size"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_appearance"
+                        android:scaleType="centerInside"
+                        app:tint="?android:textColorPrimary" />
+                    <TextView
+                        android:id="@+id/appearanceText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textColor="?android:textColorPrimary"
+                        android:textSize="@dimen/medium_font_size"
+                        android:layout_marginHorizontal="@dimen/medium_spacing"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:layout_toEndOf="@+id/appearanceContainer"
+                        android:text="@string/activity_settings_message_appearance_button_title" />
+                </RelativeLayout>
 
-            <TextView
-                android:id="@+id/clearAllDataButton"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/setting_button_height"
-                android:background="@drawable/setting_button_background"
-                android:textColor="@color/destructive"
-                android:textSize="@dimen/medium_font_size"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:text="@string/activity_settings_clear_all_data_button_title" />
+                <View
+                    android:layout_marginHorizontal="@dimen/very_large_spacing"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="?colorDividerBackground" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:layout_marginBottom="@dimen/medium_spacing"
-                android:background="?android:dividerHorizontal" />
+                <RelativeLayout
+                    android:id="@+id/inviteFriendButton"
+                    android:paddingHorizontal="@dimen/large_spacing"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/setting_button_height">
+                    <ImageView
+                        android:id="@+id/inviteFriendContainer"
+                        android:layout_width="@dimen/small_profile_picture_size"
+                        android:layout_height="@dimen/small_profile_picture_size"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_invite_friend"
+                        android:scaleType="centerInside"
+                        app:tint="?android:textColorPrimary" />
+                    <TextView
+                        android:id="@+id/inviteFriendTexts"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textColor="?android:textColorPrimary"
+                        android:textSize="@dimen/medium_font_size"
+                        android:layout_marginHorizontal="@dimen/medium_spacing"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:layout_toEndOf="@+id/inviteFriendContainer"
+                        android:text="@string/activity_settings_invite_button_title" />
+                </RelativeLayout>
 
-            <TextView
-                android:padding="@dimen/small_spacing"
-                android:id="@+id/sendInvitationButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/text"
-                android:textSize="@dimen/medium_font_size"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:text="@string/activity_settings_invite_button_title" />
+                <View
+                    android:layout_marginHorizontal="@dimen/very_large_spacing"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="?colorDividerBackground" />
 
-            <TextView
-                android:padding="@dimen/small_spacing"
-                android:id="@+id/faqButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/medium_spacing"
-                android:textColor="@color/text"
-                android:textSize="@dimen/medium_font_size"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:text="@string/activity_settings_faq_button_title" />
+                <RelativeLayout
+                    android:id="@+id/seedButton"
+                    android:paddingHorizontal="@dimen/large_spacing"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/setting_button_height">
+                    <ImageView
+                        android:id="@+id/seedContainer"
+                        android:layout_width="@dimen/small_profile_picture_size"
+                        android:layout_height="@dimen/small_profile_picture_size"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_recovery_phrase"
+                        android:scaleType="centerInside"
+                        app:tint="?android:textColorPrimary" />
+                    <TextView
+                        android:id="@+id/seedText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textColor="?android:textColorPrimary"
+                        android:textSize="@dimen/medium_font_size"
+                        android:layout_marginHorizontal="@dimen/medium_spacing"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:layout_toEndOf="@+id/seedContainer"
+                        android:text="@string/activity_settings_recovery_phrase_button_title"  />
+                </RelativeLayout>
 
-            <TextView
-                android:padding="@dimen/small_spacing"
-                android:id="@+id/surveyButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/medium_spacing"
-                android:textColor="@color/text"
-                android:textSize="@dimen/medium_font_size"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:text="@string/activity_settings_survey_feedback" />
+                <View
+                    android:layout_marginHorizontal="@dimen/very_large_spacing"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="?colorDividerBackground" />
 
-            <TextView
-                android:padding="@dimen/small_spacing"
-                android:id="@+id/debugLogButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/medium_spacing"
-                android:textColor="@color/text"
-                android:textSize="@dimen/medium_font_size"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:text="@string/activity_settings_support" />
+                <RelativeLayout
+                    android:id="@+id/helpButton"
+                    android:paddingHorizontal="@dimen/large_spacing"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/setting_button_height">
+                    <ImageView
+                        android:id="@+id/helpContainer"
+                        android:layout_width="@dimen/small_profile_picture_size"
+                        android:layout_height="@dimen/small_profile_picture_size"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_help"
+                        android:scaleType="centerInside"
+                        app:tint="?android:textColorPrimary" />
+                    <TextView
+                        android:id="@+id/helpTexts"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textColor="?android:textColorPrimary"
+                        android:textSize="@dimen/medium_font_size"
+                        android:layout_marginHorizontal="@dimen/medium_spacing"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:layout_toEndOf="@+id/helpContainer"
+                        android:text="@string/activity_settings_help_button" />
+                </RelativeLayout>
 
-            <TextView
-                android:padding="@dimen/small_spacing"
-                android:id="@+id/helpTranslateButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/medium_spacing"
-                android:textColor="@color/text"
-                android:textSize="@dimen/medium_font_size"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:text="@string/activity_settings_help_translate_session" />
+                <View
+                    android:layout_marginHorizontal="@dimen/very_large_spacing"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="?colorDividerBackground" />
+
+                <RelativeLayout
+                    android:id="@+id/clearAllDataButton"
+                    android:paddingHorizontal="@dimen/large_spacing"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/setting_button_height">
+                    <ImageView
+                        android:id="@+id/clearContainer"
+                        android:layout_width="@dimen/small_profile_picture_size"
+                        android:layout_height="@dimen/small_profile_picture_size"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_clear_data"
+                        android:scaleType="centerInside"/>
+                    <TextView
+                        android:id="@+id/clearText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textColor="@color/destructive"
+                        android:textSize="@dimen/medium_font_size"
+                        android:layout_marginHorizontal="@dimen/medium_spacing"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:layout_toEndOf="@+id/clearContainer"
+                        android:text="@string/activity_settings_clear_all_data_button_title" />
+                </RelativeLayout>
+
+            </LinearLayout>
 
             <ImageView
                 android:id="@+id/oxenLogoImageView"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="@dimen/medium_spacing"
+                app:tint="?android:textColorPrimary"
                 android:src="@drawable/oxen_light_mode" />
 
             <TextView
@@ -318,7 +460,7 @@
                 android:layout_marginBottom="@dimen/medium_spacing"
                 android:gravity="center"
                 android:text="@string/version_s"
-                android:textColor="@color/text"
+                android:textColor="?android:textColorPrimary"
                 android:alpha="0.6"
                 android:textSize="@dimen/very_small_font_size" />
 

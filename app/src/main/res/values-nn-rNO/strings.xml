@@ -352,7 +352,6 @@ nøkkelutvekslingsmelding.</string>
     </plurals>
     <!-- preferences.xml -->
     <string name="preferences__pref_enter_sends_title">Send med linjeskift</string>
-    <string name="preferences__pressing_the_enter_key_will_send_text_messages">Bruk linjeskift for å senda tekstmeldingar</string>
     <string name="preferences__send_link_previews">Send lenkjesniktitt</string>
     <string name="preferences__screen_security">Skjermtryggleik</string>
     <string name="preferences__disable_screen_security_to_allow_screen_shots">Blokker skjermbilete i sist brukte-liste og i programmetb</string>
@@ -386,7 +385,6 @@ nøkkelutvekslingsmelding.</string>
     <string name="preferences__default">Forvald</string>
     <string name="preferences__incognito_keyboard">Inkognitotastatur</string>
     <string name="preferences__read_receipts">Lesekvitteringar</string>
-    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Viss du har skrudd av lesekvitteringar, får du heller ikkje sjå andre sine lesekvitteringar.</string>
     <string name="preferences__typing_indicators">Tastevisning</string>
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Viss tastevisning er av, kan du heller ikkje sjå når andre tastar.</string>
     <string name="preferences__request_keyboard_to_disable_personalized_learning">Spør om tastatur for å skru av persontilpassa læring</string>
@@ -395,12 +393,9 @@ nøkkelutvekslingsmelding.</string>
     <string name="preferences_chats__message_trimming">Meldingsforkorting</string>
     <string name="preferences_advanced__use_system_emoji">Bruk emoji på systemet</string>
     <string name="preferences_advanced__disable_signal_built_in_emoji_support">Slå av innebygd emoji-støtte i Session</string>
-    <string name="preferences_app_protection__app_access">App-tilgang</string>
-    <string name="preferences_app_protection__communication">Kommunikasjon</string>
     <string name="preferences_chats__chats">Samtalar</string>
     <string name="preferences_notifications__messages">Meldingar</string>
     <string name="preferences_notifications__in_chat_sounds">Lydar i samtalar</string>
-    <string name="preferences_notifications__show">Vis</string>
     <string name="preferences_notifications__priority">Prioritet</string>
     <!-- **************************************** -->
     <!-- menus -->

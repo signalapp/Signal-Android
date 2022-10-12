@@ -11,7 +11,7 @@
               android:paddingStart="16dp"
               android:paddingTop="10dp"
               android:paddingBottom="10dp"
-              android:textColor="@color/text"
+              android:textColor="?android:textColorPrimary"
               tools:text="Recent chats"/>
 
     <View

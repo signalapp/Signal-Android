@@ -4,8 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.AndroidEntryPoint
 import network.loki.messenger.R
 import network.loki.messenger.databinding.FragmentNewConversationHomeBinding
@@ -57,5 +60,11 @@ class NewConversationHomeFragment : Fragment() {
         contactGroups.remove(unknownSectionTitle)?.let { contactGroups.put(unknownSectionTitle, it) }
         adapter.items = contactGroups.flatMap { entry -> listOf(ContactListItem.Header(entry.key)) + entry.value }
         binding.contactsRecyclerView.adapter = adapter
+        val divider = ContextCompat.getDrawable(requireActivity(), R.drawable.conversation_menu_divider)!!.let {
+            DividerItemDecoration(requireActivity(), RecyclerView.VERTICAL).apply {
+                setDrawable(it)
+            }
+        }
+        binding.contactsRecyclerView.addItemDecoration(divider)
     }
 }

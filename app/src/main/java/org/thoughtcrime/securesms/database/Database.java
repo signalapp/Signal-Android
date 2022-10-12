@@ -72,6 +72,11 @@ public abstract class Database {
     context.getContentResolver().notifyChange(DatabaseContentProviders.StickerPack.CONTENT_URI, null);
   }
 
+  protected void notifyRecipientListeners() {
+    context.getContentResolver().notifyChange(DatabaseContentProviders.Recipient.CONTENT_URI, null);
+    notifyConversationListListeners();
+  }
+
   protected void setNotifyConverationListeners(Cursor cursor, long threadId) {
     cursor.setNotificationUri(context.getContentResolver(), DatabaseContentProviders.Conversation.getUriForThread(threadId));
   }

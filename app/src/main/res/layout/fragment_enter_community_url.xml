@@ -25,7 +25,7 @@
         android:layout_marginTop="@dimen/large_spacing"
         android:gravity="center_vertical"
         android:hint="@string/fragment_enter_community_url_edit_text_hint"
-        android:inputType="textWebEmailAddress|textMultiLine"
+        android:inputType="textUri"
         android:maxLines="3"
         android:paddingTop="0dp"
         android:paddingBottom="0dp"
@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:visibility="gone"
-            app:SpinKit_Color="@color/text" />
+            app:SpinKit_Color="?android:textColorPrimary" />
 
     </RelativeLayout>
 

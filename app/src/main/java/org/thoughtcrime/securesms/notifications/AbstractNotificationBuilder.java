@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.notifications;
 
 import android.app.Notification;
 import android.content.Context;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.SpannableStringBuilder;
@@ -65,17 +64,8 @@ public abstract class AbstractNotificationBuilder extends NotificationCompat.Bui
   }
 
   private void setLed() {
-    String ledColor              = TextSecurePreferences.getNotificationLedColor(context);
-    String ledBlinkPattern       = TextSecurePreferences.getNotificationLedPattern(context);
-    String ledBlinkPatternCustom = TextSecurePreferences.getNotificationLedPatternCustom(context);
-
-    if (!ledColor.equals("none")) {
-      String[] blinkPatternArray = parseBlinkPattern(ledBlinkPattern, ledBlinkPatternCustom);
-
-      setLights(Color.parseColor(ledColor),
-                Integer.parseInt(blinkPatternArray[0]),
-                Integer.parseInt(blinkPatternArray[1]));
-    }
+    int ledColor = TextSecurePreferences.getNotificationLedColor(context);
+    setLights(ledColor, 500,2000);
   }
 
   public void setTicker(@NonNull Recipient recipient, @Nullable CharSequence message) {
@@ -86,13 +76,6 @@ public abstract class AbstractNotificationBuilder extends NotificationCompat.Bui
     } else {
       setTicker(context.getString(R.string.AbstractNotificationBuilder_new_message));
     }
-  }
-
-  private String[] parseBlinkPattern(String blinkPattern, String blinkPatternCustom) {
-    if (blinkPattern.equals("custom"))
-      blinkPattern = blinkPatternCustom;
-
-    return blinkPattern.split(",");
   }
 
   protected @NonNull CharSequence trimToDisplayLength(@Nullable CharSequence text) {

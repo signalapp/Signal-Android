@@ -7,5 +7,5 @@
 
     <corners android:radius="@dimen/medium_button_corner_radius" />
 
-    <stroke android:width="@dimen/border_thickness" android:color="@color/accent" />
+    <stroke android:width="@dimen/border_thickness" android:color="?outlineButtonBorder" />
 </shape>

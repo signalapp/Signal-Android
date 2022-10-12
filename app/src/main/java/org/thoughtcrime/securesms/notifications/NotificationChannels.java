@@ -1,13 +1,11 @@
 package org.thoughtcrime.securesms.notifications;
 
 import android.annotation.TargetApi;
-import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationChannelGroup;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.media.AudioAttributes;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -221,7 +219,7 @@ public class NotificationChannels {
    * channels. Performs database operations and should therefore be invoked on a background thread.
    */
   @WorkerThread
-  public static synchronized void updateMessagesLedColor(@NonNull Context context, @NonNull String color) {
+  public static synchronized void updateMessagesLedColor(@NonNull Context context, @NonNull Integer color) {
     if (!supported()) {
       return;
     }
@@ -472,12 +470,12 @@ public class NotificationChannels {
   }
 
   @TargetApi(26)
-  private static void setLedPreference(@NonNull NotificationChannel channel, @NonNull String ledColor) {
+  private static void setLedPreference(@NonNull NotificationChannel channel, @NonNull Integer ledColor) {
     if ("none".equals(ledColor)) {
       channel.enableLights(false);
     } else {
       channel.enableLights(true);
-      channel.setLightColor(Color.parseColor(ledColor));
+      channel.setLightColor(ledColor);
     }
   }
 
@@ -509,7 +507,7 @@ public class NotificationChannels {
 
   @WorkerThread
   @TargetApi(26)
-  private static void updateAllRecipientChannelLedColors(@NonNull Context context, @NonNull NotificationManager notificationManager, @NonNull String color) {
+  private static void updateAllRecipientChannelLedColors(@NonNull Context context, @NonNull NotificationManager notificationManager, @NonNull Integer color) {
     RecipientDatabase database = DatabaseComponent.get(context).recipientDatabase();
 
     try (RecipientDatabase.RecipientReader recipients = database.getRecipientsWithNotificationChannels()) {

@@ -85,7 +85,6 @@ import org.thoughtcrime.securesms.sskenvironment.ProfileManager;
 import org.thoughtcrime.securesms.sskenvironment.ReadReceiptManager;
 import org.thoughtcrime.securesms.sskenvironment.TypingStatusRepository;
 import org.thoughtcrime.securesms.util.Broadcaster;
-import org.thoughtcrime.securesms.util.UiModeUtilities;
 import org.thoughtcrime.securesms.util.dynamiclanguage.LocaleParseHelper;
 import org.thoughtcrime.securesms.webrtc.CallMessageProcessor;
 import org.webrtc.PeerConnectionFactory;
@@ -165,6 +164,10 @@ public class ApplicationContext extends Application implements DefaultLifecycleO
         return (ApplicationContext) context.getApplicationContext();
     }
 
+    public TextSecurePreferences getPrefs() {
+        return textSecurePreferences;
+    }
+
     public DatabaseComponent getDatabaseComponent() {
         return EntryPoints.get(getApplicationContext(), DatabaseComponent.class);
     }
@@ -220,7 +223,6 @@ public class ApplicationContext extends Application implements DefaultLifecycleO
         if (userPublicKey != null) {
             registerForFCMIfNeeded(false);
         }
-        UiModeUtilities.setupUiModeToUserSelected(this);
         initializeExpiringMessageManager();
         initializeTypingStatusRepository();
         initializeTypingStatusSender();

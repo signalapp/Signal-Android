@@ -1,14 +1,14 @@
 package org.thoughtcrime.securesms.util
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.os.Bundle
 import android.view.View
+import androidx.annotation.StyleRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import network.loki.messenger.R
+import org.session.libsession.utilities.TextSecurePreferences
 import org.thoughtcrime.securesms.BaseActionBarActivity
 import org.thoughtcrime.securesms.conversation.v2.utilities.BaseDialog
 
@@ -68,3 +68,34 @@ interface ActivityDispatcher {
     fun dispatchIntent(body: (Context)->Intent?)
     fun showDialog(baseDialog: BaseDialog, tag: String? = null)
 }
+
+fun TextSecurePreferences.themeState(): ThemeState {
+    val themeStyle = getThemeStyle().getThemeStyle()
+    val accentStyle = getAccentColorStyle() ?: themeStyle.getDefaultAccentColor()
+    val followSystem = getFollowSystemSettings()
+    return ThemeState(
+        themeStyle,
+        accentStyle,
+        followSystem
+    )
+}
+
+@StyleRes
+fun String.getThemeStyle(): Int = when (this) {
+    TextSecurePreferences.CLASSIC_DARK -> R.style.Classic_Dark
+    TextSecurePreferences.CLASSIC_LIGHT -> R.style.Classic_Light
+    TextSecurePreferences.OCEAN_DARK -> R.style.Ocean_Dark
+    TextSecurePreferences.OCEAN_LIGHT -> R.style.Ocean_Light
+    else -> throw NullPointerException("The style [$this] is not supported")
+}
+
+@StyleRes
+fun Int.getDefaultAccentColor(): Int =
+    if (this == R.style.Ocean_Dark || this == R.style.Ocean_Light) R.style.PrimaryBlue
+    else R.style.PrimaryGreen
+
+data class ThemeState (
+    @StyleRes val theme: Int,
+    @StyleRes val accentStyle: Int,
+    val followSystem: Boolean
+)

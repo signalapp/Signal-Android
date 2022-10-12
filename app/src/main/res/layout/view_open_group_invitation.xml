@@ -10,10 +10,11 @@
     android:gravity="center_vertical">
 
     <RelativeLayout
+        android:id="@+id/openGroupInvitationIconBackground"
         android:layout_width="44dp"
         android:layout_height="44dp"
         android:background="@drawable/circle_tintable"
-        android:backgroundTint="@color/accent">
+        android:backgroundTint="@color/transparent_black_6">
 
         <ImageView
             android:id="@+id/openGroupInvitationIconImageView"

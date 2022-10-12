@@ -7,9 +7,12 @@ import android.net.Uri
 import android.text.InputType
 import android.text.TextWatcher
 import android.util.AttributeSet
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.MotionEvent
+import android.view.inputmethod.EditorInfo
 import android.widget.RelativeLayout
+import android.widget.TextView
 import androidx.core.view.isVisible
 import network.loki.messenger.R
 import network.loki.messenger.databinding.ViewInputBarBinding
@@ -27,7 +30,8 @@ import org.thoughtcrime.securesms.util.contains
 import org.thoughtcrime.securesms.util.toDp
 import org.thoughtcrime.securesms.util.toPx
 
-class InputBar : RelativeLayout, InputBarEditTextDelegate, QuoteViewDelegate, LinkPreviewDraftViewDelegate {
+class InputBar : RelativeLayout, InputBarEditTextDelegate, QuoteViewDelegate, LinkPreviewDraftViewDelegate,
+    TextView.OnEditorActionListener {
     private lateinit var binding: ViewInputBarBinding
     private val screenWidth = Resources.getSystem().displayMetrics.widthPixels
     private val vMargin by lazy { toDp(4, resources) }
@@ -85,11 +89,31 @@ class InputBar : RelativeLayout, InputBarEditTextDelegate, QuoteViewDelegate, Li
             }
         }
         // Edit text
+        binding.inputBarEditText.setOnEditorActionListener(this)
+        if (TextSecurePreferences.isEnterSendsEnabled(context)) {
+            binding.inputBarEditText.imeOptions = EditorInfo.IME_ACTION_SEND
+            binding.inputBarEditText.inputType =
+                InputType.TYPE_TEXT_FLAG_CAP_SENTENCES
+        } else {
+            binding.inputBarEditText.imeOptions = EditorInfo.IME_ACTION_NONE
+            binding.inputBarEditText.inputType =
+                binding.inputBarEditText.inputType or
+                InputType.TYPE_TEXT_FLAG_CAP_SENTENCES
+        }
         val incognitoFlag = if (TextSecurePreferences.isIncognitoKeyboardEnabled(context)) 16777216 else 0
         binding.inputBarEditText.imeOptions = binding.inputBarEditText.imeOptions or incognitoFlag // Always use incognito keyboard if setting enabled
-        binding.inputBarEditText.inputType = binding.inputBarEditText.inputType or InputType.TYPE_TEXT_FLAG_CAP_SENTENCES
         binding.inputBarEditText.delegate = this
     }
+
+    override fun onEditorAction(v: TextView?, actionId: Int, event: KeyEvent?): Boolean {
+        if (v === binding.inputBarEditText && actionId == EditorInfo.IME_ACTION_SEND) {
+            // same as pressing send button
+            delegate?.sendMessage()
+            return true
+        }
+        return false
+    }
+
     // endregion
 
     // region Updating

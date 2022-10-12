@@ -41,7 +41,7 @@ class NewConversationFragment : BottomSheetDialogFragment(), NewConversationDele
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val dialog = BottomSheetDialog(requireContext(), theme)
+        val dialog = BottomSheetDialog(requireContext(), R.style.Theme_Session_BottomSheet)
         dialog.setOnShowListener {
             val bottomSheetDialog = it as BottomSheetDialog
             val parentLayout =

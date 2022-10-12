@@ -15,6 +15,7 @@ import org.session.libsession.messaging.utilities.SodiumUtilities
 import org.session.libsession.utilities.TextSecurePreferences
 import org.thoughtcrime.securesms.dependencies.DatabaseComponent
 import org.thoughtcrime.securesms.util.UiModeUtilities
+import org.thoughtcrime.securesms.util.getAccentColor
 import java.util.regex.Pattern
 
 object MentionUtilities {
@@ -58,13 +59,12 @@ object MentionUtilities {
         }
         val result = SpannableString(text)
         val isLightMode = UiModeUtilities.isDayUiMode(context)
+        val color = if (isOutgoingMessage) {
+            ResourcesCompat.getColor(context.resources, if (isLightMode) R.color.white else R.color.black, context.theme)
+        } else {
+            context.getAccentColor()
+        }
         for (mention in mentions) {
-            val colorID = if (isOutgoingMessage) {
-                if (isLightMode) R.color.white else R.color.black
-            } else {
-                R.color.accent
-            }
-            val color = ResourcesCompat.getColor(context.resources, colorID, context.theme)
             result.setSpan(ForegroundColorSpan(color), mention.first.lower, mention.first.upper, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
             result.setSpan(StyleSpan(Typeface.BOLD), mention.first.lower, mention.first.upper, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         }

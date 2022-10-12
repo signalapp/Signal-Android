@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.home
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +11,7 @@ import network.loki.messenger.databinding.FragmentConversationBottomSheetBinding
 import org.thoughtcrime.securesms.database.model.ThreadRecord
 import org.thoughtcrime.securesms.util.UiModeUtilities
 
-class ConversationOptionsBottomSheet : BottomSheetDialogFragment(), View.OnClickListener {
+class ConversationOptionsBottomSheet(private val parentContext: Context) : BottomSheetDialogFragment(), View.OnClickListener {
     private lateinit var binding: FragmentConversationBottomSheetBinding
     //FIXME AC: Supplying a threadRecord directly into the field from an activity
     // is not the best idea. It doesn't survive configuration change.
@@ -28,8 +29,8 @@ class ConversationOptionsBottomSheet : BottomSheetDialogFragment(), View.OnClick
     var onNotificationTapped: (() -> Unit)? = null
     var onSetMuteTapped: ((Boolean) -> Unit)? = null
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = FragmentConversationBottomSheetBinding.inflate(inflater, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        binding = FragmentConversationBottomSheetBinding.inflate(LayoutInflater.from(parentContext), container, false)
         return binding.root
     }
 

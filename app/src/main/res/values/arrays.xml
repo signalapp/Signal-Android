@@ -119,27 +119,14 @@
       <item>vi</item>
   </string-array>
 
-    <string-array name="pref_led_color_entries">
-    <item>@string/preferences__green</item>
-    <item>@string/preferences__red</item>
-    <item>@string/preferences__blue</item>
-    <item>@string/preferences__orange</item>
-    <item>@string/preferences__cyan</item>
-    <item>@string/preferences__magenta</item>
-    <item>@string/preferences__white</item>
-    <item>@string/preferences__none</item>
-  </string-array>
-
-
   <string-array name="pref_led_color_values" translatable="false">
-    <item>green</item>
-    <item>red</item>
-    <item>blue</item>
-    <item>yellow</item>
-    <item>cyan</item>
-    <item>magenta</item>
-    <item>white</item>
-    <item>none</item>
+      <item>@color/accent_green</item>
+      <item>@color/accent_blue</item>
+      <item>@color/accent_yellow</item>
+      <item>@color/accent_pink</item>
+      <item>@color/accent_purple</item>
+      <item>@color/accent_orange</item>
+      <item>@color/accent_red</item>
   </string-array>
 
   <string-array name="pref_led_blink_pattern_entries">

@@ -344,7 +344,6 @@ ranti pakalla yupaykunamanta</string>
     </plurals>
     <!-- preferences.xml -->
     <string name="preferences__pref_enter_sends_title">Yaykuna tecla hillaywan kachapay.</string>
-    <string name="preferences__pressing_the_enter_key_will_send_text_messages">Chaskikunaka Yaykuna teclahillayta llapikpimi rinka.</string>
     <string name="preferences__screen_security">Rikuripa pakallayachina</string>
     <string name="preferences__disable_screen_security_to_allow_screen_shots">Antanikimanta shuyu llukchinakunata pakallayachina, chayralla aplicación hillaykunapi shinallata kay aplicación ukupipash.</string>
     <string name="preferences__notifications">Willachikuna</string>
@@ -380,19 +379,15 @@ ranti pakalla yupaykunamanta</string>
     <string name="preferences__default">Ña rurashka </string>
     <string name="preferences__incognito_keyboard">Killkana hillay pakallaku</string>
     <string name="preferences__read_receipts">Killkakatinata willachik </string>
-    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Willachiykuna mana hapichishka kakpika, mana shuk mashikunapa willachiykunata rikuyta ushankichu.</string>
     <string name="preferences__request_keyboard_to_disable_personalized_learning">Killkana antata mañay, paypaklla yachakuyta anchuchinkapak</string>
     <string name="preferences__light_theme">Punchalla</string>
     <string name="preferences__dark_theme">Yanalla</string>
     <string name="preferences_chats__message_trimming">Chaskimanta pitishka</string>
     <string name="preferences_advanced__use_system_emoji">Anta llikapa ñawikukunata rikuchipay</string>
     <string name="preferences_advanced__disable_signal_built_in_emoji_support">Sessionpa ñawikukunapa yanapayta anchuchipay</string>
-    <string name="preferences_app_protection__app_access">Aplicacionman yaykupay</string>
-    <string name="preferences_app_protection__communication">Rimariy</string>
     <string name="preferences_chats__chats">Rimariy</string>
     <string name="preferences_notifications__messages">Chaskikuna</string>
     <string name="preferences_notifications__in_chat_sounds">Rimaripi wakay</string>
-    <string name="preferences_notifications__show">Rikuchina</string>
     <string name="preferences_notifications__priority">Kallaripi</string>
     <!-- **************************************** -->
     <!-- menus -->

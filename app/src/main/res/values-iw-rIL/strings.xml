@@ -415,7 +415,6 @@
     </plurals>
     <!-- preferences.xml -->
     <string name="preferences__pref_enter_sends_title">מקש Enter שולח</string>
-    <string name="preferences__pressing_the_enter_key_will_send_text_messages">לחיצה על מקש Enter תישלח הודעות טקסט</string>
     <string name="preferences__send_link_previews">שלח קדם־תצוגות של קישורים</string>
     <string name="preferences__previews_are_supported_for">קדם־תצוגות נתמכות עבור קישורים של Imgur, Instagram, Pinterest, Reddit ו־YouTube</string>
     <string name="preferences__screen_security">אבטחת מסך</string>
@@ -453,7 +452,6 @@
     <string name="preferences__default">ברירת מחדל</string>
     <string name="preferences__incognito_keyboard">מקלדת סמויה</string>
     <string name="preferences__read_receipts">אישורי קריאה</string>
-    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">אם אישורי קריאה מושבתים, לא תוכל לראות אישורי קריאה מאחרים.</string>
     <string name="preferences__typing_indicators">מחווני הקלדה</string>
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">אם מחווני הקלדה מושבתים, לא תוכל לראות מחווני הקלדה מאחרים.</string>
     <string name="preferences__request_keyboard_to_disable_personalized_learning">בקש מהמקלדת להשבית למידה מותאמת אישית</string>
@@ -462,12 +460,9 @@
     <string name="preferences_chats__message_trimming">קיצוץ הודעה</string>
     <string name="preferences_advanced__use_system_emoji">השתמש באימוג\'י של מערכת</string>
     <string name="preferences_advanced__disable_signal_built_in_emoji_support">השבת תמיכת אימוג\'י מובנית של Session</string>
-    <string name="preferences_app_protection__app_access">גישת יישום</string>
-    <string name="preferences_app_protection__communication">תקשורת</string>
     <string name="preferences_chats__chats">התכתבויות</string>
     <string name="preferences_notifications__messages">הודעות</string>
     <string name="preferences_notifications__in_chat_sounds">צלילים בתוך התכתבויות</string>
-    <string name="preferences_notifications__show">הראה</string>
     <string name="preferences_notifications__priority">עדיפות</string>
     <!-- **************************************** -->
     <!-- menus -->

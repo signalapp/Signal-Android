@@ -17,7 +17,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/input_bar_background" />
+            android:background="?input_bar_background" />
 
         <!-- The left content (dot view + duration) -->
 
@@ -44,7 +44,7 @@
                 android:layout_marginLeft="@dimen/small_spacing"
                 android:text="00:00"
                 android:textSize="@dimen/small_font_size"
-                android:textColor="@color/text" />
+                android:textColor="?android:textColorPrimary" />
 
         </LinearLayout>
 
@@ -65,7 +65,7 @@
                 android:layout_height="16dp"
                 android:src="@drawable/ic_keyboard_arrow_left_grey600_24dp"
                 android:layout_marginTop="1dp"
-                app:tint="@color/text"
+                app:tint="?android:textColorPrimary"
                 android:alpha="0.6" />
 
             <TextView
@@ -75,7 +75,7 @@
                 android:layout_marginLeft="4dp"
                 android:text="@string/conversation_input_panel__slide_to_cancel"
                 android:textSize="@dimen/very_small_font_size"
-                android:textColor="@color/text"
+                android:textColor="?android:textColorPrimary"
                 android:alpha="0.6" />
 
         </LinearLayout>
@@ -91,7 +91,7 @@
             android:gravity="center"
             android:text="@string/cancel"
             android:textSize="@dimen/small_font_size"
-            android:textColor="@color/text"
+            android:textColor="?android:textColorPrimary"
             android:textStyle="bold" />
 
         <!-- Separator -->
@@ -166,14 +166,14 @@
             android:layout_width="16dp"
             android:layout_height="16dp"
             android:src="@drawable/ic_lock"
-            app:tint="@color/text" />
+            app:tint="?android:textColorPrimary" />
 
         <ImageView
             android:layout_width="16dp"
             android:layout_height="16dp"
             android:layout_marginTop="4dp"
             android:src="@drawable/ic_chevron_up"
-            app:tint="@color/text" />
+            app:tint="?android:textColorPrimary" />
 
     </LinearLayout>
 

@@ -3,11 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
 
-    <solid android:color="?attr/dialog_background_color" />
+    <solid android:color="?dialog_background_color" />
 
     <corners
         android:topLeftRadius="@dimen/dialog_corner_radius"
         android:topRightRadius="@dimen/dialog_corner_radius" />
 
-<!--    <stroke android:width="@dimen/border_thickness" android:color="@color/dialog_border" />-->
+    <stroke android:width="@dimen/border_thickness" android:color="?dialog_border" />
 </shape>

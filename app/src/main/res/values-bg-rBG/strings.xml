@@ -377,7 +377,6 @@
     </plurals>
     <!-- preferences.xml -->
     <string name="preferences__pref_enter_sends_title">Клавишът Enter се използва за изпращане</string>
-    <string name="preferences__pressing_the_enter_key_will_send_text_messages">Натискане на клавиша Enter ще изпрати текстово съобщене</string>
     <string name="preferences__send_link_previews">Изпращане на визуализации на връзката</string>
     <string name="preferences__previews_are_supported_for">Визуализации са поддържани за линкове към Imgur, Instagram, Pinterest, Reddit, и YouTube.</string>
     <string name="preferences__screen_security">Сигурност на екрана</string>
@@ -415,7 +414,6 @@
     <string name="preferences__default">По подразбиране</string>
     <string name="preferences__incognito_keyboard">Тайна клавиатура</string>
     <string name="preferences__read_receipts">Потвърждения за прочитане</string>
-    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Ако Вашите потвърждения за прочитане са деактивирани няма да можете да видите потвържденията за прочитане от други.</string>
     <string name="preferences__typing_indicators">Индикатори за писане</string>
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Ако индикаторите за писане са декативирани, няма да можете да видите индикаторите на другите хора.</string>
     <string name="preferences__request_keyboard_to_disable_personalized_learning">Поискване на клавиатурата да деактивира персонализрано научаване</string>
@@ -424,12 +422,9 @@
     <string name="preferences_chats__message_trimming">Съкращаване на съобщенията</string>
     <string name="preferences_advanced__use_system_emoji">Използване на вградените emoji-та</string>
     <string name="preferences_advanced__disable_signal_built_in_emoji_support">Деактивирай вградена в Session подръжка на emoji-та</string>
-    <string name="preferences_app_protection__app_access">Достъп до приложението</string>
-    <string name="preferences_app_protection__communication">Комуникация</string>
     <string name="preferences_chats__chats">Чатове</string>
     <string name="preferences_notifications__messages">Съобщения</string>
     <string name="preferences_notifications__in_chat_sounds">Звуци в чатове</string>
-    <string name="preferences_notifications__show">Показване</string>
     <string name="preferences_notifications__priority">Приоритет</string>
     <!-- **************************************** -->
     <!-- menus -->

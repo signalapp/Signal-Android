@@ -92,7 +92,7 @@
             android:layout_height="72dp"
             android:layout_gravity="center"
             android:padding="@dimen/small_spacing"
-            app:SpinKit_Color="@color/text"
+            app:SpinKit_Color="?android:textColorPrimary"
             android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@+id/linkpreview_divider"
             app:layout_constraintEnd_toEndOf="parent"

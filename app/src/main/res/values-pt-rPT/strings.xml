@@ -396,7 +396,6 @@ foi recebida está corrompida!</string>
     </plurals>
     <!-- preferences.xml -->
     <string name="preferences__pref_enter_sends_title">Tecla de Enter envia</string>
-    <string name="preferences__pressing_the_enter_key_will_send_text_messages">Pressionar a tecla Enter envia as mensagens de texto</string>
     <string name="preferences__send_link_previews">Enviar pré-visualização de hiperligações</string>
     <string name="preferences__previews_are_supported_for">As pré-visualizações são suportadas em hiperligações do Imgur, Instagram, Pinterest, Reddit e YouTube</string>
     <string name="preferences__screen_security">Segurança de ecrã</string>
@@ -434,7 +433,6 @@ foi recebida está corrompida!</string>
     <string name="preferences__default">Pré-definição</string>
     <string name="preferences__incognito_keyboard">Teclado incógnito</string>
     <string name="preferences__read_receipts">Recibos de leitura</string>
-    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Se os recibos de leitura forem desativados, não vai poder ver os recibos enviados por outros.</string>
     <string name="preferences__typing_indicators">Indicadores de escrita</string>
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Se os indicadores de escrita estiverem desativados, não poderá ver os indicadores de escrita de outros utilizadores.</string>
     <string name="preferences__request_keyboard_to_disable_personalized_learning">Pedir ao teclado para desligar a aprendizagem de palavras</string>
@@ -443,12 +441,9 @@ foi recebida está corrompida!</string>
     <string name="preferences_chats__message_trimming">Redução da mensagem</string>
     <string name="preferences_advanced__use_system_emoji">Utilizar os emojis do sistema</string>
     <string name="preferences_advanced__disable_signal_built_in_emoji_support">Desativar o suporte de emojis próprios do Session</string>
-    <string name="preferences_app_protection__app_access">Acesso da aplicação</string>
-    <string name="preferences_app_protection__communication">Comunicação</string>
     <string name="preferences_chats__chats">Conversas</string>
     <string name="preferences_notifications__messages">Mensagens</string>
     <string name="preferences_notifications__in_chat_sounds">Sons na conversa</string>
-    <string name="preferences_notifications__show">Exibir</string>
     <string name="preferences_notifications__priority">Prioridade</string>
     <!-- **************************************** -->
     <!-- menus -->
@@ -609,7 +604,6 @@ foi recebida está corrompida!</string>
     <string name="activity_notification_settings_style_section_title">Estilo de notificação</string>
     <string name="activity_notification_settings_content_section_title">Conteúdo da notificação</string>
     <string name="activity_privacy_settings_title">Privacidade</string>
-    <string name="activity_chat_settings_title">Bate-papos</string>
     <string name="preferences_notifications_strategy_category_title">Estratégia de notificação</string>
     <string name="fragment_device_list_bottom_sheet_change_name_button_title">Mudar o nome</string>
     <string name="fragment_device_list_bottom_sheet_unlink_device_button_title">Dessincronizar dispositivo</string>

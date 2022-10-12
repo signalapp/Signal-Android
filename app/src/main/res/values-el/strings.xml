@@ -401,7 +401,6 @@
     </plurals>
     <!-- preferences.xml -->
     <string name="preferences__pref_enter_sends_title">Το Enter αποστέλλει</string>
-    <string name="preferences__pressing_the_enter_key_will_send_text_messages">Τα μηνύματα θα αποστέλλονται με το πάτημα του Enter</string>
     <string name="preferences__send_link_previews">Αποστολή προεπισκοπήσεων συνδέσμων</string>
     <string name="preferences__previews_are_supported_for">Οι προεπισκοπήσεις υποστηρίζονται για συνδέσμους Imgur, Instagram, Pinterest, Reddit, και YouTube.</string>
     <string name="preferences__screen_security">Ασφάλεια οθόνης</string>
@@ -439,7 +438,6 @@
     <string name="preferences__default">Προκαθορισμένο</string>
     <string name="preferences__incognito_keyboard">Κρυφό πληκτρολόγιο</string>
     <string name="preferences__read_receipts">Αποδεικτικά ανάγνωσης</string>
-    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Αν τα αποδεικτικά ανάγνωσης είναι απενεργοποιημένα, δε θα μπορείτε να δείτε αποδεικτικά ανάγνωσης από άλλους/ες.</string>
     <string name="preferences__typing_indicators">Δείκτες πληκτρολόγησης</string>
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Αν οι δείκτες πληκτρολόγησης είναι απενεργοποιημένοι, δε θα μπορείτε να δείτε δείκτες πληκτρολόγησης από άλλους/ες.</string>
     <string name="preferences__request_keyboard_to_disable_personalized_learning">Αίτηση πληκτρολογίου για να απενεργοποιηθεί η προσωποποιημένη εκμάθηση</string>
@@ -448,12 +446,9 @@
     <string name="preferences_chats__message_trimming">Περικοπή μηνυμάτων</string>
     <string name="preferences_advanced__use_system_emoji">Χρήση emoji συστήματος</string>
     <string name="preferences_advanced__disable_signal_built_in_emoji_support">Απενεργοποίηση της ενσωματωμένης υποστήριξης για emoji του Session</string>
-    <string name="preferences_app_protection__app_access">Πρόσβαση εφαρμογής</string>
-    <string name="preferences_app_protection__communication">Επικοινωνία</string>
     <string name="preferences_chats__chats">Συνομιλίες</string>
     <string name="preferences_notifications__messages">Μηνύματα</string>
     <string name="preferences_notifications__in_chat_sounds">Ήχοι μέσα στη συνομιλία</string>
-    <string name="preferences_notifications__show">Εμφάνιση</string>
     <string name="preferences_notifications__priority">Προτεραιότητα</string>
     <!-- **************************************** -->
     <!-- menus -->
@@ -619,7 +614,6 @@
     <string name="activity_notification_settings_style_section_title">Στυλ ειδοποιήσεων</string>
     <string name="activity_notification_settings_content_section_title">Περιεχόμενο Ειδοποιήσεων</string>
     <string name="activity_privacy_settings_title">Απόρρητο</string>
-    <string name="activity_chat_settings_title">Συνομιλίες</string>
     <string name="preferences_notifications_strategy_category_title">Περιεχόμενο Ειδοποιήσεων</string>
     <string name="preferences_notifications_strategy_category_fast_mode_title">Χρήση Ταχείας Λειτουργίας</string>
     <string name="preferences_notifications_strategy_category_fast_mode_summary">Θα ειδοποιηθείτε για νέα μηνύματα αξιόπιστα και άμεσα χρησιμοποιώντας τους διακομιστές ειδοποιήσεων της Google.</string>

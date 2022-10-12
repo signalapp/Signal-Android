@@ -14,8 +14,6 @@ import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
-import androidx.core.view.ViewCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.loader.app.LoaderManager;
@@ -24,7 +22,6 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.shape.CornerFamily;
-import com.google.android.material.shape.MaterialShapeDrawable;
 import com.google.android.material.shape.ShapeAppearanceModel;
 
 import org.thoughtcrime.securesms.components.emoji.EmojiEventListener;
@@ -80,7 +77,6 @@ public final class ReactWithAnyEmojiDialogFragment extends BottomSheetDialogFrag
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setStyle(DialogFragment.STYLE_NORMAL, R.style.Widget_TextSecure_ReactWithAny);
   }
 
   @Override
@@ -92,22 +88,6 @@ public final class ReactWithAnyEmojiDialogFragment extends BottomSheetDialogFrag
                                                                     .setTopLeftCorner(CornerFamily.ROUNDED, ViewUtil.dpToPx(requireContext(), 18))
                                                                     .setTopRightCorner(CornerFamily.ROUNDED, ViewUtil.dpToPx(requireContext(), 18))
                                                                     .build();
-
-    MaterialShapeDrawable dialogBackground = new MaterialShapeDrawable(shapeAppearanceModel);
-
-    dialogBackground.setTint(ContextCompat.getColor(requireContext(), R.color.react_with_any_background));
-
-    dialog.getBehavior().addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
-      @Override
-      public void onStateChanged(@NonNull View bottomSheet, int newState) {
-        if (bottomSheet.getBackground() != dialogBackground) {
-          ViewCompat.setBackground(bottomSheet, dialogBackground);
-        }
-      }
-
-      @Override
-      public void onSlide(@NonNull View bottomSheet, float slideOffset) { }
-    });
 
     boolean shadows = requireArguments().getBoolean(ARG_SHADOWS, true);
     if (!shadows) {

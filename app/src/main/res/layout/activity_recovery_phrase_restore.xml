@@ -18,7 +18,7 @@
         android:layout_marginRight="@dimen/very_large_spacing"
         android:textSize="@dimen/large_font_size"
         android:textStyle="bold"
-        android:textColor="@color/text"
+        android:textColor="?android:textColorPrimary"
         android:text="@string/activity_restore_title" />
 
     <TextView
@@ -28,7 +28,7 @@
         android:layout_marginTop="4dp"
         android:layout_marginRight="@dimen/very_large_spacing"
         android:textSize="@dimen/small_font_size"
-        android:textColor="@color/text"
+        android:textColor="?android:textColorPrimary"
         android:text="@string/activity_restore_explanation" />
 
     <EditText
@@ -67,9 +67,9 @@
         android:layout_marginLeft="@dimen/massive_spacing"
         android:layout_marginRight="@dimen/massive_spacing"
         android:gravity="center"
-        android:textColorLink="@color/text"
+        android:textColorLink="?android:textColorPrimary"
         android:textSize="@dimen/very_small_font_size"
-        android:textColor="@color/text"
+        android:textColor="?android:textColorPrimary"
         android:text="By using this service, you agree to our Terms of Service and Privacy Policy"
         tools:ignore="HardcodedText" /> <!-- Intentionally not yet translated -->
 

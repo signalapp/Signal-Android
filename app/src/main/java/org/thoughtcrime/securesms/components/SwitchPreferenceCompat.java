@@ -1,11 +1,10 @@
 package org.thoughtcrime.securesms.components;
 
-import android.annotation.TargetApi;
 import android.content.Context;
-import android.os.Build;
+import android.util.AttributeSet;
+
 import androidx.preference.CheckBoxPreference;
 import androidx.preference.Preference;
-import android.util.AttributeSet;
 
 import network.loki.messenger.R;
 
@@ -18,7 +17,6 @@ public class SwitchPreferenceCompat extends CheckBoxPreference {
         setLayoutRes();
     }
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public SwitchPreferenceCompat(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         setLayoutRes();

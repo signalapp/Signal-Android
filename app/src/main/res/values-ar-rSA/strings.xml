@@ -447,7 +447,6 @@
     </plurals>
     <!-- preferences.xml -->
     <string name="preferences__pref_enter_sends_title">مفتاح الدخول يقوم بالإرسال</string>
-    <string name="preferences__pressing_the_enter_key_will_send_text_messages">الضغط على مفتاح الدخول سيقوم بإرسال الرسالة</string>
     <string name="preferences__send_link_previews">إرسال معاينة الرابط</string>
     <string name="preferences__previews_are_supported_for">المعاينات مدعومة لروابط Imgur، Instagram، Pinte، Reddit، واليوتيوب</string>
     <string name="preferences__screen_security">تأمين الشاشة</string>
@@ -485,7 +484,6 @@
     <string name="preferences__default">افتراضي</string>
     <string name="preferences__incognito_keyboard">وضع التستّر للوحة المفاتيح</string>
     <string name="preferences__read_receipts">قراءة تقارير الإستلام</string>
-    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">لن يمكنك من استقبال مؤشر قراءة الرسائل من الآخرين إذا قمت بإلغاء مؤشر القراءة.</string>
     <string name="preferences__typing_indicators">مؤشرات الكتابة</string>
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">اِذا كانت مؤشرات الكتابة غير مفعلة, لن ترى مؤشرات الكتابة من الآخرين.</string>
     <string name="preferences__request_keyboard_to_disable_personalized_learning">الطلب من لوحة المفاتيح تعطيل التعلم الذاتي</string>
@@ -494,12 +492,9 @@
     <string name="preferences_chats__message_trimming">تقليم الرسالة</string>
     <string name="preferences_advanced__use_system_emoji">استخدام الرموز التعبيرية بالنظام</string>
     <string name="preferences_advanced__disable_signal_built_in_emoji_support">تعطيل الرموز التعبيرية المدمجة في Session</string>
-    <string name="preferences_app_protection__app_access">دخول البرنامج</string>
-    <string name="preferences_app_protection__communication">اتصال</string>
     <string name="preferences_chats__chats">دردشة</string>
     <string name="preferences_notifications__messages">الرسائل</string>
     <string name="preferences_notifications__in_chat_sounds">أصوات خلال الدردشة</string>
-    <string name="preferences_notifications__show">اظهار</string>
     <string name="preferences_notifications__priority">أولوية</string>
     <!-- **************************************** -->
     <!-- menus -->
@@ -665,7 +660,6 @@
     <string name="activity_notification_settings_style_section_title">طريقة الإشعارات</string>
     <string name="activity_notification_settings_content_section_title">محتوى الإشعارات</string>
     <string name="activity_privacy_settings_title">الخصوصية</string>
-    <string name="activity_chat_settings_title">دردشات</string>
     <string name="preferences_notifications_strategy_category_title">طريقة الإشعارات</string>
     <string name="preferences_notifications_strategy_category_fast_mode_title">استخدام الوضع السريع</string>
     <string name="preferences_notifications_strategy_category_fast_mode_summary">سوف يتم تنبيهك بالرسائل الجديدة بشكل موثوق و فوري بإستخدام خوادم غوغل.</string>

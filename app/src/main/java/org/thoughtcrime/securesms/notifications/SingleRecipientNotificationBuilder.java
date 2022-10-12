@@ -22,6 +22,7 @@ import androidx.annotation.StringRes;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationCompat.Action;
 import androidx.core.app.RemoteInput;
+import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
@@ -63,9 +64,8 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
   {
     super(context, privacy);
 
-
     setSmallIcon(R.drawable.ic_notification);
-    setColor(context.getResources().getColor(R.color.textsecure_primary));
+    setColor(ContextCompat.getColor(context, R.color.accent_green));
     setCategory(NotificationCompat.CATEGORY_MESSAGE);
 
     if (!NotificationChannels.supported()) {

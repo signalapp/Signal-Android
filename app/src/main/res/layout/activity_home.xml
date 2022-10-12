@@ -51,7 +51,7 @@
                     android:layout_toRightOf="@+id/profileButton"
                     android:scaleType="centerInside"
                     android:src="@drawable/ic_session"
-                    app:tint="@color/black" />
+                    app:tint="?sessionLogoTint" />
 
                 <RelativeLayout
                     android:id="@+id/searchViewContainer"
@@ -65,7 +65,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:src="@drawable/ic_baseline_search_24"
-                        app:tint="@color/text" />
+                        app:tint="?sessionLogoTint" />
 
                 </RelativeLayout>
 
@@ -100,6 +100,7 @@
     </androidx.appcompat.widget.Toolbar>
 
     <RelativeLayout
+        android:focusable="false"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipChildren="false">
@@ -108,17 +109,11 @@
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingBottom="172dp"
             android:clipToPadding="false"
+            android:paddingBottom="172dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:itemCount="6"
             tools:listitem="@layout/view_conversation" />
-
-        <View
-            android:id="@+id/gradientView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/home_activity_gradient" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:visibility="gone"
@@ -144,7 +139,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/activity_home_empty_state_message"
-                android:textColor="@color/text"
+                android:textColor="?android:textColorPrimary"
                 android:textSize="@dimen/medium_font_size" />
 
             <Button

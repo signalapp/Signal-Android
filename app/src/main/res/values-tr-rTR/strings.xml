@@ -400,7 +400,6 @@ iletisi alındı!</string>
     </plurals>
     <!-- preferences.xml -->
     <string name="preferences__pref_enter_sends_title">Enter tuşu ile gönder</string>
-    <string name="preferences__pressing_the_enter_key_will_send_text_messages">Enter tuşuna basmak metin iletilerini gönderecektir</string>
     <string name="preferences__send_link_previews">Bağlantı ön izlemelerini gönder</string>
     <string name="preferences__previews_are_supported_for">Ön izlemeler Imgur, Instagram, Pinterest, Reddit, ve YouTube bağlantıları için desteklenmektedir</string>
     <string name="preferences__screen_security">Ekran güvenliği</string>
@@ -438,7 +437,6 @@ iletisi alındı!</string>
     <string name="preferences__default">Varsayılan</string>
     <string name="preferences__incognito_keyboard">Gizli klavye</string>
     <string name="preferences__read_receipts">Okundu bilgisi</string>
-    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Okundu bilgisi etkin değilse, başkalarının okundu bilgilerini göremeyeceksiniz.</string>
     <string name="preferences__typing_indicators">\'Yazıyor\' göstergeleri</string>
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">\'Yazıyor\' göstergeleri etkin değilse, başkalarının \'Yazıyor\' göstergelerini göremeyeceksiniz.</string>
     <string name="preferences__request_keyboard_to_disable_personalized_learning">Klavyenin kişiselleştirilmiş öğrenmeyi devre dışı bırakmasını iste</string>
@@ -447,12 +445,9 @@ iletisi alındı!</string>
     <string name="preferences_chats__message_trimming">İleti kırpma</string>
     <string name="preferences_advanced__use_system_emoji">Sistem emojilerini kullan</string>
     <string name="preferences_advanced__disable_signal_built_in_emoji_support">Session\'in dahili emoji desteğini devre dışı bırak</string>
-    <string name="preferences_app_protection__app_access">Uygulama erişimi</string>
-    <string name="preferences_app_protection__communication">İletişim</string>
     <string name="preferences_chats__chats">Sohbetler</string>
     <string name="preferences_notifications__messages">İletiler</string>
     <string name="preferences_notifications__in_chat_sounds">Sohbet içi sesler</string>
-    <string name="preferences_notifications__show">Göster</string>
     <string name="preferences_notifications__priority">Öncelik</string>
     <!-- **************************************** -->
     <!-- menus -->
@@ -618,7 +613,6 @@ iletisi alındı!</string>
     <string name="activity_notification_settings_style_section_title">Bildirim Stili</string>
     <string name="activity_notification_settings_content_section_title">Bildirim içeriği</string>
     <string name="activity_privacy_settings_title">Gizlilik</string>
-    <string name="activity_chat_settings_title">Sohbetler</string>
     <string name="preferences_notifications_strategy_category_title">Bildirim Stili</string>
     <string name="preferences_notifications_strategy_category_fast_mode_title">Hızlı Modu Kullan</string>
     <string name="preferences_notifications_strategy_category_fast_mode_summary">Google\'ın bildirim sunucularını kullanarak yeni iletilerden güvenilir ve anında haberdar olacaksınız.</string>

@@ -5,8 +5,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        tools:context="org.thoughtcrime.securesms.MediaOverviewActivity"
-        android:theme="@style/Theme.Session.DayNight.NoActionBar">
+        tools:context="org.thoughtcrime.securesms.MediaOverviewActivity">
 
     <com.google.android.material.appbar.AppBarLayout
             style="@style/Widget.Session.AppBarLayout"

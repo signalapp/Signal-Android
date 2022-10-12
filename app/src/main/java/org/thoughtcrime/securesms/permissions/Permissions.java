@@ -22,8 +22,8 @@ import androidx.fragment.app.Fragment;
 import com.annimon.stream.Stream;
 import com.annimon.stream.function.Consumer;
 
-import org.thoughtcrime.securesms.util.LRUCache;
 import org.session.libsession.utilities.ServiceUtil;
+import org.thoughtcrime.securesms.util.LRUCache;
 
 import java.lang.ref.WeakReference;
 import java.security.SecureRandom;
@@ -353,7 +353,7 @@ public class Permissions {
       Context context = this.context.get();
 
       if (context != null) {
-        new AlertDialog.Builder(context)
+        new AlertDialog.Builder(context, R.style.ThemeOverlay_Session_AlertDialog)
             .setTitle(R.string.Permissions_permission_required)
             .setMessage(message)
             .setPositiveButton(R.string.Permissions_continue, (dialog, which) -> context.startActivity(getApplicationSettingsIntent(context)))

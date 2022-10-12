@@ -30,7 +30,7 @@ class SeedDialog : BaseDialog() {
     override fun setContentView(builder: AlertDialog.Builder) {
         val binding = DialogSeedBinding.inflate(LayoutInflater.from(requireContext()))
         binding.seedTextView.text = seed
-        binding.cancelButton.setOnClickListener { dismiss() }
+        binding.closeButton.setOnClickListener { dismiss() }
         binding.copyButton.setOnClickListener { copySeed() }
         builder.setView(binding.root)
     }

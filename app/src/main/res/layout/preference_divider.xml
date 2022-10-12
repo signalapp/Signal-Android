@@ -6,7 +6,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="@dimen/medium_spacing"
-        android:background="@color/cell_background" />
+        android:layout_height="1dp"
+        android:background="?colorDividerBackground" />
 
 </LinearLayout>

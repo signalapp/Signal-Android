@@ -34,7 +34,7 @@
             android:layout_marginEnd="@dimen/small_spacing"
             android:textSize="@dimen/large_font_size"
             android:textStyle="bold"
-            android:textColor="@color/text"
+            android:textColor="?android:textColorPrimary"
             android:textAlignment="center"
             tools:text="Incoming call from... big name here of a user" />
 

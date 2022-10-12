@@ -1,8 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-    <color name="accent">#00F782</color>
-    <color name="accent_alpha50">#8000F782</color>
-    <color name="text">#FFFFFF</color>
     <color name="destructive">#FF453A</color>
     <color name="unimportant">#D8D8D8</color>
     <color name="profile_picture_background">#353535</color>
@@ -18,10 +15,6 @@
     <color name="compose_view_background">#1B1B1B</color>
     <color name="compose_text_view_background">#141414</color>
     <color name="quote_not_found_background">#80FFFFFF</color>
-    <color name="new_conversation_button_collapsed_background">#1F1F1F</color>
-    <color name="new_conversation_button_shadow">#077C44</color>
-    <color name="pn_option_background">#1B1B1B</color>
-    <color name="pn_option_border">#212121</color>
     <color name="paths_building">#FFCE3A</color>
 
     <array name="profile_picture_placeholder_colors">
@@ -33,8 +26,8 @@
 
     <color name="loki_darkest_gray">#0a0a0a</color>
 
-    <color name="signal_primary">@color/accent</color>
-    <color name="signal_primary_dark">@color/accent</color>
+    <color name="signal_primary">@color/accent_green</color>
+    <color name="signal_primary_dark">@color/accent_green</color>
 
     <color name="textsecure_primary">@color/signal_primary</color>
     <color name="textsecure_primary_dark">@color/signal_primary_dark</color>
@@ -75,4 +68,13 @@
 
     <color name="default_background_start">#121212</color>
     <color name="default_background_end">#171717</color>
+
+    <color name="accent_green">#ff31F196</color>
+    <color name="accent_blue">#ff57C9FA</color>
+    <color name="accent_purple">#ffC993FF</color>
+    <color name="accent_pink">#ffFF95EF</color>
+    <color name="accent_red">#ffFF9C8E</color>
+    <color name="accent_orange">#ffFCB159</color>
+    <color name="accent_yellow">#ffFAD657</color>
+
 </resources>

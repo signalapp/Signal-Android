@@ -6,10 +6,10 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.graphics.Canvas
 import android.graphics.Paint
-import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import android.util.AttributeSet
 import android.view.View
 import androidx.annotation.ColorInt
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import network.loki.messenger.R
 import org.session.libsession.snode.OnionRequestAPI
 import org.thoughtcrime.securesms.util.getColorWithID
@@ -46,7 +46,9 @@ class PathStatusView : View {
     }
 
     private fun initialize() {
-        update()
+        if (!isInEditMode) {
+            update()
+        }
         setWillNotDraw(false)
     }
 
@@ -87,12 +89,14 @@ class PathStatusView : View {
     private fun update() {
         if (OnionRequestAPI.paths.isNotEmpty()) {
             setBackgroundResource(R.drawable.accent_dot)
-            mainColor = resources.getColorWithID(R.color.accent, context.theme)
-            sessionShadowColor = resources.getColorWithID(R.color.accent, context.theme)
+            val hasPathsColor = context.getColor(R.color.accent_green)
+            mainColor = hasPathsColor
+            sessionShadowColor = hasPathsColor
         } else {
             setBackgroundResource(R.drawable.paths_building_dot)
-            mainColor = resources.getColorWithID(R.color.paths_building, context.theme)
-            sessionShadowColor = resources.getColorWithID(R.color.paths_building, context.theme)
+            val pathsBuildingColor = resources.getColorWithID(R.color.paths_building, context.theme)
+            mainColor = pathsBuildingColor
+            sessionShadowColor = pathsBuildingColor
         }
     }
 

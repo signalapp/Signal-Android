@@ -30,7 +30,7 @@
                     android:layout_height="wrap_content"
                     android:theme="@style/Widget.Session.TabLayout"
                     app:tabRippleColor="@color/cell_selected"
-                    app:tabIndicatorColor="@color/accent"
+                    app:tabIndicatorColor="?colorAccent"
                     android:scrollbars="horizontal"/>
 
         </com.google.android.material.appbar.AppBarLayout>

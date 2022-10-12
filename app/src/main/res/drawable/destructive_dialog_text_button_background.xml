@@ -5,7 +5,7 @@
 
     <solid  android:color="@color/transparent" />
 
-    <corners android:radius="@dimen/medium_button_corner_radius" />
+    <corners android:radius="@dimen/dialog_button_corner_radius" />
 
-    <stroke android:width="@dimen/border_thickness" android:color="?android:textColorPrimary" />
+    <stroke android:width="@dimen/border_thickness" android:color="@color/transparent" />
 </shape>
