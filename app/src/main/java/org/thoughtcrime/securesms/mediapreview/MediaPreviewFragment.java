@@ -96,12 +96,12 @@ public abstract class MediaPreviewFragment extends Fragment {
 
     SimpleTask.run(getViewLifecycleOwner().getLifecycle(),
                    () -> SignalDatabase.attachments().hasAttachment(attachmentId),
-                   hasAttachment -> { if (!hasAttachment) events.mediaNotAvailable(); });
+                   hasAttachment -> { if (!hasAttachment) events.onMediaNotAvailable(); });
   }
 
   public interface Events {
     boolean singleTapOnMedia();
-    void mediaNotAvailable();
+    void onMediaNotAvailable();
     void onMediaReady();
     default @Nullable VideoControlsDelegate getVideoControlsDelegate() {
       return null;

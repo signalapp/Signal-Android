@@ -142,10 +142,14 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
     }
     viewModel.setShowThread(args.showThread)
     val sorting = MediaDatabase.Sorting.values()[args.sorting]
-    viewModel.fetchAttachments(args.initialMediaUri, args.threadId, sorting)
+    viewModel.fetchAttachments(PartAuthority.requireAttachmentId(args.initialMediaUri), args.threadId, sorting)
   }
 
   private fun bindCurrentState(currentState: MediaPreviewV2State) {
+    if (currentState.position == -1 && currentState.mediaRecords.isEmpty()) {
+      onMediaNotAvailable()
+      return
+    }
     when (currentState.loadState) {
       MediaPreviewV2State.LoadState.READY -> bindReadyState(currentState)
       MediaPreviewV2State.LoadState.LOADED -> {
@@ -159,7 +163,7 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
   private fun bindReadyState(currentState: MediaPreviewV2State) {
     (binding.mediaPager.adapter as MediaPreviewV2Adapter).updateBackingItems(currentState.mediaRecords.mapNotNull { it.attachment })
     if (binding.mediaPager.currentItem != currentState.position) {
-      binding.mediaPager.currentItem = currentState.position
+      binding.mediaPager.setCurrentItem(currentState.position, false)
     }
     val currentItem: MediaDatabase.MediaRecord = currentState.mediaRecords[currentState.position]
     binding.toolbar.title = getTitleText(currentItem, currentState.showThread)
@@ -295,11 +299,9 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
     return true
   }
 
-  override fun mediaNotAvailable() {
-    Snackbar.make(binding.root, R.string.MediaPreviewActivity_media_no_longer_available, Snackbar.LENGTH_LONG)
-      .setAction(R.string.MediaPreviewActivity_dismiss_due_to_error) {
-        requireActivity().finish()
-      }.show()
+  override fun onMediaNotAvailable() {
+    Toast.makeText(requireContext(), R.string.MediaPreviewActivity_media_no_longer_available, Toast.LENGTH_LONG).show()
+    requireActivity().finish()
   }
 
   override fun onMediaReady() {

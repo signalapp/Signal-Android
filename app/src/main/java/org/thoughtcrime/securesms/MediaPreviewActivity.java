@@ -579,7 +579,7 @@ public final class MediaPreviewActivity extends PassphraseRequiredActivity
         }
       }
     } else {
-      mediaNotAvailable();
+      onMediaNotAvailable();
     }
   }
 
@@ -595,7 +595,7 @@ public final class MediaPreviewActivity extends PassphraseRequiredActivity
   }
 
   @Override
-  public void mediaNotAvailable() {
+  public void onMediaNotAvailable() {
     Toast.makeText(this, R.string.MediaPreviewActivity_media_no_longer_available, Toast.LENGTH_LONG).show();
     finish();
   }

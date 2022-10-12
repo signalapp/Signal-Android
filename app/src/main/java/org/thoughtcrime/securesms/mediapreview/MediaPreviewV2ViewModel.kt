@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.mediapreview
 
 import android.content.Context
-import android.net.Uri
 import androidx.lifecycle.ViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable
@@ -11,6 +10,7 @@ import io.reactivex.rxjava3.functions.Consumer
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.database.MediaDatabase
 import org.thoughtcrime.securesms.util.AttachmentUtil
@@ -24,8 +24,8 @@ class MediaPreviewV2ViewModel : ViewModel() {
 
   val state: Flowable<MediaPreviewV2State> = store.stateFlowable.observeOn(AndroidSchedulers.mainThread())
 
-  fun fetchAttachments(startingUri: Uri, threadId: Long, sorting: MediaDatabase.Sorting) {
-    disposables += store.update(repository.getAttachments(startingUri, threadId, sorting)) {
+  fun fetchAttachments(startingAttachmentId: AttachmentId, threadId: Long, sorting: MediaDatabase.Sorting) {
+    disposables += store.update(repository.getAttachments(startingAttachmentId, threadId, sorting)) {
       result: MediaPreviewRepository.Result, oldState: MediaPreviewV2State ->
       oldState.copy(
         position = result.initialPosition,

@@ -75,7 +75,7 @@ public final class VideoMediaPreviewFragment extends MediaPreviewFragment {
 
       @Override
       public void onError() {
-        events.mediaNotAvailable();
+        events.onMediaNotAvailable();
       }
     });
 

@@ -46,7 +46,7 @@ public final class PagingMediaLoader extends AsyncLoader<Pair<Cursor, Integer>> 
   public @Nullable Pair<Cursor, Integer> loadInBackground() {
     ApplicationDependencies.getDatabaseObserver().registerAttachmentObserver(observer);
 
-    Cursor cursor = SignalDatabase.media().getGalleryMediaForThread(threadId, sorting, threadId == MediaDatabase.ALL_THREADS);
+    Cursor cursor = SignalDatabase.media().getGalleryMediaForThread(threadId, sorting);
 
     while (cursor.moveToNext()) {
       AttachmentId attachmentId  = new AttachmentId(cursor.getLong(cursor.getColumnIndexOrThrow(AttachmentDatabase.ROW_ID)), cursor.getLong(cursor.getColumnIndexOrThrow(AttachmentDatabase.UNIQUE_ID)));

@@ -93,10 +93,6 @@ public class MediaDatabase extends Database {
   }
 
   public @NonNull Cursor getGalleryMediaForThread(long threadId, @NonNull Sorting sorting) {
-    return getGalleryMediaForThread(threadId, sorting, false);
-  }
-
-  public @NonNull Cursor getGalleryMediaForThread(long threadId, @NonNull Sorting sorting, boolean listenToAllThreads) {
     SQLiteDatabase database = databaseHelper.getSignalReadableDatabase();
     String         query    = sorting.applyToQuery(applyEqualityOperator(threadId, GALLERY_MEDIA_QUERY));
     String[]       args     = {threadId + ""};

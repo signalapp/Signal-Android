@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.mediapreview
 
-import android.net.Uri
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -11,7 +10,6 @@ import org.thoughtcrime.securesms.database.AttachmentDatabase
 import org.thoughtcrime.securesms.database.MediaDatabase
 import org.thoughtcrime.securesms.database.MediaDatabase.Sorting
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.media
-import org.thoughtcrime.securesms.mms.PartAuthority
 
 /**
  * Repository for accessing the attachments in the encrypted database.
@@ -28,45 +26,43 @@ class MediaPreviewRepository {
    * @param sorting the ordering of the results
    * @param limit the maximum quantity of the results
    */
-  fun getAttachments(startingUri: Uri, threadId: Long, sorting: Sorting, limit: Int = 500): Flowable<Result> {
+  fun getAttachments(startingAttachmentId: AttachmentId, threadId: Long, sorting: Sorting, limit: Int = 500): Flowable<Result> {
     return Single.fromCallable {
-      val cursor = media.getGalleryMediaForThread(threadId, sorting)
-
-      val acc = mutableListOf<MediaDatabase.MediaRecord>()
-      var initialPosition = 0
-      var attachmentUri: Uri? = null
-      while (cursor.moveToNext()) {
-        val attachmentId = AttachmentId(cursor.requireLong(AttachmentDatabase.ROW_ID), cursor.requireLong(AttachmentDatabase.UNIQUE_ID))
-        attachmentUri = PartAuthority.getAttachmentDataUri(attachmentId)
-        if (attachmentUri == startingUri) {
-          initialPosition = cursor.position
-          break
-        }
-      }
-
-      if (attachmentUri == startingUri) {
-        val frontLimit: Int = limit / 2
-        if (initialPosition < frontLimit) {
-          cursor.moveToFirst()
-        } else {
-          cursor.move(-frontLimit)
-        }
-        for (i in 0..limit) {
-          val element = MediaDatabase.MediaRecord.from(cursor)
-          if (element != null) {
-            acc.add(element)
-          }
-          if (!cursor.isLast) {
-            cursor.moveToNext()
-          } else {
+      media.getGalleryMediaForThread(threadId, sorting).use { cursor ->
+        val mediaRecords = mutableListOf<MediaDatabase.MediaRecord>()
+        var startingRow = -1
+        while (cursor.moveToNext()) {
+          if (startingAttachmentId.rowId == cursor.requireLong(AttachmentDatabase.ROW_ID) &&
+            startingAttachmentId.uniqueId == cursor.requireLong(AttachmentDatabase.UNIQUE_ID)
+          ) {
+            startingRow = cursor.position
             break
           }
         }
-      } else {
-        Log.e(TAG, "Could not find $startingUri in thread $threadId")
+
+        var itemPosition = -1
+        if (startingRow >= 0) {
+          val frontLimit: Int = limit / 2
+          val windowStart = if (startingRow >= frontLimit) startingRow - frontLimit else 0
+
+          itemPosition = startingRow - windowStart
+
+          cursor.moveToPosition(windowStart)
+
+          for (i in 0..limit) {
+            val element = MediaDatabase.MediaRecord.from(cursor)
+            if (element != null) {
+              mediaRecords.add(element)
+            }
+            if (!cursor.moveToNext()) {
+              break
+            }
+          }
+        }
+        Result(itemPosition, mediaRecords.toList())
       }
-      Result(initialPosition, acc.toList())
     }.subscribeOn(Schedulers.io()).toFlowable()
   }
+
   data class Result(val initialPosition: Int, val records: List<MediaDatabase.MediaRecord>)
 }
