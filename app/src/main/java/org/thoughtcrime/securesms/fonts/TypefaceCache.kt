@@ -56,9 +56,6 @@ object TypefaceCache {
               }
             }
             result.future.addListener(listener)
-            emitter.setCancellable {
-              result.future.removeListener(listener)
-            }
           }
         }
       }.subscribeOn(Schedulers.io())
