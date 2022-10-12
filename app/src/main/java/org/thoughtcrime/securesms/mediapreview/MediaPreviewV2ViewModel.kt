@@ -41,6 +41,12 @@ class MediaPreviewV2ViewModel : ViewModel() {
     }
   }
 
+  fun setAlwaysShowAlbumRail(value: Boolean) {
+    store.update { oldState ->
+      oldState.copy(allMediaInAlbumRail = value)
+    }
+  }
+
   fun setCurrentPage(position: Int) {
     store.update { oldState ->
       oldState.copy(position = position, loadState = MediaPreviewV2State.LoadState.LOADED)

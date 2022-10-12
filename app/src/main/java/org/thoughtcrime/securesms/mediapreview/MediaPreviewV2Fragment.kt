@@ -141,6 +141,7 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
         }.show()
     }
     viewModel.setShowThread(args.showThread)
+    viewModel.setAlwaysShowAlbumRail(args.allMediaInRail)
     val sorting = MediaDatabase.Sorting.values()[args.sorting]
     viewModel.fetchAttachments(PartAuthority.requireAttachmentId(args.initialMediaUri), args.threadId, sorting)
   }
@@ -198,9 +199,13 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
     val currentItem: MediaDatabase.MediaRecord = currentState.mediaRecords[currentState.position]
     val currentFragment: Fragment? = childFragmentManager.findFragmentByTag("f${currentState.position}")
     val playbackControls = (currentFragment as? MediaPreviewFragment)?.playbackControls
-    val albumThumbnailMedia = currentState.mediaRecords
-      .filter { it.attachment != null && it.attachment!!.mmsId == currentItem.attachment?.mmsId }
-      .map { it.toMedia() }
+    val albumThumbnailMedia = if (currentState.allMediaInAlbumRail) {
+      currentState.mediaRecords.map { it.toMedia() }
+    } else {
+      currentState.mediaRecords
+        .filter { it.attachment != null && it.attachment!!.mmsId == currentItem.attachment?.mmsId }
+        .map { it.toMedia() }
+    }
     val caption = currentItem.attachment?.caption
     if (albumThumbnailMedia.size <= 1 && caption == null && playbackControls == null) {
       binding.mediaPreviewDetailsContainer.visibility = View.GONE
