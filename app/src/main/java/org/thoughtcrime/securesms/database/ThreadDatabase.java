@@ -94,54 +94,56 @@ public class ThreadDatabase extends Database {
   public static final long NO_TRIM_BEFORE_DATE_SET   = 0;
   public static final int  NO_TRIM_MESSAGE_COUNT_SET = Integer.MAX_VALUE;
 
-  public  static final String TABLE_NAME             = "thread";
-  public  static final String ID                     = "_id";
-  public  static final String DATE                   = "date";
-  public  static final String MEANINGFUL_MESSAGES    = "message_count";
-  public  static final String RECIPIENT_ID           = "thread_recipient_id";
-  public  static final String SNIPPET                = "snippet";
-  private static final String SNIPPET_CHARSET        = "snippet_charset";
-  public  static final String READ                   = "read";
-  public  static final String UNREAD_COUNT           = "unread_count";
-  public  static final String TYPE                   = "type";
-  private static final String ERROR                  = "error";
-  public  static final String SNIPPET_TYPE           = "snippet_type";
-  public  static final String SNIPPET_URI            = "snippet_uri";
-  public  static final String SNIPPET_CONTENT_TYPE   = "snippet_content_type";
-  public  static final String SNIPPET_EXTRAS         = "snippet_extras";
-  public  static final String ARCHIVED               = "archived";
-  public  static final String STATUS                 = "status";
-  public  static final String DELIVERY_RECEIPT_COUNT = "delivery_receipt_count";
-  public  static final String READ_RECEIPT_COUNT     = "read_receipt_count";
-  public  static final String EXPIRES_IN             = "expires_in";
-  public  static final String LAST_SEEN              = "last_seen";
-  public  static final String HAS_SENT               = "has_sent";
-  private static final String LAST_SCROLLED          = "last_scrolled";
-          static final String PINNED                 = "pinned";
+  public  static final String TABLE_NAME                = "thread";
+  public  static final String ID                        = "_id";
+  public  static final String DATE                      = "date";
+  public  static final String MEANINGFUL_MESSAGES       = "message_count";
+  public  static final String RECIPIENT_ID              = "thread_recipient_id";
+  public  static final String SNIPPET                   = "snippet";
+  private static final String SNIPPET_CHARSET           = "snippet_charset";
+  public  static final String READ                      = "read";
+  public  static final String UNREAD_COUNT              = "unread_count";
+  public  static final String TYPE                      = "type";
+  private static final String ERROR                     = "error";
+  public  static final String SNIPPET_TYPE              = "snippet_type";
+  public  static final String SNIPPET_URI               = "snippet_uri";
+  public  static final String SNIPPET_CONTENT_TYPE      = "snippet_content_type";
+  public  static final String SNIPPET_EXTRAS            = "snippet_extras";
+  public  static final String ARCHIVED                  = "archived";
+  public  static final String STATUS                    = "status";
+  public  static final String DELIVERY_RECEIPT_COUNT    = "delivery_receipt_count";
+  public  static final String READ_RECEIPT_COUNT        = "read_receipt_count";
+  public  static final String EXPIRES_IN                = "expires_in";
+  public  static final String LAST_SEEN                 = "last_seen";
+  public  static final String HAS_SENT                  = "has_sent";
+  private static final String LAST_SCROLLED             = "last_scrolled";
+          static final String PINNED                    = "pinned";
+  private static final String UNREAD_SELF_MENTION_COUNT = "unread_self_mention_count";
 
-  public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ID                     + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                                                                                  DATE                   + " INTEGER DEFAULT 0, " +
-                                                                                  MEANINGFUL_MESSAGES    + " INTEGER DEFAULT 0, " +
-                                                                                  RECIPIENT_ID           + " INTEGER, " +
-                                                                                  SNIPPET                + " TEXT, " +
-                                                                                  SNIPPET_CHARSET        + " INTEGER DEFAULT 0, " +
-                                                                                  READ                   + " INTEGER DEFAULT " + ReadStatus.READ.serialize() + ", " +
-                                                                                  TYPE                   + " INTEGER DEFAULT 0, " +
-                                                                                  ERROR                  + " INTEGER DEFAULT 0, " +
-                                                                                  SNIPPET_TYPE           + " INTEGER DEFAULT 0, " +
-                                                                                  SNIPPET_URI            + " TEXT DEFAULT NULL, " +
-                                                                                  SNIPPET_CONTENT_TYPE   + " TEXT DEFAULT NULL, " +
-                                                                                  SNIPPET_EXTRAS         + " TEXT DEFAULT NULL, " +
-                                                                                  ARCHIVED               + " INTEGER DEFAULT 0, " +
-                                                                                  STATUS                 + " INTEGER DEFAULT 0, " +
-                                                                                  DELIVERY_RECEIPT_COUNT + " INTEGER DEFAULT 0, " +
-                                                                                  EXPIRES_IN             + " INTEGER DEFAULT 0, " +
-                                                                                  LAST_SEEN              + " INTEGER DEFAULT 0, " +
-                                                                                  HAS_SENT               + " INTEGER DEFAULT 0, " +
-                                                                                  READ_RECEIPT_COUNT     + " INTEGER DEFAULT 0, " +
-                                                                                  UNREAD_COUNT           + " INTEGER DEFAULT 0, " +
-                                                                                  LAST_SCROLLED          + " INTEGER DEFAULT 0, " +
-                                                                                  PINNED                 + " INTEGER DEFAULT 0);";
+  public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ID                        + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                                                                                  DATE                      + " INTEGER DEFAULT 0, " +
+                                                                                  MEANINGFUL_MESSAGES       + " INTEGER DEFAULT 0, " +
+                                                                                  RECIPIENT_ID              + " INTEGER, " +
+                                                                                  SNIPPET                   + " TEXT, " +
+                                                                                  SNIPPET_CHARSET           + " INTEGER DEFAULT 0, " +
+                                                                                  READ                      + " INTEGER DEFAULT " + ReadStatus.READ.serialize() + ", " +
+                                                                                  TYPE                      + " INTEGER DEFAULT 0, " +
+                                                                                  ERROR                     + " INTEGER DEFAULT 0, " +
+                                                                                  SNIPPET_TYPE              + " INTEGER DEFAULT 0, " +
+                                                                                  SNIPPET_URI               + " TEXT DEFAULT NULL, " +
+                                                                                  SNIPPET_CONTENT_TYPE      + " TEXT DEFAULT NULL, " +
+                                                                                  SNIPPET_EXTRAS            + " TEXT DEFAULT NULL, " +
+                                                                                  ARCHIVED                  + " INTEGER DEFAULT 0, " +
+                                                                                  STATUS                    + " INTEGER DEFAULT 0, " +
+                                                                                  DELIVERY_RECEIPT_COUNT    + " INTEGER DEFAULT 0, " +
+                                                                                  EXPIRES_IN                + " INTEGER DEFAULT 0, " +
+                                                                                  LAST_SEEN                 + " INTEGER DEFAULT 0, " +
+                                                                                  HAS_SENT                  + " INTEGER DEFAULT 0, " +
+                                                                                  READ_RECEIPT_COUNT        + " INTEGER DEFAULT 0, " +
+                                                                                  UNREAD_COUNT              + " INTEGER DEFAULT 0, " +
+                                                                                  LAST_SCROLLED             + " INTEGER DEFAULT 0, " +
+                                                                                  PINNED                    + " INTEGER DEFAULT 0, " +
+                                                                                  UNREAD_SELF_MENTION_COUNT + " INTEGER DEFAULT 0);";
 
   public static final String[] CREATE_INDEXS = {
     "CREATE INDEX IF NOT EXISTS thread_recipient_id_index ON " + TABLE_NAME + " (" + RECIPIENT_ID + ");",
@@ -151,7 +153,8 @@ public class ThreadDatabase extends Database {
 
   private static final String[] THREAD_PROJECTION = {
       ID, DATE, MEANINGFUL_MESSAGES, RECIPIENT_ID, SNIPPET, SNIPPET_CHARSET, READ, UNREAD_COUNT, TYPE, ERROR, SNIPPET_TYPE,
-      SNIPPET_URI, SNIPPET_CONTENT_TYPE, SNIPPET_EXTRAS, ARCHIVED, STATUS, DELIVERY_RECEIPT_COUNT, EXPIRES_IN, LAST_SEEN, READ_RECEIPT_COUNT, LAST_SCROLLED, PINNED
+      SNIPPET_URI, SNIPPET_CONTENT_TYPE, SNIPPET_EXTRAS, ARCHIVED, STATUS, DELIVERY_RECEIPT_COUNT, EXPIRES_IN, LAST_SEEN,
+      READ_RECEIPT_COUNT, LAST_SCROLLED, PINNED, UNREAD_SELF_MENTION_COUNT
   };
 
   private static final List<String> TYPED_THREAD_PROJECTION = Stream.of(THREAD_PROJECTION)
@@ -371,6 +374,7 @@ public class ThreadDatabase extends Database {
     ContentValues contentValues = new ContentValues(1);
     contentValues.put(READ, ReadStatus.READ.serialize());
     contentValues.put(UNREAD_COUNT, 0);
+    contentValues.put(UNREAD_SELF_MENTION_COUNT, 0);
 
     db.update(TABLE_NAME, contentValues, null, null);
 
@@ -464,8 +468,10 @@ public class ThreadDatabase extends Database {
         SignalDatabase.mms().setReactionsSeen(threadId, sinceTimestamp);
 
         int unreadCount = SignalDatabase.mmsSms().getUnreadCount(threadId);
-
         contentValues.put(UNREAD_COUNT, unreadCount);
+
+        int unreadMentionsCount = SignalDatabase.mms().getUnreadMentionCount(threadId);
+        contentValues.put(UNREAD_SELF_MENTION_COUNT, unreadMentionsCount);
 
         db.update(TABLE_NAME, contentValues, ID_WHERE, SqlUtil.buildArgs(threadId));
 
@@ -549,14 +555,15 @@ public class ThreadDatabase extends Database {
     }
   }
 
-  public void incrementUnread(long threadId, int amount) {
+  public void incrementUnread(long threadId, int unreadAmount, int unreadSelfMentionAmount) {
     SQLiteDatabase db = databaseHelper.getSignalWritableDatabase();
     db.execSQL("UPDATE " + TABLE_NAME + " SET " +
                READ + " = " + ReadStatus.UNREAD.serialize() + ", " +
                UNREAD_COUNT + " = " + UNREAD_COUNT + " + ?, " +
+               UNREAD_SELF_MENTION_COUNT + " = " + UNREAD_SELF_MENTION_COUNT + " + ?, " +
                LAST_SCROLLED + " = ? " +
                "WHERE " + ID + " = ?",
-               SqlUtil.buildArgs(amount, 0, threadId));
+               SqlUtil.buildArgs(unreadAmount, unreadSelfMentionAmount, 0, threadId));
   }
 
   public void setDistributionType(long threadId, int distributionType) {
@@ -1223,12 +1230,14 @@ public class ThreadDatabase extends Database {
   }
 
   void updateReadState(long threadId) {
-    ThreadRecord previous    = getThreadRecord(threadId);
-    int          unreadCount = SignalDatabase.mmsSms().getUnreadCount(threadId);
+    ThreadRecord previous            = getThreadRecord(threadId);
+    int          unreadCount         = SignalDatabase.mmsSms().getUnreadCount(threadId);
+    int          unreadMentionsCount = SignalDatabase.mms().getUnreadMentionCount(threadId);
 
     ContentValues contentValues = new ContentValues();
     contentValues.put(READ, unreadCount == 0 ? ReadStatus.READ.serialize() : ReadStatus.UNREAD.serialize());
     contentValues.put(UNREAD_COUNT, unreadCount);
+    contentValues.put(UNREAD_SELF_MENTION_COUNT, unreadMentionsCount);
 
     databaseHelper.getSignalWritableDatabase().update(TABLE_NAME, contentValues, ID_WHERE, SqlUtil.buildArgs(threadId));
 
@@ -1316,10 +1325,12 @@ public class ThreadDatabase extends Database {
       values.put(READ, ReadStatus.FORCED_UNREAD.serialize());
     } else {
       if (threadId != null) {
-        int unreadCount = SignalDatabase.mmsSms().getUnreadCount(threadId);
+        int unreadCount         = SignalDatabase.mmsSms().getUnreadCount(threadId);
+        int unreadMentionsCount = SignalDatabase.mms().getUnreadMentionCount(threadId);
 
         values.put(READ, unreadCount == 0 ? ReadStatus.READ.serialize() : ReadStatus.UNREAD.serialize());
         values.put(UNREAD_COUNT, unreadCount);
+        values.put(UNREAD_SELF_MENTION_COUNT, unreadMentionsCount);
       }
     }
 
@@ -1723,6 +1734,7 @@ public class ThreadDatabase extends Database {
                              .setUnreadCount(cursor.getInt(cursor.getColumnIndexOrThrow(ThreadDatabase.UNREAD_COUNT)))
                              .setForcedUnread(cursor.getInt(cursor.getColumnIndexOrThrow(ThreadDatabase.READ)) == ReadStatus.FORCED_UNREAD.serialize())
                              .setPinned(CursorUtil.requireBoolean(cursor, ThreadDatabase.PINNED))
+                             .setUnreadSelfMentionsCount(CursorUtil.requireInt(cursor, ThreadDatabase.UNREAD_SELF_MENTION_COUNT))
                              .setExtra(extra)
                              .build();
     }

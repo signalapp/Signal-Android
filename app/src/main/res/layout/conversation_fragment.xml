@@ -73,10 +73,11 @@
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="12dp"
         android:visibility="invisible"
-        app:cstv_scroll_button_src="@drawable/ic_at_24"
+        app:cstv_scroll_button_src="@drawable/ic_at_20"
         app:layout_constraintBottom_toTopOf="@id/scroll_to_bottom"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_goneMarginBottom="20dp" />
+        app:layout_goneMarginBottom="20dp"
+        tools:visibility="visible" />
 
     <org.thoughtcrime.securesms.components.ConversationScrollToView
         android:id="@+id/scroll_to_bottom"
@@ -87,7 +88,8 @@
         android:visibility="invisible"
         app:cstv_scroll_button_src="@drawable/ic_chevron_down_20"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:visibility="visible" />
 
     <org.thoughtcrime.securesms.components.menu.SignalBottomActionBar
         android:id="@+id/conversation_bottom_action_bar"

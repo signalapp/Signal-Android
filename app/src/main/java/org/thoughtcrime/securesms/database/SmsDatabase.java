@@ -741,7 +741,7 @@ public class SmsDatabase extends MessageDatabase {
 
         db.insert(TABLE_NAME, null, values);
 
-        SignalDatabase.threads().incrementUnread(threadId, 1);
+        SignalDatabase.threads().incrementUnread(threadId, 1, 0);
       }
 
       SignalDatabase.threads().update(threadId, true);
@@ -818,7 +818,7 @@ public class SmsDatabase extends MessageDatabase {
 
         db.insert(TABLE_NAME, null, values);
 
-        SignalDatabase.threads().incrementUnread(threadId, 1);
+        SignalDatabase.threads().incrementUnread(threadId, 1, 0);
       }
 
       SignalDatabase.threads().update(threadId, true);
@@ -890,7 +890,7 @@ public class SmsDatabase extends MessageDatabase {
     long           messageId = db.insert(TABLE_NAME, null, values);
 
     if (unread) {
-      SignalDatabase.threads().incrementUnread(threadId, 1);
+      SignalDatabase.threads().incrementUnread(threadId, 1, 0);
     }
 
     SignalDatabase.threads().update(threadId, true);
@@ -1278,7 +1278,7 @@ public class SmsDatabase extends MessageDatabase {
       long           messageId = db.insert(TABLE_NAME, null, values);
 
       if (unread) {
-        SignalDatabase.threads().incrementUnread(threadId, 1);
+        SignalDatabase.threads().incrementUnread(threadId, 1, 0);
       }
 
       if (!silent) {
@@ -1324,7 +1324,7 @@ public class SmsDatabase extends MessageDatabase {
 
     long messageId = db.insert(TABLE_NAME, null, values);
 
-    SignalDatabase.threads().incrementUnread(threadId, 1);
+    SignalDatabase.threads().incrementUnread(threadId, 1, 0);
     SignalDatabase.threads().update(threadId, true);
 
     notifyConversationListeners(threadId);
@@ -1348,7 +1348,7 @@ public class SmsDatabase extends MessageDatabase {
 
     databaseHelper.getSignalWritableDatabase().insert(TABLE_NAME, null, values);
 
-    SignalDatabase.threads().incrementUnread(threadId, 1);
+    SignalDatabase.threads().incrementUnread(threadId, 1, 0);
     SignalDatabase.threads().update(threadId, true);
 
     notifyConversationListeners(threadId);

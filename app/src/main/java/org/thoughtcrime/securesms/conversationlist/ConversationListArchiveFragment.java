@@ -124,7 +124,7 @@ public class ConversationListArchiveFragment extends ConversationListFragment im
 
   @SuppressLint("StaticFieldLeak")
   @Override
-  protected void onItemSwiped(long threadId, int unreadCount) {
+  protected void onItemSwiped(long threadId, int unreadCount, int unreadSelfMentionsCount) {
     archiveDecoration.onArchiveStarted();
     itemAnimator.enable();
 

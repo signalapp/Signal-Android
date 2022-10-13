@@ -117,6 +117,7 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
   private View                checkContainer;
   private View                uncheckedView;
   private View                checkedView;
+  private View                unreadMentions;
   private int                 thumbSize;
   private GlideLiveDataTarget thumbTarget;
 
@@ -149,6 +150,7 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
     this.checkContainer          = findViewById(R.id.conversation_list_item_check_container);
     this.uncheckedView           = findViewById(R.id.conversation_list_item_unchecked);
     this.checkedView             = findViewById(R.id.conversation_list_item_checked);
+    this.unreadMentions          = findViewById(R.id.conversation_list_item_unread_mentions_indicator);
     this.thumbSize               = (int) DimensionUnit.SP.toPixels(16f);
     this.thumbTarget             = new GlideLiveDataTarget(thumbSize, thumbSize);
 
@@ -277,6 +279,7 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
     dateView.setText("");
     archivedView.setVisibility(GONE);
     unreadIndicator.setVisibility(GONE);
+    unreadMentions.setVisibility(GONE);
     deliveryStatusIndicator.setNone();
     alertView.setNone();
 
@@ -304,6 +307,7 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
     dateView.setText(DateUtils.getBriefRelativeTimeSpanString(getContext(), locale, messageResult.getReceivedTimestampMs()));
     archivedView.setVisibility(GONE);
     unreadIndicator.setVisibility(GONE);
+    unreadMentions.setVisibility(GONE);
     deliveryStatusIndicator.setNone();
     alertView.setNone();
 
@@ -464,11 +468,19 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
   private void setUnreadIndicator(ThreadRecord thread) {
     if (thread.isRead()) {
       unreadIndicator.setVisibility(View.GONE);
+      unreadMentions.setVisibility(View.GONE);
       return;
     }
 
+    if (thread.getUnreadSelfMentionsCount() > 0) {
+      unreadMentions.setVisibility(View.VISIBLE);
+      unreadIndicator.setVisibility(thread.getUnreadCount() == 1 ? View.GONE : View.VISIBLE);
+    } else {
+      unreadMentions.setVisibility(View.GONE);
+      unreadIndicator.setVisibility(View.VISIBLE);
+    }
+
     unreadIndicator.setText(unreadCount > 0 ? String.valueOf(unreadCount) : " ");
-    unreadIndicator.setVisibility(View.VISIBLE);
   }
 
   private void onRecipientChanged(@NonNull Recipient recipient) {
