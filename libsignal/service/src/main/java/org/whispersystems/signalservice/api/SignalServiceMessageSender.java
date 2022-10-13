@@ -1896,7 +1896,13 @@ public class SignalServiceMessageSender {
                                                                        })
                                                                        .collect(Collectors.toList());
 
-        List<SendMessageResult> results = sendSenderKeyDistributionMessage(distributionId, needsSenderKey, access, message, groupId, urgent, story);
+        List<SendMessageResult> results = sendSenderKeyDistributionMessage(distributionId,
+                                                                           needsSenderKey,
+                                                                           access,
+                                                                           message,
+                                                                           groupId,
+                                                                           urgent,
+                                                                           story && !groupId.isPresent()); // We don't want to flag SKDM's as stories for group stories, since we reuse distributionIds for normal group messages
 
         List<SignalServiceAddress> successes = results.stream()
                                                       .filter(SendMessageResult::isSuccess)
