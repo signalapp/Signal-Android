@@ -11,9 +11,9 @@ class SmsSettingsRepository(
   private val smsDatabase: MessageDatabase = SignalDatabase.sms,
   private val mmsDatabase: MessageDatabase = SignalDatabase.mms
 ) {
-  fun getSmsExportState(): Single<SmsSettingsState.SmsExportState> {
+  fun getSmsExportState(): Single<SmsExportState> {
     if (!FeatureFlags.smsExporter()) {
-      return Single.just(SmsSettingsState.SmsExportState.NOT_AVAILABLE)
+      return Single.just(SmsExportState.NOT_AVAILABLE)
     }
 
     return Single.fromCallable {
@@ -22,24 +22,24 @@ class SmsSettingsRepository(
   }
 
   @WorkerThread
-  private fun checkInsecureMessageCount(): SmsSettingsState.SmsExportState? {
+  private fun checkInsecureMessageCount(): SmsExportState? {
     val totalSmsMmsCount = smsDatabase.insecureMessageCount + mmsDatabase.insecureMessageCount
 
     return if (totalSmsMmsCount == 0) {
-      SmsSettingsState.SmsExportState.NO_SMS_MESSAGES_IN_DATABASE
+      SmsExportState.NO_SMS_MESSAGES_IN_DATABASE
     } else {
       null
     }
   }
 
   @WorkerThread
-  private fun checkUnexportedInsecureMessageCount(): SmsSettingsState.SmsExportState {
+  private fun checkUnexportedInsecureMessageCount(): SmsExportState {
     val totalUnexportedCount = smsDatabase.unexportedInsecureMessagesCount + mmsDatabase.unexportedInsecureMessagesCount
 
     return if (totalUnexportedCount > 0) {
-      SmsSettingsState.SmsExportState.HAS_UNEXPORTED_MESSAGES
+      SmsExportState.HAS_UNEXPORTED_MESSAGES
     } else {
-      SmsSettingsState.SmsExportState.ALL_MESSAGES_EXPORTED
+      SmsExportState.ALL_MESSAGES_EXPORTED
     }
   }
 }

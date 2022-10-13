@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <TextView
+        android:id="@+id/export_sms_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textAppearance="@style/Signal.Text.BodyMedium"
+        android:textColor="@color/signal_colorOnSurfaceVariant"
+        tools:text="SMS is disabled, export sms now yes" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/export_sms_button"
+        style="@style/Signal.Widget.Button.Large.Tonal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        tools:text="Export SMS Messages" />
+
+</LinearLayout>

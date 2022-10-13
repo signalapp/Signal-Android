@@ -28,6 +28,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.components.ContactFilterView;
 import org.thoughtcrime.securesms.contacts.ContactsCursorLoader.DisplayMode;
 import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
@@ -69,8 +70,8 @@ public abstract class ContactSelectionActivity extends PassphraseRequiredActivit
   @Override
   protected void onCreate(Bundle icicle, boolean ready) {
     if (!getIntent().hasExtra(ContactSelectionListFragment.DISPLAY_MODE)) {
-      int displayMode = Util.isDefaultSmsProvider(this) ? DisplayMode.FLAG_ALL
-                                                        : DisplayMode.FLAG_PUSH | DisplayMode.FLAG_ACTIVE_GROUPS | DisplayMode.FLAG_INACTIVE_GROUPS | DisplayMode.FLAG_SELF;
+      boolean includeSms  = Util.isDefaultSmsProvider(this) && SignalStore.misc().getSmsExportPhase().isSmsSupported();
+      int     displayMode = includeSms ? DisplayMode.FLAG_ALL : DisplayMode.FLAG_PUSH | DisplayMode.FLAG_ACTIVE_GROUPS | DisplayMode.FLAG_INACTIVE_GROUPS | DisplayMode.FLAG_SELF;
       getIntent().putExtra(ContactSelectionListFragment.DISPLAY_MODE, displayMode);
     }
 

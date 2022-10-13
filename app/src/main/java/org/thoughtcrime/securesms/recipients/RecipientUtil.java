@@ -352,6 +352,11 @@ public class RecipientUtil {
     return threadId != null && SignalDatabase.mmsSms().getOutgoingSecureConversationCount(threadId) != 0;
   }
 
+  public static boolean isSmsOnly(long threadId, @NonNull Recipient threadRecipient) {
+    return !threadRecipient.isRegistered() ||
+           noSecureMessagesAndNoCallsInThread(threadId);
+  }
+
   @WorkerThread
   private static boolean noSecureMessagesAndNoCallsInThread(@Nullable Long threadId) {
     if (threadId == null) {

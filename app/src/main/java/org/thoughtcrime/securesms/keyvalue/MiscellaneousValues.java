@@ -5,7 +5,7 @@ import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.database.model.databaseprotos.PendingChangeNumberMetadata;
 
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 
 public final class MiscellaneousValues extends SignalStoreValues {
@@ -26,6 +26,7 @@ public final class MiscellaneousValues extends SignalStoreValues {
   private static final String LAST_FCM_FOREGROUND_TIME        = "misc.last_fcm_foreground_time";
   private static final String LAST_FOREGROUND_TIME            = "misc.last_foreground_time";
   private static final String PNI_INITIALIZED_DEVICES         = "misc.pni_initialized_devices";
+  private static final String SMS_EXPORT_TIME                 = "misc.sms_export_time";
 
   MiscellaneousValues(@NonNull KeyValueStore store) {
     super(store);
@@ -38,7 +39,9 @@ public final class MiscellaneousValues extends SignalStoreValues {
 
   @Override
   @NonNull List<String> getKeysToIncludeInBackup() {
-    return Collections.emptyList();
+    return Arrays.asList(
+        SMS_EXPORT_TIME
+    );
   }
 
   public long getLastPrekeyRefreshTime() {
@@ -183,5 +186,16 @@ public final class MiscellaneousValues extends SignalStoreValues {
 
   public void setPniInitializedDevices(boolean value) {
     putBoolean(PNI_INITIALIZED_DEVICES, value);
+  }
+
+  public void setHasSeenSmsExportMegaphone() {
+    if (!getStore().containsKey(SMS_EXPORT_TIME)) {
+      putLong(SMS_EXPORT_TIME, System.currentTimeMillis());
+    }
+  }
+
+  public @NonNull SmsExportPhase getSmsExportPhase() {
+    long now = System.currentTimeMillis();
+    return SmsExportPhase.getCurrentPhase(now - getLong(SMS_EXPORT_TIME, now));
   }
 }

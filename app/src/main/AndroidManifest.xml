@@ -666,6 +666,12 @@
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize|uiMode"
               android:launchMode="singleTask" />
 
+    <activity android:name=".megaphone.SmsExportMegaphoneActivity"
+              android:theme="@style/Theme.Signal.DayNight.NoActionBar"
+              android:screenOrientation="portrait"
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize|uiMode"
+              android:launchMode="singleTask" />
+
     <activity android:name=".ratelimit.RecaptchaProofActivity"
               android:theme="@style/Theme.Signal.DayNight.NoActionBar"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize|uiMode" />
@@ -685,6 +691,7 @@
 
     <activity android:name=".exporter.flow.SmsExportActivity"
               android:theme="@style/Theme.Signal.DayNight.NoActionBar"
+              android:launchMode="singleTask"
               android:screenOrientation="portrait"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 

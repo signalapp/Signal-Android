@@ -74,6 +74,7 @@ public class NotificationChannels {
   public static final String JOIN_EVENTS   = "join_events";
   public static final String BACKGROUND    = "background_connection";
   public static final String CALL_STATUS   = "call_status";
+  public static final String APP_ALERTS    = "app_alerts";
 
   /**
    * Ensures all of the notification channels are created. No harm in repeat calls. Call is safely
@@ -604,6 +605,7 @@ public class NotificationChannels {
     NotificationChannel joinEvents   = new NotificationChannel(JOIN_EVENTS, context.getString(R.string.NotificationChannel_contact_joined_signal), NotificationManager.IMPORTANCE_DEFAULT);
     NotificationChannel background   = new NotificationChannel(BACKGROUND, context.getString(R.string.NotificationChannel_background_connection), getDefaultBackgroundChannelImportance(notificationManager));
     NotificationChannel callStatus   = new NotificationChannel(CALL_STATUS, context.getString(R.string.NotificationChannel_call_status), NotificationManager.IMPORTANCE_LOW);
+    NotificationChannel appAlerts    = new NotificationChannel(APP_ALERTS, context.getString(R.string.NotificationChannel_critical_app_alerts), NotificationManager.IMPORTANCE_HIGH);
 
     messages.setGroup(CATEGORY_MESSAGES);
     setVibrationEnabled(messages, SignalStore.settings().isMessageVibrateEnabled());
@@ -619,8 +621,9 @@ public class NotificationChannels {
     joinEvents.setShowBadge(false);
     background.setShowBadge(false);
     callStatus.setShowBadge(false);
+    appAlerts.setShowBadge(false);
 
-    notificationManager.createNotificationChannels(Arrays.asList(messages, calls, failures, backups, lockedStatus, other, voiceNotes, joinEvents, background, callStatus));
+    notificationManager.createNotificationChannels(Arrays.asList(messages, calls, failures, backups, lockedStatus, other, voiceNotes, joinEvents, background, callStatus, appAlerts));
 
     if (BuildConfig.PLAY_STORE_DISABLED) {
       NotificationChannel appUpdates = new NotificationChannel(APP_UPDATES, context.getString(R.string.NotificationChannel_app_updates), NotificationManager.IMPORTANCE_HIGH);

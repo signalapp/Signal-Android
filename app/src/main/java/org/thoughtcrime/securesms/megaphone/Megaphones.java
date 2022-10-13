@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.megaphone;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
 
@@ -22,8 +21,10 @@ import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity;
 import org.thoughtcrime.securesms.database.model.MegaphoneRecord;
 import org.thoughtcrime.securesms.database.model.RemoteMegaphoneRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.exporter.flow.SmsExportActivity;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.keyvalue.SmsExportPhase;
 import org.thoughtcrime.securesms.lock.SignalPinReminderDialog;
 import org.thoughtcrime.securesms.lock.SignalPinReminders;
 import org.thoughtcrime.securesms.lock.v2.CreateKbsPinActivity;
@@ -39,7 +40,6 @@ import org.thoughtcrime.securesms.util.PlayServicesUtil;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.VersionTracker;
 import org.thoughtcrime.securesms.util.dynamiclanguage.DynamicLanguageContextWrapper;
-import org.thoughtcrime.securesms.wallpaper.ChatWallpaperActivity;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -108,6 +108,7 @@ public final class Megaphones {
       put(Event.PINS_FOR_ALL, new PinsForAllSchedule());
       put(Event.CLIENT_DEPRECATED, SignalStore.misc().isClientDeprecated() ? ALWAYS : NEVER);
       put(Event.NOTIFICATIONS, shouldShowNotificationsMegaphone(context) ? RecurringSchedule.every(TimeUnit.DAYS.toMillis(30)) : NEVER);
+      put(Event.SMS_EXPORT, new SmsExportReminderSchedule(context));
       put(Event.BACKUP_SCHEDULE_PERMISSION, shouldShowBackupSchedulePermissionMegaphone(context) ? RecurringSchedule.every(TimeUnit.DAYS.toMillis(3)) : NEVER);
       put(Event.ONBOARDING, shouldShowOnboardingMegaphone(context) ? ALWAYS : NEVER);
       put(Event.TURN_OFF_CENSORSHIP_CIRCUMVENTION, shouldShowTurnOffCircumventionMegaphone() ? RecurringSchedule.every(TimeUnit.DAYS.toMillis(7)) : NEVER);
@@ -144,6 +145,8 @@ public final class Megaphones {
         return buildRemoteMegaphone(context);
       case BACKUP_SCHEDULE_PERMISSION:
         return buildBackupPermissionMegaphone(context);
+      case SMS_EXPORT:
+        return buildSmsExportMegaphone(context);
       default:
         throw new IllegalArgumentException("Event not handled!");
     }
@@ -356,6 +359,35 @@ public final class Megaphones {
         .build();
   }
 
+  private static @NonNull Megaphone buildSmsExportMegaphone(@NonNull Context context) {
+    SmsExportPhase phase = SignalStore.misc().getSmsExportPhase();
+
+    if (phase == SmsExportPhase.PHASE_1) {
+      return new Megaphone.Builder(Event.SMS_EXPORT, Megaphone.Style.BASIC)
+          .setTitle(R.string.SmsExportMegaphone__sms_support_going_away)
+          .setImage(R.drawable.sms_megaphone)
+          .setBody(R.string.SmsExportMegaphone__sms_support_will_be_removed_soon_to_focus_on_encrypted_messaging)
+          .setActionButton(R.string.SmsExportMegaphone__export_sms, (megaphone, controller) -> controller.onMegaphoneNavigationRequested(SmsExportActivity.createIntent(context), SmsExportMegaphoneActivity.REQUEST_CODE))
+          .setSecondaryButton(R.string.Megaphones_remind_me_later, (megaphone, controller) -> controller.onMegaphoneSnooze(Event.SMS_EXPORT))
+          .setOnVisibleListener((megaphone, controller) -> SignalStore.misc().setHasSeenSmsExportMegaphone())
+          .build();
+    } else {
+      Megaphone.Builder builder = new Megaphone.Builder(Event.SMS_EXPORT, Megaphone.Style.FULLSCREEN)
+          .setOnVisibleListener((megaphone, controller) -> {
+            if (phase.isBlockingUi()) {
+              SmsExportReminderSchedule.setShowPhase3Megaphone(false);
+            }
+            controller.onMegaphoneNavigationRequested(new Intent(context, SmsExportMegaphoneActivity.class), SmsExportMegaphoneActivity.REQUEST_CODE);
+          });
+
+      if (phase.isBlockingUi()) {
+        builder.disableSnooze();
+      }
+
+      return builder.build();
+    }
+  }
+
   private static boolean shouldShowDonateMegaphone(@NonNull Context context, @NonNull Event event, @NonNull Map<Event, MegaphoneRecord> records) {
     long timeSinceLastDonatePrompt = timeSinceLastDonatePrompt(event, records);
 
@@ -452,7 +484,8 @@ public final class Megaphones {
     DONATE_Q2_2022("donate_q2_2022"),
     TURN_OFF_CENSORSHIP_CIRCUMVENTION("turn_off_censorship_circumvention"),
     REMOTE_MEGAPHONE("remote_megaphone"),
-    BACKUP_SCHEDULE_PERMISSION("backup_schedule_permission");
+    BACKUP_SCHEDULE_PERMISSION("backup_schedule_permission"),
+    SMS_EXPORT("sms_export");
 
     private final String key;
 

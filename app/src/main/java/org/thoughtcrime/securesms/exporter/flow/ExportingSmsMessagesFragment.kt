@@ -39,7 +39,7 @@ class ExportingSmsMessagesFragment : Fragment(R.layout.exporting_sms_messages_fr
       .observeOn(AndroidSchedulers.mainThread())
       .subscribe {
         if (it is SmsExportProgress.Done) {
-          findNavController().safeNavigate(ExportingSmsMessagesFragmentDirections.actionExportingSmsMessagesFragmentToChooseANewDefaultSmsAppFragment())
+          findNavController().safeNavigate(ExportingSmsMessagesFragmentDirections.actionExportingSmsMessagesFragmentToExportSmsCompleteFragment(it.progress))
         }
       }
   }
@@ -55,7 +55,7 @@ class ExportingSmsMessagesFragment : Fragment(R.layout.exporting_sms_messages_fr
     lifecycleDisposable.bindTo(viewLifecycleOwner)
     lifecycleDisposable += SmsExportService.progressState.observeOn(AndroidSchedulers.mainThread()).subscribe {
       when (it) {
-        SmsExportProgress.Done -> Unit
+        is SmsExportProgress.Done -> Unit
         is SmsExportProgress.InProgress -> {
           binding.progress.isIndeterminate = false
           binding.progress.max = it.total

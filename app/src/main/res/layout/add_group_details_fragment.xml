@@ -111,7 +111,7 @@
             android:paddingTop="16dp"
             android:paddingEnd="16dp"
             android:paddingBottom="16dp"
-            android:text="@string/AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support"
+            android:text="@string/AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal"
             android:textAppearance="@style/Signal.Text.BodyMedium"
             android:textColor="@color/signal_colorOnSurfaceVariant" />
 

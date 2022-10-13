@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<org.thoughtcrime.securesms.util.views.LearnMoreTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/button"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/dsl_settings_gutter"
+    android:layout_marginVertical="16dp"
+    android:background="@drawable/rounded_outline_12"
+    android:padding="16dp"
+    android:textAppearance="@style/Signal.Text.BodyMedium"
+    tools:text="Mark H is Batman!" />

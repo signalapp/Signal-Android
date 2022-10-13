@@ -34,7 +34,9 @@
             app:enterAnim="@anim/fragment_open_enter"
             app:exitAnim="@anim/fragment_open_exit"
             app:popEnterAnim="@anim/fragment_close_enter"
-            app:popExitAnim="@anim/fragment_close_exit" />
+            app:popExitAnim="@anim/fragment_close_exit"
+            app:popUpTo="@+id/exportYourSmsMessagesFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
@@ -43,8 +45,8 @@
         android:label="fragment_exporting_sms_messages"
         tools:layout="@layout/exporting_sms_messages_fragment">
         <action
-            android:id="@+id/action_exportingSmsMessagesFragment_to_chooseANewDefaultSmsAppFragment"
-            app:destination="@id/chooseANewDefaultSmsAppFragment"
+            android:id="@+id/action_exportingSmsMessagesFragment_to_exportSmsCompleteFragment"
+            app:destination="@id/exportSmsCompleteFragment"
             app:enterAnim="@anim/fragment_open_enter"
             app:exitAnim="@anim/fragment_open_exit"
             app:popEnterAnim="@anim/fragment_close_enter"
@@ -52,9 +54,37 @@
     </fragment>
 
     <fragment
+        android:id="@+id/exportSmsCompleteFragment"
+        android:name="org.thoughtcrime.securesms.exporter.flow.ExportSmsCompleteFragment"
+        tools:layout="@layout/export_sms_complete_fragment">
+
+        <argument android:name="export_message_count"
+            app:argType="integer" />
+
+        <action
+            android:id="@+id/action_exportingSmsMessagesFragment_to_chooseANewDefaultSmsAppFragment"
+            app:destination="@id/chooseANewDefaultSmsAppFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+
+    </fragment>
+
+    <fragment
         android:id="@+id/chooseANewDefaultSmsAppFragment"
         android:name="org.thoughtcrime.securesms.exporter.flow.ChooseANewDefaultSmsAppFragment"
         android:label="fragment_choose_a_new_default_sms_app"
         tools:layout="@layout/choose_a_new_default_sms_app_fragment" />
+
+    <action
+        android:id="@+id/action_direct_to_exportSmsCompleteFragment"
+        app:destination="@id/exportSmsCompleteFragment"
+        app:enterAnim="@anim/fragment_open_enter"
+        app:exitAnim="@anim/fragment_open_exit"
+        app:popEnterAnim="@anim/fragment_close_enter"
+        app:popExitAnim="@anim/fragment_close_exit"
+        app:popUpTo="@+id/exportYourSmsMessagesFragment"
+        app:popUpToInclusive="true"/>
 
 </navigation>

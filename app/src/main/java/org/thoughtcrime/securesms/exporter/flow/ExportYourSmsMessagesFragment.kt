@@ -4,8 +4,13 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.disposables.Disposable
 import org.signal.smsexporter.DefaultSmsHelper
+import org.signal.smsexporter.SmsExportProgress
+import org.signal.smsexporter.SmsExportService
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.SmsExportDirections
 import org.thoughtcrime.securesms.databinding.ExportYourSmsMessagesFragmentBinding
 import org.thoughtcrime.securesms.util.Material3OnScrollHelper
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
@@ -14,6 +19,8 @@ import org.thoughtcrime.securesms.util.navigation.safeNavigate
  * "Welcome" screen for exporting sms
  */
 class ExportYourSmsMessagesFragment : Fragment(R.layout.export_your_sms_messages_fragment) {
+
+  private var navigationDisposable = Disposable.disposed()
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     val binding = ExportYourSmsMessagesFragmentBinding.bind(view)
@@ -31,5 +38,24 @@ class ExportYourSmsMessagesFragment : Fragment(R.layout.export_your_sms_messages
     }
 
     Material3OnScrollHelper(requireActivity(), binding.toolbar).attach(binding.scrollView)
+  }
+
+  override fun onResume() {
+    super.onResume()
+    navigationDisposable = SmsExportService
+      .progressState
+      .observeOn(AndroidSchedulers.mainThread())
+      .subscribe {
+        if (it is SmsExportProgress.Done) {
+          findNavController().safeNavigate(SmsExportDirections.actionDirectToExportSmsCompleteFragment(it.progress))
+        } else if (it is SmsExportProgress.InProgress) {
+          findNavController().safeNavigate(ExportYourSmsMessagesFragmentDirections.actionExportYourSmsMessagesFragmentToExportingSmsMessagesFragment())
+        }
+      }
+  }
+
+  override fun onPause() {
+    super.onPause()
+    navigationDisposable.dispose()
   }
 }

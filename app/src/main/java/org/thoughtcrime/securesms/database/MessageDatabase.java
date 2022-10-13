@@ -13,6 +13,7 @@ import com.google.android.mms.pdu_alt.NotificationInd;
 import net.zetetic.database.sqlcipher.SQLiteStatement;
 
 import org.signal.core.util.CursorUtil;
+import org.signal.core.util.SQLiteDatabaseExtensionsKt;
 import org.signal.core.util.SqlUtil;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.IdentityKey;
@@ -97,7 +98,6 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns,
   public abstract List<MessageRecord> getProfileChangeDetailsRecords(long threadId, long afterTimestamp);
   public abstract Set<Long> getAllRateLimitedMessageIds();
   public abstract Cursor getUnexportedInsecureMessages(int limit);
-  public abstract int getInsecureMessageCount();
   public abstract void deleteExportedMessages();
 
   public abstract void markExpireStarted(long messageId);
@@ -177,6 +177,7 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns,
   public abstract void insertNumberChangeMessages(@NonNull Recipient recipient);
   public abstract void insertBoostRequestMessage(@NonNull RecipientId recipientId, long threadId);
   public abstract void insertThreadMergeEvent(@NonNull RecipientId recipientId, long threadId, @NonNull ThreadMergeEvent event);
+  public abstract void insertSmsExportMessage(@NonNull RecipientId recipientId, long threadId);
 
   public abstract boolean deleteMessage(long messageId);
   abstract void deleteThread(long threadId);
@@ -245,6 +246,20 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns,
 
   final int getInsecureMessageCountForInsights() {
     return getMessageCountForRecipientsAndType(getOutgoingInsecureMessageClause());
+  }
+
+  public int getInsecureMessageCount() {
+    try (Cursor cursor = getReadableDatabase().query(getTableName(), SqlUtil.COUNT, getInsecureMessageClause(), null, null, null, null)) {
+      if (cursor.moveToFirst()) {
+        return cursor.getInt(0);
+      }
+    }
+
+    return 0;
+  }
+
+  public boolean hasSmsExportMessage(long threadId) {
+    return SQLiteDatabaseExtensionsKt.exists(getReadableDatabase(), getTableName(), THREAD_ID_WHERE + " AND " + getTypeField() + " = ?", threadId, Types.SMS_EXPORT_TYPE);
   }
 
   final int getSecureMessageCountForInsights() {
@@ -360,16 +375,30 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns,
   }
 
   protected String getInsecureMessageClause() {
+    return getInsecureMessageClause(-1);
+  }
+
+  protected String getInsecureMessageClause(long threadId) {
     String isSent      = "(" + getTypeField() + " & " + Types.BASE_TYPE_MASK + ") = " + Types.BASE_SENT_TYPE;
     String isReceived  = "(" + getTypeField() + " & " + Types.BASE_TYPE_MASK + ") = " + Types.BASE_INBOX_TYPE;
     String isSecure    = "(" + getTypeField() + " & " + (Types.SECURE_MESSAGE_BIT | Types.PUSH_MESSAGE_BIT) + ")";
     String isNotSecure = "(" + getTypeField() + " <= " + (Types.BASE_TYPE_MASK | Types.MESSAGE_ATTRIBUTE_MASK) + ")";
 
-    return String.format(Locale.ENGLISH, "(%s OR %s) AND NOT %s AND %s", isSent, isReceived, isSecure, isNotSecure);
+    String whereClause = String.format(Locale.ENGLISH, "(%s OR %s) AND NOT %s AND %s", isSent, isReceived, isSecure, isNotSecure);
+
+    if (threadId != -1) {
+      whereClause += " AND " + THREAD_ID + " = " + threadId;
+    }
+
+    return whereClause;
   }
 
   public int getUnexportedInsecureMessagesCount() {
-    try (Cursor cursor = getWritableDatabase().query(getTableName(), SqlUtil.COUNT, getInsecureMessageClause() + " AND NOT " + EXPORTED, null, null, null, null)) {
+    return getUnexportedInsecureMessagesCount(-1);
+  }
+
+  public int getUnexportedInsecureMessagesCount(long threadId) {
+    try (Cursor cursor = getWritableDatabase().query(getTableName(), SqlUtil.COUNT, getInsecureMessageClause(threadId) + " AND NOT " + EXPORTED, null, null, null, null)) {
       if (cursor.moveToFirst()) {
         return cursor.getInt(0);
       }

@@ -9,10 +9,12 @@ import androidx.annotation.StringRes
 import kotlinx.parcelize.Parcelize
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.CharacterCalculator
 import org.thoughtcrime.securesms.util.MmsCharacterCalculator
 import org.thoughtcrime.securesms.util.PushCharacterCalculator
 import org.thoughtcrime.securesms.util.SmsCharacterCalculator
+import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.dualsim.SubscriptionInfoCompat
 import org.thoughtcrime.securesms.util.dualsim.SubscriptionManagerCompat
 import java.lang.IllegalArgumentException
@@ -138,22 +140,24 @@ sealed class MessageSendType(
 
       options += SignalMessageSendType
 
-      try {
-        val subscriptions: Collection<SubscriptionInfoCompat> = SubscriptionManagerCompat(context).activeAndReadySubscriptionInfos
+      if (Util.isDefaultSmsProvider(context) && SignalStore.misc().smsExportPhase.isSmsSupported()) {
+        try {
+          val subscriptions: Collection<SubscriptionInfoCompat> = SubscriptionManagerCompat(context).activeAndReadySubscriptionInfos
 
-        if (subscriptions.size < 2) {
-          options += if (isMedia) MmsMessageSendType() else SmsMessageSendType()
-        } else {
-          options += subscriptions.map {
-            if (isMedia) {
-              MmsMessageSendType(simName = it.displayName, simSubscriptionId = it.subscriptionId)
-            } else {
-              SmsMessageSendType(simName = it.displayName, simSubscriptionId = it.subscriptionId)
+          if (subscriptions.size < 2) {
+            options += if (isMedia) MmsMessageSendType() else SmsMessageSendType()
+          } else {
+            options += subscriptions.map {
+              if (isMedia) {
+                MmsMessageSendType(simName = it.displayName, simSubscriptionId = it.subscriptionId)
+              } else {
+                SmsMessageSendType(simName = it.displayName, simSubscriptionId = it.subscriptionId)
+              }
             }
           }
+        } catch (e: SecurityException) {
+          Log.w(TAG, "Did not have permission to get SMS subscription details!")
         }
-      } catch (e: SecurityException) {
-        Log.w(TAG, "Did not have permission to get SMS subscription details!")
       }
 
       return options

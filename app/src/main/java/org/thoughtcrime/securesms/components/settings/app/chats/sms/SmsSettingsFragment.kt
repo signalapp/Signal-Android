@@ -9,18 +9,16 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.snackbar.Snackbar
-import org.signal.core.util.concurrent.SignalExecutors
+import androidx.navigation.fragment.findNavController
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.configure
-import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.components.settings.models.OutlinedLearnMore
 import org.thoughtcrime.securesms.exporter.flow.SmsExportActivity
+import org.thoughtcrime.securesms.exporter.flow.SmsExportDialogs
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.util.SmsUtil
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
@@ -38,9 +36,11 @@ class SmsSettingsFragment : DSLSettingsFragment(R.string.preferences__sms_mms) {
   }
 
   override fun bindAdapter(adapter: MappingAdapter) {
+    OutlinedLearnMore.register(adapter)
+
     smsExportLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
       if (it.resultCode == Activity.RESULT_OK) {
-        showSmsRemovalDialog()
+        SmsExportDialogs.showSmsRemovalDialog(requireContext(), requireView())
       }
     }
 
@@ -52,16 +52,32 @@ class SmsSettingsFragment : DSLSettingsFragment(R.string.preferences__sms_mms) {
   }
 
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-    SignalStore.settings().setDefaultSms(Util.isDefaultSmsProvider(requireContext()))
+    if (Util.isDefaultSmsProvider(requireContext())) {
+      SignalStore.settings().setDefaultSms(true)
+    } else {
+      SignalStore.settings().setDefaultSms(false)
+      findNavController().navigateUp()
+    }
   }
 
   private fun getConfiguration(state: SmsSettingsState): DSLConfiguration {
     return configure {
+
+      if (state.useAsDefaultSmsApp) {
+        customPref(
+          OutlinedLearnMore.Model(
+            summary = DSLSettingsText.from(R.string.SmsSettingsFragment__sms_support_will_be_removed_soon_to_focus_on_encrypted_messaging),
+            learnMoreUrl = getString(R.string.sms_export_url)
+          )
+        )
+      }
+
       when (state.smsExportState) {
-        SmsSettingsState.SmsExportState.FETCHING -> Unit
-        SmsSettingsState.SmsExportState.HAS_UNEXPORTED_MESSAGES -> {
+        SmsExportState.FETCHING -> Unit
+        SmsExportState.HAS_UNEXPORTED_MESSAGES -> {
           clickPref(
             title = DSLSettingsText.from(R.string.SmsSettingsFragment__export_sms_messages),
+            summary = DSLSettingsText.from(R.string.SmsSettingsFragment__you_can_export_your_sms_messages_to_your_phones_sms_database),
             onClick = {
               smsExportLauncher.launch(SmsExportActivity.createIntent(requireContext()))
             }
@@ -69,32 +85,31 @@ class SmsSettingsFragment : DSLSettingsFragment(R.string.preferences__sms_mms) {
 
           dividerPref()
         }
-        SmsSettingsState.SmsExportState.ALL_MESSAGES_EXPORTED -> {
+        SmsExportState.ALL_MESSAGES_EXPORTED -> {
           clickPref(
             title = DSLSettingsText.from(R.string.SmsSettingsFragment__remove_sms_messages),
+            summary = DSLSettingsText.from(R.string.SmsSettingsFragment__remove_sms_messages_from_signal_to_clear_up_storage_space),
             onClick = {
-              showSmsRemovalDialog()
+              SmsExportDialogs.showSmsRemovalDialog(requireContext(), requireView())
             }
           )
 
           dividerPref()
         }
-        SmsSettingsState.SmsExportState.NO_SMS_MESSAGES_IN_DATABASE -> Unit
-        SmsSettingsState.SmsExportState.NOT_AVAILABLE -> Unit
+        SmsExportState.NO_SMS_MESSAGES_IN_DATABASE -> Unit
+        SmsExportState.NOT_AVAILABLE -> Unit
       }
 
-      @Suppress("DEPRECATION")
-      clickPref(
-        title = DSLSettingsText.from(R.string.SmsSettingsFragment__use_as_default_sms_app),
-        summary = DSLSettingsText.from(if (state.useAsDefaultSmsApp) R.string.arrays__enabled else R.string.arrays__disabled),
-        onClick = {
-          if (state.useAsDefaultSmsApp) {
+      if (state.useAsDefaultSmsApp) {
+        @Suppress("DEPRECATION")
+        clickPref(
+          title = DSLSettingsText.from(R.string.SmsSettingsFragment__use_as_default_sms_app),
+          summary = DSLSettingsText.from(R.string.arrays__enabled),
+          onClick = {
             startDefaultAppSelectionIntent()
-          } else {
-            startActivityForResult(SmsUtil.getSmsRoleIntent(requireContext()), SMS_REQUEST_CODE.toInt())
           }
-        }
-      )
+        )
+      }
 
       switchPref(
         title = DSLSettingsText.from(R.string.preferences__sms_delivery_reports),
@@ -136,22 +151,5 @@ class SmsSettingsFragment : DSLSettingsFragment(R.string.preferences__sms_mms) {
     }
 
     startActivityForResult(intent, SMS_REQUEST_CODE.toInt())
-  }
-
-  private fun showSmsRemovalDialog() {
-    MaterialAlertDialogBuilder(requireContext())
-      .setTitle(R.string.RemoveSmsMessagesDialogFragment__remove_sms_messages)
-      .setMessage(R.string.RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal)
-      .setPositiveButton(R.string.RemoveSmsMessagesDialogFragment__keep_messages) { _, _ ->
-        Snackbar.make(requireView(), R.string.SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings, Snackbar.LENGTH_SHORT).show()
-      }
-      .setNegativeButton(R.string.RemoveSmsMessagesDialogFragment__remove_messages) { _, _ ->
-        SignalExecutors.BOUNDED.execute {
-          SignalDatabase.sms.deleteExportedMessages()
-          SignalDatabase.mms.deleteExportedMessages()
-        }
-        Snackbar.make(requireView(), R.string.SmsSettingsFragment__removing_sms_messages_from_signal, Snackbar.LENGTH_SHORT).show()
-      }
-      .show()
   }
 }

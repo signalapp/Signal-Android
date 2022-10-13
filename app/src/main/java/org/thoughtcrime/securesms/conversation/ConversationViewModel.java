@@ -442,6 +442,10 @@ public class ConversationViewModel extends ViewModel {
     EventBus.getDefault().unregister(this);
   }
 
+  public void insertSmsExportUpdateEvent(@NonNull Recipient recipient) {
+    conversationRepository.insertSmsExportUpdateEvent(recipient);
+  }
+
   enum Event {
     SHOW_RECAPTCHA
   }

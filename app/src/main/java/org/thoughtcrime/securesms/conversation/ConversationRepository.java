@@ -170,11 +170,16 @@ class ConversationRepository {
         }
       }
 
+      long threadId = SignalDatabase.threads().getThreadIdIfExistsFor(recipient.getId());
+
+      boolean hasUnexportedInsecureMessages = threadId != -1 && SignalDatabase.mmsSms().getUnexportedInsecureMessagesCount(threadId) > 0;
+
       Log.i(TAG, "Returning registered state...");
       return new ConversationSecurityInfo(recipient.getId(),
                                           registeredState == RecipientDatabase.RegisteredState.REGISTERED && signalEnabled,
                                           Util.isDefaultSmsProvider(context),
-                                          true);
+                                          true,
+                                          hasUnexportedInsecureMessages);
     }).subscribeOn(Schedulers.io());
   }
 
@@ -192,5 +197,19 @@ class ConversationRepository {
 
       listener.onChanged();
     }).subscribeOn(Schedulers.io());
+  }
+
+  public void insertSmsExportUpdateEvent(Recipient recipient) {
+    SignalExecutors.BOUNDED.execute(() -> {
+      long threadId = SignalDatabase.threads().getThreadIdIfExistsFor(recipient.getId());
+
+      if (threadId == -1 || !Util.isDefaultSmsProvider(context)) {
+        return;
+      }
+
+      if (RecipientUtil.isSmsOnly(threadId, recipient) && (!recipient.isMmsGroup() || Util.isDefaultSmsProvider(context))) {
+        SignalDatabase.sms().insertSmsExportMessage(recipient.getId(), threadId);
+      }
+    });
   }
 }

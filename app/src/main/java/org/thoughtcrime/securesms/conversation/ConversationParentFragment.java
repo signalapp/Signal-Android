@@ -189,6 +189,7 @@ import org.thoughtcrime.securesms.database.model.StoryType;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.GroupCallPeekEvent;
 import org.thoughtcrime.securesms.events.ReminderUpdateEvent;
+import org.thoughtcrime.securesms.exporter.flow.SmsExportActivity;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason;
 import org.thoughtcrime.securesms.groups.ui.GroupErrors;
@@ -401,7 +402,7 @@ public class ConversationParentFragment extends Fragment
   private   TextView                     charactersLeft;
   private   ConversationFragment         fragment;
   private   Button                       unblockButton;
-  private   Button                       makeDefaultSmsButton;
+  private   Stub<View>                   smsExportStub;
   private   Button                       registerButton;
   private   InputAwareLayout             container;
   protected Stub<ReminderView>           reminderView;
@@ -925,8 +926,11 @@ public class ConversationParentFragment extends Fragment
     }
 
     if (isSingleConversation()) {
-      if (viewModel.isPushAvailable())            inflater.inflate(R.menu.conversation_callable_secure, menu);
-      else if (!recipient.get().isReleaseNotes()) inflater.inflate(R.menu.conversation_callable_insecure, menu);
+      if (viewModel.isPushAvailable())   {
+        inflater.inflate(R.menu.conversation_callable_secure, menu);
+      } else if (!recipient.get().isReleaseNotes() && Util.isDefaultSmsProvider(requireContext()) && SignalStore.misc().getSmsExportPhase().isSmsSupported()) {
+        inflater.inflate(R.menu.conversation_callable_insecure, menu);
+      }
     } else if (isGroupConversation()) {
       if (isActiveV2Group && Build.VERSION.SDK_INT > 19) {
         inflater.inflate(R.menu.conversation_callable_groupv2, menu);
@@ -1303,14 +1307,24 @@ public class ConversationParentFragment extends Fragment
   private void handleInviteLink() {
     String inviteText = getString(R.string.ConversationActivity_lets_switch_to_signal, getString(R.string.install_url));
 
-    if (viewModel.isDefaultSmsApplication()) {
+    if (viewModel.isDefaultSmsApplication() && SignalStore.misc().getSmsExportPhase().isSmsSupported()) {
       composeText.appendInvite(inviteText);
-    } else {
+    } else if (recipient.get().hasSmsAddress()) {
       Intent intent = new Intent(Intent.ACTION_SENDTO);
       intent.setData(Uri.parse("smsto:" + recipient.get().requireSmsAddress()));
       intent.putExtra("sms_body", inviteText);
       intent.putExtra(Intent.EXTRA_TEXT, inviteText);
       startActivity(intent);
+    } else {
+      Intent sendIntent = new Intent();
+      sendIntent.setAction(Intent.ACTION_SEND);
+      sendIntent.putExtra(Intent.EXTRA_TEXT, inviteText);
+      sendIntent.setType("text/plain");
+      if (sendIntent.resolveActivity(requireContext().getPackageManager()) != null) {
+        startActivity(Intent.createChooser(sendIntent, getString(R.string.InviteActivity_invite_to_signal)));
+      } else {
+        Toast.makeText(requireContext(), R.string.InviteActivity_no_app_to_share_to, Toast.LENGTH_LONG).show();
+      }
     }
   }
 
@@ -1590,11 +1604,13 @@ public class ConversationParentFragment extends Fragment
 
     if (!recipient.get().isPushGroup() && recipient.get().isForceSmsSelection() && smsEnabled) {
       sendButton.setDefaultTransport(MessageSendType.TransportType.SMS);
+      viewModel.insertSmsExportUpdateEvent(recipient.get());
     } else {
       if (isPushAvailable || isPushGroupConversation() || recipient.get().isServiceIdOnly() || recipient.get().isReleaseNotes() || !smsEnabled) {
         sendButton.setDefaultTransport(MessageSendType.TransportType.SIGNAL);
       } else {
         sendButton.setDefaultTransport(MessageSendType.TransportType.SMS);
+        viewModel.insertSmsExportUpdateEvent(recipient.get());
       }
     }
 
@@ -1997,7 +2013,7 @@ public class ConversationParentFragment extends Fragment
     emojiDrawerStub          = ViewUtil.findStubById(view, R.id.emoji_drawer_stub);
     attachmentKeyboardStub   = ViewUtil.findStubById(view, R.id.attachment_keyboard_stub);
     unblockButton            = view.findViewById(R.id.unblock_button);
-    makeDefaultSmsButton     = view.findViewById(R.id.make_default_sms_button);
+    smsExportStub            = ViewUtil.findStubById(view, R.id.sms_export_stub);
     registerButton           = view.findViewById(R.id.register_button);
     container                = view.findViewById(R.id.layout_container);
     reminderView             = ViewUtil.findStubById(view, R.id.reminder_stub);
@@ -2028,6 +2044,7 @@ public class ConversationParentFragment extends Fragment
     joinGroupCallButton                 = view.findViewById(R.id.conversation_group_call_join);
 
     sendButton.setPopupContainer((ViewGroup) view);
+    sendButton.setSnackbarContainer(view.findViewById(R.id.fragment_content));
 
     container.setIsBubble(isInBubble());
     container.addOnKeyboardShownListener(this);
@@ -2067,7 +2084,6 @@ public class ConversationParentFragment extends Fragment
     titleView.setOnClickListener(v -> handleConversationSettings());
     titleView.setOnLongClickListener(v -> handleDisplayQuickContact());
     unblockButton.setOnClickListener(v -> handleUnblock());
-    makeDefaultSmsButton.setOnClickListener(v -> handleMakeDefaultSms());
     registerButton.setOnClickListener(v -> handleRegisterForSignal());
 
     composeText.setOnKeyListener(composeKeyPressedListener);
@@ -2708,17 +2724,29 @@ public class ConversationParentFragment extends Fragment
     if (!conversationSecurityInfo.isPushAvailable() && isPushGroupConversation()) {
       unblockButton.setVisibility(View.GONE);
       inputPanel.setHideForBlockedState(true);
-      makeDefaultSmsButton.setVisibility(View.GONE);
+      smsExportStub.setVisibility(View.GONE);
       registerButton.setVisibility(View.VISIBLE);
-    } else if (!conversationSecurityInfo.isPushAvailable() && !conversationSecurityInfo.isDefaultSmsApplication() && recipient.hasSmsAddress()) {
+    } else if (!conversationSecurityInfo.isPushAvailable() && !(SignalStore.misc().getSmsExportPhase().isSmsSupported() && conversationSecurityInfo.isDefaultSmsApplication()) && recipient.hasSmsAddress()) {
       unblockButton.setVisibility(View.GONE);
       inputPanel.setHideForBlockedState(true);
-      makeDefaultSmsButton.setVisibility(View.VISIBLE);
+      smsExportStub.setVisibility(View.VISIBLE);
       registerButton.setVisibility(View.GONE);
+
+      TextView       message      = smsExportStub.get().findViewById(R.id.export_sms_message);
+      MaterialButton actionButton = smsExportStub.get().findViewById(R.id.export_sms_button);
+      if (conversationSecurityInfo.getHasUnexportedInsecureMessages()) {
+        message.setText(R.string.ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_you_can_export_your_messages_to_another_app_on_your_phone);
+        actionButton.setText(R.string.ConversationActivity__export_sms_messages);
+        actionButton.setOnClickListener(v -> startActivity(SmsExportActivity.createIntent(requireContext())));
+      } else {
+        message.setText(requireContext().getString(R.string.ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here, recipient.getDisplayName(requireContext())));
+        actionButton.setText(R.string.ConversationActivity__invite_to_signal);
+        actionButton.setOnClickListener(v -> handleInviteLink());
+      }
     } else if (recipient.isReleaseNotes() && !recipient.isBlocked()) {
       unblockButton.setVisibility(View.GONE);
       inputPanel.setHideForBlockedState(true);
-      makeDefaultSmsButton.setVisibility(View.GONE);
+      smsExportStub.setVisibility(View.GONE);
       registerButton.setVisibility(View.GONE);
 
       if (recipient.isMuted()) {
@@ -2735,7 +2763,7 @@ public class ConversationParentFragment extends Fragment
       boolean inactivePushGroup = isPushGroupConversation() && !recipient.isActiveGroup();
       inputPanel.setHideForBlockedState(inactivePushGroup);
       unblockButton.setVisibility(View.GONE);
-      makeDefaultSmsButton.setVisibility(View.GONE);
+      smsExportStub.setVisibility(View.GONE);
       registerButton.setVisibility(View.GONE);
     }
 
@@ -3794,6 +3822,11 @@ public class ConversationParentFragment extends Fragment
   @Override
   public void onUnregisterVoiceNoteCallbacks(@NonNull Observer<VoiceNotePlaybackState> onPlaybackStartObserver) {
     voiceNoteMediaController.getVoiceNotePlaybackState().removeObserver(onPlaybackStartObserver);
+  }
+
+  @Override
+  public void onInviteToSignal() {
+    handleInviteLink();
   }
 
   @Override

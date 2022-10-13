@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.contacts.ContactsCursorLoader;
 import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.groups.ui.creategroup.details.AddGroupDetailsActivity;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.FeatureFlags;
@@ -50,8 +51,9 @@ public class CreateGroupActivity extends ContactSelectionActivity {
     intent.putExtra(ContactSelectionListFragment.REFRESHABLE, false);
     intent.putExtra(ContactSelectionActivity.EXTRA_LAYOUT_RES_ID, R.layout.create_group_activity);
 
-    int displayMode = Util.isDefaultSmsProvider(context) ? ContactsCursorLoader.DisplayMode.FLAG_SMS | ContactsCursorLoader.DisplayMode.FLAG_PUSH
-                                                         : ContactsCursorLoader.DisplayMode.FLAG_PUSH;
+    boolean smsEnabled = Util.isDefaultSmsProvider(context) && SignalStore.misc().getSmsExportPhase().isSmsSupported();
+    int displayMode = smsEnabled ? ContactsCursorLoader.DisplayMode.FLAG_SMS | ContactsCursorLoader.DisplayMode.FLAG_PUSH
+                                 : ContactsCursorLoader.DisplayMode.FLAG_PUSH;
 
     intent.putExtra(ContactSelectionListFragment.DISPLAY_MODE, displayMode);
     intent.putExtra(ContactSelectionListFragment.SELECTION_LIMITS, FeatureFlags.groupLimits().excludingSelf());

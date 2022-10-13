@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.contacts.ContactsCursorLoader.DisplayMode;
 import org.thoughtcrime.securesms.contacts.SelectedContact;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.groups.SelectionLimits;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.sms.MessageSender;
@@ -118,7 +119,7 @@ public class InviteActivity extends PassphraseRequiredActivity implements Contac
     smsSendButton.setOnClickListener(new SmsSendClickListener());
     contactFilter.setOnFilterChangedListener(new ContactFilterChangedListener());
 
-    if (Util.isDefaultSmsProvider(this)) {
+    if (Util.isDefaultSmsProvider(this) && SignalStore.misc().getSmsExportPhase().isSmsSupported()) {
       shareButton.setOnClickListener(new ShareClickListener());
       smsButton.setOnClickListener(new SmsClickListener());
     } else {

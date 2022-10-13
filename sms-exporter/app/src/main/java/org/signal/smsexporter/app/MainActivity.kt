@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity(R.layout.main_activity) {
 
     disposables += SmsExportService.progressState.onBackpressureLatest().subscribeOn(Schedulers.computation()).observeOn(AndroidSchedulers.mainThread()).subscribe {
       when (it) {
-        SmsExportProgress.Done -> {
+        is SmsExportProgress.Done -> {
           exportStatus.text = "Done"
           exportProgress.isVisible = true
         }

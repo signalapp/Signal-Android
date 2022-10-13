@@ -535,6 +535,15 @@ public final class ConversationUpdateItem extends FrameLayout
       });
 
       actionButton.setText(R.string.ConversationUpdateItem_donate);
+    } else if (conversationMessage.getMessageRecord().isSmsExportType()) {
+      actionButton.setVisibility(View.VISIBLE);
+      actionButton.setOnClickListener(v -> {
+        if (batchSelected.isEmpty() && eventListener != null) {
+          eventListener.onInviteToSignalClicked();
+        }
+      });
+
+      actionButton.setText(R.string.ConversationActivity__invite_to_signal);
     } else {
       actionButton.setVisibility(GONE);
       actionButton.setOnClickListener(null);

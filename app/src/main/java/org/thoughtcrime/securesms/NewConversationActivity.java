@@ -52,6 +52,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.LifecycleDisposable;
+import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 
 import java.io.IOException;
@@ -104,12 +105,14 @@ public class NewConversationActivity extends ContactSelectionActivity
 
   @Override
   public void onBeforeContactSelected(@NonNull Optional<RecipientId> recipientId, String number, @NonNull Consumer<Boolean> callback) {
+    boolean smsSupported = Util.isDefaultSmsProvider(this) && SignalStore.misc().getSmsExportPhase().isSmsSupported();
+
     if (recipientId.isPresent()) {
       launch(Recipient.resolved(recipientId.get()));
     } else {
       Log.i(TAG, "[onContactSelected] Maybe creating a new recipient.");
 
-      if (SignalStore.account().isRegistered() && NetworkConstraint.isMet(getApplication())) {
+      if (SignalStore.account().isRegistered()) {
         Log.i(TAG, "[onContactSelected] Doing contact refresh.");
 
         AlertDialog progress = SimpleProgressDialog.show(this);
@@ -124,15 +127,31 @@ public class NewConversationActivity extends ContactSelectionActivity
               resolved = Recipient.resolved(resolved.getId());
             } catch (IOException e) {
               Log.w(TAG, "[onContactSelected] Failed to refresh directory for new contact.");
+              return null;
             }
           }
 
           return resolved;
         }, resolved -> {
           progress.dismiss();
-          launch(resolved);
+
+          if (resolved != null) {
+            if (smsSupported || resolved.isRegistered() && resolved.hasServiceId()) {
+              launch(resolved);
+            } else {
+              new MaterialAlertDialogBuilder(this)
+                  .setMessage(getString(R.string.NewConversationActivity__s_is_not_a_signal_user, resolved.getDisplayName(this)))
+                  .setPositiveButton(android.R.string.ok, null)
+                  .show();
+            }
+          } else {
+            new MaterialAlertDialogBuilder(this)
+                .setMessage(R.string.NetworkFailure__network_error_check_your_connection_and_try_again)
+                .setPositiveButton(android.R.string.ok, null)
+                .show();
+          }
         });
-      } else {
+      } else if (smsSupported) {
         launch(Recipient.external(this, number));
       }
     }
@@ -260,16 +279,20 @@ public class NewConversationActivity extends ContactSelectionActivity
       return null;
     }
 
-    return new ActionItem(
-        R.drawable.ic_phone_right_24,
-        getString(R.string.NewConversationActivity__audio_call),
-        R.color.signal_colorOnSurface,
-        () -> CommunicationActions.startVoiceCall(this, recipient)
-    );
+    if (recipient.isRegistered() || (Util.isDefaultSmsProvider(this) && SignalStore.misc().getSmsExportPhase().isSmsSupported())) {
+      return new ActionItem(
+          R.drawable.ic_phone_right_24,
+          getString(R.string.NewConversationActivity__audio_call),
+          R.color.signal_colorOnSurface,
+          () -> CommunicationActions.startVoiceCall(this, recipient)
+      );
+    } else {
+      return null;
+    }
   }
 
   private @Nullable ActionItem createVideoCallActionItem(@NonNull Recipient recipient) {
-    if (recipient.isSelf() || recipient.isMmsGroup()) {
+    if (recipient.isSelf() || recipient.isMmsGroup() || !recipient.isRegistered()) {
       return null;
     }
 

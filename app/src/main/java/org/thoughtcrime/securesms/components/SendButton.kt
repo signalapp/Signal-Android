@@ -6,10 +6,14 @@ import android.view.View
 import android.view.View.OnLongClickListener
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageButton
+import com.google.android.material.snackbar.Snackbar
 import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.menu.ActionItem
 import org.thoughtcrime.securesms.components.menu.SignalContextMenu
 import org.thoughtcrime.securesms.conversation.MessageSendType
+import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.ViewUtil
 import java.lang.AssertionError
 import java.util.concurrent.CopyOnWriteArrayList
@@ -30,6 +34,8 @@ class SendButton(context: Context, attributeSet: AttributeSet?) : AppCompatImage
   private var activeMessageSendType: MessageSendType? = null
   private var defaultTransportType: MessageSendType.TransportType = MessageSendType.TransportType.SMS
   private var defaultSubscriptionId: Int? = null
+
+  lateinit var snackbarContainer: View
   private var popupContainer: ViewGroup? = null
 
   init {
@@ -146,8 +152,17 @@ class SendButton(context: Context, attributeSet: AttributeSet?) : AppCompatImage
   }
 
   override fun onLongClick(v: View): Boolean {
-    if (!isEnabled || availableSendTypes.size == 1) {
+    if (!isEnabled) {
       return false
+    }
+
+    if (availableSendTypes.size == 1) {
+      return if (!Util.isDefaultSmsProvider(context) || !SignalStore.misc().smsExportPhase.isSmsSupported()) {
+        Snackbar.make(snackbarContainer, R.string.InputPanel__sms_messaging_is_no_longer_supported_in_signal, Snackbar.LENGTH_SHORT).show()
+        true
+      } else {
+        false
+      }
     }
 
     val currentlySelected: MessageSendType = selectedSendType

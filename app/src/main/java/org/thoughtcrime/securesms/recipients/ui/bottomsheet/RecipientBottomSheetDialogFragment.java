@@ -33,6 +33,7 @@ import org.thoughtcrime.securesms.components.settings.conversation.preferences.B
 import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackPhoto80dp;
 import org.thoughtcrime.securesms.groups.GroupId;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientExporter;
@@ -221,10 +222,16 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
         unblockButton.setVisibility(View.GONE);
       }
 
+      boolean isAudioAvailable = (recipient.isRegistered() || (Util.isDefaultSmsProvider(requireContext()) && SignalStore.misc().getSmsExportPhase().isSmsSupported())) &&
+                                 !recipient.isGroup() &&
+                                 !recipient.isBlocked() &&
+                                 !recipient.isSelf() &&
+                                 !recipient.isReleaseNotes();
+
       ButtonStripPreference.State  buttonStripState = new ButtonStripPreference.State(
           /* isMessageAvailable = */ !recipient.isBlocked() && !recipient.isSelf() && !recipient.isReleaseNotes(),
           /* isVideoAvailable   = */ !recipient.isBlocked() && !recipient.isSelf() && recipient.isRegistered(),
-          /* isAudioAvailable   = */ !recipient.isBlocked() && !recipient.isSelf() && !recipient.isReleaseNotes(),
+          /* isAudioAvailable   = */ isAudioAvailable,
           /* isMuteAvailable    = */ false,
           /* isSearchAvailable  = */ false,
           /* isAudioSecure      = */ recipient.isRegistered(),

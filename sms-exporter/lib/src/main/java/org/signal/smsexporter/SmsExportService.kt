@@ -4,6 +4,7 @@ import android.app.Notification
 import android.app.Service
 import android.content.Intent
 import android.os.IBinder
+import androidx.core.app.NotificationManagerCompat
 import io.reactivex.rxjava3.processors.BehaviorProcessor
 import org.signal.core.util.Result
 import org.signal.core.util.Try
@@ -78,7 +79,12 @@ abstract class SmsExportService : Service() {
       }
 
       onExportPassCompleted()
-      progressState.onNext(SmsExportProgress.Done)
+      progressState.onNext(SmsExportProgress.Done(progress))
+
+      getExportCompleteNotification()?.let { notification ->
+        NotificationManagerCompat.from(this).notify(notification.id, notification.notification)
+      }
+
       stopForeground(true)
       isStarted = false
     }
@@ -96,6 +102,13 @@ abstract class SmsExportService : Service() {
    * query for "failure" state *after* we signal completion of a run.
    */
   protected abstract fun getNotification(progress: Int, total: Int): ExportNotification
+
+  /**
+   * Produces the notification and notification id to display when the export is complete.
+   *
+   * Can be null if no notification is needed (e.g., the user is still in the app)
+   */
+  protected abstract fun getExportCompleteNotification(): ExportNotification?
 
   /**
    * Gets the total number of messages to process. This is only used for the notification and

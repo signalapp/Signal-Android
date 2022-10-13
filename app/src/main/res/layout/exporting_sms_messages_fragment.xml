@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/headline"
@@ -18,7 +18,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- TODO [alex] - Final text -->
     <TextView
         android:id="@+id/description"
         android:layout_width="match_parent"
@@ -26,7 +25,7 @@
         android:layout_marginHorizontal="32dp"
         android:layout_marginTop="24dp"
         android:gravity="center"
-        tools:text="[WIP]"
+        android:text="@string/ExportingSmsMessagesFragment__this_may_take_awhile"
         android:textAppearance="@style/Signal.Text.BodyLarge"
         android:textColor="@color/signal_colorOnSurfaceVariant"
         app:layout_constraintEnd_toEndOf="parent"
@@ -44,15 +43,15 @@
         app:layout_constraintWidth_max="260dp" />
 
     <TextView
-        app:layout_constraintTop_toBottomOf="@id/progress"
-        android:gravity="center"
-        android:layout_marginHorizontal="32dp"
-        android:layout_marginTop="11dp"
-        tools:text="Exporting 5 of 264..."
         android:id="@+id/progress_label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginTop="11dp"
+        android:gravity="center"
         android:textAppearance="@style/Signal.Text.BodySmall"
-        android:textColor="@color/signal_colorOnSurfaceVariant" />
+        android:textColor="@color/signal_colorOnSurfaceVariant"
+        app:layout_constraintTop_toBottomOf="@id/progress"
+        tools:text="Exporting 5 of 264..." />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

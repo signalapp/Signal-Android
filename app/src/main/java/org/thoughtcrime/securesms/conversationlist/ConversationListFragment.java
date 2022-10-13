@@ -115,6 +115,7 @@ import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.ReminderUpdateEvent;
+import org.thoughtcrime.securesms.exporter.flow.SmsExportDialogs;
 import org.thoughtcrime.securesms.insights.InsightsLauncher;
 import org.thoughtcrime.securesms.jobs.ServiceOutageDetectionJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -126,6 +127,7 @@ import org.thoughtcrime.securesms.megaphone.Megaphone;
 import org.thoughtcrime.securesms.megaphone.MegaphoneActionController;
 import org.thoughtcrime.securesms.megaphone.MegaphoneViewBuilder;
 import org.thoughtcrime.securesms.megaphone.Megaphones;
+import org.thoughtcrime.securesms.megaphone.SmsExportMegaphoneActivity;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile;
@@ -179,6 +181,7 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
 
 
@@ -510,11 +513,16 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
   @Override
   public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-    if (resultCode != RESULT_OK) {
-      return;
+    if (requestCode == SmsExportMegaphoneActivity.REQUEST_CODE && SignalStore.misc().getSmsExportPhase().isFullscreen()) {
+      ApplicationDependencies.getMegaphoneRepository().markSeen(Megaphones.Event.SMS_EXPORT);
+      if (resultCode == RESULT_CANCELED) {
+        Snackbar.make(fab, R.string.ConversationActivity__you_will_be_reminded_again_soon, Snackbar.LENGTH_LONG).show();
+      } else {
+        SmsExportDialogs.showSmsRemovalDialog(requireContext(), fab);
+      }
     }
 
-    if (requestCode == CreateKbsPinActivity.REQUEST_NEW_PIN) {
+    if (resultCode == RESULT_OK && requestCode == CreateKbsPinActivity.REQUEST_NEW_PIN) {
       Snackbar.make(fab, R.string.ConfirmKbsPinFragment__pin_created, Snackbar.LENGTH_LONG).show();
       viewModel.onMegaphoneCompleted(Megaphones.Event.PINS_FOR_ALL);
     }

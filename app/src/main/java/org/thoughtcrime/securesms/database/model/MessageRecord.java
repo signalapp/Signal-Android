@@ -236,6 +236,10 @@ public abstract class MessageRecord extends DisplayRecord {
       } catch (InvalidProtocolBufferException e) {
         throw new AssertionError(e);
       }
+    } else if (isSmsExportType()) {
+      int messageResource = SignalStore.misc().getSmsExportPhase().isSmsSupported() ? R.string.MessageRecord__you_will_on_longer_be_able_to_send_sms_messages_from_signal_soon
+                                                                                    : R.string.MessageRecord__you_can_no_longer_send_sms_messages_in_signal;
+      return fromRecipient(getIndividualRecipient(), r -> context.getString(messageResource, r.getDisplayName(context)), R.drawable.ic_update_info_16);
     }
 
     return null;
@@ -542,6 +546,10 @@ public abstract class MessageRecord extends DisplayRecord {
     return MmsSmsColumns.Types.isThreadMergeType(type);
   }
 
+  public boolean isSmsExportType() {
+    return MmsSmsColumns.Types.isSmsExport(type);
+  }
+
   public boolean isInvalidVersionKeyExchange() {
     return SmsDatabase.Types.isInvalidVersionKeyExchange(type);
   }
@@ -562,7 +570,7 @@ public abstract class MessageRecord extends DisplayRecord {
     return isGroupAction() || isJoined() || isExpirationTimerUpdate() || isCallLog() ||
            isEndSession() || isIdentityUpdate() || isIdentityVerified() || isIdentityDefault() ||
            isProfileChange() || isGroupV1MigrationEvent() || isChatSessionRefresh() || isBadDecryptType() ||
-           isChangeNumber() || isBoostRequest() || isThreadMergeEventType();
+           isChangeNumber() || isBoostRequest() || isThreadMergeEventType() || isSmsExportType();
   }
 
   public boolean isMediaPending() {

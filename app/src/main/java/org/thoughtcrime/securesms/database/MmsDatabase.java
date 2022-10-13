@@ -579,6 +579,11 @@ public class MmsDatabase extends MessageDatabase {
   }
 
   @Override
+  public void insertSmsExportMessage(@NonNull RecipientId recipientId, long threadId) {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
   public void endTransaction(SQLiteDatabase database) {
     database.endTransaction();
   }
@@ -2454,17 +2459,6 @@ public class MmsDatabase extends MessageDatabase {
         false,
         limit
     );
-  }
-
-  @Override
-  public int getInsecureMessageCount() {
-    try (Cursor cursor = getWritableDatabase().query(TABLE_NAME, SqlUtil.COUNT, getInsecureMessageClause(), null, null, null, null)) {
-      if (cursor.moveToFirst()) {
-        return cursor.getInt(0);
-      }
-    }
-
-    return 0;
   }
 
   @Override

@@ -33,6 +33,10 @@ class TestSmsExportService : SmsExportService() {
     )
   }
 
+  override fun getExportCompleteNotification(): ExportNotification? {
+    return null
+  }
+
   override fun getUnexportedMessageCount(): Int {
     return 50
   }

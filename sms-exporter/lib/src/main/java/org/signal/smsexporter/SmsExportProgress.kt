@@ -25,5 +25,5 @@ sealed class SmsExportProgress {
   /**
    * All done.
    */
-  object Done : SmsExportProgress()
+  data class Done(val progress: Int) : SmsExportProgress()
 }
