@@ -220,7 +220,7 @@
     <!-- Label for my stories when selecting who to send media to -->
     <string name="ContactsCursorLoader_my_stories">My Stories</string>
     <!-- Action for creating a new story -->
-    <string name="ContactsCursorLoader_new_story">New story</string>
+    <string name="ContactsCursorLoader_add_to">Add to…</string>
 
     <!-- ContactsDatabase -->
     <string name="ContactsDatabase_message_s">Message %s</string>
@@ -5269,6 +5269,11 @@
     <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">You will no longer be able to share or view stories. Story updates you have recently shared will also be deleted.</string>
     <!-- Page title when launched from stories landing screen -->
     <string name="StoriesPrivacySettingsFragment__story_privacy">Story privacy</string>
+    <!-- Header for section that lists out stories -->
+    <string name="StoriesPrivacySettingsFragment__stories">Stories</string>
+
+    <!-- NewStoryItem -->
+    <string name="NewStoryItem__new_story">New story</string>
 
     <!-- GroupStorySettingsFragment -->
     <!-- Section header for who can view a group story -->
