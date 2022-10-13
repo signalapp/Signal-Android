@@ -52,7 +52,7 @@ public class LocalBackupListener extends PersistentAlarmManagerListener {
     } else {
       LocalDateTime now  = LocalDateTime.now();
       LocalDateTime next = now.withHour(2).withMinute(0).withSecond(0);
-      if (now.getHour() > 2) {
+      if (now.getHour() >= 2) {
         next = next.plusDays(1);
       }
 
