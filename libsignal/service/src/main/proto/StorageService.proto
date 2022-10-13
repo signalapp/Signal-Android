@@ -10,6 +10,12 @@ package signalservice;
 option java_package         = "org.whispersystems.signalservice.internal.storage.protos";
 option java_multiple_files  = true;
 
+enum OptionalBool {
+  UNSET    = 0;
+  ENABLED  = 1;
+  DISABLED = 2;
+}
+
 message StorageManifest {
   uint64 version = 1;
   bytes  value   = 2;
@@ -176,6 +182,7 @@ message AccountRecord {
            bool                   hasViewedOnboardingStory      = 27;
            reserved            /* storiesDisabled */              28;
            bool                   storiesDisabled               = 29;
+           OptionalBool           storyViewReceiptsEnabled      = 30;
 }
 
 message StoryDistributionListRecord {

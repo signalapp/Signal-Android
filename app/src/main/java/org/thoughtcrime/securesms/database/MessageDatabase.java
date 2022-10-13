@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.ParentStoryId;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.StoryResult;
+import org.thoughtcrime.securesms.database.model.StoryType;
 import org.thoughtcrime.securesms.database.model.StoryViewState;
 import org.thoughtcrime.securesms.database.model.databaseprotos.MessageExportState;
 import org.thoughtcrime.securesms.database.model.databaseprotos.ThreadMergeEvent;
@@ -135,7 +136,7 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns,
   public abstract void markGiftRedemptionStarted(long messageId);
   public abstract void markGiftRedemptionFailed(long messageId);
 
-  public abstract Set<MessageUpdate> incrementReceiptCount(SyncMessageId messageId, long timestamp, @NonNull ReceiptType receiptType, boolean storiesOnly);
+  public abstract Set<MessageUpdate> incrementReceiptCount(SyncMessageId messageId, long timestamp, @NonNull ReceiptType receiptType, @NonNull MessageQualifier messageType);
 
   public abstract List<MarkedMessageInfo> setEntireThreadRead(long threadId);
   public abstract List<MarkedMessageInfo> setMessagesReadSince(long threadId, long timestamp);
@@ -218,6 +219,7 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns,
   public abstract void deleteGroupStoryReplies(long parentStoryId);
   public abstract boolean isOutgoingStoryAlreadyInDatabase(@NonNull RecipientId recipientId, long sentTimestamp);
   public abstract @NonNull List<MarkedMessageInfo> setGroupStoryMessagesReadSince(long threadId, long groupStoryId, long sinceTimestamp);
+  public abstract @NonNull List<StoryType> getStoryTypes(@NonNull List<MessageId> messageIds);
 
   public abstract @NonNull StoryViewState getStoryViewState(@NonNull RecipientId recipientId);
   public abstract void updateViewedStories(@NonNull Set<SyncMessageId> syncMessageIds);
@@ -919,5 +921,24 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns,
     public long getDateReceived() {
       return dateReceived;
     }
+  }
+
+  /**
+   * Describes which messages to act on. This is used when incrementing receipts.
+   * Specifically, this was added to support stories having separate viewed receipt settings.
+   */
+  public enum MessageQualifier {
+    /**
+     * A normal database message (i.e. not a story)
+     */
+    NORMAL,
+    /**
+     * A story message
+     */
+    STORY,
+    /**
+     * Both normal and story message
+     */
+    ALL
   }
 }

@@ -493,6 +493,10 @@ public class MmsSmsDatabase extends Database {
     return incrementReceiptCounts(syncMessageIds, timestamp, MessageDatabase.ReceiptType.VIEWED);
   }
 
+  public @NonNull Collection<SyncMessageId> incrementViewedNonStoryReceiptCounts(@NonNull List<SyncMessageId> syncMessageIds, long timestamp) {
+    return incrementReceiptCounts(syncMessageIds, timestamp, MessageDatabase.ReceiptType.VIEWED, MessageDatabase.MessageQualifier.NORMAL);
+  }
+
   public boolean incrementViewedReceiptCount(SyncMessageId syncMessageId, long timestamp) {
     return incrementReceiptCount(syncMessageId, timestamp, MessageDatabase.ReceiptType.VIEWED);
   }
@@ -505,7 +509,7 @@ public class MmsSmsDatabase extends Database {
     db.beginTransaction();
     try {
       for (SyncMessageId id : syncMessageIds) {
-        Set<MessageUpdate> updates = incrementStoryReceiptCountInternal(id, timestamp, MessageDatabase.ReceiptType.VIEWED);
+        Set<MessageUpdate> updates = incrementReceiptCountInternal(id, timestamp, MessageDatabase.ReceiptType.VIEWED, MessageDatabase.MessageQualifier.STORY);
 
         if (updates.size() > 0) {
           messageUpdates.addAll(updates);
@@ -537,13 +541,17 @@ public class MmsSmsDatabase extends Database {
    * @return Whether or not some thread was updated.
    */
   private boolean incrementReceiptCount(SyncMessageId syncMessageId, long timestamp, @NonNull MessageDatabase.ReceiptType receiptType) {
+    return incrementReceiptCount(syncMessageId, timestamp, receiptType, MessageDatabase.MessageQualifier.ALL);
+  }
+
+  private boolean incrementReceiptCount(SyncMessageId syncMessageId, long timestamp, @NonNull MessageDatabase.ReceiptType receiptType, @NonNull MessageDatabase.MessageQualifier messageQualifier) {
     SQLiteDatabase     db             = databaseHelper.getSignalWritableDatabase();
     ThreadDatabase     threadDatabase = SignalDatabase.threads();
     Set<MessageUpdate> messageUpdates = new HashSet<>();
 
     db.beginTransaction();
     try {
-      messageUpdates = incrementReceiptCountInternal(syncMessageId, timestamp, receiptType);
+      messageUpdates = incrementReceiptCountInternal(syncMessageId, timestamp, receiptType, messageQualifier);
 
       for (MessageUpdate messageUpdate : messageUpdates) {
         threadDatabase.update(messageUpdate.getThreadId(), false);
@@ -567,6 +575,10 @@ public class MmsSmsDatabase extends Database {
    * @return All of the messages that didn't result in updates.
    */
   private @NonNull Collection<SyncMessageId> incrementReceiptCounts(@NonNull List<SyncMessageId> syncMessageIds, long timestamp, @NonNull MessageDatabase.ReceiptType receiptType) {
+    return incrementReceiptCounts(syncMessageIds, timestamp, receiptType, MessageDatabase.MessageQualifier.ALL);
+  }
+
+  private @NonNull Collection<SyncMessageId> incrementReceiptCounts(@NonNull List<SyncMessageId> syncMessageIds, long timestamp, @NonNull MessageDatabase.ReceiptType receiptType, @NonNull MessageDatabase.MessageQualifier messageQualifier) {
     SQLiteDatabase            db             = databaseHelper.getSignalWritableDatabase();
     ThreadDatabase            threadDatabase = SignalDatabase.threads();
     Set<MessageUpdate>        messageUpdates = new HashSet<>();
@@ -575,7 +587,7 @@ public class MmsSmsDatabase extends Database {
     db.beginTransaction();
     try {
       for (SyncMessageId id : syncMessageIds) {
-        Set<MessageUpdate> updates = incrementReceiptCountInternal(id, timestamp, receiptType);
+        Set<MessageUpdate> updates = incrementReceiptCountInternal(id, timestamp, receiptType, messageQualifier);
 
         if (updates.size() > 0) {
           messageUpdates.addAll(updates);
@@ -609,20 +621,13 @@ public class MmsSmsDatabase extends Database {
   /**
    * Doesn't do any transactions or updates, so we can re-use the method safely.
    */
-  private @NonNull Set<MessageUpdate> incrementReceiptCountInternal(SyncMessageId syncMessageId, long timestamp, MessageDatabase.ReceiptType receiptType) {
+  private @NonNull Set<MessageUpdate> incrementReceiptCountInternal(SyncMessageId syncMessageId, long timestamp, MessageDatabase.ReceiptType receiptType, @NonNull MessageDatabase.MessageQualifier messageQualifier) {
     Set<MessageUpdate> messageUpdates = new HashSet<>();
 
-    messageUpdates.addAll(SignalDatabase.sms().incrementReceiptCount(syncMessageId, timestamp, receiptType, false));
-    messageUpdates.addAll(SignalDatabase.mms().incrementReceiptCount(syncMessageId, timestamp, receiptType, false));
+    messageUpdates.addAll(SignalDatabase.sms().incrementReceiptCount(syncMessageId, timestamp, receiptType, messageQualifier));
+    messageUpdates.addAll(SignalDatabase.mms().incrementReceiptCount(syncMessageId, timestamp, receiptType, messageQualifier));
 
     return messageUpdates;
-  }
-
-  /**
-   * Doesn't do any transactions or updates, so we can re-use the method safely.
-   */
-  private @NonNull Set<MessageUpdate> incrementStoryReceiptCountInternal(@NonNull SyncMessageId syncMessageId, long timestamp, @NonNull MessageDatabase.ReceiptType receiptType) {
-    return SignalDatabase.mms().incrementReceiptCount(syncMessageId, timestamp, receiptType, true);
   }
 
   public void updateViewedStories(@NonNull Set<SyncMessageId> syncMessageIds) {

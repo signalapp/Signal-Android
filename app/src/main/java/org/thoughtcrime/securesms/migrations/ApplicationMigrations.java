@@ -109,9 +109,10 @@ public class ApplicationMigrations {
     static final int KBS_MIGRATION_2               = 65;
     static final int PNI_2                         = 66;
     static final int SYSTEM_NAME_SYNC              = 67;
+    static final int STORY_VIEWED_STATE            = 68;
   }
 
-  public static final int CURRENT_VERSION = 67;
+  public static final int CURRENT_VERSION = 68;
 
   /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -479,6 +480,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.SYSTEM_NAME_SYNC) {
       jobs.put(Version.SYSTEM_NAME_SYNC, new StorageServiceSystemNameMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.STORY_VIEWED_STATE) {
+      jobs.put(Version.STORY_VIEWED_STATE, new StoryViewedReceiptsStateMigrationJob());
     }
 
     return jobs;

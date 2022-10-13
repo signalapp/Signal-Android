@@ -120,6 +120,18 @@ public class Data {
     return integerArrays.get(key);
   }
 
+  public List<Integer> getIntegerArrayAsList(@NonNull String key) {
+    throwIfAbsent(integerArrays, key);
+
+    int[]         array = Objects.requireNonNull(integerArrays.get(key));
+    List<Integer> ints  = new ArrayList<>(array.length);
+
+    for (int l : array) {
+      ints.add(l);
+    }
+
+    return ints;
+  }
 
   public boolean hasLong(@NonNull String key) {
     return longs.containsKey(key);
@@ -292,6 +304,17 @@ public class Data {
      */
     public Builder putStringListAsArray(@NonNull String key, @NonNull List<String> value) {
       stringArrays.put(key, value.toArray(new String[0]));
+      return this;
+    }
+
+    public Builder putIntegerListAsArray(@NonNull String key, @NonNull List<Integer> value) {
+      int[] ints = new int[value.size()];
+
+      for (int i = 0; i < value.size(); i++) {
+        ints[i] = value.get(i);
+      }
+
+      integerArrays.put(key, ints);
       return this;
     }
 

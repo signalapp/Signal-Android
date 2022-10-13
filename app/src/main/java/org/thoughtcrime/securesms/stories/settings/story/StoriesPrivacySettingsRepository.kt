@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.stories.settings.story
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
+import org.signal.core.util.concurrent.SignalExecutors
 import org.thoughtcrime.securesms.database.GroupDatabase
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
@@ -34,6 +35,12 @@ class StoriesPrivacySettingsRepository {
         MessageSender.sendRemoteDelete(messageId, true)
       }
     }.subscribeOn(Schedulers.io())
+  }
+
+  fun onSettingsChanged() {
+    SignalExecutors.BOUNDED_IO.execute {
+      Stories.onStorySettingsChanged(Recipient.self().id)
+    }
   }
 
   fun userHasOutgoingStories(): Single<Boolean> {

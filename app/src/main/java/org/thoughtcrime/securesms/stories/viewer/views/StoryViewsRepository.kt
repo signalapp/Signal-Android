@@ -9,8 +9,8 @@ import org.thoughtcrime.securesms.database.DatabaseObserver
 import org.thoughtcrime.securesms.database.GroupReceiptDatabase
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 
 class StoryViewsRepository {
 
@@ -18,7 +18,7 @@ class StoryViewsRepository {
     private val TAG = Log.tag(StoryViewsRepository::class.java)
   }
 
-  fun isReadReceiptsEnabled(): Boolean = TextSecurePreferences.isReadReceiptsEnabled(ApplicationDependencies.getApplication())
+  fun isReadReceiptsEnabled(): Boolean = SignalStore.storyValues().viewedReceiptsEnabled
 
   fun getStoryRecipient(storyId: Long): Single<Recipient> {
     return Single.fromCallable {

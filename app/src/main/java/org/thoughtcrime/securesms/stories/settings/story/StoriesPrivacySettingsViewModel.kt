@@ -12,6 +12,7 @@ import org.signal.paging.ProxyPagingController
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchConfiguration
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchPagedDataSource
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.rx.RxStore
@@ -22,7 +23,8 @@ class StoriesPrivacySettingsViewModel : ViewModel() {
 
   private val store = RxStore(
     StoriesPrivacySettingsState(
-      areStoriesEnabled = Stories.isFeatureEnabled()
+      areStoriesEnabled = Stories.isFeatureEnabled(),
+      areViewReceiptsEnabled = SignalStore.storyValues().viewedReceiptsEnabled
     )
   )
 
@@ -75,6 +77,12 @@ class StoriesPrivacySettingsViewModel : ViewModel() {
       }
       updateUserHasStories()
     }
+  }
+
+  fun toggleViewReceipts() {
+    SignalStore.storyValues().viewedReceiptsEnabled = !SignalStore.storyValues().viewedReceiptsEnabled
+    store.update { it.copy(areViewReceiptsEnabled = SignalStore.storyValues().viewedReceiptsEnabled) }
+    repository.onSettingsChanged()
   }
 
   fun displayGroupsAsStories(recipientIds: List<RecipientId>) {

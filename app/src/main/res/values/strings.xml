@@ -5311,6 +5311,12 @@
     <string name="StoriesPrivacySettingsFragment__story_privacy">Story privacy</string>
     <!-- Header for section that lists out stories -->
     <string name="StoriesPrivacySettingsFragment__stories">Stories</string>
+    <!-- Story views header -->
+    <string name="StoriesPrivacySettingsFragment__story_views">Story views</string>
+    <!-- Story view receipts toggle title -->
+    <string name="StoriesPrivacySettingsFragment__view_receipts">View receipts</string>
+    <!-- Story view receipts toggle message -->
+    <string name="StoriesPrivacySettingsFragment__see_and_share">See and share when stories are viewed. If disabled, you won\'t see when others view your story.</string>
 
     <!-- NewStoryItem -->
     <string name="NewStoryItem__new_story">New story</string>

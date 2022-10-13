@@ -44,16 +44,24 @@ internal class StoryValues(store: KeyValueStore) : SignalStoreValues(store) {
      * Marks whether the user has seen the beta dialog
      */
     private const val USER_HAS_SEEN_BETA_DIALOG = "stories.user.has.seen.beta.dialog"
+
+    /**
+     * Whether or not the user will send and receive viewed receipts for stories
+     */
+    private const val STORY_VIEWED_RECEIPTS = "stories.viewed.receipts"
   }
 
-  override fun onFirstEverAppLaunch() = Unit
+  override fun onFirstEverAppLaunch() {
+    viewedReceiptsEnabled = true
+  }
 
   override fun getKeysToIncludeInBackup(): MutableList<String> = mutableListOf(
     MANUAL_FEATURE_DISABLE,
     USER_HAS_ADDED_TO_A_STORY,
     USER_HAS_SEEN_FIRST_NAV_VIEW,
     HAS_DOWNLOADED_ONBOARDING_STORY,
-    USER_HAS_SEEN_BETA_DIALOG
+    USER_HAS_SEEN_BETA_DIALOG,
+    STORY_VIEWED_RECEIPTS
   )
 
   var isFeatureDisabled: Boolean by booleanValue(MANUAL_FEATURE_DISABLE, false)
@@ -69,6 +77,12 @@ internal class StoryValues(store: KeyValueStore) : SignalStoreValues(store) {
   var userHasSeenOnboardingStory: Boolean by booleanValue(USER_HAS_SEEN_ONBOARDING_STORY, false)
 
   var userHasSeenBetaDialog: Boolean by booleanValue(USER_HAS_SEEN_BETA_DIALOG, false)
+
+  var viewedReceiptsEnabled: Boolean by booleanValue(STORY_VIEWED_RECEIPTS, false)
+
+  fun isViewedReceiptsStateSet(): Boolean {
+    return store.containsKey(STORY_VIEWED_RECEIPTS)
+  }
 
   fun setLatestStorySend(storySend: StorySend) {
     synchronized(this) {

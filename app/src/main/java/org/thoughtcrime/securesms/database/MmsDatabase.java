@@ -379,7 +379,7 @@ public class MmsDatabase extends MessageDatabase {
   @Override
   public @NonNull List<MarkedMessageInfo> getViewedIncomingMessages(long threadId) {
     SQLiteDatabase db      = databaseHelper.getSignalReadableDatabase();
-    String[]       columns = new String[]{ID, RECIPIENT_ID, DATE_SENT, MESSAGE_BOX, THREAD_ID};
+    String[]       columns = new String[]{ID, RECIPIENT_ID, DATE_SENT, MESSAGE_BOX, THREAD_ID, STORY_TYPE};
     String         where   = THREAD_ID + " = ? AND " + VIEWED_RECEIPT_COUNT + " > 0 AND " + MESSAGE_BOX + " & " + Types.BASE_INBOX_TYPE + " = " + Types.BASE_INBOX_TYPE;
     String[]       args    = SqlUtil.buildArgs(threadId);
 
@@ -395,6 +395,7 @@ public class MmsDatabase extends MessageDatabase {
         RecipientId    recipientId   = RecipientId.from(CursorUtil.requireLong(cursor, RECIPIENT_ID));
         long           dateSent      = CursorUtil.requireLong(cursor, DATE_SENT);
         SyncMessageId  syncMessageId = new SyncMessageId(recipientId, dateSent);
+        StoryType      storyType     = StoryType.fromCode(CursorUtil.requireInt(cursor, STORY_TYPE));
 
         results.add(new MarkedMessageInfo(threadId, syncMessageId, new MessageId(messageId, true), null));
       }
@@ -421,7 +422,7 @@ public class MmsDatabase extends MessageDatabase {
     }
 
     SQLiteDatabase          database    = databaseHelper.getSignalWritableDatabase();
-    String[]                columns     = new String[]{ID, RECIPIENT_ID, DATE_SENT, MESSAGE_BOX, THREAD_ID};
+    String[]                columns     = new String[]{ID, RECIPIENT_ID, DATE_SENT, MESSAGE_BOX, THREAD_ID, STORY_TYPE};
     String                  where       = ID + " IN (" + Util.join(messageIds, ",") + ") AND " + VIEWED_RECEIPT_COUNT + " = 0";
     List<MarkedMessageInfo> results     = new LinkedList<>();
 
@@ -435,6 +436,7 @@ public class MmsDatabase extends MessageDatabase {
           RecipientId   recipientId   = RecipientId.from(CursorUtil.requireLong(cursor, RECIPIENT_ID));
           long          dateSent      = CursorUtil.requireLong(cursor, DATE_SENT);
           SyncMessageId syncMessageId = new SyncMessageId(recipientId, dateSent);
+          StoryType      storyType    = StoryType.fromCode(CursorUtil.requireInt(cursor, STORY_TYPE));
 
           results.add(new MarkedMessageInfo(threadId, syncMessageId, new MessageId(messageId, true), null));
 
@@ -463,7 +465,7 @@ public class MmsDatabase extends MessageDatabase {
   @Override
   public @NonNull List<MarkedMessageInfo>
   setOutgoingGiftsRevealed(@NonNull List<Long> messageIds) {
-    String[]                projection = SqlUtil.buildArgs(ID, RECIPIENT_ID, DATE_SENT, THREAD_ID);
+    String[]                projection = SqlUtil.buildArgs(ID, RECIPIENT_ID, DATE_SENT, THREAD_ID, STORY_TYPE);
     String                  where      = ID + " IN (" + Util.join(messageIds, ",") + ") AND (" + getOutgoingTypeClause() + ") AND (" + getTypeField() + " & " + Types.SPECIAL_TYPES_MASK + " = " + Types.SPECIAL_TYPE_GIFT_BADGE + ") AND " + VIEWED_RECEIPT_COUNT + " = 0";
     List<MarkedMessageInfo> results    = new LinkedList<>();
 
@@ -475,6 +477,7 @@ public class MmsDatabase extends MessageDatabase {
         RecipientId   recipientId   = RecipientId.from(CursorUtil.requireLong(cursor, RECIPIENT_ID));
         long          dateSent      = CursorUtil.requireLong(cursor, DATE_SENT);
         SyncMessageId syncMessageId = new SyncMessageId(recipientId, dateSent);
+        StoryType     storyType    = StoryType.fromCode(CursorUtil.requireInt(cursor, STORY_TYPE));
 
         results.add(new MarkedMessageInfo(threadId, syncMessageId, new MessageId(messageId, true), null));
 
@@ -1122,13 +1125,28 @@ public class MmsDatabase extends MessageDatabase {
   }
 
   @Override
-  public Set<MessageUpdate> incrementReceiptCount(SyncMessageId messageId, long timestamp, @NonNull ReceiptType receiptType, boolean storiesOnly) {
+  public Set<MessageUpdate> incrementReceiptCount(SyncMessageId messageId, long timestamp, @NonNull ReceiptType receiptType, MessageQualifier messageQualifier) {
     SQLiteDatabase     database       = databaseHelper.getSignalWritableDatabase();
     Set<MessageUpdate> messageUpdates = new HashSet<>();
 
+    final String qualifierWhere;
+    switch (messageQualifier) {
+      case NORMAL:
+        qualifierWhere = " AND NOT (" + IS_STORY_CLAUSE + ")";
+        break;
+      case STORY:
+        qualifierWhere = " AND " + IS_STORY_CLAUSE;
+        break;
+      case ALL:
+        qualifierWhere = "";
+        break;
+      default:
+        throw new IllegalArgumentException("Unsupported qualifier: " + messageQualifier);
+    }
+
     try (Cursor cursor = SQLiteDatabaseExtensionsKt.select(database, ID, THREAD_ID, MESSAGE_BOX, RECIPIENT_ID, receiptType.getColumnName(), RECEIPT_TIMESTAMP)
                                                    .from(TABLE_NAME)
-                                                   .where(DATE_SENT + " = ?" + (storiesOnly ? " AND " + IS_STORY_CLAUSE : ""), messageId.getTimetamp())
+                                                   .where(DATE_SENT + " = ?" + qualifierWhere, messageId.getTimetamp())
                                                    .run())
     {
       while (cursor.moveToNext()) {
@@ -1510,6 +1528,38 @@ public class MmsDatabase extends MessageDatabase {
   }
 
   @Override
+  public @NonNull List<StoryType> getStoryTypes(@NonNull List<MessageId> messageIds) {
+    List<Long> mmsMessages = messageIds.stream()
+                                       .filter(MessageId::isMms)
+                                       .map(MessageId::getId)
+                                       .collect(java.util.stream.Collectors.toList());
+
+    if (mmsMessages.isEmpty()) {
+      return Collections.emptyList();
+    }
+
+    String[]                 projection  = SqlUtil.buildArgs(ID, STORY_TYPE);
+    List<SqlUtil.Query>      queries     = SqlUtil.buildCollectionQuery(ID, mmsMessages);
+    HashMap<Long, StoryType> storyTypes  = new HashMap<>();
+
+    for (final SqlUtil.Query query : queries) {
+      try (Cursor cursor = getWritableDatabase().query(TABLE_NAME, projection, query.getWhere(), query.getWhereArgs(), null, null, null)) {
+        while (cursor != null && cursor.moveToNext()) {
+          storyTypes.put(CursorUtil.requireLong(cursor, ID), StoryType.fromCode(CursorUtil.requireInt(cursor, STORY_TYPE)));
+        }
+      }
+    }
+
+    return messageIds.stream().map(id -> {
+      if (id.isMms() && storyTypes.containsKey(id.getId())) {
+        return storyTypes.get(id.getId());
+      } else {
+        return StoryType.NONE;
+      }
+    }).collect(java.util.stream.Collectors.toList());
+  }
+
+  @Override
   public List<MarkedMessageInfo> setEntireThreadRead(long threadId) {
     return setMessagesRead(THREAD_ID + " = ? AND " + STORY_TYPE + " = 0 AND " + PARENT_STORY_ID + " <= 0", new String[] { String.valueOf(threadId)});
   }
@@ -1528,7 +1578,7 @@ public class MmsDatabase extends MessageDatabase {
     database.beginTransaction();
 
     try {
-      cursor = database.query(TABLE_NAME, new String[] {ID, RECIPIENT_ID, DATE_SENT, MESSAGE_BOX, EXPIRES_IN, EXPIRE_STARTED, THREAD_ID }, where, arguments, null, null, null);
+      cursor = database.query(TABLE_NAME, new String[] {ID, RECIPIENT_ID, DATE_SENT, MESSAGE_BOX, EXPIRES_IN, EXPIRE_STARTED, THREAD_ID, STORY_TYPE }, where, arguments, null, null, null);
 
       while(cursor != null && cursor.moveToNext()) {
         if (Types.isSecureType(CursorUtil.requireLong(cursor, MESSAGE_BOX))) {
@@ -1540,6 +1590,7 @@ public class MmsDatabase extends MessageDatabase {
           long           expireStarted  = CursorUtil.requireLong(cursor, EXPIRE_STARTED);
           SyncMessageId  syncMessageId  = new SyncMessageId(recipientId, dateSent);
           ExpirationInfo expirationInfo = new ExpirationInfo(messageId, expiresIn, expireStarted, true);
+          StoryType      storyType      = StoryType.fromCode(CursorUtil.requireInt(cursor, STORY_TYPE));
 
           if (!recipientId.equals(releaseChannelId)) {
             result.add(new MarkedMessageInfo(threadId, syncMessageId, new MessageId(messageId, true), expirationInfo));
