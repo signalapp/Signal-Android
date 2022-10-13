@@ -39,6 +39,10 @@ open class ContactSearchCollection<ContactRecord>(
   }
 
   fun getSublist(start: Int, end: Int): List<ContactSearchData> {
+    if (start == end) {
+      return emptyList()
+    }
+
     val results = mutableListOf<ContactSearchData>()
 
     val startOffset = if (start == 0 && section.includeHeader) {
