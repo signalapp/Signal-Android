@@ -10,8 +10,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.app.ShareCompat
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.load.Options
 import io.reactivex.rxjava3.core.Single
 import org.signal.core.util.DimensionUnit
+import org.signal.core.util.concurrent.SimpleTask
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.attachments.Attachment
@@ -20,12 +22,17 @@ import org.thoughtcrime.securesms.components.menu.SignalContextMenu
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.StoryTextPost
+import org.thoughtcrime.securesms.providers.BlobProvider
+import org.thoughtcrime.securesms.stories.StoryTextPostModel
 import org.thoughtcrime.securesms.stories.landing.StoriesLandingItem
 import org.thoughtcrime.securesms.stories.viewer.page.StoryPost
 import org.thoughtcrime.securesms.stories.viewer.page.StoryViewerPageState
 import org.thoughtcrime.securesms.util.Base64
+import org.thoughtcrime.securesms.util.BitmapUtil
 import org.thoughtcrime.securesms.util.DeleteDialog
+import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.SaveAttachmentTask
+import java.io.ByteArrayInputStream
 
 object StoryContextMenu {
 
@@ -45,6 +52,29 @@ object StoryContextMenu {
     val mediaMessageRecord = messageRecord as? MediaMmsMessageRecord
     val uri: Uri? = mediaMessageRecord?.slideDeck?.firstSlide?.uri
     val contentType: String? = mediaMessageRecord?.slideDeck?.firstSlide?.contentType
+
+    if (mediaMessageRecord?.storyType?.isTextStory == true) {
+      SimpleTask.run({
+        val model = StoryTextPostModel.parseFrom(messageRecord)
+        val decoder = StoryTextPostModel.Decoder()
+        val bitmap = decoder.decode(model, 1080, 1920, Options()).get()
+        val jpeg: ByteArrayInputStream = BitmapUtil.toCompressedJpeg(bitmap)
+
+        bitmap.recycle()
+
+        SaveAttachmentTask.Attachment(
+          BlobProvider.getInstance().forData(jpeg.readBytes()).createForSingleUseInMemory(),
+          MediaUtil.IMAGE_JPEG,
+          mediaMessageRecord.dateSent,
+          null
+        )
+      }, { saveAttachment ->
+        SaveAttachmentTask(context)
+          .executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, saveAttachment)
+      })
+      return
+    }
+
     if (uri == null || contentType == null) {
       Log.w(TAG, "Unable to save story media uri: $uri contentType: $contentType")
       Toast.makeText(context, R.string.MyStories__unable_to_save, Toast.LENGTH_SHORT).show()
