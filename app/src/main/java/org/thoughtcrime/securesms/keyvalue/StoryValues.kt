@@ -67,7 +67,9 @@ internal class StoryValues(store: KeyValueStore) : SignalStoreValues(store) {
     HAS_DOWNLOADED_ONBOARDING_STORY,
     USER_HAS_SEEN_BETA_DIALOG,
     STORY_VIEWED_RECEIPTS,
-    USER_HAS_READ_ONBOARDING_STORY
+    USER_HAS_READ_ONBOARDING_STORY,
+    USER_HAS_SEEN_BETA_DIALOG,
+    STORY_VIEWED_RECEIPTS
   )
 
   var isFeatureDisabled: Boolean by booleanValue(MANUAL_FEATURE_DISABLE, false)

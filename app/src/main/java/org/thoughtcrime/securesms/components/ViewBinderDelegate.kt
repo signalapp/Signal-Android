@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.components
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.viewbinding.ViewBinding
 import kotlin.reflect.KProperty
@@ -17,14 +18,13 @@ open class ViewBinderDelegate<T : ViewBinding>(
 ) : DefaultLifecycleObserver {
 
   private var binding: T? = null
-  private var isBindingDestroyed = false
 
   operator fun getValue(thisRef: Fragment, property: KProperty<*>): T {
-    if (isBindingDestroyed) {
-      error("Binding has been destroyed.")
-    }
-
     if (binding == null) {
+      if (!thisRef.viewLifecycleOwner.lifecycle.currentState.isAtLeast(Lifecycle.State.INITIALIZED)) {
+        error("Invalid state to create a binding.")
+      }
+
       thisRef.viewLifecycleOwner.lifecycle.addObserver(this@ViewBinderDelegate)
       binding = bindingFactory(thisRef.requireView())
     }
@@ -38,6 +38,5 @@ open class ViewBinderDelegate<T : ViewBinding>(
     }
 
     binding = null
-    isBindingDestroyed = true
   }
 }

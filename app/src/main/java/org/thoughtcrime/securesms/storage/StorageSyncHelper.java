@@ -188,6 +188,12 @@ public final class StorageSyncHelper {
       SignalStore.storyValues().setViewedReceiptsEnabled(update.getNew().getStoryViewReceiptsState() == OptionalBool.ENABLED);
     }
 
+    if (update.getNew().getStoryViewReceiptsState() == OptionalBool.UNSET) {
+      SignalStore.storyValues().setViewedReceiptsEnabled(update.getNew().isReadReceiptsEnabled());
+    } else {
+      SignalStore.storyValues().setViewedReceiptsEnabled(update.getNew().getStoryViewReceiptsState() == OptionalBool.ENABLED);
+    }
+
     if (update.getNew().isSubscriptionManuallyCancelled()) {
       SignalStore.donationsValues().updateLocalStateForManualCancellation();
     } else {
