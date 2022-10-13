@@ -18,8 +18,27 @@ internal class ScannerView19 constructor(
   private val scanListener: ScanListener
 ) : FrameLayout(context), ScannerView {
 
+  private var lifecycleOwner: LifecycleOwner? = null
   private var scanningThread: ScanningThread? = null
-  private val cameraView: QrCameraView
+  private lateinit var cameraView: QrCameraView
+
+  private val lifecycleObserver = object : DefaultLifecycleObserver {
+    override fun onResume(owner: LifecycleOwner) {
+      val scanningThread = ScanningThread()
+      scanningThread.setScanListener(scanListener)
+      cameraView.onResume()
+      cameraView.setPreviewCallback(scanningThread)
+      scanningThread.start()
+
+      this@ScannerView19.scanningThread = scanningThread
+    }
+
+    override fun onPause(owner: LifecycleOwner) {
+      cameraView.onPause()
+      scanningThread?.stopScanning()
+      scanningThread = null
+    }
+  }
 
   init {
     cameraView = QrCameraView(context)
@@ -28,22 +47,16 @@ internal class ScannerView19 constructor(
   }
 
   override fun start(lifecycleOwner: LifecycleOwner) {
-    lifecycleOwner.lifecycle.addObserver(object : DefaultLifecycleObserver {
-      override fun onResume(owner: LifecycleOwner) {
-        val scanningThread = ScanningThread()
-        scanningThread.setScanListener(scanListener)
-        cameraView.onResume()
-        cameraView.setPreviewCallback(scanningThread)
-        scanningThread.start()
+    this.lifecycleOwner?.lifecycle?.removeObserver(lifecycleObserver)
+    this.lifecycleOwner = lifecycleOwner
+    lifecycleOwner.lifecycle.addObserver(lifecycleObserver)
+  }
 
-        this@ScannerView19.scanningThread = scanningThread
-      }
-
-      override fun onPause(owner: LifecycleOwner) {
-        cameraView.onPause()
-        scanningThread?.stopScanning()
-        scanningThread = null
-      }
-    })
+  override fun toggleCamera() {
+    cameraView.toggleCamera()
+    lifecycleOwner?.let {
+      lifecycleObserver.onPause(it)
+      lifecycleObserver.onResume(it)
+    }
   }
 }

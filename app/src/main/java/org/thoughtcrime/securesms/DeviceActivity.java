@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.os.Vibrator;
 import android.text.TextUtils;
 import android.transition.TransitionInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -54,6 +56,7 @@ public class DeviceActivity extends PassphraseRequiredActivity
   private DeviceAddFragment  deviceAddFragment;
   private DeviceListFragment deviceListFragment;
   private DeviceLinkFragment deviceLinkFragment;
+  private MenuItem           cameraSwitchItem = null;
 
   @Override
   public void onPreCreate() {
@@ -100,6 +103,18 @@ public class DeviceActivity extends PassphraseRequiredActivity
     }
 
     return false;
+  }
+
+  @Override
+  public boolean onCreateOptionsMenu(Menu menu) {
+    getMenuInflater().inflate(R.menu.device_add, menu);
+    cameraSwitchItem = menu.findItem(R.id.device_add_camera_switch);
+    cameraSwitchItem.setVisible(false);
+    return super.onCreateOptionsMenu(menu);
+  }
+
+  public MenuItem getCameraSwitchItem() {
+    return cameraSwitchItem;
   }
 
   @Override

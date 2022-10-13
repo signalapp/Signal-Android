@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/device_add_camera_switch"
+        android:icon="@drawable/ic_switch_camera_24"
+        android:title="@string/CameraXFragment_change_camera_description"
+        app:iconTint="@color/signal_icon_tint_primary"
+        app:showAsAction="always"/>
+</menu>

@@ -7,4 +7,5 @@ import androidx.lifecycle.LifecycleOwner
  */
 interface ScannerView {
   fun start(lifecycleOwner: LifecycleOwner)
+  fun toggleCamera()
 }

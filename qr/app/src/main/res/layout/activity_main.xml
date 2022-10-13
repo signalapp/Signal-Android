@@ -1,35 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/camera_switch"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:text="Change Camera" />
 
-        <TextView
-            android:id="@+id/text_qr_data"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/text_qr_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
-        <TextView
-            android:id="@+id/text_size"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/text_size"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/teal_200">
 
         <org.signal.qr.QrScannerView
             android:id="@+id/scanner"
             android:layout_width="240dp"
             android:layout_height="240dp" />
 
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/teal_700">
+
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/scanner_source"
             android:layout_width="240dp"
-            android:layout_height="240dp" />
+            android:layout_height="240dp"
+            android:scaleType="fitCenter"
+            android:rotation="90"
+            tools:src="@tools:sample/backgrounds/scenic" />
+    </FrameLayout>
 
-    </LinearLayout>
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/log"
+        android:layout_width="match_parent"
+        android:layout_height="100dp" />
 
-</FrameLayout>
+</LinearLayout>

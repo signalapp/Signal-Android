@@ -57,6 +57,11 @@ class QrScannerView @JvmOverloads constructor(
     })
   }
 
+  fun toggleCamera() {
+    Log.d(TAG, "Toggling camera")
+    scannerView?.toggleCamera()
+  }
+
   companion object {
     private val TAG = Log.tag(QrScannerView::class.java)
   }

@@ -2,24 +2,23 @@ package org.thoughtcrime.securesms;
 
 import android.animation.Animator;
 import android.annotation.TargetApi;
-import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.view.ViewCompat;
 
 import org.signal.qr.QrScannerView;
 import org.signal.qr.kitkat.ScanListener;
 import org.thoughtcrime.securesms.mediasend.camerax.CameraXModelBlocklist;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.LifecycleDisposable;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
@@ -32,12 +31,13 @@ public class DeviceAddFragment extends LoggingFragment {
 
   private ImageView     devicesImage;
   private ScanListener  scanListener;
+  private QrScannerView scannerView;
 
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup viewGroup, Bundle bundle) {
     ViewGroup container = ViewUtil.inflate(inflater, viewGroup, R.layout.device_add_fragment);
 
-    QrScannerView scannerView = container.findViewById(R.id.scanner);
+    this.scannerView = container.findViewById(R.id.scanner);
     this.devicesImage = container.findViewById(R.id.devices);
     ViewCompat.setTransitionName(devicesImage, "devices");
 
@@ -75,6 +75,19 @@ public class DeviceAddFragment extends LoggingFragment {
     lifecycleDisposable.add(qrDisposable);
 
     return container;
+  }
+
+  @Override
+  public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    MenuItem switchCamera = ((DeviceActivity) requireActivity()).getCameraSwitchItem();
+
+    if (switchCamera != null) {
+      switchCamera.setVisible(true);
+      switchCamera.setOnMenuItemClickListener(v -> {
+        scannerView.toggleCamera();
+        return true;
+      });
+    }
   }
 
   public ImageView getDevicesImage() {

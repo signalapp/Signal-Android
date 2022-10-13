@@ -47,7 +47,7 @@ public class QrCameraView extends ViewGroup {
   private final OnOrientationChange onOrientationChange;
 
   private volatile Optional<Camera> camera             = Optional.empty();
-  private final    int              cameraId           = CameraInfo.CAMERA_FACING_BACK;
+  private volatile int              cameraId           = CameraInfo.CAMERA_FACING_BACK;
   private volatile int              displayOrientation = -1;
 
   private @NonNull  State                    state             = State.PAUSED;
@@ -159,6 +159,14 @@ public class QrCameraView extends ViewGroup {
 
   public boolean isStarted() {
     return state != State.PAUSED;
+  }
+
+  public void toggleCamera() {
+    if (cameraId == CameraInfo.CAMERA_FACING_BACK) {
+      cameraId = CameraInfo.CAMERA_FACING_FRONT;
+    } else {
+      cameraId = CameraInfo.CAMERA_FACING_BACK;
+    }
   }
 
   @SuppressWarnings("SuspiciousNameCombination")
