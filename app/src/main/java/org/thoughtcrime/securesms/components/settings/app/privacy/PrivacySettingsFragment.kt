@@ -46,7 +46,6 @@ import org.thoughtcrime.securesms.crypto.MasterSecretUtil
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues.PhoneNumberListingMode
 import org.thoughtcrime.securesms.service.KeyCachingService
-import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.ConversationUtil
 import org.thoughtcrime.securesms.util.ExpirationUtil
@@ -198,18 +197,6 @@ class PrivacySettingsFragment : DSLSettingsFragment(R.string.preferences__privac
           )
         )
       )
-
-      if (Stories.isFeatureAvailable()) {
-        dividerPref()
-
-        clickPref(
-          title = DSLSettingsText.from(R.string.preferences__stories),
-          summary = DSLSettingsText.from(R.string.PrivacySettingsFragment__manage_your_stories),
-          onClick = {
-            findNavController().safeNavigate(PrivacySettingsFragmentDirections.actionPrivacySettingsFragmentToStoryPrivacySettings(R.string.preferences__stories))
-          }
-        )
-      }
 
       dividerPref()
 

@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.PlayServicesUtil
 import org.thoughtcrime.securesms.util.Util
@@ -105,6 +106,16 @@ class AppSettingsFragment : DSLSettingsFragment(R.string.text_secure_normal__men
           findNavController().safeNavigate(R.id.action_appSettingsFragment_to_chatsSettingsFragment)
         }
       )
+
+      if (Stories.isFeatureAvailable()) {
+        clickPref(
+          title = DSLSettingsText.from(R.string.preferences__stories),
+          icon = DSLSettingsIcon.from(R.drawable.ic_stories_24),
+          onClick = {
+            findNavController().safeNavigate(AppSettingsFragmentDirections.actionAppSettingsFragmentToStoryPrivacySettings(R.string.preferences__stories))
+          }
+        )
+      }
 
       clickPref(
         title = DSLSettingsText.from(R.string.preferences__notifications),
