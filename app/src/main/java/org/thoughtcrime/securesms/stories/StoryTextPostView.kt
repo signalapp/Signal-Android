@@ -4,11 +4,9 @@ import android.content.Context
 import android.graphics.Typeface
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
-import android.util.TypedValue
 import android.view.View
 import android.widget.ImageView
 import androidx.annotation.ColorInt
-import androidx.annotation.Px
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.graphics.ColorUtils
 import androidx.core.view.doOnNextLayout
@@ -83,10 +81,6 @@ class StoryTextPostView @JvmOverloads constructor(
   private fun setText(text: CharSequence, isPlaceholder: Boolean) {
     this.isPlaceholder = isPlaceholder
     textView.text = text
-  }
-
-  private fun setTextSize(@Px textSize: Float) {
-    textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize)
   }
 
   private fun setTextGravity(textAlignment: TextAlignment) {

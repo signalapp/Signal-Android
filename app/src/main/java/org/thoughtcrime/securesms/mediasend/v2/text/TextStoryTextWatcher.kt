@@ -9,6 +9,7 @@ import android.widget.TextView
 import org.signal.core.util.BreakIteratorCompat
 import org.signal.core.util.DimensionUnit
 import org.signal.core.util.EditTextUtil
+import org.thoughtcrime.securesms.util.doOnEachLayout
 
 class TextStoryTextWatcher private constructor(private val textView: TextView) : TextWatcher {
 
@@ -45,6 +46,14 @@ class TextStoryTextWatcher private constructor(private val textView: TextView) :
 
       if (textView is EditText) {
         EditTextUtil.addGraphemeClusterLimitFilter(textView, 700)
+      } else {
+        textView.doOnEachLayout {
+          val contentHeight = textView.height - textView.paddingTop - textView.paddingBottom
+          if (textView.layout != null && textView.layout.height > contentHeight) {
+            val percentShown = contentHeight / textView.layout.height.toFloat()
+            textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, DimensionUnit.DP.toPixels(18f * percentShown))
+          }
+        }
       }
 
       textView.addTextChangedListener(watcher)

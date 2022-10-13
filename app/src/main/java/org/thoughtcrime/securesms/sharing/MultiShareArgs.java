@@ -168,10 +168,6 @@ public final class MultiShareArgs implements Parcelable {
       return false;
     }
 
-    if (!Util.isEmpty(getDraftText()) && getDraftText().split("\n").length > Stories.MAX_TEXT_STORY_LINE_COUNT) {
-      return false;
-    }
-
     if (!Util.isEmpty(getDraftText())) {
       BreakIteratorCompat breakIteratorCompat = BreakIteratorCompat.getInstance();
       breakIteratorCompat.setText(getDraftText());
