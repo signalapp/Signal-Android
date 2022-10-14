@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- smartling.instruction_comments_enabled = on -->
 <resources>
     <string name="app_name" translatable="false">Signal</string>
 
@@ -220,7 +221,7 @@
     <string name="ContactsCursorLoader_find_by_username">Find by username</string>
     <!-- Label for my stories when selecting who to send media to -->
     <string name="ContactsCursorLoader_my_stories">My Stories</string>
-    <!-- Action for creating a new story -->
+    <!-- Text for a button that brings up a bottom sheet to create a new story. -->
     <string name="ContactsCursorLoader_add_to">Add to…</string>
 
     <!-- ContactsDatabase -->
@@ -2036,7 +2037,7 @@
     <string name="NotificationChannel_background_connection">Background connection</string>
     <!-- Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing. -->
     <string name="NotificationChannel_call_status">Call status</string>
-    <!-- Notification channel name for occasional alerts to the user -->
+    <!-- Notification channel name for occasional alerts to the user. Will appear in the system notification settings as the title of this notification channel. -->
     <string name="NotificationChannel_critical_app_alerts">Critical app alerts</string>
 
     <!-- ProfileEditNameFragment -->
@@ -5387,13 +5388,13 @@
     <string name="SetSignalAsDefaultSmsAppFragment__next">Next</string>
 
     <!-- BackupSchedulePermission Megaphone -->
-    <!-- Can't backup chats megaphone title -->
+    <!-- The title on an alert window that explains to the user that we are unable to backup their messages -->
     <string name="BackupSchedulePermissionMegaphone__cant_back_up_chats">Can\'t back up chats</string>
-    <!-- Can't backup chats megaphone message -->
+    <!-- The body text of an alert window that tells the user that we are unable to backup their messages -->
     <string name="BackupSchedulePermissionMegaphone__your_chats_are_no_longer_being_automatically_backed_up">Your chats are no longer being automatically backed up.</string>
-    <!-- Can't backup chats megaphone button text to take steps to re-enable -->
+    <!-- The text on a button in an alert window that, when clicked, will take the user to a screen to re-enable backups -->
     <string name="BackupSchedulePermissionMegaphone__back_up_chats">Back up chats</string>
-    <!-- Can't backup chats megaphone button to snooze megaphone and be reshown later -->
+    <!-- The text on a button in an alert window that, when clicked, will take the user to a screen to re-enable backups -->
     <string name="BackupSchedulePermissionMegaphone__not_now">Not now</string>
     <!-- Re-enable backup permission bottom sheet title -->
     <string name="BackupSchedulePermissionMegaphone__to_reenable_backups">To re-enable backups:</string>
@@ -5413,11 +5414,11 @@
     <string name="SmsExportMegaphoneActivity__signal_will_soon_remove_support_for_sending_sms_messages">Signal will soon remove support for sending SMS messages because Signal messages provide end-to-end encryption and strong privacy that SMS messages don\'t. This will also allow us to improve the Signal messaging experience.</string>
     <!-- Phase 3 message describing that sms has gone away -->
     <string name="SmsExportMegaphoneActivity__signal_has_removed_support_for_sending_sms_messages">Signal has removed support for sending SMS messages because Signal messages provide end-to-end encryption and strong privacy that SMS messages don\'t. This will also allow us to improve the Signal messaging experience.</string>
-    <!-- Button on full screen megaphone that takes the user to the export messages flow -->
+    <!-- The text on a button in a popup that, when clicked, will take the user to a screen to export their SMS messages -->
     <string name="SmsExportMegaphoneActivity__export_sms">Export SMS</string>
-    <!-- Button on full screen megaphone that dismiss the megaphone and it'll be shown again at a later time -->
+    <!-- The text on a button in a popup that, when clicked, will dismiss the popup and schedule the prompt to occur at a later time. -->
     <string name="SmsExportMegaphoneActivity__remind_me_later">Remind me later</string>
-    <!-- Button on full screen megaphone that navigates to a web article on sms removal -->
+    <!-- The text on a button in a popup that, when clicked, will navigate the user to a web article on SMS removal -->
     <string name="SmsExportMegaphoneActivity__learn_more">Learn more</string>
 
     <!-- Phase 1 Small megaphone title indicating sms is going away -->
