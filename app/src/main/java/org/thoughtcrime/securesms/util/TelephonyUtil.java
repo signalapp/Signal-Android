@@ -47,9 +47,14 @@ public class TelephonyUtil {
   }
 
   public static boolean isAnyPstnLineBusy(@NonNull Context context) {
-    if (ContextCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED) {
-      return getManager(context).getCallState() != TelephonyManager.CALL_STATE_IDLE;
-    } else {
+    try {
+      if (ContextCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED) {
+        return getManager(context).getCallState() != TelephonyManager.CALL_STATE_IDLE;
+      } else {
+        return false;
+      }
+    } catch (SecurityException e) {
+      Log.w(TAG, "Failed to determine if busy!", e);
       return false;
     }
   }
