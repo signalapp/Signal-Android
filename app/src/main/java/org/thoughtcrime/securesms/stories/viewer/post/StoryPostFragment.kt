@@ -31,6 +31,7 @@ class StoryPostFragment : Fragment(R.layout.stories_post_fragment) {
   })
 
   private val binding by ViewBinderDelegate(StoriesPostFragmentBinding::bind) {
+    it.video.cleanup()
     presentNone()
   }
 

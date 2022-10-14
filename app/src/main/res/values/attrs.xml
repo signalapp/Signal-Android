@@ -293,6 +293,10 @@
         <attr name="thumbHintBackgroundColor" format="color" />
     </declare-styleable>
 
+    <declare-styleable name="VideoPlayer">
+        <attr name="playerLayoutId" format="dimension" />
+    </declare-styleable>
+
     <declare-styleable name="GroupMemberListView">
         <attr name="maxHeight" />
         <attr name="selectable" format="boolean" />

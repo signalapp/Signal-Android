@@ -73,6 +73,9 @@ class StoryImageLoader(
   fun clear() {
     GlideApp.with(postImage).clear(postImage)
     GlideApp.with(blurImage).clear(blurImage)
+
+    postImage.setImageDrawable(null)
+    blurImage.setImageDrawable(null)
   }
 
   private fun loadViaCache(cacheValue: StoryCache.StoryCacheValue) {

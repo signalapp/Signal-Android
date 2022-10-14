@@ -17,6 +17,7 @@
 package org.thoughtcrime.securesms.video;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.Window;
@@ -25,6 +26,8 @@ import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.res.TypedArrayKt;
+import androidx.core.content.res.TypedArrayUtils;
 
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.ExoPlayer;
@@ -35,7 +38,6 @@ import com.google.android.exoplayer2.Tracks;
 import com.google.android.exoplayer2.source.ClippingMediaSource;
 import com.google.android.exoplayer2.source.DefaultMediaSourceFactory;
 import com.google.android.exoplayer2.source.MediaSource;
-import com.google.android.exoplayer2.source.TrackGroupArray;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.android.exoplayer2.ui.PlayerControlView;
 import com.google.android.exoplayer2.ui.PlayerView;
@@ -44,7 +46,6 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.mms.VideoSlide;
-import org.thoughtcrime.securesms.util.MediaUtil;
 
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
@@ -80,7 +81,11 @@ public class VideoPlayer extends FrameLayout {
   public VideoPlayer(Context context, AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
 
-    inflate(context, R.layout.video_player, this);
+    TypedArray typedArray       = context.obtainStyledAttributes(attrs, R.styleable.VideoPlayer);
+    int        videPlayerLayout = typedArray.getResourceId(R.styleable.VideoPlayer_playerLayoutId, R.layout.video_player);
+
+    typedArray.recycle();
+    inflate(context, videPlayerLayout, this);
 
     this.mediaSourceFactory = new DefaultMediaSourceFactory(context);
 
@@ -202,6 +207,12 @@ public class VideoPlayer extends FrameLayout {
     }
   }
 
+  public void setKeepContentOnPlayerReset(boolean keepContentOnPlayerReset) {
+    if (this.exoView != null) {
+      this.exoView.setKeepContentOnPlayerReset(keepContentOnPlayerReset);
+    }
+  }
+
   @Override
   public void setOnClickListener(@Nullable OnClickListener l) {
     if (this.exoView != null) {
@@ -215,11 +226,15 @@ public class VideoPlayer extends FrameLayout {
     return this.exoControls;
   }
 
-  public void cleanup() {
+  public void stop() {
     if (this.exoPlayer != null) {
       exoPlayer.stop();
       exoPlayer.clearMediaItems();
+    }
+  }
 
+  public void cleanup() {
+    if (this.exoPlayer != null) {
       exoView.setPlayer(null);
       exoControls.setPlayer(null);
 
@@ -319,9 +334,9 @@ public class VideoPlayer extends FrameLayout {
 
   private @NonNull MediaItem.ClippingConfiguration getClippingConfiguration(long startMs, long endMs) {
     return startMs != endMs ? new MediaItem.ClippingConfiguration.Builder()
-                                                                 .setStartPositionMs(startMs)
-                                                                 .setEndPositionMs(endMs)
-                                                                 .build()
+        .setStartPositionMs(startMs)
+        .setEndPositionMs(endMs)
+        .build()
                             : MediaItem.ClippingConfiguration.UNSET;
   }
 
