@@ -1073,24 +1073,8 @@ class StoryViewerPageFragment :
 
     fun onActionUp(e: MotionEvent) {
       if (e.x < container.measuredWidth * getLeftBoundary()) {
-        performLeftAction()
+        onGoToPrevious()
       } else if (e.x > container.measuredWidth - (container.measuredWidth * getRightBoundary())) {
-        performRightAction()
-      }
-    }
-
-    private fun performLeftAction() {
-      if (container.layoutDirection == View.LAYOUT_DIRECTION_RTL) {
-        onGoToNext()
-      } else {
-        onGoToPrevious()
-      }
-    }
-
-    private fun performRightAction() {
-      if (container.layoutDirection == View.LAYOUT_DIRECTION_RTL) {
-        onGoToPrevious()
-      } else {
         onGoToNext()
       }
     }
