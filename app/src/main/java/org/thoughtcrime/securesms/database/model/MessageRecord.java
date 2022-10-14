@@ -237,7 +237,7 @@ public abstract class MessageRecord extends DisplayRecord {
         throw new AssertionError(e);
       }
     } else if (isSmsExportType()) {
-      int messageResource = SignalStore.misc().getSmsExportPhase().isSmsSupported() ? R.string.MessageRecord__you_will_on_longer_be_able_to_send_sms_messages_from_signal_soon
+      int messageResource = SignalStore.misc().getSmsExportPhase().isSmsSupported() ? R.string.MessageRecord__you_will_no_longer_be_able_to_send_sms_messages_from_signal_soon
                                                                                     : R.string.MessageRecord__you_can_no_longer_send_sms_messages_in_signal;
       return fromRecipient(getIndividualRecipient(), r -> context.getString(messageResource, r.getDisplayName(context)), R.drawable.ic_update_info_16);
     }

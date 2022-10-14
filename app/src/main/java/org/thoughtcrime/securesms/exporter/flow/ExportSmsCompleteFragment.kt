@@ -20,6 +20,6 @@ class ExportSmsCompleteFragment : Fragment(R.layout.export_sms_complete_fragment
     val binding = ExportSmsCompleteFragmentBinding.bind(view)
 
     binding.exportCompleteNext.setOnClickListener { findNavController().safeNavigate(ExportSmsCompleteFragmentDirections.actionExportingSmsMessagesFragmentToChooseANewDefaultSmsAppFragment()) }
-    binding.exportCompleteStatus.text = getString(R.string.ExportSmsCompleteFragment__d_of_d_messages_exported, args.exportMessageCount, args.exportMessageCount)
+    binding.exportCompleteStatus.text = resources.getQuantityString(R.plurals.ExportSmsCompleteFragment__d_of_d_messages_exported, args.exportMessageCount, args.exportMessageCount, args.exportMessageCount)
   }
 }

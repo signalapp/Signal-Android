@@ -60,7 +60,7 @@ class ExportingSmsMessagesFragment : Fragment(R.layout.exporting_sms_messages_fr
           binding.progress.isIndeterminate = false
           binding.progress.max = it.total
           binding.progress.progress = it.progress
-          binding.progressLabel.text = getString(R.string.ExportingSmsMessagesFragment__exporting_d_of_d, it.progress, it.total)
+          binding.progressLabel.text = resources.getQuantityString(R.plurals.ExportingSmsMessagesFragment__exporting_d_of_d, it.total, it.progress, it.total)
         }
         SmsExportProgress.Init -> binding.progress.isIndeterminate = true
         SmsExportProgress.Starting -> binding.progress.isIndeterminate = true
