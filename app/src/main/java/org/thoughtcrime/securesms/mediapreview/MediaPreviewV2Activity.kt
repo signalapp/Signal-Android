@@ -1,9 +1,11 @@
 package org.thoughtcrime.securesms.mediapreview
 
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.commit
 import org.thoughtcrime.securesms.R
 
@@ -17,6 +19,11 @@ class MediaPreviewV2Activity : AppCompatActivity(R.layout.activity_mediapreview_
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setTheme(R.style.TextSecure_MediaPreview)
+    if (Build.VERSION.SDK_INT >= 21) {
+      val systemBarColor = ContextCompat.getColor(this, R.color.media_preview_bar_background)
+      window.statusBarColor = systemBarColor
+      window.navigationBarColor = systemBarColor
+    }
     if (savedInstanceState == null) {
       val bundle = Bundle()
       val args = MediaIntentFactory.requireArguments(intent.extras!!)

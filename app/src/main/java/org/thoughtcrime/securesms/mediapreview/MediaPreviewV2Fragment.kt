@@ -79,6 +79,22 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
     }
   }
 
+  private fun initializeViewModel(args: MediaIntentFactory.MediaPreviewArgs) {
+    if (!MediaUtil.isImageType(args.initialMediaType) && !MediaUtil.isVideoType(args.initialMediaType)) {
+      Log.w(TAG, "Unsupported media type sent to MediaPreviewV2Fragment, finishing.")
+      Snackbar.make(binding.root, R.string.MediaPreviewActivity_unssuported_media_type, Snackbar.LENGTH_LONG)
+        .setAction(R.string.MediaPreviewActivity_dismiss_due_to_error) {
+          requireActivity().finish()
+        }.show()
+    }
+
+    viewModel.setShowThread(args.showThread)
+    viewModel.setAlwaysShowAlbumRail(args.allMediaInRail)
+    viewModel.setLeftIsRecent(args.leftIsRecent)
+    val sorting = MediaDatabase.Sorting.deserialize(args.sorting)
+    viewModel.fetchAttachments(PartAuthority.requireAttachmentId(args.initialMediaUri), args.threadId, sorting)
+  }
+
   private fun initializeToolbar(toolbar: MaterialToolbar, args: MediaIntentFactory.MediaPreviewArgs) {
     toolbar.setNavigationOnClickListener {
       requireActivity().onBackPressed()
@@ -130,20 +146,6 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
   private fun initializeFullScreenUi() {
     fullscreenHelper.configureToolbarLayout(binding.toolbarCutoutSpacer, binding.toolbar)
     fullscreenHelper.showAndHideWithSystemUI(requireActivity().window, binding.toolbarLayout, binding.mediaPreviewDetailsContainer)
-  }
-
-  private fun initializeViewModel(args: MediaIntentFactory.MediaPreviewArgs) {
-    if (!MediaUtil.isImageType(args.initialMediaType) && !MediaUtil.isVideoType(args.initialMediaType)) {
-      Log.w(TAG, "Unsupported media type sent to MediaPreviewV2Fragment, finishing.")
-      Snackbar.make(binding.root, R.string.MediaPreviewActivity_unssuported_media_type, Snackbar.LENGTH_LONG)
-        .setAction(R.string.MediaPreviewActivity_dismiss_due_to_error) {
-          requireActivity().finish()
-        }.show()
-    }
-    viewModel.setShowThread(args.showThread)
-    viewModel.setAlwaysShowAlbumRail(args.allMediaInRail)
-    val sorting = MediaDatabase.Sorting.values()[args.sorting]
-    viewModel.fetchAttachments(PartAuthority.requireAttachmentId(args.initialMediaUri), args.threadId, sorting)
   }
 
   private fun bindCurrentState(currentState: MediaPreviewV2State) {

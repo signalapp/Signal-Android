@@ -27,11 +27,19 @@ class MediaPreviewV2ViewModel : ViewModel() {
   fun fetchAttachments(startingAttachmentId: AttachmentId, threadId: Long, sorting: MediaDatabase.Sorting) {
     disposables += store.update(repository.getAttachments(startingAttachmentId, threadId, sorting)) {
       result: MediaPreviewRepository.Result, oldState: MediaPreviewV2State ->
-      oldState.copy(
-        position = result.initialPosition,
-        mediaRecords = result.records,
-        loadState = MediaPreviewV2State.LoadState.READY,
-      )
+      if (oldState.leftIsRecent) {
+        oldState.copy(
+          position = result.initialPosition,
+          mediaRecords = result.records,
+          loadState = MediaPreviewV2State.LoadState.READY,
+        )
+      } else {
+        oldState.copy(
+          position = result.records.size - result.initialPosition - 1,
+          mediaRecords = result.records.reversed(),
+          loadState = MediaPreviewV2State.LoadState.READY,
+        )
+      }
     }
   }
 
@@ -44,6 +52,12 @@ class MediaPreviewV2ViewModel : ViewModel() {
   fun setAlwaysShowAlbumRail(value: Boolean) {
     store.update { oldState ->
       oldState.copy(allMediaInAlbumRail = value)
+    }
+  }
+
+  fun setLeftIsRecent(value: Boolean) {
+    store.update { oldState ->
+      oldState.copy(leftIsRecent = value)
     }
   }
 

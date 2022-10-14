@@ -261,6 +261,19 @@ public class MediaDatabase extends Database {
     public boolean isRelatedToFileSize() {
       return this == Largest;
     }
+
+    public static @NonNull Sorting deserialize(int code) {
+      switch (code) {
+        case 0:
+          return Newest;
+        case 1:
+          return Oldest;
+        case 2:
+          return Largest;
+        default:
+          throw new IllegalArgumentException("Unknown code: " + code);
+      }
+    }
   }
 
   public final static class StorageBreakdown {
