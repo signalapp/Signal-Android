@@ -111,6 +111,13 @@ public final class StorageSyncHelper {
                                                     .map(recipientDatabase::getRecordForSync)
                                                     .toList();
 
+    if (self.getStorageServiceId() == null) {
+      Log.w(TAG, "[buildAccountRecord] No storageId for self! Generating. (Record had ID: " + (record != null && record.getStorageId() != null) + ")");
+      SignalDatabase.recipients().updateStorageId(self.getId(), generateKey());
+      self = Recipient.self().fresh();
+      record = recipientDatabase.getRecordForSync(self.getId());
+    }
+
     SignalAccountRecord account = new SignalAccountRecord.Builder(self.getStorageServiceId(), record != null ? record.getSyncExtras().getStorageProto() : null)
                                                          .setProfileKey(self.getProfileKey())
                                                          .setGivenName(self.getProfileName().getGivenName())
