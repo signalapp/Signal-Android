@@ -71,16 +71,16 @@ public final class ScrubberTest {
       "A group v2 id __...group_v2...01 surrounded with text" },
 
     { "a37cb654-c9e0-4c1e-93df-3d11ca3c97f4",
-      "********-****-****-****-**********f4" },
+      "********-****-****-****-*********7f4" },
 
     { "A UUID a37cb654-c9e0-4c1e-93df-3d11ca3c97f4 surrounded with text",
-      "A UUID ********-****-****-****-**********f4 surrounded with text" },
+      "A UUID ********-****-****-****-*********7f4 surrounded with text" },
 
     { "JOB::a37cb654-c9e0-4c1e-93df-3d11ca3c97f4",
       "JOB::a37cb654-c9e0-4c1e-93df-3d11ca3c97f4" },
 
     { "All patterns in a row __textsecure_group__!abcdefg1234567890 +1234567890123456 abc@def.com a37cb654-c9e0-4c1e-93df-3d11ca3c97f4 nl.motorsport.com 192.168.1.1 with text after",
-      "All patterns in a row __...group...90 +*************456 a...@... ********-****-****-****-**********f4 ***.com ...ipv4... with text after"
+      "All patterns in a row __...group...90 +*************456 a...@... ********-****-****-****-*********7f4 ***.com ...ipv4... with text after"
     },
 
     { "java.net.UnknownServiceException: CLEARTEXT communication to nl.motorsport.com not permitted by network security policy",
