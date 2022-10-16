@@ -732,7 +732,7 @@ public final class ContactSelectionListFragment extends LoggingFragment
     @Override
     public boolean onItemLongClick(ContactSelectionListItem item) {
       if (onItemLongClickListener != null) {
-        return onItemLongClickListener.onLongClick(item);
+        return onItemLongClickListener.onLongClick(item, recyclerView);
       } else {
         return false;
       }
@@ -868,7 +868,7 @@ public final class ContactSelectionListFragment extends LoggingFragment
   }
 
   public interface OnItemLongClickListener {
-    boolean onLongClick(ContactSelectionListItem contactSelectionListItem);
+    boolean onLongClick(ContactSelectionListItem contactSelectionListItem, RecyclerView recyclerView);
   }
 
   public interface AbstractContactsCursorLoaderFactoryProvider {
