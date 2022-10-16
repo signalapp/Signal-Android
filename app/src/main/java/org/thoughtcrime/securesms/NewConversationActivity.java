@@ -29,6 +29,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
@@ -232,7 +233,7 @@ public class NewConversationActivity extends ContactSelectionActivity
   }
 
   @Override
-  public boolean onLongClick(ContactSelectionListItem contactSelectionListItem) {
+  public boolean onLongClick(ContactSelectionListItem contactSelectionListItem, RecyclerView recyclerView) {
     RecipientId recipientId = contactSelectionListItem.getRecipientId().orElse(null);
     if (recipientId == null) {
       return false;
@@ -248,7 +249,10 @@ public class NewConversationActivity extends ContactSelectionActivity
         .preferredHorizontalPosition(SignalContextMenu.HorizontalPosition.START)
         .offsetX((int) DimensionUnit.DP.toPixels(12))
         .offsetY((int) DimensionUnit.DP.toPixels(12))
+        .onDismiss(() -> recyclerView.suppressLayout(false))
         .show(actions);
+
+    recyclerView.suppressLayout(true);
 
     return true;
   }
