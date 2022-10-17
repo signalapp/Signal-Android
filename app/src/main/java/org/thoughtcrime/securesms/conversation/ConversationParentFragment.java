@@ -2726,7 +2726,7 @@ public class ConversationParentFragment extends Fragment
       inputPanel.setHideForBlockedState(true);
       smsExportStub.setVisibility(View.GONE);
       registerButton.setVisibility(View.VISIBLE);
-    } else if (!conversationSecurityInfo.isPushAvailable() && !(SignalStore.misc().getSmsExportPhase().isSmsSupported() && conversationSecurityInfo.isDefaultSmsApplication()) && recipient.hasSmsAddress()) {
+    } else if (!conversationSecurityInfo.isPushAvailable() && !(SignalStore.misc().getSmsExportPhase().isSmsSupported() && conversationSecurityInfo.isDefaultSmsApplication()) && (recipient.hasSmsAddress() || recipient.isMmsGroup())) {
       unblockButton.setVisibility(View.GONE);
       inputPanel.setHideForBlockedState(true);
       smsExportStub.setVisibility(View.VISIBLE);

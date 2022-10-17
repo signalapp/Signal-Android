@@ -130,7 +130,7 @@ public class IncomingLollipopMmsConnection extends LollipopMmsConnection impleme
 
       try {
         retrieved = (RetrieveConf) new PduParser(baos.toByteArray(), parseContentDisposition).parse();
-      } catch (NullPointerException e) {
+      } catch (AssertionError | NullPointerException e) {
         Log.w(TAG, "Badly formatted MMS message caused the parser to fail.", e);
         throw new MmsException(e);
       }

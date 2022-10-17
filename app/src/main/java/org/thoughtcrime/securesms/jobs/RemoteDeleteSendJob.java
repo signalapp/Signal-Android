@@ -158,6 +158,11 @@ public class RemoteDeleteSendJob extends BaseJob {
       throw new IllegalStateException("Cannot delete a message that isn't yours!");
     }
 
+    if (!conversationRecipient.isRegistered() || conversationRecipient.isMmsGroup()) {
+      Log.w(TAG, "Unable to remote delete non-push messages");
+      return;
+    }
+
     List<Recipient>   possible = Stream.of(recipients).map(Recipient::resolved).toList();
     List<Recipient>   eligible = RecipientUtil.getEligibleForSending(Stream.of(recipients).map(Recipient::resolved).toList());
     List<RecipientId> skipped  = Stream.of(SetUtil.difference(possible, eligible)).map(Recipient::getId).toList();
