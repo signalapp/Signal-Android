@@ -60,7 +60,10 @@ class StoryTextLoader(
     contentView.layout(0, 0, contentView.measuredWidth, contentView.measuredHeight)
 
     fragment.displayInDialogAboveAnchor(view, contentView, windowDim = 0f, onDismiss = {
-      callback.setIsDisplayingLinkPreviewTooltip(false)
+      val activity = fragment.activity
+      if (activity != null) {
+        callback.setIsDisplayingLinkPreviewTooltip(false)
+      }
     })
   }
 }
