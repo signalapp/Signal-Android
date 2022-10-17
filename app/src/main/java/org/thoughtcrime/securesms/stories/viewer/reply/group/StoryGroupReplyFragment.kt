@@ -186,7 +186,7 @@ class StoryGroupReplyFragment :
 
     var firstSubmit = true
 
-    viewModel.state
+    lifecycleDisposable += viewModel.state
       .observeOn(AndroidSchedulers.mainThread())
       .subscribeBy { state ->
         if (markReadHelper == null && state.threadId > 0L) {
