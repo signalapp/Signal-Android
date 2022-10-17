@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <org.thoughtcrime.securesms.util.views.DarkOverflowToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/signal_m3_toolbar_height"
+        android:background="@null"
+        android:minHeight="@dimen/signal_m3_toolbar_height"
+        android:theme="?attr/settingsToolbarStyle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationContentDescription="@string/DSLSettingsToolbar__navigate_up"
+        app:navigationIcon="@drawable/ic_arrow_left_24"
+        app:titleTextAppearance="@style/Signal.Text.TitleLarge" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingHorizontal="32dp"
+        android:textAppearance="@style/Signal.Text.TitleLarge"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        tools:text="Donation amount: $20" />
+
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:paddingHorizontal="32dp"
+        android:text="@string/CreditCardFragment__enter_your_card_information_below"
+        android:textColor="@color/signal_colorOnSurfaceVariant"
+        app:layout_constraintTop_toBottomOf="@id/title" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/card_number_wrapper"
+        style="@style/Widget.Signal.TextInputLayout.FilledBox.ContactNameEditor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:hint="@string/CreditCardFragment__card_number"
+        app:boxStrokeColor="@color/signal_colorPrimary"
+        app:errorEnabled="true"
+        app:hintTextColor="@color/signal_colorPrimary"
+        app:layout_constraintTop_toBottomOf="@id/description">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/card_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLength="19"
+            android:maxLines="1" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/card_expiry_wrapper"
+        style="@style/Widget.Signal.TextInputLayout.FilledBox.ContactNameEditor"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:hint="@string/CreditCardFragment__mm_yy"
+        android:paddingEnd="18dp"
+        app:boxStrokeColor="@color/signal_colorPrimary"
+        app:errorEnabled="true"
+        app:hintTextColor="@color/signal_colorPrimary"
+        app:layout_constraintEnd_toStartOf="@id/card_cvv_wrapper"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/card_number_wrapper">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/card_expiry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="datetime|date"
+            android:maxLength="5"
+            android:maxLines="1"
+            android:nextFocusDown="@id/card_cvv" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/card_cvv_wrapper"
+        style="@style/Widget.Signal.TextInputLayout.FilledBox.ContactNameEditor"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:hint="@string/CreditCardFragment__cvv"
+        android:paddingStart="18dp"
+        app:boxStrokeColor="@color/signal_colorPrimary"
+        app:errorEnabled="true"
+        app:hintTextColor="@color/signal_colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/card_expiry_wrapper"
+        app:layout_constraintTop_toBottomOf="@id/card_number_wrapper">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/card_cvv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:imeOptions="actionDone"
+            android:inputType="number"
+            android:maxLength="4"
+            android:maxLines="1" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

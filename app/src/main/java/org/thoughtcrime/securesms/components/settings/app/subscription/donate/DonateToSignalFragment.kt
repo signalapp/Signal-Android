@@ -49,6 +49,7 @@ import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.databinding.DonateToSignalFragmentBinding
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.subscription.Subscription
+import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.Material3OnScrollHelper
 import org.thoughtcrime.securesms.util.Projection
@@ -390,7 +391,7 @@ class DonateToSignalFragment : DSLSettingsFragment(
     when (gatewayResponse.gateway) {
       GatewayResponse.Gateway.GOOGLE_PAY -> launchGooglePay(gatewayResponse)
       GatewayResponse.Gateway.PAYPAL -> error("PayPal is not currently supported.")
-      GatewayResponse.Gateway.CREDIT_CARD -> error("Credit cards are not currently supported.")
+      GatewayResponse.Gateway.CREDIT_CARD -> launchCreditCard(gatewayResponse)
     }
   }
 
@@ -426,7 +427,7 @@ class DonateToSignalFragment : DSLSettingsFragment(
   }
 
   private fun launchGooglePay(gatewayResponse: GatewayResponse) {
-    viewModel.provideGatewayRequest(gatewayResponse.request)
+    viewModel.provideGatewayRequestForGooglePay(gatewayResponse.request)
     donationPaymentComponent.donationPaymentRepository.requestTokenFromGooglePay(
       price = FiatMoney(gatewayResponse.request.price, Currency.getInstance(gatewayResponse.request.currencyCode)),
       label = gatewayResponse.request.label,
@@ -434,10 +435,18 @@ class DonateToSignalFragment : DSLSettingsFragment(
     )
   }
 
+  private fun launchCreditCard(gatewayResponse: GatewayResponse) {
+    if (FeatureFlags.creditCardPayments()) {
+      findNavController().safeNavigate(DonateToSignalFragmentDirections.actionDonateToSignalFragmentToCreditCardFragment(gatewayResponse.request))
+    } else {
+      error("Credit cards are not currently enabled.")
+    }
+  }
+
   private fun registerGooglePayCallback() {
     donationPaymentComponent.googlePayResultPublisher.subscribeBy(
       onNext = { paymentResult ->
-        viewModel.consumeGatewayRequest()?.let {
+        viewModel.consumeGatewayRequestForGooglePay()?.let {
           donationPaymentComponent.donationPaymentRepository.onActivityResult(
             paymentResult.requestCode,
             paymentResult.resultCode,

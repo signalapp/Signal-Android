@@ -104,8 +104,15 @@ public final class FeatureFlags {
   private static final String CDS_V2_COMPAT                     = "android.cdsV2Compat.4";
   public  static final String STORIES_LOCALE                    = "android.stories.locale.1";
   private static final String HIDE_CONTACTS                     = "android.hide.contacts";
+<<<<<<< HEAD
   private static final String MEDIA_PREVIEW_V2                  = "android.mediaPreviewV2";
   private static final String SMS_EXPORT_MEGAPHONE_DELAY_DAYS   = "android.smsExport.megaphoneDelayDays";
+||||||| parent of 90b7447a79 (Credit card validator implementations and spec tests.)
+  public  static final String MEDIA_PREVIEW_V2                  = "android.mediaPreviewV2";
+=======
+  public  static final String MEDIA_PREVIEW_V2                  = "android.mediaPreviewV2";
+  public  static final String CREDIT_CARD_PAYMENTS              = "android.credit.card.payments";
+>>>>>>> 90b7447a79 (Credit card validator implementations and spec tests.)
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -162,8 +169,15 @@ public final class FeatureFlags {
       CDS_V2_COMPAT,
       STORIES_LOCALE,
       HIDE_CONTACTS,
+<<<<<<< HEAD
       MEDIA_PREVIEW_V2,
       SMS_EXPORT_MEGAPHONE_DELAY_DAYS
+||||||| parent of 90b7447a79 (Credit card validator implementations and spec tests.)
+      MEDIA_PREVIEW_V2
+=======
+      MEDIA_PREVIEW_V2,
+      CREDIT_CARD_PAYMENTS
+>>>>>>> 90b7447a79 (Credit card validator implementations and spec tests.)
   );
 
   @VisibleForTesting
@@ -227,8 +241,15 @@ public final class FeatureFlags {
       CDS_V2_LOAD_TEST,
       CDS_V2_COMPAT,
       STORIES,
+<<<<<<< HEAD
       MEDIA_PREVIEW_V2,
       SMS_EXPORT_MEGAPHONE_DELAY_DAYS
+||||||| parent of 90b7447a79 (Credit card validator implementations and spec tests.)
+      MEDIA_PREVIEW_V2
+=======
+      MEDIA_PREVIEW_V2,
+      CREDIT_CARD_PAYMENTS
+>>>>>>> 90b7447a79 (Credit card validator implementations and spec tests.)
   );
 
   /**
@@ -593,6 +614,15 @@ public final class FeatureFlags {
    */
   public static int smsExportMegaphoneDelayDays() {
     return getInteger(SMS_EXPORT_MEGAPHONE_DELAY_DAYS, 14);
+  }
+
+  /**
+   * Whether or not we should allow credit card payments for donations
+   *
+   * WARNING: This feature is not done, and this should not be enabled.
+   */
+  public static boolean creditCardPayments() {
+    return getBoolean(CREDIT_CARD_PAYMENTS, Environment.IS_STAGING);
   }
 
   /** Only for rendering debug info. */

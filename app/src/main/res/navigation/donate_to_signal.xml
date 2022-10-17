@@ -36,6 +36,9 @@
         <action
             android:id="@+id/action_donateToSignalFragment_to_subscribeLearnMoreBottomSheetDialog"
             app:destination="@id/subscribeLearnMoreBottomSheetDialog" />
+        <action
+            android:id="@+id/action_donateToSignalFragment_to_creditCardFragment"
+            app:destination="@id/creditCardFragment" />
 
     </fragment>
 
@@ -106,5 +109,17 @@
         android:name="org.thoughtcrime.securesms.components.settings.app.subscription.subscribe.SubscribeLearnMoreBottomSheetDialogFragment"
         android:label="subscribe_learn_more_bottom_sheet_dialog"
         tools:layout="@layout/subscribe_learn_more_bottom_sheet_dialog_fragment" />
+
+    <fragment
+        android:id="@+id/creditCardFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.subscription.donate.card.CreditCardFragment"
+        android:label="credit_card_fragment"
+        tools:layout="@layout/credit_card_fragment">
+
+        <argument
+            android:name="request"
+            app:argType="org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayRequest"
+            app:nullable="false" />
+    </fragment>
 
 </navigation>

@@ -77,7 +77,20 @@ class GatewaySelectorBottomSheet : DSLSettingsBottomSheetFragment() {
       }
 
       // PayPal
+
       // Credit Card
+      if (state.isCreditCardAvailable) {
+        space(12.dp)
+
+        primaryButton(
+          text = DSLSettingsText.from(R.string.GatewaySelectorBottomSheet__credit_or_debit_card),
+          onClick = {
+            findNavController().popBackStack()
+            val response = GatewayResponse(GatewayResponse.Gateway.CREDIT_CARD, args.request)
+            setFragmentResult(REQUEST_KEY, bundleOf(REQUEST_KEY to response))
+          }
+        )
+      }
 
       space(16.dp)
     }

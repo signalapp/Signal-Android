@@ -348,13 +348,13 @@ class DonateToSignalViewModel(
     store.dispose()
   }
 
-  fun provideGatewayRequest(request: GatewayRequest) {
+  fun provideGatewayRequestForGooglePay(request: GatewayRequest) {
     Log.d(TAG, "Provided with a gateway request.")
     Preconditions.checkState(gatewayRequest == null)
     gatewayRequest = request
   }
 
-  fun consumeGatewayRequest(): GatewayRequest? {
+  fun consumeGatewayRequestForGooglePay(): GatewayRequest? {
     val request = gatewayRequest
     gatewayRequest = null
     return request
