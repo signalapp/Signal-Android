@@ -22,49 +22,51 @@ import org.signal.qr.QrScannerView
 
 class QrMainActivity : AppCompatActivity() {
 
-
   private lateinit var text: EditText
 
   @SuppressLint("NewApi", "SetTextI18n")
   override fun onCreate(savedInstanceState: Bundle?) {
-    Log.initialize(AndroidLogger(), object : Log.Logger() {
-      override fun v(tag: String, message: String?, t: Throwable?, keepLonger: Boolean) {
-        printlnFormatted('v', tag, message, t)
-      }
+    Log.initialize(
+      AndroidLogger(),
+      object : Log.Logger() {
+        override fun v(tag: String, message: String?, t: Throwable?, keepLonger: Boolean) {
+          printlnFormatted('v', tag, message, t)
+        }
 
-      override fun d(tag: String, message: String?, t: Throwable?, keepLonger: Boolean) {
-        printlnFormatted('d', tag, message, t)
-      }
+        override fun d(tag: String, message: String?, t: Throwable?, keepLonger: Boolean) {
+          printlnFormatted('d', tag, message, t)
+        }
 
-      override fun i(tag: String, message: String?, t: Throwable?, keepLonger: Boolean) {
-        printlnFormatted('i', tag, message, t)
-      }
+        override fun i(tag: String, message: String?, t: Throwable?, keepLonger: Boolean) {
+          printlnFormatted('i', tag, message, t)
+        }
 
-      override fun w(tag: String, message: String?, t: Throwable?, keepLonger: Boolean) {
-        printlnFormatted('w', tag, message, t)
-      }
+        override fun w(tag: String, message: String?, t: Throwable?, keepLonger: Boolean) {
+          printlnFormatted('w', tag, message, t)
+        }
 
-      override fun e(tag: String, message: String?, t: Throwable?, keepLonger: Boolean) {
-        printlnFormatted('e', tag, message, t)
-      }
+        override fun e(tag: String, message: String?, t: Throwable?, keepLonger: Boolean) {
+          printlnFormatted('e', tag, message, t)
+        }
 
-      override fun flush() {}
+        override fun flush() {}
 
-      private fun printlnFormatted(level: Char, tag: String, message: String?, t: Throwable?) {
-        ThreadUtil.runOnMain {
-          val allText = text.text.toString() + "\n" + format(level, tag, message, t)
-          text.setText(allText)
+        private fun printlnFormatted(level: Char, tag: String, message: String?, t: Throwable?) {
+          ThreadUtil.runOnMain {
+            val allText = text.text.toString() + "\n" + format(level, tag, message, t)
+            text.setText(allText)
+          }
+        }
+
+        private fun format(level: Char, tag: String, message: String?, t: Throwable?): String {
+          return if (t != null) {
+            String.format("%c[%s] %s %s:%s", level, tag, message, t.javaClass.simpleName, t.message)
+          } else {
+            String.format("%c[%s] %s", level, tag, message)
+          }
         }
       }
-
-      private fun format(level: Char, tag: String, message: String?, t: Throwable?): String {
-        return if (t != null) {
-          String.format("%c[%s] %s %s:%s", level, tag, message, t.javaClass.simpleName, t.message)
-        } else {
-          String.format("%c[%s] %s", level, tag, message)
-        }
-      }
-    })
+    )
 
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
