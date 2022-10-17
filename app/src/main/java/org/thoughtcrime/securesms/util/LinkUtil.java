@@ -42,17 +42,17 @@ public final class LinkUtil {
     return url != null &&
            !TextUtils.isEmpty(url.scheme()) &&
            "https".equals(url.scheme()) &&
-           isLegalUrl(linkUrl, false);
+           isLegalUrl(linkUrl, false, false);
   }
 
   /**
    * @return True if URL is valid, mostly useful for linkifying.
    */
   public static boolean isLegalUrl(@NonNull String url) {
-    return isLegalUrl(url, true);
+    return isLegalUrl(url, true, false);
   }
 
-  private static boolean isLegalUrl(@NonNull String url, boolean skipTopLevelDomainValidation) {
+  public static boolean isLegalUrl(@NonNull String url, boolean skipTopLevelDomainValidation, boolean requireTopLevelDomain) {
     if (ILLEGAL_CHARACTERS_PATTERN.matcher(url).find()) {
       return false;
     }
@@ -67,7 +67,8 @@ public final class LinkUtil {
       boolean validCharacters = ALL_ASCII_PATTERN.matcher(cleanedDomain).matches() ||
                                 ALL_NON_ASCII_PATTERN.matcher(cleanedDomain).matches();
 
-      boolean validTopLevelDomain = skipTopLevelDomainValidation || !INVALID_TOP_LEVEL_DOMAINS.contains(topLevelDomain);
+      boolean validTopLevelDomain = (skipTopLevelDomainValidation || !INVALID_TOP_LEVEL_DOMAINS.contains(topLevelDomain)) &&
+                                    (!requireTopLevelDomain || topLevelDomain != null);
 
       return validCharacters && validTopLevelDomain;
     } else {

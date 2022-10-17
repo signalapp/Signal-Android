@@ -8,11 +8,13 @@ import android.widget.EditText
 import androidx.constraintlayout.widget.Group
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
+import com.google.android.material.snackbar.Snackbar
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.KeyboardEntryDialogFragment
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel
 import org.thoughtcrime.securesms.stories.StoryLinkPreviewView
+import org.thoughtcrime.securesms.util.LinkUtil
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.visible
 
@@ -57,10 +59,18 @@ class TextStoryPostLinkEntryFragment : KeyboardEntryDialogFragment(
       val linkPreviewState = linkPreviewViewModel.linkPreviewState.value
       if (linkPreviewState != null) {
         val url = linkPreviewState.linkPreview.map { it.url }.orElseGet { linkPreviewState.activeUrlForError }
-        viewModel.setLinkPreview(url)
-      }
 
-      dismissAllowingStateLoss()
+        if (LinkUtil.isLegalUrl(url, false, true)) {
+          viewModel.setLinkPreview(url)
+          dismissAllowingStateLoss()
+        } else {
+          val snackbar = Snackbar.make(requireView(), R.string.TextStoryPostSendFragment__please_enter_a_valid_link, Snackbar.LENGTH_SHORT)
+          snackbar.anchorView = linkPreview
+          snackbar.show()
+        }
+      } else {
+        dismissAllowingStateLoss()
+      }
     }
 
     linkPreviewViewModel.linkPreviewState.observe(viewLifecycleOwner) { state ->
