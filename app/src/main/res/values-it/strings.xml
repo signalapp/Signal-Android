@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- smartling.instruction_comments_enabled = on -->
 <resources>
     <string name="app_name" translatable="false">Signal</string>
 
@@ -220,7 +221,7 @@
     <string name="ContactsCursorLoader_find_by_username">Cerca tramite nome utente</string>
     <!-- Label for my stories when selecting who to send media to -->
     <string name="ContactsCursorLoader_my_stories">Le mie Storie</string>
-    <!-- Action for creating a new story -->
+    <!-- Text for a button that brings up a bottom sheet to create a new story. -->
     <string name="ContactsCursorLoader_add_to">Add to…</string>
 
     <!-- ContactsDatabase -->
@@ -347,11 +348,11 @@
     <!-- Message shown when opening an SMS conversation with SMS disabled and they have unexported sms messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_you_can_export_your_messages_to_another_app_on_your_phone">SMS messaging is no longer supported in Signal. You can export your messages to another app on your phone.</string>
     <!-- Action button shown when in sms conversation, sms is disabled, and unexported sms messages are present -->
-    <string name="ConversationActivity__export_sms_messages">Export SMS messages</string>
+    <string name="ConversationActivity__export_sms_messages">Esporta messaggi SMS</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">SMS messaging is no longer supported in Signal. Invite %1$s to Signal to keep the conversation here.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
-    <string name="ConversationActivity__invite_to_signal">Invite to Signal</string>
+    <string name="ConversationActivity__invite_to_signal">Invita a Signal</string>
     <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we'll do it again soon -->
     <string name="ConversationActivity__you_will_be_reminded_again_soon">You will be reminded again soon.</string>
 
@@ -1390,7 +1391,7 @@
     </plurals>
 
     <!-- In-conversation update message to indicate that the current contact is sms only and will need to migrate to signal to continue the conversation in signal. -->
-    <string name="MessageRecord__you_will_on_longer_be_able_to_send_sms_messages_from_signal_soon">You will on longer be able to send SMS messages from Signal soon. Invite %1$s to Signal to keep the conversation here.</string>
+    <string name="MessageRecord__you_will_no_longer_be_able_to_send_sms_messages_from_signal_soon">You will no longer be able to send SMS messages from Signal soon. Invite %1$s to Signal to keep the conversation here.</string>
     <!-- In-conversation update message to indicate that the current contact is sms only and will need to migrate to signal to continue the conversation in signal. -->
     <string name="MessageRecord__you_can_no_longer_send_sms_messages_in_signal">You can no longer send SMS messages in Signal. Invite %1$s to Signal to keep the conversation here.</string>
 
@@ -2031,7 +2032,7 @@
     <string name="NotificationChannel_background_connection">Connessione in background</string>
     <!-- Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing. -->
     <string name="NotificationChannel_call_status">Stato chiamata</string>
-    <!-- Notification channel name for occasional alerts to the user -->
+    <!-- Notification channel name for occasional alerts to the user. Will appear in the system notification settings as the title of this notification channel. -->
     <string name="NotificationChannel_critical_app_alerts">Critical app alerts</string>
 
     <!-- ProfileEditNameFragment -->
@@ -4876,11 +4877,11 @@
     <string name="MyStorySettingsFragment__my_story">La mia Storia</string>
     <!-- Number of total signal connections displayed in "All connections" row item -->
     <plurals name="MyStorySettingsFragment__viewers">
-        <item quantity="one">%1$d viewer</item>
-        <item quantity="other">%1$d viewers</item>
+        <item quantity="one">%1$d persone ha visto la Storia</item>
+        <item quantity="other">%1$d persone hanno visto la Storia</item>
     </plurals>
     <!-- Button on all signal connections row to view all signal connections. Please keep as short as possible. -->
-    <string name="MyStorySettingsFragment__view">View</string>
+    <string name="MyStorySettingsFragment__view">Mostra</string>
     <!-- Section heading for story visibility -->
     <string name="MyStorySettingsFragment__who_can_view_this_story">Chi può vedere questa Storia</string>
     <!-- Clickable option for selecting people to hide your story from -->
@@ -5295,10 +5296,10 @@
     <!-- Page title when launched from stories landing screen -->
     <string name="StoriesPrivacySettingsFragment__story_privacy">Privacy delle Storie</string>
     <!-- Header for section that lists out stories -->
-    <string name="StoriesPrivacySettingsFragment__stories">Stories</string>
+    <string name="StoriesPrivacySettingsFragment__stories">Storie</string>
 
     <!-- NewStoryItem -->
-    <string name="NewStoryItem__new_story">New story</string>
+    <string name="NewStoryItem__new_story">Nuova Storia</string>
 
     <!-- GroupStorySettingsFragment -->
     <!-- Section header for who can view a group story -->
@@ -5333,7 +5334,10 @@
     <!-- Message of the screen when exporting sms messages -->
     <string name="ExportingSmsMessagesFragment__this_may_take_awhile">This may take awhile</string>
     <!-- Progress indicator for export -->
-    <string name="ExportingSmsMessagesFragment__exporting_d_of_d">Esportati %1$d messaggi di %2$d…</string>
+    <plurals name="ExportingSmsMessagesFragment__exporting_d_of_d">
+        <item quantity="one">Exporting %1$d of %2$d…</item>
+        <item quantity="other">Exporting %1$d of %2$d…</item>
+    </plurals>
 
     <!-- ChooseANewDefaultSmsAppFragment -->
     <!-- Title of the screen -->
@@ -5382,14 +5386,14 @@
     <string name="SetSignalAsDefaultSmsAppFragment__next">Avanti</string>
 
     <!-- BackupSchedulePermission Megaphone -->
-    <!-- Can't backup chats megaphone title -->
+    <!-- The title on an alert window that explains to the user that we are unable to backup their messages -->
     <string name="BackupSchedulePermissionMegaphone__cant_back_up_chats">Can\'t back up chats</string>
-    <!-- Can't backup chats megaphone message -->
+    <!-- The body text of an alert window that tells the user that we are unable to backup their messages -->
     <string name="BackupSchedulePermissionMegaphone__your_chats_are_no_longer_being_automatically_backed_up">Your chats are no longer being automatically backed up.</string>
-    <!-- Can't backup chats megaphone button text to take steps to re-enable -->
+    <!-- The text on a button in an alert window that, when clicked, will take the user to a screen to re-enable backups -->
     <string name="BackupSchedulePermissionMegaphone__back_up_chats">Back up chats</string>
-    <!-- Can't backup chats megaphone button to snooze megaphone and be reshown later -->
-    <string name="BackupSchedulePermissionMegaphone__not_now">Not now</string>
+    <!-- The text on a button in an alert window that, when clicked, will take the user to a screen to re-enable backups -->
+    <string name="BackupSchedulePermissionMegaphone__not_now">Non ora</string>
     <!-- Re-enable backup permission bottom sheet title -->
     <string name="BackupSchedulePermissionMegaphone__to_reenable_backups">To re-enable backups:</string>
     <!-- Re-enable backups permission bottom sheet instruction 1 text -->
@@ -5397,7 +5401,7 @@
     <!-- Re-enable backups permission bottom sheet instruction 2 text -->
     <string name="BackupSchedulePermissionMegaphone__turn_on_allow_settings_alarms_and_reminders">Turn on \"Allow settings alarms and reminders.\"</string>
     <!-- Re-enable backups permission bottom sheet call to action button to open settings -->
-    <string name="BackupSchedulePermissionMegaphone__go_to_settings">Go to settings</string>
+    <string name="BackupSchedulePermissionMegaphone__go_to_settings">Vai alle Impostazioni</string>
 
     <!-- SmsExportMegaphoneActivity -->
     <!-- Phase 2 title of full screen megaphone indicating sms will no longer be supported in the near future -->
@@ -5408,12 +5412,12 @@
     <string name="SmsExportMegaphoneActivity__signal_will_soon_remove_support_for_sending_sms_messages">Signal will soon remove support for sending SMS messages because Signal messages provide end-to-end encryption and strong privacy that SMS messages don\'t. This will also allow us to improve the Signal messaging experience.</string>
     <!-- Phase 3 message describing that sms has gone away -->
     <string name="SmsExportMegaphoneActivity__signal_has_removed_support_for_sending_sms_messages">Signal has removed support for sending SMS messages because Signal messages provide end-to-end encryption and strong privacy that SMS messages don\'t. This will also allow us to improve the Signal messaging experience.</string>
-    <!-- Button on full screen megaphone that takes the user to the export messages flow -->
+    <!-- The text on a button in a popup that, when clicked, will take the user to a screen to export their SMS messages -->
     <string name="SmsExportMegaphoneActivity__export_sms">Export SMS</string>
-    <!-- Button on full screen megaphone that dismiss the megaphone and it'll be shown again at a later time -->
-    <string name="SmsExportMegaphoneActivity__remind_me_later">Remind me later</string>
-    <!-- Button on full screen megaphone that navigates to a web article on sms removal -->
-    <string name="SmsExportMegaphoneActivity__learn_more">Learn more</string>
+    <!-- The text on a button in a popup that, when clicked, will dismiss the popup and schedule the prompt to occur at a later time. -->
+    <string name="SmsExportMegaphoneActivity__remind_me_later">Ricordamelo più tardi</string>
+    <!-- The text on a button in a popup that, when clicked, will navigate the user to a web article on SMS removal -->
+    <string name="SmsExportMegaphoneActivity__learn_more">Scopri di più</string>
 
     <!-- Phase 1 Small megaphone title indicating sms is going away -->
     <string name="SmsExportMegaphone__sms_support_going_away">SMS support going away</string>
@@ -5424,9 +5428,12 @@
     <!-- Title for screen shown after sms export has completed -->
     <string name="ExportSmsCompleteFragment__export_complete">Export Complete</string>
     <!-- Button to continue to next screen -->
-    <string name="ExportSmsCompleteFragment__next">Next</string>
+    <string name="ExportSmsCompleteFragment__next">Avanti</string>
     <!-- Message showing summary of sms export counts -->
-    <string name="ExportSmsCompleteFragment__d_of_d_messages_exported">%1$d of %2$d messages exported</string>
+    <plurals name="ExportSmsCompleteFragment__d_of_d_messages_exported">
+        <item quantity="one">%1$d of %2$d message exported</item>
+        <item quantity="other">%1$d of %2$d messages exported</item>
+    </plurals>
 
     <!-- EOF -->
 

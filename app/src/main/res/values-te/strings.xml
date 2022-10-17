@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- smartling.instruction_comments_enabled = on -->
 <resources>
     <string name="app_name" translatable="false">Signal</string>
 
@@ -220,8 +221,8 @@
     <string name="ContactsCursorLoader_find_by_username">యూజర్‌నేమ్ ద్వారా కనుగొనండి</string>
     <!-- Label for my stories when selecting who to send media to -->
     <string name="ContactsCursorLoader_my_stories">నా స్టోరీస్</string>
-    <!-- Action for creating a new story -->
-    <string name="ContactsCursorLoader_add_to">Add to…</string>
+    <!-- Text for a button that brings up a bottom sheet to create a new story. -->
+    <string name="ContactsCursorLoader_add_to">దీనికి జోడించండి…</string>
 
     <!-- ContactsDatabase -->
     <string name="ContactsDatabase_message_s">%1$sకి సందేశం పంపు</string>
@@ -345,15 +346,15 @@
     <string name="ConversationActivity__reported_as_spam_and_blocked">స్పామ్‌గా నివేదించబడింది మరియు నిరోధించబడింది.</string>
 
     <!-- Message shown when opening an SMS conversation with SMS disabled and they have unexported sms messages -->
-    <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_you_can_export_your_messages_to_another_app_on_your_phone">SMS messaging is no longer supported in Signal. You can export your messages to another app on your phone.</string>
+    <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_you_can_export_your_messages_to_another_app_on_your_phone">Signal లో SMS సందేశాలు పంపేందుకు ఇక ఏమాత్రం మద్దతు ఇవ్వబడదు. మీ ఫోన్‌లోని మరో యాప్‌కు మీ సందేశాలను మీరు ఎగుమతి చేయవచ్చు.</string>
     <!-- Action button shown when in sms conversation, sms is disabled, and unexported sms messages are present -->
-    <string name="ConversationActivity__export_sms_messages">Export SMS messages</string>
+    <string name="ConversationActivity__export_sms_messages">SMS సందేశాలను ఎగుమతి చేయండి</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
-    <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">SMS messaging is no longer supported in Signal. Invite %1$s to Signal to keep the conversation here.</string>
+    <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">Signal లో SMS సందేశాలు పంపేందుకు ఇక ఏమాత్రం మద్దతు ఇవ్వబడదు. ఇక్కడ సంభాషణను ఉంచడానికి %1$s ను Signal కు ఆహ్వానించండి.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
-    <string name="ConversationActivity__invite_to_signal">Invite to Signal</string>
+    <string name="ConversationActivity__invite_to_signal">Signal కు ఆహ్వానించండి</string>
     <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we'll do it again soon -->
-    <string name="ConversationActivity__you_will_be_reminded_again_soon">You will be reminded again soon.</string>
+    <string name="ConversationActivity__you_will_be_reminded_again_soon">త్వరలో మీకు మళ్లీ గుర్తు చేయబడుతుంది.</string>
 
     <!-- ConversationAdapter -->
     <plurals name="ConversationAdapter_n_unread_messages">
@@ -818,7 +819,7 @@
     <string name="AddGroupDetailsFragment__sms_contact">SMS పరిచయం</string>
     <string name="AddGroupDetailsFragment__remove_s_from_this_group">ఈ గుంపు నుండి %1$s ను తొలగించాలా?</string>
     <!-- Displayed when adding group details to an MMS Group -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">You\'ve selected a contact that dosen\'t support Signal groups, this group will be MMS. Custom MMS group names and photos will only be visible to you. Support for MMS groups will be removed soon to focus on encrypted messaging.</string>
+    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">Signal గ్రూపులకు మద్దతు ఇవ్వని కాంటాక్ట్‌ను మీరు ఎంచుకున్నారు, ఈ గ్రూపు MMS అవుతుంది. అనుకూల MMS గ్రూప్ పేర్లు మరియు ఫోటోలు మీకు మాత్రమే కనిపిస్తాయి. ఎన్‌క్రిప్ట్ చేసిన సందేశాలు పంపడంపై దృష్టి పెట్టడానికి త్వరలో MMS గ్రూపులకు మద్దతు తొలగించబడుతుంది.</string>
 
     <!-- ManageGroupActivity -->
     <string name="ManageGroupActivity_member_requests_and_invites">సభ్యుల అభ్యర్థనలు &amp; ఆహ్వానిస్తుంది</string>
@@ -1003,7 +1004,7 @@
     <!-- InputPanel -->
     <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">మాటతో కూడిన సందేశాన్ని రికార్డు చేయుటకు తడుతూనే ఉంచి , పంపుటకు వదిలివేయండి.</string>
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
-    <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">SMS messaging is no longer supported in Signal.</string>
+    <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">Signal లో SMS సందేశాలు పంపేందుకు ఇక ఏమాత్రం మద్దతు ఇవ్వబడదు.</string>
 
     <!-- InviteActivity -->
     <string name="InviteActivity_share">పంచుకోండి</string>
@@ -1390,9 +1391,9 @@
     </plurals>
 
     <!-- In-conversation update message to indicate that the current contact is sms only and will need to migrate to signal to continue the conversation in signal. -->
-    <string name="MessageRecord__you_will_on_longer_be_able_to_send_sms_messages_from_signal_soon">You will on longer be able to send SMS messages from Signal soon. Invite %1$s to Signal to keep the conversation here.</string>
+    <string name="MessageRecord__you_will_no_longer_be_able_to_send_sms_messages_from_signal_soon">త్వరలో Signal నుంచి SMS సందేశాలను మీరు ఇక ఏమాత్రం పంపలేరు. ఇక్కడ సంభాషణను ఉంచడానికి %1$s ను Signal కు ఆహ్వానించండి.</string>
     <!-- In-conversation update message to indicate that the current contact is sms only and will need to migrate to signal to continue the conversation in signal. -->
-    <string name="MessageRecord__you_can_no_longer_send_sms_messages_in_signal">You can no longer send SMS messages in Signal. Invite %1$s to Signal to keep the conversation here.</string>
+    <string name="MessageRecord__you_can_no_longer_send_sms_messages_in_signal">Signal లో SMS సందేశాలను మీరు ఇక ఏమాత్రం పంపలేరు. ఇక్కడ సంభాషణను ఉంచడానికి %1$s ను Signal కు ఆహ్వానించండి.</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">అంగీకరించండి</string>
@@ -2031,8 +2032,8 @@
     <string name="NotificationChannel_background_connection">బ్యాక్‌గ్రౌండ్ కనెక్షన్</string>
     <!-- Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing. -->
     <string name="NotificationChannel_call_status">కాల్ స్థితి</string>
-    <!-- Notification channel name for occasional alerts to the user -->
-    <string name="NotificationChannel_critical_app_alerts">Critical app alerts</string>
+    <!-- Notification channel name for occasional alerts to the user. Will appear in the system notification settings as the title of this notification channel. -->
+    <string name="NotificationChannel_critical_app_alerts">క్లిష్టమైన యాప్ అలర్ట్స్</string>
 
     <!-- ProfileEditNameFragment -->
 
@@ -3994,11 +3995,11 @@
     <!-- Snackbar text to indicate can delete later -->
     <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">మీరు ఏ సమయంలోనైనా సెట్టింగ్‌లలో Signal నుంచి SMS సందేశాలను తొలగించవచ్చు.</string>
     <!-- Description for export sms preference -->
-    <string name="SmsSettingsFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">You can export your SMS messages to your phone\'s SMS database</string>
+    <string name="SmsSettingsFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">మీ ఫోన్ యొక్క SMS డేటాబేస్‌కు మీ SMS సందేశాలను మీరు ఎగుమతి చేయవచ్చు</string>
     <!-- Description for remove sms preference -->
-    <string name="SmsSettingsFragment__remove_sms_messages_from_signal_to_clear_up_storage_space">Remove SMS messages from Signal to clear up storage space.</string>
+    <string name="SmsSettingsFragment__remove_sms_messages_from_signal_to_clear_up_storage_space">నిల్వ స్థలాన్ని ఖాళీ చేయడానికి Signal నుంచి SMS సందేశాలను తొలగించండి.</string>
     <!-- Information message shown at the top of sms settings to indicate it is being removed soon. -->
-    <string name="SmsSettingsFragment__sms_support_will_be_removed_soon_to_focus_on_encrypted_messaging">SMS support will be removed soon to focus on encrypted messaging.</string>
+    <string name="SmsSettingsFragment__sms_support_will_be_removed_soon_to_focus_on_encrypted_messaging">ఎన్‌క్రిప్ట్ చేసిన సందేశాలు పంపడంపై దృష్టి పెట్టడానికి త్వరలో SMS మద్దతు తొలగించబడుతుంది.</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">సందేశాలు</string>
@@ -4260,7 +4261,7 @@
     <!-- Dialog action to view contact when they can't be removed otherwise -->
     <string name="NewConversationActivity__view_contact">పరిచయాన్ని వీక్షించండి</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
-    <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s is not a Signal user</string>
+    <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s Signal యూజర్ కాదు</string>
 
     <!-- ContactFilterView -->
     <string name="ContactFilterView__search_name_or_number">పేరు లేదా నెంబరు వెతకండి</string>
@@ -4876,11 +4877,11 @@
     <string name="MyStorySettingsFragment__my_story">నా స్టోరీ</string>
     <!-- Number of total signal connections displayed in "All connections" row item -->
     <plurals name="MyStorySettingsFragment__viewers">
-        <item quantity="one">%1$d viewer</item>
-        <item quantity="other">%1$d viewers</item>
+        <item quantity="one">%1$d వీక్షకుడు</item>
+        <item quantity="other">%1$d వీక్షకులు</item>
     </plurals>
     <!-- Button on all signal connections row to view all signal connections. Please keep as short as possible. -->
-    <string name="MyStorySettingsFragment__view">View</string>
+    <string name="MyStorySettingsFragment__view">వీక్షణ</string>
     <!-- Section heading for story visibility -->
     <string name="MyStorySettingsFragment__who_can_view_this_story">ఈ స్టోరీను ఎవరు వీక్షించవచ్చు</string>
     <!-- Clickable option for selecting people to hide your story from -->
@@ -5295,10 +5296,10 @@
     <!-- Page title when launched from stories landing screen -->
     <string name="StoriesPrivacySettingsFragment__story_privacy">స్టోరీ గోప్యత</string>
     <!-- Header for section that lists out stories -->
-    <string name="StoriesPrivacySettingsFragment__stories">Stories</string>
+    <string name="StoriesPrivacySettingsFragment__stories">స్టోరీస్</string>
 
     <!-- NewStoryItem -->
-    <string name="NewStoryItem__new_story">New story</string>
+    <string name="NewStoryItem__new_story">కొత్త స్టోరీ</string>
 
     <!-- GroupStorySettingsFragment -->
     <!-- Section header for who can view a group story -->
@@ -5315,9 +5316,9 @@
     <!-- Displayed in the notification while export is running -->
     <string name="SignalSmsExportService__exporting_messages">సందేశాలను ఎగుమతి చేస్తోంది…</string>
     <!-- Displayed in the notification title when export completes -->
-    <string name="SignalSmsExportService__signal_sms_export_complete">Signal SMS Export Complete</string>
+    <string name="SignalSmsExportService__signal_sms_export_complete">Signal SMS ఎగుమతి పూర్తయింది</string>
     <!-- Displayed in the notification message when export completes -->
-    <string name="SignalSmsExportService__tap_to_return_to_signal">Tap to return to Signal</string>
+    <string name="SignalSmsExportService__tap_to_return_to_signal">Signal కు తిరిగి రావడానికి తట్టండి</string>
 
     <!-- ExportYourSmsMessagesFragment -->
     <!-- Title of the screen -->
@@ -5331,9 +5332,12 @@
     <!-- Title of the screen -->
     <string name="ExportingSmsMessagesFragment__exporting_sms_messages">SMS సందేశాలను ఎగుమతి చేస్తోంది</string>
     <!-- Message of the screen when exporting sms messages -->
-    <string name="ExportingSmsMessagesFragment__this_may_take_awhile">This may take awhile</string>
+    <string name="ExportingSmsMessagesFragment__this_may_take_awhile">దీనికి కొంత సమయం పట్టవచ్చు</string>
     <!-- Progress indicator for export -->
-    <string name="ExportingSmsMessagesFragment__exporting_d_of_d">%2$d యొక్క %1$d ఎగుమతి చేస్తోంది</string>
+    <plurals name="ExportingSmsMessagesFragment__exporting_d_of_d">
+        <item quantity="one">%2$d యొక్క %1$d ని ఎగుమతి చేస్తోంది…</item>
+        <item quantity="other">%2$d యొక్క %1$d లను ఎగుమతి చేస్తోంది…</item>
+    </plurals>
 
     <!-- ChooseANewDefaultSmsAppFragment -->
     <!-- Title of the screen -->
@@ -5382,51 +5386,54 @@
     <string name="SetSignalAsDefaultSmsAppFragment__next">తరువాత</string>
 
     <!-- BackupSchedulePermission Megaphone -->
-    <!-- Can't backup chats megaphone title -->
-    <string name="BackupSchedulePermissionMegaphone__cant_back_up_chats">Can\'t back up chats</string>
-    <!-- Can't backup chats megaphone message -->
-    <string name="BackupSchedulePermissionMegaphone__your_chats_are_no_longer_being_automatically_backed_up">Your chats are no longer being automatically backed up.</string>
-    <!-- Can't backup chats megaphone button text to take steps to re-enable -->
-    <string name="BackupSchedulePermissionMegaphone__back_up_chats">Back up chats</string>
-    <!-- Can't backup chats megaphone button to snooze megaphone and be reshown later -->
-    <string name="BackupSchedulePermissionMegaphone__not_now">Not now</string>
+    <!-- The title on an alert window that explains to the user that we are unable to backup their messages -->
+    <string name="BackupSchedulePermissionMegaphone__cant_back_up_chats">చాట్స్‌ను బ్యాకప్ చేయలేం</string>
+    <!-- The body text of an alert window that tells the user that we are unable to backup their messages -->
+    <string name="BackupSchedulePermissionMegaphone__your_chats_are_no_longer_being_automatically_backed_up">మీ చాట్స్ ఇకపై ఆటోమేటిక్‌గా బ్యాకప్ చేయబడవు.</string>
+    <!-- The text on a button in an alert window that, when clicked, will take the user to a screen to re-enable backups -->
+    <string name="BackupSchedulePermissionMegaphone__back_up_chats">చాట్‌లను బ్యాకప్ చేయండి</string>
+    <!-- The text on a button in an alert window that, when clicked, will take the user to a screen to re-enable backups -->
+    <string name="BackupSchedulePermissionMegaphone__not_now">ఇప్పుడు కాదు</string>
     <!-- Re-enable backup permission bottom sheet title -->
-    <string name="BackupSchedulePermissionMegaphone__to_reenable_backups">To re-enable backups:</string>
+    <string name="BackupSchedulePermissionMegaphone__to_reenable_backups">బ్యాకప్‌లను తిరిగి ప్రారంభించడానికి:</string>
     <!-- Re-enable backups permission bottom sheet instruction 1 text -->
-    <string name="BackupSchedulePermissionMegaphone__tap_the_go_to_settings_button_below">Tap the \"Go to settings\" button below</string>
+    <string name="BackupSchedulePermissionMegaphone__tap_the_go_to_settings_button_below">దిగువన ‘‘సెట్టింగ్‌లకు వెళ్లండి’’ బటన్‌పై తట్టండి</string>
     <!-- Re-enable backups permission bottom sheet instruction 2 text -->
-    <string name="BackupSchedulePermissionMegaphone__turn_on_allow_settings_alarms_and_reminders">Turn on \"Allow settings alarms and reminders.\"</string>
+    <string name="BackupSchedulePermissionMegaphone__turn_on_allow_settings_alarms_and_reminders">‘‘సెట్టింగ్స్ అలారమ్‌లు మరియు రిమైండర్లను అనుమతించండి’’ ఆన్ చేయండి.</string>
     <!-- Re-enable backups permission bottom sheet call to action button to open settings -->
-    <string name="BackupSchedulePermissionMegaphone__go_to_settings">Go to settings</string>
+    <string name="BackupSchedulePermissionMegaphone__go_to_settings">సెట్టింగ్‌లకు వెళ్లండి</string>
 
     <!-- SmsExportMegaphoneActivity -->
     <!-- Phase 2 title of full screen megaphone indicating sms will no longer be supported in the near future -->
-    <string name="SmsExportMegaphoneActivity__signal_will_no_longer_support_sms">Signal will no longer support SMS</string>
+    <string name="SmsExportMegaphoneActivity__signal_will_no_longer_support_sms">SMS లకు Signal ఇకపై మద్దతు ఇవ్వదు</string>
     <!-- Phase 3 title of full screen megaphone indicating sms is longer supported  -->
-    <string name="SmsExportMegaphoneActivity__signal_no_longer_supports_sms">Signal no longer supports SMS</string>
+    <string name="SmsExportMegaphoneActivity__signal_no_longer_supports_sms">SMS లకు Signal మద్దతు ఇవ్వదు</string>
     <!-- Phase 2 message describing that sms is going away soon -->
-    <string name="SmsExportMegaphoneActivity__signal_will_soon_remove_support_for_sending_sms_messages">Signal will soon remove support for sending SMS messages because Signal messages provide end-to-end encryption and strong privacy that SMS messages don\'t. This will also allow us to improve the Signal messaging experience.</string>
+    <string name="SmsExportMegaphoneActivity__signal_will_soon_remove_support_for_sending_sms_messages">SMS సందేశాలు అందించని ఎండ్-టు-ఎండ్ ఎన్‌క్రిప్షన్ మరియు బలమైన గోప్యతను Signal సందేశాలు అందించడం వల్ల SMS సందేశాలను పంపడానికి Signal త్వరలో మద్దతును తొలగిస్తుంది. Signal సందేశాలు పంపే అనుభవాన్ని మెరుగుపరచడానికి ఇది కూడా మమ్మల్ని అనుమతిస్తుంది.</string>
     <!-- Phase 3 message describing that sms has gone away -->
-    <string name="SmsExportMegaphoneActivity__signal_has_removed_support_for_sending_sms_messages">Signal has removed support for sending SMS messages because Signal messages provide end-to-end encryption and strong privacy that SMS messages don\'t. This will also allow us to improve the Signal messaging experience.</string>
-    <!-- Button on full screen megaphone that takes the user to the export messages flow -->
-    <string name="SmsExportMegaphoneActivity__export_sms">Export SMS</string>
-    <!-- Button on full screen megaphone that dismiss the megaphone and it'll be shown again at a later time -->
-    <string name="SmsExportMegaphoneActivity__remind_me_later">Remind me later</string>
-    <!-- Button on full screen megaphone that navigates to a web article on sms removal -->
-    <string name="SmsExportMegaphoneActivity__learn_more">Learn more</string>
+    <string name="SmsExportMegaphoneActivity__signal_has_removed_support_for_sending_sms_messages">SMS సందేశాలు అందించని ఎండ్-టు-ఎండ్ ఎన్‌క్రిప్షన్ మరియు బలమైన గోప్యతను Signal సందేశాలు అందించడం వల్ల SMS సందేశాలను పంపడానికి Signal మద్దతును తొలగించింది. Signal సందేశాలు పంపే అనుభవాన్ని మెరుగుపరచడానికి ఇది కూడా మమ్మల్ని అనుమతిస్తుంది.</string>
+    <!-- The text on a button in a popup that, when clicked, will take the user to a screen to export their SMS messages -->
+    <string name="SmsExportMegaphoneActivity__export_sms">SMS ఎగుమతి చేయండి</string>
+    <!-- The text on a button in a popup that, when clicked, will dismiss the popup and schedule the prompt to occur at a later time. -->
+    <string name="SmsExportMegaphoneActivity__remind_me_later">తరువాత నాకు గుర్తు చేయండి</string>
+    <!-- The text on a button in a popup that, when clicked, will navigate the user to a web article on SMS removal -->
+    <string name="SmsExportMegaphoneActivity__learn_more">మరింత తెలుసుకోండి</string>
 
     <!-- Phase 1 Small megaphone title indicating sms is going away -->
-    <string name="SmsExportMegaphone__sms_support_going_away">SMS support going away</string>
+    <string name="SmsExportMegaphone__sms_support_going_away">SMS మద్దతు కనుమరుగవబోతోంది</string>
     <!-- Phase 1 small megaphone description indicating sms is going away -->
-    <string name="SmsExportMegaphone__sms_support_will_be_removed_soon_to_focus_on_encrypted_messaging">SMS support will be removed soon to focus on encrypted messaging.</string>
+    <string name="SmsExportMegaphone__sms_support_will_be_removed_soon_to_focus_on_encrypted_messaging">ఎన్‌క్రిప్ట్ చేసిన సందేశాలు పంపడంపై దృష్టి పెట్టడానికి త్వరలో SMS మద్దతు తొలగించబడుతుంది.</string>
     <!-- Phase 1 small megaphone button that takes the user to the sms export flow -->
-    <string name="SmsExportMegaphone__export_sms">Export SMS</string>
+    <string name="SmsExportMegaphone__export_sms">SMS ఎగుమతి చేయండి</string>
     <!-- Title for screen shown after sms export has completed -->
-    <string name="ExportSmsCompleteFragment__export_complete">Export Complete</string>
+    <string name="ExportSmsCompleteFragment__export_complete">ఎగుమతి పూర్తయింది</string>
     <!-- Button to continue to next screen -->
-    <string name="ExportSmsCompleteFragment__next">Next</string>
+    <string name="ExportSmsCompleteFragment__next">తరువాత</string>
     <!-- Message showing summary of sms export counts -->
-    <string name="ExportSmsCompleteFragment__d_of_d_messages_exported">%1$d of %2$d messages exported</string>
+    <plurals name="ExportSmsCompleteFragment__d_of_d_messages_exported">
+        <item quantity="one">%2$d యొక్క %1$d సందేశం ఎగుమతి చేయబడింది</item>
+        <item quantity="other">%2$d యొక్క %1$d సందేశాలు ఎగుమతి చేయబడినాయి</item>
+    </plurals>
 
     <!-- EOF -->
 
