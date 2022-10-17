@@ -97,7 +97,7 @@ class GroupStorySettingsFragment : DSLSettingsFragment(menuId = R.menu.story_gro
         onClick = {
           StoryDialogs.removeGroupStory(
             requireContext(),
-            state.name
+            viewModel.titleSnapshot
           ) {
             viewModel.doNotDisplayAsStory()
           }

@@ -19,6 +19,7 @@ class GroupStorySettingsViewModel(private val groupId: GroupId) : ViewModel() {
   private val store = Store(GroupStorySettingsState())
 
   val state: LiveData<GroupStorySettingsState> = store.stateLiveData
+  val titleSnapshot: String get() = store.state.name
 
   init {
     val group = LiveGroup(groupId)
