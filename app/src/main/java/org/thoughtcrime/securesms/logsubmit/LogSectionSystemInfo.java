@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 
+import org.signal.core.util.FontUtil;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.emoji.EmojiFiles;
@@ -78,6 +79,7 @@ public class LogSectionSystemInfo implements LogSection {
     builder.append("Days Installed: ").append(VersionTracker.getDaysSinceFirstInstalled(context)).append("\n");
     builder.append("Build Variant : ").append(BuildConfig.BUILD_DISTRIBUTION_TYPE).append(BuildConfig.BUILD_ENVIRONMENT_TYPE).append(BuildConfig.BUILD_VARIANT_TYPE).append("\n");
     builder.append("Emoji Version : ").append(getEmojiVersionString(context)).append("\n");
+    builder.append("RenderBigEmoji: ").append(FontUtil.canRenderEmojiAtFontSize(1024)).append("\n");
     builder.append("Telecom       : ").append(AndroidTelecomUtil.getTelecomSupported()).append("\n");
     builder.append("User-Agent    : ").append(StandardUserAgentInterceptor.USER_AGENT).append("\n");
     builder.append("App           : ");
