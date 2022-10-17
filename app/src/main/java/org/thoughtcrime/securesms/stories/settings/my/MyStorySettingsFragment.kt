@@ -58,7 +58,7 @@ class MyStorySettingsFragment : DSLSettingsFragment(
               .subscribe()
           },
           onViewClicked = {
-            ViewAllSignalConnectionsFragment.Dialog.show(parentFragmentManager)
+            ViewAllSignalConnectionsFragment.Dialog.show(childFragmentManager)
           }
         )
       )
