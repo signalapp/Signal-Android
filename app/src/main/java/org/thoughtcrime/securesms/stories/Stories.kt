@@ -84,7 +84,7 @@ object Stories {
 
   fun getHeaderAction(onClick: () -> Unit): HeaderAction {
     return HeaderAction(
-      R.string.ContactsCursorLoader_add_to,
+      R.string.ContactsCursorLoader_new,
       R.drawable.ic_plus_12,
       onClick
     )
