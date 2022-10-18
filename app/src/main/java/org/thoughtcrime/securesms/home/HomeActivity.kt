@@ -67,6 +67,7 @@ import org.thoughtcrime.securesms.util.IP2Country
 import org.thoughtcrime.securesms.util.disableClipping
 import org.thoughtcrime.securesms.util.push
 import org.thoughtcrime.securesms.util.show
+import org.thoughtcrime.securesms.util.themeState
 import java.io.IOException
 import java.util.Locale
 import javax.inject.Inject
