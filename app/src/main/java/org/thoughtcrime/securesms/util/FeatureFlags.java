@@ -99,20 +99,12 @@ public final class FeatureFlags {
   private static final String CAMERAX_MODEL_BLOCKLIST           = "android.cameraXModelBlockList";
   private static final String CAMERAX_MIXED_MODEL_BLOCKLIST     = "android.cameraXMixedModelBlockList";
   private static final String RECIPIENT_MERGE_V2                = "android.recipientMergeV2";
-  private static final String CDS_V2_LOAD_TEST                  = "android.cdsV2LoadTest";
   private static final String SMS_EXPORTER                      = "android.sms.exporter.2";
-  private static final String CDS_V2_COMPAT                     = "android.cdsV2Compat.4";
   public  static final String STORIES_LOCALE                    = "android.stories.locale.1";
   private static final String HIDE_CONTACTS                     = "android.hide.contacts";
-<<<<<<< HEAD
   private static final String MEDIA_PREVIEW_V2                  = "android.mediaPreviewV2";
   private static final String SMS_EXPORT_MEGAPHONE_DELAY_DAYS   = "android.smsExport.megaphoneDelayDays";
-||||||| parent of 90b7447a79 (Credit card validator implementations and spec tests.)
-  public  static final String MEDIA_PREVIEW_V2                  = "android.mediaPreviewV2";
-=======
-  public  static final String MEDIA_PREVIEW_V2                  = "android.mediaPreviewV2";
   public  static final String CREDIT_CARD_PAYMENTS              = "android.credit.card.payments";
->>>>>>> 90b7447a79 (Credit card validator implementations and spec tests.)
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -164,20 +156,12 @@ public final class FeatureFlags {
       CAMERAX_MODEL_BLOCKLIST,
       CAMERAX_MIXED_MODEL_BLOCKLIST,
       RECIPIENT_MERGE_V2,
-      CDS_V2_LOAD_TEST,
       SMS_EXPORTER,
-      CDS_V2_COMPAT,
       STORIES_LOCALE,
       HIDE_CONTACTS,
-<<<<<<< HEAD
       MEDIA_PREVIEW_V2,
-      SMS_EXPORT_MEGAPHONE_DELAY_DAYS
-||||||| parent of 90b7447a79 (Credit card validator implementations and spec tests.)
-      MEDIA_PREVIEW_V2
-=======
-      MEDIA_PREVIEW_V2,
+      SMS_EXPORT_MEGAPHONE_DELAY_DAYS,
       CREDIT_CARD_PAYMENTS
->>>>>>> 90b7447a79 (Credit card validator implementations and spec tests.)
   );
 
   @VisibleForTesting
@@ -238,18 +222,10 @@ public final class FeatureFlags {
       TELECOM_MODEL_BLOCKLIST,
       CAMERAX_MODEL_BLOCKLIST,
       RECIPIENT_MERGE_V2,
-      CDS_V2_LOAD_TEST,
-      CDS_V2_COMPAT,
       STORIES,
-<<<<<<< HEAD
-      MEDIA_PREVIEW_V2,
-      SMS_EXPORT_MEGAPHONE_DELAY_DAYS
-||||||| parent of 90b7447a79 (Credit card validator implementations and spec tests.)
-      MEDIA_PREVIEW_V2
-=======
+      SMS_EXPORT_MEGAPHONE_DELAY_DAYS,
       MEDIA_PREVIEW_V2,
       CREDIT_CARD_PAYMENTS
->>>>>>> 90b7447a79 (Credit card validator implementations and spec tests.)
   );
 
   /**
@@ -569,13 +545,6 @@ public final class FeatureFlags {
   }
 
   /**
-   * Whether or not we should also query CDSv2 as a form of load test.
-   */
-  public static boolean cdsV2LoadTesting() {
-    return getBoolean(CDS_V2_LOAD_TEST, false);
-  }
-
-  /**
    * Whether or not we should enable the SMS exporter
    *
    * WARNING: This feature is under active development and is off for a reason. The exporter writes messages out to your
@@ -583,13 +552,6 @@ public final class FeatureFlags {
    */
   public static boolean smsExporter() {
     return getBoolean(SMS_EXPORTER, false);
-  }
-
-  /**
-   * Whether or not we should use CDSv2 with the compat flag on as our primary CDS.
-   */
-  public static boolean cdsV2Compat() {
-    return getBoolean(CDS_V2_COMPAT, false);
   }
 
   /**
