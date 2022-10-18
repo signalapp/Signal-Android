@@ -346,9 +346,13 @@
     <string name="ConversationActivity__reported_as_spam_and_blocked">સ્પામ તરીકે નોંધાયેલ છે અને બ્લૉક કરેલ છે.</string>
 
     <!-- Message shown when opening an SMS conversation with SMS disabled and they have unexported sms messages -->
+    <string name="ConversationActivity__sms_messaging_is_currently_disabled_you_can_export_your_messages_to_another_app_on_your_phone">SMS messaging is currently disabled. You can export your messages to another app on your phone.</string>
+    <!-- Message shown when opening an SMS conversation with SMS disabled and they have unexported sms messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_you_can_export_your_messages_to_another_app_on_your_phone">Signalમાં હવે SMS મેસેજિંગ સમર્થિત નથી. તમે તમારા મેસેજને તમારા ફોન પરની અન્ય ઍપમાં એક્સપોર્ટ કરી શકો છો.</string>
     <!-- Action button shown when in sms conversation, sms is disabled, and unexported sms messages are present -->
     <string name="ConversationActivity__export_sms_messages">SMS મેસેજ એક્સપોર્ટ કરો</string>
+    <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
+    <string name="ConversationActivity__sms_messaging_is_currently_disabled_invite_s_to_to_signal_to_keep_the_conversation_here">SMS messaging is currently disabled. Invite %1$s to Signal to keep the conversation here.</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">Signalમાં હવે SMS મેસેજિંગ સમર્થિત નથી. વાતચીત અહીં રાખવા માટે %1$s ને Signal પર આમંત્રિત કરો.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
@@ -5324,7 +5328,7 @@
     <!-- Title of the screen -->
     <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">તમારા SMS મેસેજ એક્સપોર્ટ કરો</string>
     <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">તમે તમારા SMS મેસેજને તમારા ફોનના SMS ડેટાબેઝમાં એક્સપોર્ટ કરી શકો છો. આનાથી તમારા ફોન પરની અન્ય SMS ઍપને તેમને ઍક્સેસ કરવા અને ઇમ્પોર્ટ કરવાની મંજૂરી મળે છે. આ તમારા SMS મેસેજ ઇતિહાસની શેર કરી શકાય તેવી ફાઇલ બનાવતું નથી.</string>
+    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database_and_youll_have_the_option_to_keep_or_remove_them_from_signal">You can export your SMS messages to your phone\'s SMS database and you\'ll have the option to keep or remove them from Signal. This allows other SMS apps on your phone to import them. This does not create a shareable file of your SMS history.</string>
     <!-- Button label to begin export -->
     <string name="ExportYourSmsMessagesFragment__continue">ચાલુ રાખો</string>
 

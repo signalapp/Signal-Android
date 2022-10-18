@@ -350,9 +350,13 @@
     <string name="ConversationActivity__reported_as_spam_and_blocked">تم الإبلاغ عنه كبريد مزعج وتم حظره</string>
 
     <!-- Message shown when opening an SMS conversation with SMS disabled and they have unexported sms messages -->
+    <string name="ConversationActivity__sms_messaging_is_currently_disabled_you_can_export_your_messages_to_another_app_on_your_phone">SMS messaging is currently disabled. You can export your messages to another app on your phone.</string>
+    <!-- Message shown when opening an SMS conversation with SMS disabled and they have unexported sms messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_you_can_export_your_messages_to_another_app_on_your_phone">لم تعُد رسائل SMS مُدعّمة من طرف Signal. يُمكنك تصدير رسائلك إلى تطبيق آخر على هاتفك.</string>
     <!-- Action button shown when in sms conversation, sms is disabled, and unexported sms messages are present -->
     <string name="ConversationActivity__export_sms_messages">تصدير الرسائل القصيرة</string>
+    <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
+    <string name="ConversationActivity__sms_messaging_is_currently_disabled_invite_s_to_to_signal_to_keep_the_conversation_here">SMS messaging is currently disabled. Invite %1$s to Signal to keep the conversation here.</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">لم تعُد رسائل SMS مُدعّمة من طرف Signal. قم بدعوة %1$s إلى Signal لإبقاء المحادثة هنا.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
@@ -5804,7 +5808,7 @@
     <!-- Title of the screen -->
     <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">قم بتصدير رسائلك القصيرة</string>
     <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">يُمكنك تصدير رسائل SMS الخاصة بك إلى قاعدة بيانات SMS بهاتفك. يُتيح هذا لتطبيقات رسائل SMS الأخرى على هاتفك الوصول إليها واستيرادها. لا يُؤدي هذا إلى إنشاء ملف قابل للمشاركة من سِجل رسائل SMS الخاصة بك.</string>
+    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database_and_youll_have_the_option_to_keep_or_remove_them_from_signal">You can export your SMS messages to your phone\'s SMS database and you\'ll have the option to keep or remove them from Signal. This allows other SMS apps on your phone to import them. This does not create a shareable file of your SMS history.</string>
     <!-- Button label to begin export -->
     <string name="ExportYourSmsMessagesFragment__continue">واصل</string>
 

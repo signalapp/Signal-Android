@@ -348,9 +348,13 @@
     <string name="ConversationActivity__reported_as_spam_and_blocked">Было сообщено о спаме и пользователь был заблокирован.</string>
 
     <!-- Message shown when opening an SMS conversation with SMS disabled and they have unexported sms messages -->
+    <string name="ConversationActivity__sms_messaging_is_currently_disabled_you_can_export_your_messages_to_another_app_on_your_phone">SMS messaging is currently disabled. You can export your messages to another app on your phone.</string>
+    <!-- Message shown when opening an SMS conversation with SMS disabled and they have unexported sms messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_you_can_export_your_messages_to_another_app_on_your_phone">Обмен SMS-сообщениями больше не поддерживается в Signal. Вы можете экспортировать сообщения в другое приложение на вашем телефоне.</string>
     <!-- Action button shown when in sms conversation, sms is disabled, and unexported sms messages are present -->
     <string name="ConversationActivity__export_sms_messages">Экспортировать SMS-сообщения</string>
+    <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
+    <string name="ConversationActivity__sms_messaging_is_currently_disabled_invite_s_to_to_signal_to_keep_the_conversation_here">SMS messaging is currently disabled. Invite %1$s to Signal to keep the conversation here.</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">Обмен SMS-сообщениями больше не поддерживается в Signal. Пригласите %1$s в Signal, чтобы продолжить разговор здесь.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
@@ -4027,7 +4031,7 @@
     <!-- Alert dialog title which asks before going back if user wants to save recovery phrase -->
     <string name="PaymentsRecoveryStartFragment__continue_without_saving">Продолжить без сохранения?</string>
     <!-- Alert dialog description to let user know why recovery phrase needs to be saved -->
-    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">Фраза для восстановления позволит вам восстановить всю информацию, если что-нибудь случится. Мы настоятельно рекомендуем вам сохранить её.</string>
+    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">Фраза для восстановления позволит вам восстановить ваши средства, если что-нибудь случится. Мы настоятельно рекомендуем вам сохранить её.</string>
     <!-- Alert dialog option to skip recovery phrase -->
     <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">Пропустить фразу для восстановления</string>
     <!-- Alert dialog option to cancel dialog-->
@@ -4439,7 +4443,7 @@
     <!-- Context menu item audio call -->
     <string name="NewConversationActivity__audio_call">Аудиозвонок</string>
     <!-- Context menu item video call -->
-    <string name="NewConversationActivity__video_call">Начать видеозвонок</string>
+    <string name="NewConversationActivity__video_call">Видеозвонок</string>
     <!-- Context menu item remove -->
     <string name="NewConversationActivity__remove">Удалить</string>
     <!-- Context menu item block -->
@@ -4447,7 +4451,7 @@
     <!-- Dialog title when removing a contact -->
     <string name="NewConversationActivity__remove_s">Удалить %1$s?</string>
     <!-- Dialog message when removing a contact -->
-    <string name="NewConversationActivity__you_wont_see_this_person">Это человек не будет обнаруживаться при поиске. Если он напишет вам, вы получите запрос на переписку.</string>
+    <string name="NewConversationActivity__you_wont_see_this_person">Этот человек не будет показываться при поиске. Если он напишет вам, вы получите запрос на переписку.</string>
     <!-- Snackbar message after removing a contact -->
     <string name="NewConversationActivity__s_has_been_removed">%1$s был(-а) удален(-а)</string>
     <!-- Snackbar message after blocking a contact -->
@@ -4455,7 +4459,7 @@
     <!-- Dialog title when remove target contact is in system contacts -->
     <string name="NewConversationActivity__unable_to_remove_s">Не удалось удалить %1$s</string>
     <!-- Dialog message when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__this_person_is_saved_to_your">Этот человек сохранен в списке контактов вашего устройства. Удалите его из списка контактов и попробуйте ещё раз.</string>
+    <string name="NewConversationActivity__this_person_is_saved_to_your">Этот человек сохранён в списке контактов вашего устройства. Удалите его из списка контактов и попробуйте ещё раз.</string>
     <!-- Dialog action to view contact when they can't be removed otherwise -->
     <string name="NewConversationActivity__view_contact">Посмотреть контакт</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
@@ -5203,7 +5207,7 @@
     <!-- Dialog title for deleting a private story -->
     <string name="StoryDialogs__delete_private_story">Удалить частную историю?</string>
     <!-- Dialog message for deleting a private story -->
-    <string name="StoryDialogs__s_and_updates_shared">«%1$s» и её обновления будут удалены.</string>
+    <string name="StoryDialogs__s_and_updates_shared">«%1$s» и обновления, которыми вы поделились в этой истории, будут удалены.</string>
     <!-- Dialog positive action for deleting a private story -->
     <string name="StoryDialogs__delete">Удалить</string>
     <!-- Dialog title for first time sending something to a beta story -->
@@ -5564,7 +5568,7 @@
     <!-- Title of the screen -->
     <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">Экспортировать ваши SMS-сообщения</string>
     <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">Вы можете экспортировать свои SMS-сообщения в базу данных SMS вашего телефона. Это позволит другим приложениям для SMS на вашем телефоне получить к ним доступ и импортировать их. При этом файл с историей ваших SMS-сообщений, доступный для совместного использования, создан не будет.</string>
+    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database_and_youll_have_the_option_to_keep_or_remove_them_from_signal">You can export your SMS messages to your phone\'s SMS database and you\'ll have the option to keep or remove them from Signal. This allows other SMS apps on your phone to import them. This does not create a shareable file of your SMS history.</string>
     <!-- Button label to begin export -->
     <string name="ExportYourSmsMessagesFragment__continue">Продолжить</string>
 
@@ -5617,7 +5621,7 @@
     <!-- Title of dialog -->
     <string name="RemoveSmsMessagesDialogFragment__remove_sms_messages">Удалить SMS-сообщения из Signal?</string>
     <!-- Message of dialog -->
-    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">Теперь вы можете удалить SMS-сообщения из Signal, чтобы освободить место для хранения. Они по-прежнему будут доступны другим приложениям для SMS на вашем телефоне, даже если вы их удалите.</string>
+    <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">Теперь вы можете удалить SMS-сообщения из Signal, чтобы освободить место в хранилище. Они по-прежнему будут доступны другим приложениям для SMS на вашем телефоне, даже если вы их удалите.</string>
 
     <!-- SetSignalAsDefaultSmsAppFragment -->
     <!-- Title of the screen -->

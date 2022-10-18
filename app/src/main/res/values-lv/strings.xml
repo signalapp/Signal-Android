@@ -223,7 +223,7 @@
     <!-- Label for my stories when selecting who to send media to -->
     <string name="ContactsCursorLoader_my_stories">Mani stāsti</string>
     <!-- Text for a button that brings up a bottom sheet to create a new story. -->
-    <string name="ContactsCursorLoader_add_to">Add to…</string>
+    <string name="ContactsCursorLoader_add_to">Pievienot…</string>
 
     <!-- ContactsDatabase -->
     <string name="ContactsDatabase_message_s">Ziņa %1$s</string>
@@ -347,15 +347,19 @@
     <string name="ConversationActivity__reported_as_spam_and_blocked">Atzīmēts kā surogātpasts un bloķēts.</string>
 
     <!-- Message shown when opening an SMS conversation with SMS disabled and they have unexported sms messages -->
-    <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_you_can_export_your_messages_to_another_app_on_your_phone">SMS messaging is no longer supported in Signal. You can export your messages to another app on your phone.</string>
+    <string name="ConversationActivity__sms_messaging_is_currently_disabled_you_can_export_your_messages_to_another_app_on_your_phone">SMS messaging is currently disabled. You can export your messages to another app on your phone.</string>
+    <!-- Message shown when opening an SMS conversation with SMS disabled and they have unexported sms messages -->
+    <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_you_can_export_your_messages_to_another_app_on_your_phone">Signal vairs netiek atbalstīta SMS ziņu sūtīšana. Varat eksportēt savas ziņas uz citu tālruņa lietotni.</string>
     <!-- Action button shown when in sms conversation, sms is disabled, and unexported sms messages are present -->
     <string name="ConversationActivity__export_sms_messages">Eksportēt SMS ziņas</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
-    <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">SMS messaging is no longer supported in Signal. Invite %1$s to Signal to keep the conversation here.</string>
+    <string name="ConversationActivity__sms_messaging_is_currently_disabled_invite_s_to_to_signal_to_keep_the_conversation_here">SMS messaging is currently disabled. Invite %1$s to Signal to keep the conversation here.</string>
+    <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
+    <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">Signal vairs netiek atbalstīta SMS ziņu sūtīšana. Uzaiciniet lietotāju %1$s izmantot Signal, lai turpinātu sarunu šeit.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__invite_to_signal">Uzaicināt uz Signal</string>
     <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we'll do it again soon -->
-    <string name="ConversationActivity__you_will_be_reminded_again_soon">You will be reminded again soon.</string>
+    <string name="ConversationActivity__you_will_be_reminded_again_soon">Drīz vēlreiz saņemsiet atgādinājumu.</string>
 
     <!-- ConversationAdapter -->
     <plurals name="ConversationAdapter_n_unread_messages">
@@ -857,7 +861,7 @@
     <string name="AddGroupDetailsFragment__sms_contact">Īsziņu kontakts</string>
     <string name="AddGroupDetailsFragment__remove_s_from_this_group">Vai dzēst %1$s no šīs grupas?</string>
     <!-- Displayed when adding group details to an MMS Group -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">You\'ve selected a contact that dosen\'t support Signal groups, this group will be MMS. Custom MMS group names and photos will only be visible to you. Support for MMS groups will be removed soon to focus on encrypted messaging.</string>
+    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">Jūs atlasījāt kontaktu, kas neatbalsta Signal grupas, tāpēc šī būs MMS grupa. Pielāgotie MMS grupu nosaukumi un fotoattēli būs redzami tikai jums. MMS grupu atbalstīšana drīzumā tiks pārtraukta, lai koncentrētos uz šifrētu ziņojumapmaiņu.</string>
 
     <!-- ManageGroupActivity -->
     <string name="ManageGroupActivity_member_requests_and_invites">Dalības pieprasījumi &amp; uzaicinājumi</string>
@@ -1047,7 +1051,7 @@
     <!-- InputPanel -->
     <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Turēt, lai ierakstītu audio ziņu, atlaist, lai sūtītu</string>
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
-    <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">SMS messaging is no longer supported in Signal.</string>
+    <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">Signal vairs netiek atbalstīta SMS ziņu sūtīšana.</string>
 
     <!-- InviteActivity -->
     <string name="InviteActivity_share">Kopīgot</string>
@@ -1451,9 +1455,9 @@
     </plurals>
 
     <!-- In-conversation update message to indicate that the current contact is sms only and will need to migrate to signal to continue the conversation in signal. -->
-    <string name="MessageRecord__you_will_no_longer_be_able_to_send_sms_messages_from_signal_soon">You will no longer be able to send SMS messages from Signal soon. Invite %1$s to Signal to keep the conversation here.</string>
+    <string name="MessageRecord__you_will_no_longer_be_able_to_send_sms_messages_from_signal_soon">Drīzumā vairs nevarēsiet sūtīt SMS ziņas lietotnē Signal. Uzaiciniet lietotāju %1$s izmantot Signal, lai turpinātu sarunu šeit.</string>
     <!-- In-conversation update message to indicate that the current contact is sms only and will need to migrate to signal to continue the conversation in signal. -->
-    <string name="MessageRecord__you_can_no_longer_send_sms_messages_in_signal">You can no longer send SMS messages in Signal. Invite %1$s to Signal to keep the conversation here.</string>
+    <string name="MessageRecord__you_can_no_longer_send_sms_messages_in_signal">Lietotnē Signal vairs nav iespējams sūtīt SMS ziņas. Uzaiciniet lietotāju %1$s izmantot Signal, lai turpinātu sarunu šeit.</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">Apstiprināt</string>
@@ -2107,7 +2111,7 @@
     <!-- Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing. -->
     <string name="NotificationChannel_call_status">Zvana statuss</string>
     <!-- Notification channel name for occasional alerts to the user. Will appear in the system notification settings as the title of this notification channel. -->
-    <string name="NotificationChannel_critical_app_alerts">Critical app alerts</string>
+    <string name="NotificationChannel_critical_app_alerts">Kritiski svarīgie lietotnes brīdinājumi</string>
 
     <!-- ProfileEditNameFragment -->
 
@@ -4092,11 +4096,11 @@
     <!-- Snackbar text to indicate can delete later -->
     <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">Jebkurā brīdī iestatījumos varat no Signal izdzēst SMS ziņas.</string>
     <!-- Description for export sms preference -->
-    <string name="SmsSettingsFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">You can export your SMS messages to your phone\'s SMS database</string>
+    <string name="SmsSettingsFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">Varat eksportēt SMS ziņas uz tālruņa SMS datu bāzi</string>
     <!-- Description for remove sms preference -->
-    <string name="SmsSettingsFragment__remove_sms_messages_from_signal_to_clear_up_storage_space">Remove SMS messages from Signal to clear up storage space.</string>
+    <string name="SmsSettingsFragment__remove_sms_messages_from_signal_to_clear_up_storage_space">Izdzēsiet SMS ziņas no Signal, lai atbrīvotu vietu krātuvē.</string>
     <!-- Information message shown at the top of sms settings to indicate it is being removed soon. -->
-    <string name="SmsSettingsFragment__sms_support_will_be_removed_soon_to_focus_on_encrypted_messaging">SMS support will be removed soon to focus on encrypted messaging.</string>
+    <string name="SmsSettingsFragment__sms_support_will_be_removed_soon_to_focus_on_encrypted_messaging">SMS atbalstīšana drīzumā tiks pārtraukta, lai koncentrētos uz šifrētu ziņojumapmaiņu.</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">Ziņas</string>
@@ -4360,7 +4364,7 @@
     <!-- Dialog action to view contact when they can't be removed otherwise -->
     <string name="NewConversationActivity__view_contact">Skatīt kontaktu</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
-    <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s is not a Signal user</string>
+    <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s nav Signal lietotājs</string>
 
     <!-- ContactFilterView -->
     <string name="ContactFilterView__search_name_or_number">Meklēt vārdu vai numuru</string>
@@ -5436,15 +5440,15 @@
     <!-- Displayed in the notification while export is running -->
     <string name="SignalSmsExportService__exporting_messages">Eksportē ziņas…</string>
     <!-- Displayed in the notification title when export completes -->
-    <string name="SignalSmsExportService__signal_sms_export_complete">Signal SMS Export Complete</string>
+    <string name="SignalSmsExportService__signal_sms_export_complete">Signal SMS eksportēšana pabeigta</string>
     <!-- Displayed in the notification message when export completes -->
-    <string name="SignalSmsExportService__tap_to_return_to_signal">Tap to return to Signal</string>
+    <string name="SignalSmsExportService__tap_to_return_to_signal">Nospiediet, lai atgrieztos uz Signal</string>
 
     <!-- ExportYourSmsMessagesFragment -->
     <!-- Title of the screen -->
     <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">Eksportējiet SMS ziņas</string>
     <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">Varat eksportēt SMS ziņas uz tālruņa SMS datu bāzi. Tas ļauj citām jūsu tālruņa SMS lietotnēm tām piekļūt un importēt. Tādējādi netiek izveidots koplietojams SMS ziņu vēstures fails.</string>
+    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database_and_youll_have_the_option_to_keep_or_remove_them_from_signal">You can export your SMS messages to your phone\'s SMS database and you\'ll have the option to keep or remove them from Signal. This allows other SMS apps on your phone to import them. This does not create a shareable file of your SMS history.</string>
     <!-- Button label to begin export -->
     <string name="ExportYourSmsMessagesFragment__continue">Turpināt</string>
 
@@ -5452,12 +5456,12 @@
     <!-- Title of the screen -->
     <string name="ExportingSmsMessagesFragment__exporting_sms_messages">Eksportē SMS ziņas</string>
     <!-- Message of the screen when exporting sms messages -->
-    <string name="ExportingSmsMessagesFragment__this_may_take_awhile">This may take awhile</string>
+    <string name="ExportingSmsMessagesFragment__this_may_take_awhile">Tas var aizņemt kādu laiku</string>
     <!-- Progress indicator for export -->
     <plurals name="ExportingSmsMessagesFragment__exporting_d_of_d">
-        <item quantity="zero">Exporting %1$d of %2$d…</item>
-        <item quantity="one">Exporting %1$d of %2$d…</item>
-        <item quantity="other">Exporting %1$d of %2$d…</item>
+        <item quantity="zero">Eksportē %1$d. no %2$d…</item>
+        <item quantity="one">Eksportē %1$d. no %2$d…</item>
+        <item quantity="other">Eksportē %1$d. no %2$d…</item>
     </plurals>
 
     <!-- ChooseANewDefaultSmsAppFragment -->
@@ -5508,53 +5512,53 @@
 
     <!-- BackupSchedulePermission Megaphone -->
     <!-- The title on an alert window that explains to the user that we are unable to backup their messages -->
-    <string name="BackupSchedulePermissionMegaphone__cant_back_up_chats">Can\'t back up chats</string>
+    <string name="BackupSchedulePermissionMegaphone__cant_back_up_chats">Neizdodas dublēt sarunas</string>
     <!-- The body text of an alert window that tells the user that we are unable to backup their messages -->
-    <string name="BackupSchedulePermissionMegaphone__your_chats_are_no_longer_being_automatically_backed_up">Your chats are no longer being automatically backed up.</string>
+    <string name="BackupSchedulePermissionMegaphone__your_chats_are_no_longer_being_automatically_backed_up">Jūsu sarunas vairs netiek automātiski dublētas.</string>
     <!-- The text on a button in an alert window that, when clicked, will take the user to a screen to re-enable backups -->
-    <string name="BackupSchedulePermissionMegaphone__back_up_chats">Back up chats</string>
+    <string name="BackupSchedulePermissionMegaphone__back_up_chats">Dublēt sarunas</string>
     <!-- The text on a button in an alert window that, when clicked, will take the user to a screen to re-enable backups -->
     <string name="BackupSchedulePermissionMegaphone__not_now">Ne tagad</string>
     <!-- Re-enable backup permission bottom sheet title -->
-    <string name="BackupSchedulePermissionMegaphone__to_reenable_backups">To re-enable backups:</string>
+    <string name="BackupSchedulePermissionMegaphone__to_reenable_backups">Lai no jauna ieslēgtu dublēšanu:</string>
     <!-- Re-enable backups permission bottom sheet instruction 1 text -->
-    <string name="BackupSchedulePermissionMegaphone__tap_the_go_to_settings_button_below">Tap the \"Go to settings\" button below</string>
+    <string name="BackupSchedulePermissionMegaphone__tap_the_go_to_settings_button_below">Pieskarieties zemāk redzamajai pogai \"Atvērt iestatījumus\"</string>
     <!-- Re-enable backups permission bottom sheet instruction 2 text -->
-    <string name="BackupSchedulePermissionMegaphone__turn_on_allow_settings_alarms_and_reminders">Turn on \"Allow settings alarms and reminders.\"</string>
+    <string name="BackupSchedulePermissionMegaphone__turn_on_allow_settings_alarms_and_reminders">Ieslēdziet opciju \"Atļaut iestatījumu brīdinājumus un atgādinājumus\".</string>
     <!-- Re-enable backups permission bottom sheet call to action button to open settings -->
     <string name="BackupSchedulePermissionMegaphone__go_to_settings">Atvērt iestatījumus</string>
 
     <!-- SmsExportMegaphoneActivity -->
     <!-- Phase 2 title of full screen megaphone indicating sms will no longer be supported in the near future -->
-    <string name="SmsExportMegaphoneActivity__signal_will_no_longer_support_sms">Signal will no longer support SMS</string>
+    <string name="SmsExportMegaphoneActivity__signal_will_no_longer_support_sms">Signal turpmāk neatbalstīs SMS</string>
     <!-- Phase 3 title of full screen megaphone indicating sms is longer supported  -->
-    <string name="SmsExportMegaphoneActivity__signal_no_longer_supports_sms">Signal no longer supports SMS</string>
+    <string name="SmsExportMegaphoneActivity__signal_no_longer_supports_sms">Signals vairs neatbalsta SMS</string>
     <!-- Phase 2 message describing that sms is going away soon -->
-    <string name="SmsExportMegaphoneActivity__signal_will_soon_remove_support_for_sending_sms_messages">Signal will soon remove support for sending SMS messages because Signal messages provide end-to-end encryption and strong privacy that SMS messages don\'t. This will also allow us to improve the Signal messaging experience.</string>
+    <string name="SmsExportMegaphoneActivity__signal_will_soon_remove_support_for_sending_sms_messages">Signal drīzumā pārtrauks atbalstu SMS ziņu sūtīšanai, jo Signal ziņas nodrošina pilnīgu šifrēšanu un augstu privātuma līmeni, ko SMS ziņas nenodrošina. Tas arī ļaus mums uzlabot Signal ziņojumapmaiņas pieredzi.</string>
     <!-- Phase 3 message describing that sms has gone away -->
-    <string name="SmsExportMegaphoneActivity__signal_has_removed_support_for_sending_sms_messages">Signal has removed support for sending SMS messages because Signal messages provide end-to-end encryption and strong privacy that SMS messages don\'t. This will also allow us to improve the Signal messaging experience.</string>
+    <string name="SmsExportMegaphoneActivity__signal_has_removed_support_for_sending_sms_messages">Signal atbalsts SMS ziņu sūtīšanai ir pārtraukts, jo Signal ziņas nodrošina pilnīgu šifrēšanu un augstu privātuma līmeni, ko SMS ziņas nenodrošina. Tas arī ļaus mums uzlabot Signal ziņojumapmaiņas pieredzi.</string>
     <!-- The text on a button in a popup that, when clicked, will take the user to a screen to export their SMS messages -->
-    <string name="SmsExportMegaphoneActivity__export_sms">Export SMS</string>
+    <string name="SmsExportMegaphoneActivity__export_sms">Eksportēt SMS</string>
     <!-- The text on a button in a popup that, when clicked, will dismiss the popup and schedule the prompt to occur at a later time. -->
     <string name="SmsExportMegaphoneActivity__remind_me_later">Atgādināt vēlāk</string>
     <!-- The text on a button in a popup that, when clicked, will navigate the user to a web article on SMS removal -->
     <string name="SmsExportMegaphoneActivity__learn_more">Lasīt vairāk</string>
 
     <!-- Phase 1 Small megaphone title indicating sms is going away -->
-    <string name="SmsExportMegaphone__sms_support_going_away">SMS support going away</string>
+    <string name="SmsExportMegaphone__sms_support_going_away">SMS atbalsts tiks pārtraukts</string>
     <!-- Phase 1 small megaphone description indicating sms is going away -->
-    <string name="SmsExportMegaphone__sms_support_will_be_removed_soon_to_focus_on_encrypted_messaging">SMS support will be removed soon to focus on encrypted messaging.</string>
+    <string name="SmsExportMegaphone__sms_support_will_be_removed_soon_to_focus_on_encrypted_messaging">SMS atbalstīšana drīzumā tiks pārtraukta, lai koncentrētos uz šifrētu ziņojumapmaiņu.</string>
     <!-- Phase 1 small megaphone button that takes the user to the sms export flow -->
-    <string name="SmsExportMegaphone__export_sms">Export SMS</string>
+    <string name="SmsExportMegaphone__export_sms">Eksportēt SMS</string>
     <!-- Title for screen shown after sms export has completed -->
-    <string name="ExportSmsCompleteFragment__export_complete">Export Complete</string>
+    <string name="ExportSmsCompleteFragment__export_complete">Eksportēšana pabeigta</string>
     <!-- Button to continue to next screen -->
     <string name="ExportSmsCompleteFragment__next">Tālāk</string>
     <!-- Message showing summary of sms export counts -->
     <plurals name="ExportSmsCompleteFragment__d_of_d_messages_exported">
-        <item quantity="zero">%1$d of %2$d messages exported</item>
-        <item quantity="one">%1$d of %2$d message exported</item>
-        <item quantity="other">%1$d of %2$d messages exported</item>
+        <item quantity="zero">%1$d no %2$d ziņām eksportētas</item>
+        <item quantity="one">%1$d no %2$d ziņas eksportēta</item>
+        <item quantity="other">%1$d no %2$d ziņām eksportēta</item>
     </plurals>
 
     <!-- EOF -->

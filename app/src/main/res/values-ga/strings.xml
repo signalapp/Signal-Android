@@ -225,7 +225,7 @@
     <!-- Label for my stories when selecting who to send media to -->
     <string name="ContactsCursorLoader_my_stories">Mo Scéalta</string>
     <!-- Text for a button that brings up a bottom sheet to create a new story. -->
-    <string name="ContactsCursorLoader_add_to">Add to…</string>
+    <string name="ContactsCursorLoader_add_to">Cuir le...</string>
 
     <!-- ContactsDatabase -->
     <string name="ContactsDatabase_message_s">Teachtaireacht %1$s</string>
@@ -349,15 +349,19 @@
     <string name="ConversationActivity__reported_as_spam_and_blocked">Reported as spam and blocked.</string>
 
     <!-- Message shown when opening an SMS conversation with SMS disabled and they have unexported sms messages -->
-    <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_you_can_export_your_messages_to_another_app_on_your_phone">SMS messaging is no longer supported in Signal. You can export your messages to another app on your phone.</string>
+    <string name="ConversationActivity__sms_messaging_is_currently_disabled_you_can_export_your_messages_to_another_app_on_your_phone">SMS messaging is currently disabled. You can export your messages to another app on your phone.</string>
+    <!-- Message shown when opening an SMS conversation with SMS disabled and they have unexported sms messages -->
+    <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_you_can_export_your_messages_to_another_app_on_your_phone">Ní thacaítear le cur teachtaireachtaí SMS in Signal a thuilleadh. Tig leat do theachtaireachtaí a easpórtáil chuig aip eile ar do ghuthán.</string>
     <!-- Action button shown when in sms conversation, sms is disabled, and unexported sms messages are present -->
-    <string name="ConversationActivity__export_sms_messages">Export SMS messages</string>
+    <string name="ConversationActivity__export_sms_messages">Easpórtáil teachtaireachtaí SMS</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
-    <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">SMS messaging is no longer supported in Signal. Invite %1$s to Signal to keep the conversation here.</string>
+    <string name="ConversationActivity__sms_messaging_is_currently_disabled_invite_s_to_to_signal_to_keep_the_conversation_here">SMS messaging is currently disabled. Invite %1$s to Signal to keep the conversation here.</string>
+    <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
+    <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">Ní thacaítear le cur teachtaireachtaí SMS in Signal a thuilleadh. Tabhair cuireadh do %1$s teacht isteach in Signal leis an gcomhrá a choinneáil anseo.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__invite_to_signal">Tabhair cuireadh chuig Signal</string>
     <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we'll do it again soon -->
-    <string name="ConversationActivity__you_will_be_reminded_again_soon">You will be reminded again soon.</string>
+    <string name="ConversationActivity__you_will_be_reminded_again_soon">Cuirfear i gcuimhne duit arís go luath.</string>
 
     <!-- ConversationAdapter -->
     <plurals name="ConversationAdapter_n_unread_messages">
@@ -933,7 +937,7 @@
     <string name="AddGroupDetailsFragment__sms_contact">Teagmhálaí SMS</string>
     <string name="AddGroupDetailsFragment__remove_s_from_this_group">Bain %1$s ón ngrúpa seo?</string>
     <!-- Displayed when adding group details to an MMS Group -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">You\'ve selected a contact that dosen\'t support Signal groups, this group will be MMS. Custom MMS group names and photos will only be visible to you. Support for MMS groups will be removed soon to focus on encrypted messaging.</string>
+    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">Roghnaigh tú teagmhálaí nach dtacaíonn le grúpaí Signal, grúpa MMS a bheith sa ghrúpa seo dá réir. Beidh ainmneacha agus grianghraif ag grúpa MMS saincheaptha infheicthe agatsa amháin. Bainfear tacaíocht do ghrúpaí SMS go lua chun díriú ar chur teachtaireachtaí criptithe.</string>
 
     <!-- ManageGroupActivity -->
     <string name="ManageGroupActivity_member_requests_and_invites">Member requests &amp; invites</string>
@@ -1133,7 +1137,7 @@
     <!-- InputPanel -->
     <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Brúigh agus coinnigh síos é chun glórtheachtaireacht a thaifeadadh, scaoil chun í a sheoladh</string>
     <!-- Message shown if the user tries to switch a conversation from Signal to SMS -->
-    <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">SMS messaging is no longer supported in Signal.</string>
+    <string name="InputPanel__sms_messaging_is_no_longer_supported_in_signal">Ní thacaítear le cur teachtaireachtaí SMS in Signal a thuilleadh.</string>
 
     <!-- InviteActivity -->
     <string name="InviteActivity_share">Comhroinn</string>
@@ -1571,9 +1575,9 @@
     </plurals>
 
     <!-- In-conversation update message to indicate that the current contact is sms only and will need to migrate to signal to continue the conversation in signal. -->
-    <string name="MessageRecord__you_will_no_longer_be_able_to_send_sms_messages_from_signal_soon">You will no longer be able to send SMS messages from Signal soon. Invite %1$s to Signal to keep the conversation here.</string>
+    <string name="MessageRecord__you_will_no_longer_be_able_to_send_sms_messages_from_signal_soon">Ní bheidh tú in ann teachtaireachtaí SMS a sheoladh ó Signal a thuilleadh go luath. Tabhair cuireadh do %1$s teacht isteach in Signal leis an gcomhrá a choinneáil anseo.</string>
     <!-- In-conversation update message to indicate that the current contact is sms only and will need to migrate to signal to continue the conversation in signal. -->
-    <string name="MessageRecord__you_can_no_longer_send_sms_messages_in_signal">You can no longer send SMS messages in Signal. Invite %1$s to Signal to keep the conversation here.</string>
+    <string name="MessageRecord__you_can_no_longer_send_sms_messages_in_signal">Ní féidir leat teachtaireachtaí SMS a sheoladh in Signal a thuilleadh. Tabhair cuireadh do %1$s teacht isteach in Signal leis an gcomhrá a choinneáil anseo.</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">Glac leis</string>
@@ -2255,7 +2259,7 @@
     <!-- Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing. -->
     <string name="NotificationChannel_call_status">Call status</string>
     <!-- Notification channel name for occasional alerts to the user. Will appear in the system notification settings as the title of this notification channel. -->
-    <string name="NotificationChannel_critical_app_alerts">Critical app alerts</string>
+    <string name="NotificationChannel_critical_app_alerts">Foláirimh chriticiúla maidir leis an aip</string>
 
     <!-- ProfileEditNameFragment -->
 
@@ -2384,11 +2388,11 @@
     </plurals>
     <!-- Displays number of viewers for a story -->
     <plurals name="contact_selection_list_item__number_of_viewers">
-        <item quantity="one">%1$d viewer</item>
-        <item quantity="two">%1$d viewers</item>
-        <item quantity="few">%1$d viewers</item>
-        <item quantity="many">%1$d viewers</item>
-        <item quantity="other">%1$d viewers</item>
+        <item quantity="one">%1$d amharcóir</item>
+        <item quantity="two">%1$d amharcóir</item>
+        <item quantity="few">%1$d amharcóir</item>
+        <item quantity="many">%1$d n-amharcóir</item>
+        <item quantity="other">%1$d amharcóir</item>
     </plurals>
 
     <!-- conversation_activity -->
@@ -2947,11 +2951,11 @@
     <string name="preferences_storage__audio">Fuaim</string>
     <string name="preferences_storage__review_storage">Review storage</string>
     <string name="preferences_storage__delete_older_messages">Scrios teachtaireachtaí níos sine?</string>
-    <string name="preferences_storage__clear_message_history">An bhfuil fonn ort stair teachtaireachtaí a ghlanadh?</string>
+    <string name="preferences_storage__clear_message_history">Glan stair teachtaireachtaí?</string>
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Scriosfaidh sé seo go buan stair teachtaireachtaí agus na meáin go léir atá níos sine ná %1$s ó do ghléas.</string>
     <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">This will permanently trim all conversations to the %1$s most recent messages.</string>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Scriosfaidh sé seo go buan stair teachtaireachtaí agus na meáin go léir ó do ghléas.</string>
-    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">An bhfuil tú cinnte gur mian leat stair teachtaireachtaí go léir a scriosadh?</string>
+    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Cinnte chun stair teachtaireachtaí go léir a scriosadh?</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Bainfear go buan stair teachtaireachtaí go léir. Ní féidir an gníomh seo a chealú.</string>
     <string name="preferences_storage__delete_all_now">Scrios iad uile anois</string>
     <string name="preferences_storage__forever">Choíche</string>
@@ -4278,7 +4282,7 @@
     <!--SmsSettingsFragment -->
     <string name="SmsSettingsFragment__use_as_default_sms_app">Úsáid mar aip SMS réamhshocrú</string>
     <!-- Preference title to export sms -->
-    <string name="SmsSettingsFragment__export_sms_messages">Export SMS messages</string>
+    <string name="SmsSettingsFragment__export_sms_messages">Easpórtáil teachtaireachtaí SMS</string>
     <!-- Preference title to delete sms -->
     <string name="SmsSettingsFragment__remove_sms_messages">Remove SMS messages</string>
     <!-- Snackbar text to confirm deletion -->
@@ -4286,11 +4290,11 @@
     <!-- Snackbar text to indicate can delete later -->
     <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">Is féidir leat teachtaireachtaí SMS a bhaint ó Signal sna Socruithe am ar bith.</string>
     <!-- Description for export sms preference -->
-    <string name="SmsSettingsFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">You can export your SMS messages to your phone\'s SMS database</string>
+    <string name="SmsSettingsFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">Is féidir leat do theachtaireachtaí SMS a easpórtáil chuig bunachar sonraí SMS do ghutháin.</string>
     <!-- Description for remove sms preference -->
-    <string name="SmsSettingsFragment__remove_sms_messages_from_signal_to_clear_up_storage_space">Remove SMS messages from Signal to clear up storage space.</string>
+    <string name="SmsSettingsFragment__remove_sms_messages_from_signal_to_clear_up_storage_space">Bain teachtaireachtaí SMS ó Signal chun spás stórála a ghlanadh.</string>
     <!-- Information message shown at the top of sms settings to indicate it is being removed soon. -->
-    <string name="SmsSettingsFragment__sms_support_will_be_removed_soon_to_focus_on_encrypted_messaging">SMS support will be removed soon to focus on encrypted messaging.</string>
+    <string name="SmsSettingsFragment__sms_support_will_be_removed_soon_to_focus_on_encrypted_messaging">Bainfear tacaíocht SMS go luath chun díriú ar chur teachtaireachtaí criptithe.</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">Teachtaireachtaí</string>
@@ -4321,7 +4325,7 @@
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">Default timer for new chats</string>
     <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Set a default disappearing message timer for all new chats started by you.</string>
     <!-- Summary for stories preference to launch into story privacy settings -->
-    <string name="PrivacySettingsFragment__manage_your_stories">Bainistigh do chuid scéalta agus iadsan ar féidir leo féachaint orthu</string>
+    <string name="PrivacySettingsFragment__manage_your_stories">Bainistigh do chuid scéalta agus an lucht féachana</string>
     <string name="PrivacySettingsFragment__payment_lock_require_lock">Éiligh glas scáileáin Android nó méarlorg chun cistí a aistriú</string>
     <!-- Alert dialog title when payment lock cannot be enabled -->
     <string name="PrivacySettingsFragment__cant_enable_title">Ní féidir an glas íocaíochta a chumasú</string>
@@ -4558,7 +4562,7 @@
     <!-- Dialog action to view contact when they can't be removed otherwise -->
     <string name="NewConversationActivity__view_contact">Féach ar an teagmhálaí</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
-    <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s is not a Signal user</string>
+    <string name="NewConversationActivity__s_is_not_a_signal_user">Ní úsáideoir Signal é/í %1$s</string>
 
     <!-- ContactFilterView -->
     <string name="ContactFilterView__search_name_or_number">Cuardaigh ainm nó uimhir</string>
@@ -5071,7 +5075,7 @@
     <!-- String for counts above 99 in conversation list tabs -->
     <string name="ConversationListTabs__99p">99+</string>
     <!-- Menu item on stories landing page -->
-    <string name="StoriesLandingFragment__story_privacy">Príobháideachas scéil</string>
+    <string name="StoriesLandingFragment__story_privacy">Príobháideachas an scéil</string>
     <!-- Title for "My Stories" row item in Stories landing page -->
     <string name="StoriesLandingFragment__my_stories">Mo Scéalta</string>
     <!-- Subtitle for "My Stories" row item when user has not added stories -->
@@ -5101,7 +5105,7 @@
     <!-- Status label when a story fails to send indicating user action to retry -->
     <string name="StoriesLandingItem__tap_to_retry">Tapáil lena atriail</string>
     <!-- Title of dialog confirming decision to hide a story -->
-    <string name="StoriesLandingFragment__hide_story">An bhfuil fonn ort an scéal a fholú?</string>
+    <string name="StoriesLandingFragment__hide_story">Folaigh scéal?</string>
     <!-- Message of dialog confirming decision to hide a story -->
     <string name="StoriesLandingFragment__new_story_updates">Ní thaispeánfar nuashonruithe ar scéalta nua ó %1$s ar bharr liosta de na scéalta a thuilleadh.</string>
     <!-- Positive action of dialog confirming decision to hide a story -->
@@ -5123,7 +5127,7 @@
     <!-- Label for stories for a single user. Format is {given name}\'s Story -->
     <string name="MyStories__ss_story">Scéal %1$s</string>
     <!-- Title of dialog to confirm deletion of story -->
-    <string name="MyStories__delete_story">An bhfuil fonn ort an scéal a scriosadh?</string>
+    <string name="MyStories__delete_story">Scrios an scéal?</string>
     <!-- Message of dialog to confirm deletion of story -->
     <string name="MyStories__this_story_will_be_deleted">Scriosfar an scéal seo duitse agus do gach duine a fuair é.</string>
     <!-- Toast shown when story media cannot be saved -->
@@ -5198,16 +5202,16 @@
     <string name="MyStorySettingsFragment__my_story">Mo Scéal</string>
     <!-- Number of total signal connections displayed in "All connections" row item -->
     <plurals name="MyStorySettingsFragment__viewers">
-        <item quantity="one">%1$d viewer</item>
-        <item quantity="two">%1$d viewers</item>
-        <item quantity="few">%1$d viewers</item>
-        <item quantity="many">%1$d viewers</item>
-        <item quantity="other">%1$d viewers</item>
+        <item quantity="one">%1$d amharcóir</item>
+        <item quantity="two">%1$d amharcóir</item>
+        <item quantity="few">%1$d amharcóir</item>
+        <item quantity="many">%1$d n-amharcóir</item>
+        <item quantity="other">%1$d amharcóir</item>
     </plurals>
     <!-- Button on all signal connections row to view all signal connections. Please keep as short as possible. -->
     <string name="MyStorySettingsFragment__view">AMHARC</string>
     <!-- Section heading for story visibility -->
-    <string name="MyStorySettingsFragment__who_can_view_this_story">Na daoine ar féidir leo féachaint ar an scéal seo</string>
+    <string name="MyStorySettingsFragment__who_can_view_this_story">An lucht féachana ar an scéal seo</string>
     <!-- Clickable option for selecting people to hide your story from -->
     <string name="MyStorySettingsFragment__hide_story_from">Folaigh scéal ó</string>
     <!-- Privacy setting title for sending stories to all your signal connections -->
@@ -5239,7 +5243,7 @@
         <item quantity="other">%1$d people</item>
     </plurals>
     <!-- My story privacy fine print about what the privacy settings are for -->
-    <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Roghnaigh na daoine atá in ann féachaint ar do scéal. Ní bheidh tionchar ag athruithe ar scéalta a sheol tú cheana.</string>
+    <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Roghnaigh an lucht féachana ar do scéal. Ní bheidh tionchar ag athruithe ar scéalta a sheol tú cheana.</string>
     <!-- Section header for options related to replies and reactions -->
     <string name="MyStorySettingsFragment__replies_amp_reactions">Freagraí agus Freagairtí</string>
     <!-- Switchable option for allowing replies and reactions on your stories -->
@@ -5293,7 +5297,7 @@
     <!-- Hint for entering a URL for a text post -->
     <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">Type or paste a URL</string>
     <!-- Displayed prior to the user entering a URL for a text post -->
-    <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">Comhroinn nasc le lucht féachana do scéil</string>
+    <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">Comhroinn nasc le lucht féachana ar do scéal</string>
     <!-- Hint text for searching for a story text post recipient. -->
     <string name="TextStoryPostSendFragment__search">Cuardach</string>
     <!-- Toast shown when an unexpected error occurs while sending a text story -->
@@ -5305,13 +5309,13 @@
     <!-- Done button label for hide story from screen -->
     <string name="HideStoryFromFragment__done">Déanta</string>
     <!-- Dialog title for removing a group story -->
-    <string name="StoryDialogs__remove_group_story">An bhfuil fonn ort an scéal grúpa a bhaint?</string>
+    <string name="StoryDialogs__remove_group_story">Bain an scéal grúpa?</string>
     <!-- Dialog message for removing a group story -->
     <string name="StoryDialogs__s_will_be_removed">Bainfear \"%1$s\".</string>
     <!-- Dialog positive action for removing a group story -->
     <string name="StoryDialogs__remove">Bain</string>
     <!-- Dialog title for deleting a private story -->
-    <string name="StoryDialogs__delete_private_story">An bhfuil fonn ort an scéal príobháideach a scriosadh?</string>
+    <string name="StoryDialogs__delete_private_story">Scrios an scéal príobháideach?</string>
     <!-- Dialog message for deleting a private story -->
     <string name="StoryDialogs__s_and_updates_shared">Scriosfar \"%1$s\" agus nuashonruithe a chomhroinntear chuig an scéal seo.</string>
     <!-- Dialog positive action for deleting a private story -->
@@ -5321,9 +5325,9 @@
     <!-- Dialog message for first time sending something to a beta story -->
     <string name="StoryDialogs__if_you_share_a_story">Má chomhroinneann tú scéal, ní bheidh sé ar fáil ach ag daoine atá ar Signal béite.</string>
     <!-- Dialog title for first time adding something to a story -->
-    <string name="StoryDialogs__add_to_story_q">An bhfuil fonn ort cur leis an scéal?</string>
+    <string name="StoryDialogs__add_to_story_q">Cuir leis an scéal?</string>
     <!-- Dialog message for first time adding something to a story -->
-    <string name="StoryDialogs__adding_content">Má chuirtear ábhar le do scéal, beidh do theagmhálaithe Signal in ann féachaint air ar feadh 24 uair an chloig Is féidir leat na daoine ar féidir leo féachaint ar do scéal a athrú i Socruithe.</string>
+    <string name="StoryDialogs__adding_content">Má chuirtear ábhar le do scéal, beidh do theagmhálaithe Signal in ann féachaint air ar feadh 24 uair an chloig. Is féidir leat an lucht féachana ar do scéal a athrú i Socruithe.</string>
     <!-- First time share to story dialog: Positive action to go ahead and add to story -->
     <string name="StoryDialogs__add_to_story">Cuir leis an scéal</string>
     <!-- First time share to story dialog: Neutral action to edit who can view "My Story" -->
@@ -5344,11 +5348,11 @@
     <string name="CreateStoryViewerSelectionFragment__next">Ar Aghaidh</string>
     <!-- New story viewer selection screen title as recipients are selected -->
     <plurals name="SelectViewersFragment__d_viewers">
-        <item quantity="one">%1$d viewer</item>
-        <item quantity="two">%1$d viewers</item>
-        <item quantity="few">%1$d viewers</item>
-        <item quantity="many">%1$d viewers</item>
-        <item quantity="other">%1$d viewers</item>
+        <item quantity="one">%1$d amharcóir</item>
+        <item quantity="two">%1$d amharcóir</item>
+        <item quantity="few">%1$d amharcóir</item>
+        <item quantity="many">%1$d n-amharcóir</item>
+        <item quantity="other">%1$d amharcóir</item>
     </plurals>
     <!-- Name story screen title -->
     <string name="CreateStoryWithViewersFragment__name_story">Cuir ainm ar an scéal</string>
@@ -5365,7 +5369,7 @@
     <!-- Text for select all action when editing recipients for a story -->
     <string name="BaseStoryRecipientSelectionFragment__select_all">Roghnaigh uile</string>
     <!-- Choose story type bottom sheet title -->
-    <string name="ChooseStoryTypeBottomSheet__choose_your_story_type">Roghnaigh cineál scéil</string>
+    <string name="ChooseStoryTypeBottomSheet__choose_your_story_type">Roghnaigh do chineál scéil</string>
     <!-- Choose story type bottom sheet new story row title -->
     <string name="ChooseStoryTypeBottomSheet__new_private_story">Scéal príobháideach nua</string>
     <!-- Choose story type bottom sheet new story row summary -->
@@ -5389,7 +5393,7 @@
     <!-- Displayed in the viewer when network is available but content could not be downloaded -->
     <string name="StorySlateView__couldnt_load_content">Couldn\'t Load Content</string>
     <!-- Toasted when the user externally shares to a text story successfully -->
-    <string name="TextStoryPostCreationFragment__sent_story">Seoladh an scéal</string>
+    <string name="TextStoryPostCreationFragment__sent_story">Scéal seolta</string>
     <!-- Toasted when the user external share to a text story fails -->
     <string name="TextStoryPostCreationFragment__failed_to_send_story">Theip ar sheoladh an scéil</string>
     <!-- Displayed in a dialog to let the user select a given users story -->
@@ -5407,7 +5411,7 @@
     <string name="TurnOffCircumventionMegaphone_turn_off">Múch</string>
 
     <!-- Conversation Item label for when you react to someone else\'s story -->
-    <string name="ConversationItem__you_reacted_to_s_story">Thug tú freagairt ar scéal %1$s</string>
+    <string name="ConversationItem__you_reacted_to_s_story">Thug tú freagairt do scéal %1$s</string>
     <!-- Conversation Item label for reactions to your story -->
     <string name="ConversationItem__reacted_to_your_story">Tugadh freagairt do do scéal</string>
     <!-- Conversation Item label for reactions to an unavailable story -->
@@ -5513,21 +5517,21 @@
     <!-- Label under name for My Story when first sending to my story -->
     <string name="ContactSearchItems__tap_to_choose_your_viewers">Tapáil chun d\'amharcóirí a roghnú</string>
     <!-- Label for context menu item to open story settings -->
-    <string name="ContactSearchItems__story_settings">Socruithe scéalta</string>
+    <string name="ContactSearchItems__story_settings">Socruithe an scéil</string>
     <!-- Label for context menu item to remove a group story from contact results -->
     <string name="ContactSearchItems__remove_story">Bain an scéal</string>
     <!-- Label for context menu item to delete a private story -->
     <string name="ContactSearchItems__delete_story">Scrios an scéal</string>
     <!-- Dialog title for removing a group story -->
-    <string name="ContactSearchMediator__remove_group_story">An bhfuil fonn ort an scéal grúpa a bhaint?</string>
+    <string name="ContactSearchMediator__remove_group_story">Bain an scéal grúpa?</string>
     <!-- Dialog message for removing a group story -->
     <string name="ContactSearchMediator__this_will_remove">Bainfidh sé seo an scéal ón liosta seo. Beidh tú fós in ann féachaint ar scéalta ón ngrúpa seo.</string>
     <!-- Dialog action item for removing a group story -->
     <string name="ContactSearchMediator__remove">Bain é</string>
     <!-- Dialog title for deleting a private story -->
-    <string name="ContactSearchMediator__delete_story">An bhfuil fonn ort an scéal a scriosadh?</string>
+    <string name="ContactSearchMediator__delete_story">Scrios an scéal?</string>
     <!-- Dialog message for deleting a private story -->
-    <string name="ContactSearchMediator__delete_the_private">An bhfuil fonn ort an scéal príobháideach \"%1$s\" a scriosadh?</string>
+    <string name="ContactSearchMediator__delete_the_private">Scrios an scéal príobháideach \"%1$s\"?</string>
     <!-- Dialog action item for deleting a private story -->
     <string name="ContactSearchMediator__delete">Scrios</string>
     <!-- Gift expiry days remaining -->
@@ -5615,7 +5619,7 @@
     <!-- Title of initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__my_story_privacy">Príobháideachas maidir le Mo Scéal</string>
     <!-- Subtitle of initial My Story settings configuration shown when sending to My Story for the first time -->
-    <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">Roghnaigh na daoine ar féidir leo postálacha ar Mo Scéal a fheiceáil. Is féidir leat athruithe a dhéanamh i socruithe i gcónaí.</string>
+    <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">Roghnaigh an lucht féachana ar phostálacha ar Mo Scéal. Is féidir leat athruithe a dhéanamh i socruithe i gcónaí.</string>
     <!-- All connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Gach Teagmhálaí Signal</string>
     <!-- All connections except option for initial My Story settings configuration shown when sending to My Story for the first time -->
@@ -5640,7 +5644,7 @@
 
     <!-- StoriesPrivacySettingsFragment -->
     <!-- Explanation about how stories are deleted and managed -->
-    <string name="StoriesPrivacySettingsFragment__stories_automatically_disappear">Imíonn scéalta as radharc go huathoibríoch tar éis 24 uair an chloig. Roghnaigh cé acu ar féidir leo féachaint ar do scéal nó cruthaigh scéalta nua in éineacht le lucht féachana nó grúpaí ar leith.</string>
+    <string name="StoriesPrivacySettingsFragment__stories_automatically_disappear">Imíonn scéalta as radharc go huathoibríoch tar éis 24 uair an chloig. Roghnaigh an lucht féachana ar do scéal nó cruthaigh scéalta nua in éineacht le lucht féachana nó grúpaí ar leith.</string>
     <!-- Preference title to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__turn_off_stories">Cas as scéalta</string>
     <!-- Preference summary to turn off stories -->
@@ -5650,7 +5654,7 @@
     <!-- Preference summary to turn on stories -->
     <string name="StoriesPrivacySettingsFragment__share_and_view">Comhroinn agus féach ar scéalta daoine eile. Imíonn scéalta as radharc go huathoibríoch tar éis 24 uair an chloig.</string>
     <!-- Dialog title to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">An bhfuil fonn ort scéalta a chasadh as?</string>
+    <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">Cas as scéalta?</string>
     <!-- Dialog message to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">Ní bheidh tú in ann féachaint ar scéalta ná iad a chomhroinnt a thuilleadh. Scriosfar na nuashonruithe ar scéal a chomhroinn tú le déanaí freisin.</string>
     <!-- Page title when launched from stories landing screen -->
@@ -5663,7 +5667,7 @@
 
     <!-- GroupStorySettingsFragment -->
     <!-- Section header for who can view a group story -->
-    <string name="GroupStorySettingsFragment__who_can_view_this_story">Na daoine ar féidir leo féachaint ar an scéal seo</string>
+    <string name="GroupStorySettingsFragment__who_can_view_this_story">An lucht féachana ar an scéal seo</string>
     <!-- Explanation of who can view a group story -->
     <string name="GroupStorySettingsFragment__members_of_the_group_s">"Tá baill den ghrúpa %1$s in ann féachaint ar an scéal seo agus freagair dó. Is féidir leat ballraíocht don chomhrá seo a nuashonrú sa ghrúpa."</string>
     <!-- Preference label for removing this group story -->
@@ -5676,15 +5680,15 @@
     <!-- Displayed in the notification while export is running -->
     <string name="SignalSmsExportService__exporting_messages">Exporting messages…</string>
     <!-- Displayed in the notification title when export completes -->
-    <string name="SignalSmsExportService__signal_sms_export_complete">Signal SMS Export Complete</string>
+    <string name="SignalSmsExportService__signal_sms_export_complete">Easpórtáil SMS Signal Críochnaithe</string>
     <!-- Displayed in the notification message when export completes -->
-    <string name="SignalSmsExportService__tap_to_return_to_signal">Tap to return to Signal</string>
+    <string name="SignalSmsExportService__tap_to_return_to_signal">Tapáil le filleadh ar Signal</string>
 
     <!-- ExportYourSmsMessagesFragment -->
     <!-- Title of the screen -->
     <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">Export your SMS messages</string>
     <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">Is féidir leat do theachtaireachtaí SMS a easpórtáil chuig bunachar sonraí SMS do ghutháin. Ligeann sé seo d\'aipeanna eile SMS ar do ghuthán iad a rochtain agus a iompórtáil. Ní chruthaíonn sé seo comhad in-chomhroinnte de stair do theachtaireachtaí SMS.</string>
+    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database_and_youll_have_the_option_to_keep_or_remove_them_from_signal">You can export your SMS messages to your phone\'s SMS database and you\'ll have the option to keep or remove them from Signal. This allows other SMS apps on your phone to import them. This does not create a shareable file of your SMS history.</string>
     <!-- Button label to begin export -->
     <string name="ExportYourSmsMessagesFragment__continue">Ar Aghaidh</string>
 
@@ -5692,14 +5696,14 @@
     <!-- Title of the screen -->
     <string name="ExportingSmsMessagesFragment__exporting_sms_messages">Exporting SMS messages</string>
     <!-- Message of the screen when exporting sms messages -->
-    <string name="ExportingSmsMessagesFragment__this_may_take_awhile">This may take awhile</string>
+    <string name="ExportingSmsMessagesFragment__this_may_take_awhile">Seans go dtógfaidh sé seo tamall</string>
     <!-- Progress indicator for export -->
     <plurals name="ExportingSmsMessagesFragment__exporting_d_of_d">
-        <item quantity="one">Exporting %1$d of %2$d…</item>
-        <item quantity="two">Exporting %1$d of %2$d…</item>
-        <item quantity="few">Exporting %1$d of %2$d…</item>
-        <item quantity="many">Exporting %1$d of %2$d…</item>
-        <item quantity="other">Exporting %1$d of %2$d…</item>
+        <item quantity="one">%1$d as %2$d á easpórtáil…</item>
+        <item quantity="two">%1$d as %2$d á n-easpórtáil…</item>
+        <item quantity="few">%1$d as %2$d á n-easpórtáil…</item>
+        <item quantity="many">%1$d as %2$d á n-easpórtáil…</item>
+        <item quantity="other">%1$d as %2$d á n-easpórtáil…</item>
     </plurals>
 
     <!-- ChooseANewDefaultSmsAppFragment -->
@@ -5750,55 +5754,55 @@
 
     <!-- BackupSchedulePermission Megaphone -->
     <!-- The title on an alert window that explains to the user that we are unable to backup their messages -->
-    <string name="BackupSchedulePermissionMegaphone__cant_back_up_chats">Can\'t back up chats</string>
+    <string name="BackupSchedulePermissionMegaphone__cant_back_up_chats">Ní féidir comhráite a chúltacú</string>
     <!-- The body text of an alert window that tells the user that we are unable to backup their messages -->
-    <string name="BackupSchedulePermissionMegaphone__your_chats_are_no_longer_being_automatically_backed_up">Your chats are no longer being automatically backed up.</string>
+    <string name="BackupSchedulePermissionMegaphone__your_chats_are_no_longer_being_automatically_backed_up">Ní dhéantar do chomhráite a chúltacú go huathoibríoch a thuilleadh.</string>
     <!-- The text on a button in an alert window that, when clicked, will take the user to a screen to re-enable backups -->
-    <string name="BackupSchedulePermissionMegaphone__back_up_chats">Back up chats</string>
+    <string name="BackupSchedulePermissionMegaphone__back_up_chats">Cúltacaigh comhráite</string>
     <!-- The text on a button in an alert window that, when clicked, will take the user to a screen to re-enable backups -->
     <string name="BackupSchedulePermissionMegaphone__not_now">Ní anois</string>
     <!-- Re-enable backup permission bottom sheet title -->
-    <string name="BackupSchedulePermissionMegaphone__to_reenable_backups">To re-enable backups:</string>
+    <string name="BackupSchedulePermissionMegaphone__to_reenable_backups">Chun cúltacaí a chumasú arís:</string>
     <!-- Re-enable backups permission bottom sheet instruction 1 text -->
-    <string name="BackupSchedulePermissionMegaphone__tap_the_go_to_settings_button_below">Tap the \"Go to settings\" button below</string>
+    <string name="BackupSchedulePermissionMegaphone__tap_the_go_to_settings_button_below">Tapáil an cnaipe \"Téigh chuig Socruithe\" thíos</string>
     <!-- Re-enable backups permission bottom sheet instruction 2 text -->
-    <string name="BackupSchedulePermissionMegaphone__turn_on_allow_settings_alarms_and_reminders">Turn on \"Allow settings alarms and reminders.\"</string>
+    <string name="BackupSchedulePermissionMegaphone__turn_on_allow_settings_alarms_and_reminders">Cas air \"Ceadaigh socruithe aláram agus meabhrúchán.\"</string>
     <!-- Re-enable backups permission bottom sheet call to action button to open settings -->
     <string name="BackupSchedulePermissionMegaphone__go_to_settings">Socruithe</string>
 
     <!-- SmsExportMegaphoneActivity -->
     <!-- Phase 2 title of full screen megaphone indicating sms will no longer be supported in the near future -->
-    <string name="SmsExportMegaphoneActivity__signal_will_no_longer_support_sms">Signal will no longer support SMS</string>
+    <string name="SmsExportMegaphoneActivity__signal_will_no_longer_support_sms">Ní thacóidh Signal le SMS a thuilleadh</string>
     <!-- Phase 3 title of full screen megaphone indicating sms is longer supported  -->
-    <string name="SmsExportMegaphoneActivity__signal_no_longer_supports_sms">Signal no longer supports SMS</string>
+    <string name="SmsExportMegaphoneActivity__signal_no_longer_supports_sms">Ní thacaíonn Signal le SMS a thuilleadh</string>
     <!-- Phase 2 message describing that sms is going away soon -->
-    <string name="SmsExportMegaphoneActivity__signal_will_soon_remove_support_for_sending_sms_messages">Signal will soon remove support for sending SMS messages because Signal messages provide end-to-end encryption and strong privacy that SMS messages don\'t. This will also allow us to improve the Signal messaging experience.</string>
+    <string name="SmsExportMegaphoneActivity__signal_will_soon_remove_support_for_sending_sms_messages">Bainfidh Signal tacaíocht do chur teachtaireachtaí SMS toisc go dtugann teachtaireachtaí Signal criptiú ó cheann ceann agus príobháideachas láidir, rud nach dtugtar le teachtaireachtaí SMS. Beimid in ann taithí um chur teachtaireachtaí Signal a fheabhsú dá réir.</string>
     <!-- Phase 3 message describing that sms has gone away -->
-    <string name="SmsExportMegaphoneActivity__signal_has_removed_support_for_sending_sms_messages">Signal has removed support for sending SMS messages because Signal messages provide end-to-end encryption and strong privacy that SMS messages don\'t. This will also allow us to improve the Signal messaging experience.</string>
+    <string name="SmsExportMegaphoneActivity__signal_has_removed_support_for_sending_sms_messages">Bhain Signal tacaíocht do chur teachtaireachtaí SMS toisc go dtugann teachtaireachtaí Signal criptiú ó cheann ceann agus príobháideachas láidir, rud nach dtugtar le teachtaireachtaí SMS. Beimid in ann taithí um chur teachtaireachtaí Signal a fheabhsú dá réir.</string>
     <!-- The text on a button in a popup that, when clicked, will take the user to a screen to export their SMS messages -->
-    <string name="SmsExportMegaphoneActivity__export_sms">Export SMS</string>
+    <string name="SmsExportMegaphoneActivity__export_sms">Easpórtáil SMS</string>
     <!-- The text on a button in a popup that, when clicked, will dismiss the popup and schedule the prompt to occur at a later time. -->
     <string name="SmsExportMegaphoneActivity__remind_me_later">Meabhraigh Dom Níos Déanaí</string>
     <!-- The text on a button in a popup that, when clicked, will navigate the user to a web article on SMS removal -->
     <string name="SmsExportMegaphoneActivity__learn_more">Tuilleadh faisnéise</string>
 
     <!-- Phase 1 Small megaphone title indicating sms is going away -->
-    <string name="SmsExportMegaphone__sms_support_going_away">SMS support going away</string>
+    <string name="SmsExportMegaphone__sms_support_going_away">Tacaíocht do SMA le críochnú</string>
     <!-- Phase 1 small megaphone description indicating sms is going away -->
-    <string name="SmsExportMegaphone__sms_support_will_be_removed_soon_to_focus_on_encrypted_messaging">SMS support will be removed soon to focus on encrypted messaging.</string>
+    <string name="SmsExportMegaphone__sms_support_will_be_removed_soon_to_focus_on_encrypted_messaging">Bainfear tacaíocht SMS go luath chun díriú ar chur teachtaireachtaí criptithe.</string>
     <!-- Phase 1 small megaphone button that takes the user to the sms export flow -->
-    <string name="SmsExportMegaphone__export_sms">Export SMS</string>
+    <string name="SmsExportMegaphone__export_sms">Easpórtáil SMS</string>
     <!-- Title for screen shown after sms export has completed -->
-    <string name="ExportSmsCompleteFragment__export_complete">Export Complete</string>
+    <string name="ExportSmsCompleteFragment__export_complete">Easpórtáil Críochnaithe</string>
     <!-- Button to continue to next screen -->
     <string name="ExportSmsCompleteFragment__next">Ar aghaidh</string>
     <!-- Message showing summary of sms export counts -->
     <plurals name="ExportSmsCompleteFragment__d_of_d_messages_exported">
-        <item quantity="one">%1$d of %2$d message exported</item>
-        <item quantity="two">%1$d of %2$d messages exported</item>
-        <item quantity="few">%1$d of %2$d messages exported</item>
-        <item quantity="many">%1$d of %2$d messages exported</item>
-        <item quantity="other">%1$d of %2$d messages exported</item>
+        <item quantity="one">%1$d as %2$d teachtaireacht easpórtáilte</item>
+        <item quantity="two">%1$d as %2$d theachtaireacht easpórtáilte</item>
+        <item quantity="few">%1$d as %2$d theachtaireacht easpórtáilte</item>
+        <item quantity="many">%1$d as %2$d dteachtaireacht easpórtáilte</item>
+        <item quantity="other">%1$d as %2$d teachtaireacht easpórtáilte</item>
     </plurals>
 
     <!-- EOF -->

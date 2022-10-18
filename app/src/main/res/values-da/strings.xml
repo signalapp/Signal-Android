@@ -346,9 +346,13 @@
     <string name="ConversationActivity__reported_as_spam_and_blocked">Rapporteret som spam og blokeret.</string>
 
     <!-- Message shown when opening an SMS conversation with SMS disabled and they have unexported sms messages -->
+    <string name="ConversationActivity__sms_messaging_is_currently_disabled_you_can_export_your_messages_to_another_app_on_your_phone">SMS messaging is currently disabled. You can export your messages to another app on your phone.</string>
+    <!-- Message shown when opening an SMS conversation with SMS disabled and they have unexported sms messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_you_can_export_your_messages_to_another_app_on_your_phone">Sms-beskeder understøttes ikke længere i Signal. Du kan eksportere dine beskeder til en anden app på din telefon.</string>
     <!-- Action button shown when in sms conversation, sms is disabled, and unexported sms messages are present -->
     <string name="ConversationActivity__export_sms_messages">Eksportér sms\'er</string>
+    <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
+    <string name="ConversationActivity__sms_messaging_is_currently_disabled_invite_s_to_to_signal_to_keep_the_conversation_here">SMS messaging is currently disabled. Invite %1$s to Signal to keep the conversation here.</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">Sms-beskeder understøttes ikke længere i Signal. Invitér %1$s til Signal for at holde samtalen her.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
@@ -1391,7 +1395,7 @@
     </plurals>
 
     <!-- In-conversation update message to indicate that the current contact is sms only and will need to migrate to signal to continue the conversation in signal. -->
-    <string name="MessageRecord__you_will_no_longer_be_able_to_send_sms_messages_from_signal_soon">You will no longer be able to send SMS messages from Signal soon. Invite %1$s to Signal to keep the conversation here.</string>
+    <string name="MessageRecord__you_will_no_longer_be_able_to_send_sms_messages_from_signal_soon">Snart vil du ikke længere kunne sende SMS\'er fra Signal. Inviter %1$s til Signal for at fortsætte samtalen her.</string>
     <!-- In-conversation update message to indicate that the current contact is sms only and will need to migrate to signal to continue the conversation in signal. -->
     <string name="MessageRecord__you_can_no_longer_send_sms_messages_in_signal">Du kan ikke længere sende sms-beskeder i Signal. Invitér %1$s til Signal for at holde samtalen her.</string>
 
@@ -5324,7 +5328,7 @@
     <!-- Title of the screen -->
     <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">Eksportér dine sms\'er</string>
     <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">Du kan eksportere dine sms\'er til din telefons sms-database. Dette giver andre sms-apps på din telefon adgang til sms\'erne og tilladelse til at importere dem. Dette opretter ikke en delbar fil i din sms-historik.</string>
+    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database_and_youll_have_the_option_to_keep_or_remove_them_from_signal">You can export your SMS messages to your phone\'s SMS database and you\'ll have the option to keep or remove them from Signal. This allows other SMS apps on your phone to import them. This does not create a shareable file of your SMS history.</string>
     <!-- Button label to begin export -->
     <string name="ExportYourSmsMessagesFragment__continue">Fortsæt</string>
 
@@ -5335,8 +5339,8 @@
     <string name="ExportingSmsMessagesFragment__this_may_take_awhile">Dette kan tage lidt tid</string>
     <!-- Progress indicator for export -->
     <plurals name="ExportingSmsMessagesFragment__exporting_d_of_d">
-        <item quantity="one">Exporting %1$d of %2$d…</item>
-        <item quantity="other">Exporting %1$d of %2$d…</item>
+        <item quantity="one">Eksporterer %1$d af %2$d…</item>
+        <item quantity="other">Eksporterer %1$d af %2$d…</item>
     </plurals>
 
     <!-- ChooseANewDefaultSmsAppFragment -->
@@ -5431,8 +5435,8 @@
     <string name="ExportSmsCompleteFragment__next">Næste</string>
     <!-- Message showing summary of sms export counts -->
     <plurals name="ExportSmsCompleteFragment__d_of_d_messages_exported">
-        <item quantity="one">%1$d of %2$d message exported</item>
-        <item quantity="other">%1$d of %2$d messages exported</item>
+        <item quantity="one">%1$d af %2$d meddelelse eksporteret</item>
+        <item quantity="other">%1$d af %2$d meddelelser eksporteret</item>
     </plurals>
 
     <!-- EOF -->
