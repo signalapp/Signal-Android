@@ -18,7 +18,7 @@
         android:layout_height="match_parent"
         android:fillViewport="true">
 
-        <androidx.constraintlayout.widget.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -50,7 +50,7 @@
                 android:layout_marginHorizontal="32dp"
                 android:layout_marginTop="24dp"
                 android:gravity="center"
-                android:text="@string/ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database"
+                android:text="@string/ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database_and_youll_have_the_option_to_keep_or_remove_them_from_signal"
                 android:textAppearance="@style/Signal.Text.BodyLarge"
                 android:textColor="@color/signal_colorOnSurfaceVariant"
                 app:layout_constraintTop_toBottomOf="@id/headline" />
