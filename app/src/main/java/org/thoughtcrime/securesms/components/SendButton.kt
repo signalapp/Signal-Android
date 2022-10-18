@@ -31,7 +31,7 @@ class SendButton(context: Context, attributeSet: AttributeSet?) : AppCompatImage
 
   private var availableSendTypes: List<MessageSendType> = MessageSendType.getAllAvailable(context, false)
   private var activeMessageSendType: MessageSendType? = null
-  private var defaultTransportType: MessageSendType.TransportType = MessageSendType.TransportType.SMS
+  private var defaultTransportType: MessageSendType.TransportType = MessageSendType.TransportType.SIGNAL
   private var defaultSubscriptionId: Int? = null
 
   lateinit var snackbarContainer: View
@@ -101,7 +101,7 @@ class SendButton(context: Context, attributeSet: AttributeSet?) : AppCompatImage
   fun resetAvailableTransports(isMediaMessage: Boolean) {
     availableSendTypes = MessageSendType.getAllAvailable(context, isMediaMessage)
     activeMessageSendType = null
-    defaultTransportType = MessageSendType.TransportType.SMS
+    defaultTransportType = MessageSendType.TransportType.SIGNAL
     defaultSubscriptionId = null
     onSelectionChanged(newType = selectedSendType, isManualSelection = false)
   }
