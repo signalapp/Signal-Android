@@ -538,13 +538,6 @@ public final class FeatureFlags {
   }
 
   /**
-   * Whether or not we should use the new recipient merging strategy.
-   */
-  public static boolean recipientMergeV2() {
-    return getBoolean(RECIPIENT_MERGE_V2, false);
-  }
-
-  /**
    * Whether or not we should enable the SMS exporter
    *
    * WARNING: This feature is under active development and is off for a reason. The exporter writes messages out to your

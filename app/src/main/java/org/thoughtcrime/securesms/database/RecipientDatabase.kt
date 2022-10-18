@@ -435,110 +435,8 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
 
   @JvmOverloads
   fun getAndPossiblyMerge(serviceId: ServiceId?, e164: String?, changeSelf: Boolean = false): RecipientId {
-    return if (FeatureFlags.recipientMergeV2() || FeatureFlags.phoneNumberPrivacy()) {
-      getAndPossiblyMergePnp(serviceId, e164, changeSelf)
-    } else {
-      getAndPossiblyMergeLegacy(serviceId, e164, changeSelf)
-    }
-  }
-
-  @VisibleForTesting
-  fun getAndPossiblyMergeLegacy(serviceId: ServiceId?, e164: String?, changeSelf: Boolean = false): RecipientId {
     require(!(serviceId == null && e164 == null)) { "Must provide an ACI or E164!" }
-
-    val db = writableDatabase
-
-    var transactionSuccessful = false
-    var remapped: Pair<RecipientId, RecipientId>? = null
-    var recipientsNeedingRefresh: List<RecipientId> = listOf()
-    var recipientChangedNumber: RecipientId? = null
-
-    db.beginTransaction()
-    try {
-      val fetch: RecipientFetch = fetchRecipient(serviceId, e164, changeSelf = changeSelf)
-
-      if (fetch.logBundle != null) {
-        Log.w(TAG, fetch.toString())
-      }
-
-      val resolvedId: RecipientId = when (fetch) {
-        is RecipientFetch.Match -> {
-          fetch.id
-        }
-        is RecipientFetch.MatchAndUpdateE164 -> {
-          setPhoneNumberOrThrowSilent(fetch.id, fetch.e164)
-          recipientsNeedingRefresh = listOf(fetch.id)
-          recipientChangedNumber = fetch.changedNumber
-          fetch.id
-        }
-        is RecipientFetch.MatchAndReassignE164 -> {
-          removePhoneNumber(fetch.e164Id)
-          setPhoneNumberOrThrowSilent(fetch.id, fetch.e164)
-          recipientsNeedingRefresh = listOf(fetch.id, fetch.e164Id)
-          recipientChangedNumber = fetch.changedNumber
-          fetch.id
-        }
-        is RecipientFetch.MatchAndUpdateAci -> {
-          markRegistered(fetch.id, fetch.serviceId)
-          recipientsNeedingRefresh = listOf(fetch.id)
-          fetch.id
-        }
-        is RecipientFetch.MatchAndInsertAci -> {
-          val id = db.insert(TABLE_NAME, null, buildContentValuesForNewUser(null, fetch.serviceId))
-          RecipientId.from(id)
-        }
-        is RecipientFetch.MatchAndMerge -> {
-          remapped = Pair(fetch.e164Id, fetch.sidId)
-          val mergedId: RecipientId = merge(fetch.sidId, fetch.e164Id)
-          recipientsNeedingRefresh = listOf(mergedId)
-          recipientChangedNumber = fetch.changedNumber
-          mergedId
-        }
-        is RecipientFetch.Insert -> {
-          val id = db.insert(TABLE_NAME, null, buildContentValuesForNewUser(fetch.e164, fetch.serviceId))
-          RecipientId.from(id)
-        }
-        is RecipientFetch.InsertAndReassignE164 -> {
-          removePhoneNumber(fetch.e164Id)
-          recipientsNeedingRefresh = listOf(fetch.e164Id)
-          val id = db.insert(TABLE_NAME, null, buildContentValuesForNewUser(fetch.e164, fetch.serviceId))
-          RecipientId.from(id)
-        }
-      }
-
-      transactionSuccessful = true
-      db.setTransactionSuccessful()
-      return resolvedId
-    } finally {
-      db.endTransaction()
-
-      if (transactionSuccessful) {
-        if (recipientsNeedingRefresh.isNotEmpty()) {
-          recipientsNeedingRefresh.forEach { ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(it) }
-          RetrieveProfileJob.enqueue(recipientsNeedingRefresh.toSet())
-        }
-
-        if (remapped != null) {
-          Recipient.live(remapped.first).refresh(remapped.second)
-          ApplicationDependencies.getRecipientCache().remap(remapped.first, remapped.second)
-        }
-
-        if (recipientsNeedingRefresh.isNotEmpty() || remapped != null) {
-          StorageSyncHelper.scheduleSyncForDataChange()
-          RecipientId.clearCache()
-        }
-
-        if (recipientChangedNumber != null) {
-          ApplicationDependencies.getJobManager().add(RecipientChangedNumberJob(recipientChangedNumber))
-        }
-      }
-    }
-  }
-
-  @VisibleForTesting
-  fun getAndPossiblyMergePnp(serviceId: ServiceId?, e164: String?, changeSelf: Boolean = false): RecipientId {
-    require(!(serviceId == null && e164 == null)) { "Must provide an ACI or E164!" }
-    return getAndPossiblyMergePnp(serviceId = serviceId, pni = null, e164 = e164, pniVerified = false, changeSelf = changeSelf)
+    return getAndPossiblyMerge(serviceId = serviceId, pni = null, e164 = e164, pniVerified = false, changeSelf = changeSelf)
   }
 
   /**
@@ -550,10 +448,10 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       throw AssertionError()
     }
 
-    return getAndPossiblyMergePnp(serviceId = serviceId, pni = pni, e164 = e164, pniVerified = true, changeSelf = false)
+    return getAndPossiblyMerge(serviceId = serviceId, pni = pni, e164 = e164, pniVerified = true, changeSelf = false)
   }
 
-  private fun getAndPossiblyMergePnp(serviceId: ServiceId?, pni: PNI?, e164: String?, pniVerified: Boolean = false, changeSelf: Boolean = false): RecipientId {
+  private fun getAndPossiblyMerge(serviceId: ServiceId?, pni: PNI?, e164: String?, pniVerified: Boolean = false, changeSelf: Boolean = false): RecipientId {
     require(!(serviceId == null && e164 == null)) { "Must provide an ACI or E164!" }
 
     if ((serviceId is PNI) && pni != null && serviceId != pni) {
@@ -2135,7 +2033,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
    * Associates the provided IDs together. The assumption here is that all of the IDs correspond to the local user and have been verified.
    */
   fun linkIdsForSelf(aci: ACI, pni: PNI, e164: String) {
-    getAndPossiblyMergePnp(serviceId = aci, pni = pni, e164 = e164, changeSelf = true, pniVerified = true)
+    getAndPossiblyMerge(serviceId = aci, pni = pni, e164 = e164, changeSelf = true, pniVerified = true)
   }
 
   /**
@@ -2147,7 +2045,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     db.beginTransaction()
     try {
       val id = Recipient.self().id
-      val newId = getAndPossiblyMergePnp(serviceId = SignalStore.account().requireAci(), pni = pni, e164 = e164, pniVerified = true, changeSelf = true)
+      val newId = getAndPossiblyMerge(serviceId = SignalStore.account().requireAci(), pni = pni, e164 = e164, pniVerified = true, changeSelf = true)
 
       if (id == newId) {
         Log.i(TAG, "[updateSelfPhone] Phone updated for self")
