@@ -9,6 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.exoplayer2.ui.PlayerControlView;
+
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.database.SignalDatabase;
@@ -85,7 +87,7 @@ public abstract class MediaPreviewFragment extends Fragment {
   public void pause() {
   }
 
-  public @Nullable View getPlaybackControls() {
+  public @Nullable PlayerControlView getPlaybackControls() {
     return null;
   }
 

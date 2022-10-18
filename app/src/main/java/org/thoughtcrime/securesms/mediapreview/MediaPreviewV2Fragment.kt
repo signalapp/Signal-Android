@@ -20,6 +20,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2.OFFSCREEN_PAGE_LIMIT_DEFAULT
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
+import com.google.android.exoplayer2.ui.PlayerControlView
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
@@ -199,8 +200,7 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
    */
   private fun bindLoadedState(currentState: MediaPreviewV2State) {
     val currentItem: MediaDatabase.MediaRecord = currentState.mediaRecords[currentState.position]
-    val currentFragment: Fragment? = childFragmentManager.findFragmentByTag("f${currentState.position}")
-    val playbackControls = (currentFragment as? MediaPreviewFragment)?.playbackControls
+
     val albumThumbnailMedia = if (currentState.allMediaInAlbumRail) {
       currentState.mediaRecords.map { it.toMedia() }
     } else {
@@ -209,11 +209,7 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
         .map { it.toMedia() }
     }
     val caption = currentItem.attachment?.caption
-    if (albumThumbnailMedia.size <= 1 && caption == null && playbackControls == null) {
-      binding.mediaPreviewDetailsContainer.visibility = View.GONE
-    } else {
-      binding.mediaPreviewDetailsContainer.visibility = View.VISIBLE
-    }
+
     binding.mediaPreviewAlbumRail.visibility = if (albumThumbnailMedia.size <= 1) View.GONE else View.VISIBLE
     (binding.mediaPreviewAlbumRail.adapter as MediaRailAdapter).setMedia(albumThumbnailMedia, currentState.position)
     binding.mediaPreviewAlbumRail.smoothScrollToPosition(currentState.position)
@@ -221,13 +217,19 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
     binding.mediaPreviewCaptionContainer.visibility = if (caption == null) View.GONE else View.VISIBLE
     binding.mediaPreviewCaption.text = caption
 
+    val fragmentTag = "f${currentState.position}"
+    val currentFragment: Fragment? = childFragmentManager.findFragmentByTag(fragmentTag)
+    val playbackControls: PlayerControlView? = (currentFragment as? MediaPreviewFragment)?.playbackControls
+    if (albumThumbnailMedia.size <= 1 && caption == null && playbackControls == null) {
+      binding.mediaPreviewDetailsContainer.visibility = View.GONE
+    } else {
+      binding.mediaPreviewDetailsContainer.visibility = View.VISIBLE
+    }
+    binding.mediaPreviewPlaybackControlsContainer.removeAllViews()
     if (playbackControls != null) {
       val params = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
       playbackControls.layoutParams = params
-      binding.mediaPreviewPlaybackControlsContainer.removeAllViews()
       binding.mediaPreviewPlaybackControlsContainer.addView(playbackControls)
-    } else {
-      binding.mediaPreviewPlaybackControlsContainer.removeAllViews()
     }
   }
 

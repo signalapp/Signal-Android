@@ -222,7 +222,7 @@ public class VideoPlayer extends FrameLayout {
     super.setOnClickListener(l);
   }
 
-  public @Nullable View getControlView() {
+  public @Nullable PlayerControlView getControlView() {
     return this.exoControls;
   }
 
