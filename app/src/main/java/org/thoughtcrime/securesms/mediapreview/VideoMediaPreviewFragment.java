@@ -58,6 +58,7 @@ public final class VideoMediaPreviewFragment extends MediaPreviewFragment {
     videoView.setPlayerCallback(new VideoPlayer.PlayerCallback() {
       @Override
       public void onReady() {
+        updateSkipButtonState();
         events.onMediaReady();
       }
 

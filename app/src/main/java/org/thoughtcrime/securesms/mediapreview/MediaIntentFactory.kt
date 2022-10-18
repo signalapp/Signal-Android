@@ -6,8 +6,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
-import org.thoughtcrime.securesms.MediaPreviewActivity
-import org.thoughtcrime.securesms.util.FeatureFlags
 
 object MediaIntentFactory {
   private const val ARGS_KEY = "args"
@@ -45,23 +43,6 @@ object MediaIntentFactory {
 
   @JvmStatic
   fun create(context: Context, args: MediaPreviewArgs): Intent {
-
-    return if (FeatureFlags.mediaPreviewV2()) {
-      val intent = Intent(context, MediaPreviewV2Activity::class.java)
-      intent.putExtra(ARGS_KEY, args)
-      return intent
-    } else {
-      val intent = Intent(context, MediaPreviewActivity::class.java).apply {
-        addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-        setDataAndType(args.initialMediaUri, args.initialMediaType)
-        putExtra(THREAD_ID_EXTRA, args.threadId)
-        putExtra(DATE_EXTRA, args.date)
-        putExtra(SIZE_EXTRA, args.initialMediaSize)
-        putExtra(CAPTION_EXTRA, args.initialCaption)
-        putExtra(IS_VIDEO_GIF, args.isVideoGif)
-        putExtra(LEFT_IS_RECENT_EXTRA, args.leftIsRecent)
-      }
-      return intent
-    }
+    return Intent(context, MediaPreviewV2Activity::class.java).putExtra(ARGS_KEY, args)
   }
 }
