@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="4dp"
     android:ellipsize="end"
-    android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+    android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
     app:chipStrokeWidth="1dp"
     app:chipStrokeColor="?elementBorderColor"
     app:chipBackgroundColor="?dialog_background_color"

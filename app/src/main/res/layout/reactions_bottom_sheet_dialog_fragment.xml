@@ -9,7 +9,7 @@
     android:paddingBottom="@dimen/react_with_any_emoji_bottom_sheet_dialog_fragment_tabs_height">
 
     <com.google.android.material.tabs.TabLayout
-        style="@style/Widget.Session.TabLayout"
+        style="@style/Widget.Session.TabLayout.Reactions"
         android:id="@+id/emoji_tabs"
         android:layout_width="match_parent"
         android:layout_height="@dimen/react_with_any_emoji_bottom_sheet_dialog_fragment_tabs_height"

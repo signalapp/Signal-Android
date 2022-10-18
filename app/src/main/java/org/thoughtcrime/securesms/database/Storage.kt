@@ -670,7 +670,6 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
             val threadId = threadDatabase.getOrCreateThreadIdFor(recipient)
             if (contact.didApproveMe == true) {
                 recipientDatabase.setApprovedMe(recipient, true)
-                threadDatabase.setHasSent(threadId, true)
             }
             if (contact.isApproved == true) {
                 recipientDatabase.setApproved(recipient, true)

@@ -354,7 +354,8 @@
         <item name="conversation_unread_background_color">@color/classic_dark_2</item>
         <item name="conversation_pinned_icon_color">@color/classic_dark_4</item>
         <item name="unreadIndicatorBackgroundColor">@color/classic_dark_3</item>
-        <item name="unreadIndicatorTextColor">@color/classic_dark_6</item>
+        <item name="unreadIndicatorTextColor">@color/classic_dark_0</item>
+        
         <!-- New conversation button -->
         <item name="conversation_color_non_main">@color/classic_dark_2</item>
         <item name="conversation_shadow_non_main">@color/transparent_black_30</item>
@@ -631,7 +632,7 @@
         <item name="conversation_unread_count_indicator_background">?colorAccent</item>
         <item name="conversation_pinned_background_color">?colorCellBackground</item>
         <item name="conversation_unread_background_color">@color/ocean_light_5</item>
-        <item name="conversation_pinned_icon_color">?colorPrimary</item>
+        <item name="conversation_pinned_icon_color">?android:textColorPrimary</item>
     </style>
 
 </resources>

@@ -26,7 +26,7 @@ import network.loki.messenger.R;
 
 public abstract class BaseActionBarActivity extends AppCompatActivity {
   private static final String TAG = BaseActionBarActivity.class.getSimpleName();
-  private ThemeState currentThemeState;
+  public ThemeState currentThemeState;
 
   private TextSecurePreferences getPreferences() {
     ApplicationContext appContext = (ApplicationContext) getApplicationContext();

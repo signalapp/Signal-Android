@@ -70,6 +70,10 @@
         <item name="tabTextAppearance">@style/TextAppearance.Session.Tab</item>
     </style>
 
+    <style name="Widget.Session.TabLayout.Reactions">
+        <item name="tabIndicatorColor">@color/transparent</item>
+    </style>
+
     <style name="TextAppearance.Session.Tab" parent="TextAppearance.Design.Tab">
         <item name="android:textSize">@dimen/medium_font_size</item>
         <item name="textAllCaps">false</item>
