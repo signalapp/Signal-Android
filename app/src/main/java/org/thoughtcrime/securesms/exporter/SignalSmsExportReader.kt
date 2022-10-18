@@ -180,9 +180,9 @@ class SignalSmsExportReader(
     }
 
     private fun readExportableSmsMessageFromRecord(record: MessageRecord, exportState: MessageExportState): ExportableMessage {
-      val threadRecipient = SignalDatabase.threads.getRecipientForThreadId(record.threadId)!!
+      val threadRecipient = SignalDatabase.threads.getRecipientForThreadId(record.threadId)
 
-      return if (threadRecipient.isMmsGroup) {
+      return if (threadRecipient?.isMmsGroup == true) {
         readExportableMmsMessageFromRecord(record, exportState)
       } else {
         ExportableMessage.Sms(
