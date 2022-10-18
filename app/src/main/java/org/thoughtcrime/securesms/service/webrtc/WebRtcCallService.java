@@ -131,7 +131,11 @@ public final class WebRtcCallService extends Service implements SignalAudioManag
     registerNetworkReceiver();
 
     if (!AndroidTelecomUtil.getTelecomSupported()) {
-      TelephonyUtil.getManager(this).listen(hangUpRtcOnDeviceCallAnswered, PhoneStateListener.LISTEN_CALL_STATE);
+      try {
+        TelephonyUtil.getManager(this).listen(hangUpRtcOnDeviceCallAnswered, PhoneStateListener.LISTEN_CALL_STATE);
+      } catch (SecurityException e) {
+        Log.w(TAG, "Failed to listen to PSTN call answers!", e);
+      }
     }
   }
 
