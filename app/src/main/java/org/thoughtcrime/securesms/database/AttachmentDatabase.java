@@ -65,6 +65,7 @@ import org.thoughtcrime.securesms.video.EncryptedMediaDataSource;
 import org.whispersystems.signalservice.internal.util.JsonUtil;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -204,7 +205,13 @@ public class AttachmentDatabase extends Database {
   public @NonNull InputStream getAttachmentStream(AttachmentId attachmentId, long offset)
       throws IOException
   {
-    InputStream dataStream = getDataStream(attachmentId, DATA, offset);
+    InputStream dataStream;
+
+    try {
+      dataStream = getDataStream(attachmentId, DATA, offset);
+    } catch (FileNotFoundException e) {
+      throw new IOException("No stream for: " + attachmentId, e);
+    }
 
     if (dataStream == null) throw new IOException("No stream for: " + attachmentId);
     else                    return dataStream;
@@ -1019,8 +1026,8 @@ public class AttachmentDatabase extends Database {
   }
 
   @SuppressWarnings("WeakerAccess")
-  @VisibleForTesting
-  protected @Nullable InputStream getDataStream(AttachmentId attachmentId, String dataType, long offset)
+  private @Nullable InputStream getDataStream(AttachmentId attachmentId, String dataType, long offset)
+      throws FileNotFoundException
   {
     DataInfo dataInfo = getAttachmentDataFileInfo(attachmentId, dataType);
 
@@ -1042,6 +1049,9 @@ public class AttachmentDatabase extends Database {
 
         return stream;
       }
+    } catch (FileNotFoundException e) {
+      Log.w(TAG, e);
+      throw e;
     } catch (IOException e) {
       Log.w(TAG, e);
       return null;

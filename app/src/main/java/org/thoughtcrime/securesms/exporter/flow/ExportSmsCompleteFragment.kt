@@ -14,12 +14,13 @@ import org.thoughtcrime.securesms.util.navigation.safeNavigate
  */
 class ExportSmsCompleteFragment : Fragment(R.layout.export_sms_complete_fragment) {
 
-  val args: ExportSmsCompleteFragmentArgs by navArgs()
+  private val args: ExportSmsCompleteFragmentArgs by navArgs()
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    val binding = ExportSmsCompleteFragmentBinding.bind(view)
+    val exportSuccessCount = args.exportMessageCount - args.exportMessageFailureCount
 
+    val binding = ExportSmsCompleteFragmentBinding.bind(view)
     binding.exportCompleteNext.setOnClickListener { findNavController().safeNavigate(ExportSmsCompleteFragmentDirections.actionExportingSmsMessagesFragmentToChooseANewDefaultSmsAppFragment()) }
-    binding.exportCompleteStatus.text = resources.getQuantityString(R.plurals.ExportSmsCompleteFragment__d_of_d_messages_exported, args.exportMessageCount, args.exportMessageCount, args.exportMessageCount)
+    binding.exportCompleteStatus.text = resources.getQuantityString(R.plurals.ExportSmsCompleteFragment__d_of_d_messages_exported, args.exportMessageCount, exportSuccessCount, args.exportMessageCount)
   }
 }

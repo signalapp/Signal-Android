@@ -19,11 +19,12 @@ sealed class SmsExportProgress {
    */
   data class InProgress(
     val progress: Int,
+    val errorCount: Int,
     val total: Int
   ) : SmsExportProgress()
 
   /**
    * All done.
    */
-  data class Done(val progress: Int) : SmsExportProgress()
+  data class Done(val errorCount: Int, val total: Int) : SmsExportProgress()
 }

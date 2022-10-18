@@ -14,6 +14,7 @@ import org.signal.smsexporter.internal.mms.ExportMmsPartsUseCase
 import org.signal.smsexporter.internal.mms.ExportMmsRecipientsUseCase
 import org.signal.smsexporter.internal.mms.GetOrCreateMmsThreadIdsUseCase
 import org.signal.smsexporter.internal.sms.ExportSmsMessagesUseCase
+import java.io.FileNotFoundException
 import java.io.InputStream
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
@@ -60,30 +61,38 @@ abstract class SmsExportService : Service() {
     progressState.onNext(SmsExportProgress.Starting)
 
     var progress = 0
+    var errorCount = 0
     executor.execute {
+      prepareForExport()
       val totalCount = getUnexportedMessageCount()
       getUnexportedMessages().forEach { message ->
         val exportState = message.exportState
         if (exportState.progress != SmsExportState.Progress.COMPLETED) {
-          when (message) {
+          val successful = when (message) {
             is ExportableMessage.Sms<*> -> exportSms(exportState, message)
             is ExportableMessage.Mms<*> -> exportMms(exportState, message)
+          }
+
+          if (!successful) {
+            errorCount++
           }
 
           progress++
           if (progress == 1 || progress.mod(100) == 0) {
             updateNotification(progress, totalCount)
           }
-          progressState.onNext(SmsExportProgress.InProgress(progress, totalCount))
+          progressState.onNext(SmsExportProgress.InProgress(progress, errorCount, totalCount))
         }
       }
 
       onExportPassCompleted()
-      progressState.onNext(SmsExportProgress.Done(progress))
+      progressState.onNext(SmsExportProgress.Done(errorCount, progress))
 
       getExportCompleteNotification()?.let { notification ->
         NotificationManagerCompat.from(this).notify(notification.id, notification.notification)
       }
+
+      Log.d(TAG, "Export complete")
 
       stopForeground(true)
       isStarted = false
@@ -109,6 +118,9 @@ abstract class SmsExportService : Service() {
    * Can be null if no notification is needed (e.g., the user is still in the app)
    */
   protected abstract fun getExportCompleteNotification(): ExportNotification?
+
+  /** Called prior to starting export for any task setup that may need to occur. */
+  protected open fun prepareForExport() = Unit
 
   /**
    * Gets the total number of messages to process. This is only used for the notification and
@@ -192,17 +204,19 @@ abstract class SmsExportService : Service() {
     startForeground(exportNotification.id, exportNotification.notification)
   }
 
-  private fun exportSms(smsExportState: SmsExportState, sms: ExportableMessage.Sms<*>) {
+  private fun exportSms(smsExportState: SmsExportState, sms: ExportableMessage.Sms<*>): Boolean {
     onMessageExportStarted(sms)
     val mayAlreadyExist = smsExportState.progress == SmsExportState.Progress.STARTED
-    ExportSmsMessagesUseCase.execute(this, sms, mayAlreadyExist).either(onSuccess = {
+    return ExportSmsMessagesUseCase.execute(this, sms, mayAlreadyExist).either(onSuccess = {
       onMessageExportSucceeded(sms)
+      true
     }, onFailure = {
       onMessageExportFailed(sms)
+      false
     })
   }
 
-  private fun exportMms(smsExportState: SmsExportState, mms: ExportableMessage.Mms<*>) {
+  private fun exportMms(smsExportState: SmsExportState, mms: ExportableMessage.Mms<*>): Boolean {
     onMessageExportStarted(mms)
     val threadIdOutput: GetOrCreateMmsThreadIdsUseCase.Output? = getThreadId(mms)
     val exportMmsOutput: ExportMmsMessagesUseCase.Output? = threadIdOutput?.let { exportMms(smsExportState, it) }
@@ -210,15 +224,17 @@ abstract class SmsExportService : Service() {
     val writeMmsPartsOutput: List<Result<Unit, Throwable>>? = exportMmsPartsOutput?.filterNotNull()?.map { writeAttachmentToDisk(smsExportState, it) }
     val exportMmsRecipients: List<Unit?>? = exportMmsOutput?.let { exportMmsRecipients(smsExportState, it) }
 
-    if (threadIdOutput != null &&
+    return if (threadIdOutput != null &&
       exportMmsOutput != null &&
       exportMmsPartsOutput != null && !exportMmsPartsOutput.contains(null) &&
-      writeMmsPartsOutput != null && writeMmsPartsOutput.all { it is Result.Success } &&
+      writeMmsPartsOutput != null && writeMmsPartsOutput.all { it is Result.Success || (it is Result.Failure && (it.failure.cause ?: it.failure) is FileNotFoundException) } &&
       exportMmsRecipients != null && !exportMmsRecipients.contains(null)
     ) {
       onMessageExportSucceeded(mms)
+      true
     } else {
       onMessageExportFailed(mms)
+      false
     }
   }
 

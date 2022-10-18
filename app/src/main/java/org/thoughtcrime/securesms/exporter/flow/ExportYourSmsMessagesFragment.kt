@@ -47,7 +47,7 @@ class ExportYourSmsMessagesFragment : Fragment(R.layout.export_your_sms_messages
       .observeOn(AndroidSchedulers.mainThread())
       .subscribe {
         if (it is SmsExportProgress.Done) {
-          findNavController().safeNavigate(SmsExportDirections.actionDirectToExportSmsCompleteFragment(it.progress))
+          findNavController().safeNavigate(SmsExportDirections.actionDirectToExportSmsCompleteFragment(it.errorCount, it.total))
         } else if (it is SmsExportProgress.InProgress) {
           findNavController().safeNavigate(ExportYourSmsMessagesFragmentDirections.actionExportYourSmsMessagesFragmentToExportingSmsMessagesFragment())
         }

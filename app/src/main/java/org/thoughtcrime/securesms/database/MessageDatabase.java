@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.database.documents.Document;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatchSet;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
+import org.thoughtcrime.securesms.database.model.MessageExportStatus;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.ParentStoryId;
@@ -398,13 +399,26 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns,
   }
 
   public int getUnexportedInsecureMessagesCount(long threadId) {
-    try (Cursor cursor = getWritableDatabase().query(getTableName(), SqlUtil.COUNT, getInsecureMessageClause(threadId) + " AND NOT " + EXPORTED, null, null, null, null)) {
+    try (Cursor cursor = getWritableDatabase().query(getTableName(), SqlUtil.COUNT, getInsecureMessageClause(threadId) + " AND " + EXPORTED + " < ?", SqlUtil.buildArgs(MessageExportStatus.EXPORTED), null, null, null)) {
       if (cursor.moveToFirst()) {
         return cursor.getInt(0);
       }
     }
 
     return 0;
+  }
+
+  /**
+   * Reset the exported status (not state) to the default for clearing errors.
+   */
+  public void clearInsecureMessageExportedErrorStatus() {
+    ContentValues values = new ContentValues(1);
+    values.put(EXPORTED, MessageExportStatus.UNEXPORTED.getCode());
+
+    SQLiteDatabaseExtensionsKt.update(getWritableDatabase(), getTableName())
+                              .values(values)
+                              .where(EXPORTED + " < ?", MessageExportStatus.UNEXPORTED.getCode())
+                              .run();
   }
 
   public void setReactionsSeen(long threadId, long sinceTimestamp) {

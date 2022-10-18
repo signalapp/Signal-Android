@@ -229,6 +229,7 @@ class UpdateBuilderPart3(
   private val where: String,
   private val whereArgs: Array<String>
 ) {
+  @JvmOverloads
   fun run(conflictStrategy: Int = SQLiteDatabase.CONFLICT_NONE): Int {
     return db.update(tableName, conflictStrategy, values, where, whereArgs)
   }

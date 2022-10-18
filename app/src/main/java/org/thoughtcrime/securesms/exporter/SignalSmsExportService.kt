@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.NotificationIds
 import org.thoughtcrime.securesms.notifications.v2.NotificationPendingIntentHelper
 import org.thoughtcrime.securesms.util.JsonUtils
+import java.io.IOException
 import java.io.InputStream
 
 /**
@@ -79,6 +80,11 @@ class SignalSmsExportService : SmsExportService() {
     )
   }
 
+  override fun prepareForExport() {
+    SignalDatabase.sms.clearInsecureMessageExportedErrorStatus()
+    SignalDatabase.mms.clearInsecureMessageExportedErrorStatus()
+  }
+
   override fun getUnexportedMessageCount(): Int {
     ensureReader()
     return reader!!.getCount()
@@ -107,6 +113,8 @@ class SignalSmsExportService : SmsExportService() {
     SignalDatabase.mmsSms.updateMessageExportState(exportableMessage.getMessageId()) {
       it.toBuilder().setProgress(MessageExportState.Progress.INIT).build()
     }
+
+    SignalDatabase.mmsSms.markMessageExportFailed(exportableMessage.getMessageId())
   }
 
   override fun onMessageIdCreated(exportableMessage: ExportableMessage, messageId: Long) {
@@ -153,6 +161,7 @@ class SignalSmsExportService : SmsExportService() {
     }
   }
 
+  @Throws(IOException::class)
   override fun getInputStream(part: ExportableMessage.Mms.Part): InputStream {
     return SignalDatabase.attachments.getAttachmentStream(JsonUtils.fromJson(part.contentId, AttachmentId::class.java), 0)
   }

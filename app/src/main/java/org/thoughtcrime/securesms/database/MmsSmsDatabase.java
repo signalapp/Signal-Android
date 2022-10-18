@@ -35,6 +35,7 @@ import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.util.Pair;
 import org.thoughtcrime.securesms.database.MessageDatabase.MessageUpdate;
 import org.thoughtcrime.securesms.database.MessageDatabase.SyncMessageId;
+import org.thoughtcrime.securesms.database.model.MessageExportStatus;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.databaseprotos.MessageExportState;
@@ -671,7 +672,16 @@ public class MmsSmsDatabase extends Database {
     String        table         = messageId.isMms() ? MmsDatabase.TABLE_NAME : SmsDatabase.TABLE_NAME;
     ContentValues contentValues = new ContentValues(1);
 
-    contentValues.put(MmsSmsColumns.EXPORTED, 1);
+    contentValues.put(MmsSmsColumns.EXPORTED, MessageExportStatus.EXPORTED.getCode());
+
+    getWritableDatabase().update(table, contentValues, ID_WHERE, SqlUtil.buildArgs(messageId.getId()));
+  }
+
+  public void markMessageExportFailed(@NonNull MessageId messageId) {
+    String        table         = messageId.isMms() ? MmsDatabase.TABLE_NAME : SmsDatabase.TABLE_NAME;
+    ContentValues contentValues = new ContentValues(1);
+
+    contentValues.put(MmsSmsColumns.EXPORTED, MessageExportStatus.ERROR.getCode());
 
     getWritableDatabase().update(table, contentValues, ID_WHERE, SqlUtil.buildArgs(messageId.getId()));
   }

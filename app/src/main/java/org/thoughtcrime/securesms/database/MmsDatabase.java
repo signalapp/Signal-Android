@@ -52,6 +52,7 @@ import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.database.documents.NetworkFailureSet;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.Mention;
+import org.thoughtcrime.securesms.database.model.MessageExportStatus;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.NotificationMmsMessageRecord;
@@ -205,7 +206,8 @@ public class MmsDatabase extends MessageDatabase {
     "CREATE INDEX IF NOT EXISTS mms_is_story_index ON " + TABLE_NAME + " (" + STORY_TYPE + ");",
     "CREATE INDEX IF NOT EXISTS mms_parent_story_id_index ON " + TABLE_NAME + " (" + PARENT_STORY_ID + ");",
     "CREATE INDEX IF NOT EXISTS mms_thread_story_parent_story_index ON " + TABLE_NAME + " (" + THREAD_ID + ", " + DATE_RECEIVED + "," + STORY_TYPE + "," + PARENT_STORY_ID + ");",
-    "CREATE INDEX IF NOT EXISTS mms_quote_id_quote_author_index ON " + TABLE_NAME + "(" + QUOTE_ID + ", " + QUOTE_AUTHOR + ");"
+    "CREATE INDEX IF NOT EXISTS mms_quote_id_quote_author_index ON " + TABLE_NAME + "(" + QUOTE_ID + ", " + QUOTE_AUTHOR + ");",
+    "CREATE INDEX IF NOT EXISTS mms_exported_index ON " + TABLE_NAME + " (" + EXPORTED + ");"
   };
 
   private static final String[] MMS_PROJECTION = new String[] {
@@ -2466,13 +2468,13 @@ public class MmsDatabase extends MessageDatabase {
     beginTransaction();
     try {
       List<Long> threadsToUpdate = new LinkedList<>();
-      try (Cursor cursor = getReadableDatabase().query(TABLE_NAME, THREAD_ID_PROJECTION, EXPORTED + " = ?", SqlUtil.buildArgs(1), THREAD_ID, null, null, null)) {
+      try (Cursor cursor = getReadableDatabase().query(TABLE_NAME, THREAD_ID_PROJECTION, EXPORTED + " = ?", SqlUtil.buildArgs(MessageExportStatus.EXPORTED), THREAD_ID, null, null, null)) {
         while (cursor.moveToNext()) {
           threadsToUpdate.add(CursorUtil.requireLong(cursor, THREAD_ID));
         }
       }
 
-      getWritableDatabase().delete(TABLE_NAME, EXPORTED + " = ?", SqlUtil.buildArgs(1));
+      getWritableDatabase().delete(TABLE_NAME, EXPORTED + " = ?", SqlUtil.buildArgs(MessageExportStatus.EXPORTED));
 
       for (final long threadId : threadsToUpdate) {
         SignalDatabase.threads().update(threadId, false);

@@ -63,7 +63,7 @@ object SqlUtil {
     return objects.map {
       when (it) {
         null -> throw NullPointerException("Cannot have null arg!")
-        is DatabaseId -> (it as DatabaseId?)!!.serialize()
+        is DatabaseId -> it.serialize()
         else -> it.toString()
       }
     }.toTypedArray()

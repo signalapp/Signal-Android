@@ -14,13 +14,14 @@ import org.thoughtcrime.securesms.database.helpers.migration.V156_RecipientUnreg
 import org.thoughtcrime.securesms.database.helpers.migration.V157_RecipeintHiddenMigration
 import org.thoughtcrime.securesms.database.helpers.migration.V158_GroupsLastForceUpdateTimestampMigration
 import org.thoughtcrime.securesms.database.helpers.migration.V159_ThreadUnreadSelfMentionCount
+import org.thoughtcrime.securesms.database.helpers.migration.V160_SmsMmsExportedIndexMigration
 
 /**
  * Contains all of the database migrations for [SignalDatabase]. Broken into a separate file for cleanliness.
  */
 object SignalDatabaseMigrations {
 
-  const val DATABASE_VERSION = 159
+  const val DATABASE_VERSION = 160
 
   @JvmStatic
   fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -66,6 +67,10 @@ object SignalDatabaseMigrations {
 
     if (oldVersion < 159) {
       V159_ThreadUnreadSelfMentionCount.migrate(context, db, oldVersion, newVersion)
+    }
+
+    if (oldVersion < 160) {
+      V160_SmsMmsExportedIndexMigration.migrate(context, db, oldVersion, newVersion)
     }
   }
 
