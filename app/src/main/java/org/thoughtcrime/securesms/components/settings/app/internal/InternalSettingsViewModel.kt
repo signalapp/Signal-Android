@@ -129,7 +129,7 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
 
   fun onClearOnboardingState() {
     SignalStore.storyValues().hasDownloadedOnboardingStory = false
-    SignalStore.storyValues().userHasSeenOnboardingStory = false
+    SignalStore.storyValues().userHasViewedOnboardingStory = false
     Stories.onStorySettingsChanged(Recipient.self().id)
     refresh()
     StoryOnboardingDownloadJob.enqueueIfNeeded()

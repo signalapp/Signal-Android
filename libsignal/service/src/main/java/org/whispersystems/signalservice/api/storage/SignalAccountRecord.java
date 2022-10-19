@@ -187,6 +187,10 @@ public final class SignalAccountRecord implements SignalRecord {
         diff.add("StoryViewedReceipts");
       }
 
+      if (hasReadOnboardingStory() != that.hasReadOnboardingStory()) {
+        diff.add("HasReadOnboardingStory");
+      }
+
       return diff.toString();
     } else {
       return "Different class. " + getClass().getSimpleName() + " | " + other.getClass().getSimpleName();
@@ -307,6 +311,10 @@ public final class SignalAccountRecord implements SignalRecord {
 
   public OptionalBool getStoryViewReceiptsState() {
     return proto.getStoryViewReceiptsEnabled();
+  }
+
+  public boolean hasReadOnboardingStory() {
+    return proto.getHasReadOnboardingStory();
   }
 
   public AccountRecord toProto() {
@@ -668,6 +676,11 @@ public final class SignalAccountRecord implements SignalRecord {
 
     public Builder setStoryViewReceiptsState(OptionalBool storyViewedReceiptsEnabled) {
       builder.setStoryViewReceiptsEnabled(storyViewedReceiptsEnabled);
+      return this;
+    }
+
+    public Builder setHasReadOnboardingStory(boolean hasReadOnboardingStory) {
+      builder.setHasReadOnboardingStory(hasReadOnboardingStory);
       return this;
     }
 

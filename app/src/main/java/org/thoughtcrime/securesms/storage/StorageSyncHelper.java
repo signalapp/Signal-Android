@@ -31,7 +31,6 @@ import org.whispersystems.signalservice.api.storage.SignalStorageManifest;
 import org.whispersystems.signalservice.api.storage.SignalStorageRecord;
 import org.whispersystems.signalservice.api.storage.StorageId;
 import org.whispersystems.signalservice.api.util.OptionalUtil;
-import org.whispersystems.signalservice.internal.storage.protos.AccountRecord;
 import org.whispersystems.signalservice.internal.storage.protos.OptionalBool;
 
 import java.util.Collection;
@@ -122,6 +121,8 @@ public final class StorageSyncHelper {
       record = recipientDatabase.getRecordForSync(self.getId());
     }
 
+    final boolean hasReadOnboardingStory = SignalStore.storyValues().getUserHasViewedOnboardingStory() || SignalStore.storyValues().getUserHasReadOnboardingStory();
+
     SignalAccountRecord account = new SignalAccountRecord.Builder(self.getStorageServiceId(), record != null ? record.getSyncExtras().getStorageProto() : null)
                                                          .setProfileKey(self.getProfileKey())
                                                          .setGivenName(self.getProfileName().getGivenName())
@@ -147,9 +148,10 @@ public final class StorageSyncHelper {
                                                          .setSubscriptionManuallyCancelled(SignalStore.donationsValues().isUserManuallyCancelled())
                                                          .setKeepMutedChatsArchived(SignalStore.settings().shouldKeepMutedChatsArchived())
                                                          .setHasSetMyStoriesPrivacy(SignalStore.storyValues().getUserHasBeenNotifiedAboutStories())
-                                                         .setHasViewedOnboardingStory(SignalStore.storyValues().getUserHasSeenOnboardingStory())
+                                                         .setHasViewedOnboardingStory(SignalStore.storyValues().getUserHasViewedOnboardingStory())
                                                          .setStoriesDisabled(SignalStore.storyValues().isFeatureDisabled())
                                                          .setStoryViewReceiptsState(storyViewReceiptsState)
+                                                         .setHasReadOnboardingStory(hasReadOnboardingStory)
                                                          .build();
 
     return SignalStorageRecord.forAccount(account);
@@ -176,8 +178,9 @@ public final class StorageSyncHelper {
     SignalStore.donationsValues().setDisplayBadgesOnProfile(update.getNew().isDisplayBadgesOnProfile());
     SignalStore.settings().setKeepMutedChatsArchived(update.getNew().isKeepMutedChatsArchived());
     SignalStore.storyValues().setUserHasBeenNotifiedAboutStories(update.getNew().hasSetMyStoriesPrivacy());
-    SignalStore.storyValues().setUserHasSeenOnboardingStory(update.getNew().hasViewedOnboardingStory());
+    SignalStore.storyValues().setUserHasViewedOnboardingStory(update.getNew().hasViewedOnboardingStory());
     SignalStore.storyValues().setFeatureDisabled(update.getNew().isStoriesDisabled());
+    SignalStore.storyValues().setUserHasReadOnboardingStory(update.getNew().hasReadOnboardingStory());
 
     if (update.getNew().getStoryViewReceiptsState() == OptionalBool.UNSET) {
       SignalStore.storyValues().setViewedReceiptsEnabled(update.getNew().isReadReceiptsEnabled());

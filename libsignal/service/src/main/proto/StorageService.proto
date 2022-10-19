@@ -183,6 +183,7 @@ message AccountRecord {
            reserved            /* storiesDisabled */              28;
            bool                   storiesDisabled               = 29;
            OptionalBool           storyViewReceiptsEnabled      = 30;
+           bool                   hasReadOnboardingStory        = 31;
 }
 
 message StoryDistributionListRecord {

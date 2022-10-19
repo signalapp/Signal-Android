@@ -91,6 +91,7 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
     super.onResume()
     viewModel.isTransitioningToAnotherScreen = false
     initializeSearchAction()
+    viewModel.markStoriesRead()
   }
 
   override fun onPause() {

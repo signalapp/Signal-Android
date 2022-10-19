@@ -1489,7 +1489,17 @@ public class SmsDatabase extends MessageDatabase {
   }
 
   @Override
+  public @NonNull List<MarkedMessageInfo> markAllIncomingStoriesRead() {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
   public @NonNull List<StoryResult> getOrderedStoryRecipientsAndIds(boolean isOutgoingOnly) {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  public void markOnboardingStoryRead() {
     throw new UnsupportedOperationException();
   }
 

@@ -173,7 +173,7 @@ open class StoryViewerPageRepository(context: Context) {
           ApplicationDependencies.getDatabaseObserver().notifyConversationListListeners()
 
           if (storyPost.sender.isReleaseNotes) {
-            SignalStore.storyValues().userHasSeenOnboardingStory = true
+            SignalStore.storyValues().userHasViewedOnboardingStory = true
             Stories.onStorySettingsChanged(Recipient.self().id)
           } else {
             ApplicationDependencies.getJobManager().add(

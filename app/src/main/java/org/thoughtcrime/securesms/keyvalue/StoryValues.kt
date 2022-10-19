@@ -36,9 +36,14 @@ internal class StoryValues(store: KeyValueStore) : SignalStoreValues(store) {
     private const val HAS_DOWNLOADED_ONBOARDING_STORY = "stories.has.downloaded.onboarding"
 
     /**
-     * Marks whether the user has seen the onboarding story
+     * Marks whether the user has opened and viewed the onboarding story
      */
-    private const val USER_HAS_SEEN_ONBOARDING_STORY = "stories.user.has.seen.onboarding"
+    private const val USER_HAS_VIEWED_ONBOARDING_STORY = "stories.user.has.seen.onboarding"
+
+    /**
+     * Marks whether the user has seen the onboarding story in the stories landing page
+     */
+    private const val USER_HAS_READ_ONBOARDING_STORY = "stories.user.has.read.onboarding"
 
     /**
      * Marks whether the user has seen the beta dialog
@@ -61,7 +66,8 @@ internal class StoryValues(store: KeyValueStore) : SignalStoreValues(store) {
     USER_HAS_SEEN_FIRST_NAV_VIEW,
     HAS_DOWNLOADED_ONBOARDING_STORY,
     USER_HAS_SEEN_BETA_DIALOG,
-    STORY_VIEWED_RECEIPTS
+    STORY_VIEWED_RECEIPTS,
+    USER_HAS_READ_ONBOARDING_STORY
   )
 
   var isFeatureDisabled: Boolean by booleanValue(MANUAL_FEATURE_DISABLE, false)
@@ -74,7 +80,9 @@ internal class StoryValues(store: KeyValueStore) : SignalStoreValues(store) {
 
   var hasDownloadedOnboardingStory: Boolean by booleanValue(HAS_DOWNLOADED_ONBOARDING_STORY, false)
 
-  var userHasSeenOnboardingStory: Boolean by booleanValue(USER_HAS_SEEN_ONBOARDING_STORY, false)
+  var userHasViewedOnboardingStory: Boolean by booleanValue(USER_HAS_VIEWED_ONBOARDING_STORY, false)
+
+  var userHasReadOnboardingStory: Boolean by booleanValue(USER_HAS_READ_ONBOARDING_STORY, false)
 
   var userHasSeenBetaDialog: Boolean by booleanValue(USER_HAS_SEEN_BETA_DIALOG, false)
 
@@ -82,6 +90,10 @@ internal class StoryValues(store: KeyValueStore) : SignalStoreValues(store) {
 
   fun isViewedReceiptsStateSet(): Boolean {
     return store.containsKey(STORY_VIEWED_RECEIPTS)
+  }
+
+  fun hasUserOnboardingStoryReadBeenSet(): Boolean {
+    return store.containsKey(USER_HAS_READ_ONBOARDING_STORY)
   }
 
   fun setLatestStorySend(storySend: StorySend) {

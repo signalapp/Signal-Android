@@ -656,6 +656,31 @@ public class MmsDatabase extends MessageDatabase {
   }
 
   @Override
+  public @NonNull List<MarkedMessageInfo> markAllIncomingStoriesRead() {
+    String where = IS_STORY_CLAUSE + " AND NOT (" + getOutgoingTypeClause() + ") AND " + READ + " = 0";
+
+    List<MarkedMessageInfo> markedMessageInfos = setMessagesRead(where, null);
+    notifyConversationListListeners();
+
+    return markedMessageInfos;
+  }
+
+  @Override
+  public void markOnboardingStoryRead() {
+    RecipientId recipientId = SignalStore.releaseChannelValues().getReleaseChannelRecipientId();
+    if (recipientId == null) {
+      return;
+    }
+
+    String where = IS_STORY_CLAUSE + " AND NOT (" + getOutgoingTypeClause() + ") AND " + READ + " = 0 AND " + RECIPIENT_ID + " = ?";
+
+    List<MarkedMessageInfo> markedMessageInfos = setMessagesRead(where, SqlUtil.buildArgs(recipientId));
+    if (!markedMessageInfos.isEmpty()) {
+      notifyConversationListListeners();
+    }
+  }
+
+  @Override
   public @NonNull MessageDatabase.Reader getAllStoriesFor(@NonNull RecipientId recipientId, int limit) {
     long     threadId  = SignalDatabase.threads().getThreadIdIfExistsFor(recipientId);
     String   where     = IS_STORY_CLAUSE + " AND " + THREAD_ID_WHERE;
@@ -801,7 +826,7 @@ public class MmsDatabase extends MessageDatabase {
                            + "FROM " + TABLE_NAME + "\n"
                            + "JOIN " + ThreadDatabase.TABLE_NAME + "\n"
                            + "ON " + TABLE_NAME + "." +  THREAD_ID + " = " + ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.ID + "\n"
-                           + "WHERE " + IS_STORY_CLAUSE + " AND (" + getOutgoingTypeClause() + ") = 0 AND " + VIEWED_RECEIPT_COUNT + " = 0";
+                           + "WHERE " + IS_STORY_CLAUSE + " AND (" + getOutgoingTypeClause() + ") = 0 AND " + VIEWED_RECEIPT_COUNT + " = 0 AND " + TABLE_NAME + "." + READ + " = 0";
 
     try (Cursor cursor = db.rawQuery(query, null)) {
       if (cursor != null) {

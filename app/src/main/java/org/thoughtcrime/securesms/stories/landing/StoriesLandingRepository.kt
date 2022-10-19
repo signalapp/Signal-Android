@@ -4,18 +4,23 @@ import android.content.Context
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.schedulers.Schedulers
+import org.signal.core.util.concurrent.SignalExecutors
 import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.database.DatabaseObserver
+import org.thoughtcrime.securesms.database.MessageDatabase
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.StoryResult
 import org.thoughtcrime.securesms.database.model.StoryViewState
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.jobs.MultiDeviceReadUpdateJob
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.sms.MessageSender
+import org.thoughtcrime.securesms.stories.Stories
 
 class StoriesLandingRepository(context: Context) {
 
@@ -158,5 +163,22 @@ class StoriesLandingRepository(context: Context) {
     return Completable.fromAction {
       SignalDatabase.recipients.setHideStory(recipientId, hideStory)
     }.subscribeOn(Schedulers.io())
+  }
+
+  /**
+   * Marks all stories as "seen" by the user (marking them as read in the database)
+   */
+  fun markStoriesRead() {
+    SignalExecutors.BOUNDED_IO.execute {
+      val messageInfos: List<MessageDatabase.MarkedMessageInfo> = SignalDatabase.mms.markAllIncomingStoriesRead()
+      val releaseThread: Long? = SignalStore.releaseChannelValues().releaseChannelRecipientId?.let { SignalDatabase.threads.getThreadIdIfExistsFor(it) }
+
+      MultiDeviceReadUpdateJob.enqueue(messageInfos.filter { it.threadId == releaseThread }.map { it.syncMessageId })
+
+      if (messageInfos.any { it.threadId == releaseThread }) {
+        SignalStore.storyValues().userHasReadOnboardingStory = true
+        Stories.onStorySettingsChanged(Recipient.self().id)
+      }
+    }
   }
 }
