@@ -39,6 +39,10 @@ class TextStoryTextWatcher private constructor(private val textView: TextView) :
       }
 
       textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, DimensionUnit.DP.toPixels(expectedTextSize))
+
+      if (textView !is EditText) {
+        textView.requestLayout()
+      }
     }
 
     fun install(textView: TextView) {
