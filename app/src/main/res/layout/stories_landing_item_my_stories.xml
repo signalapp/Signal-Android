@@ -50,7 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/stories_landing_item_text_horizontal_margin"
         android:layout_marginEnd="@dimen/stories_landing_item_text_horizontal_margin"
-        android:text="@string/StoriesLandingFragment__tap_to_add_a_story"
+        android:text="@string/StoriesLandingFragment__tap_to_add"
         android:textAppearance="@style/Signal.Text.BodyMedium"
         android:textColor="@color/signal_colorOnSurfaceVariant"
         app:layout_constraintBottom_toBottomOf="parent"
