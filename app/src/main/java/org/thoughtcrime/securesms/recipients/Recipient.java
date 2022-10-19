@@ -1350,7 +1350,7 @@ public class Recipient {
     }
 
     public @NonNull FallbackContactPhoto getPhotoForDistributionList() {
-      return new ResourceContactPhoto(R.drawable.ic_lock_24, R.drawable.ic_lock_24, R.drawable.ic_lock_40);
+      return new ResourceContactPhoto(R.drawable.ic_stories_24, R.drawable.ic_stories_24, R.drawable.ic_stories_24);
     }
   }
 
