@@ -149,7 +149,7 @@ class ContactSearchMediator(
     override fun onDeletePrivateStory(story: ContactSearchData.Story, isSelected: Boolean) {
       MaterialAlertDialogBuilder(fragment.requireContext())
         .setTitle(R.string.ContactSearchMediator__delete_story)
-        .setMessage(fragment.getString(R.string.ContactSearchMediator__delete_the_private, story.recipient.getDisplayName(fragment.requireContext())))
+        .setMessage(fragment.getString(R.string.ContactSearchMediator__delete_the_custom, story.recipient.getDisplayName(fragment.requireContext())))
         .setPositiveButton(SpanUtil.color(ContextCompat.getColor(fragment.requireContext(), R.color.signal_colorError), fragment.getString(R.string.ContactSearchMediator__delete))) { _, _ -> viewModel.deletePrivateStory(story) }
         .setNegativeButton(android.R.string.cancel) { _, _ -> }
         .show()

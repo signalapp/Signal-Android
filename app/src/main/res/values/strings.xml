@@ -2786,7 +2786,7 @@
     <!-- Internal only preferences -->
     <string name="preferences__internal_turn_off_stories_with_stories_on_disk" translatable="false">Turn off stories (with stories on disk)</string>
     <string name="preferences__internal_turn_off_stories" translatable="false">Turn off stories</string>
-    <string name="preferences__internal_delete_private_story" translatable="false">Delete private story</string>
+    <string name="preferences__internal_delete_custom_story" translatable="false">Delete custom story</string>
     <string name="preferences__internal_hide_story" translatable="false">Hide story</string>
     <string name="preferences__internal_story_or_profile_selector" translatable="false">Story or profile selector</string>
     <string name="preferences__internal_stories_dialog_launcher" translatable="false">Stories dialog launcher</string>
@@ -4940,25 +4940,25 @@
     <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Having them in your system contacts</string>
     <!-- Note at the bottom of the Signal connections sheet -->
     <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">Your connections can see your name and photo, and can see posts to "My Story" unless you hide it from them.</string>
-    <!-- Clickable option to add a viewer to a private story -->
+    <!-- Clickable option to add a viewer to a custom story -->
     <string name="PrivateStorySettingsFragment__add_viewer">Add viewer</string>
     <!-- Clickable option to delete a custom story -->
-    <string name="PrivateStorySettingsFragment__delete_private_story">Delete private story</string>
-    <!-- Dialog title when attempting to remove someone from a private story -->
+    <string name="PrivateStorySettingsFragment__delete_custom_story">Delete custom story</string>
+    <!-- Dialog title when attempting to remove someone from a custom story -->
     <string name="PrivateStorySettingsFragment__remove_s">Remove %1$s?</string>
-    <!-- Dialog message when attempting to remove someone from a private story -->
+    <!-- Dialog message when attempting to remove someone from a custom story -->
     <string name="PrivateStorySettingsFragment__this_person_will_no_longer">This person will no longer see your story.</string>
-    <!-- Positive action label when attempting to remove someone from a private story -->
+    <!-- Positive action label when attempting to remove someone from a custom story -->
     <string name="PrivateStorySettingsFragment__remove">Remove</string>
-    <!-- Dialog title when deleting a private story -->
+    <!-- Dialog title when deleting a custom story -->
     <string name="PrivateStorySettingsFragment__are_you_sure">Are you sure?</string>
-    <!-- Dialog message when deleting a private story -->
+    <!-- Dialog message when deleting a custom story -->
     <string name="PrivateStorySettingsFragment__this_action_cannot">This action cannot be undone.</string>
-    <!-- Page title for editing a private story name -->
+    <!-- Page title for editing a custom story name -->
     <string name="EditPrivateStoryNameFragment__edit_story_name">Edit story name</string>
-    <!-- Input field hint when editing a private story name -->
+    <!-- Input field hint when editing a custom story name -->
     <string name="EditPrivateStoryNameFragment__story_name">Story name</string>
-    <!-- Save button label when editing a private story name -->
+    <!-- Save button label when editing a custom story name -->
     <string name="EditPrivateStoryNameFragment__save">Save</string>
     <!-- Displayed in text post creator before user enters text -->
     <string name="TextStoryPostCreationFragment__tap_to_add_text">Tap to add text</string>
@@ -4994,11 +4994,11 @@
     <string name="StoryDialogs__s_will_be_removed">\"%1$s\" will be removed.</string>
     <!-- Dialog positive action for removing a group story -->
     <string name="StoryDialogs__remove">Remove</string>
-    <!-- Dialog title for deleting a private story -->
-    <string name="StoryDialogs__delete_private_story">Delete private story?</string>
-    <!-- Dialog message for deleting a private story -->
+    <!-- Dialog title for deleting a custom story -->
+    <string name="StoryDialogs__delete_custom_story">Delete custom story?</string>
+    <!-- Dialog message for deleting a custom story -->
     <string name="StoryDialogs__s_and_updates_shared">\"%1$s\" and updates shared to this story will be deleted.</string>
-    <!-- Dialog positive action for deleting a private story -->
+    <!-- Dialog positive action for deleting a custom story -->
     <string name="StoryDialogs__delete">Delete</string>
     <!-- Dialog title for first time sending something to a beta story -->
     <string name="StoryDialogs__stories_is_available_to">Stories is available to Signal beta users only.</string>
@@ -5048,7 +5048,7 @@
     <!-- Choose story type bottom sheet title -->
     <string name="ChooseStoryTypeBottomSheet__choose_your_story_type">Choose your story type</string>
     <!-- Choose story type bottom sheet new story row title -->
-    <string name="ChooseStoryTypeBottomSheet__new_private_story">New private story</string>
+    <string name="ChooseStoryTypeBottomSheet__new_custom_story">New custom story</string>
     <!-- Choose story type bottom sheet new story row summary -->
     <string name="ChooseStoryTypeBottomSheet__visible_only_to">Visible only to specific people</string>
     <!-- Choose story type bottom sheet group story title -->
@@ -5156,10 +5156,10 @@
     <string name="ExpiredGiftSheetConfiguration__not_now">Not now</string>
     <!-- My Story label designating that we will only share with the selected viewers. -->
     <string name="ContactSearchItems__only_share_with">Only share with</string>
-    <!-- Label under name for private stories -->
-    <plurals name="ContactSearchItems__private_story_d_viewers">
-        <item quantity="one">Private story · %1$d viewer</item>
-        <item quantity="other">Private story · %1$d viewers</item>
+    <!-- Label under name for custom stories -->
+    <plurals name="ContactSearchItems__custom_story_d_viewers">
+        <item quantity="one">Custom story · %1$d viewer</item>
+        <item quantity="other">Custom story · %1$d viewers</item>
     </plurals>
     <!-- Label under name for group stories -->
     <plurals name="ContactSearchItems__group_story_d_viewers">
@@ -5182,7 +5182,7 @@
     <string name="ContactSearchItems__story_settings">Story settings</string>
     <!-- Label for context menu item to remove a group story from contact results -->
     <string name="ContactSearchItems__remove_story">Remove story</string>
-    <!-- Label for context menu item to delete a private story -->
+    <!-- Label for context menu item to delete a custom story -->
     <string name="ContactSearchItems__delete_story">Delete story</string>
     <!-- Dialog title for removing a group story -->
     <string name="ContactSearchMediator__remove_group_story">Remove group story?</string>
@@ -5190,11 +5190,11 @@
     <string name="ContactSearchMediator__this_will_remove">This will remove the story from this list. You will still be able to view stories from this group.</string>
     <!-- Dialog action item for removing a group story -->
     <string name="ContactSearchMediator__remove">Remove</string>
-    <!-- Dialog title for deleting a private story -->
+    <!-- Dialog title for deleting a custom story -->
     <string name="ContactSearchMediator__delete_story">Delete story?</string>
-    <!-- Dialog message for deleting a private story -->
-    <string name="ContactSearchMediator__delete_the_private">Delete the private story \"%1$s\"?</string>
-    <!-- Dialog action item for deleting a private story -->
+    <!-- Dialog message for deleting a custom story -->
+    <string name="ContactSearchMediator__delete_the_custom">Delete the custom story \"%1$s\"?</string>
+    <!-- Dialog action item for deleting a custom story -->
     <string name="ContactSearchMediator__delete">Delete</string>
     <!-- Gift expiry days remaining -->
     <plurals name="Gifts__d_days_remaining">

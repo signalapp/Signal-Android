@@ -73,10 +73,10 @@ class StoryDialogLauncherFragment : DSLSettingsFragment(titleId = R.string.prefe
       )
 
       clickPref(
-        title = DSLSettingsText.from(R.string.preferences__internal_delete_private_story),
+        title = DSLSettingsText.from(R.string.preferences__internal_delete_custom_story),
         onClick = {
           StoryDialogs.deleteDistributionList(requireContext(), "Family") {
-            Toast.makeText(requireContext(), R.string.preferences__internal_delete_private_story, Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), R.string.preferences__internal_delete_custom_story, Toast.LENGTH_SHORT).show()
           }
         }
       )

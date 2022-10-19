@@ -29,7 +29,7 @@ object StoryDialogs {
     onDelete: () -> Unit
   ) {
     MaterialAlertDialogBuilder(context)
-      .setTitle(R.string.StoryDialogs__delete_private_story)
+      .setTitle(R.string.StoryDialogs__delete_custom_story)
       .setMessage(context.getString(R.string.StoryDialogs__s_and_updates_shared, distributionListName))
       .setPositiveButton(R.string.StoryDialogs__delete) { _, _ -> onDelete() }
       .setNegativeButton(android.R.string.cancel) { _, _ -> }

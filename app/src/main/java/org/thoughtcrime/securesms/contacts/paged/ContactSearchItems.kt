@@ -135,7 +135,7 @@ object ContactSearchItems {
         number.text = when {
           model.story.recipient.isGroup -> context.resources.getQuantityString(R.plurals.ContactSearchItems__group_story_d_viewers, count, count)
           model.story.recipient.isMyStory -> context.resources.getQuantityString(R.plurals.ContactSearchItems__my_story_s_dot_d_viewers, count, presentPrivacyMode(model.story.privacyMode), count)
-          else -> context.resources.getQuantityString(R.plurals.ContactSearchItems__private_story_d_viewers, count, count)
+          else -> context.resources.getQuantityString(R.plurals.ContactSearchItems__custom_story_d_viewers, count, count)
         }
       }
     }
