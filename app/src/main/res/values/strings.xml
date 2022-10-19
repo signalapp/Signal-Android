@@ -5296,7 +5296,7 @@
 
     <!-- StoriesPrivacySettingsFragment -->
     <!-- Explanation about how stories are deleted and managed -->
-    <string name="StoriesPrivacySettingsFragment__stories_automatically_disappear">Stories automatically disappear after 24 hours. Choose who can view your story or create new stories with specific viewers or groups.</string>
+    <string name="StoriesPrivacySettingsFragment__story_updates_automatically_disappear">Story updates automatically disappear after 24 hours. Choose who can view your story or create new stories with specific viewers or groups.</string>
     <!-- Preference title to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__turn_off_stories">Turn off stories</string>
     <!-- Preference summary to turn off stories -->

@@ -103,7 +103,7 @@ class StoriesPrivacySettingsFragment :
 
         noPadTextPref(
           title = DSLSettingsText.from(
-            R.string.StoriesPrivacySettingsFragment__stories_automatically_disappear,
+            R.string.StoriesPrivacySettingsFragment__story_updates_automatically_disappear,
             DSLSettingsText.TextAppearanceModifier(R.style.Signal_Text_BodyMedium),
             DSLSettingsText.ColorModifier(ContextCompat.getColor(requireContext(), R.color.signal_colorOnSurfaceVariant))
           )
