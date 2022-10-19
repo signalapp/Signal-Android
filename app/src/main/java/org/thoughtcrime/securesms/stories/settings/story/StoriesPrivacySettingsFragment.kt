@@ -150,8 +150,6 @@ class StoriesPrivacySettingsFragment :
       configure {
         dividerPref()
 
-        sectionHeaderPref(R.string.StoriesPrivacySettingsFragment__story_views)
-
         switchPref(
           title = DSLSettingsText.from(R.string.StoriesPrivacySettingsFragment__view_receipts),
           summary = DSLSettingsText.from(R.string.StoriesPrivacySettingsFragment__see_and_share),
