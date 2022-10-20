@@ -24,6 +24,11 @@ import java.util.Set;
 
 public final class RemoteAttestationCipher {
 
+  private static final Set<String> ALLOWED_ADVISORIES = new HashSet<String>() {{
+    add("INTEL-SA-00334");
+    add("INTEL-SA-00615");
+  }};
+
   private RemoteAttestationCipher() {
   }
 
@@ -100,7 +105,7 @@ public final class RemoteAttestationCipher {
     if ("OK".equals(entity.getIsvEnclaveQuoteStatus())) {
       return true;
     } else if ("SW_HARDENING_NEEDED".equals(entity.getIsvEnclaveQuoteStatus())) {
-      return entity.getAdvisoryIds().length == 1 && "INTEL-SA-00334".equals(entity.getAdvisoryIds()[0]);
+      return Arrays.stream(entity.getAdvisoryIds()).allMatch(ALLOWED_ADVISORIES::contains);
     } else {
       return false;
     }
