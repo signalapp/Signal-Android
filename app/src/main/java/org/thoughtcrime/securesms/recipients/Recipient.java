@@ -979,22 +979,25 @@ public class Recipient {
   }
 
   public @NonNull RegisteredState getRegistered() {
-    if      (isPushGroup()) return RegisteredState.REGISTERED;
-    else if (isMmsGroup())  return RegisteredState.NOT_REGISTERED;
-
-    return registered;
+    if (isPushGroup() || isDistributionList()) {
+      return RegisteredState.REGISTERED;
+    } else if (isMmsGroup()) {
+      return RegisteredState.NOT_REGISTERED;
+    } else {
+      return registered;
+    }
   }
 
   public boolean isRegistered() {
-    return registered == RegisteredState.REGISTERED || isPushGroup();
+    return getRegistered() == RegisteredState.REGISTERED;
   }
 
   public boolean isMaybeRegistered() {
-    return registered != RegisteredState.NOT_REGISTERED || isPushGroup();
+    return getRegistered() != RegisteredState.NOT_REGISTERED;
   }
 
   public boolean isUnregistered() {
-    return registered == RegisteredState.NOT_REGISTERED && !isPushGroup();
+    return getRegistered() == RegisteredState.NOT_REGISTERED;
   }
 
   public @Nullable String getNotificationChannel() {
