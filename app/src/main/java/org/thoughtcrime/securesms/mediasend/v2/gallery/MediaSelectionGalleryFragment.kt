@@ -37,6 +37,8 @@ class MediaSelectionGalleryFragment : Fragment(R.layout.fragment_container), Med
   )
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    val isFirst = arguments?.getBoolean("first") ?: false
+    sharedViewModel.setSuppressEmptyError(isFirst)
     mediaGalleryFragment = ensureMediaGalleryFragment()
 
     mediaGalleryFragment.bindSelectedMediaItemDragHelper(ItemTouchHelper(MediaSelectionItemTouchHelper(sharedViewModel)))

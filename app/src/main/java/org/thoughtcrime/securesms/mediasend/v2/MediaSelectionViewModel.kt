@@ -140,6 +140,10 @@ class MediaSelectionViewModel(
     store.update { it.copy(isTouchEnabled = isEnabled) }
   }
 
+  fun setSuppressEmptyError(isSuppressed: Boolean) {
+    store.update { it.copy(suppressEmptyError = isSuppressed) }
+  }
+
   fun addMedia(media: Media) {
     addMedia(listOf(media))
   }
@@ -230,10 +234,6 @@ class MediaSelectionViewModel(
   }
 
   fun removeMedia(media: Media) {
-    removeMedia(media, false)
-  }
-
-  private fun removeMedia(media: Media, suppressEmptyError: Boolean) {
     val snapshot = store.state
     val newMediaList = snapshot.selectedMedia - media
     val oldFocusIndex = snapshot.selectedMedia.indexOf(media)
@@ -252,7 +252,7 @@ class MediaSelectionViewModel(
       )
     }
 
-    if (newMediaList.isEmpty() && !suppressEmptyError) {
+    if (newMediaList.isEmpty() && !store.state.suppressEmptyError) {
       mediaErrors.onNext(MediaValidator.FilterError.NoItems())
     }
 
@@ -272,7 +272,8 @@ class MediaSelectionViewModel(
   fun removeCameraFirstCapture() {
     val cameraFirstCapture: Media? = store.state.cameraFirstCapture
     if (cameraFirstCapture != null) {
-      removeMedia(cameraFirstCapture, true)
+      setSuppressEmptyError(true)
+      removeMedia(cameraFirstCapture)
     }
   }
 

@@ -24,7 +24,8 @@ data class MediaSelectionState(
   val editorStateMap: Map<Uri, Any> = mapOf(),
   val cameraFirstCapture: Media? = null,
   val isStory: Boolean,
-  val storySendRequirements: Stories.MediaTransform.SendRequirements = Stories.MediaTransform.SendRequirements.CAN_NOT_SEND
+  val storySendRequirements: Stories.MediaTransform.SendRequirements = Stories.MediaTransform.SendRequirements.CAN_NOT_SEND,
+  val suppressEmptyError: Boolean = true
 ) {
 
   val maxSelection = if (sendType.usesSmsTransport) {
