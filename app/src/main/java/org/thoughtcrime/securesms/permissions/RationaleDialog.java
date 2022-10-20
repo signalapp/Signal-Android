@@ -4,6 +4,7 @@ package org.thoughtcrime.securesms.permissions;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.text.method.ScrollingMovementMethod;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -54,6 +55,7 @@ public class RationaleDialog {
     }
 
     text.setText(message);
+    text.setMovementMethod(new ScrollingMovementMethod());
 
     return new MaterialAlertDialogBuilder(context,
                                           ThemeUtil.isDarkTheme(context) ? R.style.Theme_Signal_AlertDialog_Dark_Cornered
