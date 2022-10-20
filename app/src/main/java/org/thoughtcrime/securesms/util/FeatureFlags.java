@@ -104,7 +104,8 @@ public final class FeatureFlags {
   private static final String CDS_V2_COMPAT                     = "android.cdsV2Compat.4";
   public  static final String STORIES_LOCALE                    = "android.stories.locale";
   private static final String HIDE_CONTACTS                     = "android.hide.contacts";
-  public  static final String MEDIA_PREVIEW_V2                  = "android.mediaPreviewV2";
+  private static final String MEDIA_PREVIEW_V2                  = "android.mediaPreviewV2";
+  private static final String SMS_EXPORT_MEGAPHONE_DELAY_DAYS   = "android.smsExport.megaphoneDelayDays";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -161,7 +162,8 @@ public final class FeatureFlags {
       CDS_V2_COMPAT,
       STORIES_LOCALE,
       HIDE_CONTACTS,
-      MEDIA_PREVIEW_V2
+      MEDIA_PREVIEW_V2,
+      SMS_EXPORT_MEGAPHONE_DELAY_DAYS
   );
 
   @VisibleForTesting
@@ -225,7 +227,8 @@ public final class FeatureFlags {
       CDS_V2_LOAD_TEST,
       CDS_V2_COMPAT,
       STORIES,
-      MEDIA_PREVIEW_V2
+      MEDIA_PREVIEW_V2,
+      SMS_EXPORT_MEGAPHONE_DELAY_DAYS
   );
 
   /**
@@ -583,6 +586,13 @@ public final class FeatureFlags {
    */
   public static boolean mediaPreviewV2() {
     return getBoolean(MEDIA_PREVIEW_V2, false);
+  }
+
+  /**
+   * Number of days to postpone the sms export megaphone and Phase 1 start.
+   */
+  public static int smsExportMegaphoneDelayDays() {
+    return getInteger(SMS_EXPORT_MEGAPHONE_DELAY_DAYS, 14);
   }
 
   /** Only for rendering debug info. */

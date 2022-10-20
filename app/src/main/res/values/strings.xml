@@ -822,7 +822,9 @@
     <string name="AddGroupDetailsFragment__remove">Remove</string>
     <string name="AddGroupDetailsFragment__sms_contact">SMS contact</string>
     <string name="AddGroupDetailsFragment__remove_s_from_this_group">Remove %1$s from this group?</string>
-    <!-- Displayed when adding group details to an MMS Group -->
+    <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
+    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">You\'ve selected a contact that doesn\'t support Signal groups, so this group will be MMS. Custom MMS group names and photos will only be visible to you.</string>
+    <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">You\'ve selected a contact that dosen\'t support Signal groups, this group will be MMS. Custom MMS group names and photos will only be visible to you. Support for MMS groups will be removed soon to focus on encrypted messaging.</string>
 
     <!-- ManageGroupActivity -->

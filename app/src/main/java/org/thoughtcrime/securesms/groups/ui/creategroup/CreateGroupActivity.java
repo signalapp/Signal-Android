@@ -51,7 +51,7 @@ public class CreateGroupActivity extends ContactSelectionActivity {
     intent.putExtra(ContactSelectionListFragment.REFRESHABLE, false);
     intent.putExtra(ContactSelectionActivity.EXTRA_LAYOUT_RES_ID, R.layout.create_group_activity);
 
-    boolean smsEnabled = Util.isDefaultSmsProvider(context) && SignalStore.misc().getSmsExportPhase().isSmsSupported();
+    boolean smsEnabled = SignalStore.misc().getSmsExportPhase().allowSmsFeatures();
     int displayMode = smsEnabled ? ContactsCursorLoader.DisplayMode.FLAG_SMS | ContactsCursorLoader.DisplayMode.FLAG_PUSH
                                  : ContactsCursorLoader.DisplayMode.FLAG_PUSH;
 

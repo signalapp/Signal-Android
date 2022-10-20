@@ -30,7 +30,7 @@ public class Stub<T extends View> {
   }
 
   public void setVisibility(int visibility) {
-    if (resolved()) {
+    if (resolved() || visibility == View.VISIBLE) {
       get().setVisibility(visibility);
     }
   }

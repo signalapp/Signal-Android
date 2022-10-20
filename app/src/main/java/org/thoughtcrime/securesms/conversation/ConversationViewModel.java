@@ -31,6 +31,7 @@ import org.thoughtcrime.securesms.database.DatabaseObserver;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.StoryViewState;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mediasend.MediaRepository;
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile;
@@ -443,7 +444,9 @@ public class ConversationViewModel extends ViewModel {
   }
 
   public void insertSmsExportUpdateEvent(@NonNull Recipient recipient) {
-    conversationRepository.insertSmsExportUpdateEvent(recipient);
+    if (SignalStore.misc().getSmsExportPhase().isAtLeastPhase1()) {
+      conversationRepository.insertSmsExportUpdateEvent(recipient);
+    }
   }
 
   enum Event {

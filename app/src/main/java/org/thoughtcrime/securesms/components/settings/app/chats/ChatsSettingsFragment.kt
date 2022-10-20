@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.components.settings.app.chats.sms.SmsExportSta
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.exporter.flow.SmsExportActivity
 import org.thoughtcrime.securesms.exporter.flow.SmsExportDialogs
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
@@ -45,7 +46,7 @@ class ChatsSettingsFragment : DSLSettingsFragment(R.string.preferences_chats__ch
   private fun getConfiguration(state: ChatsSettingsState): DSLConfiguration {
     return configure {
 
-      if (!state.useAsDefaultSmsApp) {
+      if (!state.useAsDefaultSmsApp && SignalStore.misc().smsExportPhase.isAtLeastPhase1()) {
         when (state.smsExportState) {
           SmsExportState.FETCHING -> Unit
           SmsExportState.HAS_UNEXPORTED_MESSAGES -> {
@@ -73,9 +74,7 @@ class ChatsSettingsFragment : DSLSettingsFragment(R.string.preferences_chats__ch
           SmsExportState.NO_SMS_MESSAGES_IN_DATABASE -> Unit
           SmsExportState.NOT_AVAILABLE -> Unit
         }
-      }
-
-      if (state.useAsDefaultSmsApp) {
+      } else {
         clickPref(
           title = DSLSettingsText.from(R.string.preferences__sms_mms),
           onClick = {

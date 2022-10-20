@@ -26,7 +26,8 @@ public final class MiscellaneousValues extends SignalStoreValues {
   private static final String LAST_FCM_FOREGROUND_TIME        = "misc.last_fcm_foreground_time";
   private static final String LAST_FOREGROUND_TIME            = "misc.last_foreground_time";
   private static final String PNI_INITIALIZED_DEVICES         = "misc.pni_initialized_devices";
-  private static final String SMS_EXPORT_TIME                 = "misc.sms_export_time";
+  private static final String SMS_PHASE_1_START_MS            = "misc.sms_export.phase_1_start";
+  private static final String STORIES_FEATURE_AVAILABLE_MS    = "misc.stories_feature_available_ms";
 
   MiscellaneousValues(@NonNull KeyValueStore store) {
     super(store);
@@ -40,7 +41,8 @@ public final class MiscellaneousValues extends SignalStoreValues {
   @Override
   @NonNull List<String> getKeysToIncludeInBackup() {
     return Arrays.asList(
-        SMS_EXPORT_TIME
+        SMS_PHASE_1_START_MS,
+        STORIES_FEATURE_AVAILABLE_MS
     );
   }
 
@@ -188,14 +190,26 @@ public final class MiscellaneousValues extends SignalStoreValues {
     putBoolean(PNI_INITIALIZED_DEVICES, value);
   }
 
-  public void setHasSeenSmsExportMegaphone() {
-    if (!getStore().containsKey(SMS_EXPORT_TIME)) {
-      putLong(SMS_EXPORT_TIME, System.currentTimeMillis());
+  public void startSmsPhase1() {
+    if (!getStore().containsKey(SMS_PHASE_1_START_MS)) {
+      putLong(SMS_PHASE_1_START_MS, System.currentTimeMillis());
     }
   }
 
+  public long getStoriesFeatureAvailableTimestamp() {
+    return getLong(STORIES_FEATURE_AVAILABLE_MS, 0);
+  }
+
+  public void setStoriesFeatureAvailableTimestamp(long timestamp) {
+    putLong(STORIES_FEATURE_AVAILABLE_MS, timestamp);
+  }
+
   public @NonNull SmsExportPhase getSmsExportPhase() {
+    if (getLong(SMS_PHASE_1_START_MS, 0) == 0) {
+      return SmsExportPhase.PHASE_0;
+    }
+
     long now = System.currentTimeMillis();
-    return SmsExportPhase.getCurrentPhase(now - getLong(SMS_EXPORT_TIME, now));
+    return SmsExportPhase.getCurrentPhase(now - getLong(SMS_PHASE_1_START_MS, now));
   }
 }

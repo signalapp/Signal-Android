@@ -106,7 +106,7 @@ public class NewConversationActivity extends ContactSelectionActivity
 
   @Override
   public void onBeforeContactSelected(@NonNull Optional<RecipientId> recipientId, String number, @NonNull Consumer<Boolean> callback) {
-    boolean smsSupported = Util.isDefaultSmsProvider(this) && SignalStore.misc().getSmsExportPhase().isSmsSupported();
+    boolean smsSupported = SignalStore.misc().getSmsExportPhase().allowSmsFeatures();
 
     if (recipientId.isPresent()) {
       launch(Recipient.resolved(recipientId.get()));
@@ -283,7 +283,7 @@ public class NewConversationActivity extends ContactSelectionActivity
       return null;
     }
 
-    if (recipient.isRegistered() || (Util.isDefaultSmsProvider(this) && SignalStore.misc().getSmsExportPhase().isSmsSupported())) {
+    if (recipient.isRegistered() || (SignalStore.misc().getSmsExportPhase().allowSmsFeatures())) {
       return new ActionItem(
           R.drawable.ic_phone_right_24,
           getString(R.string.NewConversationActivity__audio_call),

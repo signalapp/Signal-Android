@@ -14,7 +14,6 @@ import org.thoughtcrime.securesms.util.CharacterCalculator
 import org.thoughtcrime.securesms.util.MmsCharacterCalculator
 import org.thoughtcrime.securesms.util.PushCharacterCalculator
 import org.thoughtcrime.securesms.util.SmsCharacterCalculator
-import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.dualsim.SubscriptionInfoCompat
 import org.thoughtcrime.securesms.util.dualsim.SubscriptionManagerCompat
 import java.lang.IllegalArgumentException
@@ -140,7 +139,7 @@ sealed class MessageSendType(
 
       options += SignalMessageSendType
 
-      if (Util.isDefaultSmsProvider(context) && SignalStore.misc().smsExportPhase.isSmsSupported()) {
+      if (SignalStore.misc().smsExportPhase.allowSmsFeatures()) {
         try {
           val subscriptions: Collection<SubscriptionInfoCompat> = SubscriptionManagerCompat(context).activeAndReadySubscriptionInfos
 

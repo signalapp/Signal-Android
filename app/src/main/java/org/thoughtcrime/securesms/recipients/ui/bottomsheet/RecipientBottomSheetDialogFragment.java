@@ -222,7 +222,7 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
         unblockButton.setVisibility(View.GONE);
       }
 
-      boolean isAudioAvailable = (recipient.isRegistered() || (Util.isDefaultSmsProvider(requireContext()) && SignalStore.misc().getSmsExportPhase().isSmsSupported())) &&
+      boolean isAudioAvailable = (recipient.isRegistered() || SignalStore.misc().getSmsExportPhase().allowSmsFeatures()) &&
                                  !recipient.isGroup() &&
                                  !recipient.isBlocked() &&
                                  !recipient.isSelf() &&

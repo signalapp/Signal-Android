@@ -16,7 +16,6 @@ import org.thoughtcrime.securesms.components.settings.conversation.preferences.L
 import org.thoughtcrime.securesms.database.AttachmentDatabase
 import org.thoughtcrime.securesms.database.RecipientDatabase
 import org.thoughtcrime.securesms.database.model.StoryViewState
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.LiveGroup
 import org.thoughtcrime.securesms.groups.v2.GroupAddMembersResult
@@ -26,7 +25,6 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.RecipientUtil
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.SingleLiveEvent
-import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil
 import org.thoughtcrime.securesms.util.livedata.Store
 import java.util.Optional
@@ -141,7 +139,7 @@ sealed class ConversationSettingsViewModel(
       }
 
       store.update(liveRecipient.liveData) { recipient, state ->
-        val isAudioAvailable = (recipient.isRegistered || (Util.isDefaultSmsProvider(ApplicationDependencies.getApplication()) && SignalStore.misc().smsExportPhase.isSmsSupported())) &&
+        val isAudioAvailable = (recipient.isRegistered || SignalStore.misc().smsExportPhase.allowSmsFeatures()) &&
           !recipient.isGroup &&
           !recipient.isBlocked &&
           !recipient.isSelf &&

@@ -13,7 +13,6 @@ import org.thoughtcrime.securesms.components.menu.ActionItem
 import org.thoughtcrime.securesms.components.menu.SignalContextMenu
 import org.thoughtcrime.securesms.conversation.MessageSendType
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.ViewUtil
 import java.lang.AssertionError
 import java.util.concurrent.CopyOnWriteArrayList
@@ -157,7 +156,7 @@ class SendButton(context: Context, attributeSet: AttributeSet?) : AppCompatImage
     }
 
     if (availableSendTypes.size == 1) {
-      return if (!Util.isDefaultSmsProvider(context) || !SignalStore.misc().smsExportPhase.isSmsSupported()) {
+      return if (!SignalStore.misc().smsExportPhase.allowSmsFeatures()) {
         Snackbar.make(snackbarContainer, R.string.InputPanel__sms_messaging_is_no_longer_supported_in_signal, Snackbar.LENGTH_SHORT).show()
         true
       } else {
