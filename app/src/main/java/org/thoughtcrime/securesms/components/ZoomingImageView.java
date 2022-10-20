@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 
@@ -175,5 +176,11 @@ public class ZoomingImageView extends FrameLayout {
     public AttachmentRegionDecoder make() throws IllegalAccessException, InstantiationException {
       return new AttachmentRegionDecoder();
     }
+  }
+
+  @Override
+  public boolean onInterceptTouchEvent(MotionEvent event) {
+    getParent().requestDisallowInterceptTouchEvent(event.getPointerCount() > 1);
+    return false;
   }
 }
