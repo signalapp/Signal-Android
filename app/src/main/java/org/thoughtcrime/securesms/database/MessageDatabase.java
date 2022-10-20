@@ -99,6 +99,7 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns,
   public abstract List<MessageRecord> getProfileChangeDetailsRecords(long threadId, long afterTimestamp);
   public abstract Set<Long> getAllRateLimitedMessageIds();
   public abstract Cursor getUnexportedInsecureMessages(int limit);
+  public abstract long getUnexportedInsecureMessagesEstimatedSize();
   public abstract void deleteExportedMessages();
 
   public abstract void markExpireStarted(long messageId);
@@ -380,15 +381,15 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns,
   }
 
   protected String getInsecureMessageClause(long threadId) {
-    String isSent      = "(" + getTypeField() + " & " + Types.BASE_TYPE_MASK + ") = " + Types.BASE_SENT_TYPE;
-    String isReceived  = "(" + getTypeField() + " & " + Types.BASE_TYPE_MASK + ") = " + Types.BASE_INBOX_TYPE;
-    String isSecure    = "(" + getTypeField() + " & " + (Types.SECURE_MESSAGE_BIT | Types.PUSH_MESSAGE_BIT) + ")";
-    String isNotSecure = "(" + getTypeField() + " <= " + (Types.BASE_TYPE_MASK | Types.MESSAGE_ATTRIBUTE_MASK) + ")";
+    String isSent      = "(" + getTableName() + "." + getTypeField() + " & " + Types.BASE_TYPE_MASK + ") = " + Types.BASE_SENT_TYPE;
+    String isReceived  = "(" + getTableName() + "." + getTypeField() + " & " + Types.BASE_TYPE_MASK + ") = " + Types.BASE_INBOX_TYPE;
+    String isSecure    = "(" + getTableName() + "." + getTypeField() + " & " + (Types.SECURE_MESSAGE_BIT | Types.PUSH_MESSAGE_BIT) + ")";
+    String isNotSecure = "(" + getTableName() + "." + getTypeField() + " <= " + (Types.BASE_TYPE_MASK | Types.MESSAGE_ATTRIBUTE_MASK) + ")";
 
     String whereClause = String.format(Locale.ENGLISH, "(%s OR %s) AND NOT %s AND %s", isSent, isReceived, isSecure, isNotSecure);
 
     if (threadId != -1) {
-      whereClause += " AND " + THREAD_ID + " = " + threadId;
+      whereClause += " AND " + getTableName() + "." +  THREAD_ID + " = " + threadId;
     }
 
     return whereClause;
@@ -417,7 +418,7 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns,
 
     SQLiteDatabaseExtensionsKt.update(getWritableDatabase(), getTableName())
                               .values(values)
-                              .where(EXPORTED + " < ?", MessageExportStatus.UNEXPORTED.getCode())
+                              .where(EXPORTED + " < ?", MessageExportStatus.UNEXPORTED)
                               .run();
   }
 

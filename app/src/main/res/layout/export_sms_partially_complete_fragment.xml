@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/hero"
+                android:layout_width="112dp"
+                android:layout_height="112dp"
+                android:layout_marginTop="84dp"
+                android:layout_marginBottom="16dp"
+                android:scaleType="centerInside"
+                app:layout_constraintBottom_toTopOf="@+id/export_complete_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/sms_export_partial_complete"
+                tools:ignore="UnusedAttribute,ImageContrastCheck" />
+
+            <TextView
+                android:id="@+id/headline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="32dp"
+                android:layout_marginTop="40dp"
+                android:gravity="center"
+                android:text="@string/ExportSmsPartiallyComplete__export_partially_complete"
+                android:textAppearance="@style/Signal.Text.TitleLarge"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/hero" />
+
+            <TextView
+                android:id="@+id/export_complete_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textAppearance="@style/Signal.Text.BodySmall"
+                android:textColor="@color/signal_colorOnSurfaceVariant"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/headline"
+                tools:text="248 of 248 messages exported" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/circle_tintable"
+                android:backgroundTint="@color/signal_colorSurface3"
+                app:layout_constraintBottom_toBottomOf="@+id/bullet_1"
+                app:layout_constraintEnd_toEndOf="@+id/bullet_1"
+                app:layout_constraintStart_toStartOf="@+id/bullet_1"
+                app:layout_constraintTop_toTopOf="@+id/bullet_1" />
+
+            <TextView
+                android:id="@+id/bullet_1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="60dp"
+                android:gravity="center"
+                android:minWidth="28dp"
+                android:minHeight="28dp"
+                android:padding="4dp"
+                android:text="@string/ChooseANewDefaultSmsAppFragment__bullet_1"
+                android:textAppearance="@style/Signal.Text.BodyMedium"
+                android:textStyle="bold"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/export_complete_status" />
+
+            <TextView
+                android:id="@+id/bullet_1_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="59dp"
+                android:layout_marginEnd="32dp"
+                android:minWidth="28dp"
+                android:minHeight="28dp"
+                android:padding="4dp"
+                android:text="@string/ExportSmsPartiallyComplete__ensure_you_have_an_additional_s_free_on_your_phone_to_export_your_messages"
+                android:textAlignment="viewStart"
+                android:textAppearance="@style/Signal.Text.BodyLarge"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/bullet_1"
+                app:layout_constraintTop_toBottomOf="@id/export_complete_status" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/bullet_1_barrier"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:orientation="horizontal"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="bullet_1,bullet_1_text" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/circle_tintable"
+                android:backgroundTint="@color/signal_colorSurface3"
+                app:layout_constraintBottom_toBottomOf="@+id/bullet_2"
+                app:layout_constraintEnd_toEndOf="@+id/bullet_2"
+                app:layout_constraintStart_toStartOf="@+id/bullet_2"
+                app:layout_constraintTop_toTopOf="@+id/bullet_2" />
+
+            <TextView
+                android:id="@+id/bullet_2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="24dp"
+                android:gravity="center"
+                android:minWidth="28dp"
+                android:minHeight="28dp"
+                android:padding="4dp"
+                android:text="@string/ChooseANewDefaultSmsAppFragment__bullet_2"
+                android:textAppearance="@style/Signal.Text.BodyMedium"
+                android:textStyle="bold"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/bullet_1_barrier" />
+
+            <TextView
+                android:id="@+id/bullet_2_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="23dp"
+                android:layout_marginEnd="32dp"
+                android:minWidth="28dp"
+                android:minHeight="28dp"
+                android:padding="4dp"
+                android:text="@string/ExportSmsPartiallyComplete__retry_export_which_will_only_retry_messages_that_have_not_yet_been_exported"
+                android:textAlignment="viewStart"
+                android:textAppearance="@style/Signal.Text.BodyLarge"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/bullet_2"
+                app:layout_constraintTop_toBottomOf="@id/bullet_1_barrier" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/bullet_2_barrier"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:orientation="horizontal"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="bullet_2,bullet_2_text" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/circle_tintable"
+                android:backgroundTint="@color/signal_colorSurface3"
+                app:layout_constraintBottom_toBottomOf="@+id/bullet_3"
+                app:layout_constraintEnd_toEndOf="@+id/bullet_3"
+                app:layout_constraintStart_toStartOf="@+id/bullet_3"
+                app:layout_constraintTop_toTopOf="@+id/bullet_3" />
+
+            <TextView
+                android:id="@+id/bullet_3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="24dp"
+                android:gravity="center"
+                android:minWidth="28dp"
+                android:minHeight="28dp"
+                android:padding="4dp"
+                android:text="@string/ChooseANewDefaultSmsAppFragment__bullet_3"
+                android:textAppearance="@style/Signal.Text.BodyMedium"
+                android:textStyle="bold"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/bullet_2_barrier" />
+
+            <org.thoughtcrime.securesms.util.views.LearnMoreTextView
+                android:id="@+id/bullet_3_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="23dp"
+                android:layout_marginEnd="32dp"
+                android:minWidth="28dp"
+                android:minHeight="28dp"
+                android:padding="4dp"
+                android:text="@string/ExportSmsPartiallyComplete__if_the_problem_persists"
+                android:textAlignment="viewStart"
+                android:textAppearance="@style/Signal.Text.BodyLarge"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/bullet_3"
+                app:layout_constraintTop_toBottomOf="@id/bullet_2_barrier" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/bullet_3_barrier"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:orientation="horizontal"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="bullet_3,bullet_3_text" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/retry_button"
+                style="@style/Signal.Widget.Button.Large.Tonal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="32dp"
+                android:layout_marginTop="48dp"
+                android:layout_marginBottom="16dp"
+                android:minWidth="220dp"
+                android:text="@string/ExportSmsPartiallyComplete__retry"
+                app:layout_constraintBottom_toTopOf="@+id/continue_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/bullet_3_barrier"
+                app:layout_constraintVertical_bias="1" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/continue_button"
+                style="@style/Signal.Widget.Button.Large.Secondary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="32dp"
+                android:layout_marginTop="48dp"
+                android:layout_marginBottom="44dp"
+                android:minWidth="220dp"
+                android:text="@string/ExportSmsPartiallyComplete__continue_anyway"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/bullet_3_barrier"
+                app:layout_constraintVertical_bias="1" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

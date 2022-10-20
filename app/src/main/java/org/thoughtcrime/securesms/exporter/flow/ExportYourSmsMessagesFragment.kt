@@ -10,7 +10,6 @@ import org.signal.smsexporter.DefaultSmsHelper
 import org.signal.smsexporter.SmsExportProgress
 import org.signal.smsexporter.SmsExportService
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.SmsExportDirections
 import org.thoughtcrime.securesms.databinding.ExportYourSmsMessagesFragmentBinding
 import org.thoughtcrime.securesms.util.Material3OnScrollHelper
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
@@ -46,9 +45,7 @@ class ExportYourSmsMessagesFragment : Fragment(R.layout.export_your_sms_messages
       .progressState
       .observeOn(AndroidSchedulers.mainThread())
       .subscribe {
-        if (it is SmsExportProgress.Done) {
-          findNavController().safeNavigate(SmsExportDirections.actionDirectToExportSmsCompleteFragment(it.errorCount, it.total))
-        } else if (it is SmsExportProgress.InProgress) {
+        if (it !is SmsExportProgress.Init) {
           findNavController().safeNavigate(ExportYourSmsMessagesFragmentDirections.actionExportYourSmsMessagesFragmentToExportingSmsMessagesFragment())
         }
       }

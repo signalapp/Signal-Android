@@ -16,7 +16,10 @@
             app:enterAnim="@anim/fragment_open_enter"
             app:exitAnim="@anim/fragment_open_exit"
             app:popEnterAnim="@anim/fragment_close_enter"
-            app:popExitAnim="@anim/fragment_close_exit" />
+            app:popExitAnim="@anim/fragment_close_exit"
+            app:popUpTo="@id/sms_export"
+            app:popUpToInclusive="true" />
+
         <action
             android:id="@+id/action_exportYourSmsMessagesFragment_to_setSignalAsDefaultSmsAppFragment"
             app:destination="@id/setSignalAsDefaultSmsAppFragment"
@@ -48,13 +51,37 @@
         android:name="org.thoughtcrime.securesms.exporter.flow.ExportingSmsMessagesFragment"
         android:label="fragment_exporting_sms_messages"
         tools:layout="@layout/exporting_sms_messages_fragment">
+
         <action
             android:id="@+id/action_exportingSmsMessagesFragment_to_exportSmsCompleteFragment"
             app:destination="@id/exportSmsCompleteFragment"
             app:enterAnim="@anim/fragment_open_enter"
             app:exitAnim="@anim/fragment_open_exit"
             app:popEnterAnim="@anim/fragment_close_enter"
-            app:popExitAnim="@anim/fragment_close_exit" />
+            app:popExitAnim="@anim/fragment_close_exit"
+            app:popUpTo="@+id/sms_export"
+            app:popUpToInclusive="true" />
+
+        <action
+            android:id="@+id/action_exportingSmsMessagesFragment_to_exportSmsPartiallyCompleteFragment"
+            app:destination="@id/exportSmsPartiallyCompleteFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit"
+            app:popUpTo="@id/sms_export"
+            app:popUpToInclusive="true" />
+
+        <action
+            android:id="@+id/action_exportingSmsMessagesFragment_to_exportSmsFullErrorFragment"
+            app:destination="@id/exportSmsFullErrorFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit"
+            app:popUpTo="@id/sms_export"
+            app:popUpToInclusive="true" />
+
     </fragment>
 
     <fragment
@@ -70,14 +97,6 @@
             android:name="export_message_failure_count"
             app:argType="integer" />
 
-        <action
-            android:id="@+id/action_exportingSmsMessagesFragment_to_chooseANewDefaultSmsAppFragment"
-            app:destination="@id/chooseANewDefaultSmsAppFragment"
-            app:enterAnim="@anim/fragment_open_enter"
-            app:exitAnim="@anim/fragment_open_exit"
-            app:popEnterAnim="@anim/fragment_close_enter"
-            app:popExitAnim="@anim/fragment_close_exit" />
-
     </fragment>
 
     <fragment
@@ -86,14 +105,67 @@
         android:label="fragment_choose_a_new_default_sms_app"
         tools:layout="@layout/choose_a_new_default_sms_app_fragment" />
 
+    <fragment
+        android:id="@+id/exportSmsPartiallyCompleteFragment"
+        android:name="org.thoughtcrime.securesms.exporter.flow.ExportSmsPartiallyCompleteFragment"
+        tools:layout="@layout/export_sms_partially_complete_fragment">
+
+        <argument
+            android:name="export_message_count"
+            app:argType="integer" />
+
+        <argument
+            android:name="export_message_failure_count"
+            app:argType="integer" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/exportSmsFullErrorFragment"
+        android:name="org.thoughtcrime.securesms.exporter.flow.ExportSmsFullErrorFragment"
+        tools:layout="@layout/export_sms_full_error_fragment">
+
+        <argument
+            android:name="export_message_count"
+            app:argType="integer" />
+
+        <argument
+            android:name="export_message_failure_count"
+            app:argType="integer" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/smsExportHelpFragment"
+        android:name="org.thoughtcrime.securesms.exporter.flow.SmsExportHelpFragment"
+        tools:layout="@layout/sms_export_help_fragment" />
+
     <action
-        android:id="@+id/action_direct_to_exportSmsCompleteFragment"
-        app:destination="@id/exportSmsCompleteFragment"
+        android:id="@+id/action_direct_to_exportYourSmsMessagesFragment"
+        app:destination="@id/exportYourSmsMessagesFragment"
         app:enterAnim="@anim/fragment_open_enter"
         app:exitAnim="@anim/fragment_open_exit"
         app:popEnterAnim="@anim/fragment_close_enter"
         app:popExitAnim="@anim/fragment_close_exit"
-        app:popUpTo="@+id/exportYourSmsMessagesFragment"
+        app:popUpTo="@id/sms_export"
         app:popUpToInclusive="true" />
+
+    <action
+        android:id="@+id/action_direct_to_chooseANewDefaultSmsAppFragment"
+        app:destination="@id/chooseANewDefaultSmsAppFragment"
+        app:enterAnim="@anim/fragment_open_enter"
+        app:exitAnim="@anim/fragment_open_exit"
+        app:popEnterAnim="@anim/fragment_close_enter"
+        app:popExitAnim="@anim/fragment_close_exit"
+        app:popUpTo="@+id/sms_export"
+        app:popUpToInclusive="true" />
+
+    <action
+        android:id="@+id/action_direct_to_helpFragment"
+        app:destination="@id/smsExportHelpFragment"
+        app:enterAnim="@anim/fragment_open_enter"
+        app:exitAnim="@anim/fragment_open_exit"
+        app:popEnterAnim="@anim/fragment_close_enter"
+        app:popExitAnim="@anim/fragment_close_exit" />
 
 </navigation>

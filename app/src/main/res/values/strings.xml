@@ -2516,7 +2516,7 @@
     <string name="HelpFragment__debug_log">Debug Log:</string>
     <string name="HelpFragment__could_not_upload_logs">Could not upload logs</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">Please be as descriptive as possible to help us understand the issue.</string>
-    <string-array name="HelpFragment__categories_4">
+    <string-array name="HelpFragment__categories_5">
         <item>\-\- Please select an option \-\-</item>
         <item>Something\'s Not Working</item>
         <item>Feature Request</item>
@@ -2525,6 +2525,7 @@
         <item>Other</item>
         <item>Payments (MobileCoin)</item>
         <item>Donations &amp; Badges</item>
+        <item>SMS Export</item>
     </string-array>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
@@ -5347,6 +5348,12 @@
         <item quantity="one">Exporting %1$d of %2$d…</item>
         <item quantity="other">Exporting %1$d of %2$d…</item>
     </plurals>
+    <!-- Alert dialog title shown when we think a user may not have enough local storage available to export sms messages -->
+    <string name="ExportingSmsMessagesFragment__you_may_not_have_enough_disk_space">You may not have enough disk space</string>
+    <!-- Alert dialog message shown when we think a user may not have enough local storage available to export sms messages, placeholder is the file size, e.g., 128kB -->
+    <string name="ExportingSmsMessagesFragment__you_need_approximately_s_to_export_your_messages_ensure_you_have_enough_space_before_continuing">You need approximately %1$s to export your messages, ensure you have enough space before continuing.</string>
+    <!-- Alert dialog button to continue with exporting sms after seeing the lack of storage warning -->
+    <string name="ExportingSmsMessagesFragment__continue_anyway">Continue anyway</string>
 
     <!-- ChooseANewDefaultSmsAppFragment -->
     <!-- Title of the screen -->
@@ -5443,6 +5450,26 @@
         <item quantity="one">%1$d of %2$d message exported</item>
         <item quantity="other">%1$d of %2$d messages exported</item>
     </plurals>
+
+    <!-- Title of screen shown when some sms messages did not export -->
+    <string name="ExportSmsPartiallyComplete__export_partially_complete">Export partially complete</string>
+    <!-- Debug step 1 on screen shown when some sms messages did not export -->
+    <string name="ExportSmsPartiallyComplete__ensure_you_have_an_additional_s_free_on_your_phone_to_export_your_messages">Ensure you have an additional %1$s free on your phone to export your messages</string>
+    <!-- Debug step 2 on screen shown when some sms messages dit not export -->
+    <string name="ExportSmsPartiallyComplete__retry_export_which_will_only_retry_messages_that_have_not_yet_been_exported">Retry export, which will only retry messages that have not yet been exported</string>
+    <!-- Partial sentence for Debug step 3 on screen shown when some sms messages did not export, is combined with 'contact us' -->
+    <string name="ExportSmsPartiallyComplete__if_the_problem_persists">If the problem persists, </string>
+    <!-- Partial sentence for deubg step 3 on screen shown when some sms messages did not export, combined with 'If the problem persists', link text to open contact support view -->
+    <string name="ExportSmsPartiallyComplete__contact_us">contact us</string>
+    <!-- Button text to retry sms export -->
+    <string name="ExportSmsPartiallyComplete__retry">Retry</string>
+    <!-- Button text to continue sms export flow and not retry failed message exports -->
+    <string name="ExportSmsPartiallyComplete__continue_anyway">Continue anyway</string>
+    <!-- Title of screen shown when all sms messages failed to export -->
+    <string name="ExportSmsFullError__error_exporting_sms_messages">Error exporting SMS messages</string>
+    <!-- Helper text shown when all sms messages failed to export -->
+    <string name="ExportSmsFullError__please_try_again_if_the_problem_persists">Please try again. If the problem persists, </string>
+
 
     <!-- EOF -->
 

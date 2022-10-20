@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.SmsExportDirections
 import org.thoughtcrime.securesms.databinding.ExportSmsCompleteFragmentBinding
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
@@ -20,7 +21,7 @@ class ExportSmsCompleteFragment : Fragment(R.layout.export_sms_complete_fragment
     val exportSuccessCount = args.exportMessageCount - args.exportMessageFailureCount
 
     val binding = ExportSmsCompleteFragmentBinding.bind(view)
-    binding.exportCompleteNext.setOnClickListener { findNavController().safeNavigate(ExportSmsCompleteFragmentDirections.actionExportingSmsMessagesFragmentToChooseANewDefaultSmsAppFragment()) }
+    binding.exportCompleteNext.setOnClickListener { findNavController().safeNavigate(SmsExportDirections.actionDirectToChooseANewDefaultSmsAppFragment()) }
     binding.exportCompleteStatus.text = resources.getQuantityString(R.plurals.ExportSmsCompleteFragment__d_of_d_messages_exported, args.exportMessageCount, exportSuccessCount, args.exportMessageCount)
   }
 }

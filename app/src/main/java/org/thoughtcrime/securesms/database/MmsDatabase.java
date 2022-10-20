@@ -36,6 +36,7 @@ import net.zetetic.database.sqlcipher.SQLiteStatement;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.signal.core.util.CursorExtensionsKt;
 import org.signal.core.util.CursorUtil;
 import org.signal.core.util.SQLiteDatabaseExtensionsKt;
 import org.signal.core.util.SqlUtil;
@@ -2461,6 +2462,24 @@ public class MmsDatabase extends MessageDatabase {
         false,
         limit
     );
+  }
+
+  @Override
+  public long getUnexportedInsecureMessagesEstimatedSize() {
+    Cursor messageTextSize = SQLiteDatabaseExtensionsKt.select(getReadableDatabase(), "SUM(LENGTH(" + BODY + "))")
+                                                       .from(TABLE_NAME)
+                                                       .where(getInsecureMessageClause() + " AND " + EXPORTED + " < ?", MessageExportStatus.EXPORTED)
+                                                       .run();
+
+    long bodyTextSize = CursorExtensionsKt.readToSingleLong(messageTextSize);
+
+    String select   = "SUM(" + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.SIZE + ") AS s";
+    String fromJoin = TABLE_NAME + " INNER JOIN " + AttachmentDatabase.TABLE_NAME + " ON " + TABLE_NAME + "." + ID + " = " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.MMS_ID;
+    String where    = getInsecureMessageClause() + " AND " + EXPORTED + " < " + MessageExportStatus.EXPORTED.serialize();
+
+    long fileSize = CursorExtensionsKt.readToSingleLong(getReadableDatabase().rawQuery("SELECT " + select + " FROM " + fromJoin + " WHERE " + where, null));
+
+    return bodyTextSize + fileSize;
   }
 
   @Override

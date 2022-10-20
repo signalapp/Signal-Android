@@ -33,11 +33,13 @@ import com.google.protobuf.InvalidProtocolBufferException;
 
 import net.zetetic.database.sqlcipher.SQLiteStatement;
 
+import org.signal.core.util.CursorExtensionsKt;
 import org.signal.core.util.CursorUtil;
 import org.signal.core.util.SQLiteDatabaseExtensionsKt;
 import org.signal.core.util.SqlUtil;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.util.Pair;
+import org.thoughtcrime.securesms.components.settings.app.chats.sms.SmsExportState;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatchSet;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
@@ -919,6 +921,16 @@ public class SmsDatabase extends MessageDatabase {
         false,
         limit
     );
+  }
+
+  @Override
+  public long getUnexportedInsecureMessagesEstimatedSize() {
+    Cursor cursor = SQLiteDatabaseExtensionsKt.select(getReadableDatabase(), "SUM(LENGTH(" + BODY + "))")
+                                              .from(TABLE_NAME)
+                                              .where(getInsecureMessageClause() + " AND " + EXPORTED + " < ?", MessageExportStatus.EXPORTED)
+                                              .run();
+
+    return CursorExtensionsKt.readToSingleLong(cursor);
   }
 
   @Override

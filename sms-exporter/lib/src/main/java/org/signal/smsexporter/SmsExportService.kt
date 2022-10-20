@@ -25,6 +25,10 @@ import java.util.concurrent.Executors
 abstract class SmsExportService : Service() {
 
   companion object {
+    fun clearProgressState() {
+      progressState.onNext(SmsExportProgress.Init)
+    }
+
     private val TAG = Log.tag(SmsExportService::class.java)
 
     /**
@@ -95,6 +99,7 @@ abstract class SmsExportService : Service() {
       Log.d(TAG, "Export complete")
 
       stopForeground(true)
+      stopSelf()
       isStarted = false
     }
   }

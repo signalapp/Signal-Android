@@ -67,6 +67,17 @@ fun <T> Cursor.requireObject(column: String, serializer: StringSerializer<T>): T
   return serializer.deserialize(CursorUtil.requireString(this, column))
 }
 
+@JvmOverloads
+fun Cursor.readToSingleLong(defaultValue: Long = 0): Long {
+  return use {
+    if (it.moveToFirst()) {
+      it.getLong(0)
+    } else {
+      defaultValue
+    }
+  }
+}
+
 inline fun <T> Cursor.readToList(predicate: (T) -> Boolean = { true }, mapper: (Cursor) -> T): List<T> {
   val list = mutableListOf<T>()
   use {
