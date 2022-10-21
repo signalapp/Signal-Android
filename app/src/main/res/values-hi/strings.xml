@@ -222,7 +222,7 @@
     <!-- Label for my stories when selecting who to send media to -->
     <string name="ContactsCursorLoader_my_stories">मेरी स्टोरीज़</string>
     <!-- Text for a button that brings up a bottom sheet to create a new story. -->
-    <string name="ContactsCursorLoader_add_to">इसमें जोड़ें…</string>
+    <string name="ContactsCursorLoader_new">New</string>
 
     <!-- ContactsDatabase -->
     <string name="ContactsDatabase_message_s">%1$s को मेसेज</string>
@@ -822,7 +822,9 @@
     <string name="AddGroupDetailsFragment__remove">हटा दें</string>
     <string name="AddGroupDetailsFragment__sms_contact">SMS संपर्क</string>
     <string name="AddGroupDetailsFragment__remove_s_from_this_group">%1$sको इस समूह से निकालें?</string>
-    <!-- Displayed when adding group details to an MMS Group -->
+    <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
+    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">आपने किसी ऐसे संपर्क को चुना है जो Signal ग्रुप को सपोर्ट नहीं करता है, इसलिए यह ग्रुप, MMS होगा। कस्टम ग्रुप नाम और फ़ोटो केवल आपको दिखेंगे।</string>
+    <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">आपने एक ऐसे संपर्क को चुना है जो Signal ग्रुप्स का समर्थन नहीं करता, इसलिए यह ग्रुप MMS होगा। कस्टम MMS ग्रुप के नाम और तस्वीरें केवल आप देख सकेंगे। एनक्रिप्टेड संदेश सेवा पर ध्यान देने के लिए जल्द ही MMS ग्रुप्स का समर्थन हटा दिया जाएगा।</string>
 
     <!-- ManageGroupActivity -->
@@ -2511,7 +2513,7 @@
     <string name="HelpFragment__debug_log">डीबग लॉग:</string>
     <string name="HelpFragment__could_not_upload_logs">लॉग अपलोड नहीं किए जा सके</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">कृपया यथासंभव विस्तृत रूप से बताएँ ताकि हमें समस्या को समझने में मदद मिले।</string>
-    <string-array name="HelpFragment__categories_4">
+    <string-array name="HelpFragment__categories_5">
         <item>\\-\\- कृपया कोई विकल्प चुनें \\-\\-</item>
         <item>कुछ गड़बड़ है</item>
         <item>फ़ीचर अनुरोध</item>
@@ -2520,6 +2522,7 @@
         <item>अन्य</item>
         <item>भुगतान (मोबाइल कॉयन)</item>
         <item>दान &amp; बैज</item>
+        <item>SMS Export</item>
     </string-array>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
@@ -2778,7 +2781,7 @@
     <!-- Internal only preferences -->
     <string name="preferences__internal_turn_off_stories_with_stories_on_disk" translatable="false">Turn off stories (with stories on disk)</string>
     <string name="preferences__internal_turn_off_stories" translatable="false">Turn off stories</string>
-    <string name="preferences__internal_delete_private_story" translatable="false">Delete private story</string>
+    <string name="preferences__internal_delete_custom_story" translatable="false">Delete custom story</string>
     <string name="preferences__internal_hide_story" translatable="false">Hide story</string>
     <string name="preferences__internal_story_or_profile_selector" translatable="false">Story or profile selector</string>
     <string name="preferences__internal_stories_dialog_launcher" translatable="false">Stories dialog launcher</string>
@@ -4767,7 +4770,7 @@
     <!-- Title for "My Stories" row item in Stories landing page -->
     <string name="StoriesLandingFragment__my_stories">मेरी स्टोरीज़</string>
     <!-- Subtitle for "My Stories" row item when user has not added stories -->
-    <string name="StoriesLandingFragment__tap_to_add_a_story">कोई स्टोरी जोड़ने के लिए टैप करें</string>
+    <string name="StoriesLandingFragment__tap_to_add">Tap to add</string>
     <!-- Displayed when there are no stories to display -->
     <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now">अभी दिखाने के लिए कोई हालिया अपडेट नहीं है।</string>
     <!-- Context menu option to hide a story -->
@@ -4932,25 +4935,25 @@
     <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">अपने सिस्टम के संपर्कों में उन्हें रखना</string>
     <!-- Note at the bottom of the Signal connections sheet -->
     <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"आपके कनेक्शन आपका नाम और फ़ोटो देख सकते हैं, और \"मेरी स्टोरी\" पर किए जानेवाले पोस्ट भी देख सकते हैं, जब तक कि आपने उसे उनसे छिपाया न हो।"</string>
-    <!-- Clickable option to add a viewer to a private story -->
+    <!-- Clickable option to add a viewer to a custom story -->
     <string name="PrivateStorySettingsFragment__add_viewer">व्यूअर जोड़ें</string>
     <!-- Clickable option to delete a custom story -->
-    <string name="PrivateStorySettingsFragment__delete_private_story">निजी स्टोरी डिलीट करें</string>
-    <!-- Dialog title when attempting to remove someone from a private story -->
+    <string name="PrivateStorySettingsFragment__delete_custom_story">Delete custom story</string>
+    <!-- Dialog title when attempting to remove someone from a custom story -->
     <string name="PrivateStorySettingsFragment__remove_s">%1$s को हटाना है?</string>
-    <!-- Dialog message when attempting to remove someone from a private story -->
+    <!-- Dialog message when attempting to remove someone from a custom story -->
     <string name="PrivateStorySettingsFragment__this_person_will_no_longer">यह व्यक्ति अब आपकी स्टोरी नहीं देख पाएगा।</string>
-    <!-- Positive action label when attempting to remove someone from a private story -->
+    <!-- Positive action label when attempting to remove someone from a custom story -->
     <string name="PrivateStorySettingsFragment__remove">हटा दें</string>
-    <!-- Dialog title when deleting a private story -->
+    <!-- Dialog title when deleting a custom story -->
     <string name="PrivateStorySettingsFragment__are_you_sure">क्या आप वाकई में इसे डिलीट करना चाहते हैं?</string>
-    <!-- Dialog message when deleting a private story -->
+    <!-- Dialog message when deleting a custom story -->
     <string name="PrivateStorySettingsFragment__this_action_cannot">इसे फिर से पहले जैसा नहीं किया जा सकेगा।</string>
-    <!-- Page title for editing a private story name -->
+    <!-- Page title for editing a custom story name -->
     <string name="EditPrivateStoryNameFragment__edit_story_name">स्टोरी नाम संपादित करें</string>
-    <!-- Input field hint when editing a private story name -->
+    <!-- Input field hint when editing a custom story name -->
     <string name="EditPrivateStoryNameFragment__story_name">स्टोरी नाम</string>
-    <!-- Save button label when editing a private story name -->
+    <!-- Save button label when editing a custom story name -->
     <string name="EditPrivateStoryNameFragment__save">सेव करें</string>
     <!-- Displayed in text post creator before user enters text -->
     <string name="TextStoryPostCreationFragment__tap_to_add_text">टेक्स्ट जोड़ने के लिए टैप करें</string>
@@ -4972,6 +4975,8 @@
     <string name="TextStoryPostSendFragment__search">खोजें</string>
     <!-- Toast shown when an unexpected error occurs while sending a text story -->
     <string name="TextStoryPostSendFragment__an_unexpected_error_occurred_try_again">एक अनपेक्षित त्रुटि हुई</string>
+    <!-- Toast shown when a trying to add a link preview to a text story post and the link/url is not valid (e.g., missing .com at the end) -->
+    <string name="TextStoryPostSendFragment__please_enter_a_valid_link">Please enter a valid link.</string>
     <!-- Title for screen allowing user to exclude "My Story" entries from specific people -->
     <string name="ChangeMyStoryMembershipFragment__all_except">निम्न को छोड़कर सभी…</string>
     <!-- Title for screen allowing user to only share "My Story" entries with specific people -->
@@ -4984,11 +4989,11 @@
     <string name="StoryDialogs__s_will_be_removed">\"%1$s\" को हटा दिया जाएगा।</string>
     <!-- Dialog positive action for removing a group story -->
     <string name="StoryDialogs__remove">हटा दें</string>
-    <!-- Dialog title for deleting a private story -->
-    <string name="StoryDialogs__delete_private_story">निजी स्टोरी डिलीट करनी है?</string>
-    <!-- Dialog message for deleting a private story -->
+    <!-- Dialog title for deleting a custom story -->
+    <string name="StoryDialogs__delete_custom_story">Delete custom story?</string>
+    <!-- Dialog message for deleting a custom story -->
     <string name="StoryDialogs__s_and_updates_shared">\"%1$s\" और इस स्टोरी से शेयर किए गए अपडेट डिलीट कर दिए जाएंगे।</string>
-    <!-- Dialog positive action for deleting a private story -->
+    <!-- Dialog positive action for deleting a custom story -->
     <string name="StoryDialogs__delete">डिलीट करें</string>
     <!-- Dialog title for first time sending something to a beta story -->
     <string name="StoryDialogs__stories_is_available_to">स्टोरीज़ केवल Signal के बीटा यूज़र्स के लिए उपलब्ध है।</string>
@@ -5023,6 +5028,8 @@
     </plurals>
     <!-- Name story screen title -->
     <string name="CreateStoryWithViewersFragment__name_story">स्टोरी को नाम दें</string>
+    <!-- Name story screen note under text field -->
+    <string name="CreateStoryWithViewersFragment__only_you_can">Only you can see the name of this story.</string>
     <!-- Name story screen label hint -->
     <string name="CreateStoryWithViewersFragment__story_name_required">स्टोरी नाम (आवश्यक है)</string>
     <!-- Name story screen viewers subheading -->
@@ -5038,7 +5045,7 @@
     <!-- Choose story type bottom sheet title -->
     <string name="ChooseStoryTypeBottomSheet__choose_your_story_type">अपनी स्टोरी का प्रकार चुनें</string>
     <!-- Choose story type bottom sheet new story row title -->
-    <string name="ChooseStoryTypeBottomSheet__new_private_story">नई निजी स्टोरी</string>
+    <string name="ChooseStoryTypeBottomSheet__new_custom_story">New custom story</string>
     <!-- Choose story type bottom sheet new story row summary -->
     <string name="ChooseStoryTypeBottomSheet__visible_only_to">केवल निश्चित लोगों को दिखेगी</string>
     <!-- Choose story type bottom sheet group story title -->
@@ -5146,10 +5153,10 @@
     <string name="ExpiredGiftSheetConfiguration__not_now">अभी नहीं</string>
     <!-- My Story label designating that we will only share with the selected viewers. -->
     <string name="ContactSearchItems__only_share_with">केवल इनके साथ साझा करें</string>
-    <!-- Label under name for private stories -->
-    <plurals name="ContactSearchItems__private_story_d_viewers">
-        <item quantity="one">निजी स्टोरी · %1$d व्यूअर</item>
-        <item quantity="other">निजी स्टोरी · %1$d व्यूअर</item>
+    <!-- Label under name for custom stories -->
+    <plurals name="ContactSearchItems__custom_story_d_viewers">
+        <item quantity="one">Custom story · %1$d viewer</item>
+        <item quantity="other">Custom story · %1$d viewers</item>
     </plurals>
     <!-- Label under name for group stories -->
     <plurals name="ContactSearchItems__group_story_d_viewers">
@@ -5172,7 +5179,7 @@
     <string name="ContactSearchItems__story_settings">स्टोरी सेटिंग्स</string>
     <!-- Label for context menu item to remove a group story from contact results -->
     <string name="ContactSearchItems__remove_story">स्टोरी हटाएँ</string>
-    <!-- Label for context menu item to delete a private story -->
+    <!-- Label for context menu item to delete a custom story -->
     <string name="ContactSearchItems__delete_story">स्टोरी डिलीट करें</string>
     <!-- Dialog title for removing a group story -->
     <string name="ContactSearchMediator__remove_group_story">ग्रुप स्टोरी हटानी है?</string>
@@ -5180,11 +5187,11 @@
     <string name="ContactSearchMediator__this_will_remove">इससे आपकी सूची से स्टोरी हट जाएगी। आप इस ग्रुप से स्टोरीज़ को फिर भी देख पाएंगे।</string>
     <!-- Dialog action item for removing a group story -->
     <string name="ContactSearchMediator__remove">हटा दें</string>
-    <!-- Dialog title for deleting a private story -->
+    <!-- Dialog title for deleting a custom story -->
     <string name="ContactSearchMediator__delete_story">स्टोरी डिलीट करनी है?</string>
-    <!-- Dialog message for deleting a private story -->
-    <string name="ContactSearchMediator__delete_the_private">निजी स्टोरी \"%1$s\" डिलीट करनी है?</string>
-    <!-- Dialog action item for deleting a private story -->
+    <!-- Dialog message for deleting a custom story -->
+    <string name="ContactSearchMediator__delete_the_custom">Delete the custom story \"%1$s\"?</string>
+    <!-- Dialog action item for deleting a custom story -->
     <string name="ContactSearchMediator__delete">डिलीट करें</string>
     <!-- Gift expiry days remaining -->
     <plurals name="Gifts__d_days_remaining">
@@ -5284,7 +5291,7 @@
 
     <!-- StoriesPrivacySettingsFragment -->
     <!-- Explanation about how stories are deleted and managed -->
-    <string name="StoriesPrivacySettingsFragment__stories_automatically_disappear">24 घंटे बाद स्टोरीज़ अपने आप गायब हो जाती हैं। चुनें कि आपकी स्टोरी कौन देख सकता है या फिर निश्चित व्यूअर्स या ग्रुप्स के साथ नई स्टोरीज़ बनाएँ।</string>
+    <string name="StoriesPrivacySettingsFragment__story_updates_automatically_disappear">Story updates automatically disappear after 24 hours. Choose who can view your story or create new stories with specific viewers or groups.</string>
     <!-- Preference title to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__turn_off_stories">स्टोरीज़ बंद करें</string>
     <!-- Preference summary to turn off stories -->
@@ -5301,6 +5308,12 @@
     <string name="StoriesPrivacySettingsFragment__story_privacy">स्टोरी की निजता</string>
     <!-- Header for section that lists out stories -->
     <string name="StoriesPrivacySettingsFragment__stories">स्टोरीज़</string>
+    <!-- Story views header -->
+    <string name="StoriesPrivacySettingsFragment__story_views">Story views</string>
+    <!-- Story view receipts toggle title -->
+    <string name="StoriesPrivacySettingsFragment__view_receipts">View receipts</string>
+    <!-- Story view receipts toggle message -->
+    <string name="StoriesPrivacySettingsFragment__see_and_share">See and share when stories are viewed. If disabled, you won\'t see when others view your story.</string>
 
     <!-- NewStoryItem -->
     <string name="NewStoryItem__new_story">नई स्टोरी</string>
@@ -5342,6 +5355,14 @@
         <item quantity="one">%2$d में से %1$d निर्यात कर रहा है…</item>
         <item quantity="other">%2$d में से %1$d निर्यात कर रहा है…</item>
     </plurals>
+    <!-- Alert dialog title shown when we think a user may not have enough local storage available to export sms messages -->
+    <string name="ExportingSmsMessagesFragment__you_may_not_have_enough_disk_space">You may not have enough disk space</string>
+    <!-- Alert dialog message shown when we think a user may not have enough local storage available to export sms messages, placeholder is the file size, e.g., 128kB -->
+    <string name="ExportingSmsMessagesFragment__you_need_approximately_s_to_export_your_messages_ensure_you_have_enough_space_before_continuing">You need approximately %1$s to export your messages, ensure you have enough space before continuing.</string>
+    <!-- Alert dialog button to continue with exporting sms after seeing the lack of storage warning -->
+    <string name="ExportingSmsMessagesFragment__continue_anyway">फिर भी जारी रखें</string>
+    <!-- Dialog text shown when Signal isn't granted the sms permission needed to export messages, different than being selected as the sms app -->
+    <string name="ExportingSmsMessagesFragment__signal_needs_the_sms_permission_to_be_able_to_export_your_sms_messages">Signal needs the SMS permission to be able to export your SMS messages.</string>
 
     <!-- ChooseANewDefaultSmsAppFragment -->
     <!-- Title of the screen -->
@@ -5438,6 +5459,26 @@
         <item quantity="one">%2$d में से %1$d संदेश निर्यात किया गया</item>
         <item quantity="other">%2$d में से %1$d संदेश निर्यात किए गए</item>
     </plurals>
+
+    <!-- Title of screen shown when some sms messages did not export -->
+    <string name="ExportSmsPartiallyComplete__export_partially_complete">Export partially complete</string>
+    <!-- Debug step 1 on screen shown when some sms messages did not export -->
+    <string name="ExportSmsPartiallyComplete__ensure_you_have_an_additional_s_free_on_your_phone_to_export_your_messages">Ensure you have an additional %1$s free on your phone to export your messages</string>
+    <!-- Debug step 2 on screen shown when some sms messages dit not export -->
+    <string name="ExportSmsPartiallyComplete__retry_export_which_will_only_retry_messages_that_have_not_yet_been_exported">Retry export, which will only retry messages that have not yet been exported</string>
+    <!-- Partial sentence for Debug step 3 on screen shown when some sms messages did not export, is combined with 'contact us' -->
+    <string name="ExportSmsPartiallyComplete__if_the_problem_persists">If the problem persists, </string>
+    <!-- Partial sentence for deubg step 3 on screen shown when some sms messages did not export, combined with 'If the problem persists', link text to open contact support view -->
+    <string name="ExportSmsPartiallyComplete__contact_us">हमसे संपर्क करें</string>
+    <!-- Button text to retry sms export -->
+    <string name="ExportSmsPartiallyComplete__retry">दोबारा कोशिश करें</string>
+    <!-- Button text to continue sms export flow and not retry failed message exports -->
+    <string name="ExportSmsPartiallyComplete__continue_anyway">फिर भी जारी रखें</string>
+    <!-- Title of screen shown when all sms messages failed to export -->
+    <string name="ExportSmsFullError__error_exporting_sms_messages">Error exporting SMS messages</string>
+    <!-- Helper text shown when all sms messages failed to export -->
+    <string name="ExportSmsFullError__please_try_again_if_the_problem_persists">Please try again. If the problem persists, </string>
+
 
     <!-- EOF -->
 

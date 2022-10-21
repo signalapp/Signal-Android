@@ -224,7 +224,7 @@
     <!-- Label for my stories when selecting who to send media to -->
     <string name="ContactsCursorLoader_my_stories">Мої сторіз</string>
     <!-- Text for a button that brings up a bottom sheet to create a new story. -->
-    <string name="ContactsCursorLoader_add_to">Додати до…</string>
+    <string name="ContactsCursorLoader_new">New</string>
 
     <!-- ContactsDatabase -->
     <string name="ContactsDatabase_message_s">Повідомлення %1$s</string>
@@ -898,7 +898,9 @@
     <string name="AddGroupDetailsFragment__remove">Вилучити</string>
     <string name="AddGroupDetailsFragment__sms_contact">SMS контакт</string>
     <string name="AddGroupDetailsFragment__remove_s_from_this_group">Видалити %1$s з цієї групи?</string>
-    <!-- Displayed when adding group details to an MMS Group -->
+    <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
+    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">Ви вибрали контакт, який не підтримує групи Signal, тому ця група буде MMS-групою. Настроювані назви і фото MMS-групи зможете бачити тільки ви.</string>
+    <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">Ви вибрали контакт, який не підтримує групи Signal. Це буде MMS-група. Настроювані імена і фото MMS-груп будуть видні тільки вам. Незабаром ми припинимо підтримувати MMS-групи, щоб сфокусуватися на зашифрованих повідомленнях.</string>
 
     <!-- ManageGroupActivity -->
@@ -2681,15 +2683,16 @@
     <string name="HelpFragment__debug_log">Журнал відладки:</string>
     <string name="HelpFragment__could_not_upload_logs">Не вдалося вивантажити логи</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">Будь ласка, пишіть якомога детальніше, щоб допомогти нам зрозуміти проблему.</string>
-    <string-array name="HelpFragment__categories_4">
+    <string-array name="HelpFragment__categories_5">
         <item>\\-\\- Виберіть варіант \\-\\-</item>
         <item>Щось не працює</item>
         <item>Запит на функцію</item>
         <item>Питання</item>
         <item>Зворотній зв\'язок</item>
-        <item>Інше</item>
+        <item>Інший</item>
         <item>Платежі (MobileCoin)</item>
         <item>Донати і значки</item>
+        <item>SMS Export</item>
     </string-array>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
@@ -2950,7 +2953,7 @@
     <!-- Internal only preferences -->
     <string name="preferences__internal_turn_off_stories_with_stories_on_disk" translatable="false">Turn off stories (with stories on disk)</string>
     <string name="preferences__internal_turn_off_stories" translatable="false">Turn off stories</string>
-    <string name="preferences__internal_delete_private_story" translatable="false">Delete private story</string>
+    <string name="preferences__internal_delete_custom_story" translatable="false">Delete custom story</string>
     <string name="preferences__internal_hide_story" translatable="false">Hide story</string>
     <string name="preferences__internal_story_or_profile_selector" translatable="false">Story or profile selector</string>
     <string name="preferences__internal_stories_dialog_launcher" translatable="false">Stories dialog launcher</string>
@@ -4975,7 +4978,7 @@
     <!-- Title for "My Stories" row item in Stories landing page -->
     <string name="StoriesLandingFragment__my_stories">Мої сторіз</string>
     <!-- Subtitle for "My Stories" row item when user has not added stories -->
-    <string name="StoriesLandingFragment__tap_to_add_a_story">Торкніться, щоб додати сторі</string>
+    <string name="StoriesLandingFragment__tap_to_add">Tap to add</string>
     <!-- Displayed when there are no stories to display -->
     <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now">Немає оновлень для показу.</string>
     <!-- Context menu option to hide a story -->
@@ -5152,25 +5155,25 @@
     <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Вони є у ваших контактах</string>
     <!-- Note at the bottom of the Signal connections sheet -->
     <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Ваші контакти можуть бачити ваше ім'я та фото, а також публікації у розділі «Мої сторіз», якщо ви їх не приховали."</string>
-    <!-- Clickable option to add a viewer to a private story -->
+    <!-- Clickable option to add a viewer to a custom story -->
     <string name="PrivateStorySettingsFragment__add_viewer">Додати глядача</string>
     <!-- Clickable option to delete a custom story -->
-    <string name="PrivateStorySettingsFragment__delete_private_story">Видалити приватну сторі</string>
-    <!-- Dialog title when attempting to remove someone from a private story -->
+    <string name="PrivateStorySettingsFragment__delete_custom_story">Delete custom story</string>
+    <!-- Dialog title when attempting to remove someone from a custom story -->
     <string name="PrivateStorySettingsFragment__remove_s">Видалити %1$s?</string>
-    <!-- Dialog message when attempting to remove someone from a private story -->
+    <!-- Dialog message when attempting to remove someone from a custom story -->
     <string name="PrivateStorySettingsFragment__this_person_will_no_longer">Ця людина більше не бачитиме вашу сторі.</string>
-    <!-- Positive action label when attempting to remove someone from a private story -->
+    <!-- Positive action label when attempting to remove someone from a custom story -->
     <string name="PrivateStorySettingsFragment__remove">Видалити</string>
-    <!-- Dialog title when deleting a private story -->
+    <!-- Dialog title when deleting a custom story -->
     <string name="PrivateStorySettingsFragment__are_you_sure">Ви впевнені?</string>
-    <!-- Dialog message when deleting a private story -->
+    <!-- Dialog message when deleting a custom story -->
     <string name="PrivateStorySettingsFragment__this_action_cannot">Цю дію не можна скасувати.</string>
-    <!-- Page title for editing a private story name -->
+    <!-- Page title for editing a custom story name -->
     <string name="EditPrivateStoryNameFragment__edit_story_name">Редагувати назву сторі</string>
-    <!-- Input field hint when editing a private story name -->
+    <!-- Input field hint when editing a custom story name -->
     <string name="EditPrivateStoryNameFragment__story_name">Назва сторі</string>
-    <!-- Save button label when editing a private story name -->
+    <!-- Save button label when editing a custom story name -->
     <string name="EditPrivateStoryNameFragment__save">Зберегти</string>
     <!-- Displayed in text post creator before user enters text -->
     <string name="TextStoryPostCreationFragment__tap_to_add_text">Торкніться для додавання тексту</string>
@@ -5192,6 +5195,8 @@
     <string name="TextStoryPostSendFragment__search">Пошук</string>
     <!-- Toast shown when an unexpected error occurs while sending a text story -->
     <string name="TextStoryPostSendFragment__an_unexpected_error_occurred_try_again">Сталася неочікувана помилка</string>
+    <!-- Toast shown when a trying to add a link preview to a text story post and the link/url is not valid (e.g., missing .com at the end) -->
+    <string name="TextStoryPostSendFragment__please_enter_a_valid_link">Please enter a valid link.</string>
     <!-- Title for screen allowing user to exclude "My Story" entries from specific people -->
     <string name="ChangeMyStoryMembershipFragment__all_except">Усі, крім…</string>
     <!-- Title for screen allowing user to only share "My Story" entries with specific people -->
@@ -5204,11 +5209,11 @@
     <string name="StoryDialogs__s_will_be_removed">«%1$s» буде вилучено.</string>
     <!-- Dialog positive action for removing a group story -->
     <string name="StoryDialogs__remove">Вилучити</string>
-    <!-- Dialog title for deleting a private story -->
-    <string name="StoryDialogs__delete_private_story">Видалити приватну сторі?</string>
-    <!-- Dialog message for deleting a private story -->
+    <!-- Dialog title for deleting a custom story -->
+    <string name="StoryDialogs__delete_custom_story">Delete custom story?</string>
+    <!-- Dialog message for deleting a custom story -->
     <string name="StoryDialogs__s_and_updates_shared">«%1$s» і оновлення до цієї сторі будуть видалені.</string>
-    <!-- Dialog positive action for deleting a private story -->
+    <!-- Dialog positive action for deleting a custom story -->
     <string name="StoryDialogs__delete">Видалити</string>
     <!-- Dialog title for first time sending something to a beta story -->
     <string name="StoryDialogs__stories_is_available_to">Сторіз доступні лише для користувачів бета-версії Signal.</string>
@@ -5245,6 +5250,8 @@
     </plurals>
     <!-- Name story screen title -->
     <string name="CreateStoryWithViewersFragment__name_story">Назва сторі</string>
+    <!-- Name story screen note under text field -->
+    <string name="CreateStoryWithViewersFragment__only_you_can">Only you can see the name of this story.</string>
     <!-- Name story screen label hint -->
     <string name="CreateStoryWithViewersFragment__story_name_required">Назва сторі (обов\'язкова)</string>
     <!-- Name story screen viewers subheading -->
@@ -5260,7 +5267,7 @@
     <!-- Choose story type bottom sheet title -->
     <string name="ChooseStoryTypeBottomSheet__choose_your_story_type">Обрати тип сторі</string>
     <!-- Choose story type bottom sheet new story row title -->
-    <string name="ChooseStoryTypeBottomSheet__new_private_story">Нова приватна сторі</string>
+    <string name="ChooseStoryTypeBottomSheet__new_custom_story">New custom story</string>
     <!-- Choose story type bottom sheet new story row summary -->
     <string name="ChooseStoryTypeBottomSheet__visible_only_to">Можуть побачити лише окремі особи</string>
     <!-- Choose story type bottom sheet group story title -->
@@ -5370,12 +5377,12 @@
     <string name="ExpiredGiftSheetConfiguration__not_now">Не зараз</string>
     <!-- My Story label designating that we will only share with the selected viewers. -->
     <string name="ContactSearchItems__only_share_with">Ділитися тільки з</string>
-    <!-- Label under name for private stories -->
-    <plurals name="ContactSearchItems__private_story_d_viewers">
-        <item quantity="one">Приватна сторі · %1$d глядач</item>
-        <item quantity="few">Приватна сторі · %1$d глядачі</item>
-        <item quantity="many">Приватна сторі · %1$d глядачів</item>
-        <item quantity="other">Приватна сторі · %1$d глядача</item>
+    <!-- Label under name for custom stories -->
+    <plurals name="ContactSearchItems__custom_story_d_viewers">
+        <item quantity="one">Custom story · %1$d viewer</item>
+        <item quantity="few">Custom story · %1$d viewers</item>
+        <item quantity="many">Custom story · %1$d viewers</item>
+        <item quantity="other">Custom story · %1$d viewers</item>
     </plurals>
     <!-- Label under name for group stories -->
     <plurals name="ContactSearchItems__group_story_d_viewers">
@@ -5404,7 +5411,7 @@
     <string name="ContactSearchItems__story_settings">Налаштування сторі</string>
     <!-- Label for context menu item to remove a group story from contact results -->
     <string name="ContactSearchItems__remove_story">Вилучити сторі</string>
-    <!-- Label for context menu item to delete a private story -->
+    <!-- Label for context menu item to delete a custom story -->
     <string name="ContactSearchItems__delete_story">Видалити сторі</string>
     <!-- Dialog title for removing a group story -->
     <string name="ContactSearchMediator__remove_group_story">Вилучити групову сторі?</string>
@@ -5412,11 +5419,11 @@
     <string name="ContactSearchMediator__this_will_remove">Сторі буде вилучено з цього переліку. Ви все одно зможете переглядати сторіз у цій групі.</string>
     <!-- Dialog action item for removing a group story -->
     <string name="ContactSearchMediator__remove">Видалити</string>
-    <!-- Dialog title for deleting a private story -->
+    <!-- Dialog title for deleting a custom story -->
     <string name="ContactSearchMediator__delete_story">Видалити сторі?</string>
-    <!-- Dialog message for deleting a private story -->
-    <string name="ContactSearchMediator__delete_the_private">Видалити приватну сторі «%1$s»?</string>
-    <!-- Dialog action item for deleting a private story -->
+    <!-- Dialog message for deleting a custom story -->
+    <string name="ContactSearchMediator__delete_the_custom">Delete the custom story \"%1$s\"?</string>
+    <!-- Dialog action item for deleting a custom story -->
     <string name="ContactSearchMediator__delete">Видалити</string>
     <!-- Gift expiry days remaining -->
     <plurals name="Gifts__d_days_remaining">
@@ -5524,7 +5531,7 @@
 
     <!-- StoriesPrivacySettingsFragment -->
     <!-- Explanation about how stories are deleted and managed -->
-    <string name="StoriesPrivacySettingsFragment__stories_automatically_disappear">Сторіз автоматично зникають через 24 години. Оберіть, хто може переглядати ваші сторіз, або створюйте нові сторіз для конкретних глядачів чи груп.</string>
+    <string name="StoriesPrivacySettingsFragment__story_updates_automatically_disappear">Story updates automatically disappear after 24 hours. Choose who can view your story or create new stories with specific viewers or groups.</string>
     <!-- Preference title to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__turn_off_stories">Вимкнути сторіз</string>
     <!-- Preference summary to turn off stories -->
@@ -5541,6 +5548,12 @@
     <string name="StoriesPrivacySettingsFragment__story_privacy">Конфіденційність сторіз</string>
     <!-- Header for section that lists out stories -->
     <string name="StoriesPrivacySettingsFragment__stories">Сторіз</string>
+    <!-- Story views header -->
+    <string name="StoriesPrivacySettingsFragment__story_views">Story views</string>
+    <!-- Story view receipts toggle title -->
+    <string name="StoriesPrivacySettingsFragment__view_receipts">View receipts</string>
+    <!-- Story view receipts toggle message -->
+    <string name="StoriesPrivacySettingsFragment__see_and_share">See and share when stories are viewed. If disabled, you won\'t see when others view your story.</string>
 
     <!-- NewStoryItem -->
     <string name="NewStoryItem__new_story">Нова сторі</string>
@@ -5584,6 +5597,14 @@
         <item quantity="many">Експорт %1$d з %2$d…</item>
         <item quantity="other">Експорт %1$d з %2$d…</item>
     </plurals>
+    <!-- Alert dialog title shown when we think a user may not have enough local storage available to export sms messages -->
+    <string name="ExportingSmsMessagesFragment__you_may_not_have_enough_disk_space">You may not have enough disk space</string>
+    <!-- Alert dialog message shown when we think a user may not have enough local storage available to export sms messages, placeholder is the file size, e.g., 128kB -->
+    <string name="ExportingSmsMessagesFragment__you_need_approximately_s_to_export_your_messages_ensure_you_have_enough_space_before_continuing">You need approximately %1$s to export your messages, ensure you have enough space before continuing.</string>
+    <!-- Alert dialog button to continue with exporting sms after seeing the lack of storage warning -->
+    <string name="ExportingSmsMessagesFragment__continue_anyway">Усе одно продовжити</string>
+    <!-- Dialog text shown when Signal isn't granted the sms permission needed to export messages, different than being selected as the sms app -->
+    <string name="ExportingSmsMessagesFragment__signal_needs_the_sms_permission_to_be_able_to_export_your_sms_messages">Signal needs the SMS permission to be able to export your SMS messages.</string>
 
     <!-- ChooseANewDefaultSmsAppFragment -->
     <!-- Title of the screen -->
@@ -5682,6 +5703,26 @@
         <item quantity="many">Експортовані повідомлення: %1$d з %2$d</item>
         <item quantity="other">Експортовані повідомлення: %1$d з %2$d</item>
     </plurals>
+
+    <!-- Title of screen shown when some sms messages did not export -->
+    <string name="ExportSmsPartiallyComplete__export_partially_complete">Export partially complete</string>
+    <!-- Debug step 1 on screen shown when some sms messages did not export -->
+    <string name="ExportSmsPartiallyComplete__ensure_you_have_an_additional_s_free_on_your_phone_to_export_your_messages">Ensure you have an additional %1$s free on your phone to export your messages</string>
+    <!-- Debug step 2 on screen shown when some sms messages dit not export -->
+    <string name="ExportSmsPartiallyComplete__retry_export_which_will_only_retry_messages_that_have_not_yet_been_exported">Retry export, which will only retry messages that have not yet been exported</string>
+    <!-- Partial sentence for Debug step 3 on screen shown when some sms messages did not export, is combined with 'contact us' -->
+    <string name="ExportSmsPartiallyComplete__if_the_problem_persists">If the problem persists, </string>
+    <!-- Partial sentence for deubg step 3 on screen shown when some sms messages did not export, combined with 'If the problem persists', link text to open contact support view -->
+    <string name="ExportSmsPartiallyComplete__contact_us">Напишіть нам</string>
+    <!-- Button text to retry sms export -->
+    <string name="ExportSmsPartiallyComplete__retry">Повторити</string>
+    <!-- Button text to continue sms export flow and not retry failed message exports -->
+    <string name="ExportSmsPartiallyComplete__continue_anyway">Усе одно продовжити</string>
+    <!-- Title of screen shown when all sms messages failed to export -->
+    <string name="ExportSmsFullError__error_exporting_sms_messages">Error exporting SMS messages</string>
+    <!-- Helper text shown when all sms messages failed to export -->
+    <string name="ExportSmsFullError__please_try_again_if_the_problem_persists">Please try again. If the problem persists, </string>
+
 
     <!-- EOF -->
 

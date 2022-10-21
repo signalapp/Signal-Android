@@ -222,7 +222,7 @@
     <!-- Label for my stories when selecting who to send media to -->
     <string name="ContactsCursorLoader_my_stories">എന്റെ സ്റ്റോറികൾ</string>
     <!-- Text for a button that brings up a bottom sheet to create a new story. -->
-    <string name="ContactsCursorLoader_add_to">ഇതിലേക്ക് ചേർക്കുക…</string>
+    <string name="ContactsCursorLoader_new">New</string>
 
     <!-- ContactsDatabase -->
     <string name="ContactsDatabase_message_s">സന്ദേശ൦ %1$s</string>
@@ -822,7 +822,9 @@
     <string name="AddGroupDetailsFragment__remove">നീക്കംചെയ്യൂ</string>
     <string name="AddGroupDetailsFragment__sms_contact">SMS കോൺടാക്റ്റ്</string>
     <string name="AddGroupDetailsFragment__remove_s_from_this_group">ഈ ഗ്രൂപ്പിൽ നിന്ന് %1$s-നെ നീക്കംചെയ്യണോ?</string>
-    <!-- Displayed when adding group details to an MMS Group -->
+    <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
+    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">Signal ഗ്രൂപ്പുകളെ പിന്തുണയ്‌ക്കാത്ത ഒരു കോൺടാക്‌റ്റ് നിങ്ങൾ തിരഞ്ഞെടുത്തു, അതിനാൽ ഈ ഗ്രൂപ്പ് MMS ആയിരിക്കും. കസ്റ്റം MMS ഗ്രൂപ്പ് പേരുകളും ഫോട്ടോകളും നിങ്ങൾക്ക് മാത്രമേ ദൃശ്യമാകൂ.</string>
+    <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">Signal ഗ്രൂപ്പുകളെ പിന്തുണയ്‌ക്കാത്ത ഒരു കോൺ‌ടാക്റ്റ് നിങ്ങൾ തിരഞ്ഞെടുത്തു, ഈ ഗ്രൂപ്പ് MMS ആയിരിക്കും. ഇഷ്ടാനുസൃത/കസ്റ്റം MMS ഗ്രൂപ്പ് പേരുകളും ഫോട്ടോകളും നിങ്ങൾക്ക് മാത്രമേ ദൃശ്യമാകൂ. എൻക്രിപ്റ്റ് ചെയ്‌ത സന്ദേശമയയ്‌ക്കലിൽ ശ്രദ്ധ കേന്ദ്രീകരിക്കാൻ MMS ഗ്രൂപ്പുകൾക്കുള്ള പിന്തുണ ഉടൻ നീക്കം ചെയ്യും.</string>
 
     <!-- ManageGroupActivity -->
@@ -2511,7 +2513,7 @@
     <string name="HelpFragment__debug_log">ഡീബഗ് ലോഗ്:</string>
     <string name="HelpFragment__could_not_upload_logs">ലോഗുകൾ അപ്‌ലോഡുചെയ്യാനായില്ല</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">പ്രശ്നം മനസിലാക്കാൻ ഞങ്ങളെ സഹായിക്കുന്നതിന് ദയവായി കഴിയുന്നത്ര വിവരണാത്മകമായിരിക്കുക.</string>
-    <string-array name="HelpFragment__categories_4">
+    <string-array name="HelpFragment__categories_5">
         <item>\\-\\- ഒരു ഓപ്‌ഷൻ തിരഞ്ഞെടുക്കുക \\-\\-</item>
         <item>എന്തോ പ്രവർത്തിക്കുന്നില്ല</item>
         <item>ഫീച്ചര്‍ അഭ്യർത്ഥന</item>
@@ -2520,6 +2522,7 @@
         <item>മറ്റുള്ളവ</item>
         <item>പേയ്‌മെന്റുകൾ (MobileCoin)</item>
         <item>സംഭാവനകളും ബാഡ്‌ജുകളും</item>
+        <item>SMS Export</item>
     </string-array>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
@@ -2778,7 +2781,7 @@
     <!-- Internal only preferences -->
     <string name="preferences__internal_turn_off_stories_with_stories_on_disk" translatable="false">Turn off stories (with stories on disk)</string>
     <string name="preferences__internal_turn_off_stories" translatable="false">Turn off stories</string>
-    <string name="preferences__internal_delete_private_story" translatable="false">Delete private story</string>
+    <string name="preferences__internal_delete_custom_story" translatable="false">Delete custom story</string>
     <string name="preferences__internal_hide_story" translatable="false">Hide story</string>
     <string name="preferences__internal_story_or_profile_selector" translatable="false">Story or profile selector</string>
     <string name="preferences__internal_stories_dialog_launcher" translatable="false">Stories dialog launcher</string>
@@ -4767,7 +4770,7 @@
     <!-- Title for "My Stories" row item in Stories landing page -->
     <string name="StoriesLandingFragment__my_stories">എന്റെ സ്റ്റോറികൾ</string>
     <!-- Subtitle for "My Stories" row item when user has not added stories -->
-    <string name="StoriesLandingFragment__tap_to_add_a_story">ഒരു സ്റ്റോറി ചേർക്കാൻ ടാപ്പ് ചെയ്യുക</string>
+    <string name="StoriesLandingFragment__tap_to_add">Tap to add</string>
     <!-- Displayed when there are no stories to display -->
     <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now">ഇപ്പോൾ കാണിക്കാൻ സമീപകാല അപ്‌ഡേറ്റുകൾ ഒന്നുമില്ല.</string>
     <!-- Context menu option to hide a story -->
@@ -4932,25 +4935,25 @@
     <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">നിങ്ങളുടെ സിസ്റ്റം കോൺടാക്റ്റുകളിൽ ചേർത്ത്</string>
     <!-- Note at the bottom of the Signal connections sheet -->
     <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"നിങ്ങളുടെ കണക്ഷനുകൾക്ക് നിങ്ങളുടെ പേരും ഫോട്ടോയും കാണാനാകും, മാത്രമല്ല നിങ്ങൾ മറയ്ക്കാത്ത പക്ഷം അവർക്ക് നിങ്ങൾ \"എന്‍റെ സ്റ്റോറിയിൽ\" ചേർക്കുന്ന പോസ്റ്റുകളും കാണാനാകും."</string>
-    <!-- Clickable option to add a viewer to a private story -->
+    <!-- Clickable option to add a viewer to a custom story -->
     <string name="PrivateStorySettingsFragment__add_viewer">കാഴ്ച്ചക്കാരെ ചേർക്കുക</string>
     <!-- Clickable option to delete a custom story -->
-    <string name="PrivateStorySettingsFragment__delete_private_story">സ്വകാര്യ സ്റ്റോറി ഇല്ലാതാക്കുക</string>
-    <!-- Dialog title when attempting to remove someone from a private story -->
+    <string name="PrivateStorySettingsFragment__delete_custom_story">Delete custom story</string>
+    <!-- Dialog title when attempting to remove someone from a custom story -->
     <string name="PrivateStorySettingsFragment__remove_s">%1$sഎന്നയാളെ നീക്കം ചെയ്യണോ?</string>
-    <!-- Dialog message when attempting to remove someone from a private story -->
+    <!-- Dialog message when attempting to remove someone from a custom story -->
     <string name="PrivateStorySettingsFragment__this_person_will_no_longer">ഈ വ്യക്തിക്ക് ഇനിമുതൽ നിങ്ങളുടെ സ്റ്റോറി കാണാൻ കഴിയുന്നതല്ല.</string>
-    <!-- Positive action label when attempting to remove someone from a private story -->
+    <!-- Positive action label when attempting to remove someone from a custom story -->
     <string name="PrivateStorySettingsFragment__remove">നീക്കംചെയ്യൂ</string>
-    <!-- Dialog title when deleting a private story -->
+    <!-- Dialog title when deleting a custom story -->
     <string name="PrivateStorySettingsFragment__are_you_sure">ഉറപ്പാണോ?</string>
-    <!-- Dialog message when deleting a private story -->
+    <!-- Dialog message when deleting a custom story -->
     <string name="PrivateStorySettingsFragment__this_action_cannot">ഈ പ്രവൃത്തി പഴയപടിയാക്കാനാകില്ല.</string>
-    <!-- Page title for editing a private story name -->
+    <!-- Page title for editing a custom story name -->
     <string name="EditPrivateStoryNameFragment__edit_story_name">സ്റ്റോറിയുടെ പേര് എഡിറ്റ് ചെയ്യുക</string>
-    <!-- Input field hint when editing a private story name -->
+    <!-- Input field hint when editing a custom story name -->
     <string name="EditPrivateStoryNameFragment__story_name">സ്റ്റോറിയുടെ പേര്</string>
-    <!-- Save button label when editing a private story name -->
+    <!-- Save button label when editing a custom story name -->
     <string name="EditPrivateStoryNameFragment__save">സംരക്ഷിക്കൂ</string>
     <!-- Displayed in text post creator before user enters text -->
     <string name="TextStoryPostCreationFragment__tap_to_add_text">ടെക്സ്റ്റ് ചേർക്കാൻ ടാപ്പ് ചെയ്യുക</string>
@@ -4972,6 +4975,8 @@
     <string name="TextStoryPostSendFragment__search">തിരയുക</string>
     <!-- Toast shown when an unexpected error occurs while sending a text story -->
     <string name="TextStoryPostSendFragment__an_unexpected_error_occurred_try_again">ഒരു അപ്രതീക്ഷിത പിശക് സംഭവിച്ചു</string>
+    <!-- Toast shown when a trying to add a link preview to a text story post and the link/url is not valid (e.g., missing .com at the end) -->
+    <string name="TextStoryPostSendFragment__please_enter_a_valid_link">Please enter a valid link.</string>
     <!-- Title for screen allowing user to exclude "My Story" entries from specific people -->
     <string name="ChangeMyStoryMembershipFragment__all_except">ഇനിപ്പറയുന്നവര്‍ ഒഴികെ എല്ലാവരും…</string>
     <!-- Title for screen allowing user to only share "My Story" entries with specific people -->
@@ -4984,11 +4989,11 @@
     <string name="StoryDialogs__s_will_be_removed">\"%1$s\" നീക്കം ചെയ്യപ്പെടും.</string>
     <!-- Dialog positive action for removing a group story -->
     <string name="StoryDialogs__remove">നീക്കംചെയ്യൂ</string>
-    <!-- Dialog title for deleting a private story -->
-    <string name="StoryDialogs__delete_private_story">സ്വകാര്യ സ്റ്റോറി ഇല്ലാതാക്കണോ?</string>
-    <!-- Dialog message for deleting a private story -->
+    <!-- Dialog title for deleting a custom story -->
+    <string name="StoryDialogs__delete_custom_story">Delete custom story?</string>
+    <!-- Dialog message for deleting a custom story -->
     <string name="StoryDialogs__s_and_updates_shared">ഈ സ്റ്റോറിയിലേക്ക് പങ്കിട്ട \"%1$s\" എന്നതും അപ്‌ഡേറ്റുകളും ഇല്ലാതാക്കപ്പെടും.</string>
-    <!-- Dialog positive action for deleting a private story -->
+    <!-- Dialog positive action for deleting a custom story -->
     <string name="StoryDialogs__delete">ഇല്ലാതാക്കൂ</string>
     <!-- Dialog title for first time sending something to a beta story -->
     <string name="StoryDialogs__stories_is_available_to">Signal ബീറ്റ ഉപയോക്താക്കൾക്ക് മാത്രമേ സ്റ്റോറികൾ ലഭ്യമാകൂ.</string>
@@ -5023,6 +5028,8 @@
     </plurals>
     <!-- Name story screen title -->
     <string name="CreateStoryWithViewersFragment__name_story">സ്റ്റോറിക്ക് പേരിടുക</string>
+    <!-- Name story screen note under text field -->
+    <string name="CreateStoryWithViewersFragment__only_you_can">Only you can see the name of this story.</string>
     <!-- Name story screen label hint -->
     <string name="CreateStoryWithViewersFragment__story_name_required">സ്റ്റോറിയുടെ പേര് (ആവശ്യമാണ്)</string>
     <!-- Name story screen viewers subheading -->
@@ -5038,7 +5045,7 @@
     <!-- Choose story type bottom sheet title -->
     <string name="ChooseStoryTypeBottomSheet__choose_your_story_type">നിങ്ങളുടെ സ്റ്റോറി തരം തിരഞ്ഞെടുക്കുക</string>
     <!-- Choose story type bottom sheet new story row title -->
-    <string name="ChooseStoryTypeBottomSheet__new_private_story">പുതിയ സ്വകാര്യ സ്റ്റോറി</string>
+    <string name="ChooseStoryTypeBottomSheet__new_custom_story">New custom story</string>
     <!-- Choose story type bottom sheet new story row summary -->
     <string name="ChooseStoryTypeBottomSheet__visible_only_to">നിർദ്ദിഷ്ട ആളുകൾക്ക് മാത്രമെ കാണാനാകൂ</string>
     <!-- Choose story type bottom sheet group story title -->
@@ -5146,10 +5153,10 @@
     <string name="ExpiredGiftSheetConfiguration__not_now">ഇപ്പോൾ വേണ്ട</string>
     <!-- My Story label designating that we will only share with the selected viewers. -->
     <string name="ContactSearchItems__only_share_with">ഇവർക്ക് പങ്കിടൂ</string>
-    <!-- Label under name for private stories -->
-    <plurals name="ContactSearchItems__private_story_d_viewers">
-        <item quantity="one">സ്വകാര്യ സ്റ്റോറി · %1$d ആൾ കണ്ടു</item>
-        <item quantity="other">സ്വകാര്യ സ്റ്റോറി · %1$d കാഴ്‌ചക്കാർ</item>
+    <!-- Label under name for custom stories -->
+    <plurals name="ContactSearchItems__custom_story_d_viewers">
+        <item quantity="one">Custom story · %1$d viewer</item>
+        <item quantity="other">Custom story · %1$d viewers</item>
     </plurals>
     <!-- Label under name for group stories -->
     <plurals name="ContactSearchItems__group_story_d_viewers">
@@ -5172,7 +5179,7 @@
     <string name="ContactSearchItems__story_settings">സ്റ്റോറി ക്രമീകരണങ്ങൾ</string>
     <!-- Label for context menu item to remove a group story from contact results -->
     <string name="ContactSearchItems__remove_story">സ്റ്റോറി നീക്കം ചെയ്യുക</string>
-    <!-- Label for context menu item to delete a private story -->
+    <!-- Label for context menu item to delete a custom story -->
     <string name="ContactSearchItems__delete_story">സ്റ്റോറി ഇല്ലാതാക്കുക</string>
     <!-- Dialog title for removing a group story -->
     <string name="ContactSearchMediator__remove_group_story">ഗ്രൂപ്പ് സ്റ്റോറി ഇല്ലാതാക്കണോ?</string>
@@ -5180,11 +5187,11 @@
     <string name="ContactSearchMediator__this_will_remove">ഇത് ഈ ലിസ്റ്റിൽ നിന്ന് സ്റ്റോറി നീക്കം ചെയ്യും. എന്നിരുന്നാലും, ഈ ഗ്രൂപ്പിൽ നിന്നുള്ള സ്റ്റോറികൾ നിങ്ങൾക്ക് തുടർന്നും കാണാൻ കഴിയും.</string>
     <!-- Dialog action item for removing a group story -->
     <string name="ContactSearchMediator__remove">നീക്കം ചെയ്യുക</string>
-    <!-- Dialog title for deleting a private story -->
+    <!-- Dialog title for deleting a custom story -->
     <string name="ContactSearchMediator__delete_story">സ്റ്റോറി ഇല്ലാതാക്കണോ?</string>
-    <!-- Dialog message for deleting a private story -->
-    <string name="ContactSearchMediator__delete_the_private">സ്വകാര്യ സ്റ്റോറി \"%1$s\" ഇല്ലാതാക്കണോ?</string>
-    <!-- Dialog action item for deleting a private story -->
+    <!-- Dialog message for deleting a custom story -->
+    <string name="ContactSearchMediator__delete_the_custom">Delete the custom story \"%1$s\"?</string>
+    <!-- Dialog action item for deleting a custom story -->
     <string name="ContactSearchMediator__delete">ഇല്ലാതാക്കൂ</string>
     <!-- Gift expiry days remaining -->
     <plurals name="Gifts__d_days_remaining">
@@ -5284,7 +5291,7 @@
 
     <!-- StoriesPrivacySettingsFragment -->
     <!-- Explanation about how stories are deleted and managed -->
-    <string name="StoriesPrivacySettingsFragment__stories_automatically_disappear">24 മണിക്കൂറിന് ശേഷം സ്റ്റോറികൾ സ്വയമേവ അപ്രത്യക്ഷമാകും. നിങ്ങളുടെ സ്റ്റോറി ആർക്കൊക്കെ കാണാൻ കഴിയുമെന്ന് തീരുമാനിക്കുകയോ കുറച്ച് കാഴ്‌ചക്കാരെയോ ഗ്രൂപ്പുകളെയോ ഉപയോഗിച്ച് പുതിയ സ്റ്റോറികൾ സൃഷ്‌ടിക്കുകയോ ചെയ്യുക.</string>
+    <string name="StoriesPrivacySettingsFragment__story_updates_automatically_disappear">Story updates automatically disappear after 24 hours. Choose who can view your story or create new stories with specific viewers or groups.</string>
     <!-- Preference title to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__turn_off_stories">സ്റ്റോറികൾ ഓഫാക്കുക</string>
     <!-- Preference summary to turn off stories -->
@@ -5301,6 +5308,12 @@
     <string name="StoriesPrivacySettingsFragment__story_privacy">സ്റ്റോറിയുടെ സ്വകാര്യത</string>
     <!-- Header for section that lists out stories -->
     <string name="StoriesPrivacySettingsFragment__stories">സ്റ്റോറികൾ</string>
+    <!-- Story views header -->
+    <string name="StoriesPrivacySettingsFragment__story_views">Story views</string>
+    <!-- Story view receipts toggle title -->
+    <string name="StoriesPrivacySettingsFragment__view_receipts">View receipts</string>
+    <!-- Story view receipts toggle message -->
+    <string name="StoriesPrivacySettingsFragment__see_and_share">See and share when stories are viewed. If disabled, you won\'t see when others view your story.</string>
 
     <!-- NewStoryItem -->
     <string name="NewStoryItem__new_story">പുതിയ സ്റ്റോറി</string>
@@ -5342,6 +5355,14 @@
         <item quantity="one">%1$d / %2$d എക്‌സ്‌പോർട്ട് ചെയ്യുന്നു…</item>
         <item quantity="other">%1$d / %2$d എക്‌സ്‌പോർട്ട് ചെയ്യുന്നു…</item>
     </plurals>
+    <!-- Alert dialog title shown when we think a user may not have enough local storage available to export sms messages -->
+    <string name="ExportingSmsMessagesFragment__you_may_not_have_enough_disk_space">You may not have enough disk space</string>
+    <!-- Alert dialog message shown when we think a user may not have enough local storage available to export sms messages, placeholder is the file size, e.g., 128kB -->
+    <string name="ExportingSmsMessagesFragment__you_need_approximately_s_to_export_your_messages_ensure_you_have_enough_space_before_continuing">You need approximately %1$s to export your messages, ensure you have enough space before continuing.</string>
+    <!-- Alert dialog button to continue with exporting sms after seeing the lack of storage warning -->
+    <string name="ExportingSmsMessagesFragment__continue_anyway">Continue anyway</string>
+    <!-- Dialog text shown when Signal isn't granted the sms permission needed to export messages, different than being selected as the sms app -->
+    <string name="ExportingSmsMessagesFragment__signal_needs_the_sms_permission_to_be_able_to_export_your_sms_messages">Signal needs the SMS permission to be able to export your SMS messages.</string>
 
     <!-- ChooseANewDefaultSmsAppFragment -->
     <!-- Title of the screen -->
@@ -5438,6 +5459,26 @@
         <item quantity="one">%1$d / %2$d സന്ദേശം എക്‌സ്‌പോർട്ട് ചെയ്‌തു</item>
         <item quantity="other">%1$d / %2$d സന്ദേശങ്ങൾ എക്‌സ്‌പോർട്ട് ചെയ്‌തു</item>
     </plurals>
+
+    <!-- Title of screen shown when some sms messages did not export -->
+    <string name="ExportSmsPartiallyComplete__export_partially_complete">Export partially complete</string>
+    <!-- Debug step 1 on screen shown when some sms messages did not export -->
+    <string name="ExportSmsPartiallyComplete__ensure_you_have_an_additional_s_free_on_your_phone_to_export_your_messages">Ensure you have an additional %1$s free on your phone to export your messages</string>
+    <!-- Debug step 2 on screen shown when some sms messages dit not export -->
+    <string name="ExportSmsPartiallyComplete__retry_export_which_will_only_retry_messages_that_have_not_yet_been_exported">Retry export, which will only retry messages that have not yet been exported</string>
+    <!-- Partial sentence for Debug step 3 on screen shown when some sms messages did not export, is combined with 'contact us' -->
+    <string name="ExportSmsPartiallyComplete__if_the_problem_persists">If the problem persists, </string>
+    <!-- Partial sentence for deubg step 3 on screen shown when some sms messages did not export, combined with 'If the problem persists', link text to open contact support view -->
+    <string name="ExportSmsPartiallyComplete__contact_us">ഞങ്ങളെ സമീപിക്കുക</string>
+    <!-- Button text to retry sms export -->
+    <string name="ExportSmsPartiallyComplete__retry">വീണ്ടും ശ്രമിക്കുക</string>
+    <!-- Button text to continue sms export flow and not retry failed message exports -->
+    <string name="ExportSmsPartiallyComplete__continue_anyway">Continue anyway</string>
+    <!-- Title of screen shown when all sms messages failed to export -->
+    <string name="ExportSmsFullError__error_exporting_sms_messages">Error exporting SMS messages</string>
+    <!-- Helper text shown when all sms messages failed to export -->
+    <string name="ExportSmsFullError__please_try_again_if_the_problem_persists">Please try again. If the problem persists, </string>
+
 
     <!-- EOF -->
 
