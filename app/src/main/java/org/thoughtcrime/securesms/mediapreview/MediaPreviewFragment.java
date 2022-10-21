@@ -87,9 +87,9 @@ public abstract class MediaPreviewFragment extends Fragment {
   public void pause() {
   }
 
-  public @Nullable PlayerControlView getPlaybackControls() {
-    return null;
-  }
+  abstract public void setShareButtonListener(View.OnClickListener listener);
+  abstract public void setForwardButtonListener(View.OnClickListener listener);
+  abstract public @Nullable View getBottomBarControls();
 
   private void checkMediaStillAvailable() {
     if (attachmentId == null) {

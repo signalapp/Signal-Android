@@ -3237,6 +3237,8 @@
     <string name="media_preview__forward_title">Forward</string>
     <string name="media_preview__share_title">Share</string>
     <string name="media_preview__all_media_title">All media</string>
+    <string name="media_preview__edit_title">Edit</string>
+
 
     <!-- media_preview_activity -->
     <string name="media_preview_activity__media_content_description">Media preview</string>

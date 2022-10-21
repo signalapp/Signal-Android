@@ -102,7 +102,6 @@ public final class FeatureFlags {
   private static final String SMS_EXPORTER                      = "android.sms.exporter.2";
   public  static final String STORIES_LOCALE                    = "android.stories.locale.1";
   private static final String HIDE_CONTACTS                     = "android.hide.contacts";
-  private static final String MEDIA_PREVIEW_V2                  = "android.mediaPreviewV2";
   private static final String SMS_EXPORT_MEGAPHONE_DELAY_DAYS   = "android.smsExport.megaphoneDelayDays";
   public  static final String CREDIT_CARD_PAYMENTS              = "android.credit.card.payments";
 
@@ -159,7 +158,6 @@ public final class FeatureFlags {
       SMS_EXPORTER,
       STORIES_LOCALE,
       HIDE_CONTACTS,
-      MEDIA_PREVIEW_V2,
       SMS_EXPORT_MEGAPHONE_DELAY_DAYS,
       CREDIT_CARD_PAYMENTS
   );
@@ -555,13 +553,6 @@ public final class FeatureFlags {
    */
   public static boolean hideContacts() {
     return getBoolean(HIDE_CONTACTS, false);
-  }
-
-  /**
-   * Whether or not we should use the new media preview fragment implementation.
-   */
-  public static boolean mediaPreviewV2() {
-    return getBoolean(MEDIA_PREVIEW_V2, false);
   }
 
   /**

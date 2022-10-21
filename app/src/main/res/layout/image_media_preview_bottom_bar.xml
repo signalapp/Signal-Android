@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:background="#CC000000"
+    android:layoutDirection="ltr"
+    android:orientation="vertical"
+    tools:targetApi="28">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/image_preview_share"
+            android:layout_width="@dimen/exo_media_button_width"
+            android:layout_height="@dimen/exo_media_button_height"
+            android:background="?selectableItemBackground"
+            app:srcCompat="@drawable/ic_share_24_outline_white" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1.0" />
+
+        <ImageButton
+            android:id="@+id/image_preview_forward"
+            android:layout_width="@dimen/exo_media_button_width"
+            android:layout_height="@dimen/exo_media_button_height"
+            android:background="?selectableItemBackground"
+            app:srcCompat="@drawable/ic_forward_24" />
+    </LinearLayout>
+
+</LinearLayout>

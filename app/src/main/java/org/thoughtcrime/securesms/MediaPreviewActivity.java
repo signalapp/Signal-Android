@@ -24,7 +24,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -490,17 +489,8 @@ public final class MediaPreviewActivity extends PassphraseRequiredActivity
   @Override
   public boolean onPrepareOptionsMenu(Menu menu) {
     if (!isMediaInDb()) {
-      menu.findItem(R.id.media_preview__overview).setVisible(false);
       menu.findItem(R.id.delete).setVisible(false);
     }
-
-    // Restricted to API26 because of MemoryFileUtil not supporting lower API levels well
-    menu.findItem(R.id.media_preview__share).setVisible(Build.VERSION.SDK_INT >= 26);
-
-    if (cameFromAllMedia) {
-      menu.findItem(R.id.media_preview__overview).setVisible(false);
-    }
-
     super.onPrepareOptionsMenu(menu);
     return true;
   }
@@ -511,9 +501,6 @@ public final class MediaPreviewActivity extends PassphraseRequiredActivity
 
     int itemId = item.getItemId();
 
-    if (itemId == R.id.media_preview__overview) { showOverview(); return true; }
-    if (itemId == R.id.media_preview__forward)  { forward();      return true; }
-    if (itemId == R.id.media_preview__share)    { share();        return true; }
     if (itemId == R.id.save)                    { saveToDisk();   return true; }
     if (itemId == R.id.delete)                  { deleteMedia();  return true; }
     if (itemId == android.R.id.home)            { finish();       return true; }
@@ -701,7 +688,7 @@ public final class MediaPreviewActivity extends PassphraseRequiredActivity
     @Override
     public @Nullable View getPlaybackControls(int position) {
       if (mediaPreviewFragment != null) {
-        return mediaPreviewFragment.getPlaybackControls();
+        return mediaPreviewFragment.getBottomBarControls();
       }
       return null;
     }
@@ -831,7 +818,7 @@ public final class MediaPreviewActivity extends PassphraseRequiredActivity
     @Override
     public @Nullable View getPlaybackControls(int position) {
       MediaPreviewFragment mediaView = mediaFragments.get(position);
-      if (mediaView != null) return mediaView.getPlaybackControls();
+      if (mediaView != null) return mediaView.getBottomBarControls();
       return null;
     }
 

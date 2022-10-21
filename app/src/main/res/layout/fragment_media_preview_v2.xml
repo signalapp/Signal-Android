@@ -24,27 +24,17 @@
         android:visibility="gone"
         tools:visibility="visible">
 
-        <org.thoughtcrime.securesms.components.MaxHeightScrollView
-            android:id="@+id/media_preview_caption_container"
+        <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+            android:id="@+id/media_preview_caption"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="32dp"
-            android:animateLayoutChanges="true"
-            app:scrollView_maxHeight="120dp">
-
-            <org.thoughtcrime.securesms.components.emoji.EmojiTextView
-                android:id="@+id/media_preview_caption"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:paddingBottom="8dp"
-                style="@style/Signal.Text.Body"
-                android:textColor="@color/core_white"
-                android:gravity="bottom"
-                tools:text="With great power comes great responsibility." />
-
-        </org.thoughtcrime.securesms.components.MaxHeightScrollView>
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="8dp"
+            style="@style/Signal.Text.Body"
+            android:textColor="@color/core_white"
+            android:gravity="bottom"
+            tools:text="With great power comes great responsibility." />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/media_preview_album_rail"

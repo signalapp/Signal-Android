@@ -7,6 +7,7 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
@@ -20,7 +21,6 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2.OFFSCREEN_PAGE_LIMIT_DEFAULT
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
-import com.google.android.exoplayer2.ui.PlayerControlView
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
@@ -35,7 +35,6 @@ import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectFor
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs
 import org.thoughtcrime.securesms.database.MediaDatabase
 import org.thoughtcrime.securesms.databinding.FragmentMediaPreviewV2Binding
-import org.thoughtcrime.securesms.mediaoverview.MediaOverviewActivity
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.mms.PartAuthority
@@ -64,13 +63,18 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
     fullscreenHelper = FullscreenHelper(requireActivity())
   }
 
+  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    lifecycleDisposable.bindTo(viewLifecycleOwner)
+    return super.onCreateView(inflater, container, savedInstanceState)
+  }
+
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
 
     val args = MediaIntentFactory.requireArguments(requireArguments())
 
     initializeViewModel(args)
-    initializeToolbar(binding.toolbar, args)
+    initializeToolbar(binding.toolbar)
     initializeViewPager()
     initializeFullScreenUi()
     initializeAlbumRail()
@@ -96,19 +100,12 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
     viewModel.fetchAttachments(PartAuthority.requireAttachmentId(args.initialMediaUri), args.threadId, sorting)
   }
 
-  private fun initializeToolbar(toolbar: MaterialToolbar, args: MediaIntentFactory.MediaPreviewArgs) {
+  private fun initializeToolbar(toolbar: MaterialToolbar) {
     toolbar.setNavigationOnClickListener {
       requireActivity().onBackPressed()
     }
 
     binding.toolbar.inflateMenu(R.menu.media_preview)
-
-    // Restricted to API26 because of MemoryFileUtil not supporting lower API levels well
-    binding.toolbar.menu.findItem(R.id.media_preview__share).isVisible = Build.VERSION.SDK_INT >= 26
-
-    if (args.hideAllMedia) {
-      binding.toolbar.menu.findItem(R.id.media_preview__overview).isVisible = false
-    }
   }
 
   private fun initializeViewPager() {
@@ -175,15 +172,11 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
 
     val menu: Menu = binding.toolbar.menu
     if (currentItem.threadId == MediaIntentFactory.NOT_IN_A_THREAD.toLong()) {
-      menu.findItem(R.id.media_preview__overview).isVisible = false
       menu.findItem(R.id.delete).isVisible = false
     }
 
     binding.toolbar.setOnMenuItemClickListener {
       when (it.itemId) {
-        R.id.media_preview__overview -> showOverview(currentItem.threadId)
-        R.id.media_preview__forward -> forward(currentItem)
-        R.id.media_preview__share -> share(currentItem)
         R.id.save -> saveToDisk(currentItem)
         R.id.delete -> deleteMedia(currentItem)
         android.R.id.home -> requireActivity().finish()
@@ -214,12 +207,16 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
     (binding.mediaPreviewAlbumRail.adapter as MediaRailAdapter).setMedia(albumThumbnailMedia, currentState.position)
     binding.mediaPreviewAlbumRail.smoothScrollToPosition(currentState.position)
 
-    binding.mediaPreviewCaptionContainer.visibility = if (caption == null) View.GONE else View.VISIBLE
-    binding.mediaPreviewCaption.text = caption
+    if (caption != null) {
+      binding.mediaPreviewCaption.text = caption
+      binding.mediaPreviewCaption.visibility = View.VISIBLE
+    } else {
+      binding.mediaPreviewCaption.visibility = View.GONE
+    }
 
     val fragmentTag = "f${currentState.position}"
-    val currentFragment: Fragment? = childFragmentManager.findFragmentByTag(fragmentTag)
-    val playbackControls: PlayerControlView? = (currentFragment as? MediaPreviewFragment)?.playbackControls
+    val currentFragment: MediaPreviewFragment? = childFragmentManager.findFragmentByTag(fragmentTag) as? MediaPreviewFragment
+    val playbackControls: View? = currentFragment?.bottomBarControls
     if (albumThumbnailMedia.size <= 1 && caption == null && playbackControls == null) {
       binding.mediaPreviewDetailsContainer.visibility = View.GONE
     } else {
@@ -231,6 +228,8 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
       playbackControls.layoutParams = params
       binding.mediaPreviewPlaybackControlsContainer.addView(playbackControls)
     }
+    currentFragment?.setShareButtonListener { share(currentItem) }
+    currentFragment?.setForwardButtonListener { forward(currentItem) }
   }
 
   private fun getTitleText(mediaRecord: MediaDatabase.MediaRecord, showThread: Boolean): String {
@@ -317,11 +316,6 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
 
   override fun onMediaReady() {
     Log.d(TAG, "onMediaReady()")
-  }
-
-  private fun showOverview(threadId: Long) {
-    val context = requireContext()
-    context.startActivity(MediaOverviewActivity.forThread(context, threadId))
   }
 
   private fun forward(mediaItem: MediaDatabase.MediaRecord) {

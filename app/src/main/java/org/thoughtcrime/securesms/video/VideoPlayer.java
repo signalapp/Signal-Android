@@ -90,8 +90,7 @@ public class VideoPlayer extends FrameLayout {
     this.mediaSourceFactory = new DefaultMediaSourceFactory(context);
 
     this.exoView     = findViewById(R.id.video_view);
-    this.exoControls = new PlayerControlView(getContext());
-    this.exoControls.setShowTimeoutMs(-1);
+    this.exoControls = createPlayerControls(getContext());
 
     this.exoPlayerListener = new ExoPlayerListener();
     this.playerListener    = new Player.Listener() {
@@ -127,6 +126,14 @@ public class VideoPlayer extends FrameLayout {
         }
       }
     };
+  }
+
+  private PlayerControlView createPlayerControls(Context context) {
+    final PlayerControlView playerControlView = new PlayerControlView(context);
+    playerControlView.setShowTimeoutMs(-1);
+    playerControlView.setShowNextButton(false);
+    playerControlView.setShowPreviousButton(false);
+    return playerControlView;
   }
 
   private MediaItem mediaItem;
