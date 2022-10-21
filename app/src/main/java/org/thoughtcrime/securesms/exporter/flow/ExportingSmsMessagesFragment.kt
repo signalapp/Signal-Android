@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.exporter.flow
 
+import android.Manifest
 import android.content.Context
 import android.os.Bundle
 import android.text.format.Formatter
@@ -16,6 +17,7 @@ import org.signal.smsexporter.SmsExportService
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.databinding.ExportingSmsMessagesFragmentBinding
 import org.thoughtcrime.securesms.exporter.SignalSmsExportService
+import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.mb
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
@@ -87,13 +89,29 @@ class ExportingSmsMessagesFragment : Fragment(R.layout.exporting_sms_messages_fr
           MaterialAlertDialogBuilder(requireContext())
             .setTitle(R.string.ExportingSmsMessagesFragment__you_may_not_have_enough_disk_space)
             .setMessage(getString(R.string.ExportingSmsMessagesFragment__you_need_approximately_s_to_export_your_messages_ensure_you_have_enough_space_before_continuing, Formatter.formatFileSize(requireContext(), estimatedRequiredSpace)))
-            .setPositiveButton(R.string.ExportingSmsMessagesFragment__continue_anyway) { _, _ -> SignalSmsExportService.start(requireContext()) }
+            .setPositiveButton(R.string.ExportingSmsMessagesFragment__continue_anyway) { _, _ -> checkPermissionsAndStartExport() }
             .setNegativeButton(android.R.string.cancel) { _, _ -> findNavController().safeNavigate(ExportingSmsMessagesFragmentDirections.actionDirectToExportYourSmsMessagesFragment()) }
             .setCancelable(false)
             .show()
         } else {
-          SignalSmsExportService.start(requireContext())
+          checkPermissionsAndStartExport()
         }
       }
+  }
+
+  @Suppress("OVERRIDE_DEPRECATION")
+  override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String?>, grantResults: IntArray) {
+    Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults)
+  }
+
+  private fun checkPermissionsAndStartExport() {
+    Permissions.with(this)
+      .request(Manifest.permission.READ_SMS)
+      .ifNecessary()
+      .withRationaleDialog(getString(R.string.ExportingSmsMessagesFragment__signal_needs_the_sms_permission_to_be_able_to_export_your_sms_messages), R.drawable.ic_messages_solid_24)
+      .onAllGranted { SignalSmsExportService.start(requireContext()) }
+      .withPermanentDenialDialog(getString(R.string.ExportingSmsMessagesFragment__signal_needs_the_sms_permission_to_be_able_to_export_your_sms_messages)) { requireActivity().finish() }
+      .onAnyDenied { checkPermissionsAndStartExport() }
+      .execute()
   }
 }
