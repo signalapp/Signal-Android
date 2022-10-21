@@ -42,7 +42,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:background="@color/red" />
+            tools:background="@color/red_500" />
 
         <TextView
             android:id="@+id/text_switch"
@@ -61,7 +61,7 @@
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toEndOf="@id/camera_switch"
             app:layout_constraintTop_toTopOf="parent"
-            tools:background="@color/green" />
+            tools:background="@color/green_500" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

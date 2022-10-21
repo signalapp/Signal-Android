@@ -16,9 +16,6 @@ repositories {
             includeGroupByRegex "org\\.signal.*"
         }
     }
-    maven {
-        url "https://www.jitpack.io"
-    }
 
     google()
     mavenCentral()
@@ -29,10 +26,6 @@ repositories {
     jcenter {
         content {
             includeVersion "mobi.upod", "time-duration-picker", "1.1.3"
-            includeVersion "cn.carbswang.android", "NumberPickerView", "1.0.9"
-            includeVersion "com.takisoft.fix", "colorpicker", "0.9.1"
-            includeVersion "com.codewaves.stickyheadergrid", "stickyheadergrid", "0.9.4"
-            includeVersion "com.google.android", "flexbox", "0.3.0"
         }
     }
 }
@@ -474,6 +467,8 @@ dependencies {
     implementation project(':contacts')
     implementation project(':qr')
     implementation project(':sms-exporter')
+    implementation project(':sticky-header-grid')
+    implementation project(':photoview')
 
     implementation libs.libsignal.android
     implementation libs.google.protobuf.javalite
@@ -494,7 +489,6 @@ dependencies {
     implementation libs.emilsjolander.stickylistheaders
     implementation libs.jpardogo.materialtabstrip
     implementation libs.apache.httpclient.android
-    implementation libs.photoview
     implementation libs.glide.glide
     implementation libs.roundedimageview
     implementation libs.materialish.progress
@@ -503,11 +497,9 @@ dependencies {
     implementation libs.google.zxing.android.integration
     implementation libs.time.duration.picker
     implementation libs.google.zxing.core
+    implementation libs.google.flexbox
     implementation (libs.subsampling.scale.image.view) {
         exclude group: 'com.android.support', module: 'support-annotations'
-    }
-    implementation (libs.numberpickerview) {
-        exclude group: 'com.android.support', module: 'appcompat-v7'
     }
     implementation (libs.android.tooltips) {
         exclude group: 'com.android.support', module: 'appcompat-v7'
@@ -517,14 +509,8 @@ dependencies {
         exclude group: 'com.squareup.okhttp', module: 'okhttp-urlconnection'
     }
     implementation libs.stream
-    implementation (libs.colorpicker) {
-        exclude group: 'com.android.support', module: 'appcompat-v7'
-        exclude group: 'com.android.support', module: 'recyclerview-v7'
-    }
 
     implementation libs.lottie
-
-    implementation libs.stickyheadergrid
 
     implementation libs.signal.android.database.sqlcipher
     implementation libs.androidx.sqlite

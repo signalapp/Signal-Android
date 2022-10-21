@@ -24,7 +24,7 @@
             app:layout_constraintEnd_toStartOf="@id/image_editor_hud_draw_color_bar"
             app:layout_constraintStart_toStartOf="@id/image_editor_hud_draw_color_bar"
             tools:alpha="1"
-            tools:tint="@color/red" />
+            tools:tint="@color/red_500" />
 
         <androidx.appcompat.widget.AppCompatSeekBar
             android:id="@+id/image_editor_hud_draw_color_bar"

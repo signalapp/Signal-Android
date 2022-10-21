@@ -108,7 +108,7 @@
         app:layout_constraintBottom_toBottomOf="@id/story"
         app:layout_constraintEnd_toEndOf="@id/story"
         app:shapeAppearance="@style/ShapeAppearanceOverlay.Signal.Story.Preview"
-        tools:background="@color/green"
+        tools:background="@color/green_500"
         tools:visibility="visible" />
 
     <com.google.android.material.imageview.ShapeableImageView

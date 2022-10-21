@@ -106,7 +106,7 @@
         app:layout_constraintEnd_toStartOf="@id/color_bar"
         app:layout_constraintStart_toStartOf="@id/color_bar"
         tools:alpha="1"
-        tools:tint="@color/red" />
+        tools:tint="@color/red_500" />
 
     <androidx.appcompat.widget.AppCompatSeekBar
         android:id="@+id/color_bar"

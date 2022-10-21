@@ -74,6 +74,7 @@ dependencyResolutionManagement {
             alias('google-ez-vcard').to('com.googlecode.ez-vcard:ez-vcard:0.9.11')
             alias('google-jsr305').to('com.google.code.findbugs:jsr305:3.0.2')
             alias('google-guava-android').to('com.google.guava:guava:30.0-android')
+            alias('google-flexbox').to('com.google.android.flexbox:flexbox:3.0.0')
 
             // Exoplayer
             alias('exoplayer-core').to('com.google.android.exoplayer', 'exoplayer-core').versionRef('exoplayer')
@@ -111,19 +112,15 @@ dependencyResolutionManagement {
             alias('apache-httpclient-android').to('org.apache.httpcomponents:httpclient-android:4.3.5')
             alias('glide-glide').to('com.github.bumptech.glide', 'glide').versionRef('glide')
             alias('glide-compiler').to('com.github.bumptech.glide', 'compiler').versionRef('glide')
-            alias('photoview').to('com.github.chrisbanes:PhotoView:2.3.0')
             alias('roundedimageview').to('com.makeramen:roundedimageview:2.1.0')
             alias('materialish-progress').to('com.pnikosis:materialish-progress:1.5')
             alias('waitingdots').to('pl.tajchert:waitingdots:0.1.0')
             alias('time-duration-picker').to('mobi.upod:time-duration-picker:1.1.3')
             alias('subsampling-scale-image-view').to('com.davemorrissey.labs:subsampling-scale-image-view:3.10.0')
-            alias('numberpickerview').to('cn.carbswang.android:NumberPickerView:1.0.9')
             alias('android-tooltips').to('com.tomergoldst.android:tooltips:1.0.6')
             alias('android-smsmms').to('com.klinkerapps:android-smsmms:4.0.1')
             alias('stream').to('com.annimon:stream:1.1.8')
-            alias('colorpicker').to('com.takisoft.fix:colorpicker:0.9.1')
             alias('lottie').to('com.airbnb.android:lottie:3.6.0')
-            alias('stickyheadergrid').to('com.codewaves.stickyheadergrid:stickyheadergrid:0.9.4')
             alias('dnsjava').to('dnsjava:dnsjava:2.1.9')
             alias('nanohttpd-webserver').to('org.nanohttpd:nanohttpd-webserver:2.3.1')
 

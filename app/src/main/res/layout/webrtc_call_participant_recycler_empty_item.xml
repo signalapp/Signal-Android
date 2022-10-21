@@ -4,5 +4,5 @@
     tools:viewBindingIgnore="true"
     android:layout_width="54dp"
     android:layout_height="72dp"
-    tools:background="@color/red"
+    tools:background="@color/red_500"
     tools:visibility="visible" />

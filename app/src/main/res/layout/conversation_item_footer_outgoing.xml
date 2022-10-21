@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     android:gravity="center_vertical|end"
     android:orientation="horizontal"
-    tools:background="@color/green"
+    tools:background="@color/green_500"
     tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
 
     <androidx.appcompat.widget.AppCompatTextView

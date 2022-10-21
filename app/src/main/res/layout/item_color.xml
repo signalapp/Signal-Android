@@ -18,6 +18,6 @@
         android:layout_height="16dp"
         android:src="@drawable/circle_white"
         android:layout_gravity="center"
-        tools:tint="@color/red"/>
+        tools:tint="@color/red_500"/>
 
 </FrameLayout>

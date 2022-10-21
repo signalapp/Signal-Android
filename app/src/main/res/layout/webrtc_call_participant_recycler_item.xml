@@ -9,7 +9,7 @@
     android:background="@null"
     android:clipChildren="true"
     app:cardCornerRadius="8dp"
-    tools:background="@color/red"
+    tools:background="@color/red_500"
     tools:visibility="visible">
 
     <include

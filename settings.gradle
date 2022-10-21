@@ -22,6 +22,8 @@ include ':contacts'
 include ':contacts-app'
 include ':qr'
 include ':qr-app'
+include ':sticky-header-grid'
+include ':photoview'
 
 project(':app').name = 'Signal-Android'
 project(':paging').projectDir = file('paging/lib')

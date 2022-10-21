@@ -54,7 +54,7 @@ public class CreateKbsPinFragment extends BaseKbsPinFragment<CreateKbsPinViewMod
     viewModel.getNavigationEvents().observe(getViewLifecycleOwner(), e -> onConfirmPin(e.getUserEntry(), e.getKeyboard(), args.getIsPinChange()));
     viewModel.getErrorEvents().observe(getViewLifecycleOwner(), e -> {
       if (e == CreateKbsPinViewModel.PinErrorEvent.WEAK_PIN) {
-        getLabel().setText(SpanUtil.color(ContextCompat.getColor(requireContext(), R.color.red),
+        getLabel().setText(SpanUtil.color(ContextCompat.getColor(requireContext(), R.color.red_500),
                                           getString(R.string.CreateKbsPinFragment__choose_a_stronger_pin)));
         shake(getInput(), () -> getInput().getText().clear());
       } else {
