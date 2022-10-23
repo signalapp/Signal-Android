@@ -22,6 +22,7 @@
         android:layout_height="@dimen/signal_m3_toolbar_height"
         android:minHeight="@dimen/signal_m3_toolbar_height"
         android:theme="?attr/settingsToolbarStyle"
+        app:navigationContentDescription="@string/DSLSettingsToolbar__navigate_up"
         app:contentInsetStartWithNavigation="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

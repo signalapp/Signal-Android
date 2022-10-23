@@ -196,6 +196,7 @@
         android:clipToPadding="false"
         android:minHeight="@dimen/signal_m3_toolbar_height"
         android:theme="?attr/actionBarStyle"
+        app:navigationContentDescription="@string/DSLSettingsToolbar__navigate_up"
         app:contentInsetStart="46dp"
         app:contentInsetStartWithNavigation="0dp"
         app:layout_constraintEnd_toEndOf="@id/parent_end_guideline"
