@@ -137,14 +137,14 @@ public class SendViewedReceiptJob extends BaseJob {
     boolean canSendNonStoryReceipts = TextSecurePreferences.isReadReceiptsEnabled(context);
     boolean canSendStoryReceipts    = SignalStore.storyValues().getViewedReceiptsEnabled();
 
-    List<MessageId> messageIds            = new LinkedList<>();
+    List<MessageId> foundMessageIds       = new LinkedList<>();
     List<Long>      messageSentTimestamps = new LinkedList<>();
-    List<StoryType> storyTypes            = SignalDatabase.mms().getStoryTypes(messageIds);
+    List<StoryType> storyTypes            = SignalDatabase.mms().getStoryTypes(this.messageIds);
 
     for (int i = 0; i < storyTypes.size(); i++) {
       StoryType storyType = storyTypes.get(i);
       if ((storyType == StoryType.NONE && canSendNonStoryReceipts) || (storyType.isStory() && canSendStoryReceipts)) {
-        messageIds.add(this.messageIds.get(i));
+        foundMessageIds.add(this.messageIds.get(i));
         messageSentTimestamps.add(this.messageSentTimestamps.get(i));
       }
     }
@@ -158,7 +158,7 @@ public class SendViewedReceiptJob extends BaseJob {
       return;
     }
 
-    if (messageIds.isEmpty()) {
+    if (foundMessageIds.isEmpty()) {
       Log.w(TAG, "No messages in this batch are allowed to be sent!");
       return;
     }
@@ -206,8 +206,8 @@ public class SendViewedReceiptJob extends BaseJob {
                                                          receiptMessage,
                                                          recipient.needsPniSignature());
 
-    if (Util.hasItems(messageIds)) {
-      SignalDatabase.messageLog().insertIfPossible(recipientId, timestamp, result, ContentHint.IMPLICIT, messageIds, false);
+    if (Util.hasItems(foundMessageIds)) {
+      SignalDatabase.messageLog().insertIfPossible(recipientId, timestamp, result, ContentHint.IMPLICIT, foundMessageIds, false);
     }
   }
 
