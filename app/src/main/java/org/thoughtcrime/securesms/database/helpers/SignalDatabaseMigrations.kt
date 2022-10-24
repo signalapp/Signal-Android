@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.database.helpers.migration.V157_RecipeintHidde
 import org.thoughtcrime.securesms.database.helpers.migration.V158_GroupsLastForceUpdateTimestampMigration
 import org.thoughtcrime.securesms.database.helpers.migration.V159_ThreadUnreadSelfMentionCount
 import org.thoughtcrime.securesms.database.helpers.migration.V160_SmsMmsExportedIndexMigration
+import org.thoughtcrime.securesms.database.helpers.migration.V161_StorySendMessageIdIndex
 
 /**
  * Contains all of the database migrations for [SignalDatabase]. Broken into a separate file for cleanliness.
@@ -71,6 +72,10 @@ object SignalDatabaseMigrations {
 
     if (oldVersion < 160) {
       V160_SmsMmsExportedIndexMigration.migrate(context, db, oldVersion, newVersion)
+    }
+
+    if (oldVersion < 161) {
+      V161_StorySendMessageIdIndex.migrate(context, db, oldVersion, newVersion)
     }
   }
 

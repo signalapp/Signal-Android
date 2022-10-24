@@ -23,9 +23,12 @@ import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.whispersystems.signalservice.api.push.DistributionId;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
@@ -100,8 +103,9 @@ public final class MessageDetailsRepository {
                                                      getKeyMismatchFailure(messageRecord, recipient)));
         }
       } else if (receiptInfoList.isEmpty() && messageRecord.getRecipient().isDistributionList()) {
-        List<RecipientId> distributionList = SignalDatabase.distributionLists().getMembers(messageRecord.getRecipient().requireDistributionListId());
-        List<Recipient>   resolved         = Recipient.resolvedList(distributionList);
+        DistributionId   distributionId = SignalDatabase.distributionLists().getDistributionId(messageRecord.getRecipient().requireDistributionListId());
+        Set<RecipientId> recipientIds   = SignalDatabase.storySends().getRecipientsForDistributionId(messageRecord.getId(), Objects.requireNonNull(distributionId));
+        List<Recipient>  resolved       = Recipient.resolvedList(recipientIds);
 
         for (Recipient recipient : resolved) {
           recipients.add(new RecipientDeliveryStatus(messageRecord,

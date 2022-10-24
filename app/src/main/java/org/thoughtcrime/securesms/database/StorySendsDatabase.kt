@@ -5,6 +5,7 @@ import android.content.Context
 import androidx.core.content.contentValuesOf
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.SqlUtil
+import org.signal.core.util.readToList
 import org.signal.core.util.requireLong
 import org.signal.core.util.select
 import org.signal.core.util.toInt
@@ -43,9 +44,10 @@ class StorySendsDatabase(context: Context, databaseHelper: SignalDatabase) : Dat
       )
     """.trimIndent()
 
-    val CREATE_INDEX = """
-      CREATE INDEX story_sends_recipient_id_sent_timestamp_allows_replies_index ON $TABLE_NAME ($RECIPIENT_ID, $SENT_TIMESTAMP, $ALLOWS_REPLIES)
-    """.trimIndent()
+    val CREATE_INDEXS = arrayOf(
+      "CREATE INDEX story_sends_recipient_id_sent_timestamp_allows_replies_index ON $TABLE_NAME ($RECIPIENT_ID, $SENT_TIMESTAMP, $ALLOWS_REPLIES)",
+      "CREATE INDEX story_sends_message_id_distribution_id_index ON $TABLE_NAME ($MESSAGE_ID, $DISTRIBUTION_ID)",
+    )
   }
 
   fun insert(messageId: Long, recipientIds: Collection<RecipientId>, sentTimestamp: Long, allowsReplies: Boolean, distributionId: DistributionId) {
@@ -70,6 +72,18 @@ class StorySendsDatabase(context: Context, databaseHelper: SignalDatabase) : Dat
     } finally {
       db.endTransaction()
     }
+  }
+
+  fun getRecipientsForDistributionId(messageId: Long, distributionId: DistributionId): Set<RecipientId> {
+    return readableDatabase
+      .select(RECIPIENT_ID)
+      .from(TABLE_NAME)
+      .where("$MESSAGE_ID = ? AND $DISTRIBUTION_ID = ?", messageId, distributionId.toString())
+      .run()
+      .readToList { cursor ->
+        RecipientId.from(cursor.requireLong(RECIPIENT_ID))
+      }
+      .toSet()
   }
 
   fun getRecipientsToSendTo(messageId: Long, sentTimestamp: Long, allowsReplies: Boolean): List<RecipientId> {

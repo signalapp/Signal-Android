@@ -132,7 +132,7 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
     executeStatements(db, GroupCallRingDatabase.CREATE_INDEXES)
     executeStatements(db, NotificationProfileDatabase.CREATE_INDEXES)
     executeStatements(db, DonationReceiptDatabase.CREATE_INDEXS)
-    db.execSQL(StorySendsDatabase.CREATE_INDEX)
+    executeStatements(db, StorySendsDatabase.CREATE_INDEXS)
     executeStatements(db, DistributionListDatabase.CREATE_INDEXES)
     executeStatements(db, PendingPniSignatureMessageDatabase.CREATE_INDEXES)
 

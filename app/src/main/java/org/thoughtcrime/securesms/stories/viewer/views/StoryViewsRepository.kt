@@ -8,9 +8,12 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.DatabaseObserver
 import org.thoughtcrime.securesms.database.GroupReceiptDatabase
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.recipients.RecipientId
+import org.whispersystems.signalservice.api.push.DistributionId
 
 class StoryViewsRepository {
 
@@ -30,6 +33,10 @@ class StoryViewsRepository {
 
   fun getViews(storyId: Long): Observable<List<StoryViewItemData>> {
     return Observable.create<List<StoryViewItemData>> { emitter ->
+      val record: MessageRecord = SignalDatabase.mms.getMessageRecord(storyId)
+      val distributionId: DistributionId = SignalDatabase.distributionLists.getDistributionId(record.recipient.requireDistributionListId())!!
+      val recipientIds: Set<RecipientId> = SignalDatabase.storySends.getRecipientsForDistributionId(storyId, distributionId)
+
       fun refresh() {
         emitter.onNext(
           SignalDatabase.groupReceipts.getGroupReceiptInfo(storyId).filter {
@@ -39,6 +46,8 @@ class StoryViewsRepository {
               recipient = Recipient.resolved(it.recipientId),
               timeViewedInMillis = it.timestamp
             )
+          }.filter {
+            it.recipient.id in recipientIds
           }
         )
       }
