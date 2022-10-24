@@ -3162,7 +3162,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     val recipientsWithinInteractionThreshold: MutableSet<RecipientId> = LinkedHashSet()
 
     threadDatabase.readerFor(threadDatabase.getRecentPushConversationList(-1, false)).use { reader ->
-      var record: ThreadRecord? = reader.next
+      var record: ThreadRecord? = reader.getNext()
 
       while (record != null && record.date > lastInteractionThreshold) {
         val recipient = Recipient.resolved(record.recipient.id)
@@ -3171,7 +3171,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
         } else {
           recipientsWithinInteractionThreshold.add(recipient.id)
         }
-        record = reader.next
+        record = reader.getNext()
       }
     }
 
