@@ -88,6 +88,7 @@ class StoryViewerFragment :
 
         if (state.page >= state.pages.size) {
           ActivityCompat.finishAfterTransition(requireActivity())
+          lifecycleDisposable.clear()
         }
       }
 
