@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.groups.SelectionLimits
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.LifecycleDisposable
+import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton
 import java.util.Optional
@@ -105,7 +106,7 @@ class SelectRecipientsFragment : LoggingFragment(), ContactSelectionListFragment
       ContactsCursorLoader.DisplayMode.FLAG_HIDE_RECENT_HEADER or
       ContactsCursorLoader.DisplayMode.FLAG_GROUPS_AFTER_CONTACTS
 
-    if (SignalStore.misc().smsExportPhase.allowSmsFeatures()) {
+    if (Util.isDefaultSmsProvider(requireContext()) && SignalStore.misc().smsExportPhase.allowSmsFeatures()) {
       mode = mode or ContactsCursorLoader.DisplayMode.FLAG_SMS
     }
 
