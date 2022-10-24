@@ -55,15 +55,6 @@ object StoryDialogs {
       .show()
   }
 
-  fun displayBetaDialog(context: Context, onConfirmed: () -> Unit) {
-    MaterialAlertDialogBuilder(context)
-      .setTitle(R.string.StoryDialogs__stories_is_available_to)
-      .setMessage(R.string.StoryDialogs__if_you_share_a_story)
-      .setPositiveButton(R.string.Permissions_continue) { _, _ -> onConfirmed() }
-      .setNegativeButton(android.R.string.cancel) { _, _ -> }
-      .show()
-  }
-
   fun resendStory(context: Context, onDismiss: () -> Unit = {}, resend: () -> Unit) {
   MaterialAlertDialogBuilder(context)
     .setMessage(R.string.StoryDialogs__story_could_not_be_sent)

@@ -46,11 +46,6 @@ internal class StoryValues(store: KeyValueStore) : SignalStoreValues(store) {
     private const val USER_HAS_READ_ONBOARDING_STORY = "stories.user.has.read.onboarding"
 
     /**
-     * Marks whether the user has seen the beta dialog
-     */
-    private const val USER_HAS_SEEN_BETA_DIALOG = "stories.user.has.seen.beta.dialog"
-
-    /**
      * Whether or not the user will send and receive viewed receipts for stories
      */
     private const val STORY_VIEWED_RECEIPTS = "stories.viewed.receipts"
@@ -65,10 +60,8 @@ internal class StoryValues(store: KeyValueStore) : SignalStoreValues(store) {
     USER_HAS_ADDED_TO_A_STORY,
     USER_HAS_SEEN_FIRST_NAV_VIEW,
     HAS_DOWNLOADED_ONBOARDING_STORY,
-    USER_HAS_SEEN_BETA_DIALOG,
-    STORY_VIEWED_RECEIPTS,
+    USER_HAS_VIEWED_ONBOARDING_STORY,
     USER_HAS_READ_ONBOARDING_STORY,
-    USER_HAS_SEEN_BETA_DIALOG,
     STORY_VIEWED_RECEIPTS
   )
 
@@ -85,8 +78,6 @@ internal class StoryValues(store: KeyValueStore) : SignalStoreValues(store) {
   var userHasViewedOnboardingStory: Boolean by booleanValue(USER_HAS_VIEWED_ONBOARDING_STORY, false)
 
   var userHasReadOnboardingStory: Boolean by booleanValue(USER_HAS_READ_ONBOARDING_STORY, false)
-
-  var userHasSeenBetaDialog: Boolean by booleanValue(USER_HAS_SEEN_BETA_DIALOG, false)
 
   var viewedReceiptsEnabled: Boolean by booleanValue(STORY_VIEWED_RECEIPTS, false)
 
