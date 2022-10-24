@@ -234,6 +234,8 @@ public class VideoPlayer extends FrameLayout {
   }
 
   public void cleanup() {
+    stop();
+
     if (this.exoPlayer != null) {
       exoView.setPlayer(null);
       exoControls.setPlayer(null);
