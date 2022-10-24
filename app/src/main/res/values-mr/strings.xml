@@ -222,7 +222,7 @@
     <!-- Label for my stories when selecting who to send media to -->
     <string name="ContactsCursorLoader_my_stories">माझ्या स्टोरीज</string>
     <!-- Text for a button that brings up a bottom sheet to create a new story. -->
-    <string name="ContactsCursorLoader_new">New</string>
+    <string name="ContactsCursorLoader_new">नवीन</string>
 
     <!-- ContactsDatabase -->
     <string name="ContactsDatabase_message_s">संदेश %1$s</string>
@@ -346,13 +346,13 @@
     <string name="ConversationActivity__reported_as_spam_and_blocked">स्पॅम म्हणून रिपोर्ट केले आणि ब्लॉक केले.</string>
 
     <!-- Message shown when opening an SMS conversation with SMS disabled and they have unexported sms messages -->
-    <string name="ConversationActivity__sms_messaging_is_currently_disabled_you_can_export_your_messages_to_another_app_on_your_phone">SMS messaging is currently disabled. You can export your messages to another app on your phone.</string>
+    <string name="ConversationActivity__sms_messaging_is_currently_disabled_you_can_export_your_messages_to_another_app_on_your_phone">SMS संदेशन सध्या अक्षम केले आहे. आपण आपले संदेश आपल्या फोनवरील दुसऱ्या अ‍ॅपवर एक्सपोर्ट करू शकता.</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and they have unexported sms messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_you_can_export_your_messages_to_another_app_on_your_phone">SMS संदेशन यापुढे Signal मध्ये समर्थित नाही. आपण आपले संदेश आपल्या फोनवरील दुसऱ्या अ‍ॅपवर एक्सपोर्ट करू शकता.</string>
     <!-- Action button shown when in sms conversation, sms is disabled, and unexported sms messages are present -->
     <string name="ConversationActivity__export_sms_messages">SMS संदेश एक्सपोर्ट करा</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
-    <string name="ConversationActivity__sms_messaging_is_currently_disabled_invite_s_to_to_signal_to_keep_the_conversation_here">SMS messaging is currently disabled. Invite %1$s to Signal to keep the conversation here.</string>
+    <string name="ConversationActivity__sms_messaging_is_currently_disabled_invite_s_to_to_signal_to_keep_the_conversation_here">SMS संदेशन सध्या अक्षम केले आहे. संभाषण येथे ठेवण्यासाठी %1$s ला Signal वर आमंत्रित करा.</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">SMS संदेशन यापुढे Signal मध्ये समर्थित नाही. संभाषण येथे ठेवण्यासाठी %1$s ला Signal वर आमंत्रित करा.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
@@ -2522,7 +2522,7 @@
         <item>इतर</item>
         <item>पेमेंट्स (मोबाईलकॉईन)</item>
         <item>देणगी &amp; बॅजेस</item>
-        <item>SMS Export</item>
+        <item>SMS एक्सपोर्ट करा</item>
     </string-array>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
@@ -4770,7 +4770,7 @@
     <!-- Title for "My Stories" row item in Stories landing page -->
     <string name="StoriesLandingFragment__my_stories">माझ्या स्टोरीज</string>
     <!-- Subtitle for "My Stories" row item when user has not added stories -->
-    <string name="StoriesLandingFragment__tap_to_add">Tap to add</string>
+    <string name="StoriesLandingFragment__tap_to_add">जोडण्यासाठी टॅप करा</string>
     <!-- Displayed when there are no stories to display -->
     <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now">आत्ता दर्शविण्यासाठी कोणतीही अलीकडील अपडेट्स नाहीत.</string>
     <!-- Context menu option to hide a story -->
@@ -4938,7 +4938,7 @@
     <!-- Clickable option to add a viewer to a custom story -->
     <string name="PrivateStorySettingsFragment__add_viewer">दर्शक जोडा</string>
     <!-- Clickable option to delete a custom story -->
-    <string name="PrivateStorySettingsFragment__delete_custom_story">Delete custom story</string>
+    <string name="PrivateStorySettingsFragment__delete_custom_story">सानुकूल स्टोरी हटवा</string>
     <!-- Dialog title when attempting to remove someone from a custom story -->
     <string name="PrivateStorySettingsFragment__remove_s">%1$s ला काढायचे ?</string>
     <!-- Dialog message when attempting to remove someone from a custom story -->
@@ -4976,7 +4976,7 @@
     <!-- Toast shown when an unexpected error occurs while sending a text story -->
     <string name="TextStoryPostSendFragment__an_unexpected_error_occurred_try_again">अनपेक्षित त्रूटी उद्भवली</string>
     <!-- Toast shown when a trying to add a link preview to a text story post and the link/url is not valid (e.g., missing .com at the end) -->
-    <string name="TextStoryPostSendFragment__please_enter_a_valid_link">Please enter a valid link.</string>
+    <string name="TextStoryPostSendFragment__please_enter_a_valid_link">कृपया वैध लिंक प्रविष्ट करा.</string>
     <!-- Title for screen allowing user to exclude "My Story" entries from specific people -->
     <string name="ChangeMyStoryMembershipFragment__all_except">…सोडून सर्व</string>
     <!-- Title for screen allowing user to only share "My Story" entries with specific people -->
@@ -4990,7 +4990,7 @@
     <!-- Dialog positive action for removing a group story -->
     <string name="StoryDialogs__remove">काढा</string>
     <!-- Dialog title for deleting a custom story -->
-    <string name="StoryDialogs__delete_custom_story">Delete custom story?</string>
+    <string name="StoryDialogs__delete_custom_story">सानुकूल स्टोरी हटवायची?</string>
     <!-- Dialog message for deleting a custom story -->
     <string name="StoryDialogs__s_and_updates_shared">\"%1$s\" आणि या स्टोरीजला शेअर केलेली अद्यतने हटवली जातील.</string>
     <!-- Dialog positive action for deleting a custom story -->
@@ -5029,7 +5029,7 @@
     <!-- Name story screen title -->
     <string name="CreateStoryWithViewersFragment__name_story">स्टोरीला नाव द्या</string>
     <!-- Name story screen note under text field -->
-    <string name="CreateStoryWithViewersFragment__only_you_can">Only you can see the name of this story.</string>
+    <string name="CreateStoryWithViewersFragment__only_you_can">फक्त आपण या स्टोरी चे नाव पाहू शकता.</string>
     <!-- Name story screen label hint -->
     <string name="CreateStoryWithViewersFragment__story_name_required">स्टोरी नाव (आवश्यक)</string>
     <!-- Name story screen viewers subheading -->
@@ -5045,7 +5045,7 @@
     <!-- Choose story type bottom sheet title -->
     <string name="ChooseStoryTypeBottomSheet__choose_your_story_type">आपल्या स्टोरीचा प्रकार निवडा</string>
     <!-- Choose story type bottom sheet new story row title -->
-    <string name="ChooseStoryTypeBottomSheet__new_custom_story">New custom story</string>
+    <string name="ChooseStoryTypeBottomSheet__new_custom_story">नवीन सानुकूल स्टोरी</string>
     <!-- Choose story type bottom sheet new story row summary -->
     <string name="ChooseStoryTypeBottomSheet__visible_only_to">केवळ विशिष्ट लोकांसाठी दृश्यमान</string>
     <!-- Choose story type bottom sheet group story title -->
@@ -5155,8 +5155,8 @@
     <string name="ContactSearchItems__only_share_with">फक्त सह शेअर करा</string>
     <!-- Label under name for custom stories -->
     <plurals name="ContactSearchItems__custom_story_d_viewers">
-        <item quantity="one">Custom story · %1$d viewer</item>
-        <item quantity="other">Custom story · %1$d viewers</item>
+        <item quantity="one">सानुकूल स्टोरी · %1$d दर्शक</item>
+        <item quantity="other">सानुकूल स्टोरी · %1$d दर्शक</item>
     </plurals>
     <!-- Label under name for group stories -->
     <plurals name="ContactSearchItems__group_story_d_viewers">
@@ -5190,7 +5190,7 @@
     <!-- Dialog title for deleting a custom story -->
     <string name="ContactSearchMediator__delete_story">स्टोरी हटवायची?</string>
     <!-- Dialog message for deleting a custom story -->
-    <string name="ContactSearchMediator__delete_the_custom">Delete the custom story \"%1$s\"?</string>
+    <string name="ContactSearchMediator__delete_the_custom">सानुकूल स्टोरी \"%1$s\" हटवायची?</string>
     <!-- Dialog action item for deleting a custom story -->
     <string name="ContactSearchMediator__delete">हटवा</string>
     <!-- Gift expiry days remaining -->
@@ -5291,7 +5291,7 @@
 
     <!-- StoriesPrivacySettingsFragment -->
     <!-- Explanation about how stories are deleted and managed -->
-    <string name="StoriesPrivacySettingsFragment__story_updates_automatically_disappear">Story updates automatically disappear after 24 hours. Choose who can view your story or create new stories with specific viewers or groups.</string>
+    <string name="StoriesPrivacySettingsFragment__story_updates_automatically_disappear">स्टोरी अद्यतने 24 तासानंतर स्वयंचलितपणे अदृश्य होतात. आपली स्टोरी कोण पाहू शकते ते निवडा किंवा विशिष्ट दर्शक किंवा ग्रुप्ससह नवीन स्टोरीज तयार करा.</string>
     <!-- Preference title to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__turn_off_stories">स्टोरीज बंद करा</string>
     <!-- Preference summary to turn off stories -->
@@ -5309,11 +5309,11 @@
     <!-- Header for section that lists out stories -->
     <string name="StoriesPrivacySettingsFragment__stories">स्टोरीज</string>
     <!-- Story views header -->
-    <string name="StoriesPrivacySettingsFragment__story_views">Story views</string>
+    <string name="StoriesPrivacySettingsFragment__story_views">स्टोरी दृश्ये</string>
     <!-- Story view receipts toggle title -->
-    <string name="StoriesPrivacySettingsFragment__view_receipts">View receipts</string>
+    <string name="StoriesPrivacySettingsFragment__view_receipts">पावत्या पहा</string>
     <!-- Story view receipts toggle message -->
-    <string name="StoriesPrivacySettingsFragment__see_and_share">See and share when stories are viewed. If disabled, you won\'t see when others view your story.</string>
+    <string name="StoriesPrivacySettingsFragment__see_and_share">स्टोरीज पाहिल्या जात असताना पहा आणि शेअर करा. अक्षम करण्यात आल्यास, इतर लोक आपल्या स्टोरीज पाहतील ते आपण पाहू शकणार नाही.</string>
 
     <!-- NewStoryItem -->
     <string name="NewStoryItem__new_story">नवीन स्टोरी</string>
@@ -5341,7 +5341,7 @@
     <!-- Title of the screen -->
     <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">आपले SMS संदेश एक्सपोर्ट करा</string>
     <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database_and_youll_have_the_option_to_keep_or_remove_them_from_signal">You can export your SMS messages to your phone\'s SMS database and you\'ll have the option to keep or remove them from Signal. This allows other SMS apps on your phone to import them. This does not create a shareable file of your SMS history.</string>
+    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database_and_youll_have_the_option_to_keep_or_remove_them_from_signal">आपण आपल्या फोनच्या SMS डेटाबेस मध्ये आपले SMS संदेश एक्सपोर्ट करू शकता आणि आपल्याकडे त्यांना Signal मध्ये ठेवण्याचा किंवा हटवण्याचा पर्याय असेल. हे इतर SMS अ‍ॅपना त्यांना आपल्या फोनवर एक्सपोर्ट करण्याची अनुमती देते. हे आपल्या SMS इतिहासाची शेअर करता येण्याजोगी फाईल तयार करत नाही.</string>
     <!-- Button label to begin export -->
     <string name="ExportYourSmsMessagesFragment__continue">सुरू ठेवा</string>
 
@@ -5356,9 +5356,9 @@
         <item quantity="other">%1$d पैकी %2$d एक्सपोर्ट करत आहे...</item>
     </plurals>
     <!-- Alert dialog title shown when we think a user may not have enough local storage available to export sms messages -->
-    <string name="ExportingSmsMessagesFragment__you_may_not_have_enough_disk_space">You may not have enough disk space</string>
+    <string name="ExportingSmsMessagesFragment__you_may_not_have_enough_disk_space">कदाचित आपल्याकडे पुरेशी डिस्क स्पेस नसेल</string>
     <!-- Alert dialog message shown when we think a user may not have enough local storage available to export sms messages, placeholder is the file size, e.g., 128kB -->
-    <string name="ExportingSmsMessagesFragment__you_need_approximately_s_to_export_your_messages_ensure_you_have_enough_space_before_continuing">You need approximately %1$s to export your messages, ensure you have enough space before continuing.</string>
+    <string name="ExportingSmsMessagesFragment__you_need_approximately_s_to_export_your_messages_ensure_you_have_enough_space_before_continuing">आपले संदेश एक्सपोर्ट करण्यास आपणाला अंदाजे %1$s ची गरज आहे, पुढे सुरु ठेवण्यापूर्वी आपणाकडे पुरेशी जागा असल्याची खात्री करा.</string>
     <!-- Alert dialog button to continue with exporting sms after seeing the lack of storage warning -->
     <string name="ExportingSmsMessagesFragment__continue_anyway">तरीही सुरू ठेवा</string>
     <!-- Dialog text shown when Signal isn't granted the sms permission needed to export messages, different than being selected as the sms app -->
@@ -5461,13 +5461,13 @@
     </plurals>
 
     <!-- Title of screen shown when some sms messages did not export -->
-    <string name="ExportSmsPartiallyComplete__export_partially_complete">Export partially complete</string>
+    <string name="ExportSmsPartiallyComplete__export_partially_complete">एक्सपोर्ट अंशतः पूर्ण झाले</string>
     <!-- Debug step 1 on screen shown when some sms messages did not export -->
-    <string name="ExportSmsPartiallyComplete__ensure_you_have_an_additional_s_free_on_your_phone_to_export_your_messages">Ensure you have an additional %1$s free on your phone to export your messages</string>
+    <string name="ExportSmsPartiallyComplete__ensure_you_have_an_additional_s_free_on_your_phone_to_export_your_messages">आपले संदेश एक्सपोर्ट करण्यासाठी आपल्या फोनवर अतिरिक्त %1$s मुक्त असल्याची खात्री करा</string>
     <!-- Debug step 2 on screen shown when some sms messages dit not export -->
-    <string name="ExportSmsPartiallyComplete__retry_export_which_will_only_retry_messages_that_have_not_yet_been_exported">Retry export, which will only retry messages that have not yet been exported</string>
+    <string name="ExportSmsPartiallyComplete__retry_export_which_will_only_retry_messages_that_have_not_yet_been_exported">एक्सपोर्ट करण्याचा पुन्हा प्रयत्न करा, जे फक्त अद्याप एक्सपोर्ट न झालेल्या संदेशांना पुन्हा एक्सपोर्ट करण्याचा प्रयत्न करेल</string>
     <!-- Partial sentence for Debug step 3 on screen shown when some sms messages did not export, is combined with 'contact us' -->
-    <string name="ExportSmsPartiallyComplete__if_the_problem_persists">If the problem persists, </string>
+    <string name="ExportSmsPartiallyComplete__if_the_problem_persists">समस्या कायम राहिल्यास, </string>
     <!-- Partial sentence for deubg step 3 on screen shown when some sms messages did not export, combined with 'If the problem persists', link text to open contact support view -->
     <string name="ExportSmsPartiallyComplete__contact_us">आमच्याशी संपर्क साधा</string>
     <!-- Button text to retry sms export -->
@@ -5475,9 +5475,9 @@
     <!-- Button text to continue sms export flow and not retry failed message exports -->
     <string name="ExportSmsPartiallyComplete__continue_anyway">तरीही सुरू ठेवा</string>
     <!-- Title of screen shown when all sms messages failed to export -->
-    <string name="ExportSmsFullError__error_exporting_sms_messages">Error exporting SMS messages</string>
+    <string name="ExportSmsFullError__error_exporting_sms_messages">SMS संदेश एक्सपोर्ट करण्यात त्रुटी</string>
     <!-- Helper text shown when all sms messages failed to export -->
-    <string name="ExportSmsFullError__please_try_again_if_the_problem_persists">Please try again. If the problem persists, </string>
+    <string name="ExportSmsFullError__please_try_again_if_the_problem_persists">कृपया पुन्हा प्रयत्न करा. समस्या कायम राहिल्यास, </string>
 
 
     <!-- EOF -->

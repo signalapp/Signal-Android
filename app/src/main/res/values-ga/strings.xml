@@ -225,7 +225,7 @@
     <!-- Label for my stories when selecting who to send media to -->
     <string name="ContactsCursorLoader_my_stories">Mo Scéalta</string>
     <!-- Text for a button that brings up a bottom sheet to create a new story. -->
-    <string name="ContactsCursorLoader_new">New</string>
+    <string name="ContactsCursorLoader_new">Nua</string>
 
     <!-- ContactsDatabase -->
     <string name="ContactsDatabase_message_s">Teachtaireacht %1$s</string>
@@ -349,13 +349,13 @@
     <string name="ConversationActivity__reported_as_spam_and_blocked">Reported as spam and blocked.</string>
 
     <!-- Message shown when opening an SMS conversation with SMS disabled and they have unexported sms messages -->
-    <string name="ConversationActivity__sms_messaging_is_currently_disabled_you_can_export_your_messages_to_another_app_on_your_phone">SMS messaging is currently disabled. You can export your messages to another app on your phone.</string>
+    <string name="ConversationActivity__sms_messaging_is_currently_disabled_you_can_export_your_messages_to_another_app_on_your_phone">Tá teachtaireachtaí SMS díchumasaithe faoi láthair. Is féidir leat do theachtaireachtaí a easpórtáil chuig aip eile ar do ghuthán.</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and they have unexported sms messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_you_can_export_your_messages_to_another_app_on_your_phone">Ní thacaítear le cur teachtaireachtaí SMS in Signal a thuilleadh. Tig leat do theachtaireachtaí a easpórtáil chuig aip eile ar do ghuthán.</string>
     <!-- Action button shown when in sms conversation, sms is disabled, and unexported sms messages are present -->
     <string name="ConversationActivity__export_sms_messages">Easpórtáil teachtaireachtaí SMS</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
-    <string name="ConversationActivity__sms_messaging_is_currently_disabled_invite_s_to_to_signal_to_keep_the_conversation_here">SMS messaging is currently disabled. Invite %1$s to Signal to keep the conversation here.</string>
+    <string name="ConversationActivity__sms_messaging_is_currently_disabled_invite_s_to_to_signal_to_keep_the_conversation_here">Tá teachtaireachtaí SMS díchumasaithe faoi láthair. Tabhair cuireadh chun Signal do %1$s leis an gcomhrá a choinneáil anseo.</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">Ní thacaítear le cur teachtaireachtaí SMS in Signal a thuilleadh. Tabhair cuireadh do %1$s teacht isteach in Signal leis an gcomhrá a choinneáil anseo.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
@@ -937,7 +937,7 @@
     <string name="AddGroupDetailsFragment__sms_contact">Teagmhálaí SMS</string>
     <string name="AddGroupDetailsFragment__remove_s_from_this_group">Bain %1$s ón ngrúpa seo?</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">You\'ve selected a contact that doesn\'t support Signal groups, so this group will be MMS. Custom MMS group names and photos will only be visible to you.</string>
+    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">Roghnaigh tú teagmhálaí nach dtacaíonn le grúpaí Signal, grúpa MMS a bheidh sa ghrúpa seo dá réir. Beidh ainmneacha agus grianghraif ag grúpaí MMS saincheaptha infheicthe agatsa amháin.</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">Roghnaigh tú teagmhálaí nach dtacaíonn le grúpaí Signal, grúpa MMS a bheith sa ghrúpa seo dá réir. Beidh ainmneacha agus grianghraif ag grúpa MMS saincheaptha infheicthe agatsa amháin. Bainfear tacaíocht do ghrúpaí SMS go lua chun díriú ar chur teachtaireachtaí criptithe.</string>
 
@@ -1018,19 +1018,19 @@
     <!-- ManageRecipientActivity -->
     <string name="ManageRecipientActivity_no_groups_in_common">No groups in common</string>
     <plurals name="ManageRecipientActivity_d_groups_in_common">
-        <item quantity="one">%1$d group in common</item>
-        <item quantity="two">%1$d groups in common</item>
-        <item quantity="few">%1$d groups in common</item>
-        <item quantity="many">%1$d groups in common</item>
-        <item quantity="other">%1$d groups in common</item>
+        <item quantity="one">%1$d ghrúpa i bpáirt</item>
+        <item quantity="two">%1$d ghrúpa i bpáirt</item>
+        <item quantity="few">%1$d ghrúpa i bpáirt</item>
+        <item quantity="many">%1$d ngrúpa i bpáirt</item>
+        <item quantity="other">%1$d grúpa i bpáirt</item>
     </plurals>
 
     <plurals name="GroupMemberList_invited">
-        <item quantity="one">%1$s invited 1 person</item>
-        <item quantity="two">%1$s invited %2$d people</item>
-        <item quantity="few">%1$s invited %2$d people</item>
-        <item quantity="many">%1$s invited %2$d people</item>
-        <item quantity="other">%1$s invited %2$d people</item>
+        <item quantity="one">Thug %1$s cuireadh do %2$d duine</item>
+        <item quantity="two">Thug %1$s cuireadh do %2$d dhuine</item>
+        <item quantity="few">Thug %1$s cuireadh do %2$d dhuine</item>
+        <item quantity="many">Thug %1$s cuireadh do %2$d nduine</item>
+        <item quantity="other">Thug %1$s cuireadh do %2$d duine</item>
     </plurals>
 
     <!-- CustomNotificationsDialogFragment -->
@@ -1396,19 +1396,19 @@
     <string name="MessageRecord_you_invited_s_to_the_group">Thug tú cuireadh do %1$s chun páirt a ghlacadh sa ghrúpa.</string>
     <string name="MessageRecord_s_invited_you_to_the_group">%1$s invited you to the group.</string>
     <plurals name="MessageRecord_s_invited_members">
-        <item quantity="one">%1$s invited 1 person to the group.</item>
-        <item quantity="two">%1$s invited %2$d people to the group.</item>
-        <item quantity="few">%1$s invited %2$d people to the group.</item>
-        <item quantity="many">%1$s invited %2$d people to the group.</item>
-        <item quantity="other">%1$s invited %2$d people to the group.</item>
+        <item quantity="one">Thug %1$s cuireadh do %2$d duine chun dul isteach sa ghrúpa.</item>
+        <item quantity="two">Thug %1$s cuireadh do %2$d dhuine chun dul isteach sa ghrúpa.</item>
+        <item quantity="few">Thug %1$s cuireadh do %2$d dhuine chun dul isteach sa ghrúpa.</item>
+        <item quantity="many">Thug %1$s cuireadh do %2$d nduine chun dul isteach sa ghrúpa.</item>
+        <item quantity="other">Thug %1$s cuireadh do %2$d duine chun dul isteach sa ghrúpa.</item>
     </plurals>
     <string name="MessageRecord_you_were_invited_to_the_group">Tugadh cuireadh duit chun páirt a ghlacadh sa ghrúpa.</string>
     <plurals name="MessageRecord_d_people_were_invited_to_the_group">
-        <item quantity="one">1 person was invited to the group.</item>
-        <item quantity="two">%1$d people were invited to the group.</item>
-        <item quantity="few">%1$d people were invited to the group.</item>
-        <item quantity="many">%1$d people were invited to the group.</item>
-        <item quantity="other">%1$d people were invited to the group.</item>
+        <item quantity="one">Tugadh cuireadh do %1$d duine chun dul isteach sa ghrúpa.</item>
+        <item quantity="two">Tugadh cuireadh do %1$d dhuine chun dul isteach sa ghrúpa.</item>
+        <item quantity="few">Tugadh cuireadh do %1$d dhuine chun dul isteach sa ghrúpa.</item>
+        <item quantity="many">Tugadh cuireadh do %1$d nduine chun dul isteach sa ghrúpa.</item>
+        <item quantity="other">Tugadh cuireadh do %1$d duine chun dul isteach sa ghrúpa.</item>
     </plurals>
 
     <!-- GV2 invitation revokes -->
@@ -1807,21 +1807,21 @@
     <string name="WebRtcCallView__signal_will_ring_s">Cuirfidh Signal glao ar %1$s</string>
     <string name="WebRtcCallView__signal_will_ring_s_and_s">Cuirfidh Signal glao ar %1$s agus ar %2$s</string>
     <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
-        <item quantity="one">Signal will ring %1$s, %2$s, and %3$d other</item>
-        <item quantity="two">Signal will ring %1$s, %2$s, and %3$d others</item>
-        <item quantity="few">Signal will ring %1$s, %2$s, and %3$d others</item>
-        <item quantity="many">Signal will ring %1$s, %2$s, and %3$d others</item>
-        <item quantity="other">Signal will ring %1$s, %2$s, and %3$d others</item>
+        <item quantity="one">Cuirfidh Signal glao ar %1$s, %2$s, agus ar %3$d duine eile</item>
+        <item quantity="two">Cuirfidh Signal glao ar %1$s, %2$s, agus ar %3$d dhuine eile</item>
+        <item quantity="few">Cuirfidh Signal glao ar %1$s, %2$s, agus ar %3$d dhuine eile</item>
+        <item quantity="many">Cuirfidh Signal glao ar %1$s, %2$s, agus ar %3$d nduine eile</item>
+        <item quantity="other">Cuirfidh Signal glao ar %1$s, %2$s, agus ar %3$d duine eile</item>
     </plurals>
 
     <string name="WebRtcCallView__s_will_be_notified">Cuirfear %1$s ar an eolas</string>
     <string name="WebRtcCallView__s_and_s_will_be_notified">Cuirfear %1$s agus %2$s ar an eolas</string>
     <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
-        <item quantity="one">%1$s, %2$s, and %3$d other will be notified</item>
-        <item quantity="two">%1$s, %2$s, and %3$d others will be notified</item>
-        <item quantity="few">%1$s, %2$s, and %3$d others will be notified</item>
-        <item quantity="many">%1$s, %2$s, and %3$d others will be notified</item>
-        <item quantity="other">%1$s, %2$s, and %3$d others will be notified</item>
+        <item quantity="one">Cuirfear %1$s, %2$s agus %3$d duine eile ar an eolas</item>
+        <item quantity="two">Cuirfear %1$s, %2$s agus %3$d dhuine eile ar an eolas</item>
+        <item quantity="few">Cuirfear %1$s, %2$s agus %3$d dhuine eile ar an eolas</item>
+        <item quantity="many">Cuirfear %1$s, %2$s agus %3$d nduine eile ar an eolas</item>
+        <item quantity="other">Cuirfear %1$s, %2$s agus %3$d duine eile ar an eolas</item>
     </plurals>
 
     <string name="WebRtcCallView__ringing_s">Ag glaoch ar %1$s</string>
@@ -1852,11 +1852,11 @@
     <string name="WebRtcCallView__s_is_presenting">%1$s is presenting</string>
 
     <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
-        <item quantity="one">%1$s, %2$s, and %3$d other are in this call</item>
-        <item quantity="two">%1$s, %2$s, and %3$d others are in this call</item>
-        <item quantity="few">%1$s, %2$s, and %3$d others are in this call</item>
-        <item quantity="many">%1$s, %2$s, and %3$d others are in this call</item>
-        <item quantity="other">%1$s, %2$s, and %3$d others are in this call</item>
+        <item quantity="one">Tá %1$s, %2$s agus %3$d duine eile sa ghlao seo</item>
+        <item quantity="two">Tá %1$s, %2$s agus %3$d dhuine eile sa ghlao seo</item>
+        <item quantity="few">Tá %1$s, %2$s agus %3$d dhuine eile sa ghlao seo</item>
+        <item quantity="many">Tá %1$s, %2$s agus %3$d nduine eile sa ghlao seo</item>
+        <item quantity="other">Tá %1$s, %2$s agus %3$d duine eile sa ghlao seo</item>
     </plurals>
 
     <string name="WebRtcCallView__flip">Smeach é</string>
@@ -1869,11 +1869,11 @@
 
     <!-- CallParticipantsListDialog -->
     <plurals name="CallParticipantsListDialog_in_this_call_d_people">
-        <item quantity="one">In this call · %1$d person</item>
-        <item quantity="two">In this call · %1$d people</item>
-        <item quantity="few">In this call · %1$d people</item>
-        <item quantity="many">In this call · %1$d people</item>
-        <item quantity="other">In this call · %1$d people</item>
+        <item quantity="one">Sa ghlao seo · %1$d duine</item>
+        <item quantity="two">Sa ghlao seo · %1$d dhuine</item>
+        <item quantity="few">Sa ghlao seo · %1$d dhuine</item>
+        <item quantity="many">Sa ghlao seo · %1$d nduine</item>
+        <item quantity="other">Sa ghlao seo · %1$d duine</item>
     </plurals>
 
     <!-- CallParticipantView -->
@@ -2298,11 +2298,11 @@
 
     <!-- TransferControlView -->
     <plurals name="TransferControlView_n_items">
-        <item quantity="one">%1$d Item</item>
-        <item quantity="two">%1$d Items</item>
-        <item quantity="few">%1$d Items</item>
-        <item quantity="many">%1$d Items</item>
-        <item quantity="other">%1$d Items</item>
+        <item quantity="one">%1$d Mhír</item>
+        <item quantity="two">%1$d Mhír</item>
+        <item quantity="few">%1$d Mhír</item>
+        <item quantity="many">%1$d Mír</item>
+        <item quantity="other">%1$d Mír</item>
     </plurals>
 
     <!-- UnauthorizedReminder -->
@@ -2769,15 +2769,15 @@
     <string name="HelpFragment__could_not_upload_logs">Could not upload logs</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">Mínigh go mion cad atá cearr le do thoil ionas gur féidir linn an fhadhb a thuiscint.</string>
     <string-array name="HelpFragment__categories_5">
-        <item>\\-\\- Please select an option \\-\\-</item>
+        <item>\\-\\- Déan rogha \\-\\-</item>
         <item>Tá rud éigin as gléas</item>
         <item>Iarratas ar Ghné Nua</item>
         <item>Ceist</item>
         <item>Aiseolas</item>
         <item>Eile</item>
-        <item>Payments (MobileCoin)</item>
+        <item>Íocaíochtaí (MobileCoin)</item>
         <item>Donations &amp; Badges</item>
-        <item>SMS Export</item>
+        <item>Easpórtáil SMS</item>
     </string-array>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
@@ -3348,11 +3348,11 @@
 
     <!-- Heading which shows how many messages are currently selected -->
     <plurals name="conversation_context__s_selected">
-        <item quantity="one">%1$d selected</item>
-        <item quantity="two">%1$d selected</item>
-        <item quantity="few">%1$d selected</item>
-        <item quantity="many">%1$d selected</item>
-        <item quantity="other">%1$d selected</item>
+        <item quantity="one">%1$d Roghnaithe</item>
+        <item quantity="two">%1$d Roghnaithe</item>
+        <item quantity="few">%1$d Roghnaithe</item>
+        <item quantity="many">%1$d Roghnaithe</item>
+        <item quantity="other">%1$d Roghnaithe</item>
     </plurals>
 
     <!-- conversation_context_image -->
@@ -3586,11 +3586,11 @@
     </plurals>
 
     <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
-        <item quantity="one">Incorrect PIN. %1$d attempt remaining.</item>
-        <item quantity="two">Incorrect PIN. %1$d attempts remaining.</item>
-        <item quantity="few">Incorrect PIN. %1$d attempts remaining.</item>
-        <item quantity="many">Incorrect PIN. %1$d attempts remaining.</item>
-        <item quantity="other">Incorrect PIN. %1$d attempts remaining.</item>
+        <item quantity="one">UAP mhícheart. %1$d iarracht fágtha.</item>
+        <item quantity="two">UAP mhícheart. %1$d iarracht fágtha.</item>
+        <item quantity="few">UAP mhícheart. %1$d iarracht fágtha.</item>
+        <item quantity="many">UAP mhícheart. %1$d n-iarracht fágtha.</item>
+        <item quantity="other">UAP mhícheart. %1$d iarracht fágtha.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
@@ -3933,18 +3933,18 @@
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">No other groups in common.</string>
     <string name="ReviewCardDialogFragment__no_groups_in_common">No groups in common.</string>
     <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
-        <item quantity="one">%1$d group in common</item>
-        <item quantity="two">%1$d groups in common</item>
-        <item quantity="few">%1$d groups in common</item>
-        <item quantity="many">%1$d groups in common</item>
-        <item quantity="other">%1$d groups in common</item>
+        <item quantity="one">%1$d ghrúpa i bpáirt</item>
+        <item quantity="two">%1$d ghrúpa i bpáirt</item>
+        <item quantity="few">%1$d ghrúpa i bpáirt</item>
+        <item quantity="many">%1$d ngrúpa i bpáirt</item>
+        <item quantity="other">%1$d grúpa i bpáirt</item>
     </plurals>
     <plurals name="ReviewCardDialogFragment__d_groups_in_common">
-        <item quantity="one">%1$d group in common</item>
-        <item quantity="two">%1$d groups in common</item>
-        <item quantity="few">%1$d groups in common</item>
-        <item quantity="many">%1$d groups in common</item>
-        <item quantity="other">%1$d groups in common</item>
+        <item quantity="one">%1$d ghrúpa i bpáirt</item>
+        <item quantity="two">%1$d ghrúpa i bpáirt</item>
+        <item quantity="few">%1$d ghrúpa i bpáirt</item>
+        <item quantity="many">%1$d ngrúpa i bpáirt</item>
+        <item quantity="other">%1$d grúpa i bpáirt</item>
     </plurals>
     <string name="ReviewCardDialogFragment__remove_s_from_group">Remove %1$s from group?</string>
     <string name="ReviewCardDialogFragment__remove">Bain é</string>
@@ -5082,7 +5082,7 @@
     <!-- Title for "My Stories" row item in Stories landing page -->
     <string name="StoriesLandingFragment__my_stories">Mo Scéalta</string>
     <!-- Subtitle for "My Stories" row item when user has not added stories -->
-    <string name="StoriesLandingFragment__tap_to_add">Tap to add</string>
+    <string name="StoriesLandingFragment__tap_to_add">Tapáil chun cur leis</string>
     <!-- Displayed when there are no stories to display -->
     <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now">Níl aon nuashonruithe le déanaí ann le taispeáint díreach anois.</string>
     <!-- Context menu option to hide a story -->
@@ -5119,11 +5119,11 @@
     <string name="StoriesLandingFragment__hidden_stories">Scéalta folaithe</string>
     <!-- Displayed on each sent story under My Stories -->
     <plurals name="MyStories__d_views">
-        <item quantity="one">%1$d view</item>
-        <item quantity="two">%1$d views</item>
-        <item quantity="few">%1$d views</item>
-        <item quantity="many">%1$d views</item>
-        <item quantity="other">%1$d views</item>
+        <item quantity="one">%1$d amharc</item>
+        <item quantity="two">%1$d amharc</item>
+        <item quantity="few">%1$d amharc</item>
+        <item quantity="many">%1$d n-amharc</item>
+        <item quantity="other">%1$d amharc</item>
     </plurals>
     <!-- Forward story label, displayed in My Stories context menu -->
     <string name="MyStories_forward">Cuir ar aghaidh</string>
@@ -5137,11 +5137,11 @@
     <string name="MyStories__unable_to_save">Unable to save</string>
     <!-- Displayed at bottom of story viewer when current item has views -->
     <plurals name="StoryViewerFragment__d_views">
-        <item quantity="one">%1$d view</item>
-        <item quantity="two">%1$d views</item>
-        <item quantity="few">%1$d views</item>
-        <item quantity="many">%1$d views</item>
-        <item quantity="other">%1$d views</item>
+        <item quantity="one">%1$d amharc</item>
+        <item quantity="two">%1$d amharc</item>
+        <item quantity="few">%1$d amharc</item>
+        <item quantity="many">%1$d n-amharc</item>
+        <item quantity="other">%1$d amharc</item>
     </plurals>
     <!-- Displayed at bottom of story viewer when current item has replies -->
     <plurals name="StoryViewerFragment__d_replies">
@@ -5268,7 +5268,7 @@
     <!-- Clickable option to add a viewer to a custom story -->
     <string name="PrivateStorySettingsFragment__add_viewer">Add viewer</string>
     <!-- Clickable option to delete a custom story -->
-    <string name="PrivateStorySettingsFragment__delete_custom_story">Delete custom story</string>
+    <string name="PrivateStorySettingsFragment__delete_custom_story">Scrios scéal saincheaptha</string>
     <!-- Dialog title when attempting to remove someone from a custom story -->
     <string name="PrivateStorySettingsFragment__remove_s">Bain %1$s?</string>
     <!-- Dialog message when attempting to remove someone from a custom story -->
@@ -5306,7 +5306,7 @@
     <!-- Toast shown when an unexpected error occurs while sending a text story -->
     <string name="TextStoryPostSendFragment__an_unexpected_error_occurred_try_again">An unexpected error occurred</string>
     <!-- Toast shown when a trying to add a link preview to a text story post and the link/url is not valid (e.g., missing .com at the end) -->
-    <string name="TextStoryPostSendFragment__please_enter_a_valid_link">Please enter a valid link.</string>
+    <string name="TextStoryPostSendFragment__please_enter_a_valid_link">Cuir isteach nasc bailí.</string>
     <!-- Title for screen allowing user to exclude "My Story" entries from specific people -->
     <string name="ChangeMyStoryMembershipFragment__all_except">All except…</string>
     <!-- Title for screen allowing user to only share "My Story" entries with specific people -->
@@ -5320,7 +5320,7 @@
     <!-- Dialog positive action for removing a group story -->
     <string name="StoryDialogs__remove">Bain</string>
     <!-- Dialog title for deleting a custom story -->
-    <string name="StoryDialogs__delete_custom_story">Delete custom story?</string>
+    <string name="StoryDialogs__delete_custom_story">Scrios scéal saincheaptha?</string>
     <!-- Dialog message for deleting a custom story -->
     <string name="StoryDialogs__s_and_updates_shared">Scriosfar \"%1$s\" agus nuashonruithe a chomhroinntear chuig an scéal seo.</string>
     <!-- Dialog positive action for deleting a custom story -->
@@ -5362,7 +5362,7 @@
     <!-- Name story screen title -->
     <string name="CreateStoryWithViewersFragment__name_story">Cuir ainm ar an scéal</string>
     <!-- Name story screen note under text field -->
-    <string name="CreateStoryWithViewersFragment__only_you_can">Only you can see the name of this story.</string>
+    <string name="CreateStoryWithViewersFragment__only_you_can">Tusa amháin a fheicfidh ainm an scéil seo.</string>
     <!-- Name story screen label hint -->
     <string name="CreateStoryWithViewersFragment__story_name_required">Ainm ar an scéal (riachtanach)</string>
     <!-- Name story screen viewers subheading -->
@@ -5378,7 +5378,7 @@
     <!-- Choose story type bottom sheet title -->
     <string name="ChooseStoryTypeBottomSheet__choose_your_story_type">Roghnaigh do chineál scéil</string>
     <!-- Choose story type bottom sheet new story row title -->
-    <string name="ChooseStoryTypeBottomSheet__new_custom_story">New custom story</string>
+    <string name="ChooseStoryTypeBottomSheet__new_custom_story">Scéal saincheaptha nua</string>
     <!-- Choose story type bottom sheet new story row summary -->
     <string name="ChooseStoryTypeBottomSheet__visible_only_to">Infheicthe ag daoine ar leith amháin</string>
     <!-- Choose story type bottom sheet group story title -->
@@ -5491,11 +5491,11 @@
     <string name="ContactSearchItems__only_share_with">Ná comhroinn ach le</string>
     <!-- Label under name for custom stories -->
     <plurals name="ContactSearchItems__custom_story_d_viewers">
-        <item quantity="one">Custom story · %1$d viewer</item>
-        <item quantity="two">Custom story · %1$d viewers</item>
-        <item quantity="few">Custom story · %1$d viewers</item>
-        <item quantity="many">Custom story · %1$d viewers</item>
-        <item quantity="other">Custom story · %1$d viewers</item>
+        <item quantity="one">Scéal saincheaptha · %1$d amharcóir</item>
+        <item quantity="two">Scéal saincheaptha · %1$d amharcóir</item>
+        <item quantity="few">Scéal saincheaptha · %1$d amharcóir</item>
+        <item quantity="many">Scéal saincheaptha · %1$d n-amharcóir</item>
+        <item quantity="other">Scéal saincheaptha · %1$d amharcóir</item>
     </plurals>
     <!-- Label under name for group stories -->
     <plurals name="ContactSearchItems__group_story_d_viewers">
@@ -5538,7 +5538,7 @@
     <!-- Dialog title for deleting a custom story -->
     <string name="ContactSearchMediator__delete_story">Scrios an scéal?</string>
     <!-- Dialog message for deleting a custom story -->
-    <string name="ContactSearchMediator__delete_the_custom">Delete the custom story \"%1$s\"?</string>
+    <string name="ContactSearchMediator__delete_the_custom">Scrios an scéal saincheaptha \"%1$s\"?</string>
     <!-- Dialog action item for deleting a custom story -->
     <string name="ContactSearchMediator__delete">Scrios</string>
     <!-- Gift expiry days remaining -->
@@ -5651,7 +5651,7 @@
 
     <!-- StoriesPrivacySettingsFragment -->
     <!-- Explanation about how stories are deleted and managed -->
-    <string name="StoriesPrivacySettingsFragment__story_updates_automatically_disappear">Story updates automatically disappear after 24 hours. Choose who can view your story or create new stories with specific viewers or groups.</string>
+    <string name="StoriesPrivacySettingsFragment__story_updates_automatically_disappear">Imíonn nuashonruithe ar scéalta as radharc go huathoibríoch tar éis 24 uair an chloig. Roghnaigh an lucht féachana ar do scéal nó cruthaigh scéalta nua in éineacht le lucht féachana nó grúpaí ar leith.</string>
     <!-- Preference title to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__turn_off_stories">Cas as scéalta</string>
     <!-- Preference summary to turn off stories -->
@@ -5669,11 +5669,11 @@
     <!-- Header for section that lists out stories -->
     <string name="StoriesPrivacySettingsFragment__stories">Scéalta</string>
     <!-- Story views header -->
-    <string name="StoriesPrivacySettingsFragment__story_views">Story views</string>
+    <string name="StoriesPrivacySettingsFragment__story_views">Amhairc ar scéal</string>
     <!-- Story view receipts toggle title -->
-    <string name="StoriesPrivacySettingsFragment__view_receipts">View receipts</string>
+    <string name="StoriesPrivacySettingsFragment__view_receipts">Admhálacha léite</string>
     <!-- Story view receipts toggle message -->
-    <string name="StoriesPrivacySettingsFragment__see_and_share">See and share when stories are viewed. If disabled, you won\'t see when others view your story.</string>
+    <string name="StoriesPrivacySettingsFragment__see_and_share">Féach cathain a fhéachtar ar scéalta agus comhroinn é sin. Agus é sin díchumasaithe, ní bheidh a fhios agat cathain a fhéachann daoine ar do scéal.</string>
 
     <!-- NewStoryItem -->
     <string name="NewStoryItem__new_story">Scéal nua</string>
@@ -5701,7 +5701,7 @@
     <!-- Title of the screen -->
     <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">Export your SMS messages</string>
     <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database_and_youll_have_the_option_to_keep_or_remove_them_from_signal">You can export your SMS messages to your phone\'s SMS database and you\'ll have the option to keep or remove them from Signal. This allows other SMS apps on your phone to import them. This does not create a shareable file of your SMS history.</string>
+    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database_and_youll_have_the_option_to_keep_or_remove_them_from_signal">Is féidir leat do theachtaireachtaí SMS a easpórtáil chuig bunachar sonraí SMS do ghutháin, áit a mbeidh an rogha agat iad a choimeád nó a bhaint de Signal. Ligeann sé seo d\'aipeanna eile SMS ar do ghuthán iad a iompórtáil. Ní chruthaíonn sé seo comhad in-chomhroinnte de stair do theachtaireachtaí SMS.</string>
     <!-- Button label to begin export -->
     <string name="ExportYourSmsMessagesFragment__continue">Ar Aghaidh</string>
 
@@ -5719,9 +5719,9 @@
         <item quantity="other">%1$d as %2$d á n-easpórtáil…</item>
     </plurals>
     <!-- Alert dialog title shown when we think a user may not have enough local storage available to export sms messages -->
-    <string name="ExportingSmsMessagesFragment__you_may_not_have_enough_disk_space">You may not have enough disk space</string>
+    <string name="ExportingSmsMessagesFragment__you_may_not_have_enough_disk_space">B\'fhéidir nach leor an spás diosca</string>
     <!-- Alert dialog message shown when we think a user may not have enough local storage available to export sms messages, placeholder is the file size, e.g., 128kB -->
-    <string name="ExportingSmsMessagesFragment__you_need_approximately_s_to_export_your_messages_ensure_you_have_enough_space_before_continuing">You need approximately %1$s to export your messages, ensure you have enough space before continuing.</string>
+    <string name="ExportingSmsMessagesFragment__you_need_approximately_s_to_export_your_messages_ensure_you_have_enough_space_before_continuing">Teastaíonn timpeall %1$s uait chun do chuid teachtaireachtaí a easpórtáil, cinntigh go bhfuil go leor spáis agat sula leanann tú ar aghaidh.</string>
     <!-- Alert dialog button to continue with exporting sms after seeing the lack of storage warning -->
     <string name="ExportingSmsMessagesFragment__continue_anyway">Lean ar aghaidh ar aon nós</string>
     <!-- Dialog text shown when Signal isn't granted the sms permission needed to export messages, different than being selected as the sms app -->
@@ -5827,13 +5827,13 @@
     </plurals>
 
     <!-- Title of screen shown when some sms messages did not export -->
-    <string name="ExportSmsPartiallyComplete__export_partially_complete">Export partially complete</string>
+    <string name="ExportSmsPartiallyComplete__export_partially_complete">Easpórtáil críochnaithe go páirteach</string>
     <!-- Debug step 1 on screen shown when some sms messages did not export -->
-    <string name="ExportSmsPartiallyComplete__ensure_you_have_an_additional_s_free_on_your_phone_to_export_your_messages">Ensure you have an additional %1$s free on your phone to export your messages</string>
+    <string name="ExportSmsPartiallyComplete__ensure_you_have_an_additional_s_free_on_your_phone_to_export_your_messages">Cinntigh go bhfuil %1$s de spás breise saor ar do ghuthán chun do theachtaireachtaí a easpórtáil</string>
     <!-- Debug step 2 on screen shown when some sms messages dit not export -->
-    <string name="ExportSmsPartiallyComplete__retry_export_which_will_only_retry_messages_that_have_not_yet_been_exported">Retry export, which will only retry messages that have not yet been exported</string>
+    <string name="ExportSmsPartiallyComplete__retry_export_which_will_only_retry_messages_that_have_not_yet_been_exported">Atriail easpórtáil, rud a dhéanfaidh iarracht arís teachtaireachtaí nach bhfuil easpórtáilte fós a easpórtáil</string>
     <!-- Partial sentence for Debug step 3 on screen shown when some sms messages did not export, is combined with 'contact us' -->
-    <string name="ExportSmsPartiallyComplete__if_the_problem_persists">If the problem persists, </string>
+    <string name="ExportSmsPartiallyComplete__if_the_problem_persists">Má leanann ar aghaidh leis an bhfadhb, </string>
     <!-- Partial sentence for deubg step 3 on screen shown when some sms messages did not export, combined with 'If the problem persists', link text to open contact support view -->
     <string name="ExportSmsPartiallyComplete__contact_us">Déan teagmháil linn</string>
     <!-- Button text to retry sms export -->
@@ -5841,9 +5841,9 @@
     <!-- Button text to continue sms export flow and not retry failed message exports -->
     <string name="ExportSmsPartiallyComplete__continue_anyway">Lean ar aghaidh ar aon nós</string>
     <!-- Title of screen shown when all sms messages failed to export -->
-    <string name="ExportSmsFullError__error_exporting_sms_messages">Error exporting SMS messages</string>
+    <string name="ExportSmsFullError__error_exporting_sms_messages">Tharla earráid agus teachtaireachtaí SMS á n-easpórtáil</string>
     <!-- Helper text shown when all sms messages failed to export -->
-    <string name="ExportSmsFullError__please_try_again_if_the_problem_persists">Please try again. If the problem persists, </string>
+    <string name="ExportSmsFullError__please_try_again_if_the_problem_persists">Triail arís. Má leanann ar aghaidh leis an bhfadhb, </string>
 
 
     <!-- EOF -->

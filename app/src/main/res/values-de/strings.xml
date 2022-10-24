@@ -222,7 +222,7 @@
     <!-- Label for my stories when selecting who to send media to -->
     <string name="ContactsCursorLoader_my_stories">Meine Storys</string>
     <!-- Text for a button that brings up a bottom sheet to create a new story. -->
-    <string name="ContactsCursorLoader_new">New</string>
+    <string name="ContactsCursorLoader_new">Neu</string>
 
     <!-- ContactsDatabase -->
     <string name="ContactsDatabase_message_s">Nachricht %1$s</string>
@@ -346,13 +346,13 @@
     <string name="ConversationActivity__reported_as_spam_and_blocked">Als Spam gemeldet und blockiert.</string>
 
     <!-- Message shown when opening an SMS conversation with SMS disabled and they have unexported sms messages -->
-    <string name="ConversationActivity__sms_messaging_is_currently_disabled_you_can_export_your_messages_to_another_app_on_your_phone">SMS messaging is currently disabled. You can export your messages to another app on your phone.</string>
+    <string name="ConversationActivity__sms_messaging_is_currently_disabled_you_can_export_your_messages_to_another_app_on_your_phone">Die SMS-Nachrichtübermittlung ist derzeit deaktiviert. Du kannst deine Nachrichten in eine andere App auf deinem Smartphone exportieren.</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and they have unexported sms messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_you_can_export_your_messages_to_another_app_on_your_phone">Die SMS-Nachrichtübermittlung wird in Signal nicht länger unterstützt. Du kannst deine Nachrichten in eine andere App auf deinem Smartphone exportieren.</string>
     <!-- Action button shown when in sms conversation, sms is disabled, and unexported sms messages are present -->
     <string name="ConversationActivity__export_sms_messages">SMS-Nachrichten exportieren</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
-    <string name="ConversationActivity__sms_messaging_is_currently_disabled_invite_s_to_to_signal_to_keep_the_conversation_here">SMS messaging is currently disabled. Invite %1$s to Signal to keep the conversation here.</string>
+    <string name="ConversationActivity__sms_messaging_is_currently_disabled_invite_s_to_to_signal_to_keep_the_conversation_here">Die SMS-Nachrichtübermittlung ist derzeit deaktiviert. Lade %1$s zu Signal ein, damit die Unterhaltung hier weitergeht.</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">Die SMS-Nachrichtübermittlung wird in Signal nicht länger unterstützt. Lade %1$s zu Signal ein, damit die Unterhaltung hier weitergeht.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
@@ -2522,7 +2522,7 @@
         <item>Sonstige</item>
         <item>Zahlungen (MobileCoin)</item>
         <item>Spenden und Abzeichen</item>
-        <item>SMS Export</item>
+        <item>SMS-Export</item>
     </string-array>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
@@ -4770,7 +4770,7 @@
     <!-- Title for "My Stories" row item in Stories landing page -->
     <string name="StoriesLandingFragment__my_stories">Meine Storys</string>
     <!-- Subtitle for "My Stories" row item when user has not added stories -->
-    <string name="StoriesLandingFragment__tap_to_add">Tap to add</string>
+    <string name="StoriesLandingFragment__tap_to_add">Zum Hinzufügen antippen</string>
     <!-- Displayed when there are no stories to display -->
     <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now">Keine kürzlichen Aktualisierungen vorhanden.</string>
     <!-- Context menu option to hide a story -->
@@ -4938,7 +4938,7 @@
     <!-- Clickable option to add a viewer to a custom story -->
     <string name="PrivateStorySettingsFragment__add_viewer">Betrachter hinzufügen</string>
     <!-- Clickable option to delete a custom story -->
-    <string name="PrivateStorySettingsFragment__delete_custom_story">Delete custom story</string>
+    <string name="PrivateStorySettingsFragment__delete_custom_story">Benutzerdefinierte Story löschen</string>
     <!-- Dialog title when attempting to remove someone from a custom story -->
     <string name="PrivateStorySettingsFragment__remove_s">%1$s entfernen?</string>
     <!-- Dialog message when attempting to remove someone from a custom story -->
@@ -4976,7 +4976,7 @@
     <!-- Toast shown when an unexpected error occurs while sending a text story -->
     <string name="TextStoryPostSendFragment__an_unexpected_error_occurred_try_again">Ein unerwarteter Fehler ist aufgetreten</string>
     <!-- Toast shown when a trying to add a link preview to a text story post and the link/url is not valid (e.g., missing .com at the end) -->
-    <string name="TextStoryPostSendFragment__please_enter_a_valid_link">Please enter a valid link.</string>
+    <string name="TextStoryPostSendFragment__please_enter_a_valid_link">Bitte gib einen gültigen Link ein</string>
     <!-- Title for screen allowing user to exclude "My Story" entries from specific people -->
     <string name="ChangeMyStoryMembershipFragment__all_except">Alle außer…</string>
     <!-- Title for screen allowing user to only share "My Story" entries with specific people -->
@@ -4990,7 +4990,7 @@
     <!-- Dialog positive action for removing a group story -->
     <string name="StoryDialogs__remove">Entfernen</string>
     <!-- Dialog title for deleting a custom story -->
-    <string name="StoryDialogs__delete_custom_story">Delete custom story?</string>
+    <string name="StoryDialogs__delete_custom_story">Benutzerdefinierte Story löschen?</string>
     <!-- Dialog message for deleting a custom story -->
     <string name="StoryDialogs__s_and_updates_shared">»%1$s« und Aktualisierungen, die im Rahmen dieser Story geteilt werden, werden gelöscht.</string>
     <!-- Dialog positive action for deleting a custom story -->
@@ -5029,7 +5029,7 @@
     <!-- Name story screen title -->
     <string name="CreateStoryWithViewersFragment__name_story">Story benennen</string>
     <!-- Name story screen note under text field -->
-    <string name="CreateStoryWithViewersFragment__only_you_can">Only you can see the name of this story.</string>
+    <string name="CreateStoryWithViewersFragment__only_you_can">Nur du kannst den Namen dieser Story sehen.</string>
     <!-- Name story screen label hint -->
     <string name="CreateStoryWithViewersFragment__story_name_required">Storyname (erforderlich)</string>
     <!-- Name story screen viewers subheading -->
@@ -5045,7 +5045,7 @@
     <!-- Choose story type bottom sheet title -->
     <string name="ChooseStoryTypeBottomSheet__choose_your_story_type">Wähle den Typ deiner Story</string>
     <!-- Choose story type bottom sheet new story row title -->
-    <string name="ChooseStoryTypeBottomSheet__new_custom_story">New custom story</string>
+    <string name="ChooseStoryTypeBottomSheet__new_custom_story">Neue benutzerdefinierte Story</string>
     <!-- Choose story type bottom sheet new story row summary -->
     <string name="ChooseStoryTypeBottomSheet__visible_only_to">Nur für bestimmte Personen sichtbar</string>
     <!-- Choose story type bottom sheet group story title -->
@@ -5155,8 +5155,8 @@
     <string name="ContactSearchItems__only_share_with">Nur teilen mit</string>
     <!-- Label under name for custom stories -->
     <plurals name="ContactSearchItems__custom_story_d_viewers">
-        <item quantity="one">Custom story · %1$d viewer</item>
-        <item quantity="other">Custom story · %1$d viewers</item>
+        <item quantity="one">Benutzerdefinierte Story · %1$d Betrachter</item>
+        <item quantity="other">Benutzerdefinierte Story · %1$d Betrachter</item>
     </plurals>
     <!-- Label under name for group stories -->
     <plurals name="ContactSearchItems__group_story_d_viewers">
@@ -5190,7 +5190,7 @@
     <!-- Dialog title for deleting a custom story -->
     <string name="ContactSearchMediator__delete_story">Story löschen?</string>
     <!-- Dialog message for deleting a custom story -->
-    <string name="ContactSearchMediator__delete_the_custom">Delete the custom story \"%1$s\"?</string>
+    <string name="ContactSearchMediator__delete_the_custom">Benutzerdefinierte Story »%1$s« löschen?</string>
     <!-- Dialog action item for deleting a custom story -->
     <string name="ContactSearchMediator__delete">Löschen</string>
     <!-- Gift expiry days remaining -->
@@ -5291,7 +5291,7 @@
 
     <!-- StoriesPrivacySettingsFragment -->
     <!-- Explanation about how stories are deleted and managed -->
-    <string name="StoriesPrivacySettingsFragment__story_updates_automatically_disappear">Story updates automatically disappear after 24 hours. Choose who can view your story or create new stories with specific viewers or groups.</string>
+    <string name="StoriesPrivacySettingsFragment__story_updates_automatically_disappear">Story-Updates verschwinden automatisch nach 24 Stunden. Lege fest, wer deine Story sehen kann, oder erstelle neue Storys mit bestimmten Betrachtern oder Gruppen.</string>
     <!-- Preference title to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__turn_off_stories">Storys ausschalten</string>
     <!-- Preference summary to turn off stories -->
@@ -5309,11 +5309,11 @@
     <!-- Header for section that lists out stories -->
     <string name="StoriesPrivacySettingsFragment__stories">Storys</string>
     <!-- Story views header -->
-    <string name="StoriesPrivacySettingsFragment__story_views">Story views</string>
+    <string name="StoriesPrivacySettingsFragment__story_views">Story-Ansichten</string>
     <!-- Story view receipts toggle title -->
-    <string name="StoriesPrivacySettingsFragment__view_receipts">View receipts</string>
+    <string name="StoriesPrivacySettingsFragment__view_receipts">Lesebestätigungen ansehen</string>
     <!-- Story view receipts toggle message -->
-    <string name="StoriesPrivacySettingsFragment__see_and_share">See and share when stories are viewed. If disabled, you won\'t see when others view your story.</string>
+    <string name="StoriesPrivacySettingsFragment__see_and_share">Sehen und teilen, wann Storys angesehen wurden. Falls diese Funktion deaktiviert ist, wird nicht angezeigt, wenn andere deine Story sehen.</string>
 
     <!-- NewStoryItem -->
     <string name="NewStoryItem__new_story">Neue Story</string>
@@ -5341,7 +5341,7 @@
     <!-- Title of the screen -->
     <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">Deine SMS-Nachrichten exportieren</string>
     <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database_and_youll_have_the_option_to_keep_or_remove_them_from_signal">You can export your SMS messages to your phone\'s SMS database and you\'ll have the option to keep or remove them from Signal. This allows other SMS apps on your phone to import them. This does not create a shareable file of your SMS history.</string>
+    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database_and_youll_have_the_option_to_keep_or_remove_them_from_signal">Du kannst deine SMS-Nachrichten in die SMS-Datenbank deines Mobiltelefons exportieren, und du hast die Möglichkeit, sie zu behalten oder aus Signal zu entfernen. So können sie von anderen SMS-Apps auf deinem Mobiltelefon importiert werden. Dabei wird keine gemeinsam nutzbare Datei deines SMS-Verlaufs erstellt.</string>
     <!-- Button label to begin export -->
     <string name="ExportYourSmsMessagesFragment__continue">Fortfahren</string>
 
@@ -5356,9 +5356,9 @@
         <item quantity="other">%1$d von %2$d werden exportiert …</item>
     </plurals>
     <!-- Alert dialog title shown when we think a user may not have enough local storage available to export sms messages -->
-    <string name="ExportingSmsMessagesFragment__you_may_not_have_enough_disk_space">You may not have enough disk space</string>
+    <string name="ExportingSmsMessagesFragment__you_may_not_have_enough_disk_space">Du hast womöglich nicht genug Speicherplatz zur Verfügung</string>
     <!-- Alert dialog message shown when we think a user may not have enough local storage available to export sms messages, placeholder is the file size, e.g., 128kB -->
-    <string name="ExportingSmsMessagesFragment__you_need_approximately_s_to_export_your_messages_ensure_you_have_enough_space_before_continuing">You need approximately %1$s to export your messages, ensure you have enough space before continuing.</string>
+    <string name="ExportingSmsMessagesFragment__you_need_approximately_s_to_export_your_messages_ensure_you_have_enough_space_before_continuing">Du brauchst ungefähr %1$s, um deine Nachrichten zu exportieren. Überprüfe, ob du genug Platz hast, bevor du fortfährst.</string>
     <!-- Alert dialog button to continue with exporting sms after seeing the lack of storage warning -->
     <string name="ExportingSmsMessagesFragment__continue_anyway">Trotzdem fortfahren</string>
     <!-- Dialog text shown when Signal isn't granted the sms permission needed to export messages, different than being selected as the sms app -->
@@ -5461,13 +5461,13 @@
     </plurals>
 
     <!-- Title of screen shown when some sms messages did not export -->
-    <string name="ExportSmsPartiallyComplete__export_partially_complete">Export partially complete</string>
+    <string name="ExportSmsPartiallyComplete__export_partially_complete">Export teilweise abgeschlossen</string>
     <!-- Debug step 1 on screen shown when some sms messages did not export -->
-    <string name="ExportSmsPartiallyComplete__ensure_you_have_an_additional_s_free_on_your_phone_to_export_your_messages">Ensure you have an additional %1$s free on your phone to export your messages</string>
+    <string name="ExportSmsPartiallyComplete__ensure_you_have_an_additional_s_free_on_your_phone_to_export_your_messages">Stelle sicher, dass du auf deinem Mobiltelefon zusätzliche %1$s frei hast, um deine Nachrichten zu exportieren.</string>
     <!-- Debug step 2 on screen shown when some sms messages dit not export -->
-    <string name="ExportSmsPartiallyComplete__retry_export_which_will_only_retry_messages_that_have_not_yet_been_exported">Retry export, which will only retry messages that have not yet been exported</string>
+    <string name="ExportSmsPartiallyComplete__retry_export_which_will_only_retry_messages_that_have_not_yet_been_exported">Export wiederholen, wodurch nur Nachrichten erneut exportiert werden, die noch nicht exportiert wurden.</string>
     <!-- Partial sentence for Debug step 3 on screen shown when some sms messages did not export, is combined with 'contact us' -->
-    <string name="ExportSmsPartiallyComplete__if_the_problem_persists">If the problem persists, </string>
+    <string name="ExportSmsPartiallyComplete__if_the_problem_persists">Wenn das Problem weiterhin besteht, </string>
     <!-- Partial sentence for deubg step 3 on screen shown when some sms messages did not export, combined with 'If the problem persists', link text to open contact support view -->
     <string name="ExportSmsPartiallyComplete__contact_us">Kontaktiere uns</string>
     <!-- Button text to retry sms export -->
@@ -5475,9 +5475,9 @@
     <!-- Button text to continue sms export flow and not retry failed message exports -->
     <string name="ExportSmsPartiallyComplete__continue_anyway">Trotzdem fortfahren</string>
     <!-- Title of screen shown when all sms messages failed to export -->
-    <string name="ExportSmsFullError__error_exporting_sms_messages">Error exporting SMS messages</string>
+    <string name="ExportSmsFullError__error_exporting_sms_messages">Fehler beim Exportieren von SMS-Nachrichten</string>
     <!-- Helper text shown when all sms messages failed to export -->
-    <string name="ExportSmsFullError__please_try_again_if_the_problem_persists">Please try again. If the problem persists, </string>
+    <string name="ExportSmsFullError__please_try_again_if_the_problem_persists">Bitte versuche es erneut. Wenn das Problem weiterhin besteht, </string>
 
 
     <!-- EOF -->

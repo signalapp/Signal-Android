@@ -221,7 +221,7 @@
     <!-- Label for my stories when selecting who to send media to -->
     <string name="ContactsCursorLoader_my_stories">រឿងរ៉ាវរបស់ខ្ញុំ</string>
     <!-- Text for a button that brings up a bottom sheet to create a new story. -->
-    <string name="ContactsCursorLoader_new">New</string>
+    <string name="ContactsCursorLoader_new">ថ្មី</string>
 
     <!-- ContactsDatabase -->
     <string name="ContactsDatabase_message_s">សារ %1$s</string>
@@ -345,13 +345,13 @@
     <string name="ConversationActivity__reported_as_spam_and_blocked">បានរាយការណ៍សារឥតបានការ និងបានហាមឃាត់។</string>
 
     <!-- Message shown when opening an SMS conversation with SMS disabled and they have unexported sms messages -->
-    <string name="ConversationActivity__sms_messaging_is_currently_disabled_you_can_export_your_messages_to_another_app_on_your_phone">SMS messaging is currently disabled. You can export your messages to another app on your phone.</string>
+    <string name="ConversationActivity__sms_messaging_is_currently_disabled_you_can_export_your_messages_to_another_app_on_your_phone">ការផ្ញើសារជាអក្សរបច្ចុប្បន្នត្រូវបានបិទ។ អ្នកអាចនាំចេញសាររបស់អ្នកទៅកម្មវិធីមួយទៀតនៅលើទូរសព្ទរបស់អ្នក។</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and they have unexported sms messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_you_can_export_your_messages_to_another_app_on_your_phone">មិនអាចផ្ញើសារជាអក្សរបាននៅក្នុង Signal ទៀតទេ។ អ្នកអាចនាំចេញសាររបស់អ្នកទៅកម្មវិធីមួយទៀតនៅលើទូរសព្ទរបស់អ្នក។</string>
     <!-- Action button shown when in sms conversation, sms is disabled, and unexported sms messages are present -->
     <string name="ConversationActivity__export_sms_messages">នាំចេញសារជាអក្សរ</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
-    <string name="ConversationActivity__sms_messaging_is_currently_disabled_invite_s_to_to_signal_to_keep_the_conversation_here">SMS messaging is currently disabled. Invite %1$s to Signal to keep the conversation here.</string>
+    <string name="ConversationActivity__sms_messaging_is_currently_disabled_invite_s_to_to_signal_to_keep_the_conversation_here">ការផ្ញើសារជាអក្សរបច្ចុប្បន្នត្រូវបានបិទ។ បបួល %1$s ឲ្យប្រើ Signal ដើម្បីរក្សាការសន្ទនានៅទីនេះ។</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">មិនអាចផ្ញើសារជាអក្សរបាននៅក្នុង Signal ទៀតទេ។ បបួល %1$s ឲ្យប្រើ Signal ដើម្បីរក្សាការសន្ទនានៅទីនេះ។</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
@@ -2437,7 +2437,7 @@
         <item>ផ្សេងៗ</item>
         <item>ការទូទាត់ (MobileCoin)</item>
         <item>ការបរិច្ចាគ និងស្លាក</item>
-        <item>SMS Export</item>
+        <item>ការនាំចេញសារជាអក្សរ</item>
     </string-array>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
@@ -4666,7 +4666,7 @@
     <!-- Title for "My Stories" row item in Stories landing page -->
     <string name="StoriesLandingFragment__my_stories">រឿងរ៉ាវរបស់ខ្ញុំ</string>
     <!-- Subtitle for "My Stories" row item when user has not added stories -->
-    <string name="StoriesLandingFragment__tap_to_add">Tap to add</string>
+    <string name="StoriesLandingFragment__tap_to_add">ចុចដើម្បីបញ្ចូល</string>
     <!-- Displayed when there are no stories to display -->
     <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now">មិនមានព័ត៌មានថ្មីៗសម្រាប់បង្ហាញនៅពេលនេះទេ។</string>
     <!-- Context menu option to hide a story -->
@@ -4828,7 +4828,7 @@
     <!-- Clickable option to add a viewer to a custom story -->
     <string name="PrivateStorySettingsFragment__add_viewer">បញ្ចូលអ្នកមើល</string>
     <!-- Clickable option to delete a custom story -->
-    <string name="PrivateStorySettingsFragment__delete_custom_story">Delete custom story</string>
+    <string name="PrivateStorySettingsFragment__delete_custom_story">លុបរឿងរ៉ាវកំណត់ផ្ទាល់ខ្លួន</string>
     <!-- Dialog title when attempting to remove someone from a custom story -->
     <string name="PrivateStorySettingsFragment__remove_s">ដក %1$s ចេញឬ?</string>
     <!-- Dialog message when attempting to remove someone from a custom story -->
@@ -4866,7 +4866,7 @@
     <!-- Toast shown when an unexpected error occurs while sending a text story -->
     <string name="TextStoryPostSendFragment__an_unexpected_error_occurred_try_again">បញ្ហាមួយដែលមិនបានរំពឹងទុកបានកើតឡើង</string>
     <!-- Toast shown when a trying to add a link preview to a text story post and the link/url is not valid (e.g., missing .com at the end) -->
-    <string name="TextStoryPostSendFragment__please_enter_a_valid_link">Please enter a valid link.</string>
+    <string name="TextStoryPostSendFragment__please_enter_a_valid_link">សូមបញ្ចូលតំណត្រឹមត្រូវ។</string>
     <!-- Title for screen allowing user to exclude "My Story" entries from specific people -->
     <string name="ChangeMyStoryMembershipFragment__all_except">ទាំងអស់លើកលែងតែ…</string>
     <!-- Title for screen allowing user to only share "My Story" entries with specific people -->
@@ -4880,7 +4880,7 @@
     <!-- Dialog positive action for removing a group story -->
     <string name="StoryDialogs__remove">លុបចេញ</string>
     <!-- Dialog title for deleting a custom story -->
-    <string name="StoryDialogs__delete_custom_story">Delete custom story?</string>
+    <string name="StoryDialogs__delete_custom_story">លុបរឿងរ៉ាវកំណត់ផ្ទាល់ខ្លួន?</string>
     <!-- Dialog message for deleting a custom story -->
     <string name="StoryDialogs__s_and_updates_shared">\"%1$s\" និងបច្ចុប្បន្នភាពដែលបានចែករំលែកចំពោះរឿងរ៉ាវនេះនឹងត្រូវបានលុប។</string>
     <!-- Dialog positive action for deleting a custom story -->
@@ -4918,7 +4918,7 @@
     <!-- Name story screen title -->
     <string name="CreateStoryWithViewersFragment__name_story">ដាក់ឈ្មោះរឿងរ៉ាវ</string>
     <!-- Name story screen note under text field -->
-    <string name="CreateStoryWithViewersFragment__only_you_can">Only you can see the name of this story.</string>
+    <string name="CreateStoryWithViewersFragment__only_you_can">មានតែអ្នកទេដែលអាចឃើញឈ្មោះនៃរឿងរ៉ាវនេះ។</string>
     <!-- Name story screen label hint -->
     <string name="CreateStoryWithViewersFragment__story_name_required">ឈ្មោះរឿងរ៉ាវ (ចាំបាច់)</string>
     <!-- Name story screen viewers subheading -->
@@ -4934,7 +4934,7 @@
     <!-- Choose story type bottom sheet title -->
     <string name="ChooseStoryTypeBottomSheet__choose_your_story_type">ជ្រើសរើសប្រភេទរឿងរ៉ាវរបស់អ្នក</string>
     <!-- Choose story type bottom sheet new story row title -->
-    <string name="ChooseStoryTypeBottomSheet__new_custom_story">New custom story</string>
+    <string name="ChooseStoryTypeBottomSheet__new_custom_story">រឿងរ៉ាវកំណត់ផ្ទាល់ខ្លួនថ្មី</string>
     <!-- Choose story type bottom sheet new story row summary -->
     <string name="ChooseStoryTypeBottomSheet__visible_only_to">អាចមើលឃើញតែចំពោះមនុស្សជាក់លាក់ប៉ុណ្ណោះ</string>
     <!-- Choose story type bottom sheet group story title -->
@@ -5043,7 +5043,7 @@
     <string name="ContactSearchItems__only_share_with">ចែករំលកតែជាមួយ</string>
     <!-- Label under name for custom stories -->
     <plurals name="ContactSearchItems__custom_story_d_viewers">
-        <item quantity="other">Custom story · %1$d viewers</item>
+        <item quantity="other">រឿងរ៉ាវកំណត់ផ្ទាល់ខ្លួន · អ្នកមើល %1$d នាក់</item>
     </plurals>
     <!-- Label under name for group stories -->
     <plurals name="ContactSearchItems__group_story_d_viewers">
@@ -5074,7 +5074,7 @@
     <!-- Dialog title for deleting a custom story -->
     <string name="ContactSearchMediator__delete_story">លុបរឿងរ៉ាវឬ?</string>
     <!-- Dialog message for deleting a custom story -->
-    <string name="ContactSearchMediator__delete_the_custom">Delete the custom story \"%1$s\"?</string>
+    <string name="ContactSearchMediator__delete_the_custom">លុបរឿងរ៉ាវកំណត់ផ្ទាល់ខ្លួន \"%1$s\" ឬ?</string>
     <!-- Dialog action item for deleting a custom story -->
     <string name="ContactSearchMediator__delete">លុប</string>
     <!-- Gift expiry days remaining -->
@@ -5171,7 +5171,7 @@
 
     <!-- StoriesPrivacySettingsFragment -->
     <!-- Explanation about how stories are deleted and managed -->
-    <string name="StoriesPrivacySettingsFragment__story_updates_automatically_disappear">Story updates automatically disappear after 24 hours. Choose who can view your story or create new stories with specific viewers or groups.</string>
+    <string name="StoriesPrivacySettingsFragment__story_updates_automatically_disappear">ការធ្វើបច្ចុប្បន្នភាពរឿងរ៉ាវនឹងបាត់ដោយស្វ័យប្រវត្តិបន្ទាប់ពី 24 ម៉ោង។ ជ្រើសរើសអ្នកណាដែលអាចមើលរឿងរ៉ាវរបស់អ្នកបាន ឬបង្កើតរឿងរ៉ាវថ្មីៗជាមួយអ្នកមើល ឬក្រុមជាក់លាក់។</string>
     <!-- Preference title to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__turn_off_stories">បិទរឿងរ៉ាវ</string>
     <!-- Preference summary to turn off stories -->
@@ -5189,11 +5189,11 @@
     <!-- Header for section that lists out stories -->
     <string name="StoriesPrivacySettingsFragment__stories">រឿងរ៉ាវ</string>
     <!-- Story views header -->
-    <string name="StoriesPrivacySettingsFragment__story_views">Story views</string>
+    <string name="StoriesPrivacySettingsFragment__story_views">ចំនួននៃការមើលរឿងរ៉ាវ</string>
     <!-- Story view receipts toggle title -->
-    <string name="StoriesPrivacySettingsFragment__view_receipts">View receipts</string>
+    <string name="StoriesPrivacySettingsFragment__view_receipts">មើលបង្កាន់ដៃ</string>
     <!-- Story view receipts toggle message -->
-    <string name="StoriesPrivacySettingsFragment__see_and_share">See and share when stories are viewed. If disabled, you won\'t see when others view your story.</string>
+    <string name="StoriesPrivacySettingsFragment__see_and_share">ឃើញហើយចែករំលែក នៅពេលរឿងរ៉ាវត្រូវបានមើល។ ប្រសិនបើបិទ អ្នកនឹងមើលមិនឃើញទេនៅពេលដែលអ្នកផ្សេងមើលរឿងរ៉ាវរបស់អ្នក។</string>
 
     <!-- NewStoryItem -->
     <string name="NewStoryItem__new_story">រឿងរ៉ាវថ្មី</string>
@@ -5221,7 +5221,7 @@
     <!-- Title of the screen -->
     <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">នាំចេញសារជាអក្សររបស់អ្នក</string>
     <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database_and_youll_have_the_option_to_keep_or_remove_them_from_signal">You can export your SMS messages to your phone\'s SMS database and you\'ll have the option to keep or remove them from Signal. This allows other SMS apps on your phone to import them. This does not create a shareable file of your SMS history.</string>
+    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database_and_youll_have_the_option_to_keep_or_remove_them_from_signal">អ្នកអាចនាំចេញសារជាអក្សររបស់អ្នកទៅកាន់មូលដ្ឋានទិន្នន័យសារជាអក្សររបស់ទូរសព្ទអ្នក ហើយអ្នកនឹងមានជម្រើសក្នុងការរក្សាទុក ឬលុបវាចេញពី Signal។ ការធ្វើបែបនេះអាចឲ្យកម្មវិធីសារជាអក្សរផ្សេងទៀតនៅលើទូរសព្ទរបស់អ្នកនាំចេញពួកវាបាន។ ការធ្វើបែបនេះមិនបង្កើតជាឯកសារដែលអាចចែករំលែកបាននៃប្រវត្តិសារជាអក្សររបស់អ្នកទេ។</string>
     <!-- Button label to begin export -->
     <string name="ExportYourSmsMessagesFragment__continue">បន្ត</string>
 
@@ -5235,11 +5235,11 @@
         <item quantity="other">កំពុងនាំចេញ %1$d នៃ %2$d …</item>
     </plurals>
     <!-- Alert dialog title shown when we think a user may not have enough local storage available to export sms messages -->
-    <string name="ExportingSmsMessagesFragment__you_may_not_have_enough_disk_space">You may not have enough disk space</string>
+    <string name="ExportingSmsMessagesFragment__you_may_not_have_enough_disk_space">អ្នកប្រហែលជាមិនមានទំហំថាសគ្រប់គ្រាន់ទេ</string>
     <!-- Alert dialog message shown when we think a user may not have enough local storage available to export sms messages, placeholder is the file size, e.g., 128kB -->
-    <string name="ExportingSmsMessagesFragment__you_need_approximately_s_to_export_your_messages_ensure_you_have_enough_space_before_continuing">You need approximately %1$s to export your messages, ensure you have enough space before continuing.</string>
+    <string name="ExportingSmsMessagesFragment__you_need_approximately_s_to_export_your_messages_ensure_you_have_enough_space_before_continuing">អ្នកត្រូវការប្រហែល %1$s ដើម្បីនាំចេញសាររបស់អ្នក។ សូមប្រាកដថាអ្នកមានទំហំផ្ទុកគ្រប់គ្រាន់មុនពេលបន្ត។</string>
     <!-- Alert dialog button to continue with exporting sms after seeing the lack of storage warning -->
-    <string name="ExportingSmsMessagesFragment__continue_anyway">Continue anyway</string>
+    <string name="ExportingSmsMessagesFragment__continue_anyway">បន្តចុះ</string>
     <!-- Dialog text shown when Signal isn't granted the sms permission needed to export messages, different than being selected as the sms app -->
     <string name="ExportingSmsMessagesFragment__signal_needs_the_sms_permission_to_be_able_to_export_your_sms_messages">Signal needs the SMS permission to be able to export your SMS messages.</string>
 
@@ -5339,23 +5339,23 @@
     </plurals>
 
     <!-- Title of screen shown when some sms messages did not export -->
-    <string name="ExportSmsPartiallyComplete__export_partially_complete">Export partially complete</string>
+    <string name="ExportSmsPartiallyComplete__export_partially_complete">ការនាំចេញបានបញ្ចប់ដោយផ្នែក</string>
     <!-- Debug step 1 on screen shown when some sms messages did not export -->
-    <string name="ExportSmsPartiallyComplete__ensure_you_have_an_additional_s_free_on_your_phone_to_export_your_messages">Ensure you have an additional %1$s free on your phone to export your messages</string>
+    <string name="ExportSmsPartiallyComplete__ensure_you_have_an_additional_s_free_on_your_phone_to_export_your_messages">សូមប្រាកដថាអ្នកមាន %1$s ទំនេរបន្ថែមនៅលើទូរសព្ទរបស់អ្នក ដើម្បីនាំចេញសាររបស់អ្នក</string>
     <!-- Debug step 2 on screen shown when some sms messages dit not export -->
-    <string name="ExportSmsPartiallyComplete__retry_export_which_will_only_retry_messages_that_have_not_yet_been_exported">Retry export, which will only retry messages that have not yet been exported</string>
+    <string name="ExportSmsPartiallyComplete__retry_export_which_will_only_retry_messages_that_have_not_yet_been_exported">ព្យាយាមនាំចេញម្តងទៀត ពោលគឺព្យាយាមម្តងទៀតចំពោះសារដែលមិនទាន់បាននាំចេញប៉ុណ្ណោះ</string>
     <!-- Partial sentence for Debug step 3 on screen shown when some sms messages did not export, is combined with 'contact us' -->
-    <string name="ExportSmsPartiallyComplete__if_the_problem_persists">If the problem persists, </string>
+    <string name="ExportSmsPartiallyComplete__if_the_problem_persists">ប្រសិនបើបញ្ហានៅតែមាន </string>
     <!-- Partial sentence for deubg step 3 on screen shown when some sms messages did not export, combined with 'If the problem persists', link text to open contact support view -->
     <string name="ExportSmsPartiallyComplete__contact_us">ទាក់ទងយើង</string>
     <!-- Button text to retry sms export -->
     <string name="ExportSmsPartiallyComplete__retry">ព្យាយាមម្តងទៀត</string>
     <!-- Button text to continue sms export flow and not retry failed message exports -->
-    <string name="ExportSmsPartiallyComplete__continue_anyway">Continue anyway</string>
+    <string name="ExportSmsPartiallyComplete__continue_anyway">បន្តចុះ</string>
     <!-- Title of screen shown when all sms messages failed to export -->
-    <string name="ExportSmsFullError__error_exporting_sms_messages">Error exporting SMS messages</string>
+    <string name="ExportSmsFullError__error_exporting_sms_messages">បញ្ហាក្នុងការនាំចេញសារជាអក្សរ</string>
     <!-- Helper text shown when all sms messages failed to export -->
-    <string name="ExportSmsFullError__please_try_again_if_the_problem_persists">Please try again. If the problem persists, </string>
+    <string name="ExportSmsFullError__please_try_again_if_the_problem_persists">សូមព្យាយាមម្តងទៀត។ ប្រសិនបើបញ្ហានៅតែមាន </string>
 
 
     <!-- EOF -->
