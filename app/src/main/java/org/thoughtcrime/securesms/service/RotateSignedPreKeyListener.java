@@ -33,6 +33,6 @@ public class RotateSignedPreKeyListener extends PersistentAlarmManagerListener {
   }
 
   public static void schedule(Context context) {
-    new RotateSignedPreKeyListener().onReceive(context, new Intent());
+    new RotateSignedPreKeyListener().onReceive(context, getScheduleIntent());
   }
 }

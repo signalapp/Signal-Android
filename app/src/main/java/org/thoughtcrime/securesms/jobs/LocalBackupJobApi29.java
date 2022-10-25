@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.net.Uri;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.documentfile.provider.DocumentFile;
 import androidx.documentfile.provider.DocumentFileHelper;
@@ -93,14 +94,23 @@ public final class LocalBackupJobApi29 extends BaseJob {
     }
 
     ProgressUpdater updater = new ProgressUpdater(context.getString(R.string.LocalBackupJob_verifying_signal_backup));
-    try (NotificationController notification = GenericForegroundService.startForegroundTask(context,
-                                                                                            context.getString(R.string.LocalBackupJob_creating_signal_backup),
-                                                                                            NotificationChannels.BACKUPS,
-                                                                                            R.drawable.ic_signal_backup))
-    {
+
+    NotificationController notification = null;
+    try {
+      notification = GenericForegroundService.startForegroundTask(context,
+                                                                  context.getString(R.string.LocalBackupJob_creating_signal_backup),
+                                                                  NotificationChannels.BACKUPS,
+                                                                  R.drawable.ic_signal_backup);
+    } catch (GenericForegroundService.UnableToStartException e) {
+      Log.w(TAG, "Unable to start foreground backup service, continuing without service");
+    }
+
+    try {
       updater.setNotification(notification);
       EventBus.getDefault().register(updater);
-      notification.setIndeterminateProgress();
+      if (notification != null) {
+        notification.setIndeterminateProgress();
+      }
 
       String       backupPassword  = BackupPassphrase.get(context);
       DocumentFile backupDirectory = DocumentFile.fromTreeUri(context, backupDirectoryUri);
@@ -171,10 +181,10 @@ public final class LocalBackupJobApi29 extends BaseJob {
       }
 
       BackupUtil.deleteOldBackups();
-    } catch (GenericForegroundService.UnableToStartException e) {
-      Log.w(TAG, "Unable to start foreground backup service", e);
-      BackupFileIOError.UNKNOWN.postNotification(context);
     } finally {
+      if (notification != null) {
+        notification.close();
+      }
       EventBus.getDefault().unregister(updater);
       updater.setNotification(null);
     }
@@ -266,7 +276,7 @@ public final class LocalBackupJobApi29 extends BaseJob {
       }
     }
 
-    public void setNotification(NotificationController notification) {
+    public void setNotification(@Nullable NotificationController notification) {
       this.notification = notification;
     }
   }

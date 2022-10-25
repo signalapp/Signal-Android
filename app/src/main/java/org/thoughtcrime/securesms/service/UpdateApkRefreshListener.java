@@ -39,7 +39,7 @@ public class UpdateApkRefreshListener extends PersistentAlarmManagerListener {
   }
 
   public static void schedule(Context context) {
-    new UpdateApkRefreshListener().onReceive(context, new Intent());
+    new UpdateApkRefreshListener().onReceive(context, getScheduleIntent());
   }
 
 }

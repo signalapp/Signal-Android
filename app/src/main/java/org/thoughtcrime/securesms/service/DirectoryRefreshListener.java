@@ -34,6 +34,6 @@ public class DirectoryRefreshListener extends PersistentAlarmManagerListener {
   }
 
   public static void schedule(Context context) {
-    new DirectoryRefreshListener().onReceive(context, new Intent());
+    new DirectoryRefreshListener().onReceive(context, getScheduleIntent());
   }
 }
