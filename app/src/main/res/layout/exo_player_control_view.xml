@@ -5,51 +5,69 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="bottom"
-    android:background="#CC000000"
+    android:background="@color/transparent"
     android:layoutDirection="ltr"
     android:orientation="vertical"
     tools:targetApi="28">
 
     <LinearLayout
+        android:id="@+id/exo_duration_viewgroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginStart="@dimen/media_preview_video_timestamp_inset"
+        android:layout_marginTop="@dimen/media_preview_bottom_bar_vertical_margin"
+        android:layout_marginEnd="@dimen/media_preview_video_timestamp_inset"
+        android:layout_marginBottom="@dimen/media_preview_bottom_bar_vertical_margin"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
         <TextView
             android:id="@id/exo_position"
+            style="@style/Signal.Text.BodyMedium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
             android:paddingLeft="4dp"
             android:paddingRight="4dp"
             android:textColor="#FFBEBEBE"
-            android:textSize="14sp"
-            android:textStyle="bold" />
+            android:textSize="14sp" />
 
-        <View
-            android:id="@id/exo_progress_placeholder"
+        <com.google.android.exoplayer2.ui.DefaultTimeBar
+            android:id="@id/exo_progress"
             android:layout_width="0dp"
             android:layout_height="26dp"
             android:layout_weight="1" />
 
         <TextView
             android:id="@id/exo_duration"
+            style="@style/Signal.Text.BodyMedium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
             android:paddingLeft="4dp"
             android:paddingRight="4dp"
             android:textColor="#FFBEBEBE"
-            android:textSize="14sp"
-            android:textStyle="bold" />
+            android:textSize="14sp" />
 
     </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/media_preview_album_rail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="12dp"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:layout_height="64dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/media_preview_bottom_bar_vertical_margin"
+        android:layout_marginBottom="@dimen/media_preview_bottom_bar_vertical_margin"
         android:gravity="center"
         android:orientation="horizontal"
         android:paddingTop="4dp">
@@ -66,41 +84,53 @@
             android:layout_height="0dp"
             android:layout_weight="1.0" />
 
-        <ImageButton
-            android:id="@id/exo_prev"
-            style="@style/ExoMediaButton.Previous" />
+        <LinearLayout
+            android:id="@+id/exo_button_viewgroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
 
-        <ImageButton
-            android:id="@id/exo_rew"
-            style="@style/ExoMediaButton.Rewind" />
+            <ImageButton
+                android:id="@id/exo_prev"
+                style="@style/ExoMediaButton.Previous" />
 
-        <ImageButton
-            android:id="@id/exo_shuffle"
-            style="@style/ExoMediaButton" />
+            <ImageButton
+                android:id="@id/exo_rew"
+                style="@style/ExoMediaButton"
+                android:contentDescription="@string/exo_controls_rewind_description"
+                app:srcCompat="@drawable/ic_media_skipback_outline_24" />
 
-        <ImageButton
-            android:id="@id/exo_repeat_toggle"
-            style="@style/ExoMediaButton" />
+            <ImageButton
+                android:id="@id/exo_shuffle"
+                style="@style/ExoMediaButton" />
 
-        <ImageButton
-            android:id="@id/exo_play"
-            style="@style/ExoMediaButton.Play" />
+            <ImageButton
+                android:id="@id/exo_repeat_toggle"
+                style="@style/ExoMediaButton" />
 
-        <ImageButton
-            android:id="@id/exo_pause"
-            style="@style/ExoMediaButton.Pause" />
+            <ImageButton
+                android:id="@id/exo_play"
+                style="@style/ExoMediaButton.Play" />
 
-        <ImageButton
-            android:id="@id/exo_ffwd"
-            style="@style/ExoMediaButton.FastForward" />
+            <ImageButton
+                android:id="@id/exo_pause"
+                style="@style/ExoMediaButton.Pause" />
 
-        <ImageButton
-            android:id="@id/exo_next"
-            style="@style/ExoMediaButton.Next" />
+            <ImageButton
+                android:id="@id/exo_ffwd"
+                style="@style/ExoMediaButton"
+                android:contentDescription="@string/exo_controls_fastforward_description"
+                app:srcCompat="@drawable/ic_media_skipforward_outline_24" />
 
-        <ImageButton
-            android:id="@id/exo_vr"
-            style="@style/ExoMediaButton.VR" />
+            <ImageButton
+                android:id="@id/exo_next"
+                style="@style/ExoMediaButton.Next" />
+
+            <ImageButton
+                android:id="@id/exo_vr"
+                style="@style/ExoMediaButton.VR" />
+        </LinearLayout>
 
         <Space
             android:layout_width="0dp"
@@ -112,7 +142,7 @@
             android:layout_width="@dimen/exo_media_button_width"
             android:layout_height="@dimen/exo_media_button_height"
             android:background="?selectableItemBackground"
-            app:srcCompat="@drawable/ic_forward_24" />
+            app:srcCompat="@drawable/ic_forward_outline_24" />
     </LinearLayout>
 
 

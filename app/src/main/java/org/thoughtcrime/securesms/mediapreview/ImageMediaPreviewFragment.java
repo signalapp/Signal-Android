@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 
 import androidx.annotation.Nullable;
 
@@ -16,7 +15,7 @@ import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.util.MediaUtil;
 
 public final class ImageMediaPreviewFragment extends MediaPreviewFragment {
-  private View bottomBarControlView;
+  private MediaPreviewPlayerControlView bottomBarControlView;
 
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,26 +40,24 @@ public final class ImageMediaPreviewFragment extends MediaPreviewFragment {
 
     zoomingImageView.setOnClickListener(v -> events.singleTapOnMedia());
 
-    bottomBarControlView = getLayoutInflater().inflate(R.layout.image_media_preview_bottom_bar, null);
     return zoomingImageView;
   }
 
   @Override
-  public void setShareButtonListener(View.OnClickListener listener) {
-    ImageButton forwardButton = bottomBarControlView.findViewById(R.id.image_preview_forward);
-    forwardButton.setOnClickListener(listener);
-
+  public void cleanUp() {
+    bottomBarControlView = null;
   }
 
   @Override
-  public void setForwardButtonListener(View.OnClickListener listener) {
-    ImageButton shareButton = bottomBarControlView.findViewById(R.id.image_preview_share);
-    shareButton.setOnClickListener(listener);
-  }
+  public void pause() {}
 
-  @Nullable
   @Override
-  public View getBottomBarControls() {
+  public ViewGroup getBottomBarControls() {
     return bottomBarControlView;
+  }
+
+  @Override
+  public void setBottomButtonControls(MediaPreviewPlayerControlView playerControlView) {
+    bottomBarControlView = playerControlView;
   }
 }

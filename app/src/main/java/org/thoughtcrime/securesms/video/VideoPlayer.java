@@ -19,15 +19,12 @@ package org.thoughtcrime.securesms.video;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.res.TypedArrayKt;
-import androidx.core.content.res.TypedArrayUtils;
 
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.ExoPlayer;
@@ -45,6 +42,7 @@ import com.google.android.exoplayer2.ui.PlayerView;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.mediapreview.MediaPreviewPlayerControlView;
 import org.thoughtcrime.securesms.mms.VideoSlide;
 
 import java.util.Objects;
@@ -56,10 +54,10 @@ public class VideoPlayer extends FrameLayout {
   private static final String TAG = Log.tag(VideoPlayer.class);
 
   private final PlayerView                exoView;
-  private final PlayerControlView         exoControls;
   private final DefaultMediaSourceFactory mediaSourceFactory;
 
   private ExoPlayer                           exoPlayer;
+  private PlayerControlView                   exoControls;
   private Window                              window;
   private PlayerStateCallback                 playerStateCallback;
   private PlayerPositionDiscontinuityCallback playerPositionDiscontinuityCallback;
@@ -231,6 +229,11 @@ public class VideoPlayer extends FrameLayout {
 
   public @Nullable PlayerControlView getControlView() {
     return this.exoControls;
+  }
+
+  public void setControlView(MediaPreviewPlayerControlView controller) {
+    exoControls = controller;
+    exoControls.setPlayer(exoPlayer);
   }
 
   public void stop() {

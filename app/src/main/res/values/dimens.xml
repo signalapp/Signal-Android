@@ -235,4 +235,6 @@
     <dimen name="stories_landing_item_thumb_outline_width">52dp</dimen>
     <dimen name="stories_landing_item_thumb_outline_height">76dp</dimen>
     <dimen name="stories_landing_item_text_horizontal_margin">20dp</dimen>
+    <dimen name="media_preview_video_timestamp_inset">24dp</dimen>
+    <dimen name="media_preview_bottom_bar_vertical_margin">20dp</dimen>
 </resources>

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/signal_dark_colorNeutral">
+    android:background="@color/signal_dark_colorSurface">
+
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/media_pager"
         android:layout_width="match_parent"
@@ -18,45 +19,37 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:animateLayoutChanges="true"
-        android:background="@drawable/image_preview_shade"
+        android:background="@color/signal_dark_colorSurface_87"
         android:gravity="bottom"
         android:orientation="vertical"
-        android:visibility="gone"
         tools:visibility="visible">
 
         <org.thoughtcrime.securesms.components.emoji.EmojiTextView
             android:id="@+id/media_preview_caption"
+            style="@style/Signal.Text.Body"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="bottom"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
             android:paddingBottom="8dp"
-            style="@style/Signal.Text.Body"
             android:textColor="@color/core_white"
-            android:gravity="bottom"
             tools:text="With great power comes great responsibility." />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/media_preview_album_rail"
+        <org.thoughtcrime.securesms.mediapreview.MediaPreviewPlayerControlView
+            android:id="@+id/media_preview_playback_controls"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginStart="12dp"
-            android:layout_marginEnd="12dp"
-            tools:layout_height="64dp"/>
-
-        <FrameLayout
-            android:id="@+id/media_preview_playback_controls_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:animateLayoutChanges="true"/>
+            android:animateLayoutChanges="true"
+            android:background="@color/transparent" />
 
     </LinearLayout>
+
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/toolbar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/media_preview_bar_background"
+        android:background="@color/signal_dark_colorSurface_87"
         app:elevation="0dp">
 
         <View
@@ -67,10 +60,10 @@
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
-            android:theme="?actionBarStyle"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@android:color/transparent"
+            android:theme="?actionBarStyle"
             app:navigationIcon="@drawable/ic_arrow_left_white_24" />
 
     </com.google.android.material.appbar.AppBarLayout>

@@ -18,7 +18,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2.OFFSCREEN_PAGE_LIMIT_DEFAULT
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.google.android.material.appbar.MaterialToolbar
@@ -72,12 +72,10 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
     super.onViewCreated(view, savedInstanceState)
 
     val args = MediaIntentFactory.requireArguments(requireArguments())
-
     initializeViewModel(args)
     initializeToolbar(binding.toolbar)
     initializeViewPager()
     initializeFullScreenUi()
-    initializeAlbumRail()
     anchorMarginsToBottomInsets(binding.mediaPreviewDetailsContainer)
     lifecycleDisposable += viewModel.state.distinctUntilChanged().observeOn(AndroidSchedulers.mainThread()).subscribe {
       bindCurrentState(it)
@@ -92,10 +90,7 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
           requireActivity().finish()
         }.show()
     }
-
-    viewModel.setShowThread(args.showThread)
-    viewModel.setAlwaysShowAlbumRail(args.allMediaInRail)
-    viewModel.setLeftIsRecent(args.leftIsRecent)
+    viewModel.initialize(args.showThread, args.allMediaInRail, args.leftIsRecent)
     val sorting = MediaDatabase.Sorting.deserialize(args.sorting)
     viewModel.fetchAttachments(PartAuthority.requireAttachmentId(args.initialMediaUri), args.threadId, sorting)
   }
@@ -105,6 +100,8 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
       requireActivity().onBackPressed()
     }
 
+    toolbar.setTitleTextAppearance(requireContext(), R.style.Signal_Text_TitleMedium)
+    toolbar.setSubtitleTextAppearance(requireContext(), R.style.Signal_Text_BodyMedium)
     binding.toolbar.inflateMenu(R.menu.media_preview)
   }
 
@@ -123,10 +120,9 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
     })
   }
 
-  private fun initializeAlbumRail() {
-    binding.mediaPreviewAlbumRail.itemAnimator = null // Or can crash when set to INVISIBLE while animating by FullscreenHelper https://issuetracker.google.com/issues/148720682
-    binding.mediaPreviewAlbumRail.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-    binding.mediaPreviewAlbumRail.adapter = MediaRailAdapter(
+  private fun initializeAlbumRail(recyclerView: RecyclerView, albumThumbnailMedia: List<Media?>, albumPosition: Int) {
+    recyclerView.itemAnimator = null // Or can crash when set to INVISIBLE while animating by FullscreenHelper https://issuetracker.google.com/issues/148720682
+    val mediaRailAdapter = MediaRailAdapter(
       GlideApp.with(this),
       object : MediaRailAdapter.RailItemListener {
         override fun onRailItemClicked(distanceFromActive: Int) {
@@ -139,6 +135,9 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
       },
       false
     )
+    mediaRailAdapter.setMedia(albumThumbnailMedia, albumPosition)
+    recyclerView.adapter = mediaRailAdapter
+    recyclerView.smoothScrollToPosition(albumPosition)
   }
 
   private fun initializeFullScreenUi() {
@@ -152,21 +151,43 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
       return
     }
     when (currentState.loadState) {
-      MediaPreviewV2State.LoadState.READY -> bindReadyState(currentState)
-      MediaPreviewV2State.LoadState.LOADED -> {
-        bindReadyState(currentState)
-        bindLoadedState(currentState)
-      }
+      MediaPreviewV2State.LoadState.DATA_LOADED -> bindDataLoadedState(currentState)
+      MediaPreviewV2State.LoadState.MEDIA_READY -> bindMediaReadyState(currentState)
       else -> null
     }
   }
 
-  private fun bindReadyState(currentState: MediaPreviewV2State) {
+  private fun bindDataLoadedState(currentState: MediaPreviewV2State) {
     (binding.mediaPager.adapter as MediaPreviewV2Adapter).updateBackingItems(currentState.mediaRecords.mapNotNull { it.attachment })
-    if (binding.mediaPager.currentItem != currentState.position) {
-      binding.mediaPager.setCurrentItem(currentState.position, false)
+    val currentPosition = currentState.position
+    if (binding.mediaPager.currentItem != currentPosition) {
+      binding.mediaPager.setCurrentItem(currentPosition, false)
     }
-    val currentItem: MediaDatabase.MediaRecord = currentState.mediaRecords[currentState.position]
+  }
+
+  /**
+   * These are binding steps that need a reference to the actual fragment within the pager.
+   * This is not available until after a page has been chosen by the ViewPager, and we receive the
+   * {@link OnPageChangeCallback}.
+   */
+  private fun bindMediaReadyState(currentState: MediaPreviewV2State) {
+    val currentPosition = currentState.position
+    val currentItem: MediaDatabase.MediaRecord = currentState.mediaRecords[currentPosition]
+
+    // pause all other fragments
+    childFragmentManager.fragments.map { fragment ->
+      if (fragment.tag != "f$currentPosition") {
+        (fragment as? MediaPreviewFragment)?.pause()
+      }
+    }
+
+    val mediaType: MediaPreviewPlayerControlView.MediaMode = if (currentItem.attachment?.isVideoGif == true) {
+      MediaPreviewPlayerControlView.MediaMode.IMAGE
+    } else {
+      MediaPreviewPlayerControlView.MediaMode.fromString(currentItem.contentType)
+    }
+    binding.mediaPreviewPlaybackControls.setVisibility(mediaType)
+
     binding.toolbar.title = getTitleText(currentItem, currentState.showThread)
     binding.toolbar.subtitle = getSubTitleText(currentItem)
 
@@ -184,16 +205,6 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
       }
       return@setOnMenuItemClickListener true
     }
-  }
-
-  /**
-   * These are binding steps that need a reference to the actual fragment within the pager.
-   * This is not available until after a page has been chosen by the ViewPager, and we receive the
-   * {@link OnPageChangeCallback}.
-   */
-  private fun bindLoadedState(currentState: MediaPreviewV2State) {
-    val currentItem: MediaDatabase.MediaRecord = currentState.mediaRecords[currentState.position]
-
     val albumThumbnailMedia = if (currentState.allMediaInAlbumRail) {
       currentState.mediaRecords.map { it.toMedia() }
     } else {
@@ -201,11 +212,10 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
         .filter { it.attachment != null && it.attachment!!.mmsId == currentItem.attachment?.mmsId }
         .map { it.toMedia() }
     }
+
     val caption = currentItem.attachment?.caption
 
-    binding.mediaPreviewAlbumRail.visibility = if (albumThumbnailMedia.size <= 1) View.GONE else View.VISIBLE
-    (binding.mediaPreviewAlbumRail.adapter as MediaRailAdapter).setMedia(albumThumbnailMedia, currentState.position)
-    binding.mediaPreviewAlbumRail.smoothScrollToPosition(currentState.position)
+    val albumRailEnabled = albumThumbnailMedia.size > 1
 
     if (caption != null) {
       binding.mediaPreviewCaption.text = caption
@@ -214,23 +224,20 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
       binding.mediaPreviewCaption.visibility = View.GONE
     }
 
-    val fragmentTag = "f${currentState.position}"
-    val currentFragment: MediaPreviewFragment? = childFragmentManager.findFragmentByTag(fragmentTag) as? MediaPreviewFragment
-    val playbackControls: View? = currentFragment?.bottomBarControls
-    if (albumThumbnailMedia.size <= 1 && caption == null && playbackControls == null) {
-      binding.mediaPreviewDetailsContainer.visibility = View.GONE
-    } else {
-      binding.mediaPreviewDetailsContainer.visibility = View.VISIBLE
+    binding.mediaPreviewPlaybackControls.setShareButtonListener { share(currentItem) }
+    binding.mediaPreviewPlaybackControls.setForwardButtonListener { forward(currentItem) }
+
+    val albumRail: RecyclerView = binding.mediaPreviewPlaybackControls.findViewById(R.id.media_preview_album_rail)
+    if (albumRailEnabled) {
+      val albumPosition = albumThumbnailMedia.indexOfFirst { it?.uri == currentItem.attachment?.uri }
+      initializeAlbumRail(albumRail, albumThumbnailMedia, albumPosition)
     }
-    binding.mediaPreviewPlaybackControlsContainer.removeAllViews()
-    if (playbackControls != null) {
-      val params = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-      playbackControls.layoutParams = params
-      binding.mediaPreviewPlaybackControlsContainer.addView(playbackControls)
-    }
-    currentFragment?.setShareButtonListener { share(currentItem) }
-    currentFragment?.setForwardButtonListener { forward(currentItem) }
+    albumRail.visibility = if (albumRailEnabled) View.VISIBLE else View.GONE
+    val currentFragment: MediaPreviewFragment? = getMediaPreviewFragmentFromChildFragmentManager(currentPosition)
+    currentFragment?.setBottomButtonControls(binding.mediaPreviewPlaybackControls)
   }
+
+  private fun getMediaPreviewFragmentFromChildFragmentManager(currentPosition: Int) = childFragmentManager.findFragmentByTag("f$currentPosition") as? MediaPreviewFragment
 
   private fun getTitleText(mediaRecord: MediaDatabase.MediaRecord, showThread: Boolean): String {
     val recipient: Recipient = Recipient.live(mediaRecord.recipientId).get()
@@ -315,7 +322,7 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
   }
 
   override fun onMediaReady() {
-    Log.d(TAG, "onMediaReady()")
+    viewModel.setMediaReady()
   }
 
   private fun forward(mediaItem: MediaDatabase.MediaRecord) {
@@ -398,6 +405,11 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
       }
       .setNegativeButton(android.R.string.cancel, null)
       .show()
+  }
+
+  override fun onPause() {
+    super.onPause()
+    getMediaPreviewFragmentFromChildFragmentManager(binding.mediaPager.currentItem)?.pause()
   }
 
   companion object {

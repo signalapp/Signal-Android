@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -30,8 +29,6 @@ public final class VideoMediaPreviewFragment extends MediaPreviewFragment {
 
   private VideoPlayer videoView;
   private boolean     isVideoGif;
-  private ImageButton shareButton;
-  private ImageButton forwardButton;
 
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -90,21 +87,15 @@ public final class VideoMediaPreviewFragment extends MediaPreviewFragment {
     });
 
     if (isVideoGif) {
-      videoView.hideControls();
       videoView.loopForever();
     }
 
     videoView.setOnClickListener(v -> events.singleTapOnMedia());
-    final PlayerControlView controlView = videoView.getControlView();
-    if (controlView != null) {
-      shareButton = controlView.findViewById(R.id.exo_share);
-      forwardButton = controlView.findViewById(R.id.exo_forward);
-    }
     return itemView;
   }
 
   private void updateSkipButtonState() {
-    final PlayerControlView playbackControls = getBottomBarControls();
+    final PlayerControlView playbackControls = videoView.getControlView();
     if (playbackControls != null) {
       boolean shouldShowSkipButtons = videoView.getDuration() > MINIMUM_DURATION_FOR_SKIP_MS;
       playbackControls.setShowFastForwardButton(shouldShowSkipButtons);
@@ -149,20 +140,16 @@ public final class VideoMediaPreviewFragment extends MediaPreviewFragment {
     }
   }
 
-  @Override
-  public void setShareButtonListener(View.OnClickListener listener) {
-    shareButton.setOnClickListener(listener);
-  }
-
-  @Override
-  public void setForwardButtonListener(View.OnClickListener listener) {
-    forwardButton.setOnClickListener(listener);
-  }
-
   @Nullable
   @Override
-  public PlayerControlView getBottomBarControls() {
-    return videoView != null && !isVideoGif ? videoView.getControlView() : null;
+  public MediaPreviewPlayerControlView getBottomBarControls() {
+      return (MediaPreviewPlayerControlView) videoView.getControlView();
+  }
+
+  @Override
+  public void setBottomButtonControls(@NonNull MediaPreviewPlayerControlView playerControlView) {
+    videoView.setControlView(playerControlView);
+    updateSkipButtonState();
   }
 
   private @NonNull Uri getUri() {

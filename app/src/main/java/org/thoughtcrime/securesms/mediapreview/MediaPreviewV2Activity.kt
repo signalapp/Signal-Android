@@ -20,7 +20,7 @@ class MediaPreviewV2Activity : AppCompatActivity(R.layout.activity_mediapreview_
     super.onCreate(savedInstanceState)
     setTheme(R.style.TextSecure_MediaPreview)
     if (Build.VERSION.SDK_INT >= 21) {
-      val systemBarColor = ContextCompat.getColor(this, R.color.media_preview_bar_background)
+      val systemBarColor = ContextCompat.getColor(this, R.color.signal_dark_colorSurface)
       window.statusBarColor = systemBarColor
       window.navigationBarColor = systemBarColor
     }

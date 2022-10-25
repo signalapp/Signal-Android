@@ -24,46 +24,44 @@ class MediaPreviewV2ViewModel : ViewModel() {
 
   val state: Flowable<MediaPreviewV2State> = store.stateFlowable.observeOn(AndroidSchedulers.mainThread())
 
-  fun fetchAttachments(startingAttachmentId: AttachmentId, threadId: Long, sorting: MediaDatabase.Sorting) {
-    disposables += store.update(repository.getAttachments(startingAttachmentId, threadId, sorting)) {
-      result: MediaPreviewRepository.Result, oldState: MediaPreviewV2State ->
-      if (oldState.leftIsRecent) {
-        oldState.copy(
-          position = result.initialPosition,
-          mediaRecords = result.records,
-          loadState = MediaPreviewV2State.LoadState.READY,
-        )
-      } else {
-        oldState.copy(
-          position = result.records.size - result.initialPosition - 1,
-          mediaRecords = result.records.reversed(),
-          loadState = MediaPreviewV2State.LoadState.READY,
-        )
+  fun fetchAttachments(startingAttachmentId: AttachmentId, threadId: Long, sorting: MediaDatabase.Sorting, forceRefresh: Boolean = false) {
+    if (store.state.loadState == MediaPreviewV2State.LoadState.INIT || forceRefresh) {
+      disposables += store.update(repository.getAttachments(startingAttachmentId, threadId, sorting)) {
+        result: MediaPreviewRepository.Result, oldState: MediaPreviewV2State ->
+        if (oldState.leftIsRecent) {
+          oldState.copy(
+            position = result.initialPosition,
+            mediaRecords = result.records,
+            loadState = MediaPreviewV2State.LoadState.DATA_LOADED,
+          )
+        } else {
+          oldState.copy(
+            position = result.records.size - result.initialPosition - 1,
+            mediaRecords = result.records.reversed(),
+            loadState = MediaPreviewV2State.LoadState.DATA_LOADED,
+          )
+        }
       }
     }
   }
 
-  fun setShowThread(value: Boolean) {
-    store.update { oldState ->
-      oldState.copy(showThread = value)
-    }
-  }
-
-  fun setAlwaysShowAlbumRail(value: Boolean) {
-    store.update { oldState ->
-      oldState.copy(allMediaInAlbumRail = value)
-    }
-  }
-
-  fun setLeftIsRecent(value: Boolean) {
-    store.update { oldState ->
-      oldState.copy(leftIsRecent = value)
+  fun initialize(showThread: Boolean, allMediaInAlbumRail: Boolean, leftIsRecent: Boolean) {
+    if (store.state.loadState == MediaPreviewV2State.LoadState.INIT) {
+      store.update { oldState ->
+        oldState.copy(showThread = showThread, allMediaInAlbumRail = allMediaInAlbumRail, leftIsRecent = leftIsRecent)
+      }
     }
   }
 
   fun setCurrentPage(position: Int) {
     store.update { oldState ->
-      oldState.copy(position = position, loadState = MediaPreviewV2State.LoadState.LOADED)
+      oldState.copy(position = position)
+    }
+  }
+
+  fun setMediaReady() {
+    store.update { oldState ->
+      oldState.copy(loadState = MediaPreviewV2State.LoadState.MEDIA_READY)
     }
   }
 

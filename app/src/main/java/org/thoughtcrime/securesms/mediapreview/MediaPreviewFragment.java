@@ -3,13 +3,11 @@ package org.thoughtcrime.securesms.mediapreview;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
-import com.google.android.exoplayer2.ui.PlayerControlView;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
@@ -81,15 +79,10 @@ public abstract class MediaPreviewFragment extends Fragment {
     checkMediaStillAvailable();
   }
 
-  public void cleanUp() {
-  }
-
-  public void pause() {
-  }
-
-  abstract public void setShareButtonListener(View.OnClickListener listener);
-  abstract public void setForwardButtonListener(View.OnClickListener listener);
-  abstract public @Nullable View getBottomBarControls();
+  public abstract void cleanUp();
+  public abstract void pause();
+  public abstract ViewGroup getBottomBarControls();
+  public abstract void setBottomButtonControls(MediaPreviewPlayerControlView playerControlView);
 
   private void checkMediaStillAvailable() {
     if (attachmentId == null) {
