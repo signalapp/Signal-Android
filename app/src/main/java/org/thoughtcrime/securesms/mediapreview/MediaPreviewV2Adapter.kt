@@ -44,4 +44,8 @@ class MediaPreviewV2Adapter(val fragment: Fragment) : FragmentStateAdapter(fragm
       notifyDataSetChanged()
     }
   }
+
+  fun setAutoPlayItemPosition(position: Int) {
+    autoPlayPosition = position
+  }
 }

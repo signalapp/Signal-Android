@@ -158,8 +158,12 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
   }
 
   private fun bindDataLoadedState(currentState: MediaPreviewV2State) {
-    (binding.mediaPager.adapter as MediaPreviewV2Adapter).updateBackingItems(currentState.mediaRecords.mapNotNull { it.attachment })
     val currentPosition = currentState.position
+    val fragmentAdapter = binding.mediaPager.adapter as MediaPreviewV2Adapter
+
+    fragmentAdapter.setAutoPlayItemPosition(currentPosition)
+    fragmentAdapter.updateBackingItems(currentState.mediaRecords.mapNotNull { it.attachment })
+
     if (binding.mediaPager.currentItem != currentPosition) {
       binding.mediaPager.setCurrentItem(currentPosition, false)
     }
