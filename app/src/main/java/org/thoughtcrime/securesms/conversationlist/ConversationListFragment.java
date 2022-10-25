@@ -63,6 +63,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.SimpleColorFilter;
@@ -180,6 +181,8 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import kotlin.Pair;
+
 import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
 
@@ -192,7 +195,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   public static final short MESSAGE_REQUESTS_REQUEST_CODE_CREATE_NAME = 32562;
   public static final short SMS_ROLE_REQUEST_CODE                     = 32563;
 
-  private static final int LIST_SMOOTH_SCROLL_TO_TOP_THRESHOLD = 25;
+  private static final int LIST_SMOOTH_SCROLL_THRESHOLD = 25;
 
   private static final String TAG = Log.tag(ConversationListFragment.class);
 
@@ -282,7 +285,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     list.setItemAnimator(itemAnimator);
     list.addItemDecoration(archiveDecoration);
 
-    snapToTopDataObserver = new SnapToTopDataObserver(list);
+    snapToTopDataObserver = new SnapToTopDataObserver(list, new ConversationListScrollRequestValidator(), null);
 
     new ItemTouchHelper(new ArchiveListenerCallback(getResources().getColor(R.color.conversation_list_archive_background_start),
                                                     getResources().getColor(R.color.conversation_list_archive_background_end))).attachToRecyclerView(list);
@@ -326,12 +329,34 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     lifecycleDisposable.add(conversationListTabsViewModel.getTabClickEvents().filter(tab -> tab == ConversationListTab.CHATS)
                                                          .subscribe(unused -> {
                                                            LinearLayoutManager layoutManager            = (LinearLayoutManager) list.getLayoutManager();
-                                                           int                 firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition();
-                                                           if (firstVisibleItemPosition <= LIST_SMOOTH_SCROLL_TO_TOP_THRESHOLD) {
-                                                             list.smoothScrollToPosition(0);
-                                                           } else {
-                                                             list.scrollToPosition(0);
-                                                           }
+                                                           int                 firstVisibleItemPosition = layoutManager.findFirstCompletelyVisibleItemPosition();
+                                                           if (firstVisibleItemPosition < 0) return;
+
+                                                           ThreadRecord        firstVisibleThread       = defaultAdapter.getItem(firstVisibleItemPosition).getThreadRecord();
+                                                           boolean             reachedBottom            = layoutManager.findLastVisibleItemPosition() == layoutManager.getItemCount() - 1;
+                                                           boolean             scrollToNextUnread       = firstVisibleItemPosition == 0 ||
+                                                                                                          (!reachedBottom && !firstVisibleThread.isRead() && !firstVisibleThread.isPinned());
+
+                                                           int scrollDestination = scrollToNextUnread ? getNextUnreadConversationPosition(firstVisibleItemPosition) : 0;
+
+                                                           SnapToTopDataObserver.OnPerformScroll onPerformScroll = (linearLayoutManager, position) -> {
+                                                             if (Math.abs(position - firstVisibleItemPosition) <= LIST_SMOOTH_SCROLL_THRESHOLD) {
+                                                               RecyclerView.SmoothScroller smoothScroller = new LinearSmoothScroller(requireContext()) {
+                                                                 @Override protected int getVerticalSnapPreference() {
+                                                                   return LinearSmoothScroller.SNAP_TO_START;
+                                                                 }
+                                                               };
+
+                                                               smoothScroller.setTargetPosition(position);
+                                                               linearLayoutManager.startSmoothScroll(smoothScroller);
+                                                             } else {
+                                                               linearLayoutManager.scrollToPositionWithOffset(position, 0);
+                                                             }
+                                                           };
+
+                                                           snapToTopDataObserver.buildScrollPosition(scrollDestination)
+                                                                                .withOnPerformScroll(onPerformScroll)
+                                                                                .submit();
                                                          }));
 
     requireCallback().bindScrollHelper(list);
@@ -483,6 +508,19 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     }
 
     return false;
+  }
+
+  private int getNextUnreadConversationPosition(int startingPosition) {
+    ThreadDatabase threadDatabase   = SignalDatabase.threads();
+    Set<Long>      unreadThreadsSet = threadDatabase.getUnreadThreadIdSet();
+
+    return threadDatabase.getThreadPositionsInConversationList(unreadThreadsSet).stream()
+                         .filter(entry -> !threadDatabase.getThreadRecord(entry.getFirst()).isPinned())
+                         .map(Pair::getSecond)
+                         .filter(position -> position > startingPosition)
+                         .sorted()
+                         .findFirst()
+                         .orElse(0);
   }
 
   private boolean isSearchOpen() {
@@ -1673,6 +1711,17 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     @Override
     public void onNavigateToMessage(long threadId, @NonNull RecipientId threadRecipientId, @NonNull RecipientId senderId, long messageSentAt, long messagePositionInThread) {
       MainNavigator.get(requireActivity()).goToConversation(threadRecipientId, threadId, ThreadDatabase.DistributionTypes.DEFAULT, (int) messagePositionInThread);
+    }
+  }
+
+  private final class ConversationListScrollRequestValidator implements SnapToTopDataObserver.ScrollRequestValidator {
+
+    @Override public boolean isPositionStillValid(int position) {
+      return activeAdapter instanceof ConversationListAdapter && position >= 0 && position < defaultAdapter.getItemCount();
+    }
+
+    @Override public boolean isItemAtPositionLoaded(int position) {
+      return defaultAdapter.getItem(position) != null;
     }
   }
 

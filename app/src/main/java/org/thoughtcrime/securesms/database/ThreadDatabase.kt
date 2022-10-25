@@ -535,6 +535,14 @@ class ThreadDatabase(context: Context, databaseHelper: SignalDatabase) : Databas
     }
   }
 
+  fun getUnreadThreadIdSet(): Set<Long> {
+    getUnreadThreadIdList()?.let {
+      return HashSet(it.split(",").map { id: String -> id.toLong() })
+    } ?: run {
+      return HashSet()
+    }
+  }
+
   private fun <T> getUnreadThreadIdAggregate(aggregator: Array<String>, mapCursorToType: (Cursor) -> T): T {
     return readableDatabase
       .select(*aggregator)
@@ -542,6 +550,33 @@ class ThreadDatabase(context: Context, databaseHelper: SignalDatabase) : Databas
       .where("$READ != ${ReadStatus.READ.serialize()} AND $ARCHIVED = 0 AND $MEANINGFUL_MESSAGES != 0")
       .run()
       .use(mapCursorToType)
+  }
+
+  fun getThreadPositionsInConversationList(threadIds: Set<Long>): Set<Pair<Long, Int>> {
+    val db = databaseHelper.signalReadableDatabase
+    val where = "$ARCHIVED = 0 AND ($MEANINGFUL_MESSAGES != 0 OR $PINNED != 0)"
+    val query = createQuery(where, 0, 0, true)
+    val positions: HashSet<Pair<Long, Int>> = HashSet()
+
+    db.query(query).use { cursor ->
+      val pinnedCount = getPinnedConversationListCount()
+
+      while (cursor != null && cursor.moveToNext()) {
+        val threadId = cursor.getLong(cursor.getColumnIndexOrThrow(ID))
+        if (threadIds.contains(threadId)) {
+          var conversationPosition = cursor.position
+          val isPinned = cursor.getInt(cursor.getColumnIndexOrThrow(PINNED)) != 0
+
+          if (pinnedCount > 0 && isPinned) {
+            conversationPosition += 1
+          } else if (pinnedCount > 0) {
+            conversationPosition += 2
+          }
+          positions.add(Pair(threadId, conversationPosition))
+        }
+      }
+    }
+    return positions
   }
 
   fun incrementUnread(threadId: Long, unreadAmount: Int, unreadSelfMentionAmount: Int) {
