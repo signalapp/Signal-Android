@@ -222,7 +222,6 @@ public final class FeatureFlags {
       RECIPIENT_MERGE_V2,
       STORIES,
       SMS_EXPORT_MEGAPHONE_DELAY_DAYS,
-      SMS_EXPORT_MEGAPHONE_DELAY_DAYS,
       CREDIT_CARD_PAYMENTS
   );
 
