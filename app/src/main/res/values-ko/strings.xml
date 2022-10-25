@@ -124,6 +124,33 @@
     <string name="BlockedUsersActivity__do_you_want_to_unblock_s">\'%1$s\' 님을 차단 해제하시겠습니까?</string>
     <string name="BlockedUsersActivity__unblock">차단 해제</string>
 
+    <!-- CreditCardFragment -->
+    <!-- Title of fragment detailing the donation amount, displayed above the credit card text fields -->
+    <string name="CreditCardFragment__donation_amount_s">Donation amount: %1$s</string>
+    <!-- Explanation of how to fill in the form, displayed above the credit card text fields -->
+    <string name="CreditCardFragment__enter_your_card_information_below">Enter your card information below</string>
+    <!-- Displayed as a hint in the card number text field -->
+    <string name="CreditCardFragment__card_number">Card number</string>
+    <!-- Displayed as a hint in the card expiry text field -->
+    <string name="CreditCardFragment__mm_yy">MM/YY</string>
+    <!-- Displayed as a hint in the card cvv text field -->
+    <string name="CreditCardFragment__cvv">CVV</string>
+    <!-- Error displayed under the card number text field when there is an invalid card number entered -->
+    <string name="CreditCardFragment__invalid_card_number">Invalid card number</string>
+    <!-- Error displayed under the card expiry text field when the card is expired -->
+    <string name="CreditCardFragment__card_has_expired">Card has expired</string>
+    <!-- Error displayed under the card cvv text field when the cvv is too short -->
+    <string name="CreditCardFragment__code_is_too_short">Code is too short</string>
+    <!-- Error displayed under the card cvv text field when the cvv is too long -->
+    <string name="CreditCardFragment__code_is_too_long">Code is too long</string>
+    <!-- Error displayed under the card cvv text field when the cvv is invalid -->
+    <string name="CreditCardFragment__invalid_code">Invalid code</string>
+    <!-- Error displayed under the card expiry text field when the expiry month is invalid -->
+    <string name="CreditCardFragment__invalid_month">Invalid month</string>
+    <!-- Error displayed under the card expiry text field when the expiry is missing the year -->
+    <string name="CreditCardFragment__year_required">Year required</string>
+    <!-- Error displayed under the card expiry text field when the expiry year is invalid -->
+    <string name="CreditCardFragment__invalid_year">Invalid year</string>
 
     <!-- BlockUnblockDialog -->
     <string name="BlockUnblockDialog_block_and_leave_s">%1$s를 차단하고 나갈까요?</string>
@@ -3118,6 +3145,8 @@
     <string name="media_preview__forward_title">전달</string>
     <string name="media_preview__share_title">공유</string>
     <string name="media_preview__all_media_title">모든 미디어</string>
+    <string name="media_preview__edit_title">Edit</string>
+
 
     <!-- media_preview_activity -->
     <string name="media_preview_activity__media_content_description">미디어 미리 보기</string>
@@ -4289,10 +4318,8 @@
 
     <string name="ImageView__badge">배지</string>
 
-    <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal은 귀하와 같은 분들이 만들어나갑니다.</string>
     <string name="SubscribeFragment__support_technology_that_is_built_for_you">Signal의 기둥 역할을 하는 커뮤니티와 함께하여 데이터가 아닌 사용자를 위해 설계된 기술을 지지해 주세요.</string>
     <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Signal의 기둥 역할을 하는 커뮤니티와 함께하여 데이터가 아닌 사용자를 위해 설계된 기술을 지지해 주세요.</string>
-    <string name="SubscribeFragment__make_a_recurring_monthly_donation">매달 정기후원으로 Signal이 당신을 위해 기술을 지원하도록 하세요. 당신의 정보가 아니고요.</string>
     <string name="SubscribeFragment__currency">통화</string>
     <string name="SubscribeFragment__more_payment_options">더 많은 결제 옵션</string>
     <string name="SubscribeFragment__cancel_subscription">구독 취소</string>
@@ -4307,8 +4334,10 @@
     <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">오늘 새 구독 요금의 전체 금액(%1$s)이 청구됩니다. 구독은 매월 갱신됩니다.</string>
 
     <string name="Subscription__s_per_month">%1$s/1개월</string>
-    <string name="Subscription__s_per_month_dot_renews_s">%1$s/월 · %2$s 갱신</string>
-    <string name="Subscription__s_per_month_dot_expires_s">%1$s/월 · %2$s 만료</string>
+    <!-- Shown when a subscription is active and isn't going to expire at the end of the term -->
+    <string name="Subscription__renews_s">Renews %1$s</string>
+    <!-- Shown when a subscription is active and is going to expire at the end of the term -->
+    <string name="Subscription__expires_s">Expires %1$s</string>
 
     <!-- First small text blurb on learn more sheet -->
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal은 광고주와 투자자 없이 우리 앱을 사용하고 지지하는 사용자의 기여로만 운영됩니다. 월간 기부를 통해 배지를 받고 앱에 대한 지지를 공유하세요.</string>
@@ -4330,14 +4359,14 @@
     <string name="BecomeASustainerFragment__get_badges">프로필 배지를 받아 Signal을 지지해 주세요.</string>
     <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal은 광고주나 투자자 없이 오로지 사용자의 기여로 운영되는 비영리 단체입니다.</string>
 
-    <!-- Button label for creating a monthly donation -->
-    <string name="ManageDonationsFragment__make_a_monthly_donation">매달 정기후원하기</string>
+    <!-- Button label for creating a donation -->
+    <string name="ManageDonationsFragment__donate_to_signal">시그널에 기부하기</string>
     <!-- Heading for more area of manage subscriptions page -->
     <string name="ManageDonationsFragment__more">더 보기</string>
     <!-- Heading for receipts area of manage subscriptions page -->
     <string name="ManageDonationsFragment__receipts">영수증</string>
     <!-- Heading for my subscription area of manage subscriptions page -->
-    <string name="ManageDonationsFragment__my_subscription">내 구독</string>
+    <string name="ManageDonationsFragment__my_support">내 지원</string>
     <string name="ManageDonationsFragment__manage_subscription">구독 관리</string>
     <!-- Label for Donation Receipts button -->
     <string name="ManageDonationsFragment__donation_receipts">기부 영수증</string>
@@ -4348,10 +4377,6 @@
     <string name="ManageDonationsFragment__other_ways_to_give">다른 기여 방법</string>
     <!-- Preference label to launch badge gifting -->
     <string name="ManageDonationsFragment__gift_a_badge">배지 선물하기</string>
-
-    <string name="BoostFragment__give_signal_a_boost">Signal에 부스트 주기</string>
-    <!-- Description text in boost sheet -->
-    <string name="BoostFragment__make_a_one_time">1회성 기부를 통해 %1$d 동안 부스트 배지를 이용하세요.</string>
 
     <string name="Boost__enter_custom_amount">사용자 정의 금액 입력</string>
     <string name="Boost__one_time_contribution">1회성 기부</string>
@@ -4393,7 +4418,7 @@
 
     <string name="Subscription__please_contact_support_for_more_information">자세한 정보는 고객 지원팀으로 문의해 주세요.</string>
     <string name="Subscription__contact_support">지원에 문의</string>
-    <string name="Subscription__earn_a_s_badge">%1$s 배지 획득</string>
+    <string name="Subscription__get_a_s_badge">%1$s 배지 받기</string>
 
     <string name="SubscribeFragment__processing_payment">결제 처리 중…</string>
     <!-- Displayed in notification when user payment fails to process on Stripe -->
@@ -5357,6 +5382,33 @@
     <!-- Helper text shown when all sms messages failed to export -->
     <string name="ExportSmsFullError__please_try_again_if_the_problem_persists">다시 시도하세요. 문제가 계속되면 </string>
 
+
+    <!-- DonateToSignalFragment -->
+    <!-- Title below avatar -->
+    <string name="DonateToSignalFragment__powered_by">Powered by people like you.</string>
+    <!-- Continue button label -->
+    <string name="DonateToSignalFragment__continue">계속</string>
+    <!-- Description below title -->
+    <string name="DonateToSignalFragment__support_technology">Support technology built for you, not your data, by joining the community that sustains Signal.</string>
+    <!-- Donation pill toggle monthly text -->
+    <string name="DonationPillToggle__monthly">Monthly</string>
+    <!-- Donation pill toggle one-time text -->
+    <string name="DonationPillToggle__one_time">1회성 기부</string>
+
+    <!-- GatewaySelectorBottomSheet -->
+    <!-- Sheet title when subscribing -->
+    <string name="GatewaySelectorBottomSheet__donate_s_month_to_signal">Donate %1$s/month to Signal</string>
+    <!-- Sheet summary when subscribing -->
+    <string name="GatewaySelectorBottomSheet__get_a_s_badge">%1$s 배지 받기</string>
+    <!-- Sheet title when giving a one-time donation -->
+    <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Donate %1$s to Signal</string>
+    <!-- Sheet summary when giving a one-time donation -->
+    <string name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">Get a %1$s badge for %2$d days</string>
+    <!-- Button label for paying with a credit card -->
+    <string name="GatewaySelectorBottomSheet__credit_or_debit_card">Credit or debit card</string>
+
+    <!-- StripePaymentInProgressFragment -->
+    <string name="StripePaymentInProgressFragment__cancelling">Cancelling…</string>
 
     <!-- EOF -->
 

@@ -127,6 +127,33 @@
     <string name="BlockedUsersActivity__do_you_want_to_unblock_s">Chcete odblokovat \"%1$s\"?</string>
     <string name="BlockedUsersActivity__unblock">Odblokovat</string>
 
+    <!-- CreditCardFragment -->
+    <!-- Title of fragment detailing the donation amount, displayed above the credit card text fields -->
+    <string name="CreditCardFragment__donation_amount_s">Donation amount: %1$s</string>
+    <!-- Explanation of how to fill in the form, displayed above the credit card text fields -->
+    <string name="CreditCardFragment__enter_your_card_information_below">Enter your card information below</string>
+    <!-- Displayed as a hint in the card number text field -->
+    <string name="CreditCardFragment__card_number">Card number</string>
+    <!-- Displayed as a hint in the card expiry text field -->
+    <string name="CreditCardFragment__mm_yy">MM/YY</string>
+    <!-- Displayed as a hint in the card cvv text field -->
+    <string name="CreditCardFragment__cvv">CVV</string>
+    <!-- Error displayed under the card number text field when there is an invalid card number entered -->
+    <string name="CreditCardFragment__invalid_card_number">Invalid card number</string>
+    <!-- Error displayed under the card expiry text field when the card is expired -->
+    <string name="CreditCardFragment__card_has_expired">Card has expired</string>
+    <!-- Error displayed under the card cvv text field when the cvv is too short -->
+    <string name="CreditCardFragment__code_is_too_short">Code is too short</string>
+    <!-- Error displayed under the card cvv text field when the cvv is too long -->
+    <string name="CreditCardFragment__code_is_too_long">Code is too long</string>
+    <!-- Error displayed under the card cvv text field when the cvv is invalid -->
+    <string name="CreditCardFragment__invalid_code">Invalid code</string>
+    <!-- Error displayed under the card expiry text field when the expiry month is invalid -->
+    <string name="CreditCardFragment__invalid_month">Invalid month</string>
+    <!-- Error displayed under the card expiry text field when the expiry is missing the year -->
+    <string name="CreditCardFragment__year_required">Year required</string>
+    <!-- Error displayed under the card expiry text field when the expiry year is invalid -->
+    <string name="CreditCardFragment__invalid_year">Invalid year</string>
 
     <!-- BlockUnblockDialog -->
     <string name="BlockUnblockDialog_block_and_leave_s">Zablokovat a opustit %1$s?</string>
@@ -3379,6 +3406,8 @@
     <string name="media_preview__forward_title">Přeposlat</string>
     <string name="media_preview__share_title">Sdílet</string>
     <string name="media_preview__all_media_title">Všechna média</string>
+    <string name="media_preview__edit_title">Edit</string>
+
 
     <!-- media_preview_activity -->
     <string name="media_preview_activity__media_content_description">Náhled multimedií</string>
@@ -4598,10 +4627,8 @@
 
     <string name="ImageView__badge">Odznak</string>
 
-    <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal pohání lidé, jako jste vy.</string>
     <string name="SubscribeFragment__support_technology_that_is_built_for_you">Podpořte technologii, která je vytvořena pro vás - ne pro vaše data - a připojte se ke komunitě lidí, kteří ji podporují.</string>
     <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Podpořte technologii, která je vytvořena pro vás, ne kvůli vašim datům, a připojte se ke komunitě lidí, kteří ji podporují.</string>
-    <string name="SubscribeFragment__make_a_recurring_monthly_donation">Pravidelným měsíčním příspěvkem společnosti Signal podpoříte technologii vytvořenou pro vás, ne pro vaše data.</string>
     <string name="SubscribeFragment__currency">Měna</string>
     <string name="SubscribeFragment__more_payment_options">Více možností plateb</string>
     <string name="SubscribeFragment__cancel_subscription">Zrušit předplatné</string>
@@ -4616,8 +4643,10 @@
     <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Dnes vám bude účtována plná částka (%1$s) nového předplatného. Vaše předplatné bude obnoveno každý měsíc.</string>
 
     <string name="Subscription__s_per_month">%1$s/měsíc</string>
-    <string name="Subscription__s_per_month_dot_renews_s">%1$s/měsíc · Obnovení %2$s</string>
-    <string name="Subscription__s_per_month_dot_expires_s">%1$s/měsíčně · Exspiruje %2$s</string>
+    <!-- Shown when a subscription is active and isn't going to expire at the end of the term -->
+    <string name="Subscription__renews_s">Renews %1$s</string>
+    <!-- Shown when a subscription is active and is going to expire at the end of the term -->
+    <string name="Subscription__expires_s">Expires %1$s</string>
 
     <!-- First small text blurb on learn more sheet -->
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal je nezisková organizace bez inzerentů a investorů, kterou živí pouze lidé, kteří ji používají a oceňují. Přispívejte pravidelně každý měsíc a získejte profilový odznak, abyste se podělili o svou podporu.</string>
@@ -4639,14 +4668,14 @@
     <string name="BecomeASustainerFragment__get_badges">Získejte odznaky pro svůj profil za podporu Signalu.</string>
     <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal je nezisková organizace fungující bez reklam a investorů, kterou podporují pouze lidé jako vy.</string>
 
-    <!-- Button label for creating a monthly donation -->
-    <string name="ManageDonationsFragment__make_a_monthly_donation">Poskytnout měsíční příspěvek</string>
+    <!-- Button label for creating a donation -->
+    <string name="ManageDonationsFragment__donate_to_signal">Podpořte Signal finančně</string>
     <!-- Heading for more area of manage subscriptions page -->
     <string name="ManageDonationsFragment__more">Víc</string>
     <!-- Heading for receipts area of manage subscriptions page -->
     <string name="ManageDonationsFragment__receipts">Doklady</string>
     <!-- Heading for my subscription area of manage subscriptions page -->
-    <string name="ManageDonationsFragment__my_subscription">Mé předplatné</string>
+    <string name="ManageDonationsFragment__my_support">Má podpora</string>
     <string name="ManageDonationsFragment__manage_subscription">Spravovat předplatné</string>
     <!-- Label for Donation Receipts button -->
     <string name="ManageDonationsFragment__donation_receipts">Doklady o příspěvku</string>
@@ -4657,10 +4686,6 @@
     <string name="ManageDonationsFragment__other_ways_to_give">Jiné možnosti podpory</string>
     <!-- Preference label to launch badge gifting -->
     <string name="ManageDonationsFragment__gift_a_badge">Darujte odznak</string>
-
-    <string name="BoostFragment__give_signal_a_boost">Dejte Signalu Boost</string>
-    <!-- Description text in boost sheet -->
-    <string name="BoostFragment__make_a_one_time">Přispějte jednorázově a získejte odznak Boost na %1$d dní.</string>
 
     <string name="Boost__enter_custom_amount">Zadat vlastní výši</string>
     <string name="Boost__one_time_contribution">Jednorázový příspěvek</string>
@@ -4702,7 +4727,7 @@
 
     <string name="Subscription__please_contact_support_for_more_information">Pro více informací prosím kontaktujte podporu.</string>
     <string name="Subscription__contact_support">Kontaktovat podporu</string>
-    <string name="Subscription__earn_a_s_badge">Získat odznak %1$s</string>
+    <string name="Subscription__get_a_s_badge">Získat %1$s odznak</string>
 
     <string name="SubscribeFragment__processing_payment">Zpracovávání platby…</string>
     <!-- Displayed in notification when user payment fails to process on Stripe -->
@@ -5723,6 +5748,33 @@
     <!-- Helper text shown when all sms messages failed to export -->
     <string name="ExportSmsFullError__please_try_again_if_the_problem_persists">Zkuste to prosím znovu. Pokud problém přetrvává, </string>
 
+
+    <!-- DonateToSignalFragment -->
+    <!-- Title below avatar -->
+    <string name="DonateToSignalFragment__powered_by">Powered by people like you.</string>
+    <!-- Continue button label -->
+    <string name="DonateToSignalFragment__continue">Pokračovat</string>
+    <!-- Description below title -->
+    <string name="DonateToSignalFragment__support_technology">Support technology built for you, not your data, by joining the community that sustains Signal.</string>
+    <!-- Donation pill toggle monthly text -->
+    <string name="DonationPillToggle__monthly">Monthly</string>
+    <!-- Donation pill toggle one-time text -->
+    <string name="DonationPillToggle__one_time">Jednorázově</string>
+
+    <!-- GatewaySelectorBottomSheet -->
+    <!-- Sheet title when subscribing -->
+    <string name="GatewaySelectorBottomSheet__donate_s_month_to_signal">Donate %1$s/month to Signal</string>
+    <!-- Sheet summary when subscribing -->
+    <string name="GatewaySelectorBottomSheet__get_a_s_badge">Získat %1$s odznak</string>
+    <!-- Sheet title when giving a one-time donation -->
+    <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Donate %1$s to Signal</string>
+    <!-- Sheet summary when giving a one-time donation -->
+    <string name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">Get a %1$s badge for %2$d days</string>
+    <!-- Button label for paying with a credit card -->
+    <string name="GatewaySelectorBottomSheet__credit_or_debit_card">Credit or debit card</string>
+
+    <!-- StripePaymentInProgressFragment -->
+    <string name="StripePaymentInProgressFragment__cancelling">Cancelling…</string>
 
     <!-- EOF -->
 

@@ -126,6 +126,33 @@
     <string name="BlockedUsersActivity__do_you_want_to_unblock_s">Vai vēlaties atbloķēt \"%1$s\"?</string>
     <string name="BlockedUsersActivity__unblock">Atbloķēt</string>
 
+    <!-- CreditCardFragment -->
+    <!-- Title of fragment detailing the donation amount, displayed above the credit card text fields -->
+    <string name="CreditCardFragment__donation_amount_s">Donation amount: %1$s</string>
+    <!-- Explanation of how to fill in the form, displayed above the credit card text fields -->
+    <string name="CreditCardFragment__enter_your_card_information_below">Enter your card information below</string>
+    <!-- Displayed as a hint in the card number text field -->
+    <string name="CreditCardFragment__card_number">Card number</string>
+    <!-- Displayed as a hint in the card expiry text field -->
+    <string name="CreditCardFragment__mm_yy">MM/YY</string>
+    <!-- Displayed as a hint in the card cvv text field -->
+    <string name="CreditCardFragment__cvv">CVV</string>
+    <!-- Error displayed under the card number text field when there is an invalid card number entered -->
+    <string name="CreditCardFragment__invalid_card_number">Invalid card number</string>
+    <!-- Error displayed under the card expiry text field when the card is expired -->
+    <string name="CreditCardFragment__card_has_expired">Card has expired</string>
+    <!-- Error displayed under the card cvv text field when the cvv is too short -->
+    <string name="CreditCardFragment__code_is_too_short">Code is too short</string>
+    <!-- Error displayed under the card cvv text field when the cvv is too long -->
+    <string name="CreditCardFragment__code_is_too_long">Code is too long</string>
+    <!-- Error displayed under the card cvv text field when the cvv is invalid -->
+    <string name="CreditCardFragment__invalid_code">Invalid code</string>
+    <!-- Error displayed under the card expiry text field when the expiry month is invalid -->
+    <string name="CreditCardFragment__invalid_month">Invalid month</string>
+    <!-- Error displayed under the card expiry text field when the expiry is missing the year -->
+    <string name="CreditCardFragment__year_required">Year required</string>
+    <!-- Error displayed under the card expiry text field when the expiry year is invalid -->
+    <string name="CreditCardFragment__invalid_year">Invalid year</string>
 
     <!-- BlockUnblockDialog -->
     <string name="BlockUnblockDialog_block_and_leave_s">Bloķēt un pamest %1$s?</string>
@@ -3292,6 +3319,8 @@
     <string name="media_preview__forward_title">Pārsūtīt</string>
     <string name="media_preview__share_title">Kopīgot</string>
     <string name="media_preview__all_media_title">Visa multivide</string>
+    <string name="media_preview__edit_title">Edit</string>
+
 
     <!-- media_preview_activity -->
     <string name="media_preview_activity__media_content_description">Multivides priekšskatījums</string>
@@ -4495,10 +4524,8 @@
 
     <string name="ImageView__badge">Nozīmīte</string>
 
-    <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal attīsta un uzlabo tādi cilvēki kā jūs.</string>
     <string name="SubscribeFragment__support_technology_that_is_built_for_you">Atbalstiet tehnoloģiju, kas izveidota jums, nevis jūsu datiem, pieveinojoties kopienai, kas to uztur.</string>
     <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Atbalstiet tehnoloģiju, kas izveidota jums, nevis jūsu datiem, pieveinojoties kopienai, kas uztur Signal.</string>
-    <string name="SubscribeFragment__make_a_recurring_monthly_donation">Veiciet regulāru ikmēneša ziedojumu Signal, lai atbalstītu tehnoloģiju, kas izveidota jums, nevis datiem par jums.</string>
     <string name="SubscribeFragment__currency">Valūta</string>
     <string name="SubscribeFragment__more_payment_options">Vairāk maksājumu iespēju</string>
     <string name="SubscribeFragment__cancel_subscription">Atcelt abonementu</string>
@@ -4513,8 +4540,10 @@
     <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Šodien no Jums tiks iekasēts pilns apjoms (%1$s) par jauno abonementu. Jūsu abonements tiks atjaunots katru mēnesi.</string>
 
     <string name="Subscription__s_per_month">%1$s/mēnesī</string>
-    <string name="Subscription__s_per_month_dot_renews_s">%1$s/mēnesī · Atjaunojas %2$s</string>
-    <string name="Subscription__s_per_month_dot_expires_s">%1$s/mēnesī · Beidzas %2$s</string>
+    <!-- Shown when a subscription is active and isn't going to expire at the end of the term -->
+    <string name="Subscription__renews_s">Renews %1$s</string>
+    <!-- Shown when a subscription is active and is going to expire at the end of the term -->
+    <string name="Subscription__expires_s">Expires %1$s</string>
 
     <!-- First small text blurb on learn more sheet -->
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal ir bezpeļņas organizācija bez reklāmdevējiem vai investoriem, kuru uztur tikai cilvēki, kuri to lieto un novērtē. Veiciet regulāru ikmēneša ziedojumu un saņemiet profila nozīmīti, lai dalītos ar savu atbalstu.</string>
@@ -4536,14 +4565,14 @@
     <string name="BecomeASustainerFragment__get_badges">Iegūstiet nozīmītes jūsu profilam atbalstot Signal.</string>
     <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal irr bezpeļņas organizācija bez reklāmdevējiem vai investoriem, kuru uztur tikai cilvēki kā jūs.</string>
 
-    <!-- Button label for creating a monthly donation -->
-    <string name="ManageDonationsFragment__make_a_monthly_donation">Veiciet ikmnēneša ziedojumu</string>
+    <!-- Button label for creating a donation -->
+    <string name="ManageDonationsFragment__donate_to_signal">Ziedot Signal</string>
     <!-- Heading for more area of manage subscriptions page -->
     <string name="ManageDonationsFragment__more">Vēl</string>
     <!-- Heading for receipts area of manage subscriptions page -->
     <string name="ManageDonationsFragment__receipts">Kvītis</string>
     <!-- Heading for my subscription area of manage subscriptions page -->
-    <string name="ManageDonationsFragment__my_subscription">Mans abonements</string>
+    <string name="ManageDonationsFragment__my_support">Mans atbalsts</string>
     <string name="ManageDonationsFragment__manage_subscription">Pārvaldīt abonementu</string>
     <!-- Label for Donation Receipts button -->
     <string name="ManageDonationsFragment__donation_receipts">Ziedojumu kvītis</string>
@@ -4554,10 +4583,6 @@
     <string name="ManageDonationsFragment__other_ways_to_give">Citi veidi kā ziedot</string>
     <!-- Preference label to launch badge gifting -->
     <string name="ManageDonationsFragment__gift_a_badge">Uzdāviniet nozīmīti</string>
-
-    <string name="BoostFragment__give_signal_a_boost">Atbalsti Signal</string>
-    <!-- Description text in boost sheet -->
-    <string name="BoostFragment__make_a_one_time">Veiciet vienreizēju ziedojumu, un iegūstiet Atbalsta nozīmīti uz %1$d dienām.</string>
 
     <string name="Boost__enter_custom_amount">Ievadīt pielāgotu summu</string>
     <string name="Boost__one_time_contribution">Vienreizēja ieguldījums</string>
@@ -4599,7 +4624,7 @@
 
     <string name="Subscription__please_contact_support_for_more_information">Lūdzu, sazinieties ar tehnisko atbalstu, lai saņemtu vairāk informācijas.</string>
     <string name="Subscription__contact_support">Sazināties ar atbalstu</string>
-    <string name="Subscription__earn_a_s_badge">Iegūsti %1$s nozīmīti</string>
+    <string name="Subscription__get_a_s_badge">Get a %1$s badge</string>
 
     <string name="SubscribeFragment__processing_payment">Maksājums tiek apstrādāts…</string>
     <!-- Displayed in notification when user payment fails to process on Stripe -->
@@ -5601,6 +5626,33 @@
     <!-- Helper text shown when all sms messages failed to export -->
     <string name="ExportSmsFullError__please_try_again_if_the_problem_persists">Lūdzu, mēģiniet vēlreiz. Ja problēma joprojām pastāv, </string>
 
+
+    <!-- DonateToSignalFragment -->
+    <!-- Title below avatar -->
+    <string name="DonateToSignalFragment__powered_by">Powered by people like you.</string>
+    <!-- Continue button label -->
+    <string name="DonateToSignalFragment__continue">Turpināt</string>
+    <!-- Description below title -->
+    <string name="DonateToSignalFragment__support_technology">Support technology built for you, not your data, by joining the community that sustains Signal.</string>
+    <!-- Donation pill toggle monthly text -->
+    <string name="DonationPillToggle__monthly">Monthly</string>
+    <!-- Donation pill toggle one-time text -->
+    <string name="DonationPillToggle__one_time">Vienreizējs</string>
+
+    <!-- GatewaySelectorBottomSheet -->
+    <!-- Sheet title when subscribing -->
+    <string name="GatewaySelectorBottomSheet__donate_s_month_to_signal">Donate %1$s/month to Signal</string>
+    <!-- Sheet summary when subscribing -->
+    <string name="GatewaySelectorBottomSheet__get_a_s_badge">Get a %1$s badge</string>
+    <!-- Sheet title when giving a one-time donation -->
+    <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Donate %1$s to Signal</string>
+    <!-- Sheet summary when giving a one-time donation -->
+    <string name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">Get a %1$s badge for %2$d days</string>
+    <!-- Button label for paying with a credit card -->
+    <string name="GatewaySelectorBottomSheet__credit_or_debit_card">Credit or debit card</string>
+
+    <!-- StripePaymentInProgressFragment -->
+    <string name="StripePaymentInProgressFragment__cancelling">Cancelling…</string>
 
     <!-- EOF -->
 

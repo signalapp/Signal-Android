@@ -129,6 +129,33 @@
     <string name="BlockedUsersActivity__do_you_want_to_unblock_s">أتريد رفع الحظر عن \"%1$s\" ؟</string>
     <string name="BlockedUsersActivity__unblock">رفع الحظر</string>
 
+    <!-- CreditCardFragment -->
+    <!-- Title of fragment detailing the donation amount, displayed above the credit card text fields -->
+    <string name="CreditCardFragment__donation_amount_s">Donation amount: %1$s</string>
+    <!-- Explanation of how to fill in the form, displayed above the credit card text fields -->
+    <string name="CreditCardFragment__enter_your_card_information_below">Enter your card information below</string>
+    <!-- Displayed as a hint in the card number text field -->
+    <string name="CreditCardFragment__card_number">Card number</string>
+    <!-- Displayed as a hint in the card expiry text field -->
+    <string name="CreditCardFragment__mm_yy">MM/YY</string>
+    <!-- Displayed as a hint in the card cvv text field -->
+    <string name="CreditCardFragment__cvv">CVV</string>
+    <!-- Error displayed under the card number text field when there is an invalid card number entered -->
+    <string name="CreditCardFragment__invalid_card_number">Invalid card number</string>
+    <!-- Error displayed under the card expiry text field when the card is expired -->
+    <string name="CreditCardFragment__card_has_expired">Card has expired</string>
+    <!-- Error displayed under the card cvv text field when the cvv is too short -->
+    <string name="CreditCardFragment__code_is_too_short">Code is too short</string>
+    <!-- Error displayed under the card cvv text field when the cvv is too long -->
+    <string name="CreditCardFragment__code_is_too_long">Code is too long</string>
+    <!-- Error displayed under the card cvv text field when the cvv is invalid -->
+    <string name="CreditCardFragment__invalid_code">Invalid code</string>
+    <!-- Error displayed under the card expiry text field when the expiry month is invalid -->
+    <string name="CreditCardFragment__invalid_month">Invalid month</string>
+    <!-- Error displayed under the card expiry text field when the expiry is missing the year -->
+    <string name="CreditCardFragment__year_required">Year required</string>
+    <!-- Error displayed under the card expiry text field when the expiry year is invalid -->
+    <string name="CreditCardFragment__invalid_year">Invalid year</string>
 
     <!-- BlockUnblockDialog -->
     <string name="BlockUnblockDialog_block_and_leave_s">حظر ثم مغادرة %1$s؟</string>
@@ -3553,6 +3580,8 @@
     <string name="media_preview__forward_title">إعادة توجيه</string>
     <string name="media_preview__share_title">مشاركة</string>
     <string name="media_preview__all_media_title">جميع الوسائط</string>
+    <string name="media_preview__edit_title">Edit</string>
+
 
     <!-- media_preview_activity -->
     <string name="media_preview_activity__media_content_description">لمحة عن الوسائط</string>
@@ -4804,10 +4833,8 @@
 
     <string name="ImageView__badge">شارة</string>
 
-    <string name="SubscribeFragment__signal_is_powered_by_people_like_you">يُشغَّل Signal بِواسِطَة أشخاص مِثلَك.</string>
     <string name="SubscribeFragment__support_technology_that_is_built_for_you">دعم التكنولوجيا المصممة لك - وليس لبياناتك - من خلال الانضمام إلى مجتمع الأشخاص الذين يدعمونها.</string>
     <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">يُرجى دعم التكنولوجيا المبنية لأجلك، لا لأجل بياناتك، وذلك عبر الانضمام إلى المجتمع الداعم لـ Signal.</string>
-    <string name="SubscribeFragment__make_a_recurring_monthly_donation">يُرجى التبرع شهريا لـ Signal بشكل متواصل، وذلك لدعم التكنولوجيا التي بُنيَت لأجلك، وليس لأجل الحصول على بياناتك.</string>
     <string name="SubscribeFragment__currency">العملة</string>
     <string name="SubscribeFragment__more_payment_options">المزيد من خيارات الدفع</string>
     <string name="SubscribeFragment__cancel_subscription">إلغاء الاشتراك</string>
@@ -4822,8 +4849,10 @@
     <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">ستدفع كامل مبلغ (%1$s) من سعر الاشتراك الجديد اليوم. وسيتجدد اشتراكك الجديد شهرياً.</string>
 
     <string name="Subscription__s_per_month">%1$s شهرياً</string>
-    <string name="Subscription__s_per_month_dot_renews_s">%1$s شهرياً . يُجدد في %2$s</string>
-    <string name="Subscription__s_per_month_dot_expires_s">%1$s شهرياً . ينتهي في %2$s</string>
+    <!-- Shown when a subscription is active and isn't going to expire at the end of the term -->
+    <string name="Subscription__renews_s">Renews %1$s</string>
+    <!-- Shown when a subscription is active and is going to expire at the end of the term -->
+    <string name="Subscription__expires_s">Expires %1$s</string>
 
     <!-- First small text blurb on learn more sheet -->
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">إن Signal غير ربحي، وبلا إعلانات ولا مستثمرين، يدعمه فقط الأشخاص الذين يستخدمونه ويقدرونه. نرجو منك التبرع بشكل شهري للحصول على شارة في حسابك لأجل مشاركة دعمك لنا مع الآخرين.</string>
@@ -4845,14 +4874,14 @@
     <string name="BecomeASustainerFragment__get_badges">احصل على شارات لملفك الشخصي عن طريق دعم Signal.</string>
     <string name="BecomeASustainerFragment__signal_is_a_non_profit">إن Signal غير ربحي بلا إعلانات أو مستثمرين، ويدعمه فقط أشخاص مثلك.</string>
 
-    <!-- Button label for creating a monthly donation -->
-    <string name="ManageDonationsFragment__make_a_monthly_donation">تقديم تبرّع شهري</string>
+    <!-- Button label for creating a donation -->
+    <string name="ManageDonationsFragment__donate_to_signal">تبرَّع لـ Signal</string>
     <!-- Heading for more area of manage subscriptions page -->
     <string name="ManageDonationsFragment__more">المزيد</string>
     <!-- Heading for receipts area of manage subscriptions page -->
     <string name="ManageDonationsFragment__receipts">الإيصالات</string>
     <!-- Heading for my subscription area of manage subscriptions page -->
-    <string name="ManageDonationsFragment__my_subscription">اشتراكي</string>
+    <string name="ManageDonationsFragment__my_support">دعمي</string>
     <string name="ManageDonationsFragment__manage_subscription">إدارة الاشتراك</string>
     <!-- Label for Donation Receipts button -->
     <string name="ManageDonationsFragment__donation_receipts">وصولات التبرعات</string>
@@ -4863,10 +4892,6 @@
     <string name="ManageDonationsFragment__other_ways_to_give">طرق أخرى للتبرّع</string>
     <!-- Preference label to launch badge gifting -->
     <string name="ManageDonationsFragment__gift_a_badge">أهدِ شارة</string>
-
-    <string name="BoostFragment__give_signal_a_boost">دعم Signal</string>
-    <!-- Description text in boost sheet -->
-    <string name="BoostFragment__make_a_one_time">تبرّع مرة واحدة واحصل على شارة تعزيز لمدة %1$d أيام.</string>
 
     <string name="Boost__enter_custom_amount">إدخال مَبلَغ مُخَصَّص</string>
     <string name="Boost__one_time_contribution">مساهمة لمرة واحدة</string>
@@ -4908,7 +4933,7 @@
 
     <string name="Subscription__please_contact_support_for_more_information">الرجاء الاتصال بالدعم لمزيد من المعلومات.</string>
     <string name="Subscription__contact_support">الاتصال بالدعم</string>
-    <string name="Subscription__earn_a_s_badge">احصل على شارة %1$s</string>
+    <string name="Subscription__get_a_s_badge">احصل على شارة %1$s</string>
 
     <string name="SubscribeFragment__processing_payment">تجري معالجة الدفوعات…</string>
     <!-- Displayed in notification when user payment fails to process on Stripe -->
@@ -5967,6 +5992,33 @@
     <!-- Helper text shown when all sms messages failed to export -->
     <string name="ExportSmsFullError__please_try_again_if_the_problem_persists">يُرجى إعادة المُحاولة. إذا بقيت المشكلة قائمة، </string>
 
+
+    <!-- DonateToSignalFragment -->
+    <!-- Title below avatar -->
+    <string name="DonateToSignalFragment__powered_by">Powered by people like you.</string>
+    <!-- Continue button label -->
+    <string name="DonateToSignalFragment__continue">واصل</string>
+    <!-- Description below title -->
+    <string name="DonateToSignalFragment__support_technology">Support technology built for you, not your data, by joining the community that sustains Signal.</string>
+    <!-- Donation pill toggle monthly text -->
+    <string name="DonationPillToggle__monthly">Monthly</string>
+    <!-- Donation pill toggle one-time text -->
+    <string name="DonationPillToggle__one_time">مرة واحدة</string>
+
+    <!-- GatewaySelectorBottomSheet -->
+    <!-- Sheet title when subscribing -->
+    <string name="GatewaySelectorBottomSheet__donate_s_month_to_signal">Donate %1$s/month to Signal</string>
+    <!-- Sheet summary when subscribing -->
+    <string name="GatewaySelectorBottomSheet__get_a_s_badge">احصل على شارة %1$s</string>
+    <!-- Sheet title when giving a one-time donation -->
+    <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Donate %1$s to Signal</string>
+    <!-- Sheet summary when giving a one-time donation -->
+    <string name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">Get a %1$s badge for %2$d days</string>
+    <!-- Button label for paying with a credit card -->
+    <string name="GatewaySelectorBottomSheet__credit_or_debit_card">Credit or debit card</string>
+
+    <!-- StripePaymentInProgressFragment -->
+    <string name="StripePaymentInProgressFragment__cancelling">Cancelling…</string>
 
     <!-- EOF -->
 

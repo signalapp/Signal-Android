@@ -124,6 +124,33 @@
     <string name="BlockedUsersActivity__do_you_want_to_unblock_s">តើអ្នកចង់មិនទប់ស្កាត់ទេ \"%1$s\"?</string>
     <string name="BlockedUsersActivity__unblock">បើកវិញ</string>
 
+    <!-- CreditCardFragment -->
+    <!-- Title of fragment detailing the donation amount, displayed above the credit card text fields -->
+    <string name="CreditCardFragment__donation_amount_s">Donation amount: %1$s</string>
+    <!-- Explanation of how to fill in the form, displayed above the credit card text fields -->
+    <string name="CreditCardFragment__enter_your_card_information_below">Enter your card information below</string>
+    <!-- Displayed as a hint in the card number text field -->
+    <string name="CreditCardFragment__card_number">Card number</string>
+    <!-- Displayed as a hint in the card expiry text field -->
+    <string name="CreditCardFragment__mm_yy">MM/YY</string>
+    <!-- Displayed as a hint in the card cvv text field -->
+    <string name="CreditCardFragment__cvv">CVV</string>
+    <!-- Error displayed under the card number text field when there is an invalid card number entered -->
+    <string name="CreditCardFragment__invalid_card_number">Invalid card number</string>
+    <!-- Error displayed under the card expiry text field when the card is expired -->
+    <string name="CreditCardFragment__card_has_expired">Card has expired</string>
+    <!-- Error displayed under the card cvv text field when the cvv is too short -->
+    <string name="CreditCardFragment__code_is_too_short">Code is too short</string>
+    <!-- Error displayed under the card cvv text field when the cvv is too long -->
+    <string name="CreditCardFragment__code_is_too_long">Code is too long</string>
+    <!-- Error displayed under the card cvv text field when the cvv is invalid -->
+    <string name="CreditCardFragment__invalid_code">Invalid code</string>
+    <!-- Error displayed under the card expiry text field when the expiry month is invalid -->
+    <string name="CreditCardFragment__invalid_month">Invalid month</string>
+    <!-- Error displayed under the card expiry text field when the expiry is missing the year -->
+    <string name="CreditCardFragment__year_required">Year required</string>
+    <!-- Error displayed under the card expiry text field when the expiry year is invalid -->
+    <string name="CreditCardFragment__invalid_year">Invalid year</string>
 
     <!-- BlockUnblockDialog -->
     <string name="BlockUnblockDialog_block_and_leave_s">ហាមឃាត់ និងចាកចេញ %1$s?</string>
@@ -3118,6 +3145,8 @@
     <string name="media_preview__forward_title">បញ្ជូនបន្ត</string>
     <string name="media_preview__share_title">ចែករំលែក</string>
     <string name="media_preview__all_media_title">ព័ត៌មានទាំងអស់</string>
+    <string name="media_preview__edit_title">Edit</string>
+
 
     <!-- media_preview_activity -->
     <string name="media_preview_activity__media_content_description">មើលព័ត៌មានជាមុន</string>
@@ -4289,10 +4318,8 @@
 
     <string name="ImageView__badge">ស្លាកសម្គាល់</string>
 
-    <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal ត្រូវបានបង្កើតដោយមនុស្សដូចអ្នក។</string>
     <string name="SubscribeFragment__support_technology_that_is_built_for_you">គាំទ្របច្ចេកវិទ្យាដែលបង្ហើតឡើងដើម្បីអ្នក មិនមែនដើម្បីទិន្នន័យអ្នក ដោយចូលរួមជាមួយសហគមន៍យើងដើម្បីនិរន្តភាពរបស់ Signal</string>
     <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">គាំទ្របច្ចេកវិទ្យាដែលបង្ហើតឡើងដើម្បីអ្នក មិនមែនដើម្បីទិន្នន័យអ្នក ដោយចូលរួមជាមួយសហគមន៍យើងដើម្បីនិរន្តភាពរបស់ Signal</string>
-    <string name="SubscribeFragment__make_a_recurring_monthly_donation">ធ្វើការបរិច្ចាគប្រចាំខែទៅកាន់ Signal ដើម្បីគាំទ្របច្ចេកវិទ្យាដែលបង្កើតឡើងសម្រាប់អ្នក មិនមែនទិន្នន័យរបស់អ្នកទេ។</string>
     <string name="SubscribeFragment__currency">រូបិយប័ណ្ណ</string>
     <string name="SubscribeFragment__more_payment_options">ជម្រើសក្នុងការទូទាត់ប្រាក់ផ្សេង</string>
     <string name="SubscribeFragment__cancel_subscription">ផ្ដាច់ការជាវ</string>
@@ -4307,8 +4334,10 @@
     <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">អ្នកនឹងត្រូវគិតលុយពេញថ្លៃចំនួន (%1$s) សម្រាប់តម្លៃការជាវថ្មីរបស់អ្នកថ្ងៃនេះ។ ការជាវរបស់អ្នកនឹងភ្ជាប់ឡើងវិញជារៀងរាល់ខែ។</string>
 
     <string name="Subscription__s_per_month">%1$s/ខែ</string>
-    <string name="Subscription__s_per_month_dot_renews_s">%1$s/ខែ · ភ្ជាប់ឡើងវិញ%2$s</string>
-    <string name="Subscription__s_per_month_dot_expires_s">%1$s/ខែ · ផុតកំណត់ %2$s</string>
+    <!-- Shown when a subscription is active and isn't going to expire at the end of the term -->
+    <string name="Subscription__renews_s">Renews %1$s</string>
+    <!-- Shown when a subscription is active and is going to expire at the end of the term -->
+    <string name="Subscription__expires_s">Expires %1$s</string>
 
     <!-- First small text blurb on learn more sheet -->
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal គឺជាអង្គការមិនរកប្រាក់ចំណេញ ដែលគ្មានអ្នកផ្សាយពាណិជ្ជកម្ម ឬអ្នកវិនិយោគទេ ហើយទ្រទ្រង់ដោយមនុស្សដែលប្រើប្រាស់ និងផ្តល់តម្លៃដល់វាតែប៉ុណ្ណោះ។ សូមធ្វើការបរិច្ចាគប្រចាំខែ រួចអ្នកនឹងទទួលបានស្លាកប្រូហ្វាល់មួយដើម្បីបង្ហាញការគាំទ្រ​របស់អ្នក។</string>
@@ -4330,14 +4359,14 @@
     <string name="BecomeASustainerFragment__get_badges">ទទួលបានស្លាកសម្គាល់សម្រាប់គណនីរបស់អ្នកដោយគាំទ្រ Signal</string>
     <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal ជាកម្មវិធីដែលមិនរកប្រាក់ចំនូល មិនអ្នកផ្សាយពាណិជ្ជកម្ម ឬអ្នកបណ្ដាក់ទុន តែជាកម្មវិធីដែលគាំទ្រដោយមនុស្សដូចជាអ្នក</string>
 
-    <!-- Button label for creating a monthly donation -->
-    <string name="ManageDonationsFragment__make_a_monthly_donation">ធ្វើ​ការ​បរិច្ចាគ​ប្រចាំ​ខែ</string>
+    <!-- Button label for creating a donation -->
+    <string name="ManageDonationsFragment__donate_to_signal">ឧបត្ថម្ភទៅ Signal</string>
     <!-- Heading for more area of manage subscriptions page -->
     <string name="ManageDonationsFragment__more">បន្ថែម</string>
     <!-- Heading for receipts area of manage subscriptions page -->
     <string name="ManageDonationsFragment__receipts">បង្កាន់ដៃ</string>
     <!-- Heading for my subscription area of manage subscriptions page -->
-    <string name="ManageDonationsFragment__my_subscription">ការជាវរបស់ខ្ញុំ</string>
+    <string name="ManageDonationsFragment__my_support">ការគាំទ្ររបស់ខ្ញុំ</string>
     <string name="ManageDonationsFragment__manage_subscription">ចាត់ចែងការជាវ</string>
     <!-- Label for Donation Receipts button -->
     <string name="ManageDonationsFragment__donation_receipts">បង្កាន់ដៃបរិច្ចាគ</string>
@@ -4348,10 +4377,6 @@
     <string name="ManageDonationsFragment__other_ways_to_give">វិធីផ្សេងទៀតក្នុងការផ្តល់ជូន</string>
     <!-- Preference label to launch badge gifting -->
     <string name="ManageDonationsFragment__gift_a_badge">ផ្តល់ជូនស្លាកជាកាដូ</string>
-
-    <string name="BoostFragment__give_signal_a_boost">អោយ Signal នូវការជំរុញមួយ</string>
-    <!-- Description text in boost sheet -->
-    <string name="BoostFragment__make_a_one_time">ធ្វើការបរិច្ចាគតែមួយដងដើម្បីទទួលបានស្លាកទ្រទ្រង់រយៈពេល %1$d ថ្ងៃ។</string>
 
     <string name="Boost__enter_custom_amount">បញ្ជូលចំនួនប្រាក់ដោយខ្លួនឯង</string>
     <string name="Boost__one_time_contribution">ចូលរួមចំនែកតែមួយលើក</string>
@@ -4393,7 +4418,7 @@
 
     <string name="Subscription__please_contact_support_for_more_information">សូមទំនាក់ទំនងមកកាន់ផ្នែកគាំទ្រសម្រាប់ព័ត៌មានបន្ថែម</string>
     <string name="Subscription__contact_support">ទាក់ទងជំនួយ</string>
-    <string name="Subscription__earn_a_s_badge">ទទួលបាន %1$s ស្លាកសម្គាល់មួយ</string>
+    <string name="Subscription__get_a_s_badge">ទទួលស្លាកសម្គាល់%1$s</string>
 
     <string name="SubscribeFragment__processing_payment">កំពុងដំណើរការការទូទាត់…</string>
     <!-- Displayed in notification when user payment fails to process on Stripe -->
@@ -5357,6 +5382,33 @@
     <!-- Helper text shown when all sms messages failed to export -->
     <string name="ExportSmsFullError__please_try_again_if_the_problem_persists">សូមព្យាយាមម្តងទៀត។ ប្រសិនបើបញ្ហានៅតែមាន </string>
 
+
+    <!-- DonateToSignalFragment -->
+    <!-- Title below avatar -->
+    <string name="DonateToSignalFragment__powered_by">Powered by people like you.</string>
+    <!-- Continue button label -->
+    <string name="DonateToSignalFragment__continue">បន្ត</string>
+    <!-- Description below title -->
+    <string name="DonateToSignalFragment__support_technology">Support technology built for you, not your data, by joining the community that sustains Signal.</string>
+    <!-- Donation pill toggle monthly text -->
+    <string name="DonationPillToggle__monthly">Monthly</string>
+    <!-- Donation pill toggle one-time text -->
+    <string name="DonationPillToggle__one_time">តែមួយដង</string>
+
+    <!-- GatewaySelectorBottomSheet -->
+    <!-- Sheet title when subscribing -->
+    <string name="GatewaySelectorBottomSheet__donate_s_month_to_signal">Donate %1$s/month to Signal</string>
+    <!-- Sheet summary when subscribing -->
+    <string name="GatewaySelectorBottomSheet__get_a_s_badge">ទទួលស្លាកសម្គាល់%1$s</string>
+    <!-- Sheet title when giving a one-time donation -->
+    <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Donate %1$s to Signal</string>
+    <!-- Sheet summary when giving a one-time donation -->
+    <string name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">Get a %1$s badge for %2$d days</string>
+    <!-- Button label for paying with a credit card -->
+    <string name="GatewaySelectorBottomSheet__credit_or_debit_card">Credit or debit card</string>
+
+    <!-- StripePaymentInProgressFragment -->
+    <string name="StripePaymentInProgressFragment__cancelling">Cancelling…</string>
 
     <!-- EOF -->
 
