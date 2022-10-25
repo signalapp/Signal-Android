@@ -280,13 +280,11 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
   private fun anchorMarginsToBottomInsets(viewToAnchor: View) {
     ViewCompat.setOnApplyWindowInsetsListener(viewToAnchor) { view: View, windowInsetsCompat: WindowInsetsCompat ->
       val layoutParams = view.layoutParams as MarginLayoutParams
-      val systemBarInsets = windowInsetsCompat.getInsets(WindowInsetsCompat.Type.systemBars())
       layoutParams.setMargins(
-        systemBarInsets.left,
+        windowInsetsCompat.getSystemWindowInsetLeft(),
         layoutParams.topMargin,
-        systemBarInsets.right,
-        systemBarInsets.bottom
-      )
+        windowInsetsCompat.getSystemWindowInsetRight(),
+        windowInsetsCompat.getSystemWindowInsetBottom())
       view.layoutParams = layoutParams
       windowInsetsCompat
     }
