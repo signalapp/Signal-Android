@@ -5576,7 +5576,7 @@
     <!-- Story views header -->
     <string name="StoriesPrivacySettingsFragment__story_views">צפיות בסטורי</string>
     <!-- Story view receipts toggle title -->
-    <string name="StoriesPrivacySettingsFragment__view_receipts">View receipts</string>
+    <string name="StoriesPrivacySettingsFragment__view_receipts">אישורי צפייה</string>
     <!-- Story view receipts toggle message -->
     <string name="StoriesPrivacySettingsFragment__see_and_share">רואים ומשתפים כשיש צפיות בסטוריז. אם אפשרות זו מושבתת, אי אפשר לראות כשאחרים צופים בסטורי שלך.</string>
 
