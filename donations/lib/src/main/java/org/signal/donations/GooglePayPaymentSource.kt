@@ -10,6 +10,11 @@ class GooglePayPaymentSource(private val paymentData: PaymentData) : StripeApi.P
     return paymentMethodJsonData.getJSONObject("tokenizationData")
   }
 
+  override fun getTokenId(): String {
+    val serializedToken = parameterize().getString("token").replace("\n", "")
+    return JSONObject(serializedToken).getString("id")
+  }
+
   override fun email(): String? {
     val jsonData = JSONObject(paymentData.toJson())
     return if (jsonData.has("email")) {

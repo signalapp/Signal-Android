@@ -12,6 +12,7 @@ import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.core.util.logging.Log
 import org.signal.donations.GooglePayPaymentSource
+import org.signal.donations.StripeApi
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPaymentRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonateToSignalType
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayRequest
@@ -38,43 +39,95 @@ class StripePaymentInProgressViewModel(
 
   private val disposables = CompositeDisposable()
   private var paymentData: PaymentData? = null
+  private var cardData: StripeApi.CardData? = null
 
   override fun onCleared() {
     disposables.clear()
     store.dispose()
+    clearPaymentInformation()
   }
 
-  fun processNewDonation(request: GatewayRequest) {
-    val paymentData = this.paymentData ?: error("Cannot process new donation without payment data")
-    this.paymentData = null
+  fun onBeginNewAction() {
+    Preconditions.checkState(!store.state.isInProgress)
 
-    Preconditions.checkState(store.state != StripeStage.PAYMENT_PIPELINE)
-    Log.d(TAG, "Proceeding with donation...")
+    Log.d(TAG, "Beginning a new action. Ensuring cleared state.", true)
+    disposables.clear()
+  }
+
+  fun onEndAction() {
+    Preconditions.checkState(store.state.isTerminal)
+
+    Log.d(TAG, "Ending current state. Clearing state and setting stage to INIT", true)
+    store.update { StripeStage.INIT }
+    disposables.clear()
+  }
+
+  fun processNewDonation(request: GatewayRequest, nextActionHandler: (StripeApi.Secure3DSAction) -> Completable) {
+    Log.d(TAG, "Proceeding with donation...", true)
+
+    val errorSource = when (request.donateToSignalType) {
+      DonateToSignalType.ONE_TIME -> DonationErrorSource.BOOST
+      DonateToSignalType.MONTHLY -> DonationErrorSource.SUBSCRIPTION
+    }
+
+    val paymentSourceProvider: Single<StripeApi.PaymentSource> = resolvePaymentSourceProvider(errorSource)
 
     return when (request.donateToSignalType) {
-      DonateToSignalType.MONTHLY -> proceedMonthly(request, paymentData)
-      DonateToSignalType.ONE_TIME -> proceedOneTime(request, paymentData)
+      DonateToSignalType.MONTHLY -> proceedMonthly(request, paymentSourceProvider, nextActionHandler)
+      DonateToSignalType.ONE_TIME -> proceedOneTime(request, paymentSourceProvider, nextActionHandler)
     }
   }
 
+  private fun resolvePaymentSourceProvider(errorSource: DonationErrorSource): Single<StripeApi.PaymentSource> {
+    val paymentData = this.paymentData
+    val cardData = this.cardData
+
+    return when {
+      paymentData == null && cardData == null -> error("No payment provider available.")
+      paymentData != null && cardData != null -> error("Too many providers available")
+      paymentData != null -> Single.just<StripeApi.PaymentSource>(GooglePayPaymentSource(paymentData))
+      cardData != null -> donationPaymentRepository.createCreditCardPaymentSource(errorSource, cardData)
+      else -> error("This should never happen.")
+    }.doAfterTerminate { clearPaymentInformation() }
+  }
+
   fun providePaymentData(paymentData: PaymentData) {
+    requireNoPaymentInformation()
     this.paymentData = paymentData
   }
 
-  private fun proceedMonthly(request: GatewayRequest, paymentData: PaymentData) {
-    val ensureSubscriberId = donationPaymentRepository.ensureSubscriberId()
-    val continueSetup = donationPaymentRepository.continueSubscriptionSetup(GooglePayPaymentSource(paymentData))
-    val setLevel = donationPaymentRepository.setSubscriptionLevel(request.level.toString())
+  fun provideCardData(cardData: StripeApi.CardData) {
+    requireNoPaymentInformation()
+    this.cardData = cardData
+  }
+
+  private fun requireNoPaymentInformation() {
+    require(paymentData == null)
+    require(cardData == null)
+  }
+
+  private fun clearPaymentInformation() {
+    Log.d(TAG, "Cleared payment information.", true)
+    paymentData = null
+    cardData = null
+  }
+
+  private fun proceedMonthly(request: GatewayRequest, paymentSourceProvider: Single<StripeApi.PaymentSource>, nextActionHandler: (StripeApi.Secure3DSAction) -> Completable) {
+    val ensureSubscriberId: Completable = donationPaymentRepository.ensureSubscriberId()
+    val createAndConfirmSetupIntent: Single<StripeApi.Secure3DSAction> = paymentSourceProvider.flatMap { donationPaymentRepository.createAndConfirmSetupIntent(it) }
+    val setLevel: Completable = donationPaymentRepository.setSubscriptionLevel(request.level.toString())
 
     Log.d(TAG, "Starting subscription payment pipeline...", true)
     store.update { StripeStage.PAYMENT_PIPELINE }
 
-    val setup = ensureSubscriberId
+    val setup: Completable = ensureSubscriberId
       .andThen(cancelActiveSubscriptionIfNecessary())
-      .andThen(continueSetup)
+      .andThen(createAndConfirmSetupIntent)
+      .flatMap { secure3DSAction -> nextActionHandler(secure3DSAction).andThen(Single.just(secure3DSAction.paymentMethodId!!)) }
+      .flatMapCompletable { donationPaymentRepository.setDefaultPaymentMethod(it) }
       .onErrorResumeNext { Completable.error(DonationError.getPaymentSetupError(DonationErrorSource.SUBSCRIPTION, it)) }
 
-    setup.andThen(setLevel).subscribeBy(
+    disposables += setup.andThen(setLevel).subscribeBy(
       onError = { throwable ->
         Log.w(TAG, "Failure in subscription payment pipeline...", throwable, true)
         store.update { StripeStage.FAILED }
@@ -107,10 +160,25 @@ class StripePaymentInProgressViewModel(
     }
   }
 
-  private fun proceedOneTime(request: GatewayRequest, paymentData: PaymentData) {
+  private fun proceedOneTime(
+    request: GatewayRequest,
+    paymentSourceProvider: Single<StripeApi.PaymentSource>,
+    nextActionHandler: (StripeApi.Secure3DSAction) -> Completable
+  ) {
     Log.w(TAG, "Beginning one-time payment pipeline...", true)
 
-    donationPaymentRepository.continuePayment(request.fiat, GooglePayPaymentSource(paymentData), Recipient.self().id, null, SubscriptionLevels.BOOST_LEVEL.toLong()).subscribeBy(
+    val amount = request.fiat
+    val recipient = Recipient.self().id
+    val level = SubscriptionLevels.BOOST_LEVEL.toLong()
+
+    val continuePayment: Single<StripeApi.PaymentIntent> = donationPaymentRepository.continuePayment(amount, recipient, level)
+    val intentAndSource: Single<Pair<StripeApi.PaymentIntent, StripeApi.PaymentSource>> = Single.zip(continuePayment, paymentSourceProvider, ::Pair)
+
+    disposables += intentAndSource.flatMapCompletable { (paymentIntent, paymentSource) ->
+      donationPaymentRepository.confirmPayment(paymentSource, paymentIntent, recipient)
+        .flatMapCompletable { nextActionHandler(it) }
+        .andThen(donationPaymentRepository.waitForOneTimeRedemption(amount, paymentIntent, recipient, null, level))
+    }.subscribeBy(
       onError = { throwable ->
         Log.w(TAG, "Failure in one-time payment pipeline...", throwable, true)
         store.update { StripeStage.FAILED }
@@ -130,6 +198,8 @@ class StripePaymentInProgressViewModel(
   }
 
   fun cancelSubscription() {
+    Log.d(TAG, "Beginning cancellation...", true)
+
     store.update { StripeStage.CANCELLING }
     disposables += donationPaymentRepository.cancelActiveSubscription().subscribeBy(
       onComplete = {
@@ -147,8 +217,10 @@ class StripePaymentInProgressViewModel(
   }
 
   fun updateSubscription(request: GatewayRequest) {
+    Log.d(TAG, "Beginning subscription update...", true)
+
     store.update { StripeStage.PAYMENT_PIPELINE }
-    cancelActiveSubscriptionIfNecessary().andThen(donationPaymentRepository.setSubscriptionLevel(request.level.toString()))
+    disposables += cancelActiveSubscriptionIfNecessary().andThen(donationPaymentRepository.setSubscriptionLevel(request.level.toString()))
       .subscribeBy(
         onComplete = {
           Log.w(TAG, "Completed subscription update", true)

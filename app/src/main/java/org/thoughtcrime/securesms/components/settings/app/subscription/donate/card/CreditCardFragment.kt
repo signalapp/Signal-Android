@@ -4,13 +4,17 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.annotation.StringRes
+import androidx.core.os.bundleOf
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.databinding.CreditCardFragmentBinding
+import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.ViewUtil
 
@@ -22,6 +26,9 @@ class CreditCardFragment : Fragment(R.layout.credit_card_fragment) {
   private val lifecycleDisposable = LifecycleDisposable()
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+    binding.title.text = getString(R.string.CreditCardFragment__donation_amount_s, FiatMoneyUtil.format(resources, args.request.fiat))
+
     binding.cardNumber.addTextChangedListener(afterTextChanged = {
       viewModel.onNumberChanged(it?.toString() ?: "")
     })
@@ -46,10 +53,27 @@ class CreditCardFragment : Fragment(R.layout.credit_card_fragment) {
       viewModel.onExpirationFocusChanged(hasFocus)
     }
 
+    binding.continueButton.setOnClickListener {
+      findNavController().popBackStack()
+
+      val resultBundle = bundleOf(
+        REQUEST_KEY to CreditCardResult(
+          args.request,
+          viewModel.getCardData()
+        )
+      )
+
+      setFragmentResult(REQUEST_KEY, resultBundle)
+    }
+
+    binding.toolbar.setNavigationOnClickListener {
+      findNavController().popBackStack()
+    }
+
     lifecycleDisposable.bindTo(viewLifecycleOwner)
     lifecycleDisposable += viewModel.state.subscribe {
       // TODO [alex] -- type
-      // TODO [alex] -- all fields valid
+      presentContinue(it)
       presentCardNumberWrapper(it.numberValidity)
       presentCardExpiryWrapper(it.expirationValidity)
       presentCardCodeWrapper(it.codeValidity)
@@ -65,6 +89,10 @@ class CreditCardFragment : Fragment(R.layout.credit_card_fragment) {
       CreditCardFormState.FocusedField.EXPIRATION -> ViewUtil.focusAndShowKeyboard(binding.cardExpiry)
       CreditCardFormState.FocusedField.CODE -> ViewUtil.focusAndShowKeyboard(binding.cardCvv)
     }
+  }
+
+  private fun presentContinue(state: CreditCardValidationState) {
+    binding.continueButton.isEnabled = state.isValid
   }
 
   private fun presentCardNumberWrapper(validity: CreditCardNumberValidator.Validity) {
@@ -116,6 +144,8 @@ class CreditCardFragment : Fragment(R.layout.credit_card_fragment) {
   }
 
   companion object {
+    val REQUEST_KEY = "card.data"
+
     private val NO_ERROR = ErrorState(false, -1)
   }
 }

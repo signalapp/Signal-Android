@@ -5,8 +5,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.wallet.PaymentData
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.kotlin.plusAssign
@@ -16,6 +18,7 @@ import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
 import org.signal.donations.GooglePayApi
 import org.signal.donations.GooglePayPaymentSource
+import org.signal.donations.StripeApi
 import org.thoughtcrime.securesms.badges.gifts.Gifts
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationEvent
@@ -165,7 +168,14 @@ class GiftFlowViewModel(
 
             store.update { it.copy(stage = GiftFlowState.Stage.PAYMENT_PIPELINE) }
 
-            donationPaymentRepository.continuePayment(gift.price, GooglePayPaymentSource(paymentData), recipient, store.state.additionalMessage?.toString(), gift.level).subscribeBy(
+            val continuePayment: Single<StripeApi.PaymentIntent> = donationPaymentRepository.continuePayment(gift.price, recipient, gift.level)
+            val intentAndSource: Single<Pair<StripeApi.PaymentIntent, StripeApi.PaymentSource>> = Single.zip(continuePayment, Single.just(GooglePayPaymentSource(paymentData)), ::Pair)
+
+            disposables += intentAndSource.flatMapCompletable { (paymentIntent, paymentSource) ->
+              donationPaymentRepository.confirmPayment(paymentSource, paymentIntent, recipient)
+                .flatMapCompletable { Completable.complete() } // We do not currently handle 3DS for gifts.
+                .andThen(donationPaymentRepository.waitForOneTimeRedemption(gift.price, paymentIntent, recipient, store.state.additionalMessage?.toString(), gift.level))
+            }.subscribeBy(
               onError = this@GiftFlowViewModel::onPaymentFlowError,
               onComplete = {
                 store.update { it.copy(stage = GiftFlowState.Stage.READY) }

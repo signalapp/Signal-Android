@@ -5,5 +5,8 @@ enum class StripeStage {
   PAYMENT_PIPELINE,
   CANCELLING,
   FAILED,
-  COMPLETE
+  COMPLETE;
+
+  val isInProgress: Boolean get() = this == PAYMENT_PIPELINE || this == CANCELLING
+  val isTerminal: Boolean get() = this == FAILED || this == COMPLETE
 }

@@ -34,6 +34,8 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPaymentComponent
 import org.thoughtcrime.securesms.components.settings.app.subscription.boost.Boost
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.card.CreditCardFragment
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.card.CreditCardResult
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayRequest
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayResponse
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewaySelectorBottomSheet
@@ -141,6 +143,11 @@ class DonateToSignalFragment : DSLSettingsFragment(
     setFragmentResultListener(StripePaymentInProgressFragment.REQUEST_KEY) { _, bundle ->
       val result: StripeActionResult = bundle.getParcelable(StripePaymentInProgressFragment.REQUEST_KEY)!!
       handleStripeActionResult(result)
+    }
+
+    setFragmentResultListener(CreditCardFragment.REQUEST_KEY) { _, bundle ->
+      val result: CreditCardResult = bundle.getParcelable(CreditCardFragment.REQUEST_KEY)!!
+      handleCreditCardResult(result)
     }
 
     val recyclerView = this.recyclerView!!
@@ -398,6 +405,12 @@ class DonateToSignalFragment : DSLSettingsFragment(
       GatewayResponse.Gateway.PAYPAL -> error("PayPal is not currently supported.")
       GatewayResponse.Gateway.CREDIT_CARD -> launchCreditCard(gatewayResponse)
     }
+  }
+
+  private fun handleCreditCardResult(creditCardResult: CreditCardResult) {
+    Log.d(TAG, "Received credit card information from fragment.")
+    stripePaymentViewModel.provideCardData(creditCardResult.creditCardData)
+    findNavController().safeNavigate(DonateToSignalFragmentDirections.actionDonateToSignalFragmentToStripePaymentInProgressFragment(StripeAction.PROCESS_NEW_DONATION, creditCardResult.gatewayRequest))
   }
 
   private fun handleStripeActionResult(result: StripeActionResult) {

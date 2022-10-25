@@ -85,6 +85,9 @@
             android:name="request"
             app:argType="org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayRequest"
             app:nullable="false" />
+        <action
+            android:id="@+id/action_stripePaymentInProgressFragment_to_stripe3dsDialogFragment"
+            app:destination="@id/stripe3dsDialogFragment" />
     </dialog>
 
     <dialog
@@ -100,8 +103,8 @@
 
         <argument
             android:name="isBoost"
-            app:argType="boolean"
-            android:defaultValue="false" />
+            android:defaultValue="false"
+            app:argType="boolean" />
     </dialog>
 
     <dialog
@@ -121,5 +124,17 @@
             app:argType="org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayRequest"
             app:nullable="false" />
     </fragment>
+
+    <dialog
+        android:id="@+id/stripe3dsDialogFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.subscription.donate.Stripe3DSDialogFragment"
+        android:label="stripe_3ds_dialog_fragment"
+        tools:layout="@layout/stripe_3ds_dialog_fragment">
+
+        <argument
+            android:name="uri"
+            app:argType="android.net.Uri"
+            app:nullable="false" />
+    </dialog>
 
 </navigation>

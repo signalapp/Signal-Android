@@ -127,17 +127,13 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
 
   /**
    * @param price             The amount to charce the local user
-   * @param paymentData       PaymentData from Google Pay that describes the payment method
    * @param badgeRecipient    Who will be getting the badge
-   * @param additionalMessage An additional message to send along with the badge (only used if badge recipient is not self)
    */
   fun continuePayment(
     price: FiatMoney,
-    paymentSource: StripeApi.PaymentSource,
     badgeRecipient: RecipientId,
-    additionalMessage: String?,
-    badgeLevel: Long
-  ): Completable {
+    badgeLevel: Long,
+  ): Single<StripeApi.PaymentIntent> {
     Log.d(TAG, "Creating payment intent for $price...", true)
 
     return stripeApi.createPaymentIntent(price, badgeLevel)
@@ -150,28 +146,26 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
           Single.error(DonationError.getPaymentSetupError(errorSource, it))
         }
       }
-      .flatMapCompletable { result ->
+      .flatMap { result ->
         val recipient = Recipient.resolved(badgeRecipient)
         val errorSource = if (recipient.isSelf) DonationErrorSource.BOOST else DonationErrorSource.GIFT
 
         Log.d(TAG, "Created payment intent for $price.", true)
         when (result) {
-          is StripeApi.CreatePaymentIntentResult.AmountIsTooSmall -> Completable.error(DonationError.oneTimeDonationAmountTooSmall(errorSource))
-          is StripeApi.CreatePaymentIntentResult.AmountIsTooLarge -> Completable.error(DonationError.oneTimeDonationAmountTooLarge(errorSource))
-          is StripeApi.CreatePaymentIntentResult.CurrencyIsNotSupported -> Completable.error(DonationError.invalidCurrencyForOneTimeDonation(errorSource))
-          is StripeApi.CreatePaymentIntentResult.Success -> confirmPayment(price, paymentSource, result.paymentIntent, badgeRecipient, additionalMessage, badgeLevel)
+          is StripeApi.CreatePaymentIntentResult.AmountIsTooSmall -> Single.error(DonationError.oneTimeDonationAmountTooSmall(errorSource))
+          is StripeApi.CreatePaymentIntentResult.AmountIsTooLarge -> Single.error(DonationError.oneTimeDonationAmountTooLarge(errorSource))
+          is StripeApi.CreatePaymentIntentResult.CurrencyIsNotSupported -> Single.error(DonationError.invalidCurrencyForOneTimeDonation(errorSource))
+          is StripeApi.CreatePaymentIntentResult.Success -> Single.just(result.paymentIntent)
         }
       }.subscribeOn(Schedulers.io())
   }
 
-  fun continueSubscriptionSetup(paymentSource: StripeApi.PaymentSource): Completable {
+  fun createAndConfirmSetupIntent(paymentSource: StripeApi.PaymentSource): Single<StripeApi.Secure3DSAction> {
     Log.d(TAG, "Continuing subscription setup...", true)
     return stripeApi.createSetupIntent()
-      .flatMapCompletable { result ->
+      .flatMap { result ->
         Log.d(TAG, "Retrieved SetupIntent, confirming...", true)
-        stripeApi.confirmSetupIntent(paymentSource, result.setupIntent).doOnComplete {
-          Log.d(TAG, "Confirmed SetupIntent...", true)
-        }
+        stripeApi.confirmSetupIntent(paymentSource, result.setupIntent)
       }
   }
 
@@ -211,14 +205,30 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
       }
   }
 
-  private fun confirmPayment(price: FiatMoney, paymentSource: StripeApi.PaymentSource, paymentIntent: StripeApi.PaymentIntent, badgeRecipient: RecipientId, additionalMessage: String?, badgeLevel: Long): Completable {
+  fun confirmPayment(
+    paymentSource: StripeApi.PaymentSource,
+    paymentIntent: StripeApi.PaymentIntent,
+    badgeRecipient: RecipientId
+  ): Single<StripeApi.Secure3DSAction> {
     val isBoost = badgeRecipient == Recipient.self().id
     val donationErrorSource: DonationErrorSource = if (isBoost) DonationErrorSource.BOOST else DonationErrorSource.GIFT
 
     Log.d(TAG, "Confirming payment intent...", true)
-    val confirmPayment = stripeApi.confirmPaymentIntent(paymentSource, paymentIntent).onErrorResumeNext {
-      Completable.error(DonationError.getPaymentSetupError(donationErrorSource, it))
-    }
+    return stripeApi.confirmPaymentIntent(paymentSource, paymentIntent)
+      .onErrorResumeNext {
+        Single.error(DonationError.getPaymentSetupError(donationErrorSource, it))
+      }
+  }
+
+  fun waitForOneTimeRedemption(
+    price: FiatMoney,
+    paymentIntent: StripeApi.PaymentIntent,
+    badgeRecipient: RecipientId,
+    additionalMessage: String?,
+    badgeLevel: Long,
+  ): Completable {
+    val isBoost = badgeRecipient == Recipient.self().id
+    val donationErrorSource: DonationErrorSource = if (isBoost) DonationErrorSource.BOOST else DonationErrorSource.GIFT
 
     val waitOnRedemption = Completable.create {
       val donationReceiptRecord = if (isBoost) {
@@ -273,7 +283,7 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
       }
     }
 
-    return confirmPayment.andThen(waitOnRedemption)
+    return waitOnRedemption
   }
 
   fun setSubscriptionLevel(subscriptionLevel: String): Completable {
@@ -405,11 +415,12 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
       }
   }
 
-  override fun setDefaultPaymentMethod(paymentMethodId: String): Completable {
-    Log.d(TAG, "Setting default payment method via Signal service...")
+  fun setDefaultPaymentMethod(paymentMethodId: String): Completable {
     return Single.fromCallable {
+      Log.d(TAG, "Getting the subscriber...")
       SignalStore.donationsValues().requireSubscriber()
     }.flatMap {
+      Log.d(TAG, "Setting default payment method via Signal service...")
       Single.fromCallable {
         ApplicationDependencies
           .getDonationsService()
@@ -417,6 +428,16 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
       }
     }.flatMap(ServiceResponse<EmptyResponse>::flattenResult).ignoreElement().doOnComplete {
       Log.d(TAG, "Set default payment method via Signal service!")
+    }
+  }
+
+  fun createCreditCardPaymentSource(donationErrorSource: DonationErrorSource, cardData: StripeApi.CardData): Single<StripeApi.PaymentSource> {
+    Log.d(TAG, "Creating credit card payment source via Stripe api...")
+    return stripeApi.createPaymentSourceFromCardData(cardData).map {
+      when (it) {
+        is StripeApi.CreatePaymentSourceFromCardDataResult.Failure -> throw DonationError.getPaymentSetupError(donationErrorSource, it.reason)
+        is StripeApi.CreatePaymentSourceFromCardDataResult.Success -> it.paymentSource
+      }
     }
   }
 
