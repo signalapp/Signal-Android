@@ -2052,7 +2052,7 @@ public class ConversationParentFragment extends Fragment
     inputPanel.setListener(this);
     inputPanel.setMediaListener(this);
 
-    attachmentManager = new AttachmentManager(requireActivity(), this);
+    attachmentManager = new AttachmentManager(requireContext(), view, this);
     audioRecorder     = new AudioRecorder(requireContext());
     typingTextWatcher = new ComposeTextWatcher();
 
