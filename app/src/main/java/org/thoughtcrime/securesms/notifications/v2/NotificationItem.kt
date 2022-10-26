@@ -29,6 +29,7 @@ import org.thoughtcrime.securesms.util.hasGiftBadge
 import org.thoughtcrime.securesms.util.hasSharedContact
 import org.thoughtcrime.securesms.util.hasSticker
 import org.thoughtcrime.securesms.util.isMediaMessage
+import org.thoughtcrime.securesms.util.isStoryReaction
 
 private val TAG: String = Log.tag(NotificationItem::class.java)
 private const val EMOJI_REPLACEMENT_STRING = "__EMOJI__"
@@ -196,6 +197,8 @@ class MessageNotification(threadRecipient: Recipient, record: MessageRecord) : N
     } else if (record.isGroupCall) {
       MessageRecord.getGroupCallUpdateDescription(context, record.body, false).spannable
     } else if (record.hasGiftBadge()) {
+      ThreadBodyUtil.getFormattedBodyFor(context, record)
+    } else if (record.isStoryReaction()) {
       ThreadBodyUtil.getFormattedBodyFor(context, record)
     } else {
       MentionUtil.updateBodyWithDisplayNames(context, record)
