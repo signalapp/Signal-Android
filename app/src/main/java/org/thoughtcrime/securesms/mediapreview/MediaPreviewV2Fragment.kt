@@ -284,7 +284,8 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
         windowInsetsCompat.getSystemWindowInsetLeft(),
         layoutParams.topMargin,
         windowInsetsCompat.getSystemWindowInsetRight(),
-        windowInsetsCompat.getSystemWindowInsetBottom())
+        windowInsetsCompat.getSystemWindowInsetBottom()
+      )
       view.layoutParams = layoutParams
       windowInsetsCompat
     }
