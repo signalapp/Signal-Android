@@ -43,7 +43,7 @@ object CreateStoryNameFieldItem {
     }
 
     override fun bind(model: Model) {
-      if (model.body != editText.text) {
+      if (model.body.toString() != editText.text.toString()) {
         editText.setText(model.body)
       }
 

@@ -1,25 +1,29 @@
 package org.thoughtcrime.securesms.stories.settings.create
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.util.livedata.Store
+import org.thoughtcrime.securesms.util.rx.RxStore
 
 class CreateStoryWithViewersViewModel(
   private val repository: CreateStoryWithViewersRepository
 ) : ViewModel() {
 
-  private val store = Store(CreateStoryWithViewersState())
+  private val store = RxStore(CreateStoryWithViewersState())
   private val disposables = CompositeDisposable()
 
-  val state: LiveData<CreateStoryWithViewersState> = store.stateLiveData
+  val state: Flowable<CreateStoryWithViewersState> = store.stateFlowable
+    .distinctUntilChanged()
+    .observeOn(AndroidSchedulers.mainThread())
 
   override fun onCleared() {
     disposables.clear()
+    store.dispose()
   }
 
   fun setLabel(label: CharSequence) {
