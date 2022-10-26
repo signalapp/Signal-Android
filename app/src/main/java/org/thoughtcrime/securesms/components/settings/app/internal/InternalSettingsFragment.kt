@@ -4,9 +4,12 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.DialogInterface
+import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.signal.core.util.AppUtil
 import org.signal.core.util.concurrent.SignalExecutors
@@ -51,13 +54,35 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
 
   private lateinit var viewModel: InternalSettingsViewModel
 
+  private var scrollToPosition: Int = 0
+  private val layoutManager: LinearLayoutManager?
+    get() = recyclerView?.layoutManager as? LinearLayoutManager
+
+  override fun onPause() {
+    super.onPause()
+    val firstVisiblePosition: Int? = layoutManager?.findFirstVisibleItemPosition()
+    if (firstVisiblePosition != null) {
+      SignalStore.internalValues().lastScrollPosition = firstVisiblePosition
+    }
+  }
+
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
+    scrollToPosition = SignalStore.internalValues().lastScrollPosition
+  }
+
   override fun bindAdapter(adapter: MappingAdapter) {
     val repository = InternalSettingsRepository(requireContext())
     val factory = InternalSettingsViewModel.Factory(repository)
     viewModel = ViewModelProvider(this, factory)[InternalSettingsViewModel::class.java]
 
     viewModel.state.observe(viewLifecycleOwner) {
-      adapter.submitList(getConfiguration(it).toMappingModelList())
+      adapter.submitList(getConfiguration(it).toMappingModelList()) {
+        if (scrollToPosition != 0) {
+          layoutManager?.scrollToPositionWithOffset(scrollToPosition, 0)
+          scrollToPosition = 0
+        }
+      }
     }
   }
 
