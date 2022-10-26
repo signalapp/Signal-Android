@@ -373,13 +373,13 @@
     <string name="ConversationActivity__reported_as_spam_and_blocked">Спам деп хабарланып, блокталды.</string>
 
     <!-- Message shown when opening an SMS conversation with SMS disabled and they have unexported sms messages -->
-    <string name="ConversationActivity__sms_messaging_is_currently_disabled_you_can_export_your_messages_to_another_app_on_your_phone">SMS хабар алмасу функциясы қазір өшіп тұр. Хаттарыңызды телефоныңыздағы басқа қолданбаға экспорттай аласыз.</string>
+    <string name="ConversationActivity__sms_messaging_is_currently_disabled_you_can_export_your_messages_to_another_app_on_your_phone">SMS хат алмасу функциясы қазір өшіп тұр. Хаттарыңызды телефоныңыздағы басқа қолданбаға экспорттай аласыз.</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and they have unexported sms messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_you_can_export_your_messages_to_another_app_on_your_phone">Енді Signal-да SMS-пен алмасу мүмкін емес. Хаттарыңызды телефоныңыздағы басқа қолданбаға экспорттай аласыз.</string>
     <!-- Action button shown when in sms conversation, sms is disabled, and unexported sms messages are present -->
     <string name="ConversationActivity__export_sms_messages">SMS-хаттарды экспорттау</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
-    <string name="ConversationActivity__sms_messaging_is_currently_disabled_invite_s_to_to_signal_to_keep_the_conversation_here">SMS хабар алмасу функциясы қазір өшіп тұр. Әңгімелеріңізді осы жерде жалғастыру үшін %1$s деген кісіні Signal-ға шақырыңыз.</string>
+    <string name="ConversationActivity__sms_messaging_is_currently_disabled_invite_s_to_to_signal_to_keep_the_conversation_here">SMS хат алмасу функциясы қазір өшіп тұр. Әңгімелеріңізді осы жерде жалғастыру үшін %1$s деген кісіні Signal-ға шақырыңыз.</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">Енді Signal-да SMS-пен алмасу мүмкін емес. Әңгімелеріңізді осы жерде жалғастыру үшін %1$s деген кісіні Signal-ға шақырыңыз.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
@@ -5381,7 +5381,7 @@
         <item quantity="other">%1$d/%2$d экспортталуда…</item>
     </plurals>
     <!-- Alert dialog title shown when we think a user may not have enough local storage available to export sms messages -->
-    <string name="ExportingSmsMessagesFragment__you_may_not_have_enough_disk_space">Дисктегі бос орын жеткіліксіз болуы мүмкін</string>
+    <string name="ExportingSmsMessagesFragment__you_may_not_have_enough_disk_space">Дискте бос орын жеткіліксіз болуы мүмкін</string>
     <!-- Alert dialog message shown when we think a user may not have enough local storage available to export sms messages, placeholder is the file size, e.g., 128kB -->
     <string name="ExportingSmsMessagesFragment__you_need_approximately_s_to_export_your_messages_ensure_you_have_enough_space_before_continuing">Хаттарды экспорттау үшін шамамен %1$s керек. Жалғастырмас бұрын, бос орын жеткілікті екеніне көз жеткізіңіз.</string>
     <!-- Alert dialog button to continue with exporting sms after seeing the lack of storage warning -->
@@ -5490,11 +5490,11 @@
     <!-- Debug step 1 on screen shown when some sms messages did not export -->
     <string name="ExportSmsPartiallyComplete__ensure_you_have_an_additional_s_free_on_your_phone_to_export_your_messages">Хаттарыңызды экспорттау үшін телефоныңызда артық %1$s орын болуы керек</string>
     <!-- Debug step 2 on screen shown when some sms messages dit not export -->
-    <string name="ExportSmsPartiallyComplete__retry_export_which_will_only_retry_messages_that_have_not_yet_been_exported">Қайта экспорттап көріңіз. Экспортталмаған хаттар қайта экспортталады.</string>
+    <string name="ExportSmsPartiallyComplete__retry_export_which_will_only_retry_messages_that_have_not_yet_been_exported">Қайта экспорттап көріңіз. Экспортталмаған хаттар қайта экспортталады</string>
     <!-- Partial sentence for Debug step 3 on screen shown when some sms messages did not export, is combined with 'contact us' -->
     <string name="ExportSmsPartiallyComplete__if_the_problem_persists">Егер мәселе шешілмесе, </string>
     <!-- Partial sentence for deubg step 3 on screen shown when some sms messages did not export, combined with 'If the problem persists', link text to open contact support view -->
-    <string name="ExportSmsPartiallyComplete__contact_us">Байланыс мәліметі</string>
+    <string name="ExportSmsPartiallyComplete__contact_us">бізбен хабарласыңыз</string>
     <!-- Button text to retry sms export -->
     <string name="ExportSmsPartiallyComplete__retry">Қайтадан байқап көру</string>
     <!-- Button text to continue sms export flow and not retry failed message exports -->
