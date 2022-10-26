@@ -38,5 +38,6 @@ class StoryVideoLoader(
 
   override fun onPause(lifecycleOwner: LifecycleOwner) {
     callback.getVideoControlsDelegate()?.detachPlayer()
+    videoPlayer.pause()
   }
 }
