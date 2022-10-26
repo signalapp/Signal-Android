@@ -6,7 +6,6 @@
     android:layout_height="wrap_content"
     android:layout_gravity="bottom"
     android:background="@color/transparent"
-    android:layoutDirection="ltr"
     android:orientation="vertical"
     tools:targetApi="28">
 
@@ -77,7 +76,7 @@
             android:layout_width="@dimen/exo_media_button_width"
             android:layout_height="@dimen/exo_media_button_height"
             android:background="?selectableItemBackground"
-            app:srcCompat="@drawable/ic_share_24_outline_white" />
+            app:srcCompat="@drawable/ic_share_24_outline" />
 
         <Space
             android:layout_width="0dp"
