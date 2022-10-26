@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.databinding.StoriesCreateWithRecipientsFragmentBinding
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.Material3OnScrollHelper
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
@@ -43,6 +44,7 @@ class CreateStoryWithViewersFragment : DSLSettingsFragment(
   )
 
   private val binding by ViewBinderDelegate(StoriesCreateWithRecipientsFragmentBinding::bind)
+  private val disposables = LifecycleDisposable()
 
   private val recipientIds: Array<RecipientId>
     get() = CreateStoryWithViewersFragmentArgs.fromBundle(requireArguments()).recipients
@@ -56,8 +58,9 @@ class CreateStoryWithViewersFragment : DSLSettingsFragment(
       viewModel.setLabel(it)
     }
 
+    disposables.bindTo(viewLifecycleOwner)
     adapter.submitList(getConfiguration().toMappingModelList())
-    viewModel.state.observe(viewLifecycleOwner) { state ->
+    disposables += viewModel.state.subscribe { state ->
 
       val nameModel = CreateStoryNameFieldItem.Model(
         body = state.label,
