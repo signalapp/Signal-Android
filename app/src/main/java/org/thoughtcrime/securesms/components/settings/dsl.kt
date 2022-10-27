@@ -151,10 +151,11 @@ class DSLConfiguration {
 
   fun primaryButton(
     text: DSLSettingsText,
+    icon: DSLSettingsIcon? = null,
     isEnabled: Boolean = true,
     onClick: () -> Unit
   ) {
-    val preference = Button.Model.Primary(text, null, isEnabled, onClick)
+    val preference = Button.Model.Primary(text, icon, isEnabled, onClick)
     children.add(preference)
   }
 
