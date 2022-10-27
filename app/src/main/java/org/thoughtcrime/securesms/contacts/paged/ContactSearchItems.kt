@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.TextView
 import com.google.android.material.button.MaterialButton
+import org.signal.core.util.dp
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.BadgeImageView
 import org.thoughtcrime.securesms.components.AvatarImageView
@@ -12,9 +13,12 @@ import org.thoughtcrime.securesms.components.FromTextView
 import org.thoughtcrime.securesms.components.menu.ActionItem
 import org.thoughtcrime.securesms.components.menu.SignalContextMenu
 import org.thoughtcrime.securesms.contacts.LetterHeaderDecoration
+import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto
+import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto
 import org.thoughtcrime.securesms.database.model.DistributionListPrivacyMode
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.recipients.Recipient.FallbackPhotoProvider
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
@@ -142,8 +146,10 @@ object ContactSearchItems {
 
     override fun bindAvatar(model: StoryModel) {
       if (model.story.recipient.isMyStory) {
+        avatar.setFallbackPhotoProvider(MyStoryFallbackPhotoProvider(Recipient.self().getDisplayName(context), 40.dp))
         avatar.setAvatarUsingProfile(Recipient.self())
       } else {
+        avatar.setFallbackPhotoProvider(Recipient.DEFAULT_FALLBACK_PHOTO_PROVIDER)
         super.bindAvatar(model)
       }
     }
@@ -201,6 +207,12 @@ object ContactSearchItems {
         DistributionListPrivacyMode.ONLY_WITH -> context.getString(R.string.ContactSearchItems__only_share_with)
         DistributionListPrivacyMode.ALL_EXCEPT -> context.getString(R.string.ChooseInitialMyStoryMembershipFragment__all_except)
         DistributionListPrivacyMode.ALL -> context.getString(R.string.ChooseInitialMyStoryMembershipFragment__all_signal_connections)
+      }
+    }
+
+    private class MyStoryFallbackPhotoProvider(private val name: String, private val targetSize: Int) : FallbackPhotoProvider() {
+      override fun getPhotoForLocalNumber(): FallbackContactPhoto {
+        return GeneratedContactPhoto(name, R.drawable.ic_profile_outline_40, targetSize)
       }
     }
   }
