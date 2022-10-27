@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    tools:viewBindingIgnore="true"
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    tools:parentTag="android.widget.FrameLayout"
+    tools:viewBindingIgnore="true">
 
     <ImageView
         android:id="@+id/thumbnail_blurhash"
@@ -11,9 +11,9 @@
         android:layout_height="match_parent"
         android:adjustViewBounds="true"
         android:clickable="false"
+        android:contentDescription="@string/conversation_item__mms_image_description"
         android:longClickable="false"
-        android:scaleType="fitCenter"
-        android:contentDescription="@string/conversation_item__mms_image_description" />
+        android:scaleType="fitCenter" />
 
     <ImageView
         android:id="@+id/thumbnail_image"
@@ -21,26 +21,37 @@
         android:layout_height="match_parent"
         android:adjustViewBounds="true"
         android:clickable="false"
+        android:contentDescription="@string/conversation_item__mms_image_description"
         android:longClickable="false"
-        android:scaleType="fitCenter"
-        android:contentDescription="@string/conversation_item__mms_image_description" />
+        android:scaleType="fitCenter" />
 
     <ImageView
         android:id="@+id/thumbnail_caption_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:contentDescription="@string/ThumbnailView_Has_a_caption_description"
         android:padding="6dp"
         android:src="@drawable/ic_caption_28"
         android:visibility="gone"
-        android:contentDescription="@string/ThumbnailView_Has_a_caption_description"
+        tools:visibility="visible" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/thumbnail_error"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_gravity="center"
+        android:longClickable="false"
+        android:visibility="gone"
+        app:srcCompat="@drawable/ic_error_outline_24"
+        app:tint="@color/signal_colorOnSurface"
         tools:visibility="visible" />
 
     <FrameLayout
         android:id="@+id/play_overlay"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:background="@drawable/circle_white"
         android:layout_gravity="center"
+        android:background="@drawable/circle_white"
         android:longClickable="false"
         android:visibility="gone"
         tools:visibility="visible">

@@ -127,10 +127,11 @@ public class AttachmentDatabase extends Database {
 
   private static final String DIRECTORY              = "parts";
 
-  public static final int TRANSFER_PROGRESS_DONE    = 0;
-  public static final int TRANSFER_PROGRESS_STARTED = 1;
-  public static final int TRANSFER_PROGRESS_PENDING = 2;
-  public static final int TRANSFER_PROGRESS_FAILED  = 3;
+  public static final int TRANSFER_PROGRESS_DONE              = 0;
+  public static final int TRANSFER_PROGRESS_STARTED           = 1;
+  public static final int TRANSFER_PROGRESS_PENDING           = 2;
+  public static final int TRANSFER_PROGRESS_FAILED            = 3;
+  public static final int TRANSFER_PROGRESS_PERMANENT_FAILURE = 4;
 
   public static final long PREUPLOAD_MESSAGE_ID = -8675309;
 
@@ -232,6 +233,17 @@ public class AttachmentDatabase extends Database {
     SQLiteDatabase database = databaseHelper.getSignalWritableDatabase();
     ContentValues  values   = new ContentValues();
     values.put(TRANSFER_STATE, TRANSFER_PROGRESS_FAILED);
+
+    database.update(TABLE_NAME, values, PART_ID_WHERE + " AND " + TRANSFER_STATE + " < " + TRANSFER_PROGRESS_PERMANENT_FAILURE, attachmentId.toStrings());
+    notifyConversationListeners(SignalDatabase.mms().getThreadIdForMessage(mmsId));
+  }
+
+  public void setTransferProgressPermanentFailure(AttachmentId attachmentId, long mmsId)
+    throws MmsException
+  {
+    SQLiteDatabase database = databaseHelper.getSignalWritableDatabase();
+    ContentValues  values   = new ContentValues();
+    values.put(TRANSFER_STATE, TRANSFER_PROGRESS_PERMANENT_FAILURE);
 
     database.update(TABLE_NAME, values, PART_ID_WHERE, attachmentId.toStrings());
     notifyConversationListeners(SignalDatabase.mms().getThreadIdForMessage(mmsId));

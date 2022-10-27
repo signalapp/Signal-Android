@@ -736,6 +736,11 @@ class StoryViewerPageFragment :
         sharedViewModel.setContentIsReady()
         viewModel.setIsDisplayingSlate(true)
       }
+      AttachmentDatabase.TRANSFER_PROGRESS_PERMANENT_FAILURE -> {
+        storySlate.moveToState(StorySlateView.State.FAILED, post.id, post.sender)
+        sharedViewModel.setContentIsReady()
+        viewModel.setIsDisplayingSlate(true)
+      }
     }
   }
 

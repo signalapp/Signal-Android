@@ -110,6 +110,7 @@ class SignalActivityRule(private val othersCount: Int = 4) : ExternalResource() 
       SignalDatabase.recipients.setProfileKeyIfAbsent(recipientId, ProfileKeyUtil.createNew())
       SignalDatabase.recipients.setCapabilities(recipientId, SignalServiceProfile.Capabilities(true, true, true, true, true, true, true, true))
       SignalDatabase.recipients.setProfileSharing(recipientId, true)
+      SignalDatabase.recipients.markRegistered(recipientId, aci)
       ApplicationDependencies.getProtocolStore().aci().saveIdentity(SignalProtocolAddress(aci.toString(), 0), IdentityKeyUtil.generateIdentityKeyPair().publicKey)
       others += recipientId
     }

@@ -64,6 +64,7 @@ import androidx.lifecycle.LifecycleOwner;
 
 import com.annimon.stream.Stream;
 import com.google.android.exoplayer2.MediaItem;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.common.collect.Sets;
 
 import org.signal.core.util.DimensionUnit;
@@ -2348,6 +2349,25 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
           Log.w(TAG, "No activity existed to view the media.");
           Toast.makeText(context, R.string.ConversationItem_unable_to_open_media, Toast.LENGTH_LONG).show();
         }
+      } else if (slide.asAttachment().isPermanentlyFailed()) {
+        String failedMessage;
+
+        if (slide instanceof ImageSlide) {
+          failedMessage = messageRecord.isOutgoing() ? context.getString(R.string.ConversationItem_cant_download_image_you_will_need_to_send_it_again)
+                                                     : context.getString(R.string.ConversationItem_cant_download_image_s_will_need_to_send_it_again, messageRecord.getIndividualRecipient().getShortDisplayName(context));
+        } else if (slide instanceof VideoSlide) {
+          failedMessage = messageRecord.isOutgoing() ? context.getString(R.string.ConversationItem_cant_download_video_you_will_need_to_send_it_again)
+                                                     : context.getString(R.string.ConversationItem_cant_download_video_s_will_need_to_send_it_again, messageRecord.getIndividualRecipient().getShortDisplayName(context));
+        } else {
+          failedMessage = messageRecord.isOutgoing() ? context.getString(R.string.ConversationItem_cant_download_message_you_will_need_to_send_it_again)
+                                                     : context.getString(R.string.ConversationItem_cant_download_message_s_will_need_to_send_it_again, messageRecord.getIndividualRecipient().getShortDisplayName(context));
+        }
+
+        new MaterialAlertDialogBuilder(getContext())
+            .setMessage(failedMessage)
+            .setPositiveButton(android.R.string.ok, null)
+            .setNegativeButton(android.R.string.cancel, null)
+            .show();
       }
     }
   }

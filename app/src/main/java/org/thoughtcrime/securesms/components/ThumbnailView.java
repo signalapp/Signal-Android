@@ -18,6 +18,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.Px;
 import androidx.annotation.UiThread;
+import androidx.appcompat.widget.AppCompatImageView;
 
 import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -34,9 +35,11 @@ import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.GlideRequest;
 import org.thoughtcrime.securesms.mms.GlideRequests;
+import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideClickListener;
 import org.thoughtcrime.securesms.mms.SlidesClickedListener;
+import org.thoughtcrime.securesms.mms.VideoSlide;
 import org.thoughtcrime.securesms.stories.StoryTextPostModel;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.Util;
@@ -62,10 +65,12 @@ public class ThumbnailView extends FrameLayout {
   private static final int    MIN_HEIGHT = 2;
   private static final int    MAX_HEIGHT = 3;
 
-  private ImageView         image;
-  private ImageView         blurhash;
-  private View              playOverlay;
-  private View              captionIcon;
+  private final ImageView          image;
+  private final ImageView          blurhash;
+  private final View               playOverlay;
+  private final View               captionIcon;
+  private final AppCompatImageView errorImage;
+
   private OnClickListener   parentClickListener;
 
   private final int[] dimens        = new int[2];
@@ -97,6 +102,7 @@ public class ThumbnailView extends FrameLayout {
     this.blurhash    = findViewById(R.id.thumbnail_blurhash);
     this.playOverlay = findViewById(R.id.play_overlay);
     this.captionIcon = findViewById(R.id.thumbnail_caption_icon);
+    this.errorImage  = findViewById(R.id.thumbnail_error);
 
     super.setOnClickListener(new ThumbnailClickDispatcher());
 
@@ -302,6 +308,34 @@ public class ThumbnailView extends FrameLayout {
                                                     boolean showControls, boolean isPreview,
                                                     int naturalWidth, int naturalHeight)
   {
+    if (slide.asAttachment().isPermanentlyFailed()) {
+      this.slide = slide;
+
+      transferControls.ifPresent(c -> c.setVisibility(View.GONE));
+      playOverlay.setVisibility(View.GONE);
+
+      glideRequests.clear(blurhash);
+      blurhash.setImageDrawable(null);
+
+      glideRequests.clear(image);
+      image.setImageDrawable(null);
+
+      int errorImageResource;
+      if (slide instanceof ImageSlide) {
+        errorImageResource = R.drawable.ic_photo_slash_outline_24;
+      } else if (slide instanceof VideoSlide) {
+        errorImageResource = R.drawable.ic_video_slash_outline_24;
+      } else {
+        errorImageResource = R.drawable.ic_error_outline_24;
+      }
+      errorImage.setImageResource(errorImageResource);
+      errorImage.setVisibility(View.VISIBLE);
+
+      return new SettableFuture<>(true);
+    } else {
+      errorImage.setVisibility(View.GONE);
+    }
+
     if (showControls) {
       getTransferControls().setSlide(slide);
       getTransferControls().setDownloadClickListener(new DownloadClickDispatcher());
@@ -532,11 +566,13 @@ public class ThumbnailView extends FrameLayout {
   private class ThumbnailClickDispatcher implements View.OnClickListener {
     @Override
     public void onClick(View view) {
-      if (thumbnailClickListener        != null &&
-          slide                         != null &&
-          slide.asAttachment().getUri() != null &&
-          slide.getTransferState()      == AttachmentDatabase.TRANSFER_PROGRESS_DONE)
-      {
+      boolean validThumbnail = slide != null &&
+                               slide.asAttachment().getUri() != null &&
+                               slide.getTransferState() == AttachmentDatabase.TRANSFER_PROGRESS_DONE;
+
+      boolean permanentFailure = slide != null && slide.asAttachment().isPermanentlyFailed();
+
+      if (thumbnailClickListener != null && (validThumbnail || permanentFailure)) {
         thumbnailClickListener.onClick(view, slide);
       } else if (parentClickListener != null) {
         parentClickListener.onClick(view);
