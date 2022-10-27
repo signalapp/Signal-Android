@@ -36,6 +36,7 @@ import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectFor
 import org.thoughtcrime.securesms.database.MediaDatabase
 import org.thoughtcrime.securesms.databinding.FragmentMediaPreviewV2Binding
 import org.thoughtcrime.securesms.mediasend.Media
+import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.permissions.Permissions
@@ -202,6 +203,7 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
 
     binding.toolbar.setOnMenuItemClickListener {
       when (it.itemId) {
+        R.id.edit -> editMediaItem(currentItem)
         R.id.save -> saveToDisk(currentItem)
         R.id.delete -> deleteMedia(currentItem)
         android.R.id.home -> requireActivity().finish()
@@ -408,6 +410,20 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
       }
       .setNegativeButton(android.R.string.cancel, null)
       .show()
+  }
+
+  private fun editMediaItem(currentItem: MediaDatabase.MediaRecord) {
+    val media = currentItem.toMedia()
+    if (media == null) {
+      val rootView = view
+      if (rootView != null) {
+        Snackbar.make(rootView, R.string.MediaPreviewFragment_edit_media_error, Snackbar.LENGTH_INDEFINITE).show()
+      } else {
+        Toast.makeText(requireContext(), R.string.MediaPreviewFragment_edit_media_error, Toast.LENGTH_LONG).show()
+      }
+      return
+    }
+    startActivity(MediaSelectionActivity.editor(context = requireContext(), media = listOf(media)))
   }
 
   override fun onPause() {

@@ -416,6 +416,17 @@ class MediaSelectionActivity :
     }
 
     @JvmStatic
+    fun editor(
+      context: Context,
+      media: List<Media>,
+    ): Intent {
+      return buildIntent(
+        context = context,
+        media = media
+      )
+    }
+
+    @JvmStatic
     fun share(
       context: Context,
       messageSendType: MessageSendType,
