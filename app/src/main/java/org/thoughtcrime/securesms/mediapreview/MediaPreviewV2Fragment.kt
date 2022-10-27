@@ -190,7 +190,7 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
     } else {
       MediaPreviewPlayerControlView.MediaMode.fromString(currentItem.contentType)
     }
-    binding.mediaPreviewPlaybackControls.setVisibility(mediaType)
+    binding.mediaPreviewPlaybackControls.setMediaMode(mediaType)
 
     binding.toolbar.title = getTitleText(currentItem, currentState.showThread)
     binding.toolbar.subtitle = getSubTitleText(currentItem)

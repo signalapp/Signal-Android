@@ -41,6 +41,7 @@
 
     <color name="conversation_item_selected_system_ui">#4d4d4d</color>
     <color name="touch_highlight">#400099cc</color>
+    <color name="touch_highlight_material3">#14E2E1E5</color>
 
     <color name="device_link_item_background_light">#ffffffff</color>
     <color name="device_link_item_background_dark">#ff333333</color>

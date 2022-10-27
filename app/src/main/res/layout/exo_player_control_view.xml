@@ -14,9 +14,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/media_preview_video_timestamp_inset"
-        android:layout_marginTop="@dimen/media_preview_bottom_bar_vertical_margin"
+        android:layout_marginTop="@dimen/media_preview_bottom_bar_vertical_outer_margin"
         android:layout_marginEnd="@dimen/media_preview_video_timestamp_inset"
-        android:layout_marginBottom="@dimen/media_preview_bottom_bar_vertical_margin"
+        android:layout_marginBottom="@dimen/media_preview_bottom_bar_vertical_inner_margin"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -28,13 +28,12 @@
             android:includeFontPadding="false"
             android:paddingLeft="4dp"
             android:paddingRight="4dp"
-            android:textColor="#FFBEBEBE"
-            android:textSize="14sp" />
+            android:textColor="@color/signal_colorOnSurface" />
 
         <com.google.android.exoplayer2.ui.DefaultTimeBar
             android:id="@id/exo_progress"
             android:layout_width="0dp"
-            android:layout_height="26dp"
+            android:layout_height="24dp"
             android:layout_weight="1" />
 
         <TextView
@@ -45,8 +44,7 @@
             android:includeFontPadding="false"
             android:paddingLeft="4dp"
             android:paddingRight="4dp"
-            android:textColor="#FFBEBEBE"
-            android:textSize="14sp" />
+            android:textColor="@color/signal_colorOnSurface" />
 
     </LinearLayout>
 
@@ -56,26 +54,28 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="12dp"
         android:orientation="horizontal"
+        android:visibility="gone"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:layout_height="64dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/media_preview_bottom_bar_vertical_margin"
-        android:layout_marginBottom="@dimen/media_preview_bottom_bar_vertical_margin"
+        android:layout_marginTop="@dimen/media_preview_bottom_bar_vertical_outer_margin"
+        android:layout_marginBottom="@dimen/media_preview_bottom_bar_vertical_outer_margin"
         android:gravity="center"
         android:orientation="horizontal"
         android:paddingTop="4dp">
 
         <ImageButton
             android:id="@+id/exo_share"
-            android:layout_width="@dimen/exo_media_button_width"
-            android:layout_height="@dimen/exo_media_button_height"
-            android:background="?selectableItemBackground"
+            android:layout_width="@dimen/exo_media_preview_button_width"
+            android:layout_height="@dimen/exo_media_preview_button_height"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/circle_touch_highlight_background_material3"
             app:srcCompat="@drawable/ic_share_24_outline" />
 
         <Space
@@ -87,48 +87,74 @@
             android:id="@+id/exo_button_viewgroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:visibility="invisible"
+            android:gravity="center"
             android:orientation="horizontal">
 
             <ImageButton
                 android:id="@id/exo_prev"
-                style="@style/ExoMediaButton.Previous" />
+                style="@style/ExoMediaButton.Previous"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
 
-            <ImageButton
+            <org.thoughtcrime.securesms.mediapreview.LottieAnimatedButton
                 android:id="@id/exo_rew"
-                style="@style/ExoMediaButton"
+                style="@style/MediaPreviewButton"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
                 android:contentDescription="@string/exo_controls_rewind_description"
-                app:srcCompat="@drawable/ic_media_skipback_outline_24" />
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/circle_touch_highlight_background_material3"
+                app:lottie_rawRes="@raw/lottie_15s_skip_back"
+                app:tint="@color/signal_colorOnSurface"
+                tools:visibility="visible" />
 
             <ImageButton
                 android:id="@id/exo_shuffle"
-                style="@style/ExoMediaButton" />
+                style="@style/ExoMediaButton"
+                android:layout_marginStart="@dimen/media_preview_button_horizontal_margin"
+                android:layout_marginEnd="@dimen/media_preview_button_horizontal_margin" />
 
             <ImageButton
                 android:id="@id/exo_repeat_toggle"
-                style="@style/ExoMediaButton" />
+                style="@style/ExoMediaButton"
+                android:layout_marginStart="@dimen/media_preview_button_horizontal_margin"
+                android:layout_marginEnd="@dimen/media_preview_button_horizontal_margin" />
 
             <ImageButton
                 android:id="@id/exo_play"
-                style="@style/ExoMediaButton.Play" />
+                style="@style/MediaPreviewButton"
+                android:src="@drawable/exo_controls_play" />
 
             <ImageButton
                 android:id="@id/exo_pause"
-                style="@style/ExoMediaButton.Pause" />
+                style="@style/MediaPreviewButton"
+                android:src="@drawable/exo_controls_pause" />
 
-            <ImageButton
+            <org.thoughtcrime.securesms.mediapreview.LottieAnimatedButton
                 android:id="@id/exo_ffwd"
-                style="@style/ExoMediaButton"
+                style="@style/MediaPreviewButton"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
                 android:contentDescription="@string/exo_controls_fastforward_description"
-                app:srcCompat="@drawable/ic_media_skipforward_outline_24" />
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/circle_touch_highlight_background_material3"
+                android:backgroundTint="@color/signal_colorOnSurface"
+                app:lottie_rawRes="@raw/lottie_15s_skip_forward"
+                app:tint="@color/signal_colorOnSurface"
+                tools:visibility="visible" />
 
             <ImageButton
                 android:id="@id/exo_next"
-                style="@style/ExoMediaButton.Next" />
+                style="@style/ExoMediaButton.Next"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
 
             <ImageButton
                 android:id="@id/exo_vr"
-                style="@style/ExoMediaButton.VR" />
+                style="@style/ExoMediaButton.VR"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
         </LinearLayout>
 
         <Space
@@ -138,9 +164,11 @@
 
         <ImageButton
             android:id="@+id/exo_forward"
-            android:layout_width="@dimen/exo_media_button_width"
-            android:layout_height="@dimen/exo_media_button_height"
-            android:background="?selectableItemBackground"
+            android:layout_width="@dimen/exo_media_preview_button_width"
+            android:layout_height="@dimen/exo_media_preview_button_height"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/circle_touch_highlight_background_material3"
             app:srcCompat="@drawable/ic_forward_outline_24" />
     </LinearLayout>
 
