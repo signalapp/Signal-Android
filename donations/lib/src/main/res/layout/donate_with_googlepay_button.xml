@@ -3,8 +3,8 @@
     android:clickable="true"
     android:focusable="true"
     android:layout_width="match_parent"
-    android:layout_height="48sp"
-    android:background="@drawable/googlepay_button_no_shadow_background"
+    android:layout_height="44sp"
+    android:background="@drawable/donate_with_google_pay_rounded_background"
     android:padding="2sp"
     android:contentDescription="@string/donate_with_googlepay_button_content_description">
     <LinearLayout
