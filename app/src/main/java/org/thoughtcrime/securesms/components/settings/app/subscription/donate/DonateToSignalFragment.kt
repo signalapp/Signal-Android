@@ -18,6 +18,7 @@ import com.airbnb.lottie.LottieAnimationView
 import com.google.android.gms.wallet.PaymentData
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.core.util.dp
 import org.signal.core.util.logging.Log
@@ -166,13 +167,17 @@ class DonateToSignalFragment : DSLSettingsFragment(
 
     disposables.bindTo(viewLifecycleOwner)
 
-    disposables += DonationError.getErrorsForSource(DonationErrorSource.BOOST).subscribe { error ->
-      showErrorDialog(error)
-    }
+    disposables += DonationError.getErrorsForSource(DonationErrorSource.BOOST)
+      .observeOn(AndroidSchedulers.mainThread())
+      .subscribe { error ->
+        showErrorDialog(error)
+      }
 
-    disposables += DonationError.getErrorsForSource(DonationErrorSource.SUBSCRIPTION).subscribe { error ->
-      showErrorDialog(error)
-    }
+    disposables += DonationError.getErrorsForSource(DonationErrorSource.SUBSCRIPTION)
+      .observeOn(AndroidSchedulers.mainThread())
+      .subscribe { error ->
+        showErrorDialog(error)
+      }
 
     disposables += viewModel.actions.subscribe { action ->
       when (action) {
