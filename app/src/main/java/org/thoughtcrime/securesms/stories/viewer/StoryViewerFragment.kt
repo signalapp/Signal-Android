@@ -1,5 +1,8 @@
 package org.thoughtcrime.securesms.stories.viewer
 
+import android.graphics.RenderEffect
+import android.graphics.Shader
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import androidx.core.app.ActivityCompat
@@ -8,9 +11,11 @@ import androidx.fragment.app.viewModels
 import androidx.viewpager2.widget.ViewPager2
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stories.StoryViewerArgs
+import org.thoughtcrime.securesms.stories.viewer.first.StoryFirstTimeNavigationFragment
 import org.thoughtcrime.securesms.stories.viewer.page.StoryViewerPageArgs
 import org.thoughtcrime.securesms.stories.viewer.page.StoryViewerPageFragment
 import org.thoughtcrime.securesms.stories.viewer.reply.StoriesSharedElementCrossFaderView
@@ -116,6 +121,20 @@ class StoryViewerFragment :
       viewModel.addHiddenAndRefresh(ids.toSet())
     } else {
       viewModel.refresh()
+
+      if (!SignalStore.storyValues().userHasSeenFirstNavView) {
+        StoryFirstTimeNavigationFragment().show(childFragmentManager, null)
+      }
+    }
+
+    if (Build.VERSION.SDK_INT >= 31) {
+      lifecycleDisposable += viewModel.isFirstTimeNavigationShowing.subscribe {
+        if (it) {
+          requireView().rootView.setRenderEffect(RenderEffect.createBlurEffect(100f, 100f, Shader.TileMode.CLAMP))
+        } else {
+          requireView().rootView.setRenderEffect(null)
+        }
+      }
     }
   }
 

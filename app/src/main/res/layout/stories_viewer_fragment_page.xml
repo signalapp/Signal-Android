@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/story_page_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clipChildren="false"
@@ -294,14 +295,5 @@
         android:id="@+id/on_reaction_sent_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
-    <ViewStub
-        android:id="@+id/story_first_time_nav_stub"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:inflatedId="@+id/story_first_time_navigation_view"
-        android:layout="@layout/story_viewer_first_time_navigation_stub"
-        app:layout_constraintBottom_toBottomOf="@id/story_content_card_touch_interceptor"
-        app:layout_constraintTop_toTopOf="@id/story_content_card_touch_interceptor" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -212,7 +212,7 @@
 
     <style name="Signal.DayNight.Dialog.FullScreen.Donate">
     </style>
-
+    
     <style name="Signal.Media.Dialog.AddMessageDialog" parent="TextSecure.MediaPreview">
         <item name="android:windowAnimationStyle">@style/TextSecure.Animation.AddMessageDialog</item>
     </style>

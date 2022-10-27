@@ -53,11 +53,18 @@ class StoryViewerViewModel(
   var hasConsumedInitialState = false
     private set
 
+  private val firstTimeNavigationPublisher: BehaviorSubject<Boolean> = BehaviorSubject.createDefault(false)
+
   val isChildScrolling: Observable<Boolean> = childScrollStatePublisher.distinctUntilChanged()
+  val isFirstTimeNavigationShowing: Observable<Boolean> = firstTimeNavigationPublisher.distinctUntilChanged()
 
   fun addHiddenAndRefresh(hidden: Set<RecipientId>) {
     this.hidden.addAll(hidden)
     refresh()
+  }
+
+  fun setIsDisplayingFirstTimeNavigation(isDisplayingFirstTimeNavigation: Boolean) {
+    firstTimeNavigationPublisher.onNext(isDisplayingFirstTimeNavigation)
   }
 
   fun getHidden(): Set<RecipientId> = hidden

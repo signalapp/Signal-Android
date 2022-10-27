@@ -517,6 +517,14 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       )
 
       clickPref(
+        title = DSLSettingsText.from("Clear first time navigation state"),
+        isEnabled = true,
+        onClick = {
+          SignalStore.storyValues().userHasSeenFirstNavView = false
+        }
+      )
+
+      clickPref(
         title = DSLSettingsText.from(R.string.preferences__internal_stories_dialog_launcher),
         onClick = {
           findNavController().safeNavigate(InternalSettingsFragmentDirections.actionInternalSettingsFragmentToStoryDialogsLauncherFragment())

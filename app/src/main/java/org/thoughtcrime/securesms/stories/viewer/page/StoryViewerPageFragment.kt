@@ -6,11 +6,8 @@ import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.ColorStateList
-import android.graphics.RenderEffect
-import android.graphics.Shader
 import android.graphics.drawable.Drawable
 import android.media.AudioManager
-import android.os.Build
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
 import android.view.GestureDetector
@@ -55,14 +52,12 @@ import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectFor
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs
 import org.thoughtcrime.securesms.database.AttachmentDatabase
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
-import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mediapreview.MediaPreviewFragment
 import org.thoughtcrime.securesms.mediapreview.VideoControlsDelegate
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet
-import org.thoughtcrime.securesms.stories.StoryFirstTimeNavigationView
 import org.thoughtcrime.securesms.stories.StorySlateView
 import org.thoughtcrime.securesms.stories.StoryVolumeOverlayView
 import org.thoughtcrime.securesms.stories.dialogs.StoryContextMenu
@@ -97,7 +92,6 @@ class StoryViewerPageFragment :
   StoryPostFragment.Callback,
   MultiselectForwardBottomSheet.Callback,
   StorySlateView.Callback,
-  StoryFirstTimeNavigationView.Callback,
   StoryInfoBottomSheetDialogFragment.OnInfoSheetDismissedListener,
   SafetyNumberBottomSheet.Callbacks {
 
@@ -108,7 +102,7 @@ class StoryViewerPageFragment :
   private lateinit var viewsAndReplies: MaterialButton
   private lateinit var storyCaptionContainer: FrameLayout
   private lateinit var storyContentContainer: FrameLayout
-  private lateinit var storyFirstTimeNavigationViewStub: StoryFirstNavigationStub
+  private lateinit var storyPageContainer: ConstraintLayout
   private lateinit var sendingBarTextView: TextView
   private lateinit var sendingBar: View
 
@@ -176,17 +170,16 @@ class StoryViewerPageFragment :
     val storyGradientBottom: View = view.findViewById(R.id.story_gradient_bottom)
     val storyVolumeOverlayView: StoryVolumeOverlayView = view.findViewById(R.id.story_volume_overlay)
 
+    storyPageContainer = view.findViewById(R.id.story_page_container)
     storyContentContainer = view.findViewById(R.id.story_content_container)
     storyCaptionContainer = view.findViewById(R.id.story_caption_container)
     storySlate = view.findViewById(R.id.story_slate)
     progressBar = view.findViewById(R.id.progress)
     viewsAndReplies = view.findViewById(R.id.views_and_replies_bar)
-    storyFirstTimeNavigationViewStub = StoryFirstNavigationStub(view.findViewById(R.id.story_first_time_nav_stub))
     sendingBarTextView = view.findViewById(R.id.sending_text_view)
     sendingBar = view.findViewById(R.id.sending_bar)
 
     storySlate.callback = this
-    storyFirstTimeNavigationViewStub.setCallback(this)
 
     chrome = listOf(
       closeView,
@@ -322,6 +315,10 @@ class StoryViewerPageFragment :
       viewModel.setIsUserScrollingChild(it)
     }
 
+    lifecycleDisposable += sharedViewModel.isFirstTimeNavigationShowing.subscribe {
+      viewModel.setIsDisplayingFirstTimeNavigation(it)
+    }
+
     lifecycleDisposable += storyVolumeViewModel.state.distinctUntilChanged().observeOn(AndroidSchedulers.mainThread()).subscribe { volumeState ->
       if (volumeState.isMuted) {
         videoControlsDelegate.mute()
@@ -384,7 +381,6 @@ class StoryViewerPageFragment :
         presentDate(date, post)
         presentDistributionList(distributionList, post)
         presentCaption(caption, largeCaption, largeCaptionOverlay, post)
-        presentBlur(post)
 
         val durations: Map<Int, Long> = state.posts
           .mapIndexed { index, storyPost ->
@@ -428,36 +424,19 @@ class StoryViewerPageFragment :
         resumeProgress()
       }
 
-      val wasDisplayingNavigationView = storyFirstTimeNavigationViewStub.isVisible()
-
       when {
         state.hideChromeImmediate -> {
           hideChromeImmediate()
           storyCaptionContainer.visible = false
-          storyFirstTimeNavigationViewStub.hide()
         }
         state.hideChrome -> {
           hideChrome()
           storyCaptionContainer.visible = true
-          storyFirstTimeNavigationViewStub.showIfAble(!SignalStore.storyValues().userHasSeenFirstNavView)
         }
         else -> {
           showChrome()
           storyCaptionContainer.visible = true
-          storyFirstTimeNavigationViewStub.showIfAble(!SignalStore.storyValues().userHasSeenFirstNavView)
         }
-      }
-
-      val isDisplayingNavigationView = storyFirstTimeNavigationViewStub.isVisible()
-      if (isDisplayingNavigationView && Build.VERSION.SDK_INT >= 31) {
-        hideChromeImmediate()
-        storyContentContainer.setRenderEffect(RenderEffect.createBlurEffect(100f, 100f, Shader.TileMode.CLAMP))
-      } else if (Build.VERSION.SDK_INT >= 31) {
-        storyContentContainer.setRenderEffect(null)
-      }
-
-      if (wasDisplayingNavigationView xor isDisplayingNavigationView) {
-        viewModel.setIsDisplayingFirstTimeNavigation(storyFirstTimeNavigationViewStub.isVisible())
       }
     }
 
@@ -590,7 +569,7 @@ class StoryViewerPageFragment :
     card: CardView
   ) {
     val constraintSet = ConstraintSet()
-    constraintSet.clone(requireView() as ConstraintLayout)
+    constraintSet.clone(storyPageContainer)
 
     when (StoryDisplay.getStoryDisplay(resources.displayMetrics.widthPixels.toFloat(), resources.displayMetrics.heightPixels.toFloat())) {
       StoryDisplay.LARGE -> {
@@ -613,7 +592,7 @@ class StoryViewerPageFragment :
       }
     }
 
-    constraintSet.applyTo(requireView() as ConstraintLayout)
+    constraintSet.applyTo(storyPageContainer)
   }
 
   private fun resumeProgress() {
@@ -779,13 +758,6 @@ class StoryViewerPageFragment :
   private fun presentDistributionList(distributionList: TextView, storyPost: StoryPost) {
     distributionList.text = storyPost.distributionList?.getDisplayName(requireContext())
     distributionList.visible = storyPost.distributionList != null && !storyPost.distributionList.isMyStory
-  }
-
-  private fun presentBlur(storyPost: StoryPost) {
-    val record = storyPost.conversationMessage.messageRecord as? MediaMmsMessageRecord
-    val blurHash = record?.slideDeck?.thumbnailSlide?.placeholderBlur
-
-    storyFirstTimeNavigationViewStub.setBlurHash(blurHash)
   }
 
   @SuppressLint("SetTextI18n")
@@ -1282,15 +1254,6 @@ class StoryViewerPageFragment :
 
   override fun onContentNotAvailable() {
     sharedViewModel.setContentIsReady()
-  }
-
-  override fun userHasSeenFirstNavigationView(): Boolean {
-    return SignalStore.storyValues().userHasSeenFirstNavView
-  }
-
-  override fun onGotItClicked() {
-    SignalStore.storyValues().userHasSeenFirstNavView = true
-    viewModel.setIsDisplayingFirstTimeNavigation(false)
   }
 
   override fun onInfoSheetDismissed() {
