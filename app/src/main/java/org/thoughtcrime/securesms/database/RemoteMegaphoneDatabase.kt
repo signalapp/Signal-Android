@@ -6,7 +6,10 @@ import android.database.Cursor
 import android.net.Uri
 import androidx.core.content.contentValuesOf
 import androidx.core.net.toUri
+import org.json.JSONException
+import org.json.JSONObject
 import org.signal.core.util.delete
+import org.signal.core.util.logging.Log
 import org.signal.core.util.readToList
 import org.signal.core.util.requireInt
 import org.signal.core.util.requireLong
@@ -24,6 +27,8 @@ import java.util.concurrent.TimeUnit
 class RemoteMegaphoneDatabase(context: Context, databaseHelper: SignalDatabase) : Database(context, databaseHelper) {
 
   companion object {
+    private val TAG = Log.tag(RemoteMegaphoneDatabase::class.java)
+
     private const val TABLE_NAME = "remote_megaphone"
     private const val ID = "_id"
     private const val UUID = "uuid"
@@ -44,6 +49,10 @@ class RemoteMegaphoneDatabase(context: Context, databaseHelper: SignalDatabase) 
     private const val SECONDARY_ACTION_TEXT = "secondary_action_text"
     private const val SHOWN_AT = "shown_at"
     private const val FINISHED_AT = "finished_at"
+    private const val PRIMARY_ACTION_DATA = "primary_action_data"
+    private const val SECONDARY_ACTION_DATA = "secondary_action_data"
+    private const val SNOOZED_AT = "snoozed_at"
+    private const val SEEN_COUNT = "seen_count"
 
     val CREATE_TABLE = """
       CREATE TABLE $TABLE_NAME (
@@ -65,7 +74,11 @@ class RemoteMegaphoneDatabase(context: Context, databaseHelper: SignalDatabase) 
         $PRIMARY_ACTION_TEXT TEXT,
         $SECONDARY_ACTION_TEXT TEXT,
         $SHOWN_AT INTEGER DEFAULT 0,
-        $FINISHED_AT INTEGER DEFAULT 0
+        $FINISHED_AT INTEGER DEFAULT 0,
+        $PRIMARY_ACTION_DATA TEXT DEFAULT NULL,
+        $SECONDARY_ACTION_DATA TEXT DEFAULT NULL,
+        $SNOOZED_AT INTEGER DEFAULT 0,
+        $SEEN_COUNT INTEGER DEFAULT 0
       )
     """.trimIndent()
 
@@ -99,7 +112,7 @@ class RemoteMegaphoneDatabase(context: Context, databaseHelper: SignalDatabase) 
       .readToList { it.toRemoteMegaphoneRecord() }
   }
 
-  fun getPotentialMegaphonesAndClearOld(now: Long = System.currentTimeMillis()): List<RemoteMegaphoneRecord> {
+  fun getPotentialMegaphonesAndClearOld(now: Long): List<RemoteMegaphoneRecord> {
     val records: List<RemoteMegaphoneRecord> = readableDatabase
       .select()
       .from(TABLE_NAME)
@@ -148,6 +161,17 @@ class RemoteMegaphoneDatabase(context: Context, databaseHelper: SignalDatabase) 
       .run()
   }
 
+  fun snooze(remote: RemoteMegaphoneRecord) {
+    writableDatabase
+      .update(TABLE_NAME)
+      .values(
+        SEEN_COUNT to remote.seenCount + 1,
+        SNOOZED_AT to System.currentTimeMillis()
+      )
+      .where("$UUID = ?", remote.uuid)
+      .run()
+  }
+
   fun clearImageUrl(uuid: String) {
     writableDatabase
       .update(TABLE_NAME)
@@ -192,7 +216,11 @@ class RemoteMegaphoneDatabase(context: Context, databaseHelper: SignalDatabase) 
       BODY to body,
       PRIMARY_ACTION_TEXT to primaryActionText,
       SECONDARY_ACTION_TEXT to secondaryActionText,
-      FINISHED_AT to finishedAt
+      FINISHED_AT to finishedAt,
+      PRIMARY_ACTION_DATA to primaryActionData?.toString(),
+      SECONDARY_ACTION_DATA to secondaryActionData?.toString(),
+      SNOOZED_AT to snoozedAt,
+      SEEN_COUNT to seenCount
     )
   }
 
@@ -216,7 +244,24 @@ class RemoteMegaphoneDatabase(context: Context, databaseHelper: SignalDatabase) 
       primaryActionText = requireString(PRIMARY_ACTION_TEXT),
       secondaryActionText = requireString(SECONDARY_ACTION_TEXT),
       shownAt = requireLong(SHOWN_AT),
-      finishedAt = requireLong(FINISHED_AT)
+      finishedAt = requireLong(FINISHED_AT),
+      primaryActionData = requireString(PRIMARY_ACTION_DATA).parseJsonObject(),
+      secondaryActionData = requireString(SECONDARY_ACTION_DATA).parseJsonObject(),
+      snoozedAt = requireLong(SNOOZED_AT),
+      seenCount = requireInt(SEEN_COUNT)
     )
+  }
+
+  private fun String?.parseJsonObject(): JSONObject? {
+    if (this == null) {
+      return null
+    }
+
+    return try {
+      JSONObject(this)
+    } catch (e: JSONException) {
+      Log.w(TAG, "Unable to parse data", e)
+      null
+    }
   }
 }

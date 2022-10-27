@@ -155,6 +155,7 @@ dependencyResolutionManagement {
             alias('hamcrest-hamcrest').to('org.hamcrest:hamcrest:2.2')
             alias('assertj-core').to('org.assertj:assertj-core:3.11.1')
             alias('square-okhttp-mockserver').to('com.squareup.okhttp3:mockwebserver:3.12.13')
+            alias('mockk').to('io.mockk:mockk:1.13.2')
 
             alias('conscrypt-openjdk-uber').to('org.conscrypt:conscrypt-openjdk-uber:2.0.0')
         }

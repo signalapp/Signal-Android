@@ -538,6 +538,7 @@ dependencies {
         force = true
     }
     testImplementation testLibs.hamcrest.hamcrest
+    testImplementation testLibs.mockk
 
     testImplementation(testFixtures(project(":libsignal-service")))
 

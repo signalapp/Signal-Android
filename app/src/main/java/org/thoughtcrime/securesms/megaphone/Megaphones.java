@@ -307,7 +307,7 @@ public final class Megaphones {
   }
 
   private static @NonNull Megaphone buildRemoteMegaphone(@NonNull Context context) {
-    RemoteMegaphoneRecord record = RemoteMegaphoneRepository.getRemoteMegaphoneToShow();
+    RemoteMegaphoneRecord record = RemoteMegaphoneRepository.getRemoteMegaphoneToShow(System.currentTimeMillis());
 
     if (record != null) {
       Megaphone.Builder builder = new Megaphone.Builder(Event.REMOTE_MEGAPHONE, Megaphone.Style.BASIC)
