@@ -17,9 +17,9 @@ class ConversationListTabRepository {
   fun getNumberOfUnreadConversations(): Observable<Long> {
     return Observable.create<Long> {
       fun refresh() {
-        it.onNext(SignalDatabase.threads.getUnreadThreadCount())
+        it.onNext(SignalDatabase.threads.unreadThreadCount)
 
-        val ids = SignalDatabase.threads.getUnreadThreadIdList()
+        val ids = SignalDatabase.threads.unreadThreadIdList
         Log.d(TAG, "Unread threads: { $ids }")
       }
 

@@ -36,7 +36,7 @@ class ThreadDatabaseTest_pinned {
     SignalDatabase.mms.deleteMessage(messageId)
 
     // THEN
-    val pinned = SignalDatabase.threads.getPinnedThreadIds()
+    val pinned = SignalDatabase.threads.pinnedThreadIds
     assertTrue(threadId in pinned)
   }
 
@@ -51,7 +51,7 @@ class ThreadDatabaseTest_pinned {
     SignalDatabase.mms.deleteMessage(messageId)
 
     // THEN
-    val unarchivedCount = SignalDatabase.threads.getUnarchivedConversationListCount()
+    val unarchivedCount = SignalDatabase.threads.unarchivedConversationListCount
     assertEquals(1, unarchivedCount)
   }
 

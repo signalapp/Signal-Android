@@ -104,4 +104,12 @@ public final class CursorUtil {
 
     return row.toString();
   }
+
+  public static @Nullable <T> T getAggregateOrDefault(@NonNull Cursor cursor, @Nullable T defaultValue, @NonNull Function<Integer, T> cursorColumnFn) {
+    if (cursor.moveToFirst()) {
+      return cursorColumnFn.apply(0);
+    } else {
+      return defaultValue;
+    }
+  }
 }
