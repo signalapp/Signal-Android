@@ -22,6 +22,58 @@ import java.util.Objects
 
 /**
  * A way to retrieve and update data in the Android system contacts.
+ *
+ * Contacts in Android are miserable, but they're reasonably well-documented here:
+ * https://developer.android.com/guide/topics/providers/contacts-provider
+ *
+ * But here's a summary of how contacts are stored.
+ *
+ * There's three main entities:
+ * - Contacts
+ * - RawContacts
+ * - ContactData
+ *
+ * Each Contact can have multiple RawContacts associated with it, and each RawContact can have multiple ContactDatas associated with it.
+ *
+ *       ┌───────Contact────────┐
+ *       │          │           │
+ *       ▼          ▼           ▼
+ *   RawContact  RawContact  RawContact
+ *     │           │           │
+ *     ├─►Data     ├─►Data     ├─►Data
+ *     │           │           │
+ *     ├─►Data     ├─►Data     ├─►Data
+ *     │           │           │
+ *     └─►Data     └─►Data     └─►Data
+ *
+ * (Shortened ContactData -> Data for space)
+ *
+ * How are they linked together?
+ * - Each RawContact has a [ContactsContract.RawContacts.CONTACT_ID] that links to a [ContactsContract.Contacts._ID]
+ * - Each ContactData has a [ContactsContract.Data.RAW_CONTACT_ID] column that links to a [ContactsContract.RawContacts._ID]
+ * - Each ContactData has a [ContactsContract.Data.CONTACT_ID] column that links to a [ContactsContract.Contacts._ID]
+ * - Each ContactData has a [ContactsContract.Data.LOOKUP_KEY] column that links to a [ContactsContract.Contacts.LOOKUP_KEY]
+ *   - The lookup key is a way to link back to a Contact in a more stable way. Apparently linking using the CONTACT_ID can lead to unstable results if a sync
+ *     is happening or data is otherwise corrupted.
+ *
+ * What type of stuff are stored in each?
+ * - Contact only really has metadata about the contact. Basically the stuff you see at the top of the contact entry in the contacts app, like:
+ *   - Photo
+ *   - Display name (*not* structured name)
+ *   - Whether or not it's starred
+ * - RawContact also only really has metadata, largely about which account it's bound to
+ * - ContactData is where all the actual contact details are, stuff like:
+ *   - Phone
+ *   - Email
+ *   - Structured name
+ *   - Address
+ * - ContactData has a [ContactsContract.Data.MIMETYPE] that will tell you what kind of data is it. Common ones are [ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE]
+ *   and [ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE]
+ * - You can imagine that it's tricky to come up with a schema that can store arbitrary contact data -- that's why a lot of the columns in ContactData are just
+ *   generic things, like [ContactsContract.Data.DATA1]. Thankfully aliases have been provided for common types, like [ContactsContract.CommonDataKinds.Phone.NUMBER],
+ *   which is an alias for [ContactsContract.Data.DATA1].
+ *
+ *
  */
 object SystemContactsRepository {
 
@@ -32,8 +84,10 @@ object SystemContactsRepository {
   private const val FIELD_SUPPORTS_VOICE = ContactsContract.RawContacts.SYNC4
 
   /**
-   * Gets and returns a cursor of data for all contacts, containing both phone number data and
-   * structured name data.
+   * Gets and returns an iterator over data for all contacts, containing both phone number data and structured name data.
+   *
+   * In order to get all of this in one query, we have to query all of the ContactData items with the appropriate mimetypes, and then group it together by
+   * lookup key.
    */
   @JvmStatic
   fun getAllSystemContacts(context: Context, e164Formatter: (String) -> String): ContactIterator {
@@ -423,6 +477,7 @@ object SystemContactsRepository {
       .build()
 
     return listOf(
+      // RawContact entry
       ContentProviderOperation.newInsert(ContactsContract.RawContacts.CONTENT_URI)
         .withValue(ContactsContract.RawContacts.ACCOUNT_NAME, linkConfig.account.name)
         .withValue(ContactsContract.RawContacts.ACCOUNT_TYPE, linkConfig.account.type)
@@ -430,12 +485,14 @@ object SystemContactsRepository {
         .withValue(FIELD_SUPPORTS_VOICE, true.toString())
         .build(),
 
+      // Data entry for name
       ContentProviderOperation.newInsert(dataUri)
         .withValueBackReference(ContactsContract.CommonDataKinds.StructuredName.RAW_CONTACT_ID, operationIndex)
         .withValue(ContactsContract.CommonDataKinds.StructuredName.DISPLAY_NAME, systemContactInfo.displayName)
         .withValue(ContactsContract.Data.MIMETYPE, ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE)
         .build(),
 
+      // Data entry for number (Note: This may not be necessary)
       ContentProviderOperation.newInsert(dataUri)
         .withValueBackReference(ContactsContract.CommonDataKinds.Phone.RAW_CONTACT_ID, operationIndex)
         .withValue(ContactsContract.Data.MIMETYPE, ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE)
@@ -444,6 +501,7 @@ object SystemContactsRepository {
         .withValue(FIELD_TAG, linkConfig.syncTag)
         .build(),
 
+      // Data entry for sending a message
       ContentProviderOperation.newInsert(dataUri)
         .withValueBackReference(ContactsContract.Data.RAW_CONTACT_ID, operationIndex)
         .withValue(ContactsContract.Data.MIMETYPE, linkConfig.messageMimetype)
@@ -453,6 +511,7 @@ object SystemContactsRepository {
         .withYieldAllowed(true)
         .build(),
 
+      // Data entry for making a call
       ContentProviderOperation.newInsert(dataUri)
         .withValueBackReference(ContactsContract.Data.RAW_CONTACT_ID, operationIndex)
         .withValue(ContactsContract.Data.MIMETYPE, linkConfig.callMimetype)
@@ -462,8 +521,9 @@ object SystemContactsRepository {
         .withYieldAllowed(true)
         .build(),
 
+      // Ensures that this RawContact entry is shown next to another RawContact entry we found for this contact
       ContentProviderOperation.newUpdate(ContactsContract.AggregationExceptions.CONTENT_URI)
-        .withValue(ContactsContract.AggregationExceptions.RAW_CONTACT_ID1, systemContactInfo.rawContactId)
+        .withValue(ContactsContract.AggregationExceptions.RAW_CONTACT_ID1, systemContactInfo.siblingRawContactId)
         .withValueBackReference(ContactsContract.AggregationExceptions.RAW_CONTACT_ID2, operationIndex)
         .withValue(ContactsContract.AggregationExceptions.TYPE, ContactsContract.AggregationExceptions.TYPE_KEEP_TOGETHER)
         .build()
@@ -522,12 +582,13 @@ object SystemContactsRepository {
   }
 
   private fun getSystemContactInfo(context: Context, e164: String, e164Formatter: (String) -> String): SystemContactInfo? {
+    ContactsContract.RawContactsEntity.RAW_CONTACT_ID
     val uri = Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI, Uri.encode(e164))
     val projection = arrayOf(
       ContactsContract.PhoneLookup.NUMBER,
       ContactsContract.PhoneLookup._ID,
       ContactsContract.PhoneLookup.DISPLAY_NAME,
-      ContactsContract.PhoneLookup.TYPE
+      ContactsContract.PhoneLookup.TYPE,
     )
 
     context.contentResolver.query(uri, projection, null, null, null)?.use { contactCursor ->
@@ -541,7 +602,7 @@ object SystemContactsRepository {
               return SystemContactInfo(
                 displayName = contactCursor.requireString(ContactsContract.PhoneLookup.DISPLAY_NAME),
                 displayPhone = systemNumber,
-                rawContactId = idCursor.requireLong(ContactsContract.RawContacts._ID),
+                siblingRawContactId = idCursor.requireLong(ContactsContract.RawContacts._ID),
                 type = contactCursor.requireInt(ContactsContract.PhoneLookup.TYPE)
               )
             }
@@ -765,7 +826,7 @@ object SystemContactsRepository {
   private data class SystemContactInfo(
     val displayName: String?,
     val displayPhone: String,
-    val rawContactId: Long,
+    val siblingRawContactId: Long,
     val type: Int
   )
 

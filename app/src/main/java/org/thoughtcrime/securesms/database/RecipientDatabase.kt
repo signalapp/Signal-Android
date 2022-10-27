@@ -22,6 +22,7 @@ import org.signal.core.util.optionalInt
 import org.signal.core.util.optionalLong
 import org.signal.core.util.optionalString
 import org.signal.core.util.or
+import org.signal.core.util.readToSet
 import org.signal.core.util.requireBlob
 import org.signal.core.util.requireBoolean
 import org.signal.core.util.requireInt
@@ -2201,12 +2202,12 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
   }
 
   fun bulkUpdatedRegisteredStatus(registered: Map<RecipientId, ServiceId?>, unregistered: Collection<RecipientId>) {
-    val db = writableDatabase
+    writableDatabase.withinTransaction { db ->
+      val registeredWithServiceId: Set<RecipientId> = getRegisteredWithServiceIds()
+      val needsMarkRegistered: Map<RecipientId, ServiceId?> = registered - registeredWithServiceId
 
-    db.beginTransaction()
-    try {
-      for ((recipientId, serviceId) in registered) {
-        val values = ContentValues(2).apply {
+      for ((recipientId, serviceId) in needsMarkRegistered) {
+        val values = ContentValues().apply {
           put(REGISTERED, RegisteredState.REGISTERED.id)
           put(UNREGISTERED_TIMESTAMP, 0)
           if (serviceId != null) {
@@ -2236,10 +2237,6 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
           ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
         }
       }
-
-      db.setTransactionSuccessful()
-    } finally {
-      db.endTransaction()
     }
   }
 
@@ -2907,6 +2904,17 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     return results
   }
 
+  fun getRegisteredWithServiceIds(): Set<RecipientId> {
+    return readableDatabase
+      .select(ID)
+      .from(TABLE_NAME)
+      .where("$REGISTERED = ? and $HIDDEN = ? AND $SERVICE_ID NOT NULL", 1, 0)
+      .run()
+      .readToSet { cursor ->
+        RecipientId.from(cursor.requireLong(ID))
+      }
+  }
+
   fun getSystemContacts(): List<RecipientId> {
     val results: MutableList<RecipientId> = LinkedList()
 
@@ -2917,6 +2925,17 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     }
 
     return results
+  }
+
+  fun getRegisteredE164s(): Set<String> {
+    return readableDatabase
+      .select(PHONE)
+      .from(TABLE_NAME)
+      .where("$REGISTERED = ? and $HIDDEN = ? AND $PHONE NOT NULL", 1, 0)
+      .run()
+      .readToSet { cursor ->
+        cursor.requireNonNullString(PHONE)
+      }
   }
 
   /**

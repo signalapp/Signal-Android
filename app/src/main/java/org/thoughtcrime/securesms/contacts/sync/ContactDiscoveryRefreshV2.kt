@@ -172,7 +172,10 @@ object ContactDiscoveryRefreshV2 {
         stopwatch.split("process-result")
 
         val existingIds: Set<RecipientId> = SignalDatabase.recipients.getAllPossiblyRegisteredByE164(recipientE164s + rewrites.values)
+        stopwatch.split("get-ids")
+
         val inactiveIds: Set<RecipientId> = (existingIds - registeredIds).removeRegisteredButUnlisted()
+        stopwatch.split("registered-but-unlisted")
 
         SignalDatabase.recipients.bulkUpdatedRegisteredStatus(aciMap, inactiveIds)
         stopwatch.split("update-registered")

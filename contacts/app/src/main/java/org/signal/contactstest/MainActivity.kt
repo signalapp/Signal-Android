@@ -45,6 +45,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     findViewById<Button>(R.id.link_contacts_button).setOnClickListener { v ->
+      val startTime = System.currentTimeMillis()
       if (hasPermission(Manifest.permission.READ_CONTACTS) && hasPermission(Manifest.permission.WRITE_CONTACTS)) {
         SimpleTask.run({
           val allE164s: Set<String> = SystemContactsRepository.getAllDisplayNumbers(this).map { PhoneNumberUtils.formatNumberToE164(it, "US") }.toSet()
@@ -60,7 +61,7 @@ class MainActivity : AppCompatActivity() {
           return@run true
         }, { success ->
           if (success) {
-            Toast.makeText(this, "Success!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Success! Took ${System.currentTimeMillis() - startTime} ms", Toast.LENGTH_SHORT).show()
           } else {
             Toast.makeText(this, "Failed to create account!", Toast.LENGTH_SHORT).show()
           }
@@ -71,6 +72,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     findViewById<Button>(R.id.unlink_contact_button).setOnClickListener { v ->
+      val startTime = System.currentTimeMillis()
       if (hasPermission(Manifest.permission.READ_CONTACTS) && hasPermission(Manifest.permission.WRITE_CONTACTS)) {
         SimpleTask.run({
           val account: Account = SystemContactsRepository.getOrCreateSystemAccount(this, BuildConfig.APPLICATION_ID, "Contact Test") ?: return@run false
@@ -85,7 +87,7 @@ class MainActivity : AppCompatActivity() {
           return@run true
         }, { success ->
           if (success) {
-            Toast.makeText(this, "Success!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Success! Took ${System.currentTimeMillis() - startTime} ms", Toast.LENGTH_SHORT).show()
           } else {
             Toast.makeText(this, "Failed to create account!", Toast.LENGTH_SHORT).show()
           }
