@@ -385,6 +385,7 @@ class StoryViewerPageFragment :
         val durations: Map<Int, Long> = state.posts
           .mapIndexed { index, storyPost ->
             index to when {
+              storyPost.sender.isReleaseNotes -> ONBOARDING_DURATION
               storyPost.content.isVideo() -> -1L
               storyPost.content is StoryPost.Content.TextContent -> calculateDurationForText(storyPost.content)
               else -> DEFAULT_DURATION
@@ -1077,6 +1078,7 @@ class StoryViewerPageFragment :
     private val MIN_TEXT_STORY_PLAYBACK = TimeUnit.SECONDS.toMillis(3)
     private val CHARACTERS_PER_SECOND = 15L
     private val DEFAULT_DURATION = TimeUnit.SECONDS.toMillis(5)
+    private val ONBOARDING_DURATION = TimeUnit.SECONDS.toMillis(10)
 
     private const val ARGS = "args"
 
