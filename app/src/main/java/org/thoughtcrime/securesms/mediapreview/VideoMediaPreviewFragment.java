@@ -140,10 +140,9 @@ public final class VideoMediaPreviewFragment extends MediaPreviewFragment {
     }
   }
 
-  @Nullable
   @Override
-  public MediaPreviewPlayerControlView getBottomBarControls() {
-      return (MediaPreviewPlayerControlView) videoView.getControlView();
+  public @Nullable ViewGroup getBottomBarControls() {
+    return videoView.getControlView();
   }
 
   @Override
