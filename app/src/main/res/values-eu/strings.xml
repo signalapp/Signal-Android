@@ -3245,7 +3245,7 @@
     <string name="media_preview__forward_title">Birbidali</string>
     <string name="media_preview__share_title">Elkarbanatu</string>
     <string name="media_preview__all_media_title">Multimedia fitxategi guztiak</string>
-    <string name="media_preview__edit_title">Edit</string>
+    <string name="media_preview__edit_title">Editatu</string>
 
 
     <!-- media_preview_activity -->
@@ -4451,7 +4451,7 @@
 
     <string name="Subscription__s_per_month">%1$s/hilabetea</string>
     <!-- Shown when a subscription is active and isn't going to expire at the end of the term -->
-    <string name="Subscription__renews_s">Renews %1$s</string>
+    <string name="Subscription__renews_s">%1$s berritzen du</string>
     <!-- Shown when a subscription is active and is going to expire at the end of the term -->
     <string name="Subscription__expires_s">Expires %1$s</string>
 
@@ -4499,7 +4499,7 @@
 
     <string name="MySupportPreference__add_a_signal_boost">Gehitu Signal bultzada</string>
     <string name="MySupportPreference__s_per_month">%1$s/hilabete</string>
-    <string name="MySupportPreference__renews_s">%1$sberritzen du</string>
+    <string name="MySupportPreference__renews_s">%1$s berritzen du</string>
     <string name="MySupportPreference__processing_transaction">Transakzioa prozesatzen…</string>
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
     <string name="MySupportPreference__couldnt_add_badge_s">Ezin izan da bereizgarria gehitu.%1$s</string>

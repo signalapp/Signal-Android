@@ -3158,7 +3158,7 @@
     <string name="media_preview__forward_title">轉發</string>
     <string name="media_preview__share_title">分享</string>
     <string name="media_preview__all_media_title">所有媒體</string>
-    <string name="media_preview__edit_title">Edit</string>
+    <string name="media_preview__edit_title">編輯</string>
 
 
     <!-- media_preview_activity -->
@@ -4348,7 +4348,7 @@
 
     <string name="Subscription__s_per_month">%1$s/月</string>
     <!-- Shown when a subscription is active and isn't going to expire at the end of the term -->
-    <string name="Subscription__renews_s">Renews %1$s</string>
+    <string name="Subscription__renews_s">%1$s 續期</string>
     <!-- Shown when a subscription is active and is going to expire at the end of the term -->
     <string name="Subscription__expires_s">Expires %1$s</string>
 

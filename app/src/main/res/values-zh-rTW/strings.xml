@@ -3158,7 +3158,7 @@
     <string name="media_preview__forward_title">轉寄</string>
     <string name="media_preview__share_title">分享</string>
     <string name="media_preview__all_media_title">全部媒體</string>
-    <string name="media_preview__edit_title">Edit</string>
+    <string name="media_preview__edit_title">編輯</string>
 
 
     <!-- media_preview_activity -->
