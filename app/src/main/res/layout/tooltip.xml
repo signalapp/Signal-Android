@@ -1,98 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:viewBindingIgnore="true"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:clipChildren="false"
     android:clipToPadding="false"
-    android:maxWidth="320dp"
-    android:orientation="horizontal">
+    tools:viewBindingIgnore="true">
 
     <ImageView
         android:id="@+id/tooltip_arrow_start"
-        android:layout_width="8dp"
-        android:layout_height="16dp"
-        android:elevation="6dp"
+        android:layout_width="12dp"
+        android:layout_height="20dp"
+        android:importantForAccessibility="no"
         android:scaleType="fitXY"
-        android:visibility="gone"
-        app:srcCompat="@drawable/ic_triangle_left"
-        tools:tint="@color/core_blue"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_tooltip_arrow_left"
+        app:tint="@color/signal_colorPrimaryContainer"
+        tools:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/tooltip_arrow_top"
+        android:layout_width="20dp"
+        android:layout_height="12dp"
+        android:importantForAccessibility="no"
+        android:scaleType="fitXY"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="@id/tooltip_bubble"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_tooltip_arrow_up"
+        app:tint="@color/signal_colorPrimaryContainer"
         tools:visibility="visible" />
 
     <LinearLayout
+        android:id="@+id/tooltip_bubble"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/tooltip_background"
         android:clipChildren="false"
         android:clipToPadding="false"
-        android:orientation="vertical">
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        app:layout_constraintStart_toEndOf="@id/tooltip_arrow_start"
+        app:layout_constraintTop_toBottomOf="@id/tooltip_arrow_top"
+        app:layout_constraintWidth_max="320dp"
+        tools:backgroundTint="@color/signal_colorPrimaryContainer">
 
         <ImageView
-            android:id="@+id/tooltip_arrow_top"
-            android:layout_width="16dp"
-            android:layout_height="8dp"
-            android:elevation="6dp"
-            android:scaleType="fitXY"
+            android:id="@+id/tooltip_icon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginEnd="2dp"
             android:visibility="gone"
-            app:srcCompat="@drawable/ic_triangle_up"
-            tools:tint="@color/core_blue"
+            app:tint="@color/signal_colorPrimaryContainer"
+            tools:src="@drawable/ic_person_white_24dp"
             tools:visibility="visible" />
 
-        <LinearLayout
-            android:id="@+id/tooltip_bubble"
+        <TextView
+            android:id="@+id/tooltip_text"
+            style="@style/Signal.Text.BodyMedium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/tooltip_background"
-            android:clipChildren="false"
-            android:clipToPadding="false"
-            android:elevation="6dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:padding="16dp">
-
-            <ImageView
-                android:id="@+id/tooltip_icon"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginEnd="2dp"
-                android:visibility="gone"
-                tools:src="@drawable/ic_person_white_24dp"
-                tools:tint="@color/core_blue"
-                tools:visibility="visible" />
-
-            <TextView
-                android:id="@+id/tooltip_text"
-                style="@style/Signal.Text.BodyMedium"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="It is my gift. It is my curse." />
-
-        </LinearLayout>
-
-        <ImageView
-            android:id="@+id/tooltip_arrow_bottom"
-            android:layout_width="16dp"
-            android:layout_height="8dp"
-            android:elevation="6dp"
-            android:scaleType="fitXY"
-            android:visibility="gone"
-            app:srcCompat="@drawable/ic_triangle_down"
-            tools:tint="@color/core_blue"
-            tools:visibility="visible" />
+            tools:text="It is my gift. It is my curse. It is my gift. It is my curse. It is my gift. It is my curse. It is my gift. It is my curse." />
 
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/tooltip_arrow_end"
-        android:layout_width="8dp"
-        android:layout_height="16dp"
-        android:elevation="6dp"
+        android:id="@+id/tooltip_arrow_bottom"
+        android:layout_width="20dp"
+        android:layout_height="12dp"
+        android:importantForAccessibility="no"
         android:scaleType="fitXY"
-        android:visibility="gone"
-        app:srcCompat="@drawable/ic_triangle_right"
-        tools:tint="@color/core_blue"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="@id/tooltip_bubble"
+        app:layout_constraintTop_toBottomOf="@id/tooltip_bubble"
+        app:srcCompat="@drawable/ic_tooltip_arrow_down"
+        app:tint="@color/signal_colorPrimaryContainer"
         tools:visibility="visible" />
 
-</LinearLayout>
+    <ImageView
+        android:id="@+id/tooltip_arrow_end"
+        android:layout_width="12dp"
+        android:layout_height="20dp"
+        android:importantForAccessibility="no"
+        android:scaleType="fitXY"
+        android:visibility="invisible"
+        app:layout_constraintStart_toEndOf="@id/tooltip_bubble"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_tooltip_arrow_right"
+        app:tint="@color/signal_colorPrimaryContainer"
+        tools:visibility="visible" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

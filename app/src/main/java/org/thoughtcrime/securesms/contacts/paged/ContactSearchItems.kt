@@ -290,7 +290,7 @@ object ContactSearchItems {
     override fun bind(model: T) {
       checkbox.visible = displayCheckBox
       checkbox.isChecked = isSelected(model)
-      itemView.setOnClickListener { onClick(itemView, getData(model), isSelected(model)) }
+      itemView.setOnClickListener { onClick(avatar, getData(model), isSelected(model)) }
       bindLongPress(model)
 
       if (payload.isNotEmpty()) {

@@ -161,7 +161,7 @@
 
     <color name="sticker_management_action_button_color">@color/core_grey_90</color>
 
-    <color name="tooltip_default_color">@color/core_white</color>
+    <color name="tooltip_default_color">@color/signal_colorSecondaryContainer</color>
 
     <color name="wallpaper_preview_background">@color/transparent_white_30</color>
     <color name="wallpaper_compose_background">@color/signal_colorTransparent4</color>
