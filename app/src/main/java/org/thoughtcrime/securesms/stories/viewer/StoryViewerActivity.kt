@@ -17,6 +17,8 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaController
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner
 import org.thoughtcrime.securesms.stories.StoryViewerArgs
+import org.thoughtcrime.securesms.stories.viewer.page.StoryViewStateCache
+import org.thoughtcrime.securesms.stories.viewer.page.StoryViewStateViewModel
 import org.thoughtcrime.securesms.util.FullscreenHelper
 import org.thoughtcrime.securesms.util.ServiceUtil
 import org.thoughtcrime.securesms.util.ViewUtil
@@ -26,6 +28,7 @@ import kotlin.math.min
 class StoryViewerActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner {
 
   private val viewModel: StoryVolumeViewModel by viewModels()
+  private val storyViewStateViewModel: StoryViewStateViewModel by viewModels()
 
   override lateinit var voiceNoteMediaController: VoiceNoteMediaController
 
@@ -35,6 +38,13 @@ class StoryViewerActivity : PassphraseRequiredActivity(), VoiceNoteMediaControll
   }
 
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
+    if (savedInstanceState != null) {
+      val cache: StoryViewStateCache? = savedInstanceState.getParcelable(DATA_CACHE)
+      if (cache != null) {
+        storyViewStateViewModel.storyViewStateCache.putAll(cache)
+      }
+    }
+
     StoryMutePolicy.initialize()
     Glide.get(this).setMemoryCategory(MemoryCategory.HIGH)
     FullscreenHelper.showSystemUI(window)
@@ -57,6 +67,11 @@ class StoryViewerActivity : PassphraseRequiredActivity(), VoiceNoteMediaControll
     if (savedInstanceState == null) {
       replaceStoryViewerFragment()
     }
+  }
+
+  override fun onSaveInstanceState(outState: Bundle) {
+    super.onSaveInstanceState(outState)
+    outState.putParcelable(DATA_CACHE, storyViewStateViewModel.storyViewStateCache)
   }
 
   override fun onDestroy() {
@@ -115,6 +130,7 @@ class StoryViewerActivity : PassphraseRequiredActivity(), VoiceNoteMediaControll
 
   companion object {
     private const val ARGS = "story.viewer.args"
+    private const val DATA_CACHE = "story.viewer.cache"
 
     @JvmStatic
     fun createIntent(

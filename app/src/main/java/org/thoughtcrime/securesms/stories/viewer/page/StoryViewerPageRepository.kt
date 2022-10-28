@@ -30,7 +30,7 @@ import org.thoughtcrime.securesms.util.Base64
 /**
  * Open for testing.
  */
-open class StoryViewerPageRepository(context: Context) {
+open class StoryViewerPageRepository(context: Context, private val storyViewStateCache: StoryViewStateCache) {
 
   companion object {
     private val TAG = Log.tag(StoryViewerPageRepository::class.java)
@@ -88,7 +88,7 @@ open class StoryViewerPageRepository(context: Context) {
           content = getContent(record as MmsMessageRecord),
           conversationMessage = ConversationMessage.ConversationMessageFactory.createWithUnresolvedData(context, record),
           allowsReplies = record.storyType.isStoryWithReplies,
-          hasSelfViewed = if (record.isOutgoing) true else record.viewedReceiptCount > 0
+          hasSelfViewed = storyViewStateCache.getOrPut(record.id, if (record.isOutgoing) true else record.viewedReceiptCount > 0)
         )
 
         emitter.onNext(story)

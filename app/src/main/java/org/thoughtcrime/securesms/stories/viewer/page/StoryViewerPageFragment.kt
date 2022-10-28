@@ -115,12 +115,15 @@ class StoryViewerPageFragment :
   private var volumeOutAnimator: Animator? = null
   private var volumeDebouncer: Debouncer = Debouncer(3, TimeUnit.SECONDS)
 
+  private val storyViewStateViewModel: StoryViewStateViewModel by viewModels()
+
   private val viewModel: StoryViewerPageViewModel by viewModels(
     factoryProducer = {
       StoryViewerPageViewModel.Factory(
         storyViewerPageArgs,
         StoryViewerPageRepository(
-          requireContext()
+          requireContext(),
+          storyViewStateViewModel.storyViewStateCache
         ),
         StoryCache(
           GlideApp.with(requireActivity()),
