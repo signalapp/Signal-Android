@@ -121,7 +121,7 @@ class DonateToSignalFragment : DSLSettingsFragment(
   }
 
   override fun onToolbarNavigationClicked() {
-    findNavController().popBackStack()
+    requireActivity().onBackPressedDispatcher.onBackPressed()
   }
 
   override fun getMaterial3OnScrollHelper(toolbar: Toolbar?): Material3OnScrollHelper {
