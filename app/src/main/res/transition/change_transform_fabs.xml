@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<transitionSet android:duration="100"
+<transitionSet xmlns:tools="http://schemas.android.com/tools"
+    android:duration="100"
     android:interpolator="@anim/camera_fab_cubic_easing_interpolator"
     xmlns:android="http://schemas.android.com/apk/res/android">
-    <transition class="org.thoughtcrime.securesms.animation.transitions.FabElevationFadeTransform" />
+    <transition class="org.thoughtcrime.securesms.animation.transitions.FabElevationFadeTransform"
+        tools:ignore="Instantiatable" />
     <changeBounds/>
     <changeTransform/>
     <changeImageTransform/>
