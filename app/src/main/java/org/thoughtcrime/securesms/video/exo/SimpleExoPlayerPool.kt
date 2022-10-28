@@ -140,7 +140,7 @@ abstract class ExoPlayerPool<T : ExoPlayer>(
       pool[player] = poolState
       player
     } else {
-      Log.d(TAG, "Failed to get an ExoPlayer instance for tag: $tag")
+      Log.d(TAG, "Failed to get an ExoPlayer instance for tag: $tag :: ${poolStats()}")
       null
     }?.apply {
       configureForVideoPlayback()
