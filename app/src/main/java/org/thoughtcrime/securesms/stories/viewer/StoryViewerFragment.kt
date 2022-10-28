@@ -6,6 +6,7 @@ import android.os.Build
 import android.os.Bundle
 import android.view.View
 import androidx.core.app.ActivityCompat
+import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.viewpager2.widget.ViewPager2
@@ -51,6 +52,7 @@ class StoryViewerFragment :
     storyCrossfader = view.findViewById(R.id.story_content_crossfader)
     storyPager = view.findViewById(R.id.story_item_pager)
 
+    ViewCompat.setTransitionName(storyCrossfader, "story")
     storyCrossfader.callback = this
 
     val adapter = StoryViewerPagerAdapter(

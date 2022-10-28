@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.ActionMenuView
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
 import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -107,6 +108,9 @@ class MainActivityListHostFragment : Fragment(R.layout.main_activity_list_host_f
     } else {
       val cameraFab = requireView().findViewById<View>(R.id.camera_fab)
       val newConvoFab = requireView().findViewById<View>(R.id.fab)
+
+      ViewCompat.setTransitionName(cameraFab, "camera_fab")
+      ViewCompat.setTransitionName(newConvoFab, "new_convo_fab")
 
       val extras: Navigator.Extras? = if (cameraFab == null || newConvoFab == null) {
         null

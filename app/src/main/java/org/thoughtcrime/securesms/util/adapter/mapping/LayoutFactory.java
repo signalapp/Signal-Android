@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 
+import org.signal.core.util.logging.Log;
+
 import java.util.function.Function;
 
 
