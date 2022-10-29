@@ -454,6 +454,7 @@ public class ConversationParentFragment extends Fragment
   private VoiceNotePlayerView          voiceNotePlayerView;
   private Material3OnScrollHelper      material3OnScrollHelper;
   private InlineQueryResultsController inlineQueryResultsController;
+  private OnBackPressedCallback        backPressedCallback;
 
   private LiveRecipient recipient;
   private long          threadId;
@@ -556,12 +557,13 @@ public class ConversationParentFragment extends Fragment
 
     disposables.add(viewModel.getStoryViewState().subscribe(titleView::setStoryRingFromState));
 
-    requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true) {
+    backPressedCallback = new OnBackPressedCallback(true) {
       @Override
       public void handleOnBackPressed() {
         onBackPressed();
       }
-    });
+    };
+    requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), backPressedCallback);
 
     if (isSearchRequested && savedInstanceState == null) {
       onCreateOptionsMenu(toolbar.getMenu(), requireActivity().getMenuInflater());
@@ -579,6 +581,7 @@ public class ConversationParentFragment extends Fragment
     WindowUtil.setLightStatusBarFromTheme(requireActivity());
 
     EventBus.getDefault().register(this);
+    backPressedCallback.setEnabled(true);
     viewModel.checkIfMmsIsEnabled();
     initializeIdentityRecords();
     composeText.setMessageSendType(sendButton.getSelectedSendType());
@@ -1160,6 +1163,9 @@ public class ConversationParentFragment extends Fragment
       if (searchViewItem != null) {
         searchViewItem.collapseActionView();
       }
+    } else if (isInBubble()) {
+      backPressedCallback.setEnabled(false);
+      requireActivity().onBackPressed();
     } else {
       requireActivity().finish();
     }
