@@ -36,6 +36,10 @@ class SmsExportReminderSchedule(private val context: Context) : MegaphoneSchedul
   @Suppress("UsePropertyAccessSyntax")
   @WorkerThread
   fun shouldShowMegaphone(): Boolean {
+    if (!Stories.isFeatureFlagEnabled()) {
+      return false
+    }
+
     return if (Stories.isFeatureFlagEnabled() && SignalStore.misc().storiesFeatureAvailableTimestamp == 0L) {
       SignalStore.misc().storiesFeatureAvailableTimestamp = System.currentTimeMillis()
       false
