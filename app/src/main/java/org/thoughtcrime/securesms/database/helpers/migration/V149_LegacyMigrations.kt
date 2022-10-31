@@ -58,7 +58,7 @@ import java.util.UUID
  */
 object V149_LegacyMigrations : SignalDatabaseMigration {
 
-  private val TAG: String = Log.tag(SignalDatabaseMigrations.javaClass)
+  private val TAG: String = SignalDatabaseMigrations.TAG
 
   private const val RECIPIENT_CALL_RINGTONE_VERSION = 2
   const val MIGRATE_PREKEYS_VERSION = 3
