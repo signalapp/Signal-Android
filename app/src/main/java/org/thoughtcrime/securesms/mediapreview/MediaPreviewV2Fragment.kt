@@ -92,7 +92,7 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
         }.show()
     }
     viewModel.initialize(args.showThread, args.allMediaInRail, args.leftIsRecent)
-    val sorting = MediaDatabase.Sorting.deserialize(args.sorting)
+    val sorting = MediaDatabase.Sorting.deserialize(args.sorting.ordinal)
     viewModel.fetchAttachments(PartAuthority.requireAttachmentId(args.initialMediaUri), args.threadId, sorting)
   }
 
@@ -442,5 +442,10 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
 
   companion object {
     const val ARGS_KEY: String = "args"
+
+    @JvmStatic
+    fun isContentTypeSupported(contentType: String?): Boolean {
+      return MediaUtil.isImageType(contentType) || MediaUtil.isVideoType(contentType)
+    }
   }
 }

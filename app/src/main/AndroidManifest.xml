@@ -495,10 +495,12 @@
               android:windowSoftInputMode="stateHidden"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
-    <activity android:name=".MediaPreviewActivity"
+    <activity android:name=".mediapreview.MediaPreviewV2Activity"
               android:label="@string/AndroidManifest__media_preview"
               android:windowSoftInputMode="stateHidden"
               android:launchMode="singleTask"
+              android:theme="@style/Theme.Signal.DayNight.NoActionBar"
+              android:exported="false"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".AvatarPreviewActivity"
@@ -693,10 +695,6 @@
               android:launchMode="singleTask"
               android:screenOrientation="portrait"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
-
-    <activity android:name=".mediapreview.MediaPreviewV2Activity"
-              android:exported="false"
-              android:theme="@style/Theme.Signal.DayNight.NoActionBar" />
 
     <service android:enabled="true" android:name=".exporter.SignalSmsExportService" android:foregroundServiceType="dataSync" />
     <service android:enabled="true" android:name=".service.webrtc.WebRtcCallService" android:foregroundServiceType="camera|microphone"/>

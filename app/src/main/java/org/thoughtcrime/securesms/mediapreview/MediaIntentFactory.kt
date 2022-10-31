@@ -6,6 +6,9 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
+import org.thoughtcrime.securesms.attachments.DatabaseAttachment
+import org.thoughtcrime.securesms.database.MediaDatabase
+import org.thoughtcrime.securesms.database.MediaDatabase.MediaRecord
 
 object MediaIntentFactory {
   private const val ARGS_KEY = "args"
@@ -34,7 +37,7 @@ object MediaIntentFactory {
     val hideAllMedia: Boolean = false,
     val showThread: Boolean = false,
     val allMediaInRail: Boolean = false,
-    val sorting: Int,
+    val sorting: MediaDatabase.Sorting,
     val isVideoGif: Boolean
   ) : Parcelable
 
@@ -44,5 +47,27 @@ object MediaIntentFactory {
   @JvmStatic
   fun create(context: Context, args: MediaPreviewArgs): Intent {
     return Intent(context, MediaPreviewV2Activity::class.java).putExtra(ARGS_KEY, args)
+  }
+
+  fun intentFromMediaRecord(
+    context: Context,
+    mediaRecord: MediaRecord,
+    leftIsRecent: Boolean
+  ): Intent {
+    val attachment: DatabaseAttachment = mediaRecord.attachment!!
+    return create(
+      context,
+      MediaPreviewArgs(
+        mediaRecord.threadId,
+        mediaRecord.date,
+        attachment.uri!!,
+        attachment.contentType,
+        attachment.size,
+        attachment.caption,
+        leftIsRecent,
+        sorting = MediaDatabase.Sorting.Newest,
+        isVideoGif = attachment.isVideoGif
+      )
+    )
   }
 }

@@ -248,7 +248,7 @@ public final class MediaOverviewPageFragment extends Fragment
           true,
           threadId == MediaDatabase.ALL_THREADS,
           true,
-          sorting.ordinal(),
+          sorting,
           attachment.isVideoGif());
       context.startActivity(MediaIntentFactory.create(context, args));
     } else {
