@@ -194,10 +194,13 @@ class StripeApi(
       return response
     } else {
       val body = response.body()?.string()
+      val errorCode = parseErrorCode(body)
+      val declineCode = parseDeclineCode(body) ?: StripeDeclineCode.getFromCode(errorCode)
+
       throw StripeError.PostError(
         response.code(),
-        parseErrorCode(body),
-        parseDeclineCode(body)
+        errorCode,
+        declineCode
       )
     }
   }
