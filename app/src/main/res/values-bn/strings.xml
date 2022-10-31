@@ -127,31 +127,31 @@
 
     <!-- CreditCardFragment -->
     <!-- Title of fragment detailing the donation amount, displayed above the credit card text fields -->
-    <string name="CreditCardFragment__donation_amount_s">Donation amount: %1$s</string>
+    <string name="CreditCardFragment__donation_amount_s">অনুদানের পরিমাণ: %1$s</string>
     <!-- Explanation of how to fill in the form, displayed above the credit card text fields -->
-    <string name="CreditCardFragment__enter_your_card_information_below">Enter your card information below</string>
+    <string name="CreditCardFragment__enter_your_card_information_below">নিচে আপনার কার্ডের তথ্য লিখুন</string>
     <!-- Displayed as a hint in the card number text field -->
-    <string name="CreditCardFragment__card_number">Card number</string>
+    <string name="CreditCardFragment__card_number">কার্ডের নম্বর</string>
     <!-- Displayed as a hint in the card expiry text field -->
     <string name="CreditCardFragment__mm_yy">MM/YY</string>
     <!-- Displayed as a hint in the card cvv text field -->
     <string name="CreditCardFragment__cvv">CVV</string>
     <!-- Error displayed under the card number text field when there is an invalid card number entered -->
-    <string name="CreditCardFragment__invalid_card_number">Invalid card number</string>
+    <string name="CreditCardFragment__invalid_card_number">কার্ড নম্বর অকার্যকর</string>
     <!-- Error displayed under the card expiry text field when the card is expired -->
-    <string name="CreditCardFragment__card_has_expired">Card has expired</string>
+    <string name="CreditCardFragment__card_has_expired">কার্ডের মেয়াদ শেষ হয়ে গেছে</string>
     <!-- Error displayed under the card cvv text field when the cvv is too short -->
-    <string name="CreditCardFragment__code_is_too_short">Code is too short</string>
+    <string name="CreditCardFragment__code_is_too_short">কোডটি খুবই ছোট</string>
     <!-- Error displayed under the card cvv text field when the cvv is too long -->
-    <string name="CreditCardFragment__code_is_too_long">Code is too long</string>
+    <string name="CreditCardFragment__code_is_too_long">কোডটি খুবই বড়</string>
     <!-- Error displayed under the card cvv text field when the cvv is invalid -->
-    <string name="CreditCardFragment__invalid_code">Invalid code</string>
+    <string name="CreditCardFragment__invalid_code">অকার্যকর কোড</string>
     <!-- Error displayed under the card expiry text field when the expiry month is invalid -->
-    <string name="CreditCardFragment__invalid_month">Invalid month</string>
+    <string name="CreditCardFragment__invalid_month">অকার্যকর মাস</string>
     <!-- Error displayed under the card expiry text field when the expiry is missing the year -->
-    <string name="CreditCardFragment__year_required">Year required</string>
+    <string name="CreditCardFragment__year_required">বছর প্রয়োজন</string>
     <!-- Error displayed under the card expiry text field when the expiry year is invalid -->
-    <string name="CreditCardFragment__invalid_year">Invalid year</string>
+    <string name="CreditCardFragment__invalid_year">অকার্যকর বছর</string>
 
     <!-- BlockUnblockDialog -->
     <string name="BlockUnblockDialog_block_and_leave_s">ব্লক করুন ও ছেড়ে যান %1$s?</string>
@@ -298,17 +298,17 @@
     <string name="ConversationItem_this_message_was_deleted">এই বার্তাটি মুছে ফেলা হয়েছে।</string>
     <string name="ConversationItem_you_deleted_this_message">আপনি এই বার্তাটি মুছে দিয়েছিলেন।</string>
     <!-- Dialog error message shown when user can't download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other's name -->
-    <string name="ConversationItem_cant_download_message_s_will_need_to_send_it_again">Can\'t download message. %1$s will need to send it again.</string>
+    <string name="ConversationItem_cant_download_message_s_will_need_to_send_it_again">মেসেজ ডাউনলোড করা যাচ্ছে না। %1$s-কে এটি আবার পাঠাতে হবে।</string>
     <!-- Dialog error message shown when user can't download an image message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other's name -->
-    <string name="ConversationItem_cant_download_image_s_will_need_to_send_it_again">Can\'t download image. %1$s will need to send it again.</string>
+    <string name="ConversationItem_cant_download_image_s_will_need_to_send_it_again">ছবি ডাউনলোড করা যাচ্ছে না। %1$s-কে এটি আবার পাঠাতে হবে।</string>
     <!-- Dialog error message shown when user can't download a video message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other's name -->
-    <string name="ConversationItem_cant_download_video_s_will_need_to_send_it_again">Can\'t download video. %1$s will need to send it again.</string>
+    <string name="ConversationItem_cant_download_video_s_will_need_to_send_it_again">ভিডিও ডাউনলোড করা যাচ্ছে না। %1$s-কে এটি আবার পাঠাতে হবে।</string>
     <!-- Dialog error message shown when user can't download a their own message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
-    <string name="ConversationItem_cant_download_message_you_will_need_to_send_it_again">Can\'t download message. You will need to send it again.</string>
+    <string name="ConversationItem_cant_download_message_you_will_need_to_send_it_again">মেসেজ ডাউনলোড করা যাচ্ছে না। আপনাকে এটি আবার পাঠাতে হবে।</string>
     <!-- Dialog error message shown when user can't download a their own image message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
-    <string name="ConversationItem_cant_download_image_you_will_need_to_send_it_again">Can\'t download image. You will need to send it again.</string>
+    <string name="ConversationItem_cant_download_image_you_will_need_to_send_it_again">ছবি ডাউনলোড করা যাচ্ছে না। আপনাকে এটি আবার পাঠাতে হবে।</string>
     <!-- Dialog error message shown when user can't download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
-    <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">Can\'t download video. You will need to send it again.</string>
+    <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">ভিডিও ডাউনলোড করা যাচ্ছে না। আপনাকে এটি আবার পাঠাতে হবে।</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">সংযুক্তি যোগ করুন</string>
@@ -2026,7 +2026,7 @@
     <string name="MediaPreviewActivity_media_no_longer_available">মিডিয়াটি আর উপলভ্য নেই।</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">এই মিডিয়া শেয়ার করার জন্য কোনও অ্যাপ পাওয়া যায়নি।</string>
     <string name="MediaPreviewActivity_dismiss_due_to_error">বন্ধ</string>
-    <string name="MediaPreviewFragment_edit_media_error">Media Error</string>
+    <string name="MediaPreviewFragment_edit_media_error">মিডিয়া ত্রুটি</string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$dটি নতুন বার্তা%2$dটি কথোপকথন</string>
@@ -4453,7 +4453,7 @@
     <!-- Shown when a subscription is active and isn't going to expire at the end of the term -->
     <string name="Subscription__renews_s">%1$s রিনিউ</string>
     <!-- Shown when a subscription is active and is going to expire at the end of the term -->
-    <string name="Subscription__expires_s">Expires %1$s</string>
+    <string name="Subscription__expires_s">%1$s তারিখে মেয়াদ শেষ হবে</string>
 
     <!-- First small text blurb on learn more sheet -->
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal একটি অলাভজনক সংস্থা যার কোন বিজ্ঞাপনদাতা বা বিনিয়োগকারী নেই, যারা এটি ব্যবহার করেন এবং মূল্যায়ন করেন শুধু তাদের মাধ্যমেই এটি পরিচালিত হয় ৷ মাসিক ডোনেশন দিন এবং আপনার সমর্থন শেয়ার করার জন্য একটি প্রোফাইল ব্যাজ নিন৷</string>
@@ -5101,7 +5101,7 @@
     <!-- Displayed in the viewer when a story is no longer available -->
     <string name="StorySlateView__this_story_is_no_longer_available">এই স্টোরিটি আর নেই।</string>
     <!-- Displayed in the viewer when a story has permanently failed to download. -->
-    <string name="StorySlateView__cant_download_story_s_will_need_to_share_it_again">Can\'t download story. %1$s will need to share it again.</string>
+    <string name="StorySlateView__cant_download_story_s_will_need_to_share_it_again">স্টোরি ডাউনলোড করা যাচ্ছে না। %1$s-কে এটি আবার পাঠাতে হবে।</string>
     <!-- Displayed in the viewer when the network is not available -->
     <string name="StorySlateView__no_internet_connection">ইন্টারনেট সংযোগ নেই</string>
     <!-- Displayed in the viewer when network is available but content could not be downloaded -->
@@ -5402,7 +5402,7 @@
     <!-- Alert dialog button to continue with exporting sms after seeing the lack of storage warning -->
     <string name="ExportingSmsMessagesFragment__continue_anyway">যেভাবেই হোক এগিয়ে যান</string>
     <!-- Dialog text shown when Signal isn't granted the sms permission needed to export messages, different than being selected as the sms app -->
-    <string name="ExportingSmsMessagesFragment__signal_needs_the_sms_permission_to_be_able_to_export_your_sms_messages">Signal needs the SMS permission to be able to export your SMS messages.</string>
+    <string name="ExportingSmsMessagesFragment__signal_needs_the_sms_permission_to_be_able_to_export_your_sms_messages">আপনার এসএমএস ম্যাসেজগুলো স্থানান্তর করতে সক্ষম হতে Signal-এর এসএমএস-এ অ্যাক্সেস করার অনুমতি প্রয়োজন৷</string>
 
     <!-- ChooseANewDefaultSmsAppFragment -->
     <!-- Title of the screen -->
@@ -5522,30 +5522,30 @@
 
     <!-- DonateToSignalFragment -->
     <!-- Title below avatar -->
-    <string name="DonateToSignalFragment__powered_by">Powered by people like you.</string>
+    <string name="DonateToSignalFragment__powered_by">আপনার মতো ব্যক্তিদের দ্বারাই চালিত।</string>
     <!-- Continue button label -->
     <string name="DonateToSignalFragment__continue">চালিয়ে যান</string>
     <!-- Description below title -->
-    <string name="DonateToSignalFragment__support_technology">Support technology built for you, not your data, by joining the community that sustains Signal.</string>
+    <string name="DonateToSignalFragment__support_technology">Signal-কে টিকিয়ে রাখে এমন কমিউনিটিতে যোগদানের মাধ্যমে, আপনার ডেটার জন্য নয় বরং আপনার জন্য তৈরি এই প্রযুক্তিকে সহায়তা করুন।</string>
     <!-- Donation pill toggle monthly text -->
-    <string name="DonationPillToggle__monthly">Monthly</string>
+    <string name="DonationPillToggle__monthly">মাসিক</string>
     <!-- Donation pill toggle one-time text -->
     <string name="DonationPillToggle__one_time">এক-কালীন</string>
 
     <!-- GatewaySelectorBottomSheet -->
     <!-- Sheet title when subscribing -->
-    <string name="GatewaySelectorBottomSheet__donate_s_month_to_signal">Donate %1$s/month to Signal</string>
+    <string name="GatewaySelectorBottomSheet__donate_s_month_to_signal">Signal-এ প্রতি মাসে %1$s অনুদান দিন</string>
     <!-- Sheet summary when subscribing -->
     <string name="GatewaySelectorBottomSheet__get_a_s_badge">একটি %1$s ব্যাজ পান</string>
     <!-- Sheet title when giving a one-time donation -->
-    <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Donate %1$s to Signal</string>
+    <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Signal-এ %1$s অনুদান দিন</string>
     <!-- Sheet summary when giving a one-time donation -->
-    <string name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">Get a %1$s badge for %2$d days</string>
+    <string name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">%2$d দিনের জন্য একটি %1$s ব্যাজ নিন</string>
     <!-- Button label for paying with a credit card -->
-    <string name="GatewaySelectorBottomSheet__credit_or_debit_card">Credit or debit card</string>
+    <string name="GatewaySelectorBottomSheet__credit_or_debit_card">ক্রেডিট বা ডেবিট কার্ড</string>
 
     <!-- StripePaymentInProgressFragment -->
-    <string name="StripePaymentInProgressFragment__cancelling">Cancelling…</string>
+    <string name="StripePaymentInProgressFragment__cancelling">বাতিল করা হচ্ছে…</string>
 
     <!-- EOF -->
 
