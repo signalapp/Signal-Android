@@ -26,8 +26,7 @@ class MediaPreviewV2ViewModel : ViewModel() {
 
   fun fetchAttachments(startingAttachmentId: AttachmentId, threadId: Long, sorting: MediaDatabase.Sorting, forceRefresh: Boolean = false) {
     if (store.state.loadState == MediaPreviewV2State.LoadState.INIT || forceRefresh) {
-      disposables += store.update(repository.getAttachments(startingAttachmentId, threadId, sorting)) {
-        result: MediaPreviewRepository.Result, oldState: MediaPreviewV2State ->
+      disposables += store.update(repository.getAttachments(startingAttachmentId, threadId, sorting)) { result: MediaPreviewRepository.Result, oldState: MediaPreviewV2State ->
         if (oldState.leftIsRecent) {
           oldState.copy(
             position = result.initialPosition,
@@ -75,5 +74,11 @@ class MediaPreviewV2ViewModel : ViewModel() {
   override fun onCleared() {
     disposables.dispose()
     store.dispose()
+  }
+
+  fun onDestroyView() {
+    store.update { oldState ->
+      oldState.copy(loadState = MediaPreviewV2State.LoadState.DATA_LOADED)
+    }
   }
 }

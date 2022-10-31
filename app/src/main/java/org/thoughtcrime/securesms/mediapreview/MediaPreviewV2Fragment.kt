@@ -292,10 +292,10 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
     ViewCompat.setOnApplyWindowInsetsListener(viewToAnchor) { view: View, windowInsetsCompat: WindowInsetsCompat ->
       val layoutParams = view.layoutParams as MarginLayoutParams
       layoutParams.setMargins(
-        windowInsetsCompat.getSystemWindowInsetLeft(),
+        windowInsetsCompat.systemWindowInsetLeft,
         layoutParams.topMargin,
-        windowInsetsCompat.getSystemWindowInsetRight(),
-        windowInsetsCompat.getSystemWindowInsetBottom()
+        windowInsetsCompat.systemWindowInsetRight,
+        windowInsetsCompat.systemWindowInsetBottom
       )
       view.layoutParams = layoutParams
       windowInsetsCompat
@@ -438,6 +438,11 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
   override fun onPause() {
     super.onPause()
     getMediaPreviewFragmentFromChildFragmentManager(binding.mediaPager.currentItem)?.pause()
+  }
+
+  override fun onDestroyView() {
+    super.onDestroyView()
+    viewModel.onDestroyView()
   }
 
   companion object {
