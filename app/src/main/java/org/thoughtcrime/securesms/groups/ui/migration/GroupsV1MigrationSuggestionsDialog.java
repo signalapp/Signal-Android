@@ -77,14 +77,14 @@ public final class GroupsV1MigrationSuggestionsDialog {
       try {
         GroupManager.addMembers(fragmentActivity, groupId.requirePush(), suggestions);
         Log.i(TAG, "Successfully added members! Removing these dropped members from the list.");
-        SignalDatabase.groups().removeUnmigratedV1Members(groupId, suggestions);
+        SignalDatabase.groups().removeUnmigratedV1Members(groupId);
         return Result.SUCCESS;
       } catch (IOException | GroupChangeBusyException e) {
         Log.w(TAG, "Temporary failure.", e);
         return Result.NETWORK_ERROR;
       } catch (GroupNotAMemberException | GroupInsufficientRightsException | MembershipNotSuitableForV2Exception | GroupChangeFailedException e) {
         Log.w(TAG, "Permanent failure! Removing these dropped members from the list.", e);
-        SignalDatabase.groups().removeUnmigratedV1Members(groupId, suggestions);
+        SignalDatabase.groups().removeUnmigratedV1Members(groupId);
         return Result.IMPOSSIBLE;
       }
     }, result -> {
