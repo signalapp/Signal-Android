@@ -2155,6 +2155,12 @@
     <string name="UnauthorizedReminder_device_no_longer_registered">Device no longer registered</string>
     <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">This is likely because you registered your phone number with Signal on a different device. Tap to re-register.</string>
 
+    <!-- EnclaveFailureReminder -->
+    <!-- Banner message to update app to use payments -->
+    <string name="EnclaveFailureReminder_update_signal">Update Signal to continue using payments. Your balance may not be up-to-date.</string>
+    <!-- Banner button to update now -->
+    <string name="EnclaveFailureReminder_update_now">Update now</string>
+
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">To answer the call, give Signal access to your microphone.</string>
     <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">To answer the call from %s, give Signal access to your microphone.</string>
@@ -3018,6 +3024,14 @@
     <string name="PaymentsHomeFragment__enable">Turn On</string>
     <!-- Alert dialog button to not enable payment lock for now -->
     <string name="PaymentsHomeFragment__not_now">Not Now</string>
+    <!-- Alert dialog title which shows up to update app to send payments -->
+    <string name="PaymentsHomeFragment__update_required">Update required</string>
+    <!-- Alert dialog description that app update is required to send payments-->
+    <string name="PaymentsHomeFragment__an_update_is_required">An update is required to continue sending and receiving payments, and to view your up-to-date payment balance.</string>
+    <!-- Alert dialog button to cancel -->
+    <string name="PaymentsHomeFragment__cancel">Cancel</string>
+    <!-- Alert dialog button to update now -->
+    <string name="PaymentsHomeFragment__update_now">Update now</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->

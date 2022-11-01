@@ -51,6 +51,7 @@ public class PaymentsHomeViewModel extends ViewModel {
   private final LiveData<FiatMoney>                exchange;
   private final SingleLiveEvent<PaymentStateEvent> paymentStateEvents;
   private final SingleLiveEvent<ErrorEnabling>     errorEnablingPayments;
+  private final LiveData<Boolean>                  enclaveFailure;
 
   private final PaymentsHomeRepository     paymentsHomeRepository;
   private final CurrencyExchangeRepository currencyExchangeRepository;
@@ -72,7 +73,7 @@ public class PaymentsHomeViewModel extends ViewModel {
     this.exchangeLoadState          = LiveDataUtil.mapDistinct(store.getStateLiveData(), PaymentsHomeState::getExchangeRateLoadState);
     this.paymentStateEvents         = new SingleLiveEvent<>();
     this.errorEnablingPayments      = new SingleLiveEvent<>();
-
+    this.enclaveFailure             = LiveDataUtil.mapDistinct(SignalStore.paymentsValues().enclaveFailure(), isFailure -> isFailure);
     this.store.update(paymentsRepository.getRecentPayments(), this::updateRecentPayments);
 
     LiveData<CurrencyExchange.ExchangeRate> liveExchangeRate = LiveDataUtil.combineLatest(SignalStore.paymentsValues().liveCurrentCurrency(),
@@ -107,6 +108,14 @@ public class PaymentsHomeViewModel extends ViewModel {
 
   @NonNull LiveData<ErrorEnabling> getErrorEnablingPayments() {
     return errorEnablingPayments;
+  }
+
+  @NonNull LiveData<Boolean> getEnclaveFailure() {
+    return enclaveFailure;
+  }
+
+  @NonNull boolean isEnclaveFailurePresent() {
+    return Boolean.TRUE.equals(getEnclaveFailure().getValue());
   }
 
   @NonNull LiveData<MappingModelList> getList() {
