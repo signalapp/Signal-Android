@@ -10,8 +10,11 @@ import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.media.AudioManagerCompat
+import androidx.window.layout.WindowMetricsCalculator
 import com.bumptech.glide.Glide
 import com.bumptech.glide.MemoryCategory
+import org.signal.core.util.dp
+import org.signal.core.util.sp
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaController
@@ -52,11 +55,22 @@ class StoryViewerActivity : PassphraseRequiredActivity(), VoiceNoteMediaControll
     supportPostponeEnterTransition()
 
     val root = findViewById<View>(android.R.id.content)
+    val metrics = WindowMetricsCalculator.getOrCreate().computeCurrentWindowMetrics(this)
+    val statusBarHeight = ViewUtil.getStatusBarHeight(root)
+    val contentHeight = metrics.bounds.width() * (16 / 9f) + 48.sp
+    val spaceAndNavbar = metrics.bounds.height() - statusBarHeight - contentHeight
+    val (padTop, padBottom) = if (spaceAndNavbar > 72.dp) {
+      val pad = (metrics.bounds.height() - contentHeight) / 2f
+      pad to pad
+    } else {
+      statusBarHeight to ViewUtil.getNavigationBarHeight(root)
+    }
+
     root.setPadding(
       0,
-      ViewUtil.getStatusBarHeight(root),
+      padTop.toInt(),
       0,
-      ViewUtil.getNavigationBarHeight(root)
+      padBottom.toInt()
     )
 
     super.onCreate(savedInstanceState, ready)
