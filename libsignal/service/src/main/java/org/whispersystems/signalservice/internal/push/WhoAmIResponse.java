@@ -12,6 +12,9 @@ public class WhoAmIResponse {
   @JsonProperty
   public String number;
 
+  @JsonProperty
+  public String username;
+
   public String getAci() {
     return uuid;
   }
@@ -22,5 +25,9 @@ public class WhoAmIResponse {
 
   public String getNumber() {
     return number;
+  }
+
+  public String getUsername() {
+    return username;
   }
 }

@@ -2068,20 +2068,19 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
   }
 
   fun setUsername(id: RecipientId, username: String?) {
-    if (username != null) {
-      val existingUsername = getByUsername(username)
-      if (existingUsername.isPresent && id != existingUsername.get()) {
-        Log.i(TAG, "Username was previously thought to be owned by " + existingUsername.get() + ". Clearing their username.")
-        setUsername(existingUsername.get(), null)
+    writableDatabase.withinTransaction {
+      if (username != null) {
+        val existingUsername = getByUsername(username)
+        if (existingUsername.isPresent && id != existingUsername.get()) {
+          Log.i(TAG, "Username was previously thought to be owned by " + existingUsername.get() + ". Clearing their username.")
+          setUsername(existingUsername.get(), null)
+        }
       }
-    }
 
-    val contentValues = ContentValues(1).apply {
-      put(USERNAME, username)
-    }
-    if (update(id, contentValues)) {
-      ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
-      StorageSyncHelper.scheduleSyncForDataChange()
+      if (update(id, contentValuesOf(USERNAME to username))) {
+        ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
+        StorageSyncHelper.scheduleSyncForDataChange()
+      }
     }
   }
 
