@@ -186,12 +186,15 @@ object ContactDiscoveryRefreshV2 {
         SignalDatabase.recipients.rewritePhoneNumbers(fuzzyOutput.rewrites)
         stopwatch.split("rewrite-e164")
 
-        val existingIds: Set<RecipientId> = SignalDatabase.recipients.getAllPossiblyRegisteredByE164(recipientE164s + rewrites.values)
-        val inactiveIds: Set<RecipientId> = (existingIds - registeredIds).removeRegisteredButUnlisted()
-
         registeredIds += SignalDatabase.recipients.bulkProcessCdsV2Result(fuzzyOutput.numbers)
         rewrites += fuzzyOutput.rewrites
         stopwatch.split("process-result")
+
+        val existingIds: Set<RecipientId> = SignalDatabase.recipients.getAllPossiblyRegisteredByE164(recipientE164s + rewrites.values)
+        stopwatch.split("get-ids")
+
+        val inactiveIds: Set<RecipientId> = (existingIds - registeredIds).removeRegisteredButUnlisted()
+        stopwatch.split("registered-but-unlisted")
 
         SignalDatabase.recipients.bulkUpdatedRegisteredStatusV2(registeredIds, inactiveIds)
         stopwatch.split("update-registered")

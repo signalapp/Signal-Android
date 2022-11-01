@@ -76,8 +76,13 @@ public class StorageForcePushJob extends BaseJob {
       return;
     }
 
-    if (!SignalStore.account().isRegistered() || SignalStore.account().getE164() == null || Recipient.self().getStorageServiceId() == null) {
+    if (!SignalStore.account().isRegistered() || SignalStore.account().getE164() == null) {
       Log.w(TAG, "User not registered. Skipping.");
+      return;
+    }
+
+    if (Recipient.self().getStorageServiceId() == null) {
+      Log.w(TAG, "No storage ID set for self! Skipping.");
       return;
     }
 

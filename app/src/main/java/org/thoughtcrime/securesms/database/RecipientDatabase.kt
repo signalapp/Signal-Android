@@ -475,8 +475,8 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
         else -> processPnpTuple(e164 = e164, pni = pni, aci = ACI.fromNullable(serviceId), pniVerified = pniVerified, changeSelf = changeSelf)
       }
 
-      if (result.operations.isNotEmpty()) {
-        Log.i(TAG, "[getAndPossiblyMergePnp] ($serviceId, $pni, $e164) BreadCrumbs: ${result.breadCrumbs}, Operations: ${result.operations}")
+      if (result.operations.isNotEmpty() || result.requiredInsert) {
+        Log.i(TAG, "[getAndPossiblyMerge] ($serviceId, $pni, $e164) BreadCrumbs: ${result.breadCrumbs}, Operations: ${result.operations}, RequiredInsert: ${result.requiredInsert}, FinalId: ${result.finalId}")
       }
 
       db.setTransactionSuccessful()
@@ -601,11 +601,11 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
   }
 
   fun getOrInsertFromServiceId(serviceId: ServiceId): RecipientId {
-    return getOrInsertByColumn(SERVICE_ID, serviceId.toString()).recipientId
+    return getAndPossiblyMerge(serviceId = serviceId, e164 = null)
   }
 
   fun getOrInsertFromE164(e164: String): RecipientId {
-    return getOrInsertByColumn(PHONE, e164).recipientId
+    return getAndPossiblyMerge(serviceId = null, e164 = e164)
   }
 
   fun getOrInsertFromEmail(email: String): RecipientId {
@@ -2183,6 +2183,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       UNREGISTERED_TIMESTAMP to 0
     )
     if (update(id, contentValues)) {
+      Log.i(TAG, "Newly marked $id as registered.")
       setStorageIdIfNotSet(id)
       ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
     }
@@ -2191,11 +2192,11 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
   fun markUnregistered(id: RecipientId) {
     val contentValues = contentValuesOf(
       REGISTERED to RegisteredState.NOT_REGISTERED.id,
-      STORAGE_SERVICE_ID to null,
       UNREGISTERED_TIMESTAMP to System.currentTimeMillis()
     )
 
     if (update(id, contentValues)) {
+      Log.i(TAG, "Newly marked $id as unregistered.")
       ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
     }
   }
@@ -2306,23 +2307,36 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
         UNREGISTERED_TIMESTAMP to 0
       )
 
+      val newlyRegistered: MutableSet<RecipientId> = mutableSetOf()
+
       for (id in registered) {
         if (update(id, registeredValues)) {
+          newlyRegistered += id
           setStorageIdIfNotSet(id)
           ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
         }
       }
 
+      if (newlyRegistered.isNotEmpty()) {
+        Log.i(TAG, "Newly marked the following as registered: $newlyRegistered")
+      }
+
+      val newlyUnregistered: MutableSet<RecipientId> = mutableSetOf()
+
       val unregisteredValues = contentValuesOf(
         REGISTERED to RegisteredState.NOT_REGISTERED.id,
-        STORAGE_SERVICE_ID to null,
         UNREGISTERED_TIMESTAMP to System.currentTimeMillis()
       )
 
       for (id in unregistered) {
         if (update(id, unregisteredValues)) {
+          newlyUnregistered += id
           ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
         }
+      }
+
+      if (newlyUnregistered.isNotEmpty()) {
+        Log.i(TAG, "Newly marked the following as unregistered: $newlyUnregistered")
       }
     }
   }
@@ -2364,6 +2378,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
 
     return ProcessPnpTupleResult(
       finalId = finalId,
+      requiredInsert = changeSet.id is PnpIdResolver.PnpInsert,
       affectedIds = affectedIds,
       oldIds = oldIds,
       changedNumberId = changedNumberId,
@@ -4408,6 +4423,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
 
   data class ProcessPnpTupleResult(
     val finalId: RecipientId,
+    val requiredInsert: Boolean,
     val affectedIds: Set<RecipientId>,
     val oldIds: Set<RecipientId>,
     val changedNumberId: RecipientId?,
