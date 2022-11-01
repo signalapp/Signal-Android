@@ -5,7 +5,6 @@ import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
@@ -19,6 +18,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2.OFFSCREEN_PAGE_LIMIT_DEFAULT
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.google.android.material.appbar.MaterialToolbar
@@ -28,7 +28,6 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.animation.DepthPageTransformer2
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragment
@@ -47,6 +46,7 @@ import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.SaveAttachmentTask
 import org.thoughtcrime.securesms.util.StorageUtil
+import org.thoughtcrime.securesms.util.ViewUtil
 import java.util.Locale
 import java.util.Optional
 
@@ -108,9 +108,7 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
 
   private fun initializeViewPager() {
     binding.mediaPager.offscreenPageLimit = OFFSCREEN_PAGE_LIMIT_DEFAULT
-    if (Build.VERSION.SDK_INT >= 21) {
-      binding.mediaPager.setPageTransformer(DepthPageTransformer2())
-    }
+    binding.mediaPager.setPageTransformer(MarginPageTransformer(ViewUtil.dpToPx(24)))
     val adapter = MediaPreviewV2Adapter(this)
     binding.mediaPager.adapter = adapter
     binding.mediaPager.registerOnPageChangeCallback(object : OnPageChangeCallback() {
