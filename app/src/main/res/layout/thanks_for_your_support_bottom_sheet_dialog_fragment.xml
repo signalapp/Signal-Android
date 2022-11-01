@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:viewBindingIgnore="true"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:viewBindingIgnore="true">
 
     <ImageView
         android:id="@+id/thanks_bottom_sheet_handle"
@@ -32,23 +32,25 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dsl_settings_gutter"
+                android:layout_marginTop="12dp"
                 android:layout_marginEnd="@dimen/dsl_settings_gutter"
                 android:gravity="center"
                 android:text="@string/SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support"
-                android:textAppearance="@style/TextAppearance.Signal.Title2"
+                android:textAppearance="@style/Signal.Text.TitleLarge"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/thanks_bottom_sheet_badge" />
 
             <TextView
                 android:id="@+id/thanks_bottom_sheet_subhead"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dsl_settings_gutter"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="6dp"
                 android:layout_marginEnd="@dimen/dsl_settings_gutter"
                 android:gravity="center"
-                android:textAppearance="@style/Signal.Text.Body"
+                android:textAppearance="@style/Signal.Text.BodyLarge"
+                android:textColor="@color/signal_colorOnSurfaceVariant"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/thanks_bottom_sheet_heading"
@@ -62,7 +64,7 @@
                 app:badge_size="xlarge"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/thanks_bottom_sheet_subhead"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:src="@drawable/test_gradient" />
 
             <com.airbnb.lottie.LottieAnimationView
@@ -74,20 +76,6 @@
                 app:layout_constraintStart_toStartOf="@id/thanks_bottom_sheet_badge"
                 app:layout_constraintTop_toTopOf="@id/thanks_bottom_sheet_badge"
                 app:lottie_rawRes="@raw/lottie_rocket" />
-
-            <TextView
-                android:id="@+id/thanks_bottom_sheet_badge_name"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dsl_settings_gutter"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="@dimen/dsl_settings_gutter"
-                android:gravity="center"
-                android:textAppearance="@style/TextAppearance.Signal.Title2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/thanks_bottom_sheet_badge"
-                tools:text="Signal Meteor" />
 
             <View
                 android:id="@+id/thanks_bottom_sheet_control_outline"
@@ -104,7 +92,7 @@
                 android:layout_width="0dp"
                 android:layout_height="48sp"
                 android:layout_marginStart="@dimen/dsl_settings_gutter"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="36dp"
                 android:layout_marginEnd="@dimen/dsl_settings_gutter"
                 android:gravity="center_vertical"
                 android:paddingStart="16dp"
@@ -114,7 +102,7 @@
                 app:layout_constraintEnd_toStartOf="@id/thanks_bottom_sheet_switch"
                 app:layout_constraintHorizontal_chainStyle="spread"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/thanks_bottom_sheet_badge_name" />
+                app:layout_constraintTop_toBottomOf="@id/thanks_bottom_sheet_subhead" />
 
             <com.google.android.material.switchmaterial.SwitchMaterial
                 android:id="@+id/thanks_bottom_sheet_switch"
@@ -136,8 +124,8 @@
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="40dp"
                 android:text="@string/ThanksForYourSupportBottomSheetFragment__when_you_have_more"
-                android:textAppearance="@style/Signal.Text.Caption"
-                android:textColor="@color/signal_text_secondary"
+                android:textAppearance="@style/Signal.Text.BodyMedium"
+                android:textColor="@color/signal_colorOnSurfaceVariant"
                 android:visibility="gone"
                 app:layout_constraintTop_toBottomOf="@id/thanks_bottom_sheet_control_outline"
                 tools:visibility="visible" />
@@ -148,14 +136,14 @@
                 android:layout_width="0dp"
                 android:layout_height="48sp"
                 android:layout_marginStart="@dimen/dsl_settings_gutter"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="48dp"
                 android:layout_marginEnd="@dimen/dsl_settings_gutter"
                 android:layout_marginBottom="16dp"
-                android:text="@string/SubscribeThanksForYourSupportBottomSheetDialogFragment__done"
+                android:text="@string/SubscribeThanksForYourSupportBottomSheetDialogFragment__continue"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/thanks_bottom_sheet_featured_note"
-                app:layout_goneMarginTop="36dp" />
+                app:layout_goneMarginTop="72dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

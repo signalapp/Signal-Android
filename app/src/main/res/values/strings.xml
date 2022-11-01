@@ -4505,7 +4505,7 @@
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">become a monthly Sustainer.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Display on Profile</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Make featured badge</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Done</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">Continue</string>
     <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">When you have more than one badge, you can choose one to feature for others to see on your profile.</string>
 
     <string name="BecomeASustainerFragment__get_badges">Get badges for your profile by supporting Signal.</string>
