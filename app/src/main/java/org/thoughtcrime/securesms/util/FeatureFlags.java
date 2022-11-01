@@ -104,6 +104,7 @@ public final class FeatureFlags {
   private static final String HIDE_CONTACTS                     = "android.hide.contacts";
   private static final String SMS_EXPORT_MEGAPHONE_DELAY_DAYS   = "android.smsExport.megaphoneDelayDays.2";
   public  static final String CREDIT_CARD_PAYMENTS              = "android.credit.card.payments";
+  private static final String PAYMENTS_REQUEST_ACTIVATE_FLOW    = "android.payments.requestActivateFlow";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -159,7 +160,8 @@ public final class FeatureFlags {
       STORIES_LOCALE,
       HIDE_CONTACTS,
       SMS_EXPORT_MEGAPHONE_DELAY_DAYS,
-      CREDIT_CARD_PAYMENTS
+      CREDIT_CARD_PAYMENTS,
+      PAYMENTS_REQUEST_ACTIVATE_FLOW
   );
 
   @VisibleForTesting
@@ -222,7 +224,8 @@ public final class FeatureFlags {
       RECIPIENT_MERGE_V2,
       STORIES,
       SMS_EXPORT_MEGAPHONE_DELAY_DAYS,
-      CREDIT_CARD_PAYMENTS
+      CREDIT_CARD_PAYMENTS,
+      PAYMENTS_REQUEST_ACTIVATE_FLOW
   );
 
   /**
@@ -568,6 +571,11 @@ public final class FeatureFlags {
    */
   public static boolean creditCardPayments() {
     return getBoolean(CREDIT_CARD_PAYMENTS, Environment.IS_STAGING);
+  }
+
+  /** Whether client supports sending a request to another to activate payments */
+  public static boolean paymentsRequestActivateFlow() {
+    return getBoolean(PAYMENTS_REQUEST_ACTIVATE_FLOW, false);
   }
 
   /** Only for rendering debug info. */

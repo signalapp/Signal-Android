@@ -193,6 +193,14 @@ public class OutgoingMediaMessage {
     return false;
   }
 
+  public boolean isRequestToActivatePayments() {
+    return false;
+  }
+
+  public boolean isPaymentsActivated() {
+    return false;
+  }
+
   public long getSentTimeMillis() {
     return sentTimeMillis;
   }

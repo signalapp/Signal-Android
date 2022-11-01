@@ -142,6 +142,7 @@ import org.thoughtcrime.securesms.main.Material3OnScrollHelperBinder;
 import org.thoughtcrime.securesms.messagedetails.MessageDetailsFragment;
 import org.thoughtcrime.securesms.messagerequests.MessageRequestState;
 import org.thoughtcrime.securesms.messagerequests.MessageRequestViewModel;
+import org.thoughtcrime.securesms.mms.AttachmentManager;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.mms.PartAuthority;
@@ -149,6 +150,7 @@ import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.TextSlide;
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile;
 import org.thoughtcrime.securesms.notifications.v2.ConversationId;
+import org.thoughtcrime.securesms.payments.preferences.PaymentsActivity;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.providers.BlobProvider;
@@ -174,6 +176,7 @@ import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.HtmlUtil;
 import org.thoughtcrime.securesms.util.LifecycleDisposable;
 import org.thoughtcrime.securesms.util.MessageRecordUtil;
+import org.thoughtcrime.securesms.util.ProfileUtil;
 import org.thoughtcrime.securesms.util.Projection;
 import org.thoughtcrime.securesms.util.RemoteDeleteUtil;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
@@ -2103,6 +2106,17 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
       if (messageRecord.isOutgoing() && MessageRecordUtil.hasGiftBadge(messageRecord)) {
         conversationViewModel.markGiftBadgeRevealed(messageRecord.getId());
       }
+    }
+
+    @Override
+    public void onActivatePaymentsClicked() {
+      Intent intent = new Intent(requireContext(), PaymentsActivity.class);
+      startActivity(intent);
+    }
+
+    @Override
+    public void onSendPaymentClicked(@NonNull RecipientId recipientId) {
+      AttachmentManager.selectPayment(ConversationFragment.this, recipient.get());
     }
   }
 

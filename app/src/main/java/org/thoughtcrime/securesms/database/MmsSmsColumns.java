@@ -140,9 +140,11 @@ public interface MmsSmsColumns {
     protected static final long ENCRYPTION_REMOTE_LEGACY_BIT     = 0x02000000;
 
     // Special message types
-    public static final long SPECIAL_TYPES_MASK          = 0xF00000000L;
-    public static final long SPECIAL_TYPE_STORY_REACTION = 0x100000000L;
-    public static final long SPECIAL_TYPE_GIFT_BADGE     = 0x200000000L;
+    public    static final long SPECIAL_TYPES_MASK                     = 0xF00000000L;
+    public    static final long SPECIAL_TYPE_STORY_REACTION            = 0x100000000L;
+    public    static final long SPECIAL_TYPE_GIFT_BADGE                = 0x200000000L;
+    protected static final long SPECIAL_TYPE_ACTIVATE_PAYMENTS_REQUEST = 0x400000000L;
+    protected static final long SPECIAL_TYPE_PAYMENTS_ACTIVATED        = 0x800000000L;
 
     public static boolean isStoryReaction(long type) {
       return (type & SPECIAL_TYPES_MASK) == SPECIAL_TYPE_STORY_REACTION;
@@ -150,6 +152,14 @@ public interface MmsSmsColumns {
 
     public static boolean isGiftBadge(long type) {
       return (type & SPECIAL_TYPES_MASK) == SPECIAL_TYPE_GIFT_BADGE;
+    }
+
+    public static boolean isRequestToActivatePayments(long type) {
+      return (type & SPECIAL_TYPES_MASK) == SPECIAL_TYPE_ACTIVATE_PAYMENTS_REQUEST;
+    }
+
+    public static boolean isPaymentsActivated(long type) {
+      return (type & SPECIAL_TYPES_MASK) == SPECIAL_TYPE_PAYMENTS_ACTIVATED;
     }
 
     public static boolean isDraftMessageType(long type) {

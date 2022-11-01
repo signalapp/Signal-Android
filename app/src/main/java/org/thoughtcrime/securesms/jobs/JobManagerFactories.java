@@ -102,6 +102,7 @@ public final class JobManagerFactories {
       put(ForceUpdateGroupV2Job.KEY,                 new ForceUpdateGroupV2Job.Factory());
       put(ForceUpdateGroupV2WorkerJob.KEY,           new ForceUpdateGroupV2WorkerJob.Factory());
       put(GiftSendJob.KEY,                           new GiftSendJob.Factory());
+      put(SendPaymentsActivatedJob.KEY,              new SendPaymentsActivatedJob.Factory());
       put(GroupV1MigrationJob.KEY,                   new GroupV1MigrationJob.Factory());
       put(GroupCallUpdateSendJob.KEY,                new GroupCallUpdateSendJob.Factory());
       put(GroupCallPeekJob.KEY,                      new GroupCallPeekJob.Factory());

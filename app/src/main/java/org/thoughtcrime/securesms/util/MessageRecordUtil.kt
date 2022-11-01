@@ -44,6 +44,12 @@ fun MessageRecord.hasThumbnail(): Boolean =
 fun MessageRecord.isStoryReaction(): Boolean =
   isMms && MmsSmsColumns.Types.isStoryReaction((this as MmsMessageRecord).type)
 
+fun MessageRecord.isPaymentActivationRequest(): Boolean =
+  isMms && MmsSmsColumns.Types.isRequestToActivatePayments((this as MmsMessageRecord).type)
+
+fun MessageRecord.isPaymentsActivated(): Boolean =
+  isMms && MmsSmsColumns.Types.isPaymentsActivated((this as MmsMessageRecord).type)
+
 fun MessageRecord.isBorderless(context: Context): Boolean {
   return isCaptionlessMms(context) &&
     hasThumbnail() &&

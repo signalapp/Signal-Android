@@ -22,6 +22,7 @@ import android.text.SpannableString;
 import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
 
+import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -230,5 +231,13 @@ public abstract class DisplayRecord {
 
   public boolean isPendingInsecureSmsFallback() {
     return SmsDatabase.Types.isPendingInsecureSmsFallbackType(type);
+  }
+
+  public boolean isRequestToActivatePayments() {
+    return SmsDatabase.Types.isRequestToActivatePayments(type);
+  }
+
+  public boolean isPaymentsActivated() {
+    return SmsDatabase.Types.isPaymentsActivated(type);
   }
 }

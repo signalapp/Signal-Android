@@ -295,6 +295,8 @@ public final class MessageContentProcessor {
         else if (message.getReaction().isPresent() && message.getStoryContext().isPresent()) messageId = handleStoryReaction(content, message, senderRecipient);
         else if (message.getReaction().isPresent())                                          messageId = handleReaction(content, message, senderRecipient);
         else if (message.getRemoteDelete().isPresent())                                      messageId = handleRemoteDelete(content, message, senderRecipient);
+        else if (message.isActivatePaymentsRequest())                                        messageId = handlePaymentActivation(content, message, smsMessageId, senderRecipient, receivedTime, true, false);
+        else if (message.isPaymentsActivated())                                              messageId = handlePaymentActivation(content, message, smsMessageId, senderRecipient, receivedTime, false, true);
         else if (message.getPayment().isPresent())                                           handlePayment(content, message, senderRecipient);
         else if (message.getStoryContext().isPresent())                                      messageId = handleStoryReply(content, message, senderRecipient, receivedTime);
         else if (message.getGiftBadge().isPresent())                                         messageId = handleGiftMessage(content, message, senderRecipient, threadRecipient, receivedTime);
@@ -809,6 +811,60 @@ public final class MessageContentProcessor {
     }
   }
 
+  /**
+   * @param isActivatePaymentsRequest True if payments activation request message.
+   * @param isPaymentsActivated       True if payments activated message.
+   * @throws StorageFailedException
+   */
+  private @Nullable MessageId handlePaymentActivation(@NonNull SignalServiceContent content,
+                                                      @NonNull SignalServiceDataMessage message,
+                                                      @NonNull Optional<Long> smsMessageId,
+                                                      @NonNull Recipient senderRecipient,
+                                                      long receivedTime,
+                                                      boolean isActivatePaymentsRequest,
+                                                      boolean isPaymentsActivated)
+      throws StorageFailedException
+  {
+    try {
+      MessageDatabase database = SignalDatabase.mms();
+      IncomingMediaMessage mediaMessage = new IncomingMediaMessage(senderRecipient.getId(),
+                                                                   content.getTimestamp(),
+                                                                   content.getServerReceivedTimestamp(),
+                                                                   receivedTime,
+                                                                   StoryType.NONE,
+                                                                   null,
+                                                                   false,
+                                                                   -1,
+                                                                   TimeUnit.SECONDS.toMillis(message.getExpiresInSeconds()),
+                                                                   false,
+                                                                   false,
+                                                                   content.isNeedsReceipt(),
+                                                                   Optional.empty(),
+                                                                   Optional.empty(),
+                                                                   Optional.empty(),
+                                                                   Optional.empty(),
+                                                                   Optional.empty(),
+                                                                   Optional.empty(),
+                                                                   Optional.empty(),
+                                                                   Optional.empty(),
+                                                                   content.getServerUuid(),
+                                                                   null,
+                                                                   isActivatePaymentsRequest,
+                                                                   isPaymentsActivated);
+
+      Optional<InsertResult>     insertResult     = database.insertSecureDecryptedMessageInbox(mediaMessage, -1);
+      if (smsMessageId.isPresent()) {
+        SignalDatabase.sms().deleteMessage(smsMessageId.get());
+      }
+
+      if (insertResult.isPresent()) {
+        return new MessageId(insertResult.get().getMessageId(), true);
+      }
+    } catch (MmsException e) {
+      throw new StorageFailedException(e, content.getSender().getIdentifier(), content.getSenderDevice());
+    }
+    return null;
+  }
 
   /**
    * @param sideEffect True if the event is side effect of a different message, false if the message itself was an expiration update.
@@ -862,7 +918,9 @@ public final class MessageContentProcessor {
                                                                    Optional.empty(),
                                                                    Optional.empty(),
                                                                    content.getServerUuid(),
-                                                                   null);
+                                                                   null,
+                                                                   false,
+                                                                   false);
 
       Optional<InsertResult> insertResult = database.insertSecureDecryptedMessageInbox(mediaMessage, -1);
 
@@ -1423,7 +1481,9 @@ public final class MessageContentProcessor {
                                                                    Optional.empty(),
                                                                    Optional.empty(),
                                                                    content.getServerUuid(),
-                                                                   null);
+                                                                   null,
+                                                                   false,
+                                                                   false);
 
       insertResult = database.insertSecureDecryptedMessageInbox(mediaMessage, -1);
 
@@ -1587,7 +1647,9 @@ public final class MessageContentProcessor {
                                                                    Optional.empty(),
                                                                    Optional.empty(),
                                                                    content.getServerUuid(),
-                                                                   null);
+                                                                   null,
+                                                                   false,
+                                                                   false);
 
       Optional<InsertResult> insertResult = database.insertSecureDecryptedMessageInbox(mediaMessage, -1);
 
@@ -1690,7 +1752,9 @@ public final class MessageContentProcessor {
                                                                    getMentions(message.getMentions()),
                                                                    Optional.empty(),
                                                                    content.getServerUuid(),
-                                                                   null);
+                                                                   null,
+                                                                   false,
+                                                                   false);
 
       Optional<InsertResult> insertResult = database.insertSecureDecryptedMessageInbox(mediaMessage, -1);
 
@@ -1768,7 +1832,9 @@ public final class MessageContentProcessor {
                                                                    Optional.empty(),
                                                                    Optional.empty(),
                                                                    content.getServerUuid(),
-                                                                   giftBadge);
+                                                                   giftBadge,
+                                                                   false,
+                                                                   false);
 
       insertResult = database.insertSecureDecryptedMessageInbox(mediaMessage, -1);
     } catch (MmsException e) {
@@ -1832,7 +1898,9 @@ public final class MessageContentProcessor {
                                                                    mentions,
                                                                    sticker,
                                                                    content.getServerUuid(),
-                                                                   null);
+                                                                   null,
+                                                                   false,
+                                                                   false);
 
       insertResult = database.insertSecureDecryptedMessageInbox(mediaMessage, -1);
 

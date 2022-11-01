@@ -544,7 +544,23 @@ public final class ConversationUpdateItem extends FrameLayout
       });
 
       actionButton.setText(R.string.ConversationActivity__invite_to_signal);
-    } else {
+    } else if (conversationMessage.getMessageRecord().isRequestToActivatePayments() && !conversationMessage.getMessageRecord().isOutgoing() && !SignalStore.paymentsValues().mobileCoinPaymentsEnabled()) {
+      actionButton.setText(R.string.ConversationUpdateItem_activate_payments);
+      actionButton.setVisibility(VISIBLE);
+      actionButton.setOnClickListener(v -> {
+        if (batchSelected.isEmpty() && eventListener != null) {
+          eventListener.onActivatePaymentsClicked();
+        }
+      });
+    } else if (conversationMessage.getMessageRecord().isPaymentsActivated() && !conversationMessage.getMessageRecord().isOutgoing()) {
+      actionButton.setText(R.string.ConversationUpdateItem_send_payment);
+      actionButton.setVisibility(VISIBLE);
+      actionButton.setOnClickListener(v -> {
+        if (batchSelected.isEmpty() && eventListener != null) {
+          eventListener.onSendPaymentClicked(conversationMessage.getMessageRecord().getIndividualRecipient().getId());
+        }
+      });
+    } else{
       actionButton.setVisibility(GONE);
       actionButton.setOnClickListener(null);
     }

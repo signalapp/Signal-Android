@@ -78,6 +78,7 @@ fun Cursor.readToSingleLong(defaultValue: Long = 0): Long {
   }
 }
 
+@JvmOverloads
 inline fun <T> Cursor.readToList(predicate: (T) -> Boolean = { true }, mapper: (Cursor) -> T): List<T> {
   val list = mutableListOf<T>()
   use {

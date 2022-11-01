@@ -12,6 +12,7 @@ import com.google.android.mms.pdu_alt.NotificationInd;
 
 import net.zetetic.database.sqlcipher.SQLiteStatement;
 
+import org.signal.core.util.CursorExtensionsKt;
 import org.signal.core.util.CursorUtil;
 import org.signal.core.util.SQLiteDatabaseExtensionsKt;
 import org.signal.core.util.SqlUtil;
@@ -515,6 +516,15 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns,
       }
     }
     return data;
+  }
+
+  public List<Long> getIncomingPaymentRequestThreads() {
+    Cursor cursor = SQLiteDatabaseExtensionsKt.select(getReadableDatabase(), "DISTINCT " + THREAD_ID)
+        .from(getTableName())
+        .where("(" + getTypeField() + " & " + Types.BASE_TYPE_MASK + ") = " + Types.BASE_INBOX_TYPE + " AND (" + getTypeField() + " & ?) != 0", Types.SPECIAL_TYPE_ACTIVATE_PAYMENTS_REQUEST)
+        .run();
+
+    return CursorExtensionsKt.readToList(cursor, c -> CursorUtil.requireLong(c, THREAD_ID));
   }
 
   @Override

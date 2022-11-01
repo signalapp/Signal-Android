@@ -46,6 +46,7 @@ import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.ProofRequiredException;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
+import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -212,6 +213,7 @@ public class PushMediaSendJob extends PushSendJob {
       List<SharedContact>                        sharedContacts      = getSharedContactsFor(message);
       List<SignalServicePreview>                 previews            = getPreviewsFor(message);
       SignalServiceDataMessage.GiftBadge         giftBadge           = getGiftBadgeFor(message);
+      SignalServiceDataMessage.Payment           payment             = getPaymentActivation(message);
       SignalServiceDataMessage.Builder           mediaMessageBuilder = SignalServiceDataMessage.newBuilder()
                                                                                                .withBody(message.getBody())
                                                                                                .withAttachments(serviceAttachments)
@@ -223,7 +225,8 @@ public class PushMediaSendJob extends PushSendJob {
                                                                                                .withSharedContacts(sharedContacts)
                                                                                                .withPreviews(previews)
                                                                                                .withGiftBadge(giftBadge)
-                                                                                               .asExpirationUpdate(message.isExpirationUpdate());
+                                                                                               .asExpirationUpdate(message.isExpirationUpdate())
+                                                                                               .withPayment(payment);
 
       if (message.getParentStoryId() != null) {
         try {
@@ -275,6 +278,22 @@ public class PushMediaSendJob extends PushSendJob {
       throw new UndeliverableMessageException(e);
     } catch (ServerRejectedException e) {
       throw new UndeliverableMessageException(e);
+    }
+  }
+
+  private SignalServiceDataMessage.Payment getPaymentActivation(OutgoingMediaMessage message) {
+    SignalServiceProtos.DataMessage.Payment.Activation.Type type = null;
+
+    if (message.isRequestToActivatePayments()) {
+      type = SignalServiceProtos.DataMessage.Payment.Activation.Type.REQUEST;
+    } else if (message.isPaymentsActivated()) {
+      type = SignalServiceProtos.DataMessage.Payment.Activation.Type.ACTIVATED;
+    }
+
+    if (type != null) {
+      return new SignalServiceDataMessage.Payment(null, new SignalServiceDataMessage.PaymentActivation(type));
+    } else {
+      return null;
     }
   }
 
