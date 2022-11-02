@@ -8,7 +8,7 @@ import com.mobilecoin.lib.exceptions.AttestationException
  * This is to ease the addition of new service configurations moving forward, which simply need a new ServiceConfig object
  * to be added to the given list.
  */
-class VerifierFactory(private val hardeningAdvisories: Array<String>, private vararg val serviceConfigs: ServiceConfig) {
+class VerifierFactory(private vararg val serviceConfigs: ServiceConfig) {
 
   @Throws(AttestationException::class)
   fun createConsensusVerifier(): Verifier {
@@ -33,7 +33,7 @@ class VerifierFactory(private val hardeningAdvisories: Array<String>, private va
   @Throws(AttestationException::class)
   private fun createVerifier(getConfigValue: (ServiceConfig) -> ByteArray): Verifier {
     return serviceConfigs.fold(Verifier()) { verifier, config ->
-      verifier.withMrEnclave(getConfigValue(config), null, hardeningAdvisories)
+      verifier.withMrEnclave(getConfigValue(config), null, config.hardeningAdvisories)
     }
   }
 }

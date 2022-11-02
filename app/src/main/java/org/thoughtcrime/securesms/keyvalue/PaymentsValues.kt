@@ -223,7 +223,6 @@ internal class PaymentsValues internal constructor(store: KeyValueStore) : Signa
     return enclaveFailure
   }
 
-
   fun showAboutMobileCoinInfoCard(): Boolean {
     return store.getBoolean(SHOW_ABOUT_MOBILE_COIN_INFO_CARD, true)
   }

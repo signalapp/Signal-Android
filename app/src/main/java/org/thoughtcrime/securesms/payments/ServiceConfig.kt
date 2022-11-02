@@ -10,7 +10,8 @@ class ServiceConfig(
   consensus: String,
   report: String,
   ledger: String,
-  view: String
+  view: String,
+  val hardeningAdvisories: Array<String>
 ) {
   val consensus: ByteArray = Hex.toByteArray(consensus)
   val report: ByteArray = Hex.toByteArray(report)

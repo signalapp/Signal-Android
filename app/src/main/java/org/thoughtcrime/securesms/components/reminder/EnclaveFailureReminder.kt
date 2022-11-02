@@ -3,14 +3,15 @@ package org.thoughtcrime.securesms.components.reminder
 import android.content.Context
 import android.view.View
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.PlayStoreUtil
 
 /**
  * Banner to update app to the latest version because of enclave failure
  */
-class EnclaveFailureReminder(context: Context) : Reminder(null,
-        context.getString(R.string.EnclaveFailureReminder_update_signal)) {
+class EnclaveFailureReminder(context: Context) : Reminder(
+  null,
+  context.getString(R.string.EnclaveFailureReminder_update_signal)
+) {
 
   init {
     addAction(Action(context.getString(R.string.ExpiredBuildReminder_update_now), R.id.reminder_action_update_now))
@@ -20,6 +21,6 @@ class EnclaveFailureReminder(context: Context) : Reminder(null,
   override fun isDismissable(): Boolean = false
 
   override fun getImportance(): Importance {
-      return Importance.TERMINAL
+    return Importance.TERMINAL
   }
 }
