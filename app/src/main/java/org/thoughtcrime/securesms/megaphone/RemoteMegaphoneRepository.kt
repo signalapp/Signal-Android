@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.megaphone.RemoteMegaphoneRepository.Action
 import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.LocaleFeatureFlags
 import org.thoughtcrime.securesms.util.PlayServicesUtil
 import org.thoughtcrime.securesms.util.VersionTracker
@@ -102,6 +103,7 @@ object RemoteMegaphoneRepository {
   private fun checkCondition(conditionalId: String): Boolean {
     return when (conditionalId) {
       "standard_donate" -> shouldShowDonateMegaphone()
+      "internal_user" -> FeatureFlags.internalUser()
       else -> false
     }
   }
