@@ -588,7 +588,7 @@ class RecipientDatabaseTest_getAndPossiblyMerge {
   }
 
   private fun mmsMessage(sender: RecipientId, time: Long = 0, body: String = "", groupId: Optional<GroupId> = Optional.empty()): IncomingMediaMessage {
-    return IncomingMediaMessage(sender, groupId, body, time, time, time, emptyList(), 0, 0, false, false, true, Optional.empty())
+    return IncomingMediaMessage(sender, groupId, body, time, time, time, emptyList(), 0, 0, false, false, true, Optional.empty(), false, false)
   }
 
   private fun identityKey(value: Byte): IdentityKey {

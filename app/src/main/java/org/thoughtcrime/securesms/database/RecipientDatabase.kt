@@ -2466,7 +2466,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
         changeSet.id.recipientId
       }
       is PnpIdResolver.PnpInsert -> {
-        val id: Long = writableDatabase.insert(TABLE_NAME, null, buildContentValuesForPnpInsert(changeSet.id.e164, changeSet.id.pni, changeSet.id.aci))
+        val id: Long = writableDatabase.insert(TABLE_NAME, null, buildContentValuesForNewUser(changeSet.id.e164, changeSet.id.pni, changeSet.id.aci))
         RecipientId.from(id)
       }
     }
@@ -3632,20 +3632,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     check(writableDatabase.inTransaction()) { "Must be in a transaction!" }
   }
 
-  private fun buildContentValuesForNewUser(e164: String?, serviceId: ServiceId?): ContentValues {
-    val values = ContentValues()
-    values.put(PHONE, e164)
-    if (serviceId != null) {
-      values.put(SERVICE_ID, serviceId.toString().lowercase())
-      values.put(REGISTERED, RegisteredState.REGISTERED.id)
-      values.put(UNREGISTERED_TIMESTAMP, 0)
-      values.put(STORAGE_SERVICE_ID, Base64.encodeBytes(StorageSyncHelper.generateKey()))
-      values.put(AVATAR_COLOR, AvatarColor.random().serialize())
-    }
-    return values
-  }
-
-  private fun buildContentValuesForPnpInsert(e164: String?, pni: PNI?, aci: ACI?): ContentValues {
+  private fun buildContentValuesForNewUser(e164: String?, pni: PNI?, aci: ACI?): ContentValues {
     check(e164 != null || pni != null || aci != null) { "Must provide some sort of identifier!" }
 
     val values = contentValuesOf(
@@ -3675,7 +3662,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       }
 
       if (FeatureFlags.phoneNumberPrivacy()) {
-        put(PNI_COLUMN, contact.pni.toString())
+        put(PNI_COLUMN, contact.pni.orElse(null)?.toString())
       }
 
       put(PHONE, contact.number.orElse(null))
