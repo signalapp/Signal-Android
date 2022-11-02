@@ -11,7 +11,9 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.animation.addListener
 import androidx.core.widget.addTextChangedListener
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.ViewUtil
+import org.thoughtcrime.securesms.util.setIncognitoKeyboardEnabled
 import org.thoughtcrime.securesms.util.visible
 
 /**
@@ -38,6 +40,8 @@ class Material3SearchToolbar @JvmOverloads constructor(
 
     close.setOnClickListener { collapse() }
     clear.setOnClickListener { input.setText("") }
+
+    input.setIncognitoKeyboardEnabled(TextSecurePreferences.isIncognitoKeyboardEnabled(context))
 
     input.addTextChangedListener(afterTextChanged = {
       clear.visible = !it.isNullOrBlank()

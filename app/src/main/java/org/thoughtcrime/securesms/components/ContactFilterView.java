@@ -20,7 +20,9 @@ import androidx.annotation.StringRes;
 import androidx.core.widget.TextViewCompat;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.util.EditTextExtensionsKt;
 import org.thoughtcrime.securesms.util.ServiceUtil;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 public final class ContactFilterView extends FrameLayout {
@@ -51,6 +53,8 @@ public final class ContactFilterView extends FrameLayout {
     this.dialpadToggle   = findViewById(R.id.search_dialpad);
     this.clearToggle     = findViewById(R.id.search_clear);
     this.toggleContainer = findViewById(R.id.toggle_container);
+
+    EditTextExtensionsKt.setIncognitoKeyboardEnabled(searchText, TextSecurePreferences.isIncognitoKeyboardEnabled(context));
 
     this.keyboardToggle.setOnClickListener(new View.OnClickListener() {
       @Override
