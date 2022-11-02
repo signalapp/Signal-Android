@@ -129,7 +129,7 @@ class GatewaySelectorBottomSheet : DSLSettingsBottomSheetFragment() {
     space(6.dp)
     noPadTextPref(
       title = DSLSettingsText.from(
-        getString(R.string.GatewaySelectorBottomSheet__get_a_s_badge_for_d_days, args.request.badge.name, 30),
+        resources.getQuantityString(R.plurals.GatewaySelectorBottomSheet__get_a_s_badge_for_d_days, 30, args.request.badge.name, 30),
         DSLSettingsText.CenterModifier,
         DSLSettingsText.BodyLargeModifier,
         DSLSettingsText.ColorModifier(ContextCompat.getColor(requireContext(), R.color.signal_colorOnSurfaceVariant))
