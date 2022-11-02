@@ -105,6 +105,14 @@
     <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">ছবি, ভিডিও অথবা অডিও সংযুক্ত করার জন্য Signal এর স্টোরেজ ব্যাবহারের অনুমতির প্রয়োজন কিন্তু এর উপর স্থায়ী নিষেধাজ্ঞা জারি করা হয়েছে। দয়া করে আ্যপ সেটিংস-এ যান, \"অনুমতি\" নির্বাচন করুন এবং \"স্টোরেজ\" সক্ষম করুন।</string>
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">পরিচিতিসমূহের তথ্য সংযুক্ত করার জন্য Signal এর পরিচিতিসমূহ ব্যাবহারের অনুমতির প্রয়োজন কিন্তু এর উপর স্থায়ী নিষেধাজ্ঞা জারি করা হয়েছে। দয়া করে আ্যপ সেটিংসে যান, \"অনুমতি\" নির্বাচন করুন এবং \"পরিচিতিসমূহ\" সক্ষম করুন।</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">স্থান সংযুক্ত করার জন্য Signal এর স্থান ব্যাবহারের অনুমতির প্রয়োজন কিন্তু এর উপর স্থায়ী নিষেধাজ্ঞা জারি করা হয়েছে। দয়া করে আ্যপ সেটিংসে যান, \"অনুমতি\" নির্বাচন করুন এবং \"স্থান\" সক্ষম করুন।</string>
+    <!-- Alert dialog title to show the recipient has not activated payments -->
+    <string name="AttachmentManager__not_activated_payments">%1$s hasn\\’t activated Payments </string>
+    <!-- Alert dialog description to send the recipient a request to activate payments -->
+    <string name="AttachmentManager__request_to_activate_payments">Do you want to send them a request to activate Payments?</string>
+    <!-- Alert dialog button to send request -->
+    <string name="AttachmentManager__send_request">Send request</string>
+    <!-- Alert dialog button to cancel dialog -->
+    <string name="AttachmentManager__cancel">Cancel</string>
 
     <!-- AttachmentUploadJob -->
     <string name="AttachmentUploadJob_uploading_media">মিডিয়া আপলোড হচ্ছে…</string>
@@ -152,6 +160,8 @@
     <string name="CreditCardFragment__year_required">বছর প্রয়োজন</string>
     <!-- Error displayed under the card expiry text field when the expiry year is invalid -->
     <string name="CreditCardFragment__invalid_year">অকার্যকর বছর</string>
+    <!-- Button label to confirm credit card input and proceed with payment -->
+    <string name="CreditCardFragment__continue">Continue</string>
 
     <!-- BlockUnblockDialog -->
     <string name="BlockUnblockDialog_block_and_leave_s">ব্লক করুন ও ছেড়ে যান %1$s?</string>
@@ -1409,6 +1419,14 @@
     <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">%1$s-এর সাথে আপনার ম্যাসেজের ইতিহাস এবং তাদের নম্বর %2$s একত্রিত করা হয়েছে।</string>
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">%1$s-এর সাথে আপনার ম্যাসেজের ইতিহাস এবং তাদের সাথে সম্পর্কিত অন্য একটি চ্যাট একত্রিত করা হয়েছে।</string>
+    <!-- Message to notify sender that activate payments request has been sent to the recipient -->
+    <string name="MessageRecord_you_sent_request">You sent %1$s a request to activate Payments</string>
+    <!-- Request message from recipient to activate payments -->
+    <string name="MessageRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments. Only send payments to people you trust.</string>
+    <!-- Message to inform user that payments was activated-->
+    <string name="MessageRecord_you_activated_payments">You activated Payments</string>
+    <!-- Message to inform sender that recipient can now accept payments -->
+    <string name="MessageRecord_can_accept_payments">%1$s can now accept Payments</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s একটি গ্রুপ কল শুরু করেছে । %2$s</string>
@@ -1897,6 +1915,14 @@
     <string name="ThreadRecord_view_once_media">একবার দেখা যাবে এমন মিডিয়া</string>
     <string name="ThreadRecord_this_message_was_deleted">এই বার্তাটি মুছে ফেলা হয়েছে।</string>
     <string name="ThreadRecord_you_deleted_this_message">আপনি এই বার্তাটি মুছে দিয়েছিলেন।</string>
+    <!-- Displayed in the notification when the user sends a request to activate payments -->
+    <string name="ThreadRecord_you_sent_request">You sent a request to activate Payments</string>
+    <!-- Displayed in the notification when the recipient wants to activate payments -->
+    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments</string>
+    <!-- Displayed in the notification when the user activates payments -->
+    <string name="ThreadRecord_you_activated_payments">You activated Payments</string>
+    <!-- Displayed in the notification when the recipient can accept payments -->
+    <string name="ThreadRecord_can_accept_payments">%1$s can now accept Payments</string>
     <string name="ThreadRecord_s_is_on_signal">%1$s Signal এ যোগ দিয়েছেন!</string>
     <string name="ThreadRecord_disappearing_messages_disabled">অদৃশ্য হওয়া বার্তাগুলি অক্ষম করা হয়েছে</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">অদৃশ্য হয়ে যাওয়া বার্তার সময়টি %1$s এ সেট করা হয়েছে</string>
@@ -2253,6 +2279,11 @@
     <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">আপনি তাদের মেসেজ পাঠালে মেসেজ অদৃশ্য হওয়ার সময় %1$s-এ সেট করা হবে।</string>
     <!-- Update item button text to show to boost a feature -->
     <string name="ConversationUpdateItem_donate">অনুদান</string>
+    <!-- Update item button text to send payment -->
+    <string name="ConversationUpdateItem_send_payment">Send payment</string>
+    <!-- Update item button text to activate payments -->
+    <string name="ConversationUpdateItem_activate_payments">Activate payments</string>
+
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">চালু…. বিরতি</string>
@@ -2628,6 +2659,10 @@
     <string name="preferences__pressing_the_enter_key_will_send_text_messages">এন্টার কী টিপলে পাঠ্য বার্তা প্রেরণ করা হবে</string>
     <string name="preferences__pref_use_address_book_photos">অ্যাড্রেস বুকের ছবি ব্যবহার করুন</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">উপলভ্য থাকলে আপনার অ্যাড্রেস বুক থেকে পরিচিতির ছবিগুলো দেখান</string>
+    <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
+    <string name="preferences__pref_keep_muted_chats_archived">Keep Muted Chats Archived</string>
+    <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Muted chats that are archived will remain archived when a new message arrives.</string>
     <string name="preferences__generate_link_previews">লিঙ্কের প্রিভিউ তৈরি করুন</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">আপনার পাঠানো মেসেজের জন্য ওয়েবসাইটগুলি থেকে সরাসরি লিঙ্কের প্রিভিউ পুনরুদ্ধার করুন।</string>
     <string name="preferences__choose_identity">পরিচয় বাছুন</string>
@@ -3870,7 +3905,10 @@
     <!-- Title in save recovery phrase screen -->
     <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">পুনরুদ্ধার করার বাক্যটি সেভ করুন</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">রিকভারি ফ্রেজটি লিখুন</string>
-    <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">আপনি Signal-এর পিন নিশ্চিত করে Signal পুনরায় ইনস্টল করলে আপনার ব্যালেন্স স্বয়ংক্রিয়ভাবে পুনরুদ্ধার হবে। এছাড়াও আপনি রিকভার করা বাক্যাংশ ব্যবহার করেও আপনার ব্যালেন্স পুনরুদ্ধার করতে পারেন, যা %1$d-শব্দ বিশিষ্ট যা কেবল আপনি জানেন। এটি লিখে একটি নিরাপদ স্থানে সেভ করুন।</string>
+    <plurals name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">
+        <item quantity="one">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
+        <item quantity="other">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
+    </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">আপনার একটি ব্যালেন্স পেয়েছেন! আপনার পুনরুদ্ধার করার বাক্যটি সেভ করার সময় হয়েছে—একটি 24-শব্দের কী আপনি আপনার ব্যালেন্স পুনরুদ্ধার করতে ব্যবহার করতে পারেন।</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
@@ -4469,7 +4507,7 @@
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">একজন মাসিক সাসটেইনার হয়ে উঠুন।</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">প্রোফাইলে প্রদর্শন করুন</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">বৈশিষ্ট্যযুক্ত ব্যাজ তৈরি করুন</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">শেষ</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">Continue</string>
     <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">যখন আপনার একাধিক ব্যাজ থাকে, আপনি অন্যদের আপনার প্রোফাইলে দেখার জন্য বৈশিষ্ট্যের একটি বেছে নিতে পারেন।</string>
 
     <string name="BecomeASustainerFragment__get_badges">সিগন্যাল সমর্থন করে আপনার প্রোফাইলের জন্য ব্যাজ পান।</string>
@@ -5540,7 +5578,10 @@
     <!-- Sheet title when giving a one-time donation -->
     <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Signal-এ %1$s অনুদান দিন</string>
     <!-- Sheet summary when giving a one-time donation -->
-    <string name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">%2$d দিনের জন্য একটি %1$s ব্যাজ নিন</string>
+    <plurals name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">
+        <item quantity="one">Get a %1$s badge for %2$d day</item>
+        <item quantity="other">Get a %1$s badge for %2$d days</item>
+    </plurals>
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">ক্রেডিট বা ডেবিট কার্ড</string>
 

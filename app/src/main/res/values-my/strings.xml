@@ -104,6 +104,14 @@
     <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">ဓာတ်ပုံ၊ ဗီဒီယို သို့မဟုတ် အသံ ပို့ရန်အတွက် သိုလှောင်မှုခွင့်ပြုချက်ကို Signal မှ ရရန် လိုအပ်သည်။ သို့သော် အမြဲတမ်းအတွက် ခွင့်မပြုပါဟု ရွေးထားပြီး ဖြစ်နေသဖြင့် အက်ပ် စက်တင်မီနူးသို့ သွား၍ ခွင့်ပြုချက်များကို ရွေးချယ်ကာ သိုလှောင်မှုကို ခွင့်ပြုပေးပါ။</string>
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">အဆက်အသွယ်များ၏ အချက်အလက်များကို ပို့နိုင်ရန်အတွက် အဆက်အသွယ်များ ခွင့်ပြုချက်ကို Signal မှ ရရန်လိုအပ်သည်။ သို့သော် အမြဲတမ်းအတွက် ခွင့်မပြုပါဟုရွေးထားပြီး ဖြစ်နေသဖြင့် အက်ပ် စက်တင်မီနူးသို့သွား၍ ခွင့်ပြုချက်များကို ရွေးချယ်ကာ အဆက်အသွယ်များကို ခွင့်ပြုပေးပါ။</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">မိမိ၏ တည်နေရာကို ပို့နိုင်ရန် တည်နေရာ ခွင့်ပြုချက်ကို Signal မှ ရရန်လိုအပ်သည်။ သို့သော် အမြဲတမ်းအတွက် ခွင့်မပြုပါဟု ရွေးထားပြီး ဖြစ်နေသဖြင့် အက်ပ် စက်တင်မီနူးသို့သွား၍ ခွင့်ပြုချက်များကို ရွေးချယ်ကာ တည်နေရာကို ခွင့်ပြုပေးပါ။</string>
+    <!-- Alert dialog title to show the recipient has not activated payments -->
+    <string name="AttachmentManager__not_activated_payments">%1$s hasn\\’t activated Payments </string>
+    <!-- Alert dialog description to send the recipient a request to activate payments -->
+    <string name="AttachmentManager__request_to_activate_payments">Do you want to send them a request to activate Payments?</string>
+    <!-- Alert dialog button to send request -->
+    <string name="AttachmentManager__send_request">Send request</string>
+    <!-- Alert dialog button to cancel dialog -->
+    <string name="AttachmentManager__cancel">Cancel</string>
 
     <!-- AttachmentUploadJob -->
     <string name="AttachmentUploadJob_uploading_media">မီဒီယာဖိုင် တင်နေသည်…</string>
@@ -151,6 +159,8 @@
     <string name="CreditCardFragment__year_required">နှစ် လိုအပ်ပါသည်</string>
     <!-- Error displayed under the card expiry text field when the expiry year is invalid -->
     <string name="CreditCardFragment__invalid_year">နှစ် မမှန်ကန်ပါ</string>
+    <!-- Button label to confirm credit card input and proceed with payment -->
+    <string name="CreditCardFragment__continue">Continue</string>
 
     <!-- BlockUnblockDialog -->
     <string name="BlockUnblockDialog_block_and_leave_s">%1$s ကို ဘလော့ပြီး ထွက်မည်လား။</string>
@@ -1351,6 +1361,14 @@
     <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">%1$s နှင့် သင်၏ မက်ဆေ့ချ်မှတ်တမ်း၊ ၎င်းတို့၏ နံပါတ် %2$s တို့ကို ပေါင်းစည်းထားပါသည်။</string>
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">%1$s နှင့် သင်၏ မက်ဆေ့ချ်မှတ်တမ်း၊ ၎င်းတို့နှင့် သက်ဆိုင်သည့် အခြား ချက်(တ်)ကို ပေါင်းစည်းထားပါသည်။</string>
+    <!-- Message to notify sender that activate payments request has been sent to the recipient -->
+    <string name="MessageRecord_you_sent_request">You sent %1$s a request to activate Payments</string>
+    <!-- Request message from recipient to activate payments -->
+    <string name="MessageRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments. Only send payments to people you trust.</string>
+    <!-- Message to inform user that payments was activated-->
+    <string name="MessageRecord_you_activated_payments">You activated Payments</string>
+    <!-- Message to inform sender that recipient can now accept payments -->
+    <string name="MessageRecord_can_accept_payments">%1$s can now accept Payments</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s သည် အဖွဲ့လိုက်ခေါ်ဆိုမှု စခဲ့ပါသည် · %2$s</string>
@@ -1824,6 +1842,14 @@
     <string name="ThreadRecord_view_once_media">တစ်ခါကြည့် မီဒီယာ</string>
     <string name="ThreadRecord_this_message_was_deleted">၎င်းမက်ဆေ့ချ်ကို ဖျက်ခဲ့ပါသည်။</string>
     <string name="ThreadRecord_you_deleted_this_message">သင်သည် ဤမက်ဆေ့ချ်ကို ဖျက်လိုက်ပါပြီ။</string>
+    <!-- Displayed in the notification when the user sends a request to activate payments -->
+    <string name="ThreadRecord_you_sent_request">You sent a request to activate Payments</string>
+    <!-- Displayed in the notification when the recipient wants to activate payments -->
+    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments</string>
+    <!-- Displayed in the notification when the user activates payments -->
+    <string name="ThreadRecord_you_activated_payments">You activated Payments</string>
+    <!-- Displayed in the notification when the recipient can accept payments -->
+    <string name="ThreadRecord_can_accept_payments">%1$s can now accept Payments</string>
     <string name="ThreadRecord_s_is_on_signal">%1$s က Signal တွင်ရှိသည်!</string>
     <string name="ThreadRecord_disappearing_messages_disabled">မက်ဆေ့ချ်များ ပျောက်ကွယ်ခြင်းကို ပိတ်ထားပါသည်</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">စာများသည် %1$s အတွင်းပျောက်သွားရန် ချိန်ညှိထားသည်။</string>
@@ -2175,6 +2201,11 @@
     <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">၎င်းတို့ထံ မက်ဆေ့ချ် ပို့ချိန်တွင် ပျောက်သွားမည့် မက်ဆေ့ချ် အချိန်ကို %1$s အဖြစ် သတ်မှတ်သွားပါမည်။</string>
     <!-- Update item button text to show to boost a feature -->
     <string name="ConversationUpdateItem_donate">လှူဒါန်းပါ</string>
+    <!-- Update item button text to send payment -->
+    <string name="ConversationUpdateItem_send_payment">Send payment</string>
+    <!-- Update item button text to activate payments -->
+    <string name="ConversationUpdateItem_activate_payments">Activate payments</string>
+
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">ဖွင့်မယ် … ခေတ္တရပ်မယ်</string>
@@ -2542,6 +2573,10 @@
     <string name="preferences__pressing_the_enter_key_will_send_text_messages">စာပို့ရန်အတွက် Enter ကို နှိပ်ခြင်း</string>
     <string name="preferences__pref_use_address_book_photos">လိပ်စာစာအုပ်ဓာတ်ပုံများကို သုံးပါ</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">ဖြစ်နိုင်လျှင် စနစ်ထဲရှိ အဆက်အသွယ်များ၏ ရုပ်ပုံများကို ပြသပါ</string>
+    <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
+    <string name="preferences__pref_keep_muted_chats_archived">Keep Muted Chats Archived</string>
+    <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Muted chats that are archived will remain archived when a new message arrives.</string>
     <string name="preferences__generate_link_previews">ကြိုတင်ကြည့်ရှုရန် လင့်ခ်များ ထုတ်လုပ်ပါ</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">သင်ပေးပို့သော မက်ဆေ့ချ်များ အတွက် ဝဘ်ဆိုဒ်များမှ ကြိုတင်ကြည့်ရှုနိုင်သည့် လင့်ခ်များကို တိုက်ရိုက်ရယူပါ။</string>
     <string name="preferences__choose_identity">အမှတ်အသားရွေးရန်</string>
@@ -3773,7 +3808,9 @@
     <!-- Title in save recovery phrase screen -->
     <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">ပြန်လည်ရယူရေး စကားစုကို သိမ်းရန်</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">ပြန်လည်ရယူ စာပုဒ်တိုကို ရိုက်ထည့်ပါ</string>
-    <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Signal ပြန်တင်သွင်းသည့်အချိန်တွင် သင်မှသင့် Signal ပင်နံပါတ်ကို အတည်ပြုခဲ့လျှင် သင့် လက်ကျန်ငွေကို အလိုအလျောက်ပြန်လည် ရရှိပါမည်။ ပြန်လည်ရယူရန် စာပုဒ်တိုဖြင့်လည်း သင့်လက်ကျန်ငွေကို ပြန်ရယူနိုင်ပါသည်။ ၎င်းသည် သင့်အတွက်သာ ထူးခြားသာ စာလုံး %1$d လုံး ရှိသော စာပုဒ်တိုဖြစ်ပါသည်။ ရေးသားမှတ်ထားပြီး လုံခြုံသောတစ်နေရာတွင် ဝှက်ထားပါ။</string>
+    <plurals name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">
+        <item quantity="other">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
+    </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">လက်ကျန်ငွေ ရရှိထားပါသည်။ သင်၏ လက်ကျန်ငွေကို ပြန်လည်ရယူရန် သုံးနိုင်သည့် ပြန်လည်ရယူရေး စကားစု—စာလုံး 24 လုံးပါ ကီး ကို သိမ်းရန် အချိန်ကျပါပြီ။</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
@@ -4366,7 +4403,7 @@
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">လစဉ် ပါဝင်အားဖြည့်သူ ဖြစ်နိုင်ပါသည်။</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">ပရိုဖိုင်တွင် ပြသရန်</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">အသားပေးထားသည့် ဘဲ့ဂျ် ပြုလုပ်ရန်</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">ပြီးပါပြီ</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">Continue</string>
     <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">သင့်တွင် ဘဲ့ဂျ်တစ်ခုထက် ပိုရှိပါက သင့်ပရိုဖိုင်တွင် အခြားသူများ မြင်နိုင်မည့် အသားပေးဖော်ပြလိုသော ဘဲ့ဂျ်ကို ရွေးနိုင်ပါသည်။</string>
 
     <string name="BecomeASustainerFragment__get_badges">Signal ကို ပံ့ပိုးခြင်းဖြင့် သင့်ပရိုဖိုင်အတွက် ဘဲ့ဂျ်များကို ရယူပါ။</string>
@@ -5418,7 +5455,9 @@
     <!-- Sheet title when giving a one-time donation -->
     <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Signal သို့ %1$s လှူဒါန်းရန်</string>
     <!-- Sheet summary when giving a one-time donation -->
-    <string name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">%1$s ဘဲ့ဂျ်ကို %2$d ရက်စာ ရယူပါ</string>
+    <plurals name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">
+        <item quantity="other">Get a %1$s badge for %2$d days</item>
+    </plurals>
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">ခရက်ဒစ် သို့မဟုတ် ဒက်ဘစ်ကတ်</string>
 
