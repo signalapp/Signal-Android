@@ -39,4 +39,11 @@ class ChatsSettingsRepository {
       StorageSyncHelper.scheduleSyncForDataChange()
     }
   }
+
+  fun syncKeepMutedChatsArchivedState() {
+    SignalExecutors.BOUNDED.execute {
+      SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
+      StorageSyncHelper.scheduleSyncForDataChange()
+    }
+  }
 }

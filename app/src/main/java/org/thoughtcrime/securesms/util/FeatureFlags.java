@@ -105,6 +105,7 @@ public final class FeatureFlags {
   private static final String SMS_EXPORT_MEGAPHONE_DELAY_DAYS   = "android.smsExport.megaphoneDelayDays.2";
   public  static final String CREDIT_CARD_PAYMENTS              = "android.credit.card.payments";
   private static final String PAYMENTS_REQUEST_ACTIVATE_FLOW    = "android.payments.requestActivateFlow";
+  private static final String KEEP_MUTED_CHATS_ARCHIVED         = "android.keepMutedChatsArchived";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -161,7 +162,8 @@ public final class FeatureFlags {
       HIDE_CONTACTS,
       SMS_EXPORT_MEGAPHONE_DELAY_DAYS,
       CREDIT_CARD_PAYMENTS,
-      PAYMENTS_REQUEST_ACTIVATE_FLOW
+      PAYMENTS_REQUEST_ACTIVATE_FLOW,
+      KEEP_MUTED_CHATS_ARCHIVED
   );
 
   @VisibleForTesting
@@ -225,7 +227,8 @@ public final class FeatureFlags {
       STORIES,
       SMS_EXPORT_MEGAPHONE_DELAY_DAYS,
       CREDIT_CARD_PAYMENTS,
-      PAYMENTS_REQUEST_ACTIVATE_FLOW
+      PAYMENTS_REQUEST_ACTIVATE_FLOW,
+      KEEP_MUTED_CHATS_ARCHIVED
   );
 
   /**
@@ -576,6 +579,13 @@ public final class FeatureFlags {
   /** Whether client supports sending a request to another to activate payments */
   public static boolean paymentsRequestActivateFlow() {
     return getBoolean(PAYMENTS_REQUEST_ACTIVATE_FLOW, false);
+  }
+
+  /**
+   * Whether users can enable keeping conversations with incoming messages archived if the conversation is muted.
+   */
+  public static boolean keepMutedChatsArchived() {
+    return getBoolean(KEEP_MUTED_CHATS_ARCHIVED, false);
   }
 
   /** Only for rendering debug info. */

@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.database.MessageDatabase.InsertResult;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.IdentityRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.notifications.v2.ConversationId;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -112,7 +113,8 @@ public final class IdentityUtil {
 
       Log.i(TAG, "Inserting verified outbox...");
       SignalDatabase.sms().insertMessageOutbox(threadId, outgoing, false, time, null);
-      SignalDatabase.threads().update(threadId, true);
+      boolean keepThreadArchived = SignalStore.settings().shouldKeepMutedChatsArchived() && recipient.isMuted();
+      SignalDatabase.threads().update(threadId, !keepThreadArchived);
     }
   }
 

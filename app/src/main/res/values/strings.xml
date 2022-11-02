@@ -2664,6 +2664,10 @@
     <string name="preferences__pressing_the_enter_key_will_send_text_messages">Pressing the Enter key will send text messages</string>
     <string name="preferences__pref_use_address_book_photos">Use address book photos</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">Display contact photos from your address book if available</string>
+    <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
+    <string name="preferences__pref_keep_muted_chats_archived">Keep Muted Chats Archived</string>
+    <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Muted chats that are archived will remain archived when a new message arrives.</string>
     <string name="preferences__generate_link_previews">Generate link previews</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Retrieve link previews directly from websites for messages you send.</string>
     <string name="preferences__choose_identity">Choose identity</string>

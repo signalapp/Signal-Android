@@ -1979,24 +1979,26 @@ public class MmsDatabase extends MessageDatabase {
       return Optional.empty();
     }
 
-    boolean updateThread = retrieved.getStoryType() == StoryType.NONE;
-    long    messageId    = insertMediaMessage(threadId,
-                                              retrieved.getBody(),
-                                              retrieved.getAttachments(),
-                                              quoteAttachments,
-                                              retrieved.getSharedContacts(),
-                                              retrieved.getLinkPreviews(),
-                                              retrieved.getMentions(),
-                                              retrieved.getMessageRanges(),
-                                              contentValues,
-                                              null,
-                                              updateThread);
+    boolean updateThread       = retrieved.getStoryType() == StoryType.NONE;
+    boolean keepThreadArchived = SignalStore.settings().shouldKeepMutedChatsArchived() && Recipient.resolved(retrieved.getFrom()).isMuted();
+    long    messageId          = insertMediaMessage(threadId,
+                                                    retrieved.getBody(),
+                                                    retrieved.getAttachments(),
+                                                    quoteAttachments,
+                                                    retrieved.getSharedContacts(),
+                                                    retrieved.getLinkPreviews(),
+                                                    retrieved.getMentions(),
+                                                    retrieved.getMessageRanges(),
+                                                    contentValues,
+                                                    null,
+                                                    updateThread,
+                                                    !keepThreadArchived);
 
     boolean isNotStoryGroupReply = retrieved.getParentStoryId() == null || !retrieved.getParentStoryId().isGroupReply();
     if (!Types.isPaymentsActivated(mailbox) && !Types.isRequestToActivatePayments(mailbox) && !Types.isExpirationTimerUpdate(mailbox) && !retrieved.getStoryType().isStory() && isNotStoryGroupReply) {
       boolean incrementUnreadMentions = !retrieved.getMentions().isEmpty() && retrieved.getMentions().stream().anyMatch(m -> m.getRecipientId().equals(Recipient.self().getId()));
       SignalDatabase.threads().incrementUnread(threadId, 1, incrementUnreadMentions ? 1 : 0);
-      SignalDatabase.threads().update(threadId, true);
+      SignalDatabase.threads().update(threadId, !keepThreadArchived);
     }
 
     notifyConversationListeners(threadId);
@@ -2297,7 +2299,7 @@ public class MmsDatabase extends MessageDatabase {
 
     MentionUtil.UpdatedBodyAndMentions updatedBodyAndMentions = MentionUtil.updateBodyAndMentionsWithPlaceholders(message.getBody(), message.getMentions());
 
-    long messageId = insertMediaMessage(threadId, updatedBodyAndMentions.getBodyAsString(), message.getAttachments(), quoteAttachments, message.getSharedContacts(), message.getLinkPreviews(), updatedBodyAndMentions.getMentions(), null, contentValues, insertListener, false);
+    long messageId = insertMediaMessage(threadId, updatedBodyAndMentions.getBodyAsString(), message.getAttachments(), quoteAttachments, message.getSharedContacts(), message.getLinkPreviews(), updatedBodyAndMentions.getMentions(), null, contentValues, insertListener, false, false);
 
     if (message.getRecipient().isGroup()) {
       OutgoingGroupUpdateMessage outgoingGroupUpdateMessage = (message instanceof OutgoingGroupUpdateMessage) ? (OutgoingGroupUpdateMessage) message : null;
@@ -2371,7 +2373,8 @@ public class MmsDatabase extends MessageDatabase {
                                   @Nullable BodyRangeList messageRanges,
                                   @NonNull ContentValues contentValues,
                                   @Nullable InsertListener insertListener,
-                                  boolean updateThread)
+                                  boolean updateThread,
+                                  boolean unarchive)
       throws MmsException
   {
     SQLiteDatabase     db              = databaseHelper.getSignalWritableDatabase();
@@ -2443,7 +2446,7 @@ public class MmsDatabase extends MessageDatabase {
 
       if (updateThread) {
         SignalDatabase.threads().setLastScrolled(contentValuesThreadId, 0);
-        SignalDatabase.threads().update(threadId, true);
+        SignalDatabase.threads().update(threadId, unarchive);
       }
     }
   }

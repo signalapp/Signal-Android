@@ -742,8 +742,8 @@ public class SmsDatabase extends MessageDatabase {
 
         SignalDatabase.threads().incrementUnread(threadId, 1, 0);
       }
-
-      SignalDatabase.threads().update(threadId, true);
+      boolean keepThreadArchived = SignalStore.settings().shouldKeepMutedChatsArchived() && recipient.isMuted();
+      SignalDatabase.threads().update(threadId, !keepThreadArchived);
 
       db.setTransactionSuccessful();
     } finally {
@@ -820,7 +820,8 @@ public class SmsDatabase extends MessageDatabase {
         SignalDatabase.threads().incrementUnread(threadId, 1, 0);
       }
 
-      SignalDatabase.threads().update(threadId, true);
+      final boolean keepThreadArchived = SignalStore.settings().shouldKeepMutedChatsArchived() && recipient.isMuted();
+      SignalDatabase.threads().update(threadId, !keepThreadArchived);
 
       db.setTransactionSuccessful();
     } finally {
@@ -891,8 +892,8 @@ public class SmsDatabase extends MessageDatabase {
     if (unread) {
       SignalDatabase.threads().incrementUnread(threadId, 1, 0);
     }
-
-    SignalDatabase.threads().update(threadId, true);
+    boolean keepThreadArchived = SignalStore.settings().shouldKeepMutedChatsArchived() && Recipient.resolved(recipientId).isMuted();
+    SignalDatabase.threads().update(threadId, !keepThreadArchived);
 
     notifyConversationListeners(threadId);
     TrimThreadJob.enqueueAsync(threadId);
@@ -1281,7 +1282,8 @@ public class SmsDatabase extends MessageDatabase {
       }
 
       if (!silent) {
-        SignalDatabase.threads().update(threadId, true);
+        final boolean keepThreadArchived = SignalStore.settings().shouldKeepMutedChatsArchived() && recipient.isMuted();
+        SignalDatabase.threads().update(threadId, !keepThreadArchived);
       }
 
       if (message.getSubscriptionId() != -1) {
@@ -1324,7 +1326,8 @@ public class SmsDatabase extends MessageDatabase {
     long messageId = db.insert(TABLE_NAME, null, values);
 
     SignalDatabase.threads().incrementUnread(threadId, 1, 0);
-    SignalDatabase.threads().update(threadId, true);
+    boolean keepThreadArchived = SignalStore.settings().shouldKeepMutedChatsArchived() && Recipient.resolved(recipientId).isMuted();
+    SignalDatabase.threads().update(threadId, !keepThreadArchived);
 
     notifyConversationListeners(threadId);
 
@@ -1348,7 +1351,8 @@ public class SmsDatabase extends MessageDatabase {
     databaseHelper.getSignalWritableDatabase().insert(TABLE_NAME, null, values);
 
     SignalDatabase.threads().incrementUnread(threadId, 1, 0);
-    SignalDatabase.threads().update(threadId, true);
+    boolean keepThreadArchived = SignalStore.settings().shouldKeepMutedChatsArchived() && Recipient.resolved(recipientId).isMuted();
+    SignalDatabase.threads().update(threadId, !keepThreadArchived);
 
     notifyConversationListeners(threadId);
 
