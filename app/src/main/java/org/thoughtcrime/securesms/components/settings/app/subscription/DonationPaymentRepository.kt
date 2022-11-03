@@ -10,6 +10,8 @@ import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
 import org.signal.donations.GooglePayApi
 import org.signal.donations.StripeApi
+import org.signal.donations.StripeIntentAccessor
+import org.signal.donations.json.StripeIntentStatus
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource
 import org.thoughtcrime.securesms.database.RecipientDatabase
@@ -133,7 +135,7 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
     price: FiatMoney,
     badgeRecipient: RecipientId,
     badgeLevel: Long,
-  ): Single<StripeApi.PaymentIntent> {
+  ): Single<StripeIntentAccessor> {
     Log.d(TAG, "Creating payment intent for $price...", true)
 
     return stripeApi.createPaymentIntent(price, badgeLevel)
@@ -207,7 +209,7 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
 
   fun confirmPayment(
     paymentSource: StripeApi.PaymentSource,
-    paymentIntent: StripeApi.PaymentIntent,
+    paymentIntent: StripeIntentAccessor,
     badgeRecipient: RecipientId
   ): Single<StripeApi.Secure3DSAction> {
     val isBoost = badgeRecipient == Recipient.self().id
@@ -222,7 +224,7 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
 
   fun waitForOneTimeRedemption(
     price: FiatMoney,
-    paymentIntent: StripeApi.PaymentIntent,
+    paymentIntent: StripeIntentAccessor,
     badgeRecipient: RecipientId,
     additionalMessage: String?,
     badgeLevel: Long,
@@ -382,7 +384,7 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
     }
   }
 
-  override fun fetchPaymentIntent(price: FiatMoney, level: Long): Single<StripeApi.PaymentIntent> {
+  override fun fetchPaymentIntent(price: FiatMoney, level: Long): Single<StripeIntentAccessor> {
     Log.d(TAG, "Fetching payment intent from Signal service for $price... (Locale.US minimum precision: ${price.minimumUnitPrecisionString})")
     return Single
       .fromCallable {
@@ -392,13 +394,17 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
       }
       .flatMap(ServiceResponse<SubscriptionClientSecret>::flattenResult)
       .map {
-        StripeApi.PaymentIntent(it.id, it.clientSecret)
+        StripeIntentAccessor(
+          objectType = StripeIntentAccessor.ObjectType.PAYMENT_INTENT,
+          intentId = it.id,
+          intentClientSecret = it.clientSecret
+        )
       }.doOnSuccess {
         Log.d(TAG, "Got payment intent from Signal service!")
       }
   }
 
-  override fun fetchSetupIntent(): Single<StripeApi.SetupIntent> {
+  override fun fetchSetupIntent(): Single<StripeIntentAccessor> {
     Log.d(TAG, "Fetching setup intent from Signal service...")
     return Single.fromCallable { SignalStore.donationsValues().requireSubscriber() }
       .flatMap {
@@ -409,10 +415,32 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
         }
       }
       .flatMap(ServiceResponse<SubscriptionClientSecret>::flattenResult)
-      .map { StripeApi.SetupIntent(it.id, it.clientSecret) }
+      .map {
+        StripeIntentAccessor(
+          objectType = StripeIntentAccessor.ObjectType.SETUP_INTENT,
+          intentId = it.id,
+          intentClientSecret = it.clientSecret
+        )
+      }
       .doOnSuccess {
         Log.d(TAG, "Got setup intent from Signal service!")
       }
+  }
+
+  // We need to get the status and payment id from the intent.
+
+  fun getStatusAndPaymentMethodId(stripeIntentAccessor: StripeIntentAccessor): Single<StatusAndPaymentMethodId> {
+    return Single.fromCallable {
+      when (stripeIntentAccessor.objectType) {
+        StripeIntentAccessor.ObjectType.NONE -> StatusAndPaymentMethodId(StripeIntentStatus.SUCCEEDED, null)
+        StripeIntentAccessor.ObjectType.PAYMENT_INTENT -> stripeApi.getPaymentIntent(stripeIntentAccessor).let {
+          StatusAndPaymentMethodId(it.status, it.paymentMethod)
+        }
+        StripeIntentAccessor.ObjectType.SETUP_INTENT -> stripeApi.getSetupIntent(stripeIntentAccessor).let {
+          StatusAndPaymentMethodId(it.status, it.paymentMethod)
+        }
+      }
+    }
   }
 
   fun setDefaultPaymentMethod(paymentMethodId: String): Completable {
@@ -440,6 +468,11 @@ class DonationPaymentRepository(activity: Activity) : StripeApi.PaymentIntentFet
       }
     }
   }
+
+  data class StatusAndPaymentMethodId(
+    val status: StripeIntentStatus,
+    val paymentMethod: String?
+  )
 
   companion object {
     private val TAG = Log.tag(DonationPaymentRepository::class.java)

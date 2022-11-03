@@ -8,9 +8,11 @@ import android.view.View
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import androidx.core.os.bundleOf
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.navArgs
+import org.signal.donations.StripeIntentAccessor
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.databinding.Stripe3dsDialogFragmentBinding
@@ -23,7 +25,6 @@ class Stripe3DSDialogFragment : DialogFragment(R.layout.stripe_3ds_dialog_fragme
 
   companion object {
     const val REQUEST_KEY = "stripe_3ds_dialog_fragment"
-    private const val STRIPE_3DS_COMPLETE = "https://hooks.stripe.com/3d_secure/complete/tdsrc_complete"
   }
 
   val binding by ViewBinderDelegate(Stripe3dsDialogFragmentBinding::bind) {
@@ -32,6 +33,8 @@ class Stripe3DSDialogFragment : DialogFragment(R.layout.stripe_3ds_dialog_fragme
   }
 
   val args: Stripe3DSDialogFragmentArgs by navArgs()
+
+  var result: Bundle? = null
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -47,7 +50,9 @@ class Stripe3DSDialogFragment : DialogFragment(R.layout.stripe_3ds_dialog_fragme
   }
 
   override fun onDismiss(dialog: DialogInterface) {
-    setFragmentResult(REQUEST_KEY, Bundle())
+    val result = this.result
+    this.result = null
+    setFragmentResult(REQUEST_KEY, result ?: Bundle())
   }
 
   private inner class Stripe3DSWebClient : WebViewClient() {
@@ -61,7 +66,10 @@ class Stripe3DSDialogFragment : DialogFragment(R.layout.stripe_3ds_dialog_fragme
     }
 
     override fun onPageFinished(view: WebView?, url: String?) {
-      if (url == STRIPE_3DS_COMPLETE) {
+      if (url?.startsWith(args.returnUri.toString()) == true) {
+        val stripeIntentAccessor = StripeIntentAccessor.fromUri(url)
+
+        result = bundleOf(REQUEST_KEY to stripeIntentAccessor)
         dismissAllowingStateLoss()
       }
     }

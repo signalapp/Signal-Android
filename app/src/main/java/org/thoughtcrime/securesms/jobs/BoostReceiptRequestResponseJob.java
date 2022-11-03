@@ -7,7 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 
 import org.signal.core.util.logging.Log;
-import org.signal.donations.StripeApi;
+import org.signal.donations.StripeIntentAccessor;
 import org.signal.libsignal.zkgroup.InvalidInputException;
 import org.signal.libsignal.zkgroup.VerificationFailedException;
 import org.signal.libsignal.zkgroup.receipts.ClientZkReceiptOperations;
@@ -55,7 +55,7 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
   private final String              paymentIntentId;
   private final long                badgeLevel;
 
-  private static BoostReceiptRequestResponseJob createJob(StripeApi.PaymentIntent paymentIntent, DonationErrorSource donationErrorSource, long badgeLevel) {
+  private static BoostReceiptRequestResponseJob createJob(StripeIntentAccessor paymentIntent, DonationErrorSource donationErrorSource, long badgeLevel) {
     return new BoostReceiptRequestResponseJob(
         new Parameters
             .Builder()
@@ -65,13 +65,13 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
             .setMaxAttempts(Parameters.UNLIMITED)
             .build(),
         null,
-        paymentIntent.getId(),
+        paymentIntent.getIntentId(),
         donationErrorSource,
         badgeLevel
     );
   }
 
-  public static JobManager.Chain createJobChainForBoost(@NonNull StripeApi.PaymentIntent paymentIntent) {
+  public static JobManager.Chain createJobChainForBoost(@NonNull StripeIntentAccessor paymentIntent) {
     BoostReceiptRequestResponseJob     requestReceiptJob                  = createJob(paymentIntent, DonationErrorSource.BOOST, Long.parseLong(SubscriptionLevels.BOOST_LEVEL));
     DonationReceiptRedemptionJob       redeemReceiptJob                   = DonationReceiptRedemptionJob.createJobForBoost();
     RefreshOwnProfileJob               refreshOwnProfileJob               = RefreshOwnProfileJob.forBoost();
@@ -84,7 +84,7 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
                                   .then(multiDeviceProfileContentUpdateJob);
   }
 
-  public static JobManager.Chain createJobChainForGift(@NonNull StripeApi.PaymentIntent paymentIntent,
+  public static JobManager.Chain createJobChainForGift(@NonNull StripeIntentAccessor paymentIntent,
                                                        @NonNull RecipientId recipientId,
                                                        @Nullable String additionalMessage,
                                                        long badgeLevel)

@@ -135,6 +135,11 @@
             android:name="uri"
             app:argType="android.net.Uri"
             app:nullable="false" />
+
+        <argument
+            android:name="return_uri"
+            app:argType="android.net.Uri"
+            app:nullable="false" />
     </dialog>
 
 </navigation>

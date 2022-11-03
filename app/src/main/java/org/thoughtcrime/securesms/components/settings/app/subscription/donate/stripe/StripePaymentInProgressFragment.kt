@@ -13,11 +13,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.navGraphViewModels
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.Completable
+import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.logging.Log
 import org.signal.donations.StripeApi
+import org.signal.donations.StripeIntentAccessor
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPaymentComponent
@@ -111,22 +112,27 @@ class StripePaymentInProgressFragment : DialogFragment(R.layout.stripe_payment_i
     }
   }
 
-  private fun handleSecure3dsAction(secure3dsAction: StripeApi.Secure3DSAction): Completable {
+  private fun handleSecure3dsAction(secure3dsAction: StripeApi.Secure3DSAction): Single<StripeIntentAccessor> {
     return when (secure3dsAction) {
       is StripeApi.Secure3DSAction.NotNeeded -> {
         Log.d(TAG, "No 3DS action required.")
-        Completable.complete()
+        Single.just(StripeIntentAccessor.NO_ACTION_REQUIRED)
       }
       is StripeApi.Secure3DSAction.ConfirmRequired -> {
         Log.d(TAG, "3DS action required. Displaying dialog...")
-        Completable.create { emitter ->
-          val listener = FragmentResultListener { _, _ ->
-            emitter.onComplete()
+        Single.create<StripeIntentAccessor> { emitter ->
+          val listener = FragmentResultListener { _, bundle ->
+            val result: StripeIntentAccessor? = bundle.getParcelable(Stripe3DSDialogFragment.REQUEST_KEY)
+            if (result != null) {
+              emitter.onSuccess(result)
+            } else {
+              emitter.onError(Exception("User did not complete 3DS Authorization."))
+            }
           }
 
           parentFragmentManager.setFragmentResultListener(Stripe3DSDialogFragment.REQUEST_KEY, this, listener)
 
-          findNavController().safeNavigate(StripePaymentInProgressFragmentDirections.actionStripePaymentInProgressFragmentToStripe3dsDialogFragment(secure3dsAction.uri))
+          findNavController().safeNavigate(StripePaymentInProgressFragmentDirections.actionStripePaymentInProgressFragmentToStripe3dsDialogFragment(secure3dsAction.uri, secure3dsAction.returnUri))
 
           emitter.setCancellable {
             parentFragmentManager.clearFragmentResultListener(Stripe3DSDialogFragment.REQUEST_KEY)

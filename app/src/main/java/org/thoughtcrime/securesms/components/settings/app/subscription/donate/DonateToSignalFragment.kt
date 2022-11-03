@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.components.settings.app.subscription.donate
 
+import android.content.DialogInterface
 import android.text.SpannableStringBuilder
 import android.view.View
 import android.view.ViewGroup
@@ -91,6 +92,8 @@ class DonateToSignalFragment : DSLSettingsFragment(
       }
     }
   }
+
+  private var errorDialog: DialogInterface? = null
 
   private val args: DonateToSignalFragmentArgs by navArgs()
   private val viewModel: DonateToSignalViewModel by viewModels(factoryProducer = {
@@ -462,7 +465,7 @@ class DonateToSignalFragment : DSLSettingsFragment(
   }
 
   private fun registerGooglePayCallback() {
-    donationPaymentComponent.googlePayResultPublisher.subscribeBy(
+    disposables += donationPaymentComponent.googlePayResultPublisher.subscribeBy(
       onNext = { paymentResult ->
         viewModel.consumeGatewayRequestForGooglePay()?.let {
           donationPaymentComponent.donationPaymentRepository.onActivityResult(
@@ -478,15 +481,20 @@ class DonateToSignalFragment : DSLSettingsFragment(
   }
 
   private fun showErrorDialog(throwable: Throwable) {
-    Log.d(TAG, "Displaying donation error dialog.", true)
-    DonationErrorDialogs.show(
-      requireContext(), throwable,
-      object : DonationErrorDialogs.DialogCallback() {
-        override fun onDialogDismissed() {
-          findNavController().popBackStack()
+    if (errorDialog != null) {
+      Log.d(TAG, "Already displaying an error dialog. Skipping.", throwable, true)
+    } else {
+      Log.d(TAG, "Displaying donation error dialog.", true)
+      errorDialog = DonationErrorDialogs.show(
+        requireContext(), throwable,
+        object : DonationErrorDialogs.DialogCallback() {
+          override fun onDialogDismissed() {
+            errorDialog = null
+            findNavController().popBackStack()
+          }
         }
-      }
-    )
+      )
+    }
   }
 
   private fun startAnimationAboveSelectedBoost(view: View) {

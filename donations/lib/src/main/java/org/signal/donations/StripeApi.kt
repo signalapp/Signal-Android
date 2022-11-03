@@ -3,7 +3,9 @@ package org.signal.donations
 import android.net.Uri
 import android.os.Parcelable
 import androidx.annotation.WorkerThread
-import io.reactivex.rxjava3.core.Completable
+import com.fasterxml.jackson.module.kotlin.jsonMapper
+import com.fasterxml.jackson.module.kotlin.kotlinModule
+import com.fasterxml.jackson.module.kotlin.readValue
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.parcelize.Parcelize
@@ -15,6 +17,8 @@ import okio.ByteString
 import org.json.JSONObject
 import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
+import org.signal.donations.json.StripePaymentIntent
+import org.signal.donations.json.StripeSetupIntent
 import java.math.BigDecimal
 import java.util.Locale
 
@@ -25,6 +29,10 @@ class StripeApi(
   private val okHttpClient: OkHttpClient
 ) {
 
+  private val objectMapper = jsonMapper {
+    addModule(kotlinModule())
+  }
+
   companion object {
     private val TAG = Log.tag(StripeApi::class.java)
 
@@ -32,16 +40,18 @@ class StripeApi(
     private val CARD_MONTH_KEY = "card[exp_month]"
     private val CARD_YEAR_KEY = "card[exp_year]"
     private val CARD_CVC_KEY = "card[cvc]"
+
+    private const val RETURN_URL_3DS = "sgnlpay://3DS"
   }
 
   sealed class CreatePaymentIntentResult {
     data class AmountIsTooSmall(val amount: FiatMoney) : CreatePaymentIntentResult()
     data class AmountIsTooLarge(val amount: FiatMoney) : CreatePaymentIntentResult()
     data class CurrencyIsNotSupported(val currencyCode: String) : CreatePaymentIntentResult()
-    data class Success(val paymentIntent: PaymentIntent) : CreatePaymentIntentResult()
+    data class Success(val paymentIntent: StripeIntentAccessor) : CreatePaymentIntentResult()
   }
 
-  data class CreateSetupIntentResult(val setupIntent: SetupIntent)
+  data class CreateSetupIntentResult(val setupIntent: StripeIntentAccessor)
 
   sealed class CreatePaymentSourceFromCardDataResult {
     data class Success(val paymentSource: PaymentSource) : CreatePaymentSourceFromCardDataResult()
@@ -55,20 +65,21 @@ class StripeApi(
       .subscribeOn(Schedulers.io())
   }
 
-  fun confirmSetupIntent(paymentSource: PaymentSource, setupIntent: SetupIntent): Single<Secure3DSAction> {
+  fun confirmSetupIntent(paymentSource: PaymentSource, setupIntent: StripeIntentAccessor): Single<Secure3DSAction> {
     return Single.fromCallable {
       val paymentMethodId = createPaymentMethodAndParseId(paymentSource)
 
       val parameters = mapOf(
-        "client_secret" to setupIntent.clientSecret,
-        "payment_method" to paymentMethodId
+        "client_secret" to setupIntent.intentClientSecret,
+        "payment_method" to paymentMethodId,
+        "return_url" to RETURN_URL_3DS
       )
 
-      val nextAction = postForm("setup_intents/${setupIntent.id}/confirm", parameters).use { response ->
+      val (nextActionUri, returnUri) = postForm("setup_intents/${setupIntent.intentId}/confirm", parameters).use { response ->
         getNextAction(response)
       }
 
-      Secure3DSAction.from(nextAction, paymentMethodId)
+      Secure3DSAction.from(nextActionUri, returnUri, paymentMethodId)
     }
   }
 
@@ -95,24 +106,49 @@ class StripeApi(
    *
    * @return A Secure3DSAction
    */
-  fun confirmPaymentIntent(paymentSource: PaymentSource, paymentIntent: PaymentIntent): Single<Secure3DSAction> {
+  fun confirmPaymentIntent(paymentSource: PaymentSource, paymentIntent: StripeIntentAccessor): Single<Secure3DSAction> {
     return Single.fromCallable {
       val paymentMethodId = createPaymentMethodAndParseId(paymentSource)
 
       val parameters = mutableMapOf(
-        "client_secret" to paymentIntent.clientSecret,
-        "payment_method" to paymentMethodId
+        "client_secret" to paymentIntent.intentClientSecret,
+        "payment_method" to paymentMethodId,
+        "return_url" to RETURN_URL_3DS
       )
 
-      val nextAction = postForm("payment_intents/${paymentIntent.id}/confirm", parameters).use { response ->
+      val (nextActionUri, returnUri) = postForm("payment_intents/${paymentIntent.intentId}/confirm", parameters).use { response ->
         getNextAction(response)
       }
 
-      Secure3DSAction.from(nextAction)
+      Secure3DSAction.from(nextActionUri, returnUri)
     }.subscribeOn(Schedulers.io())
   }
 
-  private fun getNextAction(response: Response): Uri {
+  /**
+   * Retrieve the setup intent pointed to by the given accessor.
+   */
+  fun getSetupIntent(stripeIntentAccessor: StripeIntentAccessor): StripeSetupIntent {
+    return when (stripeIntentAccessor.objectType) {
+      StripeIntentAccessor.ObjectType.SETUP_INTENT -> get("setup_intents/${stripeIntentAccessor.intentId}?client_secret=${stripeIntentAccessor.intentClientSecret}").use {
+        objectMapper.readValue(it.body()!!.string())
+      }
+      else -> error("Unsupported type")
+    }
+  }
+
+  /**
+   * Retrieve the payment intent pointed to by the given accessor.
+   */
+  fun getPaymentIntent(stripeIntentAccessor: StripeIntentAccessor): StripePaymentIntent {
+    return when (stripeIntentAccessor.objectType) {
+      StripeIntentAccessor.ObjectType.PAYMENT_INTENT -> get("payment_intents/${stripeIntentAccessor.intentId}?client_secret=${stripeIntentAccessor.intentClientSecret}").use {
+        objectMapper.readValue(it.body()!!.string())
+      }
+      else -> error("Unsupported type")
+    }
+  }
+
+  private fun getNextAction(response: Response): Pair<Uri, Uri> {
     val responseBody = response.body()?.string()
     val bodyJson = responseBody?.let { JSONObject(it) }
     return if (bodyJson?.has("next_action") == true && !bodyJson.isNull("next_action")) {
@@ -121,9 +157,13 @@ class StripeApi(
         Log.d(TAG, "[getNextAction] Next Action found:\n$nextAction")
       }
 
-      Uri.parse(nextAction.getJSONObject("use_stripe_sdk").getString("stripe_js"))
+      val redirectToUrl = nextAction.getJSONObject("redirect_to_url")
+      val nextActionUri = redirectToUrl.getString("url")
+      val returnUri = redirectToUrl.getString("return_url")
+
+      Uri.parse(nextActionUri) to Uri.parse(returnUri)
     } else {
-      Uri.EMPTY
+      Uri.EMPTY to Uri.EMPTY
     }
   }
 
@@ -176,20 +216,34 @@ class StripeApi(
     return postForm("payment_methods", parameters)
   }
 
+  private fun get(endpoint: String): Response {
+    val request = getRequestBuilder(endpoint).get().build()
+    val response = okHttpClient.newCall(request).execute()
+    return checkResponseForErrors(response)
+  }
+
   private fun postForm(endpoint: String, parameters: Map<String, String>): Response {
     val formBodyBuilder = FormBody.Builder()
     parameters.forEach { (k, v) ->
       formBodyBuilder.add(k, v)
     }
 
-    val request = Request.Builder()
-      .url("${configuration.baseUrl}/$endpoint")
-      .addHeader("Authorization", "Basic ${ByteString.encodeUtf8("${configuration.publishableKey}:").base64()}")
+    val request = getRequestBuilder(endpoint)
       .post(formBodyBuilder.build())
       .build()
 
     val response = okHttpClient.newCall(request).execute()
 
+    return checkResponseForErrors(response)
+  }
+
+  private fun getRequestBuilder(endpoint: String): Request.Builder {
+    return Request.Builder()
+      .url("${configuration.baseUrl}/$endpoint")
+      .addHeader("Authorization", "Basic ${ByteString.encodeUtf8("${configuration.publishableKey}:").base64()}")
+  }
+
+  private fun checkResponseForErrors(response: Response): Response {
     if (response.isSuccessful) {
       return response
     } else {
@@ -437,11 +491,11 @@ class StripeApi(
     fun fetchPaymentIntent(
       price: FiatMoney,
       level: Long
-    ): Single<PaymentIntent>
+    ): Single<StripeIntentAccessor>
   }
 
   interface SetupIntentHelper {
-    fun fetchSetupIntent(): Single<SetupIntent>
+    fun fetchSetupIntent(): Single<StripeIntentAccessor>
   }
 
   @Parcelize
@@ -452,16 +506,6 @@ class StripeApi(
     val cvc: Int
   ) : Parcelable
 
-  data class PaymentIntent(
-    val id: String,
-    val clientSecret: String
-  )
-
-  data class SetupIntent(
-    val id: String,
-    val clientSecret: String
-  )
-
   interface PaymentSource {
     fun parameterize(): JSONObject
     fun getTokenId(): String
@@ -469,19 +513,24 @@ class StripeApi(
   }
 
   sealed interface Secure3DSAction {
-    data class ConfirmRequired(val uri: Uri, override val paymentMethodId: String?) : Secure3DSAction
-    data class NotNeeded(override val paymentMethodId: String?): Secure3DSAction
+    data class ConfirmRequired(val uri: Uri, val returnUri: Uri, override val paymentMethodId: String?) : Secure3DSAction
+    data class NotNeeded(override val paymentMethodId: String?) : Secure3DSAction
 
     val paymentMethodId: String?
 
     companion object {
-      fun from(uri: Uri, paymentMethodId: String? = null): Secure3DSAction {
+      fun from(
+        uri: Uri,
+        returnUri: Uri,
+        paymentMethodId: String? = null
+      ): Secure3DSAction {
         return if (uri == Uri.EMPTY) {
           NotNeeded(paymentMethodId)
         } else {
-          ConfirmRequired(uri, paymentMethodId)
+          ConfirmRequired(uri, returnUri, paymentMethodId)
         }
       }
     }
   }
+
 }

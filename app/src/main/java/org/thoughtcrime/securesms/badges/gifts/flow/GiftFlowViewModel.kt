@@ -19,6 +19,7 @@ import org.signal.core.util.money.FiatMoney
 import org.signal.donations.GooglePayApi
 import org.signal.donations.GooglePayPaymentSource
 import org.signal.donations.StripeApi
+import org.signal.donations.StripeIntentAccessor
 import org.thoughtcrime.securesms.badges.gifts.Gifts
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationEvent
@@ -168,8 +169,8 @@ class GiftFlowViewModel(
 
             store.update { it.copy(stage = GiftFlowState.Stage.PAYMENT_PIPELINE) }
 
-            val continuePayment: Single<StripeApi.PaymentIntent> = donationPaymentRepository.continuePayment(gift.price, recipient, gift.level)
-            val intentAndSource: Single<Pair<StripeApi.PaymentIntent, StripeApi.PaymentSource>> = Single.zip(continuePayment, Single.just(GooglePayPaymentSource(paymentData)), ::Pair)
+            val continuePayment: Single<StripeIntentAccessor> = donationPaymentRepository.continuePayment(gift.price, recipient, gift.level)
+            val intentAndSource: Single<Pair<StripeIntentAccessor, StripeApi.PaymentSource>> = Single.zip(continuePayment, Single.just(GooglePayPaymentSource(paymentData)), ::Pair)
 
             disposables += intentAndSource.flatMapCompletable { (paymentIntent, paymentSource) ->
               donationPaymentRepository.confirmPayment(paymentSource, paymentIntent, recipient)

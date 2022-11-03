@@ -13,6 +13,7 @@ import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.core.util.logging.Log
 import org.signal.donations.GooglePayPaymentSource
 import org.signal.donations.StripeApi
+import org.signal.donations.StripeIntentAccessor
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPaymentRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonateToSignalType
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayRequest
@@ -62,7 +63,7 @@ class StripePaymentInProgressViewModel(
     disposables.clear()
   }
 
-  fun processNewDonation(request: GatewayRequest, nextActionHandler: (StripeApi.Secure3DSAction) -> Completable) {
+  fun processNewDonation(request: GatewayRequest, nextActionHandler: (StripeApi.Secure3DSAction) -> Single<StripeIntentAccessor>) {
     Log.d(TAG, "Proceeding with donation...", true)
 
     val errorSource = when (request.donateToSignalType) {
@@ -112,7 +113,7 @@ class StripePaymentInProgressViewModel(
     cardData = null
   }
 
-  private fun proceedMonthly(request: GatewayRequest, paymentSourceProvider: Single<StripeApi.PaymentSource>, nextActionHandler: (StripeApi.Secure3DSAction) -> Completable) {
+  private fun proceedMonthly(request: GatewayRequest, paymentSourceProvider: Single<StripeApi.PaymentSource>, nextActionHandler: (StripeApi.Secure3DSAction) -> Single<StripeIntentAccessor>) {
     val ensureSubscriberId: Completable = donationPaymentRepository.ensureSubscriberId()
     val createAndConfirmSetupIntent: Single<StripeApi.Secure3DSAction> = paymentSourceProvider.flatMap { donationPaymentRepository.createAndConfirmSetupIntent(it) }
     val setLevel: Completable = donationPaymentRepository.setSubscriptionLevel(request.level.toString())
@@ -123,7 +124,11 @@ class StripePaymentInProgressViewModel(
     val setup: Completable = ensureSubscriberId
       .andThen(cancelActiveSubscriptionIfNecessary())
       .andThen(createAndConfirmSetupIntent)
-      .flatMap { secure3DSAction -> nextActionHandler(secure3DSAction).andThen(Single.just(secure3DSAction.paymentMethodId!!)) }
+      .flatMap { secure3DSAction ->
+        nextActionHandler(secure3DSAction)
+          .flatMap { secure3DSResult -> donationPaymentRepository.getStatusAndPaymentMethodId(secure3DSResult) }
+          .map { (_, paymentMethod) -> paymentMethod ?: secure3DSAction.paymentMethodId!! }
+      }
       .flatMapCompletable { donationPaymentRepository.setDefaultPaymentMethod(it) }
       .onErrorResumeNext { Completable.error(DonationError.getPaymentSetupError(DonationErrorSource.SUBSCRIPTION, it)) }
 
@@ -163,7 +168,7 @@ class StripePaymentInProgressViewModel(
   private fun proceedOneTime(
     request: GatewayRequest,
     paymentSourceProvider: Single<StripeApi.PaymentSource>,
-    nextActionHandler: (StripeApi.Secure3DSAction) -> Completable
+    nextActionHandler: (StripeApi.Secure3DSAction) -> Single<StripeIntentAccessor>
   ) {
     Log.w(TAG, "Beginning one-time payment pipeline...", true)
 
@@ -171,13 +176,14 @@ class StripePaymentInProgressViewModel(
     val recipient = Recipient.self().id
     val level = SubscriptionLevels.BOOST_LEVEL.toLong()
 
-    val continuePayment: Single<StripeApi.PaymentIntent> = donationPaymentRepository.continuePayment(amount, recipient, level)
-    val intentAndSource: Single<Pair<StripeApi.PaymentIntent, StripeApi.PaymentSource>> = Single.zip(continuePayment, paymentSourceProvider, ::Pair)
+    val continuePayment: Single<StripeIntentAccessor> = donationPaymentRepository.continuePayment(amount, recipient, level)
+    val intentAndSource: Single<Pair<StripeIntentAccessor, StripeApi.PaymentSource>> = Single.zip(continuePayment, paymentSourceProvider, ::Pair)
 
     disposables += intentAndSource.flatMapCompletable { (paymentIntent, paymentSource) ->
       donationPaymentRepository.confirmPayment(paymentSource, paymentIntent, recipient)
-        .flatMapCompletable { nextActionHandler(it) }
-        .andThen(donationPaymentRepository.waitForOneTimeRedemption(amount, paymentIntent, recipient, null, level))
+        .flatMap { nextActionHandler(it) }
+        .flatMap { donationPaymentRepository.getStatusAndPaymentMethodId(it) }
+        .flatMapCompletable { donationPaymentRepository.waitForOneTimeRedemption(amount, paymentIntent, recipient, null, level) }
     }.subscribeBy(
       onError = { throwable ->
         Log.w(TAG, "Failure in one-time payment pipeline...", throwable, true)
