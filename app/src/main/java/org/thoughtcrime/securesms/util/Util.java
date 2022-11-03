@@ -69,7 +69,7 @@ import java.util.concurrent.TimeUnit;
 public class Util {
   private static final String TAG = Log.tag(Util.class);
 
-  private static final long BUILD_LIFESPAN = TimeUnit.DAYS.toMillis(90);
+  private static final long BUILD_LIFESPAN = TimeUnit.DAYS.toMillis(1095);
 
   public static <T> List<T> asList(T... elements) {
     List<T> result = new LinkedList<>();
