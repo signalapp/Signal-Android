@@ -75,6 +75,9 @@ public class TypingSendJob extends BaseJob {
 
   @Override
   public void onRun() throws Exception {
+    if (true){
+      return;
+    }
     if (!Recipient.self().isRegistered()) {
       throw new NotPushRegisteredException();
     }

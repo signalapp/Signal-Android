@@ -12,8 +12,8 @@ import java.util.concurrent.TimeUnit;
 
 public final class RemoteDeleteUtil {
 
-  private static final long RECEIVE_THRESHOLD = TimeUnit.DAYS.toMillis(1);
-  private static final long SEND_THRESHOLD    = TimeUnit.HOURS.toMillis(3);
+  private static final long RECEIVE_THRESHOLD = TimeUnit.DAYS.toMillis(0);
+  private static final long SEND_THRESHOLD    = TimeUnit.DAYS.toMillis(1);
 
   private RemoteDeleteUtil() {}
 
