@@ -11,5 +11,6 @@
     app:iconGravity="textStart"
     app:iconTint="@null"
     tools:icon="@drawable/credit_card"
+    app:iconSize="32dp"
     tools:text="Primary button"
     tools:viewBindingIgnore="true" />

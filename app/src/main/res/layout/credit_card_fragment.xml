@@ -48,7 +48,10 @@
         android:layout_marginTop="36dp"
         android:hint="@string/CreditCardFragment__card_number"
         app:boxStrokeColor="@color/signal_colorPrimary"
+        app:boxStrokeErrorColor="@color/signal_colorError"
         app:errorEnabled="true"
+        app:errorIconTint="@color/signal_colorError"
+        app:errorTextColor="@color/signal_colorError"
         app:hintTextColor="@color/signal_colorPrimary"
         app:layout_constraintTop_toBottomOf="@id/description">
 
@@ -56,9 +59,11 @@
             android:id="@+id/card_number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:digits="0123456789 "
+            android:imeOptions="actionNext"
             android:inputType="number"
-            android:maxLength="19"
-            android:maxLines="1" />
+            android:maxLines="1"
+            android:nextFocusDown="@id/card_expiry" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -71,7 +76,10 @@
         android:hint="@string/CreditCardFragment__mm_yy"
         android:paddingEnd="18dp"
         app:boxStrokeColor="@color/signal_colorPrimary"
+        app:boxStrokeErrorColor="@color/signal_colorError"
         app:errorEnabled="true"
+        app:errorIconTint="@color/signal_colorError"
+        app:errorTextColor="@color/signal_colorError"
         app:hintTextColor="@color/signal_colorPrimary"
         app:layout_constraintEnd_toStartOf="@id/card_cvv_wrapper"
         app:layout_constraintStart_toStartOf="parent"
@@ -81,6 +89,8 @@
             android:id="@+id/card_expiry"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:digits="0123456789/"
+            android:imeOptions="actionNext"
             android:inputType="datetime|date"
             android:maxLength="5"
             android:maxLines="1"
@@ -97,7 +107,10 @@
         android:hint="@string/CreditCardFragment__cvv"
         android:paddingStart="18dp"
         app:boxStrokeColor="@color/signal_colorPrimary"
+        app:boxStrokeErrorColor="@color/signal_colorError"
         app:errorEnabled="true"
+        app:errorIconTint="@color/signal_colorError"
+        app:errorTextColor="@color/signal_colorError"
         app:hintTextColor="@color/signal_colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/card_expiry_wrapper"
@@ -120,22 +133,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/dsl_settings_gutter"
+        android:layout_marginBottom="16dp"
         android:enabled="false"
         android:text="@string/CreditCardFragment__continue"
-        app:layout_constraintBottom_toTopOf="@id/notice"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/notice"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingHorizontal="@dimen/dsl_settings_gutter"
-        android:paddingTop="16dp"
-        android:paddingBottom="20dp"
-        android:textAppearance="@style/Signal.Text.BodyMedium"
-        android:textColor="@color/signal_colorOnSurfaceVariant"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:text="Signal will never sell or trade your information to anyone. More of an explanation if needed." />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

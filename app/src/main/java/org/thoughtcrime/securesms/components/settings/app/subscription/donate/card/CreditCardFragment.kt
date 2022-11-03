@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.components.settings.app.subscription.donate.c
 import android.content.Context
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import androidx.annotation.StringRes
 import androidx.core.os.bundleOf
 import androidx.core.widget.addTextChangedListener
@@ -13,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonateToSignalType
 import org.thoughtcrime.securesms.databinding.CreditCardFragmentBinding
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.util.LifecycleDisposable
@@ -26,12 +28,20 @@ class CreditCardFragment : Fragment(R.layout.credit_card_fragment) {
   private val lifecycleDisposable = LifecycleDisposable()
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
-    binding.title.text = getString(R.string.CreditCardFragment__donation_amount_s, FiatMoneyUtil.format(resources, args.request.fiat))
+    binding.title.text = if (args.request.donateToSignalType == DonateToSignalType.MONTHLY) {
+      getString(
+        R.string.CreditCardFragment__donation_amount_s_per_month,
+        FiatMoneyUtil.format(resources, args.request.fiat, FiatMoneyUtil.formatOptions().trimZerosAfterDecimal())
+      )
+    } else {
+      getString(R.string.CreditCardFragment__donation_amount_s, FiatMoneyUtil.format(resources, args.request.fiat))
+    }
 
     binding.cardNumber.addTextChangedListener(afterTextChanged = {
-      viewModel.onNumberChanged(it?.toString() ?: "")
+      viewModel.onNumberChanged(it?.toString()?.filter { it != ' ' } ?: "")
     })
+
+    binding.cardNumber.addTextChangedListener(CreditCardTextWatcher())
 
     binding.cardNumber.setOnFocusChangeListener { v, hasFocus ->
       viewModel.onNumberFocusChanged(hasFocus)
@@ -45,9 +55,20 @@ class CreditCardFragment : Fragment(R.layout.credit_card_fragment) {
       viewModel.onCodeFocusChanged(hasFocus)
     }
 
+    binding.cardCvv.setOnEditorActionListener { _, actionId, _ ->
+      if (actionId == EditorInfo.IME_ACTION_DONE) {
+        binding.continueButton.performClick()
+        true
+      } else {
+        false
+      }
+    }
+
     binding.cardExpiry.addTextChangedListener(afterTextChanged = {
       viewModel.onExpirationChanged(it?.toString() ?: "")
     })
+
+    binding.cardExpiry.addTextChangedListener(CreditCardExpirationTextWatcher())
 
     binding.cardExpiry.setOnFocusChangeListener { v, hasFocus ->
       viewModel.onExpirationFocusChanged(hasFocus)
@@ -112,7 +133,13 @@ class CreditCardFragment : Fragment(R.layout.credit_card_fragment) {
       CreditCardExpirationValidator.Validity.INVALID_MONTH -> ErrorState(messageResId = R.string.CreditCardFragment__invalid_month)
       CreditCardExpirationValidator.Validity.INVALID_YEAR -> ErrorState(messageResId = R.string.CreditCardFragment__invalid_year)
       CreditCardExpirationValidator.Validity.POTENTIALLY_VALID -> NO_ERROR
-      CreditCardExpirationValidator.Validity.FULLY_VALID -> NO_ERROR
+      CreditCardExpirationValidator.Validity.FULLY_VALID -> {
+        if (binding.cardExpiry.isFocused) {
+          binding.cardCvv.requestFocus()
+        }
+
+        NO_ERROR
+      }
     }
 
     binding.cardExpiryWrapper.error = errorState.resolveErrorText(requireContext())
