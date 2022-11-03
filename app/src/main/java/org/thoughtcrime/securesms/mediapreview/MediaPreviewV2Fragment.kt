@@ -41,6 +41,7 @@ import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.DateUtils
+import org.thoughtcrime.securesms.util.Debouncer
 import org.thoughtcrime.securesms.util.FullscreenHelper
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.MediaUtil
@@ -49,6 +50,7 @@ import org.thoughtcrime.securesms.util.StorageUtil
 import org.thoughtcrime.securesms.util.ViewUtil
 import java.util.Locale
 import java.util.Optional
+import java.util.concurrent.TimeUnit
 
 class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), MediaPreviewFragment.Events {
   private val TAG = Log.tag(MediaPreviewV2Fragment::class.java)
@@ -56,6 +58,8 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
   private val lifecycleDisposable = LifecycleDisposable()
   private val binding by ViewBinderDelegate(FragmentMediaPreviewV2Binding::bind)
   private val viewModel: MediaPreviewV2ViewModel by viewModels()
+  private val debouncer = Debouncer(2, TimeUnit.SECONDS)
+
 
   private lateinit var fullscreenHelper: FullscreenHelper
 
@@ -335,6 +339,14 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
 
   override fun onMediaReady() {
     viewModel.setMediaReady()
+  }
+
+  override fun onPlaying() {
+    debouncer.publish { fullscreenHelper.hideSystemUI() }
+  }
+
+  override fun onStopped() {
+    debouncer.clear()
   }
 
   private fun forward(mediaItem: MediaDatabase.MediaRecord) {

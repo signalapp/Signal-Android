@@ -74,10 +74,12 @@ public final class VideoMediaPreviewFragment extends MediaPreviewFragment {
         if (!isVideoGif && activity instanceof VoiceNoteMediaControllerOwner) {
           ((VoiceNoteMediaControllerOwner) activity).getVoiceNoteMediaController().pausePlayback();
         }
+        events.onPlaying();
       }
 
       @Override
       public void onStopped() {
+        events.onStopped();
       }
 
       @Override

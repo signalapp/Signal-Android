@@ -107,7 +107,11 @@ public class VideoPlayer extends FrameLayout {
           switch (playbackState) {
             case Player.STATE_READY:
               playerCallback.onReady();
-              if (playWhenReady) playerCallback.onPlaying();
+              if (playWhenReady) {
+                playerCallback.onPlaying();
+              } else {
+                playerCallback.onStopped();
+              }
               break;
             case Player.STATE_ENDED:
               playerCallback.onStopped();
