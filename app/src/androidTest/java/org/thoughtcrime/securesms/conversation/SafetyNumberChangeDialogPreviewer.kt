@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.conversation
 
 import androidx.test.core.app.ActivityScenario
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -19,6 +20,7 @@ import org.thoughtcrime.securesms.testing.SignalActivityRule
 /**
  * Android test to help show SNC dialog quickly with custom data to make sure it displays properly.
  */
+@Ignore("For testing/previewing manually, no assertions")
 @RunWith(AndroidJUnit4::class)
 class SafetyNumberChangeDialogPreviewer {
 
