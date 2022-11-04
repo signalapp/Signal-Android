@@ -34,6 +34,7 @@ import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPaymentComponent
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppDonations
 import org.thoughtcrime.securesms.components.settings.app.subscription.boost.Boost
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.card.CreditCardFragment
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.card.CreditCardResult
@@ -53,7 +54,6 @@ import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.databinding.DonateToSignalFragmentBinding
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.subscription.Subscription
-import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.Material3OnScrollHelper
 import org.thoughtcrime.securesms.util.Projection
@@ -457,7 +457,7 @@ class DonateToSignalFragment : DSLSettingsFragment(
   }
 
   private fun launchCreditCard(gatewayResponse: GatewayResponse) {
-    if (FeatureFlags.creditCardPayments()) {
+    if (InAppDonations.isCreditCardAvailable()) {
       findNavController().safeNavigate(DonateToSignalFragmentDirections.actionDonateToSignalFragmentToCreditCardFragment(gatewayResponse.request))
     } else {
       error("Credit cards are not currently enabled.")

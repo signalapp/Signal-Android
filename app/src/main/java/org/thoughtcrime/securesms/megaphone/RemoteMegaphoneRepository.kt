@@ -10,6 +10,7 @@ import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppDonations
 import org.thoughtcrime.securesms.database.RemoteMegaphoneDatabase
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.RemoteMegaphoneRecord
@@ -20,7 +21,6 @@ import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.LocaleFeatureFlags
-import org.thoughtcrime.securesms.util.PlayServicesUtil
 import org.thoughtcrime.securesms.util.VersionTracker
 import java.util.Objects
 import kotlin.math.min
@@ -121,7 +121,7 @@ object RemoteMegaphoneRepository {
 
   private fun shouldShowDonateMegaphone(): Boolean {
     return VersionTracker.getDaysSinceFirstInstalled(context) >= 7 &&
-      PlayServicesUtil.getPlayServicesStatus(context) == PlayServicesUtil.PlayServicesStatus.SUCCESS &&
+      InAppDonations.hasAtLeastOnePaymentMethodAvailable() &&
       Recipient.self()
         .badges
         .stream()
