@@ -21,11 +21,14 @@ import androidx.annotation.UiThread;
 import androidx.appcompat.widget.AppCompatImageView;
 
 import com.bumptech.glide.RequestBuilder;
+import com.bumptech.glide.TransitionOptions;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.FitCenter;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
+import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
 
 import org.signal.core.util.logging.Log;
@@ -418,13 +421,21 @@ public class ThumbnailView extends FrameLayout {
   }
 
   public ListenableFuture<Boolean> setImageResource(@NonNull GlideRequests glideRequests, @NonNull Uri uri, int width, int height) {
+    return setImageResource(glideRequests, uri, width, height, true, null);
+  }
+
+  public ListenableFuture<Boolean> setImageResource(@NonNull GlideRequests glideRequests, @NonNull Uri uri, int width, int height, boolean animate, @Nullable RequestListener<Drawable> listener) {
     SettableFuture<Boolean> future = new SettableFuture<>();
 
     if (transferControls.isPresent()) getTransferControls().setVisibility(View.GONE);
 
-    GlideRequest request = glideRequests.load(new DecryptableUri(uri))
-                                        .diskCacheStrategy(DiskCacheStrategy.NONE)
-                                        .transition(withCrossFade());
+    GlideRequest<Drawable> request = glideRequests.load(new DecryptableUri(uri))
+                                                  .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                                  .listener(listener);
+
+    if (animate) {
+      request = request.transition(withCrossFade());
+    }
 
     if (width > 0 && height > 0) {
       request = request.override(width, height);

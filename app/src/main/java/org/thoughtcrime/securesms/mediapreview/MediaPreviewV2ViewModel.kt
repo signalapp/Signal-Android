@@ -13,8 +13,10 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.database.MediaDatabase
+import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.util.AttachmentUtil
 import org.thoughtcrime.securesms.util.rx.RxStore
+import java.util.Optional
 
 class MediaPreviewV2ViewModel : ViewModel() {
   private val TAG = Log.tag(MediaPreviewV2ViewModel::class.java)
@@ -27,16 +29,26 @@ class MediaPreviewV2ViewModel : ViewModel() {
   fun fetchAttachments(startingAttachmentId: AttachmentId, threadId: Long, sorting: MediaDatabase.Sorting, forceRefresh: Boolean = false) {
     if (store.state.loadState == MediaPreviewV2State.LoadState.INIT || forceRefresh) {
       disposables += store.update(repository.getAttachments(startingAttachmentId, threadId, sorting)) { result: MediaPreviewRepository.Result, oldState: MediaPreviewV2State ->
+        val albums = result.records.fold(mutableMapOf()) { acc: MutableMap<Long, MutableList<Media>>, mediaRecord: MediaDatabase.MediaRecord ->
+          val attachment = mediaRecord.attachment
+          if (attachment != null) {
+            val convertedMedia = mediaRecord.toMedia() ?: return@fold acc
+            acc.getOrPut(attachment.mmsId) { mutableListOf() }.add(convertedMedia)
+          }
+          acc
+        }
         if (oldState.leftIsRecent) {
           oldState.copy(
             position = result.initialPosition,
             mediaRecords = result.records,
+            albums = albums,
             loadState = MediaPreviewV2State.LoadState.DATA_LOADED,
           )
         } else {
           oldState.copy(
             position = result.records.size - result.initialPosition - 1,
             mediaRecords = result.records.reversed(),
+            albums = albums.mapValues { it.value.reversed() },
             loadState = MediaPreviewV2State.LoadState.DATA_LOADED,
           )
         }
@@ -81,4 +93,27 @@ class MediaPreviewV2ViewModel : ViewModel() {
       oldState.copy(loadState = MediaPreviewV2State.LoadState.DATA_LOADED)
     }
   }
+}
+
+fun MediaDatabase.MediaRecord.toMedia(): Media? {
+  val attachment = this.attachment
+  val uri = attachment?.uri
+  if (attachment == null || uri == null) {
+    return null
+  }
+
+  return Media(
+    uri,
+    this.contentType,
+    this.date,
+    attachment.width,
+    attachment.height,
+    attachment.size,
+    0,
+    attachment.isBorderless,
+    attachment.isVideoGif,
+    Optional.empty(),
+    Optional.ofNullable(attachment.caption),
+    Optional.empty()
+  )
 }

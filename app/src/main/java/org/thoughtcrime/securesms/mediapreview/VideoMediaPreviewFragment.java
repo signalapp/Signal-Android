@@ -143,11 +143,6 @@ public final class VideoMediaPreviewFragment extends MediaPreviewFragment {
   }
 
   @Override
-  public @Nullable ViewGroup getBottomBarControls() {
-    return videoView.getControlView();
-  }
-
-  @Override
   public void setBottomButtonControls(@NonNull MediaPreviewPlayerControlView playerControlView) {
     videoView.setControlView(playerControlView);
     updateSkipButtonState();

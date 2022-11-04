@@ -52,11 +52,6 @@ public final class ImageMediaPreviewFragment extends MediaPreviewFragment {
   public void pause() {}
 
   @Override
-  public ViewGroup getBottomBarControls() {
-    return bottomBarControlView;
-  }
-
-  @Override
   public void setBottomButtonControls(MediaPreviewPlayerControlView playerControlView) {
     bottomBarControlView = playerControlView;
   }
