@@ -18,12 +18,12 @@ import org.thoughtcrime.securesms.util.rx.RxStore
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 import java.util.Locale
 
-class DonorErrorConfigurationViewModel : ViewModel() {
+class InternalDonorErrorConfigurationViewModel : ViewModel() {
 
-  private val store = RxStore(DonorErrorConfigurationState())
+  private val store = RxStore(InternalDonorErrorConfigurationState())
   private val disposables = CompositeDisposable()
 
-  val state: Flowable<DonorErrorConfigurationState> = store.stateFlowable
+  val state: Flowable<InternalDonorErrorConfigurationState> = store.stateFlowable
 
   init {
     val giftBadges: Single<List<Badge>> = Single
@@ -131,20 +131,20 @@ class DonorErrorConfigurationViewModel : ViewModel() {
     }
   }
 
-  private fun handleBoostExpiration(state: DonorErrorConfigurationState) {
+  private fun handleBoostExpiration(state: InternalDonorErrorConfigurationState) {
     SignalStore.donationsValues().setExpiredBadge(state.selectedBadge)
   }
 
-  private fun handleGiftExpiration(state: DonorErrorConfigurationState) {
+  private fun handleGiftExpiration(state: InternalDonorErrorConfigurationState) {
     SignalStore.donationsValues().setExpiredGiftBadge(state.selectedBadge)
   }
 
-  private fun handleSubscriptionExpiration(state: DonorErrorConfigurationState) {
+  private fun handleSubscriptionExpiration(state: InternalDonorErrorConfigurationState) {
     SignalStore.donationsValues().setExpiredBadge(state.selectedBadge)
     handleSubscriptionPaymentFailure(state)
   }
 
-  private fun handleSubscriptionPaymentFailure(state: DonorErrorConfigurationState) {
+  private fun handleSubscriptionPaymentFailure(state: InternalDonorErrorConfigurationState) {
     SignalStore.donationsValues().unexpectedSubscriptionCancelationReason = state.selectedUnexpectedSubscriptionCancellation?.status
     SignalStore.donationsValues().unexpectedSubscriptionCancelationTimestamp = System.currentTimeMillis()
     SignalStore.donationsValues().setUnexpectedSubscriptionCancelationChargeFailure(

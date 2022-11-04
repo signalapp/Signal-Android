@@ -504,12 +504,12 @@
 
     <fragment
         android:id="@+id/donorErrorConfigurationFragment"
-        android:name="org.thoughtcrime.securesms.components.settings.app.internal.donor.DonorErrorConfigurationFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.internal.donor.InternalDonorErrorConfigurationFragment"
         android:label="donor_error_configuration_fragment" />
 
     <fragment
         android:id="@+id/storyDialogsLauncherFragment"
-        android:name="org.thoughtcrime.securesms.components.settings.app.internal.StoryDialogLauncherFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.internal.InternalStoryDialogLauncherFragment"
         android:label="story_dialogs_launcher_fragment" />
 
     <!-- endregion -->

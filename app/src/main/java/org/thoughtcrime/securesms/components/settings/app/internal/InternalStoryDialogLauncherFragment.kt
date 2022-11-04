@@ -9,7 +9,7 @@ import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.stories.dialogs.StoryDialogs
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 
-class StoryDialogLauncherFragment : DSLSettingsFragment(titleId = R.string.preferences__internal_stories_dialog_launcher) {
+class InternalStoryDialogLauncherFragment : DSLSettingsFragment(titleId = R.string.preferences__internal_stories_dialog_launcher) {
   override fun bindAdapter(adapter: MappingAdapter) {
     adapter.submitList(getConfiguration().toMappingModelList())
   }
@@ -17,25 +17,25 @@ class StoryDialogLauncherFragment : DSLSettingsFragment(titleId = R.string.prefe
   private fun getConfiguration(): DSLConfiguration {
     return configure {
       clickPref(
-        title = DSLSettingsText.from(R.string.preferences__internal_remove_group_story),
+        title = DSLSettingsText.from("Remove group story"),
         onClick = {
           StoryDialogs.removeGroupStory(requireContext(), "Family") {
-            Toast.makeText(requireContext(), R.string.preferences__internal_remove_group_story, Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Remove group story", Toast.LENGTH_SHORT).show()
           }
         }
       )
 
       clickPref(
-        title = DSLSettingsText.from(R.string.preferences__internal_retry_send),
+        title = DSLSettingsText.from("Retry send"),
         onClick = {
           StoryDialogs.resendStory(requireContext()) {
-            Toast.makeText(requireContext(), R.string.preferences__internal_retry_send, Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Retry send", Toast.LENGTH_SHORT).show()
           }
         }
       )
 
       clickPref(
-        title = DSLSettingsText.from(R.string.preferences__internal_story_or_profile_selector),
+        title = DSLSettingsText.from("Story or profile selector"),
         onClick = {
           StoryDialogs.displayStoryOrProfileImage(
             context = requireContext(),
@@ -46,37 +46,37 @@ class StoryDialogLauncherFragment : DSLSettingsFragment(titleId = R.string.prefe
       )
 
       clickPref(
-        title = DSLSettingsText.from(R.string.preferences__internal_hide_story),
+        title = DSLSettingsText.from("Hide story"),
         onClick = {
           StoryDialogs.hideStory(requireContext(), "Spiderman") {
-            Toast.makeText(requireContext(), R.string.preferences__internal_hide_story, Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Hide story", Toast.LENGTH_SHORT).show()
           }
         }
       )
 
       clickPref(
-        title = DSLSettingsText.from(R.string.preferences__internal_turn_off_stories),
+        title = DSLSettingsText.from("Turn off stories"),
         onClick = {
           StoryDialogs.disableStories(requireContext(), false) {
-            Toast.makeText(requireContext(), R.string.preferences__internal_turn_off_stories, Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Turn off stories", Toast.LENGTH_SHORT).show()
           }
         }
       )
 
       clickPref(
-        title = DSLSettingsText.from(R.string.preferences__internal_turn_off_stories_with_stories_on_disk),
+        title = DSLSettingsText.from("Turn off stories (with stories on disk)"),
         onClick = {
           StoryDialogs.disableStories(requireContext(), true) {
-            Toast.makeText(requireContext(), R.string.preferences__internal_turn_off_stories_with_stories_on_disk, Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Turn off stories (with stories on disk)", Toast.LENGTH_SHORT).show()
           }
         }
       )
 
       clickPref(
-        title = DSLSettingsText.from(R.string.preferences__internal_delete_custom_story),
+        title = DSLSettingsText.from("Delete custom story"),
         onClick = {
           StoryDialogs.deleteDistributionList(requireContext(), "Family") {
-            Toast.makeText(requireContext(), R.string.preferences__internal_delete_custom_story, Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Delete custom story", Toast.LENGTH_SHORT).show()
           }
         }
       )

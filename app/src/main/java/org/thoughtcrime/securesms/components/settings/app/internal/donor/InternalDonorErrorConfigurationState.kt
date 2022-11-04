@@ -4,7 +4,7 @@ import org.signal.donations.StripeDeclineCode
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.UnexpectedSubscriptionCancellation
 
-data class DonorErrorConfigurationState(
+data class InternalDonorErrorConfigurationState(
   val badges: List<Badge> = emptyList(),
   val selectedBadge: Badge? = null,
   val selectedUnexpectedSubscriptionCancellation: UnexpectedSubscriptionCancellation? = null,

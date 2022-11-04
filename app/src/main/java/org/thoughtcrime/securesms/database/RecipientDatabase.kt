@@ -2279,7 +2279,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     db.beginTransaction()
     try {
       for ((e164, result) in mapping) {
-        ids += processPnpTuple(e164, result.pni, result.aci, false).finalId
+        ids += getAndPossiblyMerge(serviceId = result.aci, pni = result.pni, e164 = e164, pniVerified = false, changeSelf = false)
       }
 
       db.setTransactionSuccessful()

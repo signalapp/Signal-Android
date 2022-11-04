@@ -88,35 +88,35 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
 
   private fun getConfiguration(state: InternalSettingsState): DSLConfiguration {
     return configure {
-      sectionHeaderPref(R.string.preferences__internal_account)
+      sectionHeaderPref(DSLSettingsText.from("Account"))
 
       clickPref(
-        title = DSLSettingsText.from(R.string.preferences__internal_refresh_attributes),
-        summary = DSLSettingsText.from(R.string.preferences__internal_refresh_attributes_description),
+        title = DSLSettingsText.from("Refresh attributes"),
+        summary = DSLSettingsText.from("Forces a write of capabilities on to the server followed by a read."),
         onClick = {
           refreshAttributes()
         }
       )
 
       clickPref(
-        title = DSLSettingsText.from(R.string.preferences__internal_refresh_profile),
-        summary = DSLSettingsText.from(R.string.preferences__internal_refresh_profile_description),
+        title = DSLSettingsText.from("Refresh profile"),
+        summary = DSLSettingsText.from("Forces a refresh of your own profile."),
         onClick = {
           refreshProfile()
         }
       )
 
       clickPref(
-        title = DSLSettingsText.from(R.string.preferences__internal_rotate_profile_key),
-        summary = DSLSettingsText.from(R.string.preferences__internal_rotate_profile_key_description),
+        title = DSLSettingsText.from("Rotate profile key"),
+        summary = DSLSettingsText.from("Creates a new versioned profile, and triggers an update of any GV2 group you belong to."),
         onClick = {
           rotateProfileKey()
         }
       )
 
       clickPref(
-        title = DSLSettingsText.from(R.string.preferences__internal_refresh_remote_config),
-        summary = DSLSettingsText.from(R.string.preferences__internal_refresh_remote_config_description),
+        title = DSLSettingsText.from("Refresh remote config"),
+        summary = DSLSettingsText.from("Forces a refresh of the remote config locally instead of waiting for the elapsed time."),
         onClick = {
           refreshRemoteValues()
         }
@@ -124,11 +124,11 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
 
       dividerPref()
 
-      sectionHeaderPref(R.string.preferences__internal_misc)
+      sectionHeaderPref(DSLSettingsText.from("Miscellaneous"))
 
       switchPref(
-        title = DSLSettingsText.from(R.string.preferences__internal_user_details),
-        summary = DSLSettingsText.from(R.string.preferences__internal_user_details_description),
+        title = DSLSettingsText.from("'Internal Details' button"),
+        summary = DSLSettingsText.from("Show a button in conversation settings that lets you see more information about a user."),
         isChecked = state.seeMoreUserDetails,
         onClick = {
           viewModel.setSeeMoreUserDetails(!state.seeMoreUserDetails)
@@ -136,8 +136,8 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       )
 
       switchPref(
-        title = DSLSettingsText.from(R.string.preferences__internal_shake_to_report),
-        summary = DSLSettingsText.from(R.string.preferences__internal_shake_to_report_description),
+        title = DSLSettingsText.from("Shake to Report"),
+        summary = DSLSettingsText.from("Shake your phone to easily submit and share a debug log."),
         isChecked = state.shakeToReport,
         onClick = {
           viewModel.setShakeToReport(!state.shakeToReport)
@@ -145,7 +145,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       )
 
       clickPref(
-        title = DSLSettingsText.from(R.string.preferences__internal_clear_keep_longer_logs),
+        title = DSLSettingsText.from("Clear keep longer logs"),
         onClick = {
           clearKeepLongerLogs()
         }
@@ -153,11 +153,11 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
 
       dividerPref()
 
-      sectionHeaderPref(R.string.preferences__internal_payments)
+      sectionHeaderPref(DSLSettingsText.from("Payments"))
 
       clickPref(
-        title = DSLSettingsText.from(R.string.preferences__internal_payment_copy_data),
-        summary = DSLSettingsText.from(R.string.preferences__internal_payment_copy_data_description),
+        title = DSLSettingsText.from("Copy payments data"),
+        summary = DSLSettingsText.from("Copy all payment records to clipboard."),
         onClick = {
           copyPaymentsDataToClipboard()
         }
@@ -165,11 +165,11 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
 
       dividerPref()
 
-      sectionHeaderPref(R.string.preferences__internal_storage_service)
+      sectionHeaderPref(DSLSettingsText.from("Storage Service"))
 
       switchPref(
-        title = DSLSettingsText.from(R.string.preferences__internal_disable_storage_service),
-        summary = DSLSettingsText.from(R.string.preferences__internal_disable_storage_service_description),
+        title = DSLSettingsText.from("Disable syncing"),
+        summary = DSLSettingsText.from("Prevent syncing any data to/from storage service."),
         isChecked = state.disableStorageService,
         onClick = {
           viewModel.setDisableStorageService(!state.disableStorageService)
@@ -177,16 +177,16 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       )
 
       clickPref(
-        title = DSLSettingsText.from(R.string.preferences__internal_sync_now),
-        summary = DSLSettingsText.from(R.string.preferences__internal_sync_now_description),
+        title = DSLSettingsText.from("Sync now"),
+        summary = DSLSettingsText.from("Enqueue a normal storage service sync."),
         onClick = {
           enqueueStorageServiceSync()
         }
       )
 
       clickPref(
-        title = DSLSettingsText.from(R.string.preferences__internal_force_storage_service_sync),
-        summary = DSLSettingsText.from(R.string.preferences__internal_force_storage_service_sync_description),
+        title = DSLSettingsText.from("Overwrite remote data"),
+        summary = DSLSettingsText.from("Forces remote storage to match the local device state."),
         onClick = {
           enqueueStorageServiceForcePush()
         }
@@ -194,11 +194,11 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
 
       dividerPref()
 
-      sectionHeaderPref(R.string.preferences__internal_preferences_groups_v2)
+      sectionHeaderPref(DSLSettingsText.from("Groups V2"))
 
       switchPref(
-        title = DSLSettingsText.from(R.string.preferences__internal_force_gv2_invites),
-        summary = DSLSettingsText.from(R.string.preferences__internal_force_gv2_invites_description),
+        title = DSLSettingsText.from("Force invites"),
+        summary = DSLSettingsText.from("Members will not be added directly to a GV2 even if they could be."),
         isChecked = state.gv2forceInvites,
         onClick = {
           viewModel.setGv2ForceInvites(!state.gv2forceInvites)
@@ -206,8 +206,8 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       )
 
       switchPref(
-        title = DSLSettingsText.from(R.string.preferences__internal_ignore_gv2_server_changes),
-        summary = DSLSettingsText.from(R.string.preferences__internal_ignore_gv2_server_changes_description),
+        title = DSLSettingsText.from("Ignore server changes"),
+        summary = DSLSettingsText.from("Changes in server's response will be ignored, causing passive voice update messages if P2P is also ignored."),
         isChecked = state.gv2ignoreServerChanges,
         onClick = {
           viewModel.setGv2IgnoreServerChanges(!state.gv2ignoreServerChanges)
@@ -215,8 +215,8 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       )
 
       switchPref(
-        title = DSLSettingsText.from(R.string.preferences__internal_ignore_gv2_p2p_changes),
-        summary = DSLSettingsText.from(R.string.preferences__internal_ignore_gv2_server_changes_description),
+        title = DSLSettingsText.from("Ignore P2P changes"),
+        summary = DSLSettingsText.from("Changes sent P2P will be ignored. In conjunction with ignoring server changes, will cause passive voice."),
         isChecked = state.gv2ignoreP2PChanges,
         onClick = {
           viewModel.setGv2IgnoreP2PChanges(!state.gv2ignoreP2PChanges)
@@ -225,7 +225,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
 
       dividerPref()
 
-      sectionHeaderPref(R.string.preferences__internal_network)
+      sectionHeaderPref(DSLSettingsText.from("Network"))
 
       switchPref(
         title = DSLSettingsText.from("Force websocket mode"),
@@ -247,8 +247,8 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       )
 
       switchPref(
-        title = DSLSettingsText.from(R.string.preferences__internal_allow_censorship_toggle),
-        summary = DSLSettingsText.from(R.string.preferences__internal_allow_censorship_toggle_description),
+        title = DSLSettingsText.from("Allow censorship circumvention toggle"),
+        summary = DSLSettingsText.from("Allow changing the censorship circumvention toggle regardless of network connectivity."),
         isChecked = state.allowCensorshipSetting,
         onClick = {
           viewModel.setAllowCensorshipSetting(!state.allowCensorshipSetting)
@@ -257,11 +257,11 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
 
       dividerPref()
 
-      sectionHeaderPref(R.string.preferences__internal_conversations_and_shortcuts)
+      sectionHeaderPref(DSLSettingsText.from("Conversations and Shortcuts"))
 
       clickPref(
-        title = DSLSettingsText.from(R.string.preferences__internal_delete_all_dynamic_shortcuts),
-        summary = DSLSettingsText.from(R.string.preferences__internal_click_to_delete_all_dynamic_shortcuts),
+        title = DSLSettingsText.from("Delete all dynamic shortcuts"),
+        summary = DSLSettingsText.from("Click to delete all dynamic shortcuts"),
         onClick = {
           deleteAllDynamicShortcuts()
         }
@@ -269,20 +269,16 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
 
       dividerPref()
 
-      sectionHeaderPref(R.string.preferences__internal_emoji)
+      sectionHeaderPref(DSLSettingsText.from("Emoji"))
 
       val emojiSummary = if (state.emojiVersion == null) {
-        getString(R.string.preferences__internal_use_built_in_emoji_set)
+        "Use built-in emoji set"
       } else {
-        getString(
-          R.string.preferences__internal_current_version_d_at_density_s,
-          state.emojiVersion.version,
-          state.emojiVersion.density
-        )
+        "Current version: ${state.emojiVersion.version} at density ${state.emojiVersion.density}"
       }
 
       switchPref(
-        title = DSLSettingsText.from(R.string.preferences__internal_use_built_in_emoji_set),
+        title = DSLSettingsText.from("Use built-in emoji set"),
         summary = DSLSettingsText.from(emojiSummary),
         isChecked = state.useBuiltInEmojiSet,
         onClick = {
@@ -291,16 +287,16 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       )
 
       clickPref(
-        title = DSLSettingsText.from(R.string.preferences__internal_force_emoji_download),
-        summary = DSLSettingsText.from(R.string.preferences__internal_force_emoji_download_description),
+        title = DSLSettingsText.from("Force emoji download"),
+        summary = DSLSettingsText.from("Download the latest emoji set if it\\'s newer than what we have."),
         onClick = {
           ApplicationDependencies.getJobManager().add(DownloadLatestEmojiDataJob(true))
         }
       )
 
       clickPref(
-        title = DSLSettingsText.from(R.string.preferences__internal_force_search_index_download),
-        summary = DSLSettingsText.from(R.string.preferences__internal_force_search_index_download_description),
+        title = DSLSettingsText.from("Force search index download"),
+        summary = DSLSettingsText.from("Download the latest emoji search index if it\\'s newer than what we have."),
         onClick = {
           EmojiSearchIndexDownloadJob.scheduleImmediately()
         }
@@ -308,27 +304,27 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
 
       dividerPref()
 
-      sectionHeaderPref(R.string.preferences__internal_sender_key)
+      sectionHeaderPref(DSLSettingsText.from("Sender Key"))
 
       clickPref(
-        title = DSLSettingsText.from(R.string.preferences__internal_clear_all_state),
-        summary = DSLSettingsText.from(R.string.preferences__internal_click_to_delete_all_sender_key_state),
+        title = DSLSettingsText.from("Clear all state"),
+        summary = DSLSettingsText.from("Click to delete all sender key state"),
         onClick = {
           clearAllSenderKeyState()
         }
       )
 
       clickPref(
-        title = DSLSettingsText.from(R.string.preferences__internal_clear_shared_state),
-        summary = DSLSettingsText.from(R.string.preferences__internal_click_to_delete_all_sharing_state),
+        title = DSLSettingsText.from("Clear shared state"),
+        summary = DSLSettingsText.from("Click to delete all sharing state"),
         onClick = {
           clearAllSenderKeySharedState()
         }
       )
 
       switchPref(
-        title = DSLSettingsText.from(R.string.preferences__internal_remove_two_person_minimum),
-        summary = DSLSettingsText.from(R.string.preferences__internal_remove_the_requirement_that_you_need),
+        title = DSLSettingsText.from("Remove 2 person minimum"),
+        summary = DSLSettingsText.from("Remove the requirement that you  need at least 2 recipients to use sender key."),
         isChecked = state.removeSenderKeyMinimium,
         onClick = {
           viewModel.setRemoveSenderKeyMinimum(!state.removeSenderKeyMinimium)
@@ -336,8 +332,8 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       )
 
       switchPref(
-        title = DSLSettingsText.from(R.string.preferences__internal_delay_resends),
-        summary = DSLSettingsText.from(R.string.preferences__internal_delay_resending_messages_in_response_to_retry_receipts),
+        title = DSLSettingsText.from("Delay resends"),
+        summary = DSLSettingsText.from("Delay resending messages in response to retry receipts by 10 seconds."),
         isChecked = state.delayResends,
         onClick = {
           viewModel.setDelayResends(!state.delayResends)
@@ -346,11 +342,11 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
 
       dividerPref()
 
-      sectionHeaderPref(R.string.preferences__internal_local_metrics)
+      sectionHeaderPref(DSLSettingsText.from("Local Metrics"))
 
       clickPref(
-        title = DSLSettingsText.from(R.string.preferences__internal_clear_local_metrics),
-        summary = DSLSettingsText.from(R.string.preferences__internal_click_to_clear_all_local_metrics_state),
+        title = DSLSettingsText.from("Clear local metrics"),
+        summary = DSLSettingsText.from("Click to clear all local metrics state."),
         onClick = {
           clearAllLocalMetricsState()
         }
@@ -358,10 +354,10 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
 
       dividerPref()
 
-      sectionHeaderPref(R.string.preferences__internal_calling_server)
+      sectionHeaderPref(DSLSettingsText.from("Group call server"))
 
       radioPref(
-        title = DSLSettingsText.from(R.string.preferences__internal_calling_server_default),
+        title = DSLSettingsText.from("Default"),
         summary = DSLSettingsText.from(BuildConfig.SIGNAL_SFU_URL),
         isChecked = state.callingServer == BuildConfig.SIGNAL_SFU_URL,
         onClick = {
@@ -372,7 +368,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       BuildConfig.SIGNAL_SFU_INTERNAL_NAMES.zip(BuildConfig.SIGNAL_SFU_INTERNAL_URLS)
         .forEach { (name, server) ->
           radioPref(
-            title = DSLSettingsText.from(requireContext().getString(R.string.preferences__internal_calling_server_s, name)),
+            title = DSLSettingsText.from("$name server"),
             summary = DSLSettingsText.from(server),
             isChecked = state.callingServer == server,
             onClick = {
@@ -381,10 +377,10 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
           )
         }
 
-      sectionHeaderPref(R.string.preferences__internal_calling)
+      sectionHeaderPref(DSLSettingsText.from("Calling options"))
 
       radioListPref(
-        title = DSLSettingsText.from(R.string.preferences__internal_calling_audio_processing_method),
+        title = DSLSettingsText.from("Audio processing method"),
         listItems = CallManager.AudioProcessingMethod.values().map { it.name }.toTypedArray(),
         selected = CallManager.AudioProcessingMethod.values().indexOf(state.callingAudioProcessingMethod),
         onSelected = {
@@ -393,7 +389,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       )
 
       radioListPref(
-        title = DSLSettingsText.from(R.string.preferences__internal_calling_bandwidth_mode),
+        title = DSLSettingsText.from("Bandwidth mode"),
         listItems = CallManager.BandwidthMode.values().map { it.name }.toTypedArray(),
         selected = CallManager.BandwidthMode.values().indexOf(state.callingBandwidthMode),
         onSelected = {
@@ -402,7 +398,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       )
 
       switchPref(
-        title = DSLSettingsText.from(R.string.preferences__internal_calling_disable_telecom),
+        title = DSLSettingsText.from("Disable Telecom integration"),
         isChecked = state.callingDisableTelecom,
         onClick = {
           viewModel.setInternalCallingDisableTelecom(!state.callingDisableTelecom)
@@ -412,24 +408,24 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       if (SignalStore.donationsValues().getSubscriber() != null) {
         dividerPref()
 
-        sectionHeaderPref(R.string.preferences__internal_badges)
+        sectionHeaderPref(DSLSettingsText.from("Badges"))
 
         clickPref(
-          title = DSLSettingsText.from(R.string.preferences__internal_badges_enqueue_redemption),
+          title = DSLSettingsText.from("Enqueue redemption."),
           onClick = {
             enqueueSubscriptionRedemption()
           }
         )
 
         clickPref(
-          title = DSLSettingsText.from(R.string.preferences__internal_badges_enqueue_keep_alive),
+          title = DSLSettingsText.from("Enqueue keep-alive."),
           onClick = {
             enqueueSubscriptionKeepAlive()
           }
         )
 
         clickPref(
-          title = DSLSettingsText.from(R.string.preferences__internal_badges_set_error_state),
+          title = DSLSettingsText.from("Set error state."),
           onClick = {
             findNavController().safeNavigate(InternalSettingsFragmentDirections.actionInternalSettingsFragmentToDonorErrorConfigurationFragment())
           }
@@ -438,17 +434,17 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
 
       dividerPref()
 
-      sectionHeaderPref(R.string.preferences__internal_release_channel)
+      sectionHeaderPref(DSLSettingsText.from("Release channel"))
 
       clickPref(
-        title = DSLSettingsText.from(R.string.preferences__internal_release_channel_set_last_version),
+        title = DSLSettingsText.from("Set last version seen back 10 versions"),
         onClick = {
           SignalStore.releaseChannelValues().highestVersionNoteReceived = max(SignalStore.releaseChannelValues().highestVersionNoteReceived - 10, 0)
         }
       )
 
       clickPref(
-        title = DSLSettingsText.from(R.string.preferences__internal_reset_donation_megaphone),
+        title = DSLSettingsText.from("Reset donation megaphone"),
         onClick = {
           SignalDatabase.remoteMegaphones.debugRemoveAll()
           MegaphoneDatabase.getInstance(ApplicationDependencies.getApplication()).let {
@@ -461,7 +457,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       )
 
       clickPref(
-        title = DSLSettingsText.from(R.string.preferences__internal_fetch_release_channel),
+        title = DSLSettingsText.from("Fetch release channel"),
         onClick = {
           SignalStore.releaseChannelValues().previousManifestMd5 = ByteArray(0)
           RetrieveRemoteAnnouncementsJob.enqueue(force = true)
@@ -469,7 +465,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       )
 
       clickPref(
-        title = DSLSettingsText.from(R.string.preferences__internal_add_sample_note),
+        title = DSLSettingsText.from("Add sample note"),
         onClick = {
           viewModel.addSampleReleaseNote()
         }
@@ -477,27 +473,27 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
 
       dividerPref()
 
-      sectionHeaderPref(R.string.preferences__internal_cds)
+      sectionHeaderPref(DSLSettingsText.from("CDS"))
 
       clickPref(
-        title = DSLSettingsText.from(R.string.preferences__internal_clear_history),
-        summary = DSLSettingsText.from(R.string.preferences__internal_clear_history_description),
+        title = DSLSettingsText.from("Clear history"),
+        summary = DSLSettingsText.from("Clears all CDS history, meaning the next sync will consider all numbers to be new."),
         onClick = {
           clearCdsHistory()
         }
       )
 
       clickPref(
-        title = DSLSettingsText.from(R.string.preferences__internal_clear_all_service_ids),
-        summary = DSLSettingsText.from(R.string.preferences__internal_clear_all_service_ids_description),
+        title = DSLSettingsText.from("Clear all service IDs"),
+        summary = DSLSettingsText.from("Clears all known service IDs (except your own) for people that have phone numbers. Do not use on your personal device!"),
         onClick = {
           clearAllServiceIds()
         }
       )
 
       clickPref(
-        title = DSLSettingsText.from(R.string.preferences__internal_clear_all_profile_keys),
-        summary = DSLSettingsText.from(R.string.preferences__internal_clear_all_profile_keys_description),
+        title = DSLSettingsText.from("Clear all profile keys"),
+        summary = DSLSettingsText.from("Clears all known profile keys (except your own). Do not use on your personal device!"),
         onClick = {
           clearAllProfileKeys()
         }
@@ -505,11 +501,11 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
 
       dividerPref()
 
-      sectionHeaderPref(R.string.ConversationListTabs__stories)
+      sectionHeaderPref(DSLSettingsText.from("Stories"))
 
       clickPref(
-        title = DSLSettingsText.from(R.string.preferences__internal_clear_onboarding_state),
-        summary = DSLSettingsText.from(R.string.preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories),
+        title = DSLSettingsText.from("Clear onboarding state"),
+        summary = DSLSettingsText.from("Clears onboarding flag and triggers download of onboarding stories."),
         isEnabled = state.canClearOnboardingState,
         onClick = {
           viewModel.onClearOnboardingState()
@@ -525,7 +521,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       )
 
       clickPref(
-        title = DSLSettingsText.from(R.string.preferences__internal_stories_dialog_launcher),
+        title = DSLSettingsText.from("Stories dialog launcher"),
         onClick = {
           findNavController().safeNavigate(InternalSettingsFragmentDirections.actionInternalSettingsFragmentToStoryDialogsLauncherFragment())
         }
