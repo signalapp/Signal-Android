@@ -235,6 +235,8 @@ class DonateToSignalFragment : DSLSettingsFragment(
 
       customPref(BadgePreview.BadgeModel.SubscriptionModel(state.badge))
 
+      space(12.dp)
+
       noPadTextPref(
         title = DSLSettingsText.from(
           R.string.DonateToSignalFragment__powered_by,
@@ -242,6 +244,8 @@ class DonateToSignalFragment : DSLSettingsFragment(
           DSLSettingsText.TitleLargeModifier
         )
       )
+
+      space(8.dp)
 
       noPadTextPref(
         title = DSLSettingsText.from(supportTechSummary, DSLSettingsText.CenterModifier)
