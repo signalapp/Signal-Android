@@ -13,6 +13,7 @@ import com.annimon.stream.Stream;
 
 import org.signal.core.util.ListUtil;
 import org.signal.core.util.SetUtil;
+import org.signal.core.util.Stopwatch;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.IdentityKey;
@@ -34,7 +35,6 @@ import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.profiles.ProfileName;
-import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
@@ -43,7 +43,6 @@ import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.ProfileUtil;
-import org.signal.core.util.Stopwatch;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.crypto.InvalidCiphertextException;
 import org.whispersystems.signalservice.api.crypto.ProfileCipher;
@@ -260,7 +259,7 @@ public class RetrieveProfileJob extends BaseJob {
                                                                                               .toList();
     stopwatch.split("requests");
 
-    OperationState operationState = Observable.mergeDelayError(requests)
+    OperationState operationState = Observable.mergeDelayError(requests, 16, 1)
                                               .observeOn(Schedulers.io(), true)
                                               .scan(new OperationState(), (state, pair) -> {
                                                 Recipient                               recipient = pair.first();
