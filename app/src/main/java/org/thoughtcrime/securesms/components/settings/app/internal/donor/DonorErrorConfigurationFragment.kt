@@ -58,7 +58,7 @@ class DonorErrorConfigurationFragment : DSLSettingsFragment() {
       secondaryButtonNoOutline(
         text = DSLSettingsText.from(R.string.preferences__internal_donor_error_clear),
         onClick = {
-          lifecycleDisposable += viewModel.clear().subscribe()
+          lifecycleDisposable += viewModel.clearErrorState().subscribe()
         }
       )
     }

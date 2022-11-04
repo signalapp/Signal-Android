@@ -108,10 +108,10 @@ class DonorErrorConfigurationViewModel : ViewModel() {
       }
     }.subscribeOn(Schedulers.io())
 
-    return clear().andThen(saveState)
+    return clearErrorState().andThen(saveState)
   }
 
-  fun clear(): Completable {
+  fun clearErrorState(): Completable {
     return Completable.fromAction {
       synchronized(SubscriptionReceiptRequestResponseJob.MUTEX) {
         SignalStore.donationsValues().setExpiredBadge(null)

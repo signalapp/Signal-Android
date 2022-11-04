@@ -408,8 +408,10 @@ public class ConversationListFragment extends MainFragment implements ActionMode
       isDisplayingSubscriptionFailure = true;
     } else if (unexpectedSubscriptionCancellation != null && SignalStore.donationsValues().isUserManuallyCancelled()) {
       Log.w(TAG, "Unexpected cancellation detected but not displaying dialog because user manually cancelled their subscription: " + unexpectedSubscriptionCancellation, true);
+      SignalStore.donationsValues().setUnexpectedSubscriptionCancelationWatermark(subscriptionFailureTimestamp);
     } else if (unexpectedSubscriptionCancellation != null && !SignalStore.donationsValues().showCantProcessDialog()) {
       Log.w(TAG, "Unexpected cancellation detected but not displaying dialog because user has silenced it.", true);
+      SignalStore.donationsValues().setUnexpectedSubscriptionCancelationWatermark(subscriptionFailureTimestamp);
     }
 
     if (expiredBadge != null && !isDisplayingSubscriptionFailure) {
