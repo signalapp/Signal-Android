@@ -4,7 +4,6 @@ import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.testing.TestProtos
 import org.whispersystems.signalservice.api.messages.SignalServiceContent
 import org.whispersystems.signalservice.internal.serialize.protos.SignalServiceContentProto
 
@@ -14,11 +13,9 @@ class MessageContentProcessor__handleTextMessageTest : MessageContentProcessorTe
   fun givenContentWithATextMessageWhenIProcessThenIInsertTheTextMessage() {
     val testSubject: MessageContentProcessor = createNormalContentTestSubject()
     val expectedBody = "Hello, World!"
-    val contentProto: SignalServiceContentProto = TestProtos.build {
-      val dataMessage = dataMessage().apply { body = expectedBody }
-      val content = content().apply { this.dataMessage = dataMessage.build() }
-      serviceContent().apply { this.content = content.build() }
-    }.build()
+    val contentProto: SignalServiceContentProto = createServiceContentWithDataMessage {
+      body = expectedBody
+    }
 
     val content = SignalServiceContent.createFromProto(contentProto)
 
