@@ -106,13 +106,13 @@
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Το Signal χρειάζεται τα δικαιώματα Επαφών για την επισύναψη πληροφοριών επαφών, αλλά αυτά δεν έχουν δοθεί μόνιμα. Πήγαινε στις ρυθμίσεις εφαρμογών, επέλεξε τα «Δικαιώματα», και ενεργοποίησε τις «Επαφές».</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Το Signal χρειάζεται τα δικαιώματα Τοποθεσίας για την επισύναψη τοποθεσιών, αλλά αυτά δεν έχουν δοθεί μόνιμα. Πήγαινε στις ρυθμίσεις εφαρμογών, επέλεξε τα «Δικαιώματα», και ενεργοποίησε την «Τοποθεσία».</string>
     <!-- Alert dialog title to show the recipient has not activated payments -->
-    <string name="AttachmentManager__not_activated_payments">%1$s hasn\\’t activated Payments </string>
+    <string name="AttachmentManager__not_activated_payments">%1$s hasn\'t activated Payments </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
     <string name="AttachmentManager__request_to_activate_payments">Do you want to send them a request to activate Payments?</string>
     <!-- Alert dialog button to send request -->
     <string name="AttachmentManager__send_request">Send request</string>
     <!-- Alert dialog button to cancel dialog -->
-    <string name="AttachmentManager__cancel">Cancel</string>
+    <string name="AttachmentManager__cancel">Ακύρωση</string>
 
     <!-- AttachmentUploadJob -->
     <string name="AttachmentUploadJob_uploading_media">Ανέβασμα πολυμέσου…</string>
@@ -161,7 +161,7 @@
     <!-- Error displayed under the card expiry text field when the expiry year is invalid -->
     <string name="CreditCardFragment__invalid_year">Μη έγκυρο έτος</string>
     <!-- Button label to confirm credit card input and proceed with payment -->
-    <string name="CreditCardFragment__continue">Continue</string>
+    <string name="CreditCardFragment__continue">Συνέχεια</string>
 
     <!-- BlockUnblockDialog -->
     <string name="BlockUnblockDialog_block_and_leave_s">Αποκλεισμός και αποχώρηση από %1$s;</string>
@@ -874,7 +874,7 @@
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">Έχεις επιλέξει μια επαφή που δεν υποστηρίζει ομάδες Signal, επομένως αυτή η ομάδα θα είναι MMS. Τα ονόματα και οι φωτογραφίες εξατομικευμένων ομάδων MMS θα είναι ορατά μόνο σε εσένα.</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">Επέλεξες μια επαφή που δεν υποστηρίζει τις ομάδες του Signal, αυτή η ομάδα θα είναι με MMS. Τα εξατομικευμένα ονόματα και οι φωτογραφίες των ομάδων MMS θα είναι ορατά μόνο σε σένα. Η υποστήριξη για ομάδες MMS θα καταργηθεί σύντομα για εστίαση στην κρυπτογραφημένη ανταλλαγή μηνυμάτων.</string>
+    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">You\'ve selected a contact that doesn\'t support Signal groups, this group will be MMS. Custom MMS group names and photos will only be visible to you. Support for MMS groups will be removed soon to focus on encrypted messaging.</string>
 
     <!-- ManageGroupActivity -->
     <string name="ManageGroupActivity_member_requests_and_invites">Αιτήματα μελών &amp; προσκλήσεις</string>
@@ -2150,6 +2150,12 @@
     <string name="UnauthorizedReminder_device_no_longer_registered">Η συσκευή δεν είναι πλέον εγγεγραμμένη</string>
     <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Αυτό συνέβη μάλλον επειδή καταχώρησες τον αριθμό τηλεφώνου σου στο Signal σε άλλη συσκευή. Πάτα για επανεγγραφή.</string>
 
+    <!-- EnclaveFailureReminder -->
+    <!-- Banner message to update app to use payments -->
+    <string name="EnclaveFailureReminder_update_signal">Ενημερώστε το Signal για να συνεχίσεις να χρησιμοποιείς πληρωμές. Το υπόλοιπό σου ενδέχεται να μην είναι ενημερωμένο.</string>
+    <!-- Banner button to update now -->
+    <string name="EnclaveFailureReminder_update_now">Αναβάθμιση τώρα</string>
+
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Για να απαντήσεις στη κλήση, δώσε στο Signal πρόσβαση στο μικρόφωνο.</string>
     <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Για να απαντήσεις την κλήση από τον/την %1$s, δώσε στο Signal πρόσβαση στο μικρόφωνο.</string>
@@ -2280,9 +2286,9 @@
     <!-- Update item button text to show to boost a feature -->
     <string name="ConversationUpdateItem_donate">Δωρεά</string>
     <!-- Update item button text to send payment -->
-    <string name="ConversationUpdateItem_send_payment">Send payment</string>
+    <string name="ConversationUpdateItem_send_payment">Αποστολή πληρωμής</string>
     <!-- Update item button text to activate payments -->
-    <string name="ConversationUpdateItem_activate_payments">Activate payments</string>
+    <string name="ConversationUpdateItem_activate_payments">Ενεργοποίηση πληρωμών</string>
 
 
     <!-- audio_view -->
@@ -2660,9 +2666,9 @@
     <string name="preferences__pref_use_address_book_photos">Χρήση φωτογραφιών λίστας επαφών</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">Εμφάνιση φωτογραφιών επαφών από τη λίστα επαφών αν είναι διαθέσιμες</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">Keep Muted Chats Archived</string>
+    <string name="preferences__pref_keep_muted_chats_archived">Διατήρηση αρχειοθέτησης συνομιλιών σε σίγαση</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Muted chats that are archived will remain archived when a new message arrives.</string>
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Οι συνομιλίες σε σίγαση που είναι αρχειοθετημένες, θα παραμείνουν σε αρχειοθέτηση όταν λάβεις νέα μηνύματα.</string>
     <string name="preferences__generate_link_previews">Προεπισκόπηση συνδέσμων</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Λάβε προεπισκόπεις συνδέσμων απ\' ευθείας από σελίδες για τα μηνύματα που στέλνεις.</string>
     <string name="preferences__choose_identity">Επέλεξε ταυτότητα</string>
@@ -3013,6 +3019,14 @@
     <string name="PaymentsHomeFragment__enable">Ενεργοποίηση</string>
     <!-- Alert dialog button to not enable payment lock for now -->
     <string name="PaymentsHomeFragment__not_now">Όχι τώρα</string>
+    <!-- Alert dialog title which shows up to update app to send payments -->
+    <string name="PaymentsHomeFragment__update_required">Απαιτείται αναβάθμιση</string>
+    <!-- Alert dialog description that app update is required to send payments-->
+    <string name="PaymentsHomeFragment__an_update_is_required">Απαιτείται ενημέρωση για να συνεχίσεις να στέλνεις και να λαμβάνεις πληρωμές και να βλέπεις το ενημερωμένο υπόλοιπο πληρωμών σου.</string>
+    <!-- Alert dialog button to cancel -->
+    <string name="PaymentsHomeFragment__cancel">Ακύρωση</string>
+    <!-- Alert dialog button to update now -->
+    <string name="PaymentsHomeFragment__update_now">Αναβάθμιση τώρα</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -4507,7 +4521,7 @@
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">Να γίνεις μηνιαίος υποστηρικτής/τρια.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Εμφάνιση στο προφίλ</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Να γίνει το βασικό έμβλημα</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">Continue</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">Συνέχεια</string>
     <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Όταν έχεις πάνω από ένα έμβλημα, μπορείς να επιλέξεις ποιο μπορούν να δουν τα άλλα άτομα στο προφίλ σου.</string>
 
     <string name="BecomeASustainerFragment__get_badges">Στηρίζοντας το Signal παίρνεις εμβλήματα για το προφίλ σου.</string>

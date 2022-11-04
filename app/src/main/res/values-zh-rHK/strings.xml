@@ -105,13 +105,13 @@
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal 需要聯絡人權限才可附加聯絡人資訊，但已被永久拒絕。請前往應用程式設定功能表，選擇「權限」，然後啟用 「聯絡人」。</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal 需要位置權限才可附加位置，但已被永久拒絕。請前往應用程式設定功能表，選擇「權限」，然後啟用 「位置」。</string>
     <!-- Alert dialog title to show the recipient has not activated payments -->
-    <string name="AttachmentManager__not_activated_payments">%1$s hasn\\’t activated Payments </string>
+    <string name="AttachmentManager__not_activated_payments">%1$s hasn\'t activated Payments </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
     <string name="AttachmentManager__request_to_activate_payments">Do you want to send them a request to activate Payments?</string>
     <!-- Alert dialog button to send request -->
     <string name="AttachmentManager__send_request">Send request</string>
     <!-- Alert dialog button to cancel dialog -->
-    <string name="AttachmentManager__cancel">Cancel</string>
+    <string name="AttachmentManager__cancel">取消</string>
 
     <!-- AttachmentUploadJob -->
     <string name="AttachmentUploadJob_uploading_media">正在上載媒體…</string>
@@ -160,7 +160,7 @@
     <!-- Error displayed under the card expiry text field when the expiry year is invalid -->
     <string name="CreditCardFragment__invalid_year">年份無效</string>
     <!-- Button label to confirm credit card input and proceed with payment -->
-    <string name="CreditCardFragment__continue">Continue</string>
+    <string name="CreditCardFragment__continue">繼續</string>
 
     <!-- BlockUnblockDialog -->
     <string name="BlockUnblockDialog_block_and_leave_s">要封鎖並退出 %1$s 嗎？</string>
@@ -836,7 +836,7 @@
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">由於你已選擇一個不支援 Signal 群組的聯絡人，此群組將會使用多媒體短訊。只有你可以看見自訂多媒體短訊群組的名稱和相片。</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">你選取的聯絡人無法使用 Signal 群組，因此群組將使用多媒體訊息。只有你可以看到自訂的多媒體訊息群組名稱和相片。系統即將停止支援多媒體訊息群組，專注提供加密通訊服務。</string>
+    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">You\'ve selected a contact that doesn\'t support Signal groups, this group will be MMS. Custom MMS group names and photos will only be visible to you. Support for MMS groups will be removed soon to focus on encrypted messaging.</string>
 
     <!-- ManageGroupActivity -->
     <string name="ManageGroupActivity_member_requests_and_invites">成員請求與邀請</string>
@@ -2075,6 +2075,12 @@
     <string name="UnauthorizedReminder_device_no_longer_registered">裝置已不再註冊</string>
     <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">通常是因為您已在另一台裝置上使用 Signal 註冊您的電話號碼。輕觸以重新註冊。</string>
 
+    <!-- EnclaveFailureReminder -->
+    <!-- Banner message to update app to use payments -->
+    <string name="EnclaveFailureReminder_update_signal">請更新 Signal 以繼續使用付款功能。你的餘額可能尚未更新。</string>
+    <!-- Banner button to update now -->
+    <string name="EnclaveFailureReminder_update_now">立即更新</string>
+
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">若要接聽通話，請授予 Signal 存取您的咪高峰。</string>
     <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">若要接聽來自 %1$s 的通話，請授予 Signal 存取您的咪高峰。</string>
@@ -2202,9 +2208,9 @@
     <!-- Update item button text to show to boost a feature -->
     <string name="ConversationUpdateItem_donate">捐款</string>
     <!-- Update item button text to send payment -->
-    <string name="ConversationUpdateItem_send_payment">Send payment</string>
+    <string name="ConversationUpdateItem_send_payment">付款</string>
     <!-- Update item button text to activate payments -->
-    <string name="ConversationUpdateItem_activate_payments">Activate payments</string>
+    <string name="ConversationUpdateItem_activate_payments">啟用付款</string>
 
 
     <!-- audio_view -->
@@ -2574,9 +2580,9 @@
     <string name="preferences__pref_use_address_book_photos">使用通訊錄照片</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">在可用時顯示來自您的通訊錄中的聯絡人照片</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">Keep Muted Chats Archived</string>
+    <string name="preferences__pref_keep_muted_chats_archived">繼續存檔靜音聊天記錄</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Muted chats that are archived will remain archived when a new message arrives.</string>
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">當收到新訊息時，已存檔的靜音聊天將會保持存檔狀態。</string>
     <string name="preferences__generate_link_previews">產生連結預覽</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">為您傳送的訊息直接從網站提取連結預覽。</string>
     <string name="preferences__choose_identity">請選擇身份</string>
@@ -2927,6 +2933,14 @@
     <string name="PaymentsHomeFragment__enable">開啟</string>
     <!-- Alert dialog button to not enable payment lock for now -->
     <string name="PaymentsHomeFragment__not_now">暫時不要</string>
+    <!-- Alert dialog title which shows up to update app to send payments -->
+    <string name="PaymentsHomeFragment__update_required">必須更新</string>
+    <!-- Alert dialog description that app update is required to send payments-->
+    <string name="PaymentsHomeFragment__an_update_is_required">你必須進行更新方可繼續傳送及接收付款，並查看最新的付款餘額。</string>
+    <!-- Alert dialog button to cancel -->
+    <string name="PaymentsHomeFragment__cancel">取消</string>
+    <!-- Alert dialog button to update now -->
+    <string name="PaymentsHomeFragment__update_now">立即更新</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -4403,7 +4417,7 @@
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">成為月供延續人。</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">在個人資料中展現</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">設為別注徽章</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">Continue</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">繼續</string>
     <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">若您有多於一枚徽章，您可選取一枚作為別注徽章，在個人資料中供其他人看見。</string>
 
     <string name="BecomeASustainerFragment__get_badges">撐起 Signal 並在您的個人資料中獲贈徽章。</string>

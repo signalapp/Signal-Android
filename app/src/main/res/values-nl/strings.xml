@@ -106,13 +106,13 @@
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal heeft toegang nodig tot de contacten om contactinformatie in Signal weer te geven, maar deze toestemming is pertinent geweigerd. Ga naar de instellingen, tik op ‘Toestemmingen’ en schakel ‘Contacten’ in.</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal heeft toegang nodig tot de locatie om locaties te kunnen verzenden aan je gesprekspartners, maar deze toestemming is pertinent geweigerd. Ga naar de instellingen, tik op ‘Toestemmingen’ en schakel ‘Locatie’ in.</string>
     <!-- Alert dialog title to show the recipient has not activated payments -->
-    <string name="AttachmentManager__not_activated_payments">%1$s hasn\\’t activated Payments </string>
+    <string name="AttachmentManager__not_activated_payments">%1$s hasn\'t activated Payments </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
     <string name="AttachmentManager__request_to_activate_payments">Do you want to send them a request to activate Payments?</string>
     <!-- Alert dialog button to send request -->
     <string name="AttachmentManager__send_request">Send request</string>
     <!-- Alert dialog button to cancel dialog -->
-    <string name="AttachmentManager__cancel">Cancel</string>
+    <string name="AttachmentManager__cancel">Annuleren</string>
 
     <!-- AttachmentUploadJob -->
     <string name="AttachmentUploadJob_uploading_media">Media aan het uploaden …</string>
@@ -161,7 +161,7 @@
     <!-- Error displayed under the card expiry text field when the expiry year is invalid -->
     <string name="CreditCardFragment__invalid_year">Ongeldig jaartal</string>
     <!-- Button label to confirm credit card input and proceed with payment -->
-    <string name="CreditCardFragment__continue">Continue</string>
+    <string name="CreditCardFragment__continue">Doorgaan</string>
 
     <!-- BlockUnblockDialog -->
     <string name="BlockUnblockDialog_block_and_leave_s">%1$s blokkeren en verlaten?</string>
@@ -874,7 +874,7 @@
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">Je hebt een contactpersoon geselecteerd die geen Signal-groepen heeft, dus dit zal een mms-groep zijn. Aangepaste mms-groepsnamen en -foto\'s zullen alleen voor jou zichtbaar zijn.</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">Je hebt een contactpersoon geselecteerd die geen Signal-groepen heeft, dus deze groep zal gebruikmaken van mms. Zelf ingestelde mms-groepsnamen en groepsafbeeldingen zullen alleen voor jou zichtbaar zijn. Ondersteuning voor mms-groepen wordt binnenkort verwijderd, zodat we ons kunnen richten op versleutelde berichten.</string>
+    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">You\'ve selected a contact that doesn\'t support Signal groups, this group will be MMS. Custom MMS group names and photos will only be visible to you. Support for MMS groups will be removed soon to focus on encrypted messaging.</string>
 
     <!-- ManageGroupActivity -->
     <string name="ManageGroupActivity_member_requests_and_invites">Lidmaatschapsverzoeken &amp; -uitnodigingen</string>
@@ -2150,6 +2150,12 @@
     <string name="UnauthorizedReminder_device_no_longer_registered">Apparaat niet langer geregistreerd</string>
     <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Dit komt waarschijnlijk doordat je vanaf een ander apparaat je telefoonnummer bij Signal hebt geregistreerd. Tik hier om opnieuw te registreren.</string>
 
+    <!-- EnclaveFailureReminder -->
+    <!-- Banner message to update app to use payments -->
+    <string name="EnclaveFailureReminder_update_signal">Om overschrijvingen te kunnen blijven doen moet je Signal bijwerken. Jouw saldo is misschien niet up-to-date.</string>
+    <!-- Banner button to update now -->
+    <string name="EnclaveFailureReminder_update_now">Nu bijwerken</string>
+
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Je moet Signal toestaan om de microfoon te gebruiken voor je de oproep kunt beantwoorden.</string>
     <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Geef Signal toegang tot je microfoon om de oproep van %1$s te beantwoorden.</string>
@@ -2280,9 +2286,9 @@
     <!-- Update item button text to show to boost a feature -->
     <string name="ConversationUpdateItem_donate">Doneren</string>
     <!-- Update item button text to send payment -->
-    <string name="ConversationUpdateItem_send_payment">Send payment</string>
+    <string name="ConversationUpdateItem_send_payment">Overschrijving verzenden</string>
     <!-- Update item button text to activate payments -->
-    <string name="ConversationUpdateItem_activate_payments">Activate payments</string>
+    <string name="ConversationUpdateItem_activate_payments">Overschrijvingen inschakelen</string>
 
 
     <!-- audio_view -->
@@ -2660,9 +2666,9 @@
     <string name="preferences__pref_use_address_book_photos">Profielfoto uit systeemcontactenlijst gebruiken</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">Geef indien beschikbaar de profielfoto uit je eigen systeemcontactenlijst weer, in plaats van de profielfoto welke anderen voor henzelf hebben ingesteld.</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">Keep Muted Chats Archived</string>
+    <string name="preferences__pref_keep_muted_chats_archived">Gedempte gesprekken gearchiveerd houden</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Muted chats that are archived will remain archived when a new message arrives.</string>
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Gedempte gesprekken die zijn gearchiveerd blijven gearchiveerd als er een nieuw bericht binnenkomt.</string>
     <string name="preferences__generate_link_previews">Voorbeeld van website meesturen</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Door dit in te schakelen wordt voor elke link naar een website die je verzendt een voorbeeldafbeelding gegenereerd en met je bericht meegestuurd. Een nadeel is wel dat als je dit inschakelt websites zouden kunnen detecteren dat je hen in je bericht vermeldt en ook welke pagina je vermeldt.</string>
     <string name="preferences__choose_identity">Identiteit kiezen</string>
@@ -3013,6 +3019,14 @@
     <string name="PaymentsHomeFragment__enable">Aanzetten</string>
     <!-- Alert dialog button to not enable payment lock for now -->
     <string name="PaymentsHomeFragment__not_now">Niet nu</string>
+    <!-- Alert dialog title which shows up to update app to send payments -->
+    <string name="PaymentsHomeFragment__update_required">Update vereist</string>
+    <!-- Alert dialog description that app update is required to send payments-->
+    <string name="PaymentsHomeFragment__an_update_is_required">Een update is nodig om betalingen te blijven verzenden en ontvangen, en om jouw actuele betalingssaldo te bekijken.</string>
+    <!-- Alert dialog button to cancel -->
+    <string name="PaymentsHomeFragment__cancel">Annuleren</string>
+    <!-- Alert dialog button to update now -->
+    <string name="PaymentsHomeFragment__update_now">Nu bijwerken</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -4507,7 +4521,7 @@
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">maandelijks doneren.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Op profiel weergeven</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Badge op je profiel weergeven</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">Continue</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">Doorgaan</string>
     <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Als je meerdere badges hebt dan kun je er één kiezen om voor anderen op je profiel weer te geven.</string>
 
     <string name="BecomeASustainerFragment__get_badges">Door Signal te ondersteunen verdien je badges om op je profiel weer te geven.</string>

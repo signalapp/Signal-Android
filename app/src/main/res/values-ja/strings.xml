@@ -105,13 +105,13 @@
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">連絡先情報を添付するには、Signalに連絡先へのアクセス許可が必要ですが、無効になっています。アプリ設定メニューの「アプリの権限」で「連絡先」を有効にしてください。</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">位置情報を添付するには、Signalに位置情報へのアクセス許可が必要ですが、無効になっています。アプリ設定メニューの「アプリの権限」で「位置情報」を有効にしてください。</string>
     <!-- Alert dialog title to show the recipient has not activated payments -->
-    <string name="AttachmentManager__not_activated_payments">%1$s hasn\\’t activated Payments </string>
+    <string name="AttachmentManager__not_activated_payments">%1$s hasn\'t activated Payments </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
     <string name="AttachmentManager__request_to_activate_payments">Do you want to send them a request to activate Payments?</string>
     <!-- Alert dialog button to send request -->
     <string name="AttachmentManager__send_request">Send request</string>
     <!-- Alert dialog button to cancel dialog -->
-    <string name="AttachmentManager__cancel">Cancel</string>
+    <string name="AttachmentManager__cancel">キャンセル</string>
 
     <!-- AttachmentUploadJob -->
     <string name="AttachmentUploadJob_uploading_media">メディアをアップロードしています…</string>
@@ -160,7 +160,7 @@
     <!-- Error displayed under the card expiry text field when the expiry year is invalid -->
     <string name="CreditCardFragment__invalid_year">無効な年です</string>
     <!-- Button label to confirm credit card input and proceed with payment -->
-    <string name="CreditCardFragment__continue">Continue</string>
+    <string name="CreditCardFragment__continue">続ける</string>
 
     <!-- BlockUnblockDialog -->
     <string name="BlockUnblockDialog_block_and_leave_s">%1$s をブロックして抜けますか？</string>
@@ -836,7 +836,7 @@
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">Signalグループに対応していない連絡先を選択したため、このグループはMMSになります。カスタムMMSグループ名と写真は、あなただけに表示されます。</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">Signalグループがサポートしていない連絡先を選択したため、このグループはMMSとなります。MMSグループの名前と写真はあなただけに表示されます。暗号化されたメッセージ送受信にフォーカスするため、MMSのサポートはまもなく終了する予定です。</string>
+    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">You\'ve selected a contact that doesn\'t support Signal groups, this group will be MMS. Custom MMS group names and photos will only be visible to you. Support for MMS groups will be removed soon to focus on encrypted messaging.</string>
 
     <!-- ManageGroupActivity -->
     <string name="ManageGroupActivity_member_requests_and_invites">メンバー申請と招待</string>
@@ -2075,6 +2075,12 @@
     <string name="UnauthorizedReminder_device_no_longer_registered">この端末はもう登録されていません</string>
     <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">これはおそらく別の端末でSignalに登録されたことが原因です。タップして再登録します。</string>
 
+    <!-- EnclaveFailureReminder -->
+    <!-- Banner message to update app to use payments -->
+    <string name="EnclaveFailureReminder_update_signal">決済機能を引き続きご利用いただくために、Signalをアップデートしてください。残高が最新の状態ではない可能性があります。</string>
+    <!-- Banner button to update now -->
+    <string name="EnclaveFailureReminder_update_now">アップデートする</string>
+
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">着信に出るには、Signalにマイクへのアクセスを許可してください。</string>
     <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">%1$s からの着信に出るには、Signalにマイクへのアクセスを許可してください。</string>
@@ -2202,9 +2208,9 @@
     <!-- Update item button text to show to boost a feature -->
     <string name="ConversationUpdateItem_donate">寄付する</string>
     <!-- Update item button text to send payment -->
-    <string name="ConversationUpdateItem_send_payment">Send payment</string>
+    <string name="ConversationUpdateItem_send_payment">送金</string>
     <!-- Update item button text to activate payments -->
-    <string name="ConversationUpdateItem_activate_payments">Activate payments</string>
+    <string name="ConversationUpdateItem_activate_payments">決済機能を有効化</string>
 
 
     <!-- audio_view -->
@@ -2574,9 +2580,9 @@
     <string name="preferences__pref_use_address_book_photos">アドレス帳の写真を使用する</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">可能であれば、連絡先の表示にアドレス帳の写真を使用します。</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">Keep Muted Chats Archived</string>
+    <string name="preferences__pref_keep_muted_chats_archived">ミュートしたチャットをアーカイブしたままにします</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Muted chats that are archived will remain archived when a new message arrives.</string>
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">アーカイブされており、さらにミュートもしているチャットは、新しいメッセージが届いてもアーカイブされたままになります。</string>
     <string name="preferences__generate_link_previews">リンクプレビューを生成する</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">送信メッセージのリンクプレビューを、ウェブサイトから直接取得します。</string>
     <string name="preferences__choose_identity">アイデンティティを選択</string>
@@ -2927,6 +2933,14 @@
     <string name="PaymentsHomeFragment__enable">有効にする</string>
     <!-- Alert dialog button to not enable payment lock for now -->
     <string name="PaymentsHomeFragment__not_now">今はしない</string>
+    <!-- Alert dialog title which shows up to update app to send payments -->
+    <string name="PaymentsHomeFragment__update_required">アップデートが必要です</string>
+    <!-- Alert dialog description that app update is required to send payments-->
+    <string name="PaymentsHomeFragment__an_update_is_required">送金や受け取りを継続し、最新の決済残高を表示するためにはアップデートが必要です。</string>
+    <!-- Alert dialog button to cancel -->
+    <string name="PaymentsHomeFragment__cancel">キャンセル</string>
+    <!-- Alert dialog button to update now -->
+    <string name="PaymentsHomeFragment__update_now">アップデートする</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -4403,7 +4417,7 @@
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">月次サポーターになることもできます。</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">プロフィールに表示する</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">このバッジを表示する</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">Continue</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">続ける</string>
     <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">複数のバッジを持っている場合は、自分のプロフィールに表示するバッジを選ぶことができます。</string>
 
     <string name="BecomeASustainerFragment__get_badges">Signalをサポートすると、あなたのプロフィールにバッジが表示されます。</string>

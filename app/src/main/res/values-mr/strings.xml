@@ -106,13 +106,13 @@
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">संपर्क माहिती संलग्न करण्यासाठी Signal ला संपर्क परवानगीची आवश्यकता असते, पण ती कायमची नाकारली गेली आहे. कृपया अॅप सेटिंग मेनू मध्ये सुरू ठेवा, \"परवानग्या\" निवडा, आणि \"संपर्क\" सक्षम करा.</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">स्थान संलग्न करण्यासाठी Signal ला स्थान परवानगीची आवश्यकता असते, पण ती कायमची नाकारली गेली आहे. कृपया अॅप सेटिंग मेनू मध्ये सुरू ठेवा, \"परवानग्या\" निवडा, आणि \"स्थान\" सक्षम करा.</string>
     <!-- Alert dialog title to show the recipient has not activated payments -->
-    <string name="AttachmentManager__not_activated_payments">%1$s hasn\\’t activated Payments </string>
+    <string name="AttachmentManager__not_activated_payments">%1$s hasn\'t activated Payments </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
     <string name="AttachmentManager__request_to_activate_payments">Do you want to send them a request to activate Payments?</string>
     <!-- Alert dialog button to send request -->
     <string name="AttachmentManager__send_request">Send request</string>
     <!-- Alert dialog button to cancel dialog -->
-    <string name="AttachmentManager__cancel">Cancel</string>
+    <string name="AttachmentManager__cancel">रद्द करा</string>
 
     <!-- AttachmentUploadJob -->
     <string name="AttachmentUploadJob_uploading_media">मिडिया अपलोड करत आहे…</string>
@@ -161,7 +161,7 @@
     <!-- Error displayed under the card expiry text field when the expiry year is invalid -->
     <string name="CreditCardFragment__invalid_year">अवैध वर्ष</string>
     <!-- Button label to confirm credit card input and proceed with payment -->
-    <string name="CreditCardFragment__continue">Continue</string>
+    <string name="CreditCardFragment__continue">सुरू ठेवा</string>
 
     <!-- BlockUnblockDialog -->
     <string name="BlockUnblockDialog_block_and_leave_s">%1$s अवरोधित करायचे आणि सोडायचे ?</string>
@@ -874,7 +874,7 @@
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">आपण Signal गट समर्थन देत नसलेला संपर्क निवडला आहे, त्यामुळे हा गट MMS असेल. सानुकूलित MMS गटाची नावे आणि फोटो हे फक्त आपणाला दृश्यमान असतील.</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">आपण Signal ग्रुप्सना समर्थन न करणारा संपर्क निवडला आहे, म्हणून हा MMS ग्रुप होईल. सानुकूलित MMS ग्रुपची नावं आणि फोटो फक्त आपल्याला दृश्यमान असतील. एन्क्रिप्टेड संदेशनावर लक्ष केंद्रित करण्यासाठी MMS ग्रुप्ससाठीचे समर्थन लवकरच काढले जाईल.</string>
+    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">You\'ve selected a contact that doesn\'t support Signal groups, this group will be MMS. Custom MMS group names and photos will only be visible to you. Support for MMS groups will be removed soon to focus on encrypted messaging.</string>
 
     <!-- ManageGroupActivity -->
     <string name="ManageGroupActivity_member_requests_and_invites">सदस्य विनंत्या &amp; आमंत्रणे</string>
@@ -2150,6 +2150,12 @@
     <string name="UnauthorizedReminder_device_no_longer_registered">डिव्हाईस आता नोंदवलेला नाही</string>
     <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">हे असे असू शकते कारण आपण आपला Signal सोबतचा फोन नंबर वेगळ्या डिव्हाईस वरून नोंदवला आहे. पुन्हा नोंदणी करण्यासाठी टॅप करा.</string>
 
+    <!-- EnclaveFailureReminder -->
+    <!-- Banner message to update app to use payments -->
+    <string name="EnclaveFailureReminder_update_signal">पेमेंट्स वापरणे पुढे सुरु ठेवण्यासाठी Signal ला अद्ययावत करा. आपली शिल्लक कदाचित अद्ययावत नसेल.</string>
+    <!-- Banner button to update now -->
+    <string name="EnclaveFailureReminder_update_now">आता अद्यतनित करा</string>
+
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">कॉलला उत्तर देण्यासाठी, Signal ला तुमच्या मायक्रोफोनचा अॅक्सेस द्या.</string>
     <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">%1$s कडून कॉलला उत्तर देण्यासाठी, Signal ला आपला मायक्रोफोन अॅक्सेस द्या.</string>
@@ -2280,9 +2286,9 @@
     <!-- Update item button text to show to boost a feature -->
     <string name="ConversationUpdateItem_donate">दान करा</string>
     <!-- Update item button text to send payment -->
-    <string name="ConversationUpdateItem_send_payment">Send payment</string>
+    <string name="ConversationUpdateItem_send_payment">पेमेंट पाठवा</string>
     <!-- Update item button text to activate payments -->
-    <string name="ConversationUpdateItem_activate_payments">Activate payments</string>
+    <string name="ConversationUpdateItem_activate_payments">पेमेंट सक्रिय करा</string>
 
 
     <!-- audio_view -->
@@ -2660,9 +2666,9 @@
     <string name="preferences__pref_use_address_book_photos">अॅड्रेस बुक फोटो वापरा</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">उपलब्ध असल्यास आपल्या अॅड्रेस बुकमधून संपर्क फोटो दाखवा</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">Keep Muted Chats Archived</string>
+    <string name="preferences__pref_keep_muted_chats_archived">म्यूट केलेले आर्काईव्ह केलेले चॅटस् ठेवा</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Muted chats that are archived will remain archived when a new message arrives.</string>
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">नवीन संदेश येईल तेव्हा आर्काईव्ह केलेले म्यूट केलेले चॅट्स हे आर्काईव्ह केलेलेच राहतील.</string>
     <string name="preferences__generate_link_previews">लिंक पुनरावलोकन उत्पन्न करा</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">तुम्ही पाठवलेल्या संदेशांसाठी थेट कोणत्याही वेबसाइटवरून लिंक पूर्वावलोकने प्राप्त करू शकता.</string>
     <string name="preferences__choose_identity">ओळख निवडा</string>
@@ -3013,6 +3019,14 @@
     <string name="PaymentsHomeFragment__enable">चालू करा</string>
     <!-- Alert dialog button to not enable payment lock for now -->
     <string name="PaymentsHomeFragment__not_now">आता नाही</string>
+    <!-- Alert dialog title which shows up to update app to send payments -->
+    <string name="PaymentsHomeFragment__update_required">अद्यतन आवश्यक आहे</string>
+    <!-- Alert dialog description that app update is required to send payments-->
+    <string name="PaymentsHomeFragment__an_update_is_required">पेमेंट्स पाठवणे आणि प्राप्त करण्यासाठी, आणि आपली अद्ययावत पेमेंट्स शिल्लक पाहण्यासाठी अद्यतन आवश्यक आहे.</string>
+    <!-- Alert dialog button to cancel -->
+    <string name="PaymentsHomeFragment__cancel">रद्द करा</string>
+    <!-- Alert dialog button to update now -->
+    <string name="PaymentsHomeFragment__update_now">आता अद्यतनित करा</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -4507,7 +4521,7 @@
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">मासिक सस्टेनर व्हा</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">प्रोफाइलवर दाखवा</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">वैशिष्ट्यीकृत बॅज बनवा</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">Continue</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">सुरू ठेवा</string>
     <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">जेव्हा तुमच्याकडे एकापेक्षा जास्त बॅज असतील, तेव्हा तुम्ही तुमच्या प्रोफाईलवर इतरांना पाहण्यासाठी एक निवडू शकता.</string>
 
     <string name="BecomeASustainerFragment__get_badges">Signal ला सपोर्ट करून आपल्या प्रोफाइलसाठी बॅज मिळवा.</string>

@@ -106,13 +106,13 @@
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Контакт туралы ақпаратты тіркеу үшін Signal қолданбасына Контактілер ашық болу керек, бірақ параметрлерде оған кіруге рұқсат берілмеген. Қолданба параметрлері мәзіріне кіріп, \"Рұқсаттар\" бөлімін таңдаңыз да, \"Контактілер\" функциясын қосыңыз.</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Геолокацияны тіркеу үшін Signal қолданбасына Геолокация ашық болу керек, бірақ параметрлерде оған кіруге рұқсат берілмеген. Қолданба параметрлері мәзіріне кіріп, \"Рұқсаттар\" бөлімін таңдаңыз да, \"Геолокация\" функциясын қосыңыз.</string>
     <!-- Alert dialog title to show the recipient has not activated payments -->
-    <string name="AttachmentManager__not_activated_payments">%1$s hasn\\’t activated Payments </string>
+    <string name="AttachmentManager__not_activated_payments">%1$s hasn\'t activated Payments </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
     <string name="AttachmentManager__request_to_activate_payments">Do you want to send them a request to activate Payments?</string>
     <!-- Alert dialog button to send request -->
     <string name="AttachmentManager__send_request">Send request</string>
     <!-- Alert dialog button to cancel dialog -->
-    <string name="AttachmentManager__cancel">Cancel</string>
+    <string name="AttachmentManager__cancel">Болдырмау</string>
 
     <!-- AttachmentUploadJob -->
     <string name="AttachmentUploadJob_uploading_media">Мультимедиа жүктеп салынуда…</string>
@@ -161,7 +161,7 @@
     <!-- Error displayed under the card expiry text field when the expiry year is invalid -->
     <string name="CreditCardFragment__invalid_year">Жыл дұрыс жазылмады</string>
     <!-- Button label to confirm credit card input and proceed with payment -->
-    <string name="CreditCardFragment__continue">Continue</string>
+    <string name="CreditCardFragment__continue">Жалғастыру</string>
 
     <!-- BlockUnblockDialog -->
     <string name="BlockUnblockDialog_block_and_leave_s">%1$s блокталған күйде қалсын ба?</string>
@@ -874,7 +874,7 @@
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">Signal топтары қолдау көрсетпейтін контактіні таңдадыңыз, сондықтан бұл топ MMS болады. Реттелмелі MMS тобының атаулары мен фотосуреттері тек сізге көрінетін болады.</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">Signal топтарына қолдау көрсетпейтін контактіні таңдадыңыз. Бұл топ MMS болады. Реттелмелі MMS топ аттары мен фотосуреттері тек сізге көрінетін болады. Шифрланған хаттарға көңіл бөлу үшін жақында MMS топтарына қолдау көрсетілмейтін болады.</string>
+    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">You\'ve selected a contact that doesn\'t support Signal groups, this group will be MMS. Custom MMS group names and photos will only be visible to you. Support for MMS groups will be removed soon to focus on encrypted messaging.</string>
 
     <!-- ManageGroupActivity -->
     <string name="ManageGroupActivity_member_requests_and_invites">Топ мүшесі болуға өтініштер мен шақырулар</string>
@@ -2150,6 +2150,12 @@
     <string name="UnauthorizedReminder_device_no_longer_registered">Құрылғы бұдан былай тіркелмеген</string>
     <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Телефон нөміріңізді Signal орнатылған басқа құрылғыда тіркегендіктен осындай болуы мүмкін. Қайта тіркелу үшін түртіңіз.</string>
 
+    <!-- EnclaveFailureReminder -->
+    <!-- Banner message to update app to use payments -->
+    <string name="EnclaveFailureReminder_update_signal">Update Signal to continue using payments. Your balance may not be up-to-date.</string>
+    <!-- Banner button to update now -->
+    <string name="EnclaveFailureReminder_update_now">Қазір жаңарту</string>
+
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Қоңырауға жауап беру үшін Signal қолданбасының микрофонды пайдалануына рұқсат етіңіз.</string>
     <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Қоңырауға %1$s арқылы жауап беру үшін Signal қолданбасының микрофонды пайдалануына рұқсат етіңіз.</string>
@@ -2280,9 +2286,9 @@
     <!-- Update item button text to show to boost a feature -->
     <string name="ConversationUpdateItem_donate">Ерікті жарна енгізу</string>
     <!-- Update item button text to send payment -->
-    <string name="ConversationUpdateItem_send_payment">Send payment</string>
+    <string name="ConversationUpdateItem_send_payment">Send Payment</string>
     <!-- Update item button text to activate payments -->
-    <string name="ConversationUpdateItem_activate_payments">Activate payments</string>
+    <string name="ConversationUpdateItem_activate_payments">Төлемдерді іске қосу</string>
 
 
     <!-- audio_view -->
@@ -3013,6 +3019,14 @@
     <string name="PaymentsHomeFragment__enable">Іске қосу</string>
     <!-- Alert dialog button to not enable payment lock for now -->
     <string name="PaymentsHomeFragment__not_now">Қазір емес</string>
+    <!-- Alert dialog title which shows up to update app to send payments -->
+    <string name="PaymentsHomeFragment__update_required">Update required</string>
+    <!-- Alert dialog description that app update is required to send payments-->
+    <string name="PaymentsHomeFragment__an_update_is_required">An update is required to continue sending and receiving payments, and to view your up-to-date payment balance.</string>
+    <!-- Alert dialog button to cancel -->
+    <string name="PaymentsHomeFragment__cancel">Болдырмау</string>
+    <!-- Alert dialog button to update now -->
+    <string name="PaymentsHomeFragment__update_now">Қазір жаңарту</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -4507,7 +4521,7 @@
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">ай сайынғы демеуші бола аласыз</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Профильде көрсету</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Таңдаулы таңбасын жасау</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">Continue</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">Жалғастыру</string>
     <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Бірнеше таңбаңыз болса, олардың біреуін таңдап, басқаларға профиліңізде көрсетуіңізге болады.</string>
 
     <string name="BecomeASustainerFragment__get_badges">Signal-ға қолдау көрсету арқылы профиліңізге таңбалар алыңыз.</string>

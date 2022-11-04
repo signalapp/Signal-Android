@@ -110,13 +110,13 @@
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">يحتاج Signal إلى إذن الوصول لِ جهات الاتصال من أجل إرفاق بيانات جهة اتصال، لكن الإذن لم يُمنح بشكل دائم. الّرجاء زيارة قائمة إعدادات التطبيق، واختيار \"الأذونات\"، ومن ثم تفعيل \"جهات الاتصال\".</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">يحتاج Signal إلى إذن الوصول إلى الموقع من أجل إرفاق الموقع الجغرافي ولكن تم إيقاف الإذن على نحو دائم. يرجى زيارة قائمة إعدادات التطبيق ثم اختيار \"الأذونات\" وتفعيل \"الموقع\".</string>
     <!-- Alert dialog title to show the recipient has not activated payments -->
-    <string name="AttachmentManager__not_activated_payments">%1$s hasn\\’t activated Payments </string>
+    <string name="AttachmentManager__not_activated_payments">%1$s hasn\'t activated Payments </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
     <string name="AttachmentManager__request_to_activate_payments">Do you want to send them a request to activate Payments?</string>
     <!-- Alert dialog button to send request -->
     <string name="AttachmentManager__send_request">Send request</string>
     <!-- Alert dialog button to cancel dialog -->
-    <string name="AttachmentManager__cancel">Cancel</string>
+    <string name="AttachmentManager__cancel">إلغاء</string>
 
     <!-- AttachmentUploadJob -->
     <string name="AttachmentUploadJob_uploading_media">يجري رفع الوسائط…</string>
@@ -165,7 +165,7 @@
     <!-- Error displayed under the card expiry text field when the expiry year is invalid -->
     <string name="CreditCardFragment__invalid_year">سنة غير صحيحة</string>
     <!-- Button label to confirm credit card input and proceed with payment -->
-    <string name="CreditCardFragment__continue">Continue</string>
+    <string name="CreditCardFragment__continue">واصل</string>
 
     <!-- BlockUnblockDialog -->
     <string name="BlockUnblockDialog_block_and_leave_s">حظر ثم مغادرة %1$s؟</string>
@@ -1026,7 +1026,7 @@
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">لقد حدّدتَ جهة اتصال لا تدعم مجموعات Signal، لذلك ستُحوّل هذه المجموعة إلى رسائل الوسائط المتعددة المخصصة (MMS). ستكون أسماء وصور مجموعة رسائل الوسائط المتعددة المخصصة (MMS) مرئية لك فقط.</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">لقد اخترت جهة اتصال لا تدعم مجموعات Signal، لذلك هذه المجموعة ستتواصل بتقنية MMS. أسماء وصور مجموعة MMS المُخصصة ستكون مرئية لك فقط. سَتتم إزالة دعم مجموعات MMS قريبًا للتركيز على الرسائل المشفرة.</string>
+    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">You\'ve selected a contact that doesn\'t support Signal groups, this group will be MMS. Custom MMS group names and photos will only be visible to you. Support for MMS groups will be removed soon to focus on encrypted messaging.</string>
 
     <!-- ManageGroupActivity -->
     <string name="ManageGroupActivity_member_requests_and_invites">طلبات و دعوات اﻷعضاء</string>
@@ -2450,6 +2450,12 @@
     <string name="UnauthorizedReminder_device_no_longer_registered">إنّ الجهاز لم يعد مسجلا</string>
     <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">هذا على الأرجح بسبب قيامك بتسجيل رقم هاتفك على Signal في جهاز آخر. أنقر لإعادة التسجيل.</string>
 
+    <!-- EnclaveFailureReminder -->
+    <!-- Banner message to update app to use payments -->
+    <string name="EnclaveFailureReminder_update_signal">حدِّث تطبيق Signal للاستمرار في استخدام عمليات الدفع. قد لا يكون رصيدك مُحدثًا.</string>
+    <!-- Banner button to update now -->
+    <string name="EnclaveFailureReminder_update_now">حدِّث الآن</string>
+
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">للإجابة على المكالمة، يجب عليك منح ترخيص الوصول إلى ميكروفونك.</string>
     <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">للإجابة على مكالمة %1$s يجب السماح ل Signal بالوصول إلى المايكروفون في جهازك.</string>
@@ -2592,9 +2598,9 @@
     <!-- Update item button text to show to boost a feature -->
     <string name="ConversationUpdateItem_donate">تبرع</string>
     <!-- Update item button text to send payment -->
-    <string name="ConversationUpdateItem_send_payment">Send payment</string>
+    <string name="ConversationUpdateItem_send_payment">إرسال مدفوعات</string>
     <!-- Update item button text to activate payments -->
-    <string name="ConversationUpdateItem_activate_payments">Activate payments</string>
+    <string name="ConversationUpdateItem_activate_payments">تفعيل الدفوعات</string>
 
 
     <!-- audio_view -->
@@ -3004,9 +3010,9 @@
     <string name="preferences__pref_use_address_book_photos">استخدام صور دفتر العناوين</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">عرض صور جهات الاتصال من دفتر عناوينك إذا كان متاحا</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">Keep Muted Chats Archived</string>
+    <string name="preferences__pref_keep_muted_chats_archived">إبقاء المحادثات المكتومة مُؤرشفة</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Muted chats that are archived will remain archived when a new message arrives.</string>
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">المحادثات المكتومة المؤرشفة سَتبقى كذلك عند وصول رسالة جديدة.</string>
     <string name="preferences__generate_link_previews">توليد معاينة الوصلات</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">يمكنك جلب معاينة وصلات المواقع مباشرة للرسائل التي سترسلها.</string>
     <string name="preferences__choose_identity">اختيار الهوية</string>
@@ -3357,6 +3363,14 @@
     <string name="PaymentsHomeFragment__enable">تفعيل</string>
     <!-- Alert dialog button to not enable payment lock for now -->
     <string name="PaymentsHomeFragment__not_now">ليس الآن</string>
+    <!-- Alert dialog title which shows up to update app to send payments -->
+    <string name="PaymentsHomeFragment__update_required">يَجب تحديث التطبيق</string>
+    <!-- Alert dialog description that app update is required to send payments-->
+    <string name="PaymentsHomeFragment__an_update_is_required">يَجب تحديث التطبيق لمتابعة إرسال عمليات الدفع واستلامها، ولعرض رصيد عمليات الدفع المُحدثة الخاصة بك.</string>
+    <!-- Alert dialog button to cancel -->
+    <string name="PaymentsHomeFragment__cancel">إلغاء</string>
+    <!-- Alert dialog button to update now -->
+    <string name="PaymentsHomeFragment__update_now">حدِّث الآن</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -4923,7 +4937,7 @@
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">كُن داعماً شهرياً.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">عرض في الملف الشخصي</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">اصنع شارة مميزة</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">Continue</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">واصل</string>
     <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">عندما يكون لديك أكثر من شارة واحدة، يمكنك اختيار واحدة لتمييزها ليراها الآخرين في ملفك الشخصي.</string>
 
     <string name="BecomeASustainerFragment__get_badges">احصل على شارات لملفك الشخصي عن طريق دعم Signal.</string>

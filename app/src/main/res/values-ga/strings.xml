@@ -109,13 +109,13 @@
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Tá gá ag Signal le cead teagmhálaí chun eolas teagmhálaí a cheangail, ach ní ceadaítear é go deo. Lean ar aghaidh, le do thoil, go socruithe aipe, roghnaigh \"Ceadanna\", agus cumasaigh \"Teagmhálaí\".</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Tá gá ag Signal le cead áite i gcomhair do áit a cheangail, ach ní ceadaítear é go deo. Lean ar aghaidh, le do thoil, go socruithe aipe, roghnaigh \"Ceadanna\", agus cumasaigh \"Áit\".</string>
     <!-- Alert dialog title to show the recipient has not activated payments -->
-    <string name="AttachmentManager__not_activated_payments">%1$s hasn\\’t activated Payments </string>
+    <string name="AttachmentManager__not_activated_payments">%1$s hasn\'t activated Payments </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
     <string name="AttachmentManager__request_to_activate_payments">Do you want to send them a request to activate Payments?</string>
     <!-- Alert dialog button to send request -->
     <string name="AttachmentManager__send_request">Send request</string>
     <!-- Alert dialog button to cancel dialog -->
-    <string name="AttachmentManager__cancel">Cancel</string>
+    <string name="AttachmentManager__cancel">Cuir ar ceal</string>
 
     <!-- AttachmentUploadJob -->
     <string name="AttachmentUploadJob_uploading_media">Ag uasluchtú na meán…</string>
@@ -164,7 +164,7 @@
     <!-- Error displayed under the card expiry text field when the expiry year is invalid -->
     <string name="CreditCardFragment__invalid_year">Bliain neamhbhailí</string>
     <!-- Button label to confirm credit card input and proceed with payment -->
-    <string name="CreditCardFragment__continue">Continue</string>
+    <string name="CreditCardFragment__continue">Ar Aghaidh</string>
 
     <!-- BlockUnblockDialog -->
     <string name="BlockUnblockDialog_block_and_leave_s">Cuir bac ar ⁊ fág %1$s?</string>
@@ -988,7 +988,7 @@
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">Roghnaigh tú teagmhálaí nach dtacaíonn le grúpaí Signal, grúpa MMS a bheidh sa ghrúpa seo dá réir. Beidh ainmneacha agus grianghraif ag grúpaí MMS saincheaptha infheicthe agatsa amháin.</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">Roghnaigh tú teagmhálaí nach dtacaíonn le grúpaí Signal, grúpa MMS a bheith sa ghrúpa seo dá réir. Beidh ainmneacha agus grianghraif ag grúpa MMS saincheaptha infheicthe agatsa amháin. Bainfear tacaíocht do ghrúpaí SMS go lua chun díriú ar chur teachtaireachtaí criptithe.</string>
+    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">You\'ve selected a contact that doesn\'t support Signal groups, this group will be MMS. Custom MMS group names and photos will only be visible to you. Support for MMS groups will be removed soon to focus on encrypted messaging.</string>
 
     <!-- ManageGroupActivity -->
     <string name="ManageGroupActivity_member_requests_and_invites">Member requests &amp; invites</string>
@@ -2375,6 +2375,12 @@
     <string name="UnauthorizedReminder_device_no_longer_registered">Níl an gléas cláráithe a thulleadh.</string>
     <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Is dócha go chláraigh do uimhir fóin le Signal ar gléas eile. Cnag chun athchláraigh.</string>
 
+    <!-- EnclaveFailureReminder -->
+    <!-- Banner message to update app to use payments -->
+    <string name="EnclaveFailureReminder_update_signal">Nuashonraigh Signal chun leanúint le húsáid íocaíochtaí. Seans nach bhfuil d’iarmhéid cothrom le dáta.</string>
+    <!-- Banner button to update now -->
+    <string name="EnclaveFailureReminder_update_now">Nuashonraigh anois é</string>
+
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">To answer the call, give Signal access to your microphone.</string>
     <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Chun an ghlao ón %1$s a fhreaghairt, tabhairt riochtain do Shignal do do mhicreafón.</string>
@@ -2514,9 +2520,9 @@
     <!-- Update item button text to show to boost a feature -->
     <string name="ConversationUpdateItem_donate">Tabhair airgead</string>
     <!-- Update item button text to send payment -->
-    <string name="ConversationUpdateItem_send_payment">Send payment</string>
+    <string name="ConversationUpdateItem_send_payment">Send Payment</string>
     <!-- Update item button text to activate payments -->
-    <string name="ConversationUpdateItem_activate_payments">Activate payments</string>
+    <string name="ConversationUpdateItem_activate_payments">Gníomhachtaigh Íocaíochtaí</string>
 
 
     <!-- audio_view -->
@@ -3271,6 +3277,14 @@
     <string name="PaymentsHomeFragment__enable">Cuir ar siúl</string>
     <!-- Alert dialog button to not enable payment lock for now -->
     <string name="PaymentsHomeFragment__not_now">Ná bac leis anois</string>
+    <!-- Alert dialog title which shows up to update app to send payments -->
+    <string name="PaymentsHomeFragment__update_required">Nuashonrú De Dhíth</string>
+    <!-- Alert dialog description that app update is required to send payments-->
+    <string name="PaymentsHomeFragment__an_update_is_required">Tá nuashonrú ag teastáil chun leanúint le híocaíochtaí a sheoladh agus a fháil, agus chun féachaint ar d\'iarmhéid íocaíochta atá cothrom le dáta.</string>
+    <!-- Alert dialog button to cancel -->
+    <string name="PaymentsHomeFragment__cancel">Cuir ar ceal</string>
+    <!-- Alert dialog button to update now -->
+    <string name="PaymentsHomeFragment__update_now">Nuashonraigh anois é</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -4819,7 +4833,7 @@
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">become a monthly Sustainer.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Display on Profile</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Make Featured Badge</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">Continue</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">Ar Aghaidh</string>
     <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">When you have more than one badge, you can choose one to feature for others to see on your profile.</string>
 
     <string name="BecomeASustainerFragment__get_badges">Get badges for your profile by supporting Signal.</string>

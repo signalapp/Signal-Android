@@ -105,13 +105,13 @@
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal에서 연락처 정보를 첨부하려면 연락처 접근 권한이 필요하지만 현재 거부되어 있습니다. 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'연락처\' 항목을 허용해 주세요.</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal에서 위치 정보를 첨부하려면 위치 접근 권한이 필요하지만 현재 거부되어 있습니다. 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'위치\' 항목을 허용해 주세요.</string>
     <!-- Alert dialog title to show the recipient has not activated payments -->
-    <string name="AttachmentManager__not_activated_payments">%1$s hasn\\’t activated Payments </string>
+    <string name="AttachmentManager__not_activated_payments">%1$s hasn\'t activated Payments </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
     <string name="AttachmentManager__request_to_activate_payments">Do you want to send them a request to activate Payments?</string>
     <!-- Alert dialog button to send request -->
     <string name="AttachmentManager__send_request">Send request</string>
     <!-- Alert dialog button to cancel dialog -->
-    <string name="AttachmentManager__cancel">Cancel</string>
+    <string name="AttachmentManager__cancel">취소</string>
 
     <!-- AttachmentUploadJob -->
     <string name="AttachmentUploadJob_uploading_media">미디어 업로드 중…</string>
@@ -160,7 +160,7 @@
     <!-- Error displayed under the card expiry text field when the expiry year is invalid -->
     <string name="CreditCardFragment__invalid_year">잘못된 연도입니다.</string>
     <!-- Button label to confirm credit card input and proceed with payment -->
-    <string name="CreditCardFragment__continue">Continue</string>
+    <string name="CreditCardFragment__continue">계속</string>
 
     <!-- BlockUnblockDialog -->
     <string name="BlockUnblockDialog_block_and_leave_s">%1$s를 차단하고 나갈까요?</string>
@@ -836,7 +836,7 @@
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">Signal 그룹을 지원하지 않는 연락처를 선택했으므로 이 그룹은 MMS가 됩니다. 사용자 지정 MMS 그룹 이름과 사진은 나만 볼 수 있습니다.</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">Signal 그룹을 지원하지 않는 연락처를 선택했으므로 이 그룹은 MMS가 됩니다. 사용자 정의 MMS 그룹 이름과 사진은 나에게만 표시됩니다. 암호화 메시지에 집중하기 위해 MMS 그룹에 대한 지원을 곧 중단합니다.</string>
+    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">You\'ve selected a contact that doesn\'t support Signal groups, this group will be MMS. Custom MMS group names and photos will only be visible to you. Support for MMS groups will be removed soon to focus on encrypted messaging.</string>
 
     <!-- ManageGroupActivity -->
     <string name="ManageGroupActivity_member_requests_and_invites">멤버 요청 &amp; 초대</string>
@@ -2075,6 +2075,12 @@
     <string name="UnauthorizedReminder_device_no_longer_registered">기기 등록 해제됨</string>
     <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">다른 기기에서 내 휴대 전화 번호로 Signal에 등록한 것으로 보입니다. 탭하여 다시 등록하세요.</string>
 
+    <!-- EnclaveFailureReminder -->
+    <!-- Banner message to update app to use payments -->
+    <string name="EnclaveFailureReminder_update_signal">결제를 계속 사용하려면 Signal을 업데이트하세요. 잔액이 최신 상태가 아닐 수 있습니다.</string>
+    <!-- Banner button to update now -->
+    <string name="EnclaveFailureReminder_update_now">지금 업데이트하세요.</string>
+
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">통화를 수락하려면 Signal에서 마이크를 사용하도록 허용하세요.</string>
     <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Signal에서 %1$s의 전화를 받으려면 마이크 권한이 필요합니다.</string>
@@ -2202,9 +2208,9 @@
     <!-- Update item button text to show to boost a feature -->
     <string name="ConversationUpdateItem_donate">기부</string>
     <!-- Update item button text to send payment -->
-    <string name="ConversationUpdateItem_send_payment">Send payment</string>
+    <string name="ConversationUpdateItem_send_payment">송금</string>
     <!-- Update item button text to activate payments -->
-    <string name="ConversationUpdateItem_activate_payments">Activate payments</string>
+    <string name="ConversationUpdateItem_activate_payments">결제 활성화</string>
 
 
     <!-- audio_view -->
@@ -2574,9 +2580,9 @@
     <string name="preferences__pref_use_address_book_photos">주소록 사진 사용하기</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">가능할 경우 주소록에 있는 연락처 사진들을 보이기</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">Keep Muted Chats Archived</string>
+    <string name="preferences__pref_keep_muted_chats_archived">음소거 채팅 보관 상태로 유지</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Muted chats that are archived will remain archived when a new message arrives.</string>
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">보관된 음소거 채팅은 새 메시지가 도착해도 보관 상태로 유지됩니다.</string>
     <string name="preferences__generate_link_previews">링크 미리보기 생성</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">보내는 메시지에 첨부된 웹 사이트의 링크 미리보기를 불러옵니다.</string>
     <string name="preferences__choose_identity">내 연락처 선택</string>
@@ -2927,6 +2933,14 @@
     <string name="PaymentsHomeFragment__enable">켜기</string>
     <!-- Alert dialog button to not enable payment lock for now -->
     <string name="PaymentsHomeFragment__not_now">나중에</string>
+    <!-- Alert dialog title which shows up to update app to send payments -->
+    <string name="PaymentsHomeFragment__update_required">업데이트가 필요합니다.</string>
+    <!-- Alert dialog description that app update is required to send payments-->
+    <string name="PaymentsHomeFragment__an_update_is_required">입/출금 기능을 계속 이용하고 결제 잔액 최신 상태를 보려면 앱을 업데이트해야 합니다.</string>
+    <!-- Alert dialog button to cancel -->
+    <string name="PaymentsHomeFragment__cancel">취소</string>
+    <!-- Alert dialog button to update now -->
+    <string name="PaymentsHomeFragment__update_now">지금 업데이트하세요.</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -4403,7 +4417,7 @@
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">월간 기여자 되기</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">프로필에 표시</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">프로필 배지 등록</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">Continue</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">계속</string>
     <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">배지가 여러 개 있는 경우 프로필에 표시하고 싶은 배지를 선택하여 등록할 수 있습니다.</string>
 
     <string name="BecomeASustainerFragment__get_badges">프로필 배지를 받아 Signal을 지지해 주세요.</string>

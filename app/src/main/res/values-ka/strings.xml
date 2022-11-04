@@ -106,13 +106,13 @@
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">საკონტაქტო ინფორმაციის მისაბმელად Signal-ს კონტაქტებზე წვდომის უფლება სჭირდება, მაგრამ ის სამუდამოდ იქნა უარყოფილი. გთხოვთ გადახვიდე აპის პარამეტრების მენიუში, აირჩიო \"უფლებები\" და ჩართო \"კონტაქტები\".</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">ადგილმდებარეობის საჩვენებლად Signal-ს ადგილმდებარეობაზე წვდომის ნებართვა სჭირდება, მაგრამ ის სამუდამოდ იქნა უარყოფილი. გთხოვთ, გადახვიდე აპის პარამეტრების მენიუში, აირჩიო \"უფლებები\" და ჩართო \"ადგილმდებარეობა\".</string>
     <!-- Alert dialog title to show the recipient has not activated payments -->
-    <string name="AttachmentManager__not_activated_payments">%1$s hasn\\’t activated Payments </string>
+    <string name="AttachmentManager__not_activated_payments">%1$s hasn\'t activated Payments </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
     <string name="AttachmentManager__request_to_activate_payments">Do you want to send them a request to activate Payments?</string>
     <!-- Alert dialog button to send request -->
     <string name="AttachmentManager__send_request">Send request</string>
     <!-- Alert dialog button to cancel dialog -->
-    <string name="AttachmentManager__cancel">Cancel</string>
+    <string name="AttachmentManager__cancel">გაუქმება</string>
 
     <!-- AttachmentUploadJob -->
     <string name="AttachmentUploadJob_uploading_media">მიმდინარეობს მედია ფაილების ატვირთვა…</string>
@@ -161,7 +161,7 @@
     <!-- Error displayed under the card expiry text field when the expiry year is invalid -->
     <string name="CreditCardFragment__invalid_year">წელი არასწორია</string>
     <!-- Button label to confirm credit card input and proceed with payment -->
-    <string name="CreditCardFragment__continue">Continue</string>
+    <string name="CreditCardFragment__continue">გაგრძელება</string>
 
     <!-- BlockUnblockDialog -->
     <string name="BlockUnblockDialog_block_and_leave_s">გსურს %1$s-ს დაბლოკვა და დატოვება?</string>
@@ -874,7 +874,7 @@
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">შენ აირჩიე კონტაქტი, რომელსაც არ აქვს Signal-ის ჯგუფების მხარდაჭერა, ამიტომ ეს ჯგუფი იქნება MMS-ი. პერსონალიზირებული MMS ჯგუფის სახელები და ფოტოები მხოლოდ შენთვის იქნება ხილული.</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">შენ აირჩიე კონტაქტი, რომელსაც არ აქვს Signal-ის ჯგუფების მხარდაჭერა, ამიტომ ეს ჯგუფი MMS იქნება. პერსონალიზირებული MMS ჯგუფის სახელები და ფოტოები მხოლოდ შენთვის იქნება ხილული. MMS ჯგუფების მხარდაჭერა მალე გაუქმდება დაშიფრულ შეტყობინებებზე ფოკუსირებისთვის.</string>
+    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">You\'ve selected a contact that doesn\'t support Signal groups, this group will be MMS. Custom MMS group names and photos will only be visible to you. Support for MMS groups will be removed soon to focus on encrypted messaging.</string>
 
     <!-- ManageGroupActivity -->
     <string name="ManageGroupActivity_member_requests_and_invites">წევრობის მოთხოვნები &amp; მოწვევები</string>
@@ -2150,6 +2150,12 @@
     <string name="UnauthorizedReminder_device_no_longer_registered">მოწყობილობა აღარაა რეგისტრირებული</string>
     <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">ეს სავარაუდოდ იმიტომ ხდება, რომ შენი ტელეფონის ნომრით Signal-ი სხვა მოწყობილობაზე დაარეგისტრირე. დააჭირე ხელახლა რეგისტრაციისთვის.</string>
 
+    <!-- EnclaveFailureReminder -->
+    <!-- Banner message to update app to use payments -->
+    <string name="EnclaveFailureReminder_update_signal">Update Signal to continue using payments. Your balance may not be up-to-date.</string>
+    <!-- Banner button to update now -->
+    <string name="EnclaveFailureReminder_update_now">განაახლე ახლავე</string>
+
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">ზარზე პასუხისთვის მიეცი Signal-ს წვდომა შენს მიკროფონზე.</string>
     <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">%1$s-ის ზარზე პასუხისთვის მიეცი Signal-ს წვდომა შენს მიკროფონზე.</string>
@@ -2282,7 +2288,7 @@
     <!-- Update item button text to send payment -->
     <string name="ConversationUpdateItem_send_payment">Send payment</string>
     <!-- Update item button text to activate payments -->
-    <string name="ConversationUpdateItem_activate_payments">Activate payments</string>
+    <string name="ConversationUpdateItem_activate_payments">ტრანზაქციების აქტივაცია</string>
 
 
     <!-- audio_view -->
@@ -3013,6 +3019,14 @@
     <string name="PaymentsHomeFragment__enable">ჩართვა</string>
     <!-- Alert dialog button to not enable payment lock for now -->
     <string name="PaymentsHomeFragment__not_now">ახლა არა</string>
+    <!-- Alert dialog title which shows up to update app to send payments -->
+    <string name="PaymentsHomeFragment__update_required">Update required</string>
+    <!-- Alert dialog description that app update is required to send payments-->
+    <string name="PaymentsHomeFragment__an_update_is_required">An update is required to continue sending and receiving payments, and to view your up-to-date payment balance.</string>
+    <!-- Alert dialog button to cancel -->
+    <string name="PaymentsHomeFragment__cancel">გაუქმება</string>
+    <!-- Alert dialog button to update now -->
+    <string name="PaymentsHomeFragment__update_now">განაახლე ახლავე</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -4507,7 +4521,7 @@
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">გახდი ყოველთვიური მხარდამჭერი.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">პროფილზე ჩვენება</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">გამორჩეული ემბლემის გაკეთება</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">Continue</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">გაგრძელება</string>
     <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">როცა ერთზე მეტი ემბლემა გაქვს, შეგიძლია აირჩიო რომელი იქნება ხილვადი სხვებისთვის შენს პროფილზე .</string>
 
     <string name="BecomeASustainerFragment__get_badges">მიიღე ემბლემები შენს პროფილზე Signal-ის მხარდაჭერით.</string>

@@ -105,13 +105,13 @@
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal колдонмосуна байланыштын маалыматын тиркөө үчүн Байланыштарды колдонууга уруксат беришиңиз керек, бирок сиз андан баш тарткансыз. Колдонмонун параметрлерине кирүү үчүн \"Улантуу\" дегенди басып, \"Уруксаттар\" дегенди тандап, \"Байланыштар\" дегенди иштетиңиз.</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal колдонмосуна турган жериңизди тиркөө үчүн Жүргөн жерди аныктоо функциясын колдонууга уруксат беришиңиз керек, бирок сиз андан баш тарткансыз. Колдонмонун параметрлерине кирүү үчүн \"Улантуу\" дегенди басып, \"Уруксаттар\" дегенди тандап, \"Жүргөн жерди аныктоо\" дегенди иштетиңиз.</string>
     <!-- Alert dialog title to show the recipient has not activated payments -->
-    <string name="AttachmentManager__not_activated_payments">%1$s hasn\\’t activated Payments </string>
+    <string name="AttachmentManager__not_activated_payments">%1$s hasn\'t activated Payments </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
     <string name="AttachmentManager__request_to_activate_payments">Do you want to send them a request to activate Payments?</string>
     <!-- Alert dialog button to send request -->
     <string name="AttachmentManager__send_request">Send request</string>
     <!-- Alert dialog button to cancel dialog -->
-    <string name="AttachmentManager__cancel">Cancel</string>
+    <string name="AttachmentManager__cancel">Жокко чыгаруу</string>
 
     <!-- AttachmentUploadJob -->
     <string name="AttachmentUploadJob_uploading_media">Медиафайл жүктөлүүдө…</string>
@@ -160,7 +160,7 @@
     <!-- Error displayed under the card expiry text field when the expiry year is invalid -->
     <string name="CreditCardFragment__invalid_year">Жыл туура эмес</string>
     <!-- Button label to confirm credit card input and proceed with payment -->
-    <string name="CreditCardFragment__continue">Continue</string>
+    <string name="CreditCardFragment__continue">Улантуу</string>
 
     <!-- BlockUnblockDialog -->
     <string name="BlockUnblockDialog_block_and_leave_s">Бөгөттөп туруп, %1$s чыгып кетесизби?</string>
@@ -836,7 +836,7 @@
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">Signal топторун колдоого албаган байланышты тандаганыңыздан, бул топ эми MMS тобу болот. MMS тобунун мүчөлөрүнүн аты-жөнү жана сүрөттөрү сизге гана көрүнөт.</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">Signal топторунда катталбаган байланышты тандадыңыз. Бул MMS тобу болот. MMS топторунун аталыштары менен сүрөттөрү өзүңүзгө гана көрүнөт. Шифрленген билдирүүлөргө басым жасоо үчүн MMS топтор жакында иштебей калат.</string>
+    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">You\'ve selected a contact that doesn\'t support Signal groups, this group will be MMS. Custom MMS group names and photos will only be visible to you. Support for MMS groups will be removed soon to focus on encrypted messaging.</string>
 
     <!-- ManageGroupActivity -->
     <string name="ManageGroupActivity_member_requests_and_invites">Кошулуу өтүнүчтөрү жана чакыруулар</string>
@@ -2075,6 +2075,12 @@
     <string name="UnauthorizedReminder_device_no_longer_registered">Түзмөк катталбай калды</string>
     <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Signal орнотулган телефон номериңизди башка түзмөктө каттадыңыз окшойт. Кайра каттоо үчүн басып коюңуз.</string>
 
+    <!-- EnclaveFailureReminder -->
+    <!-- Banner message to update app to use payments -->
+    <string name="EnclaveFailureReminder_update_signal">Update Signal to continue using payments. Your balance may not be up-to-date.</string>
+    <!-- Banner button to update now -->
+    <string name="EnclaveFailureReminder_update_now">Жаңыртуу</string>
+
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Чалууга жооп берүү үчүн Signal колдонмосуна микрофонуңуз керек.</string>
     <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Ушул номерден %1$s келип жаткан чалууга жооп берүү үчүн Signal\'га микрофонуңузду жеткиликтүү кылыңыз.</string>
@@ -2204,7 +2210,7 @@
     <!-- Update item button text to send payment -->
     <string name="ConversationUpdateItem_send_payment">Send payment</string>
     <!-- Update item button text to activate payments -->
-    <string name="ConversationUpdateItem_activate_payments">Activate payments</string>
+    <string name="ConversationUpdateItem_activate_payments">Төлөмдөрдү активдештирүү</string>
 
 
     <!-- audio_view -->
@@ -2574,9 +2580,9 @@
     <string name="preferences__pref_use_address_book_photos">Даректер китепчесиндеги сүрөттөрдү колдонуу</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">Даректер китепчеңиздеги сүрөттөр көрүнөт (эгер болсо)</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">Keep Muted Chats Archived</string>
+    <string name="preferences__pref_keep_muted_chats_archived">Үнү басылган маектер архивделген боюнча калсын</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Muted chats that are archived will remain archived when a new message arrives.</string>
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Үнү басылган архивделген маектер жаңы билдирүү келсе да, архивделген боюнча калат.</string>
     <string name="preferences__generate_link_previews">Алдын ала көрүлүүчү шилтемелерди түзүү</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Жөнөтүп жаткан билдирүүлөр үчүн түздөн түз сайттардан алдын ала көрүлүүчү шилтемелерди аласыз.</string>
     <string name="preferences__choose_identity">Инсанды тандаңыз</string>
@@ -2927,6 +2933,14 @@
     <string name="PaymentsHomeFragment__enable">Күйгүзүү</string>
     <!-- Alert dialog button to not enable payment lock for now -->
     <string name="PaymentsHomeFragment__not_now">Азыр эмес</string>
+    <!-- Alert dialog title which shows up to update app to send payments -->
+    <string name="PaymentsHomeFragment__update_required">Update required</string>
+    <!-- Alert dialog description that app update is required to send payments-->
+    <string name="PaymentsHomeFragment__an_update_is_required">An update is required to continue sending and receiving payments, and to view your up-to-date payment balance.</string>
+    <!-- Alert dialog button to cancel -->
+    <string name="PaymentsHomeFragment__cancel">Жокко чыгаруу</string>
+    <!-- Alert dialog button to update now -->
+    <string name="PaymentsHomeFragment__update_now">Жаңыртуу</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -4403,7 +4417,7 @@
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">Ай сайын Колдоочу боло аласыз</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Профильде көрсөтүү</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Өзгөчөлөнгөн төшбелги жаратыңыз</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">Continue</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">Улантуу</string>
     <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Эгер сизде бирден ашык төшбелги болсо, профилиңизде башкаларга көрсөтүү үчүн бирин тандай аласыз.</string>
 
     <string name="BecomeASustainerFragment__get_badges">Signal\'ды колдоо менен профилиңизге төшбелги алыңыз.</string>

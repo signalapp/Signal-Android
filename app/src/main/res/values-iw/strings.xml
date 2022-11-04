@@ -108,13 +108,13 @@
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal דורש הרשאת אנשי קשר על מנת לצרף מידע איש קשר, אבל היא נדחתה לצמיתות. אנא המשך אל תפריט הגדרות היישום, בחר \"הרשאות\" ואפשר את \"אנשי קשר\".</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal דורש הרשאת מיקום על מנת לצרף מיקום, אבל היא נדחתה לצמיתות. אנא המשך אל תפריט הגדרות היישום, בחר \"הרשאות\" ואפשר את \"מיקום\".</string>
     <!-- Alert dialog title to show the recipient has not activated payments -->
-    <string name="AttachmentManager__not_activated_payments">%1$s hasn\\’t activated Payments </string>
+    <string name="AttachmentManager__not_activated_payments">%1$s hasn\'t activated Payments </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
     <string name="AttachmentManager__request_to_activate_payments">Do you want to send them a request to activate Payments?</string>
     <!-- Alert dialog button to send request -->
     <string name="AttachmentManager__send_request">Send request</string>
     <!-- Alert dialog button to cancel dialog -->
-    <string name="AttachmentManager__cancel">Cancel</string>
+    <string name="AttachmentManager__cancel">בטל</string>
 
     <!-- AttachmentUploadJob -->
     <string name="AttachmentUploadJob_uploading_media">מעלה מדיה…</string>
@@ -163,7 +163,7 @@
     <!-- Error displayed under the card expiry text field when the expiry year is invalid -->
     <string name="CreditCardFragment__invalid_year">שנה לא תקינה</string>
     <!-- Button label to confirm credit card input and proceed with payment -->
-    <string name="CreditCardFragment__continue">Continue</string>
+    <string name="CreditCardFragment__continue">המשך</string>
 
     <!-- BlockUnblockDialog -->
     <string name="BlockUnblockDialog_block_and_leave_s">לחסום ולעזוב את %1$s?</string>
@@ -950,7 +950,7 @@
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">בחרת איש או אשת קשר שלא תומכים בקבוצות של Signal, ולכן קבוצה זו תהיה קבוצת MMS. שמות ותמונות של קבוצות MMS יהיו גלויים רק לך.</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">בחרת איש קשר שאין לו תמיכה בקבוצות Signal, אז קבוצה זו תהיה MMS. שמות ותמונות של קבוצת MMS מותאמת אישית יהיו גלויים רק לך. התמיכה בקבוצות MMS תוסר בקרוב כדי להתמקד בהודעות מוצפנות.</string>
+    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">You\'ve selected a contact that doesn\'t support Signal groups, this group will be MMS. Custom MMS group names and photos will only be visible to you. Support for MMS groups will be removed soon to focus on encrypted messaging.</string>
 
     <!-- ManageGroupActivity -->
     <string name="ManageGroupActivity_member_requests_and_invites">בקשות והזמנות של חברי קבוצה</string>
@@ -2300,6 +2300,12 @@
     <string name="UnauthorizedReminder_device_no_longer_registered">המכשיר אינו רשום יותר</string>
     <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">זה קרוב לוודאי מאחר שרשמת את מספר הטלפון שלך עם Signal על מכשיר שונה. הקש כדי להירשם מחדש.</string>
 
+    <!-- EnclaveFailureReminder -->
+    <!-- Banner message to update app to use payments -->
+    <string name="EnclaveFailureReminder_update_signal">יש לעדכן את Signal כדי להמשיך להשתמש בתשלומים. יתכן שהיתרה שלך לא מעודכנת.</string>
+    <!-- Banner button to update now -->
+    <string name="EnclaveFailureReminder_update_now">עדכן עכשיו</string>
+
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">כדי לענות אל השיחה, תן אל Signal גישה אל המיקרופון שלך.</string>
     <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">כדי לענות אל השיחה מאת %1$s, תן אל Signal גישה אל המיקרופון שלך.</string>
@@ -2436,9 +2442,9 @@
     <!-- Update item button text to show to boost a feature -->
     <string name="ConversationUpdateItem_donate">תרום</string>
     <!-- Update item button text to send payment -->
-    <string name="ConversationUpdateItem_send_payment">Send payment</string>
+    <string name="ConversationUpdateItem_send_payment">שלח תשלום</string>
     <!-- Update item button text to activate payments -->
-    <string name="ConversationUpdateItem_activate_payments">Activate payments</string>
+    <string name="ConversationUpdateItem_activate_payments">הפעל תשלומים</string>
 
 
     <!-- audio_view -->
@@ -2832,9 +2838,9 @@
     <string name="preferences__pref_use_address_book_photos">השתמש בתמונות של פנקס הכתובות</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">הצג תמונות אנשי קשר מפנקס הכתובות אם זמינות</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">Keep Muted Chats Archived</string>
+    <string name="preferences__pref_keep_muted_chats_archived">השארת התכתבויות מושתקות בארכיון</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Muted chats that are archived will remain archived when a new message arrives.</string>
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">התכתבויות מושתקות שמאוחסנות בארכיון ישארו בארכיון כשהודעה חדשה מגיעה.</string>
     <string name="preferences__generate_link_previews">חולל תצוגות מקדימות של קישורים</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">אחזר תצוגות מקדימות של קישורים ישירות מאתרים עבור הודעות שאתה שולח.</string>
     <string name="preferences__choose_identity">בחר זהות</string>
@@ -3185,6 +3191,14 @@
     <string name="PaymentsHomeFragment__enable">הפעלה</string>
     <!-- Alert dialog button to not enable payment lock for now -->
     <string name="PaymentsHomeFragment__not_now">לא עכשיו</string>
+    <!-- Alert dialog title which shows up to update app to send payments -->
+    <string name="PaymentsHomeFragment__update_required">נדרש עדכון</string>
+    <!-- Alert dialog description that app update is required to send payments-->
+    <string name="PaymentsHomeFragment__an_update_is_required">יש לעדכן את Signal כדי להמשיך לשלוח ולקבל תשלומים, ולראות את יתרת התשלומים המעודכנת שלך.</string>
+    <!-- Alert dialog button to cancel -->
+    <string name="PaymentsHomeFragment__cancel">בטל</string>
+    <!-- Alert dialog button to update now -->
+    <string name="PaymentsHomeFragment__update_now">עדכן עכשיו</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -4715,7 +4729,7 @@
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">הפוך אל מחזיק חודשי.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">הצג בפרופיל</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">עשה תג בולט</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">Continue</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">המשך</string>
     <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">כשיהיו לך יותר מתג אחד, תוכל לבחור אחד להבליט כדי שאחרים יראו בפרופיל שלך.</string>
 
     <string name="BecomeASustainerFragment__get_badges">השג תגים עבור הפרופיל שלך ע״י תמיכה ב־Signal.</string>

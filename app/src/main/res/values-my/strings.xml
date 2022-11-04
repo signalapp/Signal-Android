@@ -105,13 +105,13 @@
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">အဆက်အသွယ်များ၏ အချက်အလက်များကို ပို့နိုင်ရန်အတွက် အဆက်အသွယ်များ ခွင့်ပြုချက်ကို Signal မှ ရရန်လိုအပ်သည်။ သို့သော် အမြဲတမ်းအတွက် ခွင့်မပြုပါဟုရွေးထားပြီး ဖြစ်နေသဖြင့် အက်ပ် စက်တင်မီနူးသို့သွား၍ ခွင့်ပြုချက်များကို ရွေးချယ်ကာ အဆက်အသွယ်များကို ခွင့်ပြုပေးပါ။</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">မိမိ၏ တည်နေရာကို ပို့နိုင်ရန် တည်နေရာ ခွင့်ပြုချက်ကို Signal မှ ရရန်လိုအပ်သည်။ သို့သော် အမြဲတမ်းအတွက် ခွင့်မပြုပါဟု ရွေးထားပြီး ဖြစ်နေသဖြင့် အက်ပ် စက်တင်မီနူးသို့သွား၍ ခွင့်ပြုချက်များကို ရွေးချယ်ကာ တည်နေရာကို ခွင့်ပြုပေးပါ။</string>
     <!-- Alert dialog title to show the recipient has not activated payments -->
-    <string name="AttachmentManager__not_activated_payments">%1$s hasn\\’t activated Payments </string>
+    <string name="AttachmentManager__not_activated_payments">%1$s hasn\'t activated Payments </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
     <string name="AttachmentManager__request_to_activate_payments">Do you want to send them a request to activate Payments?</string>
     <!-- Alert dialog button to send request -->
     <string name="AttachmentManager__send_request">Send request</string>
     <!-- Alert dialog button to cancel dialog -->
-    <string name="AttachmentManager__cancel">Cancel</string>
+    <string name="AttachmentManager__cancel">မလုပ်တော့ပါ</string>
 
     <!-- AttachmentUploadJob -->
     <string name="AttachmentUploadJob_uploading_media">မီဒီယာဖိုင် တင်နေသည်…</string>
@@ -160,7 +160,7 @@
     <!-- Error displayed under the card expiry text field when the expiry year is invalid -->
     <string name="CreditCardFragment__invalid_year">နှစ် မမှန်ကန်ပါ</string>
     <!-- Button label to confirm credit card input and proceed with payment -->
-    <string name="CreditCardFragment__continue">Continue</string>
+    <string name="CreditCardFragment__continue">ဆက်လုပ်ရန်</string>
 
     <!-- BlockUnblockDialog -->
     <string name="BlockUnblockDialog_block_and_leave_s">%1$s ကို ဘလော့ပြီး ထွက်မည်လား။</string>
@@ -836,7 +836,7 @@
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">သင်သည် Signal အဖွဲ့များအား သုံးနိုင်ခြင်း မရှိသည့် အဆက်အသွယ်ကို ရွေးချယ်ထားသောကြောင့် ဤအဖွဲ့သည့် MMS ဖြစ်သွားပါမည်။ စိတ်ကြိုက် MMS အဖွဲ့အမည်များနှင့် ဓာတ်ပုံများကို သင်သာလျှင် မြင်ရပါမည်။</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">သင်သည် Signal အဖွဲ့များကို မပံ့ပိုးသည့် အဆက်အသွယ်အား ရွေးချယ်ထားသောကြောင့် ဤအဖွဲ့သည် MMS ဖြစ်ပါလိမ့်မည်။ စိတ်ကြိုက် MMS အဖွဲ့အမည်များနှင့် ဓါတ်ပုံများကို သင်တစ်ဦးတည်းသာ မြင်နိုင်ပါသည်။ စာဝှက်စနစ်သုံးထားသော မက်ဆေ့ချ်လုပ်ဆောင်ချက်အပေါ် အာရုံစိုက်နိုင်ရန် MMS အဖွဲ့များအတွက် ပံ့ပိုးမှုကို မကြာမီ ဖယ်ရှားပါတော့မည်။</string>
+    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">You\'ve selected a contact that doesn\'t support Signal groups, this group will be MMS. Custom MMS group names and photos will only be visible to you. Support for MMS groups will be removed soon to focus on encrypted messaging.</string>
 
     <!-- ManageGroupActivity -->
     <string name="ManageGroupActivity_member_requests_and_invites">အသင်းဝင်တောင်းဆိုမှုများ &amp; amp; ဖိတ်ကြားထား</string>
@@ -2075,6 +2075,12 @@
     <string name="UnauthorizedReminder_device_no_longer_registered">ယခုဖုန်းမှာ မှတ်ပုံတင်ထားခြင်း မရှိတော့ပါ</string>
     <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">ဤကဲ့သို့ ဖြစ်ရခြင်းမှာ Signal အား မိမိဖုန်းနံပါတ်နှင့် အခြားဖုန်းတစ်ခုတွင် မှတ်ပုံတင်ခဲ့ခြင်းကြောင့်ဖြစ်သည်။ Re-register ကို နှိပ်၍ မှတ်ပုံတင်ခြင်း ပြန်လည်ပြုလုပ်ပါ။</string>
 
+    <!-- EnclaveFailureReminder -->
+    <!-- Banner message to update app to use payments -->
+    <string name="EnclaveFailureReminder_update_signal">Update Signal to continue using payments. Your balance may not be up-to-date.</string>
+    <!-- Banner button to update now -->
+    <string name="EnclaveFailureReminder_update_now">ယခု Update လုပ်ပါ။</string>
+
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">ကောလ် ဖြေဆိုရန် Signal အား သင့်မိုက်ခရိုဖုန်းကို သုံးခွင့်ပေးပါ။</string>
     <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">%1$sမှ ဖုန်းကိုဖြေဆိုရန် Signal အား မိုက်ခရိုဖုန်းအသုံးပြုခွင့်ပေးပါ။</string>
@@ -2202,9 +2208,9 @@
     <!-- Update item button text to show to boost a feature -->
     <string name="ConversationUpdateItem_donate">လှူဒါန်းပါ</string>
     <!-- Update item button text to send payment -->
-    <string name="ConversationUpdateItem_send_payment">Send payment</string>
+    <string name="ConversationUpdateItem_send_payment">ငွေပေးချေမှု ပေးပို့မယ်</string>
     <!-- Update item button text to activate payments -->
-    <string name="ConversationUpdateItem_activate_payments">Activate payments</string>
+    <string name="ConversationUpdateItem_activate_payments">ငွေပေးချေမှုများ ဖွင့်မယ်</string>
 
 
     <!-- audio_view -->
@@ -2576,7 +2582,7 @@
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
     <string name="preferences__pref_keep_muted_chats_archived">Keep Muted Chats Archived</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Muted chats that are archived will remain archived when a new message arrives.</string>
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">မက်ဆေ့ချ်အသစ် ရောက်လာချိန်တွင် စုစည်းထားသော အသံတိတ်ချက်(တ်)များသည် စုစည်းလျက်သား ကျန်ရှိပါမည်။</string>
     <string name="preferences__generate_link_previews">ကြိုတင်ကြည့်ရှုရန် လင့်ခ်များ ထုတ်လုပ်ပါ</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">သင်ပေးပို့သော မက်ဆေ့ချ်များ အတွက် ဝဘ်ဆိုဒ်များမှ ကြိုတင်ကြည့်ရှုနိုင်သည့် လင့်ခ်များကို တိုက်ရိုက်ရယူပါ။</string>
     <string name="preferences__choose_identity">အမှတ်အသားရွေးရန်</string>
@@ -2927,6 +2933,14 @@
     <string name="PaymentsHomeFragment__enable">ဖွင့်ရန်</string>
     <!-- Alert dialog button to not enable payment lock for now -->
     <string name="PaymentsHomeFragment__not_now">ယခု မလုပ်ပါ</string>
+    <!-- Alert dialog title which shows up to update app to send payments -->
+    <string name="PaymentsHomeFragment__update_required">Update required</string>
+    <!-- Alert dialog description that app update is required to send payments-->
+    <string name="PaymentsHomeFragment__an_update_is_required">An update is required to continue sending and receiving payments, and to view your up-to-date payment balance.</string>
+    <!-- Alert dialog button to cancel -->
+    <string name="PaymentsHomeFragment__cancel">မလုပ်တော့ပါ</string>
+    <!-- Alert dialog button to update now -->
+    <string name="PaymentsHomeFragment__update_now">ယခု Update လုပ်ပါ။</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -4403,7 +4417,7 @@
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">လစဉ် ပါဝင်အားဖြည့်သူ ဖြစ်နိုင်ပါသည်။</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">ပရိုဖိုင်တွင် ပြသရန်</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">အသားပေးထားသည့် ဘဲ့ဂျ် ပြုလုပ်ရန်</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">Continue</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">ဆက်လုပ်ရန်</string>
     <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">သင့်တွင် ဘဲ့ဂျ်တစ်ခုထက် ပိုရှိပါက သင့်ပရိုဖိုင်တွင် အခြားသူများ မြင်နိုင်မည့် အသားပေးဖော်ပြလိုသော ဘဲ့ဂျ်ကို ရွေးနိုင်ပါသည်။</string>
 
     <string name="BecomeASustainerFragment__get_badges">Signal ကို ပံ့ပိုးခြင်းဖြင့် သင့်ပရိုဖိုင်အတွက် ဘဲ့ဂျ်များကို ရယူပါ။</string>

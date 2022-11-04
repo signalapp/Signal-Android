@@ -108,13 +108,13 @@
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal potřebuje oprávnění pro přístup ke kontaktům, aby mohl připojit informace o kontaktu, ale toto oprávnění je nyní zakázáno. Prosím pokračujte do menu nastavení aplikací, vyberte \"Oprávnění\" a povolte \"Kontakty\".</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal potřebuje oprávnění pro přístup k poloze, aby mohl připojit informace o poloze, ale toto oprávnění je nyní zakázáno. Prosím pokračujte do menu nastavení aplikací, vyberte \"Oprávnění\" a povolte \"Poloha\".</string>
     <!-- Alert dialog title to show the recipient has not activated payments -->
-    <string name="AttachmentManager__not_activated_payments">%1$s hasn\\’t activated Payments </string>
+    <string name="AttachmentManager__not_activated_payments">%1$s hasn\'t activated Payments </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
     <string name="AttachmentManager__request_to_activate_payments">Do you want to send them a request to activate Payments?</string>
     <!-- Alert dialog button to send request -->
     <string name="AttachmentManager__send_request">Send request</string>
     <!-- Alert dialog button to cancel dialog -->
-    <string name="AttachmentManager__cancel">Cancel</string>
+    <string name="AttachmentManager__cancel">Storno</string>
 
     <!-- AttachmentUploadJob -->
     <string name="AttachmentUploadJob_uploading_media">Nahrávám médium…</string>
@@ -163,7 +163,7 @@
     <!-- Error displayed under the card expiry text field when the expiry year is invalid -->
     <string name="CreditCardFragment__invalid_year">Neplatný rok</string>
     <!-- Button label to confirm credit card input and proceed with payment -->
-    <string name="CreditCardFragment__continue">Continue</string>
+    <string name="CreditCardFragment__continue">Pokračovat</string>
 
     <!-- BlockUnblockDialog -->
     <string name="BlockUnblockDialog_block_and_leave_s">Zablokovat a opustit %1$s?</string>
@@ -950,7 +950,7 @@
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">Vybrali jste kontakt, který nepodporuje skupiny Signal, takže tato skupina bude mít formu MMS. Vlastní názvy a fotky MMS skupin uvidíte jen vy.</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">Vybrali jste kontakt, který nepodporuje skupiny Signal, takže tato skupina bude MMS. Vlastní názvy a fotografie skupin MMS uvidíte pouze vy. Podpora skupin MMS bude brzy ukončena, abychom se mohli zaměřit na šifrované zprávy.</string>
+    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">You\'ve selected a contact that doesn\'t support Signal groups, this group will be MMS. Custom MMS group names and photos will only be visible to you. Support for MMS groups will be removed soon to focus on encrypted messaging.</string>
 
     <!-- ManageGroupActivity -->
     <string name="ManageGroupActivity_member_requests_and_invites">Požadavky na členství a pozvánky</string>
@@ -2300,6 +2300,12 @@
     <string name="UnauthorizedReminder_device_no_longer_registered">Zařízení už není registrováno</string>
     <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">To je proto, že jste registrovali vaše telefonní číslo u Signal z jiného zařízení. Klepněte pro přeregistraci.</string>
 
+    <!-- EnclaveFailureReminder -->
+    <!-- Banner message to update app to use payments -->
+    <string name="EnclaveFailureReminder_update_signal">Aktualizací aplikace Signal můžete pokračovat v používání plateb. Váš zůstatek nemusí být aktuální.</string>
+    <!-- Banner button to update now -->
+    <string name="EnclaveFailureReminder_update_now">Aktualizovat nyní</string>
+
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Chcete-li přijmout hovor, umožněte aplikaci Signal přístup k mikrofonu.</string>
     <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Chcete-li přijmout hovor od %1$s, povolte aplikaci Signal přístup k mikrofonu.</string>
@@ -2436,9 +2442,9 @@
     <!-- Update item button text to show to boost a feature -->
     <string name="ConversationUpdateItem_donate">Sponzorujte</string>
     <!-- Update item button text to send payment -->
-    <string name="ConversationUpdateItem_send_payment">Send payment</string>
+    <string name="ConversationUpdateItem_send_payment">Odeslat platbu</string>
     <!-- Update item button text to activate payments -->
-    <string name="ConversationUpdateItem_activate_payments">Activate payments</string>
+    <string name="ConversationUpdateItem_activate_payments">Aktivovat platby</string>
 
 
     <!-- audio_view -->
@@ -2832,9 +2838,9 @@
     <string name="preferences__pref_use_address_book_photos">Použít fotografii z adresáře</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">Pokud je k dispozici, zobrazit fotografii kontaktu z adresáře</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">Keep Muted Chats Archived</string>
+    <string name="preferences__pref_keep_muted_chats_archived">Zachování ztlumených konverzací v archivu</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Muted chats that are archived will remain archived when a new message arrives.</string>
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Ztlumené chaty, které jsou archivovány, zůstanou archivovány i po příchodu nové zprávy.</string>
     <string name="preferences__generate_link_previews">Vygenerovat náhledy odkazů</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Pro zprávy, které odesíláte, získat náhledy odkazů přímo z webů.</string>
     <string name="preferences__choose_identity">Zvolit identitu</string>
@@ -3185,6 +3191,14 @@
     <string name="PaymentsHomeFragment__enable">Zapnout</string>
     <!-- Alert dialog button to not enable payment lock for now -->
     <string name="PaymentsHomeFragment__not_now">Nyní ne</string>
+    <!-- Alert dialog title which shows up to update app to send payments -->
+    <string name="PaymentsHomeFragment__update_required">Je nutná aktualizace</string>
+    <!-- Alert dialog description that app update is required to send payments-->
+    <string name="PaymentsHomeFragment__an_update_is_required">Aktualizace je nutná pro další odesílání a přijímání plateb a pro zobrazení aktuálního zůstatku.</string>
+    <!-- Alert dialog button to cancel -->
+    <string name="PaymentsHomeFragment__cancel">Storno</string>
+    <!-- Alert dialog button to update now -->
+    <string name="PaymentsHomeFragment__update_now">Aktualizovat nyní</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -4715,7 +4729,7 @@
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">stát se měsíčním podporovatelem.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Zobrazit v profilu</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Vytvořit doporučený odznak</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">Continue</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">Pokračovat</string>
     <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Pokud máte více odznaků, můžete si jeden z nich vybrat, aby ho ostatní viděli na vašem profilu.</string>
 
     <string name="BecomeASustainerFragment__get_badges">Získejte odznaky pro svůj profil za podporu Signalu.</string>
