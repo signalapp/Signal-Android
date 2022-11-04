@@ -396,18 +396,8 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       """
   }
 
-  fun containsPhoneOrUuid(id: String): Boolean {
-    val query = "$SERVICE_ID = ? OR $PHONE = ?"
-    val args = arrayOf(id, id)
-    readableDatabase.query(TABLE_NAME, arrayOf(ID), query, args, null, null, null).use { cursor -> return cursor != null && cursor.moveToFirst() }
-  }
-
   fun getByE164(e164: String): Optional<RecipientId> {
     return getByColumn(PHONE, e164)
-  }
-
-  fun getByEmail(email: String): Optional<RecipientId> {
-    return getByColumn(EMAIL, email)
   }
 
   fun getByGroupId(groupId: GroupId): Optional<RecipientId> {
