@@ -229,6 +229,21 @@ class DonateToSignalFragment : DSLSettingsFragment(
     }
   }
 
+  override fun onStop() {
+    super.onStop()
+
+    listOf(
+      binding.boost1Animation,
+      binding.boost2Animation,
+      binding.boost3Animation,
+      binding.boost4Animation,
+      binding.boost5Animation,
+      binding.boost6Animation
+    ).forEach {
+      it.cancelAnimation()
+    }
+  }
+
   private fun getConfiguration(state: DonateToSignalState): DSLConfiguration {
     return configure {
       space(36.dp)
