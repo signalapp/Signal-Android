@@ -15,9 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/media_preview_video_timestamp_inset"
-        android:layout_marginTop="@dimen/media_preview_bottom_bar_vertical_outer_margin"
         android:layout_marginEnd="@dimen/media_preview_video_timestamp_inset"
-        android:layout_marginBottom="4dp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -34,8 +32,9 @@
         <com.google.android.exoplayer2.ui.DefaultTimeBar
             android:id="@id/exo_progress"
             android:layout_width="0dp"
-            android:layout_height="24dp"
-            android:layout_weight="1" />
+            android:layout_height="55dp"
+            android:layout_weight="1"
+            app:touch_target_height="55dp"/>
 
         <TextView
             android:id="@id/exo_duration"
@@ -54,7 +53,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="11dp"
+        android:layout_marginBottom="11dp"
         android:layout_marginStart="12dp"
         android:layout_marginEnd="12dp"
         android:orientation="horizontal"
@@ -65,7 +64,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="11dp"
         android:layout_marginBottom="@dimen/media_preview_bottom_bar_vertical_outer_margin"
         android:gravity="center_vertical"
         android:orientation="horizontal">
