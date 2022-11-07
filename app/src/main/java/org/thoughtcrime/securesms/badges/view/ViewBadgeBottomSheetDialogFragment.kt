@@ -57,7 +57,7 @@ class ViewBadgeBottomSheetDialogFragment : FixedRoundedCornerBottomSheetDialogFr
     }
 
     @Suppress("CascadeIf")
-    if (InAppDonations.hasAtLeastOnePaymentMethodAvailable()) {
+    if (!InAppDonations.hasAtLeastOnePaymentMethodAvailable()) {
       binding.noSupport.visible = true
       binding.action.icon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_open_20)
       binding.action.setText(R.string.preferences__donate_to_signal)
