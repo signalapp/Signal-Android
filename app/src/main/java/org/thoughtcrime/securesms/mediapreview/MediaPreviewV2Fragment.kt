@@ -178,7 +178,6 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
     val currentPosition = currentState.position
     val fragmentAdapter = binding.mediaPager.adapter as MediaPreviewV2Adapter
 
-    fragmentAdapter.setAutoPlayItemPosition(currentPosition)
     val backingItems = currentState.mediaRecords.mapNotNull { it.attachment }
     if (backingItems.isEmpty()) {
       onMediaNotAvailable()

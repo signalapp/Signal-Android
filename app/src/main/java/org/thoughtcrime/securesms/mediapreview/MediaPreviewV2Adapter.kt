@@ -8,7 +8,6 @@ import org.thoughtcrime.securesms.util.MediaUtil
 
 class MediaPreviewV2Adapter(val fragment: Fragment) : FragmentStateAdapter(fragment) {
   private var items: List<Attachment> = listOf()
-  private var autoPlayPosition = -1
 
   override fun getItemCount(): Int {
     return items.count()
@@ -22,7 +21,7 @@ class MediaPreviewV2Adapter(val fragment: Fragment) : FragmentStateAdapter(fragm
       MediaPreviewFragment.DATA_URI to attachment.uri,
       MediaPreviewFragment.DATA_CONTENT_TYPE to contentType,
       MediaPreviewFragment.DATA_SIZE to attachment.size,
-      MediaPreviewFragment.AUTO_PLAY to (position == autoPlayPosition),
+      MediaPreviewFragment.AUTO_PLAY to true,
       MediaPreviewFragment.VIDEO_GIF to attachment.isVideoGif,
     )
     val fragment = if (MediaUtil.isVideo(contentType)) {
@@ -43,9 +42,5 @@ class MediaPreviewV2Adapter(val fragment: Fragment) : FragmentStateAdapter(fragm
       items = newItems.toList()
       notifyDataSetChanged()
     }
-  }
-
-  fun setAutoPlayItemPosition(position: Int) {
-    autoPlayPosition = position
   }
 }
