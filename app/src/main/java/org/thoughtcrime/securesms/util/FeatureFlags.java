@@ -102,7 +102,7 @@ public final class FeatureFlags {
   public  static final String STORIES_LOCALE                    = "android.stories.locale.3";
   private static final String HIDE_CONTACTS                     = "android.hide.contacts";
   private static final String SMS_EXPORT_MEGAPHONE_DELAY_DAYS   = "android.smsExport.megaphoneDelayDays.2";
-  public  static final String CREDIT_CARD_PAYMENTS              = "android.credit.card.payments";
+  public  static final String CREDIT_CARD_PAYMENTS              = "android.credit.card.payments.1";
   private static final String PAYMENTS_REQUEST_ACTIVATE_FLOW    = "android.payments.requestActivateFlow";
   private static final String KEEP_MUTED_CHATS_ARCHIVED         = "android.keepMutedChatsArchived";
 
