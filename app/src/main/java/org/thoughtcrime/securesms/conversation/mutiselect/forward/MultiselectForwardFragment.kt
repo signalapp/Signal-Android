@@ -56,6 +56,7 @@ import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.FullscreenHelper
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.Util
+import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.fragments.findListener
 import org.thoughtcrime.securesms.util.fragments.requireListener
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog
@@ -169,6 +170,7 @@ class MultiselectForwardFragment :
     }
 
     sendButton.setOnClickListener {
+      ViewUtil.hideKeyboard(requireContext(), it)
       onSend(it)
     }
 
