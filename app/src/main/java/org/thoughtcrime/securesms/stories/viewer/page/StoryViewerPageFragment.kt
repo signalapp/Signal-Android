@@ -57,6 +57,7 @@ import org.thoughtcrime.securesms.mediapreview.VideoControlsDelegate
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheetDialogFragment
 import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet
 import org.thoughtcrime.securesms.stories.StorySlateView
 import org.thoughtcrime.securesms.stories.StoryVolumeOverlayView
@@ -93,7 +94,8 @@ class StoryViewerPageFragment :
   MultiselectForwardBottomSheet.Callback,
   StorySlateView.Callback,
   StoryInfoBottomSheetDialogFragment.OnInfoSheetDismissedListener,
-  SafetyNumberBottomSheet.Callbacks {
+  SafetyNumberBottomSheet.Callbacks,
+  RecipientBottomSheetDialogFragment.Callback {
 
   private val storyVolumeViewModel: StoryVolumeViewModel by viewModels(ownerProducer = { requireActivity() })
 
@@ -859,6 +861,8 @@ class StoryViewerPageFragment :
     } else {
       from.text = name
     }
+
+    from.setOnClickListener { onSenderClicked(storyPost.sender.id) }
   }
 
   private fun presentDate(date: TextView, storyPost: StoryPost) {
@@ -867,15 +871,25 @@ class StoryViewerPageFragment :
 
   private fun presentSenderAvatar(senderAvatar: AvatarImageView, post: StoryPost) {
     AvatarUtil.loadIconIntoImageView(post.sender, senderAvatar, DimensionUnit.DP.toPixels(32f).toInt())
+    senderAvatar.setOnClickListener { onSenderClicked(post.sender.id) }
   }
 
   private fun presentGroupAvatar(groupAvatar: AvatarImageView, post: StoryPost) {
     if (post.group != null) {
       groupAvatar.setRecipient(post.group)
       groupAvatar.visible = true
+      groupAvatar.setOnClickListener { onSenderClicked(post.sender.id) }
     } else {
       groupAvatar.visible = false
+      groupAvatar.setOnClickListener(null)
     }
+  }
+
+  private fun onSenderClicked(senderId: RecipientId) {
+    viewModel.setIsDisplayingRecipientBottomSheet(true)
+    RecipientBottomSheetDialogFragment
+      .create(senderId, null)
+      .show(childFragmentManager, "BOTTOM")
   }
 
   private fun presentBottomBar(post: StoryPost, replyState: StoryViewerPageState.ReplyState, isReceiptsEnabled: Boolean) {
@@ -1280,6 +1294,10 @@ class StoryViewerPageFragment :
 
   override fun onCanceled() {
     viewModel.setIsDisplayingPartialSendDialog(false)
+  }
+
+  override fun onRecipientBottomSheetDismissed() {
+    viewModel.setIsDisplayingRecipientBottomSheet(false)
   }
 
   interface Callback {
