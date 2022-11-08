@@ -66,9 +66,9 @@ dependencyResolutionManagement {
             // Google
             alias('google-protobuf-javalite').to('com.google.protobuf:protobuf-javalite:3.11.4')
             alias('google-libphonenumber').to('com.googlecode.libphonenumber:libphonenumber:8.12.54')
-            alias('google-play-services-maps').to('com.google.android.gms:play-services-maps:16.1.0')
-            alias('google-play-services-auth').to('com.google.android.gms:play-services-auth:16.0.1')
-            alias('google-play-services-wallet').to('com.google.android.gms:play-services-wallet:18.1.3')
+            alias('google-play-services-maps').to('com.google.android.gms:play-services-maps:18.1.0')
+            alias('google-play-services-auth').to('com.google.android.gms:play-services-auth:20.3.0')
+            alias('google-play-services-wallet').to('com.google.android.gms:play-services-wallet:19.1.0')
             alias('google-zxing-android-integration').to('com.google.zxing:android-integration:3.3.0')
             alias('google-zxing-core').to('com.google.zxing:core:3.4.1')
             alias('google-ez-vcard').to('com.googlecode.ez-vcard:ez-vcard:0.9.11')
@@ -83,7 +83,7 @@ dependencyResolutionManagement {
             bundle('exoplayer', ['exoplayer-core', 'exoplayer-ui', 'exoplayer-extension-mediasession'])
 
             // Firebase
-            alias('firebase-messaging').to('com.google.firebase:firebase-messaging:22.0.0')
+            alias('firebase-messaging').to('com.google.firebase:firebase-messaging:23.1.0')
 
             // 1st Party
             alias('libsignal-client').to('org.signal', 'libsignal-client').versionRef('libsignal-client')

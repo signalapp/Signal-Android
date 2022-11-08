@@ -50,6 +50,7 @@ class ChangeNumberVerifyFragment : LoggingFragment(R.layout.fragment_change_phon
   private fun requestCode() {
     lifecycleDisposable += viewModel
       .ensureDecryptionsDrained()
+      .onErrorComplete()
       .andThen(viewModel.requestVerificationCode(VerifyAccountRepository.Mode.SMS_WITHOUT_LISTENER))
       .observeOn(AndroidSchedulers.mainThread())
       .subscribe { processor ->

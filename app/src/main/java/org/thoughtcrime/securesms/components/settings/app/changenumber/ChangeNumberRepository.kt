@@ -44,6 +44,7 @@ import org.whispersystems.signalservice.internal.push.exceptions.MismatchedDevic
 import java.io.IOException
 import java.security.MessageDigest
 import java.security.SecureRandom
+import java.util.concurrent.TimeUnit
 import java.util.concurrent.locks.ReentrantLock
 
 private val TAG: String = Log.tag(ChangeNumberRepository::class.java)
@@ -90,6 +91,7 @@ class ChangeNumberRepository(
           emitter.onComplete()
         }
     }.subscribeOn(Schedulers.single())
+      .timeout(15, TimeUnit.SECONDS)
   }
 
   fun changeNumber(code: String, newE164: String, pniUpdateMode: Boolean = false): Single<ServiceResponse<VerifyAccountResponse>> {
