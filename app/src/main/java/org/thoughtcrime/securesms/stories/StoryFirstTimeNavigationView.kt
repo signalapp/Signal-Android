@@ -19,6 +19,7 @@ import com.bumptech.glide.request.target.Target
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.blurhash.BlurHash
 import org.thoughtcrime.securesms.mms.GlideApp
+import org.thoughtcrime.securesms.util.areSystemAnimationsDisabled
 import org.thoughtcrime.securesms.util.visible
 
 class StoryFirstTimeNavigationView @JvmOverloads constructor(
@@ -118,6 +119,10 @@ class StoryFirstTimeNavigationView @JvmOverloads constructor(
   }
 
   private fun startLottieAnimations() {
+    if (context.contentResolver.areSystemAnimationsDisabled()) {
+      return
+    }
+
     isPlayingAnimations = true
     tapToAdvance.addAnimatorListener(object : AnimatorListenerAdapter() {
       override fun onAnimationEnd(animation: Animator?) {
