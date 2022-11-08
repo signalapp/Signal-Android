@@ -30,10 +30,13 @@ import java.util.Set;
 
 class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.ViewHolder> {
 
-  private static final int TYPE_THREAD      = 1;
-  private static final int TYPE_ACTION      = 2;
-  private static final int TYPE_PLACEHOLDER = 3;
-  private static final int TYPE_HEADER      = 4;
+  private static final int TYPE_THREAD              = 1;
+  private static final int TYPE_ACTION              = 2;
+  private static final int TYPE_PLACEHOLDER         = 3;
+  private static final int TYPE_HEADER              = 4;
+  private static final int TYPE_EMPTY               = 5;
+  private static final int TYPE_CLEAR_FILTER_FOOTER = 6;
+  private static final int TYPE_CLEAR_FILTER_EMPTY  = 7;
 
   private enum Payload {
     TYPING_INDICATOR,
@@ -43,6 +46,7 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
   private final LifecycleOwner              lifecycleOwner;
   private final GlideRequests               glideRequests;
   private final OnConversationClickListener onConversationClickListener;
+  private final OnClearFilterClickListener  onClearFilterClicked;
   private       ConversationSet             selectedConversations = new ConversationSet();
   private final Set<Long>                   typingSet             = new HashSet<>();
 
@@ -50,13 +54,15 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
 
   protected ConversationListAdapter(@NonNull LifecycleOwner lifecycleOwner,
                                     @NonNull GlideRequests glideRequests,
-                                    @NonNull OnConversationClickListener onConversationClickListener)
+                                    @NonNull OnConversationClickListener onConversationClickListener,
+                                    @NonNull OnClearFilterClickListener onClearFilterClicked)
   {
     super(new ConversationDiffCallback());
 
     this.lifecycleOwner              = lifecycleOwner;
     this.glideRequests               = glideRequests;
     this.onConversationClickListener = onConversationClickListener;
+    this.onClearFilterClicked        = onClearFilterClicked;
   }
 
   @Override
@@ -101,6 +107,15 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
     } else if (viewType == TYPE_HEADER) {
       View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.dsl_section_header, parent, false);
       return new HeaderViewHolder(v);
+    } else if (viewType == TYPE_EMPTY) {
+      View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.conversation_list_empty_state, parent, false);
+      return new HeaderViewHolder(v);
+    } else if (viewType == TYPE_CLEAR_FILTER_FOOTER) {
+      View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.conversation_list_item_clear_filter, parent, false);
+      return new ClearFilterViewHolder(v, onClearFilterClicked);
+    } else if (viewType == TYPE_CLEAR_FILTER_EMPTY) {
+      View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.conversation_list_item_clear_filter_empty, parent, false);
+      return new ClearFilterViewHolder(v, onClearFilterClicked);
     } else {
       throw new IllegalStateException("Unknown type! " + viewType);
     }
@@ -197,8 +212,14 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
         return TYPE_HEADER;
       case ARCHIVED_FOOTER:
         return TYPE_ACTION;
+      case CONVERSATION_FILTER_FOOTER:
+        return TYPE_CLEAR_FILTER_FOOTER;
+      case CONVERSATION_FILTER_EMPTY:
+        return TYPE_CLEAR_FILTER_EMPTY;
       case THREAD:
         return TYPE_THREAD;
+      case EMPTY:
+        return TYPE_EMPTY;
       default:
         throw new IllegalArgumentException();
     }
@@ -247,9 +268,22 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
     }
   }
 
+  static class ClearFilterViewHolder extends RecyclerView.ViewHolder {
+    ClearFilterViewHolder(@NonNull View itemView, OnClearFilterClickListener listener) {
+      super(itemView);
+      itemView.findViewById(R.id.clear_filter).setOnClickListener(v -> {
+        listener.onClearFilterClick();
+      });
+    }
+  }
+
   interface OnConversationClickListener {
     void onConversationClick(@NonNull Conversation conversation);
     boolean onConversationLongClick(@NonNull Conversation conversation, @NonNull View view);
     void onShowArchiveClick();
+  }
+
+  interface OnClearFilterClickListener {
+    void onClearFilterClick();
   }
 }

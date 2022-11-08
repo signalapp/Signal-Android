@@ -108,6 +108,7 @@ public final class FeatureFlags {
   public  static final String PAYPAL_DISABLED_REGIONS           = "global.donations.paypalDisabledRegions";
   private static final String CDS_HARD_LIMIT                    = "android.cds.hardLimit";
   private static final String PAYMENTS_IN_CHAT_MESSAGES         = "android.payments.inChatMessages";
+  private static final String CHAT_FILTERS                      = "android.chat.filters";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -168,7 +169,8 @@ public final class FeatureFlags {
       PAYPAL_DISABLED_REGIONS,
       KEEP_MUTED_CHATS_ARCHIVED,
       CDS_HARD_LIMIT,
-      PAYMENTS_IN_CHAT_MESSAGES
+      PAYMENTS_IN_CHAT_MESSAGES,
+      CHAT_FILTERS
   );
 
   @VisibleForTesting
@@ -606,6 +608,13 @@ public final class FeatureFlags {
    */
   public static int cdsHardLimit() {
     return getInteger(CDS_HARD_LIMIT, 50_000);
+  }
+
+  /**
+   * Enables chat filters. Note that this UI is incomplete.
+   */
+  public static boolean chatFilters() {
+    return getBoolean(CHAT_FILTERS, false);
   }
 
   /** Only for rendering debug info. */

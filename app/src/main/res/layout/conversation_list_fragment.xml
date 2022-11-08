@@ -2,12 +2,12 @@
 
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:viewBindingIgnore="true"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/constraint_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?android:windowBackground">
+    android:background="?android:windowBackground"
+    tools:viewBindingIgnore="true">
 
     <ViewStub
         android:id="@+id/voice_note_player"
@@ -15,29 +15,6 @@
         android:layout_height="wrap_content"
         android:inflatedId="@+id/voice_note_player"
         android:layout="@layout/voice_note_player_stub"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/search_no_results"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@color/signal_background_primary"
-        android:gravity="center"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="@string/SearchFragment_no_results" />
-
-    <ViewStub
-        android:id="@+id/empty_state"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout="@layout/conversation_list_empty_state"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ViewStub
@@ -63,19 +40,43 @@
         app:barrierDirection="bottom"
         app:constraint_referenced_ids="reminder,payments_notification,voice_note_player" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/list"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:clipToPadding="false"
-        android:nextFocusDown="@+id/fab"
-        android:nextFocusForward="@+id/fab"
-        android:paddingBottom="160dp"
-        android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/banner_barrier"
-        tools:listitem="@layout/conversation_list_item_view"
-        tools:visibility="visible" />
+        app:layout_constraintTop_toBottomOf="@id/banner_barrier">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/recycler_coordinator_app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:expanded="false"
+            app:layout_behavior="org.thoughtcrime.securesms.conversationlist.ConversationFilterBehavior">
+
+            <org.thoughtcrime.securesms.conversationlist.ConversationListFilterPullView
+                android:id="@+id/pull_view"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:background="@color/signal_colorSurface1"
+                app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
+                app:layout_scrollInterpolator="@android:anim/decelerate_interpolator" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/signal_colorBackground"
+            android:clipToPadding="false"
+            android:nextFocusDown="@+id/fab"
+            android:nextFocusForward="@+id/fab"
+            android:paddingBottom="160dp"
+            android:scrollbars="vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            tools:listitem="@layout/conversation_list_item_view"
+            tools:visibility="visible" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/coordinator"
