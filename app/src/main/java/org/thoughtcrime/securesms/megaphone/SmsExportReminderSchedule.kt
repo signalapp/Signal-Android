@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.annotation.WorkerThread
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.SmsExportPhase
-import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.Util
 import kotlin.time.Duration.Companion.days
@@ -36,11 +35,7 @@ class SmsExportReminderSchedule(private val context: Context) : MegaphoneSchedul
   @Suppress("UsePropertyAccessSyntax")
   @WorkerThread
   fun shouldShowMegaphone(): Boolean {
-    if (!Stories.isFeatureFlagEnabled()) {
-      return false
-    }
-
-    return if (Stories.isFeatureFlagEnabled() && SignalStore.misc().storiesFeatureAvailableTimestamp == 0L) {
+    return if (SignalStore.misc().storiesFeatureAvailableTimestamp == 0L) {
       SignalStore.misc().storiesFeatureAvailableTimestamp = System.currentTimeMillis()
       false
     } else if (System.currentTimeMillis() > (SignalStore.misc().storiesFeatureAvailableTimestamp + FeatureFlags.smsExportMegaphoneDelayDays().days.inWholeMilliseconds)) {

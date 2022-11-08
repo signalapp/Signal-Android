@@ -19,7 +19,6 @@ import org.thoughtcrime.securesms.database.model.StoryType
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.testing.TestProtos
-import org.thoughtcrime.securesms.util.FeatureFlagsTestUtil
 import org.whispersystems.signalservice.api.messages.SignalServiceContent
 import org.whispersystems.signalservice.api.push.DistributionId
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.DataMessage
@@ -31,7 +30,6 @@ class MessageContentProcessor__handleStoryMessageTest : MessageContentProcessorT
 
   @Before
   fun setUp() {
-    FeatureFlagsTestUtil.setStoriesEnabled(true)
     SignalDatabase.mms.deleteAllThreads()
   }
 

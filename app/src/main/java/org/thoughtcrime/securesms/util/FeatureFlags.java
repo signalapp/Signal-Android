@@ -81,7 +81,6 @@ public final class FeatureFlags {
   private static final String RETRY_RECEIPTS                    = "android.retryReceipts";
   private static final String MAX_GROUP_CALL_RING_SIZE          = "global.calling.maxGroupCallRingSize";
   private static final String GROUP_CALL_RINGING                = "android.calling.groupCallRinging";
-          static final String STORIES                           = "android.stories.7";
   private static final String STORIES_TEXT_FUNCTIONS            = "android.stories.text.functions";
   private static final String HARDWARE_AEC_BLOCKLIST_MODELS     = "android.calling.hardwareAecBlockList";
   private static final String SOFTWARE_AEC_BLOCKLIST_MODELS     = "android.calling.softwareAecBlockList";
@@ -99,7 +98,6 @@ public final class FeatureFlags {
   private static final String CAMERAX_MIXED_MODEL_BLOCKLIST     = "android.cameraXMixedModelBlockList";
   private static final String RECIPIENT_MERGE_V2                = "android.recipientMergeV2";
   private static final String SMS_EXPORTER                      = "android.sms.exporter.2";
-  public  static final String STORIES_LOCALE                    = "android.stories.locale.3";
   private static final String HIDE_CONTACTS                     = "android.hide.contacts";
   private static final String SMS_EXPORT_MEGAPHONE_DELAY_DAYS   = "android.smsExport.megaphoneDelayDays.2";
   public  static final String CREDIT_CARD_PAYMENTS              = "android.credit.card.payments.1";
@@ -139,7 +137,6 @@ public final class FeatureFlags {
       MAX_GROUP_CALL_RING_SIZE,
       GROUP_CALL_RINGING,
       SENDER_KEY_MAX_AGE,
-      STORIES,
       STORIES_TEXT_FUNCTIONS,
       HARDWARE_AEC_BLOCKLIST_MODELS,
       SOFTWARE_AEC_BLOCKLIST_MODELS,
@@ -156,7 +153,6 @@ public final class FeatureFlags {
       CAMERAX_MIXED_MODEL_BLOCKLIST,
       RECIPIENT_MERGE_V2,
       SMS_EXPORTER,
-      STORIES_LOCALE,
       HIDE_CONTACTS,
       SMS_EXPORT_MEGAPHONE_DELAY_DAYS,
       CREDIT_CARD_PAYMENTS,
@@ -222,7 +218,6 @@ public final class FeatureFlags {
       TELECOM_MODEL_BLOCKLIST,
       CAMERAX_MODEL_BLOCKLIST,
       RECIPIENT_MERGE_V2,
-      STORIES,
       SMS_EXPORT_MEGAPHONE_DELAY_DAYS,
       CREDIT_CARD_PAYMENTS,
       PAYMENTS_REQUEST_ACTIVATE_FLOW,
@@ -250,10 +245,6 @@ public final class FeatureFlags {
    */
   private static final Map<String, OnFlagChange> FLAG_CHANGE_LISTENERS = new HashMap<String, OnFlagChange>() {{
     put(MESSAGE_PROCESSOR_ALARM_INTERVAL, change -> MessageProcessReceiver.startOrUpdateAlarm(ApplicationDependencies.getApplication()));
-    put(STORIES, change -> {
-      ApplicationDependencies.getJobManager().startChain(new RefreshAttributesJob()).then(new RefreshOwnProfileJob()).enqueue();
-      ApplicationDependencies.resetAllNetworkConnections();
-    });
     put(GIFT_BADGE_RECEIVE_SUPPORT, change -> ApplicationDependencies.getJobManager().startChain(new RefreshAttributesJob()).then(new RefreshOwnProfileJob()).enqueue());
   }};
 
@@ -450,28 +441,12 @@ public final class FeatureFlags {
   }
 
   /**
-   * Whether or not stories are available
-   *
-   * NOTE: This feature is still under ongoing development, do not enable.
-   */
-  public static boolean stories() {
-    return getBoolean(STORIES, false);
-  }
-
-  /**
    * Whether users can apply alignment and scale to text posts
    *
    * NOTE: This feature is still under ongoing development, do not enable.
    */
   public static boolean storiesTextFunctions() {
     return getBoolean(STORIES_TEXT_FUNCTIONS, false);
-  }
-
-  /**
-   * List of locales in which stories have been enabled. Overridden by the stories flag.
-   */
-  public static @NonNull String storiesLocale() {
-    return getString(STORIES_LOCALE, "");
   }
 
   /** A comma-separated list of models that should *not* use hardware AEC for calling. */

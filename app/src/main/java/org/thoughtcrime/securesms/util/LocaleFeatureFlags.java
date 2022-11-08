@@ -44,13 +44,6 @@ public final class LocaleFeatureFlags {
     return Optional.ofNullable(PushMediaConstraints.MediaConfig.forLevel(level));
   }
 
-  /**
-   * In story group for given country code
-   */
-  public static boolean isInStoriesCountry() {
-    return isEnabled(FeatureFlags.STORIES_LOCALE, FeatureFlags.storiesLocale());
-  }
-
   public static boolean shouldShowReleaseNote(@NonNull String releaseNoteUuid, @NonNull String countries) {
     return isEnabled(releaseNoteUuid, countries);
   }

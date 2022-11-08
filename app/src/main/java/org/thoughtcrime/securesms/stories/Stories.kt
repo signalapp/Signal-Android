@@ -34,8 +34,6 @@ import org.thoughtcrime.securesms.recipients.RecipientUtil
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.BottomSheetUtil
-import org.thoughtcrime.securesms.util.FeatureFlags
-import org.thoughtcrime.securesms.util.LocaleFeatureFlags
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.hasLinkPreview
 import java.util.Optional
@@ -62,24 +60,11 @@ object Stories {
   val MAX_VIDEO_DURATION_MILLIS: Long = (31.seconds - 1.milliseconds).inWholeMilliseconds
 
   /**
-   * Whether the feature is enabled at the flag level.
-   *
-   * `stories` will override `isInStoriesCountry` so as to not disable stories for those with
-   * that flag already enabled.
-   *
-   * Note: In general, you should prefer `isFeatureAvailable`.
-   */
-  @JvmStatic
-  fun isFeatureFlagEnabled(): Boolean {
-    return SignalStore.account().isRegistered && (FeatureFlags.stories() || LocaleFeatureFlags.isInStoriesCountry())
-  }
-
-  /**
    * Whether or not the user has the Stories feature enabled.
    */
   @JvmStatic
   fun isFeatureEnabled(): Boolean {
-    return isFeatureFlagEnabled() && !SignalStore.storyValues().isFeatureDisabled
+    return !SignalStore.storyValues().isFeatureDisabled
   }
 
   fun getHeaderAction(onClick: () -> Unit): HeaderAction {

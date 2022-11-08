@@ -1435,11 +1435,6 @@ public final class MessageContentProcessor {
   private void handleStoryMessage(@NonNull SignalServiceContent content, @NonNull SignalServiceStoryMessage message, @NonNull Recipient senderRecipient, @NonNull Recipient threadRecipient) throws StorageFailedException {
     log(content.getTimestamp(), "Story message.");
 
-    if (!Stories.isFeatureFlagEnabled()) {
-      warn(content.getTimestamp(), "Dropping unsupported story.");
-      return;
-    }
-
     if (!threadRecipient.isActiveGroup() && !(senderRecipient.isProfileSharing() || senderRecipient.isSystemContact())) {
       warn(content.getTimestamp(), "Dropping story from an untrusted source.");
       return;
@@ -1579,11 +1574,6 @@ public final class MessageContentProcessor {
   private @Nullable MessageId handleStoryReaction(@NonNull SignalServiceContent content, @NonNull SignalServiceDataMessage message, @NonNull Recipient senderRecipient) throws StorageFailedException {
     log(content.getTimestamp(), "Story reaction.");
 
-    if (!Stories.isFeatureFlagEnabled()) {
-      warn(content.getTimestamp(), "Dropping unsupported story reaction.");
-      return null;
-    }
-
     SignalServiceDataMessage.Reaction reaction = message.getReaction().get();
 
     if (!EmojiUtil.isEmoji(reaction.getEmoji())) {
@@ -1681,11 +1671,6 @@ public final class MessageContentProcessor {
 
   private @Nullable MessageId handleStoryReply(@NonNull SignalServiceContent content, @NonNull SignalServiceDataMessage message, @NonNull Recipient senderRecipient, long receivedTime) throws StorageFailedException {
     log(content.getTimestamp(), "Story reply.");
-
-    if (!Stories.isFeatureFlagEnabled()) {
-      warn(content.getTimestamp(), "Dropping unsupported story reply.");
-      return null;
-    }
 
     SignalServiceDataMessage.StoryContext storyContext = message.getStoryContext().get();
 
@@ -1968,11 +1953,6 @@ public final class MessageContentProcessor {
    */
   private long handleSynchronizeSentStoryReply(@NonNull SentTranscriptMessage message, long envelopeTimestamp)
     throws MmsException, BadGroupIdException {
-
-    if (!Stories.isFeatureFlagEnabled()) {
-      warn(envelopeTimestamp, "Dropping unsupported story reply sync message.");
-      return -1L;
-    }
 
     log(envelopeTimestamp, "Synchronize sent story reply for " + message.getTimestamp());
 
