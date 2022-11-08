@@ -46,6 +46,14 @@ sealed class MediaSelectionDestination {
       }
     }
 
+    override fun getRecipientSearchKey(): ContactSearchKey.RecipientSearchKey? {
+      return if (recipientSearchKeys.size == 1) {
+        recipientSearchKeys[0]
+      } else {
+        super.getRecipientSearchKey()
+      }
+    }
+
     override fun getRecipientSearchKeyList(): List<ContactSearchKey.RecipientSearchKey> = recipientSearchKeys
 
     override fun toBundle(): Bundle {
