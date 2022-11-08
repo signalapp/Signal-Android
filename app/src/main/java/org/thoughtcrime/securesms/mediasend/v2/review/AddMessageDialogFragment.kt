@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
@@ -49,10 +50,7 @@ class AddMessageDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_a
     ownerProducer = { requireActivity() }
   )
 
-  private val mentionsViewModel: MentionsPickerViewModel by viewModels(
-    ownerProducer = { requireActivity() },
-    factoryProducer = { MentionsPickerViewModel.Factory() }
-  )
+  private lateinit var mentionsViewModel: MentionsPickerViewModel
 
   private val inlineQueryViewModel: InlineQueryViewModel by viewModels(
     ownerProducer = { requireActivity() }
@@ -160,6 +158,8 @@ class AddMessageDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_a
   }
 
   private fun initializeMentions() {
+    mentionsViewModel = ViewModelProvider(requireActivity(), MentionsPickerViewModel.Factory()).get(MentionsPickerViewModel::class.java)
+
     inlineQueryResultsController = InlineQueryResultsController(
       requireContext(),
       inlineQueryViewModel,
