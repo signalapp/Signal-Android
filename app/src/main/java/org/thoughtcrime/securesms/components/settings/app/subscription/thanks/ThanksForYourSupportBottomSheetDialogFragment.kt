@@ -65,9 +65,9 @@ class ThanksForYourSupportBottomSheetDialogFragment : FixedRoundedCornerBottomSh
 
     if (args.badge.isBoost()) {
       if (Recipient.self().badges.any { !it.isBoost() }) {
-        subhead.setText(R.string.SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display)
+        subhead.setText(R.string.SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_donor_badge)
       } else {
-        subhead.text = SpannableStringBuilder(getString(R.string.SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display))
+        subhead.text = SpannableStringBuilder(getString(R.string.SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_donor_badge))
           .append(" ")
           .append(getString(R.string.SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also))
           .append(" ")
@@ -82,7 +82,7 @@ class ThanksForYourSupportBottomSheetDialogFragment : FixedRoundedCornerBottomSh
           )
       }
     } else {
-      subhead.text = getString(R.string.SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display, args.badge.name)
+      subhead.text = getString(R.string.SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_donor_badge)
     }
 
     val otherBadges = Recipient.self().badges.filterNot { it.id == args.badge.id }
@@ -107,7 +107,6 @@ class ThanksForYourSupportBottomSheetDialogFragment : FixedRoundedCornerBottomSh
     }
 
     if (args.isBoost) {
-      presentBoostCopy()
       badgeView.visibility = View.INVISIBLE
       lottie.visible = true
       lottie.playAnimation()
@@ -122,7 +121,6 @@ class ThanksForYourSupportBottomSheetDialogFragment : FixedRoundedCornerBottomSh
         }
       })
     } else {
-      presentSubscriptionCopy()
       lottie.visible = false
     }
 
@@ -153,14 +151,6 @@ class ThanksForYourSupportBottomSheetDialogFragment : FixedRoundedCornerBottomSh
       requireActivity().finish()
       requireActivity().startActivity(AppSettingsActivity.manageSubscriptions(requireContext()))
     }
-  }
-
-  private fun presentBoostCopy() {
-    heading.setText(R.string.SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost)
-  }
-
-  private fun presentSubscriptionCopy() {
-    heading.setText(R.string.SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support)
   }
 
   companion object {

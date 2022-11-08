@@ -47,7 +47,7 @@ class ManageDonationsFragment :
   ExpiredGiftSheet.Callback {
 
   private val supportTechSummary: CharSequence by lazy {
-    SpannableStringBuilder(SpanUtil.color(ContextCompat.getColor(requireContext(), R.color.signal_colorOnSurfaceVariant), requireContext().getString(R.string.DonateToSignalFragment__support_technology)))
+    SpannableStringBuilder(SpanUtil.color(ContextCompat.getColor(requireContext(), R.color.signal_colorOnSurfaceVariant), requireContext().getString(R.string.DonateToSignalFragment__private_messaging)))
       .append(" ")
       .append(
         SpanUtil.readMore(requireContext(), ContextCompat.getColor(requireContext(), R.color.signal_colorPrimary)) {
@@ -105,7 +105,7 @@ class ManageDonationsFragment :
 
       noPadTextPref(
         title = DSLSettingsText.from(
-          R.string.DonateToSignalFragment__powered_by,
+          R.string.DonateToSignalFragment__privacy_over_profit,
           DSLSettingsText.CenterModifier, DSLSettingsText.TitleLargeModifier
         )
       )

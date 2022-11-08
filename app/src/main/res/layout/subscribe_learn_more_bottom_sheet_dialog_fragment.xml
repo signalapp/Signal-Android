@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:viewBindingIgnore="true"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:viewBindingIgnore="true">
 
     <ImageView
         android:id="@+id/subscribe_bottom_sheet_handle"
@@ -44,8 +44,9 @@
                 android:layout_marginStart="@dimen/dsl_settings_gutter"
                 android:layout_marginTop="28dp"
                 android:layout_marginEnd="@dimen/dsl_settings_gutter"
-                android:text="@string/SubscribeFragment__support_technology_that_is_built_for_you"
-                android:textAppearance="@style/TextAppearance.Signal.Title2"
+                android:gravity="center"
+                android:text="@string/SubscribeLearnMoreBottomSheetDialogFragment__signal_is_different"
+                android:textAppearance="@style/Signal.Text.HeadlineMedium"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/subscribe_bottom_sheet_heart" />
@@ -57,24 +58,11 @@
                 android:layout_marginStart="@dimen/dsl_settings_gutter"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="@dimen/dsl_settings_gutter"
-                android:text="@string/SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no"
-                android:textAppearance="@style/Signal.Text.Body"
+                android:text="@string/SubscribeLearnMoreBottomSheetDialogFragment__private_messaging"
+                android:textAppearance="@style/Signal.Text.BodyLarge"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/subscribe_bottom_sheet_headline" />
-
-            <TextView
-                android:id="@+id/subscribe_bottom_why"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dsl_settings_gutter"
-                android:layout_marginTop="36dp"
-                android:layout_marginEnd="@dimen/dsl_settings_gutter"
-                android:text="@string/SubscribeLearnMoreBottomSheetDialogFragment__why_donate"
-                android:textAppearance="@style/TextAppearance.Signal.Title2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/subscribe_bottom_sheet_subhead" />
 
             <TextView
                 android:id="@+id/subscribe_bottom_sheet_the_team"
@@ -83,11 +71,11 @@
                 android:layout_marginStart="@dimen/dsl_settings_gutter"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="@dimen/dsl_settings_gutter"
-                android:text="@string/SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing"
-                android:textAppearance="@style/Signal.Text.Body"
+                android:text="@string/SubscribeLearnMoreBottomSheetDialogFragment__signal_is_supported_by"
+                android:textAppearance="@style/Signal.Text.BodyLarge"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/subscribe_bottom_why" />
+                app:layout_constraintTop_toBottomOf="@id/subscribe_bottom_sheet_subhead" />
 
             <TextView
                 android:id="@+id/subscribe_bottom_sheet_your_contribution"
@@ -97,8 +85,8 @@
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="@dimen/dsl_settings_gutter"
                 android:paddingBottom="36dp"
-                android:text="@string/SubscribeLearnMoreBottomSheetDialogFragment__your_donation"
-                android:textAppearance="@style/Signal.Text.Body"
+                android:text="@string/SubscribeLearnMoreBottomSheetDialogFragment__if_you_can"
+                android:textAppearance="@style/Signal.Text.BodyLarge"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/subscribe_bottom_sheet_the_team" />
