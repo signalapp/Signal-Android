@@ -2445,8 +2445,11 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
           Log.w(TAG, "Session switchover events aren't implemented yet!")
         }
         is PnpOperation.ChangeNumberInsert -> {
-          // TODO [pnp]
-          Log.w(TAG, "Change number inserts aren't implemented yet!")
+          if (changeSet.id is PnpIdResolver.PnpNoopId) {
+            SignalDatabase.sms.insertNumberChangeMessages(changeSet.id.recipientId)
+          } else {
+            throw IllegalStateException("There's a change number event on a newly-inserted recipient?")
+          }
         }
       }
     }
@@ -2649,7 +2652,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
       )
     }
 
-    if (record.e164 != null && updatedNumber) {
+    if (record.e164 != null && updatedNumber && notSelf(e164, pni, aci) && !record.isBlocked) {
       operations += PnpOperation.ChangeNumberInsert(
         recipientId = commonId,
         oldE164 = record.e164,
@@ -2762,7 +2765,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
         secondaryId = data.byPniSid
       )
 
-      if (data.aciSidRecord.e164 != null && data.aciSidRecord.e164 != e164) {
+      if (data.aciSidRecord.e164 != null && data.aciSidRecord.e164 != e164 && notSelf(e164, pni, aci) && !data.aciSidRecord.isBlocked) {
         operations += PnpOperation.ChangeNumberInsert(
           recipientId = data.byAciSid,
           oldE164 = data.aciSidRecord.e164,
@@ -2788,7 +2791,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
           e164 = e164
         )
 
-        if (data.aciSidRecord.e164 != null) {
+        if (data.aciSidRecord.e164 != null && notSelf(e164, pni, aci) && !data.aciSidRecord.isBlocked) {
           operations += PnpOperation.ChangeNumberInsert(
             recipientId = data.byAciSid,
             oldE164 = data.aciSidRecord.e164,
@@ -2829,7 +2832,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
         secondaryId = data.byE164
       )
 
-      if (data.aciSidRecord.e164 != null && data.aciSidRecord.e164 != e164) {
+      if (data.aciSidRecord.e164 != null && data.aciSidRecord.e164 != e164 && notSelf(e164, pni, aci) && !data.aciSidRecord.isBlocked) {
         operations += PnpOperation.ChangeNumberInsert(
           recipientId = data.byAciSid,
           oldE164 = data.aciSidRecord.e164,
@@ -2854,7 +2857,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
         secondaryId = data.byE164
       )
 
-      if (data.aciSidRecord.e164 != null && data.aciSidRecord.e164 != e164) {
+      if (data.aciSidRecord.e164 != null && data.aciSidRecord.e164 != e164 && notSelf(e164, pni, aci) && !data.aciSidRecord.isBlocked) {
         operations += PnpOperation.ChangeNumberInsert(
           recipientId = data.byAciSid,
           oldE164 = data.aciSidRecord.e164,
@@ -2872,7 +2875,7 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
         e164 = e164
       )
 
-      if (data.aciSidRecord.e164 != null && data.aciSidRecord.e164 != e164) {
+      if (data.aciSidRecord.e164 != null && data.aciSidRecord.e164 != e164 && notSelf(e164, pni, aci) && !data.aciSidRecord.isBlocked) {
         operations += PnpOperation.ChangeNumberInsert(
           recipientId = data.byAciSid,
           oldE164 = data.aciSidRecord.e164,

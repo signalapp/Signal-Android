@@ -178,7 +178,7 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns,
   public abstract long insertMessageOutbox(@NonNull OutgoingMediaMessage message, long threadId, boolean forceSms, int defaultReceiptStatus, @Nullable SmsDatabase.InsertListener insertListener) throws MmsException;
   public abstract void insertProfileNameChangeMessages(@NonNull Recipient recipient, @NonNull String newProfileName, @NonNull String previousProfileName);
   public abstract void insertGroupV1MigrationEvents(@NonNull RecipientId recipientId, long threadId, @NonNull GroupMigrationMembershipChange membershipChange);
-  public abstract void insertNumberChangeMessages(@NonNull Recipient recipient);
+  public abstract void insertNumberChangeMessages(@NonNull RecipientId recipientId);
   public abstract void insertBoostRequestMessage(@NonNull RecipientId recipientId, long threadId);
   public abstract void insertThreadMergeEvent(@NonNull RecipientId recipientId, long threadId, @NonNull ThreadMergeEvent event);
   public abstract void insertSmsExportMessage(@NonNull RecipientId recipientId, long threadId);

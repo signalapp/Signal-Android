@@ -572,7 +572,7 @@ public class MmsDatabase extends MessageDatabase {
   }
 
   @Override
-  public void insertNumberChangeMessages(@NonNull Recipient recipient) {
+  public void insertNumberChangeMessages(@NonNull RecipientId recipientId) {
     throw new UnsupportedOperationException();
   }
 

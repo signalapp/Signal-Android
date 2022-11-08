@@ -88,6 +88,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 
+import static org.thoughtcrime.securesms.database.MmsSmsColumns.Types.CHANGE_NUMBER_TYPE;
 import static org.thoughtcrime.securesms.database.MmsSmsColumns.Types.GROUP_V2_LEAVE_BITS;
 
 /**
@@ -1070,16 +1071,16 @@ public class SmsDatabase extends MessageDatabase {
   }
 
   @Override
-  public void insertNumberChangeMessages(@NonNull Recipient recipient) {
+  public void insertNumberChangeMessages(@NonNull RecipientId recipientId) {
     ThreadDatabase                  threadDatabase    = SignalDatabase.threads();
-    List<GroupDatabase.GroupRecord> groupRecords      = SignalDatabase.groups().getGroupsContainingMember(recipient.getId(), false);
+    List<GroupDatabase.GroupRecord> groupRecords      = SignalDatabase.groups().getGroupsContainingMember(recipientId, false);
     List<Long>                      threadIdsToUpdate = new LinkedList<>();
 
     SQLiteDatabase db = databaseHelper.getSignalWritableDatabase();
     db.beginTransaction();
 
     try {
-      threadIdsToUpdate.add(threadDatabase.getThreadIdFor(recipient.getId()));
+      threadIdsToUpdate.add(threadDatabase.getThreadIdFor(recipientId));
       for (GroupDatabase.GroupRecord groupRecord : groupRecords) {
         if (groupRecord.isActive()) {
           threadIdsToUpdate.add(threadDatabase.getThreadIdFor(groupRecord.getRecipientId()));
@@ -1090,7 +1091,7 @@ public class SmsDatabase extends MessageDatabase {
                        .filter(Objects::nonNull)
                        .forEach(threadId -> {
                          ContentValues values = new ContentValues();
-                         values.put(RECIPIENT_ID, recipient.getId().serialize());
+                         values.put(RECIPIENT_ID, recipientId.serialize());
                          values.put(ADDRESS_DEVICE_ID, 1);
                          values.put(DATE_RECEIVED, System.currentTimeMillis());
                          values.put(DATE_SENT, System.currentTimeMillis());
@@ -2014,6 +2015,26 @@ public class SmsDatabase extends MessageDatabase {
         }
 
         return record;
+      }
+    }
+  }
+
+  /**
+   * The number of change number messages in the thread.
+   * Currently only used for tests.
+   */
+  @VisibleForTesting
+  int getChangeNumberMessageCount(@NonNull RecipientId recipientId) {
+    try (Cursor cursor = SQLiteDatabaseExtensionsKt
+        .select(getReadableDatabase(), "COUNT(*)")
+        .from(TABLE_NAME)
+        .where(RECIPIENT_ID + " = ? AND " + TYPE + " = ?", recipientId, CHANGE_NUMBER_TYPE)
+        .run())
+    {
+      if (cursor.moveToFirst()) {
+        return cursor.getInt(0);
+      } else {
+        return 0;
       }
     }
   }
